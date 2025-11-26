@@ -1,0 +1,12 @@
+# TalonOne.Model.ItemAttribute
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Attributeid** | **long** | The ID of the attribute of the item. | 
+**Name** | **string** | The name of the attribute. | 
+**Value** | **Object** |  | 
+
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+

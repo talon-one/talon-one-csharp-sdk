@@ -1,0 +1,13 @@
+# TalonOne.Model.ValueMap
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Id** | **long** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
+**CampaignId** | **long** |  | 
+**Created** | **DateTime** |  | [optional] 
+**CreatedBy** | **long** | The ID of the user who created the value map. | [optional] 
+
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+

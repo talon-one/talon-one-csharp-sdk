@@ -1,0 +1,17 @@
+# TalonOne.Model.RoleV2
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Id** | **long** | The internal ID of this entity. | 
+**Created** | **DateTime** | The time this entity was created. | 
+**Modified** | **DateTime** | The time this entity was last modified. | 
+**AccountId** | **long** | The ID of the account that owns this entity. | 
+**Name** | **string** | Name of the role. | [optional] 
+**Description** | **string** | Description of the role. | [optional] 
+**Permissions** | [**RoleV2Permissions**](RoleV2Permissions.md) | The permissions that this role gives. | [optional] 
+**Members** | **List&lt;long&gt;** | A list of user IDs the role is assigned to. | [optional] 
+
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+

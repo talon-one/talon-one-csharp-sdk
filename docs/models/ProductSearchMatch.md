@@ -1,0 +1,12 @@
+# TalonOne.Model.ProductSearchMatch
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Value** | **string** | The string matching the given value. Either a product name or SKU. | 
+**ProductId** | **long** | The ID of the product. | [optional] 
+**ProductSkuId** | **long** | The ID of the SKU linked to a product. If empty, this is an product. | [optional] 
+
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+

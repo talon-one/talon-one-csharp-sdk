@@ -1,0 +1,29 @@
+# TalonOne.Model.LoyaltyProgramTransaction
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Id** | **long** | ID of the loyalty ledger transaction. | 
+**TransactionUUID** | **string** | Unique identifier of the transaction in the UUID format. | 
+**ProgramId** | **long** | ID of the loyalty program. | 
+**Created** | **DateTime** | Date and time the loyalty transaction occurred. | 
+**Type** | **string** | Type of transaction. Possible values:   - &#x60;addition&#x60;: Signifies added points.   - &#x60;subtraction&#x60;: Signifies deducted points.  | 
+**Amount** | **decimal** | Amount of loyalty points added or deducted in the transaction. | 
+**Name** | **string** | Name or reason for the loyalty ledger transaction. | 
+**StartDate** | **string** | When points become active. Possible values:   - &#x60;immediate&#x60;: Points are immediately active.   - &#x60;on_action&#x60;: Points become active based on the customer&#39;s action.   - a timestamp value: Points become active at a given date and time.  | 
+**ExpiryDate** | **string** | When points expire. Possible values:   - &#x60;unlimited&#x60;: Points have no expiration date.   - a timestamp value: Points expire at a given date and time.  | 
+**SubledgerId** | **string** | ID of the subledger. | 
+**CampaignId** | **long** | ID of the campaign. | [optional] 
+**CustomerProfileId** | **string** | Customer profile integration ID used in the loyalty program. | [optional] 
+**CardIdentifier** | **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
+**CustomerSessionId** | **string** | ID of the customer session where the transaction occurred. | [optional] 
+**ImportId** | **long** | ID of the import where the transaction occurred. | [optional] 
+**UserId** | **long** | ID of the user who manually added or deducted points. Applies only to manual transactions. | [optional] 
+**UserEmail** | **string** | The email of the Campaign Manager account that manually added or deducted points. Applies only to manual transactions. | [optional] 
+**RulesetId** | **long** | ID of the ruleset containing the rule that triggered the effect. Applies only for transactions that resulted from a customer session. | [optional] 
+**RuleName** | **string** | Name of the rule that triggered the effect. Applies only for transactions that resulted from a customer session. | [optional] 
+**Flags** | [**LoyaltyLedgerEntryFlags**](LoyaltyLedgerEntryFlags.md) | The flags of the transaction, when applicable. The &#x60;createsNegativeBalance&#x60;  flag indicates whether the transaction results in a negative balance. | [optional] 
+
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+
