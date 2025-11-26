@@ -1,7 +1,7 @@
 param(
     [Parameter()][Alias("g")][String]$GitHost = "github.com",
     [Parameter()][Alias("u")][String]$GitUserId = "talon-one",
-    [Parameter()][Alias("r")][String]$GitRepoId = "TalonOne.cs",
+    [Parameter()][Alias("r")][String]$GitRepoId = "talon-one-csharp-sdk",
     [Parameter()][Alias("m")][string]$Message = "Minor update",
     [Parameter()][Alias("h")][switch]$Help
 )

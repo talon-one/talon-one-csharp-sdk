@@ -35,7 +35,7 @@ java -jar "<path>/openapi-generator/modules/openapi-generator-cli/target/openapi
     --additional-properties $properties `
     --global-property $global `
     --git-host "github.com" `
-    --git-repo-id "TalonOne.cs" `
+    --git-repo-id "talon-one-csharp-sdk" `
     --git-user-id "talon-one" `
     --release-note "Minor update"
     # -t templates
@@ -168,7 +168,7 @@ Authentication schemes defined for the API:
 - conditionalSerialization: false
 - disallowAdditionalPropertiesIfNotPresent: 
 - gitHost: github.com
-- gitRepoId: TalonOne.cs
+- gitRepoId: talon-one-csharp-sdk
 - gitUserId: talon-one
 - hideGenerationTimestamp: true
 - interfacePrefix: I

@@ -14,7 +14,7 @@
     <RootNamespace>TalonOne</RootNamespace>
     <Version>25.27</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\TalonOne.xml</DocumentationFile>
-    <RepositoryUrl>https://github.com/talon-one/TalonOne.cs.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/talon-one/talon-one-csharp-sdk.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>Minor update</PackageReleaseNotes>
     <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
