@@ -60,8 +60,6 @@ namespace TalonOne.Client
             _jsonOptions.Converters.Add(new AchievementProgressJsonConverter());
             _jsonOptions.Converters.Add(new AchievementProgressWithDefinitionJsonConverter());
             _jsonOptions.Converters.Add(new AchievementStatusEntryJsonConverter());
-            _jsonOptions.Converters.Add(new ActivateLoyaltyPointsJsonConverter());
-            _jsonOptions.Converters.Add(new ActivateLoyaltyPointsResponseJsonConverter());
             _jsonOptions.Converters.Add(new ActivateUserRequestJsonConverter());
             _jsonOptions.Converters.Add(new AddFreeItemEffectPropsJsonConverter());
             _jsonOptions.Converters.Add(new AddItemCatalogActionJsonConverter());
@@ -496,9 +494,6 @@ namespace TalonOne.Client
             _jsonOptions.Converters.Add(new PriceTypeJsonConverter());
             _jsonOptions.Converters.Add(new PriceTypeReferenceDetailJsonConverter());
             _jsonOptions.Converters.Add(new PriceTypeReferencesJsonConverter());
-            _jsonOptions.Converters.Add(new PrismaticFlowJsonConverter());
-            _jsonOptions.Converters.Add(new PrismaticFlowConfigJsonConverter());
-            _jsonOptions.Converters.Add(new PrismaticFlowWithConfigJsonConverter());
             _jsonOptions.Converters.Add(new ProductJsonConverter());
             _jsonOptions.Converters.Add(new ProductSearchMatchJsonConverter());
             _jsonOptions.Converters.Add(new ProductUnitAnalyticsJsonConverter());

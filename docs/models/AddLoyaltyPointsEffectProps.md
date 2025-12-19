@@ -19,8 +19,6 @@ Name | Type | Description | Notes
 **CardIdentifier** | **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
 **BundleIndex** | **long** | The position of the bundle in a list of item bundles created from the same bundle definition. | [optional] 
 **BundleName** | **string** | The name of the bundle definition. | [optional] 
-**AwaitsActivation** | **bool** | If &#x60;true&#x60;, the loyalty points are pending until  action-based activation takes place. The &#x60;startDate&#x60; parameter automatically  defaults to &#x60;on_action&#x60;.  | [optional] 
-**ValidityDuration** | **string** | The duration for which the points remain active, relative to the  activation date. Example: &#x60;30D&#x60;.   **Note**: This value is only returned if &#x60;awaitsActivation&#x60; is &#x60;true&#x60;  and &#x60;expiryDate&#x60; is not set.  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

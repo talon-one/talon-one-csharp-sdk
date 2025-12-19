@@ -459,10 +459,6 @@ namespace TalonOne.Client
                 return Picklist.TypeEnumToJsonValue(picklistTypeEnum);
             if (obj is PriceTypeReferenceDetail.ReferencingTypeEnum priceTypeReferenceDetailReferencingTypeEnum)
                 return PriceTypeReferenceDetail.ReferencingTypeEnumToJsonValue(priceTypeReferenceDetailReferencingTypeEnum);
-            if (obj is PrismaticFlow.EventTypeEnum prismaticFlowEventTypeEnum)
-                return PrismaticFlow.EventTypeEnumToJsonValue(prismaticFlowEventTypeEnum);
-            if (obj is PrismaticFlowWithConfig.EventTypeEnum prismaticFlowWithConfigEventTypeEnum)
-                return PrismaticFlowWithConfig.EventTypeEnumToJsonValue(prismaticFlowWithConfigEventTypeEnum);
             if (obj is ReferralRejectionReason.ReasonEnum referralRejectionReasonReasonEnum)
                 return ReferralRejectionReason.ReasonEnumToJsonValue(referralRejectionReasonReasonEnum);
             if (obj is ReturnIntegrationRequest.ResponseContentEnum returnIntegrationRequestResponseContentEnum)

@@ -1,9 +1,15 @@
+.github/.example/.example.csproj
+.github/.example/Program.cs
+.github/workflows/autorelease.yml
+.github/workflows/test.yml
 .gitignore
 .openapi-generator-ignore
+Makefile
 README.md
 TalonOne.sln
 api/openapi.yaml
 appveyor.yml
+docker-compose.yml
 docs/apis/IntegrationApi.md
 docs/apis/ManagementApi.md
 docs/models/APIError.md
@@ -27,8 +33,6 @@ docs/models/AchievementBase.md
 docs/models/AchievementProgress.md
 docs/models/AchievementProgressWithDefinition.md
 docs/models/AchievementStatusEntry.md
-docs/models/ActivateLoyaltyPoints.md
-docs/models/ActivateLoyaltyPointsResponse.md
 docs/models/ActivateUserRequest.md
 docs/models/AddFreeItemEffectProps.md
 docs/models/AddItemCatalogAction.md
@@ -463,9 +467,6 @@ docs/models/PriceDetail.md
 docs/models/PriceType.md
 docs/models/PriceTypeReferenceDetail.md
 docs/models/PriceTypeReferences.md
-docs/models/PrismaticFlow.md
-docs/models/PrismaticFlowConfig.md
-docs/models/PrismaticFlowWithConfig.md
 docs/models/Product.md
 docs/models/ProductSearchMatch.md
 docs/models/ProductUnitAnalytics.md
@@ -647,8 +648,6 @@ src/TalonOne.Test/Model/AchievementProgressTests.cs
 src/TalonOne.Test/Model/AchievementProgressWithDefinitionTests.cs
 src/TalonOne.Test/Model/AchievementStatusEntryTests.cs
 src/TalonOne.Test/Model/AchievementTests.cs
-src/TalonOne.Test/Model/ActivateLoyaltyPointsResponseTests.cs
-src/TalonOne.Test/Model/ActivateLoyaltyPointsTests.cs
 src/TalonOne.Test/Model/ActivateUserRequestTests.cs
 src/TalonOne.Test/Model/AddFreeItemEffectPropsTests.cs
 src/TalonOne.Test/Model/AddItemCatalogActionTests.cs
@@ -1083,9 +1082,6 @@ src/TalonOne.Test/Model/PriceDetailTests.cs
 src/TalonOne.Test/Model/PriceTypeReferenceDetailTests.cs
 src/TalonOne.Test/Model/PriceTypeReferencesTests.cs
 src/TalonOne.Test/Model/PriceTypeTests.cs
-src/TalonOne.Test/Model/PrismaticFlowConfigTests.cs
-src/TalonOne.Test/Model/PrismaticFlowTests.cs
-src/TalonOne.Test/Model/PrismaticFlowWithConfigTests.cs
 src/TalonOne.Test/Model/ProductSearchMatchTests.cs
 src/TalonOne.Test/Model/ProductTests.cs
 src/TalonOne.Test/Model/ProductUnitAnalyticsDataPointTests.cs
@@ -1286,8 +1282,6 @@ src/TalonOne/Model/AchievementBase.cs
 src/TalonOne/Model/AchievementProgress.cs
 src/TalonOne/Model/AchievementProgressWithDefinition.cs
 src/TalonOne/Model/AchievementStatusEntry.cs
-src/TalonOne/Model/ActivateLoyaltyPoints.cs
-src/TalonOne/Model/ActivateLoyaltyPointsResponse.cs
 src/TalonOne/Model/ActivateUserRequest.cs
 src/TalonOne/Model/AddFreeItemEffectProps.cs
 src/TalonOne/Model/AddItemCatalogAction.cs
@@ -1722,9 +1716,6 @@ src/TalonOne/Model/PriceDetail.cs
 src/TalonOne/Model/PriceType.cs
 src/TalonOne/Model/PriceTypeReferenceDetail.cs
 src/TalonOne/Model/PriceTypeReferences.cs
-src/TalonOne/Model/PrismaticFlow.cs
-src/TalonOne/Model/PrismaticFlowConfig.cs
-src/TalonOne/Model/PrismaticFlowWithConfig.cs
 src/TalonOne/Model/Product.cs
 src/TalonOne/Model/ProductSearchMatch.cs
 src/TalonOne/Model/ProductUnitAnalytics.cs

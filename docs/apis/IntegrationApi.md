@@ -1781,7 +1781,7 @@ catch (ApiException e)
 
 <a id="getloyaltycardtransactions"></a>
 # **GetLoyaltyCardTransactions**
-> GetLoyaltyCardTransactions200Response GetLoyaltyCardTransactions (long loyaltyProgramId, string loyaltyCardId, List<string> subledgerId = null, string loyaltyTransactionType = null, DateTime startDate = null, DateTime endDate = null, List<string> customerSessionIDs = null, List<string> transactionUUIDs = null, long pageSize = null, long skip = null)
+> GetLoyaltyCardTransactions200Response GetLoyaltyCardTransactions (long loyaltyProgramId, string loyaltyCardId, List<string> subledgerId = null, string loyaltyTransactionType = null, DateTime startDate = null, DateTime endDate = null, List<string> customerSessionIDs = null, List<string> transactionUUIDs = null, long pageSize = null, long skip = null, bool awaitsActivation = null)
 
 List card's transactions
 
@@ -1819,11 +1819,12 @@ namespace Example
             var transactionUUIDs = new List<string>(); // List<string> | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.  The response contains only data associated with the specified transactions.  (optional) 
             var pageSize = 50L;  // long | The number of items in the response. (optional)  (default to 50)
             var skip = 789L;  // long | The number of items to skip when paging through large result sets. (optional) 
+            var awaitsActivation = true;  // bool | If `true`: Filters results to include only point transactions that have action-based activation and have not expired. If `false`: Returns an error.  (optional) 
 
             try
             {
                 // List card's transactions
-                GetLoyaltyCardTransactions200Response result = apiInstance.GetLoyaltyCardTransactions(loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip);
+                GetLoyaltyCardTransactions200Response result = apiInstance.GetLoyaltyCardTransactions(loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip, awaitsActivation);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1844,7 +1845,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List card's transactions
-    ApiResponse<GetLoyaltyCardTransactions200Response> response = apiInstance.GetLoyaltyCardTransactionsWithHttpInfo(loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip);
+    ApiResponse<GetLoyaltyCardTransactions200Response> response = apiInstance.GetLoyaltyCardTransactionsWithHttpInfo(loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip, awaitsActivation);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1871,6 +1872,7 @@ catch (ApiException e)
 | **transactionUUIDs** | [**List&lt;string&gt;**](string.md) | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  | [optional]  |
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 50] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
+| **awaitsActivation** | **bool** | If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired. If &#x60;false&#x60;: Returns an error.  | [optional]  |
 
 ### Return type
 
@@ -2013,7 +2015,7 @@ catch (ApiException e)
 
 <a id="getloyaltyprogramprofiletransactions"></a>
 # **GetLoyaltyProgramProfileTransactions**
-> GetLoyaltyProgramProfileTransactions200Response GetLoyaltyProgramProfileTransactions (long loyaltyProgramId, string integrationId, List<string> customerSessionIDs = null, List<string> transactionUUIDs = null, string subledgerId = null, string loyaltyTransactionType = null, DateTime startDate = null, DateTime endDate = null, long pageSize = null, long skip = null)
+> GetLoyaltyProgramProfileTransactions200Response GetLoyaltyProgramProfileTransactions (long loyaltyProgramId, string integrationId, List<string> customerSessionIDs = null, List<string> transactionUUIDs = null, string subledgerId = null, string loyaltyTransactionType = null, DateTime startDate = null, DateTime endDate = null, long pageSize = null, long skip = null, bool awaitsActivation = null)
 
 List customer's loyalty transactions
 
@@ -2051,11 +2053,12 @@ namespace Example
             var endDate = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional) 
             var pageSize = 50L;  // long | The number of items in the response. (optional)  (default to 50)
             var skip = 789L;  // long | The number of items to skip when paging through large result sets. (optional) 
+            var awaitsActivation = true;  // bool | If `true`: Filters results to include only point transactions that have action-based activation and have not expired. If `false`: Returns an error.  (optional) 
 
             try
             {
                 // List customer's loyalty transactions
-                GetLoyaltyProgramProfileTransactions200Response result = apiInstance.GetLoyaltyProgramProfileTransactions(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip);
+                GetLoyaltyProgramProfileTransactions200Response result = apiInstance.GetLoyaltyProgramProfileTransactions(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2076,7 +2079,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List customer's loyalty transactions
-    ApiResponse<GetLoyaltyProgramProfileTransactions200Response> response = apiInstance.GetLoyaltyProgramProfileTransactionsWithHttpInfo(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip);
+    ApiResponse<GetLoyaltyProgramProfileTransactions200Response> response = apiInstance.GetLoyaltyProgramProfileTransactionsWithHttpInfo(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2103,6 +2106,7 @@ catch (ApiException e)
 | **endDate** | **DateTime** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [optional]  |
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 50] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
+| **awaitsActivation** | **bool** | If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired. If &#x60;false&#x60;: Returns an error.  | [optional]  |
 
 ### Return type
 

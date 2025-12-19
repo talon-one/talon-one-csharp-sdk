@@ -3046,9 +3046,10 @@ namespace TalonOne.Api
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired. If &#x60;false&#x60;: Returns an error.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramTransactionsApiResponse"/>&gt;</returns>
-        Task<IGetLoyaltyProgramTransactionsApiResponse> GetLoyaltyProgramTransactionsAsync(long loyaltyProgramId, Option<string> loyaltyTransactionType = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetLoyaltyProgramTransactionsApiResponse> GetLoyaltyProgramTransactionsAsync(long loyaltyProgramId, Option<string> loyaltyTransactionType = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List loyalty program transactions
@@ -3065,9 +3066,10 @@ namespace TalonOne.Api
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired. If &#x60;false&#x60;: Returns an error.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramTransactionsApiResponse"/>&gt;</returns>
-        Task<IGetLoyaltyProgramTransactionsApiResponse> GetLoyaltyProgramTransactionsOrDefaultAsync(long loyaltyProgramId, Option<string> loyaltyTransactionType = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetLoyaltyProgramTransactionsApiResponse> GetLoyaltyProgramTransactionsOrDefaultAsync(long loyaltyProgramId, Option<string> loyaltyTransactionType = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List loyalty programs
@@ -40811,7 +40813,7 @@ namespace TalonOne.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetLoyaltyProgramTransactions(ref long loyaltyProgramId, ref Option<string> loyaltyTransactionType, ref Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, ref Option<DateTime> startDate, ref Option<DateTime> endDate, ref Option<long> pageSize, ref Option<long> skip);
+        partial void FormatGetLoyaltyProgramTransactions(ref long loyaltyProgramId, ref Option<string> loyaltyTransactionType, ref Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, ref Option<DateTime> startDate, ref Option<DateTime> endDate, ref Option<long> pageSize, ref Option<long> skip, ref Option<bool> awaitsActivation);
 
         /// <summary>
         /// Validates the request parameters
@@ -40849,10 +40851,11 @@ namespace TalonOne.Api
         /// <param name="endDate"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        private void AfterGetLoyaltyProgramTransactionsDefaultImplementation(IGetLoyaltyProgramTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<string> loyaltyTransactionType, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip)
+        /// <param name="awaitsActivation"></param>
+        private void AfterGetLoyaltyProgramTransactionsDefaultImplementation(IGetLoyaltyProgramTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<string> loyaltyTransactionType, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation)
         {
             bool suppressDefaultLog = false;
-            AfterGetLoyaltyProgramTransactions(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip);
+            AfterGetLoyaltyProgramTransactions(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip, awaitsActivation);
             if (!suppressDefaultLog)
                 Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -40871,7 +40874,8 @@ namespace TalonOne.Api
         /// <param name="endDate"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        partial void AfterGetLoyaltyProgramTransactions(ref bool suppressDefaultLog, IGetLoyaltyProgramTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<string> loyaltyTransactionType, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip);
+        /// <param name="awaitsActivation"></param>
+        partial void AfterGetLoyaltyProgramTransactions(ref bool suppressDefaultLog, IGetLoyaltyProgramTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<string> loyaltyTransactionType, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -40888,10 +40892,11 @@ namespace TalonOne.Api
         /// <param name="endDate"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        private void OnErrorGetLoyaltyProgramTransactionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<string> loyaltyTransactionType, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip)
+        /// <param name="awaitsActivation"></param>
+        private void OnErrorGetLoyaltyProgramTransactionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<string> loyaltyTransactionType, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetLoyaltyProgramTransactions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip);
+            OnErrorGetLoyaltyProgramTransactions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip, awaitsActivation);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -40912,7 +40917,8 @@ namespace TalonOne.Api
         /// <param name="endDate"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        partial void OnErrorGetLoyaltyProgramTransactions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<string> loyaltyTransactionType, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip);
+        /// <param name="awaitsActivation"></param>
+        partial void OnErrorGetLoyaltyProgramTransactions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<string> loyaltyTransactionType, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation);
 
         /// <summary>
         /// List loyalty program transactions Retrieve loyalty program transaction logs in a given loyalty program with filtering options applied. Manual and imported transactions are also included. **Note:** If no filters are applied, the last 50 loyalty transactions for the given loyalty program are returned.  **Important:** To get loyalty transaction logs for a given Integration ID in a loyalty program, we recommend using the Integration API&#39;s [Get customer&#39;s loyalty logs](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). 
@@ -40926,13 +40932,14 @@ namespace TalonOne.Api
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired. If &#x60;false&#x60;: Returns an error.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramTransactionsApiResponse"/>&gt;</returns>
-        public async Task<IGetLoyaltyProgramTransactionsApiResponse> GetLoyaltyProgramTransactionsOrDefaultAsync(long loyaltyProgramId, Option<string> loyaltyTransactionType = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetLoyaltyProgramTransactionsApiResponse> GetLoyaltyProgramTransactionsOrDefaultAsync(long loyaltyProgramId, Option<string> loyaltyTransactionType = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetLoyaltyProgramTransactionsAsync(loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip, cancellationToken).ConfigureAwait(false);
+                return await GetLoyaltyProgramTransactionsAsync(loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip, awaitsActivation, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -40953,9 +40960,10 @@ namespace TalonOne.Api
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired. If &#x60;false&#x60;: Returns an error.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramTransactionsApiResponse"/>&gt;</returns>
-        public async Task<IGetLoyaltyProgramTransactionsApiResponse> GetLoyaltyProgramTransactionsAsync(long loyaltyProgramId, Option<string> loyaltyTransactionType = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetLoyaltyProgramTransactionsApiResponse> GetLoyaltyProgramTransactionsAsync(long loyaltyProgramId, Option<string> loyaltyTransactionType = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -40963,7 +40971,7 @@ namespace TalonOne.Api
             {
                 ValidateGetLoyaltyProgramTransactions(loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs);
 
-                FormatGetLoyaltyProgramTransactions(ref loyaltyProgramId, ref loyaltyTransactionType, ref subledgerId, customerSessionIDs, transactionUUIDs, ref startDate, ref endDate, ref pageSize, ref skip);
+                FormatGetLoyaltyProgramTransactions(ref loyaltyProgramId, ref loyaltyTransactionType, ref subledgerId, customerSessionIDs, transactionUUIDs, ref startDate, ref endDate, ref pageSize, ref skip, ref awaitsActivation);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -40998,6 +41006,9 @@ namespace TalonOne.Api
 
                     if (skip.IsSet)
                         parseQueryStringLocalVar["skip"] = ClientUtils.ParameterToString(skip.Value);
+
+                    if (awaitsActivation.IsSet)
+                        parseQueryStringLocalVar["awaitsActivation"] = ClientUtils.ParameterToString(awaitsActivation.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -41036,7 +41047,7 @@ namespace TalonOne.Api
 
                         GetLoyaltyProgramTransactionsApiResponse apiResponseLocalVar = new GetLoyaltyProgramTransactionsApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/transactions", requestedAtLocalVar, _jsonSerializerOptions);
 
-                        AfterGetLoyaltyProgramTransactionsDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip);
+                        AfterGetLoyaltyProgramTransactionsDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip, awaitsActivation);
 
                         Events.ExecuteOnGetLoyaltyProgramTransactions(apiResponseLocalVar);
 
@@ -41050,7 +41061,7 @@ namespace TalonOne.Api
             }
             catch(Exception e)
             {
-                OnErrorGetLoyaltyProgramTransactionsDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/transactions", uriBuilderLocalVar.Path, loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip);
+                OnErrorGetLoyaltyProgramTransactionsDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/transactions", uriBuilderLocalVar.Path, loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip, awaitsActivation);
                 Events.ExecuteOnErrorGetLoyaltyProgramTransactions(e);
                 throw;
             }

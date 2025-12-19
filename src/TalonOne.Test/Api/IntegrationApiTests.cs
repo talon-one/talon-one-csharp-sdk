@@ -300,7 +300,8 @@ namespace TalonOne.Test.Api
             Client.Option<List<string>> transactionUUIDs = default;
             Client.Option<long> pageSize = default;
             Client.Option<long> skip = default;
-            var response = await _instance.GetLoyaltyCardTransactionsAsync(loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip);
+            Client.Option<bool> awaitsActivation = default;
+            var response = await _instance.GetLoyaltyCardTransactionsAsync(loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip, awaitsActivation);
             var model = response.Ok();
             Assert.IsType<GetLoyaltyCardTransactions200Response>(model);
         }
@@ -341,7 +342,8 @@ namespace TalonOne.Test.Api
             Client.Option<DateTime> endDate = default;
             Client.Option<long> pageSize = default;
             Client.Option<long> skip = default;
-            var response = await _instance.GetLoyaltyProgramProfileTransactionsAsync(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip);
+            Client.Option<bool> awaitsActivation = default;
+            var response = await _instance.GetLoyaltyProgramProfileTransactionsAsync(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
             var model = response.Ok();
             Assert.IsType<GetLoyaltyProgramProfileTransactions200Response>(model);
         }

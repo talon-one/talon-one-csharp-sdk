@@ -1575,7 +1575,8 @@ namespace TalonOne.Test.Api
             Client.Option<DateTime> endDate = default;
             Client.Option<long> pageSize = default;
             Client.Option<long> skip = default;
-            var response = await _instance.GetLoyaltyProgramTransactionsAsync(loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip);
+            Client.Option<bool> awaitsActivation = default;
+            var response = await _instance.GetLoyaltyProgramTransactionsAsync(loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip, awaitsActivation);
             var model = response.Ok();
             Assert.IsType<GetLoyaltyProgramTransactions200Response>(model);
         }

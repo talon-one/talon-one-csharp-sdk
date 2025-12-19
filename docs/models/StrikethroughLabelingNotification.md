@@ -10,8 +10,7 @@ Name | Type | Description | Notes
 **TotalBatches** | **long** | The total number of batches for the notification. | 
 **Trigger** | [**StrikethroughTrigger**](StrikethroughTrigger.md) |  | 
 **ChangedItems** | [**List&lt;StrikethroughChangedItem&gt;**](StrikethroughChangedItem.md) |  | 
-**NotificationType** | **string** | The type of notification. | 
-**SentAt** | **DateTime** | Timestamp at which the notification was sent. | 
+**NotificationType** | **string** | The type of the notification | 
 **VarVersion** | **string** | The version of the strikethrough pricing notification. | [optional] 
 **ValidFrom** | **DateTime** | Timestamp at which the strikethrough pricing update becomes valid. Set for **scheduled** strikethrough pricing updates (version: v2) only.  | [optional] 
 

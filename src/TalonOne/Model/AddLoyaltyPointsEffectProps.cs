@@ -45,10 +45,8 @@ namespace TalonOne.Model
         /// <param name="cardIdentifier">The alphanumeric identifier of the loyalty card. </param>
         /// <param name="bundleIndex">The position of the bundle in a list of item bundles created from the same bundle definition.</param>
         /// <param name="bundleName">The name of the bundle definition.</param>
-        /// <param name="awaitsActivation">If &#x60;true&#x60;, the loyalty points are pending until  action-based activation takes place. The &#x60;startDate&#x60; parameter automatically  defaults to &#x60;on_action&#x60;. </param>
-        /// <param name="validityDuration">The duration for which the points remain active, relative to the  activation date. Example: &#x60;30D&#x60;.   **Note**: This value is only returned if &#x60;awaitsActivation&#x60; is &#x60;true&#x60;  and &#x60;expiryDate&#x60; is not set. </param>
         [JsonConstructor]
-        public AddLoyaltyPointsEffectProps(string name, long programId, string subLedgerId, decimal value, string recipientIntegrationId, string transactionUUID, Option<decimal?> desiredValue = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<decimal?> cartItemPosition = default, Option<decimal?> cartItemSubPosition = default, Option<string> cardIdentifier = default, Option<long?> bundleIndex = default, Option<string> bundleName = default, Option<bool?> awaitsActivation = default, Option<string> validityDuration = default)
+        public AddLoyaltyPointsEffectProps(string name, long programId, string subLedgerId, decimal value, string recipientIntegrationId, string transactionUUID, Option<decimal?> desiredValue = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<decimal?> cartItemPosition = default, Option<decimal?> cartItemSubPosition = default, Option<string> cardIdentifier = default, Option<long?> bundleIndex = default, Option<string> bundleName = default)
         {
             Name = name;
             ProgramId = programId;
@@ -64,8 +62,6 @@ namespace TalonOne.Model
             CardIdentifierOption = cardIdentifier;
             BundleIndexOption = bundleIndex;
             BundleNameOption = bundleName;
-            AwaitsActivationOption = awaitsActivation;
-            ValidityDurationOption = validityDuration;
             OnCreated();
         }
 
@@ -228,34 +224,6 @@ namespace TalonOne.Model
         public string BundleName { get { return this.BundleNameOption; } set { this.BundleNameOption = new Option<string>(value); } }
 
         /// <summary>
-        /// Used to track the state of AwaitsActivation
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<bool?> AwaitsActivationOption { get; private set; }
-
-        /// <summary>
-        /// If &#x60;true&#x60;, the loyalty points are pending until  action-based activation takes place. The &#x60;startDate&#x60; parameter automatically  defaults to &#x60;on_action&#x60;. 
-        /// </summary>
-        /// <value>If &#x60;true&#x60;, the loyalty points are pending until  action-based activation takes place. The &#x60;startDate&#x60; parameter automatically  defaults to &#x60;on_action&#x60;. </value>
-        [JsonPropertyName("awaitsActivation")]
-        public bool? AwaitsActivation { get { return this.AwaitsActivationOption; } set { this.AwaitsActivationOption = new Option<bool?>(value); } }
-
-        /// <summary>
-        /// Used to track the state of ValidityDuration
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> ValidityDurationOption { get; private set; }
-
-        /// <summary>
-        /// The duration for which the points remain active, relative to the  activation date. Example: &#x60;30D&#x60;.   **Note**: This value is only returned if &#x60;awaitsActivation&#x60; is &#x60;true&#x60;  and &#x60;expiryDate&#x60; is not set. 
-        /// </summary>
-        /// <value>The duration for which the points remain active, relative to the  activation date. Example: &#x60;30D&#x60;.   **Note**: This value is only returned if &#x60;awaitsActivation&#x60; is &#x60;true&#x60;  and &#x60;expiryDate&#x60; is not set. </value>
-        [JsonPropertyName("validityDuration")]
-        public string ValidityDuration { get { return this.ValidityDurationOption; } set { this.ValidityDurationOption = new Option<string>(value); } }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -277,8 +245,6 @@ namespace TalonOne.Model
             sb.Append("  CardIdentifier: ").Append(CardIdentifier).Append("\n");
             sb.Append("  BundleIndex: ").Append(BundleIndex).Append("\n");
             sb.Append("  BundleName: ").Append(BundleName).Append("\n");
-            sb.Append("  AwaitsActivation: ").Append(AwaitsActivation).Append("\n");
-            sb.Append("  ValidityDuration: ").Append(ValidityDuration).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -368,8 +334,6 @@ namespace TalonOne.Model
             Option<string> cardIdentifier = default;
             Option<long?> bundleIndex = default;
             Option<string> bundleName = default;
-            Option<bool?> awaitsActivation = default;
-            Option<string> validityDuration = default;
 
             while (utf8JsonReader.Read())
             {
@@ -435,13 +399,6 @@ namespace TalonOne.Model
                             break;
                         case "bundleName":
                             bundleName = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "awaitsActivation":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                awaitsActivation = new Option<bool?>(utf8JsonReader.GetBoolean());
-                            break;
-                        case "validityDuration":
-                            validityDuration = new Option<string>(utf8JsonReader.GetString());
                             break;
                         default:
                             break;
@@ -509,13 +466,7 @@ namespace TalonOne.Model
             if (bundleName.IsSet && bundleName.Value == null)
                 throw new ArgumentNullException(nameof(bundleName), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
 
-            if (awaitsActivation.IsSet && awaitsActivation.Value == null)
-                throw new ArgumentNullException(nameof(awaitsActivation), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
-
-            if (validityDuration.IsSet && validityDuration.Value == null)
-                throw new ArgumentNullException(nameof(validityDuration), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
-
-            return new AddLoyaltyPointsEffectProps(name.Value, programId.Value.Value, subLedgerId.Value, value.Value.Value, recipientIntegrationId.Value, transactionUUID.Value, desiredValue, startDate, expiryDate, cartItemPosition, cartItemSubPosition, cardIdentifier, bundleIndex, bundleName, awaitsActivation, validityDuration);
+            return new AddLoyaltyPointsEffectProps(name.Value, programId.Value.Value, subLedgerId.Value, value.Value.Value, recipientIntegrationId.Value, transactionUUID.Value, desiredValue, startDate, expiryDate, cartItemPosition, cartItemSubPosition, cardIdentifier, bundleIndex, bundleName);
         }
 
         /// <summary>
@@ -560,9 +511,6 @@ namespace TalonOne.Model
             if (addLoyaltyPointsEffectProps.BundleNameOption.IsSet && addLoyaltyPointsEffectProps.BundleName == null)
                 throw new ArgumentNullException(nameof(addLoyaltyPointsEffectProps.BundleName), "Property is required for class AddLoyaltyPointsEffectProps.");
 
-            if (addLoyaltyPointsEffectProps.ValidityDurationOption.IsSet && addLoyaltyPointsEffectProps.ValidityDuration == null)
-                throw new ArgumentNullException(nameof(addLoyaltyPointsEffectProps.ValidityDuration), "Property is required for class AddLoyaltyPointsEffectProps.");
-
             writer.WriteString("name", addLoyaltyPointsEffectProps.Name);
 
             writer.WriteNumber("programId", addLoyaltyPointsEffectProps.ProgramId);
@@ -598,12 +546,6 @@ namespace TalonOne.Model
 
             if (addLoyaltyPointsEffectProps.BundleNameOption.IsSet)
                 writer.WriteString("bundleName", addLoyaltyPointsEffectProps.BundleName);
-
-            if (addLoyaltyPointsEffectProps.AwaitsActivationOption.IsSet)
-                writer.WriteBoolean("awaitsActivation", addLoyaltyPointsEffectProps.AwaitsActivationOption.Value.Value);
-
-            if (addLoyaltyPointsEffectProps.ValidityDurationOption.IsSet)
-                writer.WriteString("validityDuration", addLoyaltyPointsEffectProps.ValidityDuration);
         }
     }
 }
