@@ -1,11 +1,5 @@
 # Talon.One C# SDK
 
-This SDK supports all of the operations of Talon.One's Integration API and Management API.
-
-> [!WARNING]
-This project is in beta. Use is "AS IS" and at your own risk.
-The stable version of this SDK is available [here](https://github.com/talon-one/TalonOne.cs).
-
 ## Creating the library
 
 Create a config.yaml file similar to what is below, then run the following powershell command to generate the library `java -jar "<path>/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar" generate -c config.yaml`
