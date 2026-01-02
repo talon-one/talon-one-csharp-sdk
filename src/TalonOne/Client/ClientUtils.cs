@@ -45,14 +45,6 @@ namespace TalonOne.Client
             /// <summary>
             /// The Authorization header
             /// </summary>
-            Authorization,
-            /// <summary>
-            /// The Authorization header
-            /// </summary>
-            Authorization,
-            /// <summary>
-            /// The Authorization header
-            /// </summary>
             Authorization
         }
 
@@ -66,10 +58,6 @@ namespace TalonOne.Client
         {
             switch(value)
             {
-                case ApiKeyHeader.Authorization:
-                    return "Authorization";
-                case ApiKeyHeader.Authorization:
-                    return "Authorization";
                 case ApiKeyHeader.Authorization:
                     return "Authorization";
                 default:
