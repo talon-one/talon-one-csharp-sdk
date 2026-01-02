@@ -179,7 +179,8 @@ namespace TalonOne.Model
                                 timeframeEndDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "timeframe":
-                            timeframe = new Option<int?>(utf8JsonReader.GetString());
+                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
+                                timeframe = new Option<int?>(utf8JsonReader.GetInt32());
                             break;
                         case "strictEndDate":
                             if (utf8JsonReader.TokenType != JsonTokenType.Null)
@@ -259,7 +260,7 @@ namespace TalonOne.Model
             JsonSerializer.Serialize(writer, bestPriorPriceRequest.Skus, jsonSerializerOptions);
             writer.WriteString("timeframeEndDate", bestPriorPriceRequest.TimeframeEndDate.ToString(TimeframeEndDateFormat));
 
-            writer.WriteString("timeframe", bestPriorPriceRequest.Timeframe);
+            writer.WriteNumber("timeframe", (long)bestPriorPriceRequest.Timeframe);
 
             writer.WriteBoolean("strictEndDate", bestPriorPriceRequest.StrictEndDate);
 
