@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
 using TalonOne.Api;
 using TalonOne.Client;
 using TalonOne.Model;
@@ -74,7 +74,7 @@ namespace _example
             
             // Access the result from the response
             var result = response.Ok();
-            Debug.WriteLine(result);
+            Console.WriteLine(result);
 
             // Parsing the returned effects list, please consult https://developers.talon.one/Integration-API/handling-effects-v2 for the full list of effects and their corresponding properties
             foreach (Effect effect in result.Effects) {
@@ -84,7 +84,7 @@ namespace _example
                         SetDiscountEffectProps setDiscountEffectProps = (SetDiscountEffectProps) Newtonsoft.Json.JsonConvert.DeserializeObject(effect.Props.ToString(), typeof(SetDiscountEffectProps));
 
                         // Access the specific effect's properties
-                        Debug.WriteLine("Set a discount '{0}' of {1:00.000}", setDiscountEffectProps.Name, setDiscountEffectProps.Value);
+                        Console.WriteLine("Set a discount '{0}' of {1:00.000}", setDiscountEffectProps.Name, setDiscountEffectProps.Value);
                         break;
                     // case "acceptCoupon":
                         // AcceptCouponEffectProps acceptCouponEffectProps = (AcceptCouponEffectProps) Newtonsoft.Json.JsonConvert.DeserializeObject(effect.Props.ToString(), typeof(AcceptCouponEffectProps));
@@ -93,7 +93,7 @@ namespace _example
                         // ...
                         // break;
                     default:
-                        Debug.WriteLine("Encounter unknown effect type: {0}", effect.EffectType);
+                        Console.WriteLine("Encounter unknown effect type: {0}", effect.EffectType);
                         break;
                 }
             }
