@@ -3,31 +3,35 @@ using System.Diagnostics;
 using TalonOne.Api;
 using TalonOne.Client;
 using TalonOne.Model;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace _example
 {
     class Program
     {
-        static void Main(string[] args)
+        static async System.Threading.Tasks.Task Main(string[] args)
         {
-            // Configure BasePath & API key authorization: api_key_v1
-            var integrationConfig = new Configuration {
-                BasePath = "http://localhost:9000",
-                ApiKey = new Dictionary<string, string> {
-                    { "Authorization", System.Environment.GetEnvironmentVariable("TALON_API_KEY") }
-                },
-                ApiKeyPrefix = new Dictionary<string, string> {
-                    { "Authorization", "ApiKey-v1" }
-                }
-            };
+            // Configure services and API key authorization
+            var services = new ServiceCollection();
+            
+            var hostConfiguration = new HostConfiguration(services)
+                .AddApiHttpClients(client => client.BaseAddress = new System.Uri("http://localhost:9000"))
+                .AddTokens(new ApiKeyToken(
+                    System.Environment.GetEnvironmentVariable("TALON_API_KEY"),
+                    ClientUtils.ApiKeyHeader.Authorization,
+                    "ApiKey-v1 "
+                ))
+                .UseProvider<RateLimitProvider<ApiKeyToken>, ApiKeyToken>();
+
+            var serviceProvider = services.BuildServiceProvider();
+            var apiFactory = serviceProvider.GetRequiredService<IApiFactory>();
 
             // ************************************************
             // Integration API example to send a session update
             // ************************************************
 
-            // When using the default approach, the next initiation of `IntegrationApi`
-            // could be using the empty constructor
-            var integrationApi = new IntegrationApi(integrationConfig);
+            // Create the Integration API instance using the factory
+            var integrationApi = apiFactory.Create<IIntegrationApi>();
             var customerSessionId = "my_unique_session_integration_id_2";  // string | The custom identifier for this session, must be unique within the account.
 
             // Preparing a NewCustomerSessionV2 object
@@ -65,12 +69,15 @@ namespace _example
                 // }
             );
 
-            // Create/update a customer session using `UpdateCustomerSessionV2` function
-            IntegrationStateV2 response = integrationApi.UpdateCustomerSessionV2(customerSessionId, body);
-            Debug.WriteLine(response);
+            // Create/update a customer session using `UpdateCustomerSessionV2Async` function
+            var response = await integrationApi.UpdateCustomerSessionV2Async(customerSessionId, body);
+            
+            // Access the result from the response
+            var result = response.Ok();
+            Debug.WriteLine(result);
 
             // Parsing the returned effects list, please consult https://developers.talon.one/Integration-API/handling-effects-v2 for the full list of effects and their corresponding properties
-            foreach (Effect effect in response.Effects) {
+            foreach (Effect effect in result.Effects) {
                 switch(effect.EffectType) {
                     case "setDiscount":
                         // Initiating right props instance according to the effect type
