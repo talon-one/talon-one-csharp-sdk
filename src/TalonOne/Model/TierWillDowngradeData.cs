@@ -225,19 +225,16 @@ namespace TalonOne.Model
                             customerProfileID = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "LoyaltyProgramID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                loyaltyProgramID = new Option<long?>(utf8JsonReader.GetInt64());
+                            loyaltyProgramID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "CurrentTier":
                             currentTier = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "CurrentPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                currentPoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            currentPoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "PointsRequiredToRemain":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                pointsRequiredToRemain = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            pointsRequiredToRemain = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "SubledgerID":
                             subledgerID = new Option<string>(utf8JsonReader.GetString());
@@ -246,8 +243,7 @@ namespace TalonOne.Model
                             nextTier = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "TierExpirationDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                tierExpirationDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            tierExpirationDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

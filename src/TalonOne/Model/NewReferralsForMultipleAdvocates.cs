@@ -273,32 +273,25 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "campaignId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignId = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "advocateProfileIntegrationIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                advocateProfileIntegrationIds = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            advocateProfileIntegrationIds = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "startDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "expiryDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "usageLimit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                usageLimit = new Option<long?>(utf8JsonReader.GetInt64());
+                            usageLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "validCharacters":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                validCharacters = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            validCharacters = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "referralPattern":
                             referralPattern = new Option<string>(utf8JsonReader.GetString());

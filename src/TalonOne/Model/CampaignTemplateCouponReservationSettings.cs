@@ -151,12 +151,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "reservationLimit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                reservationLimit = new Option<long?>(utf8JsonReader.GetInt64());
+                            reservationLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "isReservationMandatory":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                isReservationMandatory = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            isReservationMandatory = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

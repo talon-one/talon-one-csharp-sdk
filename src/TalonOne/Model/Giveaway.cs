@@ -296,46 +296,37 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "code":
                             code = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "poolId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                poolId = new Option<long?>(utf8JsonReader.GetInt64());
+                            poolId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "startDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "endDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                endDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            endDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "used":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                used = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            used = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "importId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                importId = new Option<long?>(utf8JsonReader.GetInt64());
+                            importId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "profileIntegrationId":
                             profileIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "profileId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                profileId = new Option<long?>(utf8JsonReader.GetInt64());
+                            profileId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

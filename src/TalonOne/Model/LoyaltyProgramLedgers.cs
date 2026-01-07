@@ -190,8 +190,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "title":
                             title = new Option<string>(utf8JsonReader.GetString());
@@ -200,16 +199,13 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "ledger":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                ledger = new Option<LedgerInfo>(JsonSerializer.Deserialize<LedgerInfo>(ref utf8JsonReader, jsonSerializerOptions));
+                            ledger = new Option<LedgerInfo>(JsonSerializer.Deserialize<LedgerInfo>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "joinDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                joinDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            joinDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "subLedgers":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                subLedgers = new Option<Dictionary<string, LedgerInfo>>(JsonSerializer.Deserialize<Dictionary<string, LedgerInfo>>(ref utf8JsonReader, jsonSerializerOptions));
+                            subLedgers = new Option<Dictionary<string, LedgerInfo>>(JsonSerializer.Deserialize<Dictionary<string, LedgerInfo>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

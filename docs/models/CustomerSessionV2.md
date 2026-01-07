@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **IntegrationId** | **string** | The integration ID set by your integration layer. | 
 **ApplicationId** | **long** | The ID of the Application that owns this entity. | 
 **FirstSession** | **bool** | Indicates whether this is the first session for the customer&#39;s profile. It&#39;s always &#x60;true&#x60; for anonymous sessions. | 
+**UpdateCount** | **long** | The number of times the session was updated. When the session is created, this value is initialized to &#x60;1&#x60;. | 
 **Total** | **decimal** | The total value of cart items and additional costs in the session, before any discounts are applied. | 
 **CartItemTotal** | **decimal** | The total value of cart items, before any discounts are applied. | 
 **AdditionalCostTotal** | **decimal** | The total value of additional costs, before any discounts are applied. | 

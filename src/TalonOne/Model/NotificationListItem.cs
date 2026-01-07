@@ -149,19 +149,16 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "notificationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                notificationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            notificationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "notificationName":
                             notificationName = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "entityId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                entityId = new Option<long?>(utf8JsonReader.GetInt64());
+                            entityId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "enabled":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                enabled = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            enabled = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

@@ -163,16 +163,13 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "expiryDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "endpoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                endpoints = new Option<List<Endpoint>>(JsonSerializer.Deserialize<List<Endpoint>>(ref utf8JsonReader, jsonSerializerOptions));
+                            endpoints = new Option<List<Endpoint>>(JsonSerializer.Deserialize<List<Endpoint>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "allowedApplicationIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                allowedApplicationIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            allowedApplicationIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

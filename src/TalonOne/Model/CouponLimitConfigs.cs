@@ -119,8 +119,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "limits":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                limits = new Option<List<LimitConfig>>(JsonSerializer.Deserialize<List<LimitConfig>>(ref utf8JsonReader, jsonSerializerOptions));
+                            limits = new Option<List<LimitConfig>>(JsonSerializer.Deserialize<List<LimitConfig>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

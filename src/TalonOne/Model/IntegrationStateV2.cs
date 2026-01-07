@@ -319,60 +319,46 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "effects":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                effects = new Option<List<Effect>>(JsonSerializer.Deserialize<List<Effect>>(ref utf8JsonReader, jsonSerializerOptions));
+                            effects = new Option<List<Effect>>(JsonSerializer.Deserialize<List<Effect>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "createdCoupons":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdCoupons = new Option<List<Coupon>>(JsonSerializer.Deserialize<List<Coupon>>(ref utf8JsonReader, jsonSerializerOptions));
+                            createdCoupons = new Option<List<Coupon>>(JsonSerializer.Deserialize<List<Coupon>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "createdReferrals":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdReferrals = new Option<List<Referral>>(JsonSerializer.Deserialize<List<Referral>>(ref utf8JsonReader, jsonSerializerOptions));
+                            createdReferrals = new Option<List<Referral>>(JsonSerializer.Deserialize<List<Referral>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "customerSession":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                customerSession = new Option<CustomerSessionV2>(JsonSerializer.Deserialize<CustomerSessionV2>(ref utf8JsonReader, jsonSerializerOptions));
+                            customerSession = new Option<CustomerSessionV2>(JsonSerializer.Deserialize<CustomerSessionV2>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "customerProfile":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                customerProfile = new Option<CustomerProfile>(JsonSerializer.Deserialize<CustomerProfile>(ref utf8JsonReader, jsonSerializerOptions));
+                            customerProfile = new Option<CustomerProfile>(JsonSerializer.Deserialize<CustomerProfile>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "event":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                varEvent = new Option<Event>(JsonSerializer.Deserialize<Event>(ref utf8JsonReader, jsonSerializerOptions));
+                            varEvent = new Option<Event>(JsonSerializer.Deserialize<Event>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "loyalty":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                loyalty = new Option<Loyalty>(JsonSerializer.Deserialize<Loyalty>(ref utf8JsonReader, jsonSerializerOptions));
+                            loyalty = new Option<Loyalty>(JsonSerializer.Deserialize<Loyalty>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "referral":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                referral = new Option<InventoryReferral>(JsonSerializer.Deserialize<InventoryReferral>(ref utf8JsonReader, jsonSerializerOptions));
+                            referral = new Option<InventoryReferral>(JsonSerializer.Deserialize<InventoryReferral>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "coupons":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                coupons = new Option<List<IntegrationCoupon>>(JsonSerializer.Deserialize<List<IntegrationCoupon>>(ref utf8JsonReader, jsonSerializerOptions));
+                            coupons = new Option<List<IntegrationCoupon>>(JsonSerializer.Deserialize<List<IntegrationCoupon>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "triggeredCampaigns":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                triggeredCampaigns = new Option<List<Campaign>>(JsonSerializer.Deserialize<List<Campaign>>(ref utf8JsonReader, jsonSerializerOptions));
+                            triggeredCampaigns = new Option<List<Campaign>>(JsonSerializer.Deserialize<List<Campaign>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "ruleFailureReasons":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                ruleFailureReasons = new Option<List<RuleFailureReason>>(JsonSerializer.Deserialize<List<RuleFailureReason>>(ref utf8JsonReader, jsonSerializerOptions));
+                            ruleFailureReasons = new Option<List<RuleFailureReason>>(JsonSerializer.Deserialize<List<RuleFailureReason>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "awardedGiveaways":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                awardedGiveaways = new Option<List<Giveaway>>(JsonSerializer.Deserialize<List<Giveaway>>(ref utf8JsonReader, jsonSerializerOptions));
+                            awardedGiveaways = new Option<List<Giveaway>>(JsonSerializer.Deserialize<List<Giveaway>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "return":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                varReturn = new Option<Return>(JsonSerializer.Deserialize<Return>(ref utf8JsonReader, jsonSerializerOptions));
+                            varReturn = new Option<Return>(JsonSerializer.Deserialize<Return>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "previousReturns":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                previousReturns = new Option<List<Return>>(JsonSerializer.Deserialize<List<Return>>(ref utf8JsonReader, jsonSerializerOptions));
+                            previousReturns = new Option<List<Return>>(JsonSerializer.Deserialize<List<Return>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

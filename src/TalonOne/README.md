@@ -76,5 +76,5 @@ namespace YourProject
 ## Build
 
 - SDK version: 25.26
-- Generator version: 7.13.0-SNAPSHOT
+- Generator version: 7.17.0
 - Build package: org.openapitools.codegen.languages.CSharpClientCodegen

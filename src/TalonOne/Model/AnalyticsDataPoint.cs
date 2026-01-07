@@ -123,12 +123,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "total":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                total = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            total = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "influenced":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                influenced = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            influenced = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         default:
                             break;

@@ -99,6 +99,15 @@ namespace TalonOne.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'UpdateCount'
+        /// </summary>
+        [Fact]
+        public void UpdateCountTest()
+        {
+            // TODO unit test for the property 'UpdateCount'
+        }
+
+        /// <summary>
         /// Test the property 'Total'
         /// </summary>
         [Fact]

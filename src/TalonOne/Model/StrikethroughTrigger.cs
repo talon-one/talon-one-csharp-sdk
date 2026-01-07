@@ -166,23 +166,19 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "triggeredAt":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                triggeredAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            triggeredAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "totalAffectedItems":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalAffectedItems = new Option<int?>(utf8JsonReader.GetInt32());
+                            totalAffectedItems = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
                         case "payload":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                payload = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            payload = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

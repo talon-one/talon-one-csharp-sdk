@@ -279,46 +279,37 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "applicationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "effects":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                effects = new Option<List<Effect>>(JsonSerializer.Deserialize<List<Effect>>(ref utf8JsonReader, jsonSerializerOptions));
+                            effects = new Option<List<Effect>>(JsonSerializer.Deserialize<List<Effect>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "profileId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                profileId = new Option<long?>(utf8JsonReader.GetInt64());
+                            profileId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "storeId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                storeId = new Option<long?>(utf8JsonReader.GetInt64());
+                            storeId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "storeIntegrationId":
                             storeIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "sessionId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                sessionId = new Option<long?>(utf8JsonReader.GetInt64());
+                            sessionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "ruleFailureReasons":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                ruleFailureReasons = new Option<List<RuleFailureReason>>(JsonSerializer.Deserialize<List<RuleFailureReason>>(ref utf8JsonReader, jsonSerializerOptions));
+                            ruleFailureReasons = new Option<List<RuleFailureReason>>(JsonSerializer.Deserialize<List<RuleFailureReason>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

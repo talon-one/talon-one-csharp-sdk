@@ -165,24 +165,19 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "session":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                session = new Option<CustomerSession>(JsonSerializer.Deserialize<CustomerSession>(ref utf8JsonReader, jsonSerializerOptions));
+                            session = new Option<CustomerSession>(JsonSerializer.Deserialize<CustomerSession>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "profile":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                profile = new Option<CustomerProfile>(JsonSerializer.Deserialize<CustomerProfile>(ref utf8JsonReader, jsonSerializerOptions));
+                            profile = new Option<CustomerProfile>(JsonSerializer.Deserialize<CustomerProfile>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "event":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                varEvent = new Option<Event>(JsonSerializer.Deserialize<Event>(ref utf8JsonReader, jsonSerializerOptions));
+                            varEvent = new Option<Event>(JsonSerializer.Deserialize<Event>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "loyalty":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                loyalty = new Option<Loyalty>(JsonSerializer.Deserialize<Loyalty>(ref utf8JsonReader, jsonSerializerOptions));
+                            loyalty = new Option<Loyalty>(JsonSerializer.Deserialize<Loyalty>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "coupon":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                coupon = new Option<Coupon>(JsonSerializer.Deserialize<Coupon>(ref utf8JsonReader, jsonSerializerOptions));
+                            coupon = new Option<Coupon>(JsonSerializer.Deserialize<Coupon>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

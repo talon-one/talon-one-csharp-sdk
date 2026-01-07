@@ -137,15 +137,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "groupId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                groupId = new Option<long?>(utf8JsonReader.GetInt64());
+                            groupId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "groupName":
                             groupName = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "position":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                position = new Option<long?>(utf8JsonReader.GetInt64());
+                            position = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

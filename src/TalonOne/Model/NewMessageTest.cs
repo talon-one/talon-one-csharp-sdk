@@ -338,23 +338,19 @@ namespace TalonOne.Model
                             url = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "headers":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                headers = new Option<Dictionary<string, string>>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            headers = new Option<Dictionary<string, string>>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "payload":
                             payload = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "params":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                varParams = new Option<List<TemplateArgDef>>(JsonSerializer.Deserialize<List<TemplateArgDef>>(ref utf8JsonReader, jsonSerializerOptions));
+                            varParams = new Option<List<TemplateArgDef>>(JsonSerializer.Deserialize<List<TemplateArgDef>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "applicationIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            applicationIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "authenticationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                authenticationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            authenticationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

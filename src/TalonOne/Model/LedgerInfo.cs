@@ -255,44 +255,34 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "currentBalance":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                currentBalance = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            currentBalance = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "pendingBalance":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                pendingBalance = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            pendingBalance = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "expiredBalance":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expiredBalance = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            expiredBalance = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "spentBalance":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                spentBalance = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            spentBalance = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "tentativeCurrentBalance":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                tentativeCurrentBalance = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            tentativeCurrentBalance = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "negativeBalance":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                negativeBalance = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            negativeBalance = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "tentativePendingBalance":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                tentativePendingBalance = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            tentativePendingBalance = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "tentativeNegativeBalance":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                tentativeNegativeBalance = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            tentativeNegativeBalance = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "currentTier":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                currentTier = new Option<Tier>(JsonSerializer.Deserialize<Tier>(ref utf8JsonReader, jsonSerializerOptions));
+                            currentTier = new Option<Tier>(JsonSerializer.Deserialize<Tier>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "pointsToNextTier":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                pointsToNextTier = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            pointsToNextTier = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         default:
                             break;

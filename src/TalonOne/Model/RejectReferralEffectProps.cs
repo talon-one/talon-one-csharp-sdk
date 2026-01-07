@@ -202,12 +202,10 @@ namespace TalonOne.Model
                             rejectionReason = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "conditionIndex":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                conditionIndex = new Option<long?>(utf8JsonReader.GetInt64());
+                            conditionIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "effectIndex":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                effectIndex = new Option<long?>(utf8JsonReader.GetInt64());
+                            effectIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "details":
                             details = new Option<string>(utf8JsonReader.GetString());

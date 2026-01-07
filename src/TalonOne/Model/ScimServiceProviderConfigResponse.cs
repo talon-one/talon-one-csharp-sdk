@@ -222,31 +222,25 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "bulk":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                bulk = new Option<ScimServiceProviderConfigResponseBulk>(JsonSerializer.Deserialize<ScimServiceProviderConfigResponseBulk>(ref utf8JsonReader, jsonSerializerOptions));
+                            bulk = new Option<ScimServiceProviderConfigResponseBulk>(JsonSerializer.Deserialize<ScimServiceProviderConfigResponseBulk>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "changePassword":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                changePassword = new Option<ScimServiceProviderConfigResponseChangePassword>(JsonSerializer.Deserialize<ScimServiceProviderConfigResponseChangePassword>(ref utf8JsonReader, jsonSerializerOptions));
+                            changePassword = new Option<ScimServiceProviderConfigResponseChangePassword>(JsonSerializer.Deserialize<ScimServiceProviderConfigResponseChangePassword>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "documentationUri":
                             documentationUri = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "filter":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                filter = new Option<ScimServiceProviderConfigResponseFilter>(JsonSerializer.Deserialize<ScimServiceProviderConfigResponseFilter>(ref utf8JsonReader, jsonSerializerOptions));
+                            filter = new Option<ScimServiceProviderConfigResponseFilter>(JsonSerializer.Deserialize<ScimServiceProviderConfigResponseFilter>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "patch":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                patch = new Option<ScimServiceProviderConfigResponsePatch>(JsonSerializer.Deserialize<ScimServiceProviderConfigResponsePatch>(ref utf8JsonReader, jsonSerializerOptions));
+                            patch = new Option<ScimServiceProviderConfigResponsePatch>(JsonSerializer.Deserialize<ScimServiceProviderConfigResponsePatch>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "schemas":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                schemas = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            schemas = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "sort":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                sort = new Option<ScimServiceProviderConfigResponseSort>(JsonSerializer.Deserialize<ScimServiceProviderConfigResponseSort>(ref utf8JsonReader, jsonSerializerOptions));
+                            sort = new Option<ScimServiceProviderConfigResponseSort>(JsonSerializer.Deserialize<ScimServiceProviderConfigResponseSort>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

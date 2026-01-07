@@ -205,27 +205,22 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "sku":
                             sku = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "lastUpdated":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                lastUpdated = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            lastUpdated = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "catalogId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                catalogId = new Option<long?>(utf8JsonReader.GetInt64());
+                            catalogId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "productId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                productId = new Option<long?>(utf8JsonReader.GetInt64());
+                            productId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "unitsSold":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                unitsSold = new Option<AnalyticsDataPointWithTrend>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrend>(ref utf8JsonReader, jsonSerializerOptions));
+                            unitsSold = new Option<AnalyticsDataPointWithTrend>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrend>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

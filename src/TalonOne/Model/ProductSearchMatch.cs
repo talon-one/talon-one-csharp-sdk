@@ -154,12 +154,10 @@ namespace TalonOne.Model
                             value = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "productId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                productId = new Option<long?>(utf8JsonReader.GetInt64());
+                            productId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "productSkuId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                productSkuId = new Option<long?>(utf8JsonReader.GetInt64());
+                            productSkuId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

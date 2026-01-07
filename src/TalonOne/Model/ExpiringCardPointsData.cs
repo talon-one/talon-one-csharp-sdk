@@ -200,16 +200,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "ExpiryDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "LoyaltyProgramID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                loyaltyProgramID = new Option<long?>(utf8JsonReader.GetInt64());
+                            loyaltyProgramID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "AmountOfExpiringPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                amountOfExpiringPoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            amountOfExpiringPoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "SubledgerID":
                             subledgerID = new Option<string>(utf8JsonReader.GetString());
@@ -218,12 +215,10 @@ namespace TalonOne.Model
                             cardIdentifier = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "UsersPerCardLimit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                usersPerCardLimit = new Option<long?>(utf8JsonReader.GetInt64());
+                            usersPerCardLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "Profiles":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                profiles = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            profiles = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

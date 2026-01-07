@@ -183,24 +183,19 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "campaigns":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaigns = new Option<AccountDashboardStatisticCampaigns>(JsonSerializer.Deserialize<AccountDashboardStatisticCampaigns>(ref utf8JsonReader, jsonSerializerOptions));
+                            campaigns = new Option<AccountDashboardStatisticCampaigns>(JsonSerializer.Deserialize<AccountDashboardStatisticCampaigns>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "revenue":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                revenue = new Option<List<AccountDashboardStatisticRevenue>>(JsonSerializer.Deserialize<List<AccountDashboardStatisticRevenue>>(ref utf8JsonReader, jsonSerializerOptions));
+                            revenue = new Option<List<AccountDashboardStatisticRevenue>>(JsonSerializer.Deserialize<List<AccountDashboardStatisticRevenue>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "discounts":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                discounts = new Option<List<AccountDashboardStatisticDiscount>>(JsonSerializer.Deserialize<List<AccountDashboardStatisticDiscount>>(ref utf8JsonReader, jsonSerializerOptions));
+                            discounts = new Option<List<AccountDashboardStatisticDiscount>>(JsonSerializer.Deserialize<List<AccountDashboardStatisticDiscount>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "loyaltyPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                loyaltyPoints = new Option<List<AccountDashboardStatisticLoyaltyPoints>>(JsonSerializer.Deserialize<List<AccountDashboardStatisticLoyaltyPoints>>(ref utf8JsonReader, jsonSerializerOptions));
+                            loyaltyPoints = new Option<List<AccountDashboardStatisticLoyaltyPoints>>(JsonSerializer.Deserialize<List<AccountDashboardStatisticLoyaltyPoints>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "referrals":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                referrals = new Option<List<AccountDashboardStatisticReferrals>>(JsonSerializer.Deserialize<List<AccountDashboardStatisticReferrals>>(ref utf8JsonReader, jsonSerializerOptions));
+                            referrals = new Option<List<AccountDashboardStatisticReferrals>>(JsonSerializer.Deserialize<List<AccountDashboardStatisticReferrals>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -250,15 +250,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "programId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                programId = new Option<long?>(utf8JsonReader.GetInt64());
+                            programId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "subLedgerId":
                             subLedgerId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "value":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                value = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            value = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "recipientIntegrationId":
                             recipientIntegrationId = new Option<string>(utf8JsonReader.GetString());
@@ -267,12 +265,10 @@ namespace TalonOne.Model
                             transactionUUID = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "startDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "expiryDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "cardIdentifier":
                             cardIdentifier = new Option<string>(utf8JsonReader.GetString());

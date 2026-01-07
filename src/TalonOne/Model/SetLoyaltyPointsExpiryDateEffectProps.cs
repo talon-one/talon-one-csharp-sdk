@@ -158,19 +158,16 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "programId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                programId = new Option<long?>(utf8JsonReader.GetInt64());
+                            programId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "subLedgerId":
                             subLedgerId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "newExpiryDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                newExpiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            newExpiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "affectedTransactions":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                affectedTransactions = new Option<List<LoyaltyLedgerEntryExpiryDateChange>>(JsonSerializer.Deserialize<List<LoyaltyLedgerEntryExpiryDateChange>>(ref utf8JsonReader, jsonSerializerOptions));
+                            affectedTransactions = new Option<List<LoyaltyLedgerEntryExpiryDateChange>>(JsonSerializer.Deserialize<List<LoyaltyLedgerEntryExpiryDateChange>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -361,16 +361,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "campaignId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignId = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "rulesetId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                rulesetId = new Option<long?>(utf8JsonReader.GetInt64());
+                            rulesetId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "ruleIndex":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                ruleIndex = new Option<long?>(utf8JsonReader.GetInt64());
+                            ruleIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "ruleName":
                             ruleName = new Option<string>(utf8JsonReader.GetString());
@@ -379,46 +376,37 @@ namespace TalonOne.Model
                             effectType = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "triggeredByCoupon":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                triggeredByCoupon = new Option<long?>(utf8JsonReader.GetInt64());
+                            triggeredByCoupon = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "triggeredForCatalogItem":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                triggeredForCatalogItem = new Option<long?>(utf8JsonReader.GetInt64());
+                            triggeredForCatalogItem = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "conditionIndex":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                conditionIndex = new Option<long?>(utf8JsonReader.GetInt64());
+                            conditionIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "evaluationGroupID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                evaluationGroupID = new Option<long?>(utf8JsonReader.GetInt64());
+                            evaluationGroupID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "evaluationGroupMode":
                             evaluationGroupMode = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "campaignRevisionId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignRevisionId = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignRevisionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "campaignRevisionVersionId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignRevisionVersionId = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignRevisionVersionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "selectedPriceType":
                             selectedPriceType = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "selectedPrice":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                selectedPrice = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            selectedPrice = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "adjustmentReferenceId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                adjustmentReferenceId = new Option<Guid?>(utf8JsonReader.GetGuid());
+                            adjustmentReferenceId = new Option<Guid?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (Guid?)null : utf8JsonReader.GetGuid());
                             break;
                         case "props":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                props = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            props = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

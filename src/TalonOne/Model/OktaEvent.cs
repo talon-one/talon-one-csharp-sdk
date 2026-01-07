@@ -126,8 +126,7 @@ namespace TalonOne.Model
                             eventType = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "target":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                target = new Option<List<OktaEventTarget>>(JsonSerializer.Deserialize<List<OktaEventTarget>>(ref utf8JsonReader, jsonSerializerOptions));
+                            target = new Option<List<OktaEventTarget>>(JsonSerializer.Deserialize<List<OktaEventTarget>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

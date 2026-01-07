@@ -142,16 +142,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "applicationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "evaluationTree":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                evaluationTree = new Option<CampaignSet>(JsonSerializer.Deserialize<CampaignSet>(ref utf8JsonReader, jsonSerializerOptions));
+                            evaluationTree = new Option<CampaignSet>(JsonSerializer.Deserialize<CampaignSet>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "oldEvaluationTree":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                oldEvaluationTree = new Option<CampaignSet>(JsonSerializer.Deserialize<CampaignSet>(ref utf8JsonReader, jsonSerializerOptions));
+                            oldEvaluationTree = new Option<CampaignSet>(JsonSerializer.Deserialize<CampaignSet>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

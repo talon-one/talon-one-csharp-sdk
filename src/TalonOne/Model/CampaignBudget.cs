@@ -152,12 +152,10 @@ namespace TalonOne.Model
                             action = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "limit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                limit = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            limit = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "counter":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                counter = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            counter = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         default:
                             break;

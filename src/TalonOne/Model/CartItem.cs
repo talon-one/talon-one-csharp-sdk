@@ -504,81 +504,64 @@ namespace TalonOne.Model
                             sku = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "quantity":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                quantity = new Option<long?>(utf8JsonReader.GetInt64());
+                            quantity = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "returnedQuantity":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                returnedQuantity = new Option<long?>(utf8JsonReader.GetInt64());
+                            returnedQuantity = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "remainingQuantity":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                remainingQuantity = new Option<long?>(utf8JsonReader.GetInt64());
+                            remainingQuantity = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "price":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                price = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            price = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "category":
                             category = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "product":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                product = new Option<Product>(JsonSerializer.Deserialize<Product>(ref utf8JsonReader, jsonSerializerOptions));
+                            product = new Option<Product>(JsonSerializer.Deserialize<Product>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "weight":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                weight = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            weight = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "height":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                height = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            height = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "width":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                width = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            width = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "length":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                length = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            length = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "position":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                position = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            position = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "additionalCosts":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                additionalCosts = new Option<Dictionary<string, AdditionalCost>>(JsonSerializer.Deserialize<Dictionary<string, AdditionalCost>>(ref utf8JsonReader, jsonSerializerOptions));
+                            additionalCosts = new Option<Dictionary<string, AdditionalCost>>(JsonSerializer.Deserialize<Dictionary<string, AdditionalCost>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "catalogItemID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                catalogItemID = new Option<long?>(utf8JsonReader.GetInt64());
+                            catalogItemID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "selectedPriceType":
                             selectedPriceType = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "adjustmentReferenceId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                adjustmentReferenceId = new Option<Guid?>(utf8JsonReader.GetGuid());
+                            adjustmentReferenceId = new Option<Guid?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (Guid?)null : utf8JsonReader.GetGuid());
                             break;
                         case "adjustmentEffectiveFrom":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                adjustmentEffectiveFrom = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            adjustmentEffectiveFrom = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "adjustmentEffectiveUntil":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                adjustmentEffectiveUntil = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            adjustmentEffectiveUntil = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "prices":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                prices = new Option<Dictionary<string, PriceDetail>>(JsonSerializer.Deserialize<Dictionary<string, PriceDetail>>(ref utf8JsonReader, jsonSerializerOptions));
+                            prices = new Option<Dictionary<string, PriceDetail>>(JsonSerializer.Deserialize<Dictionary<string, PriceDetail>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

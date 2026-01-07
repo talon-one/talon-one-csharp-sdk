@@ -34,7 +34,7 @@ namespace TalonOne.Model
         /// <param name="name">Notification name.</param>
         /// <param name="scopes">scopes</param>
         /// <param name="batchingEnabled">Indicates whether batching is activated. (default to true)</param>
-        /// <param name="includeData">Indicates whether to include all generated coupons. If &#x60;false&#x60;, only the &#x60;batchId&#x60; of the generated coupons is included. (default to null)</param>
+        /// <param name="includeData">Indicates whether to include all generated coupons. If &#x60;false&#x60;, only the &#x60;batchId&#x60; of the generated coupons is included.</param>
         /// <param name="batchSize">The required size of each batch of data. This value applies only when &#x60;batchingEnabled&#x60; is &#x60;true&#x60;. (default to 1000)</param>
         [JsonConstructor]
         public CouponsNotificationPolicy(string name, List<CouponsNotificationPolicy.ScopesEnum> scopes, Option<bool?> batchingEnabled = default, Option<bool?> includeData = default, Option<long?> batchSize = default)
@@ -283,20 +283,16 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "scopes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                scopes = new Option<List<CouponsNotificationPolicy.ScopesEnum>>(JsonSerializer.Deserialize<List<CouponsNotificationPolicy.ScopesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            scopes = new Option<List<CouponsNotificationPolicy.ScopesEnum>>(JsonSerializer.Deserialize<List<CouponsNotificationPolicy.ScopesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "batchingEnabled":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                batchingEnabled = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            batchingEnabled = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "includeData":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                includeData = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            includeData = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "batchSize":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                batchSize = new Option<long?>(utf8JsonReader.GetInt64());
+                            batchSize = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

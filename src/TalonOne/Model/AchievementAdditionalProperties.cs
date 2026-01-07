@@ -276,19 +276,16 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "campaignId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignId = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "userId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                userId = new Option<long?>(utf8JsonReader.GetInt64());
+                            userId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "createdBy":
                             createdBy = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "hasProgress":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                hasProgress = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            hasProgress = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "status":
                             string statusRawValue = utf8JsonReader.GetString();

@@ -206,23 +206,19 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "price":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                price = new Option<float?>((float)utf8JsonReader.GetDouble());
+                            price = new Option<float?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (float?)null : (float)utf8JsonReader.GetDouble());
                             break;
                         case "adjustmentContextId":
                             adjustmentContextId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "adjustmentReferenceId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                adjustmentReferenceId = new Option<Guid?>(utf8JsonReader.GetGuid());
+                            adjustmentReferenceId = new Option<Guid?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (Guid?)null : utf8JsonReader.GetGuid());
                             break;
                         case "adjustmentEffectiveFrom":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                adjustmentEffectiveFrom = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            adjustmentEffectiveFrom = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "adjustmentEffectiveUntil":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                adjustmentEffectiveUntil = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            adjustmentEffectiveUntil = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -178,8 +178,7 @@ namespace TalonOne.Model
                                 type = new Option<LabelTargetAudience.TypeEnum?>(LabelTargetAudience.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "audience":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                audience = new Option<AudienceReference>(JsonSerializer.Deserialize<AudienceReference>(ref utf8JsonReader, jsonSerializerOptions));
+                            audience = new Option<AudienceReference>(JsonSerializer.Deserialize<AudienceReference>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

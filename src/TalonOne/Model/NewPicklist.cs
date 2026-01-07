@@ -225,8 +225,7 @@ namespace TalonOne.Model
                                 type = new Option<NewPicklist.TypeEnum?>(NewPicklist.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "values":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                values = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            values = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

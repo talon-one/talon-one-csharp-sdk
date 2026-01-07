@@ -662,12 +662,10 @@ namespace TalonOne.Model
                                 caseSensitivity = new Option<NewApplication.CaseSensitivityEnum?>(NewApplication.CaseSensitivityEnumFromStringOrDefault(caseSensitivityRawValue));
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "limits":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                limits = new Option<List<LimitConfig>>(JsonSerializer.Deserialize<List<LimitConfig>>(ref utf8JsonReader, jsonSerializerOptions));
+                            limits = new Option<List<LimitConfig>>(JsonSerializer.Deserialize<List<LimitConfig>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "defaultDiscountScope":
                             string defaultDiscountScopeRawValue = utf8JsonReader.GetString();
@@ -675,24 +673,19 @@ namespace TalonOne.Model
                                 defaultDiscountScope = new Option<NewApplication.DefaultDiscountScopeEnum?>(NewApplication.DefaultDiscountScopeEnumFromStringOrDefault(defaultDiscountScopeRawValue));
                             break;
                         case "enableCascadingDiscounts":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                enableCascadingDiscounts = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            enableCascadingDiscounts = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "enableFlattenedCartItems":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                enableFlattenedCartItems = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            enableFlattenedCartItems = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "attributesSettings":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributesSettings = new Option<AttributesSettings>(JsonSerializer.Deserialize<AttributesSettings>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributesSettings = new Option<AttributesSettings>(JsonSerializer.Deserialize<AttributesSettings>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "sandbox":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                sandbox = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            sandbox = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "enablePartialDiscounts":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                enablePartialDiscounts = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            enablePartialDiscounts = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "defaultDiscountAdditionalCostPerItemScope":
                             string defaultDiscountAdditionalCostPerItemScopeRawValue = utf8JsonReader.GetString();
@@ -703,8 +696,7 @@ namespace TalonOne.Model
                             key = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "enableCampaignStateManagement":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                enableCampaignStateManagement = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            enableCampaignStateManagement = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

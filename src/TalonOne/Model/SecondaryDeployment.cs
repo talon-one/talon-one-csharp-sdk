@@ -349,15 +349,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "userId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                userId = new Option<long?>(utf8JsonReader.GetInt64());
+                            userId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "status":
                             string statusRawValue = utf8JsonReader.GetString();
@@ -365,20 +363,16 @@ namespace TalonOne.Model
                                 status = new Option<SecondaryDeployment.StatusEnum?>(SecondaryDeployment.StatusEnumFromStringOrDefault(statusRawValue));
                             break;
                         case "createdAt":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            createdAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "activeAt":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                activeAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            activeAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "failedAt":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                failedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            failedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "deletedAt":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                deletedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            deletedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

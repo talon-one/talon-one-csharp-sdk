@@ -112,8 +112,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "effects":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                effects = new Option<List<Effect>>(JsonSerializer.Deserialize<List<Effect>>(ref utf8JsonReader, jsonSerializerOptions));
+                            effects = new Option<List<Effect>>(JsonSerializer.Deserialize<List<Effect>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

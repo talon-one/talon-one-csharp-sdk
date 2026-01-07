@@ -509,12 +509,10 @@ namespace TalonOne.Model
                                 action = new Option<SummaryCampaignStoreBudget.ActionEnum?>(SummaryCampaignStoreBudget.ActionEnumFromStringOrDefault(actionRawValue));
                             break;
                         case "storeCount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                storeCount = new Option<long?>(utf8JsonReader.GetInt64());
+                            storeCount = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "imported":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                imported = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            imported = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "period":
                             string periodRawValue = utf8JsonReader.GetString();

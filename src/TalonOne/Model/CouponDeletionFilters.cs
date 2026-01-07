@@ -464,20 +464,16 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "createdBefore":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdBefore = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            createdBefore = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "createdAfter":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdAfter = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            createdAfter = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "startsAfter":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                startsAfter = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            startsAfter = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "startsBefore":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                startsBefore = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            startsBefore = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "valid":
                             string validRawValue = utf8JsonReader.GetString();
@@ -485,19 +481,16 @@ namespace TalonOne.Model
                                 valid = new Option<CouponDeletionFilters.ValidEnum?>(CouponDeletionFilters.ValidEnumFromStringOrDefault(validRawValue));
                             break;
                         case "usable":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                usable = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            usable = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "redeemed":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                redeemed = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            redeemed = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "recipientIntegrationId":
                             recipientIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "exactMatch":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                exactMatch = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            exactMatch = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "value":
                             value = new Option<string>(utf8JsonReader.GetString());
@@ -506,16 +499,13 @@ namespace TalonOne.Model
                             batchId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "referralId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                referralId = new Option<long?>(utf8JsonReader.GetInt64());
+                            referralId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "expiresAfter":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expiresAfter = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            expiresAfter = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "expiresBefore":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expiresBefore = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            expiresBefore = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

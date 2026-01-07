@@ -175,8 +175,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "active":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                active = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            active = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "displayName":
                             displayName = new Option<string>(utf8JsonReader.GetString());
@@ -185,8 +184,7 @@ namespace TalonOne.Model
                             userName = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "name":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                name = new Option<ScimBaseUserName>(JsonSerializer.Deserialize<ScimBaseUserName>(ref utf8JsonReader, jsonSerializerOptions));
+                            name = new Option<ScimBaseUserName>(JsonSerializer.Deserialize<ScimBaseUserName>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

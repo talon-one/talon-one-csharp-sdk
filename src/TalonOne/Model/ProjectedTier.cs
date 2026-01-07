@@ -151,12 +151,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "projectedActivePoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                projectedActivePoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            projectedActivePoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "stayInTierPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                stayInTierPoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            stayInTierPoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "projectedTierName":
                             projectedTierName = new Option<string>(utf8JsonReader.GetString());

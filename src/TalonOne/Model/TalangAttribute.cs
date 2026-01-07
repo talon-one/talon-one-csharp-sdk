@@ -611,8 +611,7 @@ namespace TalonOne.Model
                                 kind = new Option<TalangAttribute.KindEnum?>(TalangAttribute.KindEnumFromStringOrDefault(kindRawValue));
                             break;
                         case "campaignsCount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignsCount = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignsCount = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "entity":
                             string entityRawValue = utf8JsonReader.GetString();
@@ -626,12 +625,10 @@ namespace TalonOne.Model
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "visible":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                visible = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            visible = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "exampleValue":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                exampleValue = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            exampleValue = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

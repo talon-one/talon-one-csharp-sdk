@@ -746,35 +746,28 @@ namespace TalonOne.Model
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "suggestions":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                suggestions = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            suggestions = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "editable":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                editable = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            editable = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "eventType":
                             eventType = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "hasAllowedList":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                hasAllowedList = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            hasAllowedList = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "restrictedBySuggestions":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                restrictedBySuggestions = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            restrictedBySuggestions = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "subscribedApplicationsIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                subscribedApplicationsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            subscribedApplicationsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "subscribedCatalogsIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                subscribedCatalogsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            subscribedCatalogsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "allowedSubscriptions":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                allowedSubscriptions = new Option<List<NewAttribute.AllowedSubscriptionsEnum>>(JsonSerializer.Deserialize<List<NewAttribute.AllowedSubscriptionsEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            allowedSubscriptions = new Option<List<NewAttribute.AllowedSubscriptionsEnum>>(JsonSerializer.Deserialize<List<NewAttribute.AllowedSubscriptionsEnum>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -140,8 +140,7 @@ namespace TalonOne.Model
                             profileIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "isNewReservation":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                isNewReservation = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            isNewReservation = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

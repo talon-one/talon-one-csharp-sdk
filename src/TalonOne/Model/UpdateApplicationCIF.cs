@@ -184,16 +184,13 @@ namespace TalonOne.Model
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "activeExpressionId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                activeExpressionId = new Option<long?>(utf8JsonReader.GetInt64());
+                            activeExpressionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "modifiedBy":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                modifiedBy = new Option<long?>(utf8JsonReader.GetInt64());
+                            modifiedBy = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "modified":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                modified = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            modified = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

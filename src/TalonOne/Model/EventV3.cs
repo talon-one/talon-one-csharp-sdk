@@ -280,12 +280,10 @@ namespace TalonOne.Model
                             storeIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "evaluableCampaignIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                evaluableCampaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            evaluableCampaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "connectedSessionID":
                             connectedSessionID = new Option<string>(utf8JsonReader.GetString());

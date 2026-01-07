@@ -220,35 +220,28 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "catalogId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                catalogId = new Option<long?>(utf8JsonReader.GetInt64());
+                            catalogId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "sku":
                             sku = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "version":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                varVersion = new Option<long?>(utf8JsonReader.GetInt64());
+                            varVersion = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "price":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                price = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            price = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "evaluatedAt":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                evaluatedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            evaluatedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "prices":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                prices = new Option<Dictionary<string, PriceDetail>>(JsonSerializer.Deserialize<Dictionary<string, PriceDetail>>(ref utf8JsonReader, jsonSerializerOptions));
+                            prices = new Option<Dictionary<string, PriceDetail>>(JsonSerializer.Deserialize<Dictionary<string, PriceDetail>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "effects":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                effects = new Option<List<StrikethroughEffect>>(JsonSerializer.Deserialize<List<StrikethroughEffect>>(ref utf8JsonReader, jsonSerializerOptions));
+                            effects = new Option<List<StrikethroughEffect>>(JsonSerializer.Deserialize<List<StrikethroughEffect>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

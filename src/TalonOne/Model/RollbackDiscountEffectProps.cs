@@ -216,20 +216,16 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "value":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                value = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            value = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "cartItemPosition":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                cartItemPosition = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            cartItemPosition = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "cartItemSubPosition":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                cartItemSubPosition = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            cartItemSubPosition = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "additionalCostId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                additionalCostId = new Option<long?>(utf8JsonReader.GetInt64());
+                            additionalCostId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "additionalCost":
                             additionalCost = new Option<string>(utf8JsonReader.GetString());

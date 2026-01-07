@@ -125,12 +125,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "users":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                users = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            users = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "roles":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                roles = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            roles = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

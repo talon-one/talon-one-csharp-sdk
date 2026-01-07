@@ -127,8 +127,7 @@ namespace TalonOne.Model
                             sku = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "adjustments":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                adjustments = new Option<List<NewPriceAdjustment>>(JsonSerializer.Deserialize<List<NewPriceAdjustment>>(ref utf8JsonReader, jsonSerializerOptions));
+                            adjustments = new Option<List<NewPriceAdjustment>>(JsonSerializer.Deserialize<List<NewPriceAdjustment>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

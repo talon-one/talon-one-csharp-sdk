@@ -246,44 +246,34 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "accountId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                accountId = new Option<long?>(utf8JsonReader.GetInt64());
+                            accountId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "applicationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "campaignId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignId = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "createdBy":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdBy = new Option<long?>(utf8JsonReader.GetInt64());
+                            createdBy = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "activateAt":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                activateAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            activateAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "activatedAt":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                activatedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            activatedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "activatedBy":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                activatedBy = new Option<long?>(utf8JsonReader.GetInt64());
+                            activatedBy = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "currentVersion":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                currentVersion = new Option<RevisionVersion>(JsonSerializer.Deserialize<RevisionVersion>(ref utf8JsonReader, jsonSerializerOptions));
+                            currentVersion = new Option<RevisionVersion>(JsonSerializer.Deserialize<RevisionVersion>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

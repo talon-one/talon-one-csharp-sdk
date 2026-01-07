@@ -290,8 +290,7 @@ namespace TalonOne.Model
                                 action = new Option<NewCampaignStoreBudget.ActionEnum?>(NewCampaignStoreBudget.ActionEnumFromStringOrDefault(actionRawValue));
                             break;
                         case "storeLimits":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                storeLimits = new Option<List<NewCampaignStoreBudgetStoreLimit>>(JsonSerializer.Deserialize<List<NewCampaignStoreBudgetStoreLimit>>(ref utf8JsonReader, jsonSerializerOptions));
+                            storeLimits = new Option<List<NewCampaignStoreBudgetStoreLimit>>(JsonSerializer.Deserialize<List<NewCampaignStoreBudgetStoreLimit>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "period":
                             string periodRawValue = utf8JsonReader.GetString();

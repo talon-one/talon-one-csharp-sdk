@@ -178,32 +178,25 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "acceptedCoupons":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                acceptedCoupons = new Option<long?>(utf8JsonReader.GetInt64());
+                            acceptedCoupons = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "createdCoupons":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdCoupons = new Option<long?>(utf8JsonReader.GetInt64());
+                            createdCoupons = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "freeItems":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                freeItems = new Option<long?>(utf8JsonReader.GetInt64());
+                            freeItems = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "totalOrders":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalOrders = new Option<long?>(utf8JsonReader.GetInt64());
+                            totalOrders = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "totalDiscountedOrders":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalDiscountedOrders = new Option<long?>(utf8JsonReader.GetInt64());
+                            totalDiscountedOrders = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "totalRevenue":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalRevenue = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalRevenue = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "totalDiscounts":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalDiscounts = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalDiscounts = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         default:
                             break;

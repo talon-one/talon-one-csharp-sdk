@@ -204,8 +204,7 @@ namespace TalonOne.Model
                                 targetType = new Option<BestPriorPriceRequestTarget.TargetTypeEnum?>(BestPriorPriceRequestTarget.TargetTypeEnumFromStringOrDefault(targetTypeRawValue));
                             break;
                         case "audienceID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                audienceID = new Option<long?>(utf8JsonReader.GetInt64());
+                            audienceID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

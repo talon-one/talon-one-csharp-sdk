@@ -196,24 +196,19 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "activePoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                activePoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            activePoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "pendingPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                pendingPoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            pendingPoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "spentPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                spentPoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            spentPoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "expiredPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expiredPoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            expiredPoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "negativePoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                negativePoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            negativePoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         default:
                             break;

@@ -242,8 +242,7 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "expression":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expression = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            expression = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
@@ -252,16 +251,13 @@ namespace TalonOne.Model
                             valueType = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "minValue":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                minValue = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            minValue = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "maxValue":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                maxValue = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            maxValue = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "attributeId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributeId = new Option<long?>(utf8JsonReader.GetInt64());
+                            attributeId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());

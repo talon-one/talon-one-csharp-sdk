@@ -193,12 +193,10 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "isAdmin":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                isAdmin = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            isAdmin = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "roles":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                roles = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            roles = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "acl":
                             acl = new Option<string>(utf8JsonReader.GetString());

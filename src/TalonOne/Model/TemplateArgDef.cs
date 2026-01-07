@@ -329,8 +329,7 @@ namespace TalonOne.Model
                             title = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "ui":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                ui = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            ui = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());
@@ -339,12 +338,10 @@ namespace TalonOne.Model
                             key = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "picklistID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                picklistID = new Option<long?>(utf8JsonReader.GetInt64());
+                            picklistID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "restrictedByPicklist":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                restrictedByPicklist = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            restrictedByPicklist = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

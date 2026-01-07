@@ -112,8 +112,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "returnedCartItems":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                returnedCartItems = new Option<List<ReturnedCartItem>>(JsonSerializer.Deserialize<List<ReturnedCartItem>>(ref utf8JsonReader, jsonSerializerOptions));
+                            returnedCartItems = new Option<List<ReturnedCartItem>>(JsonSerializer.Deserialize<List<ReturnedCartItem>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

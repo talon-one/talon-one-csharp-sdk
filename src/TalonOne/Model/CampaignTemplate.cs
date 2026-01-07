@@ -816,20 +816,16 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "accountId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                accountId = new Option<long?>(utf8JsonReader.GetInt64());
+                            accountId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "userId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                userId = new Option<long?>(utf8JsonReader.GetInt64());
+                            userId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
@@ -846,60 +842,46 @@ namespace TalonOne.Model
                                 state = new Option<CampaignTemplate.StateEnum?>(CampaignTemplate.StateEnumFromStringOrDefault(stateRawValue));
                             break;
                         case "applicationsIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            applicationsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "validApplicationIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                validApplicationIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            validApplicationIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "campaignAttributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignAttributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            campaignAttributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "couponAttributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                couponAttributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            couponAttributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "activeRulesetId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                activeRulesetId = new Option<long?>(utf8JsonReader.GetInt64());
+                            activeRulesetId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "tags":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "features":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                features = new Option<List<CampaignTemplate.FeaturesEnum>>(JsonSerializer.Deserialize<List<CampaignTemplate.FeaturesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            features = new Option<List<CampaignTemplate.FeaturesEnum>>(JsonSerializer.Deserialize<List<CampaignTemplate.FeaturesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "couponSettings":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                couponSettings = new Option<CodeGeneratorSettings>(JsonSerializer.Deserialize<CodeGeneratorSettings>(ref utf8JsonReader, jsonSerializerOptions));
+                            couponSettings = new Option<CodeGeneratorSettings>(JsonSerializer.Deserialize<CodeGeneratorSettings>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "couponReservationSettings":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                couponReservationSettings = new Option<CampaignTemplateCouponReservationSettings>(JsonSerializer.Deserialize<CampaignTemplateCouponReservationSettings>(ref utf8JsonReader, jsonSerializerOptions));
+                            couponReservationSettings = new Option<CampaignTemplateCouponReservationSettings>(JsonSerializer.Deserialize<CampaignTemplateCouponReservationSettings>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "referralSettings":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                referralSettings = new Option<CodeGeneratorSettings>(JsonSerializer.Deserialize<CodeGeneratorSettings>(ref utf8JsonReader, jsonSerializerOptions));
+                            referralSettings = new Option<CodeGeneratorSettings>(JsonSerializer.Deserialize<CodeGeneratorSettings>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "limits":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                limits = new Option<List<TemplateLimitConfig>>(JsonSerializer.Deserialize<List<TemplateLimitConfig>>(ref utf8JsonReader, jsonSerializerOptions));
+                            limits = new Option<List<TemplateLimitConfig>>(JsonSerializer.Deserialize<List<TemplateLimitConfig>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "templateParams":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                templateParams = new Option<List<CampaignTemplateParams>>(JsonSerializer.Deserialize<List<CampaignTemplateParams>>(ref utf8JsonReader, jsonSerializerOptions));
+                            templateParams = new Option<List<CampaignTemplateParams>>(JsonSerializer.Deserialize<List<CampaignTemplateParams>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "campaignCollections":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignCollections = new Option<List<CampaignTemplateCollection>>(JsonSerializer.Deserialize<List<CampaignTemplateCollection>>(ref utf8JsonReader, jsonSerializerOptions));
+                            campaignCollections = new Option<List<CampaignTemplateCollection>>(JsonSerializer.Deserialize<List<CampaignTemplateCollection>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "defaultCampaignGroupId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                defaultCampaignGroupId = new Option<long?>(utf8JsonReader.GetInt64());
+                            defaultCampaignGroupId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "campaignType":
                             string campaignTypeRawValue = utf8JsonReader.GetString();
@@ -907,19 +889,16 @@ namespace TalonOne.Model
                                 campaignType = new Option<CampaignTemplate.CampaignTypeEnum?>(CampaignTemplate.CampaignTypeEnumFromStringOrDefault(campaignTypeRawValue));
                             break;
                         case "campaignsCount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignsCount = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignsCount = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "updated":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                updated = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            updated = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "updatedBy":
                             updatedBy = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "isUserFavorite":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                isUserFavorite = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            isUserFavorite = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

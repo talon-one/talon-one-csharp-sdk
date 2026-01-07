@@ -147,8 +147,7 @@ namespace TalonOne.Model
                             title = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "applicationIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            applicationIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());

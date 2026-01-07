@@ -278,28 +278,22 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "usageLimit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                usageLimit = new Option<long?>(utf8JsonReader.GetInt64());
+                            usageLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "discountLimit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                discountLimit = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            discountLimit = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "reservationLimit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                reservationLimit = new Option<long?>(utf8JsonReader.GetInt64());
+                            reservationLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "startDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "expiryDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "batchID":
                             batchID = new Option<string>(utf8JsonReader.GetString());

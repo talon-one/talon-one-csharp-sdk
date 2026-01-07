@@ -147,8 +147,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "validCharacters":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                validCharacters = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            validCharacters = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "couponPattern":
                             couponPattern = new Option<string>(utf8JsonReader.GetString());

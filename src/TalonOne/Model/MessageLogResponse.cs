@@ -163,16 +163,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "createdAt":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            createdAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "response":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                response = new Option<byte[]>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions));
+                            response = new Option<byte[]>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "status":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                status = new Option<long?>(utf8JsonReader.GetInt64());
+                            status = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

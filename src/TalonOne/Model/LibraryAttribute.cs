@@ -429,12 +429,10 @@ namespace TalonOne.Model
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "presets":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                presets = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            presets = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "suggestions":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                suggestions = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            suggestions = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -343,12 +343,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "integrationType":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                integrationType = new Option<long?>(utf8JsonReader.GetInt64());
+                            integrationType = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "title":
                             title = new Option<string>(utf8JsonReader.GetString());
@@ -368,12 +366,10 @@ namespace TalonOne.Model
                             relativeUrl = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "headers":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                headers = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            headers = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "policy":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                policy = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            policy = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

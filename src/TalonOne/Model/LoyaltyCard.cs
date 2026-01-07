@@ -442,16 +442,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "programID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                programID = new Option<long?>(utf8JsonReader.GetInt64());
+                            programID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "status":
                             status = new Option<string>(utf8JsonReader.GetString());
@@ -460,8 +457,7 @@ namespace TalonOne.Model
                             identifier = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "usersPerCardLimit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                usersPerCardLimit = new Option<long?>(utf8JsonReader.GetInt64());
+                            usersPerCardLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "programName":
                             programName = new Option<string>(utf8JsonReader.GetString());
@@ -473,20 +469,16 @@ namespace TalonOne.Model
                             blockReason = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "profiles":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                profiles = new Option<List<LoyaltyCardProfileRegistration>>(JsonSerializer.Deserialize<List<LoyaltyCardProfileRegistration>>(ref utf8JsonReader, jsonSerializerOptions));
+                            profiles = new Option<List<LoyaltyCardProfileRegistration>>(JsonSerializer.Deserialize<List<LoyaltyCardProfileRegistration>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "ledger":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                ledger = new Option<LedgerInfo>(JsonSerializer.Deserialize<LedgerInfo>(ref utf8JsonReader, jsonSerializerOptions));
+                            ledger = new Option<LedgerInfo>(JsonSerializer.Deserialize<LedgerInfo>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "subledgers":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                subledgers = new Option<Dictionary<string, LedgerInfo>>(JsonSerializer.Deserialize<Dictionary<string, LedgerInfo>>(ref utf8JsonReader, jsonSerializerOptions));
+                            subledgers = new Option<Dictionary<string, LedgerInfo>>(JsonSerializer.Deserialize<Dictionary<string, LedgerInfo>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "modified":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                modified = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            modified = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "oldCardIdentifier":
                             oldCardIdentifier = new Option<string>(utf8JsonReader.GetString());

@@ -2603,7 +2603,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/best_prior_price";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/best_prior_price"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/best_prior_price");
 
                     httpRequestMessageLocalVar.Content = (bestPriorPriceRequest as object) is System.IO.Stream stream
                         ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
@@ -2647,11 +2649,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<BestPriorPriceApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<BestPriorPriceApiResponse>();
+                        BestPriorPriceApiResponse apiResponseLocalVar;
 
-                        BestPriorPriceApiResponse apiResponseLocalVar = new BestPriorPriceApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/best_prior_price", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new BestPriorPriceApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/best_prior_price", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterBestPriorPriceDefaultImplementation(apiResponseLocalVar, bestPriorPriceRequest);
 
@@ -2694,6 +2702,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public BestPriorPriceApiResponse(ILogger<BestPriorPriceApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="BestPriorPriceApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public BestPriorPriceApiResponse(ILogger<BestPriorPriceApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2849,7 +2873,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v2/audiences";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v2/audiences"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/audiences");
 
                     httpRequestMessageLocalVar.Content = (newAudience as object) is System.IO.Stream stream
                         ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
@@ -2885,11 +2911,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<CreateAudienceV2ApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<CreateAudienceV2ApiResponse>();
+                        CreateAudienceV2ApiResponse apiResponseLocalVar;
 
-                        CreateAudienceV2ApiResponse apiResponseLocalVar = new CreateAudienceV2ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/audiences", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new CreateAudienceV2ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/audiences", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterCreateAudienceV2DefaultImplementation(apiResponseLocalVar, newAudience);
 
@@ -2932,6 +2964,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public CreateAudienceV2ApiResponse(ILogger<CreateAudienceV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="CreateAudienceV2ApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public CreateAudienceV2ApiResponse(ILogger<CreateAudienceV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -3211,7 +3259,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/coupon_reservations/{couponValue}";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/coupon_reservations/{couponValue}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/coupon_reservations/{couponValue}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcouponValue%7D", Uri.EscapeDataString(couponValue.ToString()));
 
                     httpRequestMessageLocalVar.Content = (couponReservations as object) is System.IO.Stream stream
@@ -3248,11 +3298,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<CreateCouponReservationApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<CreateCouponReservationApiResponse>();
+                        CreateCouponReservationApiResponse apiResponseLocalVar;
 
-                        CreateCouponReservationApiResponse apiResponseLocalVar = new CreateCouponReservationApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/coupon_reservations/{couponValue}", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new CreateCouponReservationApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/coupon_reservations/{couponValue}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterCreateCouponReservationDefaultImplementation(apiResponseLocalVar, couponValue, couponReservations);
 
@@ -3295,6 +3351,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public CreateCouponReservationApiResponse(ILogger<CreateCouponReservationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="CreateCouponReservationApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public CreateCouponReservationApiResponse(ILogger<CreateCouponReservationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -3564,7 +3636,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/referrals";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/referrals"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/referrals");
 
                     httpRequestMessageLocalVar.Content = (newReferral as object) is System.IO.Stream stream
                         ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
@@ -3600,11 +3674,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<CreateReferralApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<CreateReferralApiResponse>();
+                        CreateReferralApiResponse apiResponseLocalVar;
 
-                        CreateReferralApiResponse apiResponseLocalVar = new CreateReferralApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/referrals", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new CreateReferralApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/referrals", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterCreateReferralDefaultImplementation(apiResponseLocalVar, newReferral);
 
@@ -3647,6 +3727,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public CreateReferralApiResponse(ILogger<CreateReferralApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="CreateReferralApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public CreateReferralApiResponse(ILogger<CreateReferralApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -3888,7 +3984,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/referrals_for_multiple_advocates";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/referrals_for_multiple_advocates"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/referrals_for_multiple_advocates");
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
@@ -3931,11 +4029,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<CreateReferralsForMultipleAdvocatesApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<CreateReferralsForMultipleAdvocatesApiResponse>();
+                        CreateReferralsForMultipleAdvocatesApiResponse apiResponseLocalVar;
 
-                        CreateReferralsForMultipleAdvocatesApiResponse apiResponseLocalVar = new CreateReferralsForMultipleAdvocatesApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/referrals_for_multiple_advocates", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new CreateReferralsForMultipleAdvocatesApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/referrals_for_multiple_advocates", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterCreateReferralsForMultipleAdvocatesDefaultImplementation(apiResponseLocalVar, newReferralsForMultipleAdvocates, silent);
 
@@ -3978,6 +4082,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public CreateReferralsForMultipleAdvocatesApiResponse(ILogger<CreateReferralsForMultipleAdvocatesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="CreateReferralsForMultipleAdvocatesApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public CreateReferralsForMultipleAdvocatesApiResponse(ILogger<CreateReferralsForMultipleAdvocatesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -4202,7 +4322,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v2/audiences/{audienceId}/memberships";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v2/audiences/{audienceId}/memberships"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/audiences/{audienceId}/memberships");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BaudienceId%7D", Uri.EscapeDataString(audienceId.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -4226,11 +4348,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<DeleteAudienceMembershipsV2ApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<DeleteAudienceMembershipsV2ApiResponse>();
+                        DeleteAudienceMembershipsV2ApiResponse apiResponseLocalVar;
 
-                        DeleteAudienceMembershipsV2ApiResponse apiResponseLocalVar = new DeleteAudienceMembershipsV2ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/audiences/{audienceId}/memberships", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new DeleteAudienceMembershipsV2ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/audiences/{audienceId}/memberships", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterDeleteAudienceMembershipsV2DefaultImplementation(apiResponseLocalVar, audienceId);
 
@@ -4273,6 +4401,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public DeleteAudienceMembershipsV2ApiResponse(ILogger<DeleteAudienceMembershipsV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="DeleteAudienceMembershipsV2ApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public DeleteAudienceMembershipsV2ApiResponse(ILogger<DeleteAudienceMembershipsV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -4459,7 +4603,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v2/audiences/{audienceId}";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v2/audiences/{audienceId}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/audiences/{audienceId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BaudienceId%7D", Uri.EscapeDataString(audienceId.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -4483,11 +4629,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<DeleteAudienceV2ApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<DeleteAudienceV2ApiResponse>();
+                        DeleteAudienceV2ApiResponse apiResponseLocalVar;
 
-                        DeleteAudienceV2ApiResponse apiResponseLocalVar = new DeleteAudienceV2ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/audiences/{audienceId}", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new DeleteAudienceV2ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/audiences/{audienceId}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterDeleteAudienceV2DefaultImplementation(apiResponseLocalVar, audienceId);
 
@@ -4530,6 +4682,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public DeleteAudienceV2ApiResponse(ILogger<DeleteAudienceV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="DeleteAudienceV2ApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public DeleteAudienceV2ApiResponse(ILogger<DeleteAudienceV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -4777,7 +4945,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/coupon_reservations/{couponValue}";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/coupon_reservations/{couponValue}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/coupon_reservations/{couponValue}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcouponValue%7D", Uri.EscapeDataString(couponValue.ToString()));
 
                     httpRequestMessageLocalVar.Content = (couponReservations as object) is System.IO.Stream stream
@@ -4814,11 +4984,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<DeleteCouponReservationApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<DeleteCouponReservationApiResponse>();
+                        DeleteCouponReservationApiResponse apiResponseLocalVar;
 
-                        DeleteCouponReservationApiResponse apiResponseLocalVar = new DeleteCouponReservationApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/coupon_reservations/{couponValue}", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new DeleteCouponReservationApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/coupon_reservations/{couponValue}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterDeleteCouponReservationDefaultImplementation(apiResponseLocalVar, couponValue, couponReservations);
 
@@ -4861,6 +5037,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public DeleteCouponReservationApiResponse(ILogger<DeleteCouponReservationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="DeleteCouponReservationApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public DeleteCouponReservationApiResponse(ILogger<DeleteCouponReservationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -5098,7 +5290,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/customer_data/{integrationId}";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/customer_data/{integrationId}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/customer_data/{integrationId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -5122,11 +5316,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<DeleteCustomerDataApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<DeleteCustomerDataApiResponse>();
+                        DeleteCustomerDataApiResponse apiResponseLocalVar;
 
-                        DeleteCustomerDataApiResponse apiResponseLocalVar = new DeleteCustomerDataApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/customer_data/{integrationId}", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new DeleteCustomerDataApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/customer_data/{integrationId}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterDeleteCustomerDataDefaultImplementation(apiResponseLocalVar, integrationId);
 
@@ -5169,6 +5369,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public DeleteCustomerDataApiResponse(ILogger<DeleteCustomerDataApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="DeleteCustomerDataApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public DeleteCustomerDataApiResponse(ILogger<DeleteCustomerDataApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -5374,7 +5590,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/loyalty_programs/{loyaltyProgramId}/cards";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/loyalty_programs/{loyaltyProgramId}/cards"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/cards");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
 
                     httpRequestMessageLocalVar.Content = (generateLoyaltyCard as object) is System.IO.Stream stream
@@ -5411,11 +5629,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<GenerateLoyaltyCardApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<GenerateLoyaltyCardApiResponse>();
+                        GenerateLoyaltyCardApiResponse apiResponseLocalVar;
 
-                        GenerateLoyaltyCardApiResponse apiResponseLocalVar = new GenerateLoyaltyCardApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/cards", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GenerateLoyaltyCardApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/cards", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterGenerateLoyaltyCardDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, generateLoyaltyCard);
 
@@ -5458,6 +5682,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public GenerateLoyaltyCardApiResponse(ILogger<GenerateLoyaltyCardApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GenerateLoyaltyCardApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GenerateLoyaltyCardApiResponse(ILogger<GenerateLoyaltyCardApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -5729,7 +5969,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/customer_profiles/{integrationId}/achievements/{achievementId}";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/customer_profiles/{integrationId}/achievements/{achievementId}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/customer_profiles/{integrationId}/achievements/{achievementId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BachievementId%7D", Uri.EscapeDataString(achievementId.ToString()));
 
@@ -5773,11 +6015,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<GetCustomerAchievementHistoryApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<GetCustomerAchievementHistoryApiResponse>();
+                        GetCustomerAchievementHistoryApiResponse apiResponseLocalVar;
 
-                        GetCustomerAchievementHistoryApiResponse apiResponseLocalVar = new GetCustomerAchievementHistoryApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/customer_profiles/{integrationId}/achievements/{achievementId}", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GetCustomerAchievementHistoryApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/customer_profiles/{integrationId}/achievements/{achievementId}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterGetCustomerAchievementHistoryDefaultImplementation(apiResponseLocalVar, integrationId, achievementId, progressStatus, startDate, endDate, pageSize, skip);
 
@@ -5820,6 +6068,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public GetCustomerAchievementHistoryApiResponse(ILogger<GetCustomerAchievementHistoryApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetCustomerAchievementHistoryApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetCustomerAchievementHistoryApiResponse(ILogger<GetCustomerAchievementHistoryApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -6141,7 +6405,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/customer_profiles/{integrationId}/achievements";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/customer_profiles/{integrationId}/achievements"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/customer_profiles/{integrationId}/achievements");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
@@ -6187,11 +6453,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<GetCustomerAchievementsApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<GetCustomerAchievementsApiResponse>();
+                        GetCustomerAchievementsApiResponse apiResponseLocalVar;
 
-                        GetCustomerAchievementsApiResponse apiResponseLocalVar = new GetCustomerAchievementsApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/customer_profiles/{integrationId}/achievements", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GetCustomerAchievementsApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/customer_profiles/{integrationId}/achievements", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterGetCustomerAchievementsDefaultImplementation(apiResponseLocalVar, integrationId, campaignIds, achievementIds, achievementStatus, currentProgressStatus, pageSize, skip);
 
@@ -6234,6 +6506,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public GetCustomerAchievementsApiResponse(ILogger<GetCustomerAchievementsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetCustomerAchievementsApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetCustomerAchievementsApiResponse(ILogger<GetCustomerAchievementsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -6539,7 +6827,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/customer_profiles/{integrationId}/inventory";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/customer_profiles/{integrationId}/inventory"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/customer_profiles/{integrationId}/inventory");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
@@ -6585,11 +6875,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<GetCustomerInventoryApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<GetCustomerInventoryApiResponse>();
+                        GetCustomerInventoryApiResponse apiResponseLocalVar;
 
-                        GetCustomerInventoryApiResponse apiResponseLocalVar = new GetCustomerInventoryApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/customer_profiles/{integrationId}/inventory", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GetCustomerInventoryApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/customer_profiles/{integrationId}/inventory", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterGetCustomerInventoryDefaultImplementation(apiResponseLocalVar, integrationId, profile, referrals, coupons, loyalty, giveaways, achievements);
 
@@ -6632,6 +6928,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public GetCustomerInventoryApiResponse(ILogger<GetCustomerInventoryApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetCustomerInventoryApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetCustomerInventoryApiResponse(ILogger<GetCustomerInventoryApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -6863,7 +7175,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v2/customer_sessions/{customerSessionId}";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v2/customer_sessions/{customerSessionId}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/customer_sessions/{customerSessionId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcustomerSessionId%7D", Uri.EscapeDataString(customerSessionId.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -6887,11 +7201,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<GetCustomerSessionApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<GetCustomerSessionApiResponse>();
+                        GetCustomerSessionApiResponse apiResponseLocalVar;
 
-                        GetCustomerSessionApiResponse apiResponseLocalVar = new GetCustomerSessionApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/customer_sessions/{customerSessionId}", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GetCustomerSessionApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/customer_sessions/{customerSessionId}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterGetCustomerSessionDefaultImplementation(apiResponseLocalVar, customerSessionId);
 
@@ -6934,6 +7254,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public GetCustomerSessionApiResponse(ILogger<GetCustomerSessionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetCustomerSessionApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetCustomerSessionApiResponse(ILogger<GetCustomerSessionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -7199,7 +7535,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/balances";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/balances"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/balances");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
@@ -7240,11 +7578,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<GetLoyaltyBalancesApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<GetLoyaltyBalancesApiResponse>();
+                        GetLoyaltyBalancesApiResponse apiResponseLocalVar;
 
-                        GetLoyaltyBalancesApiResponse apiResponseLocalVar = new GetLoyaltyBalancesApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/balances", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GetLoyaltyBalancesApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/balances", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterGetLoyaltyBalancesDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, integrationId, endDate, subledgerId, includeTiers, includeProjectedTier);
 
@@ -7287,6 +7631,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public GetLoyaltyBalancesApiResponse(ILogger<GetLoyaltyBalancesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetLoyaltyBalancesApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetLoyaltyBalancesApiResponse(ILogger<GetLoyaltyBalancesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -7578,7 +7938,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/balances";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/balances"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/balances");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyCardId%7D", Uri.EscapeDataString(loyaltyCardId.ToString()));
 
@@ -7613,11 +7975,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<GetLoyaltyCardBalancesApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<GetLoyaltyCardBalancesApiResponse>();
+                        GetLoyaltyCardBalancesApiResponse apiResponseLocalVar;
 
-                        GetLoyaltyCardBalancesApiResponse apiResponseLocalVar = new GetLoyaltyCardBalancesApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/balances", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GetLoyaltyCardBalancesApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/balances", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterGetLoyaltyCardBalancesDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, endDate, subledgerId);
 
@@ -7660,6 +8028,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public GetLoyaltyCardBalancesApiResponse(ILogger<GetLoyaltyCardBalancesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetLoyaltyCardBalancesApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetLoyaltyCardBalancesApiResponse(ILogger<GetLoyaltyCardBalancesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -7997,7 +8381,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/points";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/points"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/points");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyCardId%7D", Uri.EscapeDataString(loyaltyCardId.ToString()));
 
@@ -8047,11 +8433,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<GetLoyaltyCardPointsApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<GetLoyaltyCardPointsApiResponse>();
+                        GetLoyaltyCardPointsApiResponse apiResponseLocalVar;
 
-                        GetLoyaltyCardPointsApiResponse apiResponseLocalVar = new GetLoyaltyCardPointsApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/points", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GetLoyaltyCardPointsApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/points", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterGetLoyaltyCardPointsDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, status, subledgerId, customerSessionIDs, transactionUUIDs, pageSize, skip, sort);
 
@@ -8094,6 +8486,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public GetLoyaltyCardPointsApiResponse(ILogger<GetLoyaltyCardPointsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetLoyaltyCardPointsApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetLoyaltyCardPointsApiResponse(ILogger<GetLoyaltyCardPointsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -8439,7 +8847,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transactions";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transactions"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transactions");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyCardId%7D", Uri.EscapeDataString(loyaltyCardId.ToString()));
 
@@ -8495,11 +8905,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<GetLoyaltyCardTransactionsApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<GetLoyaltyCardTransactionsApiResponse>();
+                        GetLoyaltyCardTransactionsApiResponse apiResponseLocalVar;
 
-                        GetLoyaltyCardTransactionsApiResponse apiResponseLocalVar = new GetLoyaltyCardTransactionsApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transactions", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GetLoyaltyCardTransactionsApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transactions", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterGetLoyaltyCardTransactionsDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip, awaitsActivation);
 
@@ -8542,6 +8958,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public GetLoyaltyCardTransactionsApiResponse(ILogger<GetLoyaltyCardTransactionsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetLoyaltyCardTransactionsApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetLoyaltyCardTransactionsApiResponse(ILogger<GetLoyaltyCardTransactionsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -8879,7 +9311,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/points";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/points"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/points");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
@@ -8929,11 +9363,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<GetLoyaltyProgramProfilePointsApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<GetLoyaltyProgramProfilePointsApiResponse>();
+                        GetLoyaltyProgramProfilePointsApiResponse apiResponseLocalVar;
 
-                        GetLoyaltyProgramProfilePointsApiResponse apiResponseLocalVar = new GetLoyaltyProgramProfilePointsApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/points", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GetLoyaltyProgramProfilePointsApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/points", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterGetLoyaltyProgramProfilePointsDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, integrationId, status, subledgerId, customerSessionIDs, transactionUUIDs, pageSize, skip, sort);
 
@@ -8976,6 +9416,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public GetLoyaltyProgramProfilePointsApiResponse(ILogger<GetLoyaltyProgramProfilePointsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetLoyaltyProgramProfilePointsApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetLoyaltyProgramProfilePointsApiResponse(ILogger<GetLoyaltyProgramProfilePointsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -9321,7 +9777,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
@@ -9377,11 +9835,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<GetLoyaltyProgramProfileTransactionsApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<GetLoyaltyProgramProfileTransactionsApiResponse>();
+                        GetLoyaltyProgramProfileTransactionsApiResponse apiResponseLocalVar;
 
-                        GetLoyaltyProgramProfileTransactionsApiResponse apiResponseLocalVar = new GetLoyaltyProgramProfileTransactionsApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GetLoyaltyProgramProfileTransactionsApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterGetLoyaltyProgramProfileTransactionsDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
 
@@ -9424,6 +9888,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public GetLoyaltyProgramProfileTransactionsApiResponse(ILogger<GetLoyaltyProgramProfileTransactionsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetLoyaltyProgramProfileTransactionsApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetLoyaltyProgramProfileTransactionsApiResponse(ILogger<GetLoyaltyProgramProfileTransactionsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -9693,7 +10173,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/coupon_reservations/customerprofiles/{couponValue}";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/coupon_reservations/customerprofiles/{couponValue}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/coupon_reservations/customerprofiles/{couponValue}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcouponValue%7D", Uri.EscapeDataString(couponValue.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -9717,11 +10199,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<GetReservedCustomersApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<GetReservedCustomersApiResponse>();
+                        GetReservedCustomersApiResponse apiResponseLocalVar;
 
-                        GetReservedCustomersApiResponse apiResponseLocalVar = new GetReservedCustomersApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/coupon_reservations/customerprofiles/{couponValue}", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GetReservedCustomersApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/coupon_reservations/customerprofiles/{couponValue}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterGetReservedCustomersDefaultImplementation(apiResponseLocalVar, couponValue);
 
@@ -9764,6 +10252,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public GetReservedCustomersApiResponse(ILogger<GetReservedCustomersApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetReservedCustomersApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetReservedCustomersApiResponse(ILogger<GetReservedCustomersApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -10049,7 +10553,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyCardId%7D", Uri.EscapeDataString(loyaltyCardId.ToString()));
 
@@ -10087,11 +10593,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<LinkLoyaltyCardToProfileApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<LinkLoyaltyCardToProfileApiResponse>();
+                        LinkLoyaltyCardToProfileApiResponse apiResponseLocalVar;
 
-                        LinkLoyaltyCardToProfileApiResponse apiResponseLocalVar = new LinkLoyaltyCardToProfileApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new LinkLoyaltyCardToProfileApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterLinkLoyaltyCardToProfileDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, loyaltyCardRegistration);
 
@@ -10134,6 +10646,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public LinkLoyaltyCardToProfileApiResponse(ILogger<LinkLoyaltyCardToProfileApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="LinkLoyaltyCardToProfileApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public LinkLoyaltyCardToProfileApiResponse(ILogger<LinkLoyaltyCardToProfileApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -10403,7 +10931,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v2/customer_sessions/{customerSessionId}/reopen";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v2/customer_sessions/{customerSessionId}/reopen"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/customer_sessions/{customerSessionId}/reopen");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcustomerSessionId%7D", Uri.EscapeDataString(customerSessionId.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -10427,11 +10957,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<ReopenCustomerSessionApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<ReopenCustomerSessionApiResponse>();
+                        ReopenCustomerSessionApiResponse apiResponseLocalVar;
 
-                        ReopenCustomerSessionApiResponse apiResponseLocalVar = new ReopenCustomerSessionApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/customer_sessions/{customerSessionId}/reopen", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new ReopenCustomerSessionApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/customer_sessions/{customerSessionId}/reopen", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterReopenCustomerSessionDefaultImplementation(apiResponseLocalVar, customerSessionId);
 
@@ -10474,6 +11010,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public ReopenCustomerSessionApiResponse(ILogger<ReopenCustomerSessionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="ReopenCustomerSessionApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public ReopenCustomerSessionApiResponse(ILogger<ReopenCustomerSessionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -10721,7 +11273,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v2/customer_sessions/{customerSessionId}/returns";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v2/customer_sessions/{customerSessionId}/returns"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/customer_sessions/{customerSessionId}/returns");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcustomerSessionId%7D", Uri.EscapeDataString(customerSessionId.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
@@ -10765,11 +11319,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<ReturnCartItemsApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<ReturnCartItemsApiResponse>();
+                        ReturnCartItemsApiResponse apiResponseLocalVar;
 
-                        ReturnCartItemsApiResponse apiResponseLocalVar = new ReturnCartItemsApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/customer_sessions/{customerSessionId}/returns", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new ReturnCartItemsApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/customer_sessions/{customerSessionId}/returns", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterReturnCartItemsDefaultImplementation(apiResponseLocalVar, customerSessionId, returnIntegrationRequest, dry);
 
@@ -10812,6 +11372,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public ReturnCartItemsApiResponse(ILogger<ReturnCartItemsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="ReturnCartItemsApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public ReturnCartItemsApiResponse(ILogger<ReturnCartItemsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -11049,7 +11625,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v1/catalogs/{catalogId}/sync";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/catalogs/{catalogId}/sync"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/catalogs/{catalogId}/sync");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcatalogId%7D", Uri.EscapeDataString(catalogId.ToString()));
 
                     httpRequestMessageLocalVar.Content = (catalogSyncRequest as object) is System.IO.Stream stream
@@ -11086,11 +11664,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<SyncCatalogApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<SyncCatalogApiResponse>();
+                        SyncCatalogApiResponse apiResponseLocalVar;
 
-                        SyncCatalogApiResponse apiResponseLocalVar = new SyncCatalogApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/catalogs/{catalogId}/sync", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new SyncCatalogApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/catalogs/{catalogId}/sync", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterSyncCatalogDefaultImplementation(apiResponseLocalVar, catalogId, catalogSyncRequest);
 
@@ -11133,6 +11717,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public SyncCatalogApiResponse(ILogger<SyncCatalogApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="SyncCatalogApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public SyncCatalogApiResponse(ILogger<SyncCatalogApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -11424,7 +12024,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v2/events";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v2/events"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/events");
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
@@ -11473,11 +12075,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<TrackEventV2ApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<TrackEventV2ApiResponse>();
+                        TrackEventV2ApiResponse apiResponseLocalVar;
 
-                        TrackEventV2ApiResponse apiResponseLocalVar = new TrackEventV2ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/events", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new TrackEventV2ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/events", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterTrackEventV2DefaultImplementation(apiResponseLocalVar, integrationEventV2Request, silent, dry, forceCompleteEvaluation);
 
@@ -11520,6 +12128,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public TrackEventV2ApiResponse(ILogger<TrackEventV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="TrackEventV2ApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public TrackEventV2ApiResponse(ILogger<TrackEventV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -11795,7 +12419,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v2/audience_customers/{audienceId}/attributes";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v2/audience_customers/{audienceId}/attributes"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/audience_customers/{audienceId}/attributes");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BaudienceId%7D", Uri.EscapeDataString(audienceId.ToString()));
 
                     httpRequestMessageLocalVar.Content = (body as object) is System.IO.Stream stream
@@ -11832,11 +12458,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<UpdateAudienceCustomersAttributesApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<UpdateAudienceCustomersAttributesApiResponse>();
+                        UpdateAudienceCustomersAttributesApiResponse apiResponseLocalVar;
 
-                        UpdateAudienceCustomersAttributesApiResponse apiResponseLocalVar = new UpdateAudienceCustomersAttributesApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/audience_customers/{audienceId}/attributes", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new UpdateAudienceCustomersAttributesApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/audience_customers/{audienceId}/attributes", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterUpdateAudienceCustomersAttributesDefaultImplementation(apiResponseLocalVar, audienceId, body);
 
@@ -11879,6 +12511,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public UpdateAudienceCustomersAttributesApiResponse(ILogger<UpdateAudienceCustomersAttributesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="UpdateAudienceCustomersAttributesApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public UpdateAudienceCustomersAttributesApiResponse(ILogger<UpdateAudienceCustomersAttributesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -12084,7 +12732,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v2/audiences/{audienceId}";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v2/audiences/{audienceId}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/audiences/{audienceId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BaudienceId%7D", Uri.EscapeDataString(audienceId.ToString()));
 
                     httpRequestMessageLocalVar.Content = (updateAudience as object) is System.IO.Stream stream
@@ -12121,11 +12771,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<UpdateAudienceV2ApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<UpdateAudienceV2ApiResponse>();
+                        UpdateAudienceV2ApiResponse apiResponseLocalVar;
 
-                        UpdateAudienceV2ApiResponse apiResponseLocalVar = new UpdateAudienceV2ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/audiences/{audienceId}", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new UpdateAudienceV2ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/audiences/{audienceId}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterUpdateAudienceV2DefaultImplementation(apiResponseLocalVar, audienceId, updateAudience);
 
@@ -12168,6 +12824,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public UpdateAudienceV2ApiResponse(ILogger<UpdateAudienceV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="UpdateAudienceV2ApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public UpdateAudienceV2ApiResponse(ILogger<UpdateAudienceV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -12399,7 +13071,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v2/customer_audiences";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v2/customer_audiences"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/customer_audiences");
 
                     httpRequestMessageLocalVar.Content = (customerProfileAudienceRequest as object) is System.IO.Stream stream
                         ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
@@ -12435,11 +13109,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<UpdateCustomerProfileAudiencesApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<UpdateCustomerProfileAudiencesApiResponse>();
+                        UpdateCustomerProfileAudiencesApiResponse apiResponseLocalVar;
 
-                        UpdateCustomerProfileAudiencesApiResponse apiResponseLocalVar = new UpdateCustomerProfileAudiencesApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/customer_audiences", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new UpdateCustomerProfileAudiencesApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/customer_audiences", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterUpdateCustomerProfileAudiencesDefaultImplementation(apiResponseLocalVar, customerProfileAudienceRequest);
 
@@ -12482,6 +13162,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public UpdateCustomerProfileAudiencesApiResponse(ILogger<UpdateCustomerProfileAudiencesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="UpdateCustomerProfileAudiencesApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public UpdateCustomerProfileAudiencesApiResponse(ILogger<UpdateCustomerProfileAudiencesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -12741,7 +13437,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v2/customer_profiles/{integrationId}";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v2/customer_profiles/{integrationId}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/customer_profiles/{integrationId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
@@ -12788,11 +13486,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<UpdateCustomerProfileV2ApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<UpdateCustomerProfileV2ApiResponse>();
+                        UpdateCustomerProfileV2ApiResponse apiResponseLocalVar;
 
-                        UpdateCustomerProfileV2ApiResponse apiResponseLocalVar = new UpdateCustomerProfileV2ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/customer_profiles/{integrationId}", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new UpdateCustomerProfileV2ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/customer_profiles/{integrationId}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterUpdateCustomerProfileV2DefaultImplementation(apiResponseLocalVar, integrationId, customerProfileIntegrationRequestV2, runRuleEngine, dry);
 
@@ -12835,6 +13539,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public UpdateCustomerProfileV2ApiResponse(ILogger<UpdateCustomerProfileV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="UpdateCustomerProfileV2ApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public UpdateCustomerProfileV2ApiResponse(ILogger<UpdateCustomerProfileV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -13114,7 +13834,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v2/customer_profiles";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v2/customer_profiles"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/customer_profiles");
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
@@ -13157,11 +13879,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<UpdateCustomerProfilesV2ApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<UpdateCustomerProfilesV2ApiResponse>();
+                        UpdateCustomerProfilesV2ApiResponse apiResponseLocalVar;
 
-                        UpdateCustomerProfilesV2ApiResponse apiResponseLocalVar = new UpdateCustomerProfilesV2ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/customer_profiles", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new UpdateCustomerProfilesV2ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/customer_profiles", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterUpdateCustomerProfilesV2DefaultImplementation(apiResponseLocalVar, multipleCustomerProfileIntegrationRequest, silent);
 
@@ -13204,6 +13932,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public UpdateCustomerProfilesV2ApiResponse(ILogger<UpdateCustomerProfilesV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="UpdateCustomerProfilesV2ApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public UpdateCustomerProfilesV2ApiResponse(ILogger<UpdateCustomerProfilesV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -13457,7 +14201,9 @@ namespace TalonOne.Api
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/v2/customer_sessions/{customerSessionId}";
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v2/customer_sessions/{customerSessionId}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/customer_sessions/{customerSessionId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcustomerSessionId%7D", Uri.EscapeDataString(customerSessionId.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
@@ -13504,11 +14250,17 @@ namespace TalonOne.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-
                         ILogger<UpdateCustomerSessionV2ApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<UpdateCustomerSessionV2ApiResponse>();
+                        UpdateCustomerSessionV2ApiResponse apiResponseLocalVar;
 
-                        UpdateCustomerSessionV2ApiResponse apiResponseLocalVar = new UpdateCustomerSessionV2ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/customer_sessions/{customerSessionId}", requestedAtLocalVar, _jsonSerializerOptions);
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new UpdateCustomerSessionV2ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/customer_sessions/{customerSessionId}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
 
                         AfterUpdateCustomerSessionV2DefaultImplementation(apiResponseLocalVar, customerSessionId, integrationRequest, dry, now);
 
@@ -13551,6 +14303,22 @@ namespace TalonOne.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public UpdateCustomerSessionV2ApiResponse(ILogger<UpdateCustomerSessionV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="UpdateCustomerSessionV2ApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public UpdateCustomerSessionV2ApiResponse(ILogger<UpdateCustomerSessionV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);

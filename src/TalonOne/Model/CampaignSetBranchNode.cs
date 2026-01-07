@@ -505,16 +505,13 @@ namespace TalonOne.Model
                                 varOperator = new Option<CampaignSetBranchNode.OperatorEnum?>(CampaignSetBranchNode.OperatorEnumFromStringOrDefault(varOperatorRawValue));
                             break;
                         case "elements":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                elements = new Option<List<CampaignSetNode>>(JsonSerializer.Deserialize<List<CampaignSetNode>>(ref utf8JsonReader, jsonSerializerOptions));
+                            elements = new Option<List<CampaignSetNode>>(JsonSerializer.Deserialize<List<CampaignSetNode>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "groupId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                groupId = new Option<long?>(utf8JsonReader.GetInt64());
+                            groupId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "locked":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                locked = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            locked = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "evaluationMode":
                             string evaluationModeRawValue = utf8JsonReader.GetString();

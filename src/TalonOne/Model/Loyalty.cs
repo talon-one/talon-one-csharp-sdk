@@ -130,12 +130,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "programs":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                programs = new Option<Dictionary<string, LoyaltyProgramLedgers>>(JsonSerializer.Deserialize<Dictionary<string, LoyaltyProgramLedgers>>(ref utf8JsonReader, jsonSerializerOptions));
+                            programs = new Option<Dictionary<string, LoyaltyProgramLedgers>>(JsonSerializer.Deserialize<Dictionary<string, LoyaltyProgramLedgers>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "cards":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                cards = new Option<List<LoyaltyCard>>(JsonSerializer.Deserialize<List<LoyaltyCard>>(ref utf8JsonReader, jsonSerializerOptions));
+                            cards = new Option<List<LoyaltyCard>>(JsonSerializer.Deserialize<List<LoyaltyCard>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

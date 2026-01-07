@@ -146,12 +146,10 @@ namespace TalonOne.Model
                             url = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "headers":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                headers = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            headers = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "enabled":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                enabled = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            enabled = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

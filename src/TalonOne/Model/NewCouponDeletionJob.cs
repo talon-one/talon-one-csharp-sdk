@@ -111,8 +111,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "filters":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                filters = new Option<CouponDeletionFilters>(JsonSerializer.Deserialize<CouponDeletionFilters>(ref utf8JsonReader, jsonSerializerOptions));
+                            filters = new Option<CouponDeletionFilters>(JsonSerializer.Deserialize<CouponDeletionFilters>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

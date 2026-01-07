@@ -226,8 +226,7 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "scopes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                scopes = new Option<List<AddedDeductedPointsNotificationPolicy.ScopesEnum>>(JsonSerializer.Deserialize<List<AddedDeductedPointsNotificationPolicy.ScopesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            scopes = new Option<List<AddedDeductedPointsNotificationPolicy.ScopesEnum>>(JsonSerializer.Deserialize<List<AddedDeductedPointsNotificationPolicy.ScopesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

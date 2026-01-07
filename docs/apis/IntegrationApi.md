@@ -45,74 +45,6 @@ Fetch best prior price
 
 Returns the best prior price based on historical pricing data for the specified SKUs within a defined timeframe. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class BestPriorPriceExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: management_key
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-            // Configure API key authorization: manager_auth
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var bestPriorPriceRequest = new BestPriorPriceRequest(); // BestPriorPriceRequest | body
-
-            try
-            {
-                // Fetch best prior price
-                List<BestPriorPrice> result = apiInstance.BestPriorPrice(bestPriorPriceRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.BestPriorPrice: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the BestPriorPriceWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Fetch best prior price
-    ApiResponse<List<BestPriorPrice>> response = apiInstance.BestPriorPriceWithHttpInfo(bestPriorPriceRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.BestPriorPriceWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -149,66 +81,6 @@ Create audience
 
 Create an audience. The audience can be created directly from scratch or can come from third party platforms.  **Note:** Audiences can also be created from scratch via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/creating-audiences).  To create an audience from an existing audience from a [technology partner](https://docs.talon.one/docs/dev/technology-partners/overview): 1. Set the `integration` property to `mparticle`, `segment` etc., depending on a third-party platform. 1. Set `integrationId` to the ID of this audience in a third-party platform.  To create an audience from an existing audience in another platform: 1. Do not use the `integration` property. 1. Set `integrationId` to the ID of this audience in the 3rd-party platform.  To create an audience from scratch: 1. Only set the `name` property.  Once you create your first audience, audience-specific rule conditions are enabled in the Rule Builder. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class CreateAudienceV2Example
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var newAudience = new NewAudience(); // NewAudience | body
-
-            try
-            {
-                // Create audience
-                Audience result = apiInstance.CreateAudienceV2(newAudience);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.CreateAudienceV2: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the CreateAudienceV2WithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Create audience
-    ApiResponse<Audience> response = apiInstance.CreateAudienceV2WithHttpInfo(newAudience);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.CreateAudienceV2WithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -248,67 +120,6 @@ Create coupon reservation
 
 Create a coupon reservation for the specified customer profiles on the specified coupon.  You can also create a reservation via the Campaign Manager using the [Create coupon code reservation](https://docs.talon.one/docs/product/rules/effects/using-effects#reserving-a-coupon-code) effect.  **Note:**  - If the **Reservation mandatory** option was selected when creating the   specified coupon, the endpoint creates a **hard** reservation, meaning only users who have   this coupon code reserved can redeem it.   Otherwise, the endpoint creates a **soft** reservation, meaning the coupon   is associated with the specified customer profiles (they show up when using   the [List customer data](https://docs.talon.one/integration-api#operation/getCustomerInventory)   endpoint), but any user can redeem it.   This can be useful, for example, to display a _coupon wallet_ for customers   when they visit your store.  - If the **Coupon visibility** option was selected when creating the   specified coupon, the coupon code is implicitly soft-reserved for all customers, and the code   will be returned for all customer profiles in the [List customer   data](https://docs.talon.one/integration-api#operation/getCustomerInventory) endpoint.  - This endpoint overrides the coupon reservation limit set when   [the coupon is created](https://docs.talon.one/docs/product/campaigns/coupons/creating-coupons).  To ensure that coupons cannot be reserved after the reservation limit is reached, use the [Create coupon code reservation](https://docs.talon.one/docs/product/rules/effects/using-effects#reserving-a-coupon-code) effect in the Rule Builder and the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint.  To delete a reservation, use the [Delete reservation](https://docs.talon.one/integration-api#tag/Coupons/operation/deleteCouponReservation) endpoint. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class CreateCouponReservationExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var couponValue = "couponValue_example";  // string | The code of the coupon.  **Important:** The coupon code requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp)  if it contains special characters. For example, you must encode `SUMMER25%OFF` as `SUMMER25%25OFF`. 
-            var couponReservations = new CouponReservations(); // CouponReservations | body
-
-            try
-            {
-                // Create coupon reservation
-                Coupon result = apiInstance.CreateCouponReservation(couponValue, couponReservations);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.CreateCouponReservation: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the CreateCouponReservationWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Create coupon reservation
-    ApiResponse<Coupon> response = apiInstance.CreateCouponReservationWithHttpInfo(couponValue, couponReservations);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.CreateCouponReservationWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -349,66 +160,6 @@ Create referral code for an advocate
 
 Creates a referral code for an advocate. The code will be valid for the referral campaign for which is created, indicated in the `campaignId` parameter, and will be associated with the profile specified in the `advocateProfileIntegrationId` parameter as the advocate's profile.  **Note:** Any [referral limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets#referral-limits) set are ignored when you use this endpoint. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class CreateReferralExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var newReferral = new NewReferral(); // NewReferral | body
-
-            try
-            {
-                // Create referral code for an advocate
-                Referral result = apiInstance.CreateReferral(newReferral);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.CreateReferral: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the CreateReferralWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Create referral code for an advocate
-    ApiResponse<Referral> response = apiInstance.CreateReferralWithHttpInfo(newReferral);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.CreateReferralWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -447,67 +198,6 @@ Create referral codes for multiple advocates
 
 Creates unique referral codes for multiple advocates. The code will be valid for the referral campaign for which it is created, indicated in the `campaignId` parameter, and one referral code will be associated with one advocate using the profile specified in the `advocateProfileIntegrationId` parameter as the advocate's profile.  **Note:** Any [referral limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets#referral-limits) set are ignored when you use this endpoint. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class CreateReferralsForMultipleAdvocatesExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var newReferralsForMultipleAdvocates = new NewReferralsForMultipleAdvocates(); // NewReferralsForMultipleAdvocates | body
-            var silent = "\"yes\"";  // string | Possible values: `yes` or `no`. - `yes`: Increases the performance of the API call by returning a 204 response. - `no`: Returns a 200 response that contains the updated customer profiles.  (optional)  (default to "yes")
-
-            try
-            {
-                // Create referral codes for multiple advocates
-                CreateReferralsForMultipleAdvocates201Response result = apiInstance.CreateReferralsForMultipleAdvocates(newReferralsForMultipleAdvocates, silent);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.CreateReferralsForMultipleAdvocates: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the CreateReferralsForMultipleAdvocatesWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Create referral codes for multiple advocates
-    ApiResponse<CreateReferralsForMultipleAdvocates201Response> response = apiInstance.CreateReferralsForMultipleAdvocatesWithHttpInfo(newReferralsForMultipleAdvocates, silent);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.CreateReferralsForMultipleAdvocatesWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -548,62 +238,6 @@ Delete audience memberships
 
 Remove all members from this audience. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class DeleteAudienceMembershipsV2Example
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var audienceId = 789L;  // long | The ID of the audience.
-
-            try
-            {
-                // Delete audience memberships
-                apiInstance.DeleteAudienceMembershipsV2(audienceId);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.DeleteAudienceMembershipsV2: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the DeleteAudienceMembershipsV2WithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Delete audience memberships
-    apiInstance.DeleteAudienceMembershipsV2WithHttpInfo(audienceId);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.DeleteAudienceMembershipsV2WithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -642,62 +276,6 @@ Delete audience
 
 Delete an audience created by a third-party integration.  **Warning:** This endpoint also removes any associations recorded between a customer profile and this audience.  **Note:** Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class DeleteAudienceV2Example
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var audienceId = 789L;  // long | The ID of the audience.
-
-            try
-            {
-                // Delete audience
-                apiInstance.DeleteAudienceV2(audienceId);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.DeleteAudienceV2: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the DeleteAudienceV2WithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Delete audience
-    apiInstance.DeleteAudienceV2WithHttpInfo(audienceId);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.DeleteAudienceV2WithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -737,63 +315,6 @@ Delete coupon reservations
 
 Remove all the coupon reservations from the provided customer profile integration IDs and the provided coupon code. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class DeleteCouponReservationExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var couponValue = "couponValue_example";  // string | The code of the coupon.  **Important:** The coupon code requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp)  if it contains special characters. For example, you must encode `SUMMER25%OFF` as `SUMMER25%25OFF`. 
-            var couponReservations = new CouponReservations(); // CouponReservations | body
-
-            try
-            {
-                // Delete coupon reservations
-                apiInstance.DeleteCouponReservation(couponValue, couponReservations);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.DeleteCouponReservation: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the DeleteCouponReservationWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Delete coupon reservations
-    apiInstance.DeleteCouponReservationWithHttpInfo(couponValue, couponReservations);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.DeleteCouponReservationWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -834,62 +355,6 @@ Delete customer's personal data
 
 Delete all attributes on the customer profile and on entities that reference this customer profile.  **Important:** - Customer data is deleted from all Applications in the [environment](https://docs.talon.one/docs/product/applications/overview#application-environments)   that the API key belongs to. For example, if you use this endpoint with an API key that belongs to a sandbox Application,   customer data will be deleted from all sandbox Applications. This is because customer data is shared   between Applications from the same environment. - To preserve performance, we recommend avoiding deleting customer data during peak-traffic hours. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class DeleteCustomerDataExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var integrationId = "integrationId_example";  // string | The integration ID of the customer profile. You can get the `integrationId` of a profile using: - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application's customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint. 
-
-            try
-            {
-                // Delete customer's personal data
-                apiInstance.DeleteCustomerData(integrationId);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.DeleteCustomerData: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the DeleteCustomerDataWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Delete customer's personal data
-    apiInstance.DeleteCustomerDataWithHttpInfo(integrationId);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.DeleteCustomerDataWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -928,67 +393,6 @@ Generate loyalty card
 
 Generate a loyalty card in a specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview).  To link the card to one or more customer profiles, use the `customerProfileIds` parameter in the request body.  **Note:** - The number of customer profiles linked to the loyalty card cannot exceed the loyalty program's `usersPerCardLimit`. To find the program's limit, use the [Get loyalty program](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgram) endpoint. - If the loyalty program has a defined code format, it will be used for the loyalty card identifier. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class GenerateLoyaltyCardExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var loyaltyProgramId = 789L;  // long | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
-            var generateLoyaltyCard = new GenerateLoyaltyCard(); // GenerateLoyaltyCard | body
-
-            try
-            {
-                // Generate loyalty card
-                LoyaltyCard result = apiInstance.GenerateLoyaltyCard(loyaltyProgramId, generateLoyaltyCard);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.GenerateLoyaltyCard: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GenerateLoyaltyCardWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Generate loyalty card
-    ApiResponse<LoyaltyCard> response = apiInstance.GenerateLoyaltyCardWithHttpInfo(loyaltyProgramId, generateLoyaltyCard);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.GenerateLoyaltyCardWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1028,72 +432,6 @@ List customer's achievement history
 
 Retrieve all progress history of a given customer in the given achievement. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class GetCustomerAchievementHistoryExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var integrationId = "integrationId_example";  // string | The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. 
-            var achievementId = 789L;  // long | The achievement identifier. 
-            var progressStatus = new List<string>(); // List<string> | Filter by customer progress status in the achievement.  (optional) 
-            var startDate = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | Timestamp that filters the results to only contain achievements created on or after the start date. (optional) 
-            var endDate = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | Timestamp that filters the results to only contain achievements created before or on the end date. (optional) 
-            var pageSize = 1000L;  // long | The number of items in the response. (optional)  (default to 1000)
-            var skip = 789L;  // long | The number of items to skip when paging through large result sets. (optional) 
-
-            try
-            {
-                // List customer's achievement history
-                GetCustomerAchievementHistory200Response result = apiInstance.GetCustomerAchievementHistory(integrationId, achievementId, progressStatus, startDate, endDate, pageSize, skip);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.GetCustomerAchievementHistory: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetCustomerAchievementHistoryWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // List customer's achievement history
-    ApiResponse<GetCustomerAchievementHistory200Response> response = apiInstance.GetCustomerAchievementHistoryWithHttpInfo(integrationId, achievementId, progressStatus, startDate, endDate, pageSize, skip);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.GetCustomerAchievementHistoryWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1139,72 +477,6 @@ List customer's available achievements
 
 Retrieve all the achievements available to a given customer and their progress in them. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class GetCustomerAchievementsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var integrationId = "integrationId_example";  // string | The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. 
-            var campaignIds = new List<string>(); // List<string> | Filter by one or more Campaign IDs, separated by a comma.  **Note:** If no campaigns are specified, data for all the campaigns in the Application is returned.  (optional) 
-            var achievementIds = new List<string>(); // List<string> | Filter by one or more Achievement IDs, separated by a comma.  **Note:** If no achievements are specified, data for all the achievements in the Application is returned.  (optional) 
-            var achievementStatus = new List<string>(); // List<string> | Filter by status of the achievement.  **Note:** If the achievement status is not specified, only data for all active achievements in the Application is returned.  (optional) 
-            var currentProgressStatus = new List<string>(); // List<string> | Filter by customer progress status in the achievement.  (optional) 
-            var pageSize = 1000L;  // long | The number of items in the response. (optional)  (default to 1000)
-            var skip = 789L;  // long | The number of items to skip when paging through large result sets. (optional) 
-
-            try
-            {
-                // List customer's available achievements
-                GetCustomerAchievements200Response result = apiInstance.GetCustomerAchievements(integrationId, campaignIds, achievementIds, achievementStatus, currentProgressStatus, pageSize, skip);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.GetCustomerAchievements: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetCustomerAchievementsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // List customer's available achievements
-    ApiResponse<GetCustomerAchievements200Response> response = apiInstance.GetCustomerAchievementsWithHttpInfo(integrationId, campaignIds, achievementIds, achievementStatus, currentProgressStatus, pageSize, skip);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.GetCustomerAchievementsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1250,72 +522,6 @@ List customer data
 
 Return the customer inventory regarding entities referencing this customer profile's `integrationId`.  Typical entities returned are: customer profile information, referral codes, loyalty points, loyalty cards and reserved coupons. Reserved coupons also include redeemed coupons. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class GetCustomerInventoryExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var integrationId = "integrationId_example";  // string | The integration ID of the customer profile. You can get the `integrationId` of a profile using: - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application's customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint. 
-            var profile = true;  // bool | Set to `true` to include customer profile information in the response. (optional) 
-            var referrals = true;  // bool | Set to `true` to include referral information in the response. (optional) 
-            var coupons = true;  // bool | Set to `true` to include coupon information in the response. (optional) 
-            var loyalty = true;  // bool | Set to `true` to include loyalty information in the response. (optional) 
-            var giveaways = true;  // bool | Set to `true` to include giveaways information in the response. (optional) 
-            var achievements = true;  // bool | Set to `true` to include achievement information in the response. (optional) 
-
-            try
-            {
-                // List customer data
-                CustomerInventory result = apiInstance.GetCustomerInventory(integrationId, profile, referrals, coupons, loyalty, giveaways, achievements);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.GetCustomerInventory: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetCustomerInventoryWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // List customer data
-    ApiResponse<CustomerInventory> response = apiInstance.GetCustomerInventoryWithHttpInfo(integrationId, profile, referrals, coupons, loyalty, giveaways, achievements);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.GetCustomerInventoryWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1360,66 +566,6 @@ Get customer session
 
 Get the details of the given customer session.  You can get the same data via other endpoints that also apply changes, which can help you save requests and increase performance. See:  - [Update customer session](#tag/Customer-sessions/operation/updateCustomerSessionV2) - [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class GetCustomerSessionExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var customerSessionId = "customerSessionId_example";  // string | The `integration ID` of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager's **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#operation/getApplicationSessions) endpoint. 
-
-            try
-            {
-                // Get customer session
-                IntegrationCustomerSessionResponse result = apiInstance.GetCustomerSession(customerSessionId);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.GetCustomerSession: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetCustomerSessionWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Get customer session
-    ApiResponse<IntegrationCustomerSessionResponse> response = apiInstance.GetCustomerSessionWithHttpInfo(customerSessionId);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.GetCustomerSessionWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1458,71 +604,6 @@ Get customer's loyalty balances
 
 Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program. You can filter balances by date and subledger ID, and include tier-related information in the response.  **Note**: If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see: - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards) - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class GetLoyaltyBalancesExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var loyaltyProgramId = 789L;  // long | Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
-            var integrationId = "integrationId_example";  // string | The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. 
-            var endDate = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional) 
-            var subledgerId = "subledgerId_example";  // string | The ID of the subledger by which we filter the data. (optional) 
-            var includeTiers = false;  // bool | Indicates whether tier information is included in the response.  When set to `true`, the response includes information about the current tier and the number of points required to move to next tier.  (optional)  (default to false)
-            var includeProjectedTier = false;  // bool | Indicates whether the customer's projected tier information is included in the response.  When set to `true`, the response includes information about the customer's active points and the name of the projected tier.  **Note** We recommend filtering by `subledgerId` for better performance.  (optional)  (default to false)
-
-            try
-            {
-                // Get customer's loyalty balances
-                LoyaltyBalancesWithTiers result = apiInstance.GetLoyaltyBalances(loyaltyProgramId, integrationId, endDate, subledgerId, includeTiers, includeProjectedTier);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.GetLoyaltyBalances: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetLoyaltyBalancesWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Get customer's loyalty balances
-    ApiResponse<LoyaltyBalancesWithTiers> response = apiInstance.GetLoyaltyBalancesWithHttpInfo(loyaltyProgramId, integrationId, endDate, subledgerId, includeTiers, includeProjectedTier);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.GetLoyaltyBalancesWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1567,69 +648,6 @@ Get card's point balances
 
 Retrieve loyalty balances for the given loyalty card in the specified loyalty program with filtering options applied. If no filtering options are applied, all loyalty balances for the given loyalty card are returned. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class GetLoyaltyCardBalancesExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var loyaltyProgramId = 789L;  // long | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
-            var loyaltyCardId = "loyaltyCardId_example";  // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. 
-            var endDate = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional) 
-            var subledgerId = new List<string>(); // List<string> | Filter results by one or more subledger IDs. Must be exact match. (optional) 
-
-            try
-            {
-                // Get card's point balances
-                LoyaltyCardBalances result = apiInstance.GetLoyaltyCardBalances(loyaltyProgramId, loyaltyCardId, endDate, subledgerId);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.GetLoyaltyCardBalances: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetLoyaltyCardBalancesWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Get card's point balances
-    ApiResponse<LoyaltyCardBalances> response = apiInstance.GetLoyaltyCardBalancesWithHttpInfo(loyaltyProgramId, loyaltyCardId, endDate, subledgerId);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.GetLoyaltyCardBalancesWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1672,74 +690,6 @@ List card's unused loyalty points
 
 Get paginated results of loyalty points for a given loyalty card identifier in a card-based loyalty program. This endpoint returns only the balances of unused points on a loyalty card.  You can filter points by status: - `active`: Points ready to be redeemed. - `pending`: Points with a start date in the future. - `expired`: Points with an expiration date in the past. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class GetLoyaltyCardPointsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var loyaltyProgramId = 789L;  // long | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
-            var loyaltyCardId = "loyaltyCardId_example";  // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. 
-            var status = "active";  // string | Filter points based on their status. (optional)  (default to active)
-            var subledgerId = new List<string>(); // List<string> | Filter results by one or more subledger IDs. Must be exact match. (optional) 
-            var customerSessionIDs = new List<string>(); // List<string> | Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  `?customerSessionIDs=id1&customerSessionIDs=id2`.  The response contains only data associated with the specified sessions.  (optional) 
-            var transactionUUIDs = new List<string>(); // List<string> | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.  The response contains only data associated with the specified transactions.  (optional) 
-            var pageSize = 50L;  // long | The number of items in the response. (optional)  (default to 50)
-            var skip = 789L;  // long | The number of items to skip when paging through large result sets. (optional) 
-            var sort = "startDate";  // string | The field by which results should be sorted. You can enter one of the following values:  - `startDate`: Sorts the results by the start date of the points. - `expiryDate`: Sorts the results by the expiry date of the points.  By default, results are sorted in ascending order.  To sort them in descending order, prefix the field name with `-`.  **Note:** You can only sort by one field at a time.  (optional) 
-
-            try
-            {
-                // List card's unused loyalty points
-                GetLoyaltyCardPoints200Response result = apiInstance.GetLoyaltyCardPoints(loyaltyProgramId, loyaltyCardId, status, subledgerId, customerSessionIDs, transactionUUIDs, pageSize, skip, sort);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.GetLoyaltyCardPoints: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetLoyaltyCardPointsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // List card's unused loyalty points
-    ApiResponse<GetLoyaltyCardPoints200Response> response = apiInstance.GetLoyaltyCardPointsWithHttpInfo(loyaltyProgramId, loyaltyCardId, status, subledgerId, customerSessionIDs, transactionUUIDs, pageSize, skip, sort);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.GetLoyaltyCardPointsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1787,76 +737,6 @@ List card's transactions
 
 Retrieve loyalty transaction logs for the given loyalty card in the specified loyalty program with filtering options applied. If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class GetLoyaltyCardTransactionsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var loyaltyProgramId = 789L;  // long | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
-            var loyaltyCardId = "loyaltyCardId_example";  // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. 
-            var subledgerId = new List<string>(); // List<string> | Filter results by one or more subledger IDs. Must be exact match. (optional) 
-            var loyaltyTransactionType = "manual";  // string | Filter results by loyalty transaction type: - `manual`: Loyalty transaction that was done manually. - `session`: Loyalty transaction that resulted from a customer session. - `import`: Loyalty transaction that was imported from a CSV file.  (optional) 
-            var startDate = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional) 
-            var endDate = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional) 
-            var customerSessionIDs = new List<string>(); // List<string> | Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  `?customerSessionIDs=id1&customerSessionIDs=id2`.  The response contains only data associated with the specified sessions.  (optional) 
-            var transactionUUIDs = new List<string>(); // List<string> | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.  The response contains only data associated with the specified transactions.  (optional) 
-            var pageSize = 50L;  // long | The number of items in the response. (optional)  (default to 50)
-            var skip = 789L;  // long | The number of items to skip when paging through large result sets. (optional) 
-            var awaitsActivation = true;  // bool | If `true`: Filters results to include only point transactions that have action-based activation and have not expired. If `false`: Returns an error.  (optional) 
-
-            try
-            {
-                // List card's transactions
-                GetLoyaltyCardTransactions200Response result = apiInstance.GetLoyaltyCardTransactions(loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip, awaitsActivation);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.GetLoyaltyCardTransactions: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetLoyaltyCardTransactionsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // List card's transactions
-    ApiResponse<GetLoyaltyCardTransactions200Response> response = apiInstance.GetLoyaltyCardTransactionsWithHttpInfo(loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip, awaitsActivation);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.GetLoyaltyCardTransactionsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1906,74 +786,6 @@ List customer's unused loyalty points
 
 Get paginated results of loyalty points for a given Integration ID in the specified profile-based loyalty program. This endpoint returns only the balances of unused points linked to a customer profile.  You can filter points by status: - `active`: Points ready to be redeemed. - `pending`: Points with a start date in the future. - `expired`: Points with an expiration date in the past. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class GetLoyaltyProgramProfilePointsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var loyaltyProgramId = 789L;  // long | Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
-            var integrationId = "integrationId_example";  // string | The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. 
-            var status = "active";  // string | Filter points based on their status. (optional)  (default to active)
-            var subledgerId = "subledgerId_example";  // string | The ID of the subledger by which we filter the data. (optional) 
-            var customerSessionIDs = new List<string>(); // List<string> | Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  `?customerSessionIDs=id1&customerSessionIDs=id2`.  The response contains only data associated with the specified sessions.  (optional) 
-            var transactionUUIDs = new List<string>(); // List<string> | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.  The response contains only data associated with the specified transactions.  (optional) 
-            var pageSize = 50L;  // long | The number of items in the response. (optional)  (default to 50)
-            var skip = 789L;  // long | The number of items to skip when paging through large result sets. (optional) 
-            var sort = "startDate";  // string | The field by which results should be sorted. You can enter one of the following values:  - `startDate`: Sorts the results by the start date of the points. - `expiryDate`: Sorts the results by the expiry date of the points.  By default, results are sorted in ascending order.  To sort them in descending order, prefix the field name with `-`.  **Note:** You can only sort by one field at a time.  (optional) 
-
-            try
-            {
-                // List customer's unused loyalty points
-                GetLoyaltyProgramProfilePoints200Response result = apiInstance.GetLoyaltyProgramProfilePoints(loyaltyProgramId, integrationId, status, subledgerId, customerSessionIDs, transactionUUIDs, pageSize, skip, sort);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.GetLoyaltyProgramProfilePoints: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetLoyaltyProgramProfilePointsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // List customer's unused loyalty points
-    ApiResponse<GetLoyaltyProgramProfilePoints200Response> response = apiInstance.GetLoyaltyProgramProfilePointsWithHttpInfo(loyaltyProgramId, integrationId, status, subledgerId, customerSessionIDs, transactionUUIDs, pageSize, skip, sort);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.GetLoyaltyProgramProfilePointsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2021,76 +833,6 @@ List customer's loyalty transactions
 
 Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date. If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  **Note:** To retrieve all loyalty program transaction logs in a given loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class GetLoyaltyProgramProfileTransactionsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var loyaltyProgramId = 789L;  // long | Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
-            var integrationId = "integrationId_example";  // string | The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. 
-            var customerSessionIDs = new List<string>(); // List<string> | Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  `?customerSessionIDs=id1&customerSessionIDs=id2`.  The response contains only data associated with the specified sessions.  (optional) 
-            var transactionUUIDs = new List<string>(); // List<string> | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  `?transactionUUIDs=uuid1&transactionUUIDs=uuid2`.  The response contains only data associated with the specified transactions.  (optional) 
-            var subledgerId = "subledgerId_example";  // string | The ID of the subledger by which we filter the data. (optional) 
-            var loyaltyTransactionType = "manual";  // string | Filter results by loyalty transaction type: - `manual`: Loyalty transaction that was done manually. - `session`: Loyalty transaction that resulted from a customer session. - `import`: Loyalty transaction that was imported from a CSV file.  (optional) 
-            var startDate = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional) 
-            var endDate = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, `T23:59:59` to specify the end of the day. The time zone setting considered is `UTC`. If you do not include a time component, a default time value of `T00:00:00` (midnight) in `UTC` is considered.  (optional) 
-            var pageSize = 50L;  // long | The number of items in the response. (optional)  (default to 50)
-            var skip = 789L;  // long | The number of items to skip when paging through large result sets. (optional) 
-            var awaitsActivation = true;  // bool | If `true`: Filters results to include only point transactions that have action-based activation and have not expired. If `false`: Returns an error.  (optional) 
-
-            try
-            {
-                // List customer's loyalty transactions
-                GetLoyaltyProgramProfileTransactions200Response result = apiInstance.GetLoyaltyProgramProfileTransactions(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.GetLoyaltyProgramProfileTransactions: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetLoyaltyProgramProfileTransactionsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // List customer's loyalty transactions
-    ApiResponse<GetLoyaltyProgramProfileTransactions200Response> response = apiInstance.GetLoyaltyProgramProfileTransactionsWithHttpInfo(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.GetLoyaltyProgramProfileTransactionsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2140,66 +882,6 @@ List customers that have this coupon reserved
 
 Return all customers that have this coupon marked as reserved. This includes hard and soft reservations. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class GetReservedCustomersExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var couponValue = "couponValue_example";  // string | The code of the coupon.  **Important:** The coupon code requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp)  if it contains special characters. For example, you must encode `SUMMER25%OFF` as `SUMMER25%25OFF`. 
-
-            try
-            {
-                // List customers that have this coupon reserved
-                GetReservedCustomers200Response result = apiInstance.GetReservedCustomers(couponValue);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.GetReservedCustomers: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetReservedCustomersWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // List customers that have this coupon reserved
-    ApiResponse<GetReservedCustomers200Response> response = apiInstance.GetReservedCustomersWithHttpInfo(couponValue);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.GetReservedCustomersWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2239,68 +921,6 @@ Link customer profile to card
 
 [Loyalty cards](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) allow customers to collect and spend loyalty points within a [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types). They are useful to gamify loyalty programs and can be used with or without customer profiles linked to them.  Link a customer profile to a given loyalty card for the card to be set as **Registered**. This affects how it can be used. See the [docs](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards#linking-customer-profiles-to-a-loyalty-card).  **Note:** You can link as many customer profiles to a given loyalty card as the [**card user limit**](https://docs.talon.one/docs/product/loyalty-programs/card-based/creating-cb-programs) allows. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class LinkLoyaltyCardToProfileExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var loyaltyProgramId = 789L;  // long | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. 
-            var loyaltyCardId = "loyaltyCardId_example";  // string | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. 
-            var loyaltyCardRegistration = new LoyaltyCardRegistration(); // LoyaltyCardRegistration | body
-
-            try
-            {
-                // Link customer profile to card
-                LoyaltyCard result = apiInstance.LinkLoyaltyCardToProfile(loyaltyProgramId, loyaltyCardId, loyaltyCardRegistration);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.LinkLoyaltyCardToProfile: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the LinkLoyaltyCardToProfileWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Link customer profile to card
-    ApiResponse<LoyaltyCard> response = apiInstance.LinkLoyaltyCardToProfileWithHttpInfo(loyaltyProgramId, loyaltyCardId, loyaltyCardRegistration);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.LinkLoyaltyCardToProfileWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2342,66 +962,6 @@ Reopen customer session
 
 Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint. A reopen session is treated like a standard open session.  When reopening a session: - The `talon_session_reopened` event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to `open`. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed    are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.   <details>   <summary><strong>Effects and budgets unimpacted by a session reopening</strong></summary>   <div>     <p>The following effects and budgets remain in the state they were in when the session closed:</p>     <ul>       <li>Add free item effect</li>       <li>Award giveaway</li>       <li>Coupon and referral creation</li>       <li>Coupon reservation</li>       <li>Custom effect</li>       <li>Update attribute value</li>       <li>Update cart item attribute value</li>     </ul>   </div>   </details> <p>To see an example of a rollback, see the <a href=\"https://docs.talon.one/docs/dev/tutorials/rolling-back-effects\">Cancelling a session with campaign budgets</a>tutorial.</p>  **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel a closed session and create a new one. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class ReopenCustomerSessionExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var customerSessionId = "customerSessionId_example";  // string | The `integration ID` of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager's **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#operation/getApplicationSessions) endpoint. 
-
-            try
-            {
-                // Reopen customer session
-                ReopenSessionResponse result = apiInstance.ReopenCustomerSession(customerSessionId);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.ReopenCustomerSession: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the ReopenCustomerSessionWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Reopen customer session
-    ApiResponse<ReopenSessionResponse> response = apiInstance.ReopenCustomerSessionWithHttpInfo(customerSessionId);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.ReopenCustomerSessionWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2440,68 +1000,6 @@ Return cart items
 
 Create a new return request for the specified cart items.  This endpoint automatically changes the session state from `closed` to `partially_returned`.  **Note:** This will roll back any effects associated with these cart items. For more information, see [our documentation on session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session). 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class ReturnCartItemsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var customerSessionId = "customerSessionId_example";  // string | The `integration ID` of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager's **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#operation/getApplicationSessions) endpoint. 
-            var returnIntegrationRequest = new ReturnIntegrationRequest(); // ReturnIntegrationRequest | body
-            var dry = true;  // bool | Indicates whether to persist the changes. Changes are ignored when `dry=true`.  (optional) 
-
-            try
-            {
-                // Return cart items
-                IntegrationStateV2 result = apiInstance.ReturnCartItems(customerSessionId, returnIntegrationRequest, dry);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.ReturnCartItems: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the ReturnCartItemsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Return cart items
-    ApiResponse<IntegrationStateV2> response = apiInstance.ReturnCartItemsWithHttpInfo(customerSessionId, returnIntegrationRequest, dry);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.ReturnCartItemsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2542,67 +1040,6 @@ Sync cart item catalog
 
 Perform the following actions for a given cart item catalog:  - Add an item to the catalog. - Add multiple items to the catalog. - Update the attributes of an item in the catalog. - Update the attributes of multiple items in the catalog. - Remove an item from the catalog. - Remove multiple items from the catalog.  You can either add, update, or delete up to 1000 cart items in a single request. Each item synced to a catalog must have a unique `SKU`.  **Important**: You can perform only one type of action in a single sync request. Syncing items with duplicate `SKU` values in a single request returns an error message with a `400` status code.  For more information, read [managing cart item catalogs](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs).  ### Filtering cart items  Use [cart item attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes) to filter items and select the ones you want to edit or delete when editing or deleting more than one item at a time.  The `filters` array contains an object with the following properties:  - `attr`: A [cart item attribute](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes)   connected to the catalog. It is applied to all items in the catalog. - `op`: The filtering operator indicating the relationship between the value of each   cart item in the catalog and the value of the `value` property for the attribute selected   in `attr`.    The value of `op` can be one of the following:    - `EQ`: Equal to `value`   - `LT`: Less than `value`   - `LE`: Less than or equal to `value`   - `GT`: Greater than `value`   - `GE`: Greater than or equal to `value`   - `IN`: One of the comma-separated values that `value` is set to.    **Note:** `GE`, `LE`, `GT`, `LT` are for numeric values only.  - `value`: The value of the attribute selected in `attr`.  ### Payload examples  Synchronization actions are sent as `PUT` requests. See the structure for each action:  <details>   <summary><strong>Adding an item to the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"attributes\": {             \"color\": \"Navy blue\",             \"type\": \"shoes\"           },           \"replaceIfExists\": true,           \"sku\": \"SKU1241028\",           \"price\": 100,           \"product\": {             \"name\": \"sneakers\"           }         },         \"type\": \"ADD\"       }     ]   }   ```   </div> </details>  <details>   <summary><strong>Adding multiple items to the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"attributes\": {             \"color\": \"Navy blue\",             \"type\": \"shoes\"           },           \"replaceIfExists\": true,           \"sku\": \"SKU1241027\",           \"price\": 100,           \"product\": {             \"name\": \"sneakers\"           }         },         \"type\": \"ADD\"       },       {         \"payload\": {           \"attributes\": {             \"color\": \"Navy blue\",             \"type\": \"shoes\"           },           \"replaceIfExists\": true,           \"sku\": \"SKU1241028\",           \"price\": 100,           \"product\": {             \"name\": \"sneakers\"           }         },         \"type\": \"ADD\"       }     ]   }   ```   </div> </details>  <details>   <summary><strong>Updating the attributes of an item in the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"attributes\": {             \"age\": 11,             \"origin\": \"germany\"           },           \"createIfNotExists\": false,           \"sku\": \"SKU1241028\",           \"product\": {             \"name\": \"sneakers\"           }         },         \"type\": \"PATCH\"       }     ]   }   ```   </div> </details>  <details>   <summary><strong>Updating the attributes of multiple items in the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"attributes\": {             \"color\": \"red\"           },           \"filters\": [             {               \"attr\": \"color\",               \"op\": \"EQ\",               \"value\": \"blue\"             }           ]         },         \"type\": \"PATCH_MANY\"       }     ]   }   ```    </div> </details>  <details>   <summary><strong>Removing an item from the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"sku\": \"SKU1241028\"         },         \"type\": \"REMOVE\"       }     ]   }   ```    </div> </details>  <details>   <summary><strong>Removing multiple items from the catalog</strong></summary>   <div>    ```json   {     \"actions\": [       {         \"payload\": {           \"filters\": [             {               \"attr\": \"color\",               \"op\": \"EQ\",               \"value\": \"blue\"             }           ]         },         \"type\": \"REMOVE_MANY\"       }     ]   }   ```   </div> </details>  <details>   <summary><strong>Removing shoes of sizes above 45 from the catalog</strong></summary>   <div>   <p>   Let's imagine that we have a shoe store and we have decided to stop selling   shoes larger than size 45. We can remove from the catalog all the shoes of sizes above 45   with a single action:</p>    ```json   {     \"actions\": [       {         \"payload\": {           \"filters\": [             {               \"attr\": \"size\",               \"op\": \"GT\",               \"value\": \"45\"             }           ]         },         \"type\": \"REMOVE_MANY\"       }     ]   }   ```   </div> </details> 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class SyncCatalogExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var catalogId = 789L;  // long | The ID of the catalog. You can find the ID in the Campaign Manager in **Account** > **Tools** > **Cart item catalogs**.
-            var catalogSyncRequest = new CatalogSyncRequest(); // CatalogSyncRequest | body
-
-            try
-            {
-                // Sync cart item catalog
-                Catalog result = apiInstance.SyncCatalog(catalogId, catalogSyncRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.SyncCatalog: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the SyncCatalogWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Sync cart item catalog
-    ApiResponse<Catalog> response = apiInstance.SyncCatalogWithHttpInfo(catalogId, catalogSyncRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.SyncCatalogWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2643,69 +1080,6 @@ Track event
 
 Triggers a custom event.  To use this endpoint: 1. Define a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. Update or create a rule to check for this event. 1. Trigger the event with this endpoint. After you have successfully sent an event to Talon.One, you can list the received events in the **Events** view in the Campaign Manager.  Talon.One also offers a set of [built-in events](https://docs.talon.one/docs/dev/concepts/entities/events). Ensure you do not create a custom event when you can use a built-in event.  For example, use this endpoint to trigger an event when a customer shares a link to a product. See the [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  <div class=\"redoc-section\">    <p class=\"title\">Important</p>    1. `profileId` is required even though the schema does not specify it.   1. If the customer profile ID is new, a new profile is automatically created but the `customer_profile_created` [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered.   1. We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).   1. [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation.  </div> 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class TrackEventV2Example
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var integrationEventV2Request = new IntegrationEventV2Request(); // IntegrationEventV2Request | body
-            var silent = "\"yes\"";  // string | Possible values: `yes` or `no`. - `yes`: Increases the performance of the API call by returning a 204 response. - `no`: Returns a 200 response that contains the updated customer profiles.  (optional)  (default to "yes")
-            var dry = true;  // bool | Indicates whether to persist the changes. Changes are ignored when `dry=true`.  (optional) 
-            var forceCompleteEvaluation = false;  // bool | Forces evaluation for all matching campaigns regardless of the [campaign evaluation mode](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation#setting-campaign-evaluation-mode). Requires `dry=true`.  (optional)  (default to false)
-
-            try
-            {
-                // Track event
-                TrackEventV2Response result = apiInstance.TrackEventV2(integrationEventV2Request, silent, dry, forceCompleteEvaluation);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.TrackEventV2: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the TrackEventV2WithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Track event
-    ApiResponse<TrackEventV2Response> response = apiInstance.TrackEventV2WithHttpInfo(integrationEventV2Request, silent, dry, forceCompleteEvaluation);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.TrackEventV2WithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2748,63 +1122,6 @@ Update profile attributes for all customers in audience
 
 Update the specified profile attributes to the provided values for all customers in the specified audience. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class UpdateAudienceCustomersAttributesExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var audienceId = 789L;  // long | The ID of the audience.
-            var body = null;  // Object | body
-
-            try
-            {
-                // Update profile attributes for all customers in audience
-                apiInstance.UpdateAudienceCustomersAttributes(audienceId, body);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.UpdateAudienceCustomersAttributes: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the UpdateAudienceCustomersAttributesWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Update profile attributes for all customers in audience
-    apiInstance.UpdateAudienceCustomersAttributesWithHttpInfo(audienceId, body);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.UpdateAudienceCustomersAttributesWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2844,67 +1161,6 @@ Update audience name
 
 Update the name of the given audience created by a third-party integration. Sending a request to this endpoint does **not** trigger the Rule Engine.  To update the audience's members, use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class UpdateAudienceV2Example
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var audienceId = 789L;  // long | The ID of the audience.
-            var updateAudience = new UpdateAudience(); // UpdateAudience | body
-
-            try
-            {
-                // Update audience name
-                Audience result = apiInstance.UpdateAudienceV2(audienceId, updateAudience);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.UpdateAudienceV2: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the UpdateAudienceV2WithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Update audience name
-    ApiResponse<Audience> response = apiInstance.UpdateAudienceV2WithHttpInfo(audienceId, updateAudience);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.UpdateAudienceV2WithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2944,62 +1200,6 @@ Update multiple customer profiles' audiences
 
 Add customer profiles to or remove them from an audience.  The endpoint supports 1000 audience actions (`add` or `remove`) per request.  **Note:** You can also do this using the [Update audience](https://docs.talon.one/docs/product/rules/effects/using-effects#updating-an-audience) effect. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class UpdateCustomerProfileAudiencesExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var customerProfileAudienceRequest = new CustomerProfileAudienceRequest(); // CustomerProfileAudienceRequest | body
-
-            try
-            {
-                // Update multiple customer profiles' audiences
-                apiInstance.UpdateCustomerProfileAudiences(customerProfileAudienceRequest);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.UpdateCustomerProfileAudiences: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the UpdateCustomerProfileAudiencesWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Update multiple customer profiles' audiences
-    apiInstance.UpdateCustomerProfileAudiencesWithHttpInfo(customerProfileAudienceRequest);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.UpdateCustomerProfileAudiencesWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -3039,69 +1239,6 @@ Update customer profile
 
 Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of. **Note:** [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when `runRuleEngine` is `true`. <div class=\"redoc-section\">   <p class=\"title\">Performance tips</p>    - Updating a customer profile returns a response with the requested integration state.   - You can use the `responseContent` property to save yourself extra API calls. For example, you can get     the customer profile details directly without extra requests.   - We recommend sending requests sequentially.     See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). </div> 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class UpdateCustomerProfileV2Example
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var integrationId = "integrationId_example";  // string | The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. 
-            var customerProfileIntegrationRequestV2 = new CustomerProfileIntegrationRequestV2(); // CustomerProfileIntegrationRequestV2 | body
-            var runRuleEngine = false;  // bool | Indicates whether to run the Rule Engine.  If `true`, the response includes: - The effects generated by the triggered campaigns are returned in the `effects` property. - The created coupons and referral objects.  If `false`: - The rules are not executed and the `effects` property is always empty. - The response time improves. - You cannot use `responseContent` in the body.  (optional)  (default to false)
-            var dry = true;  // bool | (Only works when `runRuleEngine=true`) Indicates whether to persist the changes. Changes are ignored when `dry=true`.  When set to `true`, you can use the `evaluableCampaignIds` body property to select specific campaigns to run.  (optional) 
-
-            try
-            {
-                // Update customer profile
-                CustomerProfileIntegrationResponseV2 result = apiInstance.UpdateCustomerProfileV2(integrationId, customerProfileIntegrationRequestV2, runRuleEngine, dry);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.UpdateCustomerProfileV2: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the UpdateCustomerProfileV2WithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Update customer profile
-    ApiResponse<CustomerProfileIntegrationResponseV2> response = apiInstance.UpdateCustomerProfileV2WithHttpInfo(integrationId, customerProfileIntegrationRequestV2, runRuleEngine, dry);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.UpdateCustomerProfileV2WithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -3144,67 +1281,6 @@ Update multiple customer profiles
 
 Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.  The `integrationId` must be any identifier that remains stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).  **Note:** This endpoint does not trigger the Rule Engine. To trigger the Rule Engine for customer profile updates, use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint. 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class UpdateCustomerProfilesV2Example
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var multipleCustomerProfileIntegrationRequest = new MultipleCustomerProfileIntegrationRequest(); // MultipleCustomerProfileIntegrationRequest | body
-            var silent = "\"yes\"";  // string | Possible values: `yes` or `no`. - `yes`: Increases the performance of the API call by returning a 204 response. - `no`: Returns a 200 response that contains the updated customer profiles.  (optional)  (default to "yes")
-
-            try
-            {
-                // Update multiple customer profiles
-                MultipleCustomerProfileIntegrationResponseV2 result = apiInstance.UpdateCustomerProfilesV2(multipleCustomerProfileIntegrationRequest, silent);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.UpdateCustomerProfilesV2: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the UpdateCustomerProfilesV2WithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Update multiple customer profiles
-    ApiResponse<MultipleCustomerProfileIntegrationResponseV2> response = apiInstance.UpdateCustomerProfilesV2WithHttpInfo(multipleCustomerProfileIntegrationRequest, silent);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.UpdateCustomerProfilesV2WithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -3244,69 +1320,6 @@ Update customer session
 
 Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart. For example, use this endpoint to share the contents of a customer's cart with Talon.One.  **Note:**  - The currency for the session and the cart items in it is the currency set for the Application linked to this session. - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the `state` parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the `profileId` parameter in the request body to a customer profile's `integrationId`. - While you can create an anonymous session with `profileId=\"\"`, we recommend you use a guest ID instead. - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  **Note:** If the specified profile does not exist, an empty profile is **created automatically**.   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2).  <div class=\"redoc-section\">   <p class=\"title\">Performance tips</p>    - Updating a customer session returns a response with the new integration state. Use the `responseContent` property to save yourself extra API calls.     For example, you can get the customer profile details directly without extra requests.   - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). </div>  For more information, see: - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one). 
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
-
-namespace Example
-{
-    public class UpdateCustomerSessionV2Example
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://yourbaseurl.talon.one";
-            // Configure API key authorization: api_key_v1
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new IntegrationApi(config);
-            var customerSessionId = "customerSessionId_example";  // string | The `integration ID` of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager's **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#operation/getApplicationSessions) endpoint. 
-            var integrationRequest = new IntegrationRequest(); // IntegrationRequest | body
-            var dry = true;  // bool | Indicates whether to persist the changes. Changes are ignored when `dry=true`.  When set to `true`: - The endpoint considers **only** the payload that you pass when **closing** the session.   When you do not use the `dry` parameter, the endpoint behaves as a typical PUT endpoint. Each update builds upon the previous ones. - You can use the `evaluableCampaignIds` body property to select specific campaigns to run.  [See the docs](https://docs.talon.one/docs/dev/integration-api/dry-requests).  (optional) 
-            var now = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | A timestamp value of a future date that acts as a current date when included in the query.  Use this parameter, for example, to test campaigns that would be evaluated for this customer session in the future (say, [scheduled campaigns](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-schedule)).  **Note:**  - It must be an RFC3339 timestamp string. - It can **only** be a date in the future. - It can **only** be used if the `dry` parameter in the query is set to `true`.  (optional) 
-
-            try
-            {
-                // Update customer session
-                IntegrationStateV2 result = apiInstance.UpdateCustomerSessionV2(customerSessionId, integrationRequest, dry, now);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.UpdateCustomerSessionV2: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the UpdateCustomerSessionV2WithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Update customer session
-    ApiResponse<IntegrationStateV2> response = apiInstance.UpdateCustomerSessionV2WithHttpInfo(customerSessionId, integrationRequest, dry, now);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling IntegrationApi.UpdateCustomerSessionV2WithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 

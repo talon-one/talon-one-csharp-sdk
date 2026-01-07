@@ -229,28 +229,22 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "hour":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                hour = new Option<long?>(utf8JsonReader.GetInt64());
+                            hour = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "minute":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                minute = new Option<long?>(utf8JsonReader.GetInt64());
+                            minute = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "second":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                second = new Option<long?>(utf8JsonReader.GetInt64());
+                            second = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "month":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                month = new Option<long?>(utf8JsonReader.GetInt64());
+                            month = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "dayOfMonth":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dayOfMonth = new Option<long?>(utf8JsonReader.GetInt64());
+                            dayOfMonth = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "dayOfWeek":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dayOfWeek = new Option<long?>(utf8JsonReader.GetInt64());
+                            dayOfWeek = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

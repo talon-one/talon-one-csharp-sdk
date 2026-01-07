@@ -151,8 +151,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "programID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                programID = new Option<long?>(utf8JsonReader.GetInt64());
+                            programID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "programName":
                             programName = new Option<string>(utf8JsonReader.GetString());

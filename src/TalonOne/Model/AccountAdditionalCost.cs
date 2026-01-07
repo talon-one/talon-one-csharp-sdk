@@ -317,16 +317,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "accountId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                accountId = new Option<long?>(utf8JsonReader.GetInt64());
+                            accountId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
@@ -338,8 +335,7 @@ namespace TalonOne.Model
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "subscribedApplicationsIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                subscribedApplicationsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            subscribedApplicationsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();

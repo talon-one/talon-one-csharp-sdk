@@ -119,8 +119,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "filters":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                filters = new Option<List<CatalogActionFilter>>(JsonSerializer.Deserialize<List<CatalogActionFilter>>(ref utf8JsonReader, jsonSerializerOptions));
+                            filters = new Option<List<CatalogActionFilter>>(JsonSerializer.Deserialize<List<CatalogActionFilter>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

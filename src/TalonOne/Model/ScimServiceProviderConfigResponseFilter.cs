@@ -137,12 +137,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "maxResults":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                maxResults = new Option<long?>(utf8JsonReader.GetInt64());
+                            maxResults = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "supported":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                supported = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            supported = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

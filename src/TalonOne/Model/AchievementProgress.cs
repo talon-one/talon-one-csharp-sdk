@@ -297,20 +297,16 @@ namespace TalonOne.Model
                                 status = new Option<AchievementProgress.StatusEnum?>(AchievementProgress.StatusEnumFromStringOrDefault(statusRawValue));
                             break;
                         case "progress":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                progress = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            progress = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "startDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "completionDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                completionDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            completionDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "endDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                endDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            endDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

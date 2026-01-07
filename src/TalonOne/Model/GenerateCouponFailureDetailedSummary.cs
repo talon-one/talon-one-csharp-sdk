@@ -172,15 +172,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "applicationID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationID = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            applicationID = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "sessionID":
                             sessionID = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "eventID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                eventID = new Option<long?>(utf8JsonReader.GetInt64());
+                            eventID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "coupon":
                             coupon = new Option<string>(utf8JsonReader.GetString());

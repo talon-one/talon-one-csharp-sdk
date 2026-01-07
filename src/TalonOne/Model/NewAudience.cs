@@ -253,8 +253,7 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "sandbox":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                sandbox = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            sandbox = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());
@@ -266,12 +265,10 @@ namespace TalonOne.Model
                             integrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "createdIn3rdParty":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdIn3rdParty = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            createdIn3rdParty = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "lastUpdate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                lastUpdate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            lastUpdate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

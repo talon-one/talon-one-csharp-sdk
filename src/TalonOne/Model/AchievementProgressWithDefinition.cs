@@ -637,12 +637,10 @@ namespace TalonOne.Model
                                 status = new Option<AchievementProgressWithDefinition.StatusEnum?>(AchievementProgressWithDefinition.StatusEnumFromStringOrDefault(statusRawValue));
                             break;
                         case "progress":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                progress = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            progress = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "achievementId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                achievementId = new Option<long?>(utf8JsonReader.GetInt64());
+                            achievementId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
@@ -654,8 +652,7 @@ namespace TalonOne.Model
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "campaignId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignId = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "achievementRecurrencePolicy":
                             string achievementRecurrencePolicyRawValue = utf8JsonReader.GetString();
@@ -668,32 +665,25 @@ namespace TalonOne.Model
                                 achievementActivationPolicy = new Option<AchievementProgressWithDefinition.AchievementActivationPolicyEnum?>(AchievementProgressWithDefinition.AchievementActivationPolicyEnumFromStringOrDefault(achievementActivationPolicyRawValue));
                             break;
                         case "startDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "completionDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                completionDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            completionDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "endDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                endDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            endDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "target":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                target = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            target = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "achievementFixedStartDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                achievementFixedStartDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            achievementFixedStartDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "achievementEndDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                achievementEndDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            achievementEndDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "achievementAllowRollbackAfterCompletion":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                achievementAllowRollbackAfterCompletion = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            achievementAllowRollbackAfterCompletion = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

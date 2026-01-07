@@ -144,12 +144,10 @@ namespace TalonOne.Model
                             varEvent = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "campaign":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaign = new Option<Campaign>(JsonSerializer.Deserialize<Campaign>(ref utf8JsonReader, jsonSerializerOptions));
+                            campaign = new Option<Campaign>(JsonSerializer.Deserialize<Campaign>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "deletedAt":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                deletedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            deletedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -374,15 +374,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "applicationIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            applicationIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "title":
                             title = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "draft":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                draft = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            draft = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "verb":
                             string verbRawValue = utf8JsonReader.GetString();
@@ -393,16 +391,13 @@ namespace TalonOne.Model
                             url = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "headers":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                headers = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            headers = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "params":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                varParams = new Option<List<TemplateArgDef>>(JsonSerializer.Deserialize<List<TemplateArgDef>>(ref utf8JsonReader, jsonSerializerOptions));
+                            varParams = new Option<List<TemplateArgDef>>(JsonSerializer.Deserialize<List<TemplateArgDef>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "enabled":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                enabled = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            enabled = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());
@@ -411,8 +406,7 @@ namespace TalonOne.Model
                             payload = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "authenticationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                authenticationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            authenticationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

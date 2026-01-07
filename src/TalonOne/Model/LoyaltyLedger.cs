@@ -131,12 +131,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "ledger":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                ledger = new Option<LoyaltySubLedger>(JsonSerializer.Deserialize<LoyaltySubLedger>(ref utf8JsonReader, jsonSerializerOptions));
+                            ledger = new Option<LoyaltySubLedger>(JsonSerializer.Deserialize<LoyaltySubLedger>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "subLedgers":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                subLedgers = new Option<Dictionary<string, LoyaltySubLedger>>(JsonSerializer.Deserialize<Dictionary<string, LoyaltySubLedger>>(ref utf8JsonReader, jsonSerializerOptions));
+                            subLedgers = new Option<Dictionary<string, LoyaltySubLedger>>(JsonSerializer.Deserialize<Dictionary<string, LoyaltySubLedger>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

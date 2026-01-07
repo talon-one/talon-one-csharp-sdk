@@ -259,40 +259,31 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "expiryDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "endpoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                endpoints = new Option<List<Endpoint>>(JsonSerializer.Deserialize<List<Endpoint>>(ref utf8JsonReader, jsonSerializerOptions));
+                            endpoints = new Option<List<Endpoint>>(JsonSerializer.Deserialize<List<Endpoint>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "createdBy":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdBy = new Option<long?>(utf8JsonReader.GetInt64());
+                            createdBy = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "accountID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                accountID = new Option<long?>(utf8JsonReader.GetInt64());
+                            accountID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "allowedApplicationIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                allowedApplicationIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            allowedApplicationIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "disabled":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                disabled = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            disabled = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "lastUsed":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                lastUsed = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            lastUsed = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

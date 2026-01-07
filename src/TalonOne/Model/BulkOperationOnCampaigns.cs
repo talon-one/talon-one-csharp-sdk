@@ -234,12 +234,10 @@ namespace TalonOne.Model
                                 operation = new Option<BulkOperationOnCampaigns.OperationEnum?>(BulkOperationOnCampaigns.OperationEnumFromStringOrDefault(operationRawValue));
                             break;
                         case "campaignIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            campaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "activateAt":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                activateAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            activateAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

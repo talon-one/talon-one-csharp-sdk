@@ -111,8 +111,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "customerProfile":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                customerProfile = new Option<CustomerProfile>(JsonSerializer.Deserialize<CustomerProfile>(ref utf8JsonReader, jsonSerializerOptions));
+                            customerProfile = new Option<CustomerProfile>(JsonSerializer.Deserialize<CustomerProfile>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -215,27 +215,22 @@ namespace TalonOne.Model
                             title = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "condition":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                condition = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            condition = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "effects":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                effects = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            effects = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<Guid?>(utf8JsonReader.GetGuid());
+                            id = new Option<Guid?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (Guid?)null : utf8JsonReader.GetGuid());
                             break;
                         case "parentId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                parentId = new Option<Guid?>(utf8JsonReader.GetGuid());
+                            parentId = new Option<Guid?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (Guid?)null : utf8JsonReader.GetGuid());
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "bindings":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                bindings = new Option<List<Binding>>(JsonSerializer.Deserialize<List<Binding>>(ref utf8JsonReader, jsonSerializerOptions));
+                            bindings = new Option<List<Binding>>(JsonSerializer.Deserialize<List<Binding>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

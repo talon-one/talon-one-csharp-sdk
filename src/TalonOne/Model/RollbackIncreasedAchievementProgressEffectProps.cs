@@ -169,27 +169,22 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "achievementId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                achievementId = new Option<long?>(utf8JsonReader.GetInt64());
+                            achievementId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "achievementName":
                             achievementName = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "progressTrackerId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                progressTrackerId = new Option<long?>(utf8JsonReader.GetInt64());
+                            progressTrackerId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "decreaseProgressBy":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                decreaseProgressBy = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            decreaseProgressBy = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "currentProgress":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                currentProgress = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            currentProgress = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "target":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                target = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            target = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         default:
                             break;

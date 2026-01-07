@@ -261,8 +261,7 @@ namespace TalonOne.Model
                             billingEmail = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "state":
                             string stateRawValue = utf8JsonReader.GetString();
@@ -270,8 +269,7 @@ namespace TalonOne.Model
                                 state = new Option<UpdateAccount.StateEnum?>(UpdateAccount.StateEnumFromStringOrDefault(stateRawValue));
                             break;
                         case "planExpires":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                planExpires = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            planExpires = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

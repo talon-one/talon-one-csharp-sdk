@@ -123,12 +123,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "accountId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                accountId = new Option<long?>(utf8JsonReader.GetInt64());
+                            accountId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "audiences":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                audiences = new Option<List<MultipleAudiencesItem>>(JsonSerializer.Deserialize<List<MultipleAudiencesItem>>(ref utf8JsonReader, jsonSerializerOptions));
+                            audiences = new Option<List<MultipleAudiencesItem>>(JsonSerializer.Deserialize<List<MultipleAudiencesItem>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

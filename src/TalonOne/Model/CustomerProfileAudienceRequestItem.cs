@@ -218,8 +218,7 @@ namespace TalonOne.Model
                             profileIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "audienceId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                audienceId = new Option<long?>(utf8JsonReader.GetInt64());
+                            audienceId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

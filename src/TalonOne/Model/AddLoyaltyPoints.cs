@@ -262,8 +262,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "points":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                points = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            points = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
@@ -272,22 +271,19 @@ namespace TalonOne.Model
                             validityDuration = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "validUntil":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                validUntil = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            validUntil = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "pendingDuration":
                             pendingDuration = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "pendingUntil":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                pendingUntil = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            pendingUntil = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "subledgerId":
                             subledgerId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "applicationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

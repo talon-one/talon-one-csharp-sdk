@@ -291,32 +291,25 @@ namespace TalonOne.Model
                             couponValue = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "CampaignId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignId = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "UsageLimit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                usageLimit = new Option<long?>(utf8JsonReader.GetInt64());
+                            usageLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "UsageCounter":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                usageCounter = new Option<long?>(utf8JsonReader.GetInt64());
+                            usageCounter = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "Attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Dictionary<string, Object>>(JsonSerializer.Deserialize<Dictionary<string, Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Dictionary<string, Object>>(JsonSerializer.Deserialize<Dictionary<string, Object>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "CreatedDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            createdDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "ValidFrom":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                validFrom = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            validFrom = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "ValidUntil":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                validUntil = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            validUntil = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "CustomerProfileId":
                             customerProfileId = new Option<string>(utf8JsonReader.GetString());

@@ -241,15 +241,13 @@ namespace TalonOne.Model
                                 referencingType = new Option<PriceTypeReferenceDetail.ReferencingTypeEnum?>(PriceTypeReferenceDetail.ReferencingTypeEnumFromStringOrDefault(referencingTypeRawValue));
                             break;
                         case "referencingId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                referencingId = new Option<long?>(utf8JsonReader.GetInt64());
+                            referencingId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "referencingName":
                             referencingName = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "applicationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

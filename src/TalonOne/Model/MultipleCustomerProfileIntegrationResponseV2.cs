@@ -118,8 +118,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "integrationStates":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                integrationStates = new Option<List<CustomerProfileUpdateV2Response>>(JsonSerializer.Deserialize<List<CustomerProfileUpdateV2Response>>(ref utf8JsonReader, jsonSerializerOptions));
+                            integrationStates = new Option<List<CustomerProfileUpdateV2Response>>(JsonSerializer.Deserialize<List<CustomerProfileUpdateV2Response>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

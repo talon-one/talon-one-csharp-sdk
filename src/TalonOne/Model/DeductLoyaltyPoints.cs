@@ -176,8 +176,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "points":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                points = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            points = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
@@ -186,8 +185,7 @@ namespace TalonOne.Model
                             subledgerId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "applicationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

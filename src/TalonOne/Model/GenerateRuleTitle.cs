@@ -122,8 +122,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "rule":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                rule = new Option<GenerateRuleTitleRule>(JsonSerializer.Deserialize<GenerateRuleTitleRule>(ref utf8JsonReader, jsonSerializerOptions));
+                            rule = new Option<GenerateRuleTitleRule>(JsonSerializer.Deserialize<GenerateRuleTitleRule>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "currency":
                             currency = new Option<string>(utf8JsonReader.GetString());

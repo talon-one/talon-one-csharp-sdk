@@ -148,12 +148,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "store":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                store = new Option<ListCampaignStoreBudgetsStore>(JsonSerializer.Deserialize<ListCampaignStoreBudgetsStore>(ref utf8JsonReader, jsonSerializerOptions));
+                            store = new Option<ListCampaignStoreBudgetsStore>(JsonSerializer.Deserialize<ListCampaignStoreBudgetsStore>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "limit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                limit = new Option<long?>(utf8JsonReader.GetInt64());
+                            limit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "action":
                             action = new Option<string>(utf8JsonReader.GetString());

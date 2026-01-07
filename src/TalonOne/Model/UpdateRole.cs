@@ -186,8 +186,7 @@ namespace TalonOne.Model
                             acl = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "members":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                members = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            members = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

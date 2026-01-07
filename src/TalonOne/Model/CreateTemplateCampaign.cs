@@ -283,39 +283,31 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "templateId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                templateId = new Option<long?>(utf8JsonReader.GetInt64());
+                            templateId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "campaignAttributesOverrides":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignAttributesOverrides = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            campaignAttributesOverrides = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "templateParamValues":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                templateParamValues = new Option<List<Binding>>(JsonSerializer.Deserialize<List<Binding>>(ref utf8JsonReader, jsonSerializerOptions));
+                            templateParamValues = new Option<List<Binding>>(JsonSerializer.Deserialize<List<Binding>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "limitOverrides":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                limitOverrides = new Option<List<LimitConfig>>(JsonSerializer.Deserialize<List<LimitConfig>>(ref utf8JsonReader, jsonSerializerOptions));
+                            limitOverrides = new Option<List<LimitConfig>>(JsonSerializer.Deserialize<List<LimitConfig>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "campaignGroups":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignGroups = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            campaignGroups = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "tags":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "evaluationGroupId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                evaluationGroupId = new Option<long?>(utf8JsonReader.GetInt64());
+                            evaluationGroupId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "linkedStoreIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                linkedStoreIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            linkedStoreIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

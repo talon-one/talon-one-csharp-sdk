@@ -167,28 +167,22 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "disabled":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                disabled = new Option<long?>(utf8JsonReader.GetInt64());
+                            disabled = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "staged":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                staged = new Option<long?>(utf8JsonReader.GetInt64());
+                            staged = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "scheduled":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                scheduled = new Option<long?>(utf8JsonReader.GetInt64());
+                            scheduled = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "running":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                running = new Option<long?>(utf8JsonReader.GetInt64());
+                            running = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "expired":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expired = new Option<long?>(utf8JsonReader.GetInt64());
+                            expired = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "archived":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                archived = new Option<long?>(utf8JsonReader.GetInt64());
+                            archived = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

@@ -137,12 +137,10 @@ namespace TalonOne.Model
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "bundleAttributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                bundleAttributes = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            bundleAttributes = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "itemsIndices":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                itemsIndices = new Option<List<decimal>>(JsonSerializer.Deserialize<List<decimal>>(ref utf8JsonReader, jsonSerializerOptions));
+                            itemsIndices = new Option<List<decimal>>(JsonSerializer.Deserialize<List<decimal>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

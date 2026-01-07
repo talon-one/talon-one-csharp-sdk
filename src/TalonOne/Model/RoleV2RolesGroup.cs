@@ -176,16 +176,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "applications":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applications = new Option<Dictionary<string, RoleV2ApplicationDetails>>(JsonSerializer.Deserialize<Dictionary<string, RoleV2ApplicationDetails>>(ref utf8JsonReader, jsonSerializerOptions));
+                            applications = new Option<Dictionary<string, RoleV2ApplicationDetails>>(JsonSerializer.Deserialize<Dictionary<string, RoleV2ApplicationDetails>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "loyaltyPrograms":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                loyaltyPrograms = new Option<Dictionary<string, string>>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            loyaltyPrograms = new Option<Dictionary<string, string>>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "campaignAccessGroups":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignAccessGroups = new Option<Dictionary<string, string>>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            campaignAccessGroups = new Option<Dictionary<string, string>>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "account":
                             account = new Option<string>(utf8JsonReader.GetString());

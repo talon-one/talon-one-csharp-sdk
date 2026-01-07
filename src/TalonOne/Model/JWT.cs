@@ -128,8 +128,7 @@ namespace TalonOne.Model
                             accessToken = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "expiresIn":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expiresIn = new Option<long?>(utf8JsonReader.GetInt64());
+                            expiresIn = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

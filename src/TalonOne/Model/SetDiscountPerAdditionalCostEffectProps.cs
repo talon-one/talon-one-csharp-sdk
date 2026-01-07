@@ -166,19 +166,16 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "additionalCostId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                additionalCostId = new Option<long?>(utf8JsonReader.GetInt64());
+                            additionalCostId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "additionalCost":
                             additionalCost = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "value":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                value = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            value = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "desiredValue":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                desiredValue = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            desiredValue = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         default:
                             break;

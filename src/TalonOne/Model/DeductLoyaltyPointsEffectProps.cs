@@ -211,15 +211,13 @@ namespace TalonOne.Model
                             ruleTitle = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "programId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                programId = new Option<long?>(utf8JsonReader.GetInt64());
+                            programId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "subLedgerId":
                             subLedgerId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "value":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                value = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            value = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "transactionUUID":
                             transactionUUID = new Option<string>(utf8JsonReader.GetString());

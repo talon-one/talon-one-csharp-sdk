@@ -118,8 +118,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "mandatory":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                mandatory = new Option<AttributesMandatory>(JsonSerializer.Deserialize<AttributesMandatory>(ref utf8JsonReader, jsonSerializerOptions));
+                            mandatory = new Option<AttributesMandatory>(JsonSerializer.Deserialize<AttributesMandatory>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

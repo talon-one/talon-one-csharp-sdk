@@ -177,23 +177,19 @@ namespace TalonOne.Model
                             sku = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "observedAt":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                observedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            observedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "contextId":
                             contextId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "price":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                price = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            price = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "metadata":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                metadata = new Option<BestPriorPriceMetadata>(JsonSerializer.Deserialize<BestPriorPriceMetadata>(ref utf8JsonReader, jsonSerializerOptions));
+                            metadata = new Option<BestPriorPriceMetadata>(JsonSerializer.Deserialize<BestPriorPriceMetadata>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "target":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                target = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            target = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -349,8 +349,7 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "parentId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                parentId = new Option<long?>(utf8JsonReader.GetInt64());
+                            parentId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "evaluationMode":
                             string evaluationModeRawValue = utf8JsonReader.GetString();
@@ -363,8 +362,7 @@ namespace TalonOne.Model
                                 evaluationScope = new Option<UpdateCampaignEvaluationGroup.EvaluationScopeEnum?>(UpdateCampaignEvaluationGroup.EvaluationScopeEnumFromStringOrDefault(evaluationScopeRawValue));
                             break;
                         case "locked":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                locked = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            locked = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());

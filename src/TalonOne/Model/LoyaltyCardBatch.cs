@@ -257,8 +257,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "numberOfCards":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                numberOfCards = new Option<long?>(utf8JsonReader.GetInt64());
+                            numberOfCards = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "batchId":
                             batchId = new Option<string>(utf8JsonReader.GetString());
@@ -269,8 +268,7 @@ namespace TalonOne.Model
                                 status = new Option<LoyaltyCardBatch.StatusEnum?>(LoyaltyCardBatch.StatusEnumFromStringOrDefault(statusRawValue));
                             break;
                         case "cardCodeSettings":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                cardCodeSettings = new Option<CodeGeneratorSettings>(JsonSerializer.Deserialize<CodeGeneratorSettings>(ref utf8JsonReader, jsonSerializerOptions));
+                            cardCodeSettings = new Option<CodeGeneratorSettings>(JsonSerializer.Deserialize<CodeGeneratorSettings>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

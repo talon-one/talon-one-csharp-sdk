@@ -172,20 +172,16 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "applicationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "version":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                varVersion = new Option<long?>(utf8JsonReader.GetInt64());
+                            varVersion = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "set":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                set = new Option<CampaignSetBranchNode>(JsonSerializer.Deserialize<CampaignSetBranchNode>(ref utf8JsonReader, jsonSerializerOptions));
+                            set = new Option<CampaignSetBranchNode>(JsonSerializer.Deserialize<CampaignSetBranchNode>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "updatedBy":
                             updatedBy = new Option<string>(utf8JsonReader.GetString());

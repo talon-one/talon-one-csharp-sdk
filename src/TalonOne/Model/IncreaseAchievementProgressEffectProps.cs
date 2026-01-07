@@ -187,31 +187,25 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "achievementId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                achievementId = new Option<long?>(utf8JsonReader.GetInt64());
+                            achievementId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "achievementName":
                             achievementName = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "delta":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                delta = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            delta = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "value":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                value = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            value = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "target":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                target = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            target = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "isJustCompleted":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                isJustCompleted = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            isJustCompleted = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "progressTrackerId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                progressTrackerId = new Option<long?>(utf8JsonReader.GetInt64());
+                            progressTrackerId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

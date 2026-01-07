@@ -529,19 +529,16 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "ProfileIntegrationIDs":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                profileIntegrationIDs = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            profileIntegrationIDs = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "LoyaltyProgramID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                loyaltyProgramID = new Option<long?>(utf8JsonReader.GetInt64());
+                            loyaltyProgramID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "SubledgerID":
                             subledgerID = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "Amount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                amount = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            amount = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "Reason":
                             reason = new Option<string>(utf8JsonReader.GetString());
@@ -555,8 +552,7 @@ namespace TalonOne.Model
                             employeeName = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "UserID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                userID = new Option<long?>(utf8JsonReader.GetInt64());
+                            userID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "Operation":
                             string operationRawValue = utf8JsonReader.GetString();
@@ -575,16 +571,13 @@ namespace TalonOne.Model
                             cardIdentifier = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "UsersPerCardLimit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                usersPerCardLimit = new Option<long?>(utf8JsonReader.GetInt64());
+                            usersPerCardLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "StartDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "ExpiryDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -121,12 +121,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "data":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                data = new Option<List<SkuUnitAnalyticsDataPoint>>(JsonSerializer.Deserialize<List<SkuUnitAnalyticsDataPoint>>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<List<SkuUnitAnalyticsDataPoint>>(JsonSerializer.Deserialize<List<SkuUnitAnalyticsDataPoint>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "totals":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totals = new Option<ProductUnitAnalyticsTotals>(JsonSerializer.Deserialize<ProductUnitAnalyticsTotals>(ref utf8JsonReader, jsonSerializerOptions));
+                            totals = new Option<ProductUnitAnalyticsTotals>(JsonSerializer.Deserialize<ProductUnitAnalyticsTotals>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

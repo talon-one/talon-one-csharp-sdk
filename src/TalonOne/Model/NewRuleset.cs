@@ -180,23 +180,19 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "rules":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                rules = new Option<List<Rule>>(JsonSerializer.Deserialize<List<Rule>>(ref utf8JsonReader, jsonSerializerOptions));
+                            rules = new Option<List<Rule>>(JsonSerializer.Deserialize<List<Rule>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "bindings":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                bindings = new Option<List<Binding>>(JsonSerializer.Deserialize<List<Binding>>(ref utf8JsonReader, jsonSerializerOptions));
+                            bindings = new Option<List<Binding>>(JsonSerializer.Deserialize<List<Binding>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "strikethroughRules":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                strikethroughRules = new Option<List<Rule>>(JsonSerializer.Deserialize<List<Rule>>(ref utf8JsonReader, jsonSerializerOptions));
+                            strikethroughRules = new Option<List<Rule>>(JsonSerializer.Deserialize<List<Rule>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "rbVersion":
                             rbVersion = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "activate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                activate = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            activate = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

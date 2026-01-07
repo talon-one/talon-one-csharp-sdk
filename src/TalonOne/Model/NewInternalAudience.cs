@@ -160,8 +160,7 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "sandbox":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                sandbox = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            sandbox = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());

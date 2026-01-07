@@ -189,8 +189,7 @@ namespace TalonOne.Model
                             ruleTitle = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "programId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                programId = new Option<long?>(utf8JsonReader.GetInt64());
+                            programId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "subLedgerId":
                             subLedgerId = new Option<string>(utf8JsonReader.GetString());
@@ -202,8 +201,7 @@ namespace TalonOne.Model
                             previousTierName = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "expiryDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

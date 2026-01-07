@@ -158,16 +158,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "cartItemFilterId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                cartItemFilterId = new Option<long?>(utf8JsonReader.GetInt64());
+                            cartItemFilterId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "createdBy":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdBy = new Option<long?>(utf8JsonReader.GetInt64());
+                            createdBy = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "expression":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expression = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            expression = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

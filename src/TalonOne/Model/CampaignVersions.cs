@@ -306,28 +306,22 @@ namespace TalonOne.Model
                                 revisionFrontendState = new Option<CampaignVersions.RevisionFrontendStateEnum?>(CampaignVersions.RevisionFrontendStateEnumFromStringOrDefault(revisionFrontendStateRawValue));
                             break;
                         case "activeRevisionId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                activeRevisionId = new Option<long?>(utf8JsonReader.GetInt64());
+                            activeRevisionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "activeRevisionVersionId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                activeRevisionVersionId = new Option<long?>(utf8JsonReader.GetInt64());
+                            activeRevisionVersionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "version":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                varVersion = new Option<long?>(utf8JsonReader.GetInt64());
+                            varVersion = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "currentRevisionId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                currentRevisionId = new Option<long?>(utf8JsonReader.GetInt64());
+                            currentRevisionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "currentRevisionVersionId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                currentRevisionVersionId = new Option<long?>(utf8JsonReader.GetInt64());
+                            currentRevisionVersionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "stageRevision":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                stageRevision = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            stageRevision = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

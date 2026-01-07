@@ -299,46 +299,37 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "value":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                value = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            value = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "position":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                position = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            position = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "subPosition":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                subPosition = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            subPosition = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "desiredValue":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                desiredValue = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            desiredValue = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "scope":
                             scope = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "totalDiscount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalDiscount = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalDiscount = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "desiredTotalDiscount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                desiredTotalDiscount = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            desiredTotalDiscount = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "bundleIndex":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                bundleIndex = new Option<long?>(utf8JsonReader.GetInt64());
+                            bundleIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "bundleName":
                             bundleName = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "targetedItemPosition":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                targetedItemPosition = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            targetedItemPosition = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "targetedItemSubPosition":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                targetedItemSubPosition = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            targetedItemSubPosition = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         default:
                             break;

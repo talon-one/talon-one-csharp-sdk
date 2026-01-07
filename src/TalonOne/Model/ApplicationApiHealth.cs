@@ -243,8 +243,7 @@ namespace TalonOne.Model
                                 summary = new Option<ApplicationApiHealth.SummaryEnum?>(ApplicationApiHealth.SummaryEnumFromStringOrDefault(summaryRawValue));
                             break;
                         case "lastUsed":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                lastUsed = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            lastUsed = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

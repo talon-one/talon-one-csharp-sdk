@@ -190,8 +190,7 @@ namespace TalonOne.Model
                             title = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "writable":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                writable = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            writable = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());

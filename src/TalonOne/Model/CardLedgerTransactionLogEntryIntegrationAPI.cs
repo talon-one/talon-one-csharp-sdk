@@ -411,12 +411,10 @@ namespace TalonOne.Model
                             transactionUUID = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "programId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                programId = new Option<long?>(utf8JsonReader.GetInt64());
+                            programId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "cardIdentifier":
                             cardIdentifier = new Option<string>(utf8JsonReader.GetString());
@@ -439,19 +437,16 @@ namespace TalonOne.Model
                             subledgerId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "amount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                amount = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            amount = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "customerSessionId":
                             customerSessionId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "rulesetId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                rulesetId = new Option<long?>(utf8JsonReader.GetInt64());
+                            rulesetId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "ruleName":
                             ruleName = new Option<string>(utf8JsonReader.GetString());

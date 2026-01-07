@@ -189,24 +189,19 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "campaigns":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaigns = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            campaigns = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "coupons":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                coupons = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            coupons = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "couponRejectionReason":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                couponRejectionReason = new Option<CouponRejectionReason>(JsonSerializer.Deserialize<CouponRejectionReason>(ref utf8JsonReader, jsonSerializerOptions));
+                            couponRejectionReason = new Option<CouponRejectionReason>(JsonSerializer.Deserialize<CouponRejectionReason>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "referralRejectionReason":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                referralRejectionReason = new Option<ReferralRejectionReason>(JsonSerializer.Deserialize<ReferralRejectionReason>(ref utf8JsonReader, jsonSerializerOptions));
+                            referralRejectionReason = new Option<ReferralRejectionReason>(JsonSerializer.Deserialize<ReferralRejectionReason>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "warnings":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                warnings = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            warnings = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

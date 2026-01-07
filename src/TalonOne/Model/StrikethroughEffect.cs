@@ -294,16 +294,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "campaignId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignId = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "rulesetId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                rulesetId = new Option<long?>(utf8JsonReader.GetInt64());
+                            rulesetId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "ruleIndex":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                ruleIndex = new Option<long?>(utf8JsonReader.GetInt64());
+                            ruleIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "ruleName":
                             ruleName = new Option<string>(utf8JsonReader.GetString());
@@ -312,30 +309,25 @@ namespace TalonOne.Model
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "props":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                props = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            props = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "startTime":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                startTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            startTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "endTime":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                endTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            endTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "selectedPriceType":
                             selectedPriceType = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "selectedPrice":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                selectedPrice = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            selectedPrice = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "adjustmentReferenceId":
                             adjustmentReferenceId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "targets":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                targets = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            targets = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

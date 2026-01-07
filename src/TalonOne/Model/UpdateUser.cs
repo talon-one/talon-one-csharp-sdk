@@ -289,19 +289,16 @@ namespace TalonOne.Model
                                 state = new Option<UpdateUser.StateEnum?>(UpdateUser.StateEnumFromStringOrDefault(stateRawValue));
                             break;
                         case "isAdmin":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                isAdmin = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            isAdmin = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "policy":
                             policy = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "roles":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                roles = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            roles = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "applicationNotificationSubscriptions":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationNotificationSubscriptions = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            applicationNotificationSubscriptions = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

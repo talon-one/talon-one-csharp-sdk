@@ -132,8 +132,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "enforced":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                enforced = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            enforced = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "newAcsUrl":
                             newAcsUrl = new Option<string>(utf8JsonReader.GetString());

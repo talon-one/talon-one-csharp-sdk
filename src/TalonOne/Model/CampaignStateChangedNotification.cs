@@ -200,12 +200,10 @@ namespace TalonOne.Model
                                 notificationType = new Option<CampaignStateChangedNotification.NotificationTypeEnum?>(CampaignStateChangedNotification.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue));
                             break;
                         case "TotalResultSize":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalResultSize = new Option<long?>(utf8JsonReader.GetInt64());
+                            totalResultSize = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "Data":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                data = new Option<List<CampaignStateChangedNotificationItem>>(JsonSerializer.Deserialize<List<CampaignStateChangedNotificationItem>>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<List<CampaignStateChangedNotificationItem>>(JsonSerializer.Deserialize<List<CampaignStateChangedNotificationItem>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

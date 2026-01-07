@@ -122,12 +122,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "totalResultSize":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalResultSize = new Option<long?>(utf8JsonReader.GetInt64());
+                            totalResultSize = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "data":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                data = new Option<List<CampaignGroup>>(JsonSerializer.Deserialize<List<CampaignGroup>>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<List<CampaignGroup>>(JsonSerializer.Deserialize<List<CampaignGroup>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

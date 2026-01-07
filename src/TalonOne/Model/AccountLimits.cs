@@ -255,56 +255,43 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "liveApplications":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                liveApplications = new Option<long?>(utf8JsonReader.GetInt64());
+                            liveApplications = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "sandboxApplications":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                sandboxApplications = new Option<long?>(utf8JsonReader.GetInt64());
+                            sandboxApplications = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "activeCampaigns":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                activeCampaigns = new Option<long?>(utf8JsonReader.GetInt64());
+                            activeCampaigns = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "coupons":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                coupons = new Option<long?>(utf8JsonReader.GetInt64());
+                            coupons = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "referralCodes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                referralCodes = new Option<long?>(utf8JsonReader.GetInt64());
+                            referralCodes = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "activeRules":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                activeRules = new Option<long?>(utf8JsonReader.GetInt64());
+                            activeRules = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "liveLoyaltyPrograms":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                liveLoyaltyPrograms = new Option<long?>(utf8JsonReader.GetInt64());
+                            liveLoyaltyPrograms = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "sandboxLoyaltyPrograms":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                sandboxLoyaltyPrograms = new Option<long?>(utf8JsonReader.GetInt64());
+                            sandboxLoyaltyPrograms = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "webhooks":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                webhooks = new Option<long?>(utf8JsonReader.GetInt64());
+                            webhooks = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "users":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                users = new Option<long?>(utf8JsonReader.GetInt64());
+                            users = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "apiVolume":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                apiVolume = new Option<long?>(utf8JsonReader.GetInt64());
+                            apiVolume = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "promotionTypes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                promotionTypes = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            promotionTypes = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "SecondaryDeploymentPrice":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                secondaryDeploymentPrice = new Option<long?>(utf8JsonReader.GetInt64());
+                            secondaryDeploymentPrice = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "currencyCode":
                             currencyCode = new Option<string>(utf8JsonReader.GetString());

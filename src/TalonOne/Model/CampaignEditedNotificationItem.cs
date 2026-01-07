@@ -156,16 +156,13 @@ namespace TalonOne.Model
                             varEvent = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "campaign":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaign = new Option<Campaign>(JsonSerializer.Deserialize<Campaign>(ref utf8JsonReader, jsonSerializerOptions));
+                            campaign = new Option<Campaign>(JsonSerializer.Deserialize<Campaign>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "oldCampaign":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                oldCampaign = new Option<Campaign>(JsonSerializer.Deserialize<Campaign>(ref utf8JsonReader, jsonSerializerOptions));
+                            oldCampaign = new Option<Campaign>(JsonSerializer.Deserialize<Campaign>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "ruleset":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                ruleset = new Option<Ruleset>(JsonSerializer.Deserialize<Ruleset>(ref utf8JsonReader, jsonSerializerOptions));
+                            ruleset = new Option<Ruleset>(JsonSerializer.Deserialize<Ruleset>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

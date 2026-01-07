@@ -382,12 +382,10 @@ namespace TalonOne.Model
                             action = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "limit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                limit = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            limit = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "entities":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                entities = new Option<List<TemplateLimitConfig.EntitiesEnum>>(JsonSerializer.Deserialize<List<TemplateLimitConfig.EntitiesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            entities = new Option<List<TemplateLimitConfig.EntitiesEnum>>(JsonSerializer.Deserialize<List<TemplateLimitConfig.EntitiesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "period":
                             string periodRawValue = utf8JsonReader.GetString();

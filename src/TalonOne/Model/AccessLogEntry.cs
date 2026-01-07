@@ -198,8 +198,7 @@ namespace TalonOne.Model
                             uuid = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "status":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                status = new Option<long?>(utf8JsonReader.GetInt64());
+                            status = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "method":
                             method = new Option<string>(utf8JsonReader.GetString());
@@ -208,8 +207,7 @@ namespace TalonOne.Model
                             requestUri = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "time":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                time = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            time = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "requestPayload":
                             requestPayload = new Option<string>(utf8JsonReader.GetString());

@@ -137,12 +137,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "invisible":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                invisible = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            invisible = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "visible":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                visible = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            visible = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

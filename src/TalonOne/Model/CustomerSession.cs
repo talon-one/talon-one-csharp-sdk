@@ -35,6 +35,7 @@ namespace TalonOne.Model
         /// <param name="created">The time this entity was created.</param>
         /// <param name="applicationId">The ID of the Application that owns this entity.</param>
         /// <param name="firstSession">Indicates whether this is the first session for the customer&#39;s profile. Will always be true for anonymous sessions.</param>
+        /// <param name="updateCount">The number of times the session was updated. When the session is created, this value is initialized to &#x60;1&#x60;.</param>
         /// <param name="discounts">A map of labelled discount values, values will be in the same currency as the application associated with the session.</param>
         /// <param name="updated">Timestamp of the most recent event received on this session.</param>
         /// <param name="profileId">ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </param>
@@ -46,12 +47,13 @@ namespace TalonOne.Model
         /// <param name="total">The total sum of the cart in one session.</param>
         /// <param name="attributes">A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings. </param>
         [JsonConstructor]
-        public CustomerSession(string integrationId, DateTime created, long applicationId, bool firstSession, Dictionary<string, decimal> discounts, DateTime updated, Option<string> profileId = default, Option<string> coupon = default, Option<string> referral = default, Option<StateEnum?> state = default, Option<List<CartItem>> cartItems = default, Option<List<string>> identifiers = default, Option<decimal?> total = default, Option<Object> attributes = default)
+        public CustomerSession(string integrationId, DateTime created, long applicationId, bool firstSession, long updateCount, Dictionary<string, decimal> discounts, DateTime updated, Option<string> profileId = default, Option<string> coupon = default, Option<string> referral = default, Option<StateEnum?> state = default, Option<List<CartItem>> cartItems = default, Option<List<string>> identifiers = default, Option<decimal?> total = default, Option<Object> attributes = default)
         {
             IntegrationId = integrationId;
             Created = created;
             ApplicationId = applicationId;
             FirstSession = firstSession;
+            UpdateCount = updateCount;
             Discounts = discounts;
             Updated = updated;
             ProfileIdOption = profileId;
@@ -208,6 +210,14 @@ namespace TalonOne.Model
         public bool FirstSession { get; set; }
 
         /// <summary>
+        /// The number of times the session was updated. When the session is created, this value is initialized to &#x60;1&#x60;.
+        /// </summary>
+        /// <value>The number of times the session was updated. When the session is created, this value is initialized to &#x60;1&#x60;.</value>
+        /* <example>3</example> */
+        [JsonPropertyName("updateCount")]
+        public long UpdateCount { get; set; }
+
+        /// <summary>
         /// A map of labelled discount values, values will be in the same currency as the application associated with the session.
         /// </summary>
         /// <value>A map of labelled discount values, values will be in the same currency as the application associated with the session.</value>
@@ -336,6 +346,7 @@ namespace TalonOne.Model
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
             sb.Append("  FirstSession: ").Append(FirstSession).Append("\n");
+            sb.Append("  UpdateCount: ").Append(UpdateCount).Append("\n");
             sb.Append("  Discounts: ").Append(Discounts).Append("\n");
             sb.Append("  Updated: ").Append(Updated).Append("\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
@@ -415,6 +426,7 @@ namespace TalonOne.Model
             Option<DateTime?> created = default;
             Option<long?> applicationId = default;
             Option<bool?> firstSession = default;
+            Option<long?> updateCount = default;
             Option<Dictionary<string, decimal>> discounts = default;
             Option<DateTime?> updated = default;
             Option<string> profileId = default;
@@ -445,24 +457,22 @@ namespace TalonOne.Model
                             integrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "applicationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "firstSession":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                firstSession = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            firstSession = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "updateCount":
+                            updateCount = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "discounts":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                discounts = new Option<Dictionary<string, decimal>>(JsonSerializer.Deserialize<Dictionary<string, decimal>>(ref utf8JsonReader, jsonSerializerOptions));
+                            discounts = new Option<Dictionary<string, decimal>>(JsonSerializer.Deserialize<Dictionary<string, decimal>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "updated":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                updated = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            updated = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "profileId":
                             profileId = new Option<string>(utf8JsonReader.GetString());
@@ -479,20 +489,16 @@ namespace TalonOne.Model
                                 state = new Option<CustomerSession.StateEnum?>(CustomerSession.StateEnumFromStringOrDefault(stateRawValue));
                             break;
                         case "cartItems":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                cartItems = new Option<List<CartItem>>(JsonSerializer.Deserialize<List<CartItem>>(ref utf8JsonReader, jsonSerializerOptions));
+                            cartItems = new Option<List<CartItem>>(JsonSerializer.Deserialize<List<CartItem>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "identifiers":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                identifiers = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            identifiers = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "total":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                total = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            total = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -512,6 +518,9 @@ namespace TalonOne.Model
             if (!firstSession.IsSet)
                 throw new ArgumentException("Property is required for class CustomerSession.", nameof(firstSession));
 
+            if (!updateCount.IsSet)
+                throw new ArgumentException("Property is required for class CustomerSession.", nameof(updateCount));
+
             if (!discounts.IsSet)
                 throw new ArgumentException("Property is required for class CustomerSession.", nameof(discounts));
 
@@ -529,6 +538,9 @@ namespace TalonOne.Model
 
             if (firstSession.IsSet && firstSession.Value == null)
                 throw new ArgumentNullException(nameof(firstSession), "Property is not nullable for class CustomerSession.");
+
+            if (updateCount.IsSet && updateCount.Value == null)
+                throw new ArgumentNullException(nameof(updateCount), "Property is not nullable for class CustomerSession.");
 
             if (discounts.IsSet && discounts.Value == null)
                 throw new ArgumentNullException(nameof(discounts), "Property is not nullable for class CustomerSession.");
@@ -560,7 +572,7 @@ namespace TalonOne.Model
             if (attributes.IsSet && attributes.Value == null)
                 throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class CustomerSession.");
 
-            return new CustomerSession(integrationId.Value, created.Value.Value, applicationId.Value.Value, firstSession.Value.Value, discounts.Value, updated.Value.Value, profileId, coupon, referral, state, cartItems, identifiers, total, attributes);
+            return new CustomerSession(integrationId.Value, created.Value.Value, applicationId.Value.Value, firstSession.Value.Value, updateCount.Value.Value, discounts.Value, updated.Value.Value, profileId, coupon, referral, state, cartItems, identifiers, total, attributes);
         }
 
         /// <summary>
@@ -618,6 +630,8 @@ namespace TalonOne.Model
             writer.WriteNumber("applicationId", customerSession.ApplicationId);
 
             writer.WriteBoolean("firstSession", customerSession.FirstSession);
+
+            writer.WriteNumber("updateCount", customerSession.UpdateCount);
 
             writer.WritePropertyName("discounts");
             JsonSerializer.Serialize(writer, customerSession.Discounts, jsonSerializerOptions);

@@ -119,8 +119,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "createsNegativeBalance":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createsNegativeBalance = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            createsNegativeBalance = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

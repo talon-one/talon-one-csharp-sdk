@@ -182,12 +182,10 @@ namespace TalonOne.Model
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "permissions":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                permissions = new Option<RoleV2Permissions>(JsonSerializer.Deserialize<RoleV2Permissions>(ref utf8JsonReader, jsonSerializerOptions));
+                            permissions = new Option<RoleV2Permissions>(JsonSerializer.Deserialize<RoleV2Permissions>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "members":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                members = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            members = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

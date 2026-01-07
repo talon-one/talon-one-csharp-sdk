@@ -652,9 +652,7 @@ namespace TalonOne.Client
             _services.AddSingleton(jsonSerializerOptionsProvider);
             _services.AddSingleton<IApiFactory, ApiFactory>();
             _services.AddSingleton<IntegrationApiEvents>();
-            _services.AddTransient<IIntegrationApi, IntegrationApi>();
             _services.AddSingleton<ManagementApiEvents>();
-            _services.AddTransient<IManagementApi, ManagementApi>();
         }
 
         /// <summary>

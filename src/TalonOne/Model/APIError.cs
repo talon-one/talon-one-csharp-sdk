@@ -143,8 +143,7 @@ namespace TalonOne.Model
                             title = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "source":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                source = new Option<ErrorSource>(JsonSerializer.Deserialize<ErrorSource>(ref utf8JsonReader, jsonSerializerOptions));
+                            source = new Option<ErrorSource>(JsonSerializer.Deserialize<ErrorSource>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "details":
                             details = new Option<string>(utf8JsonReader.GetString());

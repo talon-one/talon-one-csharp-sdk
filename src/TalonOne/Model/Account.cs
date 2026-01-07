@@ -438,16 +438,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "modified":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                modified = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            modified = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "companyName":
                             companyName = new Option<string>(utf8JsonReader.GetString());
@@ -464,47 +461,37 @@ namespace TalonOne.Model
                             billingEmail = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "applicationCount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationCount = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationCount = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "userCount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                userCount = new Option<long?>(utf8JsonReader.GetInt64());
+                            userCount = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "campaignsActiveCount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignsActiveCount = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignsActiveCount = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "campaignsInactiveCount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignsInactiveCount = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignsInactiveCount = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "planName":
                             planName = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "planExpires":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                planExpires = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            planExpires = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "applicationLimit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationLimit = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "userLimit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                userLimit = new Option<long?>(utf8JsonReader.GetInt64());
+                            userLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "campaignLimit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignLimit = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "apiLimit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                apiLimit = new Option<long?>(utf8JsonReader.GetInt64());
+                            apiLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

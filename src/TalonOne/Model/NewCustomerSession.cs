@@ -371,20 +371,16 @@ namespace TalonOne.Model
                                 state = new Option<NewCustomerSession.StateEnum?>(NewCustomerSession.StateEnumFromStringOrDefault(stateRawValue));
                             break;
                         case "cartItems":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                cartItems = new Option<List<CartItem>>(JsonSerializer.Deserialize<List<CartItem>>(ref utf8JsonReader, jsonSerializerOptions));
+                            cartItems = new Option<List<CartItem>>(JsonSerializer.Deserialize<List<CartItem>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "identifiers":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                identifiers = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            identifiers = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "total":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                total = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            total = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

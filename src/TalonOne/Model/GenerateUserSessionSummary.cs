@@ -126,8 +126,7 @@ namespace TalonOne.Model
                             sessionID = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "applicationID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationID = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            applicationID = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         default:
                             break;

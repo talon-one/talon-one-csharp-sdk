@@ -240,15 +240,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "programId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                programId = new Option<long?>(utf8JsonReader.GetInt64());
+                            programId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "subLedgerId":
                             subLedgerId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "value":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                value = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            value = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "recipientIntegrationId":
                             recipientIntegrationId = new Option<string>(utf8JsonReader.GetString());
@@ -257,12 +255,10 @@ namespace TalonOne.Model
                             transactionUUID = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "cartItemPosition":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                cartItemPosition = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            cartItemPosition = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "cartItemSubPosition":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                cartItemSubPosition = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            cartItemSubPosition = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "cardIdentifier":
                             cardIdentifier = new Option<string>(utf8JsonReader.GetString());

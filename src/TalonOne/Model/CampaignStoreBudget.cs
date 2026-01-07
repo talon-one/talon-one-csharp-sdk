@@ -164,24 +164,19 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "campaignId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignId = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "storeId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                storeId = new Option<long?>(utf8JsonReader.GetInt64());
+                            storeId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "limits":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                limits = new Option<List<CampaignStoreBudgetLimitConfig>>(JsonSerializer.Deserialize<List<CampaignStoreBudgetLimitConfig>>(ref utf8JsonReader, jsonSerializerOptions));
+                            limits = new Option<List<CampaignStoreBudgetLimitConfig>>(JsonSerializer.Deserialize<List<CampaignStoreBudgetLimitConfig>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

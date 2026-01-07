@@ -405,16 +405,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "policy":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                policy = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            policy = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "webhook":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                webhook = new Option<BaseNotificationWebhook>(JsonSerializer.Deserialize<BaseNotificationWebhook>(ref utf8JsonReader, jsonSerializerOptions));
+                            webhook = new Option<BaseNotificationWebhook>(JsonSerializer.Deserialize<BaseNotificationWebhook>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
@@ -422,8 +419,7 @@ namespace TalonOne.Model
                                 type = new Option<BaseNotification.TypeEnum?>(BaseNotification.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "enabled":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                enabled = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            enabled = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

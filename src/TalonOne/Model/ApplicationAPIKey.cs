@@ -487,28 +487,22 @@ namespace TalonOne.Model
                             title = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "expires":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expires = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            expires = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "createdBy":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdBy = new Option<long?>(utf8JsonReader.GetInt64());
+                            createdBy = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "accountID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                accountID = new Option<long?>(utf8JsonReader.GetInt64());
+                            accountID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "applicationID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationID = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "platform":
                             string platformRawValue = utf8JsonReader.GetString();
@@ -521,8 +515,7 @@ namespace TalonOne.Model
                                 type = new Option<ApplicationAPIKey.TypeEnum?>(ApplicationAPIKey.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "timeOffset":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                timeOffset = new Option<long?>(utf8JsonReader.GetInt64());
+                            timeOffset = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

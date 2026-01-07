@@ -170,16 +170,13 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "triggers":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                triggers = new Option<List<TierWillDowngradeNotificationTrigger>>(JsonSerializer.Deserialize<List<TierWillDowngradeNotificationTrigger>>(ref utf8JsonReader, jsonSerializerOptions));
+                            triggers = new Option<List<TierWillDowngradeNotificationTrigger>>(JsonSerializer.Deserialize<List<TierWillDowngradeNotificationTrigger>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "batchingEnabled":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                batchingEnabled = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            batchingEnabled = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "batchSize":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                batchSize = new Option<long?>(utf8JsonReader.GetInt64());
+                            batchSize = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

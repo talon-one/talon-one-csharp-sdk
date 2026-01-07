@@ -388,104 +388,79 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "date":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                date = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            date = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "campaignRevenue":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignRevenue = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            campaignRevenue = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "totalCampaignRevenue":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalCampaignRevenue = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalCampaignRevenue = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "campaignRefund":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignRefund = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            campaignRefund = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "totalCampaignRefund":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalCampaignRefund = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalCampaignRefund = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "campaignDiscountCosts":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignDiscountCosts = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            campaignDiscountCosts = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "totalCampaignDiscountCosts":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalCampaignDiscountCosts = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalCampaignDiscountCosts = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "campaignRefundedDiscounts":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignRefundedDiscounts = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            campaignRefundedDiscounts = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "totalCampaignRefundedDiscounts":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalCampaignRefundedDiscounts = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalCampaignRefundedDiscounts = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "campaignFreeItems":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignFreeItems = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignFreeItems = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "totalCampaignFreeItems":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalCampaignFreeItems = new Option<long?>(utf8JsonReader.GetInt64());
+                            totalCampaignFreeItems = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "couponRedemptions":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                couponRedemptions = new Option<long?>(utf8JsonReader.GetInt64());
+                            couponRedemptions = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "totalCouponRedemptions":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalCouponRedemptions = new Option<long?>(utf8JsonReader.GetInt64());
+                            totalCouponRedemptions = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "couponRolledbackRedemptions":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                couponRolledbackRedemptions = new Option<long?>(utf8JsonReader.GetInt64());
+                            couponRolledbackRedemptions = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "totalCouponRolledbackRedemptions":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalCouponRolledbackRedemptions = new Option<long?>(utf8JsonReader.GetInt64());
+                            totalCouponRolledbackRedemptions = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "referralRedemptions":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                referralRedemptions = new Option<long?>(utf8JsonReader.GetInt64());
+                            referralRedemptions = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "totalReferralRedemptions":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalReferralRedemptions = new Option<long?>(utf8JsonReader.GetInt64());
+                            totalReferralRedemptions = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "couponsCreated":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                couponsCreated = new Option<long?>(utf8JsonReader.GetInt64());
+                            couponsCreated = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "totalCouponsCreated":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalCouponsCreated = new Option<long?>(utf8JsonReader.GetInt64());
+                            totalCouponsCreated = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "referralsCreated":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                referralsCreated = new Option<long?>(utf8JsonReader.GetInt64());
+                            referralsCreated = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "totalReferralsCreated":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalReferralsCreated = new Option<long?>(utf8JsonReader.GetInt64());
+                            totalReferralsCreated = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "addedLoyaltyPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                addedLoyaltyPoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            addedLoyaltyPoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "totalAddedLoyaltyPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalAddedLoyaltyPoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalAddedLoyaltyPoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "deductedLoyaltyPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                deductedLoyaltyPoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            deductedLoyaltyPoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "totalDeductedLoyaltyPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalDeductedLoyaltyPoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalDeductedLoyaltyPoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         default:
                             break;

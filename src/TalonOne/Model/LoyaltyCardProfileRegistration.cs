@@ -139,8 +139,7 @@ namespace TalonOne.Model
                             integrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "timestamp":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                timestamp = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            timestamp = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

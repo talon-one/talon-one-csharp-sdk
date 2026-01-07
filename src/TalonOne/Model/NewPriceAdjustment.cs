@@ -247,20 +247,16 @@ namespace TalonOne.Model
                             referenceId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "price":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                price = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            price = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "calculatedAt":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                calculatedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            calculatedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "effectiveFrom":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                effectiveFrom = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            effectiveFrom = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "effectiveUntil":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                effectiveUntil = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            effectiveUntil = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "contextId":
                             contextId = new Option<string>(utf8JsonReader.GetString());

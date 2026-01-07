@@ -342,49 +342,40 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "campaignId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignId = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "applicationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "accountId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                accountId = new Option<long?>(utf8JsonReader.GetInt64());
+                            accountId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "action":
                             action = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "limit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                limit = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            limit = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "counter":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                counter = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            counter = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "profileId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                profileId = new Option<long?>(utf8JsonReader.GetInt64());
+                            profileId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "profileIntegrationId":
                             profileIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "couponId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                couponId = new Option<long?>(utf8JsonReader.GetInt64());
+                            couponId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "couponValue":
                             couponValue = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "referralId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                referralId = new Option<long?>(utf8JsonReader.GetInt64());
+                            referralId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "referralValue":
                             referralValue = new Option<string>(utf8JsonReader.GetString());

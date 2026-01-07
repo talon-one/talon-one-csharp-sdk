@@ -298,20 +298,16 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "evaluableCampaignIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                evaluableCampaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            evaluableCampaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "audiencesChanges":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                audiencesChanges = new Option<ProfileAudiencesChanges>(JsonSerializer.Deserialize<ProfileAudiencesChanges>(ref utf8JsonReader, jsonSerializerOptions));
+                            audiencesChanges = new Option<ProfileAudiencesChanges>(JsonSerializer.Deserialize<ProfileAudiencesChanges>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "responseContent":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                responseContent = new Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>>(JsonSerializer.Deserialize<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            responseContent = new Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>>(JsonSerializer.Deserialize<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

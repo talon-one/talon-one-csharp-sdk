@@ -157,12 +157,10 @@ namespace TalonOne.Model
                             message = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "errors":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                errors = new Option<List<APIError>>(JsonSerializer.Deserialize<List<APIError>>(ref utf8JsonReader, jsonSerializerOptions));
+                            errors = new Option<List<APIError>>(JsonSerializer.Deserialize<List<APIError>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "StatusCode":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                statusCode = new Option<long?>(utf8JsonReader.GetInt64());
+                            statusCode = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

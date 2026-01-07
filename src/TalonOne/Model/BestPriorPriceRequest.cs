@@ -171,24 +171,19 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "skus":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                skus = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            skus = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "timeframeEndDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                timeframeEndDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            timeframeEndDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "timeframe":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                timeframe = new Option<int?>(utf8JsonReader.GetInt32());
+                            timeframe = new Option<int?>(utf8JsonReader.GetString());
                             break;
                         case "strictEndDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                strictEndDate = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            strictEndDate = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "target":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                target = new Option<BestPriorPriceRequestTarget>(JsonSerializer.Deserialize<BestPriorPriceRequestTarget>(ref utf8JsonReader, jsonSerializerOptions));
+                            target = new Option<BestPriorPriceRequestTarget>(JsonSerializer.Deserialize<BestPriorPriceRequestTarget>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -260,7 +255,7 @@ namespace TalonOne.Model
             JsonSerializer.Serialize(writer, bestPriorPriceRequest.Skus, jsonSerializerOptions);
             writer.WriteString("timeframeEndDate", bestPriorPriceRequest.TimeframeEndDate.ToString(TimeframeEndDateFormat));
 
-            writer.WriteNumber("timeframe", (long)bestPriorPriceRequest.Timeframe);
+            writer.WriteString("timeframe", bestPriorPriceRequest.Timeframe);
 
             writer.WriteBoolean("strictEndDate", bestPriorPriceRequest.StrictEndDate);
 

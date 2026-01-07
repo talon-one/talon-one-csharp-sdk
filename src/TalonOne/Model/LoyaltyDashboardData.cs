@@ -223,44 +223,34 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "date":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                date = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            date = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "totalActivePoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalActivePoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalActivePoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "totalPendingPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalPendingPoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalPendingPoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "totalSpentPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalSpentPoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalSpentPoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "totalExpiredPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalExpiredPoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalExpiredPoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "totalNegativePoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalNegativePoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalNegativePoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "totalMembers":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalMembers = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalMembers = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "newMembers":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                newMembers = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            newMembers = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "spentPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                spentPoints = new Option<LoyaltyDashboardPointsBreakdown>(JsonSerializer.Deserialize<LoyaltyDashboardPointsBreakdown>(ref utf8JsonReader, jsonSerializerOptions));
+                            spentPoints = new Option<LoyaltyDashboardPointsBreakdown>(JsonSerializer.Deserialize<LoyaltyDashboardPointsBreakdown>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "earnedPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                earnedPoints = new Option<LoyaltyDashboardPointsBreakdown>(JsonSerializer.Deserialize<LoyaltyDashboardPointsBreakdown>(ref utf8JsonReader, jsonSerializerOptions));
+                            earnedPoints = new Option<LoyaltyDashboardPointsBreakdown>(JsonSerializer.Deserialize<LoyaltyDashboardPointsBreakdown>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

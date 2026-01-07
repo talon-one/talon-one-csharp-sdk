@@ -190,20 +190,16 @@ namespace TalonOne.Model
                             sku = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "price":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                price = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            price = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "product":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                product = new Option<Product>(JsonSerializer.Deserialize<Product>(ref utf8JsonReader, jsonSerializerOptions));
+                            product = new Option<Product>(JsonSerializer.Deserialize<Product>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "replaceIfExists":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                replaceIfExists = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            replaceIfExists = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

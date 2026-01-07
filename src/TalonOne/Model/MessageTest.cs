@@ -136,8 +136,7 @@ Content-Length: 256
                             httpResponse = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "httpStatus":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                httpStatus = new Option<long?>(utf8JsonReader.GetInt64());
+                            httpStatus = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

@@ -321,51 +321,43 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "campaignID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignID = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "campaignName":
                             campaignName = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "rulesetID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                rulesetID = new Option<long?>(utf8JsonReader.GetInt64());
+                            rulesetID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "ruleIndex":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                ruleIndex = new Option<long?>(utf8JsonReader.GetInt64());
+                            ruleIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "ruleName":
                             ruleName = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "couponID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                couponID = new Option<long?>(utf8JsonReader.GetInt64());
+                            couponID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "couponValue":
                             couponValue = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "referralID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                referralID = new Option<long?>(utf8JsonReader.GetInt64());
+                            referralID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "referralValue":
                             referralValue = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "conditionIndex":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                conditionIndex = new Option<long?>(utf8JsonReader.GetInt64());
+                            conditionIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "effectIndex":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                effectIndex = new Option<long?>(utf8JsonReader.GetInt64());
+                            effectIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "details":
                             details = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "evaluationGroupID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                evaluationGroupID = new Option<long?>(utf8JsonReader.GetInt64());
+                            evaluationGroupID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "evaluationGroupMode":
                             evaluationGroupMode = new Option<string>(utf8JsonReader.GetString());

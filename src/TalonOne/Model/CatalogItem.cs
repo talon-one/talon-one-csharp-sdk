@@ -225,35 +225,28 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "sku":
                             sku = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "catalogid":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                catalogid = new Option<long?>(utf8JsonReader.GetInt64());
+                            catalogid = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "version":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                varVersion = new Option<long?>(utf8JsonReader.GetInt64());
+                            varVersion = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "price":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                price = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            price = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<List<ItemAttribute>>(JsonSerializer.Deserialize<List<ItemAttribute>>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<List<ItemAttribute>>(JsonSerializer.Deserialize<List<ItemAttribute>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "product":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                product = new Option<Product>(JsonSerializer.Deserialize<Product>(ref utf8JsonReader, jsonSerializerOptions));
+                            product = new Option<Product>(JsonSerializer.Deserialize<Product>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

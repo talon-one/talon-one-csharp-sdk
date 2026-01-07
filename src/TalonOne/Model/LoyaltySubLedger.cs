@@ -275,52 +275,40 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "total":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                total = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            total = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "totalActivePoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalActivePoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalActivePoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "totalPendingPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalPendingPoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalPendingPoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "totalSpentPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalSpentPoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalSpentPoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "totalExpiredPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalExpiredPoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalExpiredPoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "totalNegativePoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalNegativePoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalNegativePoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "transactions":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                transactions = new Option<List<LoyaltyLedgerEntry>>(JsonSerializer.Deserialize<List<LoyaltyLedgerEntry>>(ref utf8JsonReader, jsonSerializerOptions));
+                            transactions = new Option<List<LoyaltyLedgerEntry>>(JsonSerializer.Deserialize<List<LoyaltyLedgerEntry>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "expiringPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expiringPoints = new Option<List<LoyaltyLedgerEntry>>(JsonSerializer.Deserialize<List<LoyaltyLedgerEntry>>(ref utf8JsonReader, jsonSerializerOptions));
+                            expiringPoints = new Option<List<LoyaltyLedgerEntry>>(JsonSerializer.Deserialize<List<LoyaltyLedgerEntry>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "activePoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                activePoints = new Option<List<LoyaltyLedgerEntry>>(JsonSerializer.Deserialize<List<LoyaltyLedgerEntry>>(ref utf8JsonReader, jsonSerializerOptions));
+                            activePoints = new Option<List<LoyaltyLedgerEntry>>(JsonSerializer.Deserialize<List<LoyaltyLedgerEntry>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "pendingPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                pendingPoints = new Option<List<LoyaltyLedgerEntry>>(JsonSerializer.Deserialize<List<LoyaltyLedgerEntry>>(ref utf8JsonReader, jsonSerializerOptions));
+                            pendingPoints = new Option<List<LoyaltyLedgerEntry>>(JsonSerializer.Deserialize<List<LoyaltyLedgerEntry>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "expiredPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expiredPoints = new Option<List<LoyaltyLedgerEntry>>(JsonSerializer.Deserialize<List<LoyaltyLedgerEntry>>(ref utf8JsonReader, jsonSerializerOptions));
+                            expiredPoints = new Option<List<LoyaltyLedgerEntry>>(JsonSerializer.Deserialize<List<LoyaltyLedgerEntry>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "currentTier":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                currentTier = new Option<Tier>(JsonSerializer.Deserialize<Tier>(ref utf8JsonReader, jsonSerializerOptions));
+                            currentTier = new Option<Tier>(JsonSerializer.Deserialize<Tier>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

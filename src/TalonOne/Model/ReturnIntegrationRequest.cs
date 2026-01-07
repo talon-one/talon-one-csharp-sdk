@@ -281,12 +281,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "return":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                varReturn = new Option<NewReturn>(JsonSerializer.Deserialize<NewReturn>(ref utf8JsonReader, jsonSerializerOptions));
+                            varReturn = new Option<NewReturn>(JsonSerializer.Deserialize<NewReturn>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "responseContent":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                responseContent = new Option<List<ReturnIntegrationRequest.ResponseContentEnum>>(JsonSerializer.Deserialize<List<ReturnIntegrationRequest.ResponseContentEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            responseContent = new Option<List<ReturnIntegrationRequest.ResponseContentEnum>>(JsonSerializer.Deserialize<List<ReturnIntegrationRequest.ResponseContentEnum>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -134,12 +134,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "campaignID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignID = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "rulesetID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                rulesetID = new Option<long?>(utf8JsonReader.GetInt64());
+                            rulesetID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "currency":
                             currency = new Option<string>(utf8JsonReader.GetString());

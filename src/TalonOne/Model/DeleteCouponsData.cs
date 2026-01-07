@@ -247,16 +247,13 @@ namespace TalonOne.Model
                             batchID = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "ApplicationID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationID = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "CampaignID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignID = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "TotalResultSize":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalResultSize = new Option<long?>(utf8JsonReader.GetInt64());
+                            totalResultSize = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "NotificationType":
                             string notificationTypeRawValue = utf8JsonReader.GetString();

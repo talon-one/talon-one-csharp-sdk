@@ -260,51 +260,40 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "applicationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "accountId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                accountId = new Option<long?>(utf8JsonReader.GetInt64());
+                            accountId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "filters":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                filters = new Option<CouponDeletionFilters>(JsonSerializer.Deserialize<CouponDeletionFilters>(ref utf8JsonReader, jsonSerializerOptions));
+                            filters = new Option<CouponDeletionFilters>(JsonSerializer.Deserialize<CouponDeletionFilters>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "status":
                             status = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "failCount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                failCount = new Option<long?>(utf8JsonReader.GetInt64());
+                            failCount = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "errors":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                errors = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            errors = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "createdBy":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdBy = new Option<long?>(utf8JsonReader.GetInt64());
+                            createdBy = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "communicated":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                communicated = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            communicated = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "deletedAmount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                deletedAmount = new Option<long?>(utf8JsonReader.GetInt64());
+                            deletedAmount = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "campaignIDs":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignIDs = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            campaignIDs = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -156,16 +156,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "price":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                price = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            price = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "filters":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                filters = new Option<List<CatalogActionFilter>>(JsonSerializer.Deserialize<List<CatalogActionFilter>>(ref utf8JsonReader, jsonSerializerOptions));
+                            filters = new Option<List<CatalogActionFilter>>(JsonSerializer.Deserialize<List<CatalogActionFilter>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

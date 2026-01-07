@@ -354,15 +354,13 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "programId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                programId = new Option<long?>(utf8JsonReader.GetInt64());
+                            programId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "subLedgerId":
                             subLedgerId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "value":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                value = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            value = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "recipientIntegrationId":
                             recipientIntegrationId = new Option<string>(utf8JsonReader.GetString());
@@ -371,31 +369,25 @@ namespace TalonOne.Model
                             transactionUUID = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "desiredValue":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                desiredValue = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            desiredValue = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "startDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "expiryDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "cartItemPosition":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                cartItemPosition = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            cartItemPosition = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "cartItemSubPosition":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                cartItemSubPosition = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            cartItemSubPosition = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "cardIdentifier":
                             cardIdentifier = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "bundleIndex":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                bundleIndex = new Option<long?>(utf8JsonReader.GetInt64());
+                            bundleIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "bundleName":
                             bundleName = new Option<string>(utf8JsonReader.GetString());

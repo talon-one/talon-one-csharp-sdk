@@ -296,8 +296,7 @@ namespace TalonOne.Model
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "attributeId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributeId = new Option<long?>(utf8JsonReader.GetInt64());
+                            attributeId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

@@ -422,57 +422,46 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "numberOfCoupons":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                numberOfCoupons = new Option<long?>(utf8JsonReader.GetInt64());
+                            numberOfCoupons = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "usageLimit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                usageLimit = new Option<long?>(utf8JsonReader.GetInt64());
+                            usageLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "discountLimit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                discountLimit = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            discountLimit = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "reservationLimit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                reservationLimit = new Option<long?>(utf8JsonReader.GetInt64());
+                            reservationLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "startDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "expiryDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "limits":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                limits = new Option<List<LimitConfig>>(JsonSerializer.Deserialize<List<LimitConfig>>(ref utf8JsonReader, jsonSerializerOptions));
+                            limits = new Option<List<LimitConfig>>(JsonSerializer.Deserialize<List<LimitConfig>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "uniquePrefix":
                             uniquePrefix = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "recipientIntegrationId":
                             recipientIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "validCharacters":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                validCharacters = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            validCharacters = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "couponPattern":
                             couponPattern = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "isReservationMandatory":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                isReservationMandatory = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            isReservationMandatory = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "implicitlyReserved":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                implicitlyReserved = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            implicitlyReserved = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

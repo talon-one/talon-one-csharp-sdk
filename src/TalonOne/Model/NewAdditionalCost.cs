@@ -285,8 +285,7 @@ namespace TalonOne.Model
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "subscribedApplicationsIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                subscribedApplicationsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            subscribedApplicationsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();

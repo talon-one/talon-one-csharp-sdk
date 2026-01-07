@@ -316,24 +316,19 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "applicationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "currentBatch":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                currentBatch = new Option<long?>(utf8JsonReader.GetInt64());
+                            currentBatch = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "totalBatches":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalBatches = new Option<long?>(utf8JsonReader.GetInt64());
+                            totalBatches = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "trigger":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                trigger = new Option<StrikethroughTrigger>(JsonSerializer.Deserialize<StrikethroughTrigger>(ref utf8JsonReader, jsonSerializerOptions));
+                            trigger = new Option<StrikethroughTrigger>(JsonSerializer.Deserialize<StrikethroughTrigger>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "changedItems":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                changedItems = new Option<List<StrikethroughChangedItem>>(JsonSerializer.Deserialize<List<StrikethroughChangedItem>>(ref utf8JsonReader, jsonSerializerOptions));
+                            changedItems = new Option<List<StrikethroughChangedItem>>(JsonSerializer.Deserialize<List<StrikethroughChangedItem>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "NotificationType":
                             string notificationTypeRawValue = utf8JsonReader.GetString();
@@ -346,8 +341,7 @@ namespace TalonOne.Model
                                 varVersion = new Option<StrikethroughLabelingNotification.VarVersionEnum?>(StrikethroughLabelingNotification.VarVersionEnumFromStringOrDefault(varVersionRawValue));
                             break;
                         case "validFrom":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                validFrom = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            validFrom = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

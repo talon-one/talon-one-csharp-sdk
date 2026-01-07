@@ -136,8 +136,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "influencingCampaignIDs":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                influencingCampaignIDs = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            influencingCampaignIDs = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "adjustmentReferenceID":
                             adjustmentReferenceID = new Option<string>(utf8JsonReader.GetString());

@@ -132,12 +132,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "enabled":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                enabled = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            enabled = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "requireEverySignIn":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                requireEverySignIn = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            requireEverySignIn = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

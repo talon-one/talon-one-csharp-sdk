@@ -196,8 +196,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "amount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                amount = new Option<long?>(utf8JsonReader.GetInt64());
+                            amount = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "period":
                             string periodRawValue = utf8JsonReader.GetString();

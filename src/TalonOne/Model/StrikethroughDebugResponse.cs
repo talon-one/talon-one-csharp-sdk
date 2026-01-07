@@ -137,12 +137,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "campaignsIDs":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignsIDs = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            campaignsIDs = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "effects":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                effects = new Option<List<StrikethroughEffect>>(JsonSerializer.Deserialize<List<StrikethroughEffect>>(ref utf8JsonReader, jsonSerializerOptions));
+                            effects = new Option<List<StrikethroughEffect>>(JsonSerializer.Deserialize<List<StrikethroughEffect>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

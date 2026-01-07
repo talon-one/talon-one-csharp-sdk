@@ -440,12 +440,10 @@ namespace TalonOne.Model
                             storeIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "evaluableCampaignIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                evaluableCampaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            evaluableCampaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "connectedSessionID":
                             connectedSessionID = new Option<string>(utf8JsonReader.GetString());
@@ -454,12 +452,10 @@ namespace TalonOne.Model
                             previousEventID = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "loyaltyCards":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                loyaltyCards = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            loyaltyCards = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "responseContent":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                responseContent = new Option<List<IntegrationEventV3Request.ResponseContentEnum>>(JsonSerializer.Deserialize<List<IntegrationEventV3Request.ResponseContentEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            responseContent = new Option<List<IntegrationEventV3Request.ResponseContentEnum>>(JsonSerializer.Deserialize<List<IntegrationEventV3Request.ResponseContentEnum>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -348,67 +348,52 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "applicationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "slots":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                slots = new Option<List<SlotDef>>(JsonSerializer.Deserialize<List<SlotDef>>(ref utf8JsonReader, jsonSerializerOptions));
+                            slots = new Option<List<SlotDef>>(JsonSerializer.Deserialize<List<SlotDef>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "functions":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                functions = new Option<List<FunctionDef>>(JsonSerializer.Deserialize<List<FunctionDef>>(ref utf8JsonReader, jsonSerializerOptions));
+                            functions = new Option<List<FunctionDef>>(JsonSerializer.Deserialize<List<FunctionDef>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "templates":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                templates = new Option<List<TemplateDef>>(JsonSerializer.Deserialize<List<TemplateDef>>(ref utf8JsonReader, jsonSerializerOptions));
+                            templates = new Option<List<TemplateDef>>(JsonSerializer.Deserialize<List<TemplateDef>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "variables":
                             variables = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "giveawaysPools":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                giveawaysPools = new Option<List<GiveawaysPool>>(JsonSerializer.Deserialize<List<GiveawaysPool>>(ref utf8JsonReader, jsonSerializerOptions));
+                            giveawaysPools = new Option<List<GiveawaysPool>>(JsonSerializer.Deserialize<List<GiveawaysPool>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "loyaltyPrograms":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                loyaltyPrograms = new Option<List<LoyaltyProgram>>(JsonSerializer.Deserialize<List<LoyaltyProgram>>(ref utf8JsonReader, jsonSerializerOptions));
+                            loyaltyPrograms = new Option<List<LoyaltyProgram>>(JsonSerializer.Deserialize<List<LoyaltyProgram>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "achievements":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                achievements = new Option<List<Achievement>>(JsonSerializer.Deserialize<List<Achievement>>(ref utf8JsonReader, jsonSerializerOptions));
+                            achievements = new Option<List<Achievement>>(JsonSerializer.Deserialize<List<Achievement>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<List<Attribute>>(JsonSerializer.Deserialize<List<Attribute>>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<List<Attribute>>(JsonSerializer.Deserialize<List<Attribute>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "additionalCosts":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                additionalCosts = new Option<List<AccountAdditionalCost>>(JsonSerializer.Deserialize<List<AccountAdditionalCost>>(ref utf8JsonReader, jsonSerializerOptions));
+                            additionalCosts = new Option<List<AccountAdditionalCost>>(JsonSerializer.Deserialize<List<AccountAdditionalCost>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "audiences":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                audiences = new Option<List<Audience>>(JsonSerializer.Deserialize<List<Audience>>(ref utf8JsonReader, jsonSerializerOptions));
+                            audiences = new Option<List<Audience>>(JsonSerializer.Deserialize<List<Audience>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "collections":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                collections = new Option<List<Collection>>(JsonSerializer.Deserialize<List<Collection>>(ref utf8JsonReader, jsonSerializerOptions));
+                            collections = new Option<List<Collection>>(JsonSerializer.Deserialize<List<Collection>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "applicationCartItemFilters":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationCartItemFilters = new Option<List<ApplicationCIF>>(JsonSerializer.Deserialize<List<ApplicationCIF>>(ref utf8JsonReader, jsonSerializerOptions));
+                            applicationCartItemFilters = new Option<List<ApplicationCIF>>(JsonSerializer.Deserialize<List<ApplicationCIF>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "priceTypes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                priceTypes = new Option<List<PriceType>>(JsonSerializer.Deserialize<List<PriceType>>(ref utf8JsonReader, jsonSerializerOptions));
+                            priceTypes = new Option<List<PriceType>>(JsonSerializer.Deserialize<List<PriceType>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -134,16 +134,13 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "live":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                live = new Option<long?>(utf8JsonReader.GetInt64());
+                            live = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "endingSoon":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                endingSoon = new Option<long?>(utf8JsonReader.GetInt64());
+                            endingSoon = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "lowOnBudget":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                lowOnBudget = new Option<long?>(utf8JsonReader.GetInt64());
+                            lowOnBudget = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

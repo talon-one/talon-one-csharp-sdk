@@ -428,19 +428,16 @@ namespace TalonOne.Model
                             storeIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "evaluableCampaignIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                evaluableCampaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            evaluableCampaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "couponCodes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                couponCodes = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            couponCodes = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "referralCode":
                             referralCode = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "loyaltyCards":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                loyaltyCards = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            loyaltyCards = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "state":
                             string stateRawValue = utf8JsonReader.GetString();
@@ -448,20 +445,16 @@ namespace TalonOne.Model
                                 state = new Option<NewCustomerSessionV2.StateEnum?>(NewCustomerSessionV2.StateEnumFromStringOrDefault(stateRawValue));
                             break;
                         case "cartItems":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                cartItems = new Option<List<CartItem>>(JsonSerializer.Deserialize<List<CartItem>>(ref utf8JsonReader, jsonSerializerOptions));
+                            cartItems = new Option<List<CartItem>>(JsonSerializer.Deserialize<List<CartItem>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "additionalCosts":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                additionalCosts = new Option<Dictionary<string, AdditionalCost>>(JsonSerializer.Deserialize<Dictionary<string, AdditionalCost>>(ref utf8JsonReader, jsonSerializerOptions));
+                            additionalCosts = new Option<Dictionary<string, AdditionalCost>>(JsonSerializer.Deserialize<Dictionary<string, AdditionalCost>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "identifiers":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                identifiers = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            identifiers = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

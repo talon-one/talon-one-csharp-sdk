@@ -285,16 +285,13 @@ namespace TalonOne.Model
                                 type = new Option<WebhookAuthentication.TypeEnum?>(WebhookAuthentication.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "modified":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                modified = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            modified = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "createdBy":
                             createdBy = new Option<string>(utf8JsonReader.GetString());
@@ -303,12 +300,10 @@ namespace TalonOne.Model
                             modifiedBy = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "webhooks":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                webhooks = new Option<List<WebhookAuthenticationWebhookRef>>(JsonSerializer.Deserialize<List<WebhookAuthenticationWebhookRef>>(ref utf8JsonReader, jsonSerializerOptions));
+                            webhooks = new Option<List<WebhookAuthenticationWebhookRef>>(JsonSerializer.Deserialize<List<WebhookAuthenticationWebhookRef>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "data":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                data = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -422,8 +422,7 @@ namespace TalonOne.Model
                             title = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "expires":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expires = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            expires = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "platform":
                             string platformRawValue = utf8JsonReader.GetString();
@@ -436,8 +435,7 @@ namespace TalonOne.Model
                                 type = new Option<CreateApplicationAPIKey.TypeEnum?>(CreateApplicationAPIKey.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "timeOffset":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                timeOffset = new Option<long?>(utf8JsonReader.GetInt64());
+                            timeOffset = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

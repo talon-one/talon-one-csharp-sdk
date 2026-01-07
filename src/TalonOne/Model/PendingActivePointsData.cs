@@ -222,26 +222,22 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "LoyaltyProgramID":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                loyaltyProgramID = new Option<long?>(utf8JsonReader.GetInt64());
+                            loyaltyProgramID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "CustomerProfileID":
                             customerProfileID = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "Points":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                points = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            points = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "SubledgerID":
                             subledgerID = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "ActiveOn":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                activeOn = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            activeOn = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "ExpireOn":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                expireOn = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            expireOn = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "SessionIntegrationID":
                             sessionIntegrationID = new Option<string>(utf8JsonReader.GetString());

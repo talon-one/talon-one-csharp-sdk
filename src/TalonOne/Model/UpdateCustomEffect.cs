@@ -230,8 +230,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "applicationIds":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            applicationIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
@@ -243,19 +242,16 @@ namespace TalonOne.Model
                             payload = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "enabled":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                enabled = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            enabled = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "isPerItem":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                isPerItem = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            isPerItem = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "params":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                varParams = new Option<List<TemplateArgDef>>(JsonSerializer.Deserialize<List<TemplateArgDef>>(ref utf8JsonReader, jsonSerializerOptions));
+                            varParams = new Option<List<TemplateArgDef>>(JsonSerializer.Deserialize<List<TemplateArgDef>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

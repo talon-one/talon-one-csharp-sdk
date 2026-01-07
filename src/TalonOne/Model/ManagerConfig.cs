@@ -111,8 +111,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "schemaVersion":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                schemaVersion = new Option<long?>(utf8JsonReader.GetInt64());
+                            schemaVersion = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

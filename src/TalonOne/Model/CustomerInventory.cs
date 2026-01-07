@@ -204,28 +204,22 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "profile":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                profile = new Option<CustomerProfile>(JsonSerializer.Deserialize<CustomerProfile>(ref utf8JsonReader, jsonSerializerOptions));
+                            profile = new Option<CustomerProfile>(JsonSerializer.Deserialize<CustomerProfile>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "loyalty":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                loyalty = new Option<Loyalty>(JsonSerializer.Deserialize<Loyalty>(ref utf8JsonReader, jsonSerializerOptions));
+                            loyalty = new Option<Loyalty>(JsonSerializer.Deserialize<Loyalty>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "referrals":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                referrals = new Option<List<InventoryReferral>>(JsonSerializer.Deserialize<List<InventoryReferral>>(ref utf8JsonReader, jsonSerializerOptions));
+                            referrals = new Option<List<InventoryReferral>>(JsonSerializer.Deserialize<List<InventoryReferral>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "coupons":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                coupons = new Option<List<InventoryCoupon>>(JsonSerializer.Deserialize<List<InventoryCoupon>>(ref utf8JsonReader, jsonSerializerOptions));
+                            coupons = new Option<List<InventoryCoupon>>(JsonSerializer.Deserialize<List<InventoryCoupon>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "giveaways":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                giveaways = new Option<List<Giveaway>>(JsonSerializer.Deserialize<List<Giveaway>>(ref utf8JsonReader, jsonSerializerOptions));
+                            giveaways = new Option<List<Giveaway>>(JsonSerializer.Deserialize<List<Giveaway>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "achievements":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                achievements = new Option<List<AchievementProgressWithDefinition>>(JsonSerializer.Deserialize<List<AchievementProgressWithDefinition>>(ref utf8JsonReader, jsonSerializerOptions));
+                            achievements = new Option<List<AchievementProgressWithDefinition>>(JsonSerializer.Deserialize<List<AchievementProgressWithDefinition>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

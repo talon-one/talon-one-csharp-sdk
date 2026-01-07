@@ -170,20 +170,16 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "startTime":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                startTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            startTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "endTime":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                endTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            endTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "unitsSold":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                unitsSold = new Option<AnalyticsDataPointWithTrend>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrend>(ref utf8JsonReader, jsonSerializerOptions));
+                            unitsSold = new Option<AnalyticsDataPointWithTrend>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrend>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "productId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                productId = new Option<long?>(utf8JsonReader.GetInt64());
+                            productId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "productName":
                             productName = new Option<string>(utf8JsonReader.GetString());

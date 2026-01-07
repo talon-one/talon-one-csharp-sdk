@@ -137,12 +137,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "loyaltyProgramId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                loyaltyProgramId = new Option<long?>(utf8JsonReader.GetInt64());
+                            loyaltyProgramId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "joined":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                joined = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            joined = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

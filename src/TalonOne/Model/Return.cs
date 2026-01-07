@@ -270,46 +270,37 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "applicationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "accountId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                accountId = new Option<long?>(utf8JsonReader.GetInt64());
+                            accountId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "returnedCartItems":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                returnedCartItems = new Option<List<ReturnedCartItem>>(JsonSerializer.Deserialize<List<ReturnedCartItem>>(ref utf8JsonReader, jsonSerializerOptions));
+                            returnedCartItems = new Option<List<ReturnedCartItem>>(JsonSerializer.Deserialize<List<ReturnedCartItem>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "eventId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                eventId = new Option<long?>(utf8JsonReader.GetInt64());
+                            eventId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "sessionId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                sessionId = new Option<long?>(utf8JsonReader.GetInt64());
+                            sessionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "sessionIntegrationId":
                             sessionIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "profileId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                profileId = new Option<long?>(utf8JsonReader.GetInt64());
+                            profileId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "profileIntegrationId":
                             profileIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "createdBy":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdBy = new Option<long?>(utf8JsonReader.GetInt64());
+                            createdBy = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

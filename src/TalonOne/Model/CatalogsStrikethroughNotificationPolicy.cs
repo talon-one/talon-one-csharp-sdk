@@ -171,12 +171,10 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "aheadOfDaysTrigger":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                aheadOfDaysTrigger = new Option<long?>(utf8JsonReader.GetInt64());
+                            aheadOfDaysTrigger = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "batchSize":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                batchSize = new Option<long?>(utf8JsonReader.GetInt64());
+                            batchSize = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

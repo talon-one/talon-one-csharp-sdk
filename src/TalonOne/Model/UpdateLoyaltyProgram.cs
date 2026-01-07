@@ -739,8 +739,7 @@ namespace TalonOne.Model
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "subscribedApplications":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                subscribedApplications = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            subscribedApplications = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "defaultValidity":
                             defaultValidity = new Option<string>(utf8JsonReader.GetString());
@@ -749,16 +748,13 @@ namespace TalonOne.Model
                             defaultPending = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "allowSubledger":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                allowSubledger = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            allowSubledger = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "usersPerCardLimit":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                usersPerCardLimit = new Option<long?>(utf8JsonReader.GetInt64());
+                            usersPerCardLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "sandbox":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                sandbox = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            sandbox = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "programJoinPolicy":
                             string programJoinPolicyRawValue = utf8JsonReader.GetString();
@@ -771,8 +767,7 @@ namespace TalonOne.Model
                                 tiersExpirationPolicy = new Option<UpdateLoyaltyProgram.TiersExpirationPolicyEnum?>(UpdateLoyaltyProgram.TiersExpirationPolicyEnumFromStringOrDefault(tiersExpirationPolicyRawValue));
                             break;
                         case "tierCycleStartDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                tierCycleStartDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            tierCycleStartDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "tiersExpireIn":
                             tiersExpireIn = new Option<string>(utf8JsonReader.GetString());
@@ -783,8 +778,7 @@ namespace TalonOne.Model
                                 tiersDowngradePolicy = new Option<UpdateLoyaltyProgram.TiersDowngradePolicyEnum?>(UpdateLoyaltyProgram.TiersDowngradePolicyEnumFromStringOrDefault(tiersDowngradePolicyRawValue));
                             break;
                         case "cardCodeSettings":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                cardCodeSettings = new Option<CodeGeneratorSettings>(JsonSerializer.Deserialize<CodeGeneratorSettings>(ref utf8JsonReader, jsonSerializerOptions));
+                            cardCodeSettings = new Option<CodeGeneratorSettings>(JsonSerializer.Deserialize<CodeGeneratorSettings>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "returnPolicy":
                             string returnPolicyRawValue = utf8JsonReader.GetString();
@@ -792,8 +786,7 @@ namespace TalonOne.Model
                                 returnPolicy = new Option<UpdateLoyaltyProgram.ReturnPolicyEnum?>(UpdateLoyaltyProgram.ReturnPolicyEnumFromStringOrDefault(returnPolicyRawValue));
                             break;
                         case "tiers":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                tiers = new Option<List<NewLoyaltyTier>>(JsonSerializer.Deserialize<List<NewLoyaltyTier>>(ref utf8JsonReader, jsonSerializerOptions));
+                            tiers = new Option<List<NewLoyaltyTier>>(JsonSerializer.Deserialize<List<NewLoyaltyTier>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

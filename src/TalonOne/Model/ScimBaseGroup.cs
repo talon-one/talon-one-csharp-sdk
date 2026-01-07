@@ -141,8 +141,7 @@ namespace TalonOne.Model
                             displayName = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "members":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                members = new Option<List<ScimGroupMember>>(JsonSerializer.Deserialize<List<ScimGroupMember>>(ref utf8JsonReader, jsonSerializerOptions));
+                            members = new Option<List<ScimGroupMember>>(JsonSerializer.Deserialize<List<ScimGroupMember>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

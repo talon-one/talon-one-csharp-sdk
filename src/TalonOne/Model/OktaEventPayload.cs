@@ -111,8 +111,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "data":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                data = new Option<OktaEventPayloadData>(JsonSerializer.Deserialize<OktaEventPayloadData>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<OktaEventPayloadData>(JsonSerializer.Deserialize<OktaEventPayloadData>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -182,8 +182,7 @@ namespace TalonOne.Model
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "args":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                args = new Option<List<FuncArgDef>>(JsonSerializer.Deserialize<List<FuncArgDef>>(ref utf8JsonReader, jsonSerializerOptions));
+                            args = new Option<List<FuncArgDef>>(JsonSerializer.Deserialize<List<FuncArgDef>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());

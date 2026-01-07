@@ -611,12 +611,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
@@ -628,15 +626,13 @@ namespace TalonOne.Model
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "target":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                target = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            target = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "period":
                             period = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "periodEndOverride":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                periodEndOverride = new Option<TimePoint>(JsonSerializer.Deserialize<TimePoint>(ref utf8JsonReader, jsonSerializerOptions));
+                            periodEndOverride = new Option<TimePoint>(JsonSerializer.Deserialize<TimePoint>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "recurrencePolicy":
                             string recurrencePolicyRawValue = utf8JsonReader.GetString();
@@ -649,20 +645,16 @@ namespace TalonOne.Model
                                 activationPolicy = new Option<AchievementStatusEntry.ActivationPolicyEnum?>(AchievementStatusEntry.ActivationPolicyEnumFromStringOrDefault(activationPolicyRawValue));
                             break;
                         case "fixedStartDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                fixedStartDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            fixedStartDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "endDate":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                endDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            endDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "allowRollbackAfterCompletion":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                allowRollbackAfterCompletion = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            allowRollbackAfterCompletion = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "campaignId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignId = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "status":
                             string statusRawValue = utf8JsonReader.GetString();
@@ -670,8 +662,7 @@ namespace TalonOne.Model
                                 status = new Option<AchievementStatusEntry.StatusEnum?>(AchievementStatusEntry.StatusEnumFromStringOrDefault(statusRawValue));
                             break;
                         case "currentProgress":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                currentProgress = new Option<AchievementProgress>(JsonSerializer.Deserialize<AchievementProgress>(ref utf8JsonReader, jsonSerializerOptions));
+                            currentProgress = new Option<AchievementProgress>(JsonSerializer.Deserialize<AchievementProgress>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

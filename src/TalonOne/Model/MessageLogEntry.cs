@@ -464,8 +464,7 @@ namespace TalonOne.Model
                             service = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "createdAt":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            createdAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "entityType":
                             string entityTypeRawValue = utf8JsonReader.GetString();
@@ -476,41 +475,34 @@ namespace TalonOne.Model
                             changeType = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "notificationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                notificationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            notificationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "notificationName":
                             notificationName = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "webhookId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                webhookId = new Option<long?>(utf8JsonReader.GetInt64());
+                            webhookId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "webhookName":
                             webhookName = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "request":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                request = new Option<MessageLogRequest>(JsonSerializer.Deserialize<MessageLogRequest>(ref utf8JsonReader, jsonSerializerOptions));
+                            request = new Option<MessageLogRequest>(JsonSerializer.Deserialize<MessageLogRequest>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "response":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                response = new Option<MessageLogResponse>(JsonSerializer.Deserialize<MessageLogResponse>(ref utf8JsonReader, jsonSerializerOptions));
+                            response = new Option<MessageLogResponse>(JsonSerializer.Deserialize<MessageLogResponse>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "url":
                             url = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "applicationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "loyaltyProgramId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                loyaltyProgramId = new Option<long?>(utf8JsonReader.GetInt64());
+                            loyaltyProgramId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "campaignId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignId = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

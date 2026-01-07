@@ -182,8 +182,7 @@ namespace TalonOne.Model
                                 notificationType = new Option<CampaignNotificationBase.NotificationTypeEnum?>(CampaignNotificationBase.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue));
                             break;
                         case "TotalResultSize":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalResultSize = new Option<long?>(utf8JsonReader.GetInt64());
+                            totalResultSize = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;

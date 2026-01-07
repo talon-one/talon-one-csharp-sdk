@@ -140,8 +140,7 @@ namespace TalonOne.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "minPoints":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                minPoints = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            minPoints = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         default:
                             break;

@@ -275,47 +275,37 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "integrationId":
                             integrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "accountId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                accountId = new Option<long?>(utf8JsonReader.GetInt64());
+                            accountId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "closedSessions":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                closedSessions = new Option<long?>(utf8JsonReader.GetInt64());
+                            closedSessions = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "totalSales":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalSales = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalSales = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "lastActivity":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                lastActivity = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            lastActivity = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "loyaltyMemberships":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                loyaltyMemberships = new Option<List<LoyaltyMembership>>(JsonSerializer.Deserialize<List<LoyaltyMembership>>(ref utf8JsonReader, jsonSerializerOptions));
+                            loyaltyMemberships = new Option<List<LoyaltyMembership>>(JsonSerializer.Deserialize<List<LoyaltyMembership>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "audienceMemberships":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                audienceMemberships = new Option<List<AudienceMembership>>(JsonSerializer.Deserialize<List<AudienceMembership>>(ref utf8JsonReader, jsonSerializerOptions));
+                            audienceMemberships = new Option<List<AudienceMembership>>(JsonSerializer.Deserialize<List<AudienceMembership>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "sandbox":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                sandbox = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            sandbox = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

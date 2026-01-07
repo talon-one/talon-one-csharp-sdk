@@ -131,12 +131,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "data":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                data = new Option<List<MessageLogEntry>>(JsonSerializer.Deserialize<List<MessageLogEntry>>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<List<MessageLogEntry>>(JsonSerializer.Deserialize<List<MessageLogEntry>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "nextCursor":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                nextCursor = new Option<byte[]>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions));
+                            nextCursor = new Option<byte[]>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

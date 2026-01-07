@@ -119,8 +119,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "unitsSold":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                unitsSold = new Option<AnalyticsDataPointWithTrend>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrend>(ref utf8JsonReader, jsonSerializerOptions));
+                            unitsSold = new Option<AnalyticsDataPointWithTrend>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrend>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

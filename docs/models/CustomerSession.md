@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Created** | **DateTime** | The time this entity was created. | 
 **ApplicationId** | **long** | The ID of the Application that owns this entity. | 
 **FirstSession** | **bool** | Indicates whether this is the first session for the customer&#39;s profile. Will always be true for anonymous sessions. | 
+**UpdateCount** | **long** | The number of times the session was updated. When the session is created, this value is initialized to &#x60;1&#x60;. | 
 **Discounts** | **Dictionary&lt;string, decimal&gt;** | A map of labelled discount values, values will be in the same currency as the application associated with the session. | 
 **Updated** | **DateTime** | Timestamp of the most recent event received on this session. | 
 **ProfileId** | **string** | ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;.  | [optional] 

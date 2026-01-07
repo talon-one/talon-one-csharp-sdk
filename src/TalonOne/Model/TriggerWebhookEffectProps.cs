@@ -123,8 +123,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "webhookId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                webhookId = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            webhookId = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "webhookName":
                             webhookName = new Option<string>(utf8JsonReader.GetString());

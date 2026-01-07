@@ -123,12 +123,10 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "createdManually":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdManually = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            createdManually = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "createdViaRuleEngine":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                createdViaRuleEngine = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            createdViaRuleEngine = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         default:
                             break;

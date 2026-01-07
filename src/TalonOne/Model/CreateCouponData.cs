@@ -268,12 +268,10 @@ namespace TalonOne.Model
                                 notificationType = new Option<CreateCouponData.NotificationTypeEnum?>(CreateCouponData.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue));
                             break;
                         case "data":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                data = new Option<List<ExtendedCoupon>>(JsonSerializer.Deserialize<List<ExtendedCoupon>>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<List<ExtendedCoupon>>(JsonSerializer.Deserialize<List<ExtendedCoupon>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "totalResultSize":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalResultSize = new Option<long?>(utf8JsonReader.GetInt64());
+                            totalResultSize = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "BatchID":
                             batchID = new Option<string>(utf8JsonReader.GetString());

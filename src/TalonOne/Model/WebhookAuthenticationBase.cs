@@ -207,8 +207,7 @@ namespace TalonOne.Model
                                 type = new Option<WebhookAuthenticationBase.TypeEnum?>(WebhookAuthenticationBase.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "data":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                data = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -119,8 +119,7 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "supported":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                supported = new Option<bool?>(utf8JsonReader.GetBoolean());
+                            supported = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;

@@ -430,19 +430,16 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "id":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                id = new Option<long?>(utf8JsonReader.GetInt64());
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "created":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "integrationId":
                             integrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "applicationId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                applicationId = new Option<long?>(utf8JsonReader.GetInt64());
+                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "coupon":
                             coupon = new Option<string>(utf8JsonReader.GetString());
@@ -456,34 +453,28 @@ namespace TalonOne.Model
                                 state = new Option<ApplicationSession.StateEnum?>(ApplicationSession.StateEnumFromStringOrDefault(stateRawValue));
                             break;
                         case "cartItems":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                cartItems = new Option<List<CartItem>>(JsonSerializer.Deserialize<List<CartItem>>(ref utf8JsonReader, jsonSerializerOptions));
+                            cartItems = new Option<List<CartItem>>(JsonSerializer.Deserialize<List<CartItem>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "discounts":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                discounts = new Option<Dictionary<string, decimal>>(JsonSerializer.Deserialize<Dictionary<string, decimal>>(ref utf8JsonReader, jsonSerializerOptions));
+                            discounts = new Option<Dictionary<string, decimal>>(JsonSerializer.Deserialize<Dictionary<string, decimal>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "totalDiscounts":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalDiscounts = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalDiscounts = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "total":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                total = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            total = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "storeIntegrationId":
                             storeIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "profileId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                profileId = new Option<long?>(utf8JsonReader.GetInt64());
+                            profileId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "profileintegrationid":
                             profileintegrationid = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "attributes":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

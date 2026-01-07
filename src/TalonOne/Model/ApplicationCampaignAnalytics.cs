@@ -414,23 +414,19 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "startTime":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                startTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            startTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "endTime":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                endTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            endTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "campaignId":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignId = new Option<long?>(utf8JsonReader.GetInt64());
+                            campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "campaignName":
                             campaignName = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "campaignTags":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                campaignTags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            campaignTags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "campaignState":
                             string campaignStateRawValue = utf8JsonReader.GetString();
@@ -438,28 +434,22 @@ namespace TalonOne.Model
                                 campaignState = new Option<ApplicationCampaignAnalytics.CampaignStateEnum?>(ApplicationCampaignAnalytics.CampaignStateEnumFromStringOrDefault(campaignStateRawValue));
                             break;
                         case "totalRevenue":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalRevenue = new Option<AnalyticsDataPointWithTrendAndInfluencedRate>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrendAndInfluencedRate>(ref utf8JsonReader, jsonSerializerOptions));
+                            totalRevenue = new Option<AnalyticsDataPointWithTrendAndInfluencedRate>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrendAndInfluencedRate>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "sessionsCount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                sessionsCount = new Option<AnalyticsDataPointWithTrendAndInfluencedRate>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrendAndInfluencedRate>(ref utf8JsonReader, jsonSerializerOptions));
+                            sessionsCount = new Option<AnalyticsDataPointWithTrendAndInfluencedRate>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrendAndInfluencedRate>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "avgItemsPerSession":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                avgItemsPerSession = new Option<AnalyticsDataPointWithTrendAndUplift>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrendAndUplift>(ref utf8JsonReader, jsonSerializerOptions));
+                            avgItemsPerSession = new Option<AnalyticsDataPointWithTrendAndUplift>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrendAndUplift>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "avgSessionValue":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                avgSessionValue = new Option<AnalyticsDataPointWithTrendAndUplift>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrendAndUplift>(ref utf8JsonReader, jsonSerializerOptions));
+                            avgSessionValue = new Option<AnalyticsDataPointWithTrendAndUplift>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrendAndUplift>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "totalDiscounts":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalDiscounts = new Option<AnalyticsDataPointWithTrend>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrend>(ref utf8JsonReader, jsonSerializerOptions));
+                            totalDiscounts = new Option<AnalyticsDataPointWithTrend>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrend>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "couponsCount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                couponsCount = new Option<AnalyticsDataPointWithTrend>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrend>(ref utf8JsonReader, jsonSerializerOptions));
+                            couponsCount = new Option<AnalyticsDataPointWithTrend>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrend>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

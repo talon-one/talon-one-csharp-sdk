@@ -245,36 +245,28 @@ namespace TalonOne.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "startTime":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                startTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            startTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "endTime":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                endTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            endTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "totalRevenue":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalRevenue = new Option<AnalyticsDataPoint>(JsonSerializer.Deserialize<AnalyticsDataPoint>(ref utf8JsonReader, jsonSerializerOptions));
+                            totalRevenue = new Option<AnalyticsDataPoint>(JsonSerializer.Deserialize<AnalyticsDataPoint>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "sessionsCount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                sessionsCount = new Option<AnalyticsDataPoint>(JsonSerializer.Deserialize<AnalyticsDataPoint>(ref utf8JsonReader, jsonSerializerOptions));
+                            sessionsCount = new Option<AnalyticsDataPoint>(JsonSerializer.Deserialize<AnalyticsDataPoint>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "avgItemsPerSession":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                avgItemsPerSession = new Option<AnalyticsDataPoint>(JsonSerializer.Deserialize<AnalyticsDataPoint>(ref utf8JsonReader, jsonSerializerOptions));
+                            avgItemsPerSession = new Option<AnalyticsDataPoint>(JsonSerializer.Deserialize<AnalyticsDataPoint>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "avgSessionValue":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                avgSessionValue = new Option<AnalyticsDataPoint>(JsonSerializer.Deserialize<AnalyticsDataPoint>(ref utf8JsonReader, jsonSerializerOptions));
+                            avgSessionValue = new Option<AnalyticsDataPoint>(JsonSerializer.Deserialize<AnalyticsDataPoint>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "totalDiscounts":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                totalDiscounts = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            totalDiscounts = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "couponsCount":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                couponsCount = new Option<decimal?>(utf8JsonReader.GetDecimal());
+                            couponsCount = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         default:
                             break;
