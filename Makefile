@@ -49,3 +49,7 @@ testenv:
 		-w /tmp/talon-client \
 		mcr.microsoft.com/dotnet/sdk:8.0 \
 		/bin/bash
+
+apply-patch:
+	@echo "Applying fix patch"
+	git apply --ignore-space-change --ignore-whitespace ./srcFiles.patch

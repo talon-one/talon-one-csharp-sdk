@@ -45,14 +45,6 @@ namespace TalonOne.Client
             /// <summary>
             /// The Authorization header
             /// </summary>
-            Authorization,
-            /// <summary>
-            /// The Authorization header
-            /// </summary>
-            Authorization,
-            /// <summary>
-            /// The Authorization header
-            /// </summary>
             Authorization
         }
 
@@ -66,10 +58,6 @@ namespace TalonOne.Client
         {
             switch(value)
             {
-                case ApiKeyHeader.Authorization:
-                    return "Authorization";
-                case ApiKeyHeader.Authorization:
-                    return "Authorization";
                 case ApiKeyHeader.Authorization:
                     return "Authorization";
                 default:
@@ -207,12 +195,12 @@ namespace TalonOne.Client
                 return ApplicationSession.StateEnumToJsonValue(applicationSessionStateEnum);
             if (obj is AsyncCouponsData.NotificationTypeEnum asyncCouponsDataNotificationTypeEnum)
                 return AsyncCouponsData.NotificationTypeEnumToJsonValue(asyncCouponsDataNotificationTypeEnum);
-            if (obj is Attribute.EntityEnum attributeEntityEnum)
-                return Attribute.EntityEnumToJsonValue(attributeEntityEnum);
-            if (obj is Attribute.TypeEnum attributeTypeEnum)
-                return Attribute.TypeEnumToJsonValue(attributeTypeEnum);
-            if (obj is Attribute.AllowedSubscriptionsEnum attributeAllowedSubscriptionsEnum)
-                return Attribute.AllowedSubscriptionsEnumToJsonValue(attributeAllowedSubscriptionsEnum);
+            if (obj is TalonOne.Model.Attribute.EntityEnum attributeEntityEnum)
+                return TalonOne.Model.Attribute.EntityEnumToJsonValue(attributeEntityEnum);
+            if (obj is TalonOne.Model.Attribute.TypeEnum attributeTypeEnum)
+                return TalonOne.Model.Attribute.TypeEnumToJsonValue(attributeTypeEnum);
+            if (obj is TalonOne.Model.Attribute.AllowedSubscriptionsEnum attributeAllowedSubscriptionsEnum)
+                return TalonOne.Model.Attribute.AllowedSubscriptionsEnumToJsonValue(attributeAllowedSubscriptionsEnum);
             if (obj is BaseCampaign.FeaturesEnum baseCampaignFeaturesEnum)
                 return BaseCampaign.FeaturesEnumToJsonValue(baseCampaignFeaturesEnum);
             if (obj is BaseCampaign.StateEnum baseCampaignStateEnum)

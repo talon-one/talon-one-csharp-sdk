@@ -145,7 +145,7 @@ namespace TalonOne.Test.Api
             NewAttribute newAttribute = default;
             var response = await _instance.CreateAttributeAsync(newAttribute);
             var model = response.Created();
-            Assert.IsType<Attribute>(model);
+            Assert.IsType<TalonOne.Model.Attribute>(model);
         }
 
         /// <summary>
@@ -1065,7 +1065,7 @@ namespace TalonOne.Test.Api
             long attributeId = default;
             var response = await _instance.GetAttributeAsync(attributeId);
             var model = response.Ok();
-            Assert.IsType<Attribute>(model);
+            Assert.IsType<TalonOne.Model.Attribute>(model);
         }
 
         /// <summary>
@@ -2405,7 +2405,7 @@ namespace TalonOne.Test.Api
             NewAttribute newAttribute = default;
             var response = await _instance.UpdateAttributeAsync(attributeId, newAttribute);
             var model = response.Ok();
-            Assert.IsType<Attribute>(model);
+            Assert.IsType<TalonOne.Model.Attribute>(model);
         }
 
         /// <summary>
