@@ -13,7 +13,7 @@ namespace _example
         {
             // Configure services and API key authorization
             var services = new ServiceCollection();
-            
+
             var hostConfiguration = new HostConfiguration(services)
                 .AddApiHttpClients(client => client.BaseAddress = new System.Uri("http://localhost:9000"))
                 .AddTokens(new ApiKeyToken(
@@ -71,7 +71,7 @@ namespace _example
 
             // Create/update a customer session using `UpdateCustomerSessionV2Async` function
             var response = await integrationApi.UpdateCustomerSessionV2Async(customerSessionId, body);
-            
+
             // Access the result from the response
             var result = response.Ok();
             Console.WriteLine(result);

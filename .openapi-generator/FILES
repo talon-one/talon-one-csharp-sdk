@@ -1872,3 +1872,4 @@ src/TalonOne/Model/WebhookWithOutgoingIntegrationDetails.cs
 src/TalonOne/Model/WillAwardGiveawayEffectProps.cs
 src/TalonOne/README.md
 src/TalonOne/TalonOne.csproj
+srcFiles.patch
