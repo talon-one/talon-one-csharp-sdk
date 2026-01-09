@@ -54,37 +54,41 @@ is `https://yourbaseurl.talon.one/v2/customer_sessions/{Id}`.
 The following code shows an example of using the Integration API:
 
 ```csharp
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using TalonOne.Api;
 using TalonOne.Client;
 using TalonOne.Model;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Example
 {
     public class Example
     {
-        public static void main()
+        public static async System.Threading.Tasks.Task Main(string[] args)
         {
-            // Configure BasePath & API key authorization: api_key_v1
-            var integrationConfig = new Configuration {
-                BasePath = "https://yourbaseurl.talon.one", // No trailing slash!
-                ApiKey = new Dictionary<string, string> {
-                    { "Authorization", "e18149e88f42205432281c9d3d0e711111302722577ad60dcebc86c43aabfe70" }
-                },
-                ApiKeyPrefix = new Dictionary<string, string> {
-                    { "Authorization", "ApiKey-v1" }
-                }
-            };
+            // Configure services and API key authorization
+            var services = new ServiceCollection();
+
+            var hostConfiguration = new HostConfiguration(services)
+                .AddApiHttpClients(client => client.BaseAddress = new System.Uri("https://yourbaseurl.talon.one"))
+                .AddTokens(new ApiKeyToken(
+                    "e18149e88f42205432281c9d3d0e711111302722577ad60dcebc86c43aabfe70",
+                    ClientUtils.ApiKeyHeader.Authorization,
+                    "ApiKey-v1 "
+                ))
+                .UseProvider<RateLimitProvider<ApiKeyToken>, ApiKeyToken>();
+
+            var serviceProvider = services.BuildServiceProvider();
+            var apiFactory = serviceProvider.GetRequiredService<IApiFactory>();
 
             // ************************************************
             // Integration API example to send a session update
             // ************************************************
 
-            // When using the default approach, the next initiation of `IntegrationApi`
-            // could be using the empty constructor
-            var integrationApi = new IntegrationApi(integrationConfig);
-            var customerSessionId = "my_unique_session_integration_id_2";  // string | The custom identifier for this session, must be unique within the account.
+            // Create the Integration API instance using the factory
+            var integrationApi = apiFactory.Create<IIntegrationApi>();
+            var customerSessionId = "my_unique_session_integration_id_2";  // The custom identifier for this session, must be unique within the account.
 
             // Preparing a NewCustomerSessionV2 object
             NewCustomerSessionV2 customerSession = new NewCustomerSessionV2 {
@@ -121,37 +125,33 @@ namespace Example
                 // }
             );
 
-            try
-            {
-                // Create/update a customer session using `UpdateCustomerSessionV2` function
-                IntegrationStateV2 response = integrationApi.UpdateCustomerSessionV2(customerSessionId, body);
-                Debug.WriteLine(response);
+            // Create/update a customer session using `UpdateCustomerSessionV2Async` function
+            var response = await integrationApi.UpdateCustomerSessionV2Async(customerSessionId, body);
 
-                // Parsing the returned effects list, please consult https://developers.talon.one/Integration-API/handling-effects-v2 for the full list of effects and their corresponding properties
-                foreach (Effect effect in response.Effects) {
-                    switch(effect.EffectType) {
-                        case "setDiscount":
-                            // Initiating right props instance according to the effect type
-                            SetDiscountEffectProps setDiscountEffectProps = (SetDiscountEffectProps) Newtonsoft.Json.JsonConvert.DeserializeObject(effect.Props.ToString(), typeof(SetDiscountEffectProps));
+            // Access the result from the response
+            var result = response.Ok();
+            Console.WriteLine(result);
 
-                            // Access the specific effect's properties
-                            Debug.WriteLine("Set a discount '{0}' of {1:00.000}", setDiscountEffectProps.Name, setDiscountEffectProps.Value);
-                            break;
-                        // case "acceptCoupon":
-                            // AcceptCouponEffectProps acceptCouponEffectProps = (AcceptCouponEffectProps) Newtonsoft.Json.JsonConvert.DeserializeObject(effect.Props.ToString(), typeof(AcceptCouponEffectProps));
+            // Parsing the returned effects list, please consult https://developers.talon.one/Integration-API/handling-effects-v2 for the full list of effects and their corresponding properties
+            foreach (Effect effect in result.Effects) {
+                switch(effect.EffectType) {
+                    case "setDiscount":
+                        // Initiating right props instance according to the effect type
+                        SetDiscountEffectProps setDiscountEffectProps = (SetDiscountEffectProps) Newtonsoft.Json.JsonConvert.DeserializeObject(effect.Props.ToString(), typeof(SetDiscountEffectProps));
 
-                            // Work with AcceptCouponEffectProps' properties
-                            // ...
-                            // break;
-                        default:
-                            Debug.WriteLine("Encounter unknown effect type: {0}", effect.EffectType);
-                            break;
-                    }
+                        // Access the specific effect's properties
+                        Console.WriteLine("Set a discount '{0}' of {1:00.000}", setDiscountEffectProps.Name, setDiscountEffectProps.Value);
+                        break;
+                    // case "acceptCoupon":
+                        // AcceptCouponEffectProps acceptCouponEffectProps = (AcceptCouponEffectProps) Newtonsoft.Json.JsonConvert.DeserializeObject(effect.Props.ToString(), typeof(AcceptCouponEffectProps));
+
+                        // Work with AcceptCouponEffectProps' properties
+                        // ...
+                        // break;
+                    default:
+                        Console.WriteLine("Encounter unknown effect type: {0}", effect.EffectType);
+                        break;
                 }
-            }
-            catch (ApiException e)
-            {
-                Debug.Print("Exception when calling IntegrationApi.UpdateCustomerSessionV2: " + e.Message );
             }
         }
     }
@@ -163,49 +163,45 @@ namespace Example
 The following code shows an example of using the Management API:
 
 ```csharp
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using TalonOne.Api;
 using TalonOne.Client;
 using TalonOne.Model;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Example
 {
     public class Example
     {
-        public static void Main()
+        public static async System.Threading.Tasks.Task Main(string[] args)
         {
-            // Configure BasePath & API key authorization: management_key
-            var managementConfig = new Configuration {
-                BasePath = "https://yourbaseurl.talon.one", // No trailing slash!
-                ApiKey = new Dictionary<string, string> {
-                    { "Authorization", "2f0dce055da01ae595005d7d79154bae7448d319d5fc7c5b2951fadd6ba1ea07" }
-                },
-                ApiKeyPrefix = new Dictionary<string, string> {
-                    { "Authorization", "ManagementKey-v1" }
-                }
-            };
+            // Configure services and API key authorization
+            var services = new ServiceCollection();
+
+            var hostConfiguration = new HostConfiguration(services)
+                .AddApiHttpClients(client => client.BaseAddress = new System.Uri("https://yourbaseurl.talon.one"))
+                .AddTokens(new ApiKeyToken(
+                    "2f0dce055da01ae595005d7d79154bae7448d319d5fc7c5b2951fadd6ba1ea07",
+                    ClientUtils.ApiKeyHeader.Authorization,
+                    "ManagementKey-v1 "
+                ))
+                .UseProvider<RateLimitProvider<ApiKeyToken>, ApiKeyToken>();
+
+            var serviceProvider = services.BuildServiceProvider();
+            var apiFactory = serviceProvider.GetRequiredService<IApiFactory>();
 
             // ****************************************************
             // Management API example to load application with id 7
             // ****************************************************
 
-            // When using the default approach, the next initiation of `ManagementApi`
-            // could be using the empty constructor
-            var managementApi = new ManagementApi(managementConfig);
+            // Create the Management API instance using the factory
+            var managementApi = apiFactory.Create<IManagementApi>();
 
-            try
-            {
-                // Calling `GetApplication` function with the desired id (7)
-                Application app = managementApi.GetApplication(7);
-                Debug.WriteLine(app);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling ManagementApi.GetApplication: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+            // Calling `GetApplicationAsync` function with the desired id (7)
+            var response = await managementApi.GetApplicationAsync(7);
+            var result = response.Ok();
+            Console.WriteLine(result);
         }
     }
 }
