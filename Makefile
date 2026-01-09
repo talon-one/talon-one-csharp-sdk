@@ -1,5 +1,5 @@
 BUILD_DIR:=src/TalonOne
-VERSION:=$(shell grep -om1 -E '^\[assembly: AssemblyVersion\("[0-9\.]+"\)\]$$' $(PWD)/$(BUILD_DIR)/Properties/AssemblyInfo.cs | sed 's/\[assembly: AssemblyVersion("\(.*\)")\]/\1/')
+VERSION:=$(shell sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p' $(PWD)/$(BUILD_DIR)/TalonOne.csproj)
 
 default: testenv
 
@@ -9,7 +9,7 @@ clean:
 
 pack: clean
 ifeq ($(VERSION),)
-	@echo "***\033[0;31mERROR:\033[0m NO VERSION COULD BE EXTRACTED. Check out the AssemblyInfo.cs file"
+	@echo "***\033[0;31mERROR:\033[0m NO VERSION COULD BE EXTRACTED. Check out the TalonOne.csproj file"
 	@exit 1
 endif
 	docker run \
@@ -25,7 +25,7 @@ endif
 
 publish: pack
 ifeq ($(VERSION),)
-	@echo "***\033[0;31mERROR:\033[0m NO VERSION COULD BE EXTRACTED. Check out the AssemblyInfo.cs file"
+	@echo "***\033[0;31mERROR:\033[0m NO VERSION COULD BE EXTRACTED. Check out the TalonOne.csproj file"
 	@exit 1
 endif
 ifeq ($(apiKey),)
