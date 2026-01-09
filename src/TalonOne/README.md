@@ -4,6 +4,38 @@
 
 Create a config.yaml file similar to what is below, then run the following powershell command to generate the library `java -jar "<path>/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar" generate -c config.yaml`
 
+```yaml
+generatorName: csharp
+inputSpec: all.yaml
+outputDir: out
+
+# https://openapi-generator.tech/docs/generators/csharp
+additionalProperties:
+  packageGuid: '{9488BCE0-5E86-454A-9181-9AB2E7D3F3BF}'
+
+# https://openapi-generator.tech/docs/integrations/#github-integration
+# gitHost:
+# gitUserId:
+# gitRepoId:
+
+# https://openapi-generator.tech/docs/globals
+# globalProperties:
+
+# https://openapi-generator.tech/docs/customization/#inline-schema-naming
+# inlineSchemaOptions:
+
+# https://openapi-generator.tech/docs/customization/#name-mapping
+# modelNameMappings:
+# nameMappings:
+
+# https://openapi-generator.tech/docs/customization/#openapi-normalizer
+# openapiNormalizer:
+
+# templateDir: https://openapi-generator.tech/docs/templating/#modifying-templates
+
+# releaseNote:
+```
+
 ## Using the library in your project
 
 ```cs
@@ -72,9 +104,3 @@ namespace YourProject
   If the return type is T, then it will throw. If the return type is TOrDefault, it will return null.
 - How do I validate requests and process responses?
   Use the provided On and After partial methods in the api classes.
-
-## Build
-
-- SDK version: 25.26
-- Generator version: 7.17.0
-- Build package: org.openapitools.codegen.languages.CSharpClientCodegen
