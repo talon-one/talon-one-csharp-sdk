@@ -2388,12 +2388,16 @@ namespace TalonOne.Api
         /// <param name="tags">Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  (optional)</param>
         /// <param name="createdBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="createdAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
+        /// <param name="startBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
+        /// <param name="startAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
+        /// <param name="endBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign end time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
+        /// <param name="endAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign end time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="campaignGroupId">Filter results to campaigns owned by the specified campaign access group ID. (optional)</param>
         /// <param name="templateId">The ID of the campaign template this campaign was created from. (optional)</param>
         /// <param name="storeId">Filter results to campaigns linked to the specified store ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCampaignsApiResponse"/>&gt;</returns>
-        Task<IGetCampaignsApiResponse> GetCampaignsAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> campaignState = default, Option<string> name = default, Option<string> tags = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<long> campaignGroupId = default, Option<long> templateId = default, Option<long> storeId = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetCampaignsApiResponse> GetCampaignsAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> campaignState = default, Option<string> name = default, Option<string> tags = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<DateTime> startBefore = default, Option<DateTime> startAfter = default, Option<DateTime> endBefore = default, Option<DateTime> endAfter = default, Option<long> campaignGroupId = default, Option<long> templateId = default, Option<long> storeId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List campaigns
@@ -2410,12 +2414,16 @@ namespace TalonOne.Api
         /// <param name="tags">Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  (optional)</param>
         /// <param name="createdBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="createdAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
+        /// <param name="startBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
+        /// <param name="startAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
+        /// <param name="endBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign end time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
+        /// <param name="endAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign end time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="campaignGroupId">Filter results to campaigns owned by the specified campaign access group ID. (optional)</param>
         /// <param name="templateId">The ID of the campaign template this campaign was created from. (optional)</param>
         /// <param name="storeId">Filter results to campaigns linked to the specified store ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCampaignsApiResponse"/>&gt;</returns>
-        Task<IGetCampaignsApiResponse> GetCampaignsOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> campaignState = default, Option<string> name = default, Option<string> tags = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<long> campaignGroupId = default, Option<long> templateId = default, Option<long> storeId = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetCampaignsApiResponse> GetCampaignsOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> campaignState = default, Option<string> name = default, Option<string> tags = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<DateTime> startBefore = default, Option<DateTime> startAfter = default, Option<DateTime> endBefore = default, Option<DateTime> endAfter = default, Option<long> campaignGroupId = default, Option<long> templateId = default, Option<long> storeId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get audit logs for an account
@@ -3046,10 +3054,9 @@ namespace TalonOne.Api
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired. If &#x60;false&#x60;: Returns an error.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramTransactionsApiResponse"/>&gt;</returns>
-        Task<IGetLoyaltyProgramTransactionsApiResponse> GetLoyaltyProgramTransactionsAsync(long loyaltyProgramId, Option<string> loyaltyTransactionType = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetLoyaltyProgramTransactionsApiResponse> GetLoyaltyProgramTransactionsAsync(long loyaltyProgramId, Option<string> loyaltyTransactionType = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List loyalty program transactions
@@ -3066,10 +3073,9 @@ namespace TalonOne.Api
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired. If &#x60;false&#x60;: Returns an error.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramTransactionsApiResponse"/>&gt;</returns>
-        Task<IGetLoyaltyProgramTransactionsApiResponse> GetLoyaltyProgramTransactionsOrDefaultAsync(long loyaltyProgramId, Option<string> loyaltyTransactionType = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetLoyaltyProgramTransactionsApiResponse> GetLoyaltyProgramTransactionsOrDefaultAsync(long loyaltyProgramId, Option<string> loyaltyTransactionType = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List loyalty programs
@@ -3670,7 +3676,7 @@ namespace TalonOne.Api
         /// Import loyalty points
         /// </summary>
         /// <remarks>
-        /// Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - &#x60;customerprofileid&#x60; (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - &#x60;identifier&#x60; (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - &#x60;amount&#x60;: The amount of points to award to the customer profile. - &#x60;startdate&#x60; (optional): The earliest date when the points can be redeemed. The points are &#x60;active&#x60; from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - &#x60;immediate&#x60;   - &#x60;on_action&#x60;      **Note**:   Empty or missing values default to &#x60;immediate&#x60;. - &#x60;expirydate&#x60; (optional): The latest date when the points can be redeemed. The points are &#x60;expired&#x60; after this date.    **Note**: It must be an RFC3339 timestamp string or string &#x60;unlimited&#x60;. Empty or missing values are considered &#x60;unlimited&#x60;. - &#x60;subledgerid&#x60; (optional): The ID of the subledger that should received the points. - &#x60;reason&#x60; (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for &#x60;startdate&#x60;. If &#x60;startdate&#x60; matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for &#x60;startdate&#x60; is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  &#x60;&#x60;&#x60;text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60;  **Example for card-based programs:**  &#x60;&#x60;&#x60;text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60; 
+        /// Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - &#x60;customerprofileid&#x60; (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - &#x60;identifier&#x60; (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - &#x60;amount&#x60;: The amount of points to award to the customer profile. - &#x60;startdate&#x60; (optional): The earliest date when the points can be redeemed. The points are &#x60;active&#x60; from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - &#x60;immediate&#x60;   - &#x60;on_action&#x60;      **Note**:   Empty or missing values default to &#x60;immediate&#x60;. - &#x60;expirydate&#x60; (optional): The latest date when the points can be redeemed. The points are &#x60;expired&#x60; after this date.    **Note**: It must be an RFC3339 timestamp string or string &#x60;unlimited&#x60;. Empty or missing values are considered &#x60;unlimited&#x60;.      If passed, &#x60;validityDuration&#x60; should be omitted. - &#x60;validityDuration&#x60; (optional): The duration for which the points remain active, relative to the    activation date.    The time format is an **integer** followed by one letter indicating the time unit.     Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.     Available units:     - &#x60;s&#x60;: seconds   - &#x60;m&#x60;: minutes   - &#x60;h&#x60;: hours   - &#x60;D&#x60;: days   - &#x60;W&#x60;: weeks   - &#x60;M&#x60;: months   - &#x60;Y&#x60;: years     You can round certain units up or down:    - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day.   - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of   the day, week, month or year.    If passed, &#x60;expirydate&#x60; should be omitted. - &#x60;subledgerid&#x60; (optional): The ID of the subledger that should received the points. - &#x60;reason&#x60; (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for &#x60;startdate&#x60;. If &#x60;startdate&#x60; matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for &#x60;startdate&#x60; is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  &#x60;&#x60;&#x60;text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60;  **Example for card-based programs:**  &#x60;&#x60;&#x60;text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -3684,7 +3690,7 @@ namespace TalonOne.Api
         /// Import loyalty points
         /// </summary>
         /// <remarks>
-        /// Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - &#x60;customerprofileid&#x60; (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - &#x60;identifier&#x60; (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - &#x60;amount&#x60;: The amount of points to award to the customer profile. - &#x60;startdate&#x60; (optional): The earliest date when the points can be redeemed. The points are &#x60;active&#x60; from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - &#x60;immediate&#x60;   - &#x60;on_action&#x60;      **Note**:   Empty or missing values default to &#x60;immediate&#x60;. - &#x60;expirydate&#x60; (optional): The latest date when the points can be redeemed. The points are &#x60;expired&#x60; after this date.    **Note**: It must be an RFC3339 timestamp string or string &#x60;unlimited&#x60;. Empty or missing values are considered &#x60;unlimited&#x60;. - &#x60;subledgerid&#x60; (optional): The ID of the subledger that should received the points. - &#x60;reason&#x60; (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for &#x60;startdate&#x60;. If &#x60;startdate&#x60; matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for &#x60;startdate&#x60; is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  &#x60;&#x60;&#x60;text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60;  **Example for card-based programs:**  &#x60;&#x60;&#x60;text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60; 
+        /// Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - &#x60;customerprofileid&#x60; (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - &#x60;identifier&#x60; (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - &#x60;amount&#x60;: The amount of points to award to the customer profile. - &#x60;startdate&#x60; (optional): The earliest date when the points can be redeemed. The points are &#x60;active&#x60; from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - &#x60;immediate&#x60;   - &#x60;on_action&#x60;      **Note**:   Empty or missing values default to &#x60;immediate&#x60;. - &#x60;expirydate&#x60; (optional): The latest date when the points can be redeemed. The points are &#x60;expired&#x60; after this date.    **Note**: It must be an RFC3339 timestamp string or string &#x60;unlimited&#x60;. Empty or missing values are considered &#x60;unlimited&#x60;.      If passed, &#x60;validityDuration&#x60; should be omitted. - &#x60;validityDuration&#x60; (optional): The duration for which the points remain active, relative to the    activation date.    The time format is an **integer** followed by one letter indicating the time unit.     Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.     Available units:     - &#x60;s&#x60;: seconds   - &#x60;m&#x60;: minutes   - &#x60;h&#x60;: hours   - &#x60;D&#x60;: days   - &#x60;W&#x60;: weeks   - &#x60;M&#x60;: months   - &#x60;Y&#x60;: years     You can round certain units up or down:    - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day.   - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of   the day, week, month or year.    If passed, &#x60;expirydate&#x60; should be omitted. - &#x60;subledgerid&#x60; (optional): The ID of the subledger that should received the points. - &#x60;reason&#x60; (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for &#x60;startdate&#x60;. If &#x60;startdate&#x60; matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for &#x60;startdate&#x60; is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  &#x60;&#x60;&#x60;text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60;  **Example for card-based programs:**  &#x60;&#x60;&#x60;text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <param name="loyaltyProgramId">Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="notificationsEnabled">Indicates whether the points import triggers notifications about its effects. For example, a notification is sent if the import upgrades a customer&#39;s tier or offsets their negative points balance.  This parameter is optional and defaults to &#x60;true&#x60;.  (optional)</param>
@@ -11324,7 +11330,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterActivateUserByEmail(ref suppressDefaultLog, apiResponseLocalVar, activateUserRequest);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -11560,7 +11566,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterAddLoyaltyCardPoints(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, addLoyaltyPoints);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -11934,7 +11940,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterAddLoyaltyPoints(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, integrationId, addLoyaltyPoints);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -12300,7 +12306,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCopyCampaignToApplications(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, campaignCopy);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -12582,7 +12588,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCreateAccountCollection(ref suppressDefaultLog, apiResponseLocalVar, newCollection);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -12968,7 +12974,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCreateAchievement(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, createAchievement);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -13332,7 +13338,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCreateAdditionalCost(ref suppressDefaultLog, apiResponseLocalVar, newAdditionalCost);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -13602,7 +13608,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCreateAttribute(ref suppressDefaultLog, apiResponseLocalVar, newAttribute);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -13873,7 +13879,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCreateBatchLoyaltyCards(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyCardBatch);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -14264,7 +14270,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCreateCampaignFromTemplate(ref suppressDefaultLog, apiResponseLocalVar, applicationId, createTemplateCampaign);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -14542,7 +14548,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCreateCampaignStoreBudget(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, newCampaignStoreBudget);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -14870,7 +14876,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCreateCollection(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, newCampaignCollection);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -15159,7 +15165,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCreateCoupons(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, newCoupons, silent);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -15461,7 +15467,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCreateCouponsAsync(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, newCouponCreationJob);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -15745,7 +15751,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCreateCouponsDeletionJob(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, newCouponDeletionJob);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -16034,7 +16040,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCreateCouponsForMultipleRecipients(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, newCouponsForMultipleRecipients, silent);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -16334,7 +16340,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCreateInviteEmail(ref suppressDefaultLog, apiResponseLocalVar, newInviteEmail);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -16604,7 +16610,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCreateInviteV2(ref suppressDefaultLog, apiResponseLocalVar, newInvitation);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -16874,7 +16880,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCreatePasswordRecoveryEmail(ref suppressDefaultLog, apiResponseLocalVar, newPasswordEmail);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -17144,7 +17150,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCreateSession(ref suppressDefaultLog, apiResponseLocalVar, loginParams);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -17415,7 +17421,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterCreateStore(ref suppressDefaultLog, apiResponseLocalVar, applicationId, newStore);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -17767,7 +17773,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterDeactivateUserByEmail(ref suppressDefaultLog, apiResponseLocalVar, deactivateUserRequest);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -18003,7 +18009,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterDeductLoyaltyCardPoints(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, deductLoyaltyPoints);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -18356,7 +18362,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterDeleteAccountCollection(ref suppressDefaultLog, apiResponseLocalVar, collectionId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -18609,7 +18615,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterDeleteAchievement(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, achievementId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -18911,7 +18917,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterDeleteCampaign(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -19139,7 +19145,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterDeleteCampaignStoreBudgets(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, action, period);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -19420,7 +19426,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterDeleteCollection(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, collectionId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -19696,7 +19702,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterDeleteCoupon(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, couponId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -19955,7 +19961,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterDeleteCoupons(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, value, createdBefore, createdAfter, startsAfter, startsBefore, expiresAfter, expiresBefore, valid, batchId, usable, referralId, recipientIntegrationId, exactMatch);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -20287,7 +20293,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterDeleteLoyaltyCard(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyCardId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -20597,7 +20603,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterDeleteReferral(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, referralId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -20827,7 +20833,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterDeleteStore(ref suppressDefaultLog, apiResponseLocalVar, applicationId, storeId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -21086,7 +21092,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterDeleteUser(ref suppressDefaultLog, apiResponseLocalVar, userId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -21301,7 +21307,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterDeleteUserByEmail(ref suppressDefaultLog, apiResponseLocalVar, deleteUserRequest);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -21517,7 +21523,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterDestroySession(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -21714,7 +21720,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterDisconnectCampaignStores(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -22047,7 +22053,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportAccountCollectionItems(ref suppressDefaultLog, apiResponseLocalVar, collectionId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -22370,7 +22376,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportAchievements(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, achievementId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -22741,7 +22747,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportAudiencesMemberships(ref suppressDefaultLog, apiResponseLocalVar, audienceId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -23118,7 +23124,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportCampaignStoreBudgets(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, action, period);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -23506,7 +23512,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportCampaignStores(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -23873,7 +23879,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportCollectionItems(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, collectionId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -24259,7 +24265,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportCoupons(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, sort, value, createdBefore, createdAfter, valid, usable, referralId, recipientIntegrationId, batchId, exactMatch, dateFormat, campaignState, valuesOnly);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -24646,7 +24652,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportCustomerSessions(ref suppressDefaultLog, apiResponseLocalVar, applicationId, createdBefore, createdAfter, profileIntegrationId, dateFormat, customerSessionState);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -24958,7 +24964,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportCustomersTiers(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, subledgerIds, tierNames);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -25240,7 +25246,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportEffects(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, createdBefore, createdAfter, dateFormat);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -25535,7 +25541,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportLoyaltyBalance(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, endDate);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -25882,7 +25888,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportLoyaltyBalances(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, endDate);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -26218,7 +26224,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportLoyaltyCardBalances(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, endDate);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -26570,7 +26576,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportLoyaltyCardLedger(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, rangeStart, rangeEnd, dateFormat);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -26943,7 +26949,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportLoyaltyCards(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, batchId, createdBefore, createdAfter, dateFormat);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -27325,7 +27331,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportLoyaltyLedger(ref suppressDefaultLog, apiResponseLocalVar, rangeStart, rangeEnd, loyaltyProgramId, integrationId, dateFormat);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -27605,7 +27611,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportPoolGiveaways(ref suppressDefaultLog, apiResponseLocalVar, poolId, createdBefore, createdAfter);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -27938,7 +27944,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterExportReferrals(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, createdBefore, createdAfter, valid, usable, batchId, dateFormat);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -28276,7 +28282,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetAccessLogsWithoutTotalCount(ref suppressDefaultLog, apiResponseLocalVar, applicationId, rangeStart, rangeEnd, path, method, status, pageSize, skip, sort);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -28588,7 +28594,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetAccount(ref suppressDefaultLog, apiResponseLocalVar, accountId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -28833,7 +28839,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetAccountAnalytics(ref suppressDefaultLog, apiResponseLocalVar, accountId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -29078,7 +29084,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetAccountCollection(ref suppressDefaultLog, apiResponseLocalVar, collectionId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -29363,7 +29369,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetAchievement(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, achievementId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -29696,7 +29702,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetAdditionalCost(ref suppressDefaultLog, apiResponseLocalVar, additionalCostId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -29954,7 +29960,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetAdditionalCosts(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, sort);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -30223,7 +30229,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetApplication(ref suppressDefaultLog, apiResponseLocalVar, applicationId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -30468,7 +30474,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetApplicationApiHealth(ref suppressDefaultLog, apiResponseLocalVar, applicationId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -30714,7 +30720,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetApplicationCustomer(ref suppressDefaultLog, apiResponseLocalVar, applicationId, customerId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -30985,7 +30991,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetApplicationCustomerFriends(ref suppressDefaultLog, apiResponseLocalVar, applicationId, integrationId, pageSize, skip, sort, withTotalResultSize);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -31289,7 +31295,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetApplicationCustomers(ref suppressDefaultLog, apiResponseLocalVar, applicationId, integrationId, pageSize, skip, withTotalResultSize);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -31587,7 +31593,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetApplicationCustomersByAttributes(ref suppressDefaultLog, apiResponseLocalVar, applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -31894,7 +31900,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetApplicationEventTypes(ref suppressDefaultLog, apiResponseLocalVar, applicationId, pageSize, skip, sort);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -32235,7 +32241,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetApplicationEventsWithoutTotalCount(ref suppressDefaultLog, apiResponseLocalVar, applicationId, pageSize, skip, sort, type, createdBefore, createdAfter, session, profile, customerName, customerEmail, couponCode, referralCode, ruleQuery, campaignQuery, effectType);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -32607,7 +32613,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetApplicationSession(ref suppressDefaultLog, apiResponseLocalVar, applicationId, sessionId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -32904,7 +32910,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetApplicationSessions(ref suppressDefaultLog, apiResponseLocalVar, applicationId, pageSize, skip, sort, profile, state, createdBefore, createdAfter, coupon, referral, integrationId, storeIntegrationId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -33256,7 +33262,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetApplications(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, sort);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -33525,7 +33531,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetAttribute(ref suppressDefaultLog, apiResponseLocalVar, attributeId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -33808,7 +33814,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetAttributes(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, sort, entity, applicationIds, type, kind, search);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -34136,7 +34142,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetAudienceMemberships(ref suppressDefaultLog, apiResponseLocalVar, audienceId, pageSize, skip, sort, profileQuery);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -34471,7 +34477,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetAudiences(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, sort, withTotalResultSize);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -34764,7 +34770,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetAudiencesAnalytics(ref suppressDefaultLog, apiResponseLocalVar, audienceIds, sort);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -35025,7 +35031,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetCampaign(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -35291,7 +35297,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetCampaignAnalytics(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, rangeStart, rangeEnd, granularity);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -35593,7 +35599,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetCampaignByAttributes(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignSearch, pageSize, skip, sort, campaignState);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -35894,7 +35900,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetCampaignGroup(ref suppressDefaultLog, apiResponseLocalVar, campaignGroupId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -36152,7 +36158,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetCampaignGroups(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, sort);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -36450,7 +36456,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetCampaignTemplates(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, sort, state, name, tags, userId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -36739,7 +36745,7 @@ namespace TalonOne.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetCampaigns(ref long applicationId, ref Option<long> pageSize, ref Option<long> skip, ref Option<string> sort, ref Option<string> campaignState, ref Option<string> name, ref Option<string> tags, ref Option<DateTime> createdBefore, ref Option<DateTime> createdAfter, ref Option<long> campaignGroupId, ref Option<long> templateId, ref Option<long> storeId);
+        partial void FormatGetCampaigns(ref long applicationId, ref Option<long> pageSize, ref Option<long> skip, ref Option<string> sort, ref Option<string> campaignState, ref Option<string> name, ref Option<string> tags, ref Option<DateTime> createdBefore, ref Option<DateTime> createdAfter, ref Option<DateTime> startBefore, ref Option<DateTime> startAfter, ref Option<DateTime> endBefore, ref Option<DateTime> endAfter, ref Option<long> campaignGroupId, ref Option<long> templateId, ref Option<long> storeId);
 
         /// <summary>
         /// Validates the request parameters
@@ -36777,15 +36783,19 @@ namespace TalonOne.Api
         /// <param name="tags"></param>
         /// <param name="createdBefore"></param>
         /// <param name="createdAfter"></param>
+        /// <param name="startBefore"></param>
+        /// <param name="startAfter"></param>
+        /// <param name="endBefore"></param>
+        /// <param name="endAfter"></param>
         /// <param name="campaignGroupId"></param>
         /// <param name="templateId"></param>
         /// <param name="storeId"></param>
-        private void AfterGetCampaignsDefaultImplementation(IGetCampaignsApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> campaignState, Option<string> name, Option<string> tags, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<long> campaignGroupId, Option<long> templateId, Option<long> storeId)
+        private void AfterGetCampaignsDefaultImplementation(IGetCampaignsApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> campaignState, Option<string> name, Option<string> tags, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<DateTime> startBefore, Option<DateTime> startAfter, Option<DateTime> endBefore, Option<DateTime> endAfter, Option<long> campaignGroupId, Option<long> templateId, Option<long> storeId)
         {
             bool suppressDefaultLog = false;
-            AfterGetCampaigns(ref suppressDefaultLog, apiResponseLocalVar, applicationId, pageSize, skip, sort, campaignState, name, tags, createdBefore, createdAfter, campaignGroupId, templateId, storeId);
+            AfterGetCampaigns(ref suppressDefaultLog, apiResponseLocalVar, applicationId, pageSize, skip, sort, campaignState, name, tags, createdBefore, createdAfter, startBefore, startAfter, endBefore, endAfter, campaignGroupId, templateId, storeId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -36802,10 +36812,14 @@ namespace TalonOne.Api
         /// <param name="tags"></param>
         /// <param name="createdBefore"></param>
         /// <param name="createdAfter"></param>
+        /// <param name="startBefore"></param>
+        /// <param name="startAfter"></param>
+        /// <param name="endBefore"></param>
+        /// <param name="endAfter"></param>
         /// <param name="campaignGroupId"></param>
         /// <param name="templateId"></param>
         /// <param name="storeId"></param>
-        partial void AfterGetCampaigns(ref bool suppressDefaultLog, IGetCampaignsApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> campaignState, Option<string> name, Option<string> tags, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<long> campaignGroupId, Option<long> templateId, Option<long> storeId);
+        partial void AfterGetCampaigns(ref bool suppressDefaultLog, IGetCampaignsApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> campaignState, Option<string> name, Option<string> tags, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<DateTime> startBefore, Option<DateTime> startAfter, Option<DateTime> endBefore, Option<DateTime> endAfter, Option<long> campaignGroupId, Option<long> templateId, Option<long> storeId);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -36822,13 +36836,17 @@ namespace TalonOne.Api
         /// <param name="tags"></param>
         /// <param name="createdBefore"></param>
         /// <param name="createdAfter"></param>
+        /// <param name="startBefore"></param>
+        /// <param name="startAfter"></param>
+        /// <param name="endBefore"></param>
+        /// <param name="endAfter"></param>
         /// <param name="campaignGroupId"></param>
         /// <param name="templateId"></param>
         /// <param name="storeId"></param>
-        private void OnErrorGetCampaignsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> campaignState, Option<string> name, Option<string> tags, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<long> campaignGroupId, Option<long> templateId, Option<long> storeId)
+        private void OnErrorGetCampaignsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> campaignState, Option<string> name, Option<string> tags, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<DateTime> startBefore, Option<DateTime> startAfter, Option<DateTime> endBefore, Option<DateTime> endAfter, Option<long> campaignGroupId, Option<long> templateId, Option<long> storeId)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetCampaigns(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, pageSize, skip, sort, campaignState, name, tags, createdBefore, createdAfter, campaignGroupId, templateId, storeId);
+            OnErrorGetCampaigns(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, pageSize, skip, sort, campaignState, name, tags, createdBefore, createdAfter, startBefore, startAfter, endBefore, endAfter, campaignGroupId, templateId, storeId);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -36849,10 +36867,14 @@ namespace TalonOne.Api
         /// <param name="tags"></param>
         /// <param name="createdBefore"></param>
         /// <param name="createdAfter"></param>
+        /// <param name="startBefore"></param>
+        /// <param name="startAfter"></param>
+        /// <param name="endBefore"></param>
+        /// <param name="endAfter"></param>
         /// <param name="campaignGroupId"></param>
         /// <param name="templateId"></param>
         /// <param name="storeId"></param>
-        partial void OnErrorGetCampaigns(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> campaignState, Option<string> name, Option<string> tags, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<long> campaignGroupId, Option<long> templateId, Option<long> storeId);
+        partial void OnErrorGetCampaigns(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> campaignState, Option<string> name, Option<string> tags, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<DateTime> startBefore, Option<DateTime> startAfter, Option<DateTime> endBefore, Option<DateTime> endAfter, Option<long> campaignGroupId, Option<long> templateId, Option<long> storeId);
 
         /// <summary>
         /// List campaigns List the campaigns of the specified application that match your filter criteria. 
@@ -36866,16 +36888,20 @@ namespace TalonOne.Api
         /// <param name="tags">Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  (optional)</param>
         /// <param name="createdBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="createdAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
+        /// <param name="startBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
+        /// <param name="startAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
+        /// <param name="endBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign end time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
+        /// <param name="endAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign end time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="campaignGroupId">Filter results to campaigns owned by the specified campaign access group ID. (optional)</param>
         /// <param name="templateId">The ID of the campaign template this campaign was created from. (optional)</param>
         /// <param name="storeId">Filter results to campaigns linked to the specified store ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCampaignsApiResponse"/>&gt;</returns>
-        public async Task<IGetCampaignsApiResponse> GetCampaignsOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> campaignState = default, Option<string> name = default, Option<string> tags = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<long> campaignGroupId = default, Option<long> templateId = default, Option<long> storeId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetCampaignsApiResponse> GetCampaignsOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> campaignState = default, Option<string> name = default, Option<string> tags = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<DateTime> startBefore = default, Option<DateTime> startAfter = default, Option<DateTime> endBefore = default, Option<DateTime> endAfter = default, Option<long> campaignGroupId = default, Option<long> templateId = default, Option<long> storeId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetCampaignsAsync(applicationId, pageSize, skip, sort, campaignState, name, tags, createdBefore, createdAfter, campaignGroupId, templateId, storeId, cancellationToken).ConfigureAwait(false);
+                return await GetCampaignsAsync(applicationId, pageSize, skip, sort, campaignState, name, tags, createdBefore, createdAfter, startBefore, startAfter, endBefore, endAfter, campaignGroupId, templateId, storeId, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -36896,12 +36922,16 @@ namespace TalonOne.Api
         /// <param name="tags">Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  (optional)</param>
         /// <param name="createdBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="createdAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
+        /// <param name="startBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
+        /// <param name="startAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
+        /// <param name="endBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign end time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
+        /// <param name="endAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign end time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="campaignGroupId">Filter results to campaigns owned by the specified campaign access group ID. (optional)</param>
         /// <param name="templateId">The ID of the campaign template this campaign was created from. (optional)</param>
         /// <param name="storeId">Filter results to campaigns linked to the specified store ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCampaignsApiResponse"/>&gt;</returns>
-        public async Task<IGetCampaignsApiResponse> GetCampaignsAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> campaignState = default, Option<string> name = default, Option<string> tags = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<long> campaignGroupId = default, Option<long> templateId = default, Option<long> storeId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetCampaignsApiResponse> GetCampaignsAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> campaignState = default, Option<string> name = default, Option<string> tags = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<DateTime> startBefore = default, Option<DateTime> startAfter = default, Option<DateTime> endBefore = default, Option<DateTime> endAfter = default, Option<long> campaignGroupId = default, Option<long> templateId = default, Option<long> storeId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -36909,7 +36939,7 @@ namespace TalonOne.Api
             {
                 ValidateGetCampaigns(sort, campaignState, name, tags);
 
-                FormatGetCampaigns(ref applicationId, ref pageSize, ref skip, ref sort, ref campaignState, ref name, ref tags, ref createdBefore, ref createdAfter, ref campaignGroupId, ref templateId, ref storeId);
+                FormatGetCampaigns(ref applicationId, ref pageSize, ref skip, ref sort, ref campaignState, ref name, ref tags, ref createdBefore, ref createdAfter, ref startBefore, ref startAfter, ref endBefore, ref endAfter, ref campaignGroupId, ref templateId, ref storeId);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -36946,6 +36976,18 @@ namespace TalonOne.Api
 
                     if (createdAfter.IsSet)
                         parseQueryStringLocalVar["createdAfter"] = ClientUtils.ParameterToString(createdAfter.Value);
+
+                    if (startBefore.IsSet)
+                        parseQueryStringLocalVar["startBefore"] = ClientUtils.ParameterToString(startBefore.Value);
+
+                    if (startAfter.IsSet)
+                        parseQueryStringLocalVar["startAfter"] = ClientUtils.ParameterToString(startAfter.Value);
+
+                    if (endBefore.IsSet)
+                        parseQueryStringLocalVar["endBefore"] = ClientUtils.ParameterToString(endBefore.Value);
+
+                    if (endAfter.IsSet)
+                        parseQueryStringLocalVar["endAfter"] = ClientUtils.ParameterToString(endAfter.Value);
 
                     if (campaignGroupId.IsSet)
                         parseQueryStringLocalVar["campaignGroupId"] = ClientUtils.ParameterToString(campaignGroupId.Value);
@@ -36999,7 +37041,7 @@ namespace TalonOne.Api
                             }
                         }
 
-                        AfterGetCampaignsDefaultImplementation(apiResponseLocalVar, applicationId, pageSize, skip, sort, campaignState, name, tags, createdBefore, createdAfter, campaignGroupId, templateId, storeId);
+                        AfterGetCampaignsDefaultImplementation(apiResponseLocalVar, applicationId, pageSize, skip, sort, campaignState, name, tags, createdBefore, createdAfter, startBefore, startAfter, endBefore, endAfter, campaignGroupId, templateId, storeId);
 
                         Events.ExecuteOnGetCampaigns(apiResponseLocalVar);
 
@@ -37013,7 +37055,7 @@ namespace TalonOne.Api
             }
             catch(Exception e)
             {
-                OnErrorGetCampaignsDefaultImplementation(e, "/v1/applications/{applicationId}/campaigns", uriBuilderLocalVar.Path, applicationId, pageSize, skip, sort, campaignState, name, tags, createdBefore, createdAfter, campaignGroupId, templateId, storeId);
+                OnErrorGetCampaignsDefaultImplementation(e, "/v1/applications/{applicationId}/campaigns", uriBuilderLocalVar.Path, applicationId, pageSize, skip, sort, campaignState, name, tags, createdBefore, createdAfter, startBefore, startAfter, endBefore, endAfter, campaignGroupId, templateId, storeId);
                 Events.ExecuteOnErrorGetCampaigns(e);
                 throw;
             }
@@ -37187,7 +37229,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetChanges(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, sort, applicationId, entityPath, userId, createdBefore, createdAfter, withTotalResultSize, managementKeyId, includeOld);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -37522,7 +37564,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetCollection(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, collectionId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -37819,7 +37861,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetCollectionItems(ref suppressDefaultLog, apiResponseLocalVar, collectionId, pageSize, skip);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -38176,7 +38218,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetCouponsWithoutTotalCount(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, pageSize, skip, sort, value, createdBefore, createdAfter, valid, usable, redeemed, referralId, recipientIntegrationId, batchId, exactMatch, expiresBefore, expiresAfter, startsBefore, startsAfter, valuesOnly);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -38582,7 +38624,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetCustomerActivityReport(ref suppressDefaultLog, apiResponseLocalVar, rangeStart, rangeEnd, applicationId, customerId, pageSize, skip);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -38902,7 +38944,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetCustomerActivityReportsWithoutTotalCount(ref suppressDefaultLog, apiResponseLocalVar, rangeStart, rangeEnd, applicationId, pageSize, skip, sort, name, integrationId, campaignName, advocateName);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -39237,7 +39279,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetCustomerAnalytics(ref suppressDefaultLog, apiResponseLocalVar, applicationId, customerId, pageSize, skip, sort);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -39518,7 +39560,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetCustomerProfile(ref suppressDefaultLog, apiResponseLocalVar, customerId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -39783,7 +39825,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetCustomerProfileAchievementProgress(ref suppressDefaultLog, apiResponseLocalVar, applicationId, integrationId, pageSize, skip, achievementId, title);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -40150,7 +40192,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetCustomerProfiles(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, sandbox);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -40431,7 +40473,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetCustomersByAttributes(ref suppressDefaultLog, apiResponseLocalVar, customerProfileSearchQuery, pageSize, skip, sandbox);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -40732,7 +40774,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetDashboardStatistics(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, rangeStart, rangeEnd, subledgerId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -41023,7 +41065,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetEventTypes(ref suppressDefaultLog, apiResponseLocalVar, name, includeOldVersions, pageSize, skip, sort);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -41323,7 +41365,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetExports(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, applicationId, campaignId, entity);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -41620,7 +41662,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetLoyaltyCard(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyCardId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -42018,7 +42060,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetLoyaltyCardTransactionLogs(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, startDate, endDate, pageSize, skip, subledgerId, customerSessionIDs, transactionUUIDs);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -42432,7 +42474,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetLoyaltyCards(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, pageSize, skip, sort, identifier, profileId, batchId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -42823,7 +42865,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetLoyaltyPoints(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, integrationId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -43076,7 +43118,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetLoyaltyProgram(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -43309,7 +43351,7 @@ namespace TalonOne.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetLoyaltyProgramTransactions(ref long loyaltyProgramId, ref Option<string> loyaltyTransactionType, ref Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, ref Option<DateTime> startDate, ref Option<DateTime> endDate, ref Option<long> pageSize, ref Option<long> skip, ref Option<bool> awaitsActivation);
+        partial void FormatGetLoyaltyProgramTransactions(ref long loyaltyProgramId, ref Option<string> loyaltyTransactionType, ref Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, ref Option<DateTime> startDate, ref Option<DateTime> endDate, ref Option<long> pageSize, ref Option<long> skip);
 
         /// <summary>
         /// Validates the request parameters
@@ -43347,13 +43389,12 @@ namespace TalonOne.Api
         /// <param name="endDate"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        /// <param name="awaitsActivation"></param>
-        private void AfterGetLoyaltyProgramTransactionsDefaultImplementation(IGetLoyaltyProgramTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<string> loyaltyTransactionType, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation)
+        private void AfterGetLoyaltyProgramTransactionsDefaultImplementation(IGetLoyaltyProgramTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<string> loyaltyTransactionType, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip)
         {
             bool suppressDefaultLog = false;
-            AfterGetLoyaltyProgramTransactions(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip, awaitsActivation);
+            AfterGetLoyaltyProgramTransactions(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -43370,8 +43411,7 @@ namespace TalonOne.Api
         /// <param name="endDate"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        /// <param name="awaitsActivation"></param>
-        partial void AfterGetLoyaltyProgramTransactions(ref bool suppressDefaultLog, IGetLoyaltyProgramTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<string> loyaltyTransactionType, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation);
+        partial void AfterGetLoyaltyProgramTransactions(ref bool suppressDefaultLog, IGetLoyaltyProgramTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<string> loyaltyTransactionType, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -43388,11 +43428,10 @@ namespace TalonOne.Api
         /// <param name="endDate"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        /// <param name="awaitsActivation"></param>
-        private void OnErrorGetLoyaltyProgramTransactionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<string> loyaltyTransactionType, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation)
+        private void OnErrorGetLoyaltyProgramTransactionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<string> loyaltyTransactionType, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetLoyaltyProgramTransactions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip, awaitsActivation);
+            OnErrorGetLoyaltyProgramTransactions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -43413,8 +43452,7 @@ namespace TalonOne.Api
         /// <param name="endDate"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        /// <param name="awaitsActivation"></param>
-        partial void OnErrorGetLoyaltyProgramTransactions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<string> loyaltyTransactionType, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation);
+        partial void OnErrorGetLoyaltyProgramTransactions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<string> loyaltyTransactionType, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip);
 
         /// <summary>
         /// List loyalty program transactions Retrieve loyalty program transaction logs in a given loyalty program with filtering options applied. Manual and imported transactions are also included. **Note:** If no filters are applied, the last 50 loyalty transactions for the given loyalty program are returned.  **Important:** To get loyalty transaction logs for a given Integration ID in a loyalty program, we recommend using the Integration API&#39;s [Get customer&#39;s loyalty logs](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). 
@@ -43428,14 +43466,13 @@ namespace TalonOne.Api
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired. If &#x60;false&#x60;: Returns an error.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramTransactionsApiResponse"/>&gt;</returns>
-        public async Task<IGetLoyaltyProgramTransactionsApiResponse> GetLoyaltyProgramTransactionsOrDefaultAsync(long loyaltyProgramId, Option<string> loyaltyTransactionType = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetLoyaltyProgramTransactionsApiResponse> GetLoyaltyProgramTransactionsOrDefaultAsync(long loyaltyProgramId, Option<string> loyaltyTransactionType = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetLoyaltyProgramTransactionsAsync(loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip, awaitsActivation, cancellationToken).ConfigureAwait(false);
+                return await GetLoyaltyProgramTransactionsAsync(loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -43456,10 +43493,9 @@ namespace TalonOne.Api
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired. If &#x60;false&#x60;: Returns an error.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramTransactionsApiResponse"/>&gt;</returns>
-        public async Task<IGetLoyaltyProgramTransactionsApiResponse> GetLoyaltyProgramTransactionsAsync(long loyaltyProgramId, Option<string> loyaltyTransactionType = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetLoyaltyProgramTransactionsApiResponse> GetLoyaltyProgramTransactionsAsync(long loyaltyProgramId, Option<string> loyaltyTransactionType = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -43467,7 +43503,7 @@ namespace TalonOne.Api
             {
                 ValidateGetLoyaltyProgramTransactions(loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs);
 
-                FormatGetLoyaltyProgramTransactions(ref loyaltyProgramId, ref loyaltyTransactionType, ref subledgerId, customerSessionIDs, transactionUUIDs, ref startDate, ref endDate, ref pageSize, ref skip, ref awaitsActivation);
+                FormatGetLoyaltyProgramTransactions(ref loyaltyProgramId, ref loyaltyTransactionType, ref subledgerId, customerSessionIDs, transactionUUIDs, ref startDate, ref endDate, ref pageSize, ref skip);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -43504,9 +43540,6 @@ namespace TalonOne.Api
 
                     if (skip.IsSet)
                         parseQueryStringLocalVar["skip"] = ClientUtils.ParameterToString(skip.Value);
-
-                    if (awaitsActivation.IsSet)
-                        parseQueryStringLocalVar["awaitsActivation"] = ClientUtils.ParameterToString(awaitsActivation.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -43551,7 +43584,7 @@ namespace TalonOne.Api
                             }
                         }
 
-                        AfterGetLoyaltyProgramTransactionsDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip, awaitsActivation);
+                        AfterGetLoyaltyProgramTransactionsDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip);
 
                         Events.ExecuteOnGetLoyaltyProgramTransactions(apiResponseLocalVar);
 
@@ -43565,7 +43598,7 @@ namespace TalonOne.Api
             }
             catch(Exception e)
             {
-                OnErrorGetLoyaltyProgramTransactionsDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/transactions", uriBuilderLocalVar.Path, loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip, awaitsActivation);
+                OnErrorGetLoyaltyProgramTransactionsDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/transactions", uriBuilderLocalVar.Path, loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip);
                 Events.ExecuteOnErrorGetLoyaltyProgramTransactions(e);
                 throw;
             }
@@ -43787,7 +43820,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetLoyaltyPrograms(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -44024,7 +44057,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetLoyaltyStatistics(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -44317,7 +44350,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetMessageLogs(ref suppressDefaultLog, apiResponseLocalVar, entityType, messageID, changeType, notificationIDs, createdBefore, createdAfter, cursor, period, isSuccessful, applicationId, campaignId, loyaltyProgramId, responseCode, webhookIDs);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -44710,7 +44743,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetReferralsWithoutTotalCount(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, pageSize, skip, sort, code, createdBefore, createdAfter, valid, usable, advocate);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -45039,7 +45072,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetRoleV2(ref suppressDefaultLog, apiResponseLocalVar, roleId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -45286,7 +45319,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetRuleset(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, rulesetId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -45558,7 +45591,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetRulesets(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, pageSize, skip, sort);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -45851,7 +45884,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetStore(ref suppressDefaultLog, apiResponseLocalVar, applicationId, storeId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -46142,7 +46175,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetUser(ref suppressDefaultLog, apiResponseLocalVar, userId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -46400,7 +46433,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetUsers(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, sort);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -46669,7 +46702,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetWebhook(ref suppressDefaultLog, apiResponseLocalVar, webhookId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -46948,7 +46981,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterGetWebhooks(ref suppressDefaultLog, apiResponseLocalVar, applicationIds, sort, pageSize, skip, creationType, visibility, outgoingIntegrationsTypeId, title);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -47269,7 +47302,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterImportAccountCollection(ref suppressDefaultLog, apiResponseLocalVar, collectionId, upFile);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -47627,7 +47660,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterImportAllowedList(ref suppressDefaultLog, apiResponseLocalVar, attributeId, upFile);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -48023,7 +48056,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterImportAudiencesMemberships(ref suppressDefaultLog, apiResponseLocalVar, audienceId, upFile);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -48430,7 +48463,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterImportCampaignStoreBudget(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, action, period, upFile);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -48777,7 +48810,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterImportCampaignStores(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, upFile);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -49181,7 +49214,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterImportCollection(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, collectionId, upFile);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -49515,7 +49548,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterImportCoupons(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, skipDuplicates, upFile);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -49815,7 +49848,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterImportLoyaltyCards(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, upFile);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -50173,7 +50206,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterImportLoyaltyCustomersTiers(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, upFile);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -50570,7 +50603,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterImportLoyaltyPoints(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, notificationsEnabled, upFile);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -50613,7 +50646,7 @@ namespace TalonOne.Api
         partial void OnErrorImportLoyaltyPoints(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<bool> notificationsEnabled, Option<string> upFile);
 
         /// <summary>
-        /// Import loyalty points Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - &#x60;customerprofileid&#x60; (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - &#x60;identifier&#x60; (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - &#x60;amount&#x60;: The amount of points to award to the customer profile. - &#x60;startdate&#x60; (optional): The earliest date when the points can be redeemed. The points are &#x60;active&#x60; from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - &#x60;immediate&#x60;   - &#x60;on_action&#x60;      **Note**:   Empty or missing values default to &#x60;immediate&#x60;. - &#x60;expirydate&#x60; (optional): The latest date when the points can be redeemed. The points are &#x60;expired&#x60; after this date.    **Note**: It must be an RFC3339 timestamp string or string &#x60;unlimited&#x60;. Empty or missing values are considered &#x60;unlimited&#x60;. - &#x60;subledgerid&#x60; (optional): The ID of the subledger that should received the points. - &#x60;reason&#x60; (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for &#x60;startdate&#x60;. If &#x60;startdate&#x60; matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for &#x60;startdate&#x60; is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  &#x60;&#x60;&#x60;text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60;  **Example for card-based programs:**  &#x60;&#x60;&#x60;text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60; 
+        /// Import loyalty points Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - &#x60;customerprofileid&#x60; (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - &#x60;identifier&#x60; (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - &#x60;amount&#x60;: The amount of points to award to the customer profile. - &#x60;startdate&#x60; (optional): The earliest date when the points can be redeemed. The points are &#x60;active&#x60; from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - &#x60;immediate&#x60;   - &#x60;on_action&#x60;      **Note**:   Empty or missing values default to &#x60;immediate&#x60;. - &#x60;expirydate&#x60; (optional): The latest date when the points can be redeemed. The points are &#x60;expired&#x60; after this date.    **Note**: It must be an RFC3339 timestamp string or string &#x60;unlimited&#x60;. Empty or missing values are considered &#x60;unlimited&#x60;.      If passed, &#x60;validityDuration&#x60; should be omitted. - &#x60;validityDuration&#x60; (optional): The duration for which the points remain active, relative to the    activation date.    The time format is an **integer** followed by one letter indicating the time unit.     Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.     Available units:     - &#x60;s&#x60;: seconds   - &#x60;m&#x60;: minutes   - &#x60;h&#x60;: hours   - &#x60;D&#x60;: days   - &#x60;W&#x60;: weeks   - &#x60;M&#x60;: months   - &#x60;Y&#x60;: years     You can round certain units up or down:    - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day.   - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of   the day, week, month or year.    If passed, &#x60;expirydate&#x60; should be omitted. - &#x60;subledgerid&#x60; (optional): The ID of the subledger that should received the points. - &#x60;reason&#x60; (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for &#x60;startdate&#x60;. If &#x60;startdate&#x60; matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for &#x60;startdate&#x60; is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  &#x60;&#x60;&#x60;text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60;  **Example for card-based programs:**  &#x60;&#x60;&#x60;text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60; 
         /// </summary>
         /// <param name="loyaltyProgramId">Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="notificationsEnabled">Indicates whether the points import triggers notifications about its effects. For example, a notification is sent if the import upgrades a customer&#39;s tier or offsets their negative points balance.  This parameter is optional and defaults to &#x60;true&#x60;.  (optional)</param>
@@ -50633,7 +50666,7 @@ namespace TalonOne.Api
         }
 
         /// <summary>
-        /// Import loyalty points Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - &#x60;customerprofileid&#x60; (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - &#x60;identifier&#x60; (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - &#x60;amount&#x60;: The amount of points to award to the customer profile. - &#x60;startdate&#x60; (optional): The earliest date when the points can be redeemed. The points are &#x60;active&#x60; from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - &#x60;immediate&#x60;   - &#x60;on_action&#x60;      **Note**:   Empty or missing values default to &#x60;immediate&#x60;. - &#x60;expirydate&#x60; (optional): The latest date when the points can be redeemed. The points are &#x60;expired&#x60; after this date.    **Note**: It must be an RFC3339 timestamp string or string &#x60;unlimited&#x60;. Empty or missing values are considered &#x60;unlimited&#x60;. - &#x60;subledgerid&#x60; (optional): The ID of the subledger that should received the points. - &#x60;reason&#x60; (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for &#x60;startdate&#x60;. If &#x60;startdate&#x60; matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for &#x60;startdate&#x60; is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  &#x60;&#x60;&#x60;text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60;  **Example for card-based programs:**  &#x60;&#x60;&#x60;text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60; 
+        /// Import loyalty points Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - &#x60;customerprofileid&#x60; (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - &#x60;identifier&#x60; (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - &#x60;amount&#x60;: The amount of points to award to the customer profile. - &#x60;startdate&#x60; (optional): The earliest date when the points can be redeemed. The points are &#x60;active&#x60; from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - &#x60;immediate&#x60;   - &#x60;on_action&#x60;      **Note**:   Empty or missing values default to &#x60;immediate&#x60;. - &#x60;expirydate&#x60; (optional): The latest date when the points can be redeemed. The points are &#x60;expired&#x60; after this date.    **Note**: It must be an RFC3339 timestamp string or string &#x60;unlimited&#x60;. Empty or missing values are considered &#x60;unlimited&#x60;.      If passed, &#x60;validityDuration&#x60; should be omitted. - &#x60;validityDuration&#x60; (optional): The duration for which the points remain active, relative to the    activation date.    The time format is an **integer** followed by one letter indicating the time unit.     Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.     Available units:     - &#x60;s&#x60;: seconds   - &#x60;m&#x60;: minutes   - &#x60;h&#x60;: hours   - &#x60;D&#x60;: days   - &#x60;W&#x60;: weeks   - &#x60;M&#x60;: months   - &#x60;Y&#x60;: years     You can round certain units up or down:    - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day.   - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of   the day, week, month or year.    If passed, &#x60;expirydate&#x60; should be omitted. - &#x60;subledgerid&#x60; (optional): The ID of the subledger that should received the points. - &#x60;reason&#x60; (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for &#x60;startdate&#x60;. If &#x60;startdate&#x60; matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for &#x60;startdate&#x60; is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  &#x60;&#x60;&#x60;text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60;  **Example for card-based programs:**  &#x60;&#x60;&#x60;text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -50864,7 +50897,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterImportPoolGiveaways(ref suppressDefaultLog, apiResponseLocalVar, poolId, upFile);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -51147,7 +51180,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterImportReferrals(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, upFile);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -51434,7 +51467,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterInviteUserExternal(ref suppressDefaultLog, apiResponseLocalVar, newExternalInvitation);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -51672,7 +51705,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterListAccountCollections(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, sort, withTotalResultSize, name);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -52086,7 +52119,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterListAchievements(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, pageSize, skip, title);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -52364,7 +52397,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterListAllRolesV2(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -52619,7 +52652,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterListCampaignStoreBudgetLimits(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, action, period);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -53026,7 +53059,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterListCatalogItems(ref suppressDefaultLog, apiResponseLocalVar, catalogId, pageSize, skip, withTotalResultSize, sku, productNames);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -53338,7 +53371,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterListCollections(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, pageSize, skip, sort, withTotalResultSize, name);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -53693,7 +53726,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterListCollectionsInApplication(ref suppressDefaultLog, apiResponseLocalVar, applicationId, pageSize, skip, sort, withTotalResultSize, name);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -54053,7 +54086,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterListStores(ref suppressDefaultLog, apiResponseLocalVar, applicationId, pageSize, skip, sort, withTotalResultSize, campaignId, name, integrationId, query);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -54365,7 +54398,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterOktaEventHandlerChallenge(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -54582,7 +54615,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterRemoveLoyaltyPoints(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, integrationId, deductLoyaltyPoints);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -54946,7 +54979,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterResetPassword(ref suppressDefaultLog, apiResponseLocalVar, newPassword);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -55216,7 +55249,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterScimCreateGroup(ref suppressDefaultLog, apiResponseLocalVar, scimBaseGroup);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -55486,7 +55519,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterScimCreateUser(ref suppressDefaultLog, apiResponseLocalVar, scimNewUser);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -55745,7 +55778,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterScimDeleteGroup(ref suppressDefaultLog, apiResponseLocalVar, groupId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -55949,7 +55982,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterScimDeleteUser(ref suppressDefaultLog, apiResponseLocalVar, userId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -56153,7 +56186,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterScimGetGroup(ref suppressDefaultLog, apiResponseLocalVar, groupId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -56395,7 +56428,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterScimGetGroups(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -56629,7 +56662,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterScimGetResourceTypes(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -56863,7 +56896,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterScimGetSchemas(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -57097,7 +57130,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterScimGetServiceProviderConfig(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -57334,7 +57367,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterScimGetUser(ref suppressDefaultLog, apiResponseLocalVar, userId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -57576,7 +57609,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterScimGetUsers(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -57825,7 +57858,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterScimPatchGroup(ref suppressDefaultLog, apiResponseLocalVar, groupId, scimPatchRequest);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -58102,7 +58135,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterScimPatchUser(ref suppressDefaultLog, apiResponseLocalVar, userId, scimPatchRequest);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -58379,7 +58412,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterScimReplaceGroupAttributes(ref suppressDefaultLog, apiResponseLocalVar, groupId, scimBaseGroup);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -58656,7 +58689,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterScimReplaceUserAttributes(ref suppressDefaultLog, apiResponseLocalVar, userId, scimNewUser);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -58974,7 +59007,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterSearchCouponsAdvancedApplicationWideWithoutTotalCount(ref suppressDefaultLog, apiResponseLocalVar, applicationId, body, pageSize, skip, sort, value, createdBefore, createdAfter, valid, usable, referralId, recipientIntegrationId, batchId, exactMatch, campaignState);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -59396,7 +59429,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterSearchCouponsAdvancedWithoutTotalCount(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, body, pageSize, skip, sort, value, createdBefore, createdAfter, valid, usable, referralId, recipientIntegrationId, exactMatch, batchId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -59768,7 +59801,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterSummarizeCampaignStoreBudget(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -60150,7 +60183,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterTransferLoyaltyCard(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, transferLoyaltyCard);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -60515,7 +60548,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterUpdateAccountCollection(ref suppressDefaultLog, apiResponseLocalVar, collectionId, updateCollection);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -60908,7 +60941,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterUpdateAchievement(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, achievementId, updateAchievement);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -61311,7 +61344,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterUpdateAdditionalCost(ref suppressDefaultLog, apiResponseLocalVar, additionalCostId, newAdditionalCost);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -61588,7 +61621,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterUpdateAttribute(ref suppressDefaultLog, apiResponseLocalVar, attributeId, newAttribute);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -61866,7 +61899,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterUpdateCampaign(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, updateCampaign);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -62151,7 +62184,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterUpdateCollection(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, collectionId, updateCampaignCollection);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -62484,7 +62517,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterUpdateCoupon(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, couponId, updateCoupon);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -62774,7 +62807,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterUpdateCouponBatch(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, updateCouponBatch);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -63022,7 +63055,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterUpdateLoyaltyCard(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, updateLoyaltyCard);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -63425,7 +63458,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterUpdateReferral(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, referralId, updateReferral);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -63714,7 +63747,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterUpdateRoleV2(ref suppressDefaultLog, apiResponseLocalVar, roleId, roleV2Base);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -63996,7 +64029,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterUpdateStore(ref suppressDefaultLog, apiResponseLocalVar, applicationId, storeId, newStore);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -64355,7 +64388,7 @@ namespace TalonOne.Api
             bool suppressDefaultLog = false;
             AfterUpdateUser(ref suppressDefaultLog, apiResponseLocalVar, userId, updateUser);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>

@@ -72,21 +72,21 @@ namespace TalonOne.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Collection'
-        /// </summary>
-        [Fact]
-        public void CollectionTest()
-        {
-            // TODO unit test for the property 'Collection'
-        }
-
-        /// <summary>
         /// Test the property 'Ruleset'
         /// </summary>
         [Fact]
         public void RulesetTest()
         {
             // TODO unit test for the property 'Ruleset'
+        }
+
+        /// <summary>
+        /// Test the property 'Collection'
+        /// </summary>
+        [Fact]
+        public void CollectionTest()
+        {
+            // TODO unit test for the property 'Collection'
         }
     }
 }

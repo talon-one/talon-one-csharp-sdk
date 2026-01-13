@@ -70,5 +70,14 @@ namespace TalonOne.Test.Model
         {
             // TODO unit test for the property 'Quantity'
         }
+
+        /// <summary>
+        /// Test the property 'Sku'
+        /// </summary>
+        [Fact]
+        public void SkuTest()
+        {
+            // TODO unit test for the property 'Sku'
+        }
     }
 }

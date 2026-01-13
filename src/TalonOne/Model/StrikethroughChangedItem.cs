@@ -91,7 +91,7 @@ namespace TalonOne.Model
         /// The price of the changed item.
         /// </summary>
         /// <value>The price of the changed item.</value>
-        /* <example>99.99</example> */
+        /* <example>100</example> */
         [JsonPropertyName("price")]
         public decimal Price { get; set; }
 

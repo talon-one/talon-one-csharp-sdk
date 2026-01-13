@@ -36,7 +36,7 @@ namespace TalonOne.Model
         /// <param name="audiencesChanges">Audiences memberships changes for this profile.</param>
         /// <param name="responseContent">Extends the response with the chosen data entities. Use this property to get as much data as you need in one _Update customer profile_ request instead of sending extra requests to other endpoints. </param>
         [JsonConstructor]
-        public CustomerProfileIntegrationRequestV2(Option<Object> attributes = default, Option<List<long>> evaluableCampaignIds = default, Option<ProfileAudiencesChanges> audiencesChanges = default, Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>> responseContent = default)
+        public CustomerProfileIntegrationRequestV2(Option<Object> attributes = default, Option<List<long>> evaluableCampaignIds = default, Option<Object> audiencesChanges = default, Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>> responseContent = default)
         {
             AttributesOption = attributes;
             EvaluableCampaignIdsOption = evaluableCampaignIds;
@@ -204,14 +204,14 @@ namespace TalonOne.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<ProfileAudiencesChanges> AudiencesChangesOption { get; private set; }
+        public Option<Object> AudiencesChangesOption { get; private set; }
 
         /// <summary>
         /// Audiences memberships changes for this profile.
         /// </summary>
         /// <value>Audiences memberships changes for this profile.</value>
         [JsonPropertyName("audiencesChanges")]
-        public ProfileAudiencesChanges AudiencesChanges { get { return this.AudiencesChangesOption; } set { this.AudiencesChangesOption = new Option<ProfileAudiencesChanges>(value); } }
+        public Object AudiencesChanges { get { return this.AudiencesChangesOption; } set { this.AudiencesChangesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of ResponseContent
@@ -279,7 +279,7 @@ namespace TalonOne.Model
 
             Option<Object> attributes = default;
             Option<List<long>> evaluableCampaignIds = default;
-            Option<ProfileAudiencesChanges> audiencesChanges = default;
+            Option<Object> audiencesChanges = default;
             Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>> responseContent = default;
 
             while (utf8JsonReader.Read())
@@ -304,7 +304,7 @@ namespace TalonOne.Model
                             evaluableCampaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "audiencesChanges":
-                            audiencesChanges = new Option<ProfileAudiencesChanges>(JsonSerializer.Deserialize<ProfileAudiencesChanges>(ref utf8JsonReader, jsonSerializerOptions));
+                            audiencesChanges = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "responseContent":
                             responseContent = new Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>>(JsonSerializer.Deserialize<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -320,9 +320,6 @@ namespace TalonOne.Model
 
             if (evaluableCampaignIds.IsSet && evaluableCampaignIds.Value == null)
                 throw new ArgumentNullException(nameof(evaluableCampaignIds), "Property is not nullable for class CustomerProfileIntegrationRequestV2.");
-
-            if (audiencesChanges.IsSet && audiencesChanges.Value == null)
-                throw new ArgumentNullException(nameof(audiencesChanges), "Property is not nullable for class CustomerProfileIntegrationRequestV2.");
 
             if (responseContent.IsSet && responseContent.Value == null)
                 throw new ArgumentNullException(nameof(responseContent), "Property is not nullable for class CustomerProfileIntegrationRequestV2.");
@@ -360,9 +357,6 @@ namespace TalonOne.Model
             if (customerProfileIntegrationRequestV2.EvaluableCampaignIdsOption.IsSet && customerProfileIntegrationRequestV2.EvaluableCampaignIds == null)
                 throw new ArgumentNullException(nameof(customerProfileIntegrationRequestV2.EvaluableCampaignIds), "Property is required for class CustomerProfileIntegrationRequestV2.");
 
-            if (customerProfileIntegrationRequestV2.AudiencesChangesOption.IsSet && customerProfileIntegrationRequestV2.AudiencesChanges == null)
-                throw new ArgumentNullException(nameof(customerProfileIntegrationRequestV2.AudiencesChanges), "Property is required for class CustomerProfileIntegrationRequestV2.");
-
             if (customerProfileIntegrationRequestV2.ResponseContentOption.IsSet && customerProfileIntegrationRequestV2.ResponseContent == null)
                 throw new ArgumentNullException(nameof(customerProfileIntegrationRequestV2.ResponseContent), "Property is required for class CustomerProfileIntegrationRequestV2.");
 
@@ -377,10 +371,13 @@ namespace TalonOne.Model
                 JsonSerializer.Serialize(writer, customerProfileIntegrationRequestV2.EvaluableCampaignIds, jsonSerializerOptions);
             }
             if (customerProfileIntegrationRequestV2.AudiencesChangesOption.IsSet)
-            {
-                writer.WritePropertyName("audiencesChanges");
-                JsonSerializer.Serialize(writer, customerProfileIntegrationRequestV2.AudiencesChanges, jsonSerializerOptions);
-            }
+                if (customerProfileIntegrationRequestV2.AudiencesChangesOption.Value != null)
+                {
+                    writer.WritePropertyName("audiencesChanges");
+                    JsonSerializer.Serialize(writer, customerProfileIntegrationRequestV2.AudiencesChanges, jsonSerializerOptions);
+                }
+                else
+                    writer.WriteNull("audiencesChanges");
             if (customerProfileIntegrationRequestV2.ResponseContentOption.IsSet)
             {
                 writer.WritePropertyName("responseContent");

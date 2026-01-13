@@ -36,7 +36,7 @@ namespace TalonOne.Model
         /// <param name="oldRuleset">The old ruleset, if the ruleset was changed.</param>
         /// <param name="ruleset">The current ruleset.</param>
         [JsonConstructor]
-        public CampaignRulesetChangedNotificationItem(string @event, Campaign campaign, Option<Ruleset> oldRuleset = default, Option<Ruleset> ruleset = default)
+        public CampaignRulesetChangedNotificationItem(string @event, Object campaign = default, Option<Ruleset> oldRuleset = default, Option<Ruleset> ruleset = default)
         {
             Event = @event;
             Campaign = campaign;
@@ -60,7 +60,7 @@ namespace TalonOne.Model
         /// </summary>
         /// <value>The campaign whose state changed.</value>
         [JsonPropertyName("campaign")]
-        public Campaign Campaign { get; set; }
+        public Object Campaign { get; set; }
 
         /// <summary>
         /// Used to track the state of OldRuleset
@@ -140,7 +140,7 @@ namespace TalonOne.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string> varEvent = default;
-            Option<Campaign> campaign = default;
+            Option<Object> campaign = default;
             Option<Ruleset> oldRuleset = default;
             Option<Ruleset> ruleset = default;
 
@@ -163,7 +163,7 @@ namespace TalonOne.Model
                             varEvent = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "campaign":
-                            campaign = new Option<Campaign>(JsonSerializer.Deserialize<Campaign>(ref utf8JsonReader, jsonSerializerOptions));
+                            campaign = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "oldRuleset":
                             oldRuleset = new Option<Ruleset>(JsonSerializer.Deserialize<Ruleset>(ref utf8JsonReader, jsonSerializerOptions));
@@ -185,9 +185,6 @@ namespace TalonOne.Model
 
             if (varEvent.IsSet && varEvent.Value == null)
                 throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignRulesetChangedNotificationItem.");
-
-            if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CampaignRulesetChangedNotificationItem.");
 
             if (oldRuleset.IsSet && oldRuleset.Value == null)
                 throw new ArgumentNullException(nameof(oldRuleset), "Property is not nullable for class CampaignRulesetChangedNotificationItem.");
@@ -225,9 +222,6 @@ namespace TalonOne.Model
             if (campaignRulesetChangedNotificationItem.Event == null)
                 throw new ArgumentNullException(nameof(campaignRulesetChangedNotificationItem.Event), "Property is required for class CampaignRulesetChangedNotificationItem.");
 
-            if (campaignRulesetChangedNotificationItem.Campaign == null)
-                throw new ArgumentNullException(nameof(campaignRulesetChangedNotificationItem.Campaign), "Property is required for class CampaignRulesetChangedNotificationItem.");
-
             if (campaignRulesetChangedNotificationItem.OldRulesetOption.IsSet && campaignRulesetChangedNotificationItem.OldRuleset == null)
                 throw new ArgumentNullException(nameof(campaignRulesetChangedNotificationItem.OldRuleset), "Property is required for class CampaignRulesetChangedNotificationItem.");
 
@@ -236,8 +230,13 @@ namespace TalonOne.Model
 
             writer.WriteString("Event", campaignRulesetChangedNotificationItem.Event);
 
-            writer.WritePropertyName("campaign");
-            JsonSerializer.Serialize(writer, campaignRulesetChangedNotificationItem.Campaign, jsonSerializerOptions);
+            if (campaignRulesetChangedNotificationItem.Campaign != null)
+            {
+                writer.WritePropertyName("campaign");
+                JsonSerializer.Serialize(writer, campaignRulesetChangedNotificationItem.Campaign, jsonSerializerOptions);
+            }
+            else
+                writer.WriteNull("campaign");
             if (campaignRulesetChangedNotificationItem.OldRulesetOption.IsSet)
             {
                 writer.WritePropertyName("oldRuleset");

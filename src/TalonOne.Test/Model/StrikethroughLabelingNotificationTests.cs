@@ -108,6 +108,15 @@ namespace TalonOne.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'SentAt'
+        /// </summary>
+        [Fact]
+        public void SentAtTest()
+        {
+            // TODO unit test for the property 'SentAt'
+        }
+
+        /// <summary>
         /// Test the property 'VarVersion'
         /// </summary>
         [Fact]

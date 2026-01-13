@@ -31,39 +31,113 @@ namespace TalonOne.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AddedDeductedPointsNotification" /> class.
         /// </summary>
-        /// <param name="profileIntegrationID">The integration ID of the customer profile to whom points were added or deducted.</param>
-        /// <param name="loyaltyProgramID">The ID of the loyalty program.</param>
-        /// <param name="subledgerID">The ID of the subledger within the loyalty program where these points were added.</param>
-        /// <param name="amount">The amount of added or deducted loyalty points.</param>
-        /// <param name="reason">The reason for the points addition or deduction.</param>
-        /// <param name="typeOfChange">The notification source, that is, it indicates whether the points were added or deducted via one of the following routes:  - [The Campaign Manager](/docs/product/getting-started)  - [Management API](/management-api#tag/Loyalty)  - [Rule Engine](/docs/product/applications/evaluation-order-for-rules-and-filters) </param>
         /// <param name="employeeName">The name of the employee who added or deducted points.</param>
-        /// <param name="userID">The ID of the employee who added or deducted points.</param>
-        /// <param name="operation">The action (addition or deduction) made with loyalty points.</param>
-        /// <param name="sessionIntegrationID">The integration ID of the session through which the points were earned or lost.</param>
+        /// <param name="loyaltyProgramID">The ID of the loyalty program.</param>
         /// <param name="notificationType">The type of notification.</param>
-        /// <param name="startDate">The start date for loyalty points.</param>
+        /// <param name="profileIntegrationID">The integration ID of the customer profile to whom points were added or deducted.</param>
+        /// <param name="sessionIntegrationID">The integration ID of the session through which the points were earned or lost.</param>
+        /// <param name="subledgerID">The ID of the subledger within the loyalty program where these points were added.</param>
+        /// <param name="typeOfChange">The notification source, that is, it indicates whether the points were added or deducted via one of the following routes:  - [The Campaign Manager](/docs/product/getting-started)  - [Management API](/management-api#tag/Loyalty)  - [Rule Engine](/docs/product/applications/evaluation-order-for-rules-and-filters) </param>
+        /// <param name="userID">The ID of the employee who added or deducted points.</param>
+        /// <param name="amount">The amount of added or deducted loyalty points.</param>
+        /// <param name="operation">The action (addition or deduction) made with loyalty points.</param>
+        /// <param name="reason">The reason for the points addition or deduction.</param>
         /// <param name="expiryDate">The expiration date for loyalty points.</param>
+        /// <param name="startDate">The start date for loyalty points.</param>
         [JsonConstructor]
-        public AddedDeductedPointsNotification(string profileIntegrationID, long loyaltyProgramID, string subledgerID, decimal amount, string reason, TypeOfChangeEnum typeOfChange, string employeeName, long userID, OperationEnum operation, string sessionIntegrationID, NotificationTypeEnum notificationType, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default)
+        public AddedDeductedPointsNotification(string employeeName, long loyaltyProgramID, NotificationTypeEnum notificationType, string profileIntegrationID, string sessionIntegrationID, string subledgerID, TypeOfChangeEnum typeOfChange, long userID, decimal amount, OperationEnum operation, string reason, Option<DateTime?> expiryDate = default, Option<DateTime?> startDate = default)
         {
-            ProfileIntegrationID = profileIntegrationID;
-            LoyaltyProgramID = loyaltyProgramID;
-            SubledgerID = subledgerID;
-            Amount = amount;
-            Reason = reason;
-            TypeOfChange = typeOfChange;
             EmployeeName = employeeName;
-            UserID = userID;
-            Operation = operation;
-            SessionIntegrationID = sessionIntegrationID;
+            LoyaltyProgramID = loyaltyProgramID;
             NotificationType = notificationType;
-            StartDateOption = startDate;
+            ProfileIntegrationID = profileIntegrationID;
+            SessionIntegrationID = sessionIntegrationID;
+            SubledgerID = subledgerID;
+            TypeOfChange = typeOfChange;
+            UserID = userID;
+            Amount = amount;
+            Operation = operation;
+            Reason = reason;
             ExpiryDateOption = expiryDate;
+            StartDateOption = startDate;
             OnCreated();
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// The type of notification.
+        /// </summary>
+        /// <value>The type of notification.</value>
+        public enum NotificationTypeEnum
+        {
+            /// <summary>
+            /// Enum LoyaltyPointsDeducted for value: LoyaltyPointsDeducted
+            /// </summary>
+            LoyaltyPointsDeducted = 1,
+
+            /// <summary>
+            /// Enum LoyaltyPointsAdded for value: LoyaltyPointsAdded
+            /// </summary>
+            LoyaltyPointsAdded = 2
+        }
+
+        /// <summary>
+        /// Returns a <see cref="NotificationTypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static NotificationTypeEnum NotificationTypeEnumFromString(string value)
+        {
+            if (value.Equals("LoyaltyPointsDeducted"))
+                return NotificationTypeEnum.LoyaltyPointsDeducted;
+
+            if (value.Equals("LoyaltyPointsAdded"))
+                return NotificationTypeEnum.LoyaltyPointsAdded;
+
+            throw new NotImplementedException($"Could not convert value to type NotificationTypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="NotificationTypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static NotificationTypeEnum? NotificationTypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("LoyaltyPointsDeducted"))
+                return NotificationTypeEnum.LoyaltyPointsDeducted;
+
+            if (value.Equals("LoyaltyPointsAdded"))
+                return NotificationTypeEnum.LoyaltyPointsAdded;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="NotificationTypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string NotificationTypeEnumToJsonValue(NotificationTypeEnum value)
+        {
+            if (value == NotificationTypeEnum.LoyaltyPointsDeducted)
+                return "LoyaltyPointsDeducted";
+
+            if (value == NotificationTypeEnum.LoyaltyPointsAdded)
+                return "LoyaltyPointsAdded";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// The type of notification.
+        /// </summary>
+        /// <value>The type of notification.</value>
+        [JsonPropertyName("NotificationType")]
+        public NotificationTypeEnum NotificationType { get; set; }
 
         /// <summary>
         /// The notification source, that is, it indicates whether the points were added or deducted via one of the following routes:  - [The Campaign Manager](/docs/product/getting-started)  - [Management API](/management-api#tag/Loyalty)  - [Rule Engine](/docs/product/applications/evaluation-order-for-rules-and-filters) 
@@ -228,86 +302,12 @@ namespace TalonOne.Model
         public OperationEnum Operation { get; set; }
 
         /// <summary>
-        /// The type of notification.
+        /// The name of the employee who added or deducted points.
         /// </summary>
-        /// <value>The type of notification.</value>
-        public enum NotificationTypeEnum
-        {
-            /// <summary>
-            /// Enum LoyaltyPointsDeducted for value: LoyaltyPointsDeducted
-            /// </summary>
-            LoyaltyPointsDeducted = 1,
-
-            /// <summary>
-            /// Enum LoyaltyPointsAdded for value: LoyaltyPointsAdded
-            /// </summary>
-            LoyaltyPointsAdded = 2
-        }
-
-        /// <summary>
-        /// Returns a <see cref="NotificationTypeEnum"/>
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static NotificationTypeEnum NotificationTypeEnumFromString(string value)
-        {
-            if (value.Equals("LoyaltyPointsDeducted"))
-                return NotificationTypeEnum.LoyaltyPointsDeducted;
-
-            if (value.Equals("LoyaltyPointsAdded"))
-                return NotificationTypeEnum.LoyaltyPointsAdded;
-
-            throw new NotImplementedException($"Could not convert value to type NotificationTypeEnum: '{value}'");
-        }
-
-        /// <summary>
-        /// Returns a <see cref="NotificationTypeEnum"/>
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static NotificationTypeEnum? NotificationTypeEnumFromStringOrDefault(string value)
-        {
-            if (value.Equals("LoyaltyPointsDeducted"))
-                return NotificationTypeEnum.LoyaltyPointsDeducted;
-
-            if (value.Equals("LoyaltyPointsAdded"))
-                return NotificationTypeEnum.LoyaltyPointsAdded;
-
-            return null;
-        }
-
-        /// <summary>
-        /// Converts the <see cref="NotificationTypeEnum"/> to the json value
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string NotificationTypeEnumToJsonValue(NotificationTypeEnum value)
-        {
-            if (value == NotificationTypeEnum.LoyaltyPointsDeducted)
-                return "LoyaltyPointsDeducted";
-
-            if (value == NotificationTypeEnum.LoyaltyPointsAdded)
-                return "LoyaltyPointsAdded";
-
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-
-        /// <summary>
-        /// The type of notification.
-        /// </summary>
-        /// <value>The type of notification.</value>
-        [JsonPropertyName("NotificationType")]
-        public NotificationTypeEnum NotificationType { get; set; }
-
-        /// <summary>
-        /// The integration ID of the customer profile to whom points were added or deducted.
-        /// </summary>
-        /// <value>The integration ID of the customer profile to whom points were added or deducted.</value>
-        /* <example>URNGV8294NV</example> */
-        [JsonPropertyName("ProfileIntegrationID")]
-        public string ProfileIntegrationID { get; set; }
+        /// <value>The name of the employee who added or deducted points.</value>
+        /* <example>Franziska Schneider</example> */
+        [JsonPropertyName("EmployeeName")]
+        public string EmployeeName { get; set; }
 
         /// <summary>
         /// The ID of the loyalty program.
@@ -318,12 +318,36 @@ namespace TalonOne.Model
         public long LoyaltyProgramID { get; set; }
 
         /// <summary>
+        /// The integration ID of the customer profile to whom points were added or deducted.
+        /// </summary>
+        /// <value>The integration ID of the customer profile to whom points were added or deducted.</value>
+        /* <example>URNGV8294NV</example> */
+        [JsonPropertyName("ProfileIntegrationID")]
+        public string ProfileIntegrationID { get; set; }
+
+        /// <summary>
+        /// The integration ID of the session through which the points were earned or lost.
+        /// </summary>
+        /// <value>The integration ID of the session through which the points were earned or lost.</value>
+        /* <example>cc53e4fa-547f-4f5e-8333-76e05c381f67</example> */
+        [JsonPropertyName("SessionIntegrationID")]
+        public string SessionIntegrationID { get; set; }
+
+        /// <summary>
         /// The ID of the subledger within the loyalty program where these points were added.
         /// </summary>
         /// <value>The ID of the subledger within the loyalty program where these points were added.</value>
         /* <example>sub-123</example> */
         [JsonPropertyName("SubledgerID")]
         public string SubledgerID { get; set; }
+
+        /// <summary>
+        /// The ID of the employee who added or deducted points.
+        /// </summary>
+        /// <value>The ID of the employee who added or deducted points.</value>
+        /* <example>25</example> */
+        [JsonPropertyName("UserID")]
+        public long UserID { get; set; }
 
         /// <summary>
         /// The amount of added or deducted loyalty points.
@@ -342,28 +366,19 @@ namespace TalonOne.Model
         public string Reason { get; set; }
 
         /// <summary>
-        /// The name of the employee who added or deducted points.
+        /// Used to track the state of ExpiryDate
         /// </summary>
-        /// <value>The name of the employee who added or deducted points.</value>
-        /* <example>Franziska Schneider</example> */
-        [JsonPropertyName("EmployeeName")]
-        public string EmployeeName { get; set; }
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTime?> ExpiryDateOption { get; private set; }
 
         /// <summary>
-        /// The ID of the employee who added or deducted points.
+        /// The expiration date for loyalty points.
         /// </summary>
-        /// <value>The ID of the employee who added or deducted points.</value>
-        /* <example>25</example> */
-        [JsonPropertyName("UserID")]
-        public long UserID { get; set; }
-
-        /// <summary>
-        /// The integration ID of the session through which the points were earned or lost.
-        /// </summary>
-        /// <value>The integration ID of the session through which the points were earned or lost.</value>
-        /* <example>cc53e4fa-547f-4f5e-8333-76e05c381f67</example> */
-        [JsonPropertyName("SessionIntegrationID")]
-        public string SessionIntegrationID { get; set; }
+        /// <value>The expiration date for loyalty points.</value>
+        /* <example>2024-01-24T14:15:22Z</example> */
+        [JsonPropertyName("ExpiryDate")]
+        public DateTime? ExpiryDate { get { return this.ExpiryDateOption; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of StartDate
@@ -381,21 +396,6 @@ namespace TalonOne.Model
         public DateTime? StartDate { get { return this.StartDateOption; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
-        /// Used to track the state of ExpiryDate
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<DateTime?> ExpiryDateOption { get; private set; }
-
-        /// <summary>
-        /// The expiration date for loyalty points.
-        /// </summary>
-        /// <value>The expiration date for loyalty points.</value>
-        /* <example>2024-01-24T14:15:22Z</example> */
-        [JsonPropertyName("ExpiryDate")]
-        public DateTime? ExpiryDate { get { return this.ExpiryDateOption; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -403,19 +403,19 @@ namespace TalonOne.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class AddedDeductedPointsNotification {\n");
-            sb.Append("  ProfileIntegrationID: ").Append(ProfileIntegrationID).Append("\n");
-            sb.Append("  LoyaltyProgramID: ").Append(LoyaltyProgramID).Append("\n");
-            sb.Append("  SubledgerID: ").Append(SubledgerID).Append("\n");
-            sb.Append("  Amount: ").Append(Amount).Append("\n");
-            sb.Append("  Reason: ").Append(Reason).Append("\n");
-            sb.Append("  TypeOfChange: ").Append(TypeOfChange).Append("\n");
             sb.Append("  EmployeeName: ").Append(EmployeeName).Append("\n");
-            sb.Append("  UserID: ").Append(UserID).Append("\n");
-            sb.Append("  Operation: ").Append(Operation).Append("\n");
-            sb.Append("  SessionIntegrationID: ").Append(SessionIntegrationID).Append("\n");
+            sb.Append("  LoyaltyProgramID: ").Append(LoyaltyProgramID).Append("\n");
             sb.Append("  NotificationType: ").Append(NotificationType).Append("\n");
-            sb.Append("  StartDate: ").Append(StartDate).Append("\n");
+            sb.Append("  ProfileIntegrationID: ").Append(ProfileIntegrationID).Append("\n");
+            sb.Append("  SessionIntegrationID: ").Append(SessionIntegrationID).Append("\n");
+            sb.Append("  SubledgerID: ").Append(SubledgerID).Append("\n");
+            sb.Append("  TypeOfChange: ").Append(TypeOfChange).Append("\n");
+            sb.Append("  UserID: ").Append(UserID).Append("\n");
+            sb.Append("  Amount: ").Append(Amount).Append("\n");
+            sb.Append("  Operation: ").Append(Operation).Append("\n");
+            sb.Append("  Reason: ").Append(Reason).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
+            sb.Append("  StartDate: ").Append(StartDate).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -433,12 +433,6 @@ namespace TalonOne.Model
                 yield return new ValidationResult("Invalid value for LoyaltyProgramID, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramID" });
             }
 
-            // UserID (long) minimum
-            if (this.UserID < (long)1)
-            {
-                yield return new ValidationResult("Invalid value for UserID, must be a value greater than or equal to 1.", new [] { "UserID" });
-            }
-
             yield break;
         }
     }
@@ -449,14 +443,14 @@ namespace TalonOne.Model
     public class AddedDeductedPointsNotificationJsonConverter : JsonConverter<AddedDeductedPointsNotification>
     {
         /// <summary>
-        /// The format to use to serialize StartDate
-        /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
-
-        /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
         public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+
+        /// <summary>
+        /// The format to use to serialize StartDate
+        /// </summary>
+        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="AddedDeductedPointsNotification" />
@@ -475,19 +469,19 @@ namespace TalonOne.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> profileIntegrationID = default;
-            Option<long?> loyaltyProgramID = default;
-            Option<string> subledgerID = default;
-            Option<decimal?> amount = default;
-            Option<string> reason = default;
-            Option<AddedDeductedPointsNotification.TypeOfChangeEnum?> typeOfChange = default;
             Option<string> employeeName = default;
-            Option<long?> userID = default;
-            Option<AddedDeductedPointsNotification.OperationEnum?> operation = default;
-            Option<string> sessionIntegrationID = default;
+            Option<long?> loyaltyProgramID = default;
             Option<AddedDeductedPointsNotification.NotificationTypeEnum?> notificationType = default;
-            Option<DateTime?> startDate = default;
+            Option<string> profileIntegrationID = default;
+            Option<string> sessionIntegrationID = default;
+            Option<string> subledgerID = default;
+            Option<AddedDeductedPointsNotification.TypeOfChangeEnum?> typeOfChange = default;
+            Option<long?> userID = default;
+            Option<decimal?> amount = default;
+            Option<AddedDeductedPointsNotification.OperationEnum?> operation = default;
+            Option<string> reason = default;
             Option<DateTime?> expiryDate = default;
+            Option<DateTime?> startDate = default;
 
             while (utf8JsonReader.Read())
             {
@@ -504,50 +498,50 @@ namespace TalonOne.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "ProfileIntegrationID":
-                            profileIntegrationID = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "LoyaltyProgramID":
-                            loyaltyProgramID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "SubledgerID":
-                            subledgerID = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "Amount":
-                            amount = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
-                            break;
-                        case "Reason":
-                            reason = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "TypeOfChange":
-                            string typeOfChangeRawValue = utf8JsonReader.GetString();
-                            if (typeOfChangeRawValue != null)
-                                typeOfChange = new Option<AddedDeductedPointsNotification.TypeOfChangeEnum?>(AddedDeductedPointsNotification.TypeOfChangeEnumFromStringOrDefault(typeOfChangeRawValue));
-                            break;
                         case "EmployeeName":
                             employeeName = new Option<string>(utf8JsonReader.GetString());
                             break;
-                        case "UserID":
-                            userID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "Operation":
-                            string operationRawValue = utf8JsonReader.GetString();
-                            if (operationRawValue != null)
-                                operation = new Option<AddedDeductedPointsNotification.OperationEnum?>(AddedDeductedPointsNotification.OperationEnumFromStringOrDefault(operationRawValue));
-                            break;
-                        case "SessionIntegrationID":
-                            sessionIntegrationID = new Option<string>(utf8JsonReader.GetString());
+                        case "LoyaltyProgramID":
+                            loyaltyProgramID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "NotificationType":
                             string notificationTypeRawValue = utf8JsonReader.GetString();
                             if (notificationTypeRawValue != null)
                                 notificationType = new Option<AddedDeductedPointsNotification.NotificationTypeEnum?>(AddedDeductedPointsNotification.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue));
                             break;
-                        case "StartDate":
-                            startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                        case "ProfileIntegrationID":
+                            profileIntegrationID = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "SessionIntegrationID":
+                            sessionIntegrationID = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "SubledgerID":
+                            subledgerID = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "TypeOfChange":
+                            string typeOfChangeRawValue = utf8JsonReader.GetString();
+                            if (typeOfChangeRawValue != null)
+                                typeOfChange = new Option<AddedDeductedPointsNotification.TypeOfChangeEnum?>(AddedDeductedPointsNotification.TypeOfChangeEnumFromStringOrDefault(typeOfChangeRawValue));
+                            break;
+                        case "UserID":
+                            userID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "Amount":
+                            amount = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "Operation":
+                            string operationRawValue = utf8JsonReader.GetString();
+                            if (operationRawValue != null)
+                                operation = new Option<AddedDeductedPointsNotification.OperationEnum?>(AddedDeductedPointsNotification.OperationEnumFromStringOrDefault(operationRawValue));
+                            break;
+                        case "Reason":
+                            reason = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "ExpiryDate":
                             expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "StartDate":
+                            startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -555,79 +549,79 @@ namespace TalonOne.Model
                 }
             }
 
-            if (!profileIntegrationID.IsSet)
-                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(profileIntegrationID));
+            if (!employeeName.IsSet)
+                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(employeeName));
 
             if (!loyaltyProgramID.IsSet)
                 throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(loyaltyProgramID));
 
-            if (!subledgerID.IsSet)
-                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(subledgerID));
+            if (!notificationType.IsSet)
+                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(notificationType));
 
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(amount));
-
-            if (!reason.IsSet)
-                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(reason));
-
-            if (!typeOfChange.IsSet)
-                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(typeOfChange));
-
-            if (!employeeName.IsSet)
-                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(employeeName));
-
-            if (!userID.IsSet)
-                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(userID));
-
-            if (!operation.IsSet)
-                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(operation));
+            if (!profileIntegrationID.IsSet)
+                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(profileIntegrationID));
 
             if (!sessionIntegrationID.IsSet)
                 throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(sessionIntegrationID));
 
-            if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(notificationType));
+            if (!subledgerID.IsSet)
+                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(subledgerID));
 
-            if (profileIntegrationID.IsSet && profileIntegrationID.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationID), "Property is not nullable for class AddedDeductedPointsNotification.");
+            if (!typeOfChange.IsSet)
+                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(typeOfChange));
 
-            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class AddedDeductedPointsNotification.");
+            if (!userID.IsSet)
+                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(userID));
 
-            if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class AddedDeductedPointsNotification.");
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(amount));
 
-            if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class AddedDeductedPointsNotification.");
+            if (!operation.IsSet)
+                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(operation));
 
-            if (reason.IsSet && reason.Value == null)
-                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class AddedDeductedPointsNotification.");
-
-            if (typeOfChange.IsSet && typeOfChange.Value == null)
-                throw new ArgumentNullException(nameof(typeOfChange), "Property is not nullable for class AddedDeductedPointsNotification.");
+            if (!reason.IsSet)
+                throw new ArgumentException("Property is required for class AddedDeductedPointsNotification.", nameof(reason));
 
             if (employeeName.IsSet && employeeName.Value == null)
                 throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class AddedDeductedPointsNotification.");
 
-            if (userID.IsSet && userID.Value == null)
-                throw new ArgumentNullException(nameof(userID), "Property is not nullable for class AddedDeductedPointsNotification.");
-
-            if (operation.IsSet && operation.Value == null)
-                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class AddedDeductedPointsNotification.");
-
-            if (sessionIntegrationID.IsSet && sessionIntegrationID.Value == null)
-                throw new ArgumentNullException(nameof(sessionIntegrationID), "Property is not nullable for class AddedDeductedPointsNotification.");
+            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class AddedDeductedPointsNotification.");
 
             if (notificationType.IsSet && notificationType.Value == null)
                 throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class AddedDeductedPointsNotification.");
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class AddedDeductedPointsNotification.");
+            if (profileIntegrationID.IsSet && profileIntegrationID.Value == null)
+                throw new ArgumentNullException(nameof(profileIntegrationID), "Property is not nullable for class AddedDeductedPointsNotification.");
+
+            if (sessionIntegrationID.IsSet && sessionIntegrationID.Value == null)
+                throw new ArgumentNullException(nameof(sessionIntegrationID), "Property is not nullable for class AddedDeductedPointsNotification.");
+
+            if (subledgerID.IsSet && subledgerID.Value == null)
+                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class AddedDeductedPointsNotification.");
+
+            if (typeOfChange.IsSet && typeOfChange.Value == null)
+                throw new ArgumentNullException(nameof(typeOfChange), "Property is not nullable for class AddedDeductedPointsNotification.");
+
+            if (userID.IsSet && userID.Value == null)
+                throw new ArgumentNullException(nameof(userID), "Property is not nullable for class AddedDeductedPointsNotification.");
+
+            if (amount.IsSet && amount.Value == null)
+                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class AddedDeductedPointsNotification.");
+
+            if (operation.IsSet && operation.Value == null)
+                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class AddedDeductedPointsNotification.");
+
+            if (reason.IsSet && reason.Value == null)
+                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class AddedDeductedPointsNotification.");
 
             if (expiryDate.IsSet && expiryDate.Value == null)
                 throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class AddedDeductedPointsNotification.");
 
-            return new AddedDeductedPointsNotification(profileIntegrationID.Value, loyaltyProgramID.Value.Value, subledgerID.Value, amount.Value.Value, reason.Value, typeOfChange.Value.Value, employeeName.Value, userID.Value.Value, operation.Value.Value, sessionIntegrationID.Value, notificationType.Value.Value, startDate, expiryDate);
+            if (startDate.IsSet && startDate.Value == null)
+                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class AddedDeductedPointsNotification.");
+
+            return new AddedDeductedPointsNotification(employeeName.Value, loyaltyProgramID.Value.Value, notificationType.Value.Value, profileIntegrationID.Value, sessionIntegrationID.Value, subledgerID.Value, typeOfChange.Value.Value, userID.Value.Value, amount.Value.Value, operation.Value.Value, reason.Value, expiryDate, startDate);
         }
 
         /// <summary>
@@ -654,8 +648,14 @@ namespace TalonOne.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AddedDeductedPointsNotification addedDeductedPointsNotification, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (addedDeductedPointsNotification.EmployeeName == null)
+                throw new ArgumentNullException(nameof(addedDeductedPointsNotification.EmployeeName), "Property is required for class AddedDeductedPointsNotification.");
+
             if (addedDeductedPointsNotification.ProfileIntegrationID == null)
                 throw new ArgumentNullException(nameof(addedDeductedPointsNotification.ProfileIntegrationID), "Property is required for class AddedDeductedPointsNotification.");
+
+            if (addedDeductedPointsNotification.SessionIntegrationID == null)
+                throw new ArgumentNullException(nameof(addedDeductedPointsNotification.SessionIntegrationID), "Property is required for class AddedDeductedPointsNotification.");
 
             if (addedDeductedPointsNotification.SubledgerID == null)
                 throw new ArgumentNullException(nameof(addedDeductedPointsNotification.SubledgerID), "Property is required for class AddedDeductedPointsNotification.");
@@ -663,39 +663,33 @@ namespace TalonOne.Model
             if (addedDeductedPointsNotification.Reason == null)
                 throw new ArgumentNullException(nameof(addedDeductedPointsNotification.Reason), "Property is required for class AddedDeductedPointsNotification.");
 
-            if (addedDeductedPointsNotification.EmployeeName == null)
-                throw new ArgumentNullException(nameof(addedDeductedPointsNotification.EmployeeName), "Property is required for class AddedDeductedPointsNotification.");
-
-            if (addedDeductedPointsNotification.SessionIntegrationID == null)
-                throw new ArgumentNullException(nameof(addedDeductedPointsNotification.SessionIntegrationID), "Property is required for class AddedDeductedPointsNotification.");
-
-            writer.WriteString("ProfileIntegrationID", addedDeductedPointsNotification.ProfileIntegrationID);
+            writer.WriteString("EmployeeName", addedDeductedPointsNotification.EmployeeName);
 
             writer.WriteNumber("LoyaltyProgramID", addedDeductedPointsNotification.LoyaltyProgramID);
 
+            var notificationTypeRawValue = AddedDeductedPointsNotification.NotificationTypeEnumToJsonValue(addedDeductedPointsNotification.NotificationType);
+            writer.WriteString("NotificationType", notificationTypeRawValue);
+            writer.WriteString("ProfileIntegrationID", addedDeductedPointsNotification.ProfileIntegrationID);
+
+            writer.WriteString("SessionIntegrationID", addedDeductedPointsNotification.SessionIntegrationID);
+
             writer.WriteString("SubledgerID", addedDeductedPointsNotification.SubledgerID);
-
-            writer.WriteNumber("Amount", addedDeductedPointsNotification.Amount);
-
-            writer.WriteString("Reason", addedDeductedPointsNotification.Reason);
 
             var typeOfChangeRawValue = AddedDeductedPointsNotification.TypeOfChangeEnumToJsonValue(addedDeductedPointsNotification.TypeOfChange);
             writer.WriteString("TypeOfChange", typeOfChangeRawValue);
-            writer.WriteString("EmployeeName", addedDeductedPointsNotification.EmployeeName);
-
             writer.WriteNumber("UserID", addedDeductedPointsNotification.UserID);
+
+            writer.WriteNumber("Amount", addedDeductedPointsNotification.Amount);
 
             var operationRawValue = AddedDeductedPointsNotification.OperationEnumToJsonValue(addedDeductedPointsNotification.Operation);
             writer.WriteString("Operation", operationRawValue);
-            writer.WriteString("SessionIntegrationID", addedDeductedPointsNotification.SessionIntegrationID);
-
-            var notificationTypeRawValue = AddedDeductedPointsNotification.NotificationTypeEnumToJsonValue(addedDeductedPointsNotification.NotificationType);
-            writer.WriteString("NotificationType", notificationTypeRawValue);
-            if (addedDeductedPointsNotification.StartDateOption.IsSet)
-                writer.WriteString("StartDate", addedDeductedPointsNotification.StartDateOption.Value.Value.ToString(StartDateFormat));
+            writer.WriteString("Reason", addedDeductedPointsNotification.Reason);
 
             if (addedDeductedPointsNotification.ExpiryDateOption.IsSet)
                 writer.WriteString("ExpiryDate", addedDeductedPointsNotification.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
+
+            if (addedDeductedPointsNotification.StartDateOption.IsSet)
+                writer.WriteString("StartDate", addedDeductedPointsNotification.StartDateOption.Value.Value.ToString(StartDateFormat));
         }
     }
 }

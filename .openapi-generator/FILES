@@ -33,6 +33,8 @@ docs/models/AchievementBase.md
 docs/models/AchievementProgress.md
 docs/models/AchievementProgressWithDefinition.md
 docs/models/AchievementStatusEntry.md
+docs/models/ActivateLoyaltyPoints.md
+docs/models/ActivateLoyaltyPointsResponse.md
 docs/models/ActivateUserRequest.md
 docs/models/AddFreeItemEffectProps.md
 docs/models/AddItemCatalogAction.md
@@ -40,6 +42,8 @@ docs/models/AddLoyaltyPoints.md
 docs/models/AddLoyaltyPointsEffectProps.md
 docs/models/AddPriceAdjustmentCatalogAction.md
 docs/models/AddToAudienceEffectProps.md
+docs/models/AddedDeductedPointsBalancesAction.md
+docs/models/AddedDeductedPointsBalancesNotification.md
 docs/models/AddedDeductedPointsBalancesNotificationPolicy.md
 docs/models/AddedDeductedPointsNotification.md
 docs/models/AddedDeductedPointsNotificationPolicy.md
@@ -141,6 +145,7 @@ docs/models/CampaignTemplateCollection.md
 docs/models/CampaignTemplateCouponReservationSettings.md
 docs/models/CampaignTemplateParams.md
 docs/models/CampaignVersions.md
+docs/models/CardAddedDeductedPointsBalancesNotification.md
 docs/models/CardAddedDeductedPointsBalancesNotificationPolicy.md
 docs/models/CardAddedDeductedPointsNotification.md
 docs/models/CardAddedDeductedPointsNotificationPolicy.md
@@ -169,8 +174,10 @@ docs/models/CouponCreationJob.md
 docs/models/CouponDeletionFilters.md
 docs/models/CouponDeletionJob.md
 docs/models/CouponEntity.md
+docs/models/CouponFailureSummary.md
 docs/models/CouponLimitConfigs.md
 docs/models/CouponRejectionReason.md
+docs/models/CouponRejections.md
 docs/models/CouponReservations.md
 docs/models/CouponSearch.md
 docs/models/CouponValue.md
@@ -238,6 +245,7 @@ docs/models/FuncArgDef.md
 docs/models/FunctionDef.md
 docs/models/GenerateAuditLogSummary.md
 docs/models/GenerateCampaignDescription.md
+docs/models/GenerateCampaignSummary.md
 docs/models/GenerateCampaignTags.md
 docs/models/GenerateCouponFailureDetailedSummary.md
 docs/models/GenerateCouponFailureSummary.md
@@ -314,7 +322,6 @@ docs/models/IntegrationStoreEntity.md
 docs/models/InventoryCoupon.md
 docs/models/InventoryReferral.md
 docs/models/ItemAttribute.md
-docs/models/JWT.md
 docs/models/LabelTargetAudience.md
 docs/models/LabelTargetNone.md
 docs/models/LedgerEntry.md
@@ -467,6 +474,15 @@ docs/models/PriceDetail.md
 docs/models/PriceType.md
 docs/models/PriceTypeReferenceDetail.md
 docs/models/PriceTypeReferences.md
+docs/models/PrismaticConfig.md
+docs/models/PrismaticEventPayloadCouponBasedNotifications.md
+docs/models/PrismaticEventPayloadCouponBasedNotificationsLimits.md
+docs/models/PrismaticEventPayloadLoyaltyProfileBasedNotifications.md
+docs/models/PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction.md
+docs/models/PrismaticFlow.md
+docs/models/PrismaticFlowConfig.md
+docs/models/PrismaticFlowWithConfig.md
+docs/models/PrismaticPaginatedEventPayload.md
 docs/models/Product.md
 docs/models/ProductSearchMatch.md
 docs/models/ProductUnitAnalytics.md
@@ -501,6 +517,7 @@ docs/models/RoleV2ApplicationDetails.md
 docs/models/RoleV2Base.md
 docs/models/RoleV2PermissionSet.md
 docs/models/RoleV2Permissions.md
+docs/models/RoleV2Readonly.md
 docs/models/RoleV2RolesGroup.md
 docs/models/RollbackAddedLoyaltyPointsEffectProps.md
 docs/models/RollbackCouponEffectProps.md
@@ -539,6 +556,7 @@ docs/models/ScimUser.md
 docs/models/ScimUsersListResponse.md
 docs/models/SecondaryDeployment.md
 docs/models/Session.md
+docs/models/SessionCoupons.md
 docs/models/SetDiscountEffectProps.md
 docs/models/SetDiscountPerAdditionalCostEffectProps.md
 docs/models/SetDiscountPerAdditionalCostPerItemEffectProps.md
@@ -556,6 +574,7 @@ docs/models/StrikethroughDebugResponse.md
 docs/models/StrikethroughEffect.md
 docs/models/StrikethroughLabelingNotification.md
 docs/models/StrikethroughSetDiscountPerItemEffectProps.md
+docs/models/StrikethroughSetDiscountPerItemMemberEffectProps.md
 docs/models/StrikethroughTrigger.md
 docs/models/SummarizeCampaignStoreBudget200Response.md
 docs/models/SummaryCampaignStoreBudget.md
@@ -648,6 +667,8 @@ src/TalonOne.Test/Model/AchievementProgressTests.cs
 src/TalonOne.Test/Model/AchievementProgressWithDefinitionTests.cs
 src/TalonOne.Test/Model/AchievementStatusEntryTests.cs
 src/TalonOne.Test/Model/AchievementTests.cs
+src/TalonOne.Test/Model/ActivateLoyaltyPointsResponseTests.cs
+src/TalonOne.Test/Model/ActivateLoyaltyPointsTests.cs
 src/TalonOne.Test/Model/ActivateUserRequestTests.cs
 src/TalonOne.Test/Model/AddFreeItemEffectPropsTests.cs
 src/TalonOne.Test/Model/AddItemCatalogActionTests.cs
@@ -655,7 +676,9 @@ src/TalonOne.Test/Model/AddLoyaltyPointsEffectPropsTests.cs
 src/TalonOne.Test/Model/AddLoyaltyPointsTests.cs
 src/TalonOne.Test/Model/AddPriceAdjustmentCatalogActionTests.cs
 src/TalonOne.Test/Model/AddToAudienceEffectPropsTests.cs
+src/TalonOne.Test/Model/AddedDeductedPointsBalancesActionTests.cs
 src/TalonOne.Test/Model/AddedDeductedPointsBalancesNotificationPolicyTests.cs
+src/TalonOne.Test/Model/AddedDeductedPointsBalancesNotificationTests.cs
 src/TalonOne.Test/Model/AddedDeductedPointsNotificationPolicyTests.cs
 src/TalonOne.Test/Model/AddedDeductedPointsNotificationTests.cs
 src/TalonOne.Test/Model/AdditionalCampaignPropertiesTests.cs
@@ -757,6 +780,7 @@ src/TalonOne.Test/Model/CampaignTemplateTests.cs
 src/TalonOne.Test/Model/CampaignTests.cs
 src/TalonOne.Test/Model/CampaignVersionsTests.cs
 src/TalonOne.Test/Model/CardAddedDeductedPointsBalancesNotificationPolicyTests.cs
+src/TalonOne.Test/Model/CardAddedDeductedPointsBalancesNotificationTests.cs
 src/TalonOne.Test/Model/CardAddedDeductedPointsNotificationPolicyTests.cs
 src/TalonOne.Test/Model/CardAddedDeductedPointsNotificationTests.cs
 src/TalonOne.Test/Model/CardExpiringPointsNotificationPolicyTests.cs
@@ -783,8 +807,10 @@ src/TalonOne.Test/Model/CouponCreationJobTests.cs
 src/TalonOne.Test/Model/CouponDeletionFiltersTests.cs
 src/TalonOne.Test/Model/CouponDeletionJobTests.cs
 src/TalonOne.Test/Model/CouponEntityTests.cs
+src/TalonOne.Test/Model/CouponFailureSummaryTests.cs
 src/TalonOne.Test/Model/CouponLimitConfigsTests.cs
 src/TalonOne.Test/Model/CouponRejectionReasonTests.cs
+src/TalonOne.Test/Model/CouponRejectionsTests.cs
 src/TalonOne.Test/Model/CouponReservationsTests.cs
 src/TalonOne.Test/Model/CouponSearchTests.cs
 src/TalonOne.Test/Model/CouponTests.cs
@@ -853,6 +879,7 @@ src/TalonOne.Test/Model/FuncArgDefTests.cs
 src/TalonOne.Test/Model/FunctionDefTests.cs
 src/TalonOne.Test/Model/GenerateAuditLogSummaryTests.cs
 src/TalonOne.Test/Model/GenerateCampaignDescriptionTests.cs
+src/TalonOne.Test/Model/GenerateCampaignSummaryTests.cs
 src/TalonOne.Test/Model/GenerateCampaignTagsTests.cs
 src/TalonOne.Test/Model/GenerateCouponFailureDetailedSummaryTests.cs
 src/TalonOne.Test/Model/GenerateCouponFailureSummaryTests.cs
@@ -929,7 +956,6 @@ src/TalonOne.Test/Model/IntegrationStoreEntityTests.cs
 src/TalonOne.Test/Model/InventoryCouponTests.cs
 src/TalonOne.Test/Model/InventoryReferralTests.cs
 src/TalonOne.Test/Model/ItemAttributeTests.cs
-src/TalonOne.Test/Model/JWTTests.cs
 src/TalonOne.Test/Model/LabelTargetAudienceTests.cs
 src/TalonOne.Test/Model/LabelTargetNoneTests.cs
 src/TalonOne.Test/Model/LedgerEntryTests.cs
@@ -1082,6 +1108,15 @@ src/TalonOne.Test/Model/PriceDetailTests.cs
 src/TalonOne.Test/Model/PriceTypeReferenceDetailTests.cs
 src/TalonOne.Test/Model/PriceTypeReferencesTests.cs
 src/TalonOne.Test/Model/PriceTypeTests.cs
+src/TalonOne.Test/Model/PrismaticConfigTests.cs
+src/TalonOne.Test/Model/PrismaticEventPayloadCouponBasedNotificationsLimitsTests.cs
+src/TalonOne.Test/Model/PrismaticEventPayloadCouponBasedNotificationsTests.cs
+src/TalonOne.Test/Model/PrismaticEventPayloadLoyaltyProfileBasedNotificationsActionTests.cs
+src/TalonOne.Test/Model/PrismaticEventPayloadLoyaltyProfileBasedNotificationsTests.cs
+src/TalonOne.Test/Model/PrismaticFlowConfigTests.cs
+src/TalonOne.Test/Model/PrismaticFlowTests.cs
+src/TalonOne.Test/Model/PrismaticFlowWithConfigTests.cs
+src/TalonOne.Test/Model/PrismaticPaginatedEventPayloadTests.cs
 src/TalonOne.Test/Model/ProductSearchMatchTests.cs
 src/TalonOne.Test/Model/ProductTests.cs
 src/TalonOne.Test/Model/ProductUnitAnalyticsDataPointTests.cs
@@ -1115,6 +1150,7 @@ src/TalonOne.Test/Model/RoleV2ApplicationDetailsTests.cs
 src/TalonOne.Test/Model/RoleV2BaseTests.cs
 src/TalonOne.Test/Model/RoleV2PermissionSetTests.cs
 src/TalonOne.Test/Model/RoleV2PermissionsTests.cs
+src/TalonOne.Test/Model/RoleV2ReadonlyTests.cs
 src/TalonOne.Test/Model/RoleV2RolesGroupTests.cs
 src/TalonOne.Test/Model/RoleV2Tests.cs
 src/TalonOne.Test/Model/RollbackAddedLoyaltyPointsEffectPropsTests.cs
@@ -1153,6 +1189,7 @@ src/TalonOne.Test/Model/ScimServiceProviderConfigResponseTests.cs
 src/TalonOne.Test/Model/ScimUserTests.cs
 src/TalonOne.Test/Model/ScimUsersListResponseTests.cs
 src/TalonOne.Test/Model/SecondaryDeploymentTests.cs
+src/TalonOne.Test/Model/SessionCouponsTests.cs
 src/TalonOne.Test/Model/SessionTests.cs
 src/TalonOne.Test/Model/SetDiscountEffectPropsTests.cs
 src/TalonOne.Test/Model/SetDiscountPerAdditionalCostEffectPropsTests.cs
@@ -1171,6 +1208,7 @@ src/TalonOne.Test/Model/StrikethroughDebugResponseTests.cs
 src/TalonOne.Test/Model/StrikethroughEffectTests.cs
 src/TalonOne.Test/Model/StrikethroughLabelingNotificationTests.cs
 src/TalonOne.Test/Model/StrikethroughSetDiscountPerItemEffectPropsTests.cs
+src/TalonOne.Test/Model/StrikethroughSetDiscountPerItemMemberEffectPropsTests.cs
 src/TalonOne.Test/Model/StrikethroughTriggerTests.cs
 src/TalonOne.Test/Model/SummarizeCampaignStoreBudget200ResponseTests.cs
 src/TalonOne.Test/Model/SummaryCampaignStoreBudgetTests.cs
@@ -1282,6 +1320,8 @@ src/TalonOne/Model/AchievementBase.cs
 src/TalonOne/Model/AchievementProgress.cs
 src/TalonOne/Model/AchievementProgressWithDefinition.cs
 src/TalonOne/Model/AchievementStatusEntry.cs
+src/TalonOne/Model/ActivateLoyaltyPoints.cs
+src/TalonOne/Model/ActivateLoyaltyPointsResponse.cs
 src/TalonOne/Model/ActivateUserRequest.cs
 src/TalonOne/Model/AddFreeItemEffectProps.cs
 src/TalonOne/Model/AddItemCatalogAction.cs
@@ -1289,6 +1329,8 @@ src/TalonOne/Model/AddLoyaltyPoints.cs
 src/TalonOne/Model/AddLoyaltyPointsEffectProps.cs
 src/TalonOne/Model/AddPriceAdjustmentCatalogAction.cs
 src/TalonOne/Model/AddToAudienceEffectProps.cs
+src/TalonOne/Model/AddedDeductedPointsBalancesAction.cs
+src/TalonOne/Model/AddedDeductedPointsBalancesNotification.cs
 src/TalonOne/Model/AddedDeductedPointsBalancesNotificationPolicy.cs
 src/TalonOne/Model/AddedDeductedPointsNotification.cs
 src/TalonOne/Model/AddedDeductedPointsNotificationPolicy.cs
@@ -1390,6 +1432,7 @@ src/TalonOne/Model/CampaignTemplateCollection.cs
 src/TalonOne/Model/CampaignTemplateCouponReservationSettings.cs
 src/TalonOne/Model/CampaignTemplateParams.cs
 src/TalonOne/Model/CampaignVersions.cs
+src/TalonOne/Model/CardAddedDeductedPointsBalancesNotification.cs
 src/TalonOne/Model/CardAddedDeductedPointsBalancesNotificationPolicy.cs
 src/TalonOne/Model/CardAddedDeductedPointsNotification.cs
 src/TalonOne/Model/CardAddedDeductedPointsNotificationPolicy.cs
@@ -1418,8 +1461,10 @@ src/TalonOne/Model/CouponCreationJob.cs
 src/TalonOne/Model/CouponDeletionFilters.cs
 src/TalonOne/Model/CouponDeletionJob.cs
 src/TalonOne/Model/CouponEntity.cs
+src/TalonOne/Model/CouponFailureSummary.cs
 src/TalonOne/Model/CouponLimitConfigs.cs
 src/TalonOne/Model/CouponRejectionReason.cs
+src/TalonOne/Model/CouponRejections.cs
 src/TalonOne/Model/CouponReservations.cs
 src/TalonOne/Model/CouponSearch.cs
 src/TalonOne/Model/CouponValue.cs
@@ -1487,6 +1532,7 @@ src/TalonOne/Model/FuncArgDef.cs
 src/TalonOne/Model/FunctionDef.cs
 src/TalonOne/Model/GenerateAuditLogSummary.cs
 src/TalonOne/Model/GenerateCampaignDescription.cs
+src/TalonOne/Model/GenerateCampaignSummary.cs
 src/TalonOne/Model/GenerateCampaignTags.cs
 src/TalonOne/Model/GenerateCouponFailureDetailedSummary.cs
 src/TalonOne/Model/GenerateCouponFailureSummary.cs
@@ -1563,7 +1609,6 @@ src/TalonOne/Model/IntegrationStoreEntity.cs
 src/TalonOne/Model/InventoryCoupon.cs
 src/TalonOne/Model/InventoryReferral.cs
 src/TalonOne/Model/ItemAttribute.cs
-src/TalonOne/Model/JWT.cs
 src/TalonOne/Model/LabelTargetAudience.cs
 src/TalonOne/Model/LabelTargetNone.cs
 src/TalonOne/Model/LedgerEntry.cs
@@ -1716,6 +1761,15 @@ src/TalonOne/Model/PriceDetail.cs
 src/TalonOne/Model/PriceType.cs
 src/TalonOne/Model/PriceTypeReferenceDetail.cs
 src/TalonOne/Model/PriceTypeReferences.cs
+src/TalonOne/Model/PrismaticConfig.cs
+src/TalonOne/Model/PrismaticEventPayloadCouponBasedNotifications.cs
+src/TalonOne/Model/PrismaticEventPayloadCouponBasedNotificationsLimits.cs
+src/TalonOne/Model/PrismaticEventPayloadLoyaltyProfileBasedNotifications.cs
+src/TalonOne/Model/PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction.cs
+src/TalonOne/Model/PrismaticFlow.cs
+src/TalonOne/Model/PrismaticFlowConfig.cs
+src/TalonOne/Model/PrismaticFlowWithConfig.cs
+src/TalonOne/Model/PrismaticPaginatedEventPayload.cs
 src/TalonOne/Model/Product.cs
 src/TalonOne/Model/ProductSearchMatch.cs
 src/TalonOne/Model/ProductUnitAnalytics.cs
@@ -1750,6 +1804,7 @@ src/TalonOne/Model/RoleV2ApplicationDetails.cs
 src/TalonOne/Model/RoleV2Base.cs
 src/TalonOne/Model/RoleV2PermissionSet.cs
 src/TalonOne/Model/RoleV2Permissions.cs
+src/TalonOne/Model/RoleV2Readonly.cs
 src/TalonOne/Model/RoleV2RolesGroup.cs
 src/TalonOne/Model/RollbackAddedLoyaltyPointsEffectProps.cs
 src/TalonOne/Model/RollbackCouponEffectProps.cs
@@ -1788,6 +1843,7 @@ src/TalonOne/Model/ScimUser.cs
 src/TalonOne/Model/ScimUsersListResponse.cs
 src/TalonOne/Model/SecondaryDeployment.cs
 src/TalonOne/Model/Session.cs
+src/TalonOne/Model/SessionCoupons.cs
 src/TalonOne/Model/SetDiscountEffectProps.cs
 src/TalonOne/Model/SetDiscountPerAdditionalCostEffectProps.cs
 src/TalonOne/Model/SetDiscountPerAdditionalCostPerItemEffectProps.cs
@@ -1805,6 +1861,7 @@ src/TalonOne/Model/StrikethroughDebugResponse.cs
 src/TalonOne/Model/StrikethroughEffect.cs
 src/TalonOne/Model/StrikethroughLabelingNotification.cs
 src/TalonOne/Model/StrikethroughSetDiscountPerItemEffectProps.cs
+src/TalonOne/Model/StrikethroughSetDiscountPerItemMemberEffectProps.cs
 src/TalonOne/Model/StrikethroughTrigger.cs
 src/TalonOne/Model/SummarizeCampaignStoreBudget200Response.cs
 src/TalonOne/Model/SummaryCampaignStoreBudget.cs

@@ -63,21 +63,21 @@ namespace TalonOne.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Campaign'
-        /// </summary>
-        [Fact]
-        public void CampaignTest()
-        {
-            // TODO unit test for the property 'Campaign'
-        }
-
-        /// <summary>
         /// Test the property 'DeletedAt'
         /// </summary>
         [Fact]
         public void DeletedAtTest()
         {
             // TODO unit test for the property 'DeletedAt'
+        }
+
+        /// <summary>
+        /// Test the property 'Campaign'
+        /// </summary>
+        [Fact]
+        public void CampaignTest()
+        {
+            // TODO unit test for the property 'Campaign'
         }
     }
 }

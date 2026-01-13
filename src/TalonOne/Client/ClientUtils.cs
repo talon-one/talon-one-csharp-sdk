@@ -165,14 +165,20 @@ namespace TalonOne.Client
                 return AchievementStatusEntry.ActivationPolicyEnumToJsonValue(achievementStatusEntryActivationPolicyEnum);
             if (obj is AchievementStatusEntry.StatusEnum achievementStatusEntryStatusEnum)
                 return AchievementStatusEntry.StatusEnumToJsonValue(achievementStatusEntryStatusEnum);
+            if (obj is AddedDeductedPointsBalancesAction.OperationEnum addedDeductedPointsBalancesActionOperationEnum)
+                return AddedDeductedPointsBalancesAction.OperationEnumToJsonValue(addedDeductedPointsBalancesActionOperationEnum);
+            if (obj is AddedDeductedPointsBalancesNotification.NotificationTypeEnum addedDeductedPointsBalancesNotificationNotificationTypeEnum)
+                return AddedDeductedPointsBalancesNotification.NotificationTypeEnumToJsonValue(addedDeductedPointsBalancesNotificationNotificationTypeEnum);
+            if (obj is AddedDeductedPointsBalancesNotification.TypeOfChangeEnum addedDeductedPointsBalancesNotificationTypeOfChangeEnum)
+                return AddedDeductedPointsBalancesNotification.TypeOfChangeEnumToJsonValue(addedDeductedPointsBalancesNotificationTypeOfChangeEnum);
             if (obj is AddedDeductedPointsBalancesNotificationPolicy.ScopesEnum addedDeductedPointsBalancesNotificationPolicyScopesEnum)
                 return AddedDeductedPointsBalancesNotificationPolicy.ScopesEnumToJsonValue(addedDeductedPointsBalancesNotificationPolicyScopesEnum);
+            if (obj is AddedDeductedPointsNotification.NotificationTypeEnum addedDeductedPointsNotificationNotificationTypeEnum)
+                return AddedDeductedPointsNotification.NotificationTypeEnumToJsonValue(addedDeductedPointsNotificationNotificationTypeEnum);
             if (obj is AddedDeductedPointsNotification.TypeOfChangeEnum addedDeductedPointsNotificationTypeOfChangeEnum)
                 return AddedDeductedPointsNotification.TypeOfChangeEnumToJsonValue(addedDeductedPointsNotificationTypeOfChangeEnum);
             if (obj is AddedDeductedPointsNotification.OperationEnum addedDeductedPointsNotificationOperationEnum)
                 return AddedDeductedPointsNotification.OperationEnumToJsonValue(addedDeductedPointsNotificationOperationEnum);
-            if (obj is AddedDeductedPointsNotification.NotificationTypeEnum addedDeductedPointsNotificationNotificationTypeEnum)
-                return AddedDeductedPointsNotification.NotificationTypeEnumToJsonValue(addedDeductedPointsNotificationNotificationTypeEnum);
             if (obj is AddedDeductedPointsNotificationPolicy.ScopesEnum addedDeductedPointsNotificationPolicyScopesEnum)
                 return AddedDeductedPointsNotificationPolicy.ScopesEnumToJsonValue(addedDeductedPointsNotificationPolicyScopesEnum);
             if (obj is AdditionalCampaignProperties.FrontendStateEnum additionalCampaignPropertiesFrontendStateEnum)
@@ -279,14 +285,18 @@ namespace TalonOne.Client
                 return CampaignTemplateParams.TypeEnumToJsonValue(campaignTemplateParamsTypeEnum);
             if (obj is CampaignVersions.RevisionFrontendStateEnum campaignVersionsRevisionFrontendStateEnum)
                 return CampaignVersions.RevisionFrontendStateEnumToJsonValue(campaignVersionsRevisionFrontendStateEnum);
+            if (obj is CardAddedDeductedPointsBalancesNotification.NotificationTypeEnum cardAddedDeductedPointsBalancesNotificationNotificationTypeEnum)
+                return CardAddedDeductedPointsBalancesNotification.NotificationTypeEnumToJsonValue(cardAddedDeductedPointsBalancesNotificationNotificationTypeEnum);
+            if (obj is CardAddedDeductedPointsBalancesNotification.TypeOfChangeEnum cardAddedDeductedPointsBalancesNotificationTypeOfChangeEnum)
+                return CardAddedDeductedPointsBalancesNotification.TypeOfChangeEnumToJsonValue(cardAddedDeductedPointsBalancesNotificationTypeOfChangeEnum);
             if (obj is CardAddedDeductedPointsBalancesNotificationPolicy.ScopesEnum cardAddedDeductedPointsBalancesNotificationPolicyScopesEnum)
                 return CardAddedDeductedPointsBalancesNotificationPolicy.ScopesEnumToJsonValue(cardAddedDeductedPointsBalancesNotificationPolicyScopesEnum);
+            if (obj is CardAddedDeductedPointsNotification.NotificationTypeEnum cardAddedDeductedPointsNotificationNotificationTypeEnum)
+                return CardAddedDeductedPointsNotification.NotificationTypeEnumToJsonValue(cardAddedDeductedPointsNotificationNotificationTypeEnum);
             if (obj is CardAddedDeductedPointsNotification.TypeOfChangeEnum cardAddedDeductedPointsNotificationTypeOfChangeEnum)
                 return CardAddedDeductedPointsNotification.TypeOfChangeEnumToJsonValue(cardAddedDeductedPointsNotificationTypeOfChangeEnum);
             if (obj is CardAddedDeductedPointsNotification.OperationEnum cardAddedDeductedPointsNotificationOperationEnum)
                 return CardAddedDeductedPointsNotification.OperationEnumToJsonValue(cardAddedDeductedPointsNotificationOperationEnum);
-            if (obj is CardAddedDeductedPointsNotification.NotificationTypeEnum cardAddedDeductedPointsNotificationNotificationTypeEnum)
-                return CardAddedDeductedPointsNotification.NotificationTypeEnumToJsonValue(cardAddedDeductedPointsNotificationNotificationTypeEnum);
             if (obj is CardAddedDeductedPointsNotificationPolicy.ScopesEnum cardAddedDeductedPointsNotificationPolicyScopesEnum)
                 return CardAddedDeductedPointsNotificationPolicy.ScopesEnumToJsonValue(cardAddedDeductedPointsNotificationPolicyScopesEnum);
             if (obj is CardExpiringPointsNotificationTrigger.PeriodEnum cardExpiringPointsNotificationTriggerPeriodEnum)
@@ -447,6 +457,10 @@ namespace TalonOne.Client
                 return Picklist.TypeEnumToJsonValue(picklistTypeEnum);
             if (obj is PriceTypeReferenceDetail.ReferencingTypeEnum priceTypeReferenceDetailReferencingTypeEnum)
                 return PriceTypeReferenceDetail.ReferencingTypeEnumToJsonValue(priceTypeReferenceDetailReferencingTypeEnum);
+            if (obj is PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction.OperationEnum prismaticEventPayloadLoyaltyProfileBasedNotificationsActionOperationEnum)
+                return PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction.OperationEnumToJsonValue(prismaticEventPayloadLoyaltyProfileBasedNotificationsActionOperationEnum);
+            if (obj is PrismaticPaginatedEventPayload.EventTypeEnum prismaticPaginatedEventPayloadEventTypeEnum)
+                return PrismaticPaginatedEventPayload.EventTypeEnumToJsonValue(prismaticPaginatedEventPayloadEventTypeEnum);
             if (obj is ReferralRejectionReason.ReasonEnum referralRejectionReasonReasonEnum)
                 return ReferralRejectionReason.ReasonEnumToJsonValue(referralRejectionReasonReasonEnum);
             if (obj is ReturnIntegrationRequest.ResponseContentEnum returnIntegrationRequestResponseContentEnum)

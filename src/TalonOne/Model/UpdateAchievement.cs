@@ -325,6 +325,7 @@ namespace TalonOne.Model
         /// Gets or Sets PeriodEndOverride
         /// </summary>
         [JsonPropertyName("periodEndOverride")]
+        [Obsolete]
         public TimePoint PeriodEndOverride { get { return this.PeriodEndOverrideOption; } set { this.PeriodEndOverrideOption = new Option<TimePoint>(value); } }
 
         /// <summary>

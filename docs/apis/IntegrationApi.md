@@ -731,7 +731,7 @@ Get paginated results of loyalty points for a given loyalty card identifier in a
 
 <a id="getloyaltycardtransactions"></a>
 # **GetLoyaltyCardTransactions**
-> GetLoyaltyCardTransactions200Response GetLoyaltyCardTransactions (long loyaltyProgramId, string loyaltyCardId, List<string> subledgerId = null, string loyaltyTransactionType = null, DateTime startDate = null, DateTime endDate = null, List<string> customerSessionIDs = null, List<string> transactionUUIDs = null, long pageSize = null, long skip = null, bool awaitsActivation = null)
+> GetLoyaltyCardTransactions200Response GetLoyaltyCardTransactions (long loyaltyProgramId, string loyaltyCardId, List<string> subledgerId = null, string loyaltyTransactionType = null, DateTime startDate = null, DateTime endDate = null, List<string> customerSessionIDs = null, List<string> transactionUUIDs = null, long pageSize = null, long skip = null)
 
 List card's transactions
 
@@ -752,7 +752,6 @@ Retrieve loyalty transaction logs for the given loyalty card in the specified lo
 | **transactionUUIDs** | [**List&lt;string&gt;**](string.md) | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  | [optional]  |
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 50] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
-| **awaitsActivation** | **bool** | If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired. If &#x60;false&#x60;: Returns an error.  | [optional]  |
 
 ### Return type
 
@@ -827,7 +826,7 @@ Get paginated results of loyalty points for a given Integration ID in the specif
 
 <a id="getloyaltyprogramprofiletransactions"></a>
 # **GetLoyaltyProgramProfileTransactions**
-> GetLoyaltyProgramProfileTransactions200Response GetLoyaltyProgramProfileTransactions (long loyaltyProgramId, string integrationId, List<string> customerSessionIDs = null, List<string> transactionUUIDs = null, string subledgerId = null, string loyaltyTransactionType = null, DateTime startDate = null, DateTime endDate = null, long pageSize = null, long skip = null, bool awaitsActivation = null)
+> GetLoyaltyProgramProfileTransactions200Response GetLoyaltyProgramProfileTransactions (long loyaltyProgramId, string integrationId, List<string> customerSessionIDs = null, List<string> transactionUUIDs = null, string subledgerId = null, string loyaltyTransactionType = null, DateTime startDate = null, DateTime endDate = null, long pageSize = null, long skip = null)
 
 List customer's loyalty transactions
 
@@ -848,7 +847,6 @@ Retrieve paginated results of loyalty transaction logs for the given Integration
 | **endDate** | **DateTime** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [optional]  |
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 50] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
-| **awaitsActivation** | **bool** | If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired. If &#x60;false&#x60;: Returns an error.  | [optional]  |
 
 ### Return type
 

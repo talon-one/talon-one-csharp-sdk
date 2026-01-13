@@ -31,43 +31,117 @@ namespace TalonOne.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CardAddedDeductedPointsNotification" /> class.
         /// </summary>
-        /// <param name="profileIntegrationIDs">The integration ID of the customer profile to whom points were added or deducted.</param>
-        /// <param name="loyaltyProgramID">The ID of the loyalty program.</param>
-        /// <param name="subledgerID">The ID of the subledger within the loyalty program where these points were added or deducted.</param>
-        /// <param name="amount">The amount of added or deducted loyalty points.</param>
-        /// <param name="reason">The reason for the points addition or deduction.</param>
-        /// <param name="typeOfChange">The notification source, that is, it indicates whether the points were added or deducted via one of the following routes:  - [The Campaign Manager](/docs/product/getting-started)  - [Management API](/management-api#tag/Loyalty)  - [Rule Engine](/docs/product/applications/evaluation-order-for-rules-and-filters) </param>
-        /// <param name="employeeName">The name of the employee who added or deducted points.</param>
-        /// <param name="userID">The ID of the employee who added or deducted points.</param>
-        /// <param name="operation">The action (addition or deduction) made with loyalty points.</param>
-        /// <param name="sessionIntegrationID">The integration ID of the session through which the points were earned or lost.</param>
-        /// <param name="notificationType">The type of notification.</param>
         /// <param name="cardIdentifier">Loyalty card identification number.</param>
+        /// <param name="employeeName">The name of the employee who added or deducted points.</param>
+        /// <param name="loyaltyProgramID">The ID of the loyalty program.</param>
+        /// <param name="notificationType">The type of notification.</param>
+        /// <param name="profileIntegrationIDs">The integration ID of the customer profile to whom points were added or deducted.</param>
+        /// <param name="sessionIntegrationID">The integration ID of the session through which the points were earned or lost.</param>
+        /// <param name="subledgerID">The ID of the subledger within the loyalty program where these points were added or deducted.</param>
+        /// <param name="typeOfChange">The notification source, that is, it indicates whether the points were added or deducted via one of the following routes:  - [The Campaign Manager](/docs/product/getting-started)  - [Management API](/management-api#tag/Loyalty)  - [Rule Engine](/docs/product/applications/evaluation-order-for-rules-and-filters) </param>
+        /// <param name="userID">The ID of the employee who added or deducted points.</param>
         /// <param name="usersPerCardLimit">The max amount of user profiles with whom a card can be shared. This can be set to &#x60;0&#x60; for no limit.</param>
-        /// <param name="startDate">The start date for loyalty points.</param>
+        /// <param name="amount">The amount of added or deducted loyalty points.</param>
+        /// <param name="operation">The action (addition or deduction) made with loyalty points.</param>
+        /// <param name="reason">The reason for the points addition or deduction.</param>
         /// <param name="expiryDate">The expiration date for loyalty points.</param>
+        /// <param name="startDate">The start date for loyalty points.</param>
         [JsonConstructor]
-        public CardAddedDeductedPointsNotification(List<string> profileIntegrationIDs, long loyaltyProgramID, string subledgerID, decimal amount, string reason, TypeOfChangeEnum typeOfChange, string employeeName, long userID, OperationEnum operation, string sessionIntegrationID, NotificationTypeEnum notificationType, string cardIdentifier, long usersPerCardLimit, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default)
+        public CardAddedDeductedPointsNotification(string cardIdentifier, string employeeName, long loyaltyProgramID, NotificationTypeEnum notificationType, List<string> profileIntegrationIDs, string sessionIntegrationID, string subledgerID, TypeOfChangeEnum typeOfChange, long userID, long usersPerCardLimit, decimal amount, OperationEnum operation, string reason, Option<DateTime?> expiryDate = default, Option<DateTime?> startDate = default)
         {
-            ProfileIntegrationIDs = profileIntegrationIDs;
-            LoyaltyProgramID = loyaltyProgramID;
-            SubledgerID = subledgerID;
-            Amount = amount;
-            Reason = reason;
-            TypeOfChange = typeOfChange;
-            EmployeeName = employeeName;
-            UserID = userID;
-            Operation = operation;
-            SessionIntegrationID = sessionIntegrationID;
-            NotificationType = notificationType;
             CardIdentifier = cardIdentifier;
+            EmployeeName = employeeName;
+            LoyaltyProgramID = loyaltyProgramID;
+            NotificationType = notificationType;
+            ProfileIntegrationIDs = profileIntegrationIDs;
+            SessionIntegrationID = sessionIntegrationID;
+            SubledgerID = subledgerID;
+            TypeOfChange = typeOfChange;
+            UserID = userID;
             UsersPerCardLimit = usersPerCardLimit;
-            StartDateOption = startDate;
+            Amount = amount;
+            Operation = operation;
+            Reason = reason;
             ExpiryDateOption = expiryDate;
+            StartDateOption = startDate;
             OnCreated();
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// The type of notification.
+        /// </summary>
+        /// <value>The type of notification.</value>
+        public enum NotificationTypeEnum
+        {
+            /// <summary>
+            /// Enum LoyaltyCardPointsDeducted for value: LoyaltyCardPointsDeducted
+            /// </summary>
+            LoyaltyCardPointsDeducted = 1,
+
+            /// <summary>
+            /// Enum LoyaltyCardPointsAdded for value: LoyaltyCardPointsAdded
+            /// </summary>
+            LoyaltyCardPointsAdded = 2
+        }
+
+        /// <summary>
+        /// Returns a <see cref="NotificationTypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static NotificationTypeEnum NotificationTypeEnumFromString(string value)
+        {
+            if (value.Equals("LoyaltyCardPointsDeducted"))
+                return NotificationTypeEnum.LoyaltyCardPointsDeducted;
+
+            if (value.Equals("LoyaltyCardPointsAdded"))
+                return NotificationTypeEnum.LoyaltyCardPointsAdded;
+
+            throw new NotImplementedException($"Could not convert value to type NotificationTypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="NotificationTypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static NotificationTypeEnum? NotificationTypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("LoyaltyCardPointsDeducted"))
+                return NotificationTypeEnum.LoyaltyCardPointsDeducted;
+
+            if (value.Equals("LoyaltyCardPointsAdded"))
+                return NotificationTypeEnum.LoyaltyCardPointsAdded;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="NotificationTypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string NotificationTypeEnumToJsonValue(NotificationTypeEnum value)
+        {
+            if (value == NotificationTypeEnum.LoyaltyCardPointsDeducted)
+                return "LoyaltyCardPointsDeducted";
+
+            if (value == NotificationTypeEnum.LoyaltyCardPointsAdded)
+                return "LoyaltyCardPointsAdded";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// The type of notification.
+        /// </summary>
+        /// <value>The type of notification.</value>
+        [JsonPropertyName("NotificationType")]
+        public NotificationTypeEnum NotificationType { get; set; }
 
         /// <summary>
         /// The notification source, that is, it indicates whether the points were added or deducted via one of the following routes:  - [The Campaign Manager](/docs/product/getting-started)  - [Management API](/management-api#tag/Loyalty)  - [Rule Engine](/docs/product/applications/evaluation-order-for-rules-and-filters) 
@@ -232,86 +306,20 @@ namespace TalonOne.Model
         public OperationEnum Operation { get; set; }
 
         /// <summary>
-        /// The type of notification.
+        /// Loyalty card identification number.
         /// </summary>
-        /// <value>The type of notification.</value>
-        public enum NotificationTypeEnum
-        {
-            /// <summary>
-            /// Enum LoyaltyCardPointsDeducted for value: LoyaltyCardPointsDeducted
-            /// </summary>
-            LoyaltyCardPointsDeducted = 1,
-
-            /// <summary>
-            /// Enum LoyaltyCardPointsAdded for value: LoyaltyCardPointsAdded
-            /// </summary>
-            LoyaltyCardPointsAdded = 2
-        }
+        /// <value>Loyalty card identification number.</value>
+        /* <example>123-456-789ATBC</example> */
+        [JsonPropertyName("CardIdentifier")]
+        public string CardIdentifier { get; set; }
 
         /// <summary>
-        /// Returns a <see cref="NotificationTypeEnum"/>
+        /// The name of the employee who added or deducted points.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static NotificationTypeEnum NotificationTypeEnumFromString(string value)
-        {
-            if (value.Equals("LoyaltyCardPointsDeducted"))
-                return NotificationTypeEnum.LoyaltyCardPointsDeducted;
-
-            if (value.Equals("LoyaltyCardPointsAdded"))
-                return NotificationTypeEnum.LoyaltyCardPointsAdded;
-
-            throw new NotImplementedException($"Could not convert value to type NotificationTypeEnum: '{value}'");
-        }
-
-        /// <summary>
-        /// Returns a <see cref="NotificationTypeEnum"/>
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static NotificationTypeEnum? NotificationTypeEnumFromStringOrDefault(string value)
-        {
-            if (value.Equals("LoyaltyCardPointsDeducted"))
-                return NotificationTypeEnum.LoyaltyCardPointsDeducted;
-
-            if (value.Equals("LoyaltyCardPointsAdded"))
-                return NotificationTypeEnum.LoyaltyCardPointsAdded;
-
-            return null;
-        }
-
-        /// <summary>
-        /// Converts the <see cref="NotificationTypeEnum"/> to the json value
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string NotificationTypeEnumToJsonValue(NotificationTypeEnum value)
-        {
-            if (value == NotificationTypeEnum.LoyaltyCardPointsDeducted)
-                return "LoyaltyCardPointsDeducted";
-
-            if (value == NotificationTypeEnum.LoyaltyCardPointsAdded)
-                return "LoyaltyCardPointsAdded";
-
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-
-        /// <summary>
-        /// The type of notification.
-        /// </summary>
-        /// <value>The type of notification.</value>
-        [JsonPropertyName("NotificationType")]
-        public NotificationTypeEnum NotificationType { get; set; }
-
-        /// <summary>
-        /// The integration ID of the customer profile to whom points were added or deducted.
-        /// </summary>
-        /// <value>The integration ID of the customer profile to whom points were added or deducted.</value>
-        /* <example>[&quot;yJSObdNNtOetCHWHPFuz&quot;,&quot;test-user-4zoj1c&quot;]</example> */
-        [JsonPropertyName("ProfileIntegrationIDs")]
-        public List<string> ProfileIntegrationIDs { get; set; }
+        /// <value>The name of the employee who added or deducted points.</value>
+        /* <example>Franziska Schneider</example> */
+        [JsonPropertyName("EmployeeName")]
+        public string EmployeeName { get; set; }
 
         /// <summary>
         /// The ID of the loyalty program.
@@ -322,12 +330,44 @@ namespace TalonOne.Model
         public long LoyaltyProgramID { get; set; }
 
         /// <summary>
+        /// The integration ID of the customer profile to whom points were added or deducted.
+        /// </summary>
+        /// <value>The integration ID of the customer profile to whom points were added or deducted.</value>
+        /* <example>[&quot;yJSObdNNtOetCHWHPFuz&quot;,&quot;test-user-4zoj1c&quot;]</example> */
+        [JsonPropertyName("ProfileIntegrationIDs")]
+        public List<string> ProfileIntegrationIDs { get; set; }
+
+        /// <summary>
+        /// The integration ID of the session through which the points were earned or lost.
+        /// </summary>
+        /// <value>The integration ID of the session through which the points were earned or lost.</value>
+        /* <example>cc53e4fa-547f-4f5e-8333-76e05c381f67</example> */
+        [JsonPropertyName("SessionIntegrationID")]
+        public string SessionIntegrationID { get; set; }
+
+        /// <summary>
         /// The ID of the subledger within the loyalty program where these points were added or deducted.
         /// </summary>
         /// <value>The ID of the subledger within the loyalty program where these points were added or deducted.</value>
         /* <example>sub-123</example> */
         [JsonPropertyName("SubledgerID")]
         public string SubledgerID { get; set; }
+
+        /// <summary>
+        /// The ID of the employee who added or deducted points.
+        /// </summary>
+        /// <value>The ID of the employee who added or deducted points.</value>
+        /* <example>25</example> */
+        [JsonPropertyName("UserID")]
+        public long UserID { get; set; }
+
+        /// <summary>
+        /// The max amount of user profiles with whom a card can be shared. This can be set to &#x60;0&#x60; for no limit.
+        /// </summary>
+        /// <value>The max amount of user profiles with whom a card can be shared. This can be set to &#x60;0&#x60; for no limit.</value>
+        /* <example>10</example> */
+        [JsonPropertyName("UsersPerCardLimit")]
+        public long UsersPerCardLimit { get; set; }
 
         /// <summary>
         /// The amount of added or deducted loyalty points.
@@ -346,44 +386,19 @@ namespace TalonOne.Model
         public string Reason { get; set; }
 
         /// <summary>
-        /// The name of the employee who added or deducted points.
+        /// Used to track the state of ExpiryDate
         /// </summary>
-        /// <value>The name of the employee who added or deducted points.</value>
-        /* <example>Franziska Schneider</example> */
-        [JsonPropertyName("EmployeeName")]
-        public string EmployeeName { get; set; }
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTime?> ExpiryDateOption { get; private set; }
 
         /// <summary>
-        /// The ID of the employee who added or deducted points.
+        /// The expiration date for loyalty points.
         /// </summary>
-        /// <value>The ID of the employee who added or deducted points.</value>
-        /* <example>25</example> */
-        [JsonPropertyName("UserID")]
-        public long UserID { get; set; }
-
-        /// <summary>
-        /// The integration ID of the session through which the points were earned or lost.
-        /// </summary>
-        /// <value>The integration ID of the session through which the points were earned or lost.</value>
-        /* <example>cc53e4fa-547f-4f5e-8333-76e05c381f67</example> */
-        [JsonPropertyName("SessionIntegrationID")]
-        public string SessionIntegrationID { get; set; }
-
-        /// <summary>
-        /// Loyalty card identification number.
-        /// </summary>
-        /// <value>Loyalty card identification number.</value>
-        /* <example>123-456-789ATBC</example> */
-        [JsonPropertyName("CardIdentifier")]
-        public string CardIdentifier { get; set; }
-
-        /// <summary>
-        /// The max amount of user profiles with whom a card can be shared. This can be set to &#x60;0&#x60; for no limit.
-        /// </summary>
-        /// <value>The max amount of user profiles with whom a card can be shared. This can be set to &#x60;0&#x60; for no limit.</value>
-        /* <example>10</example> */
-        [JsonPropertyName("UsersPerCardLimit")]
-        public long UsersPerCardLimit { get; set; }
+        /// <value>The expiration date for loyalty points.</value>
+        /* <example>2024-01-24T14:15:22Z</example> */
+        [JsonPropertyName("ExpiryDate")]
+        public DateTime? ExpiryDate { get { return this.ExpiryDateOption; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of StartDate
@@ -401,21 +416,6 @@ namespace TalonOne.Model
         public DateTime? StartDate { get { return this.StartDateOption; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
-        /// Used to track the state of ExpiryDate
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<DateTime?> ExpiryDateOption { get; private set; }
-
-        /// <summary>
-        /// The expiration date for loyalty points.
-        /// </summary>
-        /// <value>The expiration date for loyalty points.</value>
-        /* <example>2024-01-24T14:15:22Z</example> */
-        [JsonPropertyName("ExpiryDate")]
-        public DateTime? ExpiryDate { get { return this.ExpiryDateOption; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -423,21 +423,21 @@ namespace TalonOne.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CardAddedDeductedPointsNotification {\n");
-            sb.Append("  ProfileIntegrationIDs: ").Append(ProfileIntegrationIDs).Append("\n");
-            sb.Append("  LoyaltyProgramID: ").Append(LoyaltyProgramID).Append("\n");
-            sb.Append("  SubledgerID: ").Append(SubledgerID).Append("\n");
-            sb.Append("  Amount: ").Append(Amount).Append("\n");
-            sb.Append("  Reason: ").Append(Reason).Append("\n");
-            sb.Append("  TypeOfChange: ").Append(TypeOfChange).Append("\n");
-            sb.Append("  EmployeeName: ").Append(EmployeeName).Append("\n");
-            sb.Append("  UserID: ").Append(UserID).Append("\n");
-            sb.Append("  Operation: ").Append(Operation).Append("\n");
-            sb.Append("  SessionIntegrationID: ").Append(SessionIntegrationID).Append("\n");
-            sb.Append("  NotificationType: ").Append(NotificationType).Append("\n");
             sb.Append("  CardIdentifier: ").Append(CardIdentifier).Append("\n");
+            sb.Append("  EmployeeName: ").Append(EmployeeName).Append("\n");
+            sb.Append("  LoyaltyProgramID: ").Append(LoyaltyProgramID).Append("\n");
+            sb.Append("  NotificationType: ").Append(NotificationType).Append("\n");
+            sb.Append("  ProfileIntegrationIDs: ").Append(ProfileIntegrationIDs).Append("\n");
+            sb.Append("  SessionIntegrationID: ").Append(SessionIntegrationID).Append("\n");
+            sb.Append("  SubledgerID: ").Append(SubledgerID).Append("\n");
+            sb.Append("  TypeOfChange: ").Append(TypeOfChange).Append("\n");
+            sb.Append("  UserID: ").Append(UserID).Append("\n");
             sb.Append("  UsersPerCardLimit: ").Append(UsersPerCardLimit).Append("\n");
-            sb.Append("  StartDate: ").Append(StartDate).Append("\n");
+            sb.Append("  Amount: ").Append(Amount).Append("\n");
+            sb.Append("  Operation: ").Append(Operation).Append("\n");
+            sb.Append("  Reason: ").Append(Reason).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
+            sb.Append("  StartDate: ").Append(StartDate).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -455,12 +455,6 @@ namespace TalonOne.Model
                 yield return new ValidationResult("Invalid value for LoyaltyProgramID, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramID" });
             }
 
-            // UserID (long) minimum
-            if (this.UserID < (long)1)
-            {
-                yield return new ValidationResult("Invalid value for UserID, must be a value greater than or equal to 1.", new [] { "UserID" });
-            }
-
             yield break;
         }
     }
@@ -471,14 +465,14 @@ namespace TalonOne.Model
     public class CardAddedDeductedPointsNotificationJsonConverter : JsonConverter<CardAddedDeductedPointsNotification>
     {
         /// <summary>
-        /// The format to use to serialize StartDate
-        /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
-
-        /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
         public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+
+        /// <summary>
+        /// The format to use to serialize StartDate
+        /// </summary>
+        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="CardAddedDeductedPointsNotification" />
@@ -497,21 +491,21 @@ namespace TalonOne.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<List<string>> profileIntegrationIDs = default;
-            Option<long?> loyaltyProgramID = default;
-            Option<string> subledgerID = default;
-            Option<decimal?> amount = default;
-            Option<string> reason = default;
-            Option<CardAddedDeductedPointsNotification.TypeOfChangeEnum?> typeOfChange = default;
-            Option<string> employeeName = default;
-            Option<long?> userID = default;
-            Option<CardAddedDeductedPointsNotification.OperationEnum?> operation = default;
-            Option<string> sessionIntegrationID = default;
-            Option<CardAddedDeductedPointsNotification.NotificationTypeEnum?> notificationType = default;
             Option<string> cardIdentifier = default;
+            Option<string> employeeName = default;
+            Option<long?> loyaltyProgramID = default;
+            Option<CardAddedDeductedPointsNotification.NotificationTypeEnum?> notificationType = default;
+            Option<List<string>> profileIntegrationIDs = default;
+            Option<string> sessionIntegrationID = default;
+            Option<string> subledgerID = default;
+            Option<CardAddedDeductedPointsNotification.TypeOfChangeEnum?> typeOfChange = default;
+            Option<long?> userID = default;
             Option<long?> usersPerCardLimit = default;
-            Option<DateTime?> startDate = default;
+            Option<decimal?> amount = default;
+            Option<CardAddedDeductedPointsNotification.OperationEnum?> operation = default;
+            Option<string> reason = default;
             Option<DateTime?> expiryDate = default;
+            Option<DateTime?> startDate = default;
 
             while (utf8JsonReader.Read())
             {
@@ -528,56 +522,56 @@ namespace TalonOne.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "ProfileIntegrationIDs":
-                            profileIntegrationIDs = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "LoyaltyProgramID":
-                            loyaltyProgramID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "SubledgerID":
-                            subledgerID = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "Amount":
-                            amount = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
-                            break;
-                        case "Reason":
-                            reason = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "TypeOfChange":
-                            string typeOfChangeRawValue = utf8JsonReader.GetString();
-                            if (typeOfChangeRawValue != null)
-                                typeOfChange = new Option<CardAddedDeductedPointsNotification.TypeOfChangeEnum?>(CardAddedDeductedPointsNotification.TypeOfChangeEnumFromStringOrDefault(typeOfChangeRawValue));
+                        case "CardIdentifier":
+                            cardIdentifier = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "EmployeeName":
                             employeeName = new Option<string>(utf8JsonReader.GetString());
                             break;
-                        case "UserID":
-                            userID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "Operation":
-                            string operationRawValue = utf8JsonReader.GetString();
-                            if (operationRawValue != null)
-                                operation = new Option<CardAddedDeductedPointsNotification.OperationEnum?>(CardAddedDeductedPointsNotification.OperationEnumFromStringOrDefault(operationRawValue));
-                            break;
-                        case "SessionIntegrationID":
-                            sessionIntegrationID = new Option<string>(utf8JsonReader.GetString());
+                        case "LoyaltyProgramID":
+                            loyaltyProgramID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "NotificationType":
                             string notificationTypeRawValue = utf8JsonReader.GetString();
                             if (notificationTypeRawValue != null)
                                 notificationType = new Option<CardAddedDeductedPointsNotification.NotificationTypeEnum?>(CardAddedDeductedPointsNotification.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue));
                             break;
-                        case "CardIdentifier":
-                            cardIdentifier = new Option<string>(utf8JsonReader.GetString());
+                        case "ProfileIntegrationIDs":
+                            profileIntegrationIDs = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "SessionIntegrationID":
+                            sessionIntegrationID = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "SubledgerID":
+                            subledgerID = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "TypeOfChange":
+                            string typeOfChangeRawValue = utf8JsonReader.GetString();
+                            if (typeOfChangeRawValue != null)
+                                typeOfChange = new Option<CardAddedDeductedPointsNotification.TypeOfChangeEnum?>(CardAddedDeductedPointsNotification.TypeOfChangeEnumFromStringOrDefault(typeOfChangeRawValue));
+                            break;
+                        case "UserID":
+                            userID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "UsersPerCardLimit":
                             usersPerCardLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
-                        case "StartDate":
-                            startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                        case "Amount":
+                            amount = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "Operation":
+                            string operationRawValue = utf8JsonReader.GetString();
+                            if (operationRawValue != null)
+                                operation = new Option<CardAddedDeductedPointsNotification.OperationEnum?>(CardAddedDeductedPointsNotification.OperationEnumFromStringOrDefault(operationRawValue));
+                            break;
+                        case "Reason":
+                            reason = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "ExpiryDate":
                             expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "StartDate":
+                            startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -585,91 +579,91 @@ namespace TalonOne.Model
                 }
             }
 
-            if (!profileIntegrationIDs.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(profileIntegrationIDs));
-
-            if (!loyaltyProgramID.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(loyaltyProgramID));
-
-            if (!subledgerID.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(subledgerID));
-
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(amount));
-
-            if (!reason.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(reason));
-
-            if (!typeOfChange.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(typeOfChange));
+            if (!cardIdentifier.IsSet)
+                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(cardIdentifier));
 
             if (!employeeName.IsSet)
                 throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(employeeName));
 
-            if (!userID.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(userID));
-
-            if (!operation.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(operation));
-
-            if (!sessionIntegrationID.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(sessionIntegrationID));
+            if (!loyaltyProgramID.IsSet)
+                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(loyaltyProgramID));
 
             if (!notificationType.IsSet)
                 throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(notificationType));
 
-            if (!cardIdentifier.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(cardIdentifier));
+            if (!profileIntegrationIDs.IsSet)
+                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(profileIntegrationIDs));
+
+            if (!sessionIntegrationID.IsSet)
+                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(sessionIntegrationID));
+
+            if (!subledgerID.IsSet)
+                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(subledgerID));
+
+            if (!typeOfChange.IsSet)
+                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(typeOfChange));
+
+            if (!userID.IsSet)
+                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(userID));
 
             if (!usersPerCardLimit.IsSet)
                 throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(usersPerCardLimit));
 
-            if (profileIntegrationIDs.IsSet && profileIntegrationIDs.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationIDs), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(amount));
 
-            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+            if (!operation.IsSet)
+                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(operation));
 
-            if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (reason.IsSet && reason.Value == null)
-                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (typeOfChange.IsSet && typeOfChange.Value == null)
-                throw new ArgumentNullException(nameof(typeOfChange), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (employeeName.IsSet && employeeName.Value == null)
-                throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (userID.IsSet && userID.Value == null)
-                throw new ArgumentNullException(nameof(userID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (operation.IsSet && operation.Value == null)
-                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (sessionIntegrationID.IsSet && sessionIntegrationID.Value == null)
-                throw new ArgumentNullException(nameof(sessionIntegrationID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+            if (!reason.IsSet)
+                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(reason));
 
             if (cardIdentifier.IsSet && cardIdentifier.Value == null)
                 throw new ArgumentNullException(nameof(cardIdentifier), "Property is not nullable for class CardAddedDeductedPointsNotification.");
 
+            if (employeeName.IsSet && employeeName.Value == null)
+                throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (notificationType.IsSet && notificationType.Value == null)
+                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (profileIntegrationIDs.IsSet && profileIntegrationIDs.Value == null)
+                throw new ArgumentNullException(nameof(profileIntegrationIDs), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (sessionIntegrationID.IsSet && sessionIntegrationID.Value == null)
+                throw new ArgumentNullException(nameof(sessionIntegrationID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (subledgerID.IsSet && subledgerID.Value == null)
+                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (typeOfChange.IsSet && typeOfChange.Value == null)
+                throw new ArgumentNullException(nameof(typeOfChange), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (userID.IsSet && userID.Value == null)
+                throw new ArgumentNullException(nameof(userID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
             if (usersPerCardLimit.IsSet && usersPerCardLimit.Value == null)
                 throw new ArgumentNullException(nameof(usersPerCardLimit), "Property is not nullable for class CardAddedDeductedPointsNotification.");
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+            if (amount.IsSet && amount.Value == null)
+                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (operation.IsSet && operation.Value == null)
+                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (reason.IsSet && reason.Value == null)
+                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class CardAddedDeductedPointsNotification.");
 
             if (expiryDate.IsSet && expiryDate.Value == null)
                 throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class CardAddedDeductedPointsNotification.");
 
-            return new CardAddedDeductedPointsNotification(profileIntegrationIDs.Value, loyaltyProgramID.Value.Value, subledgerID.Value, amount.Value.Value, reason.Value, typeOfChange.Value.Value, employeeName.Value, userID.Value.Value, operation.Value.Value, sessionIntegrationID.Value, notificationType.Value.Value, cardIdentifier.Value, usersPerCardLimit.Value.Value, startDate, expiryDate);
+            if (startDate.IsSet && startDate.Value == null)
+                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            return new CardAddedDeductedPointsNotification(cardIdentifier.Value, employeeName.Value, loyaltyProgramID.Value.Value, notificationType.Value.Value, profileIntegrationIDs.Value, sessionIntegrationID.Value, subledgerID.Value, typeOfChange.Value.Value, userID.Value.Value, usersPerCardLimit.Value.Value, amount.Value.Value, operation.Value.Value, reason.Value, expiryDate, startDate);
         }
 
         /// <summary>
@@ -696,8 +690,17 @@ namespace TalonOne.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CardAddedDeductedPointsNotification cardAddedDeductedPointsNotification, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (cardAddedDeductedPointsNotification.CardIdentifier == null)
+                throw new ArgumentNullException(nameof(cardAddedDeductedPointsNotification.CardIdentifier), "Property is required for class CardAddedDeductedPointsNotification.");
+
+            if (cardAddedDeductedPointsNotification.EmployeeName == null)
+                throw new ArgumentNullException(nameof(cardAddedDeductedPointsNotification.EmployeeName), "Property is required for class CardAddedDeductedPointsNotification.");
+
             if (cardAddedDeductedPointsNotification.ProfileIntegrationIDs == null)
                 throw new ArgumentNullException(nameof(cardAddedDeductedPointsNotification.ProfileIntegrationIDs), "Property is required for class CardAddedDeductedPointsNotification.");
+
+            if (cardAddedDeductedPointsNotification.SessionIntegrationID == null)
+                throw new ArgumentNullException(nameof(cardAddedDeductedPointsNotification.SessionIntegrationID), "Property is required for class CardAddedDeductedPointsNotification.");
 
             if (cardAddedDeductedPointsNotification.SubledgerID == null)
                 throw new ArgumentNullException(nameof(cardAddedDeductedPointsNotification.SubledgerID), "Property is required for class CardAddedDeductedPointsNotification.");
@@ -705,46 +708,37 @@ namespace TalonOne.Model
             if (cardAddedDeductedPointsNotification.Reason == null)
                 throw new ArgumentNullException(nameof(cardAddedDeductedPointsNotification.Reason), "Property is required for class CardAddedDeductedPointsNotification.");
 
-            if (cardAddedDeductedPointsNotification.EmployeeName == null)
-                throw new ArgumentNullException(nameof(cardAddedDeductedPointsNotification.EmployeeName), "Property is required for class CardAddedDeductedPointsNotification.");
+            writer.WriteString("CardIdentifier", cardAddedDeductedPointsNotification.CardIdentifier);
 
-            if (cardAddedDeductedPointsNotification.SessionIntegrationID == null)
-                throw new ArgumentNullException(nameof(cardAddedDeductedPointsNotification.SessionIntegrationID), "Property is required for class CardAddedDeductedPointsNotification.");
-
-            if (cardAddedDeductedPointsNotification.CardIdentifier == null)
-                throw new ArgumentNullException(nameof(cardAddedDeductedPointsNotification.CardIdentifier), "Property is required for class CardAddedDeductedPointsNotification.");
-
-            writer.WritePropertyName("ProfileIntegrationIDs");
-            JsonSerializer.Serialize(writer, cardAddedDeductedPointsNotification.ProfileIntegrationIDs, jsonSerializerOptions);
-            writer.WriteNumber("LoyaltyProgramID", cardAddedDeductedPointsNotification.LoyaltyProgramID);
-
-            writer.WriteString("SubledgerID", cardAddedDeductedPointsNotification.SubledgerID);
-
-            writer.WriteNumber("Amount", cardAddedDeductedPointsNotification.Amount);
-
-            writer.WriteString("Reason", cardAddedDeductedPointsNotification.Reason);
-
-            var typeOfChangeRawValue = CardAddedDeductedPointsNotification.TypeOfChangeEnumToJsonValue(cardAddedDeductedPointsNotification.TypeOfChange);
-            writer.WriteString("TypeOfChange", typeOfChangeRawValue);
             writer.WriteString("EmployeeName", cardAddedDeductedPointsNotification.EmployeeName);
 
-            writer.WriteNumber("UserID", cardAddedDeductedPointsNotification.UserID);
-
-            var operationRawValue = CardAddedDeductedPointsNotification.OperationEnumToJsonValue(cardAddedDeductedPointsNotification.Operation);
-            writer.WriteString("Operation", operationRawValue);
-            writer.WriteString("SessionIntegrationID", cardAddedDeductedPointsNotification.SessionIntegrationID);
+            writer.WriteNumber("LoyaltyProgramID", cardAddedDeductedPointsNotification.LoyaltyProgramID);
 
             var notificationTypeRawValue = CardAddedDeductedPointsNotification.NotificationTypeEnumToJsonValue(cardAddedDeductedPointsNotification.NotificationType);
             writer.WriteString("NotificationType", notificationTypeRawValue);
-            writer.WriteString("CardIdentifier", cardAddedDeductedPointsNotification.CardIdentifier);
+            writer.WritePropertyName("ProfileIntegrationIDs");
+            JsonSerializer.Serialize(writer, cardAddedDeductedPointsNotification.ProfileIntegrationIDs, jsonSerializerOptions);
+            writer.WriteString("SessionIntegrationID", cardAddedDeductedPointsNotification.SessionIntegrationID);
+
+            writer.WriteString("SubledgerID", cardAddedDeductedPointsNotification.SubledgerID);
+
+            var typeOfChangeRawValue = CardAddedDeductedPointsNotification.TypeOfChangeEnumToJsonValue(cardAddedDeductedPointsNotification.TypeOfChange);
+            writer.WriteString("TypeOfChange", typeOfChangeRawValue);
+            writer.WriteNumber("UserID", cardAddedDeductedPointsNotification.UserID);
 
             writer.WriteNumber("UsersPerCardLimit", cardAddedDeductedPointsNotification.UsersPerCardLimit);
 
-            if (cardAddedDeductedPointsNotification.StartDateOption.IsSet)
-                writer.WriteString("StartDate", cardAddedDeductedPointsNotification.StartDateOption.Value.Value.ToString(StartDateFormat));
+            writer.WriteNumber("Amount", cardAddedDeductedPointsNotification.Amount);
+
+            var operationRawValue = CardAddedDeductedPointsNotification.OperationEnumToJsonValue(cardAddedDeductedPointsNotification.Operation);
+            writer.WriteString("Operation", operationRawValue);
+            writer.WriteString("Reason", cardAddedDeductedPointsNotification.Reason);
 
             if (cardAddedDeductedPointsNotification.ExpiryDateOption.IsSet)
                 writer.WriteString("ExpiryDate", cardAddedDeductedPointsNotification.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
+
+            if (cardAddedDeductedPointsNotification.StartDateOption.IsSet)
+                writer.WriteString("StartDate", cardAddedDeductedPointsNotification.StartDateOption.Value.Value.ToString(StartDateFormat));
         }
     }
 }

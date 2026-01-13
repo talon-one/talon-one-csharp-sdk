@@ -72,21 +72,21 @@ namespace TalonOne.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'EvaluationPosition'
-        /// </summary>
-        [Fact]
-        public void EvaluationPositionTest()
-        {
-            // TODO unit test for the property 'EvaluationPosition'
-        }
-
-        /// <summary>
         /// Test the property 'Ruleset'
         /// </summary>
         [Fact]
         public void RulesetTest()
         {
             // TODO unit test for the property 'Ruleset'
+        }
+
+        /// <summary>
+        /// Test the property 'EvaluationPosition'
+        /// </summary>
+        [Fact]
+        public void EvaluationPositionTest()
+        {
+            // TODO unit test for the property 'EvaluationPosition'
         }
     }
 }
