@@ -1236,10 +1236,14 @@ namespace TalonOne.Test.Api
             Client.Option<string> tags = default;
             Client.Option<DateTime> createdBefore = default;
             Client.Option<DateTime> createdAfter = default;
+            Client.Option<DateTime> startBefore = default;
+            Client.Option<DateTime> startAfter = default;
+            Client.Option<DateTime> endBefore = default;
+            Client.Option<DateTime> endAfter = default;
             Client.Option<long> campaignGroupId = default;
             Client.Option<long> templateId = default;
             Client.Option<long> storeId = default;
-            var response = await _instance.GetCampaignsAsync(applicationId, pageSize, skip, sort, campaignState, name, tags, createdBefore, createdAfter, campaignGroupId, templateId, storeId);
+            var response = await _instance.GetCampaignsAsync(applicationId, pageSize, skip, sort, campaignState, name, tags, createdBefore, createdAfter, startBefore, startAfter, endBefore, endAfter, campaignGroupId, templateId, storeId);
             var model = response.Ok();
             Assert.IsType<GetCampaigns200Response>(model);
         }
@@ -1575,8 +1579,7 @@ namespace TalonOne.Test.Api
             Client.Option<DateTime> endDate = default;
             Client.Option<long> pageSize = default;
             Client.Option<long> skip = default;
-            Client.Option<bool> awaitsActivation = default;
-            var response = await _instance.GetLoyaltyProgramTransactionsAsync(loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip, awaitsActivation);
+            var response = await _instance.GetLoyaltyProgramTransactionsAsync(loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip);
             var model = response.Ok();
             Assert.IsType<GetLoyaltyProgramTransactions200Response>(model);
         }

@@ -54,57 +54,12 @@ namespace TalonOne.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'ProfileIntegrationIDs'
+        /// Test the property 'CardIdentifier'
         /// </summary>
         [Fact]
-        public void ProfileIntegrationIDsTest()
+        public void CardIdentifierTest()
         {
-            // TODO unit test for the property 'ProfileIntegrationIDs'
-        }
-
-        /// <summary>
-        /// Test the property 'LoyaltyProgramID'
-        /// </summary>
-        [Fact]
-        public void LoyaltyProgramIDTest()
-        {
-            // TODO unit test for the property 'LoyaltyProgramID'
-        }
-
-        /// <summary>
-        /// Test the property 'SubledgerID'
-        /// </summary>
-        [Fact]
-        public void SubledgerIDTest()
-        {
-            // TODO unit test for the property 'SubledgerID'
-        }
-
-        /// <summary>
-        /// Test the property 'Amount'
-        /// </summary>
-        [Fact]
-        public void AmountTest()
-        {
-            // TODO unit test for the property 'Amount'
-        }
-
-        /// <summary>
-        /// Test the property 'Reason'
-        /// </summary>
-        [Fact]
-        public void ReasonTest()
-        {
-            // TODO unit test for the property 'Reason'
-        }
-
-        /// <summary>
-        /// Test the property 'TypeOfChange'
-        /// </summary>
-        [Fact]
-        public void TypeOfChangeTest()
-        {
-            // TODO unit test for the property 'TypeOfChange'
+            // TODO unit test for the property 'CardIdentifier'
         }
 
         /// <summary>
@@ -117,30 +72,12 @@ namespace TalonOne.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'UserID'
+        /// Test the property 'LoyaltyProgramID'
         /// </summary>
         [Fact]
-        public void UserIDTest()
+        public void LoyaltyProgramIDTest()
         {
-            // TODO unit test for the property 'UserID'
-        }
-
-        /// <summary>
-        /// Test the property 'Operation'
-        /// </summary>
-        [Fact]
-        public void OperationTest()
-        {
-            // TODO unit test for the property 'Operation'
-        }
-
-        /// <summary>
-        /// Test the property 'SessionIntegrationID'
-        /// </summary>
-        [Fact]
-        public void SessionIntegrationIDTest()
-        {
-            // TODO unit test for the property 'SessionIntegrationID'
+            // TODO unit test for the property 'LoyaltyProgramID'
         }
 
         /// <summary>
@@ -153,12 +90,48 @@ namespace TalonOne.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'CardIdentifier'
+        /// Test the property 'ProfileIntegrationIDs'
         /// </summary>
         [Fact]
-        public void CardIdentifierTest()
+        public void ProfileIntegrationIDsTest()
         {
-            // TODO unit test for the property 'CardIdentifier'
+            // TODO unit test for the property 'ProfileIntegrationIDs'
+        }
+
+        /// <summary>
+        /// Test the property 'SessionIntegrationID'
+        /// </summary>
+        [Fact]
+        public void SessionIntegrationIDTest()
+        {
+            // TODO unit test for the property 'SessionIntegrationID'
+        }
+
+        /// <summary>
+        /// Test the property 'SubledgerID'
+        /// </summary>
+        [Fact]
+        public void SubledgerIDTest()
+        {
+            // TODO unit test for the property 'SubledgerID'
+        }
+
+        /// <summary>
+        /// Test the property 'TypeOfChange'
+        /// </summary>
+        [Fact]
+        public void TypeOfChangeTest()
+        {
+            // TODO unit test for the property 'TypeOfChange'
+        }
+
+        /// <summary>
+        /// Test the property 'UserID'
+        /// </summary>
+        [Fact]
+        public void UserIDTest()
+        {
+            // TODO unit test for the property 'UserID'
         }
 
         /// <summary>
@@ -171,12 +144,30 @@ namespace TalonOne.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'StartDate'
+        /// Test the property 'Amount'
         /// </summary>
         [Fact]
-        public void StartDateTest()
+        public void AmountTest()
         {
-            // TODO unit test for the property 'StartDate'
+            // TODO unit test for the property 'Amount'
+        }
+
+        /// <summary>
+        /// Test the property 'Operation'
+        /// </summary>
+        [Fact]
+        public void OperationTest()
+        {
+            // TODO unit test for the property 'Operation'
+        }
+
+        /// <summary>
+        /// Test the property 'Reason'
+        /// </summary>
+        [Fact]
+        public void ReasonTest()
+        {
+            // TODO unit test for the property 'Reason'
         }
 
         /// <summary>
@@ -186,6 +177,15 @@ namespace TalonOne.Test.Model
         public void ExpiryDateTest()
         {
             // TODO unit test for the property 'ExpiryDate'
+        }
+
+        /// <summary>
+        /// Test the property 'StartDate'
+        /// </summary>
+        [Fact]
+        public void StartDateTest()
+        {
+            // TODO unit test for the property 'StartDate'
         }
     }
 }

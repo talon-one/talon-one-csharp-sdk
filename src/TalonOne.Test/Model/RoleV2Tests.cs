@@ -124,5 +124,14 @@ namespace TalonOne.Test.Model
         {
             // TODO unit test for the property 'Members'
         }
+
+        /// <summary>
+        /// Test the property 'IsReadonly'
+        /// </summary>
+        [Fact]
+        public void IsReadonlyTest()
+        {
+            // TODO unit test for the property 'IsReadonly'
+        }
     }
 }

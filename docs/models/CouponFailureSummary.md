@@ -1,0 +1,21 @@
+# TalonOne.Model.CouponFailureSummary
+Summary of the reasons for coupon redemption failure.
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Id** | **long** | ID of the evaluation record. | 
+**EventID** | **long** | ID of the event. | 
+**Status** | **string** | Status defines if the coupon code was applied or rejected. | 
+**CouponCode** | **string** | Coupon code passed for evaluation. | 
+**Language** | **string** | Language of the summary. | 
+**ShortSummary** | **string** | A summary of the reasons for coupon redemption failure. | 
+**LongSummary** | **string** | A detailed summary of the reasons for coupon redemption failure based on events of the entire session. | 
+**CreatedAt** | **DateTime** | Timestamp when the request was made. | 
+**UpdatedAt** | **DateTime** | Timestamp when the request was last updated. | 
+**SessionID** | **string** | ID of the customer session set by your integration layer. | [optional] 
+**ProfileID** | **string** | ID of the customer profile set by your integration layer. | [optional] 
+
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+

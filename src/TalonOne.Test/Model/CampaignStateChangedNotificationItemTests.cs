@@ -63,15 +63,6 @@ namespace TalonOne.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Campaign'
-        /// </summary>
-        [Fact]
-        public void CampaignTest()
-        {
-            // TODO unit test for the property 'Campaign'
-        }
-
-        /// <summary>
         /// Test the property 'OldState'
         /// </summary>
         [Fact]
@@ -87,6 +78,15 @@ namespace TalonOne.Test.Model
         public void NewStateTest()
         {
             // TODO unit test for the property 'NewState'
+        }
+
+        /// <summary>
+        /// Test the property 'Campaign'
+        /// </summary>
+        [Fact]
+        public void CampaignTest()
+        {
+            // TODO unit test for the property 'Campaign'
         }
 
         /// <summary>

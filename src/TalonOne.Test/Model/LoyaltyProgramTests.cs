@@ -261,15 +261,6 @@ namespace TalonOne.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'CanUpdateJoinPolicy'
-        /// </summary>
-        [Fact]
-        public void CanUpdateJoinPolicyTest()
-        {
-            // TODO unit test for the property 'CanUpdateJoinPolicy'
-        }
-
-        /// <summary>
         /// Test the property 'CanUpdateTierExpirationPolicy'
         /// </summary>
         [Fact]

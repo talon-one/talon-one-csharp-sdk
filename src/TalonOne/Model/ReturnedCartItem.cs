@@ -33,15 +33,24 @@ namespace TalonOne.Model
         /// </summary>
         /// <param name="position">The index of the cart item in the provided customer session&#39;s &#x60;cartItems&#x60; property.</param>
         /// <param name="quantity">Number of cart items to return. </param>
+        /// <param name="sku">The SKU of the cart item in the provided customer session&#39;s &#x60;cartItems&#x60; property.</param>
         [JsonConstructor]
-        public ReturnedCartItem(long position, Option<long?> quantity = default)
+        public ReturnedCartItem(Option<long?> position = default, Option<long?> quantity = default, Option<string> sku = default)
         {
-            Position = position;
+            PositionOption = position;
             QuantityOption = quantity;
+            SkuOption = sku;
             OnCreated();
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// Used to track the state of Position
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> PositionOption { get; private set; }
 
         /// <summary>
         /// The index of the cart item in the provided customer session&#39;s &#x60;cartItems&#x60; property.
@@ -49,7 +58,7 @@ namespace TalonOne.Model
         /// <value>The index of the cart item in the provided customer session&#39;s &#x60;cartItems&#x60; property.</value>
         /* <example>2</example> */
         [JsonPropertyName("position")]
-        public long Position { get; set; }
+        public long? Position { get { return this.PositionOption; } set { this.PositionOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Quantity
@@ -67,6 +76,21 @@ namespace TalonOne.Model
         public long? Quantity { get { return this.QuantityOption; } set { this.QuantityOption = new Option<long?>(value); } }
 
         /// <summary>
+        /// Used to track the state of Sku
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> SkuOption { get; private set; }
+
+        /// <summary>
+        /// The SKU of the cart item in the provided customer session&#39;s &#x60;cartItems&#x60; property.
+        /// </summary>
+        /// <value>The SKU of the cart item in the provided customer session&#39;s &#x60;cartItems&#x60; property.</value>
+        /* <example>SKU1241028</example> */
+        [JsonPropertyName("sku")]
+        public string Sku { get { return this.SkuOption; } set { this.SkuOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -76,6 +100,7 @@ namespace TalonOne.Model
             sb.Append("class ReturnedCartItem {\n");
             sb.Append("  Position: ").Append(Position).Append("\n");
             sb.Append("  Quantity: ").Append(Quantity).Append("\n");
+            sb.Append("  Sku: ").Append(Sku).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -87,6 +112,12 @@ namespace TalonOne.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Sku (string) minLength
+            if (this.Sku != null && this.Sku.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Sku, length must be greater than 1.", new [] { "Sku" });
+            }
+
             yield break;
         }
     }
@@ -115,6 +146,7 @@ namespace TalonOne.Model
 
             Option<long?> position = default;
             Option<long?> quantity = default;
+            Option<string> sku = default;
 
             while (utf8JsonReader.Read())
             {
@@ -137,14 +169,14 @@ namespace TalonOne.Model
                         case "quantity":
                             quantity = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
+                        case "sku":
+                            sku = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (!position.IsSet)
-                throw new ArgumentException("Property is required for class ReturnedCartItem.", nameof(position));
 
             if (position.IsSet && position.Value == null)
                 throw new ArgumentNullException(nameof(position), "Property is not nullable for class ReturnedCartItem.");
@@ -152,7 +184,10 @@ namespace TalonOne.Model
             if (quantity.IsSet && quantity.Value == null)
                 throw new ArgumentNullException(nameof(quantity), "Property is not nullable for class ReturnedCartItem.");
 
-            return new ReturnedCartItem(position.Value.Value, quantity);
+            if (sku.IsSet && sku.Value == null)
+                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class ReturnedCartItem.");
+
+            return new ReturnedCartItem(position, quantity, sku);
         }
 
         /// <summary>
@@ -179,10 +214,17 @@ namespace TalonOne.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ReturnedCartItem returnedCartItem, JsonSerializerOptions jsonSerializerOptions)
         {
-            writer.WriteNumber("position", returnedCartItem.Position);
+            if (returnedCartItem.SkuOption.IsSet && returnedCartItem.Sku == null)
+                throw new ArgumentNullException(nameof(returnedCartItem.Sku), "Property is required for class ReturnedCartItem.");
+
+            if (returnedCartItem.PositionOption.IsSet)
+                writer.WriteNumber("position", returnedCartItem.PositionOption.Value.Value);
 
             if (returnedCartItem.QuantityOption.IsSet)
                 writer.WriteNumber("quantity", returnedCartItem.QuantityOption.Value.Value);
+
+            if (returnedCartItem.SkuOption.IsSet)
+                writer.WriteString("sku", returnedCartItem.Sku);
         }
     }
 }

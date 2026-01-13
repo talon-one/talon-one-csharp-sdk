@@ -32,14 +32,14 @@ namespace TalonOne.Model
         /// Initializes a new instance of the <see cref="CampaignDeletedNotificationItem" /> class.
         /// </summary>
         /// <param name="event">The type of the event. Can be one of the following: [&#39;campaign_state_changed&#39;, &#39;campaign_ruleset_changed&#39;, &#39;campaign_edited&#39;, &#39;campaign_created&#39;, &#39;campaign_deleted&#39;] </param>
-        /// <param name="campaign">The campaign whose state changed.</param>
         /// <param name="deletedAt">Time when the campaign was deleted.</param>
+        /// <param name="campaign">The campaign whose state changed.</param>
         [JsonConstructor]
-        public CampaignDeletedNotificationItem(string @event, Campaign campaign, DateTime deletedAt)
+        public CampaignDeletedNotificationItem(string @event, DateTime deletedAt, Object campaign = default)
         {
             Event = @event;
-            Campaign = campaign;
             DeletedAt = deletedAt;
+            Campaign = campaign;
             OnCreated();
         }
 
@@ -54,19 +54,19 @@ namespace TalonOne.Model
         public string Event { get; set; }
 
         /// <summary>
-        /// The campaign whose state changed.
-        /// </summary>
-        /// <value>The campaign whose state changed.</value>
-        [JsonPropertyName("campaign")]
-        public Campaign Campaign { get; set; }
-
-        /// <summary>
         /// Time when the campaign was deleted.
         /// </summary>
         /// <value>Time when the campaign was deleted.</value>
         /* <example>2022-11-10T23:00:00Z</example> */
         [JsonPropertyName("deletedAt")]
         public DateTime DeletedAt { get; set; }
+
+        /// <summary>
+        /// The campaign whose state changed.
+        /// </summary>
+        /// <value>The campaign whose state changed.</value>
+        [JsonPropertyName("campaign")]
+        public Object Campaign { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -77,8 +77,8 @@ namespace TalonOne.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CampaignDeletedNotificationItem {\n");
             sb.Append("  Event: ").Append(Event).Append("\n");
-            sb.Append("  Campaign: ").Append(Campaign).Append("\n");
             sb.Append("  DeletedAt: ").Append(DeletedAt).Append("\n");
+            sb.Append("  Campaign: ").Append(Campaign).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -122,8 +122,8 @@ namespace TalonOne.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string> varEvent = default;
-            Option<Campaign> campaign = default;
             Option<DateTime?> deletedAt = default;
+            Option<Object> campaign = default;
 
             while (utf8JsonReader.Read())
             {
@@ -143,11 +143,11 @@ namespace TalonOne.Model
                         case "Event":
                             varEvent = new Option<string>(utf8JsonReader.GetString());
                             break;
-                        case "campaign":
-                            campaign = new Option<Campaign>(JsonSerializer.Deserialize<Campaign>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
                         case "deletedAt":
                             deletedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "campaign":
+                            campaign = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -158,22 +158,19 @@ namespace TalonOne.Model
             if (!varEvent.IsSet)
                 throw new ArgumentException("Property is required for class CampaignDeletedNotificationItem.", nameof(varEvent));
 
-            if (!campaign.IsSet)
-                throw new ArgumentException("Property is required for class CampaignDeletedNotificationItem.", nameof(campaign));
-
             if (!deletedAt.IsSet)
                 throw new ArgumentException("Property is required for class CampaignDeletedNotificationItem.", nameof(deletedAt));
+
+            if (!campaign.IsSet)
+                throw new ArgumentException("Property is required for class CampaignDeletedNotificationItem.", nameof(campaign));
 
             if (varEvent.IsSet && varEvent.Value == null)
                 throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignDeletedNotificationItem.");
 
-            if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CampaignDeletedNotificationItem.");
-
             if (deletedAt.IsSet && deletedAt.Value == null)
                 throw new ArgumentNullException(nameof(deletedAt), "Property is not nullable for class CampaignDeletedNotificationItem.");
 
-            return new CampaignDeletedNotificationItem(varEvent.Value, campaign.Value, deletedAt.Value.Value);
+            return new CampaignDeletedNotificationItem(varEvent.Value, deletedAt.Value.Value, campaign.Value);
         }
 
         /// <summary>
@@ -203,14 +200,17 @@ namespace TalonOne.Model
             if (campaignDeletedNotificationItem.Event == null)
                 throw new ArgumentNullException(nameof(campaignDeletedNotificationItem.Event), "Property is required for class CampaignDeletedNotificationItem.");
 
-            if (campaignDeletedNotificationItem.Campaign == null)
-                throw new ArgumentNullException(nameof(campaignDeletedNotificationItem.Campaign), "Property is required for class CampaignDeletedNotificationItem.");
-
             writer.WriteString("Event", campaignDeletedNotificationItem.Event);
 
-            writer.WritePropertyName("campaign");
-            JsonSerializer.Serialize(writer, campaignDeletedNotificationItem.Campaign, jsonSerializerOptions);
             writer.WriteString("deletedAt", campaignDeletedNotificationItem.DeletedAt.ToString(DeletedAtFormat));
+
+            if (campaignDeletedNotificationItem.Campaign != null)
+            {
+                writer.WritePropertyName("campaign");
+                JsonSerializer.Serialize(writer, campaignDeletedNotificationItem.Campaign, jsonSerializerOptions);
+            }
+            else
+                writer.WriteNull("campaign");
         }
     }
 }

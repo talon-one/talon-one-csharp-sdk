@@ -54,12 +54,11 @@ namespace TalonOne.Model
         /// <param name="tiers">The tiers in this loyalty program.</param>
         /// <param name="cardBased">Defines the type of loyalty program: - &#x60;true&#x60;: the program is a card-based. - &#x60;false&#x60;: the program is profile-based.  (default to false)</param>
         /// <param name="canUpdateTiers">&#x60;True&#x60; if the tier definitions can be updated.  (default to false)</param>
-        /// <param name="canUpdateJoinPolicy">&#x60;True&#x60; if the program join policy can be updated. </param>
         /// <param name="canUpdateTierExpirationPolicy">&#x60;True&#x60; if the tier expiration policy can be updated. </param>
         /// <param name="canUpgradeToAdvancedTiers">&#x60;True&#x60; if the program can be upgraded to use the &#x60;tiersExpireIn&#x60; and &#x60;tiersDowngradePolicy&#x60; properties.  (default to false)</param>
         /// <param name="canUpdateSubledgers">&#x60;True&#x60; if the &#x60;allowSubledger&#x60; property can be updated in the loyalty program.  (default to false)</param>
         [JsonConstructor]
-        public LoyaltyProgram(long id, DateTime created, long accountID, string name, string timezone, Option<string> title = default, Option<string> description = default, Option<List<long>> subscribedApplications = default, Option<string> defaultValidity = default, Option<string> defaultPending = default, Option<bool?> allowSubledger = default, Option<long?> usersPerCardLimit = default, Option<bool?> sandbox = default, Option<ProgramJoinPolicyEnum?> programJoinPolicy = default, Option<TiersExpirationPolicyEnum?> tiersExpirationPolicy = default, Option<DateTime?> tierCycleStartDate = default, Option<string> tiersExpireIn = default, Option<TiersDowngradePolicyEnum?> tiersDowngradePolicy = default, Option<CodeGeneratorSettings> cardCodeSettings = default, Option<ReturnPolicyEnum?> returnPolicy = default, Option<List<LoyaltyTier>> tiers = default, bool cardBased = false, Option<bool?> canUpdateTiers = default, Option<bool?> canUpdateJoinPolicy = default, Option<bool?> canUpdateTierExpirationPolicy = default, Option<bool?> canUpgradeToAdvancedTiers = default, Option<bool?> canUpdateSubledgers = default)
+        public LoyaltyProgram(long id, DateTime created, long accountID, string name, string timezone, Option<string> title = default, Option<string> description = default, Option<List<long>> subscribedApplications = default, Option<string> defaultValidity = default, Option<string> defaultPending = default, Option<bool?> allowSubledger = default, Option<long?> usersPerCardLimit = default, Option<bool?> sandbox = default, Option<ProgramJoinPolicyEnum?> programJoinPolicy = default, Option<TiersExpirationPolicyEnum?> tiersExpirationPolicy = default, Option<DateTime?> tierCycleStartDate = default, Option<string> tiersExpireIn = default, Option<TiersDowngradePolicyEnum?> tiersDowngradePolicy = default, Option<CodeGeneratorSettings> cardCodeSettings = default, Option<ReturnPolicyEnum?> returnPolicy = default, Option<List<LoyaltyTier>> tiers = default, bool cardBased = false, Option<bool?> canUpdateTiers = default, Option<bool?> canUpdateTierExpirationPolicy = default, Option<bool?> canUpgradeToAdvancedTiers = default, Option<bool?> canUpdateSubledgers = default)
         {
             Id = id;
             Created = created;
@@ -84,7 +83,6 @@ namespace TalonOne.Model
             TiersOption = tiers;
             CardBased = cardBased;
             CanUpdateTiersOption = canUpdateTiers;
-            CanUpdateJoinPolicyOption = canUpdateJoinPolicy;
             CanUpdateTierExpirationPolicyOption = canUpdateTierExpirationPolicy;
             CanUpgradeToAdvancedTiersOption = canUpgradeToAdvancedTiers;
             CanUpdateSubledgersOption = canUpdateSubledgers;
@@ -715,21 +713,6 @@ namespace TalonOne.Model
         public bool? CanUpdateTiers { get { return this.CanUpdateTiersOption; } set { this.CanUpdateTiersOption = new Option<bool?>(value); } }
 
         /// <summary>
-        /// Used to track the state of CanUpdateJoinPolicy
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<bool?> CanUpdateJoinPolicyOption { get; private set; }
-
-        /// <summary>
-        /// &#x60;True&#x60; if the program join policy can be updated. 
-        /// </summary>
-        /// <value>&#x60;True&#x60; if the program join policy can be updated. </value>
-        /* <example>true</example> */
-        [JsonPropertyName("canUpdateJoinPolicy")]
-        public bool? CanUpdateJoinPolicy { get { return this.CanUpdateJoinPolicyOption; } set { this.CanUpdateJoinPolicyOption = new Option<bool?>(value); } }
-
-        /// <summary>
         /// Used to track the state of CanUpdateTierExpirationPolicy
         /// </summary>
         [JsonIgnore]
@@ -805,7 +788,6 @@ namespace TalonOne.Model
             sb.Append("  Tiers: ").Append(Tiers).Append("\n");
             sb.Append("  CardBased: ").Append(CardBased).Append("\n");
             sb.Append("  CanUpdateTiers: ").Append(CanUpdateTiers).Append("\n");
-            sb.Append("  CanUpdateJoinPolicy: ").Append(CanUpdateJoinPolicy).Append("\n");
             sb.Append("  CanUpdateTierExpirationPolicy: ").Append(CanUpdateTierExpirationPolicy).Append("\n");
             sb.Append("  CanUpgradeToAdvancedTiers: ").Append(CanUpgradeToAdvancedTiers).Append("\n");
             sb.Append("  CanUpdateSubledgers: ").Append(CanUpdateSubledgers).Append("\n");
@@ -891,7 +873,6 @@ namespace TalonOne.Model
             Option<List<LoyaltyTier>> tiers = default;
             Option<bool?> cardBased = default;
             Option<bool?> canUpdateTiers = default;
-            Option<bool?> canUpdateJoinPolicy = default;
             Option<bool?> canUpdateTierExpirationPolicy = default;
             Option<bool?> canUpgradeToAdvancedTiers = default;
             Option<bool?> canUpdateSubledgers = default;
@@ -987,9 +968,6 @@ namespace TalonOne.Model
                             break;
                         case "canUpdateTiers":
                             canUpdateTiers = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
-                            break;
-                        case "canUpdateJoinPolicy":
-                            canUpdateJoinPolicy = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "canUpdateTierExpirationPolicy":
                             canUpdateTierExpirationPolicy = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
@@ -1093,9 +1071,6 @@ namespace TalonOne.Model
             if (canUpdateTiers.IsSet && canUpdateTiers.Value == null)
                 throw new ArgumentNullException(nameof(canUpdateTiers), "Property is not nullable for class LoyaltyProgram.");
 
-            if (canUpdateJoinPolicy.IsSet && canUpdateJoinPolicy.Value == null)
-                throw new ArgumentNullException(nameof(canUpdateJoinPolicy), "Property is not nullable for class LoyaltyProgram.");
-
             if (canUpdateTierExpirationPolicy.IsSet && canUpdateTierExpirationPolicy.Value == null)
                 throw new ArgumentNullException(nameof(canUpdateTierExpirationPolicy), "Property is not nullable for class LoyaltyProgram.");
 
@@ -1105,7 +1080,7 @@ namespace TalonOne.Model
             if (canUpdateSubledgers.IsSet && canUpdateSubledgers.Value == null)
                 throw new ArgumentNullException(nameof(canUpdateSubledgers), "Property is not nullable for class LoyaltyProgram.");
 
-            return new LoyaltyProgram(id.Value.Value, created.Value.Value, accountID.Value.Value, name.Value, timezone.Value, title, description, subscribedApplications, defaultValidity, defaultPending, allowSubledger, usersPerCardLimit, sandbox, programJoinPolicy, tiersExpirationPolicy, tierCycleStartDate, tiersExpireIn, tiersDowngradePolicy, cardCodeSettings, returnPolicy, tiers, cardBased.Value.Value, canUpdateTiers, canUpdateJoinPolicy, canUpdateTierExpirationPolicy, canUpgradeToAdvancedTiers, canUpdateSubledgers);
+            return new LoyaltyProgram(id.Value.Value, created.Value.Value, accountID.Value.Value, name.Value, timezone.Value, title, description, subscribedApplications, defaultValidity, defaultPending, allowSubledger, usersPerCardLimit, sandbox, programJoinPolicy, tiersExpirationPolicy, tierCycleStartDate, tiersExpireIn, tiersDowngradePolicy, cardCodeSettings, returnPolicy, tiers, cardBased.Value.Value, canUpdateTiers, canUpdateTierExpirationPolicy, canUpgradeToAdvancedTiers, canUpdateSubledgers);
         }
 
         /// <summary>
@@ -1226,9 +1201,6 @@ namespace TalonOne.Model
 
             if (loyaltyProgram.CanUpdateTiersOption.IsSet)
                 writer.WriteBoolean("canUpdateTiers", loyaltyProgram.CanUpdateTiersOption.Value.Value);
-
-            if (loyaltyProgram.CanUpdateJoinPolicyOption.IsSet)
-                writer.WriteBoolean("canUpdateJoinPolicy", loyaltyProgram.CanUpdateJoinPolicyOption.Value.Value);
 
             if (loyaltyProgram.CanUpdateTierExpirationPolicyOption.IsSet)
                 writer.WriteBoolean("canUpdateTierExpirationPolicy", loyaltyProgram.CanUpdateTierExpirationPolicyOption.Value.Value);

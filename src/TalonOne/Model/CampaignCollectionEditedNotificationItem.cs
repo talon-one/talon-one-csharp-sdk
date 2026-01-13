@@ -33,15 +33,15 @@ namespace TalonOne.Model
         /// </summary>
         /// <param name="event">The type of the event. Can be one of the following: [&#39;campaign_state_changed&#39;, &#39;campaign_ruleset_changed&#39;, &#39;campaign_edited&#39;, &#39;campaign_created&#39;, &#39;campaign_deleted&#39;] </param>
         /// <param name="campaign">The current campaign.</param>
-        /// <param name="collection">The collection that was edited.</param>
         /// <param name="ruleset">The current ruleset.</param>
+        /// <param name="collection">The collection that was edited.</param>
         [JsonConstructor]
-        public CampaignCollectionEditedNotificationItem(string @event, Campaign campaign, CollectionWithoutPayload collection, Option<Ruleset> ruleset = default)
+        public CampaignCollectionEditedNotificationItem(string @event, Object campaign = default, Option<Object> ruleset = default, Object collection = default)
         {
             Event = @event;
             Campaign = campaign;
-            Collection = collection;
             RulesetOption = ruleset;
+            Collection = collection;
             OnCreated();
         }
 
@@ -60,28 +60,28 @@ namespace TalonOne.Model
         /// </summary>
         /// <value>The current campaign.</value>
         [JsonPropertyName("campaign")]
-        public Campaign Campaign { get; set; }
-
-        /// <summary>
-        /// The collection that was edited.
-        /// </summary>
-        /// <value>The collection that was edited.</value>
-        [JsonPropertyName("collection")]
-        public CollectionWithoutPayload Collection { get; set; }
+        public Object Campaign { get; set; }
 
         /// <summary>
         /// Used to track the state of Ruleset
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Ruleset> RulesetOption { get; private set; }
+        public Option<Object> RulesetOption { get; private set; }
 
         /// <summary>
         /// The current ruleset.
         /// </summary>
         /// <value>The current ruleset.</value>
         [JsonPropertyName("ruleset")]
-        public Ruleset Ruleset { get { return this.RulesetOption; } set { this.RulesetOption = new Option<Ruleset>(value); } }
+        public Object Ruleset { get { return this.RulesetOption; } set { this.RulesetOption = new Option<Object>(value); } }
+
+        /// <summary>
+        /// The collection that was edited.
+        /// </summary>
+        /// <value>The collection that was edited.</value>
+        [JsonPropertyName("collection")]
+        public Object Collection { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,8 +93,8 @@ namespace TalonOne.Model
             sb.Append("class CampaignCollectionEditedNotificationItem {\n");
             sb.Append("  Event: ").Append(Event).Append("\n");
             sb.Append("  Campaign: ").Append(Campaign).Append("\n");
-            sb.Append("  Collection: ").Append(Collection).Append("\n");
             sb.Append("  Ruleset: ").Append(Ruleset).Append("\n");
+            sb.Append("  Collection: ").Append(Collection).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -133,9 +133,9 @@ namespace TalonOne.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string> varEvent = default;
-            Option<Campaign> campaign = default;
-            Option<CollectionWithoutPayload> collection = default;
-            Option<Ruleset> ruleset = default;
+            Option<Object> campaign = default;
+            Option<Object> ruleset = default;
+            Option<Object> collection = default;
 
             while (utf8JsonReader.Read())
             {
@@ -156,13 +156,13 @@ namespace TalonOne.Model
                             varEvent = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "campaign":
-                            campaign = new Option<Campaign>(JsonSerializer.Deserialize<Campaign>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "collection":
-                            collection = new Option<CollectionWithoutPayload>(JsonSerializer.Deserialize<CollectionWithoutPayload>(ref utf8JsonReader, jsonSerializerOptions));
+                            campaign = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "ruleset":
-                            ruleset = new Option<Ruleset>(JsonSerializer.Deserialize<Ruleset>(ref utf8JsonReader, jsonSerializerOptions));
+                            ruleset = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "collection":
+                            collection = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -182,16 +182,7 @@ namespace TalonOne.Model
             if (varEvent.IsSet && varEvent.Value == null)
                 throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignCollectionEditedNotificationItem.");
 
-            if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CampaignCollectionEditedNotificationItem.");
-
-            if (collection.IsSet && collection.Value == null)
-                throw new ArgumentNullException(nameof(collection), "Property is not nullable for class CampaignCollectionEditedNotificationItem.");
-
-            if (ruleset.IsSet && ruleset.Value == null)
-                throw new ArgumentNullException(nameof(ruleset), "Property is not nullable for class CampaignCollectionEditedNotificationItem.");
-
-            return new CampaignCollectionEditedNotificationItem(varEvent.Value, campaign.Value, collection.Value, ruleset);
+            return new CampaignCollectionEditedNotificationItem(varEvent.Value, campaign.Value, ruleset, collection.Value);
         }
 
         /// <summary>
@@ -221,26 +212,30 @@ namespace TalonOne.Model
             if (campaignCollectionEditedNotificationItem.Event == null)
                 throw new ArgumentNullException(nameof(campaignCollectionEditedNotificationItem.Event), "Property is required for class CampaignCollectionEditedNotificationItem.");
 
-            if (campaignCollectionEditedNotificationItem.Campaign == null)
-                throw new ArgumentNullException(nameof(campaignCollectionEditedNotificationItem.Campaign), "Property is required for class CampaignCollectionEditedNotificationItem.");
-
-            if (campaignCollectionEditedNotificationItem.Collection == null)
-                throw new ArgumentNullException(nameof(campaignCollectionEditedNotificationItem.Collection), "Property is required for class CampaignCollectionEditedNotificationItem.");
-
-            if (campaignCollectionEditedNotificationItem.RulesetOption.IsSet && campaignCollectionEditedNotificationItem.Ruleset == null)
-                throw new ArgumentNullException(nameof(campaignCollectionEditedNotificationItem.Ruleset), "Property is required for class CampaignCollectionEditedNotificationItem.");
-
             writer.WriteString("Event", campaignCollectionEditedNotificationItem.Event);
 
-            writer.WritePropertyName("campaign");
-            JsonSerializer.Serialize(writer, campaignCollectionEditedNotificationItem.Campaign, jsonSerializerOptions);
-            writer.WritePropertyName("collection");
-            JsonSerializer.Serialize(writer, campaignCollectionEditedNotificationItem.Collection, jsonSerializerOptions);
-            if (campaignCollectionEditedNotificationItem.RulesetOption.IsSet)
+            if (campaignCollectionEditedNotificationItem.Campaign != null)
             {
-                writer.WritePropertyName("ruleset");
-                JsonSerializer.Serialize(writer, campaignCollectionEditedNotificationItem.Ruleset, jsonSerializerOptions);
+                writer.WritePropertyName("campaign");
+                JsonSerializer.Serialize(writer, campaignCollectionEditedNotificationItem.Campaign, jsonSerializerOptions);
             }
+            else
+                writer.WriteNull("campaign");
+            if (campaignCollectionEditedNotificationItem.RulesetOption.IsSet)
+                if (campaignCollectionEditedNotificationItem.RulesetOption.Value != null)
+                {
+                    writer.WritePropertyName("ruleset");
+                    JsonSerializer.Serialize(writer, campaignCollectionEditedNotificationItem.Ruleset, jsonSerializerOptions);
+                }
+                else
+                    writer.WriteNull("ruleset");
+            if (campaignCollectionEditedNotificationItem.Collection != null)
+            {
+                writer.WritePropertyName("collection");
+                JsonSerializer.Serialize(writer, campaignCollectionEditedNotificationItem.Collection, jsonSerializerOptions);
+            }
+            else
+                writer.WriteNull("collection");
         }
     }
 }

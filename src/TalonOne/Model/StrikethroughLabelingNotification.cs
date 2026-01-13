@@ -36,11 +36,12 @@ namespace TalonOne.Model
         /// <param name="totalBatches">The total number of batches for the notification.</param>
         /// <param name="trigger">trigger</param>
         /// <param name="changedItems">changedItems</param>
-        /// <param name="notificationType">The type of the notification</param>
+        /// <param name="notificationType">The type of notification.</param>
+        /// <param name="sentAt">Timestamp at which the notification was sent.</param>
         /// <param name="varVersion">The version of the strikethrough pricing notification.</param>
         /// <param name="validFrom">Timestamp at which the strikethrough pricing update becomes valid. Set for **scheduled** strikethrough pricing updates (version: v2) only. </param>
         [JsonConstructor]
-        public StrikethroughLabelingNotification(long applicationId, long currentBatch, long totalBatches, StrikethroughTrigger trigger, List<StrikethroughChangedItem> changedItems, NotificationTypeEnum notificationType, Option<VarVersionEnum?> varVersion = default, Option<DateTime?> validFrom = default)
+        public StrikethroughLabelingNotification(long applicationId, long currentBatch, long totalBatches, StrikethroughTrigger trigger, List<StrikethroughChangedItem> changedItems, NotificationTypeEnum notificationType, DateTime sentAt, Option<VarVersionEnum?> varVersion = default, Option<DateTime?> validFrom = default)
         {
             ApplicationId = applicationId;
             CurrentBatch = currentBatch;
@@ -48,6 +49,7 @@ namespace TalonOne.Model
             Trigger = trigger;
             ChangedItems = changedItems;
             NotificationType = notificationType;
+            SentAt = sentAt;
             VarVersionOption = varVersion;
             ValidFromOption = validFrom;
             OnCreated();
@@ -56,9 +58,9 @@ namespace TalonOne.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The type of the notification
+        /// The type of notification.
         /// </summary>
-        /// <value>The type of the notification</value>
+        /// <value>The type of notification.</value>
         public enum NotificationTypeEnum
         {
             /// <summary>
@@ -109,9 +111,9 @@ namespace TalonOne.Model
         }
 
         /// <summary>
-        /// The type of the notification
+        /// The type of notification.
         /// </summary>
-        /// <value>The type of the notification</value>
+        /// <value>The type of notification.</value>
         [JsonPropertyName("NotificationType")]
         public NotificationTypeEnum NotificationType { get; set; }
 
@@ -219,6 +221,13 @@ namespace TalonOne.Model
         public List<StrikethroughChangedItem> ChangedItems { get; set; }
 
         /// <summary>
+        /// Timestamp at which the notification was sent.
+        /// </summary>
+        /// <value>Timestamp at which the notification was sent.</value>
+        [JsonPropertyName("sentAt")]
+        public DateTime SentAt { get; set; }
+
+        /// <summary>
         /// Used to track the state of ValidFrom
         /// </summary>
         [JsonIgnore]
@@ -247,6 +256,7 @@ namespace TalonOne.Model
             sb.Append("  Trigger: ").Append(Trigger).Append("\n");
             sb.Append("  ChangedItems: ").Append(ChangedItems).Append("\n");
             sb.Append("  NotificationType: ").Append(NotificationType).Append("\n");
+            sb.Append("  SentAt: ").Append(SentAt).Append("\n");
             sb.Append("  VarVersion: ").Append(VarVersion).Append("\n");
             sb.Append("  ValidFrom: ").Append(ValidFrom).Append("\n");
             sb.Append("}\n");
@@ -269,6 +279,11 @@ namespace TalonOne.Model
     /// </summary>
     public class StrikethroughLabelingNotificationJsonConverter : JsonConverter<StrikethroughLabelingNotification>
     {
+        /// <summary>
+        /// The format to use to serialize SentAt
+        /// </summary>
+        public static string SentAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+
         /// <summary>
         /// The format to use to serialize ValidFrom
         /// </summary>
@@ -297,6 +312,7 @@ namespace TalonOne.Model
             Option<StrikethroughTrigger> trigger = default;
             Option<List<StrikethroughChangedItem>> changedItems = default;
             Option<StrikethroughLabelingNotification.NotificationTypeEnum?> notificationType = default;
+            Option<DateTime?> sentAt = default;
             Option<StrikethroughLabelingNotification.VarVersionEnum?> varVersion = default;
             Option<DateTime?> validFrom = default;
 
@@ -335,6 +351,9 @@ namespace TalonOne.Model
                             if (notificationTypeRawValue != null)
                                 notificationType = new Option<StrikethroughLabelingNotification.NotificationTypeEnum?>(StrikethroughLabelingNotification.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue));
                             break;
+                        case "sentAt":
+                            sentAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "version":
                             string varVersionRawValue = utf8JsonReader.GetString();
                             if (varVersionRawValue != null)
@@ -367,6 +386,9 @@ namespace TalonOne.Model
             if (!notificationType.IsSet)
                 throw new ArgumentException("Property is required for class StrikethroughLabelingNotification.", nameof(notificationType));
 
+            if (!sentAt.IsSet)
+                throw new ArgumentException("Property is required for class StrikethroughLabelingNotification.", nameof(sentAt));
+
             if (applicationId.IsSet && applicationId.Value == null)
                 throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class StrikethroughLabelingNotification.");
 
@@ -385,13 +407,16 @@ namespace TalonOne.Model
             if (notificationType.IsSet && notificationType.Value == null)
                 throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class StrikethroughLabelingNotification.");
 
+            if (sentAt.IsSet && sentAt.Value == null)
+                throw new ArgumentNullException(nameof(sentAt), "Property is not nullable for class StrikethroughLabelingNotification.");
+
             if (varVersion.IsSet && varVersion.Value == null)
                 throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class StrikethroughLabelingNotification.");
 
             if (validFrom.IsSet && validFrom.Value == null)
                 throw new ArgumentNullException(nameof(validFrom), "Property is not nullable for class StrikethroughLabelingNotification.");
 
-            return new StrikethroughLabelingNotification(applicationId.Value.Value, currentBatch.Value.Value, totalBatches.Value.Value, trigger.Value, changedItems.Value, notificationType.Value.Value, varVersion, validFrom);
+            return new StrikethroughLabelingNotification(applicationId.Value.Value, currentBatch.Value.Value, totalBatches.Value.Value, trigger.Value, changedItems.Value, notificationType.Value.Value, sentAt.Value.Value, varVersion, validFrom);
         }
 
         /// <summary>
@@ -436,6 +461,8 @@ namespace TalonOne.Model
             JsonSerializer.Serialize(writer, strikethroughLabelingNotification.ChangedItems, jsonSerializerOptions);
             var notificationTypeRawValue = StrikethroughLabelingNotification.NotificationTypeEnumToJsonValue(strikethroughLabelingNotification.NotificationType);
             writer.WriteString("NotificationType", notificationTypeRawValue);
+            writer.WriteString("sentAt", strikethroughLabelingNotification.SentAt.ToString(SentAtFormat));
+
             var varVersionRawValue = StrikethroughLabelingNotification.VarVersionEnumToJsonValue(strikethroughLabelingNotification.VarVersionOption.Value.Value);
             writer.WriteString("version", varVersionRawValue);
             if (strikethroughLabelingNotification.ValidFromOption.IsSet)

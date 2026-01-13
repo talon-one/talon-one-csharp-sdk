@@ -36,7 +36,7 @@ namespace TalonOne.Model
         /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
         /// <param name="ruleName">The name of the rule that triggered this effect.</param>
         /// <param name="type">The type of this effect.</param>
-        /// <param name="props">props</param>
+        /// <param name="props">Arbitrary properties associated with this effect type.</param>
         /// <param name="startTime">The start of the time frame where the effect is active in UTC.</param>
         /// <param name="endTime">The end of the time frame where the effect is active in UTC.</param>
         /// <param name="selectedPriceType">The selected price type for this cart item (e.g. the price for members only).</param>
@@ -104,8 +104,9 @@ namespace TalonOne.Model
         public string Type { get; set; }
 
         /// <summary>
-        /// Gets or Sets Props
+        /// Arbitrary properties associated with this effect type.
         /// </summary>
+        /// <value>Arbitrary properties associated with this effect type.</value>
         [JsonPropertyName("props")]
         public Object Props { get; set; }
 

@@ -44,8 +44,8 @@ namespace TalonOne.Model
         /// <param name="ledger">Displays point balances of the card in the main ledger of the loyalty program.</param>
         /// <param name="subledgers">Displays point balances of the card in the subledgers of the loyalty program.</param>
         /// <param name="modified">Timestamp of the most recent update of the loyalty card.</param>
-        /// <param name="oldCardIdentifier">The alphanumeric identifier of the loyalty card. </param>
-        /// <param name="newCardIdentifier">The alphanumeric identifier of the loyalty card. </param>
+        /// <param name="oldCardIdentifier">The identifier of the card from which the points were transferred.</param>
+        /// <param name="newCardIdentifier">The identifier of the card to which the points were transferred.</param>
         /// <param name="batchId">The ID of the batch in which the loyalty card was created.</param>
         [JsonConstructor]
         public LoyaltyCard(long id, DateTime created, long programID, string status, string identifier, long usersPerCardLimit, Option<string> programName = default, Option<string> programTitle = default, Option<string> blockReason = default, Option<List<LoyaltyCardProfileRegistration>> profiles = default, Option<LedgerInfo> ledger = default, Option<Dictionary<string, LedgerInfo>> subledgers = default, Option<DateTime?> modified = default, Option<string> oldCardIdentifier = default, Option<string> newCardIdentifier = default, Option<string> batchId = default)
@@ -229,9 +229,9 @@ namespace TalonOne.Model
         public Option<string> OldCardIdentifierOption { get; private set; }
 
         /// <summary>
-        /// The alphanumeric identifier of the loyalty card. 
+        /// The identifier of the card from which the points were transferred.
         /// </summary>
-        /// <value>The alphanumeric identifier of the loyalty card. </value>
+        /// <value>The identifier of the card from which the points were transferred.</value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("oldCardIdentifier")]
         public string OldCardIdentifier { get { return this.OldCardIdentifierOption; } set { this.OldCardIdentifierOption = new Option<string>(value); } }
@@ -244,9 +244,9 @@ namespace TalonOne.Model
         public Option<string> NewCardIdentifierOption { get; private set; }
 
         /// <summary>
-        /// The alphanumeric identifier of the loyalty card. 
+        /// The identifier of the card to which the points were transferred.
         /// </summary>
-        /// <value>The alphanumeric identifier of the loyalty card. </value>
+        /// <value>The identifier of the card to which the points were transferred.</value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("newCardIdentifier")]
         public string NewCardIdentifier { get { return this.NewCardIdentifierOption; } set { this.NewCardIdentifierOption = new Option<string>(value); } }

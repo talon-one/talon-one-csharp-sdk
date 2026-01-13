@@ -24,24 +24,32 @@ using TalonOne.Client;
 namespace TalonOne.Model
 {
     /// <summary>
-    /// JSON web token used for accessing integrations in Prismatic
+    /// Config used for accessing integrations in Prismatic
     /// </summary>
-    public partial class JWT : IValidatableObject
+    public partial class PrismaticConfig : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="JWT" /> class.
+        /// Initializes a new instance of the <see cref="PrismaticConfig" /> class.
         /// </summary>
+        /// <param name="prismaticUrl">The url used to integrate the Prismatic Marketplace.</param>
         /// <param name="accessToken">Access token used to authenticate a user in Talon.One.</param>
-        /// <param name="expiresIn">Time until the token expires (in seconds).</param>
         [JsonConstructor]
-        public JWT(string accessToken, long expiresIn)
+        public PrismaticConfig(string prismaticUrl, string accessToken)
         {
+            PrismaticUrl = prismaticUrl;
             AccessToken = accessToken;
-            ExpiresIn = expiresIn;
             OnCreated();
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// The url used to integrate the Prismatic Marketplace.
+        /// </summary>
+        /// <value>The url used to integrate the Prismatic Marketplace.</value>
+        /* <example>https://app.eu-west-1.prismatic.io/</example> */
+        [JsonPropertyName("prismaticUrl")]
+        public string PrismaticUrl { get; set; }
 
         /// <summary>
         /// Access token used to authenticate a user in Talon.One.
@@ -52,23 +60,15 @@ namespace TalonOne.Model
         public string AccessToken { get; set; }
 
         /// <summary>
-        /// Time until the token expires (in seconds).
-        /// </summary>
-        /// <value>Time until the token expires (in seconds).</value>
-        /* <example>1000</example> */
-        [JsonPropertyName("expiresIn")]
-        public long ExpiresIn { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class JWT {\n");
+            sb.Append("class PrismaticConfig {\n");
+            sb.Append("  PrismaticUrl: ").Append(PrismaticUrl).Append("\n");
             sb.Append("  AccessToken: ").Append(AccessToken).Append("\n");
-            sb.Append("  ExpiresIn: ").Append(ExpiresIn).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -85,19 +85,19 @@ namespace TalonOne.Model
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="JWT" />
+    /// A Json converter for type <see cref="PrismaticConfig" />
     /// </summary>
-    public class JWTJsonConverter : JsonConverter<JWT>
+    public class PrismaticConfigJsonConverter : JsonConverter<PrismaticConfig>
     {
         /// <summary>
-        /// Deserializes json to <see cref="JWT" />
+        /// Deserializes json to <see cref="PrismaticConfig" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override JWT Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override PrismaticConfig Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -106,8 +106,8 @@ namespace TalonOne.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<string> prismaticUrl = default;
             Option<string> accessToken = default;
-            Option<long?> expiresIn = default;
 
             while (utf8JsonReader.Read())
             {
@@ -124,11 +124,11 @@ namespace TalonOne.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "prismaticUrl":
+                            prismaticUrl = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         case "accessToken":
                             accessToken = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "expiresIn":
-                            expiresIn = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;
@@ -136,51 +136,54 @@ namespace TalonOne.Model
                 }
             }
 
-            if (!accessToken.IsSet)
-                throw new ArgumentException("Property is required for class JWT.", nameof(accessToken));
+            if (!prismaticUrl.IsSet)
+                throw new ArgumentException("Property is required for class PrismaticConfig.", nameof(prismaticUrl));
 
-            if (!expiresIn.IsSet)
-                throw new ArgumentException("Property is required for class JWT.", nameof(expiresIn));
+            if (!accessToken.IsSet)
+                throw new ArgumentException("Property is required for class PrismaticConfig.", nameof(accessToken));
+
+            if (prismaticUrl.IsSet && prismaticUrl.Value == null)
+                throw new ArgumentNullException(nameof(prismaticUrl), "Property is not nullable for class PrismaticConfig.");
 
             if (accessToken.IsSet && accessToken.Value == null)
-                throw new ArgumentNullException(nameof(accessToken), "Property is not nullable for class JWT.");
+                throw new ArgumentNullException(nameof(accessToken), "Property is not nullable for class PrismaticConfig.");
 
-            if (expiresIn.IsSet && expiresIn.Value == null)
-                throw new ArgumentNullException(nameof(expiresIn), "Property is not nullable for class JWT.");
-
-            return new JWT(accessToken.Value, expiresIn.Value.Value);
+            return new PrismaticConfig(prismaticUrl.Value, accessToken.Value);
         }
 
         /// <summary>
-        /// Serializes a <see cref="JWT" />
+        /// Serializes a <see cref="PrismaticConfig" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="jWT"></param>
+        /// <param name="prismaticConfig"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, JWT jWT, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, PrismaticConfig prismaticConfig, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, jWT, jsonSerializerOptions);
+            WriteProperties(writer, prismaticConfig, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="JWT" />
+        /// Serializes the properties of <see cref="PrismaticConfig" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="jWT"></param>
+        /// <param name="prismaticConfig"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, JWT jWT, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, PrismaticConfig prismaticConfig, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (jWT.AccessToken == null)
-                throw new ArgumentNullException(nameof(jWT.AccessToken), "Property is required for class JWT.");
+            if (prismaticConfig.PrismaticUrl == null)
+                throw new ArgumentNullException(nameof(prismaticConfig.PrismaticUrl), "Property is required for class PrismaticConfig.");
 
-            writer.WriteString("accessToken", jWT.AccessToken);
+            if (prismaticConfig.AccessToken == null)
+                throw new ArgumentNullException(nameof(prismaticConfig.AccessToken), "Property is required for class PrismaticConfig.");
 
-            writer.WriteNumber("expiresIn", jWT.ExpiresIn);
+            writer.WriteString("prismaticUrl", prismaticConfig.PrismaticUrl);
+
+            writer.WriteString("accessToken", prismaticConfig.AccessToken);
         }
     }
 }

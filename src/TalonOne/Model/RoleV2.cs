@@ -39,8 +39,9 @@ namespace TalonOne.Model
         /// <param name="description">Description of the role.</param>
         /// <param name="permissions">The permissions that this role gives.</param>
         /// <param name="members">A list of user IDs the role is assigned to.</param>
+        /// <param name="isReadonly">Identifies if the role is read-only. For read-only roles, you can only assign or unassign users. You cannot edit any other properties, such as the name, description, or permissions. The &#39;isReadonly&#39; property cannot be set for new or existing roles. It is reserved for predefined roles, such as the Talon.One support role. (default to false)</param>
         [JsonConstructor]
-        public RoleV2(long id, DateTime created, DateTime modified, long accountId, Option<string> name = default, Option<string> description = default, Option<RoleV2Permissions> permissions = default, Option<List<long>> members = default)
+        public RoleV2(long id, DateTime created, DateTime modified, long accountId, Option<string> name = default, Option<string> description = default, Option<RoleV2Permissions> permissions = default, Option<List<long>> members = default, Option<bool?> isReadonly = default)
         {
             Id = id;
             Created = created;
@@ -50,6 +51,7 @@ namespace TalonOne.Model
             DescriptionOption = description;
             PermissionsOption = permissions;
             MembersOption = members;
+            IsReadonlyOption = isReadonly;
             OnCreated();
         }
 
@@ -147,6 +149,21 @@ namespace TalonOne.Model
         public List<long> Members { get { return this.MembersOption; } set { this.MembersOption = new Option<List<long>>(value); } }
 
         /// <summary>
+        /// Used to track the state of IsReadonly
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> IsReadonlyOption { get; private set; }
+
+        /// <summary>
+        /// Identifies if the role is read-only. For read-only roles, you can only assign or unassign users. You cannot edit any other properties, such as the name, description, or permissions. The &#39;isReadonly&#39; property cannot be set for new or existing roles. It is reserved for predefined roles, such as the Talon.One support role.
+        /// </summary>
+        /// <value>Identifies if the role is read-only. For read-only roles, you can only assign or unassign users. You cannot edit any other properties, such as the name, description, or permissions. The &#39;isReadonly&#39; property cannot be set for new or existing roles. It is reserved for predefined roles, such as the Talon.One support role.</value>
+        /* <example>false</example> */
+        [JsonPropertyName("isReadonly")]
+        public bool? IsReadonly { get { return this.IsReadonlyOption; } set { this.IsReadonlyOption = new Option<bool?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -162,6 +179,7 @@ namespace TalonOne.Model
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Permissions: ").Append(Permissions).Append("\n");
             sb.Append("  Members: ").Append(Members).Append("\n");
+            sb.Append("  IsReadonly: ").Append(IsReadonly).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -217,6 +235,7 @@ namespace TalonOne.Model
             Option<string> description = default;
             Option<RoleV2Permissions> permissions = default;
             Option<List<long>> members = default;
+            Option<bool?> isReadonly = default;
 
             while (utf8JsonReader.Read())
             {
@@ -256,6 +275,9 @@ namespace TalonOne.Model
                             break;
                         case "members":
                             members = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "isReadonly":
+                            isReadonly = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         default:
                             break;
@@ -299,7 +321,10 @@ namespace TalonOne.Model
             if (members.IsSet && members.Value == null)
                 throw new ArgumentNullException(nameof(members), "Property is not nullable for class RoleV2.");
 
-            return new RoleV2(id.Value.Value, created.Value.Value, modified.Value.Value, accountId.Value.Value, name, description, permissions, members);
+            if (isReadonly.IsSet && isReadonly.Value == null)
+                throw new ArgumentNullException(nameof(isReadonly), "Property is not nullable for class RoleV2.");
+
+            return new RoleV2(id.Value.Value, created.Value.Value, modified.Value.Value, accountId.Value.Value, name, description, permissions, members, isReadonly);
         }
 
         /// <summary>
@@ -362,6 +387,8 @@ namespace TalonOne.Model
                 writer.WritePropertyName("members");
                 JsonSerializer.Serialize(writer, roleV2.Members, jsonSerializerOptions);
             }
+            if (roleV2.IsReadonlyOption.IsSet)
+                writer.WriteBoolean("isReadonly", roleV2.IsReadonlyOption.Value.Value);
         }
     }
 }

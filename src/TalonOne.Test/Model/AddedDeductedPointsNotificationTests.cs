@@ -54,12 +54,12 @@ namespace TalonOne.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'ProfileIntegrationID'
+        /// Test the property 'EmployeeName'
         /// </summary>
         [Fact]
-        public void ProfileIntegrationIDTest()
+        public void EmployeeNameTest()
         {
-            // TODO unit test for the property 'ProfileIntegrationID'
+            // TODO unit test for the property 'EmployeeName'
         }
 
         /// <summary>
@@ -72,66 +72,21 @@ namespace TalonOne.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'SubledgerID'
+        /// Test the property 'NotificationType'
         /// </summary>
         [Fact]
-        public void SubledgerIDTest()
+        public void NotificationTypeTest()
         {
-            // TODO unit test for the property 'SubledgerID'
+            // TODO unit test for the property 'NotificationType'
         }
 
         /// <summary>
-        /// Test the property 'Amount'
+        /// Test the property 'ProfileIntegrationID'
         /// </summary>
         [Fact]
-        public void AmountTest()
+        public void ProfileIntegrationIDTest()
         {
-            // TODO unit test for the property 'Amount'
-        }
-
-        /// <summary>
-        /// Test the property 'Reason'
-        /// </summary>
-        [Fact]
-        public void ReasonTest()
-        {
-            // TODO unit test for the property 'Reason'
-        }
-
-        /// <summary>
-        /// Test the property 'TypeOfChange'
-        /// </summary>
-        [Fact]
-        public void TypeOfChangeTest()
-        {
-            // TODO unit test for the property 'TypeOfChange'
-        }
-
-        /// <summary>
-        /// Test the property 'EmployeeName'
-        /// </summary>
-        [Fact]
-        public void EmployeeNameTest()
-        {
-            // TODO unit test for the property 'EmployeeName'
-        }
-
-        /// <summary>
-        /// Test the property 'UserID'
-        /// </summary>
-        [Fact]
-        public void UserIDTest()
-        {
-            // TODO unit test for the property 'UserID'
-        }
-
-        /// <summary>
-        /// Test the property 'Operation'
-        /// </summary>
-        [Fact]
-        public void OperationTest()
-        {
-            // TODO unit test for the property 'Operation'
+            // TODO unit test for the property 'ProfileIntegrationID'
         }
 
         /// <summary>
@@ -144,21 +99,57 @@ namespace TalonOne.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'NotificationType'
+        /// Test the property 'SubledgerID'
         /// </summary>
         [Fact]
-        public void NotificationTypeTest()
+        public void SubledgerIDTest()
         {
-            // TODO unit test for the property 'NotificationType'
+            // TODO unit test for the property 'SubledgerID'
         }
 
         /// <summary>
-        /// Test the property 'StartDate'
+        /// Test the property 'TypeOfChange'
         /// </summary>
         [Fact]
-        public void StartDateTest()
+        public void TypeOfChangeTest()
         {
-            // TODO unit test for the property 'StartDate'
+            // TODO unit test for the property 'TypeOfChange'
+        }
+
+        /// <summary>
+        /// Test the property 'UserID'
+        /// </summary>
+        [Fact]
+        public void UserIDTest()
+        {
+            // TODO unit test for the property 'UserID'
+        }
+
+        /// <summary>
+        /// Test the property 'Amount'
+        /// </summary>
+        [Fact]
+        public void AmountTest()
+        {
+            // TODO unit test for the property 'Amount'
+        }
+
+        /// <summary>
+        /// Test the property 'Operation'
+        /// </summary>
+        [Fact]
+        public void OperationTest()
+        {
+            // TODO unit test for the property 'Operation'
+        }
+
+        /// <summary>
+        /// Test the property 'Reason'
+        /// </summary>
+        [Fact]
+        public void ReasonTest()
+        {
+            // TODO unit test for the property 'Reason'
         }
 
         /// <summary>
@@ -168,6 +159,15 @@ namespace TalonOne.Test.Model
         public void ExpiryDateTest()
         {
             // TODO unit test for the property 'ExpiryDate'
+        }
+
+        /// <summary>
+        /// Test the property 'StartDate'
+        /// </summary>
+        [Fact]
+        public void StartDateTest()
+        {
+            // TODO unit test for the property 'StartDate'
         }
     }
 }
