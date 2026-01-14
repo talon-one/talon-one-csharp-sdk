@@ -1,4 +1,4 @@
-# TalonOne.Model.TrackEventV2Response
+# TalonOneSdk.Model.TrackEventV2Response
 This is the response type returned by the trackEventV2 endpoint. 
 
 ## Properties

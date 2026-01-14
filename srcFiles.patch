@@ -1,39 +1,39 @@
-diff --git a/src/TalonOne.Test/Api/ManagementApiTests.cs b/src/TalonOne.Test/Api/ManagementApiTests.cs
+diff --git a/src/TalonOneSdk.Test/Api/ManagementApiTests.cs b/src/TalonOneSdk.Test/Api/ManagementApiTests.cs
 index 7aa10d5..253db7a 100644
---- a/src/TalonOne.Test/Api/ManagementApiTests.cs
-+++ b/src/TalonOne.Test/Api/ManagementApiTests.cs
-@@ -145,7 +145,7 @@ namespace TalonOne.Test.Api
+--- a/src/TalonOneSdk.Test/Api/ManagementApiTests.cs
++++ b/src/TalonOneSdk.Test/Api/ManagementApiTests.cs
+@@ -145,7 +145,7 @@ namespace TalonOneSdk.Test.Api
              NewAttribute newAttribute = default;
              var response = await _instance.CreateAttributeAsync(newAttribute);
              var model = response.Created();
 -            Assert.IsType<Attribute>(model);
-+            Assert.IsType<TalonOne.Model.Attribute>(model);
++            Assert.IsType<TalonOneSdk.Model.Attribute>(model);
          }
- 
+
          /// <summary>
-@@ -1065,7 +1065,7 @@ namespace TalonOne.Test.Api
+@@ -1065,7 +1065,7 @@ namespace TalonOneSdk.Test.Api
              long attributeId = default;
              var response = await _instance.GetAttributeAsync(attributeId);
              var model = response.Ok();
 -            Assert.IsType<Attribute>(model);
-+            Assert.IsType<TalonOne.Model.Attribute>(model);
++            Assert.IsType<TalonOneSdk.Model.Attribute>(model);
          }
- 
+
          /// <summary>
-@@ -2405,7 +2405,7 @@ namespace TalonOne.Test.Api
+@@ -2405,7 +2405,7 @@ namespace TalonOneSdk.Test.Api
              NewAttribute newAttribute = default;
              var response = await _instance.UpdateAttributeAsync(attributeId, newAttribute);
              var model = response.Ok();
 -            Assert.IsType<Attribute>(model);
-+            Assert.IsType<TalonOne.Model.Attribute>(model);
++            Assert.IsType<TalonOneSdk.Model.Attribute>(model);
          }
- 
+
          /// <summary>
-diff --git a/src/TalonOne/Client/ClientUtils.cs b/src/TalonOne/Client/ClientUtils.cs
+diff --git a/src/TalonOneSdk/Client/ClientUtils.cs b/src/TalonOneSdk/Client/ClientUtils.cs
 index 3bc910b..ceb10da 100644
---- a/src/TalonOne/Client/ClientUtils.cs
-+++ b/src/TalonOne/Client/ClientUtils.cs
-@@ -42,14 +42,6 @@ namespace TalonOne.Client
+--- a/src/TalonOneSdk/Client/ClientUtils.cs
++++ b/src/TalonOneSdk/Client/ClientUtils.cs
+@@ -42,14 +42,6 @@ namespace TalonOneSdk.Client
          /// </summary>
          public enum ApiKeyHeader
          {
@@ -48,7 +48,7 @@ index 3bc910b..ceb10da 100644
              /// <summary>
              /// The Authorization header
              /// </summary>
-@@ -66,10 +58,6 @@ namespace TalonOne.Client
+@@ -66,10 +58,6 @@ namespace TalonOneSdk.Client
          {
              switch(value)
              {
@@ -59,7 +59,7 @@ index 3bc910b..ceb10da 100644
                  case ApiKeyHeader.Authorization:
                      return "Authorization";
                  default:
-@@ -207,12 +195,12 @@ namespace TalonOne.Client
+@@ -207,12 +195,12 @@ namespace TalonOneSdk.Client
                  return ApplicationSession.StateEnumToJsonValue(applicationSessionStateEnum);
              if (obj is AsyncCouponsData.NotificationTypeEnum asyncCouponsDataNotificationTypeEnum)
                  return AsyncCouponsData.NotificationTypeEnumToJsonValue(asyncCouponsDataNotificationTypeEnum);
@@ -69,20 +69,20 @@ index 3bc910b..ceb10da 100644
 -                return Attribute.TypeEnumToJsonValue(attributeTypeEnum);
 -            if (obj is Attribute.AllowedSubscriptionsEnum attributeAllowedSubscriptionsEnum)
 -                return Attribute.AllowedSubscriptionsEnumToJsonValue(attributeAllowedSubscriptionsEnum);
-+            if (obj is TalonOne.Model.Attribute.EntityEnum attributeEntityEnum)
-+                return TalonOne.Model.Attribute.EntityEnumToJsonValue(attributeEntityEnum);
-+            if (obj is TalonOne.Model.Attribute.TypeEnum attributeTypeEnum)
-+                return TalonOne.Model.Attribute.TypeEnumToJsonValue(attributeTypeEnum);
-+            if (obj is TalonOne.Model.Attribute.AllowedSubscriptionsEnum attributeAllowedSubscriptionsEnum)
-+                return TalonOne.Model.Attribute.AllowedSubscriptionsEnumToJsonValue(attributeAllowedSubscriptionsEnum);
++            if (obj is TalonOneSdk.Model.Attribute.EntityEnum attributeEntityEnum)
++                return TalonOneSdk.Model.Attribute.EntityEnumToJsonValue(attributeEntityEnum);
++            if (obj is TalonOneSdk.Model.Attribute.TypeEnum attributeTypeEnum)
++                return TalonOneSdk.Model.Attribute.TypeEnumToJsonValue(attributeTypeEnum);
++            if (obj is TalonOneSdk.Model.Attribute.AllowedSubscriptionsEnum attributeAllowedSubscriptionsEnum)
++                return TalonOneSdk.Model.Attribute.AllowedSubscriptionsEnumToJsonValue(attributeAllowedSubscriptionsEnum);
              if (obj is BaseCampaign.FeaturesEnum baseCampaignFeaturesEnum)
                  return BaseCampaign.FeaturesEnumToJsonValue(baseCampaignFeaturesEnum);
              if (obj is BaseCampaign.StateEnum baseCampaignStateEnum)
-diff --git a/src/TalonOne/Model/BestPriorPriceRequest.cs b/src/TalonOne/Model/BestPriorPriceRequest.cs
+diff --git a/src/TalonOneSdk/Model/BestPriorPriceRequest.cs b/src/TalonOneSdk/Model/BestPriorPriceRequest.cs
 index 8448eb8..4733948 100644
---- a/src/TalonOne/Model/BestPriorPriceRequest.cs
-+++ b/src/TalonOne/Model/BestPriorPriceRequest.cs
-@@ -177,7 +177,7 @@ namespace TalonOne.Model
+--- a/src/TalonOneSdk/Model/BestPriorPriceRequest.cs
++++ b/src/TalonOneSdk/Model/BestPriorPriceRequest.cs
+@@ -177,7 +177,7 @@ namespace TalonOneSdk.Model
                              timeframeEndDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                              break;
                          case "timeframe":
@@ -91,20 +91,20 @@ index 8448eb8..4733948 100644
                              break;
                          case "strictEndDate":
                              strictEndDate = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
-@@ -255,7 +255,7 @@ namespace TalonOne.Model
+@@ -255,7 +255,7 @@ namespace TalonOneSdk.Model
              JsonSerializer.Serialize(writer, bestPriorPriceRequest.Skus, jsonSerializerOptions);
              writer.WriteString("timeframeEndDate", bestPriorPriceRequest.TimeframeEndDate.ToString(TimeframeEndDateFormat));
- 
+
 -            writer.WriteString("timeframe", bestPriorPriceRequest.Timeframe);
 +            writer.WriteNumber("timeframe", (long)bestPriorPriceRequest.Timeframe);
- 
+
              writer.WriteBoolean("strictEndDate", bestPriorPriceRequest.StrictEndDate);
- 
-diff --git a/src/TalonOne/Model/NewCustomerSessionV2.cs b/src/TalonOne/Model/NewCustomerSessionV2.cs
+
+diff --git a/src/TalonOneSdk/Model/NewCustomerSessionV2.cs b/src/TalonOneSdk/Model/NewCustomerSessionV2.cs
 index 95997ea..a5fe0f3 100644
---- a/src/TalonOne/Model/NewCustomerSessionV2.cs
-+++ b/src/TalonOne/Model/NewCustomerSessionV2.cs
-@@ -576,8 +576,11 @@ namespace TalonOne.Model
+--- a/src/TalonOneSdk/Model/NewCustomerSessionV2.cs
++++ b/src/TalonOneSdk/Model/NewCustomerSessionV2.cs
+@@ -576,8 +576,11 @@ namespace TalonOneSdk.Model
                  writer.WritePropertyName("loyaltyCards");
                  JsonSerializer.Serialize(writer, newCustomerSessionV2.LoyaltyCards, jsonSerializerOptions);
              }
@@ -118,3 +118,39 @@ index 95997ea..a5fe0f3 100644
              if (newCustomerSessionV2.CartItemsOption.IsSet)
              {
                  writer.WritePropertyName("cartItems");
+diff --git a/src/TalonOneSdk/Model/CampaignRulesetChangedNotificationItem.cs b/src/TalonOneSdk/Model/CampaignRulesetChangedNotificationItem.cs
+index aad7aa6..2047417 100644
+--- a/src/TalonOneSdk/Model/CampaignRulesetChangedNotificationItem.cs
++++ b/src/TalonOneSdk/Model/CampaignRulesetChangedNotificationItem.cs
+@@ -166,10 +166,10 @@ namespace TalonOneSdk.Model
+                             campaign = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                             break;
+                         case "oldRuleset":
+-                            oldRuleset = new Option<Ruleset>(utf8JsonReader.GetString());
++                            oldRuleset = new Option<Ruleset>(JsonSerializer.Deserialize<Ruleset>(ref utf8JsonReader, jsonSerializerOptions));
+                             break;
+                         case "ruleset":
+-                            ruleset = new Option<Ruleset>(utf8JsonReader.GetString());
++                            ruleset = new Option<Ruleset>(JsonSerializer.Deserialize<Ruleset>(ref utf8JsonReader, jsonSerializerOptions));
+                             break;
+                         default:
+                             break;
+@@ -238,10 +238,16 @@ namespace TalonOneSdk.Model
+             else
+                 writer.WriteNull("campaign");
+             if (campaignRulesetChangedNotificationItem.OldRulesetOption.IsSet)
+-                writer.WriteString("oldRuleset", campaignRulesetChangedNotificationItem.OldRuleset);
++            {
++                writer.WritePropertyName("oldRuleset");
++                JsonSerializer.Serialize(writer, campaignRulesetChangedNotificationItem.OldRuleset, jsonSerializerOptions);
++            }
+
+             if (campaignRulesetChangedNotificationItem.RulesetOption.IsSet)
+-                writer.WriteString("ruleset", campaignRulesetChangedNotificationItem.Ruleset);
++            {
++                writer.WritePropertyName("ruleset");
++                JsonSerializer.Serialize(writer, campaignRulesetChangedNotificationItem.Ruleset, jsonSerializerOptions);
++            }
+         }
+     }
+ }

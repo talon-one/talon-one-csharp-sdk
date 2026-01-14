@@ -1,4 +1,4 @@
-# TalonOne.Model.LoyaltyLedgerTransactions
+# TalonOneSdk.Model.LoyaltyLedgerTransactions
 List of loyalty ledger transactions.
 
 ## Properties

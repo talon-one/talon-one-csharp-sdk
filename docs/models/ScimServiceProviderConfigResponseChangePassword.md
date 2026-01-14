@@ -1,4 +1,4 @@
-# TalonOne.Model.ScimServiceProviderConfigResponseChangePassword
+# TalonOneSdk.Model.ScimServiceProviderConfigResponseChangePassword
 Configuration settings related to the ability to change user passwords.
 
 ## Properties

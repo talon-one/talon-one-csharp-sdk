@@ -1,4 +1,4 @@
-# TalonOne.Model.RoleV2RolesGroup
+# TalonOneSdk.Model.RoleV2RolesGroup
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.SamlLoginEndpoint
+# TalonOneSdk.Model.SamlLoginEndpoint
 
 ## Properties
 

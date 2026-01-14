@@ -1,4 +1,4 @@
-# TalonOne.Model.AttributesSettings
+# TalonOneSdk.Model.AttributesSettings
 Arbitrary settings associated with attributes.
 
 ## Properties

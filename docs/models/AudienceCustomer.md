@@ -1,4 +1,4 @@
-# TalonOne.Model.AudienceCustomer
+# TalonOneSdk.Model.AudienceCustomer
 
 ## Properties
 

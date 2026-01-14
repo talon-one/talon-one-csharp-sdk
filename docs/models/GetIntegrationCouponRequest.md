@@ -1,4 +1,4 @@
-# TalonOne.Model.GetIntegrationCouponRequest
+# TalonOneSdk.Model.GetIntegrationCouponRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.OktaEvent
+# TalonOneSdk.Model.OktaEvent
 Single event definition in the event data emitted by Okta.
 
 ## Properties

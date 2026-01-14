@@ -1,4 +1,4 @@
-# TalonOne.Model.CampaignLogSummary
+# TalonOneSdk.Model.CampaignLogSummary
 Campaign Log Summary
 
 ## Properties

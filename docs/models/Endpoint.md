@@ -1,4 +1,4 @@
-# TalonOne.Model.Endpoint
+# TalonOneSdk.Model.Endpoint
 
 ## Properties
 

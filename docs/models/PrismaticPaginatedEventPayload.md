@@ -1,4 +1,4 @@
-# TalonOne.Model.PrismaticPaginatedEventPayload
+# TalonOneSdk.Model.PrismaticPaginatedEventPayload
 
 ## Properties
 

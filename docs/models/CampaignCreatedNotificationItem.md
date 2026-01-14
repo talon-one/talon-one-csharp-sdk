@@ -1,4 +1,4 @@
-# TalonOne.Model.CampaignCreatedNotificationItem
+# TalonOneSdk.Model.CampaignCreatedNotificationItem
 
 ## Properties
 

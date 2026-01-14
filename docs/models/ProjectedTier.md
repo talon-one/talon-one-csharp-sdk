@@ -1,4 +1,4 @@
-# TalonOne.Model.ProjectedTier
+# TalonOneSdk.Model.ProjectedTier
 
 ## Properties
 

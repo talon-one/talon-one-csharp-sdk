@@ -1,4 +1,4 @@
-# TalonOne.Model.UpdateReferralBatch
+# TalonOneSdk.Model.UpdateReferralBatch
 
 ## Properties
 

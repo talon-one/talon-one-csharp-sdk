@@ -1,4 +1,4 @@
-# TalonOne.Model.ItemAttribute
+# TalonOneSdk.Model.ItemAttribute
 
 ## Properties
 

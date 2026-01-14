@@ -1,4 +1,4 @@
-# TalonOne.Model.NewCouponsForMultipleRecipients
+# TalonOneSdk.Model.NewCouponsForMultipleRecipients
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.CustomerProfileSearchQuery
+# TalonOneSdk.Model.CustomerProfileSearchQuery
 
 ## Properties
 

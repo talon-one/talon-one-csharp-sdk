@@ -1,4 +1,4 @@
-# TalonOne.Model.SetLoyaltyPointsExpiryDateEffectProps
+# TalonOneSdk.Model.SetLoyaltyPointsExpiryDateEffectProps
 The properties specific to the \"setLoyaltyPointsExpiryDate\" effect. This gets triggered when a validated rule contains the \"set expiry date\" effect. The current expiry date gets set to the date given in the effect. 
 
 ## Properties

@@ -1,4 +1,4 @@
-# TalonOne.Model.RemoveManyItemsCatalogAction
+# TalonOneSdk.Model.RemoveManyItemsCatalogAction
 The specific properties of the \"REMOVE_MANY\" catalog sync action.
 
 ## Properties

@@ -1,4 +1,4 @@
-# TalonOne.Model.LoyaltyCardProfileRegistration
+# TalonOneSdk.Model.LoyaltyCardProfileRegistration
 
 ## Properties
 

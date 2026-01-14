@@ -1,4 +1,4 @@
-# TalonOne.Model.CartItem
+# TalonOneSdk.Model.CartItem
 
 ## Properties
 

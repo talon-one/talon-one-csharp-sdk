@@ -1,4 +1,4 @@
-# TalonOne.Model.GenerateCampaignDescription
+# TalonOneSdk.Model.GenerateCampaignDescription
 
 ## Properties
 

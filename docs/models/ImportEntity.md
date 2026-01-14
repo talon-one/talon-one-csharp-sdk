@@ -1,4 +1,4 @@
-# TalonOne.Model.ImportEntity
+# TalonOneSdk.Model.ImportEntity
 
 ## Properties
 

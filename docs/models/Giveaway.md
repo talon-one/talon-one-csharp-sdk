@@ -1,4 +1,4 @@
-# TalonOne.Model.Giveaway
+# TalonOneSdk.Model.Giveaway
 
 ## Properties
 

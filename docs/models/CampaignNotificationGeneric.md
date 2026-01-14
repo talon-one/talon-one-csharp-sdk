@@ -1,4 +1,4 @@
-# TalonOne.Model.CampaignNotificationGeneric
+# TalonOneSdk.Model.CampaignNotificationGeneric
 
 ## Properties
 

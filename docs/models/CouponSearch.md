@@ -1,4 +1,4 @@
-# TalonOne.Model.CouponSearch
+# TalonOneSdk.Model.CouponSearch
 
 ## Properties
 

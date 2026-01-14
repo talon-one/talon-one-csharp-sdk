@@ -1,4 +1,4 @@
-# TalonOne.Model.UpdatePriceType
+# TalonOneSdk.Model.UpdatePriceType
 
 ## Properties
 

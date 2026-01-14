@@ -1,4 +1,4 @@
-# TalonOne.Model.CampaignEvaluationTreeChangedMessage
+# TalonOneSdk.Model.CampaignEvaluationTreeChangedMessage
 
 ## Properties
 

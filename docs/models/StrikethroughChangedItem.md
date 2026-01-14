@@ -1,4 +1,4 @@
-# TalonOne.Model.StrikethroughChangedItem
+# TalonOneSdk.Model.StrikethroughChangedItem
 The information of affected items.
 
 ## Properties

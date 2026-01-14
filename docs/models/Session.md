@@ -1,4 +1,4 @@
-# TalonOne.Model.Session
+# TalonOneSdk.Model.Session
 
 ## Properties
 

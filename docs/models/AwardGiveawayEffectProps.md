@@ -1,4 +1,4 @@
-# TalonOne.Model.AwardGiveawayEffectProps
+# TalonOneSdk.Model.AwardGiveawayEffectProps
 The properties specific to the \"awardGiveaway\" effect. This effect contains information on the giveaway item, and which profile it was awarded to.
 
 ## Properties

@@ -1,4 +1,4 @@
-# TalonOne.Model.CampaignGroupEntity
+# TalonOneSdk.Model.CampaignGroupEntity
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.CollectionWithoutPayload
+# TalonOneSdk.Model.CollectionWithoutPayload
 
 ## Properties
 

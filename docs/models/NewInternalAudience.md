@@ -1,4 +1,4 @@
-# TalonOne.Model.NewInternalAudience
+# TalonOneSdk.Model.NewInternalAudience
 
 ## Properties
 

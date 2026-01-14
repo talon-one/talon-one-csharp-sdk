@@ -1,4 +1,4 @@
-# TalonOne.Model.TriggerWebhookEffectProps
+# TalonOneSdk.Model.TriggerWebhookEffectProps
 The properties specific to the \"triggerWebhook\" effect. This gets triggered whenever a validated rule contained a \"trigger webhook\" effect. This is communicated as an FYI and should usually not require action on your side.
 
 ## Properties

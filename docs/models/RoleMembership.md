@@ -1,4 +1,4 @@
-# TalonOne.Model.RoleMembership
+# TalonOneSdk.Model.RoleMembership
 
 ## Properties
 

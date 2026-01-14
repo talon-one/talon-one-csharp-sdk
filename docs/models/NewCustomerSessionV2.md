@@ -1,4 +1,4 @@
-# TalonOne.Model.NewCustomerSessionV2
+# TalonOneSdk.Model.NewCustomerSessionV2
 The representation of the customer session.
 
 ## Properties

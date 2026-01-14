@@ -1,4 +1,4 @@
-# TalonOne.Model.GiveawaysPool
+# TalonOneSdk.Model.GiveawaysPool
 Giveaways pools is an entity for managing multiple similar giveaways.
 
 ## Properties

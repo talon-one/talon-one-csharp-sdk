@@ -1,4 +1,4 @@
-# TalonOne.Model.CreateApplicationAPIKey
+# TalonOneSdk.Model.CreateApplicationAPIKey
 
 ## Properties
 

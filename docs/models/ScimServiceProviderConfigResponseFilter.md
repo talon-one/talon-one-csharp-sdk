@@ -1,4 +1,4 @@
-# TalonOne.Model.ScimServiceProviderConfigResponseFilter
+# TalonOneSdk.Model.ScimServiceProviderConfigResponseFilter
 Configuration settings related to filtering SCIM resources based on specific criteria.
 
 ## Properties

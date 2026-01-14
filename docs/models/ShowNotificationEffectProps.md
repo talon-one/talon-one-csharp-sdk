@@ -1,4 +1,4 @@
-# TalonOne.Model.ShowNotificationEffectProps
+# TalonOneSdk.Model.ShowNotificationEffectProps
 The properties specific to the \"showNotification\" effect. This gets triggered whenever a validated rule contained a \"show notification\" effect.
 
 ## Properties

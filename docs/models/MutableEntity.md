@@ -1,4 +1,4 @@
-# TalonOne.Model.MutableEntity
+# TalonOneSdk.Model.MutableEntity
 
 ## Properties
 

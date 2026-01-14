@@ -1,4 +1,4 @@
-# TalonOne.Model.APIError
+# TalonOneSdk.Model.APIError
 
 ## Properties
 

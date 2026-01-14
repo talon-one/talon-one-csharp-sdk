@@ -1,4 +1,4 @@
-# TalonOne.Model.ScimPatchOperation
+# TalonOneSdk.Model.ScimPatchOperation
 Patch operation that is used to update the information.
 
 ## Properties

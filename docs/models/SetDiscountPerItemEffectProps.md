@@ -1,4 +1,4 @@
-# TalonOne.Model.SetDiscountPerItemEffectProps
+# TalonOneSdk.Model.SetDiscountPerItemEffectProps
 The properties specific to the `setDiscountPerItem` effect, triggered whenever a validated rule contained a \"set per item discount\" effect. This is a discount that will be applied either on a specific item, on a specific item + additional cost or on all additional costs per item. This depends on the chosen scope. 
 
 ## Properties

@@ -1,4 +1,4 @@
-# TalonOne.Model.DeleteCouponsData
+# TalonOneSdk.Model.DeleteCouponsData
 
 ## Properties
 

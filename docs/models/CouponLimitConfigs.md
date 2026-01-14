@@ -1,4 +1,4 @@
-# TalonOne.Model.CouponLimitConfigs
+# TalonOneSdk.Model.CouponLimitConfigs
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.LoyaltyDashboardPointsBreakdown
+# TalonOneSdk.Model.LoyaltyDashboardPointsBreakdown
 
 ## Properties
 

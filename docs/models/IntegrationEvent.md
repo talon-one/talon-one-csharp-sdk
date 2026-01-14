@@ -1,4 +1,4 @@
-# TalonOne.Model.IntegrationEvent
+# TalonOneSdk.Model.IntegrationEvent
 
 ## Properties
 

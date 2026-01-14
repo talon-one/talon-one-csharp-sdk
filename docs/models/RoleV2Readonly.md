@@ -1,4 +1,4 @@
-# TalonOne.Model.RoleV2Readonly
+# TalonOneSdk.Model.RoleV2Readonly
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.CouponDeletionFilters
+# TalonOneSdk.Model.CouponDeletionFilters
 
 ## Properties
 

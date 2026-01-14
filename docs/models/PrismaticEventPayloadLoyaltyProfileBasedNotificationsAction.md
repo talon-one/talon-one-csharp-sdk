@@ -1,4 +1,4 @@
-# TalonOne.Model.PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction
+# TalonOneSdk.Model.PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction
 
 ## Properties
 

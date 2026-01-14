@@ -1,4 +1,4 @@
-# TalonOne.Model.SessionCoupons
+# TalonOneSdk.Model.SessionCoupons
 
 ## Properties
 

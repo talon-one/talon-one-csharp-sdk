@@ -1,4 +1,4 @@
-# TalonOne.Model.PatchItemCatalogAction
+# TalonOneSdk.Model.PatchItemCatalogAction
 The specific properties of the \"PATCH\" catalog sync action.  **Note:**   - If you do not provide a new `price` value, the existing `price` value is retained.   - If you do not provide a new `product` value, the `product` value is set to `null`. 
 
 ## Properties

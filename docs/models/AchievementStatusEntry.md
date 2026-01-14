@@ -1,4 +1,4 @@
-# TalonOne.Model.AchievementStatusEntry
+# TalonOneSdk.Model.AchievementStatusEntry
 
 ## Properties
 

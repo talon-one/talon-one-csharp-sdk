@@ -1,4 +1,4 @@
-# TalonOne.Model.LoyaltyDashboardData
+# TalonOneSdk.Model.LoyaltyDashboardData
 Datapoint for the graphs and cards on a loyalty program dashboard.
 
 ## Properties

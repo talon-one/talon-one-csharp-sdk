@@ -1,4 +1,4 @@
-# TalonOne.Model.ScimResourceTypesListResponse
+# TalonOneSdk.Model.ScimResourceTypesListResponse
 List of resource types supported by the SCIM provisioning protocol.
 
 ## Properties

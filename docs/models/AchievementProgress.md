@@ -1,4 +1,4 @@
-# TalonOne.Model.AchievementProgress
+# TalonOneSdk.Model.AchievementProgress
 The current progress of the customer in the achievement.
 
 ## Properties

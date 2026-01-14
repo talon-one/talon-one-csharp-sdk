@@ -1,4 +1,4 @@
-# TalonOne.Model.OutgoingIntegrationCleverTapPolicy
+# TalonOneSdk.Model.OutgoingIntegrationCleverTapPolicy
 
 ## Properties
 

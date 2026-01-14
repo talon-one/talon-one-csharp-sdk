@@ -35,9 +35,9 @@ Generate the DLL using your preferred tool (e.g. `dotnet build`)
 Then include the DLL (under the `bin` folder) in the C# project, and use the namespaces:
 
 ```csharp
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
+using TalonOneSdk.Api;
+using TalonOneSdk.Client;
+using TalonOneSdk.Model;
 ```
 
 ## Determining the base URL of the endpoints

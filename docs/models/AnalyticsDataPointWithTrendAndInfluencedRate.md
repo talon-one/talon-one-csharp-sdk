@@ -1,4 +1,4 @@
-# TalonOne.Model.AnalyticsDataPointWithTrendAndInfluencedRate
+# TalonOneSdk.Model.AnalyticsDataPointWithTrendAndInfluencedRate
 
 ## Properties
 

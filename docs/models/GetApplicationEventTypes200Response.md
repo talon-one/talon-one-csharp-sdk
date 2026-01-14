@@ -1,4 +1,4 @@
-# TalonOne.Model.GetApplicationEventTypes200Response
+# TalonOneSdk.Model.GetApplicationEventTypes200Response
 
 ## Properties
 

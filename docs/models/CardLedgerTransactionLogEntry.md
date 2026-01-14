@@ -1,4 +1,4 @@
-# TalonOne.Model.CardLedgerTransactionLogEntry
+# TalonOneSdk.Model.CardLedgerTransactionLogEntry
 Log entry for a given loyalty card transaction.
 
 ## Properties

@@ -1,4 +1,4 @@
-# TalonOne.Model.TierUpgradeNotificationPolicy
+# TalonOneSdk.Model.TierUpgradeNotificationPolicy
 
 ## Properties
 

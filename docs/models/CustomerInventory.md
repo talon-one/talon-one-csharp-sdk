@@ -1,4 +1,4 @@
-# TalonOne.Model.CustomerInventory
+# TalonOneSdk.Model.CustomerInventory
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.Notification
+# TalonOneSdk.Model.Notification
 
 ## Properties
 

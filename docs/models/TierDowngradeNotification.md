@@ -1,4 +1,4 @@
-# TalonOne.Model.TierDowngradeNotification
+# TalonOneSdk.Model.TierDowngradeNotification
 
 ## Properties
 

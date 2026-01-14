@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
+using TalonOneSdk.Api;
+using TalonOneSdk.Client;
+using TalonOneSdk.Model;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace _example
@@ -62,7 +62,7 @@ namespace _example
             IntegrationRequest body = new IntegrationRequest(
                 customerSession
                 // Optional list of requested information to be present on the response.
-                // See src/TalonOne/Model/IntegrationRequest#ResponseContentEnum for full list of supported values
+                // See src/TalonOneSdk/Model/IntegrationRequest#ResponseContentEnum for full list of supported values
                 // new List<IntegrationRequest.ResponseContentEnum> {
                 //     IntegrationRequest.ResponseContentEnum.CustomerSession,
                 //     IntegrationRequest.ResponseContentEnum.CustomerProfile

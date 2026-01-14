@@ -1,4 +1,4 @@
-# TalonOne.Model.GetCustomerActivityReportsWithoutTotalCount200Response
+# TalonOneSdk.Model.GetCustomerActivityReportsWithoutTotalCount200Response
 
 ## Properties
 

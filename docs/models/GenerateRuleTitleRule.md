@@ -1,4 +1,4 @@
-# TalonOne.Model.GenerateRuleTitleRule
+# TalonOneSdk.Model.GenerateRuleTitleRule
 
 ## Properties
 

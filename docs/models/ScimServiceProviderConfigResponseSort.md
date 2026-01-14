@@ -1,4 +1,4 @@
-# TalonOne.Model.ScimServiceProviderConfigResponseSort
+# TalonOneSdk.Model.ScimServiceProviderConfigResponseSort
 Configuration settings related to sorting SCIM resources in query responses.
 
 ## Properties

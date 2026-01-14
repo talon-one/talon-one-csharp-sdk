@@ -1,4 +1,4 @@
-# TalonOne.Model.RoleAssign
+# TalonOneSdk.Model.RoleAssign
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.AddedDeductedPointsBalancesAction
+# TalonOneSdk.Model.AddedDeductedPointsBalancesAction
 
 ## Properties
 

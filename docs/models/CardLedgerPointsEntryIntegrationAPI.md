@@ -1,4 +1,4 @@
-# TalonOne.Model.CardLedgerPointsEntryIntegrationAPI
+# TalonOneSdk.Model.CardLedgerPointsEntryIntegrationAPI
 Loyalty card points with start and expiry dates.
 
 ## Properties

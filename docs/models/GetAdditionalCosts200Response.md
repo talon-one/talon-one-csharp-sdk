@@ -1,4 +1,4 @@
-# TalonOne.Model.GetAdditionalCosts200Response
+# TalonOneSdk.Model.GetAdditionalCosts200Response
 
 ## Properties
 

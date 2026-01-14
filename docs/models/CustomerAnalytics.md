@@ -1,4 +1,4 @@
-# TalonOne.Model.CustomerAnalytics
+# TalonOneSdk.Model.CustomerAnalytics
 A summary report of customer activity for a given time range.
 
 ## Properties

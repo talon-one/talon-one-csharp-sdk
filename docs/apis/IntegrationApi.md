@@ -1,4 +1,4 @@
-# TalonOne.Api.IntegrationApi
+# TalonOneSdk.Api.IntegrationApi
 
 All URIs are relative to *https://yourbaseurl.talon.one*
 

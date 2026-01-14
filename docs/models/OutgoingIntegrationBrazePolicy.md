@@ -1,4 +1,4 @@
-# TalonOne.Model.OutgoingIntegrationBrazePolicy
+# TalonOneSdk.Model.OutgoingIntegrationBrazePolicy
 
 ## Properties
 

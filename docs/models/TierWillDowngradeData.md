@@ -1,4 +1,4 @@
-# TalonOne.Model.TierWillDowngradeData
+# TalonOneSdk.Model.TierWillDowngradeData
 
 ## Properties
 

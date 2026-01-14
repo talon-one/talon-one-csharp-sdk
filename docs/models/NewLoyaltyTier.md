@@ -1,4 +1,4 @@
-# TalonOne.Model.NewLoyaltyTier
+# TalonOneSdk.Model.NewLoyaltyTier
 A tier in a loyalty program.
 
 ## Properties

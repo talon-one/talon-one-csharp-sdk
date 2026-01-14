@@ -1,4 +1,4 @@
-# TalonOne.Model.ApplicationCIFReferences
+# TalonOneSdk.Model.ApplicationCIFReferences
 
 ## Properties
 

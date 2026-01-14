@@ -1,4 +1,4 @@
-# TalonOne.Model.ScimServiceProviderConfigResponse
+# TalonOneSdk.Model.ScimServiceProviderConfigResponse
 Service provider configuration details.
 
 ## Properties

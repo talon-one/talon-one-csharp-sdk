@@ -1,4 +1,4 @@
-# TalonOne.Model.EventV2
+# TalonOneSdk.Model.EventV2
 
 ## Properties
 

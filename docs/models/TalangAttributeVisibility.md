@@ -1,4 +1,4 @@
-# TalonOne.Model.TalangAttributeVisibility
+# TalonOneSdk.Model.TalangAttributeVisibility
 
 ## Properties
 

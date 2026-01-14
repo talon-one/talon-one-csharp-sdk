@@ -1,4 +1,4 @@
-# TalonOne.Model.SlotDef
+# TalonOneSdk.Model.SlotDef
 
 ## Properties
 

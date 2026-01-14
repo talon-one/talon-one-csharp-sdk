@@ -1,4 +1,4 @@
-# TalonOne.Model.AnalyticsDataPointWithTrendAndUplift
+# TalonOneSdk.Model.AnalyticsDataPointWithTrendAndUplift
 
 ## Properties
 

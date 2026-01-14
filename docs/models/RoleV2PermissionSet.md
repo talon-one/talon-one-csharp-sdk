@@ -1,4 +1,4 @@
-# TalonOne.Model.RoleV2PermissionSet
+# TalonOneSdk.Model.RoleV2PermissionSet
 
 ## Properties
 

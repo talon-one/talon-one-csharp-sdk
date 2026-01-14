@@ -1,4 +1,4 @@
-# TalonOne.Model.WillAwardGiveawayEffectProps
+# TalonOneSdk.Model.WillAwardGiveawayEffectProps
 The properties specific to the \"awardGiveaway\" effect when the session is not closed yet. This effect replaces \"awardGiveaway\" only when updating a session with any state other than \"closed\". This is to ensure no giveaway codes are leaked when they are still not guaranteed to be awarded.
 
 ## Properties

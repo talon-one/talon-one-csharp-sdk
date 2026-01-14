@@ -1,4 +1,4 @@
-# TalonOne.Model.NewExternalInvitation
+# TalonOneSdk.Model.NewExternalInvitation
 Parameters for inviting a new user from an external identity provider.
 
 ## Properties

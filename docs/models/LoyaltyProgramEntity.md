@@ -1,4 +1,4 @@
-# TalonOne.Model.LoyaltyProgramEntity
+# TalonOneSdk.Model.LoyaltyProgramEntity
 
 ## Properties
 

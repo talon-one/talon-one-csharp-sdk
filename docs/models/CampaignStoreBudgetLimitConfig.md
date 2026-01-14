@@ -1,4 +1,4 @@
-# TalonOne.Model.CampaignStoreBudgetLimitConfig
+# TalonOneSdk.Model.CampaignStoreBudgetLimitConfig
 
 ## Properties
 

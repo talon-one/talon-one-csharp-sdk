@@ -1,4 +1,4 @@
-# TalonOne.Model.CampaignSetBranchNode
+# TalonOneSdk.Model.CampaignSetBranchNode
 
 ## Properties
 

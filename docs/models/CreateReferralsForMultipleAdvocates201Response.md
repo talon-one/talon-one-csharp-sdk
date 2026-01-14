@@ -1,4 +1,4 @@
-# TalonOne.Model.CreateReferralsForMultipleAdvocates201Response
+# TalonOneSdk.Model.CreateReferralsForMultipleAdvocates201Response
 
 ## Properties
 

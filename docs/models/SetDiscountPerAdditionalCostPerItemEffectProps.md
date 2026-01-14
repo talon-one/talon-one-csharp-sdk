@@ -1,4 +1,4 @@
-# TalonOne.Model.SetDiscountPerAdditionalCostPerItemEffectProps
+# TalonOneSdk.Model.SetDiscountPerAdditionalCostPerItemEffectProps
 The properties specific to the \"setDiscountPerAdditionalCostPerItem\" effect. This gets triggered whenever a validated rule contained a \"set discount per additional cost per item\" effect. This is a discount that should be applied on a specific additional cost in a specific item.
 
 ## Properties

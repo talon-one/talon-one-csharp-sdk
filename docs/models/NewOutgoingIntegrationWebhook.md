@@ -1,4 +1,4 @@
-# TalonOne.Model.NewOutgoingIntegrationWebhook
+# TalonOneSdk.Model.NewOutgoingIntegrationWebhook
 
 ## Properties
 

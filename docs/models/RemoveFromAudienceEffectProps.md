@@ -1,4 +1,4 @@
-# TalonOne.Model.RemoveFromAudienceEffectProps
+# TalonOneSdk.Model.RemoveFromAudienceEffectProps
 The properties specific to the \"removeFromAudience\" effect. This gets triggered whenever a validated rule contains a \"removeFromAudience\" effect.
 
 ## Properties

@@ -1,4 +1,4 @@
-# TalonOne.Model.CustomerProfileIntegrationResponseV2
+# TalonOneSdk.Model.CustomerProfileIntegrationResponseV2
 This is the response type returned by the updateCustomerProfileV2 endpoint. 
 
 ## Properties

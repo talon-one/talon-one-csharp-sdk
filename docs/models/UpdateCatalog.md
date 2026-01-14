@@ -1,4 +1,4 @@
-# TalonOne.Model.UpdateCatalog
+# TalonOneSdk.Model.UpdateCatalog
 
 ## Properties
 

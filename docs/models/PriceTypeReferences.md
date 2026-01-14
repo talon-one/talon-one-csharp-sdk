@@ -1,4 +1,4 @@
-# TalonOne.Model.PriceTypeReferences
+# TalonOneSdk.Model.PriceTypeReferences
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.LedgerTransactionLogEntryIntegrationAPI
+# TalonOneSdk.Model.LedgerTransactionLogEntryIntegrationAPI
 Log entry for a given loyalty profile transaction.
 
 ## Properties

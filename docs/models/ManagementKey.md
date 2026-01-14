@@ -1,4 +1,4 @@
-# TalonOne.Model.ManagementKey
+# TalonOneSdk.Model.ManagementKey
 
 ## Properties
 

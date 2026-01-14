@@ -1,4 +1,4 @@
-# TalonOne.Model.AddedDeductedPointsNotification
+# TalonOneSdk.Model.AddedDeductedPointsNotification
 
 ## Properties
 

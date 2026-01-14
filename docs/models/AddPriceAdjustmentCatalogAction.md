@@ -1,4 +1,4 @@
-# TalonOne.Model.AddPriceAdjustmentCatalogAction
+# TalonOneSdk.Model.AddPriceAdjustmentCatalogAction
 The specific properties of the \"ADD_PRICE_ADJUSTMENT\" catalog sync action. 
 
 ## Properties

@@ -1,4 +1,4 @@
-# TalonOne.Model.ScimServiceProviderConfigResponsePatch
+# TalonOneSdk.Model.ScimServiceProviderConfigResponsePatch
 Configuration settings related to patch operations, which allow partial updates to SCIM resources.
 
 ## Properties

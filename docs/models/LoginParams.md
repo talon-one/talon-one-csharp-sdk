@@ -1,4 +1,4 @@
-# TalonOne.Model.LoginParams
+# TalonOneSdk.Model.LoginParams
 
 ## Properties
 

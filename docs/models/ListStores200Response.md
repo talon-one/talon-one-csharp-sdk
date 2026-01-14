@@ -1,4 +1,4 @@
-# TalonOne.Model.ListStores200Response
+# TalonOneSdk.Model.ListStores200Response
 
 ## Properties
 

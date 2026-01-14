@@ -1,4 +1,4 @@
-# TalonOne.Model.NewCampaignTemplate
+# TalonOneSdk.Model.NewCampaignTemplate
 
 ## Properties
 

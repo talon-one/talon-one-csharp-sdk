@@ -1,4 +1,4 @@
-# TalonOne.Model.FunctionDef
+# TalonOneSdk.Model.FunctionDef
 
 ## Properties
 

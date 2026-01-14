@@ -1,4 +1,4 @@
-# TalonOne.Model.PatchManyItemsCatalogAction
+# TalonOneSdk.Model.PatchManyItemsCatalogAction
 The specific properties of the \"PATCH_MANY\" catalog sync action.
 
 ## Properties

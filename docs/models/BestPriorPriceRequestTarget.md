@@ -1,4 +1,4 @@
-# TalonOne.Model.BestPriorPriceRequestTarget
+# TalonOneSdk.Model.BestPriorPriceRequestTarget
 Specifies the target for which the best prior price calculation is taken into consideration.
 
 ## Properties

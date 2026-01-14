@@ -1,4 +1,4 @@
-# TalonOne.Model.ReserveCouponEffectProps
+# TalonOneSdk.Model.ReserveCouponEffectProps
 The properties specific to the \"reserveCoupon\" effect. This gets triggered whenever a validated rule contained a \"reserve coupon\" effect. This reserves the coupon currently on scope to the profile on scope.
 
 ## Properties

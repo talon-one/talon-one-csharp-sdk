@@ -1,4 +1,4 @@
-# TalonOne.Model.UpdateCouponsData
+# TalonOneSdk.Model.UpdateCouponsData
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.CouponRejectionReason
+# TalonOneSdk.Model.CouponRejectionReason
 Holds a reference to the campaign, the coupon and the reason for which that coupon was rejected. Should only be present when there is a 'rejectCoupon' effect.
 
 ## Properties

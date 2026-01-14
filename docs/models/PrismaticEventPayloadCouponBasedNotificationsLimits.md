@@ -1,4 +1,4 @@
-# TalonOne.Model.PrismaticEventPayloadCouponBasedNotificationsLimits
+# TalonOneSdk.Model.PrismaticEventPayloadCouponBasedNotificationsLimits
 
 ## Properties
 

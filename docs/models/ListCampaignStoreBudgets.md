@@ -1,4 +1,4 @@
-# TalonOne.Model.ListCampaignStoreBudgets
+# TalonOneSdk.Model.ListCampaignStoreBudgets
 
 ## Properties
 

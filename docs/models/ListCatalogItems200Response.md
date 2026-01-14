@@ -1,4 +1,4 @@
-# TalonOne.Model.ListCatalogItems200Response
+# TalonOneSdk.Model.ListCatalogItems200Response
 
 ## Properties
 

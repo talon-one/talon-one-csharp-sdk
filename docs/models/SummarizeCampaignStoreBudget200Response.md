@@ -1,4 +1,4 @@
-# TalonOne.Model.SummarizeCampaignStoreBudget200Response
+# TalonOneSdk.Model.SummarizeCampaignStoreBudget200Response
 
 ## Properties
 

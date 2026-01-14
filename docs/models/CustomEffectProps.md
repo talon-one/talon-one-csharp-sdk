@@ -1,4 +1,4 @@
-# TalonOne.Model.CustomEffectProps
+# TalonOneSdk.Model.CustomEffectProps
 Effect containing custom payload.
 
 ## Properties

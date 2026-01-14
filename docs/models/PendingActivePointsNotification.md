@@ -1,4 +1,4 @@
-# TalonOne.Model.PendingActivePointsNotification
+# TalonOneSdk.Model.PendingActivePointsNotification
 
 ## Properties
 

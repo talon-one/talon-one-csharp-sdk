@@ -1,4 +1,4 @@
-# TalonOne.Model.Meta
+# TalonOneSdk.Model.Meta
 
 ## Properties
 

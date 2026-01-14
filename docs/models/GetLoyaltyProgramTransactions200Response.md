@@ -1,4 +1,4 @@
-# TalonOne.Model.GetLoyaltyProgramTransactions200Response
+# TalonOneSdk.Model.GetLoyaltyProgramTransactions200Response
 
 ## Properties
 

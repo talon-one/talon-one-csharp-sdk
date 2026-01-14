@@ -1,4 +1,4 @@
-# TalonOne.Model.AccountDashboardStatisticReferrals
+# TalonOneSdk.Model.AccountDashboardStatisticReferrals
 
 ## Properties
 

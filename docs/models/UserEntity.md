@@ -1,4 +1,4 @@
-# TalonOne.Model.UserEntity
+# TalonOneSdk.Model.UserEntity
 
 ## Properties
 

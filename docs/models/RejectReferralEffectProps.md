@@ -1,4 +1,4 @@
-# TalonOne.Model.RejectReferralEffectProps
+# TalonOneSdk.Model.RejectReferralEffectProps
 The properties specific to the \"rejectReferral\" effect. This gets triggered whenever the referral code was rejected. See rejectionReason for more info on why.
 
 ## Properties

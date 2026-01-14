@@ -1,4 +1,4 @@
-# TalonOne.Model.NewAccount
+# TalonOneSdk.Model.NewAccount
 
 ## Properties
 

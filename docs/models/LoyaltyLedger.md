@@ -1,4 +1,4 @@
-# TalonOne.Model.LoyaltyLedger
+# TalonOneSdk.Model.LoyaltyLedger
 Ledger of Balance in Loyalty Program for a Customer.
 
 ## Properties

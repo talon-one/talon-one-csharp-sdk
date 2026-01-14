@@ -1,4 +1,4 @@
-# TalonOne.Model.GetReferralsWithoutTotalCount200Response
+# TalonOneSdk.Model.GetReferralsWithoutTotalCount200Response
 
 ## Properties
 

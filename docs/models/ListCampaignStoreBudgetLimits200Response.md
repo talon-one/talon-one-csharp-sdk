@@ -1,4 +1,4 @@
-# TalonOne.Model.ListCampaignStoreBudgetLimits200Response
+# TalonOneSdk.Model.ListCampaignStoreBudgetLimits200Response
 
 ## Properties
 

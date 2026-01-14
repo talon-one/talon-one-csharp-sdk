@@ -1,4 +1,4 @@
-# TalonOne.Model.UpdateApplicationCIF
+# TalonOneSdk.Model.UpdateApplicationCIF
 
 ## Properties
 

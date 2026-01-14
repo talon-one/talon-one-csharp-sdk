@@ -1,4 +1,4 @@
-# TalonOne.Model.CampaignBudget
+# TalonOneSdk.Model.CampaignBudget
 
 ## Properties
 

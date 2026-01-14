@@ -1,4 +1,4 @@
-# TalonOne.Model.OktaEventTarget
+# TalonOneSdk.Model.OktaEventTarget
 Target of the specific Okta event.
 
 ## Properties

@@ -1,4 +1,4 @@
-# TalonOne.Model.EntityWithTalangVisibleID
+# TalonOneSdk.Model.EntityWithTalangVisibleID
 
 ## Properties
 

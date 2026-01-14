@@ -1,4 +1,4 @@
-# TalonOne.Model.ScimBaseUserName
+# TalonOneSdk.Model.ScimBaseUserName
 The components of the user’s real name.
 
 ## Properties

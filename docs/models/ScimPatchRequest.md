@@ -1,4 +1,4 @@
-# TalonOne.Model.ScimPatchRequest
+# TalonOneSdk.Model.ScimPatchRequest
 SCIM Patch request
 
 ## Properties

@@ -1,4 +1,4 @@
-# TalonOne.Model.PriceDetail
+# TalonOneSdk.Model.PriceDetail
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.CouponConstraints
+# TalonOneSdk.Model.CouponConstraints
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.CardExpiringPointsNotificationTrigger
+# TalonOneSdk.Model.CardExpiringPointsNotificationTrigger
 
 ## Properties
 

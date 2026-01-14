@@ -1,4 +1,4 @@
-# TalonOne.Model.NewRevisionVersion
+# TalonOneSdk.Model.NewRevisionVersion
 
 ## Properties
 

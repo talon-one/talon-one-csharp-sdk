@@ -1,4 +1,4 @@
-# TalonOne.Model.ExpiringCouponsNotificationPolicy
+# TalonOneSdk.Model.ExpiringCouponsNotificationPolicy
 
 ## Properties
 

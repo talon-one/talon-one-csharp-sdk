@@ -1,4 +1,4 @@
-# TalonOne.Model.ReturnIntegrationRequest
+# TalonOneSdk.Model.ReturnIntegrationRequest
 The body of a return integration API request. Next to the cart items details, this contains an optional listing of extra properties that should be returned in the response.
 
 ## Properties

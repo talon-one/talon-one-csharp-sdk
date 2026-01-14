@@ -1,4 +1,4 @@
-# TalonOne.Model.GetReservedCustomers200Response
+# TalonOneSdk.Model.GetReservedCustomers200Response
 
 ## Properties
 

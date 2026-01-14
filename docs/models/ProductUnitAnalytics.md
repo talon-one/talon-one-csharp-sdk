@@ -1,4 +1,4 @@
-# TalonOne.Model.ProductUnitAnalytics
+# TalonOneSdk.Model.ProductUnitAnalytics
 
 ## Properties
 

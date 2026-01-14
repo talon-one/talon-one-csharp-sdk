@@ -1,4 +1,4 @@
-# TalonOne.Model.Product
+# TalonOneSdk.Model.Product
 The specific properties of the product this item belongs to, if available.
 
 ## Properties

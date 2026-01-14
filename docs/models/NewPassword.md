@@ -1,4 +1,4 @@
-# TalonOne.Model.NewPassword
+# TalonOneSdk.Model.NewPassword
 
 ## Properties
 

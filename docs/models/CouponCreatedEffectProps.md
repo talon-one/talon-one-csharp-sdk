@@ -1,4 +1,4 @@
-# TalonOne.Model.CouponCreatedEffectProps
+# TalonOneSdk.Model.CouponCreatedEffectProps
 The properties specific to the \"couponCreated\" effect. This gets triggered whenever a validated rule contained a \"create coupon\" effect, and a coupon was created for a customer. See \"createdCoupons\" on the response for all details of this coupon.
 
 ## Properties

@@ -1,4 +1,4 @@
-# TalonOne.Model.LabelTargetAudience
+# TalonOneSdk.Model.LabelTargetAudience
 Represents the targeted audience. 
 
 ## Properties

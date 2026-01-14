@@ -1,4 +1,4 @@
-# TalonOne.Model.TierUpgradeData
+# TalonOneSdk.Model.TierUpgradeData
 
 ## Properties
 

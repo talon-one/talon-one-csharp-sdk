@@ -1,4 +1,4 @@
-# TalonOne.Model.HiddenConditionsEffects
+# TalonOneSdk.Model.HiddenConditionsEffects
 Contains information about hidden conditions and effects in the Application.
 
 ## Properties

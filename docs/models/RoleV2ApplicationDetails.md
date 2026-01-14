@@ -1,4 +1,4 @@
-# TalonOne.Model.RoleV2ApplicationDetails
+# TalonOneSdk.Model.RoleV2ApplicationDetails
 
 ## Properties
 

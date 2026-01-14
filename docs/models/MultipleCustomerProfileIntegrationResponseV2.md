@@ -1,4 +1,4 @@
-# TalonOne.Model.MultipleCustomerProfileIntegrationResponseV2
+# TalonOneSdk.Model.MultipleCustomerProfileIntegrationResponseV2
 
 ## Properties
 

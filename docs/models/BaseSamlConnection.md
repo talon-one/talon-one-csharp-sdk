@@ -1,4 +1,4 @@
-# TalonOne.Model.BaseSamlConnection
+# TalonOneSdk.Model.BaseSamlConnection
 
 ## Properties
 

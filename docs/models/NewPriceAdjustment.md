@@ -1,4 +1,4 @@
-# TalonOne.Model.NewPriceAdjustment
+# TalonOneSdk.Model.NewPriceAdjustment
 
 ## Properties
 

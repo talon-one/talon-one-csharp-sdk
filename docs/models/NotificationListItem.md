@@ -1,4 +1,4 @@
-# TalonOne.Model.NotificationListItem
+# TalonOneSdk.Model.NotificationListItem
 
 ## Properties
 

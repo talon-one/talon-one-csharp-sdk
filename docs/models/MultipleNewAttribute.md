@@ -1,4 +1,4 @@
-# TalonOne.Model.MultipleNewAttribute
+# TalonOneSdk.Model.MultipleNewAttribute
 
 ## Properties
 

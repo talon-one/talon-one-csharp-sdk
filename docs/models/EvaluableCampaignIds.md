@@ -1,4 +1,4 @@
-# TalonOne.Model.EvaluableCampaignIds
+# TalonOneSdk.Model.EvaluableCampaignIds
 
 ## Properties
 

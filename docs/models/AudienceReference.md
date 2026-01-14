@@ -1,4 +1,4 @@
-# TalonOne.Model.AudienceReference
+# TalonOneSdk.Model.AudienceReference
 
 ## Properties
 

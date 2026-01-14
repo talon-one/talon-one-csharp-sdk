@@ -1,4 +1,4 @@
-# TalonOne.Model.CouponsNotificationPolicy
+# TalonOneSdk.Model.CouponsNotificationPolicy
 
 ## Properties
 

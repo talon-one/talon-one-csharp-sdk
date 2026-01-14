@@ -1,4 +1,4 @@
-# TalonOne.Model.GetCampaignGroups200Response
+# TalonOneSdk.Model.GetCampaignGroups200Response
 
 ## Properties
 

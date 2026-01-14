@@ -1,4 +1,4 @@
-# TalonOne.Model.ScimUser
+# TalonOneSdk.Model.ScimUser
 Schema definition for users that have been provisioned using the SCIM protocol with an identity provider, for example, Microsoft Entra ID.
 
 ## Properties

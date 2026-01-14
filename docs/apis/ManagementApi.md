@@ -1,4 +1,4 @@
-# TalonOne.Api.ManagementApi
+# TalonOneSdk.Api.ManagementApi
 
 All URIs are relative to *https://yourbaseurl.talon.one*
 

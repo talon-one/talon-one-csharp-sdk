@@ -1,4 +1,4 @@
-# TalonOne.Model.OutgoingIntegrationMoEngagePolicy
+# TalonOneSdk.Model.OutgoingIntegrationMoEngagePolicy
 
 ## Properties
 

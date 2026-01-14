@@ -1,4 +1,4 @@
-# TalonOne.Model.LoyaltyCard
+# TalonOneSdk.Model.LoyaltyCard
 
 ## Properties
 
@@ -17,8 +17,8 @@ Name | Type | Description | Notes
 **Ledger** | [**LedgerInfo**](LedgerInfo.md) | Displays point balances of the card in the main ledger of the loyalty program. | [optional] 
 **Subledgers** | [**Dictionary&lt;string, LedgerInfo&gt;**](LedgerInfo.md) | Displays point balances of the card in the subledgers of the loyalty program. | [optional] 
 **Modified** | **DateTime** | Timestamp of the most recent update of the loyalty card. | [optional] 
-**OldCardIdentifier** | **string** | The identifier of the card from which the points were transferred. | [optional] 
-**NewCardIdentifier** | **string** | The identifier of the card to which the points were transferred. | [optional] 
+**OldCardIdentifier** | **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
+**NewCardIdentifier** | **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
 **BatchId** | **string** | The ID of the batch in which the loyalty card was created. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)

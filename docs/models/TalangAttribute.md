@@ -1,4 +1,4 @@
-# TalonOne.Model.TalangAttribute
+# TalonOneSdk.Model.TalangAttribute
 
 ## Properties
 

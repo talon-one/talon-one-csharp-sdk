@@ -1,4 +1,4 @@
-# TalonOne.Model.CouponCreationJob
+# TalonOneSdk.Model.CouponCreationJob
 
 ## Properties
 

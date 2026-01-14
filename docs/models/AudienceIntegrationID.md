@@ -1,4 +1,4 @@
-# TalonOne.Model.AudienceIntegrationID
+# TalonOneSdk.Model.AudienceIntegrationID
 
 ## Properties
 

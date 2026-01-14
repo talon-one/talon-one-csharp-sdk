@@ -1,4 +1,4 @@
-# TalonOne.Model.ExtendLoyaltyPointsExpiryDateEffectProps
+# TalonOneSdk.Model.ExtendLoyaltyPointsExpiryDateEffectProps
 The properties specific to the \"extendLoyaltyPointsExpiryDate\" effect. This gets triggered when a validated rule contains the \"extend expiry date\" effect. The current expiry date gets extended by the time frame given in the effect. 
 
 ## Properties

@@ -1,4 +1,4 @@
-# TalonOne.Model.ApplicationReferee
+# TalonOneSdk.Model.ApplicationReferee
 
 ## Properties
 

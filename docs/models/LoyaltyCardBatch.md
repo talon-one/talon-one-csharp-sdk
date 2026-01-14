@@ -1,4 +1,4 @@
-# TalonOne.Model.LoyaltyCardBatch
+# TalonOneSdk.Model.LoyaltyCardBatch
 
 ## Properties
 

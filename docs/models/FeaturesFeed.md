@@ -1,4 +1,4 @@
-# TalonOne.Model.FeaturesFeed
+# TalonOneSdk.Model.FeaturesFeed
 
 ## Properties
 

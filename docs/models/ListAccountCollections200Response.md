@@ -1,4 +1,4 @@
-# TalonOne.Model.ListAccountCollections200Response
+# TalonOneSdk.Model.ListAccountCollections200Response
 
 ## Properties
 

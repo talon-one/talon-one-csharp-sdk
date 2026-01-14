@@ -1,4 +1,4 @@
-# TalonOne.Model.NewInviteEmail
+# TalonOneSdk.Model.NewInviteEmail
 
 ## Properties
 

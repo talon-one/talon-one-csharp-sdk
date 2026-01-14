@@ -1,4 +1,4 @@
-# TalonOne.Model.UpdateLoyaltyCard
+# TalonOneSdk.Model.UpdateLoyaltyCard
 
 ## Properties
 

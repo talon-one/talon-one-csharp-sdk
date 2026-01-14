@@ -1,4 +1,4 @@
-# TalonOne.Model.StrikethroughDebugResponse
+# TalonOneSdk.Model.StrikethroughDebugResponse
 
 ## Properties
 

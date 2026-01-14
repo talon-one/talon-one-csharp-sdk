@@ -1,4 +1,4 @@
-# TalonOne.Model.WebhookAuthentication
+# TalonOneSdk.Model.WebhookAuthentication
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.UpdateAccount
+# TalonOneSdk.Model.UpdateAccount
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.AccountLimits
+# TalonOneSdk.Model.AccountLimits
 
 ## Properties
 

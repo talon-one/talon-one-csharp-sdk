@@ -1,4 +1,4 @@
-# TalonOne.Model.MessageTest
+# TalonOneSdk.Model.MessageTest
 
 ## Properties
 

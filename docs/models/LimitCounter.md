@@ -1,4 +1,4 @@
-# TalonOne.Model.LimitCounter
+# TalonOneSdk.Model.LimitCounter
 
 ## Properties
 

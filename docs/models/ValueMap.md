@@ -1,4 +1,4 @@
-# TalonOne.Model.ValueMap
+# TalonOneSdk.Model.ValueMap
 
 ## Properties
 

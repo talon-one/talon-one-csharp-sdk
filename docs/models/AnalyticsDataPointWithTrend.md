@@ -1,4 +1,4 @@
-# TalonOne.Model.AnalyticsDataPointWithTrend
+# TalonOneSdk.Model.AnalyticsDataPointWithTrend
 
 ## Properties
 

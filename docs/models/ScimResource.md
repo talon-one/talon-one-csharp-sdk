@@ -1,4 +1,4 @@
-# TalonOne.Model.ScimResource
+# TalonOneSdk.Model.ScimResource
 Resource definition for the SCIM provisioning protocol.
 
 ## Properties

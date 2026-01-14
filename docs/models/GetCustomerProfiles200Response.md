@@ -1,4 +1,4 @@
-# TalonOne.Model.GetCustomerProfiles200Response
+# TalonOneSdk.Model.GetCustomerProfiles200Response
 
 ## Properties
 

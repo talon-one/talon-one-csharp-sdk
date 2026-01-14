@@ -1,4 +1,4 @@
-# TalonOne.Model.LoyaltyLedgerEntryFlags
+# TalonOneSdk.Model.LoyaltyLedgerEntryFlags
 A map of flags providing additional details about the entry.
 
 ## Properties

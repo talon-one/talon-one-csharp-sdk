@@ -1,4 +1,4 @@
-# TalonOne.Model.Return
+# TalonOneSdk.Model.Return
 
 ## Properties
 

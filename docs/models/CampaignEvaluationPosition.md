@@ -1,4 +1,4 @@
-# TalonOne.Model.CampaignEvaluationPosition
+# TalonOneSdk.Model.CampaignEvaluationPosition
 The campaign position within the evaluation tree.
 
 ## Properties

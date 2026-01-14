@@ -1,4 +1,4 @@
-# TalonOne.Model.GenerateAuditLogSummary
+# TalonOneSdk.Model.GenerateAuditLogSummary
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.UpdateRole
+# TalonOneSdk.Model.UpdateRole
 
 ## Properties
 

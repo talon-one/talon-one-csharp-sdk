@@ -1,4 +1,4 @@
-# TalonOne.Model.AccountAnalytics
+# TalonOneSdk.Model.AccountAnalytics
 
 ## Properties
 

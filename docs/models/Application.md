@@ -1,4 +1,4 @@
-# TalonOne.Model.Application
+# TalonOneSdk.Model.Application
 
 ## Properties
 

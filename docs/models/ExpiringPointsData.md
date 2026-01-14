@@ -1,4 +1,4 @@
-# TalonOne.Model.ExpiringPointsData
+# TalonOneSdk.Model.ExpiringPointsData
 
 ## Properties
 

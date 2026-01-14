@@ -1,4 +1,4 @@
-# TalonOne.Model.SecondaryDeployment
+# TalonOneSdk.Model.SecondaryDeployment
 
 ## Properties
 

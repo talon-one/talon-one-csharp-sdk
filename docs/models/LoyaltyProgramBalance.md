@@ -1,4 +1,4 @@
-# TalonOne.Model.LoyaltyProgramBalance
+# TalonOneSdk.Model.LoyaltyProgramBalance
 The balance in a Loyalty Program for some Customer.
 
 ## Properties

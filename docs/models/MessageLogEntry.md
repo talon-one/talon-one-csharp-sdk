@@ -1,4 +1,4 @@
-# TalonOne.Model.MessageLogEntry
+# TalonOneSdk.Model.MessageLogEntry
 Message Log.
 
 ## Properties

@@ -1,4 +1,4 @@
-# TalonOne.Model.StrikethroughEffect
+# TalonOneSdk.Model.StrikethroughEffect
 The effect produced for the catalog item.
 
 ## Properties
@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **RuleIndex** | **long** | The position of the rule that triggered this effect within the ruleset. | 
 **RuleName** | **string** | The name of the rule that triggered this effect. | 
 **Type** | **string** | The type of this effect. | 
-**Props** | **Object** | Arbitrary properties associated with this effect type. | 
+**Props** | **Object** |  | 
 **StartTime** | **DateTime** | The start of the time frame where the effect is active in UTC. | [optional] 
 **EndTime** | **DateTime** | The end of the time frame where the effect is active in UTC. | [optional] 
 **SelectedPriceType** | **string** | The selected price type for this cart item (e.g. the price for members only). | [optional] 

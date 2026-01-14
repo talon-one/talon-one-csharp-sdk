@@ -1,4 +1,4 @@
-# TalonOne.Model.CodeGeneratorSettings
+# TalonOneSdk.Model.CodeGeneratorSettings
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.DeactivateUserRequest
+# TalonOneSdk.Model.DeactivateUserRequest
 
 ## Properties
 

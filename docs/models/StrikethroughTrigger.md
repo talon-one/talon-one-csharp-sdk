@@ -1,4 +1,4 @@
-# TalonOne.Model.StrikethroughTrigger
+# TalonOneSdk.Model.StrikethroughTrigger
 Information about the event that triggered the strikethrough labeling.
 
 ## Properties

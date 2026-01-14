@@ -1,4 +1,4 @@
-# TalonOne.Model.ChangeProfilePassword
+# TalonOneSdk.Model.ChangeProfilePassword
 
 ## Properties
 

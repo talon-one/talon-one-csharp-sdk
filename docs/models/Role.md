@@ -1,4 +1,4 @@
-# TalonOne.Model.Role
+# TalonOneSdk.Model.Role
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.CollectionItem
+# TalonOneSdk.Model.CollectionItem
 
 ## Properties
 

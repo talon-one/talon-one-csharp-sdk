@@ -1,4 +1,4 @@
-# TalonOne.Model.BestPriorPriceRequest
+# TalonOneSdk.Model.BestPriorPriceRequest
 
 ## Properties
 

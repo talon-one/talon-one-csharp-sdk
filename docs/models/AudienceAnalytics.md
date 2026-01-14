@@ -1,4 +1,4 @@
-# TalonOne.Model.AudienceAnalytics
+# TalonOneSdk.Model.AudienceAnalytics
 The audiences and their member count.
 
 ## Properties

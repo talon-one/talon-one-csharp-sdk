@@ -1,4 +1,4 @@
-# TalonOne.Model.LoyaltyLedgerEntry
+# TalonOneSdk.Model.LoyaltyLedgerEntry
 A single row of the ledger, describing one addition or deduction.
 
 ## Properties

@@ -1,4 +1,4 @@
-# TalonOne.Model.ApplicationApiHealth
+# TalonOneSdk.Model.ApplicationApiHealth
 Report of health of the API connection of an application.
 
 ## Properties

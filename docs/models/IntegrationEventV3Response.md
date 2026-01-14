@@ -1,4 +1,4 @@
-# TalonOne.Model.IntegrationEventV3Response
+# TalonOneSdk.Model.IntegrationEventV3Response
 This is the response type returned by the trackEventV3 endpoint. 
 
 ## Properties

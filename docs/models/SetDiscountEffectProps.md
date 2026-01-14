@@ -1,4 +1,4 @@
-# TalonOne.Model.SetDiscountEffectProps
+# TalonOneSdk.Model.SetDiscountEffectProps
 The properties specific to the \"setDiscount\" effect. This gets triggered whenever a validated rule contained a \"set discount\" effect. This is a discount that should be applied on the scope of defined with it.
 
 ## Properties

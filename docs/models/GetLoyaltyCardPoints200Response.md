@@ -1,4 +1,4 @@
-# TalonOne.Model.GetLoyaltyCardPoints200Response
+# TalonOneSdk.Model.GetLoyaltyCardPoints200Response
 
 ## Properties
 

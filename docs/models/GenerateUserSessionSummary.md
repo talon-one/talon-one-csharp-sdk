@@ -1,4 +1,4 @@
-# TalonOne.Model.GenerateUserSessionSummary
+# TalonOneSdk.Model.GenerateUserSessionSummary
 
 ## Properties
 

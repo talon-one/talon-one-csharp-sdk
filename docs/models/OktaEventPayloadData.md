@@ -1,4 +1,4 @@
-# TalonOne.Model.OktaEventPayloadData
+# TalonOneSdk.Model.OktaEventPayloadData
 Data part of the event emitted by Okta.
 
 ## Properties

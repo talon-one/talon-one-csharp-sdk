@@ -1,4 +1,4 @@
-# TalonOne.Model.GenerateItemFilterDescription
+# TalonOneSdk.Model.GenerateItemFilterDescription
 
 ## Properties
 

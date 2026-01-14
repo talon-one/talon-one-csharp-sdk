@@ -1,4 +1,4 @@
-# TalonOne.Model.SSOConfig
+# TalonOneSdk.Model.SSOConfig
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.DeductLoyaltyPoints
+# TalonOneSdk.Model.DeductLoyaltyPoints
 Points to deduct.
 
 ## Properties

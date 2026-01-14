@@ -1,4 +1,4 @@
-# TalonOne.Model.NewApplicationCIFExpression
+# TalonOneSdk.Model.NewApplicationCIFExpression
 
 ## Properties
 

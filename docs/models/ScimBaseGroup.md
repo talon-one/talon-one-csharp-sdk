@@ -1,4 +1,4 @@
-# TalonOne.Model.ScimBaseGroup
+# TalonOneSdk.Model.ScimBaseGroup
 Define the schema for base fields in a group using the SCIM provisioning protocol. Talon.One uses this schema to create roles.
 
 ## Properties

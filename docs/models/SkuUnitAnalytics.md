@@ -1,4 +1,4 @@
-# TalonOne.Model.SkuUnitAnalytics
+# TalonOneSdk.Model.SkuUnitAnalytics
 
 ## Properties
 

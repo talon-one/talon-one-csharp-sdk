@@ -1,4 +1,4 @@
-# TalonOne.Model.AchievementProgressWithDefinition
+# TalonOneSdk.Model.AchievementProgressWithDefinition
 
 ## Properties
 

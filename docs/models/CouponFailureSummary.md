@@ -1,4 +1,4 @@
-# TalonOne.Model.CouponFailureSummary
+# TalonOneSdk.Model.CouponFailureSummary
 Summary of the reasons for coupon redemption failure.
 
 ## Properties

@@ -1,4 +1,4 @@
-# TalonOne.Model.GetApplicationEventsWithoutTotalCount200Response
+# TalonOneSdk.Model.GetApplicationEventsWithoutTotalCount200Response
 
 ## Properties
 

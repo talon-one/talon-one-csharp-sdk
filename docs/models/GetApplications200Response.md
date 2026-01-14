@@ -1,4 +1,4 @@
-# TalonOne.Model.GetApplications200Response
+# TalonOneSdk.Model.GetApplications200Response
 
 ## Properties
 

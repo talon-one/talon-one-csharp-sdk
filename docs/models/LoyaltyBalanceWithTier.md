@@ -1,4 +1,4 @@
-# TalonOne.Model.LoyaltyBalanceWithTier
+# TalonOneSdk.Model.LoyaltyBalanceWithTier
 
 ## Properties
 

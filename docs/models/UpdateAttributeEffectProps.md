@@ -1,4 +1,4 @@
-# TalonOne.Model.UpdateAttributeEffectProps
+# TalonOneSdk.Model.UpdateAttributeEffectProps
 The properties specific to the \"updateAttribute\" effect. This gets triggered whenever a validated rule contained an \"update an attribute\" effect.
 
 ## Properties

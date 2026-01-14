@@ -1,4 +1,4 @@
-# TalonOne.Model.TimePoint
+# TalonOneSdk.Model.TimePoint
 The absolute duration after which the achievement ends and resets for a particular customer profile.  **Note**: The duration follows the time zone of the Application this achievement belongs to. 
 
 ## Properties

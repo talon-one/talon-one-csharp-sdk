@@ -1,4 +1,4 @@
-# TalonOne.Model.CreateAchievement
+# TalonOneSdk.Model.CreateAchievement
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.CatalogSyncRequest
+# TalonOneSdk.Model.CatalogSyncRequest
 
 ## Properties
 

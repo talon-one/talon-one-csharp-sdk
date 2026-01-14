@@ -1,4 +1,4 @@
-# TalonOne.Model.NewGiveawaysPool
+# TalonOneSdk.Model.NewGiveawaysPool
 
 ## Properties
 

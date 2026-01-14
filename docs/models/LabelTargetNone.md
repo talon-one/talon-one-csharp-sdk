@@ -1,4 +1,4 @@
-# TalonOne.Model.LabelTargetNone
+# TalonOneSdk.Model.LabelTargetNone
 Represents the target type when no entity is selected.
 
 ## Properties

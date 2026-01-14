@@ -1,4 +1,4 @@
-# TalonOne.Model.ProductSearchMatch
+# TalonOneSdk.Model.ProductSearchMatch
 
 ## Properties
 

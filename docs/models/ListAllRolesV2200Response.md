@@ -1,4 +1,4 @@
-# TalonOne.Model.ListAllRolesV2200Response
+# TalonOneSdk.Model.ListAllRolesV2200Response
 
 ## Properties
 

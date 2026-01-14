@@ -1,4 +1,4 @@
-# TalonOne.Model.GetExports200Response
+# TalonOneSdk.Model.GetExports200Response
 
 ## Properties
 

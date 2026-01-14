@@ -1,4 +1,4 @@
-# TalonOne.Model.CampaignCopy
+# TalonOneSdk.Model.CampaignCopy
 
 ## Properties
 

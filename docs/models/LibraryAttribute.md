@@ -1,4 +1,4 @@
-# TalonOne.Model.LibraryAttribute
+# TalonOneSdk.Model.LibraryAttribute
 
 ## Properties
 

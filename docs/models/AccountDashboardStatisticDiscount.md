@@ -1,4 +1,4 @@
-# TalonOne.Model.AccountDashboardStatisticDiscount
+# TalonOneSdk.Model.AccountDashboardStatisticDiscount
 
 ## Properties
 

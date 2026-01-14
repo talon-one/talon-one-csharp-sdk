@@ -1,4 +1,4 @@
-# TalonOne.Model.ExpiringCouponsData
+# TalonOneSdk.Model.ExpiringCouponsData
 
 ## Properties
 

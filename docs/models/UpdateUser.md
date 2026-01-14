@@ -1,4 +1,4 @@
-# TalonOne.Model.UpdateUser
+# TalonOneSdk.Model.UpdateUser
 
 ## Properties
 

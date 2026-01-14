@@ -1,4 +1,4 @@
-# TalonOne.Model.ErrorResponseWithStatus
+# TalonOneSdk.Model.ErrorResponseWithStatus
 
 ## Properties
 

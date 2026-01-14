@@ -1,4 +1,4 @@
-# TalonOne.Model.GetCouponsWithoutTotalCount200Response
+# TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.TransferLoyaltyCard
+# TalonOneSdk.Model.TransferLoyaltyCard
 
 ## Properties
 

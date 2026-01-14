@@ -1,4 +1,4 @@
-# TalonOne.Model.NewRuleset
+# TalonOneSdk.Model.NewRuleset
 
 ## Properties
 

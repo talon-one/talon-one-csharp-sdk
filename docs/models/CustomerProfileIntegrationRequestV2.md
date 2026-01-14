@@ -1,4 +1,4 @@
-# TalonOne.Model.CustomerProfileIntegrationRequestV2
+# TalonOneSdk.Model.CustomerProfileIntegrationRequestV2
 
 ## Properties
 

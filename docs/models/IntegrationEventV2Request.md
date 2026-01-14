@@ -1,4 +1,4 @@
-# TalonOne.Model.IntegrationEventV2Request
+# TalonOneSdk.Model.IntegrationEventV2Request
 
 ## Properties
 

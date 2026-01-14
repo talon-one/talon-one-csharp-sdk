@@ -1,4 +1,4 @@
-# TalonOne.Model.ReturnedCartItem
+# TalonOneSdk.Model.ReturnedCartItem
 
 ## Properties
 

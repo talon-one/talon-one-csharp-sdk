@@ -1,4 +1,4 @@
-# TalonOne.Model.CreateCoupons200Response
+# TalonOneSdk.Model.CreateCoupons200Response
 
 ## Properties
 

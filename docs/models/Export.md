@@ -1,4 +1,4 @@
-# TalonOne.Model.Export
+# TalonOneSdk.Model.Export
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.UpdateCustomerSessionV2409Response
+# TalonOneSdk.Model.UpdateCustomerSessionV2409Response
 
 ## Properties
 

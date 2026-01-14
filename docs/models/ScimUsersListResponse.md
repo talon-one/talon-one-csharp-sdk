@@ -1,4 +1,4 @@
-# TalonOne.Model.ScimUsersListResponse
+# TalonOneSdk.Model.ScimUsersListResponse
 List of users that have been provisioned using the SCIM protocol with an identity provider, for example, Microsoft Entra ID.
 
 ## Properties

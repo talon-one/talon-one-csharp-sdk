@@ -1,4 +1,4 @@
-# TalonOne.Model.LoyaltyCardBalances
+# TalonOneSdk.Model.LoyaltyCardBalances
 
 ## Properties
 

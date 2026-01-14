@@ -1,4 +1,4 @@
-# TalonOne.Model.StrikethroughSetDiscountPerItemEffectProps
+# TalonOneSdk.Model.StrikethroughSetDiscountPerItemEffectProps
 setDiscountPerItem effect in strikethrough pricing payload.
 
 ## Properties

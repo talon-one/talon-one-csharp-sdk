@@ -1,4 +1,4 @@
-# TalonOne.Model.ScimNewUser
+# TalonOneSdk.Model.ScimNewUser
 Payload for users that are created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID.
 
 ## Properties

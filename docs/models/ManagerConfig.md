@@ -1,4 +1,4 @@
-# TalonOne.Model.ManagerConfig
+# TalonOneSdk.Model.ManagerConfig
 
 ## Properties
 

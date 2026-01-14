@@ -1,4 +1,4 @@
-# TalonOne.Model.IdentifiableEntity
+# TalonOneSdk.Model.IdentifiableEntity
 
 ## Properties
 

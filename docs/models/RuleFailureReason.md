@@ -1,4 +1,4 @@
-# TalonOne.Model.RuleFailureReason
+# TalonOneSdk.Model.RuleFailureReason
 Details about why a rule failed.
 
 ## Properties

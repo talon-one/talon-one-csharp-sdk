@@ -1,4 +1,4 @@
-# TalonOne.Model.BaseNotificationWebhook
+# TalonOneSdk.Model.BaseNotificationWebhook
 
 ## Properties
 

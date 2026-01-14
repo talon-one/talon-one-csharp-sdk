@@ -1,4 +1,4 @@
-# TalonOne.Model.UpdateReferral
+# TalonOneSdk.Model.UpdateReferral
 
 ## Properties
 

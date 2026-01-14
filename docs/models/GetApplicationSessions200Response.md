@@ -1,4 +1,4 @@
-# TalonOne.Model.GetApplicationSessions200Response
+# TalonOneSdk.Model.GetApplicationSessions200Response
 
 ## Properties
 

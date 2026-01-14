@@ -1,4 +1,4 @@
-# TalonOne.Model.BestPriorPriceMetadata
+# TalonOneSdk.Model.BestPriorPriceMetadata
 Auxiliary data for found price observation.
 
 ## Properties

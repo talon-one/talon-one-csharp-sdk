@@ -1,4 +1,4 @@
-# TalonOne.Model.IntegrationRequest
+# TalonOneSdk.Model.IntegrationRequest
 The body of a V2 integration API request (customer session update). Next to the customer session details, this contains an optional listing of extra properties that should be returned in the response.
 
 ## Properties

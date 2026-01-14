@@ -1,4 +1,4 @@
-# TalonOne.Model.ApplicationCampaignStats
+# TalonOneSdk.Model.ApplicationCampaignStats
 Provides statistics regarding an application's campaigns.
 
 ## Properties

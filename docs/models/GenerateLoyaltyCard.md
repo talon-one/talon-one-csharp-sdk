@@ -1,4 +1,4 @@
-# TalonOne.Model.GenerateLoyaltyCard
+# TalonOneSdk.Model.GenerateLoyaltyCard
 The parameters necessary to generate a loyalty card.
 
 ## Properties

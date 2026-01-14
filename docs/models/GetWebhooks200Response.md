@@ -1,4 +1,4 @@
-# TalonOne.Model.GetWebhooks200Response
+# TalonOneSdk.Model.GetWebhooks200Response
 
 ## Properties
 

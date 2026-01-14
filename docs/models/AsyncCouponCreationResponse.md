@@ -1,4 +1,4 @@
-# TalonOne.Model.AsyncCouponCreationResponse
+# TalonOneSdk.Model.AsyncCouponCreationResponse
 
 ## Properties
 

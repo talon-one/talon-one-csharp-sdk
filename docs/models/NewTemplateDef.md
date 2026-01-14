@@ -1,4 +1,4 @@
-# TalonOne.Model.NewTemplateDef
+# TalonOneSdk.Model.NewTemplateDef
 
 ## Properties
 

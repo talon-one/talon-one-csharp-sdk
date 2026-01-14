@@ -1,4 +1,4 @@
-# TalonOne.Model.AccountAdditionalCost
+# TalonOneSdk.Model.AccountAdditionalCost
 
 ## Properties
 

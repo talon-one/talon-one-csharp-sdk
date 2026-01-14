@@ -1,4 +1,4 @@
-# TalonOne.Model.AcceptReferralEffectProps
+# TalonOneSdk.Model.AcceptReferralEffectProps
 The properties specific to the \"acceptReferral\" effect. TThis gets triggered whenever the referral code is valid and all other conditions in the rules of its campaign are met.
 
 ## Properties

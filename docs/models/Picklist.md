@@ -1,4 +1,4 @@
-# TalonOne.Model.Picklist
+# TalonOneSdk.Model.Picklist
 
 ## Properties
 

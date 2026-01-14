@@ -1,4 +1,4 @@
-# TalonOne.Model.TwoFAConfig
+# TalonOneSdk.Model.TwoFAConfig
 
 ## Properties
 

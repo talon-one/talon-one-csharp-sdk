@@ -1,4 +1,4 @@
-# TalonOne.Model.IntegrationCustomerProfileAudienceRequestItem
+# TalonOneSdk.Model.IntegrationCustomerProfileAudienceRequestItem
 
 ## Properties
 

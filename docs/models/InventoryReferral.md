@@ -1,4 +1,4 @@
-# TalonOne.Model.InventoryReferral
+# TalonOneSdk.Model.InventoryReferral
 
 ## Properties
 

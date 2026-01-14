@@ -1,4 +1,4 @@
-# TalonOne.Model.TemplateLimitConfig
+# TalonOneSdk.Model.TemplateLimitConfig
 
 ## Properties
 

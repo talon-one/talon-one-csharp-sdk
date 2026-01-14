@@ -1,4 +1,4 @@
-# TalonOne.Model.LoyaltyLedgerEntryExpiryDateChange
+# TalonOneSdk.Model.LoyaltyLedgerEntryExpiryDateChange
 The properties specific to effects for changing the expiry dates of loyalty ledger entries.
 
 ## Properties

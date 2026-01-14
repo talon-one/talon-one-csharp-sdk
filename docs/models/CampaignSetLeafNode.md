@@ -1,4 +1,4 @@
-# TalonOne.Model.CampaignSetLeafNode
+# TalonOneSdk.Model.CampaignSetLeafNode
 
 ## Properties
 

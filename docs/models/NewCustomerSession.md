@@ -1,4 +1,4 @@
-# TalonOne.Model.NewCustomerSession
+# TalonOneSdk.Model.NewCustomerSession
 
 ## Properties
 

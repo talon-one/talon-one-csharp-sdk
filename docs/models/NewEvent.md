@@ -1,4 +1,4 @@
-# TalonOne.Model.NewEvent
+# TalonOneSdk.Model.NewEvent
 
 ## Properties
 

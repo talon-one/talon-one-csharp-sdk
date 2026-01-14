@@ -1,4 +1,4 @@
-# TalonOne.Model.NewWebhook
+# TalonOneSdk.Model.NewWebhook
 
 ## Properties
 

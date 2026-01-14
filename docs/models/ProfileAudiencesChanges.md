@@ -1,4 +1,4 @@
-# TalonOne.Model.ProfileAudiencesChanges
+# TalonOneSdk.Model.ProfileAudiencesChanges
 
 ## Properties
 

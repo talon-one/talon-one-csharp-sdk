@@ -1,4 +1,4 @@
-# TalonOne.Model.DeleteUserRequest
+# TalonOneSdk.Model.DeleteUserRequest
 
 ## Properties
 

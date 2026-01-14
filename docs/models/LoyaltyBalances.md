@@ -1,4 +1,4 @@
-# TalonOne.Model.LoyaltyBalances
+# TalonOneSdk.Model.LoyaltyBalances
 List of loyalty balances for a ledger and its subledgers.
 
 ## Properties

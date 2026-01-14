@@ -1,4 +1,4 @@
-# TalonOne.Model.BulkOperationOnCampaigns
+# TalonOneSdk.Model.BulkOperationOnCampaigns
 
 ## Properties
 

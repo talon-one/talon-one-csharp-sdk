@@ -1,4 +1,4 @@
-# TalonOne.Model.CatalogsStrikethroughNotificationPolicy
+# TalonOneSdk.Model.CatalogsStrikethroughNotificationPolicy
 
 ## Properties
 

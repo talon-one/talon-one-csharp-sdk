@@ -1,4 +1,4 @@
-# TalonOne.Model.StrikethroughLabelingNotification
+# TalonOneSdk.Model.StrikethroughLabelingNotification
 The strikethrough labels notification for an application.
 
 ## Properties

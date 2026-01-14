@@ -1,4 +1,4 @@
-# TalonOne.Model.StrikethroughCustomEffectPerItemProps
+# TalonOneSdk.Model.StrikethroughCustomEffectPerItemProps
 customEffectPerItem effect in strikethrough pricing payload.
 
 ## Properties

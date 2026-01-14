@@ -1,4 +1,4 @@
-# TalonOne.Model.CatalogActionFilter
+# TalonOneSdk.Model.CatalogActionFilter
 The properties for a single filtering condition in a catalog sync action.
 
 ## Properties

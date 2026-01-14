@@ -1,4 +1,4 @@
-# TalonOne.Model.RollbackDiscountEffectProps
+# TalonOneSdk.Model.RollbackDiscountEffectProps
 The properties specific to the \"rollbackDiscount\" effect. This gets triggered whenever previously closed session is now cancelled or partially returned and a setDiscount effect was cancelled on our internal discount limit counters.
 
 ## Properties

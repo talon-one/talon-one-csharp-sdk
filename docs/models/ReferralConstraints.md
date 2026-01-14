@@ -1,4 +1,4 @@
-# TalonOne.Model.ReferralConstraints
+# TalonOneSdk.Model.ReferralConstraints
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.GetCustomerProfileAchievementProgress200Response
+# TalonOneSdk.Model.GetCustomerProfileAchievementProgress200Response
 
 ## Properties
 

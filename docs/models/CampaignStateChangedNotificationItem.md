@@ -1,4 +1,4 @@
-# TalonOne.Model.CampaignStateChangedNotificationItem
+# TalonOneSdk.Model.CampaignStateChangedNotificationItem
 
 ## Properties
 

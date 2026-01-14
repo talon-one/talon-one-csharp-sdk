@@ -1,4 +1,4 @@
-# TalonOne.Model.LedgerEntry
+# TalonOneSdk.Model.LedgerEntry
 
 ## Properties
 

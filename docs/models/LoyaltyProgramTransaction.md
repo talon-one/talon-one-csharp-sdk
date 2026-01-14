@@ -1,4 +1,4 @@
-# TalonOne.Model.LoyaltyProgramTransaction
+# TalonOneSdk.Model.LoyaltyProgramTransaction
 
 ## Properties
 

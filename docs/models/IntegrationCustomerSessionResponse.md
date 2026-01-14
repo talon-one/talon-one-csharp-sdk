@@ -1,4 +1,4 @@
-# TalonOne.Model.IntegrationCustomerSessionResponse
+# TalonOneSdk.Model.IntegrationCustomerSessionResponse
 
 ## Properties
 

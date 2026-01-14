@@ -1,4 +1,4 @@
-# TalonOne.Model.Tier
+# TalonOneSdk.Model.Tier
 
 ## Properties
 

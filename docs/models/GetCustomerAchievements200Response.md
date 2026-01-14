@@ -1,4 +1,4 @@
-# TalonOne.Model.GetCustomerAchievements200Response
+# TalonOneSdk.Model.GetCustomerAchievements200Response
 
 ## Properties
 

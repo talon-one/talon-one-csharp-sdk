@@ -1,4 +1,4 @@
-# TalonOne.Model.NewCustomEffect
+# TalonOneSdk.Model.NewCustomEffect
 
 ## Properties
 

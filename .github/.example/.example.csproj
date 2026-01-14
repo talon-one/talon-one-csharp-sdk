@@ -6,8 +6,8 @@
     <RootNamespace>_example</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="TalonOne">
-      <HintPath>../../src/TalonOne/bin/Debug/netstandard2.0/TalonOne.dll</HintPath>
+    <Reference Include="TalonOneSdk">
+      <HintPath>../../src/TalonOneSdk/bin/Debug/netstandard2.0/TalonOneSdk.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

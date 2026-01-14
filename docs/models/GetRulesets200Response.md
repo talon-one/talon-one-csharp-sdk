@@ -1,4 +1,4 @@
-# TalonOne.Model.GetRulesets200Response
+# TalonOneSdk.Model.GetRulesets200Response
 
 ## Properties
 

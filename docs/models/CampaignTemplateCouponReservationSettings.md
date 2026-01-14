@@ -1,4 +1,4 @@
-# TalonOne.Model.CampaignTemplateCouponReservationSettings
+# TalonOneSdk.Model.CampaignTemplateCouponReservationSettings
 
 ## Properties
 

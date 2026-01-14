@@ -1,4 +1,4 @@
-# TalonOne.Model.CampaignDeletedNotificationItem
+# TalonOneSdk.Model.CampaignDeletedNotificationItem
 
 ## Properties
 

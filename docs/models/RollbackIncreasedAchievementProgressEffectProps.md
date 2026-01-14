@@ -1,4 +1,4 @@
-# TalonOne.Model.RollbackIncreasedAchievementProgressEffectProps
+# TalonOneSdk.Model.RollbackIncreasedAchievementProgressEffectProps
 The properties specific to the \"rollbackIncreasedAchievementProgress\" effect. This gets triggered whenever a closed session where the `increaseAchievementProgress` effect was triggered is cancelled. This is applicable only when the customer has not completed the achievement.
 
 ## Properties

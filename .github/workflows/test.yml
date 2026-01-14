@@ -27,7 +27,7 @@ jobs:
           with:
             dotnet-version: '8.0'
         - name: Build DLL
-          run: dotnet build TalonOne.sln
+          run: dotnet build TalonOneSdk.sln
         - name: Install dependencies
           run: |
             sudo apt-get install jq curl

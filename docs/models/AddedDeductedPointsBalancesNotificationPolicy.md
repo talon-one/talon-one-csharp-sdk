@@ -1,4 +1,4 @@
-# TalonOne.Model.AddedDeductedPointsBalancesNotificationPolicy
+# TalonOneSdk.Model.AddedDeductedPointsBalancesNotificationPolicy
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.AddFreeItemEffectProps
+# TalonOneSdk.Model.AddFreeItemEffectProps
 The properties specific to the \"addFreeItem\" effect. This gets triggered whenever a validated rule contained an \"add free item\" effect.
 
 ## Properties

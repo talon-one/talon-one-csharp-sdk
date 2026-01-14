@@ -1,4 +1,4 @@
-# TalonOne.Model.PrismaticConfig
+# TalonOneSdk.Model.PrismaticConfig
 Config used for accessing integrations in Prismatic
 
 ## Properties

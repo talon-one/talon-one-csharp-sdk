@@ -1,4 +1,4 @@
-# TalonOne.Model.AddLoyaltyPoints
+# TalonOneSdk.Model.AddLoyaltyPoints
 Points to add.
 
 ## Properties

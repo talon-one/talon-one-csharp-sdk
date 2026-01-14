@@ -1,4 +1,4 @@
-# TalonOne.Model.ChangeLoyaltyTierLevelEffectProps
+# TalonOneSdk.Model.ChangeLoyaltyTierLevelEffectProps
 The properties specific to the \"changeLoyaltyTierLevel\" effect. This is triggered whenever the user's loyalty tier is upgraded due to a validated rule that contained an \"addLoyaltyPoints\" effect. 
 
 ## Properties

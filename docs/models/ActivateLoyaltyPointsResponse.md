@@ -1,4 +1,4 @@
-# TalonOne.Model.ActivateLoyaltyPointsResponse
+# TalonOneSdk.Model.ActivateLoyaltyPointsResponse
 
 ## Properties
 

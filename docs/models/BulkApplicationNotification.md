@@ -1,4 +1,4 @@
-# TalonOne.Model.BulkApplicationNotification
+# TalonOneSdk.Model.BulkApplicationNotification
 
 ## Properties
 

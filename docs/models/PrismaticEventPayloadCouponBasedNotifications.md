@@ -1,4 +1,4 @@
-# TalonOne.Model.PrismaticEventPayloadCouponBasedNotifications
+# TalonOneSdk.Model.PrismaticEventPayloadCouponBasedNotifications
 
 ## Properties
 

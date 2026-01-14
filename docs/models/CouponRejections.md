@@ -1,4 +1,4 @@
-# TalonOne.Model.CouponRejections
+# TalonOneSdk.Model.CouponRejections
 
 ## Properties
 

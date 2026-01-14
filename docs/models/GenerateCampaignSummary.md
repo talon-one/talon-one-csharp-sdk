@@ -1,4 +1,4 @@
-# TalonOne.Model.GenerateCampaignSummary
+# TalonOneSdk.Model.GenerateCampaignSummary
 
 ## Properties
 

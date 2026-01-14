@@ -1,4 +1,4 @@
-# TalonOne.Model.NewCustomerProfile
+# TalonOneSdk.Model.NewCustomerProfile
 
 ## Properties
 

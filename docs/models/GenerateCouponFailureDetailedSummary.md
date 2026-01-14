@@ -1,4 +1,4 @@
-# TalonOne.Model.GenerateCouponFailureDetailedSummary
+# TalonOneSdk.Model.GenerateCouponFailureDetailedSummary
 
 ## Properties
 

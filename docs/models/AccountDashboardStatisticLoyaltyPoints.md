@@ -1,4 +1,4 @@
-# TalonOne.Model.AccountDashboardStatisticLoyaltyPoints
+# TalonOneSdk.Model.AccountDashboardStatisticLoyaltyPoints
 
 ## Properties
 

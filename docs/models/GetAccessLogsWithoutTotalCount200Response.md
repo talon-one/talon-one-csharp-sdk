@@ -1,4 +1,4 @@
-# TalonOne.Model.GetAccessLogsWithoutTotalCount200Response
+# TalonOneSdk.Model.GetAccessLogsWithoutTotalCount200Response
 
 ## Properties
 

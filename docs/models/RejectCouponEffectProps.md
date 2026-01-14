@@ -1,4 +1,4 @@
-# TalonOne.Model.RejectCouponEffectProps
+# TalonOneSdk.Model.RejectCouponEffectProps
 The properties specific to the \"rejectCoupon\" effect. This gets triggered whenever the coupon was rejected. See rejectionReason for more info on why.
 
 ## Properties

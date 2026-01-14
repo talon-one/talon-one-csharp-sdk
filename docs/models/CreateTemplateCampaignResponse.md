@@ -1,4 +1,4 @@
-# TalonOne.Model.CreateTemplateCampaignResponse
+# TalonOneSdk.Model.CreateTemplateCampaignResponse
 
 ## Properties
 

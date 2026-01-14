@@ -1,4 +1,4 @@
-# TalonOne.Model.Binding
+# TalonOneSdk.Model.Binding
 
 ## Properties
 

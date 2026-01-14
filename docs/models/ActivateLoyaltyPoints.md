@@ -1,4 +1,4 @@
-# TalonOne.Model.ActivateLoyaltyPoints
+# TalonOneSdk.Model.ActivateLoyaltyPoints
 Activate loyalty points
 
 ## Properties

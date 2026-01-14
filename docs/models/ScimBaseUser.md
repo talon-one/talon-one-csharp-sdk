@@ -1,4 +1,4 @@
-# TalonOne.Model.ScimBaseUser
+# TalonOneSdk.Model.ScimBaseUser
 Schema definition for base user fields, provisioned using the SCIM protocol and used by Talon.One.
 
 ## Properties

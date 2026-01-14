@@ -1,4 +1,4 @@
-# TalonOne.Model.UpdateLoyaltyProgramTier
+# TalonOneSdk.Model.UpdateLoyaltyProgramTier
 Update a tier in a specified loyalty program.
 
 ## Properties

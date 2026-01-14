@@ -1,4 +1,4 @@
-# TalonOne.Model.CampaignNotificationPolicy
+# TalonOneSdk.Model.CampaignNotificationPolicy
 
 ## Properties
 

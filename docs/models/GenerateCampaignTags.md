@@ -1,4 +1,4 @@
-# TalonOne.Model.GenerateCampaignTags
+# TalonOneSdk.Model.GenerateCampaignTags
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.Change
+# TalonOneSdk.Model.Change
 
 ## Properties
 

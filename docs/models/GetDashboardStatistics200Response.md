@@ -1,4 +1,4 @@
-# TalonOne.Model.GetDashboardStatistics200Response
+# TalonOneSdk.Model.GetDashboardStatistics200Response
 
 ## Properties
 

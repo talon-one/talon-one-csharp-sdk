@@ -1,4 +1,4 @@
-# TalonOne.Model.AddItemCatalogAction
+# TalonOneSdk.Model.AddItemCatalogAction
 The specific properties of the \"ADD\" catalog sync action. 
 
 ## Properties

@@ -1,4 +1,4 @@
-# TalonOne.Model.ExpiringPointsNotification
+# TalonOneSdk.Model.ExpiringPointsNotification
 
 ## Properties
 

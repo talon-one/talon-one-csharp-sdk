@@ -1,4 +1,4 @@
-# TalonOne.Model.OutgoingIntegrationTemplates
+# TalonOneSdk.Model.OutgoingIntegrationTemplates
 
 ## Properties
 

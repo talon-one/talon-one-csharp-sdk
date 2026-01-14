@@ -1,4 +1,4 @@
-# TalonOne.Model.SetDiscountPerAdditionalCostEffectProps
+# TalonOneSdk.Model.SetDiscountPerAdditionalCostEffectProps
 The properties specific to the \"setDiscountPerAdditionalCost\" effect. This gets triggered whenever a validated rule contained a \"set per additional cost discount\" effect. This is a discount that should be applied on a specific additional cost.
 
 ## Properties

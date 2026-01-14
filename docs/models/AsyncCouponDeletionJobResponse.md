@@ -1,4 +1,4 @@
-# TalonOne.Model.AsyncCouponDeletionJobResponse
+# TalonOneSdk.Model.AsyncCouponDeletionJobResponse
 
 ## Properties
 

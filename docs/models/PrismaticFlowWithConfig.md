@@ -1,4 +1,4 @@
-# TalonOne.Model.PrismaticFlowWithConfig
+# TalonOneSdk.Model.PrismaticFlowWithConfig
 
 ## Properties
 

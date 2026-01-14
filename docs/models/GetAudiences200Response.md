@@ -1,4 +1,4 @@
-# TalonOne.Model.GetAudiences200Response
+# TalonOneSdk.Model.GetAudiences200Response
 
 ## Properties
 

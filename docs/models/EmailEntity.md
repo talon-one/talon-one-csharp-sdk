@@ -1,4 +1,4 @@
-# TalonOne.Model.EmailEntity
+# TalonOneSdk.Model.EmailEntity
 
 ## Properties
 

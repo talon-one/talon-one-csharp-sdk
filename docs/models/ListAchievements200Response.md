@@ -1,4 +1,4 @@
-# TalonOne.Model.ListAchievements200Response
+# TalonOneSdk.Model.ListAchievements200Response
 
 ## Properties
 

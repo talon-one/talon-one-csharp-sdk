@@ -1,4 +1,4 @@
-# TalonOne.Model.AccessLogEntry
+# TalonOneSdk.Model.AccessLogEntry
 Log of application accesses.
 
 ## Properties

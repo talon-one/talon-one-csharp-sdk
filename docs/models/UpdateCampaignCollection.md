@@ -1,4 +1,4 @@
-# TalonOne.Model.UpdateCampaignCollection
+# TalonOneSdk.Model.UpdateCampaignCollection
 
 ## Properties
 

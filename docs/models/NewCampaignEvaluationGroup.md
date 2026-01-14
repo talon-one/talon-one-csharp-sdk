@@ -1,4 +1,4 @@
-# TalonOne.Model.NewCampaignEvaluationGroup
+# TalonOneSdk.Model.NewCampaignEvaluationGroup
 
 ## Properties
 

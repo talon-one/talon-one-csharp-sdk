@@ -1,4 +1,4 @@
-# TalonOne.Model.AsyncCouponsData
+# TalonOneSdk.Model.AsyncCouponsData
 
 ## Properties
 

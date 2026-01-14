@@ -1,4 +1,4 @@
-# TalonOne.Model.ReopenSessionResponse
+# TalonOneSdk.Model.ReopenSessionResponse
 This is the response type returned by the Reopen customer sessions endpoint. It contains the rolled back effects. 
 
 ## Properties

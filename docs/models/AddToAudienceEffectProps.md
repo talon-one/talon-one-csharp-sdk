@@ -1,4 +1,4 @@
-# TalonOne.Model.AddToAudienceEffectProps
+# TalonOneSdk.Model.AddToAudienceEffectProps
 The properties specific to the \"addToAudience\" effect. This gets triggered whenever a validated rule contains an \"addToAudience\" effect.
 
 ## Properties

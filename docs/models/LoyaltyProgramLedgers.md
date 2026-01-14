@@ -1,4 +1,4 @@
-# TalonOne.Model.LoyaltyProgramLedgers
+# TalonOneSdk.Model.LoyaltyProgramLedgers
 Customer-specific information about loyalty points.
 
 ## Properties

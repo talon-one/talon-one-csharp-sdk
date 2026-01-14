@@ -1,4 +1,4 @@
-# TalonOne.Model.NewInvitation
+# TalonOneSdk.Model.NewInvitation
 Parameters for inviting a new user.
 
 ## Properties

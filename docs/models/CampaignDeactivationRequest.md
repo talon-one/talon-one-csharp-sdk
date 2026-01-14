@@ -1,4 +1,4 @@
-# TalonOne.Model.CampaignDeactivationRequest
+# TalonOneSdk.Model.CampaignDeactivationRequest
 
 ## Properties
 

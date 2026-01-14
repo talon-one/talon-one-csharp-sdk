@@ -1,4 +1,4 @@
-# TalonOne.Model.AccountDashboardStatisticCampaigns
+# TalonOneSdk.Model.AccountDashboardStatisticCampaigns
 
 ## Properties
 

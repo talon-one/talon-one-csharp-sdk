@@ -1,4 +1,4 @@
-# TalonOne.Model.InventoryCoupon
+# TalonOneSdk.Model.InventoryCoupon
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.IncreaseAchievementProgressEffectProps
+# TalonOneSdk.Model.IncreaseAchievementProgressEffectProps
 The properties specific to the \"increaseAchievementProgress\" effect. This gets triggered whenever a validated rule contained an \"increase customer progress\" effect.
 
 ## Properties

@@ -1,4 +1,4 @@
-# TalonOne.Model.GetAttributes200Response
+# TalonOneSdk.Model.GetAttributes200Response
 
 ## Properties
 

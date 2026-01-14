@@ -1,4 +1,4 @@
-# TalonOne.Model.PendingActivePointsData
+# TalonOneSdk.Model.PendingActivePointsData
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# TalonOne.Model.AccountDashboardStatisticRevenue
+# TalonOneSdk.Model.AccountDashboardStatisticRevenue
 
 ## Properties
 

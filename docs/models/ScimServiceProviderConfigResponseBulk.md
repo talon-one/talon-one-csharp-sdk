@@ -1,4 +1,4 @@
-# TalonOne.Model.ScimServiceProviderConfigResponseBulk
+# TalonOneSdk.Model.ScimServiceProviderConfigResponseBulk
 Configuration related to bulk operations, which allow multiple SCIM requests to be processed in a single HTTP request.
 
 ## Properties

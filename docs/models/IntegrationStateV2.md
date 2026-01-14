@@ -1,4 +1,4 @@
-# TalonOne.Model.IntegrationStateV2
+# TalonOneSdk.Model.IntegrationStateV2
 Contains all entities that might interest Talon.One integrations. 
 
 ## Properties

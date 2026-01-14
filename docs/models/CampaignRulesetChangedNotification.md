@@ -1,4 +1,4 @@
-# TalonOne.Model.CampaignRulesetChangedNotification
+# TalonOneSdk.Model.CampaignRulesetChangedNotification
 
 ## Properties
 

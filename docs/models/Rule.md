@@ -1,4 +1,4 @@
-# TalonOne.Model.Rule
+# TalonOneSdk.Model.Rule
 
 ## Properties
 

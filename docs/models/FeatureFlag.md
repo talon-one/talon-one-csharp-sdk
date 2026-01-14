@@ -1,4 +1,4 @@
-# TalonOne.Model.FeatureFlag
+# TalonOneSdk.Model.FeatureFlag
 
 ## Properties
 

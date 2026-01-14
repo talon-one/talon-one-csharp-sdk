@@ -1,4 +1,4 @@
-# TalonOne.Model.GetCollectionItems200Response
+# TalonOneSdk.Model.GetCollectionItems200Response
 
 ## Properties
 

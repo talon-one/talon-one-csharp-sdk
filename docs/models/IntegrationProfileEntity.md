@@ -1,4 +1,4 @@
-# TalonOne.Model.IntegrationProfileEntity
+# TalonOneSdk.Model.IntegrationProfileEntity
 
 ## Properties
 

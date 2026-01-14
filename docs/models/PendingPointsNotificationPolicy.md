@@ -1,4 +1,4 @@
-# TalonOne.Model.PendingPointsNotificationPolicy
+# TalonOneSdk.Model.PendingPointsNotificationPolicy
 
 ## Properties
 
