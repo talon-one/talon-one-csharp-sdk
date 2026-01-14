@@ -39,7 +39,8 @@ endif
 		mcr.microsoft.com/dotnet/sdk:8.0 \
 			dotnet nuget push TalonOneSdk.$(VERSION).nupkg \
 				--api-key $(apiKey) \
-				--source https://api.nuget.org/v3/index.json
+				--source https://api.nuget.org/v3/index.json \
+				--skip-duplicate
 
 .PHONY: testenv
 testenv:
