@@ -56,9 +56,9 @@ The following code shows an example of using the Integration API:
 ```csharp
 using System;
 using System.Collections.Generic;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
+using TalonOneSdk.Api;
+using TalonOneSdk.Client;
+using TalonOneSdk.Model;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Example
@@ -118,7 +118,7 @@ namespace Example
             IntegrationRequest body = new IntegrationRequest(
                 customerSession
                 // Optional list of requested information to be present on the response.
-                // See src/TalonOne/Model/IntegrationRequest#ResponseContentEnum for full list of supported values
+                // See src/TalonOneSdk/Model/IntegrationRequest#ResponseContentEnum for full list of supported values
                 // new List<IntegrationRequest.ResponseContentEnum> {
                 //     IntegrationRequest.ResponseContentEnum.CustomerSession,
                 //     IntegrationRequest.ResponseContentEnum.CustomerProfile
@@ -165,9 +165,9 @@ The following code shows an example of using the Management API:
 ```csharp
 using System;
 using System.Collections.Generic;
-using TalonOne.Api;
-using TalonOne.Client;
-using TalonOne.Model;
+using TalonOneSdk.Api;
+using TalonOneSdk.Client;
+using TalonOneSdk.Model;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Example
