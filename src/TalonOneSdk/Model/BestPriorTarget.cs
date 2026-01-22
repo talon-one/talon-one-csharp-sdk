@@ -26,15 +26,15 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// Specifies the target for which the best prior price calculation is taken into consideration.
     /// </summary>
-    public partial class BestPriorPriceRequestTarget : IValidatableObject
+    public partial class BestPriorTarget : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BestPriorPriceRequestTarget" /> class.
+        /// Initializes a new instance of the <see cref="BestPriorTarget" /> class.
         /// </summary>
         /// <param name="targetType">The type of price target.</param>
         /// <param name="audienceID">The AudienceID of an audience. Must be used with \&quot;AUDIENCE\&quot; target type.</param>
         [JsonConstructor]
-        public BestPriorPriceRequestTarget(TargetTypeEnum targetType, Option<long?> audienceID = default)
+        public BestPriorTarget(TargetTypeEnum targetType, Option<long?> audienceID = default)
         {
             TargetType = targetType;
             AudienceIDOption = audienceID;
@@ -140,7 +140,7 @@ namespace TalonOneSdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BestPriorPriceRequestTarget {\n");
+            sb.Append("class BestPriorTarget {\n");
             sb.Append("  TargetType: ").Append(TargetType).Append("\n");
             sb.Append("  AudienceID: ").Append(AudienceID).Append("\n");
             sb.Append("}\n");
@@ -159,19 +159,19 @@ namespace TalonOneSdk.Model
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="BestPriorPriceRequestTarget" />
+    /// A Json converter for type <see cref="BestPriorTarget" />
     /// </summary>
-    public class BestPriorPriceRequestTargetJsonConverter : JsonConverter<BestPriorPriceRequestTarget>
+    public class BestPriorTargetJsonConverter : JsonConverter<BestPriorTarget>
     {
         /// <summary>
-        /// Deserializes json to <see cref="BestPriorPriceRequestTarget" />
+        /// Deserializes json to <see cref="BestPriorTarget" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override BestPriorPriceRequestTarget Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override BestPriorTarget Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -180,7 +180,7 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<BestPriorPriceRequestTarget.TargetTypeEnum?> targetType = default;
+            Option<BestPriorTarget.TargetTypeEnum?> targetType = default;
             Option<long?> audienceID = default;
 
             while (utf8JsonReader.Read())
@@ -201,7 +201,7 @@ namespace TalonOneSdk.Model
                         case "targetType":
                             string targetTypeRawValue = utf8JsonReader.GetString();
                             if (targetTypeRawValue != null)
-                                targetType = new Option<BestPriorPriceRequestTarget.TargetTypeEnum?>(BestPriorPriceRequestTarget.TargetTypeEnumFromStringOrDefault(targetTypeRawValue));
+                                targetType = new Option<BestPriorTarget.TargetTypeEnum?>(BestPriorTarget.TargetTypeEnumFromStringOrDefault(targetTypeRawValue));
                             break;
                         case "audienceID":
                             audienceID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
@@ -213,45 +213,45 @@ namespace TalonOneSdk.Model
             }
 
             if (!targetType.IsSet)
-                throw new ArgumentException("Property is required for class BestPriorPriceRequestTarget.", nameof(targetType));
+                throw new ArgumentException("Property is required for class BestPriorTarget.", nameof(targetType));
 
             if (targetType.IsSet && targetType.Value == null)
-                throw new ArgumentNullException(nameof(targetType), "Property is not nullable for class BestPriorPriceRequestTarget.");
+                throw new ArgumentNullException(nameof(targetType), "Property is not nullable for class BestPriorTarget.");
 
             if (audienceID.IsSet && audienceID.Value == null)
-                throw new ArgumentNullException(nameof(audienceID), "Property is not nullable for class BestPriorPriceRequestTarget.");
+                throw new ArgumentNullException(nameof(audienceID), "Property is not nullable for class BestPriorTarget.");
 
-            return new BestPriorPriceRequestTarget(targetType.Value.Value, audienceID);
+            return new BestPriorTarget(targetType.Value.Value, audienceID);
         }
 
         /// <summary>
-        /// Serializes a <see cref="BestPriorPriceRequestTarget" />
+        /// Serializes a <see cref="BestPriorTarget" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="bestPriorPriceRequestTarget"></param>
+        /// <param name="bestPriorTarget"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, BestPriorPriceRequestTarget bestPriorPriceRequestTarget, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, BestPriorTarget bestPriorTarget, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, bestPriorPriceRequestTarget, jsonSerializerOptions);
+            WriteProperties(writer, bestPriorTarget, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="BestPriorPriceRequestTarget" />
+        /// Serializes the properties of <see cref="BestPriorTarget" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="bestPriorPriceRequestTarget"></param>
+        /// <param name="bestPriorTarget"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, BestPriorPriceRequestTarget bestPriorPriceRequestTarget, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, BestPriorTarget bestPriorTarget, JsonSerializerOptions jsonSerializerOptions)
         {
-            var targetTypeRawValue = BestPriorPriceRequestTarget.TargetTypeEnumToJsonValue(bestPriorPriceRequestTarget.TargetType);
+            var targetTypeRawValue = BestPriorTarget.TargetTypeEnumToJsonValue(bestPriorTarget.TargetType);
             writer.WriteString("targetType", targetTypeRawValue);
-            if (bestPriorPriceRequestTarget.AudienceIDOption.IsSet)
-                writer.WriteNumber("audienceID", bestPriorPriceRequestTarget.AudienceIDOption.Value.Value);
+            if (bestPriorTarget.AudienceIDOption.IsSet)
+                writer.WriteNumber("audienceID", bestPriorTarget.AudienceIDOption.Value.Value);
         }
     }
 }

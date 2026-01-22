@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **Value** | **string** |  | 
 **UsageLimit** | **long** |  | 
 **UsageCounter** | **long** |  | 
+**SourceOfEvent** | **string** |  | 
+**EmployeeName** | **string** |  | 
 **DiscountLimit** | **float** |  | [optional] 
 **ReservationLimit** | **long** |  | [optional] 
 **StartDate** | **DateTime** |  | [optional] 

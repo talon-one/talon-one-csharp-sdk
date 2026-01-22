@@ -42,7 +42,7 @@ namespace TalonOneSdk.Model
         /// <param name="expiryDate">Date after which points will expire.</param>
         /// <param name="cartItemPosition">The index of the item in the cart items list on which the loyal points addition should be applied.</param>
         /// <param name="cartItemSubPosition">For cart items with &#x60;quantity&#x60; &gt; 1, the sub position indicates to which item the loyalty points addition is applied. </param>
-        /// <param name="cardIdentifier">The alphanumeric identifier of the loyalty card. </param>
+        /// <param name="cardIdentifier">The card on which these points were added.</param>
         /// <param name="bundleIndex">The position of the bundle in a list of item bundles created from the same bundle definition.</param>
         /// <param name="bundleName">The name of the bundle definition.</param>
         /// <param name="awaitsActivation">If &#x60;true&#x60;, the loyalty points remain pending until a specific action is complete. The &#x60;startDate&#x60; parameter automatically sets to &#x60;on_action&#x60;. </param>
@@ -192,9 +192,9 @@ namespace TalonOneSdk.Model
         public Option<string> CardIdentifierOption { get; private set; }
 
         /// <summary>
-        /// The alphanumeric identifier of the loyalty card. 
+        /// The card on which these points were added.
         /// </summary>
-        /// <value>The alphanumeric identifier of the loyalty card. </value>
+        /// <value>The card on which these points were added.</value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("cardIdentifier")]
         public string CardIdentifier { get { return this.CardIdentifierOption; } set { this.CardIdentifierOption = new Option<string>(value); } }

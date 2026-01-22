@@ -305,26 +305,6 @@ namespace TalonOneSdk.Client
     /// An interface for responses of type 
     /// </summary>
     /// <typeparam name="TType"></typeparam>
-    public interface ICreated<TType> : IApiResponse
-    {
-        /// <summary>
-        /// Deserializes the response if the response is Created
-        /// </summary>
-        /// <returns></returns>
-        TType Created();
-
-        /// <summary>
-        /// Returns true if the response is Created and the deserialized response is not null
-        /// </summary>
-        /// <param name="result"></param>
-        /// <returns></returns>
-        bool TryCreated(out TType result);
-    }
-
-    /// <summary>
-    /// An interface for responses of type 
-    /// </summary>
-    /// <typeparam name="TType"></typeparam>
     public interface INotFound<TType> : IApiResponse
     {
         /// <summary>
@@ -339,5 +319,25 @@ namespace TalonOneSdk.Client
         /// <param name="result"></param>
         /// <returns></returns>
         bool TryNotFound(out TType result);
+    }
+
+    /// <summary>
+    /// An interface for responses of type 
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    public interface ICreated<TType> : IApiResponse
+    {
+        /// <summary>
+        /// Deserializes the response if the response is Created
+        /// </summary>
+        /// <returns></returns>
+        TType Created();
+
+        /// <summary>
+        /// Returns true if the response is Created and the deserialized response is not null
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryCreated(out TType result);
     }
 }

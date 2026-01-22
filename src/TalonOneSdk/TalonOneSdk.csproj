@@ -12,7 +12,7 @@
     <Description>The Talon.One API is used to manage applications and campaigns, as well as to integrate with your application. The operations in the _Integration API_ section are used to integrate with our platform, while the other operations are used to manage applications and campaigns.</Description>
     <Copyright>Copyright ©2020-present Talon.One GmbH, https://www.talon.one</Copyright>
     <RootNamespace>TalonOneSdk</RootNamespace>
-    <Version>26.1.0</Version>
+    <Version>26.2.0</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\TalonOneSdk.xml</DocumentationFile>
     <RepositoryUrl>https://github.com/talon-one/talon-one-csharp-sdk.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

@@ -242,7 +242,6 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("oldRuleset");
                 JsonSerializer.Serialize(writer, campaignRulesetChangedNotificationItem.OldRuleset, jsonSerializerOptions);
             }
-
             if (campaignRulesetChangedNotificationItem.RulesetOption.IsSet)
             {
                 writer.WritePropertyName("ruleset");

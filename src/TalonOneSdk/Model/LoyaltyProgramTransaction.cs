@@ -51,8 +51,9 @@ namespace TalonOneSdk.Model
         /// <param name="rulesetId">ID of the ruleset containing the rule that triggered the effect. Applies only for transactions that resulted from a customer session.</param>
         /// <param name="ruleName">Name of the rule that triggered the effect. Applies only for transactions that resulted from a customer session.</param>
         /// <param name="flags">The flags of the transaction, when applicable. The &#x60;createsNegativeBalance&#x60;  flag indicates whether the transaction results in a negative balance.</param>
+        /// <param name="validityDuration">The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. </param>
         [JsonConstructor]
-        public LoyaltyProgramTransaction(long id, string transactionUUID, long programId, DateTime created, TypeEnum type, decimal amount, string name, string startDate, string expiryDate, string subledgerId, Option<long?> campaignId = default, Option<string> customerProfileId = default, Option<string> cardIdentifier = default, Option<string> customerSessionId = default, Option<long?> importId = default, Option<long?> userId = default, Option<string> userEmail = default, Option<long?> rulesetId = default, Option<string> ruleName = default, Option<LoyaltyLedgerEntryFlags> flags = default)
+        public LoyaltyProgramTransaction(long id, string transactionUUID, long programId, DateTime created, TypeEnum type, decimal amount, string name, string startDate, string expiryDate, string subledgerId, Option<long?> campaignId = default, Option<string> customerProfileId = default, Option<string> cardIdentifier = default, Option<string> customerSessionId = default, Option<long?> importId = default, Option<long?> userId = default, Option<string> userEmail = default, Option<long?> rulesetId = default, Option<string> ruleName = default, Option<LoyaltyLedgerEntryFlags> flags = default, Option<string> validityDuration = default)
         {
             Id = id;
             TransactionUUID = transactionUUID;
@@ -74,6 +75,7 @@ namespace TalonOneSdk.Model
             RulesetIdOption = rulesetId;
             RuleNameOption = ruleName;
             FlagsOption = flags;
+            ValidityDurationOption = validityDuration;
             OnCreated();
         }
 
@@ -376,6 +378,21 @@ namespace TalonOneSdk.Model
         public LoyaltyLedgerEntryFlags Flags { get { return this.FlagsOption; } set { this.FlagsOption = new Option<LoyaltyLedgerEntryFlags>(value); } }
 
         /// <summary>
+        /// Used to track the state of ValidityDuration
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ValidityDurationOption { get; private set; }
+
+        /// <summary>
+        /// The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. 
+        /// </summary>
+        /// <value>The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. </value>
+        /* <example>30D</example> */
+        [JsonPropertyName("validityDuration")]
+        public string ValidityDuration { get { return this.ValidityDurationOption; } set { this.ValidityDurationOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -403,6 +420,7 @@ namespace TalonOneSdk.Model
             sb.Append("  RulesetId: ").Append(RulesetId).Append("\n");
             sb.Append("  RuleName: ").Append(RuleName).Append("\n");
             sb.Append("  Flags: ").Append(Flags).Append("\n");
+            sb.Append("  ValidityDuration: ").Append(ValidityDuration).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -517,6 +535,7 @@ namespace TalonOneSdk.Model
             Option<long?> rulesetId = default;
             Option<string> ruleName = default;
             Option<LoyaltyLedgerEntryFlags> flags = default;
+            Option<string> validityDuration = default;
 
             while (utf8JsonReader.Read())
             {
@@ -594,6 +613,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "flags":
                             flags = new Option<LoyaltyLedgerEntryFlags>(JsonSerializer.Deserialize<LoyaltyLedgerEntryFlags>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "validityDuration":
+                            validityDuration = new Option<string>(utf8JsonReader.GetString());
                             break;
                         default:
                             break;
@@ -691,7 +713,10 @@ namespace TalonOneSdk.Model
             if (flags.IsSet && flags.Value == null)
                 throw new ArgumentNullException(nameof(flags), "Property is not nullable for class LoyaltyProgramTransaction.");
 
-            return new LoyaltyProgramTransaction(id.Value.Value, transactionUUID.Value, programId.Value.Value, created.Value.Value, type.Value.Value, amount.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, campaignId, customerProfileId, cardIdentifier, customerSessionId, importId, userId, userEmail, rulesetId, ruleName, flags);
+            if (validityDuration.IsSet && validityDuration.Value == null)
+                throw new ArgumentNullException(nameof(validityDuration), "Property is not nullable for class LoyaltyProgramTransaction.");
+
+            return new LoyaltyProgramTransaction(id.Value.Value, transactionUUID.Value, programId.Value.Value, created.Value.Value, type.Value.Value, amount.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, campaignId, customerProfileId, cardIdentifier, customerSessionId, importId, userId, userEmail, rulesetId, ruleName, flags, validityDuration);
         }
 
         /// <summary>
@@ -751,6 +776,9 @@ namespace TalonOneSdk.Model
             if (loyaltyProgramTransaction.FlagsOption.IsSet && loyaltyProgramTransaction.Flags == null)
                 throw new ArgumentNullException(nameof(loyaltyProgramTransaction.Flags), "Property is required for class LoyaltyProgramTransaction.");
 
+            if (loyaltyProgramTransaction.ValidityDurationOption.IsSet && loyaltyProgramTransaction.ValidityDuration == null)
+                throw new ArgumentNullException(nameof(loyaltyProgramTransaction.ValidityDuration), "Property is required for class LoyaltyProgramTransaction.");
+
             writer.WriteNumber("id", loyaltyProgramTransaction.Id);
 
             writer.WriteString("transactionUUID", loyaltyProgramTransaction.TransactionUUID);
@@ -803,6 +831,8 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("flags");
                 JsonSerializer.Serialize(writer, loyaltyProgramTransaction.Flags, jsonSerializerOptions);
             }
+            if (loyaltyProgramTransaction.ValidityDurationOption.IsSet)
+                writer.WriteString("validityDuration", loyaltyProgramTransaction.ValidityDuration);
         }
     }
 }

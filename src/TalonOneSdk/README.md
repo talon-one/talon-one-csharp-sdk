@@ -54,8 +54,8 @@ namespace YourProject
         {
             var host = CreateHostBuilder(args).Build();
             var api = host.Services.GetRequiredService<IIntegrationApi>();
-            IBestPriorPriceApiResponse apiResponse = await api.BestPriorPriceAsync("todo");
-            List<BestPriorPrice> model = apiResponse.Ok();
+            IActivateLoyaltyPointsApiResponse apiResponse = await api.ActivateLoyaltyPointsAsync("todo");
+            ActivateLoyaltyPointsResponse model = apiResponse.Ok();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args)

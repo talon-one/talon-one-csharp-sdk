@@ -42,8 +42,9 @@ namespace TalonOneSdk.Model
         /// <param name="amount">Amount of loyalty points added in the transaction.</param>
         /// <param name="customerProfileID">Integration ID of the customer profile linked to the card.</param>
         /// <param name="customerSessionId">ID of the customer session where points were added.</param>
+        /// <param name="validityDuration">The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. </param>
         [JsonConstructor]
-        public CardLedgerPointsEntryIntegrationAPI(long id, string transactionUUID, DateTime created, long programId, string name, string startDate, string expiryDate, string subledgerId, decimal amount, Option<string> customerProfileID = default, Option<string> customerSessionId = default)
+        public CardLedgerPointsEntryIntegrationAPI(long id, string transactionUUID, DateTime created, long programId, string name, string startDate, string expiryDate, string subledgerId, decimal amount, Option<string> customerProfileID = default, Option<string> customerSessionId = default, Option<string> validityDuration = default)
         {
             Id = id;
             TransactionUUID = transactionUUID;
@@ -56,6 +57,7 @@ namespace TalonOneSdk.Model
             Amount = amount;
             CustomerProfileIDOption = customerProfileID;
             CustomerSessionIdOption = customerSessionId;
+            ValidityDurationOption = validityDuration;
             OnCreated();
         }
 
@@ -164,6 +166,21 @@ namespace TalonOneSdk.Model
         public string CustomerSessionId { get { return this.CustomerSessionIdOption; } set { this.CustomerSessionIdOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of ValidityDuration
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ValidityDurationOption { get; private set; }
+
+        /// <summary>
+        /// The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. 
+        /// </summary>
+        /// <value>The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. </value>
+        /* <example>30D</example> */
+        [JsonPropertyName("validityDuration")]
+        public string ValidityDuration { get { return this.ValidityDurationOption; } set { this.ValidityDurationOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -182,6 +199,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  CustomerProfileID: ").Append(CustomerProfileID).Append("\n");
             sb.Append("  CustomerSessionId: ").Append(CustomerSessionId).Append("\n");
+            sb.Append("  ValidityDuration: ").Append(ValidityDuration).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -259,6 +277,7 @@ namespace TalonOneSdk.Model
             Option<decimal?> amount = default;
             Option<string> customerProfileID = default;
             Option<string> customerSessionId = default;
+            Option<string> validityDuration = default;
 
             while (utf8JsonReader.Read())
             {
@@ -307,6 +326,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "customerSessionId":
                             customerSessionId = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "validityDuration":
+                            validityDuration = new Option<string>(utf8JsonReader.GetString());
                             break;
                         default:
                             break;
@@ -374,7 +396,10 @@ namespace TalonOneSdk.Model
             if (customerSessionId.IsSet && customerSessionId.Value == null)
                 throw new ArgumentNullException(nameof(customerSessionId), "Property is not nullable for class CardLedgerPointsEntryIntegrationAPI.");
 
-            return new CardLedgerPointsEntryIntegrationAPI(id.Value.Value, transactionUUID.Value, created.Value.Value, programId.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, amount.Value.Value, customerProfileID, customerSessionId);
+            if (validityDuration.IsSet && validityDuration.Value == null)
+                throw new ArgumentNullException(nameof(validityDuration), "Property is not nullable for class CardLedgerPointsEntryIntegrationAPI.");
+
+            return new CardLedgerPointsEntryIntegrationAPI(id.Value.Value, transactionUUID.Value, created.Value.Value, programId.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, amount.Value.Value, customerProfileID, customerSessionId, validityDuration);
         }
 
         /// <summary>
@@ -422,6 +447,9 @@ namespace TalonOneSdk.Model
             if (cardLedgerPointsEntryIntegrationAPI.CustomerSessionIdOption.IsSet && cardLedgerPointsEntryIntegrationAPI.CustomerSessionId == null)
                 throw new ArgumentNullException(nameof(cardLedgerPointsEntryIntegrationAPI.CustomerSessionId), "Property is required for class CardLedgerPointsEntryIntegrationAPI.");
 
+            if (cardLedgerPointsEntryIntegrationAPI.ValidityDurationOption.IsSet && cardLedgerPointsEntryIntegrationAPI.ValidityDuration == null)
+                throw new ArgumentNullException(nameof(cardLedgerPointsEntryIntegrationAPI.ValidityDuration), "Property is required for class CardLedgerPointsEntryIntegrationAPI.");
+
             writer.WriteNumber("id", cardLedgerPointsEntryIntegrationAPI.Id);
 
             writer.WriteString("transactionUUID", cardLedgerPointsEntryIntegrationAPI.TransactionUUID);
@@ -445,6 +473,9 @@ namespace TalonOneSdk.Model
 
             if (cardLedgerPointsEntryIntegrationAPI.CustomerSessionIdOption.IsSet)
                 writer.WriteString("customerSessionId", cardLedgerPointsEntryIntegrationAPI.CustomerSessionId);
+
+            if (cardLedgerPointsEntryIntegrationAPI.ValidityDurationOption.IsSet)
+                writer.WriteString("validityDuration", cardLedgerPointsEntryIntegrationAPI.ValidityDuration);
         }
     }
 }

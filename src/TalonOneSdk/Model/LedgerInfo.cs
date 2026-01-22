@@ -155,7 +155,6 @@ namespace TalonOneSdk.Model
         /// Tier for which the ledger is eligible.
         /// </summary>
         /// <value>Tier for which the ledger is eligible.</value>
-        /* <example>bronze</example> */
         [JsonPropertyName("currentTier")]
         public Tier CurrentTier { get { return this.CurrentTierOption; } set { this.CurrentTierOption = new Option<Tier>(value); } }
 

@@ -174,7 +174,7 @@ namespace TalonOneSdk.Model
         /// Indicates the access level of the user.
         /// </summary>
         /// <value>Indicates the access level of the user.</value>
-        /* <example>{Role&#x3D;127, Applications&#x3D;null}</example> */
+        /* <example>{Role&#x3D;127}</example> */
         [JsonPropertyName("policy")]
         public string Policy { get { return this.PolicyOption; } set { this.PolicyOption = new Option<string>(value); } }
 

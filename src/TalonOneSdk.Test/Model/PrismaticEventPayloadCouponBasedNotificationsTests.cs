@@ -108,6 +108,24 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'SourceOfEvent'
+        /// </summary>
+        [Fact]
+        public void SourceOfEventTest()
+        {
+            // TODO unit test for the property 'SourceOfEvent'
+        }
+
+        /// <summary>
+        /// Test the property 'EmployeeName'
+        /// </summary>
+        [Fact]
+        public void EmployeeNameTest()
+        {
+            // TODO unit test for the property 'EmployeeName'
+        }
+
+        /// <summary>
         /// Test the property 'DiscountLimit'
         /// </summary>
         [Fact]

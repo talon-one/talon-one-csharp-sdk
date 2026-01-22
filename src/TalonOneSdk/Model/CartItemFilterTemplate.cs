@@ -24,47 +24,40 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// SessionCoupons
+    /// A cart item filter template stored in a library entry. Cart item filters in library entries only contain name (no description, as description is at the library entry level).
     /// </summary>
-    public partial class SessionCoupons : IValidatableObject
+    public partial class CartItemFilterTemplate : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SessionCoupons" /> class.
+        /// Initializes a new instance of the <see cref="CartItemFilterTemplate" /> class.
         /// </summary>
-        /// <param name="sessionIntegrationId">The integration ID of the session in which the coupons were applied.</param>
-        /// <param name="couponCode">The coupon codes for which rejection reason is needed.</param>
+        /// <param name="name">The name of the Application cart item filter.</param>
+        /// <param name="expression">The Talang expression for the cart item filter.</param>
         [JsonConstructor]
-        public SessionCoupons(string sessionIntegrationId, Option<string> couponCode = default)
+        public CartItemFilterTemplate(string name, List<Object> expression)
         {
-            SessionIntegrationId = sessionIntegrationId;
-            CouponCodeOption = couponCode;
+            Name = name;
+            Expression = expression;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// The integration ID of the session in which the coupons were applied.
+        /// The name of the Application cart item filter.
         /// </summary>
-        /// <value>The integration ID of the session in which the coupons were applied.</value>
-        /* <example>cc53e4fa-547f-4f5e-8333-76e05c381f67</example> */
-        [JsonPropertyName("sessionIntegrationId")]
-        public string SessionIntegrationId { get; set; }
+        /// <value>The name of the Application cart item filter.</value>
+        /* <example>Filter items by product</example> */
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
 
         /// <summary>
-        /// Used to track the state of CouponCode
+        /// The Talang expression for the cart item filter.
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> CouponCodeOption { get; private set; }
-
-        /// <summary>
-        /// The coupon codes for which rejection reason is needed.
-        /// </summary>
-        /// <value>The coupon codes for which rejection reason is needed.</value>
-        /* <example>SUMMER2025</example> */
-        [JsonPropertyName("couponCode")]
-        public string CouponCode { get { return this.CouponCodeOption; } set { this.CouponCodeOption = new Option<string>(value); } }
+        /// <value>The Talang expression for the cart item filter.</value>
+        /* <example>[filter, [., Session, CartItems], [[Item], [catch, false, [&#x3D;, [., Item, Category], Kitchen]]]]</example> */
+        [JsonPropertyName("expression")]
+        public List<Object> Expression { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -73,9 +66,9 @@ namespace TalonOneSdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SessionCoupons {\n");
-            sb.Append("  SessionIntegrationId: ").Append(SessionIntegrationId).Append("\n");
-            sb.Append("  CouponCode: ").Append(CouponCode).Append("\n");
+            sb.Append("class CartItemFilterTemplate {\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Expression: ").Append(Expression).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -92,19 +85,19 @@ namespace TalonOneSdk.Model
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="SessionCoupons" />
+    /// A Json converter for type <see cref="CartItemFilterTemplate" />
     /// </summary>
-    public class SessionCouponsJsonConverter : JsonConverter<SessionCoupons>
+    public class CartItemFilterTemplateJsonConverter : JsonConverter<CartItemFilterTemplate>
     {
         /// <summary>
-        /// Deserializes json to <see cref="SessionCoupons" />
+        /// Deserializes json to <see cref="CartItemFilterTemplate" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override SessionCoupons Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override CartItemFilterTemplate Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -113,8 +106,8 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> sessionIntegrationId = default;
-            Option<string> couponCode = default;
+            Option<string> name = default;
+            Option<List<Object>> expression = default;
 
             while (utf8JsonReader.Read())
             {
@@ -131,11 +124,11 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "sessionIntegrationId":
-                            sessionIntegrationId = new Option<string>(utf8JsonReader.GetString());
+                        case "name":
+                            name = new Option<string>(utf8JsonReader.GetString());
                             break;
-                        case "couponCode":
-                            couponCode = new Option<string>(utf8JsonReader.GetString());
+                        case "expression":
+                            expression = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -143,52 +136,55 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (!sessionIntegrationId.IsSet)
-                throw new ArgumentException("Property is required for class SessionCoupons.", nameof(sessionIntegrationId));
+            if (!name.IsSet)
+                throw new ArgumentException("Property is required for class CartItemFilterTemplate.", nameof(name));
 
-            if (sessionIntegrationId.IsSet && sessionIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(sessionIntegrationId), "Property is not nullable for class SessionCoupons.");
+            if (!expression.IsSet)
+                throw new ArgumentException("Property is required for class CartItemFilterTemplate.", nameof(expression));
 
-            if (couponCode.IsSet && couponCode.Value == null)
-                throw new ArgumentNullException(nameof(couponCode), "Property is not nullable for class SessionCoupons.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CartItemFilterTemplate.");
 
-            return new SessionCoupons(sessionIntegrationId.Value, couponCode);
+            if (expression.IsSet && expression.Value == null)
+                throw new ArgumentNullException(nameof(expression), "Property is not nullable for class CartItemFilterTemplate.");
+
+            return new CartItemFilterTemplate(name.Value, expression.Value);
         }
 
         /// <summary>
-        /// Serializes a <see cref="SessionCoupons" />
+        /// Serializes a <see cref="CartItemFilterTemplate" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="sessionCoupons"></param>
+        /// <param name="cartItemFilterTemplate"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, SessionCoupons sessionCoupons, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, CartItemFilterTemplate cartItemFilterTemplate, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, sessionCoupons, jsonSerializerOptions);
+            WriteProperties(writer, cartItemFilterTemplate, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="SessionCoupons" />
+        /// Serializes the properties of <see cref="CartItemFilterTemplate" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="sessionCoupons"></param>
+        /// <param name="cartItemFilterTemplate"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, SessionCoupons sessionCoupons, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, CartItemFilterTemplate cartItemFilterTemplate, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (sessionCoupons.SessionIntegrationId == null)
-                throw new ArgumentNullException(nameof(sessionCoupons.SessionIntegrationId), "Property is required for class SessionCoupons.");
+            if (cartItemFilterTemplate.Name == null)
+                throw new ArgumentNullException(nameof(cartItemFilterTemplate.Name), "Property is required for class CartItemFilterTemplate.");
 
-            if (sessionCoupons.CouponCodeOption.IsSet && sessionCoupons.CouponCode == null)
-                throw new ArgumentNullException(nameof(sessionCoupons.CouponCode), "Property is required for class SessionCoupons.");
+            if (cartItemFilterTemplate.Expression == null)
+                throw new ArgumentNullException(nameof(cartItemFilterTemplate.Expression), "Property is required for class CartItemFilterTemplate.");
 
-            writer.WriteString("sessionIntegrationId", sessionCoupons.SessionIntegrationId);
+            writer.WriteString("name", cartItemFilterTemplate.Name);
 
-            if (sessionCoupons.CouponCodeOption.IsSet)
-                writer.WriteString("couponCode", sessionCoupons.CouponCode);
+            writer.WritePropertyName("expression");
+            JsonSerializer.Serialize(writer, cartItemFilterTemplate.Expression, jsonSerializerOptions);
         }
     }
 }

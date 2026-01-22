@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **SubledgerId** | **string** | ID of the subledger. | 
 **Amount** | **decimal** | Amount of loyalty points added in the transaction. | 
 **CustomerSessionId** | **string** | ID of the customer session where points were added. | [optional] 
+**ValidityDuration** | **string** | The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set.  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

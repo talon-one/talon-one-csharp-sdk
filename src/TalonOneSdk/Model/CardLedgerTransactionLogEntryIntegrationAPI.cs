@@ -45,8 +45,9 @@ namespace TalonOneSdk.Model
         /// <param name="customerSessionId">ID of the customer session where the transaction occurred.</param>
         /// <param name="rulesetId">The ID of the ruleset containing the rule that triggered this effect.</param>
         /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="validityDuration">The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. </param>
         [JsonConstructor]
-        public CardLedgerTransactionLogEntryIntegrationAPI(string transactionUUID, DateTime created, long programId, string cardIdentifier, TypeEnum type, string name, string startDate, string expiryDate, string subledgerId, decimal amount, long id, Option<string> customerSessionId = default, Option<long?> rulesetId = default, Option<string> ruleName = default)
+        public CardLedgerTransactionLogEntryIntegrationAPI(string transactionUUID, DateTime created, long programId, string cardIdentifier, TypeEnum type, string name, string startDate, string expiryDate, string subledgerId, decimal amount, long id, Option<string> customerSessionId = default, Option<long?> rulesetId = default, Option<string> ruleName = default, Option<string> validityDuration = default)
         {
             TransactionUUID = transactionUUID;
             Created = created;
@@ -62,6 +63,7 @@ namespace TalonOneSdk.Model
             CustomerSessionIdOption = customerSessionId;
             RulesetIdOption = rulesetId;
             RuleNameOption = ruleName;
+            ValidityDurationOption = validityDuration;
             OnCreated();
         }
 
@@ -268,6 +270,21 @@ namespace TalonOneSdk.Model
         public string RuleName { get { return this.RuleNameOption; } set { this.RuleNameOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of ValidityDuration
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ValidityDurationOption { get; private set; }
+
+        /// <summary>
+        /// The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. 
+        /// </summary>
+        /// <value>The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. </value>
+        /* <example>30D</example> */
+        [JsonPropertyName("validityDuration")]
+        public string ValidityDuration { get { return this.ValidityDurationOption; } set { this.ValidityDurationOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -289,6 +306,7 @@ namespace TalonOneSdk.Model
             sb.Append("  CustomerSessionId: ").Append(CustomerSessionId).Append("\n");
             sb.Append("  RulesetId: ").Append(RulesetId).Append("\n");
             sb.Append("  RuleName: ").Append(RuleName).Append("\n");
+            sb.Append("  ValidityDuration: ").Append(ValidityDuration).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -391,6 +409,7 @@ namespace TalonOneSdk.Model
             Option<string> customerSessionId = default;
             Option<long?> rulesetId = default;
             Option<string> ruleName = default;
+            Option<string> validityDuration = default;
 
             while (utf8JsonReader.Read())
             {
@@ -450,6 +469,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "ruleName":
                             ruleName = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "validityDuration":
+                            validityDuration = new Option<string>(utf8JsonReader.GetString());
                             break;
                         default:
                             break;
@@ -532,7 +554,10 @@ namespace TalonOneSdk.Model
             if (ruleName.IsSet && ruleName.Value == null)
                 throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class CardLedgerTransactionLogEntryIntegrationAPI.");
 
-            return new CardLedgerTransactionLogEntryIntegrationAPI(transactionUUID.Value, created.Value.Value, programId.Value.Value, cardIdentifier.Value, type.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, amount.Value.Value, id.Value.Value, customerSessionId, rulesetId, ruleName);
+            if (validityDuration.IsSet && validityDuration.Value == null)
+                throw new ArgumentNullException(nameof(validityDuration), "Property is not nullable for class CardLedgerTransactionLogEntryIntegrationAPI.");
+
+            return new CardLedgerTransactionLogEntryIntegrationAPI(transactionUUID.Value, created.Value.Value, programId.Value.Value, cardIdentifier.Value, type.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, amount.Value.Value, id.Value.Value, customerSessionId, rulesetId, ruleName, validityDuration);
         }
 
         /// <summary>
@@ -583,6 +608,9 @@ namespace TalonOneSdk.Model
             if (cardLedgerTransactionLogEntryIntegrationAPI.RuleNameOption.IsSet && cardLedgerTransactionLogEntryIntegrationAPI.RuleName == null)
                 throw new ArgumentNullException(nameof(cardLedgerTransactionLogEntryIntegrationAPI.RuleName), "Property is required for class CardLedgerTransactionLogEntryIntegrationAPI.");
 
+            if (cardLedgerTransactionLogEntryIntegrationAPI.ValidityDurationOption.IsSet && cardLedgerTransactionLogEntryIntegrationAPI.ValidityDuration == null)
+                throw new ArgumentNullException(nameof(cardLedgerTransactionLogEntryIntegrationAPI.ValidityDuration), "Property is required for class CardLedgerTransactionLogEntryIntegrationAPI.");
+
             writer.WriteString("transactionUUID", cardLedgerTransactionLogEntryIntegrationAPI.TransactionUUID);
 
             writer.WriteString("created", cardLedgerTransactionLogEntryIntegrationAPI.Created.ToString(CreatedFormat));
@@ -613,6 +641,9 @@ namespace TalonOneSdk.Model
 
             if (cardLedgerTransactionLogEntryIntegrationAPI.RuleNameOption.IsSet)
                 writer.WriteString("ruleName", cardLedgerTransactionLogEntryIntegrationAPI.RuleName);
+
+            if (cardLedgerTransactionLogEntryIntegrationAPI.ValidityDurationOption.IsSet)
+                writer.WriteString("validityDuration", cardLedgerTransactionLogEntryIntegrationAPI.ValidityDuration);
         }
     }
 }

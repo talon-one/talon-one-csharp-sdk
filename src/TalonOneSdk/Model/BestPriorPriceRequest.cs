@@ -37,7 +37,7 @@ namespace TalonOneSdk.Model
         /// <param name="strictEndDate">Indicates whether the timeframe includes the start of the current sale. - When &#x60;false&#x60;, the timeframe includes the start date of the current sale. - When &#x60;true&#x60;, the timeframe striclty uses the number of days specified in &#x60;timeframe&#x60;. </param>
         /// <param name="target">target</param>
         [JsonConstructor]
-        public BestPriorPriceRequest(List<string> skus, DateTime timeframeEndDate, int timeframe, bool strictEndDate, Option<BestPriorPriceRequestTarget> target = default)
+        public BestPriorPriceRequest(List<string> skus, DateTime timeframeEndDate, string timeframe, bool strictEndDate, Option<BestPriorTarget> target = default)
         {
             Skus = skus;
             TimeframeEndDate = timeframeEndDate;
@@ -71,7 +71,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of days prior to the timeframeEndDate. Only prices within this look back period are considered for the best prior price evaluation.</value>
         /* <example>30</example> */
         [JsonPropertyName("timeframe")]
-        public int Timeframe { get; set; }
+        public string Timeframe { get; set; }
 
         /// <summary>
         /// Indicates whether the timeframe includes the start of the current sale. - When &#x60;false&#x60;, the timeframe includes the start date of the current sale. - When &#x60;true&#x60;, the timeframe striclty uses the number of days specified in &#x60;timeframe&#x60;. 
@@ -86,13 +86,13 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<BestPriorPriceRequestTarget> TargetOption { get; private set; }
+        public Option<BestPriorTarget> TargetOption { get; private set; }
 
         /// <summary>
         /// Gets or Sets Target
         /// </summary>
         [JsonPropertyName("target")]
-        public BestPriorPriceRequestTarget Target { get { return this.TargetOption; } set { this.TargetOption = new Option<BestPriorPriceRequestTarget>(value); } }
+        public BestPriorTarget Target { get { return this.TargetOption; } set { this.TargetOption = new Option<BestPriorTarget>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -151,9 +151,9 @@ namespace TalonOneSdk.Model
 
             Option<List<string>> skus = default;
             Option<DateTime?> timeframeEndDate = default;
-            Option<int?> timeframe = default;
+            Option<string> timeframe = default;
             Option<bool?> strictEndDate = default;
-            Option<BestPriorPriceRequestTarget> target = default;
+            Option<BestPriorTarget> target = default;
 
             while (utf8JsonReader.Read())
             {
@@ -177,13 +177,13 @@ namespace TalonOneSdk.Model
                             timeframeEndDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "timeframe":
-                            timeframe = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
+                            timeframe = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "strictEndDate":
                             strictEndDate = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "target":
-                            target = new Option<BestPriorPriceRequestTarget>(JsonSerializer.Deserialize<BestPriorPriceRequestTarget>(ref utf8JsonReader, jsonSerializerOptions));
+                            target = new Option<BestPriorTarget>(JsonSerializer.Deserialize<BestPriorTarget>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -218,7 +218,7 @@ namespace TalonOneSdk.Model
             if (target.IsSet && target.Value == null)
                 throw new ArgumentNullException(nameof(target), "Property is not nullable for class BestPriorPriceRequest.");
 
-            return new BestPriorPriceRequest(skus.Value, timeframeEndDate.Value.Value, timeframe.Value.Value, strictEndDate.Value.Value, target);
+            return new BestPriorPriceRequest(skus.Value, timeframeEndDate.Value.Value, timeframe.Value, strictEndDate.Value.Value, target);
         }
 
         /// <summary>
@@ -247,6 +247,9 @@ namespace TalonOneSdk.Model
         {
             if (bestPriorPriceRequest.Skus == null)
                 throw new ArgumentNullException(nameof(bestPriorPriceRequest.Skus), "Property is required for class BestPriorPriceRequest.");
+
+            if (bestPriorPriceRequest.Timeframe == null)
+                throw new ArgumentNullException(nameof(bestPriorPriceRequest.Timeframe), "Property is required for class BestPriorPriceRequest.");
 
             if (bestPriorPriceRequest.TargetOption.IsSet && bestPriorPriceRequest.Target == null)
                 throw new ArgumentNullException(nameof(bestPriorPriceRequest.Target), "Property is required for class BestPriorPriceRequest.");

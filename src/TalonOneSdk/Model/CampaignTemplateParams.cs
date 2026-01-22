@@ -79,9 +79,14 @@ namespace TalonOneSdk.Model
             ListString = 5,
 
             /// <summary>
+            /// Enum ListNumber for value: (list number)
+            /// </summary>
+            ListNumber = 6,
+
+            /// <summary>
             /// Enum Time for value: time
             /// </summary>
-            Time = 6
+            Time = 7
         }
 
         /// <summary>
@@ -106,6 +111,9 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("(list string)"))
                 return TypeEnum.ListString;
+
+            if (value.Equals("(list number)"))
+                return TypeEnum.ListNumber;
 
             if (value.Equals("time"))
                 return TypeEnum.Time;
@@ -135,6 +143,9 @@ namespace TalonOneSdk.Model
             if (value.Equals("(list string)"))
                 return TypeEnum.ListString;
 
+            if (value.Equals("(list number)"))
+                return TypeEnum.ListNumber;
+
             if (value.Equals("time"))
                 return TypeEnum.Time;
 
@@ -163,6 +174,9 @@ namespace TalonOneSdk.Model
 
             if (value == TypeEnum.ListString)
                 return "(list string)";
+
+            if (value == TypeEnum.ListNumber)
+                return "(list number)";
 
             if (value == TypeEnum.Time)
                 return "time";

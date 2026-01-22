@@ -31,26 +31,26 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookAuthentication" /> class.
         /// </summary>
-        /// <param name="name">The name of the webhook authentication.</param>
-        /// <param name="type">type</param>
         /// <param name="id">The internal ID of this entity.</param>
         /// <param name="created">The time this entity was created.</param>
         /// <param name="modified">The time this entity was last modified.</param>
         /// <param name="createdBy">The name of the user who created the webhook authentication.</param>
         /// <param name="modifiedBy">The name of the user who last modified the webhook authentication.</param>
         /// <param name="webhooks">webhooks</param>
+        /// <param name="name">The name of the webhook authentication.</param>
+        /// <param name="type">type</param>
         /// <param name="data">data</param>
         [JsonConstructor]
-        public WebhookAuthentication(string name, TypeEnum type, long id, DateTime created, DateTime modified, string createdBy, string modifiedBy, List<WebhookAuthenticationWebhookRef> webhooks, Object data = default)
+        public WebhookAuthentication(long id, DateTime created, DateTime modified, string createdBy, string modifiedBy, List<WebhookAuthenticationWebhookRef> webhooks, string name, TypeEnum type, Object data = default)
         {
-            Name = name;
-            Type = type;
             Id = id;
             Created = created;
             Modified = modified;
             CreatedBy = createdBy;
             ModifiedBy = modifiedBy;
             Webhooks = webhooks;
+            Name = name;
+            Type = type;
             Data = data;
             OnCreated();
         }
@@ -130,14 +130,6 @@ namespace TalonOneSdk.Model
         public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// The name of the webhook authentication.
-        /// </summary>
-        /// <value>The name of the webhook authentication.</value>
-        /* <example>My basic auth</example> */
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        /// <summary>
         /// The internal ID of this entity.
         /// </summary>
         /// <value>The internal ID of this entity.</value>
@@ -182,6 +174,14 @@ namespace TalonOneSdk.Model
         public List<WebhookAuthenticationWebhookRef> Webhooks { get; set; }
 
         /// <summary>
+        /// The name of the webhook authentication.
+        /// </summary>
+        /// <value>The name of the webhook authentication.</value>
+        /* <example>My basic auth</example> */
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        /// <summary>
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
@@ -195,14 +195,14 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class WebhookAuthentication {\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  Modified: ").Append(Modified).Append("\n");
             sb.Append("  CreatedBy: ").Append(CreatedBy).Append("\n");
             sb.Append("  ModifiedBy: ").Append(ModifiedBy).Append("\n");
             sb.Append("  Webhooks: ").Append(Webhooks).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -251,14 +251,14 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> name = default;
-            Option<WebhookAuthentication.TypeEnum?> type = default;
             Option<long?> id = default;
             Option<DateTime?> created = default;
             Option<DateTime?> modified = default;
             Option<string> createdBy = default;
             Option<string> modifiedBy = default;
             Option<List<WebhookAuthenticationWebhookRef>> webhooks = default;
+            Option<string> name = default;
+            Option<WebhookAuthentication.TypeEnum?> type = default;
             Option<Object> data = default;
 
             while (utf8JsonReader.Read())
@@ -276,14 +276,6 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "name":
-                            name = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "type":
-                            string typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                                type = new Option<WebhookAuthentication.TypeEnum?>(WebhookAuthentication.TypeEnumFromStringOrDefault(typeRawValue));
-                            break;
                         case "id":
                             id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
@@ -302,6 +294,14 @@ namespace TalonOneSdk.Model
                         case "webhooks":
                             webhooks = new Option<List<WebhookAuthenticationWebhookRef>>(JsonSerializer.Deserialize<List<WebhookAuthenticationWebhookRef>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "name":
+                            name = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "type":
+                            string typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<WebhookAuthentication.TypeEnum?>(WebhookAuthentication.TypeEnumFromStringOrDefault(typeRawValue));
+                            break;
                         case "data":
                             data = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -310,12 +310,6 @@ namespace TalonOneSdk.Model
                     }
                 }
             }
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class WebhookAuthentication.", nameof(name));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class WebhookAuthentication.", nameof(type));
 
             if (!id.IsSet)
                 throw new ArgumentException("Property is required for class WebhookAuthentication.", nameof(id));
@@ -335,14 +329,14 @@ namespace TalonOneSdk.Model
             if (!webhooks.IsSet)
                 throw new ArgumentException("Property is required for class WebhookAuthentication.", nameof(webhooks));
 
+            if (!name.IsSet)
+                throw new ArgumentException("Property is required for class WebhookAuthentication.", nameof(name));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class WebhookAuthentication.", nameof(type));
+
             if (!data.IsSet)
                 throw new ArgumentException("Property is required for class WebhookAuthentication.", nameof(data));
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class WebhookAuthentication.");
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class WebhookAuthentication.");
 
             if (id.IsSet && id.Value == null)
                 throw new ArgumentNullException(nameof(id), "Property is not nullable for class WebhookAuthentication.");
@@ -362,7 +356,13 @@ namespace TalonOneSdk.Model
             if (webhooks.IsSet && webhooks.Value == null)
                 throw new ArgumentNullException(nameof(webhooks), "Property is not nullable for class WebhookAuthentication.");
 
-            return new WebhookAuthentication(name.Value, type.Value.Value, id.Value.Value, created.Value.Value, modified.Value.Value, createdBy.Value, modifiedBy.Value, webhooks.Value, data.Value);
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class WebhookAuthentication.");
+
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class WebhookAuthentication.");
+
+            return new WebhookAuthentication(id.Value.Value, created.Value.Value, modified.Value.Value, createdBy.Value, modifiedBy.Value, webhooks.Value, name.Value, type.Value.Value, data.Value);
         }
 
         /// <summary>
@@ -389,9 +389,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, WebhookAuthentication webhookAuthentication, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (webhookAuthentication.Name == null)
-                throw new ArgumentNullException(nameof(webhookAuthentication.Name), "Property is required for class WebhookAuthentication.");
-
             if (webhookAuthentication.CreatedBy == null)
                 throw new ArgumentNullException(nameof(webhookAuthentication.CreatedBy), "Property is required for class WebhookAuthentication.");
 
@@ -401,10 +398,9 @@ namespace TalonOneSdk.Model
             if (webhookAuthentication.Webhooks == null)
                 throw new ArgumentNullException(nameof(webhookAuthentication.Webhooks), "Property is required for class WebhookAuthentication.");
 
-            writer.WriteString("name", webhookAuthentication.Name);
+            if (webhookAuthentication.Name == null)
+                throw new ArgumentNullException(nameof(webhookAuthentication.Name), "Property is required for class WebhookAuthentication.");
 
-            var typeRawValue = WebhookAuthentication.TypeEnumToJsonValue(webhookAuthentication.Type);
-            writer.WriteString("type", typeRawValue);
             writer.WriteNumber("id", webhookAuthentication.Id);
 
             writer.WriteString("created", webhookAuthentication.Created.ToString(CreatedFormat));
@@ -417,6 +413,10 @@ namespace TalonOneSdk.Model
 
             writer.WritePropertyName("webhooks");
             JsonSerializer.Serialize(writer, webhookAuthentication.Webhooks, jsonSerializerOptions);
+            writer.WriteString("name", webhookAuthentication.Name);
+
+            var typeRawValue = WebhookAuthentication.TypeEnumToJsonValue(webhookAuthentication.Type);
+            writer.WriteString("type", typeRawValue);
             if (webhookAuthentication.Data != null)
             {
                 writer.WritePropertyName("data");
