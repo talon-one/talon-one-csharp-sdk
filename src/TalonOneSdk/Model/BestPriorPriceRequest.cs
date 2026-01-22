@@ -258,7 +258,7 @@ namespace TalonOneSdk.Model
             JsonSerializer.Serialize(writer, bestPriorPriceRequest.Skus, jsonSerializerOptions);
             writer.WriteString("timeframeEndDate", bestPriorPriceRequest.TimeframeEndDate.ToString(TimeframeEndDateFormat));
 
-            writer.WriteNumber("timeframe", (long)bestPriorPriceRequest.Timeframe);
+            writer.WriteString("timeframe", bestPriorPriceRequest.Timeframe);
 
             writer.WriteBoolean("strictEndDate", bestPriorPriceRequest.StrictEndDate);
 
