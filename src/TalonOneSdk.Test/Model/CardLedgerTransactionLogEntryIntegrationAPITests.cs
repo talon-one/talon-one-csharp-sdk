@@ -178,5 +178,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'RuleName'
         }
+
+        /// <summary>
+        /// Test the property 'ValidityDuration'
+        /// </summary>
+        [Fact]
+        public void ValidityDurationTest()
+        {
+            // TODO unit test for the property 'ValidityDuration'
+        }
     }
 }

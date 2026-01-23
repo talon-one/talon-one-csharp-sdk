@@ -222,7 +222,7 @@ namespace TalonOneSdk.Model
         /// Access level of the user.
         /// </summary>
         /// <value>Access level of the user.</value>
-        /* <example>{Role&#x3D;127, Applications&#x3D;null}</example> */
+        /* <example>{Role&#x3D;127}</example> */
         [JsonPropertyName("policy")]
         public Object Policy { get; set; }
 

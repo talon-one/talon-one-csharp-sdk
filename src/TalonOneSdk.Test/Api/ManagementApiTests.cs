@@ -783,6 +783,21 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test GenerateCouponRejections
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task GenerateCouponRejectionsAsyncTest()
+        {
+            string sessionIntegrationId = default;
+            Client.Option<decimal> applicationId = default;
+            Client.Option<string> language = default;
+            Client.Option<string> couponCode = default;
+            var response = await _instance.GenerateCouponRejectionsAsync(sessionIntegrationId, applicationId, language, couponCode);
+            var model = response.Ok();
+            Assert.IsType<GenerateCouponRejections200Response>(model);
+        }
+
+        /// <summary>
         /// Test GetAccessLogsWithoutTotalCount
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -1540,6 +1555,23 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test GetLoyaltyLedgerBalances
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task GetLoyaltyLedgerBalancesAsyncTest()
+        {
+            long loyaltyProgramId = default;
+            string integrationId = default;
+            Client.Option<DateTime> endDate = default;
+            Client.Option<string> subledgerId = default;
+            Client.Option<bool> includeTiers = default;
+            Client.Option<bool> includeProjectedTier = default;
+            var response = await _instance.GetLoyaltyLedgerBalancesAsync(loyaltyProgramId, integrationId, endDate, subledgerId, includeTiers, includeProjectedTier);
+            var model = response.Ok();
+            Assert.IsType<LoyaltyBalancesWithTiers>(model);
+        }
+
+        /// <summary>
         /// Test GetLoyaltyPoints
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -1565,6 +1597,28 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test GetLoyaltyProgramProfileLedgerTransactions
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task GetLoyaltyProgramProfileLedgerTransactionsAsyncTest()
+        {
+            long loyaltyProgramId = default;
+            string integrationId = default;
+            Client.Option<List<string>> customerSessionIDs = default;
+            Client.Option<List<string>> transactionUUIDs = default;
+            Client.Option<string> subledgerId = default;
+            Client.Option<string> loyaltyTransactionType = default;
+            Client.Option<DateTime> startDate = default;
+            Client.Option<DateTime> endDate = default;
+            Client.Option<long> pageSize = default;
+            Client.Option<long> skip = default;
+            Client.Option<bool> awaitsActivation = default;
+            var response = await _instance.GetLoyaltyProgramProfileLedgerTransactionsAsync(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
+            var model = response.Ok();
+            Assert.IsType<GetLoyaltyProgramProfileTransactions200Response>(model);
+        }
+
+        /// <summary>
         /// Test GetLoyaltyProgramTransactions
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -1579,7 +1633,8 @@ namespace TalonOneSdk.Test.Api
             Client.Option<DateTime> endDate = default;
             Client.Option<long> pageSize = default;
             Client.Option<long> skip = default;
-            var response = await _instance.GetLoyaltyProgramTransactionsAsync(loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip);
+            Client.Option<bool> awaitsActivation = default;
+            var response = await _instance.GetLoyaltyProgramTransactionsAsync(loyaltyProgramId, loyaltyTransactionType, subledgerId, customerSessionIDs, transactionUUIDs, startDate, endDate, pageSize, skip, awaitsActivation);
             var model = response.Ok();
             Assert.IsType<GetLoyaltyProgramTransactions200Response>(model);
         }

@@ -51,6 +51,19 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test ActivateLoyaltyPoints
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task ActivateLoyaltyPointsAsyncTest()
+        {
+            long loyaltyProgramId = default;
+            ActivateLoyaltyPoints activateLoyaltyPoints = default;
+            var response = await _instance.ActivateLoyaltyPointsAsync(loyaltyProgramId, activateLoyaltyPoints);
+            var model = response.Ok();
+            Assert.IsType<ActivateLoyaltyPointsResponse>(model);
+        }
+
+        /// <summary>
         /// Test BestPriorPrice
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -151,6 +164,18 @@ namespace TalonOneSdk.Test.Api
         {
             string integrationId = default;
             await _instance.DeleteCustomerDataAsync(integrationId);
+        }
+
+        /// <summary>
+        /// Test DeleteLoyaltyTransactionsFromLedgers
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task DeleteLoyaltyTransactionsFromLedgersAsyncTest()
+        {
+            long loyaltyProgramId = default;
+            string integrationId = default;
+            DeleteLoyaltyTransactionsRequest deleteLoyaltyTransactionsRequest = default;
+            await _instance.DeleteLoyaltyTransactionsFromLedgersAsync(loyaltyProgramId, integrationId, deleteLoyaltyTransactionsRequest);
         }
 
         /// <summary>
@@ -300,7 +325,8 @@ namespace TalonOneSdk.Test.Api
             Client.Option<List<string>> transactionUUIDs = default;
             Client.Option<long> pageSize = default;
             Client.Option<long> skip = default;
-            var response = await _instance.GetLoyaltyCardTransactionsAsync(loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip);
+            Client.Option<bool> awaitsActivation = default;
+            var response = await _instance.GetLoyaltyCardTransactionsAsync(loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip, awaitsActivation);
             var model = response.Ok();
             Assert.IsType<GetLoyaltyCardTransactions200Response>(model);
         }
@@ -341,7 +367,8 @@ namespace TalonOneSdk.Test.Api
             Client.Option<DateTime> endDate = default;
             Client.Option<long> pageSize = default;
             Client.Option<long> skip = default;
-            var response = await _instance.GetLoyaltyProgramProfileTransactionsAsync(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip);
+            Client.Option<bool> awaitsActivation = default;
+            var response = await _instance.GetLoyaltyProgramProfileTransactionsAsync(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
             var model = response.Ok();
             Assert.IsType<GetLoyaltyProgramProfileTransactions200Response>(model);
         }
@@ -424,6 +451,20 @@ namespace TalonOneSdk.Test.Api
             var response = await _instance.TrackEventV2Async(integrationEventV2Request, silent, dry, forceCompleteEvaluation);
             var model = response.Ok();
             Assert.IsType<TrackEventV2Response>(model);
+        }
+
+        /// <summary>
+        /// Test UnlinkLoyaltyCardFromProfile
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task UnlinkLoyaltyCardFromProfileAsyncTest()
+        {
+            long loyaltyProgramId = default;
+            string loyaltyCardId = default;
+            LoyaltyCardRegistration loyaltyCardRegistration = default;
+            var response = await _instance.UnlinkLoyaltyCardFromProfileAsync(loyaltyProgramId, loyaltyCardId, loyaltyCardRegistration);
+            var model = response.Ok();
+            Assert.IsType<LoyaltyCard>(model);
         }
 
         /// <summary>

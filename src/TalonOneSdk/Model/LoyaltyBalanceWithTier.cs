@@ -143,7 +143,6 @@ namespace TalonOneSdk.Model
         /// Customer&#39;s current tier.
         /// </summary>
         /// <value>Customer&#39;s current tier.</value>
-        /* <example>bronze</example> */
         [JsonPropertyName("currentTier")]
         public Tier CurrentTier { get { return this.CurrentTierOption; } set { this.CurrentTierOption = new Option<Tier>(value); } }
 

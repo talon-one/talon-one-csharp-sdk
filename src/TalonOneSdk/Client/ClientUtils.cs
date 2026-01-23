@@ -223,8 +223,8 @@ namespace TalonOneSdk.Client
                 return BaseLoyaltyProgram.ReturnPolicyEnumToJsonValue(baseLoyaltyProgramReturnPolicyEnum);
             if (obj is BaseNotification.TypeEnum baseNotificationTypeEnum)
                 return BaseNotification.TypeEnumToJsonValue(baseNotificationTypeEnum);
-            if (obj is BestPriorPriceRequestTarget.TargetTypeEnum bestPriorPriceRequestTargetTargetTypeEnum)
-                return BestPriorPriceRequestTarget.TargetTypeEnumToJsonValue(bestPriorPriceRequestTargetTargetTypeEnum);
+            if (obj is BestPriorTarget.TargetTypeEnum bestPriorTargetTargetTypeEnum)
+                return BestPriorTarget.TargetTypeEnumToJsonValue(bestPriorTargetTargetTypeEnum);
             if (obj is BulkOperationOnCampaigns.OperationEnum bulkOperationOnCampaignsOperationEnum)
                 return BulkOperationOnCampaigns.OperationEnumToJsonValue(bulkOperationOnCampaignsOperationEnum);
             if (obj is Campaign.FeaturesEnum campaignFeaturesEnum)
@@ -307,6 +307,10 @@ namespace TalonOneSdk.Client
                 return CardLedgerTransactionLogEntryIntegrationAPI.TypeEnumToJsonValue(cardLedgerTransactionLogEntryIntegrationAPITypeEnum);
             if (obj is CatalogActionFilter.OpEnum catalogActionFilterOpEnum)
                 return CatalogActionFilter.OpEnumToJsonValue(catalogActionFilterOpEnum);
+            if (obj is CollectionsCatalog.CategoryEnum collectionsCatalogCategoryEnum)
+                return CollectionsCatalog.CategoryEnumToJsonValue(collectionsCatalogCategoryEnum);
+            if (obj is CollectionsCatalog.SourceEnum collectionsCatalogSourceEnum)
+                return CollectionsCatalog.SourceEnumToJsonValue(collectionsCatalogSourceEnum);
             if (obj is CouponDeletionFilters.ValidEnum couponDeletionFiltersValidEnum)
                 return CouponDeletionFilters.ValidEnumToJsonValue(couponDeletionFiltersValidEnum);
             if (obj is CouponRejectionReason.ReasonEnum couponRejectionReasonReasonEnum)
@@ -335,6 +339,8 @@ namespace TalonOneSdk.Client
                 return CustomerSessionV2.StateEnumToJsonValue(customerSessionV2StateEnum);
             if (obj is DeleteCouponsData.NotificationTypeEnum deleteCouponsDataNotificationTypeEnum)
                 return DeleteCouponsData.NotificationTypeEnumToJsonValue(deleteCouponsDataNotificationTypeEnum);
+            if (obj is DeleteLoyaltyTransactionsRequest.ScopeEnum deleteLoyaltyTransactionsRequestScopeEnum)
+                return DeleteLoyaltyTransactionsRequest.ScopeEnumToJsonValue(deleteLoyaltyTransactionsRequestScopeEnum);
             if (obj is ExpiringCardPointsNotification.NotificationTypeEnum expiringCardPointsNotificationNotificationTypeEnum)
                 return ExpiringCardPointsNotification.NotificationTypeEnumToJsonValue(expiringCardPointsNotificationNotificationTypeEnum);
             if (obj is ExpiringCouponsNotification.NotificationTypeEnum expiringCouponsNotificationNotificationTypeEnum)
@@ -427,6 +433,8 @@ namespace TalonOneSdk.Client
                 return NewCampaignTemplate.FeaturesEnumToJsonValue(newCampaignTemplateFeaturesEnum);
             if (obj is NewCampaignTemplate.CampaignTypeEnum newCampaignTemplateCampaignTypeEnum)
                 return NewCampaignTemplate.CampaignTypeEnumToJsonValue(newCampaignTemplateCampaignTypeEnum);
+            if (obj is NewCollectionsCatalog.CategoryEnum newCollectionsCatalogCategoryEnum)
+                return NewCollectionsCatalog.CategoryEnumToJsonValue(newCollectionsCatalogCategoryEnum);
             if (obj is NewCustomerSession.StateEnum newCustomerSessionStateEnum)
                 return NewCustomerSession.StateEnumToJsonValue(newCustomerSessionStateEnum);
             if (obj is NewCustomerSessionV2.StateEnum newCustomerSessionV2StateEnum)
@@ -527,6 +535,8 @@ namespace TalonOneSdk.Client
                 return UpdateCampaignTemplate.FeaturesEnumToJsonValue(updateCampaignTemplateFeaturesEnum);
             if (obj is UpdateCampaignTemplate.CampaignTypeEnum updateCampaignTemplateCampaignTypeEnum)
                 return UpdateCampaignTemplate.CampaignTypeEnumToJsonValue(updateCampaignTemplateCampaignTypeEnum);
+            if (obj is UpdateCollectionsCatalog.CategoryEnum updateCollectionsCatalogCategoryEnum)
+                return UpdateCollectionsCatalog.CategoryEnumToJsonValue(updateCollectionsCatalogCategoryEnum);
             if (obj is UpdateCouponsData.NotificationTypeEnum updateCouponsDataNotificationTypeEnum)
                 return UpdateCouponsData.NotificationTypeEnumToJsonValue(updateCouponsDataNotificationTypeEnum);
             if (obj is UpdateLoyaltyProgram.ProgramJoinPolicyEnum updateLoyaltyProgramProgramJoinPolicyEnum)
@@ -547,8 +557,6 @@ namespace TalonOneSdk.Client
                 return Webhook.VerbEnumToJsonValue(webhookVerbEnum);
             if (obj is WebhookAuthentication.TypeEnum webhookAuthenticationTypeEnum)
                 return WebhookAuthentication.TypeEnumToJsonValue(webhookAuthenticationTypeEnum);
-            if (obj is WebhookAuthenticationBase.TypeEnum webhookAuthenticationBaseTypeEnum)
-                return WebhookAuthenticationBase.TypeEnumToJsonValue(webhookAuthenticationBaseTypeEnum);
             if (obj is WebhookWithOutgoingIntegrationDetails.VerbEnum webhookWithOutgoingIntegrationDetailsVerbEnum)
                 return WebhookWithOutgoingIntegrationDetails.VerbEnumToJsonValue(webhookWithOutgoingIntegrationDetailsVerbEnum);
             if (obj is ICollection collection)

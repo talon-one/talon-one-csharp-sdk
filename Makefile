@@ -53,6 +53,7 @@ testenv:
 
 apply-patch:
 	@echo "Updating version in TalonOneSdk.csproj"
-	@sed -i '' -E 's|(<Version>)([0-9]+)\.0*([1-9][0-9]*)(</Version>)|\1\2.\3.0\4|' $(PWD)/$(BUILD_DIR)/TalonOneSdk.csproj
+	@sed -i -E 's|(<Version>)([0-9]+)\.0*([1-9][0-9]*)(</Version>)|\1\2.\3.0\4|' $(PWD)/$(BUILD_DIR)/TalonOneSdk.csproj
 	@echo "Applying fix patch"
-	@git apply --ignore-space-change --ignore-whitespace ./srcFiles.patch
+	@git apply --reject --ignore-space-change --ignore-whitespace ./srcFiles.patch 2>&1; \
+	find . -name '*.rej' -delete

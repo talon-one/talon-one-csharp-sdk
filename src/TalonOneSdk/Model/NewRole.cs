@@ -59,7 +59,7 @@ namespace TalonOneSdk.Model
         /// The &#x60;Access Control List&#x60; json defining the role of the user. This represents the access control on the user level.
         /// </summary>
         /// <value>The &#x60;Access Control List&#x60; json defining the role of the user. This represents the access control on the user level.</value>
-        /* <example>{Role&#x3D;128, Applications&#x3D;null}</example> */
+        /* <example>{Role&#x3D;128}</example> */
         [JsonPropertyName("acl")]
         public string Acl { get; set; }
 

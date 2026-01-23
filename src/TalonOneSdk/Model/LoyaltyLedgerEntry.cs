@@ -46,8 +46,9 @@ namespace TalonOneSdk.Model
         /// <param name="userID">This is the ID of the user who created this entry, if the addition or subtraction was done manually.</param>
         /// <param name="archived">Indicates if the entry belongs to the archived session.</param>
         /// <param name="flags">A map of flags providing additional details about the entry.</param>
+        /// <param name="validityDuration">The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. </param>
         [JsonConstructor]
-        public LoyaltyLedgerEntry(DateTime created, long programID, string type, decimal amount, string name, string subLedgerID, Option<string> customerProfileID = default, Option<long?> cardID = default, Option<string> customerSessionID = default, Option<long?> eventID = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<long?> userID = default, Option<bool?> archived = default, Option<LoyaltyLedgerEntryFlags> flags = default)
+        public LoyaltyLedgerEntry(DateTime created, long programID, string type, decimal amount, string name, string subLedgerID, Option<string> customerProfileID = default, Option<long?> cardID = default, Option<string> customerSessionID = default, Option<long?> eventID = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<long?> userID = default, Option<bool?> archived = default, Option<LoyaltyLedgerEntryFlags> flags = default, Option<string> validityDuration = default)
         {
             Created = created;
             ProgramID = programID;
@@ -64,6 +65,7 @@ namespace TalonOneSdk.Model
             UserIDOption = userID;
             ArchivedOption = archived;
             FlagsOption = flags;
+            ValidityDurationOption = validityDuration;
             OnCreated();
         }
 
@@ -243,6 +245,21 @@ namespace TalonOneSdk.Model
         public LoyaltyLedgerEntryFlags Flags { get { return this.FlagsOption; } set { this.FlagsOption = new Option<LoyaltyLedgerEntryFlags>(value); } }
 
         /// <summary>
+        /// Used to track the state of ValidityDuration
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ValidityDurationOption { get; private set; }
+
+        /// <summary>
+        /// The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. 
+        /// </summary>
+        /// <value>The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. </value>
+        /* <example>30D</example> */
+        [JsonPropertyName("validityDuration")]
+        public string ValidityDuration { get { return this.ValidityDurationOption; } set { this.ValidityDurationOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -265,6 +282,7 @@ namespace TalonOneSdk.Model
             sb.Append("  UserID: ").Append(UserID).Append("\n");
             sb.Append("  Archived: ").Append(Archived).Append("\n");
             sb.Append("  Flags: ").Append(Flags).Append("\n");
+            sb.Append("  ValidityDuration: ").Append(ValidityDuration).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -332,6 +350,7 @@ namespace TalonOneSdk.Model
             Option<long?> userID = default;
             Option<bool?> archived = default;
             Option<LoyaltyLedgerEntryFlags> flags = default;
+            Option<string> validityDuration = default;
 
             while (utf8JsonReader.Read())
             {
@@ -392,6 +411,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "flags":
                             flags = new Option<LoyaltyLedgerEntryFlags>(JsonSerializer.Deserialize<LoyaltyLedgerEntryFlags>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "validityDuration":
+                            validityDuration = new Option<string>(utf8JsonReader.GetString());
                             break;
                         default:
                             break;
@@ -462,7 +484,10 @@ namespace TalonOneSdk.Model
             if (flags.IsSet && flags.Value == null)
                 throw new ArgumentNullException(nameof(flags), "Property is not nullable for class LoyaltyLedgerEntry.");
 
-            return new LoyaltyLedgerEntry(created.Value.Value, programID.Value.Value, type.Value, amount.Value.Value, name.Value, subLedgerID.Value, customerProfileID, cardID, customerSessionID, eventID, startDate, expiryDate, userID, archived, flags);
+            if (validityDuration.IsSet && validityDuration.Value == null)
+                throw new ArgumentNullException(nameof(validityDuration), "Property is not nullable for class LoyaltyLedgerEntry.");
+
+            return new LoyaltyLedgerEntry(created.Value.Value, programID.Value.Value, type.Value, amount.Value.Value, name.Value, subLedgerID.Value, customerProfileID, cardID, customerSessionID, eventID, startDate, expiryDate, userID, archived, flags, validityDuration);
         }
 
         /// <summary>
@@ -507,6 +532,9 @@ namespace TalonOneSdk.Model
             if (loyaltyLedgerEntry.FlagsOption.IsSet && loyaltyLedgerEntry.Flags == null)
                 throw new ArgumentNullException(nameof(loyaltyLedgerEntry.Flags), "Property is required for class LoyaltyLedgerEntry.");
 
+            if (loyaltyLedgerEntry.ValidityDurationOption.IsSet && loyaltyLedgerEntry.ValidityDuration == null)
+                throw new ArgumentNullException(nameof(loyaltyLedgerEntry.ValidityDuration), "Property is required for class LoyaltyLedgerEntry.");
+
             writer.WriteString("created", loyaltyLedgerEntry.Created.ToString(CreatedFormat));
 
             writer.WriteNumber("programID", loyaltyLedgerEntry.ProgramID);
@@ -548,6 +576,8 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("flags");
                 JsonSerializer.Serialize(writer, loyaltyLedgerEntry.Flags, jsonSerializerOptions);
             }
+            if (loyaltyLedgerEntry.ValidityDurationOption.IsSet)
+                writer.WriteString("validityDuration", loyaltyLedgerEntry.ValidityDuration);
         }
     }
 }

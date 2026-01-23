@@ -36,22 +36,20 @@ namespace TalonOneSdk.Model
         /// <param name="status">Status defines if the coupon code was applied or rejected.</param>
         /// <param name="couponCode">Coupon code passed for evaluation.</param>
         /// <param name="language">Language of the summary.</param>
-        /// <param name="shortSummary">A summary of the reasons for coupon redemption failure.</param>
-        /// <param name="longSummary">A detailed summary of the reasons for coupon redemption failure based on events of the entire session.</param>
+        /// <param name="summary">A summary of the reasons for coupon redemption failure.</param>
         /// <param name="createdAt">Timestamp when the request was made.</param>
         /// <param name="updatedAt">Timestamp when the request was last updated.</param>
         /// <param name="sessionID">ID of the customer session set by your integration layer.</param>
         /// <param name="profileID">ID of the customer profile set by your integration layer.</param>
         [JsonConstructor]
-        public CouponFailureSummary(long id, long eventID, string status, string couponCode, string language, string shortSummary, string longSummary, DateTime createdAt, DateTime updatedAt, Option<string> sessionID = default, Option<string> profileID = default)
+        public CouponFailureSummary(long id, long eventID, string status, string couponCode, string language, string summary, DateTime createdAt, DateTime updatedAt, Option<string> sessionID = default, Option<string> profileID = default)
         {
             Id = id;
             EventID = eventID;
             Status = status;
             CouponCode = couponCode;
             Language = language;
-            ShortSummary = shortSummary;
-            LongSummary = longSummary;
+            Summary = summary;
             CreatedAt = createdAt;
             UpdatedAt = updatedAt;
             SessionIDOption = sessionID;
@@ -106,16 +104,8 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A summary of the reasons for coupon redemption failure.</value>
         /* <example>Session total was less than the required total.</example> */
-        [JsonPropertyName("shortSummary")]
-        public string ShortSummary { get; set; }
-
-        /// <summary>
-        /// A detailed summary of the reasons for coupon redemption failure based on events of the entire session.
-        /// </summary>
-        /// <value>A detailed summary of the reasons for coupon redemption failure based on events of the entire session.</value>
-        /* <example>There were 5 items in the cart with SKUs 1,2,3,4,5 and the total is $60 which is less than the required cart total.</example> */
-        [JsonPropertyName("longSummary")]
-        public string LongSummary { get; set; }
+        [JsonPropertyName("summary")]
+        public string Summary { get; set; }
 
         /// <summary>
         /// Timestamp when the request was made.
@@ -176,8 +166,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  CouponCode: ").Append(CouponCode).Append("\n");
             sb.Append("  Language: ").Append(Language).Append("\n");
-            sb.Append("  ShortSummary: ").Append(ShortSummary).Append("\n");
-            sb.Append("  LongSummary: ").Append(LongSummary).Append("\n");
+            sb.Append("  Summary: ").Append(Summary).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  SessionID: ").Append(SessionID).Append("\n");
@@ -234,8 +223,7 @@ namespace TalonOneSdk.Model
             Option<string> status = default;
             Option<string> couponCode = default;
             Option<string> language = default;
-            Option<string> shortSummary = default;
-            Option<string> longSummary = default;
+            Option<string> summary = default;
             Option<DateTime?> createdAt = default;
             Option<DateTime?> updatedAt = default;
             Option<string> sessionID = default;
@@ -271,11 +259,8 @@ namespace TalonOneSdk.Model
                         case "language":
                             language = new Option<string>(utf8JsonReader.GetString());
                             break;
-                        case "shortSummary":
-                            shortSummary = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "longSummary":
-                            longSummary = new Option<string>(utf8JsonReader.GetString());
+                        case "summary":
+                            summary = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "createdAt":
                             createdAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
@@ -310,11 +295,8 @@ namespace TalonOneSdk.Model
             if (!language.IsSet)
                 throw new ArgumentException("Property is required for class CouponFailureSummary.", nameof(language));
 
-            if (!shortSummary.IsSet)
-                throw new ArgumentException("Property is required for class CouponFailureSummary.", nameof(shortSummary));
-
-            if (!longSummary.IsSet)
-                throw new ArgumentException("Property is required for class CouponFailureSummary.", nameof(longSummary));
+            if (!summary.IsSet)
+                throw new ArgumentException("Property is required for class CouponFailureSummary.", nameof(summary));
 
             if (!createdAt.IsSet)
                 throw new ArgumentException("Property is required for class CouponFailureSummary.", nameof(createdAt));
@@ -337,11 +319,8 @@ namespace TalonOneSdk.Model
             if (language.IsSet && language.Value == null)
                 throw new ArgumentNullException(nameof(language), "Property is not nullable for class CouponFailureSummary.");
 
-            if (shortSummary.IsSet && shortSummary.Value == null)
-                throw new ArgumentNullException(nameof(shortSummary), "Property is not nullable for class CouponFailureSummary.");
-
-            if (longSummary.IsSet && longSummary.Value == null)
-                throw new ArgumentNullException(nameof(longSummary), "Property is not nullable for class CouponFailureSummary.");
+            if (summary.IsSet && summary.Value == null)
+                throw new ArgumentNullException(nameof(summary), "Property is not nullable for class CouponFailureSummary.");
 
             if (createdAt.IsSet && createdAt.Value == null)
                 throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class CouponFailureSummary.");
@@ -355,7 +334,7 @@ namespace TalonOneSdk.Model
             if (profileID.IsSet && profileID.Value == null)
                 throw new ArgumentNullException(nameof(profileID), "Property is not nullable for class CouponFailureSummary.");
 
-            return new CouponFailureSummary(id.Value.Value, eventID.Value.Value, status.Value, couponCode.Value, language.Value, shortSummary.Value, longSummary.Value, createdAt.Value.Value, updatedAt.Value.Value, sessionID, profileID);
+            return new CouponFailureSummary(id.Value.Value, eventID.Value.Value, status.Value, couponCode.Value, language.Value, summary.Value, createdAt.Value.Value, updatedAt.Value.Value, sessionID, profileID);
         }
 
         /// <summary>
@@ -391,11 +370,8 @@ namespace TalonOneSdk.Model
             if (couponFailureSummary.Language == null)
                 throw new ArgumentNullException(nameof(couponFailureSummary.Language), "Property is required for class CouponFailureSummary.");
 
-            if (couponFailureSummary.ShortSummary == null)
-                throw new ArgumentNullException(nameof(couponFailureSummary.ShortSummary), "Property is required for class CouponFailureSummary.");
-
-            if (couponFailureSummary.LongSummary == null)
-                throw new ArgumentNullException(nameof(couponFailureSummary.LongSummary), "Property is required for class CouponFailureSummary.");
+            if (couponFailureSummary.Summary == null)
+                throw new ArgumentNullException(nameof(couponFailureSummary.Summary), "Property is required for class CouponFailureSummary.");
 
             if (couponFailureSummary.SessionIDOption.IsSet && couponFailureSummary.SessionID == null)
                 throw new ArgumentNullException(nameof(couponFailureSummary.SessionID), "Property is required for class CouponFailureSummary.");
@@ -413,9 +389,7 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("language", couponFailureSummary.Language);
 
-            writer.WriteString("shortSummary", couponFailureSummary.ShortSummary);
-
-            writer.WriteString("longSummary", couponFailureSummary.LongSummary);
+            writer.WriteString("summary", couponFailureSummary.Summary);
 
             writer.WriteString("createdAt", couponFailureSummary.CreatedAt.ToString(CreatedAtFormat));
 

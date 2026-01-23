@@ -99,21 +99,12 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'ShortSummary'
+        /// Test the property 'Summary'
         /// </summary>
         [Fact]
-        public void ShortSummaryTest()
+        public void SummaryTest()
         {
-            // TODO unit test for the property 'ShortSummary'
-        }
-
-        /// <summary>
-        /// Test the property 'LongSummary'
-        /// </summary>
-        [Fact]
-        public void LongSummaryTest()
-        {
-            // TODO unit test for the property 'LongSummary'
+            // TODO unit test for the property 'Summary'
         }
 
         /// <summary>

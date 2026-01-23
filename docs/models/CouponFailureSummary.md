@@ -10,8 +10,7 @@ Name | Type | Description | Notes
 **Status** | **string** | Status defines if the coupon code was applied or rejected. | 
 **CouponCode** | **string** | Coupon code passed for evaluation. | 
 **Language** | **string** | Language of the summary. | 
-**ShortSummary** | **string** | A summary of the reasons for coupon redemption failure. | 
-**LongSummary** | **string** | A detailed summary of the reasons for coupon redemption failure based on events of the entire session. | 
+**Summary** | **string** | A summary of the reasons for coupon redemption failure. | 
 **CreatedAt** | **DateTime** | Timestamp when the request was made. | 
 **UpdatedAt** | **DateTime** | Timestamp when the request was last updated. | 
 **SessionID** | **string** | ID of the customer session set by your integration layer. | [optional] 

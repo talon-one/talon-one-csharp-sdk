@@ -33,6 +33,31 @@ namespace TalonOneSdk.Api
         IntegrationApiEvents Events { get; }
 
         /// <summary>
+        /// Activate loyalty points
+        /// </summary>
+        /// <remarks>
+        /// Activate points when a defined action occurs.  You can activate pending points using one of the following parameters: - &#x60;sessionId&#x60;: Activates all points earned in the specified session.  - &#x60;transactionUUIDs&#x60;: Activates points earned in the transactions specified by the  given UUIDs.  
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="loyaltyProgramId">The identifier for the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="activateLoyaltyPoints">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IActivateLoyaltyPointsApiResponse"/>&gt;</returns>
+        Task<IActivateLoyaltyPointsApiResponse> ActivateLoyaltyPointsAsync(long loyaltyProgramId, ActivateLoyaltyPoints activateLoyaltyPoints, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Activate loyalty points
+        /// </summary>
+        /// <remarks>
+        /// Activate points when a defined action occurs.  You can activate pending points using one of the following parameters: - &#x60;sessionId&#x60;: Activates all points earned in the specified session.  - &#x60;transactionUUIDs&#x60;: Activates points earned in the transactions specified by the  given UUIDs.  
+        /// </remarks>
+        /// <param name="loyaltyProgramId">The identifier for the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="activateLoyaltyPoints">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IActivateLoyaltyPointsApiResponse"/>&gt;</returns>
+        Task<IActivateLoyaltyPointsApiResponse> ActivateLoyaltyPointsOrDefaultAsync(long loyaltyProgramId, ActivateLoyaltyPoints activateLoyaltyPoints, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Fetch best prior price
         /// </summary>
         /// <remarks>
@@ -244,6 +269,33 @@ namespace TalonOneSdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteCustomerDataApiResponse"/>&gt;</returns>
         Task<IDeleteCustomerDataApiResponse> DeleteCustomerDataOrDefaultAsync(string integrationId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete customer&#39;s transactions from loyalty ledgers
+        /// </summary>
+        /// <remarks>
+        /// Delete a customer&#39;s transactions in all loyalty ledgers or a specified ledger.  **Note:** To retrieve loyalty transaction logs for a specific customer in a given loyalty program, use the [List customer&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions) endpoint. 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="integrationId">The integration ID of the customer profile. You can get the &#x60;integrationId&#x60; of a profile using: - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint. </param>
+        /// <param name="deleteLoyaltyTransactionsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteLoyaltyTransactionsFromLedgersApiResponse"/>&gt;</returns>
+        Task<IDeleteLoyaltyTransactionsFromLedgersApiResponse> DeleteLoyaltyTransactionsFromLedgersAsync(long loyaltyProgramId, string integrationId, DeleteLoyaltyTransactionsRequest deleteLoyaltyTransactionsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete customer&#39;s transactions from loyalty ledgers
+        /// </summary>
+        /// <remarks>
+        /// Delete a customer&#39;s transactions in all loyalty ledgers or a specified ledger.  **Note:** To retrieve loyalty transaction logs for a specific customer in a given loyalty program, use the [List customer&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions) endpoint. 
+        /// </remarks>
+        /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="integrationId">The integration ID of the customer profile. You can get the &#x60;integrationId&#x60; of a profile using: - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint. </param>
+        /// <param name="deleteLoyaltyTransactionsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteLoyaltyTransactionsFromLedgersApiResponse"/>&gt;</returns>
+        Task<IDeleteLoyaltyTransactionsFromLedgersApiResponse> DeleteLoyaltyTransactionsFromLedgersOrDefaultAsync(long loyaltyProgramId, string integrationId, DeleteLoyaltyTransactionsRequest deleteLoyaltyTransactionsRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Generate loyalty card
@@ -516,9 +568,10 @@ namespace TalonOneSdk.Api
         /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyCardTransactionsApiResponse"/>&gt;</returns>
-        Task<IGetLoyaltyCardTransactionsApiResponse> GetLoyaltyCardTransactionsAsync(long loyaltyProgramId, string loyaltyCardId, Option<List<string>> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetLoyaltyCardTransactionsApiResponse> GetLoyaltyCardTransactionsAsync(long loyaltyProgramId, string loyaltyCardId, Option<List<string>> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List card&#39;s transactions
@@ -536,9 +589,10 @@ namespace TalonOneSdk.Api
         /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyCardTransactionsApiResponse"/>&gt;</returns>
-        Task<IGetLoyaltyCardTransactionsApiResponse> GetLoyaltyCardTransactionsOrDefaultAsync(long loyaltyProgramId, string loyaltyCardId, Option<List<string>> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetLoyaltyCardTransactionsApiResponse> GetLoyaltyCardTransactionsOrDefaultAsync(long loyaltyProgramId, string loyaltyCardId, Option<List<string>> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List customer&#39;s unused loyalty points
@@ -596,9 +650,10 @@ namespace TalonOneSdk.Api
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfileTransactionsApiResponse"/>&gt;</returns>
-        Task<IGetLoyaltyProgramProfileTransactionsApiResponse> GetLoyaltyProgramProfileTransactionsAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetLoyaltyProgramProfileTransactionsApiResponse> GetLoyaltyProgramProfileTransactionsAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List customer&#39;s loyalty transactions
@@ -616,9 +671,10 @@ namespace TalonOneSdk.Api
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfileTransactionsApiResponse"/>&gt;</returns>
-        Task<IGetLoyaltyProgramProfileTransactionsApiResponse> GetLoyaltyProgramProfileTransactionsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetLoyaltyProgramProfileTransactionsApiResponse> GetLoyaltyProgramProfileTransactionsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List customers that have this coupon reserved
@@ -674,7 +730,7 @@ namespace TalonOneSdk.Api
         /// Reopen customer session
         /// </summary>
         /// <remarks>
-        /// Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint. A reopen session is treated like a standard open session.  When reopening a session: - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed    are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.   &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt;   &lt;/details&gt; &lt;p&gt;To see an example of a rollback, see the &lt;a href&#x3D;\&quot;https://docs.talon.one/docs/dev/tutorials/rolling-back-effects\&quot;&gt;Cancelling a session with campaign budgets&lt;/a&gt;tutorial.&lt;/p&gt;  **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel a closed session and create a new one. 
+        /// Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint. A reopen session is treated like a standard open session.  When reopening a session: - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed    are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.   &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt;   &lt;/details&gt; &lt;p&gt;To see an example of a rollback, see the &lt;a href&#x3D;\&quot;https://docs.talon.one/docs/dev/tutorials/rolling-back-effects\&quot;&gt;Cancelling a session with campaign budgets&lt;/a&gt; tutorial.&lt;/p&gt;  **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel a closed session and create a new one. 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#operation/getApplicationSessions) endpoint. </param>
@@ -686,7 +742,7 @@ namespace TalonOneSdk.Api
         /// Reopen customer session
         /// </summary>
         /// <remarks>
-        /// Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint. A reopen session is treated like a standard open session.  When reopening a session: - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed    are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.   &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt;   &lt;/details&gt; &lt;p&gt;To see an example of a rollback, see the &lt;a href&#x3D;\&quot;https://docs.talon.one/docs/dev/tutorials/rolling-back-effects\&quot;&gt;Cancelling a session with campaign budgets&lt;/a&gt;tutorial.&lt;/p&gt;  **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel a closed session and create a new one. 
+        /// Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint. A reopen session is treated like a standard open session.  When reopening a session: - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed    are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.   &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt;   &lt;/details&gt; &lt;p&gt;To see an example of a rollback, see the &lt;a href&#x3D;\&quot;https://docs.talon.one/docs/dev/tutorials/rolling-back-effects\&quot;&gt;Cancelling a session with campaign budgets&lt;/a&gt; tutorial.&lt;/p&gt;  **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel a closed session and create a new one. 
         /// </remarks>
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#operation/getApplicationSessions) endpoint. </param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -773,6 +829,33 @@ namespace TalonOneSdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ITrackEventV2ApiResponse"/>&gt;</returns>
         Task<ITrackEventV2ApiResponse> TrackEventV2OrDefaultAsync(IntegrationEventV2Request integrationEventV2Request, Option<string> silent = default, Option<bool> dry = default, Option<bool> forceCompleteEvaluation = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Unlink customer profile from a loyalty card
+        /// </summary>
+        /// <remarks>
+        /// Unlink a customer profile from a [registered](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards#linking-customer-profiles-to-a-loyalty-card) loyalty card.  To get the &#x60;integrationId&#x60; of a customer profile, you can use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="loyaltyProgramId">The identifier of the card-based loyalty program containing the loyalty card. You can get this ID using the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="loyaltyCardId">The identifier of the loyalty card. You can get this ID using the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. </param>
+        /// <param name="loyaltyCardRegistration">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IUnlinkLoyaltyCardFromProfileApiResponse"/>&gt;</returns>
+        Task<IUnlinkLoyaltyCardFromProfileApiResponse> UnlinkLoyaltyCardFromProfileAsync(long loyaltyProgramId, string loyaltyCardId, LoyaltyCardRegistration loyaltyCardRegistration, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Unlink customer profile from a loyalty card
+        /// </summary>
+        /// <remarks>
+        /// Unlink a customer profile from a [registered](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards#linking-customer-profiles-to-a-loyalty-card) loyalty card.  To get the &#x60;integrationId&#x60; of a customer profile, you can use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. 
+        /// </remarks>
+        /// <param name="loyaltyProgramId">The identifier of the card-based loyalty program containing the loyalty card. You can get this ID using the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="loyaltyCardId">The identifier of the loyalty card. You can get this ID using the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. </param>
+        /// <param name="loyaltyCardRegistration">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IUnlinkLoyaltyCardFromProfileApiResponse"/>&gt;</returns>
+        Task<IUnlinkLoyaltyCardFromProfileApiResponse> UnlinkLoyaltyCardFromProfileOrDefaultAsync(long loyaltyProgramId, string loyaltyCardId, LoyaltyCardRegistration loyaltyCardRegistration, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update profile attributes for all customers in audience
@@ -929,6 +1012,36 @@ namespace TalonOneSdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCustomerSessionV2ApiResponse"/>&gt;</returns>
         Task<IUpdateCustomerSessionV2ApiResponse> UpdateCustomerSessionV2OrDefaultAsync(string customerSessionId, IntegrationRequest integrationRequest, Option<bool> dry = default, Option<DateTime> now = default, System.Threading.CancellationToken cancellationToken = default);
+    }
+
+    /// <summary>
+    /// The <see cref="IActivateLoyaltyPointsApiResponse"/>
+    /// </summary>
+    public interface IActivateLoyaltyPointsApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.ActivateLoyaltyPointsResponse>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
     }
 
     /// <summary>
@@ -1151,6 +1264,36 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <returns></returns>
         bool IsNoContent { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IDeleteLoyaltyTransactionsFromLedgersApiResponse"/>
+    /// </summary>
+    public interface IDeleteLoyaltyTransactionsFromLedgersApiResponse : TalonOneSdk.Client.IApiResponse, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
+    {
+        /// <summary>
+        /// Returns true if the response is 204 NoContent
+        /// </summary>
+        /// <returns></returns>
+        bool IsNoContent { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
 
         /// <summary>
         /// Returns true if the response is 401 Unauthorized
@@ -1646,6 +1789,36 @@ namespace TalonOneSdk.Api
     }
 
     /// <summary>
+    /// The <see cref="IUnlinkLoyaltyCardFromProfileApiResponse"/>
+    /// </summary>
+    public interface IUnlinkLoyaltyCardFromProfileApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.LoyaltyCard>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+    }
+
+    /// <summary>
     /// The <see cref="IUpdateAudienceCustomersAttributesApiResponse"/>
     /// </summary>
     public interface IUpdateAudienceCustomersAttributesApiResponse : TalonOneSdk.Client.IApiResponse, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
@@ -1812,6 +1985,26 @@ namespace TalonOneSdk.Api
     /// </summary>
     public class IntegrationApiEvents
     {
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnActivateLoyaltyPoints;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorActivateLoyaltyPoints;
+
+        internal void ExecuteOnActivateLoyaltyPoints(IntegrationApi.ActivateLoyaltyPointsApiResponse apiResponse)
+        {
+            OnActivateLoyaltyPoints?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorActivateLoyaltyPoints(Exception exception)
+        {
+            OnErrorActivateLoyaltyPoints?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
         /// <summary>
         /// The event raised after the server response
         /// </summary>
@@ -1990,6 +2183,26 @@ namespace TalonOneSdk.Api
         internal void ExecuteOnErrorDeleteCustomerData(Exception exception)
         {
             OnErrorDeleteCustomerData?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnDeleteLoyaltyTransactionsFromLedgers;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorDeleteLoyaltyTransactionsFromLedgers;
+
+        internal void ExecuteOnDeleteLoyaltyTransactionsFromLedgers(IntegrationApi.DeleteLoyaltyTransactionsFromLedgersApiResponse apiResponse)
+        {
+            OnDeleteLoyaltyTransactionsFromLedgers?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorDeleteLoyaltyTransactionsFromLedgers(Exception exception)
+        {
+            OnErrorDeleteLoyaltyTransactionsFromLedgers?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -2335,6 +2548,26 @@ namespace TalonOneSdk.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnUnlinkLoyaltyCardFromProfile;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorUnlinkLoyaltyCardFromProfile;
+
+        internal void ExecuteOnUnlinkLoyaltyCardFromProfile(IntegrationApi.UnlinkLoyaltyCardFromProfileApiResponse apiResponse)
+        {
+            OnUnlinkLoyaltyCardFromProfile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorUnlinkLoyaltyCardFromProfile(Exception exception)
+        {
+            OnErrorUnlinkLoyaltyCardFromProfile?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
         public event EventHandler<ApiResponseEventArgs> OnUpdateAudienceCustomersAttributes;
 
         /// <summary>
@@ -2500,6 +2733,389 @@ namespace TalonOneSdk.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
+        partial void FormatActivateLoyaltyPoints(ref long loyaltyProgramId, ActivateLoyaltyPoints activateLoyaltyPoints);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="activateLoyaltyPoints"></param>
+        /// <returns></returns>
+        private void ValidateActivateLoyaltyPoints(ActivateLoyaltyPoints activateLoyaltyPoints)
+        {
+            if (activateLoyaltyPoints == null)
+                throw new ArgumentNullException(nameof(activateLoyaltyPoints));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="activateLoyaltyPoints"></param>
+        private void AfterActivateLoyaltyPointsDefaultImplementation(IActivateLoyaltyPointsApiResponse apiResponseLocalVar, long loyaltyProgramId, ActivateLoyaltyPoints activateLoyaltyPoints)
+        {
+            bool suppressDefaultLog = false;
+            AfterActivateLoyaltyPoints(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, activateLoyaltyPoints);
+            if (!suppressDefaultLog)
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="activateLoyaltyPoints"></param>
+        partial void AfterActivateLoyaltyPoints(ref bool suppressDefaultLog, IActivateLoyaltyPointsApiResponse apiResponseLocalVar, long loyaltyProgramId, ActivateLoyaltyPoints activateLoyaltyPoints);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="activateLoyaltyPoints"></param>
+        private void OnErrorActivateLoyaltyPointsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, ActivateLoyaltyPoints activateLoyaltyPoints)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorActivateLoyaltyPoints(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, activateLoyaltyPoints);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="activateLoyaltyPoints"></param>
+        partial void OnErrorActivateLoyaltyPoints(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, ActivateLoyaltyPoints activateLoyaltyPoints);
+
+        /// <summary>
+        /// Activate loyalty points Activate points when a defined action occurs.  You can activate pending points using one of the following parameters: - &#x60;sessionId&#x60;: Activates all points earned in the specified session.  - &#x60;transactionUUIDs&#x60;: Activates points earned in the transactions specified by the  given UUIDs.  
+        /// </summary>
+        /// <param name="loyaltyProgramId">The identifier for the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="activateLoyaltyPoints">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IActivateLoyaltyPointsApiResponse"/>&gt;</returns>
+        public async Task<IActivateLoyaltyPointsApiResponse> ActivateLoyaltyPointsOrDefaultAsync(long loyaltyProgramId, ActivateLoyaltyPoints activateLoyaltyPoints, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await ActivateLoyaltyPointsAsync(loyaltyProgramId, activateLoyaltyPoints, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Activate loyalty points Activate points when a defined action occurs.  You can activate pending points using one of the following parameters: - &#x60;sessionId&#x60;: Activates all points earned in the specified session.  - &#x60;transactionUUIDs&#x60;: Activates points earned in the transactions specified by the  given UUIDs.  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="loyaltyProgramId">The identifier for the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="activateLoyaltyPoints">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IActivateLoyaltyPointsApiResponse"/>&gt;</returns>
+        public async Task<IActivateLoyaltyPointsApiResponse> ActivateLoyaltyPointsAsync(long loyaltyProgramId, ActivateLoyaltyPoints activateLoyaltyPoints, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateActivateLoyaltyPoints(activateLoyaltyPoints);
+
+                FormatActivateLoyaltyPoints(ref loyaltyProgramId, activateLoyaltyPoints);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/loyalty_programs/{loyaltyProgramId}/activate_points"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/activate_points");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
+
+                    httpRequestMessageLocalVar.Content = (activateLoyaltyPoints as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(activateLoyaltyPoints, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    string acceptLocalVar = ClientUtils.SelectHeaderAccept(acceptLocalVars);
+
+                    if (acceptLocalVar != null)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(acceptLocalVar));
+                    httpRequestMessageLocalVar.Method = new HttpMethod("POST");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<ActivateLoyaltyPointsApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<ActivateLoyaltyPointsApiResponse>();
+                        ActivateLoyaltyPointsApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new ActivateLoyaltyPointsApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/activate_points", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterActivateLoyaltyPointsDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, activateLoyaltyPoints);
+
+                        Events.ExecuteOnActivateLoyaltyPoints(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorActivateLoyaltyPointsDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/activate_points", uriBuilderLocalVar.Path, loyaltyProgramId, activateLoyaltyPoints);
+                Events.ExecuteOnErrorActivateLoyaltyPoints(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="ActivateLoyaltyPointsApiResponse"/>
+        /// </summary>
+        public partial class ActivateLoyaltyPointsApiResponse : TalonOneSdk.Client.ApiResponse, IActivateLoyaltyPointsApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ActivateLoyaltyPointsApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="ActivateLoyaltyPointsApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public ActivateLoyaltyPointsApiResponse(ILogger<ActivateLoyaltyPointsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="ActivateLoyaltyPointsApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public ActivateLoyaltyPointsApiResponse(ILogger<ActivateLoyaltyPointsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ActivateLoyaltyPointsResponse Ok()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ActivateLoyaltyPointsResponse>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out TalonOneSdk.Model.ActivateLoyaltyPointsResponse result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryUnauthorized(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsNotFound
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryNotFound(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = NotFound();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
         partial void FormatBestPriorPrice(BestPriorPriceRequest bestPriorPriceRequest);
 
         /// <summary>
@@ -2523,7 +3139,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterBestPriorPrice(ref suppressDefaultLog, apiResponseLocalVar, bestPriorPriceRequest);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -2793,7 +3409,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterCreateAudienceV2(ref suppressDefaultLog, apiResponseLocalVar, newAudience);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -3174,7 +3790,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterCreateCouponReservation(ref suppressDefaultLog, apiResponseLocalVar, couponValue, couponReservations);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -3556,7 +4172,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterCreateReferral(ref suppressDefaultLog, apiResponseLocalVar, newReferral);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -3899,7 +4515,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterCreateReferralsForMultipleAdvocates(ref suppressDefaultLog, apiResponseLocalVar, newReferralsForMultipleAdvocates, silent);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -4244,7 +4860,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterDeleteAudienceMembershipsV2(ref suppressDefaultLog, apiResponseLocalVar, audienceId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -4525,7 +5141,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterDeleteAudienceV2(ref suppressDefaultLog, apiResponseLocalVar, audienceId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -4860,7 +5476,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterDeleteCouponReservation(ref suppressDefaultLog, apiResponseLocalVar, couponValue, couponReservations);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -5210,7 +5826,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterDeleteCustomerData(ref suppressDefaultLog, apiResponseLocalVar, integrationId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -5481,6 +6097,368 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
+        partial void FormatDeleteLoyaltyTransactionsFromLedgers(ref long loyaltyProgramId, ref string integrationId, DeleteLoyaltyTransactionsRequest deleteLoyaltyTransactionsRequest);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="integrationId"></param>
+        /// <param name="deleteLoyaltyTransactionsRequest"></param>
+        /// <returns></returns>
+        private void ValidateDeleteLoyaltyTransactionsFromLedgers(string integrationId, DeleteLoyaltyTransactionsRequest deleteLoyaltyTransactionsRequest)
+        {
+            if (integrationId == null)
+                throw new ArgumentNullException(nameof(integrationId));
+
+            if (deleteLoyaltyTransactionsRequest == null)
+                throw new ArgumentNullException(nameof(deleteLoyaltyTransactionsRequest));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="integrationId"></param>
+        /// <param name="deleteLoyaltyTransactionsRequest"></param>
+        private void AfterDeleteLoyaltyTransactionsFromLedgersDefaultImplementation(IDeleteLoyaltyTransactionsFromLedgersApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, DeleteLoyaltyTransactionsRequest deleteLoyaltyTransactionsRequest)
+        {
+            bool suppressDefaultLog = false;
+            AfterDeleteLoyaltyTransactionsFromLedgers(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, integrationId, deleteLoyaltyTransactionsRequest);
+            if (!suppressDefaultLog)
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="integrationId"></param>
+        /// <param name="deleteLoyaltyTransactionsRequest"></param>
+        partial void AfterDeleteLoyaltyTransactionsFromLedgers(ref bool suppressDefaultLog, IDeleteLoyaltyTransactionsFromLedgersApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, DeleteLoyaltyTransactionsRequest deleteLoyaltyTransactionsRequest);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="integrationId"></param>
+        /// <param name="deleteLoyaltyTransactionsRequest"></param>
+        private void OnErrorDeleteLoyaltyTransactionsFromLedgersDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, DeleteLoyaltyTransactionsRequest deleteLoyaltyTransactionsRequest)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorDeleteLoyaltyTransactionsFromLedgers(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, integrationId, deleteLoyaltyTransactionsRequest);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="integrationId"></param>
+        /// <param name="deleteLoyaltyTransactionsRequest"></param>
+        partial void OnErrorDeleteLoyaltyTransactionsFromLedgers(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, DeleteLoyaltyTransactionsRequest deleteLoyaltyTransactionsRequest);
+
+        /// <summary>
+        /// Delete customer&#39;s transactions from loyalty ledgers Delete a customer&#39;s transactions in all loyalty ledgers or a specified ledger.  **Note:** To retrieve loyalty transaction logs for a specific customer in a given loyalty program, use the [List customer&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions) endpoint. 
+        /// </summary>
+        /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="integrationId">The integration ID of the customer profile. You can get the &#x60;integrationId&#x60; of a profile using: - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint. </param>
+        /// <param name="deleteLoyaltyTransactionsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteLoyaltyTransactionsFromLedgersApiResponse"/>&gt;</returns>
+        public async Task<IDeleteLoyaltyTransactionsFromLedgersApiResponse> DeleteLoyaltyTransactionsFromLedgersOrDefaultAsync(long loyaltyProgramId, string integrationId, DeleteLoyaltyTransactionsRequest deleteLoyaltyTransactionsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await DeleteLoyaltyTransactionsFromLedgersAsync(loyaltyProgramId, integrationId, deleteLoyaltyTransactionsRequest, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Delete customer&#39;s transactions from loyalty ledgers Delete a customer&#39;s transactions in all loyalty ledgers or a specified ledger.  **Note:** To retrieve loyalty transaction logs for a specific customer in a given loyalty program, use the [List customer&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions) endpoint. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="integrationId">The integration ID of the customer profile. You can get the &#x60;integrationId&#x60; of a profile using: - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint. </param>
+        /// <param name="deleteLoyaltyTransactionsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteLoyaltyTransactionsFromLedgersApiResponse"/>&gt;</returns>
+        public async Task<IDeleteLoyaltyTransactionsFromLedgersApiResponse> DeleteLoyaltyTransactionsFromLedgersAsync(long loyaltyProgramId, string integrationId, DeleteLoyaltyTransactionsRequest deleteLoyaltyTransactionsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateDeleteLoyaltyTransactionsFromLedgers(integrationId, deleteLoyaltyTransactionsRequest);
+
+                FormatDeleteLoyaltyTransactionsFromLedgers(ref loyaltyProgramId, ref integrationId, deleteLoyaltyTransactionsRequest);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/delete_transactions"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/delete_transactions");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
+
+                    httpRequestMessageLocalVar.Content = (deleteLoyaltyTransactionsRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(deleteLoyaltyTransactionsRequest, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    string acceptLocalVar = ClientUtils.SelectHeaderAccept(acceptLocalVars);
+
+                    if (acceptLocalVar != null)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(acceptLocalVar));
+                    httpRequestMessageLocalVar.Method = new HttpMethod("POST");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<DeleteLoyaltyTransactionsFromLedgersApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<DeleteLoyaltyTransactionsFromLedgersApiResponse>();
+                        DeleteLoyaltyTransactionsFromLedgersApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new DeleteLoyaltyTransactionsFromLedgersApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/delete_transactions", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterDeleteLoyaltyTransactionsFromLedgersDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, integrationId, deleteLoyaltyTransactionsRequest);
+
+                        Events.ExecuteOnDeleteLoyaltyTransactionsFromLedgers(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorDeleteLoyaltyTransactionsFromLedgersDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/delete_transactions", uriBuilderLocalVar.Path, loyaltyProgramId, integrationId, deleteLoyaltyTransactionsRequest);
+                Events.ExecuteOnErrorDeleteLoyaltyTransactionsFromLedgers(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="DeleteLoyaltyTransactionsFromLedgersApiResponse"/>
+        /// </summary>
+        public partial class DeleteLoyaltyTransactionsFromLedgersApiResponse : TalonOneSdk.Client.ApiResponse, IDeleteLoyaltyTransactionsFromLedgersApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<DeleteLoyaltyTransactionsFromLedgersApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="DeleteLoyaltyTransactionsFromLedgersApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public DeleteLoyaltyTransactionsFromLedgersApiResponse(ILogger<DeleteLoyaltyTransactionsFromLedgersApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="DeleteLoyaltyTransactionsFromLedgersApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public DeleteLoyaltyTransactionsFromLedgersApiResponse(ILogger<DeleteLoyaltyTransactionsFromLedgersApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 204 NoContent
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNoContent => 204 == (int)StatusCode;
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryUnauthorized(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsNotFound
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryNotFound(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = NotFound();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
         partial void FormatGenerateLoyaltyCard(ref long loyaltyProgramId, GenerateLoyaltyCard generateLoyaltyCard);
 
         /// <summary>
@@ -5505,7 +6483,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterGenerateLoyaltyCard(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, generateLoyaltyCard);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -5859,7 +6837,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterGetCustomerAchievementHistory(ref suppressDefaultLog, apiResponseLocalVar, integrationId, achievementId, progressStatus, startDate, endDate, pageSize, skip);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -6295,7 +7273,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterGetCustomerAchievements(ref suppressDefaultLog, apiResponseLocalVar, integrationId, campaignIds, achievementIds, achievementStatus, currentProgressStatus, pageSize, skip);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -6717,7 +7695,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterGetCustomerInventory(ref suppressDefaultLog, apiResponseLocalVar, integrationId, profile, referrals, coupons, loyalty, giveaways, achievements);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -7095,7 +8073,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterGetCustomerSession(ref suppressDefaultLog, apiResponseLocalVar, customerSessionId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -7430,7 +8408,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterGetLoyaltyBalances(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, integrationId, endDate, subledgerId, includeTiers, includeProjectedTier);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -7843,7 +8821,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterGetLoyaltyCardBalances(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, endDate, subledgerId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -8261,7 +9239,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterGetLoyaltyCardPoints(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, status, subledgerId, customerSessionIDs, transactionUUIDs, pageSize, skip, sort);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -8668,7 +9646,7 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetLoyaltyCardTransactions(ref long loyaltyProgramId, ref string loyaltyCardId, Option<List<string>> subledgerId, ref Option<string> loyaltyTransactionType, ref Option<DateTime> startDate, ref Option<DateTime> endDate, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, ref Option<long> pageSize, ref Option<long> skip);
+        partial void FormatGetLoyaltyCardTransactions(ref long loyaltyProgramId, ref string loyaltyCardId, Option<List<string>> subledgerId, ref Option<string> loyaltyTransactionType, ref Option<DateTime> startDate, ref Option<DateTime> endDate, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, ref Option<long> pageSize, ref Option<long> skip, ref Option<bool> awaitsActivation);
 
         /// <summary>
         /// Validates the request parameters
@@ -8711,12 +9689,13 @@ namespace TalonOneSdk.Api
         /// <param name="transactionUUIDs"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        private void AfterGetLoyaltyCardTransactionsDefaultImplementation(IGetLoyaltyCardTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, string loyaltyCardId, Option<List<string>> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<long> pageSize, Option<long> skip)
+        /// <param name="awaitsActivation"></param>
+        private void AfterGetLoyaltyCardTransactionsDefaultImplementation(IGetLoyaltyCardTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, string loyaltyCardId, Option<List<string>> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation)
         {
             bool suppressDefaultLog = false;
-            AfterGetLoyaltyCardTransactions(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip);
+            AfterGetLoyaltyCardTransactions(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip, awaitsActivation);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -8734,7 +9713,8 @@ namespace TalonOneSdk.Api
         /// <param name="transactionUUIDs"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        partial void AfterGetLoyaltyCardTransactions(ref bool suppressDefaultLog, IGetLoyaltyCardTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, string loyaltyCardId, Option<List<string>> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<long> pageSize, Option<long> skip);
+        /// <param name="awaitsActivation"></param>
+        partial void AfterGetLoyaltyCardTransactions(ref bool suppressDefaultLog, IGetLoyaltyCardTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, string loyaltyCardId, Option<List<string>> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -8752,10 +9732,11 @@ namespace TalonOneSdk.Api
         /// <param name="transactionUUIDs"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        private void OnErrorGetLoyaltyCardTransactionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string loyaltyCardId, Option<List<string>> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<long> pageSize, Option<long> skip)
+        /// <param name="awaitsActivation"></param>
+        private void OnErrorGetLoyaltyCardTransactionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string loyaltyCardId, Option<List<string>> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetLoyaltyCardTransactions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip);
+            OnErrorGetLoyaltyCardTransactions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip, awaitsActivation);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -8777,7 +9758,8 @@ namespace TalonOneSdk.Api
         /// <param name="transactionUUIDs"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        partial void OnErrorGetLoyaltyCardTransactions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string loyaltyCardId, Option<List<string>> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<long> pageSize, Option<long> skip);
+        /// <param name="awaitsActivation"></param>
+        partial void OnErrorGetLoyaltyCardTransactions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string loyaltyCardId, Option<List<string>> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation);
 
         /// <summary>
         /// List card&#39;s transactions Retrieve loyalty transaction logs for the given loyalty card in the specified loyalty program with filtering options applied. If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
@@ -8792,13 +9774,14 @@ namespace TalonOneSdk.Api
         /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyCardTransactionsApiResponse"/>&gt;</returns>
-        public async Task<IGetLoyaltyCardTransactionsApiResponse> GetLoyaltyCardTransactionsOrDefaultAsync(long loyaltyProgramId, string loyaltyCardId, Option<List<string>> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetLoyaltyCardTransactionsApiResponse> GetLoyaltyCardTransactionsOrDefaultAsync(long loyaltyProgramId, string loyaltyCardId, Option<List<string>> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetLoyaltyCardTransactionsAsync(loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip, cancellationToken).ConfigureAwait(false);
+                return await GetLoyaltyCardTransactionsAsync(loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip, awaitsActivation, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -8820,9 +9803,10 @@ namespace TalonOneSdk.Api
         /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyCardTransactionsApiResponse"/>&gt;</returns>
-        public async Task<IGetLoyaltyCardTransactionsApiResponse> GetLoyaltyCardTransactionsAsync(long loyaltyProgramId, string loyaltyCardId, Option<List<string>> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetLoyaltyCardTransactionsApiResponse> GetLoyaltyCardTransactionsAsync(long loyaltyProgramId, string loyaltyCardId, Option<List<string>> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -8830,7 +9814,7 @@ namespace TalonOneSdk.Api
             {
                 ValidateGetLoyaltyCardTransactions(loyaltyCardId, subledgerId, loyaltyTransactionType, customerSessionIDs, transactionUUIDs);
 
-                FormatGetLoyaltyCardTransactions(ref loyaltyProgramId, ref loyaltyCardId, subledgerId, ref loyaltyTransactionType, ref startDate, ref endDate, customerSessionIDs, transactionUUIDs, ref pageSize, ref skip);
+                FormatGetLoyaltyCardTransactions(ref loyaltyProgramId, ref loyaltyCardId, subledgerId, ref loyaltyTransactionType, ref startDate, ref endDate, customerSessionIDs, transactionUUIDs, ref pageSize, ref skip, ref awaitsActivation);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -8869,6 +9853,9 @@ namespace TalonOneSdk.Api
                     if (skip.IsSet)
                         parseQueryStringLocalVar["skip"] = ClientUtils.ParameterToString(skip.Value);
 
+                    if (awaitsActivation.IsSet)
+                        parseQueryStringLocalVar["awaitsActivation"] = ClientUtils.ParameterToString(awaitsActivation.Value);
+
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -8904,7 +9891,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterGetLoyaltyCardTransactionsDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip);
+                        AfterGetLoyaltyCardTransactionsDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip, awaitsActivation);
 
                         Events.ExecuteOnGetLoyaltyCardTransactions(apiResponseLocalVar);
 
@@ -8918,7 +9905,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorGetLoyaltyCardTransactionsDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transactions", uriBuilderLocalVar.Path, loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip);
+                OnErrorGetLoyaltyCardTransactionsDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transactions", uriBuilderLocalVar.Path, loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip, awaitsActivation);
                 Events.ExecuteOnErrorGetLoyaltyCardTransactions(e);
                 throw;
             }
@@ -9182,7 +10169,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterGetLoyaltyProgramProfilePoints(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, integrationId, status, subledgerId, customerSessionIDs, transactionUUIDs, pageSize, skip, sort);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -9589,7 +10576,7 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetLoyaltyProgramProfileTransactions(ref long loyaltyProgramId, ref string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, ref Option<string> subledgerId, ref Option<string> loyaltyTransactionType, ref Option<DateTime> startDate, ref Option<DateTime> endDate, ref Option<long> pageSize, ref Option<long> skip);
+        partial void FormatGetLoyaltyProgramProfileTransactions(ref long loyaltyProgramId, ref string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, ref Option<string> subledgerId, ref Option<string> loyaltyTransactionType, ref Option<DateTime> startDate, ref Option<DateTime> endDate, ref Option<long> pageSize, ref Option<long> skip, ref Option<bool> awaitsActivation);
 
         /// <summary>
         /// Validates the request parameters
@@ -9632,12 +10619,13 @@ namespace TalonOneSdk.Api
         /// <param name="endDate"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        private void AfterGetLoyaltyProgramProfileTransactionsDefaultImplementation(IGetLoyaltyProgramProfileTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip)
+        /// <param name="awaitsActivation"></param>
+        private void AfterGetLoyaltyProgramProfileTransactionsDefaultImplementation(IGetLoyaltyProgramProfileTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation)
         {
             bool suppressDefaultLog = false;
-            AfterGetLoyaltyProgramProfileTransactions(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip);
+            AfterGetLoyaltyProgramProfileTransactions(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -9655,7 +10643,8 @@ namespace TalonOneSdk.Api
         /// <param name="endDate"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        partial void AfterGetLoyaltyProgramProfileTransactions(ref bool suppressDefaultLog, IGetLoyaltyProgramProfileTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip);
+        /// <param name="awaitsActivation"></param>
+        partial void AfterGetLoyaltyProgramProfileTransactions(ref bool suppressDefaultLog, IGetLoyaltyProgramProfileTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -9673,10 +10662,11 @@ namespace TalonOneSdk.Api
         /// <param name="endDate"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        private void OnErrorGetLoyaltyProgramProfileTransactionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip)
+        /// <param name="awaitsActivation"></param>
+        private void OnErrorGetLoyaltyProgramProfileTransactionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetLoyaltyProgramProfileTransactions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip);
+            OnErrorGetLoyaltyProgramProfileTransactions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -9698,7 +10688,8 @@ namespace TalonOneSdk.Api
         /// <param name="endDate"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        partial void OnErrorGetLoyaltyProgramProfileTransactions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip);
+        /// <param name="awaitsActivation"></param>
+        partial void OnErrorGetLoyaltyProgramProfileTransactions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation);
 
         /// <summary>
         /// List customer&#39;s loyalty transactions Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date. If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  **Note:** To retrieve all loyalty program transaction logs in a given loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
@@ -9713,13 +10704,14 @@ namespace TalonOneSdk.Api
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfileTransactionsApiResponse"/>&gt;</returns>
-        public async Task<IGetLoyaltyProgramProfileTransactionsApiResponse> GetLoyaltyProgramProfileTransactionsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetLoyaltyProgramProfileTransactionsApiResponse> GetLoyaltyProgramProfileTransactionsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetLoyaltyProgramProfileTransactionsAsync(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, cancellationToken).ConfigureAwait(false);
+                return await GetLoyaltyProgramProfileTransactionsAsync(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -9741,9 +10733,10 @@ namespace TalonOneSdk.Api
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfileTransactionsApiResponse"/>&gt;</returns>
-        public async Task<IGetLoyaltyProgramProfileTransactionsApiResponse> GetLoyaltyProgramProfileTransactionsAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetLoyaltyProgramProfileTransactionsApiResponse> GetLoyaltyProgramProfileTransactionsAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -9751,7 +10744,7 @@ namespace TalonOneSdk.Api
             {
                 ValidateGetLoyaltyProgramProfileTransactions(integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType);
 
-                FormatGetLoyaltyProgramProfileTransactions(ref loyaltyProgramId, ref integrationId, customerSessionIDs, transactionUUIDs, ref subledgerId, ref loyaltyTransactionType, ref startDate, ref endDate, ref pageSize, ref skip);
+                FormatGetLoyaltyProgramProfileTransactions(ref loyaltyProgramId, ref integrationId, customerSessionIDs, transactionUUIDs, ref subledgerId, ref loyaltyTransactionType, ref startDate, ref endDate, ref pageSize, ref skip, ref awaitsActivation);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -9790,6 +10783,9 @@ namespace TalonOneSdk.Api
                     if (skip.IsSet)
                         parseQueryStringLocalVar["skip"] = ClientUtils.ParameterToString(skip.Value);
 
+                    if (awaitsActivation.IsSet)
+                        parseQueryStringLocalVar["awaitsActivation"] = ClientUtils.ParameterToString(awaitsActivation.Value);
+
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -9825,7 +10821,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterGetLoyaltyProgramProfileTransactionsDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip);
+                        AfterGetLoyaltyProgramProfileTransactionsDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
 
                         Events.ExecuteOnGetLoyaltyProgramProfileTransactions(apiResponseLocalVar);
 
@@ -9839,7 +10835,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorGetLoyaltyProgramProfileTransactionsDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions", uriBuilderLocalVar.Path, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip);
+                OnErrorGetLoyaltyProgramProfileTransactionsDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions", uriBuilderLocalVar.Path, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
                 Events.ExecuteOnErrorGetLoyaltyProgramProfileTransactions(e);
                 throw;
             }
@@ -10075,7 +11071,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterGetReservedCustomers(ref suppressDefaultLog, apiResponseLocalVar, couponValue);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -10445,7 +11441,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterLinkLoyaltyCardToProfile(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, loyaltyCardRegistration);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -10833,7 +11829,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterReopenCustomerSession(ref suppressDefaultLog, apiResponseLocalVar, customerSessionId);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -10870,7 +11866,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorReopenCustomerSession(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string customerSessionId);
 
         /// <summary>
-        /// Reopen customer session Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint. A reopen session is treated like a standard open session.  When reopening a session: - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed    are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.   &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt;   &lt;/details&gt; &lt;p&gt;To see an example of a rollback, see the &lt;a href&#x3D;\&quot;https://docs.talon.one/docs/dev/tutorials/rolling-back-effects\&quot;&gt;Cancelling a session with campaign budgets&lt;/a&gt;tutorial.&lt;/p&gt;  **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel a closed session and create a new one. 
+        /// Reopen customer session Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint. A reopen session is treated like a standard open session.  When reopening a session: - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed    are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.   &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt;   &lt;/details&gt; &lt;p&gt;To see an example of a rollback, see the &lt;a href&#x3D;\&quot;https://docs.talon.one/docs/dev/tutorials/rolling-back-effects\&quot;&gt;Cancelling a session with campaign budgets&lt;/a&gt; tutorial.&lt;/p&gt;  **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel a closed session and create a new one. 
         /// </summary>
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#operation/getApplicationSessions) endpoint. </param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -10888,7 +11884,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Reopen customer session Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint. A reopen session is treated like a standard open session.  When reopening a session: - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed    are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.   &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt;   &lt;/details&gt; &lt;p&gt;To see an example of a rollback, see the &lt;a href&#x3D;\&quot;https://docs.talon.one/docs/dev/tutorials/rolling-back-effects\&quot;&gt;Cancelling a session with campaign budgets&lt;/a&gt;tutorial.&lt;/p&gt;  **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel a closed session and create a new one. 
+        /// Reopen customer session Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint. A reopen session is treated like a standard open session.  When reopening a session: - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed    are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.   &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt;   &lt;/details&gt; &lt;p&gt;To see an example of a rollback, see the &lt;a href&#x3D;\&quot;https://docs.talon.one/docs/dev/tutorials/rolling-back-effects\&quot;&gt;Cancelling a session with campaign budgets&lt;/a&gt; tutorial.&lt;/p&gt;  **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel a closed session and create a new one. 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#operation/getApplicationSessions) endpoint. </param>
@@ -11165,7 +12161,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterReturnCartItems(ref suppressDefaultLog, apiResponseLocalVar, customerSessionId, returnIntegrationRequest, dry);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -11522,7 +12518,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterSyncCatalog(ref suppressDefaultLog, apiResponseLocalVar, catalogId, catalogSyncRequest);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -11911,7 +12907,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterTrackEventV2(ref suppressDefaultLog, apiResponseLocalVar, integrationEventV2Request, silent, dry, forceCompleteEvaluation);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -12292,6 +13288,400 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
+        partial void FormatUnlinkLoyaltyCardFromProfile(ref long loyaltyProgramId, ref string loyaltyCardId, LoyaltyCardRegistration loyaltyCardRegistration);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="loyaltyCardId"></param>
+        /// <param name="loyaltyCardRegistration"></param>
+        /// <returns></returns>
+        private void ValidateUnlinkLoyaltyCardFromProfile(string loyaltyCardId, LoyaltyCardRegistration loyaltyCardRegistration)
+        {
+            if (loyaltyCardId == null)
+                throw new ArgumentNullException(nameof(loyaltyCardId));
+
+            if (loyaltyCardRegistration == null)
+                throw new ArgumentNullException(nameof(loyaltyCardRegistration));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="loyaltyCardId"></param>
+        /// <param name="loyaltyCardRegistration"></param>
+        private void AfterUnlinkLoyaltyCardFromProfileDefaultImplementation(IUnlinkLoyaltyCardFromProfileApiResponse apiResponseLocalVar, long loyaltyProgramId, string loyaltyCardId, LoyaltyCardRegistration loyaltyCardRegistration)
+        {
+            bool suppressDefaultLog = false;
+            AfterUnlinkLoyaltyCardFromProfile(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, loyaltyCardRegistration);
+            if (!suppressDefaultLog)
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="loyaltyCardId"></param>
+        /// <param name="loyaltyCardRegistration"></param>
+        partial void AfterUnlinkLoyaltyCardFromProfile(ref bool suppressDefaultLog, IUnlinkLoyaltyCardFromProfileApiResponse apiResponseLocalVar, long loyaltyProgramId, string loyaltyCardId, LoyaltyCardRegistration loyaltyCardRegistration);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="loyaltyCardId"></param>
+        /// <param name="loyaltyCardRegistration"></param>
+        private void OnErrorUnlinkLoyaltyCardFromProfileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string loyaltyCardId, LoyaltyCardRegistration loyaltyCardRegistration)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorUnlinkLoyaltyCardFromProfile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, loyaltyCardId, loyaltyCardRegistration);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="loyaltyCardId"></param>
+        /// <param name="loyaltyCardRegistration"></param>
+        partial void OnErrorUnlinkLoyaltyCardFromProfile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string loyaltyCardId, LoyaltyCardRegistration loyaltyCardRegistration);
+
+        /// <summary>
+        /// Unlink customer profile from a loyalty card Unlink a customer profile from a [registered](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards#linking-customer-profiles-to-a-loyalty-card) loyalty card.  To get the &#x60;integrationId&#x60; of a customer profile, you can use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. 
+        /// </summary>
+        /// <param name="loyaltyProgramId">The identifier of the card-based loyalty program containing the loyalty card. You can get this ID using the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="loyaltyCardId">The identifier of the loyalty card. You can get this ID using the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. </param>
+        /// <param name="loyaltyCardRegistration">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IUnlinkLoyaltyCardFromProfileApiResponse"/>&gt;</returns>
+        public async Task<IUnlinkLoyaltyCardFromProfileApiResponse> UnlinkLoyaltyCardFromProfileOrDefaultAsync(long loyaltyProgramId, string loyaltyCardId, LoyaltyCardRegistration loyaltyCardRegistration, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await UnlinkLoyaltyCardFromProfileAsync(loyaltyProgramId, loyaltyCardId, loyaltyCardRegistration, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Unlink customer profile from a loyalty card Unlink a customer profile from a [registered](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards#linking-customer-profiles-to-a-loyalty-card) loyalty card.  To get the &#x60;integrationId&#x60; of a customer profile, you can use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="loyaltyProgramId">The identifier of the card-based loyalty program containing the loyalty card. You can get this ID using the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="loyaltyCardId">The identifier of the loyalty card. You can get this ID using the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint. </param>
+        /// <param name="loyaltyCardRegistration">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IUnlinkLoyaltyCardFromProfileApiResponse"/>&gt;</returns>
+        public async Task<IUnlinkLoyaltyCardFromProfileApiResponse> UnlinkLoyaltyCardFromProfileAsync(long loyaltyProgramId, string loyaltyCardId, LoyaltyCardRegistration loyaltyCardRegistration, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateUnlinkLoyaltyCardFromProfile(loyaltyCardId, loyaltyCardRegistration);
+
+                FormatUnlinkLoyaltyCardFromProfile(ref loyaltyProgramId, ref loyaltyCardId, loyaltyCardRegistration);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/unlink_profile"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/unlink_profile");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyCardId%7D", Uri.EscapeDataString(loyaltyCardId.ToString()));
+
+                    httpRequestMessageLocalVar.Content = (loyaltyCardRegistration as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(loyaltyCardRegistration, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    string acceptLocalVar = ClientUtils.SelectHeaderAccept(acceptLocalVars);
+
+                    if (acceptLocalVar != null)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(acceptLocalVar));
+                    httpRequestMessageLocalVar.Method = new HttpMethod("POST");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<UnlinkLoyaltyCardFromProfileApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<UnlinkLoyaltyCardFromProfileApiResponse>();
+                        UnlinkLoyaltyCardFromProfileApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new UnlinkLoyaltyCardFromProfileApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/unlink_profile", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterUnlinkLoyaltyCardFromProfileDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, loyaltyCardRegistration);
+
+                        Events.ExecuteOnUnlinkLoyaltyCardFromProfile(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorUnlinkLoyaltyCardFromProfileDefaultImplementation(e, "/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/unlink_profile", uriBuilderLocalVar.Path, loyaltyProgramId, loyaltyCardId, loyaltyCardRegistration);
+                Events.ExecuteOnErrorUnlinkLoyaltyCardFromProfile(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="UnlinkLoyaltyCardFromProfileApiResponse"/>
+        /// </summary>
+        public partial class UnlinkLoyaltyCardFromProfileApiResponse : TalonOneSdk.Client.ApiResponse, IUnlinkLoyaltyCardFromProfileApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<UnlinkLoyaltyCardFromProfileApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="UnlinkLoyaltyCardFromProfileApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public UnlinkLoyaltyCardFromProfileApiResponse(ILogger<UnlinkLoyaltyCardFromProfileApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="UnlinkLoyaltyCardFromProfileApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public UnlinkLoyaltyCardFromProfileApiResponse(ILogger<UnlinkLoyaltyCardFromProfileApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.LoyaltyCard Ok()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.LoyaltyCard>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out TalonOneSdk.Model.LoyaltyCard result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryUnauthorized(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsNotFound
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryNotFound(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = NotFound();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
         partial void FormatUpdateAudienceCustomersAttributes(ref long audienceId, ref Object body);
 
         /// <summary>
@@ -12316,7 +13706,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterUpdateAudienceCustomersAttributes(ref suppressDefaultLog, apiResponseLocalVar, audienceId, body);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -12629,7 +14019,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterUpdateAudienceV2(ref suppressDefaultLog, apiResponseLocalVar, audienceId, updateAudience);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -12973,7 +14363,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterUpdateCustomerProfileAudiences(ref suppressDefaultLog, apiResponseLocalVar, customerProfileAudienceRequest);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -13324,7 +14714,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterUpdateCustomerProfileV2(ref suppressDefaultLog, apiResponseLocalVar, integrationId, customerProfileIntegrationRequestV2, runRuleEngine, dry);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -13731,7 +15121,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterUpdateCustomerProfilesV2(ref suppressDefaultLog, apiResponseLocalVar, multipleCustomerProfileIntegrationRequest, silent);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -14088,7 +15478,7 @@ namespace TalonOneSdk.Api
             bool suppressDefaultLog = false;
             AfterUpdateCustomerSessionV2(ref suppressDefaultLog, apiResponseLocalVar, customerSessionId, integrationRequest, dry, now);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
