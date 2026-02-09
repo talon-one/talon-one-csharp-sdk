@@ -72,7 +72,12 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum ListString for value: (list string)
             /// </summary>
-            ListString = 5
+            ListString = 5,
+
+            /// <summary>
+            /// Enum ListNumber for value: (list number)
+            /// </summary>
+            ListNumber = 6
         }
 
         /// <summary>
@@ -97,6 +102,9 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("(list string)"))
                 return TypeEnum.ListString;
+
+            if (value.Equals("(list number)"))
+                return TypeEnum.ListNumber;
 
             throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
         }
@@ -123,6 +131,9 @@ namespace TalonOneSdk.Model
             if (value.Equals("(list string)"))
                 return TypeEnum.ListString;
 
+            if (value.Equals("(list number)"))
+                return TypeEnum.ListNumber;
+
             return null;
         }
 
@@ -148,6 +159,9 @@ namespace TalonOneSdk.Model
 
             if (value == TypeEnum.ListString)
                 return "(list string)";
+
+            if (value == TypeEnum.ListNumber)
+                return "(list number)";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }

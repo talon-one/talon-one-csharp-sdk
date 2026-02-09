@@ -52,9 +52,10 @@ namespace TalonOneSdk.Model
         /// <param name="startDate">Timestamp at which point the coupon becomes valid.</param>
         /// <param name="expiryDate">Expiration date of the coupon. Coupon never expires if this is omitted.</param>
         /// <param name="couponSettings">couponSettings</param>
+        /// <param name="isReservationMandatory">An indication of whether the code can be redeemed only if it has been reserved first. (default to false)</param>
         /// <param name="chunkSize">The number of coupons that will be created in a single transactions. Coupons will be created in chunks until arriving at the requested amount.</param>
         [JsonConstructor]
-        public CouponCreationJob(long id, DateTime created, long campaignId, long applicationId, long accountId, long usageLimit, long numberOfCoupons, Object attributes, string batchId, string status, long createdAmount, long failCount, List<string> errors, long createdBy, bool communicated, long chunkExecutionCount, Option<decimal?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<CodeGeneratorSettings> couponSettings = default, Option<long?> chunkSize = default)
+        public CouponCreationJob(long id, DateTime created, long campaignId, long applicationId, long accountId, long usageLimit, long numberOfCoupons, Object attributes, string batchId, string status, long createdAmount, long failCount, List<string> errors, long createdBy, bool communicated, long chunkExecutionCount, Option<decimal?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<CodeGeneratorSettings> couponSettings = default, Option<bool?> isReservationMandatory = default, Option<long?> chunkSize = default)
         {
             Id = id;
             Created = created;
@@ -77,6 +78,7 @@ namespace TalonOneSdk.Model
             StartDateOption = startDate;
             ExpiryDateOption = expiryDate;
             CouponSettingsOption = couponSettings;
+            IsReservationMandatoryOption = isReservationMandatory;
             ChunkSizeOption = chunkSize;
             OnCreated();
         }
@@ -284,6 +286,21 @@ namespace TalonOneSdk.Model
         public CodeGeneratorSettings CouponSettings { get { return this.CouponSettingsOption; } set { this.CouponSettingsOption = new Option<CodeGeneratorSettings>(value); } }
 
         /// <summary>
+        /// Used to track the state of IsReservationMandatory
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> IsReservationMandatoryOption { get; private set; }
+
+        /// <summary>
+        /// An indication of whether the code can be redeemed only if it has been reserved first.
+        /// </summary>
+        /// <value>An indication of whether the code can be redeemed only if it has been reserved first.</value>
+        /* <example>false</example> */
+        [JsonPropertyName("isReservationMandatory")]
+        public bool? IsReservationMandatory { get { return this.IsReservationMandatoryOption; } set { this.IsReservationMandatoryOption = new Option<bool?>(value); } }
+
+        /// <summary>
         /// Used to track the state of ChunkSize
         /// </summary>
         [JsonIgnore]
@@ -327,6 +344,7 @@ namespace TalonOneSdk.Model
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
             sb.Append("  CouponSettings: ").Append(CouponSettings).Append("\n");
+            sb.Append("  IsReservationMandatory: ").Append(IsReservationMandatory).Append("\n");
             sb.Append("  ChunkSize: ").Append(ChunkSize).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -449,6 +467,7 @@ namespace TalonOneSdk.Model
             Option<DateTime?> startDate = default;
             Option<DateTime?> expiryDate = default;
             Option<CodeGeneratorSettings> couponSettings = default;
+            Option<bool?> isReservationMandatory = default;
             Option<long?> chunkSize = default;
 
             while (utf8JsonReader.Read())
@@ -528,6 +547,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "couponSettings":
                             couponSettings = new Option<CodeGeneratorSettings>(JsonSerializer.Deserialize<CodeGeneratorSettings>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "isReservationMandatory":
+                            isReservationMandatory = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "chunkSize":
                             chunkSize = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
@@ -649,10 +671,13 @@ namespace TalonOneSdk.Model
             if (couponSettings.IsSet && couponSettings.Value == null)
                 throw new ArgumentNullException(nameof(couponSettings), "Property is not nullable for class CouponCreationJob.");
 
+            if (isReservationMandatory.IsSet && isReservationMandatory.Value == null)
+                throw new ArgumentNullException(nameof(isReservationMandatory), "Property is not nullable for class CouponCreationJob.");
+
             if (chunkSize.IsSet && chunkSize.Value == null)
                 throw new ArgumentNullException(nameof(chunkSize), "Property is not nullable for class CouponCreationJob.");
 
-            return new CouponCreationJob(id.Value.Value, created.Value.Value, campaignId.Value.Value, applicationId.Value.Value, accountId.Value.Value, usageLimit.Value.Value, numberOfCoupons.Value.Value, attributes.Value, batchId.Value, status.Value, createdAmount.Value.Value, failCount.Value.Value, errors.Value, createdBy.Value.Value, communicated.Value.Value, chunkExecutionCount.Value.Value, discountLimit, reservationLimit, startDate, expiryDate, couponSettings, chunkSize);
+            return new CouponCreationJob(id.Value.Value, created.Value.Value, campaignId.Value.Value, applicationId.Value.Value, accountId.Value.Value, usageLimit.Value.Value, numberOfCoupons.Value.Value, attributes.Value, batchId.Value, status.Value, createdAmount.Value.Value, failCount.Value.Value, errors.Value, createdBy.Value.Value, communicated.Value.Value, chunkExecutionCount.Value.Value, discountLimit, reservationLimit, startDate, expiryDate, couponSettings, isReservationMandatory, chunkSize);
         }
 
         /// <summary>
@@ -743,6 +768,9 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("couponSettings");
                 JsonSerializer.Serialize(writer, couponCreationJob.CouponSettings, jsonSerializerOptions);
             }
+            if (couponCreationJob.IsReservationMandatoryOption.IsSet)
+                writer.WriteBoolean("isReservationMandatory", couponCreationJob.IsReservationMandatoryOption.Value.Value);
+
             if (couponCreationJob.ChunkSizeOption.IsSet)
                 writer.WriteNumber("chunkSize", couponCreationJob.ChunkSizeOption.Value.Value);
         }

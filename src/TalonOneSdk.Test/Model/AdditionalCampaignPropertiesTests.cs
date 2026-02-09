@@ -268,5 +268,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'ValueMapsIds'
         }
+
+        /// <summary>
+        /// Test the property 'ExperimentId'
+        /// </summary>
+        [Fact]
+        public void ExperimentIdTest()
+        {
+            // TODO unit test for the property 'ExperimentId'
+        }
     }
 }

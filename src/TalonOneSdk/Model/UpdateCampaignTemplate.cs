@@ -40,6 +40,7 @@ namespace TalonOneSdk.Model
         /// <param name="couponAttributes">The campaign attributes that coupons created from this template will have by default.</param>
         /// <param name="activeRulesetId">The ID of the ruleset this campaign template will use.</param>
         /// <param name="tags">A list of tags for the campaign template.</param>
+        /// <param name="reevaluateOnReturn">Indicates whether campaigns created from this template should be reevaluated when a customer returns an item.</param>
         /// <param name="features">A list of features for the campaign template.</param>
         /// <param name="couponSettings">couponSettings</param>
         /// <param name="couponReservationSettings">couponReservationSettings</param>
@@ -50,7 +51,7 @@ namespace TalonOneSdk.Model
         /// <param name="defaultCampaignGroupId">The default campaign group ID.</param>
         /// <param name="campaignType">The campaign type. Possible type values:   - &#x60;cartItem&#x60;: Type of campaign that can apply effects only to cart items.   - &#x60;advanced&#x60;: Type of campaign that can apply effects to customer sessions and cart items.  (default to CampaignTypeEnum.Advanced)</param>
         [JsonConstructor]
-        public UpdateCampaignTemplate(string name, string description, string instructions, StateEnum state, List<long> applicationsIds, Option<Object> campaignAttributes = default, Option<Object> couponAttributes = default, Option<long?> activeRulesetId = default, Option<List<string>> tags = default, Option<List<UpdateCampaignTemplate.FeaturesEnum>> features = default, Option<CodeGeneratorSettings> couponSettings = default, Option<CampaignTemplateCouponReservationSettings> couponReservationSettings = default, Option<CodeGeneratorSettings> referralSettings = default, Option<List<TemplateLimitConfig>> limits = default, Option<List<CampaignTemplateParams>> templateParams = default, Option<List<CampaignTemplateCollection>> campaignCollections = default, Option<long?> defaultCampaignGroupId = default, Option<CampaignTypeEnum?> campaignType = default)
+        public UpdateCampaignTemplate(string name, string description, string instructions, StateEnum state, List<long> applicationsIds, Option<Object> campaignAttributes = default, Option<Object> couponAttributes = default, Option<long?> activeRulesetId = default, Option<List<string>> tags = default, Option<bool?> reevaluateOnReturn = default, Option<List<UpdateCampaignTemplate.FeaturesEnum>> features = default, Option<CodeGeneratorSettings> couponSettings = default, Option<CampaignTemplateCouponReservationSettings> couponReservationSettings = default, Option<CodeGeneratorSettings> referralSettings = default, Option<List<TemplateLimitConfig>> limits = default, Option<List<CampaignTemplateParams>> templateParams = default, Option<List<CampaignTemplateCollection>> campaignCollections = default, Option<long?> defaultCampaignGroupId = default, Option<CampaignTypeEnum?> campaignType = default)
         {
             Name = name;
             Description = description;
@@ -61,6 +62,7 @@ namespace TalonOneSdk.Model
             CouponAttributesOption = couponAttributes;
             ActiveRulesetIdOption = activeRulesetId;
             TagsOption = tags;
+            ReevaluateOnReturnOption = reevaluateOnReturn;
             FeaturesOption = features;
             CouponSettingsOption = couponSettings;
             CouponReservationSettingsOption = couponReservationSettings;
@@ -458,6 +460,21 @@ namespace TalonOneSdk.Model
         public List<string> Tags { get { return this.TagsOption; } set { this.TagsOption = new Option<List<string>>(value); } }
 
         /// <summary>
+        /// Used to track the state of ReevaluateOnReturn
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> ReevaluateOnReturnOption { get; private set; }
+
+        /// <summary>
+        /// Indicates whether campaigns created from this template should be reevaluated when a customer returns an item.
+        /// </summary>
+        /// <value>Indicates whether campaigns created from this template should be reevaluated when a customer returns an item.</value>
+        /* <example>true</example> */
+        [JsonPropertyName("reevaluateOnReturn")]
+        public bool? ReevaluateOnReturn { get { return this.ReevaluateOnReturnOption; } set { this.ReevaluateOnReturnOption = new Option<bool?>(value); } }
+
+        /// <summary>
         /// Used to track the state of Features
         /// </summary>
         [JsonIgnore]
@@ -584,6 +601,7 @@ namespace TalonOneSdk.Model
             sb.Append("  CouponAttributes: ").Append(CouponAttributes).Append("\n");
             sb.Append("  ActiveRulesetId: ").Append(ActiveRulesetId).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
+            sb.Append("  ReevaluateOnReturn: ").Append(ReevaluateOnReturn).Append("\n");
             sb.Append("  Features: ").Append(Features).Append("\n");
             sb.Append("  CouponSettings: ").Append(CouponSettings).Append("\n");
             sb.Append("  CouponReservationSettings: ").Append(CouponReservationSettings).Append("\n");
@@ -645,6 +663,7 @@ namespace TalonOneSdk.Model
             Option<Object> couponAttributes = default;
             Option<long?> activeRulesetId = default;
             Option<List<string>> tags = default;
+            Option<bool?> reevaluateOnReturn = default;
             Option<List<UpdateCampaignTemplate.FeaturesEnum>> features = default;
             Option<CodeGeneratorSettings> couponSettings = default;
             Option<CampaignTemplateCouponReservationSettings> couponReservationSettings = default;
@@ -698,6 +717,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "reevaluateOnReturn":
+                            reevaluateOnReturn = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "features":
                             features = new Option<List<UpdateCampaignTemplate.FeaturesEnum>>(JsonSerializer.Deserialize<List<UpdateCampaignTemplate.FeaturesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -776,6 +798,9 @@ namespace TalonOneSdk.Model
             if (tags.IsSet && tags.Value == null)
                 throw new ArgumentNullException(nameof(tags), "Property is not nullable for class UpdateCampaignTemplate.");
 
+            if (reevaluateOnReturn.IsSet && reevaluateOnReturn.Value == null)
+                throw new ArgumentNullException(nameof(reevaluateOnReturn), "Property is not nullable for class UpdateCampaignTemplate.");
+
             if (features.IsSet && features.Value == null)
                 throw new ArgumentNullException(nameof(features), "Property is not nullable for class UpdateCampaignTemplate.");
 
@@ -803,7 +828,7 @@ namespace TalonOneSdk.Model
             if (campaignType.IsSet && campaignType.Value == null)
                 throw new ArgumentNullException(nameof(campaignType), "Property is not nullable for class UpdateCampaignTemplate.");
 
-            return new UpdateCampaignTemplate(name.Value, description.Value, instructions.Value, state.Value.Value, applicationsIds.Value, campaignAttributes, couponAttributes, activeRulesetId, tags, features, couponSettings, couponReservationSettings, referralSettings, limits, templateParams, campaignCollections, defaultCampaignGroupId, campaignType);
+            return new UpdateCampaignTemplate(name.Value, description.Value, instructions.Value, state.Value.Value, applicationsIds.Value, campaignAttributes, couponAttributes, activeRulesetId, tags, reevaluateOnReturn, features, couponSettings, couponReservationSettings, referralSettings, limits, templateParams, campaignCollections, defaultCampaignGroupId, campaignType);
         }
 
         /// <summary>
@@ -900,6 +925,9 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("tags");
                 JsonSerializer.Serialize(writer, updateCampaignTemplate.Tags, jsonSerializerOptions);
             }
+            if (updateCampaignTemplate.ReevaluateOnReturnOption.IsSet)
+                writer.WriteBoolean("reevaluateOnReturn", updateCampaignTemplate.ReevaluateOnReturnOption.Value.Value);
+
             if (updateCampaignTemplate.FeaturesOption.IsSet)
             {
                 writer.WritePropertyName("features");

@@ -216,6 +216,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ExperimentVariantAllocations'
+        /// </summary>
+        [Fact]
+        public void ExperimentVariantAllocationsTest()
+        {
+            // TODO unit test for the property 'ExperimentVariantAllocations'
+        }
+
+        /// <summary>
         /// Test the property 'AdditionalCosts'
         /// </summary>
         [Fact]

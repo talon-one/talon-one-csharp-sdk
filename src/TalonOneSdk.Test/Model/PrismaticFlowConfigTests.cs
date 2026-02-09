@@ -61,5 +61,32 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'ApiKey'
         }
+
+        /// <summary>
+        /// Test the property 'WorkerCount'
+        /// </summary>
+        [Fact]
+        public void WorkerCountTest()
+        {
+            // TODO unit test for the property 'WorkerCount'
+        }
+
+        /// <summary>
+        /// Test the property 'MaxEventsPerMessage'
+        /// </summary>
+        [Fact]
+        public void MaxEventsPerMessageTest()
+        {
+            // TODO unit test for the property 'MaxEventsPerMessage'
+        }
+
+        /// <summary>
+        /// Test the property 'MaxRetries'
+        /// </summary>
+        [Fact]
+        public void MaxRetriesTest()
+        {
+            // TODO unit test for the property 'MaxRetries'
+        }
     }
 }

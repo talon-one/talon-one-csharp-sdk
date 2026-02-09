@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **UserId** | **long** | The ID of the user associated with this entity. | 
 **Name** | **string** | A user-facing name for this campaign. | 
 **Tags** | **List&lt;string&gt;** | A list of tags for the campaign. | 
+**ReevaluateOnReturn** | **bool** | Indicates whether this campaign should be reevaluated when a customer returns an item. | 
 **Features** | **List&lt;Campaign.FeaturesEnum&gt;** | The features enabled in this campaign. | 
 **Limits** | [**List&lt;LimitConfig&gt;**](LimitConfig.md) | The set of [budget limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets) for this campaign.  | 
 **FrontendState** | **string** | The campaign state displayed in the Campaign Manager. | 
@@ -47,6 +48,7 @@ Name | Type | Description | Notes
 **UpdatedBy** | **string** | Name of the user who last updated this campaign if available. | [optional] 
 **TemplateId** | **long** | The ID of the Campaign Template this Campaign was created from. | [optional] 
 **ValueMapsIds** | **List&lt;long&gt;** | A list of value map IDs for the campaign. | [optional] 
+**ExperimentId** | **long** | The ID of the Experiment this Campaign is part of. | [optional] 
 **RevisionFrontendState** | **string** | The campaign revision state displayed in the Campaign Manager. | [optional] 
 **ActiveRevisionId** | **long** | ID of the revision that was last activated on this campaign.  | [optional] 
 **ActiveRevisionVersionId** | **long** | ID of the revision version that is active on the campaign.  | [optional] 

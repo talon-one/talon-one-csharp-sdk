@@ -126,6 +126,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ReevaluateOnReturn'
+        /// </summary>
+        [Fact]
+        public void ReevaluateOnReturnTest()
+        {
+            // TODO unit test for the property 'ReevaluateOnReturn'
+        }
+
+        /// <summary>
         /// Test the property 'ApplicationsIds'
         /// </summary>
         [Fact]

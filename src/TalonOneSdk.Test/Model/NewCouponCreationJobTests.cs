@@ -124,5 +124,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'CouponSettings'
         }
+
+        /// <summary>
+        /// Test the property 'IsReservationMandatory'
+        /// </summary>
+        [Fact]
+        public void IsReservationMandatoryTest()
+        {
+            // TODO unit test for the property 'IsReservationMandatory'
+        }
     }
 }

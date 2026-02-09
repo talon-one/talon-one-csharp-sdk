@@ -37,6 +37,7 @@ namespace TalonOneSdk.Model
         /// <param name="userId">The ID of the user associated with this entity.</param>
         /// <param name="name">A user-facing name for this campaign.</param>
         /// <param name="tags">A list of tags for the campaign.</param>
+        /// <param name="reevaluateOnReturn">Indicates whether this campaign should be reevaluated when a customer returns an item.</param>
         /// <param name="features">The features enabled in this campaign.</param>
         /// <param name="limits">The set of [budget limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets) for this campaign. </param>
         /// <param name="frontendState">The campaign state displayed in the Campaign Manager.</param>
@@ -74,6 +75,7 @@ namespace TalonOneSdk.Model
         /// <param name="updatedBy">Name of the user who last updated this campaign if available.</param>
         /// <param name="templateId">The ID of the Campaign Template this Campaign was created from.</param>
         /// <param name="valueMapsIds">A list of value map IDs for the campaign.</param>
+        /// <param name="experimentId">The ID of the Experiment this Campaign is part of.</param>
         /// <param name="revisionFrontendState">The campaign revision state displayed in the Campaign Manager.</param>
         /// <param name="activeRevisionId">ID of the revision that was last activated on this campaign. </param>
         /// <param name="activeRevisionVersionId">ID of the revision version that is active on the campaign. </param>
@@ -82,7 +84,7 @@ namespace TalonOneSdk.Model
         /// <param name="currentRevisionVersionId">ID of the latest version applied on the current revision. </param>
         /// <param name="stageRevision">Flag for determining whether we use current revision when sending requests with staging API key.  (default to false)</param>
         [JsonConstructor]
-        public Campaign(long id, DateTime created, long applicationId, long userId, string name, List<string> tags, List<Campaign.FeaturesEnum> features, List<LimitConfig> limits, FrontendStateEnum frontendState, bool storesImported, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, StateEnum state = StateEnum.Enabled, Option<long?> activeRulesetId = default, Option<CodeGeneratorSettings> couponSettings = default, Option<CodeGeneratorSettings> referralSettings = default, Option<List<long>> campaignGroups = default, Option<TypeEnum?> type = default, Option<List<long>> linkedStoreIds = default, Option<List<CampaignBudget>> budgets = default, Option<long?> couponRedemptionCount = default, Option<long?> referralRedemptionCount = default, Option<decimal?> discountCount = default, Option<long?> discountEffectCount = default, Option<long?> couponCreationCount = default, Option<long?> customEffectCount = default, Option<long?> referralCreationCount = default, Option<long?> addFreeItemEffectCount = default, Option<long?> awardedGiveawaysCount = default, Option<decimal?> createdLoyaltyPointsCount = default, Option<long?> createdLoyaltyPointsEffectCount = default, Option<decimal?> redeemedLoyaltyPointsCount = default, Option<long?> redeemedLoyaltyPointsEffectCount = default, Option<long?> callApiEffectCount = default, Option<long?> reservecouponEffectCount = default, Option<DateTime?> lastActivity = default, Option<DateTime?> updated = default, Option<string> createdBy = default, Option<string> updatedBy = default, Option<long?> templateId = default, Option<List<long>> valueMapsIds = default, Option<RevisionFrontendStateEnum?> revisionFrontendState = default, Option<long?> activeRevisionId = default, Option<long?> activeRevisionVersionId = default, Option<long?> varVersion = default, Option<long?> currentRevisionId = default, Option<long?> currentRevisionVersionId = default, Option<bool?> stageRevision = default)
+        public Campaign(long id, DateTime created, long applicationId, long userId, string name, List<string> tags, bool reevaluateOnReturn, List<Campaign.FeaturesEnum> features, List<LimitConfig> limits, FrontendStateEnum frontendState, bool storesImported, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, StateEnum state = StateEnum.Enabled, Option<long?> activeRulesetId = default, Option<CodeGeneratorSettings> couponSettings = default, Option<CodeGeneratorSettings> referralSettings = default, Option<List<long>> campaignGroups = default, Option<TypeEnum?> type = default, Option<List<long>> linkedStoreIds = default, Option<List<CampaignBudget>> budgets = default, Option<long?> couponRedemptionCount = default, Option<long?> referralRedemptionCount = default, Option<decimal?> discountCount = default, Option<long?> discountEffectCount = default, Option<long?> couponCreationCount = default, Option<long?> customEffectCount = default, Option<long?> referralCreationCount = default, Option<long?> addFreeItemEffectCount = default, Option<long?> awardedGiveawaysCount = default, Option<decimal?> createdLoyaltyPointsCount = default, Option<long?> createdLoyaltyPointsEffectCount = default, Option<decimal?> redeemedLoyaltyPointsCount = default, Option<long?> redeemedLoyaltyPointsEffectCount = default, Option<long?> callApiEffectCount = default, Option<long?> reservecouponEffectCount = default, Option<DateTime?> lastActivity = default, Option<DateTime?> updated = default, Option<string> createdBy = default, Option<string> updatedBy = default, Option<long?> templateId = default, Option<List<long>> valueMapsIds = default, Option<long?> experimentId = default, Option<RevisionFrontendStateEnum?> revisionFrontendState = default, Option<long?> activeRevisionId = default, Option<long?> activeRevisionVersionId = default, Option<long?> varVersion = default, Option<long?> currentRevisionId = default, Option<long?> currentRevisionVersionId = default, Option<bool?> stageRevision = default)
         {
             Id = id;
             Created = created;
@@ -90,6 +92,7 @@ namespace TalonOneSdk.Model
             UserId = userId;
             Name = name;
             Tags = tags;
+            ReevaluateOnReturn = reevaluateOnReturn;
             Features = features;
             Limits = limits;
             FrontendState = frontendState;
@@ -127,6 +130,7 @@ namespace TalonOneSdk.Model
             UpdatedByOption = updatedBy;
             TemplateIdOption = templateId;
             ValueMapsIdsOption = valueMapsIds;
+            ExperimentIdOption = experimentId;
             RevisionFrontendStateOption = revisionFrontendState;
             ActiveRevisionIdOption = activeRevisionId;
             ActiveRevisionVersionIdOption = activeRevisionVersionId;
@@ -694,6 +698,14 @@ namespace TalonOneSdk.Model
         public List<string> Tags { get; set; }
 
         /// <summary>
+        /// Indicates whether this campaign should be reevaluated when a customer returns an item.
+        /// </summary>
+        /// <value>Indicates whether this campaign should be reevaluated when a customer returns an item.</value>
+        /* <example>true</example> */
+        [JsonPropertyName("reevaluateOnReturn")]
+        public bool ReevaluateOnReturn { get; set; }
+
+        /// <summary>
         /// The features enabled in this campaign.
         /// </summary>
         /// <value>The features enabled in this campaign.</value>
@@ -1176,6 +1188,21 @@ namespace TalonOneSdk.Model
         public List<long> ValueMapsIds { get { return this.ValueMapsIdsOption; } set { this.ValueMapsIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
+        /// Used to track the state of ExperimentId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> ExperimentIdOption { get; private set; }
+
+        /// <summary>
+        /// The ID of the Experiment this Campaign is part of.
+        /// </summary>
+        /// <value>The ID of the Experiment this Campaign is part of.</value>
+        /* <example>1</example> */
+        [JsonPropertyName("experimentId")]
+        public long? ExperimentId { get { return this.ExperimentIdOption; } set { this.ExperimentIdOption = new Option<long?>(value); } }
+
+        /// <summary>
         /// Used to track the state of ActiveRevisionId
         /// </summary>
         [JsonIgnore]
@@ -1279,6 +1306,7 @@ namespace TalonOneSdk.Model
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
+            sb.Append("  ReevaluateOnReturn: ").Append(ReevaluateOnReturn).Append("\n");
             sb.Append("  Features: ").Append(Features).Append("\n");
             sb.Append("  Limits: ").Append(Limits).Append("\n");
             sb.Append("  FrontendState: ").Append(FrontendState).Append("\n");
@@ -1316,6 +1344,7 @@ namespace TalonOneSdk.Model
             sb.Append("  UpdatedBy: ").Append(UpdatedBy).Append("\n");
             sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
             sb.Append("  ValueMapsIds: ").Append(ValueMapsIds).Append("\n");
+            sb.Append("  ExperimentId: ").Append(ExperimentId).Append("\n");
             sb.Append("  RevisionFrontendState: ").Append(RevisionFrontendState).Append("\n");
             sb.Append("  ActiveRevisionId: ").Append(ActiveRevisionId).Append("\n");
             sb.Append("  ActiveRevisionVersionId: ").Append(ActiveRevisionVersionId).Append("\n");
@@ -1397,6 +1426,7 @@ namespace TalonOneSdk.Model
             Option<long?> userId = default;
             Option<string> name = default;
             Option<List<string>> tags = default;
+            Option<bool?> reevaluateOnReturn = default;
             Option<List<Campaign.FeaturesEnum>> features = default;
             Option<List<LimitConfig>> limits = default;
             Option<Campaign.FrontendStateEnum?> frontendState = default;
@@ -1434,6 +1464,7 @@ namespace TalonOneSdk.Model
             Option<string> updatedBy = default;
             Option<long?> templateId = default;
             Option<List<long>> valueMapsIds = default;
+            Option<long?> experimentId = default;
             Option<Campaign.RevisionFrontendStateEnum?> revisionFrontendState = default;
             Option<long?> activeRevisionId = default;
             Option<long?> activeRevisionVersionId = default;
@@ -1474,6 +1505,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "reevaluateOnReturn":
+                            reevaluateOnReturn = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "features":
                             features = new Option<List<Campaign.FeaturesEnum>>(JsonSerializer.Deserialize<List<Campaign.FeaturesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -1592,6 +1626,9 @@ namespace TalonOneSdk.Model
                         case "valueMapsIds":
                             valueMapsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "experimentId":
+                            experimentId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
                         case "revisionFrontendState":
                             string revisionFrontendStateRawValue = utf8JsonReader.GetString();
                             if (revisionFrontendStateRawValue != null)
@@ -1639,6 +1676,9 @@ namespace TalonOneSdk.Model
             if (!tags.IsSet)
                 throw new ArgumentException("Property is required for class Campaign.", nameof(tags));
 
+            if (!reevaluateOnReturn.IsSet)
+                throw new ArgumentException("Property is required for class Campaign.", nameof(reevaluateOnReturn));
+
             if (!features.IsSet)
                 throw new ArgumentException("Property is required for class Campaign.", nameof(features));
 
@@ -1671,6 +1711,9 @@ namespace TalonOneSdk.Model
 
             if (tags.IsSet && tags.Value == null)
                 throw new ArgumentNullException(nameof(tags), "Property is not nullable for class Campaign.");
+
+            if (reevaluateOnReturn.IsSet && reevaluateOnReturn.Value == null)
+                throw new ArgumentNullException(nameof(reevaluateOnReturn), "Property is not nullable for class Campaign.");
 
             if (features.IsSet && features.Value == null)
                 throw new ArgumentNullException(nameof(features), "Property is not nullable for class Campaign.");
@@ -1783,6 +1826,9 @@ namespace TalonOneSdk.Model
             if (valueMapsIds.IsSet && valueMapsIds.Value == null)
                 throw new ArgumentNullException(nameof(valueMapsIds), "Property is not nullable for class Campaign.");
 
+            if (experimentId.IsSet && experimentId.Value == null)
+                throw new ArgumentNullException(nameof(experimentId), "Property is not nullable for class Campaign.");
+
             if (revisionFrontendState.IsSet && revisionFrontendState.Value == null)
                 throw new ArgumentNullException(nameof(revisionFrontendState), "Property is not nullable for class Campaign.");
 
@@ -1804,7 +1850,7 @@ namespace TalonOneSdk.Model
             if (stageRevision.IsSet && stageRevision.Value == null)
                 throw new ArgumentNullException(nameof(stageRevision), "Property is not nullable for class Campaign.");
 
-            return new Campaign(id.Value.Value, created.Value.Value, applicationId.Value.Value, userId.Value.Value, name.Value, tags.Value, features.Value, limits.Value, frontendState.Value.Value, storesImported.Value.Value, description, startTime, endTime, attributes, state.Value.Value, activeRulesetId, couponSettings, referralSettings, campaignGroups, type, linkedStoreIds, budgets, couponRedemptionCount, referralRedemptionCount, discountCount, discountEffectCount, couponCreationCount, customEffectCount, referralCreationCount, addFreeItemEffectCount, awardedGiveawaysCount, createdLoyaltyPointsCount, createdLoyaltyPointsEffectCount, redeemedLoyaltyPointsCount, redeemedLoyaltyPointsEffectCount, callApiEffectCount, reservecouponEffectCount, lastActivity, updated, createdBy, updatedBy, templateId, valueMapsIds, revisionFrontendState, activeRevisionId, activeRevisionVersionId, varVersion, currentRevisionId, currentRevisionVersionId, stageRevision);
+            return new Campaign(id.Value.Value, created.Value.Value, applicationId.Value.Value, userId.Value.Value, name.Value, tags.Value, reevaluateOnReturn.Value.Value, features.Value, limits.Value, frontendState.Value.Value, storesImported.Value.Value, description, startTime, endTime, attributes, state.Value.Value, activeRulesetId, couponSettings, referralSettings, campaignGroups, type, linkedStoreIds, budgets, couponRedemptionCount, referralRedemptionCount, discountCount, discountEffectCount, couponCreationCount, customEffectCount, referralCreationCount, addFreeItemEffectCount, awardedGiveawaysCount, createdLoyaltyPointsCount, createdLoyaltyPointsEffectCount, redeemedLoyaltyPointsCount, redeemedLoyaltyPointsEffectCount, callApiEffectCount, reservecouponEffectCount, lastActivity, updated, createdBy, updatedBy, templateId, valueMapsIds, experimentId, revisionFrontendState, activeRevisionId, activeRevisionVersionId, varVersion, currentRevisionId, currentRevisionVersionId, stageRevision);
         }
 
         /// <summary>
@@ -1885,6 +1931,8 @@ namespace TalonOneSdk.Model
 
             writer.WritePropertyName("tags");
             JsonSerializer.Serialize(writer, campaign.Tags, jsonSerializerOptions);
+            writer.WriteBoolean("reevaluateOnReturn", campaign.ReevaluateOnReturn);
+
             writer.WritePropertyName("features");
             JsonSerializer.Serialize(writer, campaign.Features, jsonSerializerOptions);
             writer.WritePropertyName("limits");
@@ -2004,6 +2052,9 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("valueMapsIds");
                 JsonSerializer.Serialize(writer, campaign.ValueMapsIds, jsonSerializerOptions);
             }
+            if (campaign.ExperimentIdOption.IsSet)
+                writer.WriteNumber("experimentId", campaign.ExperimentIdOption.Value.Value);
+
             var revisionFrontendStateRawValue = Campaign.RevisionFrontendStateEnumToJsonValue(campaign.RevisionFrontendStateOption.Value.Value);
             writer.WriteString("revisionFrontendState", revisionFrontendStateRawValue);
             if (campaign.ActiveRevisionIdOption.IsSet)

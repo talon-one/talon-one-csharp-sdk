@@ -341,6 +341,8 @@ namespace TalonOneSdk.Client
                 return DeleteCouponsData.NotificationTypeEnumToJsonValue(deleteCouponsDataNotificationTypeEnum);
             if (obj is DeleteLoyaltyTransactionsRequest.ScopeEnum deleteLoyaltyTransactionsRequestScopeEnum)
                 return DeleteLoyaltyTransactionsRequest.ScopeEnumToJsonValue(deleteLoyaltyTransactionsRequestScopeEnum);
+            if (obj is Experiment.StateEnum experimentStateEnum)
+                return Experiment.StateEnumToJsonValue(experimentStateEnum);
             if (obj is ExpiringCardPointsNotification.NotificationTypeEnum expiringCardPointsNotificationNotificationTypeEnum)
                 return ExpiringCardPointsNotification.NotificationTypeEnumToJsonValue(expiringCardPointsNotificationNotificationTypeEnum);
             if (obj is ExpiringCouponsNotification.NotificationTypeEnum expiringCouponsNotificationNotificationTypeEnum)
@@ -439,6 +441,8 @@ namespace TalonOneSdk.Client
                 return NewCustomerSession.StateEnumToJsonValue(newCustomerSessionStateEnum);
             if (obj is NewCustomerSessionV2.StateEnum newCustomerSessionV2StateEnum)
                 return NewCustomerSessionV2.StateEnumToJsonValue(newCustomerSessionV2StateEnum);
+            if (obj is NewExperiment.StateEnum newExperimentStateEnum)
+                return NewExperiment.StateEnumToJsonValue(newExperimentStateEnum);
             if (obj is NewLoyaltyProgram.ProgramJoinPolicyEnum newLoyaltyProgramProgramJoinPolicyEnum)
                 return NewLoyaltyProgram.ProgramJoinPolicyEnumToJsonValue(newLoyaltyProgramProgramJoinPolicyEnum);
             if (obj is NewLoyaltyProgram.TiersExpirationPolicyEnum newLoyaltyProgramTiersExpirationPolicyEnum)

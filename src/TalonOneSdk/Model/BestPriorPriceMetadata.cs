@@ -31,44 +31,38 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="BestPriorPriceMetadata" /> class.
         /// </summary>
-        /// <param name="influencingCampaignIDs">influencingCampaignIDs</param>
-        /// <param name="adjustmentReferenceID">Identifier related to the &#x60;referenceId&#x60; used during a &#x60;ADD_PRICE_ADJUSTMENT&#x60; action  using the [Sync cart item catalog endpoint](https://docs.talon.one/integration-api#tag/Catalogs/operation/syncCatalog).</param>
+        /// <param name="influencingCampaignDetails">Details about campaigns that influenced the final price.</param>
+        /// <param name="adjustmentDetails">Details about the applied price adjustment.</param>
         [JsonConstructor]
-        public BestPriorPriceMetadata(Option<List<long>> influencingCampaignIDs = default, Option<string> adjustmentReferenceID = default)
+        public BestPriorPriceMetadata(List<InfluencingCampaignDetails> influencingCampaignDetails, Option<AdjustmentDetails> adjustmentDetails = default)
         {
-            InfluencingCampaignIDsOption = influencingCampaignIDs;
-            AdjustmentReferenceIDOption = adjustmentReferenceID;
+            InfluencingCampaignDetails = influencingCampaignDetails;
+            AdjustmentDetailsOption = adjustmentDetails;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of InfluencingCampaignIDs
+        /// Details about campaigns that influenced the final price.
+        /// </summary>
+        /// <value>Details about campaigns that influenced the final price.</value>
+        [JsonPropertyName("influencingCampaignDetails")]
+        public List<InfluencingCampaignDetails> InfluencingCampaignDetails { get; set; }
+
+        /// <summary>
+        /// Used to track the state of AdjustmentDetails
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<long>> InfluencingCampaignIDsOption { get; private set; }
+        public Option<AdjustmentDetails> AdjustmentDetailsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets InfluencingCampaignIDs
+        /// Details about the applied price adjustment.
         /// </summary>
-        [JsonPropertyName("influencingCampaignIDs")]
-        public List<long> InfluencingCampaignIDs { get { return this.InfluencingCampaignIDsOption; } set { this.InfluencingCampaignIDsOption = new Option<List<long>>(value); } }
-
-        /// <summary>
-        /// Used to track the state of AdjustmentReferenceID
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> AdjustmentReferenceIDOption { get; private set; }
-
-        /// <summary>
-        /// Identifier related to the &#x60;referenceId&#x60; used during a &#x60;ADD_PRICE_ADJUSTMENT&#x60; action  using the [Sync cart item catalog endpoint](https://docs.talon.one/integration-api#tag/Catalogs/operation/syncCatalog).
-        /// </summary>
-        /// <value>Identifier related to the &#x60;referenceId&#x60; used during a &#x60;ADD_PRICE_ADJUSTMENT&#x60; action  using the [Sync cart item catalog endpoint](https://docs.talon.one/integration-api#tag/Catalogs/operation/syncCatalog).</value>
-        [JsonPropertyName("adjustmentReferenceID")]
-        public string AdjustmentReferenceID { get { return this.AdjustmentReferenceIDOption; } set { this.AdjustmentReferenceIDOption = new Option<string>(value); } }
+        /// <value>Details about the applied price adjustment.</value>
+        [JsonPropertyName("adjustmentDetails")]
+        public AdjustmentDetails AdjustmentDetails { get { return this.AdjustmentDetailsOption; } set { this.AdjustmentDetailsOption = new Option<AdjustmentDetails>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -78,8 +72,8 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class BestPriorPriceMetadata {\n");
-            sb.Append("  InfluencingCampaignIDs: ").Append(InfluencingCampaignIDs).Append("\n");
-            sb.Append("  AdjustmentReferenceID: ").Append(AdjustmentReferenceID).Append("\n");
+            sb.Append("  InfluencingCampaignDetails: ").Append(InfluencingCampaignDetails).Append("\n");
+            sb.Append("  AdjustmentDetails: ").Append(AdjustmentDetails).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -117,8 +111,8 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<List<long>> influencingCampaignIDs = default;
-            Option<string> adjustmentReferenceID = default;
+            Option<List<InfluencingCampaignDetails>> influencingCampaignDetails = default;
+            Option<AdjustmentDetails> adjustmentDetails = default;
 
             while (utf8JsonReader.Read())
             {
@@ -135,11 +129,11 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "influencingCampaignIDs":
-                            influencingCampaignIDs = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                        case "influencingCampaignDetails":
+                            influencingCampaignDetails = new Option<List<InfluencingCampaignDetails>>(JsonSerializer.Deserialize<List<InfluencingCampaignDetails>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "adjustmentReferenceID":
-                            adjustmentReferenceID = new Option<string>(utf8JsonReader.GetString());
+                        case "adjustmentDetails":
+                            adjustmentDetails = new Option<AdjustmentDetails>(JsonSerializer.Deserialize<AdjustmentDetails>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -147,13 +141,16 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (influencingCampaignIDs.IsSet && influencingCampaignIDs.Value == null)
-                throw new ArgumentNullException(nameof(influencingCampaignIDs), "Property is not nullable for class BestPriorPriceMetadata.");
+            if (!influencingCampaignDetails.IsSet)
+                throw new ArgumentException("Property is required for class BestPriorPriceMetadata.", nameof(influencingCampaignDetails));
 
-            if (adjustmentReferenceID.IsSet && adjustmentReferenceID.Value == null)
-                throw new ArgumentNullException(nameof(adjustmentReferenceID), "Property is not nullable for class BestPriorPriceMetadata.");
+            if (influencingCampaignDetails.IsSet && influencingCampaignDetails.Value == null)
+                throw new ArgumentNullException(nameof(influencingCampaignDetails), "Property is not nullable for class BestPriorPriceMetadata.");
 
-            return new BestPriorPriceMetadata(influencingCampaignIDs, adjustmentReferenceID);
+            if (adjustmentDetails.IsSet && adjustmentDetails.Value == null)
+                throw new ArgumentNullException(nameof(adjustmentDetails), "Property is not nullable for class BestPriorPriceMetadata.");
+
+            return new BestPriorPriceMetadata(influencingCampaignDetails.Value, adjustmentDetails);
         }
 
         /// <summary>
@@ -180,19 +177,19 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BestPriorPriceMetadata bestPriorPriceMetadata, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (bestPriorPriceMetadata.InfluencingCampaignIDsOption.IsSet && bestPriorPriceMetadata.InfluencingCampaignIDs == null)
-                throw new ArgumentNullException(nameof(bestPriorPriceMetadata.InfluencingCampaignIDs), "Property is required for class BestPriorPriceMetadata.");
+            if (bestPriorPriceMetadata.InfluencingCampaignDetails == null)
+                throw new ArgumentNullException(nameof(bestPriorPriceMetadata.InfluencingCampaignDetails), "Property is required for class BestPriorPriceMetadata.");
 
-            if (bestPriorPriceMetadata.AdjustmentReferenceIDOption.IsSet && bestPriorPriceMetadata.AdjustmentReferenceID == null)
-                throw new ArgumentNullException(nameof(bestPriorPriceMetadata.AdjustmentReferenceID), "Property is required for class BestPriorPriceMetadata.");
+            if (bestPriorPriceMetadata.AdjustmentDetailsOption.IsSet && bestPriorPriceMetadata.AdjustmentDetails == null)
+                throw new ArgumentNullException(nameof(bestPriorPriceMetadata.AdjustmentDetails), "Property is required for class BestPriorPriceMetadata.");
 
-            if (bestPriorPriceMetadata.InfluencingCampaignIDsOption.IsSet)
+            writer.WritePropertyName("influencingCampaignDetails");
+            JsonSerializer.Serialize(writer, bestPriorPriceMetadata.InfluencingCampaignDetails, jsonSerializerOptions);
+            if (bestPriorPriceMetadata.AdjustmentDetailsOption.IsSet)
             {
-                writer.WritePropertyName("influencingCampaignIDs");
-                JsonSerializer.Serialize(writer, bestPriorPriceMetadata.InfluencingCampaignIDs, jsonSerializerOptions);
+                writer.WritePropertyName("adjustmentDetails");
+                JsonSerializer.Serialize(writer, bestPriorPriceMetadata.AdjustmentDetails, jsonSerializerOptions);
             }
-            if (bestPriorPriceMetadata.AdjustmentReferenceIDOption.IsSet)
-                writer.WriteString("adjustmentReferenceID", bestPriorPriceMetadata.AdjustmentReferenceID);
         }
     }
 }

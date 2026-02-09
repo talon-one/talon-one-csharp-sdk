@@ -54,21 +54,21 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'InfluencingCampaignIDs'
+        /// Test the property 'InfluencingCampaignDetails'
         /// </summary>
         [Fact]
-        public void InfluencingCampaignIDsTest()
+        public void InfluencingCampaignDetailsTest()
         {
-            // TODO unit test for the property 'InfluencingCampaignIDs'
+            // TODO unit test for the property 'InfluencingCampaignDetails'
         }
 
         /// <summary>
-        /// Test the property 'AdjustmentReferenceID'
+        /// Test the property 'AdjustmentDetails'
         /// </summary>
         [Fact]
-        public void AdjustmentReferenceIDTest()
+        public void AdjustmentDetailsTest()
         {
-            // TODO unit test for the property 'AdjustmentReferenceID'
+            // TODO unit test for the property 'AdjustmentDetails'
         }
     }
 }

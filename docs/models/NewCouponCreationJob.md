@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **StartDate** | **DateTime** | Timestamp at which point the coupon becomes valid. | [optional] 
 **ExpiryDate** | **DateTime** | Expiration date of the coupon. Coupon never expires if this is omitted. | [optional] 
 **CouponSettings** | [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
+**IsReservationMandatory** | **bool** | An indication of whether the code can be redeemed only if it has been reserved first. | [optional] [default to false]
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

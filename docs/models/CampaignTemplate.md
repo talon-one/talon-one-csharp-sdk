@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Description** | **string** | Customer-facing text that explains the objective of the template. | 
 **Instructions** | **string** | Customer-facing text that explains how to use the template. For example, you can use this property to explain the available attributes of this template, and how they can be modified when a user uses this template to create a new campaign. | 
 **State** | **string** | Only campaign templates in &#39;available&#39; state may be used to create campaigns. | 
+**ReevaluateOnReturn** | **bool** | Indicates whether campaigns created from this template should be reevaluated when a customer returns an item. | 
 **ApplicationsIds** | **List&lt;long&gt;** |  | 
 **ValidApplicationIds** | **List&lt;long&gt;** | The IDs of the Applications that are related to this entity. | 
 **CampaignAttributes** | **Object** | The campaign attributes that campaigns created from this template will have by default. | [optional] 
