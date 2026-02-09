@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **UpdatedBy** | **string** | Name of the user who last updated this campaign if available. | [optional] 
 **TemplateId** | **long** | The ID of the Campaign Template this Campaign was created from. | [optional] 
 **ValueMapsIds** | **List&lt;long&gt;** | A list of value map IDs for the campaign. | [optional] 
+**ExperimentId** | **long** | The ID of the Experiment this Campaign is part of. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

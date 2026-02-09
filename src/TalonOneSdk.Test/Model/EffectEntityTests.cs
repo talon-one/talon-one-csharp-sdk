@@ -99,6 +99,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ExperimentId'
+        /// </summary>
+        [Fact]
+        public void ExperimentIdTest()
+        {
+            // TODO unit test for the property 'ExperimentId'
+        }
+
+        /// <summary>
         /// Test the property 'TriggeredByCoupon'
         /// </summary>
         [Fact]

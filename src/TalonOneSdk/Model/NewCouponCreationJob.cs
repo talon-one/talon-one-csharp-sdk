@@ -39,8 +39,9 @@ namespace TalonOneSdk.Model
         /// <param name="startDate">Timestamp at which point the coupon becomes valid.</param>
         /// <param name="expiryDate">Expiration date of the coupon. Coupon never expires if this is omitted.</param>
         /// <param name="couponSettings">couponSettings</param>
+        /// <param name="isReservationMandatory">An indication of whether the code can be redeemed only if it has been reserved first. (default to false)</param>
         [JsonConstructor]
-        public NewCouponCreationJob(long numberOfCoupons, Object attributes, Option<long?> usageLimit = default, Option<decimal?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<CodeGeneratorSettings> couponSettings = default)
+        public NewCouponCreationJob(long numberOfCoupons, Object attributes, Option<long?> usageLimit = default, Option<decimal?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<CodeGeneratorSettings> couponSettings = default, Option<bool?> isReservationMandatory = default)
         {
             NumberOfCoupons = numberOfCoupons;
             Attributes = attributes;
@@ -50,6 +51,7 @@ namespace TalonOneSdk.Model
             StartDateOption = startDate;
             ExpiryDateOption = expiryDate;
             CouponSettingsOption = couponSettings;
+            IsReservationMandatoryOption = isReservationMandatory;
             OnCreated();
         }
 
@@ -159,6 +161,21 @@ namespace TalonOneSdk.Model
         public CodeGeneratorSettings CouponSettings { get { return this.CouponSettingsOption; } set { this.CouponSettingsOption = new Option<CodeGeneratorSettings>(value); } }
 
         /// <summary>
+        /// Used to track the state of IsReservationMandatory
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> IsReservationMandatoryOption { get; private set; }
+
+        /// <summary>
+        /// An indication of whether the code can be redeemed only if it has been reserved first.
+        /// </summary>
+        /// <value>An indication of whether the code can be redeemed only if it has been reserved first.</value>
+        /* <example>false</example> */
+        [JsonPropertyName("isReservationMandatory")]
+        public bool? IsReservationMandatory { get { return this.IsReservationMandatoryOption; } set { this.IsReservationMandatoryOption = new Option<bool?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -174,6 +191,7 @@ namespace TalonOneSdk.Model
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
             sb.Append("  CouponSettings: ").Append(CouponSettings).Append("\n");
+            sb.Append("  IsReservationMandatory: ").Append(IsReservationMandatory).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -277,6 +295,7 @@ namespace TalonOneSdk.Model
             Option<DateTime?> startDate = default;
             Option<DateTime?> expiryDate = default;
             Option<CodeGeneratorSettings> couponSettings = default;
+            Option<bool?> isReservationMandatory = default;
 
             while (utf8JsonReader.Read())
             {
@@ -317,6 +336,9 @@ namespace TalonOneSdk.Model
                         case "couponSettings":
                             couponSettings = new Option<CodeGeneratorSettings>(JsonSerializer.Deserialize<CodeGeneratorSettings>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "isReservationMandatory":
+                            isReservationMandatory = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         default:
                             break;
                     }
@@ -353,7 +375,10 @@ namespace TalonOneSdk.Model
             if (couponSettings.IsSet && couponSettings.Value == null)
                 throw new ArgumentNullException(nameof(couponSettings), "Property is not nullable for class NewCouponCreationJob.");
 
-            return new NewCouponCreationJob(numberOfCoupons.Value.Value, attributes.Value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, couponSettings);
+            if (isReservationMandatory.IsSet && isReservationMandatory.Value == null)
+                throw new ArgumentNullException(nameof(isReservationMandatory), "Property is not nullable for class NewCouponCreationJob.");
+
+            return new NewCouponCreationJob(numberOfCoupons.Value.Value, attributes.Value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, couponSettings, isReservationMandatory);
         }
 
         /// <summary>
@@ -410,6 +435,8 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("couponSettings");
                 JsonSerializer.Serialize(writer, newCouponCreationJob.CouponSettings, jsonSerializerOptions);
             }
+            if (newCouponCreationJob.IsReservationMandatoryOption.IsSet)
+                writer.WriteBoolean("isReservationMandatory", newCouponCreationJob.IsReservationMandatoryOption.Value.Value);
         }
     }
 }

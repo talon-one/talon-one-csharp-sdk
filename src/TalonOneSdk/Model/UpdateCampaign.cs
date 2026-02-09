@@ -41,6 +41,7 @@ namespace TalonOneSdk.Model
         /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
         /// <param name="state">A disabled or archived campaign is not evaluated for rules or coupons.  (default to StateEnum.Enabled)</param>
         /// <param name="activeRulesetId">[ID of Ruleset](https://docs.talon.one/management-api#operation/getRulesets) this campaign applies on customer session evaluation. </param>
+        /// <param name="reevaluateOnReturn">Indicates whether this campaign should be reevaluated when a customer returns an item.</param>
         /// <param name="couponSettings">couponSettings</param>
         /// <param name="referralSettings">referralSettings</param>
         /// <param name="campaignGroups">The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/account-settings/managing-campaign-groups) this campaign belongs to. </param>
@@ -48,7 +49,7 @@ namespace TalonOneSdk.Model
         /// <param name="type">The campaign type. Possible type values:   - &#x60;cartItem&#x60;: Type of campaign that can apply effects only to cart items.   - &#x60;advanced&#x60;: Type of campaign that can apply effects to customer sessions and cart items.  (default to TypeEnum.Advanced)</param>
         /// <param name="linkedStoreIds">A list of store IDs that you want to link to the campaign.  **Note:** - Campaigns with linked store IDs will only be evaluated when there is a [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) that references a linked store. - If you linked stores to the campaign by uploading a CSV file, you cannot use this property and it should be empty. - Use of this property is limited to 50 stores. To link more than 50 stores, upload them via a CSV file. </param>
         [JsonConstructor]
-        public UpdateCampaign(string name, List<string> tags, List<UpdateCampaign.FeaturesEnum> features, List<LimitConfig> limits, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, Option<StateEnum?> state = default, Option<long?> activeRulesetId = default, Option<CodeGeneratorSettings> couponSettings = default, Option<CodeGeneratorSettings> referralSettings = default, Option<List<long>> campaignGroups = default, Option<long?> evaluationGroupId = default, Option<TypeEnum?> type = default, Option<List<long>> linkedStoreIds = default)
+        public UpdateCampaign(string name, List<string> tags, List<UpdateCampaign.FeaturesEnum> features, List<LimitConfig> limits, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, Option<StateEnum?> state = default, Option<long?> activeRulesetId = default, Option<bool?> reevaluateOnReturn = default, Option<CodeGeneratorSettings> couponSettings = default, Option<CodeGeneratorSettings> referralSettings = default, Option<List<long>> campaignGroups = default, Option<long?> evaluationGroupId = default, Option<TypeEnum?> type = default, Option<List<long>> linkedStoreIds = default)
         {
             Name = name;
             Tags = tags;
@@ -60,6 +61,7 @@ namespace TalonOneSdk.Model
             AttributesOption = attributes;
             StateOption = state;
             ActiveRulesetIdOption = activeRulesetId;
+            ReevaluateOnReturnOption = reevaluateOnReturn;
             CouponSettingsOption = couponSettings;
             ReferralSettingsOption = referralSettings;
             CampaignGroupsOption = campaignGroups;
@@ -478,6 +480,21 @@ namespace TalonOneSdk.Model
         public long? ActiveRulesetId { get { return this.ActiveRulesetIdOption; } set { this.ActiveRulesetIdOption = new Option<long?>(value); } }
 
         /// <summary>
+        /// Used to track the state of ReevaluateOnReturn
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> ReevaluateOnReturnOption { get; private set; }
+
+        /// <summary>
+        /// Indicates whether this campaign should be reevaluated when a customer returns an item.
+        /// </summary>
+        /// <value>Indicates whether this campaign should be reevaluated when a customer returns an item.</value>
+        /* <example>true</example> */
+        [JsonPropertyName("reevaluateOnReturn")]
+        public bool? ReevaluateOnReturn { get { return this.ReevaluateOnReturnOption; } set { this.ReevaluateOnReturnOption = new Option<bool?>(value); } }
+
+        /// <summary>
         /// Used to track the state of CouponSettings
         /// </summary>
         [JsonIgnore]
@@ -566,6 +583,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  ActiveRulesetId: ").Append(ActiveRulesetId).Append("\n");
+            sb.Append("  ReevaluateOnReturn: ").Append(ReevaluateOnReturn).Append("\n");
             sb.Append("  CouponSettings: ").Append(CouponSettings).Append("\n");
             sb.Append("  ReferralSettings: ").Append(ReferralSettings).Append("\n");
             sb.Append("  CampaignGroups: ").Append(CampaignGroups).Append("\n");
@@ -635,6 +653,7 @@ namespace TalonOneSdk.Model
             Option<Object> attributes = default;
             Option<UpdateCampaign.StateEnum?> state = default;
             Option<long?> activeRulesetId = default;
+            Option<bool?> reevaluateOnReturn = default;
             Option<CodeGeneratorSettings> couponSettings = default;
             Option<CodeGeneratorSettings> referralSettings = default;
             Option<List<long>> campaignGroups = default;
@@ -688,6 +707,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "activeRulesetId":
                             activeRulesetId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "reevaluateOnReturn":
+                            reevaluateOnReturn = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "couponSettings":
                             couponSettings = new Option<CodeGeneratorSettings>(JsonSerializer.Deserialize<CodeGeneratorSettings>(ref utf8JsonReader, jsonSerializerOptions));
@@ -757,6 +779,9 @@ namespace TalonOneSdk.Model
             if (activeRulesetId.IsSet && activeRulesetId.Value == null)
                 throw new ArgumentNullException(nameof(activeRulesetId), "Property is not nullable for class UpdateCampaign.");
 
+            if (reevaluateOnReturn.IsSet && reevaluateOnReturn.Value == null)
+                throw new ArgumentNullException(nameof(reevaluateOnReturn), "Property is not nullable for class UpdateCampaign.");
+
             if (couponSettings.IsSet && couponSettings.Value == null)
                 throw new ArgumentNullException(nameof(couponSettings), "Property is not nullable for class UpdateCampaign.");
 
@@ -775,7 +800,7 @@ namespace TalonOneSdk.Model
             if (linkedStoreIds.IsSet && linkedStoreIds.Value == null)
                 throw new ArgumentNullException(nameof(linkedStoreIds), "Property is not nullable for class UpdateCampaign.");
 
-            return new UpdateCampaign(name.Value, tags.Value, features.Value, limits.Value, description, startTime, endTime, attributes, state, activeRulesetId, couponSettings, referralSettings, campaignGroups, evaluationGroupId, type, linkedStoreIds);
+            return new UpdateCampaign(name.Value, tags.Value, features.Value, limits.Value, description, startTime, endTime, attributes, state, activeRulesetId, reevaluateOnReturn, couponSettings, referralSettings, campaignGroups, evaluationGroupId, type, linkedStoreIds);
         }
 
         /// <summary>
@@ -858,6 +883,9 @@ namespace TalonOneSdk.Model
             writer.WriteString("state", stateRawValue);
             if (updateCampaign.ActiveRulesetIdOption.IsSet)
                 writer.WriteNumber("activeRulesetId", updateCampaign.ActiveRulesetIdOption.Value.Value);
+
+            if (updateCampaign.ReevaluateOnReturnOption.IsSet)
+                writer.WriteBoolean("reevaluateOnReturn", updateCampaign.ReevaluateOnReturnOption.Value.Value);
 
             if (updateCampaign.CouponSettingsOption.IsSet)
             {

@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **CampaignAttributes** | **Object** | The campaign attributes that campaigns created from this template will have by default. | [optional] 
 **CouponAttributes** | **Object** | The campaign attributes that coupons created from this template will have by default. | [optional] 
 **Tags** | **List&lt;string&gt;** | A list of tags for the campaign template. | [optional] 
+**ReevaluateOnReturn** | **bool** | Indicates whether campaigns created from this template should be reevaluated when a customer returns an item. | [optional] 
 **Features** | **List&lt;NewCampaignTemplate.FeaturesEnum&gt;** | A list of features for the campaign template. | [optional] 
 **CouponSettings** | [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **CouponReservationSettings** | [**CampaignTemplateCouponReservationSettings**](CampaignTemplateCouponReservationSettings.md) |  | [optional] 

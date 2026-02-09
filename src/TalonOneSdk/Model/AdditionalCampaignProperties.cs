@@ -55,8 +55,9 @@ namespace TalonOneSdk.Model
         /// <param name="updatedBy">Name of the user who last updated this campaign if available.</param>
         /// <param name="templateId">The ID of the Campaign Template this Campaign was created from.</param>
         /// <param name="valueMapsIds">A list of value map IDs for the campaign.</param>
+        /// <param name="experimentId">The ID of the Experiment this Campaign is part of.</param>
         [JsonConstructor]
-        public AdditionalCampaignProperties(FrontendStateEnum frontendState, bool storesImported, Option<List<CampaignBudget>> budgets = default, Option<long?> couponRedemptionCount = default, Option<long?> referralRedemptionCount = default, Option<decimal?> discountCount = default, Option<long?> discountEffectCount = default, Option<long?> couponCreationCount = default, Option<long?> customEffectCount = default, Option<long?> referralCreationCount = default, Option<long?> addFreeItemEffectCount = default, Option<long?> awardedGiveawaysCount = default, Option<decimal?> createdLoyaltyPointsCount = default, Option<long?> createdLoyaltyPointsEffectCount = default, Option<decimal?> redeemedLoyaltyPointsCount = default, Option<long?> redeemedLoyaltyPointsEffectCount = default, Option<long?> callApiEffectCount = default, Option<long?> reservecouponEffectCount = default, Option<DateTime?> lastActivity = default, Option<DateTime?> updated = default, Option<string> createdBy = default, Option<string> updatedBy = default, Option<long?> templateId = default, Option<List<long>> valueMapsIds = default)
+        public AdditionalCampaignProperties(FrontendStateEnum frontendState, bool storesImported, Option<List<CampaignBudget>> budgets = default, Option<long?> couponRedemptionCount = default, Option<long?> referralRedemptionCount = default, Option<decimal?> discountCount = default, Option<long?> discountEffectCount = default, Option<long?> couponCreationCount = default, Option<long?> customEffectCount = default, Option<long?> referralCreationCount = default, Option<long?> addFreeItemEffectCount = default, Option<long?> awardedGiveawaysCount = default, Option<decimal?> createdLoyaltyPointsCount = default, Option<long?> createdLoyaltyPointsEffectCount = default, Option<decimal?> redeemedLoyaltyPointsCount = default, Option<long?> redeemedLoyaltyPointsEffectCount = default, Option<long?> callApiEffectCount = default, Option<long?> reservecouponEffectCount = default, Option<DateTime?> lastActivity = default, Option<DateTime?> updated = default, Option<string> createdBy = default, Option<string> updatedBy = default, Option<long?> templateId = default, Option<List<long>> valueMapsIds = default, Option<long?> experimentId = default)
         {
             FrontendState = frontendState;
             StoresImported = storesImported;
@@ -82,6 +83,7 @@ namespace TalonOneSdk.Model
             UpdatedByOption = updatedBy;
             TemplateIdOption = templateId;
             ValueMapsIdsOption = valueMapsIds;
+            ExperimentIdOption = experimentId;
             OnCreated();
         }
 
@@ -556,6 +558,21 @@ namespace TalonOneSdk.Model
         public List<long> ValueMapsIds { get { return this.ValueMapsIdsOption; } set { this.ValueMapsIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
+        /// Used to track the state of ExperimentId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> ExperimentIdOption { get; private set; }
+
+        /// <summary>
+        /// The ID of the Experiment this Campaign is part of.
+        /// </summary>
+        /// <value>The ID of the Experiment this Campaign is part of.</value>
+        /* <example>1</example> */
+        [JsonPropertyName("experimentId")]
+        public long? ExperimentId { get { return this.ExperimentIdOption; } set { this.ExperimentIdOption = new Option<long?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -587,6 +604,7 @@ namespace TalonOneSdk.Model
             sb.Append("  UpdatedBy: ").Append(UpdatedBy).Append("\n");
             sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
             sb.Append("  ValueMapsIds: ").Append(ValueMapsIds).Append("\n");
+            sb.Append("  ExperimentId: ").Append(ExperimentId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -658,6 +676,7 @@ namespace TalonOneSdk.Model
             Option<string> updatedBy = default;
             Option<long?> templateId = default;
             Option<List<long>> valueMapsIds = default;
+            Option<long?> experimentId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -748,6 +767,9 @@ namespace TalonOneSdk.Model
                         case "valueMapsIds":
                             valueMapsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "experimentId":
+                            experimentId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
                         default:
                             break;
                     }
@@ -832,7 +854,10 @@ namespace TalonOneSdk.Model
             if (valueMapsIds.IsSet && valueMapsIds.Value == null)
                 throw new ArgumentNullException(nameof(valueMapsIds), "Property is not nullable for class AdditionalCampaignProperties.");
 
-            return new AdditionalCampaignProperties(frontendState.Value.Value, storesImported.Value.Value, budgets, couponRedemptionCount, referralRedemptionCount, discountCount, discountEffectCount, couponCreationCount, customEffectCount, referralCreationCount, addFreeItemEffectCount, awardedGiveawaysCount, createdLoyaltyPointsCount, createdLoyaltyPointsEffectCount, redeemedLoyaltyPointsCount, redeemedLoyaltyPointsEffectCount, callApiEffectCount, reservecouponEffectCount, lastActivity, updated, createdBy, updatedBy, templateId, valueMapsIds);
+            if (experimentId.IsSet && experimentId.Value == null)
+                throw new ArgumentNullException(nameof(experimentId), "Property is not nullable for class AdditionalCampaignProperties.");
+
+            return new AdditionalCampaignProperties(frontendState.Value.Value, storesImported.Value.Value, budgets, couponRedemptionCount, referralRedemptionCount, discountCount, discountEffectCount, couponCreationCount, customEffectCount, referralCreationCount, addFreeItemEffectCount, awardedGiveawaysCount, createdLoyaltyPointsCount, createdLoyaltyPointsEffectCount, redeemedLoyaltyPointsCount, redeemedLoyaltyPointsEffectCount, callApiEffectCount, reservecouponEffectCount, lastActivity, updated, createdBy, updatedBy, templateId, valueMapsIds, experimentId);
         }
 
         /// <summary>
@@ -945,6 +970,8 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("valueMapsIds");
                 JsonSerializer.Serialize(writer, additionalCampaignProperties.ValueMapsIds, jsonSerializerOptions);
             }
+            if (additionalCampaignProperties.ExperimentIdOption.IsSet)
+                writer.WriteNumber("experimentId", additionalCampaignProperties.ExperimentIdOption.Value.Value);
         }
     }
 }

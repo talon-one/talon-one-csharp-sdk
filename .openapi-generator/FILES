@@ -49,6 +49,7 @@ docs/models/AddedDeductedPointsNotification.md
 docs/models/AddedDeductedPointsNotificationPolicy.md
 docs/models/AdditionalCampaignProperties.md
 docs/models/AdditionalCost.md
+docs/models/AdjustmentDetails.md
 docs/models/AnalyticsDataPoint.md
 docs/models/AnalyticsDataPointWithTrend.md
 docs/models/AnalyticsDataPointWithTrendAndInfluencedRate.md
@@ -229,6 +230,12 @@ docs/models/Event.md
 docs/models/EventType.md
 docs/models/EventV2.md
 docs/models/EventV3.md
+docs/models/Experiment.md
+docs/models/ExperimentResults.md
+docs/models/ExperimentVariant.md
+docs/models/ExperimentVariantAllocation.md
+docs/models/ExperimentVariantResult.md
+docs/models/ExperimentVariantResultConfidence.md
 docs/models/ExpiringCardPointsData.md
 docs/models/ExpiringCardPointsNotification.md
 docs/models/ExpiringCouponsData.md
@@ -308,6 +315,7 @@ docs/models/IdentifiableEntity.md
 docs/models/Import.md
 docs/models/ImportEntity.md
 docs/models/IncreaseAchievementProgressEffectProps.md
+docs/models/InfluencingCampaignDetails.md
 docs/models/IntegrationCoupon.md
 docs/models/IntegrationCustomerProfileAudienceRequest.md
 docs/models/IntegrationCustomerProfileAudienceRequestItem.md
@@ -421,6 +429,9 @@ docs/models/NewCustomerSession.md
 docs/models/NewCustomerSessionV2.md
 docs/models/NewEvent.md
 docs/models/NewEventType.md
+docs/models/NewExperiment.md
+docs/models/NewExperimentVariant.md
+docs/models/NewExperimentVariantArray.md
 docs/models/NewExternalInvitation.md
 docs/models/NewGiveawaysPool.md
 docs/models/NewInternalAudience.md
@@ -624,6 +635,9 @@ docs/models/UpdateCouponsData.md
 docs/models/UpdateCustomEffect.md
 docs/models/UpdateCustomerProfileV2409Response.md
 docs/models/UpdateCustomerSessionV2409Response.md
+docs/models/UpdateExperiment.md
+docs/models/UpdateExperimentVariant.md
+docs/models/UpdateExperimentVariantArray.md
 docs/models/UpdateLoyaltyCard.md
 docs/models/UpdateLoyaltyProgram.md
 docs/models/UpdateLoyaltyProgramTier.md
@@ -687,6 +701,7 @@ src/TalonOneSdk.Test/Model/AddedDeductedPointsNotificationPolicyTests.cs
 src/TalonOneSdk.Test/Model/AddedDeductedPointsNotificationTests.cs
 src/TalonOneSdk.Test/Model/AdditionalCampaignPropertiesTests.cs
 src/TalonOneSdk.Test/Model/AdditionalCostTests.cs
+src/TalonOneSdk.Test/Model/AdjustmentDetailsTests.cs
 src/TalonOneSdk.Test/Model/AnalyticsDataPointTests.cs
 src/TalonOneSdk.Test/Model/AnalyticsDataPointWithTrendAndInfluencedRateTests.cs
 src/TalonOneSdk.Test/Model/AnalyticsDataPointWithTrendAndUpliftTests.cs
@@ -867,6 +882,12 @@ src/TalonOneSdk.Test/Model/EventTests.cs
 src/TalonOneSdk.Test/Model/EventTypeTests.cs
 src/TalonOneSdk.Test/Model/EventV2Tests.cs
 src/TalonOneSdk.Test/Model/EventV3Tests.cs
+src/TalonOneSdk.Test/Model/ExperimentResultsTests.cs
+src/TalonOneSdk.Test/Model/ExperimentTests.cs
+src/TalonOneSdk.Test/Model/ExperimentVariantAllocationTests.cs
+src/TalonOneSdk.Test/Model/ExperimentVariantResultConfidenceTests.cs
+src/TalonOneSdk.Test/Model/ExperimentVariantResultTests.cs
+src/TalonOneSdk.Test/Model/ExperimentVariantTests.cs
 src/TalonOneSdk.Test/Model/ExpiringCardPointsDataTests.cs
 src/TalonOneSdk.Test/Model/ExpiringCardPointsNotificationTests.cs
 src/TalonOneSdk.Test/Model/ExpiringCouponsDataTests.cs
@@ -946,6 +967,7 @@ src/TalonOneSdk.Test/Model/IdentifiableEntityTests.cs
 src/TalonOneSdk.Test/Model/ImportEntityTests.cs
 src/TalonOneSdk.Test/Model/ImportTests.cs
 src/TalonOneSdk.Test/Model/IncreaseAchievementProgressEffectPropsTests.cs
+src/TalonOneSdk.Test/Model/InfluencingCampaignDetailsTests.cs
 src/TalonOneSdk.Test/Model/IntegrationCouponTests.cs
 src/TalonOneSdk.Test/Model/IntegrationCustomerProfileAudienceRequestItemTests.cs
 src/TalonOneSdk.Test/Model/IntegrationCustomerProfileAudienceRequestTests.cs
@@ -1059,6 +1081,9 @@ src/TalonOneSdk.Test/Model/NewCustomerSessionTests.cs
 src/TalonOneSdk.Test/Model/NewCustomerSessionV2Tests.cs
 src/TalonOneSdk.Test/Model/NewEventTests.cs
 src/TalonOneSdk.Test/Model/NewEventTypeTests.cs
+src/TalonOneSdk.Test/Model/NewExperimentTests.cs
+src/TalonOneSdk.Test/Model/NewExperimentVariantArrayTests.cs
+src/TalonOneSdk.Test/Model/NewExperimentVariantTests.cs
 src/TalonOneSdk.Test/Model/NewExternalInvitationTests.cs
 src/TalonOneSdk.Test/Model/NewGiveawaysPoolTests.cs
 src/TalonOneSdk.Test/Model/NewInternalAudienceTests.cs
@@ -1262,6 +1287,9 @@ src/TalonOneSdk.Test/Model/UpdateCouponsDataTests.cs
 src/TalonOneSdk.Test/Model/UpdateCustomEffectTests.cs
 src/TalonOneSdk.Test/Model/UpdateCustomerProfileV2409ResponseTests.cs
 src/TalonOneSdk.Test/Model/UpdateCustomerSessionV2409ResponseTests.cs
+src/TalonOneSdk.Test/Model/UpdateExperimentTests.cs
+src/TalonOneSdk.Test/Model/UpdateExperimentVariantArrayTests.cs
+src/TalonOneSdk.Test/Model/UpdateExperimentVariantTests.cs
 src/TalonOneSdk.Test/Model/UpdateLoyaltyCardTests.cs
 src/TalonOneSdk.Test/Model/UpdateLoyaltyProgramTests.cs
 src/TalonOneSdk.Test/Model/UpdateLoyaltyProgramTierTests.cs
@@ -1344,6 +1372,7 @@ src/TalonOneSdk/Model/AddedDeductedPointsNotification.cs
 src/TalonOneSdk/Model/AddedDeductedPointsNotificationPolicy.cs
 src/TalonOneSdk/Model/AdditionalCampaignProperties.cs
 src/TalonOneSdk/Model/AdditionalCost.cs
+src/TalonOneSdk/Model/AdjustmentDetails.cs
 src/TalonOneSdk/Model/AnalyticsDataPoint.cs
 src/TalonOneSdk/Model/AnalyticsDataPointWithTrend.cs
 src/TalonOneSdk/Model/AnalyticsDataPointWithTrendAndInfluencedRate.cs
@@ -1524,6 +1553,12 @@ src/TalonOneSdk/Model/Event.cs
 src/TalonOneSdk/Model/EventType.cs
 src/TalonOneSdk/Model/EventV2.cs
 src/TalonOneSdk/Model/EventV3.cs
+src/TalonOneSdk/Model/Experiment.cs
+src/TalonOneSdk/Model/ExperimentResults.cs
+src/TalonOneSdk/Model/ExperimentVariant.cs
+src/TalonOneSdk/Model/ExperimentVariantAllocation.cs
+src/TalonOneSdk/Model/ExperimentVariantResult.cs
+src/TalonOneSdk/Model/ExperimentVariantResultConfidence.cs
 src/TalonOneSdk/Model/ExpiringCardPointsData.cs
 src/TalonOneSdk/Model/ExpiringCardPointsNotification.cs
 src/TalonOneSdk/Model/ExpiringCouponsData.cs
@@ -1603,6 +1638,7 @@ src/TalonOneSdk/Model/IdentifiableEntity.cs
 src/TalonOneSdk/Model/Import.cs
 src/TalonOneSdk/Model/ImportEntity.cs
 src/TalonOneSdk/Model/IncreaseAchievementProgressEffectProps.cs
+src/TalonOneSdk/Model/InfluencingCampaignDetails.cs
 src/TalonOneSdk/Model/IntegrationCoupon.cs
 src/TalonOneSdk/Model/IntegrationCustomerProfileAudienceRequest.cs
 src/TalonOneSdk/Model/IntegrationCustomerProfileAudienceRequestItem.cs
@@ -1716,6 +1752,9 @@ src/TalonOneSdk/Model/NewCustomerSession.cs
 src/TalonOneSdk/Model/NewCustomerSessionV2.cs
 src/TalonOneSdk/Model/NewEvent.cs
 src/TalonOneSdk/Model/NewEventType.cs
+src/TalonOneSdk/Model/NewExperiment.cs
+src/TalonOneSdk/Model/NewExperimentVariant.cs
+src/TalonOneSdk/Model/NewExperimentVariantArray.cs
 src/TalonOneSdk/Model/NewExternalInvitation.cs
 src/TalonOneSdk/Model/NewGiveawaysPool.cs
 src/TalonOneSdk/Model/NewInternalAudience.cs
@@ -1919,6 +1958,9 @@ src/TalonOneSdk/Model/UpdateCouponsData.cs
 src/TalonOneSdk/Model/UpdateCustomEffect.cs
 src/TalonOneSdk/Model/UpdateCustomerProfileV2409Response.cs
 src/TalonOneSdk/Model/UpdateCustomerSessionV2409Response.cs
+src/TalonOneSdk/Model/UpdateExperiment.cs
+src/TalonOneSdk/Model/UpdateExperimentVariant.cs
+src/TalonOneSdk/Model/UpdateExperimentVariantArray.cs
 src/TalonOneSdk/Model/UpdateLoyaltyCard.cs
 src/TalonOneSdk/Model/UpdateLoyaltyProgram.cs
 src/TalonOneSdk/Model/UpdateLoyaltyProgramTier.cs

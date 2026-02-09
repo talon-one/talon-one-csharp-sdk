@@ -243,6 +243,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'IsReservationMandatory'
+        /// </summary>
+        [Fact]
+        public void IsReservationMandatoryTest()
+        {
+            // TODO unit test for the property 'IsReservationMandatory'
+        }
+
+        /// <summary>
         /// Test the property 'ChunkSize'
         /// </summary>
         [Fact]

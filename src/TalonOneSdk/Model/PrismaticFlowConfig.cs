@@ -32,10 +32,16 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="PrismaticFlowConfig" /> class.
         /// </summary>
         /// <param name="apiKey">apiKey</param>
+        /// <param name="workerCount">Number of Prismatic workers to run in parallel for this flow (maximum 500). (default to 10)</param>
+        /// <param name="maxEventsPerMessage">Maximum number of events to send in a single message to Prismatic. (default to 1000)</param>
+        /// <param name="maxRetries">Maximum number of retries for a Prismatic event before it is ignored. (default to 10)</param>
         [JsonConstructor]
-        public PrismaticFlowConfig(string apiKey)
+        public PrismaticFlowConfig(string apiKey, Option<long?> workerCount = default, Option<long?> maxEventsPerMessage = default, Option<long?> maxRetries = default)
         {
             ApiKey = apiKey;
+            WorkerCountOption = workerCount;
+            MaxEventsPerMessageOption = maxEventsPerMessage;
+            MaxRetriesOption = maxRetries;
             OnCreated();
         }
 
@@ -48,6 +54,48 @@ namespace TalonOneSdk.Model
         public string ApiKey { get; set; }
 
         /// <summary>
+        /// Used to track the state of WorkerCount
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> WorkerCountOption { get; private set; }
+
+        /// <summary>
+        /// Number of Prismatic workers to run in parallel for this flow (maximum 500).
+        /// </summary>
+        /// <value>Number of Prismatic workers to run in parallel for this flow (maximum 500).</value>
+        [JsonPropertyName("WorkerCount")]
+        public long? WorkerCount { get { return this.WorkerCountOption; } set { this.WorkerCountOption = new Option<long?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of MaxEventsPerMessage
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> MaxEventsPerMessageOption { get; private set; }
+
+        /// <summary>
+        /// Maximum number of events to send in a single message to Prismatic.
+        /// </summary>
+        /// <value>Maximum number of events to send in a single message to Prismatic.</value>
+        [JsonPropertyName("MaxEventsPerMessage")]
+        public long? MaxEventsPerMessage { get { return this.MaxEventsPerMessageOption; } set { this.MaxEventsPerMessageOption = new Option<long?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of MaxRetries
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> MaxRetriesOption { get; private set; }
+
+        /// <summary>
+        /// Maximum number of retries for a Prismatic event before it is ignored.
+        /// </summary>
+        /// <value>Maximum number of retries for a Prismatic event before it is ignored.</value>
+        [JsonPropertyName("MaxRetries")]
+        public long? MaxRetries { get { return this.MaxRetriesOption; } set { this.MaxRetriesOption = new Option<long?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -56,6 +104,9 @@ namespace TalonOneSdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class PrismaticFlowConfig {\n");
             sb.Append("  ApiKey: ").Append(ApiKey).Append("\n");
+            sb.Append("  WorkerCount: ").Append(WorkerCount).Append("\n");
+            sb.Append("  MaxEventsPerMessage: ").Append(MaxEventsPerMessage).Append("\n");
+            sb.Append("  MaxRetries: ").Append(MaxRetries).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -67,6 +118,30 @@ namespace TalonOneSdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // WorkerCount (long) maximum
+            if (this.WorkerCountOption.IsSet && this.WorkerCountOption.Value > (long)500)
+            {
+                yield return new ValidationResult("Invalid value for WorkerCount, must be a value less than or equal to 500.", new [] { "WorkerCount" });
+            }
+
+            // WorkerCount (long) minimum
+            if (this.WorkerCountOption.IsSet && this.WorkerCountOption.Value < (long)1)
+            {
+                yield return new ValidationResult("Invalid value for WorkerCount, must be a value greater than or equal to 1.", new [] { "WorkerCount" });
+            }
+
+            // MaxEventsPerMessage (long) minimum
+            if (this.MaxEventsPerMessageOption.IsSet && this.MaxEventsPerMessageOption.Value < (long)1)
+            {
+                yield return new ValidationResult("Invalid value for MaxEventsPerMessage, must be a value greater than or equal to 1.", new [] { "MaxEventsPerMessage" });
+            }
+
+            // MaxRetries (long) minimum
+            if (this.MaxRetriesOption.IsSet && this.MaxRetriesOption.Value < (long)0)
+            {
+                yield return new ValidationResult("Invalid value for MaxRetries, must be a value greater than or equal to 0.", new [] { "MaxRetries" });
+            }
+
             yield break;
         }
     }
@@ -94,6 +169,9 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string> apiKey = default;
+            Option<long?> workerCount = default;
+            Option<long?> maxEventsPerMessage = default;
+            Option<long?> maxRetries = default;
 
             while (utf8JsonReader.Read())
             {
@@ -113,6 +191,15 @@ namespace TalonOneSdk.Model
                         case "ApiKey":
                             apiKey = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "WorkerCount":
+                            workerCount = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "MaxEventsPerMessage":
+                            maxEventsPerMessage = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "MaxRetries":
+                            maxRetries = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
                         default:
                             break;
                     }
@@ -125,7 +212,16 @@ namespace TalonOneSdk.Model
             if (apiKey.IsSet && apiKey.Value == null)
                 throw new ArgumentNullException(nameof(apiKey), "Property is not nullable for class PrismaticFlowConfig.");
 
-            return new PrismaticFlowConfig(apiKey.Value);
+            if (workerCount.IsSet && workerCount.Value == null)
+                throw new ArgumentNullException(nameof(workerCount), "Property is not nullable for class PrismaticFlowConfig.");
+
+            if (maxEventsPerMessage.IsSet && maxEventsPerMessage.Value == null)
+                throw new ArgumentNullException(nameof(maxEventsPerMessage), "Property is not nullable for class PrismaticFlowConfig.");
+
+            if (maxRetries.IsSet && maxRetries.Value == null)
+                throw new ArgumentNullException(nameof(maxRetries), "Property is not nullable for class PrismaticFlowConfig.");
+
+            return new PrismaticFlowConfig(apiKey.Value, workerCount, maxEventsPerMessage, maxRetries);
         }
 
         /// <summary>
@@ -156,6 +252,15 @@ namespace TalonOneSdk.Model
                 throw new ArgumentNullException(nameof(prismaticFlowConfig.ApiKey), "Property is required for class PrismaticFlowConfig.");
 
             writer.WriteString("ApiKey", prismaticFlowConfig.ApiKey);
+
+            if (prismaticFlowConfig.WorkerCountOption.IsSet)
+                writer.WriteNumber("WorkerCount", prismaticFlowConfig.WorkerCountOption.Value.Value);
+
+            if (prismaticFlowConfig.MaxEventsPerMessageOption.IsSet)
+                writer.WriteNumber("MaxEventsPerMessage", prismaticFlowConfig.MaxEventsPerMessageOption.Value.Value);
+
+            if (prismaticFlowConfig.MaxRetriesOption.IsSet)
+                writer.WriteNumber("MaxRetries", prismaticFlowConfig.MaxRetriesOption.Value.Value);
         }
     }
 }

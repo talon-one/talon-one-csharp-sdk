@@ -39,11 +39,12 @@ namespace TalonOneSdk.Model
         /// <param name="loyaltyCards">Identifier of a loyalty card.</param>
         /// <param name="state">Indicates the current state of the session. Sessions can be created as &#x60;open&#x60; or &#x60;closed&#x60;. The state transitions are:  1. &#x60;open&#x60; → &#x60;closed&#x60; 2. &#x60;open&#x60; → &#x60;cancelled&#x60; 3. Either:    - &#x60;closed&#x60; → &#x60;cancelled&#x60; (**only** via [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2)) or    - &#x60;closed&#x60; → &#x60;partially_returned&#x60; (**only** via [Return cart items](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/returnCartItems))    - &#x60;closed&#x60; → &#x60;open&#x60; (**only** via [Reopen customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/reopenCustomerSession)) 4. &#x60;partially_returned&#x60; → &#x60;cancelled&#x60;  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  (default to StateEnum.Open)</param>
         /// <param name="cartItems">The items to add to this session. **Do not exceed 1000 items** and ensure the sum of all cart item&#39;s &#x60;quantity&#x60; **does not exceed 10.000** per request. </param>
+        /// <param name="experimentVariantAllocations">The experiment variant allocations to add to this session. </param>
         /// <param name="additionalCosts">Use this property to set a value for the additional costs of this session, such as a shipping cost.  They must be created in the Campaign Manager before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs). </param>
         /// <param name="identifiers">Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts. See the [tutorial](https://docs.talon.one/docs/dev/tutorials/using-identifiers).  **Important**: Ensure the session contains an identifier by the time you close it if: - You [create a unique identifier budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign. - Your campaign has [coupons](https://docs.talon.one/docs/product/campaigns/coupons/coupon-page-overview). - We recommend passing an anonymized (hashed) version of the identifier value. </param>
         /// <param name="attributes">Use this property to set a value for the attributes of your choice. Attributes represent any information to attach to your session, like the shipping city.  You can use [built-in attributes](https://docs.talon.one/docs/dev/concepts/attributes#built-in-attributes) or [custom ones](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes). Custom attributes must be created in the Campaign Manager before you set them with this property. </param>
         [JsonConstructor]
-        public NewCustomerSessionV2(Option<string> profileId = default, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<List<string>> couponCodes = default, Option<string> referralCode = default, Option<List<string>> loyaltyCards = default, Option<StateEnum?> state = default, Option<List<CartItem>> cartItems = default, Option<Dictionary<string, AdditionalCost>> additionalCosts = default, Option<List<string>> identifiers = default, Option<Object> attributes = default)
+        public NewCustomerSessionV2(Option<string> profileId = default, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<List<string>> couponCodes = default, Option<string> referralCode = default, Option<List<string>> loyaltyCards = default, Option<StateEnum?> state = default, Option<List<CartItem>> cartItems = default, Option<List<ExperimentVariantAllocation>> experimentVariantAllocations = default, Option<Dictionary<string, AdditionalCost>> additionalCosts = default, Option<List<string>> identifiers = default, Option<Object> attributes = default)
         {
             ProfileIdOption = profileId;
             StoreIntegrationIdOption = storeIntegrationId;
@@ -53,6 +54,7 @@ namespace TalonOneSdk.Model
             LoyaltyCardsOption = loyaltyCards;
             StateOption = state;
             CartItemsOption = cartItems;
+            ExperimentVariantAllocationsOption = experimentVariantAllocations;
             AdditionalCostsOption = additionalCosts;
             IdentifiersOption = identifiers;
             AttributesOption = attributes;
@@ -276,6 +278,20 @@ namespace TalonOneSdk.Model
         public List<CartItem> CartItems { get { return this.CartItemsOption; } set { this.CartItemsOption = new Option<List<CartItem>>(value); } }
 
         /// <summary>
+        /// Used to track the state of ExperimentVariantAllocations
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<ExperimentVariantAllocation>> ExperimentVariantAllocationsOption { get; private set; }
+
+        /// <summary>
+        /// The experiment variant allocations to add to this session. 
+        /// </summary>
+        /// <value>The experiment variant allocations to add to this session. </value>
+        [JsonPropertyName("experimentVariantAllocations")]
+        public List<ExperimentVariantAllocation> ExperimentVariantAllocations { get { return this.ExperimentVariantAllocationsOption; } set { this.ExperimentVariantAllocationsOption = new Option<List<ExperimentVariantAllocation>>(value); } }
+
+        /// <summary>
         /// Used to track the state of AdditionalCosts
         /// </summary>
         [JsonIgnore]
@@ -336,6 +352,7 @@ namespace TalonOneSdk.Model
             sb.Append("  LoyaltyCards: ").Append(LoyaltyCards).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  CartItems: ").Append(CartItems).Append("\n");
+            sb.Append("  ExperimentVariantAllocations: ").Append(ExperimentVariantAllocations).Append("\n");
             sb.Append("  AdditionalCosts: ").Append(AdditionalCosts).Append("\n");
             sb.Append("  Identifiers: ").Append(Identifiers).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
@@ -402,6 +419,7 @@ namespace TalonOneSdk.Model
             Option<List<string>> loyaltyCards = default;
             Option<NewCustomerSessionV2.StateEnum?> state = default;
             Option<List<CartItem>> cartItems = default;
+            Option<List<ExperimentVariantAllocation>> experimentVariantAllocations = default;
             Option<Dictionary<string, AdditionalCost>> additionalCosts = default;
             Option<List<string>> identifiers = default;
             Option<Object> attributes = default;
@@ -447,6 +465,9 @@ namespace TalonOneSdk.Model
                         case "cartItems":
                             cartItems = new Option<List<CartItem>>(JsonSerializer.Deserialize<List<CartItem>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "experimentVariantAllocations":
+                            experimentVariantAllocations = new Option<List<ExperimentVariantAllocation>>(JsonSerializer.Deserialize<List<ExperimentVariantAllocation>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "additionalCosts":
                             additionalCosts = new Option<Dictionary<string, AdditionalCost>>(JsonSerializer.Deserialize<Dictionary<string, AdditionalCost>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -486,6 +507,9 @@ namespace TalonOneSdk.Model
             if (cartItems.IsSet && cartItems.Value == null)
                 throw new ArgumentNullException(nameof(cartItems), "Property is not nullable for class NewCustomerSessionV2.");
 
+            if (experimentVariantAllocations.IsSet && experimentVariantAllocations.Value == null)
+                throw new ArgumentNullException(nameof(experimentVariantAllocations), "Property is not nullable for class NewCustomerSessionV2.");
+
             if (additionalCosts.IsSet && additionalCosts.Value == null)
                 throw new ArgumentNullException(nameof(additionalCosts), "Property is not nullable for class NewCustomerSessionV2.");
 
@@ -495,7 +519,7 @@ namespace TalonOneSdk.Model
             if (attributes.IsSet && attributes.Value == null)
                 throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class NewCustomerSessionV2.");
 
-            return new NewCustomerSessionV2(profileId, storeIntegrationId, evaluableCampaignIds, couponCodes, referralCode, loyaltyCards, state, cartItems, additionalCosts, identifiers, attributes);
+            return new NewCustomerSessionV2(profileId, storeIntegrationId, evaluableCampaignIds, couponCodes, referralCode, loyaltyCards, state, cartItems, experimentVariantAllocations, additionalCosts, identifiers, attributes);
         }
 
         /// <summary>
@@ -543,6 +567,9 @@ namespace TalonOneSdk.Model
             if (newCustomerSessionV2.CartItemsOption.IsSet && newCustomerSessionV2.CartItems == null)
                 throw new ArgumentNullException(nameof(newCustomerSessionV2.CartItems), "Property is required for class NewCustomerSessionV2.");
 
+            if (newCustomerSessionV2.ExperimentVariantAllocationsOption.IsSet && newCustomerSessionV2.ExperimentVariantAllocations == null)
+                throw new ArgumentNullException(nameof(newCustomerSessionV2.ExperimentVariantAllocations), "Property is required for class NewCustomerSessionV2.");
+
             if (newCustomerSessionV2.AdditionalCostsOption.IsSet && newCustomerSessionV2.AdditionalCosts == null)
                 throw new ArgumentNullException(nameof(newCustomerSessionV2.AdditionalCosts), "Property is required for class NewCustomerSessionV2.");
 
@@ -585,6 +612,11 @@ namespace TalonOneSdk.Model
             {
                 writer.WritePropertyName("cartItems");
                 JsonSerializer.Serialize(writer, newCustomerSessionV2.CartItems, jsonSerializerOptions);
+            }
+            if (newCustomerSessionV2.ExperimentVariantAllocationsOption.IsSet)
+            {
+                writer.WritePropertyName("experimentVariantAllocations");
+                JsonSerializer.Serialize(writer, newCustomerSessionV2.ExperimentVariantAllocations, jsonSerializerOptions);
             }
             if (newCustomerSessionV2.AdditionalCostsOption.IsSet)
             {

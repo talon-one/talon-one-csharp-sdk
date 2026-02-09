@@ -36,6 +36,7 @@ namespace TalonOneSdk.Model
         /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
         /// <param name="ruleName">The name of the rule that triggered this effect.</param>
         /// <param name="effectType">The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
         /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
         /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
         /// <param name="conditionIndex">The index of the condition that was triggered.</param>
@@ -48,13 +49,14 @@ namespace TalonOneSdk.Model
         /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
         /// <param name="props">props</param>
         [JsonConstructor]
-        public Effect(long campaignId, long rulesetId, long ruleIndex, string ruleName, string effectType, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Object props = default)
+        public Effect(long campaignId, long rulesetId, long ruleIndex, string ruleName, string effectType, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Object props = default)
         {
             CampaignId = campaignId;
             RulesetId = rulesetId;
             RuleIndex = ruleIndex;
             RuleName = ruleName;
             EffectType = effectType;
+            ExperimentIdOption = experimentId;
             TriggeredByCouponOption = triggeredByCoupon;
             TriggeredForCatalogItemOption = triggeredForCatalogItem;
             ConditionIndexOption = conditionIndex;
@@ -110,6 +112,21 @@ namespace TalonOneSdk.Model
         /* <example>rejectCoupon</example> */
         [JsonPropertyName("effectType")]
         public string EffectType { get; set; }
+
+        /// <summary>
+        /// Used to track the state of ExperimentId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> ExperimentIdOption { get; private set; }
+
+        /// <summary>
+        /// The ID of the experiment that campaign belongs to.
+        /// </summary>
+        /// <value>The ID of the experiment that campaign belongs to.</value>
+        /* <example>12</example> */
+        [JsonPropertyName("experimentId")]
+        public long? ExperimentId { get { return this.ExperimentIdOption; } set { this.ExperimentIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of TriggeredByCoupon
@@ -280,6 +297,7 @@ namespace TalonOneSdk.Model
             sb.Append("  RuleIndex: ").Append(RuleIndex).Append("\n");
             sb.Append("  RuleName: ").Append(RuleName).Append("\n");
             sb.Append("  EffectType: ").Append(EffectType).Append("\n");
+            sb.Append("  ExperimentId: ").Append(ExperimentId).Append("\n");
             sb.Append("  TriggeredByCoupon: ").Append(TriggeredByCoupon).Append("\n");
             sb.Append("  TriggeredForCatalogItem: ").Append(TriggeredForCatalogItem).Append("\n");
             sb.Append("  ConditionIndex: ").Append(ConditionIndex).Append("\n");
@@ -333,6 +351,7 @@ namespace TalonOneSdk.Model
             Option<long?> ruleIndex = default;
             Option<string> ruleName = default;
             Option<string> effectType = default;
+            Option<long?> experimentId = default;
             Option<long?> triggeredByCoupon = default;
             Option<long?> triggeredForCatalogItem = default;
             Option<long?> conditionIndex = default;
@@ -374,6 +393,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "effectType":
                             effectType = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "experimentId":
+                            experimentId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "triggeredByCoupon":
                             triggeredByCoupon = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
@@ -447,6 +469,9 @@ namespace TalonOneSdk.Model
             if (effectType.IsSet && effectType.Value == null)
                 throw new ArgumentNullException(nameof(effectType), "Property is not nullable for class Effect.");
 
+            if (experimentId.IsSet && experimentId.Value == null)
+                throw new ArgumentNullException(nameof(experimentId), "Property is not nullable for class Effect.");
+
             if (triggeredByCoupon.IsSet && triggeredByCoupon.Value == null)
                 throw new ArgumentNullException(nameof(triggeredByCoupon), "Property is not nullable for class Effect.");
 
@@ -477,7 +502,7 @@ namespace TalonOneSdk.Model
             if (adjustmentReferenceId.IsSet && adjustmentReferenceId.Value == null)
                 throw new ArgumentNullException(nameof(adjustmentReferenceId), "Property is not nullable for class Effect.");
 
-            return new Effect(campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, effectType.Value, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, props.Value);
+            return new Effect(campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, effectType.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, props.Value);
         }
 
         /// <summary>
@@ -525,6 +550,9 @@ namespace TalonOneSdk.Model
             writer.WriteString("ruleName", effect.RuleName);
 
             writer.WriteString("effectType", effect.EffectType);
+
+            if (effect.ExperimentIdOption.IsSet)
+                writer.WriteNumber("experimentId", effect.ExperimentIdOption.Value.Value);
 
             if (effect.TriggeredByCouponOption.IsSet)
                 writer.WriteNumber("triggeredByCoupon", effect.TriggeredByCouponOption.Value.Value);

@@ -44,14 +44,15 @@ namespace TalonOneSdk.Model
         /// <param name="endTime">Timestamp when the campaign will become inactive.</param>
         /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
         /// <param name="description">A detailed description of the campaign.</param>
-        /// <param name="activeRulesetId">The ID of the ruleset this campaign template will use.</param>
-        /// <param name="tags">A list of tags for the campaign template.</param>
+        /// <param name="activeRulesetId">The ID of the ruleset this campaign will use.</param>
+        /// <param name="tags">A list of tags for the campaign.</param>
         /// <param name="couponSettings">couponSettings</param>
         /// <param name="referralSettings">referralSettings</param>
         /// <param name="limits">The set of limits that will operate for this campaign version.</param>
-        /// <param name="features">A list of features for the campaign template.</param>
+        /// <param name="reevaluateOnReturn">Indicates whether this campaign should be reevaluated when a customer returns an item.</param>
+        /// <param name="features">A list of features for the campaign.</param>
         [JsonConstructor]
-        public RevisionVersion(long id, long accountId, long applicationId, long campaignId, DateTime created, long createdBy, long revisionId, long varVersion, Option<string> name = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, Option<string> description = default, Option<int?> activeRulesetId = default, Option<List<string>> tags = default, Option<CodeGeneratorSettings> couponSettings = default, Option<CodeGeneratorSettings> referralSettings = default, Option<List<LimitConfig>> limits = default, Option<List<RevisionVersion.FeaturesEnum>> features = default)
+        public RevisionVersion(long id, long accountId, long applicationId, long campaignId, DateTime created, long createdBy, long revisionId, long varVersion, Option<string> name = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, Option<string> description = default, Option<int?> activeRulesetId = default, Option<List<string>> tags = default, Option<CodeGeneratorSettings> couponSettings = default, Option<CodeGeneratorSettings> referralSettings = default, Option<List<LimitConfig>> limits = default, Option<bool?> reevaluateOnReturn = default, Option<List<RevisionVersion.FeaturesEnum>> features = default)
         {
             Id = id;
             AccountId = accountId;
@@ -71,6 +72,7 @@ namespace TalonOneSdk.Model
             CouponSettingsOption = couponSettings;
             ReferralSettingsOption = referralSettings;
             LimitsOption = limits;
+            ReevaluateOnReturnOption = reevaluateOnReturn;
             FeaturesOption = features;
             OnCreated();
         }
@@ -331,9 +333,9 @@ namespace TalonOneSdk.Model
         public Option<int?> ActiveRulesetIdOption { get; private set; }
 
         /// <summary>
-        /// The ID of the ruleset this campaign template will use.
+        /// The ID of the ruleset this campaign will use.
         /// </summary>
-        /// <value>The ID of the ruleset this campaign template will use.</value>
+        /// <value>The ID of the ruleset this campaign will use.</value>
         /* <example>5</example> */
         [JsonPropertyName("activeRulesetId")]
         public int? ActiveRulesetId { get { return this.ActiveRulesetIdOption; } set { this.ActiveRulesetIdOption = new Option<int?>(value); } }
@@ -346,9 +348,9 @@ namespace TalonOneSdk.Model
         public Option<List<string>> TagsOption { get; private set; }
 
         /// <summary>
-        /// A list of tags for the campaign template.
+        /// A list of tags for the campaign.
         /// </summary>
-        /// <value>A list of tags for the campaign template.</value>
+        /// <value>A list of tags for the campaign.</value>
         [JsonPropertyName("tags")]
         public List<string> Tags { get { return this.TagsOption; } set { this.TagsOption = new Option<List<string>>(value); } }
 
@@ -393,6 +395,21 @@ namespace TalonOneSdk.Model
         public List<LimitConfig> Limits { get { return this.LimitsOption; } set { this.LimitsOption = new Option<List<LimitConfig>>(value); } }
 
         /// <summary>
+        /// Used to track the state of ReevaluateOnReturn
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> ReevaluateOnReturnOption { get; private set; }
+
+        /// <summary>
+        /// Indicates whether this campaign should be reevaluated when a customer returns an item.
+        /// </summary>
+        /// <value>Indicates whether this campaign should be reevaluated when a customer returns an item.</value>
+        /* <example>true</example> */
+        [JsonPropertyName("reevaluateOnReturn")]
+        public bool? ReevaluateOnReturn { get { return this.ReevaluateOnReturnOption; } set { this.ReevaluateOnReturnOption = new Option<bool?>(value); } }
+
+        /// <summary>
         /// Used to track the state of Features
         /// </summary>
         [JsonIgnore]
@@ -400,9 +417,9 @@ namespace TalonOneSdk.Model
         public Option<List<RevisionVersion.FeaturesEnum>> FeaturesOption { get; private set; }
 
         /// <summary>
-        /// A list of features for the campaign template.
+        /// A list of features for the campaign.
         /// </summary>
-        /// <value>A list of features for the campaign template.</value>
+        /// <value>A list of features for the campaign.</value>
         [JsonPropertyName("features")]
         public List<RevisionVersion.FeaturesEnum> Features { get { return this.FeaturesOption; } set { this.FeaturesOption = new Option<List<RevisionVersion.FeaturesEnum>>(value); } }
 
@@ -432,6 +449,7 @@ namespace TalonOneSdk.Model
             sb.Append("  CouponSettings: ").Append(CouponSettings).Append("\n");
             sb.Append("  ReferralSettings: ").Append(ReferralSettings).Append("\n");
             sb.Append("  Limits: ").Append(Limits).Append("\n");
+            sb.Append("  ReevaluateOnReturn: ").Append(ReevaluateOnReturn).Append("\n");
             sb.Append("  Features: ").Append(Features).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -509,6 +527,7 @@ namespace TalonOneSdk.Model
             Option<CodeGeneratorSettings> couponSettings = default;
             Option<CodeGeneratorSettings> referralSettings = default;
             Option<List<LimitConfig>> limits = default;
+            Option<bool?> reevaluateOnReturn = default;
             Option<List<RevisionVersion.FeaturesEnum>> features = default;
 
             while (utf8JsonReader.Read())
@@ -579,6 +598,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "limits":
                             limits = new Option<List<LimitConfig>>(JsonSerializer.Deserialize<List<LimitConfig>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "reevaluateOnReturn":
+                            reevaluateOnReturn = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "features":
                             features = new Option<List<RevisionVersion.FeaturesEnum>>(JsonSerializer.Deserialize<List<RevisionVersion.FeaturesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -667,10 +689,13 @@ namespace TalonOneSdk.Model
             if (limits.IsSet && limits.Value == null)
                 throw new ArgumentNullException(nameof(limits), "Property is not nullable for class RevisionVersion.");
 
+            if (reevaluateOnReturn.IsSet && reevaluateOnReturn.Value == null)
+                throw new ArgumentNullException(nameof(reevaluateOnReturn), "Property is not nullable for class RevisionVersion.");
+
             if (features.IsSet && features.Value == null)
                 throw new ArgumentNullException(nameof(features), "Property is not nullable for class RevisionVersion.");
 
-            return new RevisionVersion(id.Value.Value, accountId.Value.Value, applicationId.Value.Value, campaignId.Value.Value, created.Value.Value, createdBy.Value.Value, revisionId.Value.Value, varVersion.Value.Value, name, startTime, endTime, attributes, description, activeRulesetId, tags, couponSettings, referralSettings, limits, features);
+            return new RevisionVersion(id.Value.Value, accountId.Value.Value, applicationId.Value.Value, campaignId.Value.Value, created.Value.Value, createdBy.Value.Value, revisionId.Value.Value, varVersion.Value.Value, name, startTime, endTime, attributes, description, activeRulesetId, tags, couponSettings, referralSettings, limits, reevaluateOnReturn, features);
         }
 
         /// <summary>
@@ -777,6 +802,9 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("limits");
                 JsonSerializer.Serialize(writer, revisionVersion.Limits, jsonSerializerOptions);
             }
+            if (revisionVersion.ReevaluateOnReturnOption.IsSet)
+                writer.WriteBoolean("reevaluateOnReturn", revisionVersion.ReevaluateOnReturnOption.Value.Value);
+
             if (revisionVersion.FeaturesOption.IsSet)
             {
                 writer.WritePropertyName("features");

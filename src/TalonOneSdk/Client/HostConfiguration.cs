@@ -76,6 +76,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new AddedDeductedPointsNotificationPolicyJsonConverter());
             _jsonOptions.Converters.Add(new AdditionalCampaignPropertiesJsonConverter());
             _jsonOptions.Converters.Add(new AdditionalCostJsonConverter());
+            _jsonOptions.Converters.Add(new AdjustmentDetailsJsonConverter());
             _jsonOptions.Converters.Add(new AnalyticsDataPointJsonConverter());
             _jsonOptions.Converters.Add(new AnalyticsDataPointWithTrendJsonConverter());
             _jsonOptions.Converters.Add(new AnalyticsDataPointWithTrendAndInfluencedRateJsonConverter());
@@ -256,6 +257,12 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new EventTypeJsonConverter());
             _jsonOptions.Converters.Add(new EventV2JsonConverter());
             _jsonOptions.Converters.Add(new EventV3JsonConverter());
+            _jsonOptions.Converters.Add(new ExperimentJsonConverter());
+            _jsonOptions.Converters.Add(new ExperimentResultsJsonConverter());
+            _jsonOptions.Converters.Add(new ExperimentVariantJsonConverter());
+            _jsonOptions.Converters.Add(new ExperimentVariantAllocationJsonConverter());
+            _jsonOptions.Converters.Add(new ExperimentVariantResultJsonConverter());
+            _jsonOptions.Converters.Add(new ExperimentVariantResultConfidenceJsonConverter());
             _jsonOptions.Converters.Add(new ExpiringCardPointsDataJsonConverter());
             _jsonOptions.Converters.Add(new ExpiringCardPointsNotificationJsonConverter());
             _jsonOptions.Converters.Add(new ExpiringCouponsDataJsonConverter());
@@ -335,6 +342,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new ImportJsonConverter());
             _jsonOptions.Converters.Add(new ImportEntityJsonConverter());
             _jsonOptions.Converters.Add(new IncreaseAchievementProgressEffectPropsJsonConverter());
+            _jsonOptions.Converters.Add(new InfluencingCampaignDetailsJsonConverter());
             _jsonOptions.Converters.Add(new IntegrationCouponJsonConverter());
             _jsonOptions.Converters.Add(new IntegrationCustomerProfileAudienceRequestJsonConverter());
             _jsonOptions.Converters.Add(new IntegrationCustomerProfileAudienceRequestItemJsonConverter());
@@ -448,6 +456,9 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new NewCustomerSessionV2JsonConverter());
             _jsonOptions.Converters.Add(new NewEventJsonConverter());
             _jsonOptions.Converters.Add(new NewEventTypeJsonConverter());
+            _jsonOptions.Converters.Add(new NewExperimentJsonConverter());
+            _jsonOptions.Converters.Add(new NewExperimentVariantJsonConverter());
+            _jsonOptions.Converters.Add(new NewExperimentVariantArrayJsonConverter());
             _jsonOptions.Converters.Add(new NewExternalInvitationJsonConverter());
             _jsonOptions.Converters.Add(new NewGiveawaysPoolJsonConverter());
             _jsonOptions.Converters.Add(new NewInternalAudienceJsonConverter());
@@ -651,6 +662,9 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new UpdateCustomEffectJsonConverter());
             _jsonOptions.Converters.Add(new UpdateCustomerProfileV2409ResponseJsonConverter());
             _jsonOptions.Converters.Add(new UpdateCustomerSessionV2409ResponseJsonConverter());
+            _jsonOptions.Converters.Add(new UpdateExperimentJsonConverter());
+            _jsonOptions.Converters.Add(new UpdateExperimentVariantJsonConverter());
+            _jsonOptions.Converters.Add(new UpdateExperimentVariantArrayJsonConverter());
             _jsonOptions.Converters.Add(new UpdateLoyaltyCardJsonConverter());
             _jsonOptions.Converters.Add(new UpdateLoyaltyProgramJsonConverter());
             _jsonOptions.Converters.Add(new UpdateLoyaltyProgramTierJsonConverter());
