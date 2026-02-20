@@ -37,6 +37,7 @@ namespace TalonOneSdk.Model
         /// <param name="value">value</param>
         /// <param name="usageLimit">usageLimit</param>
         /// <param name="usageCounter">usageCounter</param>
+        /// <param name="publishedAt">Timestamp when the event was published.</param>
         /// <param name="sourceOfEvent">sourceOfEvent</param>
         /// <param name="employeeName">employeeName</param>
         /// <param name="discountLimit">discountLimit</param>
@@ -52,7 +53,7 @@ namespace TalonOneSdk.Model
         /// <param name="attributes">attributes</param>
         /// <param name="limits">limits</param>
         [JsonConstructor]
-        public PrismaticEventPayloadCouponBasedNotifications(long id, DateTime created, long campaignId, string value, long usageLimit, long usageCounter, string sourceOfEvent, string employeeName, Option<float?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<float?> discountCounter = default, Option<float?> discountRemainder = default, Option<long?> referralId = default, Option<string> recipientIntegrationId = default, Option<long?> importId = default, Option<string> batchId = default, Option<Object> attributes = default, Option<List<PrismaticEventPayloadCouponBasedNotificationsLimits>> limits = default)
+        public PrismaticEventPayloadCouponBasedNotifications(long id, DateTime created, long campaignId, string value, long usageLimit, long usageCounter, DateTime publishedAt, string sourceOfEvent, string employeeName, Option<float?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<float?> discountCounter = default, Option<float?> discountRemainder = default, Option<long?> referralId = default, Option<string> recipientIntegrationId = default, Option<long?> importId = default, Option<string> batchId = default, Option<Object> attributes = default, Option<List<PrismaticEventPayloadCouponBasedNotificationsLimits>> limits = default)
         {
             Id = id;
             Created = created;
@@ -60,6 +61,7 @@ namespace TalonOneSdk.Model
             Value = value;
             UsageLimit = usageLimit;
             UsageCounter = usageCounter;
+            PublishedAt = publishedAt;
             SourceOfEvent = sourceOfEvent;
             EmployeeName = employeeName;
             DiscountLimitOption = discountLimit;
@@ -114,6 +116,13 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonPropertyName("UsageCounter")]
         public long UsageCounter { get; set; }
+
+        /// <summary>
+        /// Timestamp when the event was published.
+        /// </summary>
+        /// <value>Timestamp when the event was published.</value>
+        [JsonPropertyName("PublishedAt")]
+        public DateTime PublishedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets SourceOfEvent
@@ -297,6 +306,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("  UsageLimit: ").Append(UsageLimit).Append("\n");
             sb.Append("  UsageCounter: ").Append(UsageCounter).Append("\n");
+            sb.Append("  PublishedAt: ").Append(PublishedAt).Append("\n");
             sb.Append("  SourceOfEvent: ").Append(SourceOfEvent).Append("\n");
             sb.Append("  EmployeeName: ").Append(EmployeeName).Append("\n");
             sb.Append("  DiscountLimit: ").Append(DiscountLimit).Append("\n");
@@ -337,6 +347,11 @@ namespace TalonOneSdk.Model
         public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
+        /// The format to use to serialize PublishedAt
+        /// </summary>
+        public static string PublishedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+
+        /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
         public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
@@ -369,6 +384,7 @@ namespace TalonOneSdk.Model
             Option<string> value = default;
             Option<long?> usageLimit = default;
             Option<long?> usageCounter = default;
+            Option<DateTime?> publishedAt = default;
             Option<string> sourceOfEvent = default;
             Option<string> employeeName = default;
             Option<float?> discountLimit = default;
@@ -416,6 +432,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "UsageCounter":
                             usageCounter = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "PublishedAt":
+                            publishedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "SourceOfEvent":
                             sourceOfEvent = new Option<string>(utf8JsonReader.GetString());
@@ -483,6 +502,9 @@ namespace TalonOneSdk.Model
             if (!usageCounter.IsSet)
                 throw new ArgumentException("Property is required for class PrismaticEventPayloadCouponBasedNotifications.", nameof(usageCounter));
 
+            if (!publishedAt.IsSet)
+                throw new ArgumentException("Property is required for class PrismaticEventPayloadCouponBasedNotifications.", nameof(publishedAt));
+
             if (!sourceOfEvent.IsSet)
                 throw new ArgumentException("Property is required for class PrismaticEventPayloadCouponBasedNotifications.", nameof(sourceOfEvent));
 
@@ -506,6 +528,9 @@ namespace TalonOneSdk.Model
 
             if (usageCounter.IsSet && usageCounter.Value == null)
                 throw new ArgumentNullException(nameof(usageCounter), "Property is not nullable for class PrismaticEventPayloadCouponBasedNotifications.");
+
+            if (publishedAt.IsSet && publishedAt.Value == null)
+                throw new ArgumentNullException(nameof(publishedAt), "Property is not nullable for class PrismaticEventPayloadCouponBasedNotifications.");
 
             if (sourceOfEvent.IsSet && sourceOfEvent.Value == null)
                 throw new ArgumentNullException(nameof(sourceOfEvent), "Property is not nullable for class PrismaticEventPayloadCouponBasedNotifications.");
@@ -549,7 +574,7 @@ namespace TalonOneSdk.Model
             if (limits.IsSet && limits.Value == null)
                 throw new ArgumentNullException(nameof(limits), "Property is not nullable for class PrismaticEventPayloadCouponBasedNotifications.");
 
-            return new PrismaticEventPayloadCouponBasedNotifications(id.Value.Value, created.Value.Value, campaignId.Value.Value, value.Value, usageLimit.Value.Value, usageCounter.Value.Value, sourceOfEvent.Value, employeeName.Value, discountLimit, reservationLimit, startDate, expiryDate, discountCounter, discountRemainder, referralId, recipientIntegrationId, importId, batchId, attributes, limits);
+            return new PrismaticEventPayloadCouponBasedNotifications(id.Value.Value, created.Value.Value, campaignId.Value.Value, value.Value, usageLimit.Value.Value, usageCounter.Value.Value, publishedAt.Value.Value, sourceOfEvent.Value, employeeName.Value, discountLimit, reservationLimit, startDate, expiryDate, discountCounter, discountRemainder, referralId, recipientIntegrationId, importId, batchId, attributes, limits);
         }
 
         /// <summary>
@@ -608,6 +633,8 @@ namespace TalonOneSdk.Model
             writer.WriteNumber("UsageLimit", prismaticEventPayloadCouponBasedNotifications.UsageLimit);
 
             writer.WriteNumber("UsageCounter", prismaticEventPayloadCouponBasedNotifications.UsageCounter);
+
+            writer.WriteString("PublishedAt", prismaticEventPayloadCouponBasedNotifications.PublishedAt.ToString(PublishedAtFormat));
 
             writer.WriteString("SourceOfEvent", prismaticEventPayloadCouponBasedNotifications.SourceOfEvent);
 

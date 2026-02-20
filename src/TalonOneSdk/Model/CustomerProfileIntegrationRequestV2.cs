@@ -33,15 +33,15 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="attributes">Arbitrary properties associated with this item.</param>
         /// <param name="evaluableCampaignIds">When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them. </param>
+        /// <param name="responseContent">Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints. </param>
         /// <param name="audiencesChanges">Audiences memberships changes for this profile.</param>
-        /// <param name="responseContent">Extends the response with the chosen data entities. Use this property to get as much data as you need in one _Update customer profile_ request instead of sending extra requests to other endpoints. </param>
         [JsonConstructor]
-        public CustomerProfileIntegrationRequestV2(Option<Object> attributes = default, Option<List<long>> evaluableCampaignIds = default, Option<Object> audiencesChanges = default, Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>> responseContent = default)
+        public CustomerProfileIntegrationRequestV2(Option<Object> attributes = default, Option<List<long>> evaluableCampaignIds = default, Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>> responseContent = default, Option<ProfileAudiencesChanges> audiencesChanges = default)
         {
             AttributesOption = attributes;
             EvaluableCampaignIdsOption = evaluableCampaignIds;
-            AudiencesChangesOption = audiencesChanges;
             ResponseContentOption = responseContent;
+            AudiencesChangesOption = audiencesChanges;
             OnCreated();
         }
 
@@ -200,20 +200,6 @@ namespace TalonOneSdk.Model
         public List<long> EvaluableCampaignIds { get { return this.EvaluableCampaignIdsOption; } set { this.EvaluableCampaignIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
-        /// Used to track the state of AudiencesChanges
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Object> AudiencesChangesOption { get; private set; }
-
-        /// <summary>
-        /// Audiences memberships changes for this profile.
-        /// </summary>
-        /// <value>Audiences memberships changes for this profile.</value>
-        [JsonPropertyName("audiencesChanges")]
-        public Object AudiencesChanges { get { return this.AudiencesChangesOption; } set { this.AudiencesChangesOption = new Option<Object>(value); } }
-
-        /// <summary>
         /// Used to track the state of ResponseContent
         /// </summary>
         [JsonIgnore]
@@ -221,12 +207,26 @@ namespace TalonOneSdk.Model
         public Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>> ResponseContentOption { get; private set; }
 
         /// <summary>
-        /// Extends the response with the chosen data entities. Use this property to get as much data as you need in one _Update customer profile_ request instead of sending extra requests to other endpoints. 
+        /// Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints. 
         /// </summary>
-        /// <value>Extends the response with the chosen data entities. Use this property to get as much data as you need in one _Update customer profile_ request instead of sending extra requests to other endpoints. </value>
+        /// <value>Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints. </value>
         /* <example>[triggeredCampaigns, customerProfile]</example> */
         [JsonPropertyName("responseContent")]
         public List<CustomerProfileIntegrationRequestV2.ResponseContentEnum> ResponseContent { get { return this.ResponseContentOption; } set { this.ResponseContentOption = new Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>>(value); } }
+
+        /// <summary>
+        /// Used to track the state of AudiencesChanges
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<ProfileAudiencesChanges> AudiencesChangesOption { get; private set; }
+
+        /// <summary>
+        /// Audiences memberships changes for this profile.
+        /// </summary>
+        /// <value>Audiences memberships changes for this profile.</value>
+        [JsonPropertyName("audiencesChanges")]
+        public ProfileAudiencesChanges AudiencesChanges { get { return this.AudiencesChangesOption; } set { this.AudiencesChangesOption = new Option<ProfileAudiencesChanges>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -238,8 +238,8 @@ namespace TalonOneSdk.Model
             sb.Append("class CustomerProfileIntegrationRequestV2 {\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  EvaluableCampaignIds: ").Append(EvaluableCampaignIds).Append("\n");
-            sb.Append("  AudiencesChanges: ").Append(AudiencesChanges).Append("\n");
             sb.Append("  ResponseContent: ").Append(ResponseContent).Append("\n");
+            sb.Append("  AudiencesChanges: ").Append(AudiencesChanges).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -279,8 +279,8 @@ namespace TalonOneSdk.Model
 
             Option<Object> attributes = default;
             Option<List<long>> evaluableCampaignIds = default;
-            Option<Object> audiencesChanges = default;
             Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>> responseContent = default;
+            Option<ProfileAudiencesChanges> audiencesChanges = default;
 
             while (utf8JsonReader.Read())
             {
@@ -303,11 +303,11 @@ namespace TalonOneSdk.Model
                         case "evaluableCampaignIds":
                             evaluableCampaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "audiencesChanges":
-                            audiencesChanges = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
                         case "responseContent":
                             responseContent = new Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>>(JsonSerializer.Deserialize<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "audiencesChanges":
+                            audiencesChanges = new Option<ProfileAudiencesChanges>(JsonSerializer.Deserialize<ProfileAudiencesChanges>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -324,7 +324,10 @@ namespace TalonOneSdk.Model
             if (responseContent.IsSet && responseContent.Value == null)
                 throw new ArgumentNullException(nameof(responseContent), "Property is not nullable for class CustomerProfileIntegrationRequestV2.");
 
-            return new CustomerProfileIntegrationRequestV2(attributes, evaluableCampaignIds, audiencesChanges, responseContent);
+            if (audiencesChanges.IsSet && audiencesChanges.Value == null)
+                throw new ArgumentNullException(nameof(audiencesChanges), "Property is not nullable for class CustomerProfileIntegrationRequestV2.");
+
+            return new CustomerProfileIntegrationRequestV2(attributes, evaluableCampaignIds, responseContent, audiencesChanges);
         }
 
         /// <summary>
@@ -360,6 +363,9 @@ namespace TalonOneSdk.Model
             if (customerProfileIntegrationRequestV2.ResponseContentOption.IsSet && customerProfileIntegrationRequestV2.ResponseContent == null)
                 throw new ArgumentNullException(nameof(customerProfileIntegrationRequestV2.ResponseContent), "Property is required for class CustomerProfileIntegrationRequestV2.");
 
+            if (customerProfileIntegrationRequestV2.AudiencesChangesOption.IsSet && customerProfileIntegrationRequestV2.AudiencesChanges == null)
+                throw new ArgumentNullException(nameof(customerProfileIntegrationRequestV2.AudiencesChanges), "Property is required for class CustomerProfileIntegrationRequestV2.");
+
             if (customerProfileIntegrationRequestV2.AttributesOption.IsSet)
             {
                 writer.WritePropertyName("attributes");
@@ -370,18 +376,15 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("evaluableCampaignIds");
                 JsonSerializer.Serialize(writer, customerProfileIntegrationRequestV2.EvaluableCampaignIds, jsonSerializerOptions);
             }
-            if (customerProfileIntegrationRequestV2.AudiencesChangesOption.IsSet)
-                if (customerProfileIntegrationRequestV2.AudiencesChangesOption.Value != null)
-                {
-                    writer.WritePropertyName("audiencesChanges");
-                    JsonSerializer.Serialize(writer, customerProfileIntegrationRequestV2.AudiencesChanges, jsonSerializerOptions);
-                }
-                else
-                    writer.WriteNull("audiencesChanges");
             if (customerProfileIntegrationRequestV2.ResponseContentOption.IsSet)
             {
                 writer.WritePropertyName("responseContent");
                 JsonSerializer.Serialize(writer, customerProfileIntegrationRequestV2.ResponseContent, jsonSerializerOptions);
+            }
+            if (customerProfileIntegrationRequestV2.AudiencesChangesOption.IsSet)
+            {
+                writer.WritePropertyName("audiencesChanges");
+                JsonSerializer.Serialize(writer, customerProfileIntegrationRequestV2.AudiencesChanges, jsonSerializerOptions);
             }
         }
     }

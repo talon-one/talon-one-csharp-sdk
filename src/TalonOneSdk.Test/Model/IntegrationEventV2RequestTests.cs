@@ -99,21 +99,21 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'LoyaltyCards'
-        /// </summary>
-        [Fact]
-        public void LoyaltyCardsTest()
-        {
-            // TODO unit test for the property 'LoyaltyCards'
-        }
-
-        /// <summary>
         /// Test the property 'ResponseContent'
         /// </summary>
         [Fact]
         public void ResponseContentTest()
         {
             // TODO unit test for the property 'ResponseContent'
+        }
+
+        /// <summary>
+        /// Test the property 'LoyaltyCards'
+        /// </summary>
+        [Fact]
+        public void LoyaltyCardsTest()
+        {
+            // TODO unit test for the property 'LoyaltyCards'
         }
     }
 }

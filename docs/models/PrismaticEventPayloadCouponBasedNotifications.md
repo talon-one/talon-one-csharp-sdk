@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Value** | **string** |  | 
 **UsageLimit** | **long** |  | 
 **UsageCounter** | **long** |  | 
+**PublishedAt** | **DateTime** | Timestamp when the event was published. | 
 **SourceOfEvent** | **string** |  | 
 **EmployeeName** | **string** |  | 
 **DiscountLimit** | **float** |  | [optional] 

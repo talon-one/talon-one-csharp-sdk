@@ -450,7 +450,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<bool> forceCompleteEvaluation = default;
             var response = await _instance.TrackEventV2Async(integrationEventV2Request, silent, dry, forceCompleteEvaluation);
             var model = response.Ok();
-            Assert.IsType<TrackEventV2Response>(model);
+            Assert.IsType<IntegrationEventV2Response>(model);
         }
 
         /// <summary>
