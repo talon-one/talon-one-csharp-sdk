@@ -108,6 +108,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'PublishedAt'
+        /// </summary>
+        [Fact]
+        public void PublishedAtTest()
+        {
+            // TODO unit test for the property 'PublishedAt'
+        }
+
+        /// <summary>
         /// Test the property 'SourceOfEvent'
         /// </summary>
         [Fact]

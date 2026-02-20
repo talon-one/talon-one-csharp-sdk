@@ -79,5 +79,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'Data'
         }
+
+        /// <summary>
+        /// Test the property 'BatchedAt'
+        /// </summary>
+        [Fact]
+        public void BatchedAtTest()
+        {
+            // TODO unit test for the property 'BatchedAt'
+        }
     }
 }

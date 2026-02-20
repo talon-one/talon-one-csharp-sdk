@@ -32,16 +32,16 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="NewExperimentVariant" /> class.
         /// </summary>
         /// <param name="name">The name of this variant.</param>
+        /// <param name="weight">The percentage split of this variant. The sum of all variant percentages must be 100.</param>
         /// <param name="ruleset">ruleset</param>
         /// <param name="isPrimary">isPrimary</param>
-        /// <param name="weight">weight</param>
         [JsonConstructor]
-        public NewExperimentVariant(string name, NewRuleset ruleset, bool isPrimary, Option<long?> weight = default)
+        public NewExperimentVariant(string name, long weight, NewRuleset ruleset, bool isPrimary)
         {
             Name = name;
+            Weight = weight;
             Ruleset = ruleset;
             IsPrimary = isPrimary;
-            WeightOption = weight;
             OnCreated();
         }
 
@@ -53,6 +53,14 @@ namespace TalonOneSdk.Model
         /// <value>The name of this variant.</value>
         [JsonPropertyName("name")]
         public string Name { get; set; }
+
+        /// <summary>
+        /// The percentage split of this variant. The sum of all variant percentages must be 100.
+        /// </summary>
+        /// <value>The percentage split of this variant. The sum of all variant percentages must be 100.</value>
+        /* <example>13</example> */
+        [JsonPropertyName("weight")]
+        public long Weight { get; set; }
 
         /// <summary>
         /// Gets or Sets Ruleset
@@ -68,20 +76,6 @@ namespace TalonOneSdk.Model
         public bool IsPrimary { get; set; }
 
         /// <summary>
-        /// Used to track the state of Weight
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> WeightOption { get; private set; }
-
-        /// <summary>
-        /// Gets or Sets Weight
-        /// </summary>
-        /* <example>13</example> */
-        [JsonPropertyName("weight")]
-        public long? Weight { get { return this.WeightOption; } set { this.WeightOption = new Option<long?>(value); } }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -90,9 +84,9 @@ namespace TalonOneSdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class NewExperimentVariant {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Weight: ").Append(Weight).Append("\n");
             sb.Append("  Ruleset: ").Append(Ruleset).Append("\n");
             sb.Append("  IsPrimary: ").Append(IsPrimary).Append("\n");
-            sb.Append("  Weight: ").Append(Weight).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -118,6 +112,18 @@ namespace TalonOneSdk.Model
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, must match a pattern of " + regexName, new [] { "Name" });
                 }
+            }
+
+            // Weight (long) maximum
+            if (this.Weight > (long)99)
+            {
+                yield return new ValidationResult("Invalid value for Weight, must be a value less than or equal to 99.", new [] { "Weight" });
+            }
+
+            // Weight (long) minimum
+            if (this.Weight < (long)1)
+            {
+                yield return new ValidationResult("Invalid value for Weight, must be a value greater than or equal to 1.", new [] { "Weight" });
             }
 
             yield break;
@@ -147,9 +153,9 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string> name = default;
+            Option<long?> weight = default;
             Option<NewRuleset> ruleset = default;
             Option<bool?> isPrimary = default;
-            Option<long?> weight = default;
 
             while (utf8JsonReader.Read())
             {
@@ -169,14 +175,14 @@ namespace TalonOneSdk.Model
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "weight":
+                            weight = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
                         case "ruleset":
                             ruleset = new Option<NewRuleset>(JsonSerializer.Deserialize<NewRuleset>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "isPrimary":
                             isPrimary = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
-                            break;
-                        case "weight":
-                            weight = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;
@@ -187,6 +193,9 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class NewExperimentVariant.", nameof(name));
 
+            if (!weight.IsSet)
+                throw new ArgumentException("Property is required for class NewExperimentVariant.", nameof(weight));
+
             if (!ruleset.IsSet)
                 throw new ArgumentException("Property is required for class NewExperimentVariant.", nameof(ruleset));
 
@@ -196,16 +205,16 @@ namespace TalonOneSdk.Model
             if (name.IsSet && name.Value == null)
                 throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewExperimentVariant.");
 
+            if (weight.IsSet && weight.Value == null)
+                throw new ArgumentNullException(nameof(weight), "Property is not nullable for class NewExperimentVariant.");
+
             if (ruleset.IsSet && ruleset.Value == null)
                 throw new ArgumentNullException(nameof(ruleset), "Property is not nullable for class NewExperimentVariant.");
 
             if (isPrimary.IsSet && isPrimary.Value == null)
                 throw new ArgumentNullException(nameof(isPrimary), "Property is not nullable for class NewExperimentVariant.");
 
-            if (weight.IsSet && weight.Value == null)
-                throw new ArgumentNullException(nameof(weight), "Property is not nullable for class NewExperimentVariant.");
-
-            return new NewExperimentVariant(name.Value, ruleset.Value, isPrimary.Value.Value, weight);
+            return new NewExperimentVariant(name.Value, weight.Value.Value, ruleset.Value, isPrimary.Value.Value);
         }
 
         /// <summary>
@@ -240,12 +249,11 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("name", newExperimentVariant.Name);
 
+            writer.WriteNumber("weight", newExperimentVariant.Weight);
+
             writer.WritePropertyName("ruleset");
             JsonSerializer.Serialize(writer, newExperimentVariant.Ruleset, jsonSerializerOptions);
             writer.WriteBoolean("isPrimary", newExperimentVariant.IsPrimary);
-
-            if (newExperimentVariant.WeightOption.IsSet)
-                writer.WriteNumber("weight", newExperimentVariant.WeightOption.Value.Value);
         }
     }
 }

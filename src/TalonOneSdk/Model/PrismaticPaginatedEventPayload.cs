@@ -34,12 +34,14 @@ namespace TalonOneSdk.Model
         /// <param name="totalResultSize">totalResultSize</param>
         /// <param name="eventType">eventType</param>
         /// <param name="data">data</param>
+        /// <param name="batchedAt">Timestamp when the batch was created.</param>
         [JsonConstructor]
-        public PrismaticPaginatedEventPayload(long totalResultSize, EventTypeEnum eventType, List<Object> data)
+        public PrismaticPaginatedEventPayload(long totalResultSize, EventTypeEnum eventType, List<Object> data, Option<DateTime?> batchedAt = default)
         {
             TotalResultSize = totalResultSize;
             EventType = eventType;
             Data = data;
+            BatchedAtOption = batchedAt;
             OnCreated();
         }
 
@@ -186,6 +188,20 @@ namespace TalonOneSdk.Model
         public List<Object> Data { get; set; }
 
         /// <summary>
+        /// Used to track the state of BatchedAt
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTime?> BatchedAtOption { get; private set; }
+
+        /// <summary>
+        /// Timestamp when the batch was created.
+        /// </summary>
+        /// <value>Timestamp when the batch was created.</value>
+        [JsonPropertyName("BatchedAt")]
+        public DateTime? BatchedAt { get { return this.BatchedAtOption; } set { this.BatchedAtOption = new Option<DateTime?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -196,6 +212,7 @@ namespace TalonOneSdk.Model
             sb.Append("  TotalResultSize: ").Append(TotalResultSize).Append("\n");
             sb.Append("  EventType: ").Append(EventType).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  BatchedAt: ").Append(BatchedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -217,6 +234,11 @@ namespace TalonOneSdk.Model
     public class PrismaticPaginatedEventPayloadJsonConverter : JsonConverter<PrismaticPaginatedEventPayload>
     {
         /// <summary>
+        /// The format to use to serialize BatchedAt
+        /// </summary>
+        public static string BatchedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+
+        /// <summary>
         /// Deserializes json to <see cref="PrismaticPaginatedEventPayload" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
@@ -236,6 +258,7 @@ namespace TalonOneSdk.Model
             Option<long?> totalResultSize = default;
             Option<PrismaticPaginatedEventPayload.EventTypeEnum?> eventType = default;
             Option<List<Object>> data = default;
+            Option<DateTime?> batchedAt = default;
 
             while (utf8JsonReader.Read())
             {
@@ -263,6 +286,9 @@ namespace TalonOneSdk.Model
                         case "Data":
                             data = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "BatchedAt":
+                            batchedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
@@ -287,7 +313,10 @@ namespace TalonOneSdk.Model
             if (data.IsSet && data.Value == null)
                 throw new ArgumentNullException(nameof(data), "Property is not nullable for class PrismaticPaginatedEventPayload.");
 
-            return new PrismaticPaginatedEventPayload(totalResultSize.Value.Value, eventType.Value.Value, data.Value);
+            if (batchedAt.IsSet && batchedAt.Value == null)
+                throw new ArgumentNullException(nameof(batchedAt), "Property is not nullable for class PrismaticPaginatedEventPayload.");
+
+            return new PrismaticPaginatedEventPayload(totalResultSize.Value.Value, eventType.Value.Value, data.Value, batchedAt);
         }
 
         /// <summary>
@@ -323,6 +352,8 @@ namespace TalonOneSdk.Model
             writer.WriteString("EventType", eventTypeRawValue);
             writer.WritePropertyName("Data");
             JsonSerializer.Serialize(writer, prismaticPaginatedEventPayload.Data, jsonSerializerOptions);
+            if (prismaticPaginatedEventPayload.BatchedAtOption.IsSet)
+                writer.WriteString("BatchedAt", prismaticPaginatedEventPayload.BatchedAtOption.Value.Value.ToString(BatchedAtFormat));
         }
     }
 }

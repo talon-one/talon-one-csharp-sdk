@@ -4,6 +4,7 @@
 .github/workflows/test.yml
 .gitignore
 .openapi-generator-ignore
+MIGRATION.md
 Makefile
 README.md
 TalonOneSdk.sln
@@ -99,6 +100,7 @@ docs/models/BestPriorPriceMetadata.md
 docs/models/BestPriorPriceRequest.md
 docs/models/BestPriorTarget.md
 docs/models/Binding.md
+docs/models/Blueprint.md
 docs/models/BulkApplicationNotification.md
 docs/models/BulkOperationOnCampaigns.md
 docs/models/Campaign.md
@@ -170,7 +172,6 @@ docs/models/CodeGeneratorSettings.md
 docs/models/Collection.md
 docs/models/CollectionItem.md
 docs/models/CollectionWithoutPayload.md
-docs/models/CollectionsCatalog.md
 docs/models/Coupon.md
 docs/models/CouponConstraints.md
 docs/models/CouponCreatedEffectProps.md
@@ -184,6 +185,7 @@ docs/models/CouponRejectionReason.md
 docs/models/CouponReservations.md
 docs/models/CouponSearch.md
 docs/models/CouponValue.md
+docs/models/CouponWithApplication.md
 docs/models/CouponsNotificationData.md
 docs/models/CouponsNotificationPolicy.md
 docs/models/CreateAchievement.md
@@ -227,6 +229,7 @@ docs/models/ErrorResponseWithStatus.md
 docs/models/ErrorSource.md
 docs/models/EvaluableCampaignIds.md
 docs/models/Event.md
+docs/models/EventAttributesEntity.md
 docs/models/EventType.md
 docs/models/EventV2.md
 docs/models/EventV3.md
@@ -323,11 +326,13 @@ docs/models/IntegrationCustomerSessionResponse.md
 docs/models/IntegrationEntity.md
 docs/models/IntegrationEvent.md
 docs/models/IntegrationEventV2Request.md
+docs/models/IntegrationEventV2Response.md
 docs/models/IntegrationEventV3Request.md
 docs/models/IntegrationEventV3Response.md
 docs/models/IntegrationProfileEntity.md
 docs/models/IntegrationProfileEntityV3.md
 docs/models/IntegrationRequest.md
+docs/models/IntegrationResponse.md
 docs/models/IntegrationState.md
 docs/models/IntegrationStateV2.md
 docs/models/IntegrationStoreEntity.md
@@ -408,6 +413,7 @@ docs/models/NewApplicationCIFExpression.md
 docs/models/NewAttribute.md
 docs/models/NewAudience.md
 docs/models/NewBaseNotification.md
+docs/models/NewBlueprint.md
 docs/models/NewCampaign.md
 docs/models/NewCampaignCollection.md
 docs/models/NewCampaignEvaluationGroup.md
@@ -418,7 +424,6 @@ docs/models/NewCampaignStoreBudgetStoreLimit.md
 docs/models/NewCampaignTemplate.md
 docs/models/NewCatalog.md
 docs/models/NewCollection.md
-docs/models/NewCollectionsCatalog.md
 docs/models/NewCouponCreationJob.md
 docs/models/NewCouponDeletionJob.md
 docs/models/NewCoupons.md
@@ -486,6 +491,7 @@ docs/models/PendingActivePointsData.md
 docs/models/PendingActivePointsNotification.md
 docs/models/PendingPointsNotificationPolicy.md
 docs/models/Picklist.md
+docs/models/PlaceholderDetails.md
 docs/models/PriceDetail.md
 docs/models/PriceType.md
 docs/models/PriceTypeReferenceDetail.md
@@ -493,10 +499,16 @@ docs/models/PriceTypeReferences.md
 docs/models/PrismaticConfig.md
 docs/models/PrismaticEventPayloadCouponBasedNotifications.md
 docs/models/PrismaticEventPayloadCouponBasedNotificationsLimits.md
-docs/models/PrismaticEventPayloadLoyaltyProfileBasedNotifications.md
-docs/models/PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction.md
+docs/models/PrismaticEventPayloadLoyaltyProfileBasedNotification.md
+docs/models/PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotification.md
+docs/models/PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.md
+docs/models/PrismaticEventPayloadLoyaltyProfileBasedTierDowngradeNotification.md
+docs/models/PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification.md
+docs/models/PrismaticEventRecord.md
 docs/models/PrismaticFlow.md
 docs/models/PrismaticFlowConfig.md
+docs/models/PrismaticFlowConfigResponse.md
+docs/models/PrismaticFlowResponse.md
 docs/models/PrismaticFlowWithConfig.md
 docs/models/PrismaticPaginatedEventPayload.md
 docs/models/Product.md
@@ -518,6 +530,7 @@ docs/models/RemoveItemCatalogAction.md
 docs/models/RemoveManyItemsCatalogAction.md
 docs/models/ReopenSessionResponse.md
 docs/models/ReserveCouponEffectProps.md
+docs/models/ResponseContentObject.md
 docs/models/Return.md
 docs/models/ReturnIntegrationRequest.md
 docs/models/ReturnedCartItem.md
@@ -610,7 +623,6 @@ docs/models/TierWillDowngradeNotification.md
 docs/models/TierWillDowngradeNotificationPolicy.md
 docs/models/TierWillDowngradeNotificationTrigger.md
 docs/models/TimePoint.md
-docs/models/TrackEventV2Response.md
 docs/models/TransferLoyaltyCard.md
 docs/models/TriggerWebhookEffectProps.md
 docs/models/TwoFAConfig.md
@@ -621,6 +633,7 @@ docs/models/UpdateApplicationAPIKey.md
 docs/models/UpdateApplicationCIF.md
 docs/models/UpdateAttributeEffectProps.md
 docs/models/UpdateAudience.md
+docs/models/UpdateBlueprint.md
 docs/models/UpdateCampaign.md
 docs/models/UpdateCampaignCollection.md
 docs/models/UpdateCampaignEvaluationGroup.md
@@ -628,7 +641,6 @@ docs/models/UpdateCampaignGroup.md
 docs/models/UpdateCampaignTemplate.md
 docs/models/UpdateCatalog.md
 docs/models/UpdateCollection.md
-docs/models/UpdateCollectionsCatalog.md
 docs/models/UpdateCoupon.md
 docs/models/UpdateCouponBatch.md
 docs/models/UpdateCouponsData.md
@@ -638,7 +650,9 @@ docs/models/UpdateCustomerSessionV2409Response.md
 docs/models/UpdateExperiment.md
 docs/models/UpdateExperimentVariant.md
 docs/models/UpdateExperimentVariantArray.md
+docs/models/UpdateExperimentVariantName.md
 docs/models/UpdateLoyaltyCard.md
+docs/models/UpdateLoyaltyCardRequest.md
 docs/models/UpdateLoyaltyProgram.md
 docs/models/UpdateLoyaltyProgramTier.md
 docs/models/UpdatePicklist.md
@@ -751,6 +765,7 @@ src/TalonOneSdk.Test/Model/BestPriorPriceRequestTests.cs
 src/TalonOneSdk.Test/Model/BestPriorPriceTests.cs
 src/TalonOneSdk.Test/Model/BestPriorTargetTests.cs
 src/TalonOneSdk.Test/Model/BindingTests.cs
+src/TalonOneSdk.Test/Model/BlueprintTests.cs
 src/TalonOneSdk.Test/Model/BulkApplicationNotificationTests.cs
 src/TalonOneSdk.Test/Model/BulkOperationOnCampaignsTests.cs
 src/TalonOneSdk.Test/Model/CampaignActivationRequestTests.cs
@@ -822,7 +837,6 @@ src/TalonOneSdk.Test/Model/CodeGeneratorSettingsTests.cs
 src/TalonOneSdk.Test/Model/CollectionItemTests.cs
 src/TalonOneSdk.Test/Model/CollectionTests.cs
 src/TalonOneSdk.Test/Model/CollectionWithoutPayloadTests.cs
-src/TalonOneSdk.Test/Model/CollectionsCatalogTests.cs
 src/TalonOneSdk.Test/Model/CouponConstraintsTests.cs
 src/TalonOneSdk.Test/Model/CouponCreatedEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/CouponCreationJobTests.cs
@@ -836,6 +850,7 @@ src/TalonOneSdk.Test/Model/CouponReservationsTests.cs
 src/TalonOneSdk.Test/Model/CouponSearchTests.cs
 src/TalonOneSdk.Test/Model/CouponTests.cs
 src/TalonOneSdk.Test/Model/CouponValueTests.cs
+src/TalonOneSdk.Test/Model/CouponWithApplicationTests.cs
 src/TalonOneSdk.Test/Model/CouponsNotificationDataTests.cs
 src/TalonOneSdk.Test/Model/CouponsNotificationPolicyTests.cs
 src/TalonOneSdk.Test/Model/CreateAchievementTests.cs
@@ -878,6 +893,7 @@ src/TalonOneSdk.Test/Model/ErrorResponseTests.cs
 src/TalonOneSdk.Test/Model/ErrorResponseWithStatusTests.cs
 src/TalonOneSdk.Test/Model/ErrorSourceTests.cs
 src/TalonOneSdk.Test/Model/EvaluableCampaignIdsTests.cs
+src/TalonOneSdk.Test/Model/EventAttributesEntityTests.cs
 src/TalonOneSdk.Test/Model/EventTests.cs
 src/TalonOneSdk.Test/Model/EventTypeTests.cs
 src/TalonOneSdk.Test/Model/EventV2Tests.cs
@@ -975,11 +991,13 @@ src/TalonOneSdk.Test/Model/IntegrationCustomerSessionResponseTests.cs
 src/TalonOneSdk.Test/Model/IntegrationEntityTests.cs
 src/TalonOneSdk.Test/Model/IntegrationEventTests.cs
 src/TalonOneSdk.Test/Model/IntegrationEventV2RequestTests.cs
+src/TalonOneSdk.Test/Model/IntegrationEventV2ResponseTests.cs
 src/TalonOneSdk.Test/Model/IntegrationEventV3RequestTests.cs
 src/TalonOneSdk.Test/Model/IntegrationEventV3ResponseTests.cs
 src/TalonOneSdk.Test/Model/IntegrationProfileEntityTests.cs
 src/TalonOneSdk.Test/Model/IntegrationProfileEntityV3Tests.cs
 src/TalonOneSdk.Test/Model/IntegrationRequestTests.cs
+src/TalonOneSdk.Test/Model/IntegrationResponseTests.cs
 src/TalonOneSdk.Test/Model/IntegrationStateTests.cs
 src/TalonOneSdk.Test/Model/IntegrationStateV2Tests.cs
 src/TalonOneSdk.Test/Model/IntegrationStoreEntityTests.cs
@@ -1060,6 +1078,7 @@ src/TalonOneSdk.Test/Model/NewApplicationTests.cs
 src/TalonOneSdk.Test/Model/NewAttributeTests.cs
 src/TalonOneSdk.Test/Model/NewAudienceTests.cs
 src/TalonOneSdk.Test/Model/NewBaseNotificationTests.cs
+src/TalonOneSdk.Test/Model/NewBlueprintTests.cs
 src/TalonOneSdk.Test/Model/NewCampaignCollectionTests.cs
 src/TalonOneSdk.Test/Model/NewCampaignEvaluationGroupTests.cs
 src/TalonOneSdk.Test/Model/NewCampaignGroupTests.cs
@@ -1070,7 +1089,6 @@ src/TalonOneSdk.Test/Model/NewCampaignTemplateTests.cs
 src/TalonOneSdk.Test/Model/NewCampaignTests.cs
 src/TalonOneSdk.Test/Model/NewCatalogTests.cs
 src/TalonOneSdk.Test/Model/NewCollectionTests.cs
-src/TalonOneSdk.Test/Model/NewCollectionsCatalogTests.cs
 src/TalonOneSdk.Test/Model/NewCouponCreationJobTests.cs
 src/TalonOneSdk.Test/Model/NewCouponDeletionJobTests.cs
 src/TalonOneSdk.Test/Model/NewCouponsForMultipleRecipientsTests.cs
@@ -1138,6 +1156,7 @@ src/TalonOneSdk.Test/Model/PendingActivePointsDataTests.cs
 src/TalonOneSdk.Test/Model/PendingActivePointsNotificationTests.cs
 src/TalonOneSdk.Test/Model/PendingPointsNotificationPolicyTests.cs
 src/TalonOneSdk.Test/Model/PicklistTests.cs
+src/TalonOneSdk.Test/Model/PlaceholderDetailsTests.cs
 src/TalonOneSdk.Test/Model/PriceDetailTests.cs
 src/TalonOneSdk.Test/Model/PriceTypeReferenceDetailTests.cs
 src/TalonOneSdk.Test/Model/PriceTypeReferencesTests.cs
@@ -1145,9 +1164,15 @@ src/TalonOneSdk.Test/Model/PriceTypeTests.cs
 src/TalonOneSdk.Test/Model/PrismaticConfigTests.cs
 src/TalonOneSdk.Test/Model/PrismaticEventPayloadCouponBasedNotificationsLimitsTests.cs
 src/TalonOneSdk.Test/Model/PrismaticEventPayloadCouponBasedNotificationsTests.cs
-src/TalonOneSdk.Test/Model/PrismaticEventPayloadLoyaltyProfileBasedNotificationsActionTests.cs
-src/TalonOneSdk.Test/Model/PrismaticEventPayloadLoyaltyProfileBasedNotificationsTests.cs
+src/TalonOneSdk.Test/Model/PrismaticEventPayloadLoyaltyProfileBasedNotificationTests.cs
+src/TalonOneSdk.Test/Model/PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionTests.cs
+src/TalonOneSdk.Test/Model/PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationTests.cs
+src/TalonOneSdk.Test/Model/PrismaticEventPayloadLoyaltyProfileBasedTierDowngradeNotificationTests.cs
+src/TalonOneSdk.Test/Model/PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotificationTests.cs
+src/TalonOneSdk.Test/Model/PrismaticEventRecordTests.cs
+src/TalonOneSdk.Test/Model/PrismaticFlowConfigResponseTests.cs
 src/TalonOneSdk.Test/Model/PrismaticFlowConfigTests.cs
+src/TalonOneSdk.Test/Model/PrismaticFlowResponseTests.cs
 src/TalonOneSdk.Test/Model/PrismaticFlowTests.cs
 src/TalonOneSdk.Test/Model/PrismaticFlowWithConfigTests.cs
 src/TalonOneSdk.Test/Model/PrismaticPaginatedEventPayloadTests.cs
@@ -1170,6 +1195,7 @@ src/TalonOneSdk.Test/Model/RemoveItemCatalogActionTests.cs
 src/TalonOneSdk.Test/Model/RemoveManyItemsCatalogActionTests.cs
 src/TalonOneSdk.Test/Model/ReopenSessionResponseTests.cs
 src/TalonOneSdk.Test/Model/ReserveCouponEffectPropsTests.cs
+src/TalonOneSdk.Test/Model/ResponseContentObjectTests.cs
 src/TalonOneSdk.Test/Model/ReturnIntegrationRequestTests.cs
 src/TalonOneSdk.Test/Model/ReturnTests.cs
 src/TalonOneSdk.Test/Model/ReturnedCartItemTests.cs
@@ -1262,7 +1288,6 @@ src/TalonOneSdk.Test/Model/TierWillDowngradeNotificationPolicyTests.cs
 src/TalonOneSdk.Test/Model/TierWillDowngradeNotificationTests.cs
 src/TalonOneSdk.Test/Model/TierWillDowngradeNotificationTriggerTests.cs
 src/TalonOneSdk.Test/Model/TimePointTests.cs
-src/TalonOneSdk.Test/Model/TrackEventV2ResponseTests.cs
 src/TalonOneSdk.Test/Model/TransferLoyaltyCardTests.cs
 src/TalonOneSdk.Test/Model/TriggerWebhookEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/TwoFAConfigTests.cs
@@ -1273,6 +1298,7 @@ src/TalonOneSdk.Test/Model/UpdateApplicationCIFTests.cs
 src/TalonOneSdk.Test/Model/UpdateApplicationTests.cs
 src/TalonOneSdk.Test/Model/UpdateAttributeEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/UpdateAudienceTests.cs
+src/TalonOneSdk.Test/Model/UpdateBlueprintTests.cs
 src/TalonOneSdk.Test/Model/UpdateCampaignCollectionTests.cs
 src/TalonOneSdk.Test/Model/UpdateCampaignEvaluationGroupTests.cs
 src/TalonOneSdk.Test/Model/UpdateCampaignGroupTests.cs
@@ -1280,7 +1306,6 @@ src/TalonOneSdk.Test/Model/UpdateCampaignTemplateTests.cs
 src/TalonOneSdk.Test/Model/UpdateCampaignTests.cs
 src/TalonOneSdk.Test/Model/UpdateCatalogTests.cs
 src/TalonOneSdk.Test/Model/UpdateCollectionTests.cs
-src/TalonOneSdk.Test/Model/UpdateCollectionsCatalogTests.cs
 src/TalonOneSdk.Test/Model/UpdateCouponBatchTests.cs
 src/TalonOneSdk.Test/Model/UpdateCouponTests.cs
 src/TalonOneSdk.Test/Model/UpdateCouponsDataTests.cs
@@ -1289,7 +1314,9 @@ src/TalonOneSdk.Test/Model/UpdateCustomerProfileV2409ResponseTests.cs
 src/TalonOneSdk.Test/Model/UpdateCustomerSessionV2409ResponseTests.cs
 src/TalonOneSdk.Test/Model/UpdateExperimentTests.cs
 src/TalonOneSdk.Test/Model/UpdateExperimentVariantArrayTests.cs
+src/TalonOneSdk.Test/Model/UpdateExperimentVariantNameTests.cs
 src/TalonOneSdk.Test/Model/UpdateExperimentVariantTests.cs
+src/TalonOneSdk.Test/Model/UpdateLoyaltyCardRequestTests.cs
 src/TalonOneSdk.Test/Model/UpdateLoyaltyCardTests.cs
 src/TalonOneSdk.Test/Model/UpdateLoyaltyProgramTests.cs
 src/TalonOneSdk.Test/Model/UpdateLoyaltyProgramTierTests.cs
@@ -1422,6 +1449,7 @@ src/TalonOneSdk/Model/BestPriorPriceMetadata.cs
 src/TalonOneSdk/Model/BestPriorPriceRequest.cs
 src/TalonOneSdk/Model/BestPriorTarget.cs
 src/TalonOneSdk/Model/Binding.cs
+src/TalonOneSdk/Model/Blueprint.cs
 src/TalonOneSdk/Model/BulkApplicationNotification.cs
 src/TalonOneSdk/Model/BulkOperationOnCampaigns.cs
 src/TalonOneSdk/Model/Campaign.cs
@@ -1493,7 +1521,6 @@ src/TalonOneSdk/Model/CodeGeneratorSettings.cs
 src/TalonOneSdk/Model/Collection.cs
 src/TalonOneSdk/Model/CollectionItem.cs
 src/TalonOneSdk/Model/CollectionWithoutPayload.cs
-src/TalonOneSdk/Model/CollectionsCatalog.cs
 src/TalonOneSdk/Model/Coupon.cs
 src/TalonOneSdk/Model/CouponConstraints.cs
 src/TalonOneSdk/Model/CouponCreatedEffectProps.cs
@@ -1507,6 +1534,7 @@ src/TalonOneSdk/Model/CouponRejectionReason.cs
 src/TalonOneSdk/Model/CouponReservations.cs
 src/TalonOneSdk/Model/CouponSearch.cs
 src/TalonOneSdk/Model/CouponValue.cs
+src/TalonOneSdk/Model/CouponWithApplication.cs
 src/TalonOneSdk/Model/CouponsNotificationData.cs
 src/TalonOneSdk/Model/CouponsNotificationPolicy.cs
 src/TalonOneSdk/Model/CreateAchievement.cs
@@ -1550,6 +1578,7 @@ src/TalonOneSdk/Model/ErrorResponseWithStatus.cs
 src/TalonOneSdk/Model/ErrorSource.cs
 src/TalonOneSdk/Model/EvaluableCampaignIds.cs
 src/TalonOneSdk/Model/Event.cs
+src/TalonOneSdk/Model/EventAttributesEntity.cs
 src/TalonOneSdk/Model/EventType.cs
 src/TalonOneSdk/Model/EventV2.cs
 src/TalonOneSdk/Model/EventV3.cs
@@ -1646,11 +1675,13 @@ src/TalonOneSdk/Model/IntegrationCustomerSessionResponse.cs
 src/TalonOneSdk/Model/IntegrationEntity.cs
 src/TalonOneSdk/Model/IntegrationEvent.cs
 src/TalonOneSdk/Model/IntegrationEventV2Request.cs
+src/TalonOneSdk/Model/IntegrationEventV2Response.cs
 src/TalonOneSdk/Model/IntegrationEventV3Request.cs
 src/TalonOneSdk/Model/IntegrationEventV3Response.cs
 src/TalonOneSdk/Model/IntegrationProfileEntity.cs
 src/TalonOneSdk/Model/IntegrationProfileEntityV3.cs
 src/TalonOneSdk/Model/IntegrationRequest.cs
+src/TalonOneSdk/Model/IntegrationResponse.cs
 src/TalonOneSdk/Model/IntegrationState.cs
 src/TalonOneSdk/Model/IntegrationStateV2.cs
 src/TalonOneSdk/Model/IntegrationStoreEntity.cs
@@ -1731,6 +1762,7 @@ src/TalonOneSdk/Model/NewApplicationCIFExpression.cs
 src/TalonOneSdk/Model/NewAttribute.cs
 src/TalonOneSdk/Model/NewAudience.cs
 src/TalonOneSdk/Model/NewBaseNotification.cs
+src/TalonOneSdk/Model/NewBlueprint.cs
 src/TalonOneSdk/Model/NewCampaign.cs
 src/TalonOneSdk/Model/NewCampaignCollection.cs
 src/TalonOneSdk/Model/NewCampaignEvaluationGroup.cs
@@ -1741,7 +1773,6 @@ src/TalonOneSdk/Model/NewCampaignStoreBudgetStoreLimit.cs
 src/TalonOneSdk/Model/NewCampaignTemplate.cs
 src/TalonOneSdk/Model/NewCatalog.cs
 src/TalonOneSdk/Model/NewCollection.cs
-src/TalonOneSdk/Model/NewCollectionsCatalog.cs
 src/TalonOneSdk/Model/NewCouponCreationJob.cs
 src/TalonOneSdk/Model/NewCouponDeletionJob.cs
 src/TalonOneSdk/Model/NewCoupons.cs
@@ -1809,6 +1840,7 @@ src/TalonOneSdk/Model/PendingActivePointsData.cs
 src/TalonOneSdk/Model/PendingActivePointsNotification.cs
 src/TalonOneSdk/Model/PendingPointsNotificationPolicy.cs
 src/TalonOneSdk/Model/Picklist.cs
+src/TalonOneSdk/Model/PlaceholderDetails.cs
 src/TalonOneSdk/Model/PriceDetail.cs
 src/TalonOneSdk/Model/PriceType.cs
 src/TalonOneSdk/Model/PriceTypeReferenceDetail.cs
@@ -1816,10 +1848,16 @@ src/TalonOneSdk/Model/PriceTypeReferences.cs
 src/TalonOneSdk/Model/PrismaticConfig.cs
 src/TalonOneSdk/Model/PrismaticEventPayloadCouponBasedNotifications.cs
 src/TalonOneSdk/Model/PrismaticEventPayloadCouponBasedNotificationsLimits.cs
-src/TalonOneSdk/Model/PrismaticEventPayloadLoyaltyProfileBasedNotifications.cs
-src/TalonOneSdk/Model/PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction.cs
+src/TalonOneSdk/Model/PrismaticEventPayloadLoyaltyProfileBasedNotification.cs
+src/TalonOneSdk/Model/PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotification.cs
+src/TalonOneSdk/Model/PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.cs
+src/TalonOneSdk/Model/PrismaticEventPayloadLoyaltyProfileBasedTierDowngradeNotification.cs
+src/TalonOneSdk/Model/PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification.cs
+src/TalonOneSdk/Model/PrismaticEventRecord.cs
 src/TalonOneSdk/Model/PrismaticFlow.cs
 src/TalonOneSdk/Model/PrismaticFlowConfig.cs
+src/TalonOneSdk/Model/PrismaticFlowConfigResponse.cs
+src/TalonOneSdk/Model/PrismaticFlowResponse.cs
 src/TalonOneSdk/Model/PrismaticFlowWithConfig.cs
 src/TalonOneSdk/Model/PrismaticPaginatedEventPayload.cs
 src/TalonOneSdk/Model/Product.cs
@@ -1841,6 +1879,7 @@ src/TalonOneSdk/Model/RemoveItemCatalogAction.cs
 src/TalonOneSdk/Model/RemoveManyItemsCatalogAction.cs
 src/TalonOneSdk/Model/ReopenSessionResponse.cs
 src/TalonOneSdk/Model/ReserveCouponEffectProps.cs
+src/TalonOneSdk/Model/ResponseContentObject.cs
 src/TalonOneSdk/Model/Return.cs
 src/TalonOneSdk/Model/ReturnIntegrationRequest.cs
 src/TalonOneSdk/Model/ReturnedCartItem.cs
@@ -1933,7 +1972,6 @@ src/TalonOneSdk/Model/TierWillDowngradeNotification.cs
 src/TalonOneSdk/Model/TierWillDowngradeNotificationPolicy.cs
 src/TalonOneSdk/Model/TierWillDowngradeNotificationTrigger.cs
 src/TalonOneSdk/Model/TimePoint.cs
-src/TalonOneSdk/Model/TrackEventV2Response.cs
 src/TalonOneSdk/Model/TransferLoyaltyCard.cs
 src/TalonOneSdk/Model/TriggerWebhookEffectProps.cs
 src/TalonOneSdk/Model/TwoFAConfig.cs
@@ -1944,6 +1982,7 @@ src/TalonOneSdk/Model/UpdateApplicationAPIKey.cs
 src/TalonOneSdk/Model/UpdateApplicationCIF.cs
 src/TalonOneSdk/Model/UpdateAttributeEffectProps.cs
 src/TalonOneSdk/Model/UpdateAudience.cs
+src/TalonOneSdk/Model/UpdateBlueprint.cs
 src/TalonOneSdk/Model/UpdateCampaign.cs
 src/TalonOneSdk/Model/UpdateCampaignCollection.cs
 src/TalonOneSdk/Model/UpdateCampaignEvaluationGroup.cs
@@ -1951,7 +1990,6 @@ src/TalonOneSdk/Model/UpdateCampaignGroup.cs
 src/TalonOneSdk/Model/UpdateCampaignTemplate.cs
 src/TalonOneSdk/Model/UpdateCatalog.cs
 src/TalonOneSdk/Model/UpdateCollection.cs
-src/TalonOneSdk/Model/UpdateCollectionsCatalog.cs
 src/TalonOneSdk/Model/UpdateCoupon.cs
 src/TalonOneSdk/Model/UpdateCouponBatch.cs
 src/TalonOneSdk/Model/UpdateCouponsData.cs
@@ -1961,7 +1999,9 @@ src/TalonOneSdk/Model/UpdateCustomerSessionV2409Response.cs
 src/TalonOneSdk/Model/UpdateExperiment.cs
 src/TalonOneSdk/Model/UpdateExperimentVariant.cs
 src/TalonOneSdk/Model/UpdateExperimentVariantArray.cs
+src/TalonOneSdk/Model/UpdateExperimentVariantName.cs
 src/TalonOneSdk/Model/UpdateLoyaltyCard.cs
+src/TalonOneSdk/Model/UpdateLoyaltyCardRequest.cs
 src/TalonOneSdk/Model/UpdateLoyaltyProgram.cs
 src/TalonOneSdk/Model/UpdateLoyaltyProgramTier.cs
 src/TalonOneSdk/Model/UpdatePicklist.cs
