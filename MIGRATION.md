@@ -11,14 +11,17 @@ changed to be asynchronous.
 
 ## Steps
 
-Follow these steps to migrate your code from the legacy Go SDK to the new version:
+Follow these steps to migrate your code from the legacy C# SDK to the new version:
 
 1. Install the new package, which has been renamed from `TalonOne` to `TalonOneSdk` ([Nuget](https://www.nuget.org/packages/TalonOneSdk/)):
+
    ```diff
    -  dotnet add package TalonOne
    +  dotnet add package TalonOneSdk
    ```
+
 2. Update the namespaces accordingly:
+   
    ```diff
    -  using TalonOne.Api;
    -  using TalonOne.Client;
@@ -27,6 +30,7 @@ Follow these steps to migrate your code from the legacy Go SDK to the new versio
    +  using TalonOneSdk.Client;
    +  using TalonOneSdk.Model;
    ```
+
 3. Check your code for issues, primarily related to service initialization and
    asynchronous methods. Resolve these issues manually. For more information, refer to the
    example file.
