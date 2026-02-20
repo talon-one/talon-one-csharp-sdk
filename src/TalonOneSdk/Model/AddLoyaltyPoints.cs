@@ -201,6 +201,12 @@ namespace TalonOneSdk.Model
                 yield return new ValidationResult("Invalid value for Points, must be a value less than or equal to 999999999999.99.", new [] { "Points" });
             }
 
+            // Points (decimal) minimum
+            if (this.Points < (decimal)0)
+            {
+                yield return new ValidationResult("Invalid value for Points, must be a value greater than 0.", new [] { "Points" });
+            }
+
             yield break;
         }
     }

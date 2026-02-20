@@ -90,15 +90,6 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Event'
-        /// </summary>
-        [Fact]
-        public void EventTest()
-        {
-            // TODO unit test for the property 'Event'
-        }
-
-        /// <summary>
         /// Test the property 'Loyalty'
         /// </summary>
         [Fact]
@@ -132,6 +123,15 @@ namespace TalonOneSdk.Test.Model
         public void AwardedGiveawaysTest()
         {
             // TODO unit test for the property 'AwardedGiveaways'
+        }
+
+        /// <summary>
+        /// Test the property 'AdvancedEvent'
+        /// </summary>
+        [Fact]
+        public void AdvancedEventTest()
+        {
+            // TODO unit test for the property 'AdvancedEvent'
         }
     }
 }

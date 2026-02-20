@@ -81,15 +81,6 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'CustomerSession'
-        /// </summary>
-        [Fact]
-        public void CustomerSessionTest()
-        {
-            // TODO unit test for the property 'CustomerSession'
-        }
-
-        /// <summary>
         /// Test the property 'CustomerProfile'
         /// </summary>
         [Fact]
@@ -99,39 +90,12 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Event'
-        /// </summary>
-        [Fact]
-        public void EventTest()
-        {
-            // TODO unit test for the property 'Event'
-        }
-
-        /// <summary>
         /// Test the property 'Loyalty'
         /// </summary>
         [Fact]
         public void LoyaltyTest()
         {
             // TODO unit test for the property 'Loyalty'
-        }
-
-        /// <summary>
-        /// Test the property 'Referral'
-        /// </summary>
-        [Fact]
-        public void ReferralTest()
-        {
-            // TODO unit test for the property 'Referral'
-        }
-
-        /// <summary>
-        /// Test the property 'Coupons'
-        /// </summary>
-        [Fact]
-        public void CouponsTest()
-        {
-            // TODO unit test for the property 'Coupons'
         }
 
         /// <summary>
@@ -159,6 +123,51 @@ namespace TalonOneSdk.Test.Model
         public void AwardedGiveawaysTest()
         {
             // TODO unit test for the property 'AwardedGiveaways'
+        }
+
+        /// <summary>
+        /// Test the property 'Referral'
+        /// </summary>
+        [Fact]
+        public void ReferralTest()
+        {
+            // TODO unit test for the property 'Referral'
+        }
+
+        /// <summary>
+        /// Test the property 'Coupons'
+        /// </summary>
+        [Fact]
+        public void CouponsTest()
+        {
+            // TODO unit test for the property 'Coupons'
+        }
+
+        /// <summary>
+        /// Test the property 'Event'
+        /// </summary>
+        [Fact]
+        public void EventTest()
+        {
+            // TODO unit test for the property 'Event'
+        }
+
+        /// <summary>
+        /// Test the property 'AdvancedEvent'
+        /// </summary>
+        [Fact]
+        public void AdvancedEventTest()
+        {
+            // TODO unit test for the property 'AdvancedEvent'
+        }
+
+        /// <summary>
+        /// Test the property 'CustomerSession'
+        /// </summary>
+        [Fact]
+        public void CustomerSessionTest()
+        {
+            // TODO unit test for the property 'CustomerSession'
         }
 
         /// <summary>

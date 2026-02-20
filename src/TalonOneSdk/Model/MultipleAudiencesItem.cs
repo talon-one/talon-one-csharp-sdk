@@ -34,16 +34,16 @@ namespace TalonOneSdk.Model
         /// <param name="id">The internal ID of this entity.</param>
         /// <param name="created">The time this entity was created.</param>
         /// <param name="name">The human-friendly display name for this audience.</param>
-        /// <param name="status">Indicates whether the audience is new, updated or unmodified by the request. </param>
         /// <param name="integrationId">The ID of this audience in the third-party integration.</param>
+        /// <param name="status">Indicates whether the audience is new, updated or unmodified by the request. </param>
         [JsonConstructor]
-        public MultipleAudiencesItem(long id, DateTime created, string name, StatusEnum status, Option<string> integrationId = default)
+        public MultipleAudiencesItem(long id, DateTime created, string name, string integrationId, StatusEnum status)
         {
             Id = id;
             Created = created;
             Name = name;
+            IntegrationId = integrationId;
             Status = status;
-            IntegrationIdOption = integrationId;
             OnCreated();
         }
 
@@ -163,19 +163,12 @@ namespace TalonOneSdk.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Used to track the state of IntegrationId
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> IntegrationIdOption { get; private set; }
-
-        /// <summary>
         /// The ID of this audience in the third-party integration.
         /// </summary>
         /// <value>The ID of this audience in the third-party integration.</value>
         /* <example>382370BKDB946</example> */
         [JsonPropertyName("integrationId")]
-        public string IntegrationId { get { return this.IntegrationIdOption; } set { this.IntegrationIdOption = new Option<string>(value); } }
+        public string IntegrationId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -188,8 +181,8 @@ namespace TalonOneSdk.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  IntegrationId: ").Append(IntegrationId).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -253,8 +246,8 @@ namespace TalonOneSdk.Model
             Option<long?> id = default;
             Option<DateTime?> created = default;
             Option<string> name = default;
-            Option<MultipleAudiencesItem.StatusEnum?> status = default;
             Option<string> integrationId = default;
+            Option<MultipleAudiencesItem.StatusEnum?> status = default;
 
             while (utf8JsonReader.Read())
             {
@@ -280,13 +273,13 @@ namespace TalonOneSdk.Model
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "integrationId":
+                            integrationId = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         case "status":
                             string statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
                                 status = new Option<MultipleAudiencesItem.StatusEnum?>(MultipleAudiencesItem.StatusEnumFromStringOrDefault(statusRawValue));
-                            break;
-                        case "integrationId":
-                            integrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         default:
                             break;
@@ -303,6 +296,9 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class MultipleAudiencesItem.", nameof(name));
 
+            if (!integrationId.IsSet)
+                throw new ArgumentException("Property is required for class MultipleAudiencesItem.", nameof(integrationId));
+
             if (!status.IsSet)
                 throw new ArgumentException("Property is required for class MultipleAudiencesItem.", nameof(status));
 
@@ -315,13 +311,13 @@ namespace TalonOneSdk.Model
             if (name.IsSet && name.Value == null)
                 throw new ArgumentNullException(nameof(name), "Property is not nullable for class MultipleAudiencesItem.");
 
-            if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class MultipleAudiencesItem.");
-
             if (integrationId.IsSet && integrationId.Value == null)
                 throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class MultipleAudiencesItem.");
 
-            return new MultipleAudiencesItem(id.Value.Value, created.Value.Value, name.Value, status.Value.Value, integrationId);
+            if (status.IsSet && status.Value == null)
+                throw new ArgumentNullException(nameof(status), "Property is not nullable for class MultipleAudiencesItem.");
+
+            return new MultipleAudiencesItem(id.Value.Value, created.Value.Value, name.Value, integrationId.Value, status.Value.Value);
         }
 
         /// <summary>
@@ -351,7 +347,7 @@ namespace TalonOneSdk.Model
             if (multipleAudiencesItem.Name == null)
                 throw new ArgumentNullException(nameof(multipleAudiencesItem.Name), "Property is required for class MultipleAudiencesItem.");
 
-            if (multipleAudiencesItem.IntegrationIdOption.IsSet && multipleAudiencesItem.IntegrationId == null)
+            if (multipleAudiencesItem.IntegrationId == null)
                 throw new ArgumentNullException(nameof(multipleAudiencesItem.IntegrationId), "Property is required for class MultipleAudiencesItem.");
 
             writer.WriteNumber("id", multipleAudiencesItem.Id);
@@ -360,10 +356,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("name", multipleAudiencesItem.Name);
 
+            writer.WriteString("integrationId", multipleAudiencesItem.IntegrationId);
+
             var statusRawValue = MultipleAudiencesItem.StatusEnumToJsonValue(multipleAudiencesItem.Status);
             writer.WriteString("status", statusRawValue);
-            if (multipleAudiencesItem.IntegrationIdOption.IsSet)
-                writer.WriteString("integrationId", multipleAudiencesItem.IntegrationId);
         }
     }
 }

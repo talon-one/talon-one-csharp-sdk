@@ -81,21 +81,21 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Status'
-        /// </summary>
-        [Fact]
-        public void StatusTest()
-        {
-            // TODO unit test for the property 'Status'
-        }
-
-        /// <summary>
         /// Test the property 'IntegrationId'
         /// </summary>
         [Fact]
         public void IntegrationIdTest()
         {
             // TODO unit test for the property 'IntegrationId'
+        }
+
+        /// <summary>
+        /// Test the property 'Status'
+        /// </summary>
+        [Fact]
+        public void StatusTest()
+        {
+            // TODO unit test for the property 'Status'
         }
     }
 }

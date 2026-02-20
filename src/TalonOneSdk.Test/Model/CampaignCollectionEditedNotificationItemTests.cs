@@ -72,6 +72,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Collection'
+        /// </summary>
+        [Fact]
+        public void CollectionTest()
+        {
+            // TODO unit test for the property 'Collection'
+        }
+
+        /// <summary>
         /// Test the property 'Ruleset'
         /// </summary>
         [Fact]
@@ -81,12 +90,12 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Collection'
+        /// Test the property 'Placeholders'
         /// </summary>
         [Fact]
-        public void CollectionTest()
+        public void PlaceholdersTest()
         {
-            // TODO unit test for the property 'Collection'
+            // TODO unit test for the property 'Placeholders'
         }
     }
 }

@@ -175,7 +175,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**UpdateCollection**](ManagementApi.md#updatecollection) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Update campaign-level collection&#39;s description |
 | [**UpdateCoupon**](ManagementApi.md#updatecoupon) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId} | Update coupon |
 | [**UpdateCouponBatch**](ManagementApi.md#updatecouponbatch) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Update coupons |
-| [**UpdateLoyaltyCard**](ManagementApi.md#updateloyaltycard) | **PUT** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Update loyalty card status |
+| [**UpdateLoyaltyCard**](ManagementApi.md#updateloyaltycard) | **PUT** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Update loyalty card |
 | [**UpdateReferral**](ManagementApi.md#updatereferral) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Update referral |
 | [**UpdateRoleV2**](ManagementApi.md#updaterolev2) | **PUT** /v2/roles/{roleId} | Update role |
 | [**UpdateStore**](ManagementApi.md#updatestore) | **PUT** /v1/applications/{applicationId}/stores/{storeId} | Update store |
@@ -6916,11 +6916,11 @@ void (empty response body)
 
 <a id="updateloyaltycard"></a>
 # **UpdateLoyaltyCard**
-> LoyaltyCard UpdateLoyaltyCard (long loyaltyProgramId, string loyaltyCardId, UpdateLoyaltyCard updateLoyaltyCard)
+> LoyaltyCard UpdateLoyaltyCard (long loyaltyProgramId, string loyaltyCardId, UpdateLoyaltyCardRequest updateLoyaltyCardRequest)
 
-Update loyalty card status
+Update loyalty card
 
-Update the status of the given loyalty card. A card can be _active_ or _inactive_.
+Update the details of a specific loyalty card. You can set the card's status to `active` or `inactive` through this endpoint. At least one of `status` or `attributes` must be provided. 
 
 
 ### Parameters
@@ -6929,7 +6929,7 @@ Update the status of the given loyalty card. A card can be _active_ or _inactive
 |------|------|-------------|-------|
 | **loyaltyProgramId** | **long** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  |  |
 | **loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  |  |
-| **updateLoyaltyCard** | [**UpdateLoyaltyCard**](UpdateLoyaltyCard.md) | body |  |
+| **updateLoyaltyCardRequest** | [**UpdateLoyaltyCardRequest**](UpdateLoyaltyCardRequest.md) | body |  |
 
 ### Return type
 
