@@ -17,6 +17,7 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using TalonOneSdk.Model;
 using System.Runtime.CompilerServices;
+using System.Net.Http.Headers;
 
 [assembly: InternalsVisibleTo("TalonOneSdk.Test")]
 
@@ -225,6 +226,10 @@ namespace TalonOneSdk.Client
                 return BaseNotification.TypeEnumToJsonValue(baseNotificationTypeEnum);
             if (obj is BestPriorTarget.TargetTypeEnum bestPriorTargetTargetTypeEnum)
                 return BestPriorTarget.TargetTypeEnumToJsonValue(bestPriorTargetTargetTypeEnum);
+            if (obj is Blueprint.CategoryEnum blueprintCategoryEnum)
+                return Blueprint.CategoryEnumToJsonValue(blueprintCategoryEnum);
+            if (obj is Blueprint.SourceEnum blueprintSourceEnum)
+                return Blueprint.SourceEnumToJsonValue(blueprintSourceEnum);
             if (obj is BulkOperationOnCampaigns.OperationEnum bulkOperationOnCampaignsOperationEnum)
                 return BulkOperationOnCampaigns.OperationEnumToJsonValue(bulkOperationOnCampaignsOperationEnum);
             if (obj is Campaign.FeaturesEnum campaignFeaturesEnum)
@@ -307,10 +312,6 @@ namespace TalonOneSdk.Client
                 return CardLedgerTransactionLogEntryIntegrationAPI.TypeEnumToJsonValue(cardLedgerTransactionLogEntryIntegrationAPITypeEnum);
             if (obj is CatalogActionFilter.OpEnum catalogActionFilterOpEnum)
                 return CatalogActionFilter.OpEnumToJsonValue(catalogActionFilterOpEnum);
-            if (obj is CollectionsCatalog.CategoryEnum collectionsCatalogCategoryEnum)
-                return CollectionsCatalog.CategoryEnumToJsonValue(collectionsCatalogCategoryEnum);
-            if (obj is CollectionsCatalog.SourceEnum collectionsCatalogSourceEnum)
-                return CollectionsCatalog.SourceEnumToJsonValue(collectionsCatalogSourceEnum);
             if (obj is CouponDeletionFilters.ValidEnum couponDeletionFiltersValidEnum)
                 return CouponDeletionFilters.ValidEnumToJsonValue(couponDeletionFiltersValidEnum);
             if (obj is CouponRejectionReason.ReasonEnum couponRejectionReasonReasonEnum)
@@ -415,6 +416,8 @@ namespace TalonOneSdk.Client
                 return NewAttribute.TypeEnumToJsonValue(newAttributeTypeEnum);
             if (obj is NewAttribute.AllowedSubscriptionsEnum newAttributeAllowedSubscriptionsEnum)
                 return NewAttribute.AllowedSubscriptionsEnumToJsonValue(newAttributeAllowedSubscriptionsEnum);
+            if (obj is NewBlueprint.CategoryEnum newBlueprintCategoryEnum)
+                return NewBlueprint.CategoryEnumToJsonValue(newBlueprintCategoryEnum);
             if (obj is NewCampaign.FeaturesEnum newCampaignFeaturesEnum)
                 return NewCampaign.FeaturesEnumToJsonValue(newCampaignFeaturesEnum);
             if (obj is NewCampaign.StateEnum newCampaignStateEnum)
@@ -435,8 +438,6 @@ namespace TalonOneSdk.Client
                 return NewCampaignTemplate.FeaturesEnumToJsonValue(newCampaignTemplateFeaturesEnum);
             if (obj is NewCampaignTemplate.CampaignTypeEnum newCampaignTemplateCampaignTypeEnum)
                 return NewCampaignTemplate.CampaignTypeEnumToJsonValue(newCampaignTemplateCampaignTypeEnum);
-            if (obj is NewCollectionsCatalog.CategoryEnum newCollectionsCatalogCategoryEnum)
-                return NewCollectionsCatalog.CategoryEnumToJsonValue(newCollectionsCatalogCategoryEnum);
             if (obj is NewCustomerSession.StateEnum newCustomerSessionStateEnum)
                 return NewCustomerSession.StateEnumToJsonValue(newCustomerSessionStateEnum);
             if (obj is NewCustomerSessionV2.StateEnum newCustomerSessionV2StateEnum)
@@ -469,12 +470,14 @@ namespace TalonOneSdk.Client
                 return Picklist.TypeEnumToJsonValue(picklistTypeEnum);
             if (obj is PriceTypeReferenceDetail.ReferencingTypeEnum priceTypeReferenceDetailReferencingTypeEnum)
                 return PriceTypeReferenceDetail.ReferencingTypeEnumToJsonValue(priceTypeReferenceDetailReferencingTypeEnum);
-            if (obj is PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction.OperationEnum prismaticEventPayloadLoyaltyProfileBasedNotificationsActionOperationEnum)
-                return PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction.OperationEnumToJsonValue(prismaticEventPayloadLoyaltyProfileBasedNotificationsActionOperationEnum);
+            if (obj is PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnum prismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum)
+                return PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnumToJsonValue(prismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum);
             if (obj is PrismaticPaginatedEventPayload.EventTypeEnum prismaticPaginatedEventPayloadEventTypeEnum)
                 return PrismaticPaginatedEventPayload.EventTypeEnumToJsonValue(prismaticPaginatedEventPayloadEventTypeEnum);
             if (obj is ReferralRejectionReason.ReasonEnum referralRejectionReasonReasonEnum)
                 return ReferralRejectionReason.ReasonEnumToJsonValue(referralRejectionReasonReasonEnum);
+            if (obj is ResponseContentObject.ResponseContentEnum responseContentObjectResponseContentEnum)
+                return ResponseContentObject.ResponseContentEnumToJsonValue(responseContentObjectResponseContentEnum);
             if (obj is ReturnIntegrationRequest.ResponseContentEnum returnIntegrationRequestResponseContentEnum)
                 return ReturnIntegrationRequest.ResponseContentEnumToJsonValue(returnIntegrationRequestResponseContentEnum);
             if (obj is RevisionVersion.FeaturesEnum revisionVersionFeaturesEnum)
@@ -523,6 +526,8 @@ namespace TalonOneSdk.Client
                 return UpdateApplication.DefaultDiscountScopeEnumToJsonValue(updateApplicationDefaultDiscountScopeEnum);
             if (obj is UpdateApplication.DefaultDiscountAdditionalCostPerItemScopeEnum updateApplicationDefaultDiscountAdditionalCostPerItemScopeEnum)
                 return UpdateApplication.DefaultDiscountAdditionalCostPerItemScopeEnumToJsonValue(updateApplicationDefaultDiscountAdditionalCostPerItemScopeEnum);
+            if (obj is UpdateBlueprint.CategoryEnum updateBlueprintCategoryEnum)
+                return UpdateBlueprint.CategoryEnumToJsonValue(updateBlueprintCategoryEnum);
             if (obj is UpdateCampaign.FeaturesEnum updateCampaignFeaturesEnum)
                 return UpdateCampaign.FeaturesEnumToJsonValue(updateCampaignFeaturesEnum);
             if (obj is UpdateCampaign.StateEnum updateCampaignStateEnum)
@@ -539,8 +544,6 @@ namespace TalonOneSdk.Client
                 return UpdateCampaignTemplate.FeaturesEnumToJsonValue(updateCampaignTemplateFeaturesEnum);
             if (obj is UpdateCampaignTemplate.CampaignTypeEnum updateCampaignTemplateCampaignTypeEnum)
                 return UpdateCampaignTemplate.CampaignTypeEnumToJsonValue(updateCampaignTemplateCampaignTypeEnum);
-            if (obj is UpdateCollectionsCatalog.CategoryEnum updateCollectionsCatalogCategoryEnum)
-                return UpdateCollectionsCatalog.CategoryEnumToJsonValue(updateCollectionsCatalogCategoryEnum);
             if (obj is UpdateCouponsData.NotificationTypeEnum updateCouponsDataNotificationTypeEnum)
                 return UpdateCouponsData.NotificationTypeEnumToJsonValue(updateCouponsDataNotificationTypeEnum);
             if (obj is UpdateLoyaltyProgram.ProgramJoinPolicyEnum updateLoyaltyProgramProgramJoinPolicyEnum)
@@ -670,6 +673,26 @@ namespace TalonOneSdk.Client
                 return "application/json";
 
             return string.Join(",", accepts);
+        }
+
+        
+
+        /// <summary>
+        /// Select the Accept header's value from the given accepts array:
+        /// if JSON exists in the given array, use it;
+        /// otherwise use all of them.
+        /// </summary>
+        /// <param name="accepts">The accepts array to select from.</param>
+        /// <returns>The Accept header values to use.</returns>
+        public static IEnumerable<MediaTypeWithQualityHeaderValue> SelectHeaderAcceptArray(string[] accepts)
+        {
+            if (accepts.Length == 0)
+                    return Enumerable.Empty<MediaTypeWithQualityHeaderValue>();
+
+            if (accepts.Contains("application/json", StringComparer.OrdinalIgnoreCase))
+                    return new [] { MediaTypeWithQualityHeaderValue.Parse("application/json") };
+
+            return accepts.Select(MediaTypeWithQualityHeaderValue.Parse);
         }
 
         /// <summary>

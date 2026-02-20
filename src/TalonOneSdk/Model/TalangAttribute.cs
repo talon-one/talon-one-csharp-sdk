@@ -203,34 +203,39 @@ namespace TalonOneSdk.Model
             Loyalty = 13,
 
             /// <summary>
+            /// Enum LoyaltyCard for value: LoyaltyCard
+            /// </summary>
+            LoyaltyCard = 14,
+
+            /// <summary>
             /// Enum Profile for value: Profile
             /// </summary>
-            Profile = 14,
+            Profile = 15,
 
             /// <summary>
             /// Enum Giveaway for value: Giveaway
             /// </summary>
-            Giveaway = 15,
+            Giveaway = 16,
 
             /// <summary>
             /// Enum Referral for value: Referral
             /// </summary>
-            Referral = 16,
+            Referral = 17,
 
             /// <summary>
             /// Enum Session for value: Session
             /// </summary>
-            Session = 17,
+            Session = 18,
 
             /// <summary>
             /// Enum Store for value: Store
             /// </summary>
-            Store = 18,
+            Store = 19,
 
             /// <summary>
             /// Enum Achievements for value: Achievements
             /// </summary>
-            Achievements = 19
+            Achievements = 20
         }
 
         /// <summary>
@@ -279,6 +284,9 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("Loyalty"))
                 return EntityEnum.Loyalty;
+
+            if (value.Equals("LoyaltyCard"))
+                return EntityEnum.LoyaltyCard;
 
             if (value.Equals("Profile"))
                 return EntityEnum.Profile;
@@ -347,6 +355,9 @@ namespace TalonOneSdk.Model
             if (value.Equals("Loyalty"))
                 return EntityEnum.Loyalty;
 
+            if (value.Equals("LoyaltyCard"))
+                return EntityEnum.LoyaltyCard;
+
             if (value.Equals("Profile"))
                 return EntityEnum.Profile;
 
@@ -414,6 +425,9 @@ namespace TalonOneSdk.Model
 
             if (value == EntityEnum.Loyalty)
                 return "Loyalty";
+
+            if (value == EntityEnum.LoyaltyCard)
+                return "LoyaltyCard";
 
             if (value == EntityEnum.Profile)
                 return "Profile";

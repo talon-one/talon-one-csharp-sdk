@@ -36,18 +36,18 @@ namespace TalonOneSdk.Model
         /// <param name="storeIntegrationId">The integration ID of the store. You choose this ID when you create a store.</param>
         /// <param name="evaluableCampaignIds">When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them. </param>
         /// <param name="attributes">Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute).</param>
-        /// <param name="loyaltyCards">Identifier of the loyalty card used during this event.</param>
-        /// <param name="responseContent">Optional list of requested information to be present on the response related to the tracking custom event. </param>
+        /// <param name="responseContent">Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints. </param>
+        /// <param name="loyaltyCards">Identifiers of the loyalty cards used during this event.</param>
         [JsonConstructor]
-        public IntegrationEventV2Request(string type, Option<string> profileId = default, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<Object> attributes = default, Option<List<string>> loyaltyCards = default, Option<List<IntegrationEventV2Request.ResponseContentEnum>> responseContent = default)
+        public IntegrationEventV2Request(string type, Option<string> profileId = default, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<Object> attributes = default, Option<List<IntegrationEventV2Request.ResponseContentEnum>> responseContent = default, Option<List<string>> loyaltyCards = default)
         {
             Type = type;
             ProfileIdOption = profileId;
             StoreIntegrationIdOption = storeIntegrationId;
             EvaluableCampaignIdsOption = evaluableCampaignIds;
             AttributesOption = attributes;
-            LoyaltyCardsOption = loyaltyCards;
             ResponseContentOption = responseContent;
+            LoyaltyCardsOption = loyaltyCards;
             OnCreated();
         }
 
@@ -244,21 +244,6 @@ namespace TalonOneSdk.Model
         public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
-        /// Used to track the state of LoyaltyCards
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> LoyaltyCardsOption { get; private set; }
-
-        /// <summary>
-        /// Identifier of the loyalty card used during this event.
-        /// </summary>
-        /// <value>Identifier of the loyalty card used during this event.</value>
-        /* <example>[loyalty-card-1]</example> */
-        [JsonPropertyName("loyaltyCards")]
-        public List<string> LoyaltyCards { get { return this.LoyaltyCardsOption; } set { this.LoyaltyCardsOption = new Option<List<string>>(value); } }
-
-        /// <summary>
         /// Used to track the state of ResponseContent
         /// </summary>
         [JsonIgnore]
@@ -266,12 +251,27 @@ namespace TalonOneSdk.Model
         public Option<List<IntegrationEventV2Request.ResponseContentEnum>> ResponseContentOption { get; private set; }
 
         /// <summary>
-        /// Optional list of requested information to be present on the response related to the tracking custom event. 
+        /// Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints. 
         /// </summary>
-        /// <value>Optional list of requested information to be present on the response related to the tracking custom event. </value>
+        /// <value>Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints. </value>
         /* <example>[triggeredCampaigns, customerProfile]</example> */
         [JsonPropertyName("responseContent")]
         public List<IntegrationEventV2Request.ResponseContentEnum> ResponseContent { get { return this.ResponseContentOption; } set { this.ResponseContentOption = new Option<List<IntegrationEventV2Request.ResponseContentEnum>>(value); } }
+
+        /// <summary>
+        /// Used to track the state of LoyaltyCards
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>> LoyaltyCardsOption { get; private set; }
+
+        /// <summary>
+        /// Identifiers of the loyalty cards used during this event.
+        /// </summary>
+        /// <value>Identifiers of the loyalty cards used during this event.</value>
+        /* <example>[loyalty-card-1]</example> */
+        [JsonPropertyName("loyaltyCards")]
+        public List<string> LoyaltyCards { get { return this.LoyaltyCardsOption; } set { this.LoyaltyCardsOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -286,8 +286,8 @@ namespace TalonOneSdk.Model
             sb.Append("  StoreIntegrationId: ").Append(StoreIntegrationId).Append("\n");
             sb.Append("  EvaluableCampaignIds: ").Append(EvaluableCampaignIds).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
-            sb.Append("  LoyaltyCards: ").Append(LoyaltyCards).Append("\n");
             sb.Append("  ResponseContent: ").Append(ResponseContent).Append("\n");
+            sb.Append("  LoyaltyCards: ").Append(LoyaltyCards).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -348,8 +348,8 @@ namespace TalonOneSdk.Model
             Option<string> storeIntegrationId = default;
             Option<List<long>> evaluableCampaignIds = default;
             Option<Object> attributes = default;
-            Option<List<string>> loyaltyCards = default;
             Option<List<IntegrationEventV2Request.ResponseContentEnum>> responseContent = default;
+            Option<List<string>> loyaltyCards = default;
 
             while (utf8JsonReader.Read())
             {
@@ -381,11 +381,11 @@ namespace TalonOneSdk.Model
                         case "attributes":
                             attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "loyaltyCards":
-                            loyaltyCards = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
                         case "responseContent":
                             responseContent = new Option<List<IntegrationEventV2Request.ResponseContentEnum>>(JsonSerializer.Deserialize<List<IntegrationEventV2Request.ResponseContentEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "loyaltyCards":
+                            loyaltyCards = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -411,13 +411,13 @@ namespace TalonOneSdk.Model
             if (attributes.IsSet && attributes.Value == null)
                 throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class IntegrationEventV2Request.");
 
-            if (loyaltyCards.IsSet && loyaltyCards.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyCards), "Property is not nullable for class IntegrationEventV2Request.");
-
             if (responseContent.IsSet && responseContent.Value == null)
                 throw new ArgumentNullException(nameof(responseContent), "Property is not nullable for class IntegrationEventV2Request.");
 
-            return new IntegrationEventV2Request(type.Value, profileId, storeIntegrationId, evaluableCampaignIds, attributes, loyaltyCards, responseContent);
+            if (loyaltyCards.IsSet && loyaltyCards.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyCards), "Property is not nullable for class IntegrationEventV2Request.");
+
+            return new IntegrationEventV2Request(type.Value, profileId, storeIntegrationId, evaluableCampaignIds, attributes, responseContent, loyaltyCards);
         }
 
         /// <summary>
@@ -459,11 +459,11 @@ namespace TalonOneSdk.Model
             if (integrationEventV2Request.AttributesOption.IsSet && integrationEventV2Request.Attributes == null)
                 throw new ArgumentNullException(nameof(integrationEventV2Request.Attributes), "Property is required for class IntegrationEventV2Request.");
 
-            if (integrationEventV2Request.LoyaltyCardsOption.IsSet && integrationEventV2Request.LoyaltyCards == null)
-                throw new ArgumentNullException(nameof(integrationEventV2Request.LoyaltyCards), "Property is required for class IntegrationEventV2Request.");
-
             if (integrationEventV2Request.ResponseContentOption.IsSet && integrationEventV2Request.ResponseContent == null)
                 throw new ArgumentNullException(nameof(integrationEventV2Request.ResponseContent), "Property is required for class IntegrationEventV2Request.");
+
+            if (integrationEventV2Request.LoyaltyCardsOption.IsSet && integrationEventV2Request.LoyaltyCards == null)
+                throw new ArgumentNullException(nameof(integrationEventV2Request.LoyaltyCards), "Property is required for class IntegrationEventV2Request.");
 
             writer.WriteString("type", integrationEventV2Request.Type);
 
@@ -483,15 +483,15 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("attributes");
                 JsonSerializer.Serialize(writer, integrationEventV2Request.Attributes, jsonSerializerOptions);
             }
-            if (integrationEventV2Request.LoyaltyCardsOption.IsSet)
-            {
-                writer.WritePropertyName("loyaltyCards");
-                JsonSerializer.Serialize(writer, integrationEventV2Request.LoyaltyCards, jsonSerializerOptions);
-            }
             if (integrationEventV2Request.ResponseContentOption.IsSet)
             {
                 writer.WritePropertyName("responseContent");
                 JsonSerializer.Serialize(writer, integrationEventV2Request.ResponseContent, jsonSerializerOptions);
+            }
+            if (integrationEventV2Request.LoyaltyCardsOption.IsSet)
+            {
+                writer.WritePropertyName("loyaltyCards");
+                JsonSerializer.Serialize(writer, integrationEventV2Request.LoyaltyCards, jsonSerializerOptions);
             }
         }
     }

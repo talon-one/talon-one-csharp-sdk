@@ -5,6 +5,10 @@ The legacy version of this SDK is available [here](https://github.com/talon-one/
 
 This SDK supports all of the operations of Talon.One's Integration API and Management API.
 
+## Migrating from the legacy SDK
+
+See our [migration guide](MIGRATION.md).
+
 ## Frameworks supported
 
 - .NET Core >=1.0
@@ -418,7 +422,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**UpdateCollection**](docs/apis/ManagementApi.md#updatecollection) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Update campaign-level collection's description
 *ManagementApi* | [**UpdateCoupon**](docs/apis/ManagementApi.md#updatecoupon) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId} | Update coupon
 *ManagementApi* | [**UpdateCouponBatch**](docs/apis/ManagementApi.md#updatecouponbatch) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Update coupons
-*ManagementApi* | [**UpdateLoyaltyCard**](docs/apis/ManagementApi.md#updateloyaltycard) | **PUT** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Update loyalty card status
+*ManagementApi* | [**UpdateLoyaltyCard**](docs/apis/ManagementApi.md#updateloyaltycard) | **PUT** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Update loyalty card
 *ManagementApi* | [**UpdateReferral**](docs/apis/ManagementApi.md#updatereferral) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Update referral
 *ManagementApi* | [**UpdateRoleV2**](docs/apis/ManagementApi.md#updaterolev2) | **PUT** /v2/roles/{roleId} | Update role
 *ManagementApi* | [**UpdateStore**](docs/apis/ManagementApi.md#updatestore) | **PUT** /v1/applications/{applicationId}/stores/{storeId} | Update store
@@ -513,6 +517,7 @@ Class | Method | HTTP request | Description
 - [Model.BestPriorPriceRequest](docs/models/BestPriorPriceRequest.md)
 - [Model.BestPriorTarget](docs/models/BestPriorTarget.md)
 - [Model.Binding](docs/models/Binding.md)
+- [Model.Blueprint](docs/models/Blueprint.md)
 - [Model.BulkApplicationNotification](docs/models/BulkApplicationNotification.md)
 - [Model.BulkOperationOnCampaigns](docs/models/BulkOperationOnCampaigns.md)
 - [Model.Campaign](docs/models/Campaign.md)
@@ -584,7 +589,6 @@ Class | Method | HTTP request | Description
 - [Model.Collection](docs/models/Collection.md)
 - [Model.CollectionItem](docs/models/CollectionItem.md)
 - [Model.CollectionWithoutPayload](docs/models/CollectionWithoutPayload.md)
-- [Model.CollectionsCatalog](docs/models/CollectionsCatalog.md)
 - [Model.Coupon](docs/models/Coupon.md)
 - [Model.CouponConstraints](docs/models/CouponConstraints.md)
 - [Model.CouponCreatedEffectProps](docs/models/CouponCreatedEffectProps.md)
@@ -598,6 +602,7 @@ Class | Method | HTTP request | Description
 - [Model.CouponReservations](docs/models/CouponReservations.md)
 - [Model.CouponSearch](docs/models/CouponSearch.md)
 - [Model.CouponValue](docs/models/CouponValue.md)
+- [Model.CouponWithApplication](docs/models/CouponWithApplication.md)
 - [Model.CouponsNotificationData](docs/models/CouponsNotificationData.md)
 - [Model.CouponsNotificationPolicy](docs/models/CouponsNotificationPolicy.md)
 - [Model.CreateAchievement](docs/models/CreateAchievement.md)
@@ -641,6 +646,7 @@ Class | Method | HTTP request | Description
 - [Model.ErrorSource](docs/models/ErrorSource.md)
 - [Model.EvaluableCampaignIds](docs/models/EvaluableCampaignIds.md)
 - [Model.Event](docs/models/Event.md)
+- [Model.EventAttributesEntity](docs/models/EventAttributesEntity.md)
 - [Model.EventType](docs/models/EventType.md)
 - [Model.EventV2](docs/models/EventV2.md)
 - [Model.EventV3](docs/models/EventV3.md)
@@ -737,11 +743,13 @@ Class | Method | HTTP request | Description
 - [Model.IntegrationEntity](docs/models/IntegrationEntity.md)
 - [Model.IntegrationEvent](docs/models/IntegrationEvent.md)
 - [Model.IntegrationEventV2Request](docs/models/IntegrationEventV2Request.md)
+- [Model.IntegrationEventV2Response](docs/models/IntegrationEventV2Response.md)
 - [Model.IntegrationEventV3Request](docs/models/IntegrationEventV3Request.md)
 - [Model.IntegrationEventV3Response](docs/models/IntegrationEventV3Response.md)
 - [Model.IntegrationProfileEntity](docs/models/IntegrationProfileEntity.md)
 - [Model.IntegrationProfileEntityV3](docs/models/IntegrationProfileEntityV3.md)
 - [Model.IntegrationRequest](docs/models/IntegrationRequest.md)
+- [Model.IntegrationResponse](docs/models/IntegrationResponse.md)
 - [Model.IntegrationState](docs/models/IntegrationState.md)
 - [Model.IntegrationStateV2](docs/models/IntegrationStateV2.md)
 - [Model.IntegrationStoreEntity](docs/models/IntegrationStoreEntity.md)
@@ -822,6 +830,7 @@ Class | Method | HTTP request | Description
 - [Model.NewAttribute](docs/models/NewAttribute.md)
 - [Model.NewAudience](docs/models/NewAudience.md)
 - [Model.NewBaseNotification](docs/models/NewBaseNotification.md)
+- [Model.NewBlueprint](docs/models/NewBlueprint.md)
 - [Model.NewCampaign](docs/models/NewCampaign.md)
 - [Model.NewCampaignCollection](docs/models/NewCampaignCollection.md)
 - [Model.NewCampaignEvaluationGroup](docs/models/NewCampaignEvaluationGroup.md)
@@ -832,7 +841,6 @@ Class | Method | HTTP request | Description
 - [Model.NewCampaignTemplate](docs/models/NewCampaignTemplate.md)
 - [Model.NewCatalog](docs/models/NewCatalog.md)
 - [Model.NewCollection](docs/models/NewCollection.md)
-- [Model.NewCollectionsCatalog](docs/models/NewCollectionsCatalog.md)
 - [Model.NewCouponCreationJob](docs/models/NewCouponCreationJob.md)
 - [Model.NewCouponDeletionJob](docs/models/NewCouponDeletionJob.md)
 - [Model.NewCoupons](docs/models/NewCoupons.md)
@@ -900,6 +908,7 @@ Class | Method | HTTP request | Description
 - [Model.PendingActivePointsNotification](docs/models/PendingActivePointsNotification.md)
 - [Model.PendingPointsNotificationPolicy](docs/models/PendingPointsNotificationPolicy.md)
 - [Model.Picklist](docs/models/Picklist.md)
+- [Model.PlaceholderDetails](docs/models/PlaceholderDetails.md)
 - [Model.PriceDetail](docs/models/PriceDetail.md)
 - [Model.PriceType](docs/models/PriceType.md)
 - [Model.PriceTypeReferenceDetail](docs/models/PriceTypeReferenceDetail.md)
@@ -907,10 +916,16 @@ Class | Method | HTTP request | Description
 - [Model.PrismaticConfig](docs/models/PrismaticConfig.md)
 - [Model.PrismaticEventPayloadCouponBasedNotifications](docs/models/PrismaticEventPayloadCouponBasedNotifications.md)
 - [Model.PrismaticEventPayloadCouponBasedNotificationsLimits](docs/models/PrismaticEventPayloadCouponBasedNotificationsLimits.md)
-- [Model.PrismaticEventPayloadLoyaltyProfileBasedNotifications](docs/models/PrismaticEventPayloadLoyaltyProfileBasedNotifications.md)
-- [Model.PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction](docs/models/PrismaticEventPayloadLoyaltyProfileBasedNotificationsAction.md)
+- [Model.PrismaticEventPayloadLoyaltyProfileBasedNotification](docs/models/PrismaticEventPayloadLoyaltyProfileBasedNotification.md)
+- [Model.PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotification](docs/models/PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotification.md)
+- [Model.PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction](docs/models/PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.md)
+- [Model.PrismaticEventPayloadLoyaltyProfileBasedTierDowngradeNotification](docs/models/PrismaticEventPayloadLoyaltyProfileBasedTierDowngradeNotification.md)
+- [Model.PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification](docs/models/PrismaticEventPayloadLoyaltyProfileBasedTierUpgradeNotification.md)
+- [Model.PrismaticEventRecord](docs/models/PrismaticEventRecord.md)
 - [Model.PrismaticFlow](docs/models/PrismaticFlow.md)
 - [Model.PrismaticFlowConfig](docs/models/PrismaticFlowConfig.md)
+- [Model.PrismaticFlowConfigResponse](docs/models/PrismaticFlowConfigResponse.md)
+- [Model.PrismaticFlowResponse](docs/models/PrismaticFlowResponse.md)
 - [Model.PrismaticFlowWithConfig](docs/models/PrismaticFlowWithConfig.md)
 - [Model.PrismaticPaginatedEventPayload](docs/models/PrismaticPaginatedEventPayload.md)
 - [Model.Product](docs/models/Product.md)
@@ -932,6 +947,7 @@ Class | Method | HTTP request | Description
 - [Model.RemoveManyItemsCatalogAction](docs/models/RemoveManyItemsCatalogAction.md)
 - [Model.ReopenSessionResponse](docs/models/ReopenSessionResponse.md)
 - [Model.ReserveCouponEffectProps](docs/models/ReserveCouponEffectProps.md)
+- [Model.ResponseContentObject](docs/models/ResponseContentObject.md)
 - [Model.Return](docs/models/Return.md)
 - [Model.ReturnIntegrationRequest](docs/models/ReturnIntegrationRequest.md)
 - [Model.ReturnedCartItem](docs/models/ReturnedCartItem.md)
@@ -1024,7 +1040,6 @@ Class | Method | HTTP request | Description
 - [Model.TierWillDowngradeNotificationPolicy](docs/models/TierWillDowngradeNotificationPolicy.md)
 - [Model.TierWillDowngradeNotificationTrigger](docs/models/TierWillDowngradeNotificationTrigger.md)
 - [Model.TimePoint](docs/models/TimePoint.md)
-- [Model.TrackEventV2Response](docs/models/TrackEventV2Response.md)
 - [Model.TransferLoyaltyCard](docs/models/TransferLoyaltyCard.md)
 - [Model.TriggerWebhookEffectProps](docs/models/TriggerWebhookEffectProps.md)
 - [Model.TwoFAConfig](docs/models/TwoFAConfig.md)
@@ -1035,6 +1050,7 @@ Class | Method | HTTP request | Description
 - [Model.UpdateApplicationCIF](docs/models/UpdateApplicationCIF.md)
 - [Model.UpdateAttributeEffectProps](docs/models/UpdateAttributeEffectProps.md)
 - [Model.UpdateAudience](docs/models/UpdateAudience.md)
+- [Model.UpdateBlueprint](docs/models/UpdateBlueprint.md)
 - [Model.UpdateCampaign](docs/models/UpdateCampaign.md)
 - [Model.UpdateCampaignCollection](docs/models/UpdateCampaignCollection.md)
 - [Model.UpdateCampaignEvaluationGroup](docs/models/UpdateCampaignEvaluationGroup.md)
@@ -1042,7 +1058,6 @@ Class | Method | HTTP request | Description
 - [Model.UpdateCampaignTemplate](docs/models/UpdateCampaignTemplate.md)
 - [Model.UpdateCatalog](docs/models/UpdateCatalog.md)
 - [Model.UpdateCollection](docs/models/UpdateCollection.md)
-- [Model.UpdateCollectionsCatalog](docs/models/UpdateCollectionsCatalog.md)
 - [Model.UpdateCoupon](docs/models/UpdateCoupon.md)
 - [Model.UpdateCouponBatch](docs/models/UpdateCouponBatch.md)
 - [Model.UpdateCouponsData](docs/models/UpdateCouponsData.md)
@@ -1052,7 +1067,9 @@ Class | Method | HTTP request | Description
 - [Model.UpdateExperiment](docs/models/UpdateExperiment.md)
 - [Model.UpdateExperimentVariant](docs/models/UpdateExperimentVariant.md)
 - [Model.UpdateExperimentVariantArray](docs/models/UpdateExperimentVariantArray.md)
+- [Model.UpdateExperimentVariantName](docs/models/UpdateExperimentVariantName.md)
 - [Model.UpdateLoyaltyCard](docs/models/UpdateLoyaltyCard.md)
+- [Model.UpdateLoyaltyCardRequest](docs/models/UpdateLoyaltyCardRequest.md)
 - [Model.UpdateLoyaltyProgram](docs/models/UpdateLoyaltyProgram.md)
 - [Model.UpdateLoyaltyProgramTier](docs/models/UpdateLoyaltyProgramTier.md)
 - [Model.UpdatePicklist](docs/models/UpdatePicklist.md)

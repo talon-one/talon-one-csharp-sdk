@@ -81,12 +81,30 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'OldPlaceholders'
+        /// </summary>
+        [Fact]
+        public void OldPlaceholdersTest()
+        {
+            // TODO unit test for the property 'OldPlaceholders'
+        }
+
+        /// <summary>
         /// Test the property 'Ruleset'
         /// </summary>
         [Fact]
         public void RulesetTest()
         {
             // TODO unit test for the property 'Ruleset'
+        }
+
+        /// <summary>
+        /// Test the property 'Placeholders'
+        /// </summary>
+        [Fact]
+        public void PlaceholdersTest()
+        {
+            // TODO unit test for the property 'Placeholders'
         }
     }
 }

@@ -59,25 +59,6 @@ index 3bc910b..ceb10da 100644
                  case ApiKeyHeader.Authorization:
                      return "Authorization";
                  default:
-@@ -207,12 +195,12 @@ namespace TalonOneSdk.Client
-                 return ApplicationSession.StateEnumToJsonValue(applicationSessionStateEnum);
-             if (obj is AsyncCouponsData.NotificationTypeEnum asyncCouponsDataNotificationTypeEnum)
-                 return AsyncCouponsData.NotificationTypeEnumToJsonValue(asyncCouponsDataNotificationTypeEnum);
--            if (obj is Attribute.EntityEnum attributeEntityEnum)
--                return Attribute.EntityEnumToJsonValue(attributeEntityEnum);
--            if (obj is Attribute.TypeEnum attributeTypeEnum)
--                return Attribute.TypeEnumToJsonValue(attributeTypeEnum);
--            if (obj is Attribute.AllowedSubscriptionsEnum attributeAllowedSubscriptionsEnum)
--                return Attribute.AllowedSubscriptionsEnumToJsonValue(attributeAllowedSubscriptionsEnum);
-+            if (obj is TalonOneSdk.Model.Attribute.EntityEnum attributeEntityEnum)
-+                return TalonOneSdk.Model.Attribute.EntityEnumToJsonValue(attributeEntityEnum);
-+            if (obj is TalonOneSdk.Model.Attribute.TypeEnum attributeTypeEnum)
-+                return TalonOneSdk.Model.Attribute.TypeEnumToJsonValue(attributeTypeEnum);
-+            if (obj is TalonOneSdk.Model.Attribute.AllowedSubscriptionsEnum attributeAllowedSubscriptionsEnum)
-+                return TalonOneSdk.Model.Attribute.AllowedSubscriptionsEnumToJsonValue(attributeAllowedSubscriptionsEnum);
-             if (obj is BaseCampaign.FeaturesEnum baseCampaignFeaturesEnum)
-                 return BaseCampaign.FeaturesEnumToJsonValue(baseCampaignFeaturesEnum);
-             if (obj is BaseCampaign.StateEnum baseCampaignStateEnum)
 diff --git a/src/TalonOneSdk/Model/NewCustomerSessionV2.cs b/src/TalonOneSdk/Model/NewCustomerSessionV2.cs
 index 95997ea..a5fe0f3 100644
 --- a/src/TalonOneSdk/Model/NewCustomerSessionV2.cs
