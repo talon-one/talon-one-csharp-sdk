@@ -475,7 +475,7 @@ void (empty response body)
 
 Generate loyalty card
 
-Generate a loyalty card in a specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview).  To link the card to one or more customer profiles, use the `customerProfileIds` parameter in the request body.  **Note:** - The number of customer profiles linked to the loyalty card cannot exceed the loyalty program's `usersPerCardLimit`. To find the program's limit, use the [Get loyalty program](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgram) endpoint. - If the loyalty program has a defined code format, it will be used for the loyalty card identifier. 
+Generate a loyalty card in a specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview).  To link the card to one or more customer profiles, use the `customerProfileIds` parameter in the request body.  **Note:**  - The number of customer profiles linked to the loyalty card cannot exceed the loyalty program's `usersPerCardLimit`. To find the program's limit, use the [Get loyalty program](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgram) endpoint.  - If the loyalty program has a defined code format, it will be used for the loyalty card identifier. 
 
 
 ### Parameters
@@ -1158,7 +1158,7 @@ Perform the following actions for a given cart item catalog:  - Add an item to t
 
 <a id="trackeventv2"></a>
 # **TrackEventV2**
-> TrackEventV2Response TrackEventV2 (IntegrationEventV2Request integrationEventV2Request, string silent = null, bool dry = null, bool forceCompleteEvaluation = null)
+> IntegrationEventV2Response TrackEventV2 (IntegrationEventV2Request integrationEventV2Request, string silent = null, bool dry = null, bool forceCompleteEvaluation = null)
 
 Track event
 
@@ -1176,7 +1176,7 @@ Triggers a custom event.  To use this endpoint: 1. Define a [custom event](https
 
 ### Return type
 
-[**TrackEventV2Response**](TrackEventV2Response.md)
+[**IntegrationEventV2Response**](IntegrationEventV2Response.md)
 
 ### Authorization
 

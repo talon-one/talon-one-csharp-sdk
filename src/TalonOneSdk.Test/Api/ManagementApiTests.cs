@@ -2530,8 +2530,8 @@ namespace TalonOneSdk.Test.Api
         {
             long loyaltyProgramId = default;
             string loyaltyCardId = default;
-            UpdateLoyaltyCard updateLoyaltyCard = default;
-            var response = await _instance.UpdateLoyaltyCardAsync(loyaltyProgramId, loyaltyCardId, updateLoyaltyCard);
+            UpdateLoyaltyCardRequest updateLoyaltyCardRequest = default;
+            var response = await _instance.UpdateLoyaltyCardAsync(loyaltyProgramId, loyaltyCardId, updateLoyaltyCardRequest);
             var model = response.Ok();
             Assert.IsType<LoyaltyCard>(model);
         }

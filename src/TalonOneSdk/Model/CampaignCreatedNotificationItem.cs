@@ -33,15 +33,17 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="event">The type of the event. Can be one of the following: [&#39;campaign_state_changed&#39;, &#39;campaign_ruleset_changed&#39;, &#39;campaign_edited&#39;, &#39;campaign_created&#39;, &#39;campaign_deleted&#39;] </param>
         /// <param name="campaign">The campaign whose state changed.</param>
-        /// <param name="ruleset">The current ruleset.</param>
         /// <param name="evaluationPosition">The campaign position within the evaluation tree.</param>
+        /// <param name="ruleset">The current ruleset.</param>
+        /// <param name="placeholders">The current details of the [placeholders](https://docs.talon.one/docs/product/campaigns/templates/create-templates#use-placeholders) in the campaign.</param>
         [JsonConstructor]
-        public CampaignCreatedNotificationItem(string @event, Object campaign = default, Option<Object> ruleset = default, Object evaluationPosition = default)
+        public CampaignCreatedNotificationItem(string @event, Campaign campaign, CampaignEvaluationPosition evaluationPosition, Option<Ruleset> ruleset = default, Option<List<PlaceholderDetails>> placeholders = default)
         {
             Event = @event;
             Campaign = campaign;
-            RulesetOption = ruleset;
             EvaluationPosition = evaluationPosition;
+            RulesetOption = ruleset;
+            PlaceholdersOption = placeholders;
             OnCreated();
         }
 
@@ -60,28 +62,42 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The campaign whose state changed.</value>
         [JsonPropertyName("campaign")]
-        public Object Campaign { get; set; }
-
-        /// <summary>
-        /// Used to track the state of Ruleset
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Object> RulesetOption { get; private set; }
-
-        /// <summary>
-        /// The current ruleset.
-        /// </summary>
-        /// <value>The current ruleset.</value>
-        [JsonPropertyName("ruleset")]
-        public Object Ruleset { get { return this.RulesetOption; } set { this.RulesetOption = new Option<Object>(value); } }
+        public Campaign Campaign { get; set; }
 
         /// <summary>
         /// The campaign position within the evaluation tree.
         /// </summary>
         /// <value>The campaign position within the evaluation tree.</value>
         [JsonPropertyName("evaluationPosition")]
-        public Object EvaluationPosition { get; set; }
+        public CampaignEvaluationPosition EvaluationPosition { get; set; }
+
+        /// <summary>
+        /// Used to track the state of Ruleset
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Ruleset> RulesetOption { get; private set; }
+
+        /// <summary>
+        /// The current ruleset.
+        /// </summary>
+        /// <value>The current ruleset.</value>
+        [JsonPropertyName("ruleset")]
+        public Ruleset Ruleset { get { return this.RulesetOption; } set { this.RulesetOption = new Option<Ruleset>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Placeholders
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<PlaceholderDetails>> PlaceholdersOption { get; private set; }
+
+        /// <summary>
+        /// The current details of the [placeholders](https://docs.talon.one/docs/product/campaigns/templates/create-templates#use-placeholders) in the campaign.
+        /// </summary>
+        /// <value>The current details of the [placeholders](https://docs.talon.one/docs/product/campaigns/templates/create-templates#use-placeholders) in the campaign.</value>
+        [JsonPropertyName("placeholders")]
+        public List<PlaceholderDetails> Placeholders { get { return this.PlaceholdersOption; } set { this.PlaceholdersOption = new Option<List<PlaceholderDetails>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,8 +109,9 @@ namespace TalonOneSdk.Model
             sb.Append("class CampaignCreatedNotificationItem {\n");
             sb.Append("  Event: ").Append(Event).Append("\n");
             sb.Append("  Campaign: ").Append(Campaign).Append("\n");
-            sb.Append("  Ruleset: ").Append(Ruleset).Append("\n");
             sb.Append("  EvaluationPosition: ").Append(EvaluationPosition).Append("\n");
+            sb.Append("  Ruleset: ").Append(Ruleset).Append("\n");
+            sb.Append("  Placeholders: ").Append(Placeholders).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -133,9 +150,10 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string> varEvent = default;
-            Option<Object> campaign = default;
-            Option<Object> ruleset = default;
-            Option<Object> evaluationPosition = default;
+            Option<Campaign> campaign = default;
+            Option<CampaignEvaluationPosition> evaluationPosition = default;
+            Option<Ruleset> ruleset = default;
+            Option<List<PlaceholderDetails>> placeholders = default;
 
             while (utf8JsonReader.Read())
             {
@@ -156,13 +174,16 @@ namespace TalonOneSdk.Model
                             varEvent = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "campaign":
-                            campaign = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "ruleset":
-                            ruleset = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            campaign = new Option<Campaign>(JsonSerializer.Deserialize<Campaign>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "evaluationPosition":
-                            evaluationPosition = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            evaluationPosition = new Option<CampaignEvaluationPosition>(JsonSerializer.Deserialize<CampaignEvaluationPosition>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "ruleset":
+                            ruleset = new Option<Ruleset>(JsonSerializer.Deserialize<Ruleset>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "placeholders":
+                            placeholders = new Option<List<PlaceholderDetails>>(JsonSerializer.Deserialize<List<PlaceholderDetails>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -182,7 +203,19 @@ namespace TalonOneSdk.Model
             if (varEvent.IsSet && varEvent.Value == null)
                 throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignCreatedNotificationItem.");
 
-            return new CampaignCreatedNotificationItem(varEvent.Value, campaign.Value, ruleset, evaluationPosition.Value);
+            if (campaign.IsSet && campaign.Value == null)
+                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CampaignCreatedNotificationItem.");
+
+            if (evaluationPosition.IsSet && evaluationPosition.Value == null)
+                throw new ArgumentNullException(nameof(evaluationPosition), "Property is not nullable for class CampaignCreatedNotificationItem.");
+
+            if (ruleset.IsSet && ruleset.Value == null)
+                throw new ArgumentNullException(nameof(ruleset), "Property is not nullable for class CampaignCreatedNotificationItem.");
+
+            if (placeholders.IsSet && placeholders.Value == null)
+                throw new ArgumentNullException(nameof(placeholders), "Property is not nullable for class CampaignCreatedNotificationItem.");
+
+            return new CampaignCreatedNotificationItem(varEvent.Value, campaign.Value, evaluationPosition.Value, ruleset, placeholders);
         }
 
         /// <summary>
@@ -212,30 +245,34 @@ namespace TalonOneSdk.Model
             if (campaignCreatedNotificationItem.Event == null)
                 throw new ArgumentNullException(nameof(campaignCreatedNotificationItem.Event), "Property is required for class CampaignCreatedNotificationItem.");
 
+            if (campaignCreatedNotificationItem.Campaign == null)
+                throw new ArgumentNullException(nameof(campaignCreatedNotificationItem.Campaign), "Property is required for class CampaignCreatedNotificationItem.");
+
+            if (campaignCreatedNotificationItem.EvaluationPosition == null)
+                throw new ArgumentNullException(nameof(campaignCreatedNotificationItem.EvaluationPosition), "Property is required for class CampaignCreatedNotificationItem.");
+
+            if (campaignCreatedNotificationItem.RulesetOption.IsSet && campaignCreatedNotificationItem.Ruleset == null)
+                throw new ArgumentNullException(nameof(campaignCreatedNotificationItem.Ruleset), "Property is required for class CampaignCreatedNotificationItem.");
+
+            if (campaignCreatedNotificationItem.PlaceholdersOption.IsSet && campaignCreatedNotificationItem.Placeholders == null)
+                throw new ArgumentNullException(nameof(campaignCreatedNotificationItem.Placeholders), "Property is required for class CampaignCreatedNotificationItem.");
+
             writer.WriteString("Event", campaignCreatedNotificationItem.Event);
 
-            if (campaignCreatedNotificationItem.Campaign != null)
-            {
-                writer.WritePropertyName("campaign");
-                JsonSerializer.Serialize(writer, campaignCreatedNotificationItem.Campaign, jsonSerializerOptions);
-            }
-            else
-                writer.WriteNull("campaign");
+            writer.WritePropertyName("campaign");
+            JsonSerializer.Serialize(writer, campaignCreatedNotificationItem.Campaign, jsonSerializerOptions);
+            writer.WritePropertyName("evaluationPosition");
+            JsonSerializer.Serialize(writer, campaignCreatedNotificationItem.EvaluationPosition, jsonSerializerOptions);
             if (campaignCreatedNotificationItem.RulesetOption.IsSet)
-                if (campaignCreatedNotificationItem.RulesetOption.Value != null)
-                {
-                    writer.WritePropertyName("ruleset");
-                    JsonSerializer.Serialize(writer, campaignCreatedNotificationItem.Ruleset, jsonSerializerOptions);
-                }
-                else
-                    writer.WriteNull("ruleset");
-            if (campaignCreatedNotificationItem.EvaluationPosition != null)
             {
-                writer.WritePropertyName("evaluationPosition");
-                JsonSerializer.Serialize(writer, campaignCreatedNotificationItem.EvaluationPosition, jsonSerializerOptions);
+                writer.WritePropertyName("ruleset");
+                JsonSerializer.Serialize(writer, campaignCreatedNotificationItem.Ruleset, jsonSerializerOptions);
             }
-            else
-                writer.WriteNull("evaluationPosition");
+            if (campaignCreatedNotificationItem.PlaceholdersOption.IsSet)
+            {
+                writer.WritePropertyName("placeholders");
+                JsonSerializer.Serialize(writer, campaignCreatedNotificationItem.Placeholders, jsonSerializerOptions);
+            }
         }
     }
 }

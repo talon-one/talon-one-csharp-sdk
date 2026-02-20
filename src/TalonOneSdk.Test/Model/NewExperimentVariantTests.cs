@@ -63,6 +63,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Weight'
+        /// </summary>
+        [Fact]
+        public void WeightTest()
+        {
+            // TODO unit test for the property 'Weight'
+        }
+
+        /// <summary>
         /// Test the property 'Ruleset'
         /// </summary>
         [Fact]
@@ -78,15 +87,6 @@ namespace TalonOneSdk.Test.Model
         public void IsPrimaryTest()
         {
             // TODO unit test for the property 'IsPrimary'
-        }
-
-        /// <summary>
-        /// Test the property 'Weight'
-        /// </summary>
-        [Fact]
-        public void WeightTest()
-        {
-            // TODO unit test for the property 'Weight'
         }
     }
 }
