@@ -80,9 +80,9 @@ namespace TalonOneSdk.Model
             Loyalty = 3,
 
             /// <summary>
-            /// Enum Event for value: event
+            /// Enum AdvancedEvent for value: advancedEvent
             /// </summary>
-            Event = 4,
+            AdvancedEvent = 4,
 
             /// <summary>
             /// Enum AwardedGiveaways for value: awardedGiveaways
@@ -112,8 +112,8 @@ namespace TalonOneSdk.Model
             if (value.Equals("loyalty"))
                 return ResponseContentEnum.Loyalty;
 
-            if (value.Equals("event"))
-                return ResponseContentEnum.Event;
+            if (value.Equals("advancedEvent"))
+                return ResponseContentEnum.AdvancedEvent;
 
             if (value.Equals("awardedGiveaways"))
                 return ResponseContentEnum.AwardedGiveaways;
@@ -140,8 +140,8 @@ namespace TalonOneSdk.Model
             if (value.Equals("loyalty"))
                 return ResponseContentEnum.Loyalty;
 
-            if (value.Equals("event"))
-                return ResponseContentEnum.Event;
+            if (value.Equals("advancedEvent"))
+                return ResponseContentEnum.AdvancedEvent;
 
             if (value.Equals("awardedGiveaways"))
                 return ResponseContentEnum.AwardedGiveaways;
@@ -169,8 +169,8 @@ namespace TalonOneSdk.Model
             if (value == ResponseContentEnum.Loyalty)
                 return "loyalty";
 
-            if (value == ResponseContentEnum.Event)
-                return "event";
+            if (value == ResponseContentEnum.AdvancedEvent)
+                return "advancedEvent";
 
             if (value == ResponseContentEnum.AwardedGiveaways)
                 return "awardedGiveaways";
@@ -306,7 +306,7 @@ namespace TalonOneSdk.Model
         /// Optional list of requested information to be present on the response related to the tracking custom event. 
         /// </summary>
         /// <value>Optional list of requested information to be present on the response related to the tracking custom event. </value>
-        /* <example>[triggeredCampaigns, customerProfile]</example> */
+        /* <example>[&quot;triggeredCampaigns&quot;,&quot;customerProfile&quot;]</example> */
         [JsonPropertyName("responseContent")]
         public List<IntegrationEventV3Request.ResponseContentEnum> ResponseContent { get { return this.ResponseContentOption; } set { this.ResponseContentOption = new Option<List<IntegrationEventV3Request.ResponseContentEnum>>(value); } }
 

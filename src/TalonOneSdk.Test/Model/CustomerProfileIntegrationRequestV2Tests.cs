@@ -72,21 +72,21 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'AudiencesChanges'
-        /// </summary>
-        [Fact]
-        public void AudiencesChangesTest()
-        {
-            // TODO unit test for the property 'AudiencesChanges'
-        }
-
-        /// <summary>
         /// Test the property 'ResponseContent'
         /// </summary>
         [Fact]
         public void ResponseContentTest()
         {
             // TODO unit test for the property 'ResponseContent'
+        }
+
+        /// <summary>
+        /// Test the property 'AudiencesChanges'
+        /// </summary>
+        [Fact]
+        public void AudiencesChangesTest()
+        {
+            // TODO unit test for the property 'AudiencesChanges'
         }
     }
 }

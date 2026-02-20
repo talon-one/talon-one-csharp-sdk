@@ -72,6 +72,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'EvaluationPosition'
+        /// </summary>
+        [Fact]
+        public void EvaluationPositionTest()
+        {
+            // TODO unit test for the property 'EvaluationPosition'
+        }
+
+        /// <summary>
         /// Test the property 'Ruleset'
         /// </summary>
         [Fact]
@@ -81,12 +90,12 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'EvaluationPosition'
+        /// Test the property 'Placeholders'
         /// </summary>
         [Fact]
-        public void EvaluationPositionTest()
+        public void PlaceholdersTest()
         {
-            // TODO unit test for the property 'EvaluationPosition'
+            // TODO unit test for the property 'Placeholders'
         }
     }
 }

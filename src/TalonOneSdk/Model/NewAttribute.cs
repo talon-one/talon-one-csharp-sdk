@@ -112,14 +112,19 @@ namespace TalonOneSdk.Model
             Giveaway = 8,
 
             /// <summary>
+            /// Enum LoyaltyCard for value: LoyaltyCard
+            /// </summary>
+            LoyaltyCard = 9,
+
+            /// <summary>
             /// Enum Referral for value: Referral
             /// </summary>
-            Referral = 9,
+            Referral = 10,
 
             /// <summary>
             /// Enum Store for value: Store
             /// </summary>
-            Store = 10
+            Store = 11
         }
 
         /// <summary>
@@ -153,6 +158,9 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("Giveaway"))
                 return EntityEnum.Giveaway;
+
+            if (value.Equals("LoyaltyCard"))
+                return EntityEnum.LoyaltyCard;
 
             if (value.Equals("Referral"))
                 return EntityEnum.Referral;
@@ -194,6 +202,9 @@ namespace TalonOneSdk.Model
             if (value.Equals("Giveaway"))
                 return EntityEnum.Giveaway;
 
+            if (value.Equals("LoyaltyCard"))
+                return EntityEnum.LoyaltyCard;
+
             if (value.Equals("Referral"))
                 return EntityEnum.Referral;
 
@@ -234,6 +245,9 @@ namespace TalonOneSdk.Model
 
             if (value == EntityEnum.Giveaway)
                 return "Giveaway";
+
+            if (value == EntityEnum.LoyaltyCard)
+                return "LoyaltyCard";
 
             if (value == EntityEnum.Referral)
                 return "Referral";

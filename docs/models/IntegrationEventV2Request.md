@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **StoreIntegrationId** | **string** | The integration ID of the store. You choose this ID when you create a store. | [optional] 
 **EvaluableCampaignIds** | **List&lt;long&gt;** | When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.  | [optional] 
 **Attributes** | **Object** | Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute). | [optional] 
-**LoyaltyCards** | **List&lt;string&gt;** | Identifier of the loyalty card used during this event. | [optional] 
-**ResponseContent** | **List&lt;IntegrationEventV2Request.ResponseContentEnum&gt;** | Optional list of requested information to be present on the response related to the tracking custom event.  | [optional] 
+**ResponseContent** | **List&lt;IntegrationEventV2Request.ResponseContentEnum&gt;** | Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints.  | [optional] 
+**LoyaltyCards** | **List&lt;string&gt;** | Identifiers of the loyalty cards used during this event. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

@@ -34,7 +34,7 @@ namespace TalonOneSdk.Model
         /// <param name="id">id</param>
         /// <param name="name">name</param>
         /// <param name="ruleset">ruleset</param>
-        /// <param name="weight">weight</param>
+        /// <param name="weight">The percentage split of this variant. The sum of all variant percentages must be 100.</param>
         [JsonConstructor]
         public UpdateExperimentVariant(long id, string name, NewRuleset ruleset, long weight)
         {
@@ -68,9 +68,10 @@ namespace TalonOneSdk.Model
         public NewRuleset Ruleset { get; set; }
 
         /// <summary>
-        /// Gets or Sets Weight
+        /// The percentage split of this variant. The sum of all variant percentages must be 100.
         /// </summary>
-        /* <example>12</example> */
+        /// <value>The percentage split of this variant. The sum of all variant percentages must be 100.</value>
+        /* <example>13</example> */
         [JsonPropertyName("weight")]
         public long Weight { get; set; }
 
@@ -97,6 +98,18 @@ namespace TalonOneSdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Weight (long) maximum
+            if (this.Weight > (long)99)
+            {
+                yield return new ValidationResult("Invalid value for Weight, must be a value less than or equal to 99.", new [] { "Weight" });
+            }
+
+            // Weight (long) minimum
+            if (this.Weight < (long)1)
+            {
+                yield return new ValidationResult("Invalid value for Weight, must be a value greater than or equal to 1.", new [] { "Weight" });
+            }
+
             yield break;
         }
     }

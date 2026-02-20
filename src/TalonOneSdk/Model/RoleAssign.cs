@@ -47,7 +47,7 @@ namespace TalonOneSdk.Model
         /// An array of user IDs.
         /// </summary>
         /// <value>An array of user IDs.</value>
-        /* <example>[48, 562, 475, 18]</example> */
+        /* <example>[48,562,475,18]</example> */
         [JsonPropertyName("users")]
         public List<long> Users { get; set; }
 
@@ -55,7 +55,7 @@ namespace TalonOneSdk.Model
         /// An array of role IDs.
         /// </summary>
         /// <value>An array of role IDs.</value>
-        /* <example>[128, 147]</example> */
+        /* <example>[128,147]</example> */
         [JsonPropertyName("roles")]
         public List<long> Roles { get; set; }
 
