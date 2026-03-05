@@ -21,7 +21,7 @@ Follow these steps to migrate your code from the legacy C# SDK to the new versio
    ```
 
 2. Update the namespaces accordingly:
-   
+
    ```diff
    -  using TalonOne.Api;
    -  using TalonOne.Client;

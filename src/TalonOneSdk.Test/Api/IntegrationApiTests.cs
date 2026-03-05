@@ -400,6 +400,18 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test PriceHistory
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task PriceHistoryAsyncTest()
+        {
+            PriceHistoryRequest priceHistoryRequest = default;
+            var response = await _instance.PriceHistoryAsync(priceHistoryRequest);
+            var model = response.Ok();
+            Assert.IsType<PriceHistoryResponse>(model);
+        }
+
+        /// <summary>
         /// Test ReopenCustomerSession
         /// </summary>
         [Fact (Skip = "not implemented")]

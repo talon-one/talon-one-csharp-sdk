@@ -729,6 +729,29 @@ namespace TalonOneSdk.Api
         Task<ILinkLoyaltyCardToProfileApiResponse> LinkLoyaltyCardToProfileOrDefaultAsync(long loyaltyProgramId, string loyaltyCardId, LoyaltyCardRegistration loyaltyCardRegistration, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Get summary of price history
+        /// </summary>
+        /// <remarks>
+        /// Fetch the historical price data for a given SKU within a defined timeframe. 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="priceHistoryRequest">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPriceHistoryApiResponse"/>&gt;</returns>
+        Task<IPriceHistoryApiResponse> PriceHistoryAsync(PriceHistoryRequest priceHistoryRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get summary of price history
+        /// </summary>
+        /// <remarks>
+        /// Fetch the historical price data for a given SKU within a defined timeframe. 
+        /// </remarks>
+        /// <param name="priceHistoryRequest">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPriceHistoryApiResponse"/>&gt;</returns>
+        Task<IPriceHistoryApiResponse> PriceHistoryOrDefaultAsync(PriceHistoryRequest priceHistoryRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Reopen customer session
         /// </summary>
         /// <remarks>
@@ -1683,6 +1706,18 @@ namespace TalonOneSdk.Api
     }
 
     /// <summary>
+    /// The <see cref="IPriceHistoryApiResponse"/>
+    /// </summary>
+    public interface IPriceHistoryApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.PriceHistoryResponse>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+    }
+
+    /// <summary>
     /// The <see cref="IReopenCustomerSessionApiResponse"/>
     /// </summary>
     public interface IReopenCustomerSessionApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.ReopenSessionResponse>, IBadRequest<TalonOneSdk.Model.ErrorResponse>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>
@@ -2465,6 +2500,26 @@ namespace TalonOneSdk.Api
         internal void ExecuteOnErrorLinkLoyaltyCardToProfile(Exception exception)
         {
             OnErrorLinkLoyaltyCardToProfile?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnPriceHistory;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorPriceHistory;
+
+        internal void ExecuteOnPriceHistory(IntegrationApi.PriceHistoryApiResponse apiResponse)
+        {
+            OnPriceHistory?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorPriceHistory(Exception exception)
+        {
+            OnErrorPriceHistory?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -11792,6 +11847,276 @@ namespace TalonOneSdk.Api
                 } catch (Exception e)
                 {
                     OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPriceHistory(PriceHistoryRequest priceHistoryRequest);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="priceHistoryRequest"></param>
+        /// <returns></returns>
+        private void ValidatePriceHistory(PriceHistoryRequest priceHistoryRequest)
+        {
+            if (priceHistoryRequest == null)
+                throw new ArgumentNullException(nameof(priceHistoryRequest));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="priceHistoryRequest"></param>
+        private void AfterPriceHistoryDefaultImplementation(IPriceHistoryApiResponse apiResponseLocalVar, PriceHistoryRequest priceHistoryRequest)
+        {
+            bool suppressDefaultLog = false;
+            AfterPriceHistory(ref suppressDefaultLog, apiResponseLocalVar, priceHistoryRequest);
+            if (!suppressDefaultLog)
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="priceHistoryRequest"></param>
+        partial void AfterPriceHistory(ref bool suppressDefaultLog, IPriceHistoryApiResponse apiResponseLocalVar, PriceHistoryRequest priceHistoryRequest);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="priceHistoryRequest"></param>
+        private void OnErrorPriceHistoryDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, PriceHistoryRequest priceHistoryRequest)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPriceHistory(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, priceHistoryRequest);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="priceHistoryRequest"></param>
+        partial void OnErrorPriceHistory(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, PriceHistoryRequest priceHistoryRequest);
+
+        /// <summary>
+        /// Get summary of price history Fetch the historical price data for a given SKU within a defined timeframe. 
+        /// </summary>
+        /// <param name="priceHistoryRequest">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPriceHistoryApiResponse"/>&gt;</returns>
+        public async Task<IPriceHistoryApiResponse> PriceHistoryOrDefaultAsync(PriceHistoryRequest priceHistoryRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PriceHistoryAsync(priceHistoryRequest, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Get summary of price history Fetch the historical price data for a given SKU within a defined timeframe. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="priceHistoryRequest">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPriceHistoryApiResponse"/>&gt;</returns>
+        public async Task<IPriceHistoryApiResponse> PriceHistoryAsync(PriceHistoryRequest priceHistoryRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePriceHistory(priceHistoryRequest);
+
+                FormatPriceHistory(priceHistoryRequest);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/best_prior_price_history"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/best_prior_price_history");
+
+                    httpRequestMessageLocalVar.Content = (priceHistoryRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(priceHistoryRequest, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    ApiKeyToken apiKeyTokenLocalVar2 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar2);
+                    apiKeyTokenLocalVar2.UseInHeader(httpRequestMessageLocalVar);
+
+                    ApiKeyToken apiKeyTokenLocalVar3 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar3);
+                    apiKeyTokenLocalVar3.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("POST");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<PriceHistoryApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<PriceHistoryApiResponse>();
+                        PriceHistoryApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new PriceHistoryApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/best_prior_price_history", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPriceHistoryDefaultImplementation(apiResponseLocalVar, priceHistoryRequest);
+
+                        Events.ExecuteOnPriceHistory(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPriceHistoryDefaultImplementation(e, "/v1/best_prior_price_history", uriBuilderLocalVar.Path, priceHistoryRequest);
+                Events.ExecuteOnErrorPriceHistory(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PriceHistoryApiResponse"/>
+        /// </summary>
+        public partial class PriceHistoryApiResponse : TalonOneSdk.Client.ApiResponse, IPriceHistoryApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<PriceHistoryApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PriceHistoryApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PriceHistoryApiResponse(ILogger<PriceHistoryApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PriceHistoryApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PriceHistoryApiResponse(ILogger<PriceHistoryApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.PriceHistoryResponse Ok()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.PriceHistoryResponse>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out TalonOneSdk.Model.PriceHistoryResponse result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
                 }
 
                 return result != null;

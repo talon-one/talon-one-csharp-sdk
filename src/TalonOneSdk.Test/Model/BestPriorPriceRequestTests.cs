@@ -90,6 +90,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'TimeframeEndDateType'
+        /// </summary>
+        [Fact]
+        public void TimeframeEndDateTypeTest()
+        {
+            // TODO unit test for the property 'TimeframeEndDateType'
+        }
+
+        /// <summary>
         /// Test the property 'Target'
         /// </summary>
         [Fact]
