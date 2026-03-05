@@ -224,6 +224,8 @@ namespace TalonOneSdk.Client
                 return BaseLoyaltyProgram.ReturnPolicyEnumToJsonValue(baseLoyaltyProgramReturnPolicyEnum);
             if (obj is BaseNotification.TypeEnum baseNotificationTypeEnum)
                 return BaseNotification.TypeEnumToJsonValue(baseNotificationTypeEnum);
+            if (obj is BestPriorPriceRequest.TimeframeEndDateTypeEnum bestPriorPriceRequestTimeframeEndDateTypeEnum)
+                return BestPriorPriceRequest.TimeframeEndDateTypeEnumToJsonValue(bestPriorPriceRequestTimeframeEndDateTypeEnum);
             if (obj is BestPriorTarget.TargetTypeEnum bestPriorTargetTargetTypeEnum)
                 return BestPriorTarget.TargetTypeEnumToJsonValue(bestPriorTargetTargetTypeEnum);
             if (obj is Blueprint.CategoryEnum blueprintCategoryEnum)
@@ -312,10 +314,16 @@ namespace TalonOneSdk.Client
                 return CardLedgerTransactionLogEntryIntegrationAPI.TypeEnumToJsonValue(cardLedgerTransactionLogEntryIntegrationAPITypeEnum);
             if (obj is CatalogActionFilter.OpEnum catalogActionFilterOpEnum)
                 return CatalogActionFilter.OpEnumToJsonValue(catalogActionFilterOpEnum);
+            if (obj is CouponCreatedEventRequest.EventTypeEnum couponCreatedEventRequestEventTypeEnum)
+                return CouponCreatedEventRequest.EventTypeEnumToJsonValue(couponCreatedEventRequestEventTypeEnum);
+            if (obj is CouponDeletedEventRequest.EventTypeEnum couponDeletedEventRequestEventTypeEnum)
+                return CouponDeletedEventRequest.EventTypeEnumToJsonValue(couponDeletedEventRequestEventTypeEnum);
             if (obj is CouponDeletionFilters.ValidEnum couponDeletionFiltersValidEnum)
                 return CouponDeletionFilters.ValidEnumToJsonValue(couponDeletionFiltersValidEnum);
             if (obj is CouponRejectionReason.ReasonEnum couponRejectionReasonReasonEnum)
                 return CouponRejectionReason.ReasonEnumToJsonValue(couponRejectionReasonReasonEnum);
+            if (obj is CouponUpdatedEventRequest.EventTypeEnum couponUpdatedEventRequestEventTypeEnum)
+                return CouponUpdatedEventRequest.EventTypeEnumToJsonValue(couponUpdatedEventRequestEventTypeEnum);
             if (obj is CouponsNotificationData.NotificationTypeEnum couponsNotificationDataNotificationTypeEnum)
                 return CouponsNotificationData.NotificationTypeEnumToJsonValue(couponsNotificationDataNotificationTypeEnum);
             if (obj is CouponsNotificationPolicy.ScopesEnum couponsNotificationPolicyScopesEnum)
@@ -366,6 +374,10 @@ namespace TalonOneSdk.Client
                 return IntegrationEventV2Request.ResponseContentEnumToJsonValue(integrationEventV2RequestResponseContentEnum);
             if (obj is IntegrationEventV3Request.ResponseContentEnum integrationEventV3RequestResponseContentEnum)
                 return IntegrationEventV3Request.ResponseContentEnumToJsonValue(integrationEventV3RequestResponseContentEnum);
+            if (obj is IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnum integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum)
+                return IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnumToJsonValue(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum);
+            if (obj is IntegrationHubPaginatedEventPayload.EventTypeEnum integrationHubPaginatedEventPayloadEventTypeEnum)
+                return IntegrationHubPaginatedEventPayload.EventTypeEnumToJsonValue(integrationHubPaginatedEventPayloadEventTypeEnum);
             if (obj is IntegrationRequest.ResponseContentEnum integrationRequestResponseContentEnum)
                 return IntegrationRequest.ResponseContentEnumToJsonValue(integrationRequestResponseContentEnum);
             if (obj is LabelTargetAudience.TypeEnum labelTargetAudienceTypeEnum)
@@ -384,6 +396,8 @@ namespace TalonOneSdk.Client
                 return LimitConfig.PeriodEnumToJsonValue(limitConfigPeriodEnum);
             if (obj is LoyaltyCardBatch.StatusEnum loyaltyCardBatchStatusEnum)
                 return LoyaltyCardBatch.StatusEnumToJsonValue(loyaltyCardBatchStatusEnum);
+            if (obj is LoyaltyPointsChangedEventRequest.EventTypeEnum loyaltyPointsChangedEventRequestEventTypeEnum)
+                return LoyaltyPointsChangedEventRequest.EventTypeEnumToJsonValue(loyaltyPointsChangedEventRequestEventTypeEnum);
             if (obj is LoyaltyProgram.ProgramJoinPolicyEnum loyaltyProgramProgramJoinPolicyEnum)
                 return LoyaltyProgram.ProgramJoinPolicyEnumToJsonValue(loyaltyProgramProgramJoinPolicyEnum);
             if (obj is LoyaltyProgram.TiersExpirationPolicyEnum loyaltyProgramTiersExpirationPolicyEnum)
@@ -394,6 +408,10 @@ namespace TalonOneSdk.Client
                 return LoyaltyProgram.ReturnPolicyEnumToJsonValue(loyaltyProgramReturnPolicyEnum);
             if (obj is LoyaltyProgramTransaction.TypeEnum loyaltyProgramTransactionTypeEnum)
                 return LoyaltyProgramTransaction.TypeEnumToJsonValue(loyaltyProgramTransactionTypeEnum);
+            if (obj is LoyaltyTierDowngradeEventRequest.EventTypeEnum loyaltyTierDowngradeEventRequestEventTypeEnum)
+                return LoyaltyTierDowngradeEventRequest.EventTypeEnumToJsonValue(loyaltyTierDowngradeEventRequestEventTypeEnum);
+            if (obj is LoyaltyTierUpgradeEventRequest.EventTypeEnum loyaltyTierUpgradeEventRequestEventTypeEnum)
+                return LoyaltyTierUpgradeEventRequest.EventTypeEnumToJsonValue(loyaltyTierUpgradeEventRequestEventTypeEnum);
             if (obj is MessageLogEntry.EntityTypeEnum messageLogEntryEntityTypeEnum)
                 return MessageLogEntry.EntityTypeEnumToJsonValue(messageLogEntryEntityTypeEnum);
             if (obj is MultipleAudiencesItem.StatusEnum multipleAudiencesItemStatusEnum)
@@ -442,8 +460,6 @@ namespace TalonOneSdk.Client
                 return NewCustomerSession.StateEnumToJsonValue(newCustomerSessionStateEnum);
             if (obj is NewCustomerSessionV2.StateEnum newCustomerSessionV2StateEnum)
                 return NewCustomerSessionV2.StateEnumToJsonValue(newCustomerSessionV2StateEnum);
-            if (obj is NewExperiment.StateEnum newExperimentStateEnum)
-                return NewExperiment.StateEnumToJsonValue(newExperimentStateEnum);
             if (obj is NewLoyaltyProgram.ProgramJoinPolicyEnum newLoyaltyProgramProgramJoinPolicyEnum)
                 return NewLoyaltyProgram.ProgramJoinPolicyEnumToJsonValue(newLoyaltyProgramProgramJoinPolicyEnum);
             if (obj is NewLoyaltyProgram.TiersExpirationPolicyEnum newLoyaltyProgramTiersExpirationPolicyEnum)
@@ -470,10 +486,6 @@ namespace TalonOneSdk.Client
                 return Picklist.TypeEnumToJsonValue(picklistTypeEnum);
             if (obj is PriceTypeReferenceDetail.ReferencingTypeEnum priceTypeReferenceDetailReferencingTypeEnum)
                 return PriceTypeReferenceDetail.ReferencingTypeEnumToJsonValue(priceTypeReferenceDetailReferencingTypeEnum);
-            if (obj is PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnum prismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum)
-                return PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnumToJsonValue(prismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum);
-            if (obj is PrismaticPaginatedEventPayload.EventTypeEnum prismaticPaginatedEventPayloadEventTypeEnum)
-                return PrismaticPaginatedEventPayload.EventTypeEnumToJsonValue(prismaticPaginatedEventPayloadEventTypeEnum);
             if (obj is ReferralRejectionReason.ReasonEnum referralRejectionReasonReasonEnum)
                 return ReferralRejectionReason.ReasonEnumToJsonValue(referralRejectionReasonReasonEnum);
             if (obj is ResponseContentObject.ResponseContentEnum responseContentObjectResponseContentEnum)

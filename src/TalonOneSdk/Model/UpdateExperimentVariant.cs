@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="UpdateExperimentVariant" /> class.
         /// </summary>
         /// <param name="id">id</param>
-        /// <param name="name">name</param>
+        /// <param name="name">The name of this variant.</param>
         /// <param name="ruleset">ruleset</param>
         /// <param name="weight">The percentage split of this variant. The sum of all variant percentages must be 100.</param>
         [JsonConstructor]
@@ -55,8 +55,9 @@ namespace TalonOneSdk.Model
         public long Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// The name of this variant.
         /// </summary>
+        /// <value>The name of this variant.</value>
         /* <example>Variant A</example> */
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -98,6 +99,18 @@ namespace TalonOneSdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Name (string) maxLength
+            if (this.Name != null && this.Name.Length > 255)
+            {
+                yield return new ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
+            }
+
+            // Name (string) minLength
+            if (this.Name != null && this.Name.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+            }
+
             // Weight (long) maximum
             if (this.Weight > (long)99)
             {

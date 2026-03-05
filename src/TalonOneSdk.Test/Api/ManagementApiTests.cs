@@ -536,6 +536,21 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test ExportApplicationCampaignAnalytics
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task ExportApplicationCampaignAnalyticsAsyncTest()
+        {
+            long applicationId = default;
+            DateTime rangeStart = default;
+            DateTime rangeEnd = default;
+            Client.Option<List<string>> campaignIds = default;
+            var response = await _instance.ExportApplicationCampaignAnalyticsAsync(applicationId, rangeStart, rangeEnd, campaignIds);
+            var model = response.Ok();
+            Assert.IsType<string>(model);
+        }
+
+        /// <summary>
         /// Test ExportAudiencesMemberships
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -729,6 +744,18 @@ namespace TalonOneSdk.Test.Api
             Client.Option<DateTime> createdAfter = default;
             Client.Option<string> dateFormat = default;
             var response = await _instance.ExportLoyaltyCardsAsync(loyaltyProgramId, batchId, createdBefore, createdAfter, dateFormat);
+            var model = response.Ok();
+            Assert.IsType<string>(model);
+        }
+
+        /// <summary>
+        /// Test ExportLoyaltyJoinDates
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task ExportLoyaltyJoinDatesAsyncTest()
+        {
+            string loyaltyProgramId = default;
+            var response = await _instance.ExportLoyaltyJoinDatesAsync(loyaltyProgramId);
             var model = response.Ok();
             Assert.IsType<string>(model);
         }
@@ -1488,6 +1515,19 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test GetExperiment
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task GetExperimentAsyncTest()
+        {
+            long applicationId = default;
+            long experimentId = default;
+            var response = await _instance.GetExperimentAsync(applicationId, experimentId);
+            var model = response.Ok();
+            Assert.IsType<Experiment>(model);
+        }
+
+        /// <summary>
         /// Test GetExports
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -2105,6 +2145,21 @@ namespace TalonOneSdk.Test.Api
             var response = await _instance.ListCollectionsInApplicationAsync(applicationId, pageSize, skip, sort, withTotalResultSize, name);
             var model = response.Ok();
             Assert.IsType<ListAccountCollections200Response>(model);
+        }
+
+        /// <summary>
+        /// Test ListExperiments
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task ListExperimentsAsyncTest()
+        {
+            long applicationId = default;
+            Client.Option<long> pageSize = default;
+            Client.Option<long> skip = default;
+            Client.Option<string> sort = default;
+            var response = await _instance.ListExperimentsAsync(applicationId, pageSize, skip, sort);
+            var model = response.Ok();
+            Assert.IsType<ListExperiments200Response>(model);
         }
 
         /// <summary>
