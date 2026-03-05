@@ -51,6 +51,7 @@ namespace TalonOneSdk.Model
         /// The name of this variant.
         /// </summary>
         /// <value>The name of this variant.</value>
+        /* <example>Variant A</example> */
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
@@ -98,20 +99,16 @@ namespace TalonOneSdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Name (string) maxLength
+            if (this.Name != null && this.Name.Length > 255)
+            {
+                yield return new ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
+            }
+
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
                 yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
-            }
-
-            if (this.Name != null) {
-                // Name (string) pattern
-                Regex regexName = new Regex(@"^[A-Za-z](\w|\s)*$", RegexOptions.CultureInvariant);
-
-                if (!regexName.Match(this.Name).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, must match a pattern of " + regexName, new [] { "Name" });
-                }
             }
 
             // Weight (long) maximum

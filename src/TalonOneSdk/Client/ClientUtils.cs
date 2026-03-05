@@ -224,6 +224,8 @@ namespace TalonOneSdk.Client
                 return BaseLoyaltyProgram.ReturnPolicyEnumToJsonValue(baseLoyaltyProgramReturnPolicyEnum);
             if (obj is BaseNotification.TypeEnum baseNotificationTypeEnum)
                 return BaseNotification.TypeEnumToJsonValue(baseNotificationTypeEnum);
+            if (obj is BestPriorPriceRequest.TimeframeEndDateTypeEnum bestPriorPriceRequestTimeframeEndDateTypeEnum)
+                return BestPriorPriceRequest.TimeframeEndDateTypeEnumToJsonValue(bestPriorPriceRequestTimeframeEndDateTypeEnum);
             if (obj is BestPriorTarget.TargetTypeEnum bestPriorTargetTargetTypeEnum)
                 return BestPriorTarget.TargetTypeEnumToJsonValue(bestPriorTargetTargetTypeEnum);
             if (obj is Blueprint.CategoryEnum blueprintCategoryEnum)
@@ -366,6 +368,10 @@ namespace TalonOneSdk.Client
                 return IntegrationEventV2Request.ResponseContentEnumToJsonValue(integrationEventV2RequestResponseContentEnum);
             if (obj is IntegrationEventV3Request.ResponseContentEnum integrationEventV3RequestResponseContentEnum)
                 return IntegrationEventV3Request.ResponseContentEnumToJsonValue(integrationEventV3RequestResponseContentEnum);
+            if (obj is IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnum integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum)
+                return IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnumToJsonValue(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum);
+            if (obj is IntegrationHubPaginatedEventPayload.EventTypeEnum integrationHubPaginatedEventPayloadEventTypeEnum)
+                return IntegrationHubPaginatedEventPayload.EventTypeEnumToJsonValue(integrationHubPaginatedEventPayloadEventTypeEnum);
             if (obj is IntegrationRequest.ResponseContentEnum integrationRequestResponseContentEnum)
                 return IntegrationRequest.ResponseContentEnumToJsonValue(integrationRequestResponseContentEnum);
             if (obj is LabelTargetAudience.TypeEnum labelTargetAudienceTypeEnum)
@@ -442,8 +448,6 @@ namespace TalonOneSdk.Client
                 return NewCustomerSession.StateEnumToJsonValue(newCustomerSessionStateEnum);
             if (obj is NewCustomerSessionV2.StateEnum newCustomerSessionV2StateEnum)
                 return NewCustomerSessionV2.StateEnumToJsonValue(newCustomerSessionV2StateEnum);
-            if (obj is NewExperiment.StateEnum newExperimentStateEnum)
-                return NewExperiment.StateEnumToJsonValue(newExperimentStateEnum);
             if (obj is NewLoyaltyProgram.ProgramJoinPolicyEnum newLoyaltyProgramProgramJoinPolicyEnum)
                 return NewLoyaltyProgram.ProgramJoinPolicyEnumToJsonValue(newLoyaltyProgramProgramJoinPolicyEnum);
             if (obj is NewLoyaltyProgram.TiersExpirationPolicyEnum newLoyaltyProgramTiersExpirationPolicyEnum)
@@ -470,10 +474,6 @@ namespace TalonOneSdk.Client
                 return Picklist.TypeEnumToJsonValue(picklistTypeEnum);
             if (obj is PriceTypeReferenceDetail.ReferencingTypeEnum priceTypeReferenceDetailReferencingTypeEnum)
                 return PriceTypeReferenceDetail.ReferencingTypeEnumToJsonValue(priceTypeReferenceDetailReferencingTypeEnum);
-            if (obj is PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnum prismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum)
-                return PrismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnumToJsonValue(prismaticEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum);
-            if (obj is PrismaticPaginatedEventPayload.EventTypeEnum prismaticPaginatedEventPayloadEventTypeEnum)
-                return PrismaticPaginatedEventPayload.EventTypeEnumToJsonValue(prismaticPaginatedEventPayloadEventTypeEnum);
             if (obj is ReferralRejectionReason.ReasonEnum referralRejectionReasonReasonEnum)
                 return ReferralRejectionReason.ReasonEnumToJsonValue(referralRejectionReasonReasonEnum);
             if (obj is ResponseContentObject.ResponseContentEnum responseContentObjectResponseContentEnum)

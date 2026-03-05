@@ -31,108 +31,22 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NewExperiment" /> class.
         /// </summary>
-        /// <param name="isVariantAssignmentExternal">The source of the assignment. - false - The assignment to the variant is handled internally by the Talon.Oneandled internally by the Talon.One. - true - The assignment to the variant handled externally. </param>
+        /// <param name="isVariantAssignmentExternal">The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. </param>
         /// <param name="campaign">campaign</param>
-        /// <param name="activated">The date and time the experiment was activated. </param>
-        /// <param name="state">A disabled experiment is not evaluated for rules or coupons.  (default to StateEnum.Disabled)</param>
         [JsonConstructor]
-        public NewExperiment(bool isVariantAssignmentExternal, NewCampaign campaign, Option<DateTime?> activated = default, Option<StateEnum?> state = default)
+        public NewExperiment(bool isVariantAssignmentExternal, NewCampaign campaign)
         {
             IsVariantAssignmentExternal = isVariantAssignmentExternal;
             Campaign = campaign;
-            ActivatedOption = activated;
-            StateOption = state;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// A disabled experiment is not evaluated for rules or coupons. 
+        /// The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. 
         /// </summary>
-        /// <value>A disabled experiment is not evaluated for rules or coupons. </value>
-        public enum StateEnum
-        {
-            /// <summary>
-            /// Enum Enabled for value: enabled
-            /// </summary>
-            Enabled = 1,
-
-            /// <summary>
-            /// Enum Disabled for value: disabled
-            /// </summary>
-            Disabled = 2
-        }
-
-        /// <summary>
-        /// Returns a <see cref="StateEnum"/>
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static StateEnum StateEnumFromString(string value)
-        {
-            if (value.Equals("enabled"))
-                return StateEnum.Enabled;
-
-            if (value.Equals("disabled"))
-                return StateEnum.Disabled;
-
-            throw new NotImplementedException($"Could not convert value to type StateEnum: '{value}'");
-        }
-
-        /// <summary>
-        /// Returns a <see cref="StateEnum"/>
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static StateEnum? StateEnumFromStringOrDefault(string value)
-        {
-            if (value.Equals("enabled"))
-                return StateEnum.Enabled;
-
-            if (value.Equals("disabled"))
-                return StateEnum.Disabled;
-
-            return null;
-        }
-
-        /// <summary>
-        /// Converts the <see cref="StateEnum"/> to the json value
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string StateEnumToJsonValue(StateEnum? value)
-        {
-            if (value == StateEnum.Enabled)
-                return "enabled";
-
-            if (value == StateEnum.Disabled)
-                return "disabled";
-
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-
-        /// <summary>
-        /// Used to track the state of State
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<StateEnum?> StateOption { get; private set; }
-
-        /// <summary>
-        /// A disabled experiment is not evaluated for rules or coupons. 
-        /// </summary>
-        /// <value>A disabled experiment is not evaluated for rules or coupons. </value>
-        /* <example>enabled</example> */
-        [JsonPropertyName("state")]
-        public StateEnum? State { get { return this.StateOption; } set { this.StateOption = new Option<StateEnum?>(value); } }
-
-        /// <summary>
-        /// The source of the assignment. - false - The assignment to the variant is handled internally by the Talon.Oneandled internally by the Talon.One. - true - The assignment to the variant handled externally. 
-        /// </summary>
-        /// <value>The source of the assignment. - false - The assignment to the variant is handled internally by the Talon.Oneandled internally by the Talon.One. - true - The assignment to the variant handled externally. </value>
+        /// <value>The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. </value>
         [JsonPropertyName("isVariantAssignmentExternal")]
         public bool IsVariantAssignmentExternal { get; set; }
 
@@ -141,20 +55,6 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonPropertyName("campaign")]
         public NewCampaign Campaign { get; set; }
-
-        /// <summary>
-        /// Used to track the state of Activated
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<DateTime?> ActivatedOption { get; private set; }
-
-        /// <summary>
-        /// The date and time the experiment was activated. 
-        /// </summary>
-        /// <value>The date and time the experiment was activated. </value>
-        [JsonPropertyName("activated")]
-        public DateTime? Activated { get { return this.ActivatedOption; } set { this.ActivatedOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -166,8 +66,6 @@ namespace TalonOneSdk.Model
             sb.Append("class NewExperiment {\n");
             sb.Append("  IsVariantAssignmentExternal: ").Append(IsVariantAssignmentExternal).Append("\n");
             sb.Append("  Campaign: ").Append(Campaign).Append("\n");
-            sb.Append("  Activated: ").Append(Activated).Append("\n");
-            sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -189,11 +87,6 @@ namespace TalonOneSdk.Model
     public class NewExperimentJsonConverter : JsonConverter<NewExperiment>
     {
         /// <summary>
-        /// The format to use to serialize Activated
-        /// </summary>
-        public static string ActivatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
-
-        /// <summary>
         /// Deserializes json to <see cref="NewExperiment" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
@@ -212,8 +105,6 @@ namespace TalonOneSdk.Model
 
             Option<bool?> isVariantAssignmentExternal = default;
             Option<NewCampaign> campaign = default;
-            Option<DateTime?> activated = default;
-            Option<NewExperiment.StateEnum?> state = default;
 
             while (utf8JsonReader.Read())
             {
@@ -236,14 +127,6 @@ namespace TalonOneSdk.Model
                         case "campaign":
                             campaign = new Option<NewCampaign>(JsonSerializer.Deserialize<NewCampaign>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "activated":
-                            activated = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "state":
-                            string stateRawValue = utf8JsonReader.GetString();
-                            if (stateRawValue != null)
-                                state = new Option<NewExperiment.StateEnum?>(NewExperiment.StateEnumFromStringOrDefault(stateRawValue));
-                            break;
                         default:
                             break;
                     }
@@ -262,13 +145,7 @@ namespace TalonOneSdk.Model
             if (campaign.IsSet && campaign.Value == null)
                 throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class NewExperiment.");
 
-            if (activated.IsSet && activated.Value == null)
-                throw new ArgumentNullException(nameof(activated), "Property is not nullable for class NewExperiment.");
-
-            if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class NewExperiment.");
-
-            return new NewExperiment(isVariantAssignmentExternal.Value.Value, campaign.Value, activated, state);
+            return new NewExperiment(isVariantAssignmentExternal.Value.Value, campaign.Value);
         }
 
         /// <summary>
@@ -302,11 +179,6 @@ namespace TalonOneSdk.Model
 
             writer.WritePropertyName("campaign");
             JsonSerializer.Serialize(writer, newExperiment.Campaign, jsonSerializerOptions);
-            if (newExperiment.ActivatedOption.IsSet)
-                writer.WriteString("activated", newExperiment.ActivatedOption.Value.Value.ToString(ActivatedFormat));
-
-            var stateRawValue = NewExperiment.StateEnumToJsonValue(newExperiment.StateOption.Value.Value);
-            writer.WriteString("state", stateRawValue);
         }
     }
 }

@@ -31,15 +31,17 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="BestPriorPrice" /> class.
         /// </summary>
+        /// <param name="id">The ID of the historical price.</param>
         /// <param name="sku">sku</param>
-        /// <param name="observedAt">The date and time when the best price was observed.</param>
+        /// <param name="observedAt">The date and time when the price was observed.</param>
         /// <param name="contextId">The context ID of the context active at the time of observation. </param>
         /// <param name="price">Price of the item.</param>
         /// <param name="metadata">metadata</param>
         /// <param name="target">target</param>
         [JsonConstructor]
-        public BestPriorPrice(string sku, DateTime observedAt, string contextId, decimal price, BestPriorPriceMetadata metadata, Object target)
+        public BestPriorPrice(long id, string sku, DateTime observedAt, string contextId, decimal price, BestPriorPriceMetadata metadata, Object target)
         {
+            Id = id;
             Sku = sku;
             ObservedAt = observedAt;
             ContextId = contextId;
@@ -52,6 +54,14 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
+        /// The ID of the historical price.
+        /// </summary>
+        /// <value>The ID of the historical price.</value>
+        /* <example>1</example> */
+        [JsonPropertyName("id")]
+        public long Id { get; set; }
+
+        /// <summary>
         /// sku
         /// </summary>
         /// <value>sku</value>
@@ -60,9 +70,9 @@ namespace TalonOneSdk.Model
         public string Sku { get; set; }
 
         /// <summary>
-        /// The date and time when the best price was observed.
+        /// The date and time when the price was observed.
         /// </summary>
-        /// <value>The date and time when the best price was observed.</value>
+        /// <value>The date and time when the price was observed.</value>
         /* <example>2020-11-10T23:00:00Z</example> */
         [JsonPropertyName("observedAt")]
         public DateTime ObservedAt { get; set; }
@@ -71,7 +81,7 @@ namespace TalonOneSdk.Model
         /// The context ID of the context active at the time of observation. 
         /// </summary>
         /// <value>The context ID of the context active at the time of observation. </value>
-        /* <example>Summer Sale 2007</example> */
+        /* <example>Summer Sale 2025</example> */
         [JsonPropertyName("contextId")]
         public string ContextId { get; set; }
 
@@ -103,6 +113,7 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class BestPriorPrice {\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Sku: ").Append(Sku).Append("\n");
             sb.Append("  ObservedAt: ").Append(ObservedAt).Append("\n");
             sb.Append("  ContextId: ").Append(ContextId).Append("\n");
@@ -151,6 +162,7 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<long?> id = default;
             Option<string> sku = default;
             Option<DateTime?> observedAt = default;
             Option<string> contextId = default;
@@ -173,6 +185,9 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "id":
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
                         case "sku":
                             sku = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -197,6 +212,9 @@ namespace TalonOneSdk.Model
                 }
             }
 
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class BestPriorPrice.", nameof(id));
+
             if (!sku.IsSet)
                 throw new ArgumentException("Property is required for class BestPriorPrice.", nameof(sku));
 
@@ -214,6 +232,9 @@ namespace TalonOneSdk.Model
 
             if (!target.IsSet)
                 throw new ArgumentException("Property is required for class BestPriorPrice.", nameof(target));
+
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class BestPriorPrice.");
 
             if (sku.IsSet && sku.Value == null)
                 throw new ArgumentNullException(nameof(sku), "Property is not nullable for class BestPriorPrice.");
@@ -233,7 +254,7 @@ namespace TalonOneSdk.Model
             if (target.IsSet && target.Value == null)
                 throw new ArgumentNullException(nameof(target), "Property is not nullable for class BestPriorPrice.");
 
-            return new BestPriorPrice(sku.Value, observedAt.Value.Value, contextId.Value, price.Value.Value, metadata.Value, target.Value);
+            return new BestPriorPrice(id.Value.Value, sku.Value, observedAt.Value.Value, contextId.Value, price.Value.Value, metadata.Value, target.Value);
         }
 
         /// <summary>
@@ -271,6 +292,8 @@ namespace TalonOneSdk.Model
 
             if (bestPriorPrice.Target == null)
                 throw new ArgumentNullException(nameof(bestPriorPrice.Target), "Property is required for class BestPriorPrice.");
+
+            writer.WriteNumber("id", bestPriorPrice.Id);
 
             writer.WriteString("sku", bestPriorPrice.Sku);
 

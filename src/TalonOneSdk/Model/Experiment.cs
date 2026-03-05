@@ -34,14 +34,14 @@ namespace TalonOneSdk.Model
         /// <param name="id">The internal ID of this entity.</param>
         /// <param name="created">The time this entity was created.</param>
         /// <param name="applicationId">The ID of the Application that owns this entity.</param>
-        /// <param name="isVariantAssignmentExternal">The source of the assignment. - false - The assignment to the variant is handled internally by the Talon.Oneandled internally by the Talon.One. - true - The assignment to the variant handled externally. </param>
+        /// <param name="isVariantAssignmentExternal">The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. </param>
         /// <param name="campaign">campaign</param>
         /// <param name="activated">The date and time the experiment was activated. </param>
         /// <param name="state">A disabled experiment is not evaluated for rules or coupons.  (default to StateEnum.Disabled)</param>
         /// <param name="variants">variants</param>
         /// <param name="deletedat">The date and time the experiment was deleted. </param>
         [JsonConstructor]
-        public Experiment(long id, DateTime created, long applicationId, Option<bool?> isVariantAssignmentExternal = default, Option<Campaign> campaign = default, Option<DateTime?> activated = default, Option<StateEnum?> state = default, Option<List<ExperimentVariant>> variants = default, Option<DateTime?> deletedat = default)
+        public Experiment(long id, DateTime created, long applicationId, Option<bool?> isVariantAssignmentExternal = default, Option<Campaign> campaign = default, Option<DateTime?> activated = default, StateEnum state = StateEnum.Disabled, Option<List<ExperimentVariant>> variants = default, Option<DateTime?> deletedat = default)
         {
             Id = id;
             Created = created;
@@ -49,7 +49,7 @@ namespace TalonOneSdk.Model
             IsVariantAssignmentExternalOption = isVariantAssignmentExternal;
             CampaignOption = campaign;
             ActivatedOption = activated;
-            StateOption = state;
+            State = state;
             VariantsOption = variants;
             DeletedatOption = deletedat;
             OnCreated();
@@ -71,7 +71,12 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum Disabled for value: disabled
             /// </summary>
-            Disabled = 2
+            Disabled = 2,
+
+            /// <summary>
+            /// Enum Archived for value: archived
+            /// </summary>
+            Archived = 3
         }
 
         /// <summary>
@@ -87,6 +92,9 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("disabled"))
                 return StateEnum.Disabled;
+
+            if (value.Equals("archived"))
+                return StateEnum.Archived;
 
             throw new NotImplementedException($"Could not convert value to type StateEnum: '{value}'");
         }
@@ -104,6 +112,9 @@ namespace TalonOneSdk.Model
             if (value.Equals("disabled"))
                 return StateEnum.Disabled;
 
+            if (value.Equals("archived"))
+                return StateEnum.Archived;
+
             return null;
         }
 
@@ -113,7 +124,7 @@ namespace TalonOneSdk.Model
         /// <param name="value"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public static string StateEnumToJsonValue(StateEnum? value)
+        public static string StateEnumToJsonValue(StateEnum value)
         {
             if (value == StateEnum.Enabled)
                 return "enabled";
@@ -121,15 +132,11 @@ namespace TalonOneSdk.Model
             if (value == StateEnum.Disabled)
                 return "disabled";
 
+            if (value == StateEnum.Archived)
+                return "archived";
+
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
-
-        /// <summary>
-        /// Used to track the state of State
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<StateEnum?> StateOption { get; private set; }
 
         /// <summary>
         /// A disabled experiment is not evaluated for rules or coupons. 
@@ -137,7 +144,7 @@ namespace TalonOneSdk.Model
         /// <value>A disabled experiment is not evaluated for rules or coupons. </value>
         /* <example>enabled</example> */
         [JsonPropertyName("state")]
-        public StateEnum? State { get { return this.StateOption; } set { this.StateOption = new Option<StateEnum?>(value); } }
+        public StateEnum State { get; set; }
 
         /// <summary>
         /// The internal ID of this entity.
@@ -171,9 +178,9 @@ namespace TalonOneSdk.Model
         public Option<bool?> IsVariantAssignmentExternalOption { get; private set; }
 
         /// <summary>
-        /// The source of the assignment. - false - The assignment to the variant is handled internally by the Talon.Oneandled internally by the Talon.One. - true - The assignment to the variant handled externally. 
+        /// The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. 
         /// </summary>
-        /// <value>The source of the assignment. - false - The assignment to the variant is handled internally by the Talon.Oneandled internally by the Talon.One. - true - The assignment to the variant handled externally. </value>
+        /// <value>The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. </value>
         [JsonPropertyName("isVariantAssignmentExternal")]
         public bool? IsVariantAssignmentExternal { get { return this.IsVariantAssignmentExternalOption; } set { this.IsVariantAssignmentExternalOption = new Option<bool?>(value); } }
 
@@ -369,6 +376,9 @@ namespace TalonOneSdk.Model
             if (!applicationId.IsSet)
                 throw new ArgumentException("Property is required for class Experiment.", nameof(applicationId));
 
+            if (!state.IsSet)
+                throw new ArgumentException("Property is required for class Experiment.", nameof(state));
+
             if (id.IsSet && id.Value == null)
                 throw new ArgumentNullException(nameof(id), "Property is not nullable for class Experiment.");
 
@@ -396,7 +406,7 @@ namespace TalonOneSdk.Model
             if (deletedat.IsSet && deletedat.Value == null)
                 throw new ArgumentNullException(nameof(deletedat), "Property is not nullable for class Experiment.");
 
-            return new Experiment(id.Value.Value, created.Value.Value, applicationId.Value.Value, isVariantAssignmentExternal, campaign, activated, state, variants, deletedat);
+            return new Experiment(id.Value.Value, created.Value.Value, applicationId.Value.Value, isVariantAssignmentExternal, campaign, activated, state.Value.Value, variants, deletedat);
         }
 
         /// <summary>
@@ -446,7 +456,7 @@ namespace TalonOneSdk.Model
             if (experiment.ActivatedOption.IsSet)
                 writer.WriteString("activated", experiment.ActivatedOption.Value.Value.ToString(ActivatedFormat));
 
-            var stateRawValue = Experiment.StateEnumToJsonValue(experiment.StateOption.Value.Value);
+            var stateRawValue = Experiment.StateEnumToJsonValue(experiment.State);
             writer.WriteString("state", stateRawValue);
             if (experiment.VariantsOption.IsSet)
             {
