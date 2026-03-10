@@ -5,7 +5,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        dotnet-version: ["8.0.x", "9.0.x", "10.0.x"]
+        dotnet-version: ["8.0", "9.0", "10.0.200"]
     runs-on: ubuntu-latest
     permissions:
       contents: "read"
@@ -27,7 +27,7 @@ jobs:
           username: oauth2accesstoken
           password: ${{ steps.auth.outputs.access_token }}
       - uses: hoverkraft-tech/compose-action@v2.0.2
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v5
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Build DLL
@@ -60,7 +60,7 @@ jobs:
                 "timezone": "Europe/Berlin",
                 "enableFlattenedCartItems": false
             }');
-          export TALON_APPLICATION_ID=$(echo $USER_RESPONSE | jq ".id");
+          export TALON_APPLICATION_ID=$(echo $APPLICATION_RESPONSE | jq ".id");
           echo "Application with ID $TALON_APPLICATION_ID was created"
           API_KEY_RESPONSE=$(curl -s -v --location "http://localhost:9000/v1/applications/$TALON_APPLICATION_ID/apikeys" \
             --header "Content-Type: application/json" \
@@ -72,4 +72,4 @@ jobs:
           echo "Api-Key-Response: $API_KEY_RESPONSE";
           export TALON_API_KEY=$(echo $API_KEY_RESPONSE | jq ".key" | tr -d '"');
           echo "Api-Key $TALON_API_KEY created"
-          dotnet run;
+          dotnet run
