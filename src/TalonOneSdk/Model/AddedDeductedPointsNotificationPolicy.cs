@@ -226,7 +226,28 @@ namespace TalonOneSdk.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "scopes":
-                            scopes = new Option<List<AddedDeductedPointsNotificationPolicy.ScopesEnum>>(JsonSerializer.Deserialize<List<AddedDeductedPointsNotificationPolicy.ScopesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                scopes = new Option<List<AddedDeductedPointsNotificationPolicy.ScopesEnum>>((List<AddedDeductedPointsNotificationPolicy.ScopesEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var scopesItems = new List<AddedDeductedPointsNotificationPolicy.ScopesEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string scopesItemRawValue = utf8JsonReader.GetString();
+                                    if (scopesItemRawValue == null)
+                                        throw new JsonException();
+
+                                    scopesItems.Add(AddedDeductedPointsNotificationPolicy.ScopesEnumFromString(scopesItemRawValue));
+                                }
+                                scopes = new Option<List<AddedDeductedPointsNotificationPolicy.ScopesEnum>>(scopesItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         default:
                             break;
@@ -282,7 +303,12 @@ namespace TalonOneSdk.Model
             writer.WriteString("name", addedDeductedPointsNotificationPolicy.Name);
 
             writer.WritePropertyName("scopes");
-            JsonSerializer.Serialize(writer, addedDeductedPointsNotificationPolicy.Scopes, jsonSerializerOptions);
+            writer.WriteStartArray();
+            foreach (var scopesItem in addedDeductedPointsNotificationPolicy.Scopes)
+            {
+                writer.WriteStringValue(AddedDeductedPointsNotificationPolicy.ScopesEnumToJsonValue(scopesItem));
+            }
+            writer.WriteEndArray();
         }
     }
 }

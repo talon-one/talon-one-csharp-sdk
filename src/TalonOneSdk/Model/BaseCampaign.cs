@@ -656,7 +656,28 @@ namespace TalonOneSdk.Model
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "features":
-                            features = new Option<List<BaseCampaign.FeaturesEnum>>(JsonSerializer.Deserialize<List<BaseCampaign.FeaturesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                features = new Option<List<BaseCampaign.FeaturesEnum>>((List<BaseCampaign.FeaturesEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var featuresItems = new List<BaseCampaign.FeaturesEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string featuresItemRawValue = utf8JsonReader.GetString();
+                                    if (featuresItemRawValue == null)
+                                        throw new JsonException();
+
+                                    featuresItems.Add(BaseCampaign.FeaturesEnumFromString(featuresItemRawValue));
+                                }
+                                features = new Option<List<BaseCampaign.FeaturesEnum>>(featuresItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         case "limits":
                             limits = new Option<List<LimitConfig>>(JsonSerializer.Deserialize<List<LimitConfig>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -832,7 +853,12 @@ namespace TalonOneSdk.Model
             writer.WritePropertyName("tags");
             JsonSerializer.Serialize(writer, baseCampaign.Tags, jsonSerializerOptions);
             writer.WritePropertyName("features");
-            JsonSerializer.Serialize(writer, baseCampaign.Features, jsonSerializerOptions);
+            writer.WriteStartArray();
+            foreach (var featuresItem in baseCampaign.Features)
+            {
+                writer.WriteStringValue(BaseCampaign.FeaturesEnumToJsonValue(featuresItem));
+            }
+            writer.WriteEndArray();
             writer.WritePropertyName("limits");
             JsonSerializer.Serialize(writer, baseCampaign.Limits, jsonSerializerOptions);
             if (baseCampaign.DescriptionOption.IsSet)

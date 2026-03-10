@@ -722,7 +722,28 @@ namespace TalonOneSdk.Model
                             reevaluateOnReturn = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "features":
-                            features = new Option<List<UpdateCampaignTemplate.FeaturesEnum>>(JsonSerializer.Deserialize<List<UpdateCampaignTemplate.FeaturesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                features = new Option<List<UpdateCampaignTemplate.FeaturesEnum>>((List<UpdateCampaignTemplate.FeaturesEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var featuresItems = new List<UpdateCampaignTemplate.FeaturesEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string featuresItemRawValue = utf8JsonReader.GetString();
+                                    if (featuresItemRawValue == null)
+                                        throw new JsonException();
+
+                                    featuresItems.Add(UpdateCampaignTemplate.FeaturesEnumFromString(featuresItemRawValue));
+                                }
+                                features = new Option<List<UpdateCampaignTemplate.FeaturesEnum>>(featuresItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         case "couponSettings":
                             couponSettings = new Option<CodeGeneratorSettings>(JsonSerializer.Deserialize<CodeGeneratorSettings>(ref utf8JsonReader, jsonSerializerOptions));
@@ -931,7 +952,12 @@ namespace TalonOneSdk.Model
             if (updateCampaignTemplate.FeaturesOption.IsSet)
             {
                 writer.WritePropertyName("features");
-                JsonSerializer.Serialize(writer, updateCampaignTemplate.Features, jsonSerializerOptions);
+                writer.WriteStartArray();
+                foreach (var featuresItem in updateCampaignTemplate.Features)
+                {
+                    writer.WriteStringValue(UpdateCampaignTemplate.FeaturesEnumToJsonValue(featuresItem));
+                }
+                writer.WriteEndArray();
             }
             if (updateCampaignTemplate.CouponSettingsOption.IsSet)
             {

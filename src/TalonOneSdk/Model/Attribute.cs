@@ -849,7 +849,28 @@ namespace TalonOneSdk.Model
                             subscribedCatalogsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "allowedSubscriptions":
-                            allowedSubscriptions = new Option<List<Attribute.AllowedSubscriptionsEnum>>(JsonSerializer.Deserialize<List<Attribute.AllowedSubscriptionsEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                allowedSubscriptions = new Option<List<Attribute.AllowedSubscriptionsEnum>>((List<Attribute.AllowedSubscriptionsEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var allowedSubscriptionsItems = new List<Attribute.AllowedSubscriptionsEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string allowedSubscriptionsItemRawValue = utf8JsonReader.GetString();
+                                    if (allowedSubscriptionsItemRawValue == null)
+                                        throw new JsonException();
+
+                                    allowedSubscriptionsItems.Add(Attribute.AllowedSubscriptionsEnumFromString(allowedSubscriptionsItemRawValue));
+                                }
+                                allowedSubscriptions = new Option<List<Attribute.AllowedSubscriptionsEnum>>(allowedSubscriptionsItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         case "eventTypeId":
                             eventTypeId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
@@ -1034,7 +1055,12 @@ namespace TalonOneSdk.Model
             if (attribute.AllowedSubscriptionsOption.IsSet)
             {
                 writer.WritePropertyName("allowedSubscriptions");
-                JsonSerializer.Serialize(writer, attribute.AllowedSubscriptions, jsonSerializerOptions);
+                writer.WriteStartArray();
+                foreach (var allowedSubscriptionsItem in attribute.AllowedSubscriptions)
+                {
+                    writer.WriteStringValue(Attribute.AllowedSubscriptionsEnumToJsonValue(allowedSubscriptionsItem));
+                }
+                writer.WriteEndArray();
             }
             if (attribute.EventTypeIdOption.IsSet)
                 writer.WriteNumber("eventTypeId", attribute.EventTypeIdOption.Value.Value);

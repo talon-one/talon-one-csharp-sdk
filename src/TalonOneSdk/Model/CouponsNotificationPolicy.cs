@@ -283,7 +283,28 @@ namespace TalonOneSdk.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "scopes":
-                            scopes = new Option<List<CouponsNotificationPolicy.ScopesEnum>>(JsonSerializer.Deserialize<List<CouponsNotificationPolicy.ScopesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                scopes = new Option<List<CouponsNotificationPolicy.ScopesEnum>>((List<CouponsNotificationPolicy.ScopesEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var scopesItems = new List<CouponsNotificationPolicy.ScopesEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string scopesItemRawValue = utf8JsonReader.GetString();
+                                    if (scopesItemRawValue == null)
+                                        throw new JsonException();
+
+                                    scopesItems.Add(CouponsNotificationPolicy.ScopesEnumFromString(scopesItemRawValue));
+                                }
+                                scopes = new Option<List<CouponsNotificationPolicy.ScopesEnum>>(scopesItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         case "batchingEnabled":
                             batchingEnabled = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
@@ -357,7 +378,12 @@ namespace TalonOneSdk.Model
             writer.WriteString("name", couponsNotificationPolicy.Name);
 
             writer.WritePropertyName("scopes");
-            JsonSerializer.Serialize(writer, couponsNotificationPolicy.Scopes, jsonSerializerOptions);
+            writer.WriteStartArray();
+            foreach (var scopesItem in couponsNotificationPolicy.Scopes)
+            {
+                writer.WriteStringValue(CouponsNotificationPolicy.ScopesEnumToJsonValue(scopesItem));
+            }
+            writer.WriteEndArray();
             if (couponsNotificationPolicy.BatchingEnabledOption.IsSet)
                 writer.WriteBoolean("batchingEnabled", couponsNotificationPolicy.BatchingEnabledOption.Value.Value);
 

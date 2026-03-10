@@ -382,7 +382,28 @@ namespace TalonOneSdk.Model
                             attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "responseContent":
-                            responseContent = new Option<List<IntegrationEventV2Request.ResponseContentEnum>>(JsonSerializer.Deserialize<List<IntegrationEventV2Request.ResponseContentEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                responseContent = new Option<List<IntegrationEventV2Request.ResponseContentEnum>>((List<IntegrationEventV2Request.ResponseContentEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var responseContentItems = new List<IntegrationEventV2Request.ResponseContentEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string responseContentItemRawValue = utf8JsonReader.GetString();
+                                    if (responseContentItemRawValue == null)
+                                        throw new JsonException();
+
+                                    responseContentItems.Add(IntegrationEventV2Request.ResponseContentEnumFromString(responseContentItemRawValue));
+                                }
+                                responseContent = new Option<List<IntegrationEventV2Request.ResponseContentEnum>>(responseContentItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         case "loyaltyCards":
                             loyaltyCards = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -486,7 +507,12 @@ namespace TalonOneSdk.Model
             if (integrationEventV2Request.ResponseContentOption.IsSet)
             {
                 writer.WritePropertyName("responseContent");
-                JsonSerializer.Serialize(writer, integrationEventV2Request.ResponseContent, jsonSerializerOptions);
+                writer.WriteStartArray();
+                foreach (var responseContentItem in integrationEventV2Request.ResponseContent)
+                {
+                    writer.WriteStringValue(IntegrationEventV2Request.ResponseContentEnumToJsonValue(responseContentItem));
+                }
+                writer.WriteEndArray();
             }
             if (integrationEventV2Request.LoyaltyCardsOption.IsSet)
             {
