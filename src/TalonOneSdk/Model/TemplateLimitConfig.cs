@@ -385,7 +385,28 @@ namespace TalonOneSdk.Model
                             limit = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "entities":
-                            entities = new Option<List<TemplateLimitConfig.EntitiesEnum>>(JsonSerializer.Deserialize<List<TemplateLimitConfig.EntitiesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                entities = new Option<List<TemplateLimitConfig.EntitiesEnum>>((List<TemplateLimitConfig.EntitiesEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var entitiesItems = new List<TemplateLimitConfig.EntitiesEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string entitiesItemRawValue = utf8JsonReader.GetString();
+                                    if (entitiesItemRawValue == null)
+                                        throw new JsonException();
+
+                                    entitiesItems.Add(TemplateLimitConfig.EntitiesEnumFromString(entitiesItemRawValue));
+                                }
+                                entities = new Option<List<TemplateLimitConfig.EntitiesEnum>>(entitiesItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         case "period":
                             string periodRawValue = utf8JsonReader.GetString();
@@ -457,9 +478,17 @@ namespace TalonOneSdk.Model
             writer.WriteNumber("limit", templateLimitConfig.Limit);
 
             writer.WritePropertyName("entities");
-            JsonSerializer.Serialize(writer, templateLimitConfig.Entities, jsonSerializerOptions);
-            var periodRawValue = TemplateLimitConfig.PeriodEnumToJsonValue(templateLimitConfig.PeriodOption.Value.Value);
-            writer.WriteString("period", periodRawValue);
+            writer.WriteStartArray();
+            foreach (var entitiesItem in templateLimitConfig.Entities)
+            {
+                writer.WriteStringValue(TemplateLimitConfig.EntitiesEnumToJsonValue(entitiesItem));
+            }
+            writer.WriteEndArray();
+            if (templateLimitConfig.PeriodOption.IsSet)
+            {
+                var periodRawValue = TemplateLimitConfig.PeriodEnumToJsonValue(templateLimitConfig.PeriodOption.Value);
+                writer.WriteString("period", periodRawValue);
+            }
         }
     }
 }

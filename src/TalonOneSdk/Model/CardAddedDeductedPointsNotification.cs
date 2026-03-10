@@ -44,10 +44,11 @@ namespace TalonOneSdk.Model
         /// <param name="amount">The amount of added or deducted loyalty points.</param>
         /// <param name="operation">The action (addition or deduction) made with loyalty points.</param>
         /// <param name="reason">The reason for the points addition or deduction.</param>
+        /// <param name="transactionUUID">The identifier of the transaction in the loyalty ledger.</param>
         /// <param name="expiryDate">The expiration date for loyalty points.</param>
         /// <param name="startDate">The start date for loyalty points.</param>
         [JsonConstructor]
-        public CardAddedDeductedPointsNotification(string cardIdentifier, string employeeName, long loyaltyProgramID, NotificationTypeEnum notificationType, List<string> profileIntegrationIDs, string sessionIntegrationID, string subledgerID, TypeOfChangeEnum typeOfChange, long userID, long usersPerCardLimit, decimal amount, OperationEnum operation, string reason, Option<DateTime?> expiryDate = default, Option<DateTime?> startDate = default)
+        public CardAddedDeductedPointsNotification(string cardIdentifier, string employeeName, long loyaltyProgramID, NotificationTypeEnum notificationType, List<string> profileIntegrationIDs, string sessionIntegrationID, string subledgerID, TypeOfChangeEnum typeOfChange, long userID, long usersPerCardLimit, decimal amount, OperationEnum operation, string reason, Guid transactionUUID, Option<DateTime?> expiryDate = default, Option<DateTime?> startDate = default)
         {
             CardIdentifier = cardIdentifier;
             EmployeeName = employeeName;
@@ -62,6 +63,7 @@ namespace TalonOneSdk.Model
             Amount = amount;
             Operation = operation;
             Reason = reason;
+            TransactionUUID = transactionUUID;
             ExpiryDateOption = expiryDate;
             StartDateOption = startDate;
             OnCreated();
@@ -386,6 +388,13 @@ namespace TalonOneSdk.Model
         public string Reason { get; set; }
 
         /// <summary>
+        /// The identifier of the transaction in the loyalty ledger.
+        /// </summary>
+        /// <value>The identifier of the transaction in the loyalty ledger.</value>
+        [JsonPropertyName("TransactionUUID")]
+        public Guid TransactionUUID { get; set; }
+
+        /// <summary>
         /// Used to track the state of ExpiryDate
         /// </summary>
         [JsonIgnore]
@@ -436,6 +445,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  Operation: ").Append(Operation).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
+            sb.Append("  TransactionUUID: ").Append(TransactionUUID).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
             sb.Append("}\n");
@@ -504,6 +514,7 @@ namespace TalonOneSdk.Model
             Option<decimal?> amount = default;
             Option<CardAddedDeductedPointsNotification.OperationEnum?> operation = default;
             Option<string> reason = default;
+            Option<Guid?> transactionUUID = default;
             Option<DateTime?> expiryDate = default;
             Option<DateTime?> startDate = default;
 
@@ -567,6 +578,9 @@ namespace TalonOneSdk.Model
                         case "Reason":
                             reason = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "TransactionUUID":
+                            transactionUUID = new Option<Guid?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (Guid?)null : utf8JsonReader.GetGuid());
+                            break;
                         case "ExpiryDate":
                             expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -618,6 +632,9 @@ namespace TalonOneSdk.Model
             if (!reason.IsSet)
                 throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(reason));
 
+            if (!transactionUUID.IsSet)
+                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(transactionUUID));
+
             if (cardIdentifier.IsSet && cardIdentifier.Value == null)
                 throw new ArgumentNullException(nameof(cardIdentifier), "Property is not nullable for class CardAddedDeductedPointsNotification.");
 
@@ -657,13 +674,16 @@ namespace TalonOneSdk.Model
             if (reason.IsSet && reason.Value == null)
                 throw new ArgumentNullException(nameof(reason), "Property is not nullable for class CardAddedDeductedPointsNotification.");
 
+            if (transactionUUID.IsSet && transactionUUID.Value == null)
+                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
             if (expiryDate.IsSet && expiryDate.Value == null)
                 throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class CardAddedDeductedPointsNotification.");
 
             if (startDate.IsSet && startDate.Value == null)
                 throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class CardAddedDeductedPointsNotification.");
 
-            return new CardAddedDeductedPointsNotification(cardIdentifier.Value, employeeName.Value, loyaltyProgramID.Value.Value, notificationType.Value.Value, profileIntegrationIDs.Value, sessionIntegrationID.Value, subledgerID.Value, typeOfChange.Value.Value, userID.Value.Value, usersPerCardLimit.Value.Value, amount.Value.Value, operation.Value.Value, reason.Value, expiryDate, startDate);
+            return new CardAddedDeductedPointsNotification(cardIdentifier.Value, employeeName.Value, loyaltyProgramID.Value.Value, notificationType.Value.Value, profileIntegrationIDs.Value, sessionIntegrationID.Value, subledgerID.Value, typeOfChange.Value.Value, userID.Value.Value, usersPerCardLimit.Value.Value, amount.Value.Value, operation.Value.Value, reason.Value, transactionUUID.Value.Value, expiryDate, startDate);
         }
 
         /// <summary>
@@ -733,6 +753,8 @@ namespace TalonOneSdk.Model
             var operationRawValue = CardAddedDeductedPointsNotification.OperationEnumToJsonValue(cardAddedDeductedPointsNotification.Operation);
             writer.WriteString("Operation", operationRawValue);
             writer.WriteString("Reason", cardAddedDeductedPointsNotification.Reason);
+
+            writer.WriteString("TransactionUUID", cardAddedDeductedPointsNotification.TransactionUUID);
 
             if (cardAddedDeductedPointsNotification.ExpiryDateOption.IsSet)
                 writer.WriteString("ExpiryDate", cardAddedDeductedPointsNotification.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));

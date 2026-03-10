@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | **float** |  | 
 **Operation** | **string** |  | 
+**TransactionUUID** | **Guid** | The identifier of the transaction in the loyalty ledger. | 
 **Reason** | **string** |  | [optional] 
 **StartDate** | **DateTime** |  | [optional] 
 **ExpiryDate** | **DateTime** |  | [optional] 

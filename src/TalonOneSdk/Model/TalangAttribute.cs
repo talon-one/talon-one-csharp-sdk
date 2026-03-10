@@ -742,8 +742,11 @@ namespace TalonOneSdk.Model
             writer.WriteString("kind", kindRawValue);
             writer.WriteNumber("campaignsCount", talangAttribute.CampaignsCount);
 
-            var entityRawValue = TalangAttribute.EntityEnumToJsonValue(talangAttribute.EntityOption.Value.Value);
-            writer.WriteString("entity", entityRawValue);
+            if (talangAttribute.EntityOption.IsSet)
+            {
+                var entityRawValue = TalangAttribute.EntityEnumToJsonValue(talangAttribute.EntityOption.Value);
+                writer.WriteString("entity", entityRawValue);
+            }
             if (talangAttribute.TitleOption.IsSet)
                 writer.WriteString("title", talangAttribute.Title);
 

@@ -498,10 +498,16 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("expires", createApplicationAPIKey.Expires.ToString(ExpiresFormat));
 
-            var platformRawValue = CreateApplicationAPIKey.PlatformEnumToJsonValue(createApplicationAPIKey.PlatformOption.Value.Value);
-            writer.WriteString("platform", platformRawValue);
-            var typeRawValue = CreateApplicationAPIKey.TypeEnumToJsonValue(createApplicationAPIKey.TypeOption.Value.Value);
-            writer.WriteString("type", typeRawValue);
+            if (createApplicationAPIKey.PlatformOption.IsSet)
+            {
+                var platformRawValue = CreateApplicationAPIKey.PlatformEnumToJsonValue(createApplicationAPIKey.PlatformOption.Value);
+                writer.WriteString("platform", platformRawValue);
+            }
+            if (createApplicationAPIKey.TypeOption.IsSet)
+            {
+                var typeRawValue = CreateApplicationAPIKey.TypeEnumToJsonValue(createApplicationAPIKey.TypeOption.Value);
+                writer.WriteString("type", typeRawValue);
+            }
             if (createApplicationAPIKey.TimeOffsetOption.IsSet)
                 writer.WriteNumber("timeOffset", createApplicationAPIKey.TimeOffsetOption.Value.Value);
         }

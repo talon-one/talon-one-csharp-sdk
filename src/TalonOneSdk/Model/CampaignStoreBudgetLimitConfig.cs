@@ -396,7 +396,28 @@ namespace TalonOneSdk.Model
                             limit = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "entities":
-                            entities = new Option<List<CampaignStoreBudgetLimitConfig.EntitiesEnum>>(JsonSerializer.Deserialize<List<CampaignStoreBudgetLimitConfig.EntitiesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                entities = new Option<List<CampaignStoreBudgetLimitConfig.EntitiesEnum>>((List<CampaignStoreBudgetLimitConfig.EntitiesEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var entitiesItems = new List<CampaignStoreBudgetLimitConfig.EntitiesEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string entitiesItemRawValue = utf8JsonReader.GetString();
+                                    if (entitiesItemRawValue == null)
+                                        throw new JsonException();
+
+                                    entitiesItems.Add(CampaignStoreBudgetLimitConfig.EntitiesEnumFromString(entitiesItemRawValue));
+                                }
+                                entities = new Option<List<CampaignStoreBudgetLimitConfig.EntitiesEnum>>(entitiesItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         case "imported":
                             imported = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
@@ -477,11 +498,19 @@ namespace TalonOneSdk.Model
             writer.WriteNumber("limit", campaignStoreBudgetLimitConfig.Limit);
 
             writer.WritePropertyName("entities");
-            JsonSerializer.Serialize(writer, campaignStoreBudgetLimitConfig.Entities, jsonSerializerOptions);
+            writer.WriteStartArray();
+            foreach (var entitiesItem in campaignStoreBudgetLimitConfig.Entities)
+            {
+                writer.WriteStringValue(CampaignStoreBudgetLimitConfig.EntitiesEnumToJsonValue(entitiesItem));
+            }
+            writer.WriteEndArray();
             writer.WriteBoolean("imported", campaignStoreBudgetLimitConfig.Imported);
 
-            var periodRawValue = CampaignStoreBudgetLimitConfig.PeriodEnumToJsonValue(campaignStoreBudgetLimitConfig.PeriodOption.Value.Value);
-            writer.WriteString("period", periodRawValue);
+            if (campaignStoreBudgetLimitConfig.PeriodOption.IsSet)
+            {
+                var periodRawValue = CampaignStoreBudgetLimitConfig.PeriodEnumToJsonValue(campaignStoreBudgetLimitConfig.PeriodOption.Value);
+                writer.WriteString("period", periodRawValue);
+            }
         }
     }
 }

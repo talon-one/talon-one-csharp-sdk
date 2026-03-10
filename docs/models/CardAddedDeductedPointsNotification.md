@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **Amount** | **decimal** | The amount of added or deducted loyalty points. | 
 **Operation** | **string** | The action (addition or deduction) made with loyalty points. | 
 **Reason** | **string** | The reason for the points addition or deduction. | 
+**TransactionUUID** | **Guid** | The identifier of the transaction in the loyalty ledger. | 
 **ExpiryDate** | **DateTime** | The expiration date for loyalty points. | [optional] 
 **StartDate** | **DateTime** | The start date for loyalty points. | [optional] 
 

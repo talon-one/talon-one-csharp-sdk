@@ -877,10 +877,16 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("periodEndOverride");
                 JsonSerializer.Serialize(writer, achievement.PeriodEndOverride, jsonSerializerOptions);
             }
-            var recurrencePolicyRawValue = Achievement.RecurrencePolicyEnumToJsonValue(achievement.RecurrencePolicyOption.Value.Value);
-            writer.WriteString("recurrencePolicy", recurrencePolicyRawValue);
-            var activationPolicyRawValue = Achievement.ActivationPolicyEnumToJsonValue(achievement.ActivationPolicyOption.Value.Value);
-            writer.WriteString("activationPolicy", activationPolicyRawValue);
+            if (achievement.RecurrencePolicyOption.IsSet)
+            {
+                var recurrencePolicyRawValue = Achievement.RecurrencePolicyEnumToJsonValue(achievement.RecurrencePolicyOption.Value);
+                writer.WriteString("recurrencePolicy", recurrencePolicyRawValue);
+            }
+            if (achievement.ActivationPolicyOption.IsSet)
+            {
+                var activationPolicyRawValue = Achievement.ActivationPolicyEnumToJsonValue(achievement.ActivationPolicyOption.Value);
+                writer.WriteString("activationPolicy", activationPolicyRawValue);
+            }
             if (achievement.FixedStartDateOption.IsSet)
                 writer.WriteString("fixedStartDate", achievement.FixedStartDateOption.Value.Value.ToString(FixedStartDateFormat));
 
@@ -896,8 +902,11 @@ namespace TalonOneSdk.Model
             if (achievement.HasProgressOption.IsSet)
                 writer.WriteBoolean("hasProgress", achievement.HasProgressOption.Value.Value);
 
-            var statusRawValue = Achievement.StatusEnumToJsonValue(achievement.StatusOption.Value.Value);
-            writer.WriteString("status", statusRawValue);
+            if (achievement.StatusOption.IsSet)
+            {
+                var statusRawValue = Achievement.StatusEnumToJsonValue(achievement.StatusOption.Value);
+                writer.WriteString("status", statusRawValue);
+            }
         }
     }
 }

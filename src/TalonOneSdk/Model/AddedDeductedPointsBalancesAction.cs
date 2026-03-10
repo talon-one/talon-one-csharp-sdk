@@ -34,14 +34,16 @@ namespace TalonOneSdk.Model
         /// <param name="amount">The amount of added or deducted loyalty points.</param>
         /// <param name="reason">The reason for the points addition or deduction.</param>
         /// <param name="operation">The action (addition or deduction) made with loyalty points.</param>
+        /// <param name="transactionUUID">The identifier of the transaction in the loyalty ledger.</param>
         /// <param name="startDate">The start date for loyalty points.</param>
         /// <param name="expiryDate">The expiration date for loyalty points.</param>
         [JsonConstructor]
-        public AddedDeductedPointsBalancesAction(decimal amount, string reason, OperationEnum operation, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default)
+        public AddedDeductedPointsBalancesAction(decimal amount, string reason, OperationEnum operation, Guid transactionUUID, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default)
         {
             Amount = amount;
             Reason = reason;
             Operation = operation;
+            TransactionUUID = transactionUUID;
             StartDateOption = startDate;
             ExpiryDateOption = expiryDate;
             OnCreated();
@@ -140,6 +142,13 @@ namespace TalonOneSdk.Model
         public string Reason { get; set; }
 
         /// <summary>
+        /// The identifier of the transaction in the loyalty ledger.
+        /// </summary>
+        /// <value>The identifier of the transaction in the loyalty ledger.</value>
+        [JsonPropertyName("TransactionUUID")]
+        public Guid TransactionUUID { get; set; }
+
+        /// <summary>
         /// Used to track the state of StartDate
         /// </summary>
         [JsonIgnore]
@@ -180,6 +189,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
             sb.Append("  Operation: ").Append(Operation).Append("\n");
+            sb.Append("  TransactionUUID: ").Append(TransactionUUID).Append("\n");
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
             sb.Append("}\n");
@@ -232,6 +242,7 @@ namespace TalonOneSdk.Model
             Option<decimal?> amount = default;
             Option<string> reason = default;
             Option<AddedDeductedPointsBalancesAction.OperationEnum?> operation = default;
+            Option<Guid?> transactionUUID = default;
             Option<DateTime?> startDate = default;
             Option<DateTime?> expiryDate = default;
 
@@ -261,6 +272,9 @@ namespace TalonOneSdk.Model
                             if (operationRawValue != null)
                                 operation = new Option<AddedDeductedPointsBalancesAction.OperationEnum?>(AddedDeductedPointsBalancesAction.OperationEnumFromStringOrDefault(operationRawValue));
                             break;
+                        case "TransactionUUID":
+                            transactionUUID = new Option<Guid?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (Guid?)null : utf8JsonReader.GetGuid());
+                            break;
                         case "StartDate":
                             startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -282,6 +296,9 @@ namespace TalonOneSdk.Model
             if (!operation.IsSet)
                 throw new ArgumentException("Property is required for class AddedDeductedPointsBalancesAction.", nameof(operation));
 
+            if (!transactionUUID.IsSet)
+                throw new ArgumentException("Property is required for class AddedDeductedPointsBalancesAction.", nameof(transactionUUID));
+
             if (amount.IsSet && amount.Value == null)
                 throw new ArgumentNullException(nameof(amount), "Property is not nullable for class AddedDeductedPointsBalancesAction.");
 
@@ -291,13 +308,16 @@ namespace TalonOneSdk.Model
             if (operation.IsSet && operation.Value == null)
                 throw new ArgumentNullException(nameof(operation), "Property is not nullable for class AddedDeductedPointsBalancesAction.");
 
+            if (transactionUUID.IsSet && transactionUUID.Value == null)
+                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class AddedDeductedPointsBalancesAction.");
+
             if (startDate.IsSet && startDate.Value == null)
                 throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class AddedDeductedPointsBalancesAction.");
 
             if (expiryDate.IsSet && expiryDate.Value == null)
                 throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class AddedDeductedPointsBalancesAction.");
 
-            return new AddedDeductedPointsBalancesAction(amount.Value.Value, reason.Value, operation.Value.Value, startDate, expiryDate);
+            return new AddedDeductedPointsBalancesAction(amount.Value.Value, reason.Value, operation.Value.Value, transactionUUID.Value.Value, startDate, expiryDate);
         }
 
         /// <summary>
@@ -333,6 +353,8 @@ namespace TalonOneSdk.Model
 
             var operationRawValue = AddedDeductedPointsBalancesAction.OperationEnumToJsonValue(addedDeductedPointsBalancesAction.Operation);
             writer.WriteString("Operation", operationRawValue);
+            writer.WriteString("TransactionUUID", addedDeductedPointsBalancesAction.TransactionUUID);
+
             if (addedDeductedPointsBalancesAction.StartDateOption.IsSet)
                 writer.WriteString("StartDate", addedDeductedPointsBalancesAction.StartDateOption.Value.Value.ToString(StartDateFormat));
 

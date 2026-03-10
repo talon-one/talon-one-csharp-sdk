@@ -312,7 +312,28 @@ namespace TalonOneSdk.Model
                             customerSession = new Option<NewCustomerSessionV2>(JsonSerializer.Deserialize<NewCustomerSessionV2>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "responseContent":
-                            responseContent = new Option<List<IntegrationRequest.ResponseContentEnum>>(JsonSerializer.Deserialize<List<IntegrationRequest.ResponseContentEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                responseContent = new Option<List<IntegrationRequest.ResponseContentEnum>>((List<IntegrationRequest.ResponseContentEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var responseContentItems = new List<IntegrationRequest.ResponseContentEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string responseContentItemRawValue = utf8JsonReader.GetString();
+                                    if (responseContentItemRawValue == null)
+                                        throw new JsonException();
+
+                                    responseContentItems.Add(IntegrationRequest.ResponseContentEnumFromString(responseContentItemRawValue));
+                                }
+                                responseContent = new Option<List<IntegrationRequest.ResponseContentEnum>>(responseContentItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         default:
                             break;
@@ -367,7 +388,12 @@ namespace TalonOneSdk.Model
             if (integrationRequest.ResponseContentOption.IsSet)
             {
                 writer.WritePropertyName("responseContent");
-                JsonSerializer.Serialize(writer, integrationRequest.ResponseContent, jsonSerializerOptions);
+                writer.WriteStartArray();
+                foreach (var responseContentItem in integrationRequest.ResponseContent)
+                {
+                    writer.WriteStringValue(IntegrationRequest.ResponseContentEnumToJsonValue(responseContentItem));
+                }
+                writer.WriteEndArray();
             }
         }
     }

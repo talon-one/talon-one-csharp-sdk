@@ -802,10 +802,16 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("periodEndOverride");
                 JsonSerializer.Serialize(writer, achievementStatusEntry.PeriodEndOverride, jsonSerializerOptions);
             }
-            var recurrencePolicyRawValue = AchievementStatusEntry.RecurrencePolicyEnumToJsonValue(achievementStatusEntry.RecurrencePolicyOption.Value.Value);
-            writer.WriteString("recurrencePolicy", recurrencePolicyRawValue);
-            var activationPolicyRawValue = AchievementStatusEntry.ActivationPolicyEnumToJsonValue(achievementStatusEntry.ActivationPolicyOption.Value.Value);
-            writer.WriteString("activationPolicy", activationPolicyRawValue);
+            if (achievementStatusEntry.RecurrencePolicyOption.IsSet)
+            {
+                var recurrencePolicyRawValue = AchievementStatusEntry.RecurrencePolicyEnumToJsonValue(achievementStatusEntry.RecurrencePolicyOption.Value);
+                writer.WriteString("recurrencePolicy", recurrencePolicyRawValue);
+            }
+            if (achievementStatusEntry.ActivationPolicyOption.IsSet)
+            {
+                var activationPolicyRawValue = AchievementStatusEntry.ActivationPolicyEnumToJsonValue(achievementStatusEntry.ActivationPolicyOption.Value);
+                writer.WriteString("activationPolicy", activationPolicyRawValue);
+            }
             if (achievementStatusEntry.FixedStartDateOption.IsSet)
                 writer.WriteString("fixedStartDate", achievementStatusEntry.FixedStartDateOption.Value.Value.ToString(FixedStartDateFormat));
 
@@ -818,8 +824,11 @@ namespace TalonOneSdk.Model
             if (achievementStatusEntry.CampaignIdOption.IsSet)
                 writer.WriteNumber("campaignId", achievementStatusEntry.CampaignIdOption.Value.Value);
 
-            var statusRawValue = AchievementStatusEntry.StatusEnumToJsonValue(achievementStatusEntry.StatusOption.Value.Value);
-            writer.WriteString("status", statusRawValue);
+            if (achievementStatusEntry.StatusOption.IsSet)
+            {
+                var statusRawValue = AchievementStatusEntry.StatusEnumToJsonValue(achievementStatusEntry.StatusOption.Value);
+                writer.WriteString("status", statusRawValue);
+            }
             if (achievementStatusEntry.CurrentProgressOption.IsSet)
             {
                 writer.WritePropertyName("currentProgress");

@@ -2075,17 +2075,18 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="profile">Profile integration ID filter for sessions. Must be exact match. (optional)</param>
+        /// <param name="partialMatch">Enables partial matching for a single text search field. When enabled, the search term matches anywhere within the field value (case-insensitive). Minimum 3 characters required for partial matches; shorter inputs automatically fall back to exact match.  **Note:** Use with one of: &#x60;integrationId&#x60;, &#x60;profile&#x60;, &#x60;coupon&#x60;, &#x60;referral&#x60;, or &#x60;storeIntegrationId&#x60;. (optional, default to false)</param>
+        /// <param name="profile">Filter by sessions with this profile integration ID. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
         /// <param name="state">Filter by sessions with this state. Must be exact match. (optional)</param>
         /// <param name="createdBefore">Only return events created before this date. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="createdAfter">Only return events created after this date. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
-        /// <param name="coupon">Filter by sessions with this coupon. Must be exact match. (optional)</param>
-        /// <param name="referral">Filter by sessions with this referral. Must be exact match. (optional)</param>
-        /// <param name="integrationId">Filter by sessions with this integration ID. Must be exact match. (optional)</param>
-        /// <param name="storeIntegrationId">The integration ID of the store. You choose this ID when you create a store. (optional)</param>
+        /// <param name="coupon">Filter by sessions with this coupon. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
+        /// <param name="referral">Filter by sessions with this referral. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
+        /// <param name="integrationId">Filter by sessions with this integration ID. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
+        /// <param name="storeIntegrationId">The integration ID of the store. You choose this ID when you create a store. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationSessionsApiResponse"/>&gt;</returns>
-        Task<IGetApplicationSessionsApiResponse> GetApplicationSessionsAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> profile = default, Option<string> state = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> coupon = default, Option<string> referral = default, Option<string> integrationId = default, Option<string> storeIntegrationId = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetApplicationSessionsApiResponse> GetApplicationSessionsAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<bool> partialMatch = default, Option<string> profile = default, Option<string> state = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> coupon = default, Option<string> referral = default, Option<string> integrationId = default, Option<string> storeIntegrationId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List Application sessions
@@ -2097,17 +2098,18 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="profile">Profile integration ID filter for sessions. Must be exact match. (optional)</param>
+        /// <param name="partialMatch">Enables partial matching for a single text search field. When enabled, the search term matches anywhere within the field value (case-insensitive). Minimum 3 characters required for partial matches; shorter inputs automatically fall back to exact match.  **Note:** Use with one of: &#x60;integrationId&#x60;, &#x60;profile&#x60;, &#x60;coupon&#x60;, &#x60;referral&#x60;, or &#x60;storeIntegrationId&#x60;. (optional, default to false)</param>
+        /// <param name="profile">Filter by sessions with this profile integration ID. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
         /// <param name="state">Filter by sessions with this state. Must be exact match. (optional)</param>
         /// <param name="createdBefore">Only return events created before this date. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="createdAfter">Only return events created after this date. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
-        /// <param name="coupon">Filter by sessions with this coupon. Must be exact match. (optional)</param>
-        /// <param name="referral">Filter by sessions with this referral. Must be exact match. (optional)</param>
-        /// <param name="integrationId">Filter by sessions with this integration ID. Must be exact match. (optional)</param>
-        /// <param name="storeIntegrationId">The integration ID of the store. You choose this ID when you create a store. (optional)</param>
+        /// <param name="coupon">Filter by sessions with this coupon. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
+        /// <param name="referral">Filter by sessions with this referral. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
+        /// <param name="integrationId">Filter by sessions with this integration ID. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
+        /// <param name="storeIntegrationId">The integration ID of the store. You choose this ID when you create a store. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationSessionsApiResponse"/>&gt;</returns>
-        Task<IGetApplicationSessionsApiResponse> GetApplicationSessionsOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> profile = default, Option<string> state = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> coupon = default, Option<string> referral = default, Option<string> integrationId = default, Option<string> storeIntegrationId = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetApplicationSessionsApiResponse> GetApplicationSessionsOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<bool> partialMatch = default, Option<string> profile = default, Option<string> state = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> coupon = default, Option<string> referral = default, Option<string> integrationId = default, Option<string> storeIntegrationId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List Applications
@@ -3814,7 +3816,7 @@ namespace TalonOneSdk.Api
         /// Import loyalty cards
         /// </summary>
         /// <remarks>
-        /// Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The alphanumeric identifier of the loyalty card. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;). - &#x60;attributes&#x60; (optional): A JSON object that contains the loyalty card&#39;s custom attributes and their values. These attributes must be created and connected to this loyalty program before  they can be assigned to the cards through this endpoint.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids,attributes 123-456-789AT,active,Alexa001;UserA,\&quot;{\&quot;\&quot;my_attribute\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
+        /// Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The alphanumeric identifier of the loyalty card. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  **Note:** We recommend limiting your file size to 500MB.  **Example:**  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -3827,7 +3829,7 @@ namespace TalonOneSdk.Api
         /// Import loyalty cards
         /// </summary>
         /// <remarks>
-        /// Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The alphanumeric identifier of the loyalty card. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;). - &#x60;attributes&#x60; (optional): A JSON object that contains the loyalty card&#39;s custom attributes and their values. These attributes must be created and connected to this loyalty program before  they can be assigned to the cards through this endpoint.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids,attributes 123-456-789AT,active,Alexa001;UserA,\&quot;{\&quot;\&quot;my_attribute\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
+        /// Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The alphanumeric identifier of the loyalty card. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  **Note:** We recommend limiting your file size to 500MB.  **Example:**  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
@@ -34259,7 +34261,7 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetApplicationSessions(ref long applicationId, ref Option<long> pageSize, ref Option<long> skip, ref Option<string> sort, ref Option<string> profile, ref Option<string> state, ref Option<DateTime> createdBefore, ref Option<DateTime> createdAfter, ref Option<string> coupon, ref Option<string> referral, ref Option<string> integrationId, ref Option<string> storeIntegrationId);
+        partial void FormatGetApplicationSessions(ref long applicationId, ref Option<long> pageSize, ref Option<long> skip, ref Option<string> sort, ref Option<bool> partialMatch, ref Option<string> profile, ref Option<string> state, ref Option<DateTime> createdBefore, ref Option<DateTime> createdAfter, ref Option<string> coupon, ref Option<string> referral, ref Option<string> integrationId, ref Option<string> storeIntegrationId);
 
         /// <summary>
         /// Validates the request parameters
@@ -34304,6 +34306,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="sort"></param>
+        /// <param name="partialMatch"></param>
         /// <param name="profile"></param>
         /// <param name="state"></param>
         /// <param name="createdBefore"></param>
@@ -34312,10 +34315,10 @@ namespace TalonOneSdk.Api
         /// <param name="referral"></param>
         /// <param name="integrationId"></param>
         /// <param name="storeIntegrationId"></param>
-        private void AfterGetApplicationSessionsDefaultImplementation(IGetApplicationSessionsApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> profile, Option<string> state, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> coupon, Option<string> referral, Option<string> integrationId, Option<string> storeIntegrationId)
+        private void AfterGetApplicationSessionsDefaultImplementation(IGetApplicationSessionsApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<bool> partialMatch, Option<string> profile, Option<string> state, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> coupon, Option<string> referral, Option<string> integrationId, Option<string> storeIntegrationId)
         {
             bool suppressDefaultLog = false;
-            AfterGetApplicationSessions(ref suppressDefaultLog, apiResponseLocalVar, applicationId, pageSize, skip, sort, profile, state, createdBefore, createdAfter, coupon, referral, integrationId, storeIntegrationId);
+            AfterGetApplicationSessions(ref suppressDefaultLog, apiResponseLocalVar, applicationId, pageSize, skip, sort, partialMatch, profile, state, createdBefore, createdAfter, coupon, referral, integrationId, storeIntegrationId);
             if (!suppressDefaultLog)
                 Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -34329,6 +34332,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="sort"></param>
+        /// <param name="partialMatch"></param>
         /// <param name="profile"></param>
         /// <param name="state"></param>
         /// <param name="createdBefore"></param>
@@ -34337,7 +34341,7 @@ namespace TalonOneSdk.Api
         /// <param name="referral"></param>
         /// <param name="integrationId"></param>
         /// <param name="storeIntegrationId"></param>
-        partial void AfterGetApplicationSessions(ref bool suppressDefaultLog, IGetApplicationSessionsApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> profile, Option<string> state, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> coupon, Option<string> referral, Option<string> integrationId, Option<string> storeIntegrationId);
+        partial void AfterGetApplicationSessions(ref bool suppressDefaultLog, IGetApplicationSessionsApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<bool> partialMatch, Option<string> profile, Option<string> state, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> coupon, Option<string> referral, Option<string> integrationId, Option<string> storeIntegrationId);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -34349,6 +34353,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="sort"></param>
+        /// <param name="partialMatch"></param>
         /// <param name="profile"></param>
         /// <param name="state"></param>
         /// <param name="createdBefore"></param>
@@ -34357,10 +34362,10 @@ namespace TalonOneSdk.Api
         /// <param name="referral"></param>
         /// <param name="integrationId"></param>
         /// <param name="storeIntegrationId"></param>
-        private void OnErrorGetApplicationSessionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> profile, Option<string> state, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> coupon, Option<string> referral, Option<string> integrationId, Option<string> storeIntegrationId)
+        private void OnErrorGetApplicationSessionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<bool> partialMatch, Option<string> profile, Option<string> state, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> coupon, Option<string> referral, Option<string> integrationId, Option<string> storeIntegrationId)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetApplicationSessions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, pageSize, skip, sort, profile, state, createdBefore, createdAfter, coupon, referral, integrationId, storeIntegrationId);
+            OnErrorGetApplicationSessions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, pageSize, skip, sort, partialMatch, profile, state, createdBefore, createdAfter, coupon, referral, integrationId, storeIntegrationId);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -34376,6 +34381,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="sort"></param>
+        /// <param name="partialMatch"></param>
         /// <param name="profile"></param>
         /// <param name="state"></param>
         /// <param name="createdBefore"></param>
@@ -34384,7 +34390,7 @@ namespace TalonOneSdk.Api
         /// <param name="referral"></param>
         /// <param name="integrationId"></param>
         /// <param name="storeIntegrationId"></param>
-        partial void OnErrorGetApplicationSessions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> profile, Option<string> state, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> coupon, Option<string> referral, Option<string> integrationId, Option<string> storeIntegrationId);
+        partial void OnErrorGetApplicationSessions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<bool> partialMatch, Option<string> profile, Option<string> state, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> coupon, Option<string> referral, Option<string> integrationId, Option<string> storeIntegrationId);
 
         /// <summary>
         /// List Application sessions List all the sessions of the specified Application. 
@@ -34393,21 +34399,22 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="profile">Profile integration ID filter for sessions. Must be exact match. (optional)</param>
+        /// <param name="partialMatch">Enables partial matching for a single text search field. When enabled, the search term matches anywhere within the field value (case-insensitive). Minimum 3 characters required for partial matches; shorter inputs automatically fall back to exact match.  **Note:** Use with one of: &#x60;integrationId&#x60;, &#x60;profile&#x60;, &#x60;coupon&#x60;, &#x60;referral&#x60;, or &#x60;storeIntegrationId&#x60;. (optional, default to false)</param>
+        /// <param name="profile">Filter by sessions with this profile integration ID. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
         /// <param name="state">Filter by sessions with this state. Must be exact match. (optional)</param>
         /// <param name="createdBefore">Only return events created before this date. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="createdAfter">Only return events created after this date. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
-        /// <param name="coupon">Filter by sessions with this coupon. Must be exact match. (optional)</param>
-        /// <param name="referral">Filter by sessions with this referral. Must be exact match. (optional)</param>
-        /// <param name="integrationId">Filter by sessions with this integration ID. Must be exact match. (optional)</param>
-        /// <param name="storeIntegrationId">The integration ID of the store. You choose this ID when you create a store. (optional)</param>
+        /// <param name="coupon">Filter by sessions with this coupon. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
+        /// <param name="referral">Filter by sessions with this referral. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
+        /// <param name="integrationId">Filter by sessions with this integration ID. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
+        /// <param name="storeIntegrationId">The integration ID of the store. You choose this ID when you create a store. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationSessionsApiResponse"/>&gt;</returns>
-        public async Task<IGetApplicationSessionsApiResponse> GetApplicationSessionsOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> profile = default, Option<string> state = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> coupon = default, Option<string> referral = default, Option<string> integrationId = default, Option<string> storeIntegrationId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetApplicationSessionsApiResponse> GetApplicationSessionsOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<bool> partialMatch = default, Option<string> profile = default, Option<string> state = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> coupon = default, Option<string> referral = default, Option<string> integrationId = default, Option<string> storeIntegrationId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetApplicationSessionsAsync(applicationId, pageSize, skip, sort, profile, state, createdBefore, createdAfter, coupon, referral, integrationId, storeIntegrationId, cancellationToken).ConfigureAwait(false);
+                return await GetApplicationSessionsAsync(applicationId, pageSize, skip, sort, partialMatch, profile, state, createdBefore, createdAfter, coupon, referral, integrationId, storeIntegrationId, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -34423,17 +34430,18 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="profile">Profile integration ID filter for sessions. Must be exact match. (optional)</param>
+        /// <param name="partialMatch">Enables partial matching for a single text search field. When enabled, the search term matches anywhere within the field value (case-insensitive). Minimum 3 characters required for partial matches; shorter inputs automatically fall back to exact match.  **Note:** Use with one of: &#x60;integrationId&#x60;, &#x60;profile&#x60;, &#x60;coupon&#x60;, &#x60;referral&#x60;, or &#x60;storeIntegrationId&#x60;. (optional, default to false)</param>
+        /// <param name="profile">Filter by sessions with this profile integration ID. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
         /// <param name="state">Filter by sessions with this state. Must be exact match. (optional)</param>
         /// <param name="createdBefore">Only return events created before this date. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="createdAfter">Only return events created after this date. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
-        /// <param name="coupon">Filter by sessions with this coupon. Must be exact match. (optional)</param>
-        /// <param name="referral">Filter by sessions with this referral. Must be exact match. (optional)</param>
-        /// <param name="integrationId">Filter by sessions with this integration ID. Must be exact match. (optional)</param>
-        /// <param name="storeIntegrationId">The integration ID of the store. You choose this ID when you create a store. (optional)</param>
+        /// <param name="coupon">Filter by sessions with this coupon. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
+        /// <param name="referral">Filter by sessions with this referral. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
+        /// <param name="integrationId">Filter by sessions with this integration ID. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
+        /// <param name="storeIntegrationId">The integration ID of the store. You choose this ID when you create a store. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationSessionsApiResponse"/>&gt;</returns>
-        public async Task<IGetApplicationSessionsApiResponse> GetApplicationSessionsAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> profile = default, Option<string> state = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> coupon = default, Option<string> referral = default, Option<string> integrationId = default, Option<string> storeIntegrationId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetApplicationSessionsApiResponse> GetApplicationSessionsAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<bool> partialMatch = default, Option<string> profile = default, Option<string> state = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> coupon = default, Option<string> referral = default, Option<string> integrationId = default, Option<string> storeIntegrationId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -34441,7 +34449,7 @@ namespace TalonOneSdk.Api
             {
                 ValidateGetApplicationSessions(sort, profile, state, coupon, referral, integrationId, storeIntegrationId);
 
-                FormatGetApplicationSessions(ref applicationId, ref pageSize, ref skip, ref sort, ref profile, ref state, ref createdBefore, ref createdAfter, ref coupon, ref referral, ref integrationId, ref storeIntegrationId);
+                FormatGetApplicationSessions(ref applicationId, ref pageSize, ref skip, ref sort, ref partialMatch, ref profile, ref state, ref createdBefore, ref createdAfter, ref coupon, ref referral, ref integrationId, ref storeIntegrationId);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -34463,6 +34471,9 @@ namespace TalonOneSdk.Api
 
                     if (sort.IsSet)
                         parseQueryStringLocalVar["sort"] = ClientUtils.ParameterToString(sort.Value);
+
+                    if (partialMatch.IsSet)
+                        parseQueryStringLocalVar["partialMatch"] = ClientUtils.ParameterToString(partialMatch.Value);
 
                     if (profile.IsSet)
                         parseQueryStringLocalVar["profile"] = ClientUtils.ParameterToString(profile.Value);
@@ -34531,7 +34542,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterGetApplicationSessionsDefaultImplementation(apiResponseLocalVar, applicationId, pageSize, skip, sort, profile, state, createdBefore, createdAfter, coupon, referral, integrationId, storeIntegrationId);
+                        AfterGetApplicationSessionsDefaultImplementation(apiResponseLocalVar, applicationId, pageSize, skip, sort, partialMatch, profile, state, createdBefore, createdAfter, coupon, referral, integrationId, storeIntegrationId);
 
                         Events.ExecuteOnGetApplicationSessions(apiResponseLocalVar);
 
@@ -34545,7 +34556,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorGetApplicationSessionsDefaultImplementation(e, "/v1/applications/{applicationId}/sessions", uriBuilderLocalVar.Path, applicationId, pageSize, skip, sort, profile, state, createdBefore, createdAfter, coupon, referral, integrationId, storeIntegrationId);
+                OnErrorGetApplicationSessionsDefaultImplementation(e, "/v1/applications/{applicationId}/sessions", uriBuilderLocalVar.Path, applicationId, pageSize, skip, sort, partialMatch, profile, state, createdBefore, createdAfter, coupon, referral, integrationId, storeIntegrationId);
                 Events.ExecuteOnErrorGetApplicationSessions(e);
                 throw;
             }
@@ -52459,7 +52470,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorImportLoyaltyCards(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<string> upFile);
 
         /// <summary>
-        /// Import loyalty cards Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The alphanumeric identifier of the loyalty card. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;). - &#x60;attributes&#x60; (optional): A JSON object that contains the loyalty card&#39;s custom attributes and their values. These attributes must be created and connected to this loyalty program before  they can be assigned to the cards through this endpoint.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids,attributes 123-456-789AT,active,Alexa001;UserA,\&quot;{\&quot;\&quot;my_attribute\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
+        /// Import loyalty cards Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The alphanumeric identifier of the loyalty card. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  **Note:** We recommend limiting your file size to 500MB.  **Example:**  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA &#x60;&#x60;&#x60; 
         /// </summary>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
@@ -52478,7 +52489,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Import loyalty cards Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The alphanumeric identifier of the loyalty card. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;). - &#x60;attributes&#x60; (optional): A JSON object that contains the loyalty card&#39;s custom attributes and their values. These attributes must be created and connected to this loyalty program before  they can be assigned to the cards through this endpoint.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids,attributes 123-456-789AT,active,Alexa001;UserA,\&quot;{\&quot;\&quot;my_attribute\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
+        /// Import loyalty cards Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The alphanumeric identifier of the loyalty card. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  **Note:** We recommend limiting your file size to 500MB.  **Example:**  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>

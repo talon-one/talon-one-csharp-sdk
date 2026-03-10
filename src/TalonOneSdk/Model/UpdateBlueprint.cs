@@ -368,8 +368,11 @@ namespace TalonOneSdk.Model
             if (updateBlueprint.DescriptionOption.IsSet)
                 writer.WriteString("description", updateBlueprint.Description);
 
-            var categoryRawValue = UpdateBlueprint.CategoryEnumToJsonValue(updateBlueprint.CategoryOption.Value.Value);
-            writer.WriteString("category", categoryRawValue);
+            if (updateBlueprint.CategoryOption.IsSet)
+            {
+                var categoryRawValue = UpdateBlueprint.CategoryEnumToJsonValue(updateBlueprint.CategoryOption.Value);
+                writer.WriteString("category", categoryRawValue);
+            }
             if (updateBlueprint.RulesOption.IsSet)
             {
                 writer.WritePropertyName("rules");

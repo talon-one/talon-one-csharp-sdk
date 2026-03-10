@@ -33,14 +33,16 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="amount">amount</param>
         /// <param name="operation">operation</param>
+        /// <param name="transactionUUID">The identifier of the transaction in the loyalty ledger.</param>
         /// <param name="reason">reason</param>
         /// <param name="startDate">startDate</param>
         /// <param name="expiryDate">expiryDate</param>
         [JsonConstructor]
-        public IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction(float amount, OperationEnum operation, Option<string> reason = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default)
+        public IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction(float amount, OperationEnum operation, Guid transactionUUID, Option<string> reason = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default)
         {
             Amount = amount;
             Operation = operation;
+            TransactionUUID = transactionUUID;
             ReasonOption = reason;
             StartDateOption = startDate;
             ExpiryDateOption = expiryDate;
@@ -128,6 +130,13 @@ namespace TalonOneSdk.Model
         public float Amount { get; set; }
 
         /// <summary>
+        /// The identifier of the transaction in the loyalty ledger.
+        /// </summary>
+        /// <value>The identifier of the transaction in the loyalty ledger.</value>
+        [JsonPropertyName("TransactionUUID")]
+        public Guid TransactionUUID { get; set; }
+
+        /// <summary>
         /// Used to track the state of Reason
         /// </summary>
         [JsonIgnore]
@@ -176,6 +185,7 @@ namespace TalonOneSdk.Model
             sb.Append("class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction {\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  Operation: ").Append(Operation).Append("\n");
+            sb.Append("  TransactionUUID: ").Append(TransactionUUID).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
@@ -228,6 +238,7 @@ namespace TalonOneSdk.Model
 
             Option<float?> amount = default;
             Option<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnum?> operation = default;
+            Option<Guid?> transactionUUID = default;
             Option<string> reason = default;
             Option<DateTime?> startDate = default;
             Option<DateTime?> expiryDate = default;
@@ -255,6 +266,9 @@ namespace TalonOneSdk.Model
                             if (operationRawValue != null)
                                 operation = new Option<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnum?>(IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnumFromStringOrDefault(operationRawValue));
                             break;
+                        case "TransactionUUID":
+                            transactionUUID = new Option<Guid?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (Guid?)null : utf8JsonReader.GetGuid());
+                            break;
                         case "Reason":
                             reason = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -276,11 +290,17 @@ namespace TalonOneSdk.Model
             if (!operation.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.", nameof(operation));
 
+            if (!transactionUUID.IsSet)
+                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.", nameof(transactionUUID));
+
             if (amount.IsSet && amount.Value == null)
                 throw new ArgumentNullException(nameof(amount), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.");
 
             if (operation.IsSet && operation.Value == null)
                 throw new ArgumentNullException(nameof(operation), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.");
+
+            if (transactionUUID.IsSet && transactionUUID.Value == null)
+                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.");
 
             if (reason.IsSet && reason.Value == null)
                 throw new ArgumentNullException(nameof(reason), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.");
@@ -291,7 +311,7 @@ namespace TalonOneSdk.Model
             if (expiryDate.IsSet && expiryDate.Value == null)
                 throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.");
 
-            return new IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction(amount.Value.Value, operation.Value.Value, reason, startDate, expiryDate);
+            return new IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction(amount.Value.Value, operation.Value.Value, transactionUUID.Value.Value, reason, startDate, expiryDate);
         }
 
         /// <summary>
@@ -325,6 +345,8 @@ namespace TalonOneSdk.Model
 
             var operationRawValue = IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnumToJsonValue(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.Operation);
             writer.WriteString("Operation", operationRawValue);
+            writer.WriteString("TransactionUUID", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.TransactionUUID);
+
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.ReasonOption.IsSet)
                 writer.WriteString("Reason", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.Reason);
 
