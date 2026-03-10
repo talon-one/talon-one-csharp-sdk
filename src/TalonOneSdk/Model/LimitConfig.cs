@@ -484,8 +484,11 @@ namespace TalonOneSdk.Model
                 writer.WriteStringValue(LimitConfig.EntitiesEnumToJsonValue(entitiesItem));
             }
             writer.WriteEndArray();
-            var periodRawValue = LimitConfig.PeriodEnumToJsonValue(limitConfig.PeriodOption.Value.Value);
-            writer.WriteString("period", periodRawValue);
+            if (limitConfig.PeriodOption.IsSet)
+            {
+                var periodRawValue = LimitConfig.PeriodEnumToJsonValue(limitConfig.PeriodOption.Value);
+                writer.WriteString("period", periodRawValue);
+            }
         }
     }
 }

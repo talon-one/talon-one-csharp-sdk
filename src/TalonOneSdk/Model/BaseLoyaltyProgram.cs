@@ -892,25 +892,37 @@ namespace TalonOneSdk.Model
             if (baseLoyaltyProgram.SandboxOption.IsSet)
                 writer.WriteBoolean("sandbox", baseLoyaltyProgram.SandboxOption.Value.Value);
 
-            var programJoinPolicyRawValue = BaseLoyaltyProgram.ProgramJoinPolicyEnumToJsonValue(baseLoyaltyProgram.ProgramJoinPolicyOption.Value.Value);
-            writer.WriteString("programJoinPolicy", programJoinPolicyRawValue);
-            var tiersExpirationPolicyRawValue = BaseLoyaltyProgram.TiersExpirationPolicyEnumToJsonValue(baseLoyaltyProgram.TiersExpirationPolicyOption.Value.Value);
-            writer.WriteString("tiersExpirationPolicy", tiersExpirationPolicyRawValue);
+            if (baseLoyaltyProgram.ProgramJoinPolicyOption.IsSet)
+            {
+                var programJoinPolicyRawValue = BaseLoyaltyProgram.ProgramJoinPolicyEnumToJsonValue(baseLoyaltyProgram.ProgramJoinPolicyOption.Value);
+                writer.WriteString("programJoinPolicy", programJoinPolicyRawValue);
+            }
+            if (baseLoyaltyProgram.TiersExpirationPolicyOption.IsSet)
+            {
+                var tiersExpirationPolicyRawValue = BaseLoyaltyProgram.TiersExpirationPolicyEnumToJsonValue(baseLoyaltyProgram.TiersExpirationPolicyOption.Value);
+                writer.WriteString("tiersExpirationPolicy", tiersExpirationPolicyRawValue);
+            }
             if (baseLoyaltyProgram.TierCycleStartDateOption.IsSet)
                 writer.WriteString("tierCycleStartDate", baseLoyaltyProgram.TierCycleStartDateOption.Value.Value.ToString(TierCycleStartDateFormat));
 
             if (baseLoyaltyProgram.TiersExpireInOption.IsSet)
                 writer.WriteString("tiersExpireIn", baseLoyaltyProgram.TiersExpireIn);
 
-            var tiersDowngradePolicyRawValue = BaseLoyaltyProgram.TiersDowngradePolicyEnumToJsonValue(baseLoyaltyProgram.TiersDowngradePolicyOption.Value.Value);
-            writer.WriteString("tiersDowngradePolicy", tiersDowngradePolicyRawValue);
+            if (baseLoyaltyProgram.TiersDowngradePolicyOption.IsSet)
+            {
+                var tiersDowngradePolicyRawValue = BaseLoyaltyProgram.TiersDowngradePolicyEnumToJsonValue(baseLoyaltyProgram.TiersDowngradePolicyOption.Value);
+                writer.WriteString("tiersDowngradePolicy", tiersDowngradePolicyRawValue);
+            }
             if (baseLoyaltyProgram.CardCodeSettingsOption.IsSet)
             {
                 writer.WritePropertyName("cardCodeSettings");
                 JsonSerializer.Serialize(writer, baseLoyaltyProgram.CardCodeSettings, jsonSerializerOptions);
             }
-            var returnPolicyRawValue = BaseLoyaltyProgram.ReturnPolicyEnumToJsonValue(baseLoyaltyProgram.ReturnPolicyOption.Value.Value);
-            writer.WriteString("returnPolicy", returnPolicyRawValue);
+            if (baseLoyaltyProgram.ReturnPolicyOption.IsSet)
+            {
+                var returnPolicyRawValue = BaseLoyaltyProgram.ReturnPolicyEnumToJsonValue(baseLoyaltyProgram.ReturnPolicyOption.Value);
+                writer.WriteString("returnPolicy", returnPolicyRawValue);
+            }
         }
     }
 }

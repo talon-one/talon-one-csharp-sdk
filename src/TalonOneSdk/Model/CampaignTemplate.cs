@@ -1217,8 +1217,11 @@ namespace TalonOneSdk.Model
             if (campaignTemplate.DefaultCampaignGroupIdOption.IsSet)
                 writer.WriteNumber("defaultCampaignGroupId", campaignTemplate.DefaultCampaignGroupIdOption.Value.Value);
 
-            var campaignTypeRawValue = CampaignTemplate.CampaignTypeEnumToJsonValue(campaignTemplate.CampaignTypeOption.Value.Value);
-            writer.WriteString("campaignType", campaignTypeRawValue);
+            if (campaignTemplate.CampaignTypeOption.IsSet)
+            {
+                var campaignTypeRawValue = CampaignTemplate.CampaignTypeEnumToJsonValue(campaignTemplate.CampaignTypeOption.Value);
+                writer.WriteString("campaignType", campaignTypeRawValue);
+            }
             if (campaignTemplate.CampaignsCountOption.IsSet)
                 writer.WriteNumber("campaignsCount", campaignTemplate.CampaignsCountOption.Value.Value);
 

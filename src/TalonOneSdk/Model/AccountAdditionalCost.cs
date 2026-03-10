@@ -446,8 +446,11 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("subscribedApplicationsIds");
                 JsonSerializer.Serialize(writer, accountAdditionalCost.SubscribedApplicationsIds, jsonSerializerOptions);
             }
-            var typeRawValue = AccountAdditionalCost.TypeEnumToJsonValue(accountAdditionalCost.TypeOption.Value.Value);
-            writer.WriteString("type", typeRawValue);
+            if (accountAdditionalCost.TypeOption.IsSet)
+            {
+                var typeRawValue = AccountAdditionalCost.TypeEnumToJsonValue(accountAdditionalCost.TypeOption.Value);
+                writer.WriteString("type", typeRawValue);
+            }
         }
     }
 }

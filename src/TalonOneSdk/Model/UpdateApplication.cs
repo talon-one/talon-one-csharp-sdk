@@ -839,8 +839,11 @@ namespace TalonOneSdk.Model
             if (updateApplication.DescriptionOption.IsSet)
                 writer.WriteString("description", updateApplication.Description);
 
-            var caseSensitivityRawValue = UpdateApplication.CaseSensitivityEnumToJsonValue(updateApplication.CaseSensitivityOption.Value.Value);
-            writer.WriteString("caseSensitivity", caseSensitivityRawValue);
+            if (updateApplication.CaseSensitivityOption.IsSet)
+            {
+                var caseSensitivityRawValue = UpdateApplication.CaseSensitivityEnumToJsonValue(updateApplication.CaseSensitivityOption.Value);
+                writer.WriteString("caseSensitivity", caseSensitivityRawValue);
+            }
             if (updateApplication.AttributesOption.IsSet)
             {
                 writer.WritePropertyName("attributes");
@@ -851,8 +854,11 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("limits");
                 JsonSerializer.Serialize(writer, updateApplication.Limits, jsonSerializerOptions);
             }
-            var defaultDiscountScopeRawValue = UpdateApplication.DefaultDiscountScopeEnumToJsonValue(updateApplication.DefaultDiscountScopeOption.Value.Value);
-            writer.WriteString("defaultDiscountScope", defaultDiscountScopeRawValue);
+            if (updateApplication.DefaultDiscountScopeOption.IsSet)
+            {
+                var defaultDiscountScopeRawValue = UpdateApplication.DefaultDiscountScopeEnumToJsonValue(updateApplication.DefaultDiscountScopeOption.Value);
+                writer.WriteString("defaultDiscountScope", defaultDiscountScopeRawValue);
+            }
             if (updateApplication.EnableCascadingDiscountsOption.IsSet)
                 writer.WriteBoolean("enableCascadingDiscounts", updateApplication.EnableCascadingDiscountsOption.Value.Value);
 
@@ -870,8 +876,11 @@ namespace TalonOneSdk.Model
             if (updateApplication.EnablePartialDiscountsOption.IsSet)
                 writer.WriteBoolean("enablePartialDiscounts", updateApplication.EnablePartialDiscountsOption.Value.Value);
 
-            var defaultDiscountAdditionalCostPerItemScopeRawValue = UpdateApplication.DefaultDiscountAdditionalCostPerItemScopeEnumToJsonValue(updateApplication.DefaultDiscountAdditionalCostPerItemScopeOption.Value.Value);
-            writer.WriteString("defaultDiscountAdditionalCostPerItemScope", defaultDiscountAdditionalCostPerItemScopeRawValue);
+            if (updateApplication.DefaultDiscountAdditionalCostPerItemScopeOption.IsSet)
+            {
+                var defaultDiscountAdditionalCostPerItemScopeRawValue = UpdateApplication.DefaultDiscountAdditionalCostPerItemScopeEnumToJsonValue(updateApplication.DefaultDiscountAdditionalCostPerItemScopeOption.Value);
+                writer.WriteString("defaultDiscountAdditionalCostPerItemScope", defaultDiscountAdditionalCostPerItemScopeRawValue);
+            }
             if (updateApplication.DefaultEvaluationGroupIdOption.IsSet)
                 writer.WriteNumber("defaultEvaluationGroupId", updateApplication.DefaultEvaluationGroupIdOption.Value.Value);
 

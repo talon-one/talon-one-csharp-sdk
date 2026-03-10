@@ -371,8 +371,11 @@ namespace TalonOneSdk.Model
 
             writer.WriteBoolean("strictEndDate", bestPriorPriceRequest.StrictEndDate);
 
-            var timeframeEndDateTypeRawValue = BestPriorPriceRequest.TimeframeEndDateTypeEnumToJsonValue(bestPriorPriceRequest.TimeframeEndDateTypeOption.Value.Value);
-            writer.WriteString("timeframeEndDateType", timeframeEndDateTypeRawValue);
+            if (bestPriorPriceRequest.TimeframeEndDateTypeOption.IsSet)
+            {
+                var timeframeEndDateTypeRawValue = BestPriorPriceRequest.TimeframeEndDateTypeEnumToJsonValue(bestPriorPriceRequest.TimeframeEndDateTypeOption.Value);
+                writer.WriteString("timeframeEndDateType", timeframeEndDateTypeRawValue);
+            }
             if (bestPriorPriceRequest.TargetOption.IsSet)
             {
                 writer.WritePropertyName("target");

@@ -898,8 +898,11 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("campaignGroups");
                 JsonSerializer.Serialize(writer, baseCampaign.CampaignGroups, jsonSerializerOptions);
             }
-            var typeRawValue = BaseCampaign.TypeEnumToJsonValue(baseCampaign.TypeOption.Value.Value);
-            writer.WriteString("type", typeRawValue);
+            if (baseCampaign.TypeOption.IsSet)
+            {
+                var typeRawValue = BaseCampaign.TypeEnumToJsonValue(baseCampaign.TypeOption.Value);
+                writer.WriteString("type", typeRawValue);
+            }
             if (baseCampaign.LinkedStoreIdsOption.IsSet)
             {
                 writer.WritePropertyName("linkedStoreIds");

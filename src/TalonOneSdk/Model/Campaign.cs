@@ -2001,8 +2001,11 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("campaignGroups");
                 JsonSerializer.Serialize(writer, campaign.CampaignGroups, jsonSerializerOptions);
             }
-            var typeRawValue = Campaign.TypeEnumToJsonValue(campaign.TypeOption.Value.Value);
-            writer.WriteString("type", typeRawValue);
+            if (campaign.TypeOption.IsSet)
+            {
+                var typeRawValue = Campaign.TypeEnumToJsonValue(campaign.TypeOption.Value);
+                writer.WriteString("type", typeRawValue);
+            }
             if (campaign.LinkedStoreIdsOption.IsSet)
             {
                 writer.WritePropertyName("linkedStoreIds");
@@ -2081,8 +2084,11 @@ namespace TalonOneSdk.Model
             if (campaign.ExperimentIdOption.IsSet)
                 writer.WriteNumber("experimentId", campaign.ExperimentIdOption.Value.Value);
 
-            var revisionFrontendStateRawValue = Campaign.RevisionFrontendStateEnumToJsonValue(campaign.RevisionFrontendStateOption.Value.Value);
-            writer.WriteString("revisionFrontendState", revisionFrontendStateRawValue);
+            if (campaign.RevisionFrontendStateOption.IsSet)
+            {
+                var revisionFrontendStateRawValue = Campaign.RevisionFrontendStateEnumToJsonValue(campaign.RevisionFrontendStateOption.Value);
+                writer.WriteString("revisionFrontendState", revisionFrontendStateRawValue);
+            }
             if (campaign.ActiveRevisionIdOption.IsSet)
                 writer.WriteNumber("activeRevisionId", campaign.ActiveRevisionIdOption.Value.Value);
 

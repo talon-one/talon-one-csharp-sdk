@@ -992,8 +992,11 @@ namespace TalonOneSdk.Model
             if (updateCampaignTemplate.DefaultCampaignGroupIdOption.IsSet)
                 writer.WriteNumber("defaultCampaignGroupId", updateCampaignTemplate.DefaultCampaignGroupIdOption.Value.Value);
 
-            var campaignTypeRawValue = UpdateCampaignTemplate.CampaignTypeEnumToJsonValue(updateCampaignTemplate.CampaignTypeOption.Value.Value);
-            writer.WriteString("campaignType", campaignTypeRawValue);
+            if (updateCampaignTemplate.CampaignTypeOption.IsSet)
+            {
+                var campaignTypeRawValue = UpdateCampaignTemplate.CampaignTypeEnumToJsonValue(updateCampaignTemplate.CampaignTypeOption.Value);
+                writer.WriteString("campaignType", campaignTypeRawValue);
+            }
         }
     }
 }

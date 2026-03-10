@@ -626,10 +626,16 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("periodEndOverride");
                 JsonSerializer.Serialize(writer, achievementBase.PeriodEndOverride, jsonSerializerOptions);
             }
-            var recurrencePolicyRawValue = AchievementBase.RecurrencePolicyEnumToJsonValue(achievementBase.RecurrencePolicyOption.Value.Value);
-            writer.WriteString("recurrencePolicy", recurrencePolicyRawValue);
-            var activationPolicyRawValue = AchievementBase.ActivationPolicyEnumToJsonValue(achievementBase.ActivationPolicyOption.Value.Value);
-            writer.WriteString("activationPolicy", activationPolicyRawValue);
+            if (achievementBase.RecurrencePolicyOption.IsSet)
+            {
+                var recurrencePolicyRawValue = AchievementBase.RecurrencePolicyEnumToJsonValue(achievementBase.RecurrencePolicyOption.Value);
+                writer.WriteString("recurrencePolicy", recurrencePolicyRawValue);
+            }
+            if (achievementBase.ActivationPolicyOption.IsSet)
+            {
+                var activationPolicyRawValue = AchievementBase.ActivationPolicyEnumToJsonValue(achievementBase.ActivationPolicyOption.Value);
+                writer.WriteString("activationPolicy", activationPolicyRawValue);
+            }
             if (achievementBase.FixedStartDateOption.IsSet)
                 writer.WriteString("fixedStartDate", achievementBase.FixedStartDateOption.Value.Value.ToString(FixedStartDateFormat));
 

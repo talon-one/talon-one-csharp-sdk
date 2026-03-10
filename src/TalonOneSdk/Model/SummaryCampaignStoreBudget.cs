@@ -579,8 +579,11 @@ namespace TalonOneSdk.Model
 
             writer.WriteBoolean("imported", summaryCampaignStoreBudget.Imported);
 
-            var periodRawValue = SummaryCampaignStoreBudget.PeriodEnumToJsonValue(summaryCampaignStoreBudget.PeriodOption.Value.Value);
-            writer.WriteString("period", periodRawValue);
+            if (summaryCampaignStoreBudget.PeriodOption.IsSet)
+            {
+                var periodRawValue = SummaryCampaignStoreBudget.PeriodEnumToJsonValue(summaryCampaignStoreBudget.PeriodOption.Value);
+                writer.WriteString("period", periodRawValue);
+            }
         }
     }
 }

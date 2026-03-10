@@ -905,8 +905,11 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("attributes");
                 JsonSerializer.Serialize(writer, updateCampaign.Attributes, jsonSerializerOptions);
             }
-            var stateRawValue = UpdateCampaign.StateEnumToJsonValue(updateCampaign.StateOption.Value.Value);
-            writer.WriteString("state", stateRawValue);
+            if (updateCampaign.StateOption.IsSet)
+            {
+                var stateRawValue = UpdateCampaign.StateEnumToJsonValue(updateCampaign.StateOption.Value);
+                writer.WriteString("state", stateRawValue);
+            }
             if (updateCampaign.ActiveRulesetIdOption.IsSet)
                 writer.WriteNumber("activeRulesetId", updateCampaign.ActiveRulesetIdOption.Value.Value);
 
@@ -931,8 +934,11 @@ namespace TalonOneSdk.Model
             if (updateCampaign.EvaluationGroupIdOption.IsSet)
                 writer.WriteNumber("evaluationGroupId", updateCampaign.EvaluationGroupIdOption.Value.Value);
 
-            var typeRawValue = UpdateCampaign.TypeEnumToJsonValue(updateCampaign.TypeOption.Value.Value);
-            writer.WriteString("type", typeRawValue);
+            if (updateCampaign.TypeOption.IsSet)
+            {
+                var typeRawValue = UpdateCampaign.TypeEnumToJsonValue(updateCampaign.TypeOption.Value);
+                writer.WriteString("type", typeRawValue);
+            }
             if (updateCampaign.LinkedStoreIdsOption.IsSet)
             {
                 writer.WritePropertyName("linkedStoreIds");

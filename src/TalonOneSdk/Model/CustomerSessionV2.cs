@@ -852,8 +852,11 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("loyaltyCards");
                 JsonSerializer.Serialize(writer, customerSessionV2.LoyaltyCards, jsonSerializerOptions);
             }
-            var stateRawValue = CustomerSessionV2.StateEnumToJsonValue(customerSessionV2.StateOption.Value.Value);
-            writer.WriteString("state", stateRawValue);
+            if (customerSessionV2.StateOption.IsSet)
+            {
+                var stateRawValue = CustomerSessionV2.StateEnumToJsonValue(customerSessionV2.StateOption.Value);
+                writer.WriteString("state", stateRawValue);
+            }
             if (customerSessionV2.CartItemsOption.IsSet)
             {
                 writer.WritePropertyName("cartItems");
