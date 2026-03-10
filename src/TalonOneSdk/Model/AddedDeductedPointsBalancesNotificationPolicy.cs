@@ -226,7 +226,28 @@ namespace TalonOneSdk.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "scopes":
-                            scopes = new Option<List<AddedDeductedPointsBalancesNotificationPolicy.ScopesEnum>>(JsonSerializer.Deserialize<List<AddedDeductedPointsBalancesNotificationPolicy.ScopesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                scopes = new Option<List<AddedDeductedPointsBalancesNotificationPolicy.ScopesEnum>>((List<AddedDeductedPointsBalancesNotificationPolicy.ScopesEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var scopesItems = new List<AddedDeductedPointsBalancesNotificationPolicy.ScopesEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string scopesItemRawValue = utf8JsonReader.GetString();
+                                    if (scopesItemRawValue == null)
+                                        throw new JsonException();
+
+                                    scopesItems.Add(AddedDeductedPointsBalancesNotificationPolicy.ScopesEnumFromString(scopesItemRawValue));
+                                }
+                                scopes = new Option<List<AddedDeductedPointsBalancesNotificationPolicy.ScopesEnum>>(scopesItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         default:
                             break;
@@ -282,7 +303,12 @@ namespace TalonOneSdk.Model
             writer.WriteString("name", addedDeductedPointsBalancesNotificationPolicy.Name);
 
             writer.WritePropertyName("scopes");
-            JsonSerializer.Serialize(writer, addedDeductedPointsBalancesNotificationPolicy.Scopes, jsonSerializerOptions);
+            writer.WriteStartArray();
+            foreach (var scopesItem in addedDeductedPointsBalancesNotificationPolicy.Scopes)
+            {
+                writer.WriteStringValue(AddedDeductedPointsBalancesNotificationPolicy.ScopesEnumToJsonValue(scopesItem));
+            }
+            writer.WriteEndArray();
         }
     }
 }

@@ -343,8 +343,11 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("attributes");
                 JsonSerializer.Serialize(writer, updateAccount.Attributes, jsonSerializerOptions);
             }
-            var stateRawValue = UpdateAccount.StateEnumToJsonValue(updateAccount.StateOption.Value.Value);
-            writer.WriteString("state", stateRawValue);
+            if (updateAccount.StateOption.IsSet)
+            {
+                var stateRawValue = UpdateAccount.StateEnumToJsonValue(updateAccount.StateOption.Value);
+                writer.WriteString("state", stateRawValue);
+            }
             if (updateAccount.PlanExpiresOption.IsSet)
                 writer.WriteString("planExpires", updateAccount.PlanExpiresOption.Value.Value.ToString(PlanExpiresFormat));
         }

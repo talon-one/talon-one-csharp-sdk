@@ -618,10 +618,16 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("created", applicationAPIKey.Created.ToString(CreatedFormat));
 
-            var platformRawValue = ApplicationAPIKey.PlatformEnumToJsonValue(applicationAPIKey.PlatformOption.Value.Value);
-            writer.WriteString("platform", platformRawValue);
-            var typeRawValue = ApplicationAPIKey.TypeEnumToJsonValue(applicationAPIKey.TypeOption.Value.Value);
-            writer.WriteString("type", typeRawValue);
+            if (applicationAPIKey.PlatformOption.IsSet)
+            {
+                var platformRawValue = ApplicationAPIKey.PlatformEnumToJsonValue(applicationAPIKey.PlatformOption.Value);
+                writer.WriteString("platform", platformRawValue);
+            }
+            if (applicationAPIKey.TypeOption.IsSet)
+            {
+                var typeRawValue = ApplicationAPIKey.TypeEnumToJsonValue(applicationAPIKey.TypeOption.Value);
+                writer.WriteString("type", typeRawValue);
+            }
             if (applicationAPIKey.TimeOffsetOption.IsSet)
                 writer.WriteNumber("timeOffset", applicationAPIKey.TimeOffsetOption.Value.Value);
         }

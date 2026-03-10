@@ -341,8 +341,11 @@ namespace TalonOneSdk.Model
             if (tier.ExpiryDateOption.IsSet)
                 writer.WriteString("expiryDate", tier.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
 
-            var downgradePolicyRawValue = Tier.DowngradePolicyEnumToJsonValue(tier.DowngradePolicyOption.Value.Value);
-            writer.WriteString("downgradePolicy", downgradePolicyRawValue);
+            if (tier.DowngradePolicyOption.IsSet)
+            {
+                var downgradePolicyRawValue = Tier.DowngradePolicyEnumToJsonValue(tier.DowngradePolicyOption.Value);
+                writer.WriteString("downgradePolicy", downgradePolicyRawValue);
+            }
         }
     }
 }

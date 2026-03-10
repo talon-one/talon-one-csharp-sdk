@@ -305,8 +305,11 @@ namespace TalonOneSdk.Model
             if (generateLoyaltyCard.CardIdentifierOption.IsSet && generateLoyaltyCard.CardIdentifier == null)
                 throw new ArgumentNullException(nameof(generateLoyaltyCard.CardIdentifier), "Property is required for class GenerateLoyaltyCard.");
 
-            var statusRawValue = GenerateLoyaltyCard.StatusEnumToJsonValue(generateLoyaltyCard.StatusOption.Value.Value);
-            writer.WriteString("status", statusRawValue);
+            if (generateLoyaltyCard.StatusOption.IsSet)
+            {
+                var statusRawValue = GenerateLoyaltyCard.StatusEnumToJsonValue(generateLoyaltyCard.StatusOption.Value);
+                writer.WriteString("status", statusRawValue);
+            }
             if (generateLoyaltyCard.CustomerProfileIdsOption.IsSet)
             {
                 writer.WritePropertyName("customerProfileIds");

@@ -1510,7 +1510,28 @@ namespace TalonOneSdk.Model
                             reevaluateOnReturn = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "features":
-                            features = new Option<List<Campaign.FeaturesEnum>>(JsonSerializer.Deserialize<List<Campaign.FeaturesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                features = new Option<List<Campaign.FeaturesEnum>>((List<Campaign.FeaturesEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var featuresItems = new List<Campaign.FeaturesEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string featuresItemRawValue = utf8JsonReader.GetString();
+                                    if (featuresItemRawValue == null)
+                                        throw new JsonException();
+
+                                    featuresItems.Add(Campaign.FeaturesEnumFromString(featuresItemRawValue));
+                                }
+                                features = new Option<List<Campaign.FeaturesEnum>>(featuresItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         case "limits":
                             limits = new Option<List<LimitConfig>>(JsonSerializer.Deserialize<List<LimitConfig>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -1934,7 +1955,12 @@ namespace TalonOneSdk.Model
             writer.WriteBoolean("reevaluateOnReturn", campaign.ReevaluateOnReturn);
 
             writer.WritePropertyName("features");
-            JsonSerializer.Serialize(writer, campaign.Features, jsonSerializerOptions);
+            writer.WriteStartArray();
+            foreach (var featuresItem in campaign.Features)
+            {
+                writer.WriteStringValue(Campaign.FeaturesEnumToJsonValue(featuresItem));
+            }
+            writer.WriteEndArray();
             writer.WritePropertyName("limits");
             JsonSerializer.Serialize(writer, campaign.Limits, jsonSerializerOptions);
             var frontendStateRawValue = Campaign.FrontendStateEnumToJsonValue(campaign.FrontendState);
@@ -1975,8 +2001,11 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("campaignGroups");
                 JsonSerializer.Serialize(writer, campaign.CampaignGroups, jsonSerializerOptions);
             }
-            var typeRawValue = Campaign.TypeEnumToJsonValue(campaign.TypeOption.Value.Value);
-            writer.WriteString("type", typeRawValue);
+            if (campaign.TypeOption.IsSet)
+            {
+                var typeRawValue = Campaign.TypeEnumToJsonValue(campaign.TypeOption.Value);
+                writer.WriteString("type", typeRawValue);
+            }
             if (campaign.LinkedStoreIdsOption.IsSet)
             {
                 writer.WritePropertyName("linkedStoreIds");
@@ -2055,8 +2084,11 @@ namespace TalonOneSdk.Model
             if (campaign.ExperimentIdOption.IsSet)
                 writer.WriteNumber("experimentId", campaign.ExperimentIdOption.Value.Value);
 
-            var revisionFrontendStateRawValue = Campaign.RevisionFrontendStateEnumToJsonValue(campaign.RevisionFrontendStateOption.Value.Value);
-            writer.WriteString("revisionFrontendState", revisionFrontendStateRawValue);
+            if (campaign.RevisionFrontendStateOption.IsSet)
+            {
+                var revisionFrontendStateRawValue = Campaign.RevisionFrontendStateEnumToJsonValue(campaign.RevisionFrontendStateOption.Value);
+                writer.WriteString("revisionFrontendState", revisionFrontendStateRawValue);
+            }
             if (campaign.ActiveRevisionIdOption.IsSet)
                 writer.WriteNumber("activeRevisionId", campaign.ActiveRevisionIdOption.Value.Value);
 

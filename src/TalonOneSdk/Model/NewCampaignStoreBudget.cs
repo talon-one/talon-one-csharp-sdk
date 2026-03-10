@@ -352,8 +352,11 @@ namespace TalonOneSdk.Model
             writer.WriteString("action", actionRawValue);
             writer.WritePropertyName("storeLimits");
             JsonSerializer.Serialize(writer, newCampaignStoreBudget.StoreLimits, jsonSerializerOptions);
-            var periodRawValue = NewCampaignStoreBudget.PeriodEnumToJsonValue(newCampaignStoreBudget.PeriodOption.Value.Value);
-            writer.WriteString("period", periodRawValue);
+            if (newCampaignStoreBudget.PeriodOption.IsSet)
+            {
+                var periodRawValue = NewCampaignStoreBudget.PeriodEnumToJsonValue(newCampaignStoreBudget.PeriodOption.Value);
+                writer.WriteString("period", periodRawValue);
+            }
         }
     }
 }

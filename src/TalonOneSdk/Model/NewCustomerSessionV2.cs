@@ -605,7 +605,7 @@ namespace TalonOneSdk.Model
             }
             if (newCustomerSessionV2.StateOption.IsSet)
             {
-                var stateRawValue = NewCustomerSessionV2.StateEnumToJsonValue(newCustomerSessionV2.StateOption.Value.Value);
+                var stateRawValue = NewCustomerSessionV2.StateEnumToJsonValue(newCustomerSessionV2.StateOption.Value);
                 writer.WriteString("state", stateRawValue);
             }
             if (newCustomerSessionV2.CartItemsOption.IsSet)

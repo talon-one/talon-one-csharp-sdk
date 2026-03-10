@@ -385,7 +385,28 @@ namespace TalonOneSdk.Model
                             limit = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "entities":
-                            entities = new Option<List<LimitConfig.EntitiesEnum>>(JsonSerializer.Deserialize<List<LimitConfig.EntitiesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                entities = new Option<List<LimitConfig.EntitiesEnum>>((List<LimitConfig.EntitiesEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var entitiesItems = new List<LimitConfig.EntitiesEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string entitiesItemRawValue = utf8JsonReader.GetString();
+                                    if (entitiesItemRawValue == null)
+                                        throw new JsonException();
+
+                                    entitiesItems.Add(LimitConfig.EntitiesEnumFromString(entitiesItemRawValue));
+                                }
+                                entities = new Option<List<LimitConfig.EntitiesEnum>>(entitiesItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         case "period":
                             string periodRawValue = utf8JsonReader.GetString();
@@ -457,9 +478,17 @@ namespace TalonOneSdk.Model
             writer.WriteNumber("limit", limitConfig.Limit);
 
             writer.WritePropertyName("entities");
-            JsonSerializer.Serialize(writer, limitConfig.Entities, jsonSerializerOptions);
-            var periodRawValue = LimitConfig.PeriodEnumToJsonValue(limitConfig.PeriodOption.Value.Value);
-            writer.WriteString("period", periodRawValue);
+            writer.WriteStartArray();
+            foreach (var entitiesItem in limitConfig.Entities)
+            {
+                writer.WriteStringValue(LimitConfig.EntitiesEnumToJsonValue(entitiesItem));
+            }
+            writer.WriteEndArray();
+            if (limitConfig.PeriodOption.IsSet)
+            {
+                var periodRawValue = LimitConfig.PeriodEnumToJsonValue(limitConfig.PeriodOption.Value);
+                writer.WriteString("period", periodRawValue);
+            }
         }
     }
 }
