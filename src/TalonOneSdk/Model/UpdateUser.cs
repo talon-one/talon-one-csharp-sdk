@@ -366,8 +366,11 @@ namespace TalonOneSdk.Model
             if (updateUser.NameOption.IsSet)
                 writer.WriteString("name", updateUser.Name);
 
-            var stateRawValue = UpdateUser.StateEnumToJsonValue(updateUser.StateOption.Value.Value);
-            writer.WriteString("state", stateRawValue);
+            if (updateUser.StateOption.IsSet)
+            {
+                var stateRawValue = UpdateUser.StateEnumToJsonValue(updateUser.StateOption.Value);
+                writer.WriteString("state", stateRawValue);
+            }
             if (updateUser.IsAdminOption.IsSet)
                 writer.WriteBoolean("isAdmin", updateUser.IsAdminOption.Value.Value);
 

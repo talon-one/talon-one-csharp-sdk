@@ -875,7 +875,28 @@ namespace TalonOneSdk.Model
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "features":
-                            features = new Option<List<CampaignTemplate.FeaturesEnum>>(JsonSerializer.Deserialize<List<CampaignTemplate.FeaturesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                features = new Option<List<CampaignTemplate.FeaturesEnum>>((List<CampaignTemplate.FeaturesEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var featuresItems = new List<CampaignTemplate.FeaturesEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string featuresItemRawValue = utf8JsonReader.GetString();
+                                    if (featuresItemRawValue == null)
+                                        throw new JsonException();
+
+                                    featuresItems.Add(CampaignTemplate.FeaturesEnumFromString(featuresItemRawValue));
+                                }
+                                features = new Option<List<CampaignTemplate.FeaturesEnum>>(featuresItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         case "couponSettings":
                             couponSettings = new Option<CodeGeneratorSettings>(JsonSerializer.Deserialize<CodeGeneratorSettings>(ref utf8JsonReader, jsonSerializerOptions));
@@ -1156,7 +1177,12 @@ namespace TalonOneSdk.Model
             if (campaignTemplate.FeaturesOption.IsSet)
             {
                 writer.WritePropertyName("features");
-                JsonSerializer.Serialize(writer, campaignTemplate.Features, jsonSerializerOptions);
+                writer.WriteStartArray();
+                foreach (var featuresItem in campaignTemplate.Features)
+                {
+                    writer.WriteStringValue(CampaignTemplate.FeaturesEnumToJsonValue(featuresItem));
+                }
+                writer.WriteEndArray();
             }
             if (campaignTemplate.CouponSettingsOption.IsSet)
             {
@@ -1191,8 +1217,11 @@ namespace TalonOneSdk.Model
             if (campaignTemplate.DefaultCampaignGroupIdOption.IsSet)
                 writer.WriteNumber("defaultCampaignGroupId", campaignTemplate.DefaultCampaignGroupIdOption.Value.Value);
 
-            var campaignTypeRawValue = CampaignTemplate.CampaignTypeEnumToJsonValue(campaignTemplate.CampaignTypeOption.Value.Value);
-            writer.WriteString("campaignType", campaignTypeRawValue);
+            if (campaignTemplate.CampaignTypeOption.IsSet)
+            {
+                var campaignTypeRawValue = CampaignTemplate.CampaignTypeEnumToJsonValue(campaignTemplate.CampaignTypeOption.Value);
+                writer.WriteString("campaignType", campaignTypeRawValue);
+            }
             if (campaignTemplate.CampaignsCountOption.IsSet)
                 writer.WriteNumber("campaignsCount", campaignTemplate.CampaignsCountOption.Value.Value);
 

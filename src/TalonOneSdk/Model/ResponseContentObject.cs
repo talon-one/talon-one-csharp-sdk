@@ -242,7 +242,28 @@ namespace TalonOneSdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "responseContent":
-                            responseContent = new Option<List<ResponseContentObject.ResponseContentEnum>>(JsonSerializer.Deserialize<List<ResponseContentObject.ResponseContentEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                responseContent = new Option<List<ResponseContentObject.ResponseContentEnum>>((List<ResponseContentObject.ResponseContentEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var responseContentItems = new List<ResponseContentObject.ResponseContentEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string responseContentItemRawValue = utf8JsonReader.GetString();
+                                    if (responseContentItemRawValue == null)
+                                        throw new JsonException();
+
+                                    responseContentItems.Add(ResponseContentObject.ResponseContentEnumFromString(responseContentItemRawValue));
+                                }
+                                responseContent = new Option<List<ResponseContentObject.ResponseContentEnum>>(responseContentItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         default:
                             break;
@@ -286,7 +307,12 @@ namespace TalonOneSdk.Model
             if (responseContentObject.ResponseContentOption.IsSet)
             {
                 writer.WritePropertyName("responseContent");
-                JsonSerializer.Serialize(writer, responseContentObject.ResponseContent, jsonSerializerOptions);
+                writer.WriteStartArray();
+                foreach (var responseContentItem in responseContentObject.ResponseContent)
+                {
+                    writer.WriteStringValue(ResponseContentObject.ResponseContentEnumToJsonValue(responseContentItem));
+                }
+                writer.WriteEndArray();
             }
         }
     }

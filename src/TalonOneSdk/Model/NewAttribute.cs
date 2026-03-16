@@ -781,7 +781,28 @@ namespace TalonOneSdk.Model
                             subscribedCatalogsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "allowedSubscriptions":
-                            allowedSubscriptions = new Option<List<NewAttribute.AllowedSubscriptionsEnum>>(JsonSerializer.Deserialize<List<NewAttribute.AllowedSubscriptionsEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                allowedSubscriptions = new Option<List<NewAttribute.AllowedSubscriptionsEnum>>((List<NewAttribute.AllowedSubscriptionsEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var allowedSubscriptionsItems = new List<NewAttribute.AllowedSubscriptionsEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string allowedSubscriptionsItemRawValue = utf8JsonReader.GetString();
+                                    if (allowedSubscriptionsItemRawValue == null)
+                                        throw new JsonException();
+
+                                    allowedSubscriptionsItems.Add(NewAttribute.AllowedSubscriptionsEnumFromString(allowedSubscriptionsItemRawValue));
+                                }
+                                allowedSubscriptions = new Option<List<NewAttribute.AllowedSubscriptionsEnum>>(allowedSubscriptionsItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         default:
                             break;
@@ -936,7 +957,12 @@ namespace TalonOneSdk.Model
             if (newAttribute.AllowedSubscriptionsOption.IsSet)
             {
                 writer.WritePropertyName("allowedSubscriptions");
-                JsonSerializer.Serialize(writer, newAttribute.AllowedSubscriptions, jsonSerializerOptions);
+                writer.WriteStartArray();
+                foreach (var allowedSubscriptionsItem in newAttribute.AllowedSubscriptions)
+                {
+                    writer.WriteStringValue(NewAttribute.AllowedSubscriptionsEnumToJsonValue(allowedSubscriptionsItem));
+                }
+                writer.WriteEndArray();
             }
         }
     }

@@ -492,7 +492,28 @@ namespace TalonOneSdk.Model
                             reevaluateOnReturn = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "features":
-                            features = new Option<List<NewRevisionVersion.FeaturesEnum>>(JsonSerializer.Deserialize<List<NewRevisionVersion.FeaturesEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                features = new Option<List<NewRevisionVersion.FeaturesEnum>>((List<NewRevisionVersion.FeaturesEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var featuresItems = new List<NewRevisionVersion.FeaturesEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string featuresItemRawValue = utf8JsonReader.GetString();
+                                    if (featuresItemRawValue == null)
+                                        throw new JsonException();
+
+                                    featuresItems.Add(NewRevisionVersion.FeaturesEnumFromString(featuresItemRawValue));
+                                }
+                                features = new Option<List<NewRevisionVersion.FeaturesEnum>>(featuresItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         default:
                             break;
@@ -630,7 +651,12 @@ namespace TalonOneSdk.Model
             if (newRevisionVersion.FeaturesOption.IsSet)
             {
                 writer.WritePropertyName("features");
-                JsonSerializer.Serialize(writer, newRevisionVersion.Features, jsonSerializerOptions);
+                writer.WriteStartArray();
+                foreach (var featuresItem in newRevisionVersion.Features)
+                {
+                    writer.WriteStringValue(NewRevisionVersion.FeaturesEnumToJsonValue(featuresItem));
+                }
+                writer.WriteEndArray();
             }
         }
     }

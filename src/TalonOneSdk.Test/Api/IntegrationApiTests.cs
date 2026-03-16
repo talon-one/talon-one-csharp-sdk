@@ -60,7 +60,7 @@ namespace TalonOneSdk.Test.Api
             ActivateLoyaltyPoints activateLoyaltyPoints = default;
             var response = await _instance.ActivateLoyaltyPointsAsync(loyaltyProgramId, activateLoyaltyPoints);
             var model = response.Ok();
-            Assert.IsType<ActivateLoyaltyPointsResponse>(model);
+            Assert.IsType<TalonOneSdk.Model.ActivateLoyaltyPointsResponse>(model);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace TalonOneSdk.Test.Api
             NewAudience newAudience = default;
             var response = await _instance.CreateAudienceV2Async(newAudience);
             var model = response.Created();
-            Assert.IsType<Audience>(model);
+            Assert.IsType<TalonOneSdk.Model.Audience>(model);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace TalonOneSdk.Test.Api
             CouponReservations couponReservations = default;
             var response = await _instance.CreateCouponReservationAsync(couponValue, couponReservations);
             var model = response.Created();
-            Assert.IsType<Coupon>(model);
+            Assert.IsType<TalonOneSdk.Model.Coupon>(model);
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace TalonOneSdk.Test.Api
             NewReferral newReferral = default;
             var response = await _instance.CreateReferralAsync(newReferral);
             var model = response.Created();
-            Assert.IsType<Referral>(model);
+            Assert.IsType<TalonOneSdk.Model.Referral>(model);
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<string> silent = default;
             var response = await _instance.CreateReferralsForMultipleAdvocatesAsync(newReferralsForMultipleAdvocates, silent);
             var model = response.Created();
-            Assert.IsType<CreateReferralsForMultipleAdvocates201Response>(model);
+            Assert.IsType<TalonOneSdk.Model.CreateReferralsForMultipleAdvocates201Response>(model);
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace TalonOneSdk.Test.Api
             GenerateLoyaltyCard generateLoyaltyCard = default;
             var response = await _instance.GenerateLoyaltyCardAsync(loyaltyProgramId, generateLoyaltyCard);
             var model = response.Ok();
-            Assert.IsType<LoyaltyCard>(model);
+            Assert.IsType<TalonOneSdk.Model.LoyaltyCard>(model);
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<long> skip = default;
             var response = await _instance.GetCustomerAchievementHistoryAsync(integrationId, achievementId, progressStatus, startDate, endDate, pageSize, skip);
             var model = response.Ok();
-            Assert.IsType<GetCustomerAchievementHistory200Response>(model);
+            Assert.IsType<TalonOneSdk.Model.GetCustomerAchievementHistory200Response>(model);
         }
 
         /// <summary>
@@ -224,7 +224,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<long> skip = default;
             var response = await _instance.GetCustomerAchievementsAsync(integrationId, campaignIds, achievementIds, achievementStatus, currentProgressStatus, pageSize, skip);
             var model = response.Ok();
-            Assert.IsType<GetCustomerAchievements200Response>(model);
+            Assert.IsType<TalonOneSdk.Model.GetCustomerAchievements200Response>(model);
         }
 
         /// <summary>
@@ -242,7 +242,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<bool> achievements = default;
             var response = await _instance.GetCustomerInventoryAsync(integrationId, profile, referrals, coupons, loyalty, giveaways, achievements);
             var model = response.Ok();
-            Assert.IsType<CustomerInventory>(model);
+            Assert.IsType<TalonOneSdk.Model.CustomerInventory>(model);
         }
 
         /// <summary>
@@ -254,7 +254,7 @@ namespace TalonOneSdk.Test.Api
             string customerSessionId = default;
             var response = await _instance.GetCustomerSessionAsync(customerSessionId);
             var model = response.Ok();
-            Assert.IsType<IntegrationCustomerSessionResponse>(model);
+            Assert.IsType<TalonOneSdk.Model.IntegrationCustomerSessionResponse>(model);
         }
 
         /// <summary>
@@ -271,7 +271,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<bool> includeProjectedTier = default;
             var response = await _instance.GetLoyaltyBalancesAsync(loyaltyProgramId, integrationId, endDate, subledgerId, includeTiers, includeProjectedTier);
             var model = response.Ok();
-            Assert.IsType<LoyaltyBalancesWithTiers>(model);
+            Assert.IsType<TalonOneSdk.Model.LoyaltyBalancesWithTiers>(model);
         }
 
         /// <summary>
@@ -286,7 +286,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<List<string>> subledgerId = default;
             var response = await _instance.GetLoyaltyCardBalancesAsync(loyaltyProgramId, loyaltyCardId, endDate, subledgerId);
             var model = response.Ok();
-            Assert.IsType<LoyaltyCardBalances>(model);
+            Assert.IsType<TalonOneSdk.Model.LoyaltyCardBalances>(model);
         }
 
         /// <summary>
@@ -306,7 +306,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<string> sort = default;
             var response = await _instance.GetLoyaltyCardPointsAsync(loyaltyProgramId, loyaltyCardId, status, subledgerId, customerSessionIDs, transactionUUIDs, pageSize, skip, sort);
             var model = response.Ok();
-            Assert.IsType<GetLoyaltyCardPoints200Response>(model);
+            Assert.IsType<TalonOneSdk.Model.GetLoyaltyCardPoints200Response>(model);
         }
 
         /// <summary>
@@ -328,7 +328,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<bool> awaitsActivation = default;
             var response = await _instance.GetLoyaltyCardTransactionsAsync(loyaltyProgramId, loyaltyCardId, subledgerId, loyaltyTransactionType, startDate, endDate, customerSessionIDs, transactionUUIDs, pageSize, skip, awaitsActivation);
             var model = response.Ok();
-            Assert.IsType<GetLoyaltyCardTransactions200Response>(model);
+            Assert.IsType<TalonOneSdk.Model.GetLoyaltyCardTransactions200Response>(model);
         }
 
         /// <summary>
@@ -348,7 +348,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<string> sort = default;
             var response = await _instance.GetLoyaltyProgramProfilePointsAsync(loyaltyProgramId, integrationId, status, subledgerId, customerSessionIDs, transactionUUIDs, pageSize, skip, sort);
             var model = response.Ok();
-            Assert.IsType<GetLoyaltyProgramProfilePoints200Response>(model);
+            Assert.IsType<TalonOneSdk.Model.GetLoyaltyProgramProfilePoints200Response>(model);
         }
 
         /// <summary>
@@ -370,7 +370,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<bool> awaitsActivation = default;
             var response = await _instance.GetLoyaltyProgramProfileTransactionsAsync(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
             var model = response.Ok();
-            Assert.IsType<GetLoyaltyProgramProfileTransactions200Response>(model);
+            Assert.IsType<TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response>(model);
         }
 
         /// <summary>
@@ -382,7 +382,7 @@ namespace TalonOneSdk.Test.Api
             string couponValue = default;
             var response = await _instance.GetReservedCustomersAsync(couponValue);
             var model = response.Ok();
-            Assert.IsType<GetReservedCustomers200Response>(model);
+            Assert.IsType<TalonOneSdk.Model.GetReservedCustomers200Response>(model);
         }
 
         /// <summary>
@@ -396,7 +396,7 @@ namespace TalonOneSdk.Test.Api
             LoyaltyCardRegistration loyaltyCardRegistration = default;
             var response = await _instance.LinkLoyaltyCardToProfileAsync(loyaltyProgramId, loyaltyCardId, loyaltyCardRegistration);
             var model = response.Ok();
-            Assert.IsType<LoyaltyCard>(model);
+            Assert.IsType<TalonOneSdk.Model.LoyaltyCard>(model);
         }
 
         /// <summary>
@@ -408,7 +408,7 @@ namespace TalonOneSdk.Test.Api
             PriceHistoryRequest priceHistoryRequest = default;
             var response = await _instance.PriceHistoryAsync(priceHistoryRequest);
             var model = response.Ok();
-            Assert.IsType<PriceHistoryResponse>(model);
+            Assert.IsType<TalonOneSdk.Model.PriceHistoryResponse>(model);
         }
 
         /// <summary>
@@ -420,7 +420,7 @@ namespace TalonOneSdk.Test.Api
             string customerSessionId = default;
             var response = await _instance.ReopenCustomerSessionAsync(customerSessionId);
             var model = response.Ok();
-            Assert.IsType<ReopenSessionResponse>(model);
+            Assert.IsType<TalonOneSdk.Model.ReopenSessionResponse>(model);
         }
 
         /// <summary>
@@ -434,7 +434,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<bool> dry = default;
             var response = await _instance.ReturnCartItemsAsync(customerSessionId, returnIntegrationRequest, dry);
             var model = response.Ok();
-            Assert.IsType<IntegrationStateV2>(model);
+            Assert.IsType<TalonOneSdk.Model.IntegrationStateV2>(model);
         }
 
         /// <summary>
@@ -447,7 +447,7 @@ namespace TalonOneSdk.Test.Api
             CatalogSyncRequest catalogSyncRequest = default;
             var response = await _instance.SyncCatalogAsync(catalogId, catalogSyncRequest);
             var model = response.Ok();
-            Assert.IsType<Catalog>(model);
+            Assert.IsType<TalonOneSdk.Model.Catalog>(model);
         }
 
         /// <summary>
@@ -462,7 +462,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<bool> forceCompleteEvaluation = default;
             var response = await _instance.TrackEventV2Async(integrationEventV2Request, silent, dry, forceCompleteEvaluation);
             var model = response.Ok();
-            Assert.IsType<IntegrationEventV2Response>(model);
+            Assert.IsType<TalonOneSdk.Model.IntegrationEventV2Response>(model);
         }
 
         /// <summary>
@@ -476,7 +476,7 @@ namespace TalonOneSdk.Test.Api
             LoyaltyCardRegistration loyaltyCardRegistration = default;
             var response = await _instance.UnlinkLoyaltyCardFromProfileAsync(loyaltyProgramId, loyaltyCardId, loyaltyCardRegistration);
             var model = response.Ok();
-            Assert.IsType<LoyaltyCard>(model);
+            Assert.IsType<TalonOneSdk.Model.LoyaltyCard>(model);
         }
 
         /// <summary>
@@ -500,7 +500,7 @@ namespace TalonOneSdk.Test.Api
             UpdateAudience updateAudience = default;
             var response = await _instance.UpdateAudienceV2Async(audienceId, updateAudience);
             var model = response.Ok();
-            Assert.IsType<Audience>(model);
+            Assert.IsType<TalonOneSdk.Model.Audience>(model);
         }
 
         /// <summary>
@@ -525,7 +525,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<bool> dry = default;
             var response = await _instance.UpdateCustomerProfileV2Async(integrationId, customerProfileIntegrationRequestV2, runRuleEngine, dry);
             var model = response.Ok();
-            Assert.IsType<CustomerProfileIntegrationResponseV2>(model);
+            Assert.IsType<TalonOneSdk.Model.CustomerProfileIntegrationResponseV2>(model);
         }
 
         /// <summary>
@@ -538,7 +538,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<string> silent = default;
             var response = await _instance.UpdateCustomerProfilesV2Async(multipleCustomerProfileIntegrationRequest, silent);
             var model = response.Ok();
-            Assert.IsType<MultipleCustomerProfileIntegrationResponseV2>(model);
+            Assert.IsType<TalonOneSdk.Model.MultipleCustomerProfileIntegrationResponseV2>(model);
         }
 
         /// <summary>
@@ -553,7 +553,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<DateTime> now = default;
             var response = await _instance.UpdateCustomerSessionV2Async(customerSessionId, integrationRequest, dry, now);
             var model = response.Ok();
-            Assert.IsType<IntegrationStateV2>(model);
+            Assert.IsType<TalonOneSdk.Model.IntegrationStateV2>(model);
         }
     }
 }

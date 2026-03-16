@@ -72,6 +72,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'TransactionUUID'
+        /// </summary>
+        [Fact]
+        public void TransactionUUIDTest()
+        {
+            // TODO unit test for the property 'TransactionUUID'
+        }
+
+        /// <summary>
         /// Test the property 'Reason'
         /// </summary>
         [Fact]

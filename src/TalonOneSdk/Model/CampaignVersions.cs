@@ -377,8 +377,11 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignVersions campaignVersions, JsonSerializerOptions jsonSerializerOptions)
         {
-            var revisionFrontendStateRawValue = CampaignVersions.RevisionFrontendStateEnumToJsonValue(campaignVersions.RevisionFrontendStateOption.Value.Value);
-            writer.WriteString("revisionFrontendState", revisionFrontendStateRawValue);
+            if (campaignVersions.RevisionFrontendStateOption.IsSet)
+            {
+                var revisionFrontendStateRawValue = CampaignVersions.RevisionFrontendStateEnumToJsonValue(campaignVersions.RevisionFrontendStateOption.Value);
+                writer.WriteString("revisionFrontendState", revisionFrontendStateRawValue);
+            }
             if (campaignVersions.ActiveRevisionIdOption.IsSet)
                 writer.WriteNumber("activeRevisionId", campaignVersions.ActiveRevisionIdOption.Value.Value);
 

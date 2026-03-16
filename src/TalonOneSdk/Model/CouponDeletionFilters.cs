@@ -603,8 +603,11 @@ namespace TalonOneSdk.Model
             if (couponDeletionFilters.StartsBeforeOption.IsSet)
                 writer.WriteString("startsBefore", couponDeletionFilters.StartsBeforeOption.Value.Value.ToString(StartsBeforeFormat));
 
-            var validRawValue = CouponDeletionFilters.ValidEnumToJsonValue(couponDeletionFilters.ValidOption.Value.Value);
-            writer.WriteString("valid", validRawValue);
+            if (couponDeletionFilters.ValidOption.IsSet)
+            {
+                var validRawValue = CouponDeletionFilters.ValidEnumToJsonValue(couponDeletionFilters.ValidOption.Value);
+                writer.WriteString("valid", validRawValue);
+            }
             if (couponDeletionFilters.UsableOption.IsSet)
                 writer.WriteBoolean("usable", couponDeletionFilters.UsableOption.Value.Value);
 

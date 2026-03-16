@@ -329,8 +329,11 @@ namespace TalonOneSdk.Model
             if (loyaltyCardBatch.BatchIdOption.IsSet)
                 writer.WriteString("batchId", loyaltyCardBatch.BatchId);
 
-            var statusRawValue = LoyaltyCardBatch.StatusEnumToJsonValue(loyaltyCardBatch.StatusOption.Value.Value);
-            writer.WriteString("status", statusRawValue);
+            if (loyaltyCardBatch.StatusOption.IsSet)
+            {
+                var statusRawValue = LoyaltyCardBatch.StatusEnumToJsonValue(loyaltyCardBatch.StatusOption.Value);
+                writer.WriteString("status", statusRawValue);
+            }
             if (loyaltyCardBatch.CardCodeSettingsOption.IsSet)
             {
                 writer.WritePropertyName("cardCodeSettings");

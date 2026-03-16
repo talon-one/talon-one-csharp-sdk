@@ -463,8 +463,11 @@ namespace TalonOneSdk.Model
             writer.WriteString("NotificationType", notificationTypeRawValue);
             writer.WriteString("sentAt", strikethroughLabelingNotification.SentAt.ToString(SentAtFormat));
 
-            var varVersionRawValue = StrikethroughLabelingNotification.VarVersionEnumToJsonValue(strikethroughLabelingNotification.VarVersionOption.Value.Value);
-            writer.WriteString("version", varVersionRawValue);
+            if (strikethroughLabelingNotification.VarVersionOption.IsSet)
+            {
+                var varVersionRawValue = StrikethroughLabelingNotification.VarVersionEnumToJsonValue(strikethroughLabelingNotification.VarVersionOption.Value);
+                writer.WriteString("version", varVersionRawValue);
+            }
             if (strikethroughLabelingNotification.ValidFromOption.IsSet)
                 writer.WriteString("validFrom", strikethroughLabelingNotification.ValidFromOption.Value.Value.ToString(ValidFromFormat));
         }

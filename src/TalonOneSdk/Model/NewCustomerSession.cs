@@ -466,8 +466,11 @@ namespace TalonOneSdk.Model
             if (newCustomerSession.ReferralOption.IsSet)
                 writer.WriteString("referral", newCustomerSession.Referral);
 
-            var stateRawValue = NewCustomerSession.StateEnumToJsonValue(newCustomerSession.StateOption.Value.Value);
-            writer.WriteString("state", stateRawValue);
+            if (newCustomerSession.StateOption.IsSet)
+            {
+                var stateRawValue = NewCustomerSession.StateEnumToJsonValue(newCustomerSession.StateOption.Value);
+                writer.WriteString("state", stateRawValue);
+            }
             if (newCustomerSession.CartItemsOption.IsSet)
             {
                 writer.WritePropertyName("cartItems");

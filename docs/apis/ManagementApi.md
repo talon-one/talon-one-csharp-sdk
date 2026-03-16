@@ -3078,7 +3078,7 @@ Get the details of the given session. You can list the sessions with the [List A
 
 <a id="getapplicationsessions"></a>
 # **GetApplicationSessions**
-> GetApplicationSessions200Response GetApplicationSessions (long applicationId, long pageSize = null, long skip = null, string sort = null, string profile = null, string state = null, DateTime createdBefore = null, DateTime createdAfter = null, string coupon = null, string referral = null, string integrationId = null, string storeIntegrationId = null)
+> GetApplicationSessions200Response GetApplicationSessions (long applicationId, long pageSize = null, long skip = null, string sort = null, bool partialMatch = null, string profile = null, string state = null, DateTime createdBefore = null, DateTime createdAfter = null, string coupon = null, string referral = null, string integrationId = null, string storeIntegrationId = null)
 
 List Application sessions
 
@@ -3093,14 +3093,15 @@ List all the sessions of the specified Application.
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 1000] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
 | **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [optional]  |
-| **profile** | **string** | Profile integration ID filter for sessions. Must be exact match. | [optional]  |
+| **partialMatch** | **bool** | Enables partial matching for a single text search field. When enabled, the search term matches anywhere within the field value (case-insensitive). Minimum 3 characters required for partial matches; shorter inputs automatically fall back to exact match.  **Note:** Use with one of: &#x60;integrationId&#x60;, &#x60;profile&#x60;, &#x60;coupon&#x60;, &#x60;referral&#x60;, or &#x60;storeIntegrationId&#x60;. | [optional] [default to false] |
+| **profile** | **string** | Filter by sessions with this profile integration ID. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). | [optional]  |
 | **state** | **string** | Filter by sessions with this state. Must be exact match. | [optional]  |
 | **createdBefore** | **DateTime** | Only return events created before this date. You can use any time zone setting. Talon.One will convert to UTC internally. | [optional]  |
 | **createdAfter** | **DateTime** | Only return events created after this date. You can use any time zone setting. Talon.One will convert to UTC internally. | [optional]  |
-| **coupon** | **string** | Filter by sessions with this coupon. Must be exact match. | [optional]  |
-| **referral** | **string** | Filter by sessions with this referral. Must be exact match. | [optional]  |
-| **integrationId** | **string** | Filter by sessions with this integration ID. Must be exact match. | [optional]  |
-| **storeIntegrationId** | **string** | The integration ID of the store. You choose this ID when you create a store. | [optional]  |
+| **coupon** | **string** | Filter by sessions with this coupon. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). | [optional]  |
+| **referral** | **string** | Filter by sessions with this referral. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). | [optional]  |
+| **integrationId** | **string** | Filter by sessions with this integration ID. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). | [optional]  |
+| **storeIntegrationId** | **string** | The integration ID of the store. You choose this ID when you create a store. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). | [optional]  |
 
 ### Return type
 
@@ -5358,7 +5359,7 @@ Upload a CSV file containing the coupons that should be created. The file should
 
 Import loyalty cards
 
-Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - `identifier` (required): The alphanumeric identifier of the loyalty card. - `state` (required): The state of the loyalty card. It can be `active` or `inactive`. - `customerprofileids` (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;). - `attributes` (optional): A JSON object that contains the loyalty card's custom attributes and their values. These attributes must be created and connected to this loyalty program before  they can be assigned to the cards through this endpoint.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```csv identifier,state,customerprofileids,attributes 123-456-789AT,active,Alexa001;UserA,\"{\"\"my_attribute\"\": \"\"10_off\"\"}\" ``` 
+Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - `identifier` (required): The alphanumeric identifier of the loyalty card. - `state` (required): The state of the loyalty card. It can be `active` or `inactive`. - `customerprofileids` (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA ``` 
 
 
 ### Parameters

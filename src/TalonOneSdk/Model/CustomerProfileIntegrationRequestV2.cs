@@ -304,7 +304,28 @@ namespace TalonOneSdk.Model
                             evaluableCampaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "responseContent":
-                            responseContent = new Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>>(JsonSerializer.Deserialize<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                responseContent = new Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>>((List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var responseContentItems = new List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string responseContentItemRawValue = utf8JsonReader.GetString();
+                                    if (responseContentItemRawValue == null)
+                                        throw new JsonException();
+
+                                    responseContentItems.Add(CustomerProfileIntegrationRequestV2.ResponseContentEnumFromString(responseContentItemRawValue));
+                                }
+                                responseContent = new Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>>(responseContentItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         case "audiencesChanges":
                             audiencesChanges = new Option<ProfileAudiencesChanges>(JsonSerializer.Deserialize<ProfileAudiencesChanges>(ref utf8JsonReader, jsonSerializerOptions));
@@ -379,7 +400,12 @@ namespace TalonOneSdk.Model
             if (customerProfileIntegrationRequestV2.ResponseContentOption.IsSet)
             {
                 writer.WritePropertyName("responseContent");
-                JsonSerializer.Serialize(writer, customerProfileIntegrationRequestV2.ResponseContent, jsonSerializerOptions);
+                writer.WriteStartArray();
+                foreach (var responseContentItem in customerProfileIntegrationRequestV2.ResponseContent)
+                {
+                    writer.WriteStringValue(CustomerProfileIntegrationRequestV2.ResponseContentEnumToJsonValue(responseContentItem));
+                }
+                writer.WriteEndArray();
             }
             if (customerProfileIntegrationRequestV2.AudiencesChangesOption.IsSet)
             {

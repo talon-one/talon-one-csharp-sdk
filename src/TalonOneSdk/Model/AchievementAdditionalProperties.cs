@@ -359,8 +359,11 @@ namespace TalonOneSdk.Model
             if (achievementAdditionalProperties.HasProgressOption.IsSet)
                 writer.WriteBoolean("hasProgress", achievementAdditionalProperties.HasProgressOption.Value.Value);
 
-            var statusRawValue = AchievementAdditionalProperties.StatusEnumToJsonValue(achievementAdditionalProperties.StatusOption.Value.Value);
-            writer.WriteString("status", statusRawValue);
+            if (achievementAdditionalProperties.StatusOption.IsSet)
+            {
+                var statusRawValue = AchievementAdditionalProperties.StatusEnumToJsonValue(achievementAdditionalProperties.StatusOption.Value);
+                writer.WriteString("status", statusRawValue);
+            }
         }
     }
 }
