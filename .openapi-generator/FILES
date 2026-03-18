@@ -30,10 +30,14 @@ docs/models/AccountEntity.md
 docs/models/AccountLimits.md
 docs/models/Achievement.md
 docs/models/AchievementAdditionalProperties.md
+docs/models/AchievementAdditionalPropertiesV2.md
 docs/models/AchievementBase.md
+docs/models/AchievementBaseV2.md
 docs/models/AchievementProgress.md
 docs/models/AchievementProgressWithDefinition.md
+docs/models/AchievementReference.md
 docs/models/AchievementStatusEntry.md
+docs/models/AchievementV2.md
 docs/models/ActivateLoyaltyPoints.md
 docs/models/ActivateLoyaltyPointsResponse.md
 docs/models/ActivateUserRequest.md
@@ -189,6 +193,7 @@ docs/models/CouponWithApplication.md
 docs/models/CouponsNotificationData.md
 docs/models/CouponsNotificationPolicy.md
 docs/models/CreateAchievement.md
+docs/models/CreateAchievementV2.md
 docs/models/CreateApplicationAPIKey.md
 docs/models/CreateCouponData.md
 docs/models/CreateCoupons200Response.md
@@ -323,6 +328,7 @@ docs/models/Import.md
 docs/models/ImportEntity.md
 docs/models/IncreaseAchievementProgressEffectProps.md
 docs/models/InfluencingCampaignDetails.md
+docs/models/IntegrationCampaign.md
 docs/models/IntegrationCoupon.md
 docs/models/IntegrationCustomerProfileAudienceRequest.md
 docs/models/IntegrationCustomerProfileAudienceRequestItem.md
@@ -636,6 +642,7 @@ docs/models/TriggerWebhookEffectProps.md
 docs/models/TwoFAConfig.md
 docs/models/UpdateAccount.md
 docs/models/UpdateAchievement.md
+docs/models/UpdateAchievementV2.md
 docs/models/UpdateApplication.md
 docs/models/UpdateApplicationAPIKey.md
 docs/models/UpdateApplicationCIF.md
@@ -702,11 +709,15 @@ src/TalonOneSdk.Test/Model/AccountEntityTests.cs
 src/TalonOneSdk.Test/Model/AccountLimitsTests.cs
 src/TalonOneSdk.Test/Model/AccountTests.cs
 src/TalonOneSdk.Test/Model/AchievementAdditionalPropertiesTests.cs
+src/TalonOneSdk.Test/Model/AchievementAdditionalPropertiesV2Tests.cs
 src/TalonOneSdk.Test/Model/AchievementBaseTests.cs
+src/TalonOneSdk.Test/Model/AchievementBaseV2Tests.cs
 src/TalonOneSdk.Test/Model/AchievementProgressTests.cs
 src/TalonOneSdk.Test/Model/AchievementProgressWithDefinitionTests.cs
+src/TalonOneSdk.Test/Model/AchievementReferenceTests.cs
 src/TalonOneSdk.Test/Model/AchievementStatusEntryTests.cs
 src/TalonOneSdk.Test/Model/AchievementTests.cs
+src/TalonOneSdk.Test/Model/AchievementV2Tests.cs
 src/TalonOneSdk.Test/Model/ActivateLoyaltyPointsResponseTests.cs
 src/TalonOneSdk.Test/Model/ActivateLoyaltyPointsTests.cs
 src/TalonOneSdk.Test/Model/ActivateUserRequestTests.cs
@@ -862,6 +873,7 @@ src/TalonOneSdk.Test/Model/CouponWithApplicationTests.cs
 src/TalonOneSdk.Test/Model/CouponsNotificationDataTests.cs
 src/TalonOneSdk.Test/Model/CouponsNotificationPolicyTests.cs
 src/TalonOneSdk.Test/Model/CreateAchievementTests.cs
+src/TalonOneSdk.Test/Model/CreateAchievementV2Tests.cs
 src/TalonOneSdk.Test/Model/CreateApplicationAPIKeyTests.cs
 src/TalonOneSdk.Test/Model/CreateCouponDataTests.cs
 src/TalonOneSdk.Test/Model/CreateCoupons200ResponseTests.cs
@@ -996,6 +1008,7 @@ src/TalonOneSdk.Test/Model/ImportEntityTests.cs
 src/TalonOneSdk.Test/Model/ImportTests.cs
 src/TalonOneSdk.Test/Model/IncreaseAchievementProgressEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/InfluencingCampaignDetailsTests.cs
+src/TalonOneSdk.Test/Model/IntegrationCampaignTests.cs
 src/TalonOneSdk.Test/Model/IntegrationCouponTests.cs
 src/TalonOneSdk.Test/Model/IntegrationCustomerProfileAudienceRequestItemTests.cs
 src/TalonOneSdk.Test/Model/IntegrationCustomerProfileAudienceRequestTests.cs
@@ -1309,6 +1322,7 @@ src/TalonOneSdk.Test/Model/TriggerWebhookEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/TwoFAConfigTests.cs
 src/TalonOneSdk.Test/Model/UpdateAccountTests.cs
 src/TalonOneSdk.Test/Model/UpdateAchievementTests.cs
+src/TalonOneSdk.Test/Model/UpdateAchievementV2Tests.cs
 src/TalonOneSdk.Test/Model/UpdateApplicationAPIKeyTests.cs
 src/TalonOneSdk.Test/Model/UpdateApplicationCIFTests.cs
 src/TalonOneSdk.Test/Model/UpdateApplicationTests.cs
@@ -1395,10 +1409,14 @@ src/TalonOneSdk/Model/AccountEntity.cs
 src/TalonOneSdk/Model/AccountLimits.cs
 src/TalonOneSdk/Model/Achievement.cs
 src/TalonOneSdk/Model/AchievementAdditionalProperties.cs
+src/TalonOneSdk/Model/AchievementAdditionalPropertiesV2.cs
 src/TalonOneSdk/Model/AchievementBase.cs
+src/TalonOneSdk/Model/AchievementBaseV2.cs
 src/TalonOneSdk/Model/AchievementProgress.cs
 src/TalonOneSdk/Model/AchievementProgressWithDefinition.cs
+src/TalonOneSdk/Model/AchievementReference.cs
 src/TalonOneSdk/Model/AchievementStatusEntry.cs
+src/TalonOneSdk/Model/AchievementV2.cs
 src/TalonOneSdk/Model/ActivateLoyaltyPoints.cs
 src/TalonOneSdk/Model/ActivateLoyaltyPointsResponse.cs
 src/TalonOneSdk/Model/ActivateUserRequest.cs
@@ -1554,6 +1572,7 @@ src/TalonOneSdk/Model/CouponWithApplication.cs
 src/TalonOneSdk/Model/CouponsNotificationData.cs
 src/TalonOneSdk/Model/CouponsNotificationPolicy.cs
 src/TalonOneSdk/Model/CreateAchievement.cs
+src/TalonOneSdk/Model/CreateAchievementV2.cs
 src/TalonOneSdk/Model/CreateApplicationAPIKey.cs
 src/TalonOneSdk/Model/CreateCouponData.cs
 src/TalonOneSdk/Model/CreateCoupons200Response.cs
@@ -1688,6 +1707,7 @@ src/TalonOneSdk/Model/Import.cs
 src/TalonOneSdk/Model/ImportEntity.cs
 src/TalonOneSdk/Model/IncreaseAchievementProgressEffectProps.cs
 src/TalonOneSdk/Model/InfluencingCampaignDetails.cs
+src/TalonOneSdk/Model/IntegrationCampaign.cs
 src/TalonOneSdk/Model/IntegrationCoupon.cs
 src/TalonOneSdk/Model/IntegrationCustomerProfileAudienceRequest.cs
 src/TalonOneSdk/Model/IntegrationCustomerProfileAudienceRequestItem.cs
@@ -2001,6 +2021,7 @@ src/TalonOneSdk/Model/TriggerWebhookEffectProps.cs
 src/TalonOneSdk/Model/TwoFAConfig.cs
 src/TalonOneSdk/Model/UpdateAccount.cs
 src/TalonOneSdk/Model/UpdateAchievement.cs
+src/TalonOneSdk/Model/UpdateAchievementV2.cs
 src/TalonOneSdk/Model/UpdateApplication.cs
 src/TalonOneSdk/Model/UpdateApplicationAPIKey.cs
 src/TalonOneSdk/Model/UpdateApplicationCIF.cs

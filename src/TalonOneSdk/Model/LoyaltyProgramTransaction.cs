@@ -43,7 +43,7 @@ namespace TalonOneSdk.Model
         /// <param name="subledgerId">ID of the subledger.</param>
         /// <param name="campaignId">ID of the campaign.</param>
         /// <param name="customerProfileId">Customer profile integration ID used in the loyalty program.</param>
-        /// <param name="cardIdentifier">The alphanumeric identifier of the loyalty card. </param>
+        /// <param name="cardIdentifier">The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </param>
         /// <param name="customerSessionId">ID of the customer session where the transaction occurred.</param>
         /// <param name="importId">ID of the import where the transaction occurred.</param>
         /// <param name="userId">ID of the user who manually added or deducted points. Applies only to manual transactions.</param>
@@ -266,9 +266,9 @@ namespace TalonOneSdk.Model
         public Option<string> CardIdentifierOption { get; private set; }
 
         /// <summary>
-        /// The alphanumeric identifier of the loyalty card. 
+        /// The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. 
         /// </summary>
-        /// <value>The alphanumeric identifier of the loyalty card. </value>
+        /// <value>The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("cardIdentifier")]
         public string CardIdentifier { get { return this.CardIdentifierOption; } set { this.CardIdentifierOption = new Option<string>(value); } }
@@ -470,7 +470,7 @@ namespace TalonOneSdk.Model
 
             if (this.CardIdentifierOption.Value != null) {
                 // CardIdentifier (string) pattern
-                Regex regexCardIdentifier = new Regex(@"^[A-Za-z0-9_-]*$", RegexOptions.CultureInvariant);
+                Regex regexCardIdentifier = new Regex(@"^[A-Za-z0-9._%+@-]+$", RegexOptions.CultureInvariant);
 
                 if (this.CardIdentifierOption.Value != null &&!regexCardIdentifier.Match(this.CardIdentifierOption.Value).Success)
                 {

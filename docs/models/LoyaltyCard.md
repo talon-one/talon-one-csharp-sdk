@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Created** | **DateTime** | The time this entity was created. | 
 **ProgramID** | **long** | The ID of the loyalty program that owns this entity. | 
 **Status** | **string** | Status of the loyalty card. Can be &#x60;active&#x60; or &#x60;inactive&#x60;.  | 
-**Identifier** | **string** | The alphanumeric identifier of the loyalty card.  | 
+**Identifier** | **string** | The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;.  | 
 **UsersPerCardLimit** | **long** | The max amount of customer profiles that can be linked to the card. 0 means unlimited.  | 
 **ProgramName** | **string** | The integration name of the loyalty program that owns this entity. | [optional] 
 **ProgramTitle** | **string** | The Campaign Manager-displayed name of the loyalty program that owns this entity. | [optional] 

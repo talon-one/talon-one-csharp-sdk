@@ -62,9 +62,9 @@ namespace TalonOneSdk.Model
             Addition = 1,
 
             /// <summary>
-            /// Enum Deduction for value: deduction
+            /// Enum Subtraction for value: subtraction
             /// </summary>
-            Deduction = 2
+            Subtraction = 2
         }
 
         /// <summary>
@@ -78,8 +78,8 @@ namespace TalonOneSdk.Model
             if (value.Equals("addition"))
                 return OperationEnum.Addition;
 
-            if (value.Equals("deduction"))
-                return OperationEnum.Deduction;
+            if (value.Equals("subtraction"))
+                return OperationEnum.Subtraction;
 
             throw new NotImplementedException($"Could not convert value to type OperationEnum: '{value}'");
         }
@@ -94,8 +94,8 @@ namespace TalonOneSdk.Model
             if (value.Equals("addition"))
                 return OperationEnum.Addition;
 
-            if (value.Equals("deduction"))
-                return OperationEnum.Deduction;
+            if (value.Equals("subtraction"))
+                return OperationEnum.Subtraction;
 
             return null;
         }
@@ -111,8 +111,8 @@ namespace TalonOneSdk.Model
             if (value == OperationEnum.Addition)
                 return "addition";
 
-            if (value == OperationEnum.Deduction)
-                return "deduction";
+            if (value == OperationEnum.Subtraction)
+                return "subtraction";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }

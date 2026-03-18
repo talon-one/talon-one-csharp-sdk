@@ -31,7 +31,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferLoyaltyCard" /> class.
         /// </summary>
-        /// <param name="newCardIdentifier">The alphanumeric identifier of the loyalty card. </param>
+        /// <param name="newCardIdentifier">The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </param>
         /// <param name="blockReason">Reason for transferring and blocking the loyalty card. </param>
         [JsonConstructor]
         public TransferLoyaltyCard(string newCardIdentifier, Option<string> blockReason = default)
@@ -44,9 +44,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The alphanumeric identifier of the loyalty card. 
+        /// The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. 
         /// </summary>
-        /// <value>The alphanumeric identifier of the loyalty card. </value>
+        /// <value>The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("newCardIdentifier")]
         public string NewCardIdentifier { get; set; }
@@ -101,7 +101,7 @@ namespace TalonOneSdk.Model
 
             if (this.NewCardIdentifier != null) {
                 // NewCardIdentifier (string) pattern
-                Regex regexNewCardIdentifier = new Regex(@"^[A-Za-z0-9_-]*$", RegexOptions.CultureInvariant);
+                Regex regexNewCardIdentifier = new Regex(@"^[A-Za-z0-9._%+@-]+$", RegexOptions.CultureInvariant);
 
                 if (!regexNewCardIdentifier.Match(this.NewCardIdentifier).Success)
                 {

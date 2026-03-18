@@ -148,10 +148,16 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.Achievement.StatusEnumToJsonValue(achievementStatusEnum);
             if (obj is TalonOneSdk.Model.AchievementAdditionalProperties.StatusEnum achievementAdditionalPropertiesStatusEnum)
                 return TalonOneSdk.Model.AchievementAdditionalProperties.StatusEnumToJsonValue(achievementAdditionalPropertiesStatusEnum);
+            if (obj is TalonOneSdk.Model.AchievementAdditionalPropertiesV2.StatusEnum achievementAdditionalPropertiesV2StatusEnum)
+                return TalonOneSdk.Model.AchievementAdditionalPropertiesV2.StatusEnumToJsonValue(achievementAdditionalPropertiesV2StatusEnum);
             if (obj is TalonOneSdk.Model.AchievementBase.RecurrencePolicyEnum achievementBaseRecurrencePolicyEnum)
                 return TalonOneSdk.Model.AchievementBase.RecurrencePolicyEnumToJsonValue(achievementBaseRecurrencePolicyEnum);
             if (obj is TalonOneSdk.Model.AchievementBase.ActivationPolicyEnum achievementBaseActivationPolicyEnum)
                 return TalonOneSdk.Model.AchievementBase.ActivationPolicyEnumToJsonValue(achievementBaseActivationPolicyEnum);
+            if (obj is TalonOneSdk.Model.AchievementBaseV2.RecurrencePolicyEnum achievementBaseV2RecurrencePolicyEnum)
+                return TalonOneSdk.Model.AchievementBaseV2.RecurrencePolicyEnumToJsonValue(achievementBaseV2RecurrencePolicyEnum);
+            if (obj is TalonOneSdk.Model.AchievementBaseV2.ActivationPolicyEnum achievementBaseV2ActivationPolicyEnum)
+                return TalonOneSdk.Model.AchievementBaseV2.ActivationPolicyEnumToJsonValue(achievementBaseV2ActivationPolicyEnum);
             if (obj is TalonOneSdk.Model.AchievementProgress.StatusEnum achievementProgressStatusEnum)
                 return TalonOneSdk.Model.AchievementProgress.StatusEnumToJsonValue(achievementProgressStatusEnum);
             if (obj is TalonOneSdk.Model.AchievementProgressWithDefinition.StatusEnum achievementProgressWithDefinitionStatusEnum)
@@ -166,6 +172,12 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.AchievementStatusEntry.ActivationPolicyEnumToJsonValue(achievementStatusEntryActivationPolicyEnum);
             if (obj is TalonOneSdk.Model.AchievementStatusEntry.StatusEnum achievementStatusEntryStatusEnum)
                 return TalonOneSdk.Model.AchievementStatusEntry.StatusEnumToJsonValue(achievementStatusEntryStatusEnum);
+            if (obj is TalonOneSdk.Model.AchievementV2.RecurrencePolicyEnum achievementV2RecurrencePolicyEnum)
+                return TalonOneSdk.Model.AchievementV2.RecurrencePolicyEnumToJsonValue(achievementV2RecurrencePolicyEnum);
+            if (obj is TalonOneSdk.Model.AchievementV2.ActivationPolicyEnum achievementV2ActivationPolicyEnum)
+                return TalonOneSdk.Model.AchievementV2.ActivationPolicyEnumToJsonValue(achievementV2ActivationPolicyEnum);
+            if (obj is TalonOneSdk.Model.AchievementV2.StatusEnum achievementV2StatusEnum)
+                return TalonOneSdk.Model.AchievementV2.StatusEnumToJsonValue(achievementV2StatusEnum);
             if (obj is TalonOneSdk.Model.AddedDeductedPointsBalancesAction.OperationEnum addedDeductedPointsBalancesActionOperationEnum)
                 return TalonOneSdk.Model.AddedDeductedPointsBalancesAction.OperationEnumToJsonValue(addedDeductedPointsBalancesActionOperationEnum);
             if (obj is TalonOneSdk.Model.AddedDeductedPointsBalancesNotification.NotificationTypeEnum addedDeductedPointsBalancesNotificationNotificationTypeEnum)
@@ -326,6 +338,10 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.CreateAchievement.RecurrencePolicyEnumToJsonValue(createAchievementRecurrencePolicyEnum);
             if (obj is TalonOneSdk.Model.CreateAchievement.ActivationPolicyEnum createAchievementActivationPolicyEnum)
                 return TalonOneSdk.Model.CreateAchievement.ActivationPolicyEnumToJsonValue(createAchievementActivationPolicyEnum);
+            if (obj is TalonOneSdk.Model.CreateAchievementV2.RecurrencePolicyEnum createAchievementV2RecurrencePolicyEnum)
+                return TalonOneSdk.Model.CreateAchievementV2.RecurrencePolicyEnumToJsonValue(createAchievementV2RecurrencePolicyEnum);
+            if (obj is TalonOneSdk.Model.CreateAchievementV2.ActivationPolicyEnum createAchievementV2ActivationPolicyEnum)
+                return TalonOneSdk.Model.CreateAchievementV2.ActivationPolicyEnumToJsonValue(createAchievementV2ActivationPolicyEnum);
             if (obj is TalonOneSdk.Model.CreateApplicationAPIKey.PlatformEnum createApplicationAPIKeyPlatformEnum)
                 return TalonOneSdk.Model.CreateApplicationAPIKey.PlatformEnumToJsonValue(createApplicationAPIKeyPlatformEnum);
             if (obj is TalonOneSdk.Model.CreateApplicationAPIKey.TypeEnum createApplicationAPIKeyTypeEnum)
@@ -362,6 +378,10 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.FuncArgDef.TypeEnumToJsonValue(funcArgDefTypeEnum);
             if (obj is TalonOneSdk.Model.GenerateLoyaltyCard.StatusEnum generateLoyaltyCardStatusEnum)
                 return TalonOneSdk.Model.GenerateLoyaltyCard.StatusEnumToJsonValue(generateLoyaltyCardStatusEnum);
+            if (obj is TalonOneSdk.Model.IntegrationCampaign.FeaturesEnum integrationCampaignFeaturesEnum)
+                return TalonOneSdk.Model.IntegrationCampaign.FeaturesEnumToJsonValue(integrationCampaignFeaturesEnum);
+            if (obj is TalonOneSdk.Model.IntegrationCampaign.StateEnum integrationCampaignStateEnum)
+                return TalonOneSdk.Model.IntegrationCampaign.StateEnumToJsonValue(integrationCampaignStateEnum);
             if (obj is TalonOneSdk.Model.IntegrationCustomerProfileAudienceRequestItem.ActionEnum integrationCustomerProfileAudienceRequestItemActionEnum)
                 return TalonOneSdk.Model.IntegrationCustomerProfileAudienceRequestItem.ActionEnumToJsonValue(integrationCustomerProfileAudienceRequestItemActionEnum);
             if (obj is TalonOneSdk.Model.IntegrationEventV2Request.ResponseContentEnum integrationEventV2RequestResponseContentEnum)
@@ -520,6 +540,10 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.UpdateAchievement.RecurrencePolicyEnumToJsonValue(updateAchievementRecurrencePolicyEnum);
             if (obj is TalonOneSdk.Model.UpdateAchievement.ActivationPolicyEnum updateAchievementActivationPolicyEnum)
                 return TalonOneSdk.Model.UpdateAchievement.ActivationPolicyEnumToJsonValue(updateAchievementActivationPolicyEnum);
+            if (obj is TalonOneSdk.Model.UpdateAchievementV2.RecurrencePolicyEnum updateAchievementV2RecurrencePolicyEnum)
+                return TalonOneSdk.Model.UpdateAchievementV2.RecurrencePolicyEnumToJsonValue(updateAchievementV2RecurrencePolicyEnum);
+            if (obj is TalonOneSdk.Model.UpdateAchievementV2.ActivationPolicyEnum updateAchievementV2ActivationPolicyEnum)
+                return TalonOneSdk.Model.UpdateAchievementV2.ActivationPolicyEnumToJsonValue(updateAchievementV2ActivationPolicyEnum);
             if (obj is TalonOneSdk.Model.UpdateApplication.CaseSensitivityEnum updateApplicationCaseSensitivityEnum)
                 return TalonOneSdk.Model.UpdateApplication.CaseSensitivityEnumToJsonValue(updateApplicationCaseSensitivityEnum);
             if (obj is TalonOneSdk.Model.UpdateApplication.DefaultDiscountScopeEnum updateApplicationDefaultDiscountScopeEnum)

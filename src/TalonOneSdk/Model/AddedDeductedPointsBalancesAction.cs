@@ -33,7 +33,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="amount">The amount of added or deducted loyalty points.</param>
         /// <param name="reason">The reason for the points addition or deduction.</param>
-        /// <param name="operation">The action (addition or deduction) made with loyalty points.</param>
+        /// <param name="operation">The action (addition or subtraction) made with loyalty points.</param>
         /// <param name="transactionUUID">The identifier of the transaction in the loyalty ledger.</param>
         /// <param name="startDate">The start date for loyalty points.</param>
         /// <param name="expiryDate">The expiration date for loyalty points.</param>
@@ -52,9 +52,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The action (addition or deduction) made with loyalty points.
+        /// The action (addition or subtraction) made with loyalty points.
         /// </summary>
-        /// <value>The action (addition or deduction) made with loyalty points.</value>
+        /// <value>The action (addition or subtraction) made with loyalty points.</value>
         public enum OperationEnum
         {
             /// <summary>
@@ -63,9 +63,9 @@ namespace TalonOneSdk.Model
             Addition = 1,
 
             /// <summary>
-            /// Enum Deduction for value: deduction
+            /// Enum Subtraction for value: subtraction
             /// </summary>
-            Deduction = 2
+            Subtraction = 2
         }
 
         /// <summary>
@@ -79,8 +79,8 @@ namespace TalonOneSdk.Model
             if (value.Equals("addition"))
                 return OperationEnum.Addition;
 
-            if (value.Equals("deduction"))
-                return OperationEnum.Deduction;
+            if (value.Equals("subtraction"))
+                return OperationEnum.Subtraction;
 
             throw new NotImplementedException($"Could not convert value to type OperationEnum: '{value}'");
         }
@@ -95,8 +95,8 @@ namespace TalonOneSdk.Model
             if (value.Equals("addition"))
                 return OperationEnum.Addition;
 
-            if (value.Equals("deduction"))
-                return OperationEnum.Deduction;
+            if (value.Equals("subtraction"))
+                return OperationEnum.Subtraction;
 
             return null;
         }
@@ -112,16 +112,16 @@ namespace TalonOneSdk.Model
             if (value == OperationEnum.Addition)
                 return "addition";
 
-            if (value == OperationEnum.Deduction)
-                return "deduction";
+            if (value == OperationEnum.Subtraction)
+                return "subtraction";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
 
         /// <summary>
-        /// The action (addition or deduction) made with loyalty points.
+        /// The action (addition or subtraction) made with loyalty points.
         /// </summary>
-        /// <value>The action (addition or deduction) made with loyalty points.</value>
+        /// <value>The action (addition or subtraction) made with loyalty points.</value>
         [JsonPropertyName("Operation")]
         public OperationEnum Operation { get; set; }
 

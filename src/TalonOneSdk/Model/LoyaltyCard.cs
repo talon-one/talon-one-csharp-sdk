@@ -35,7 +35,7 @@ namespace TalonOneSdk.Model
         /// <param name="created">The time this entity was created.</param>
         /// <param name="programID">The ID of the loyalty program that owns this entity.</param>
         /// <param name="status">Status of the loyalty card. Can be &#x60;active&#x60; or &#x60;inactive&#x60;. </param>
-        /// <param name="identifier">The alphanumeric identifier of the loyalty card. </param>
+        /// <param name="identifier">The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </param>
         /// <param name="usersPerCardLimit">The max amount of customer profiles that can be linked to the card. 0 means unlimited. </param>
         /// <param name="programName">The integration name of the loyalty program that owns this entity.</param>
         /// <param name="programTitle">The Campaign Manager-displayed name of the loyalty program that owns this entity.</param>
@@ -104,9 +104,9 @@ namespace TalonOneSdk.Model
         public string Status { get; set; }
 
         /// <summary>
-        /// The alphanumeric identifier of the loyalty card. 
+        /// The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. 
         /// </summary>
-        /// <value>The alphanumeric identifier of the loyalty card. </value>
+        /// <value>The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("identifier")]
         public string Identifier { get; set; }
@@ -315,7 +315,7 @@ namespace TalonOneSdk.Model
 
             if (this.Identifier != null) {
                 // Identifier (string) pattern
-                Regex regexIdentifier = new Regex(@"^[A-Za-z0-9_-]*$", RegexOptions.CultureInvariant);
+                Regex regexIdentifier = new Regex(@"^[A-Za-z0-9._%+@-]+$", RegexOptions.CultureInvariant);
 
                 if (!regexIdentifier.Match(this.Identifier).Success)
                 {
@@ -343,7 +343,7 @@ namespace TalonOneSdk.Model
 
             if (this.OldCardIdentifierOption.Value != null) {
                 // OldCardIdentifier (string) pattern
-                Regex regexOldCardIdentifier = new Regex(@"^[A-Za-z0-9_-]*$", RegexOptions.CultureInvariant);
+                Regex regexOldCardIdentifier = new Regex(@"^[A-Za-z0-9._%+@-]+$", RegexOptions.CultureInvariant);
 
                 if (this.OldCardIdentifierOption.Value != null &&!regexOldCardIdentifier.Match(this.OldCardIdentifierOption.Value).Success)
                 {
@@ -365,7 +365,7 @@ namespace TalonOneSdk.Model
 
             if (this.NewCardIdentifierOption.Value != null) {
                 // NewCardIdentifier (string) pattern
-                Regex regexNewCardIdentifier = new Regex(@"^[A-Za-z0-9_-]*$", RegexOptions.CultureInvariant);
+                Regex regexNewCardIdentifier = new Regex(@"^[A-Za-z0-9._%+@-]+$", RegexOptions.CultureInvariant);
 
                 if (this.NewCardIdentifierOption.Value != null &&!regexNewCardIdentifier.Match(this.NewCardIdentifierOption.Value).Success)
                 {

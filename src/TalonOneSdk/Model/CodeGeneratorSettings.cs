@@ -94,7 +94,7 @@ namespace TalonOneSdk.Model
 
             if (this.CouponPattern != null) {
                 // CouponPattern (string) pattern
-                Regex regexCouponPattern = new Regex(@"^[A-Za-z0-9_#-]*$", RegexOptions.CultureInvariant);
+                Regex regexCouponPattern = new Regex(@"^[A-Za-z0-9._%+@#-]+$", RegexOptions.CultureInvariant);
 
                 if (!regexCouponPattern.Match(this.CouponPattern).Success)
                 {
