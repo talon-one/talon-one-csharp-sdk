@@ -350,27 +350,6 @@ namespace TalonOneSdk.Model
             if (!createdBy.IsSet)
                 throw new ArgumentException("Property is required for class CampaignCollection.", nameof(createdBy));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignCollection.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CampaignCollection.");
-
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class CampaignCollection.");
-
-            if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class CampaignCollection.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignCollection.");
-
-            if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class CampaignCollection.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class CampaignCollection.");
-
             if (modifiedBy.IsSet && modifiedBy.Value == null)
                 throw new ArgumentNullException(nameof(modifiedBy), "Property is not nullable for class CampaignCollection.");
 
@@ -379,9 +358,6 @@ namespace TalonOneSdk.Model
 
             if (campaignId.IsSet && campaignId.Value == null)
                 throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class CampaignCollection.");
-
-            if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class CampaignCollection.");
 
             return new CampaignCollection(id.Value.Value, created.Value.Value, accountId.Value.Value, modified.Value.Value, name.Value, createdBy.Value.Value, description, modifiedBy, applicationId, campaignId, payload);
         }

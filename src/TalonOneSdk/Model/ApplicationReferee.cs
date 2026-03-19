@@ -226,24 +226,6 @@ namespace TalonOneSdk.Model
             if (!created.IsSet)
                 throw new ArgumentException("Property is required for class ApplicationReferee.", nameof(created));
 
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ApplicationReferee.");
-
-            if (sessionId.IsSet && sessionId.Value == null)
-                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class ApplicationReferee.");
-
-            if (advocateIntegrationId.IsSet && advocateIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(advocateIntegrationId), "Property is not nullable for class ApplicationReferee.");
-
-            if (friendIntegrationId.IsSet && friendIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(friendIntegrationId), "Property is not nullable for class ApplicationReferee.");
-
-            if (code.IsSet && code.Value == null)
-                throw new ArgumentNullException(nameof(code), "Property is not nullable for class ApplicationReferee.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ApplicationReferee.");
-
             return new ApplicationReferee(applicationId.Value.Value, sessionId.Value, advocateIntegrationId.Value, friendIntegrationId.Value, code.Value, created.Value.Value);
         }
 

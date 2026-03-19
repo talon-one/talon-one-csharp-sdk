@@ -189,12 +189,6 @@ namespace TalonOneSdk.Model
             if (!campaignId.IsSet)
                 throw new ArgumentException("Property is required for class ValueMap.", nameof(campaignId));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ValueMap.");
-
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class ValueMap.");
-
             if (created.IsSet && created.Value == null)
                 throw new ArgumentNullException(nameof(created), "Property is not nullable for class ValueMap.");
 

@@ -43,8 +43,9 @@ namespace TalonOneSdk.Model
         /// <param name="limits">The set of limits that will operate for this campaign version.</param>
         /// <param name="reevaluateOnReturn">Indicates whether this campaign should be reevaluated when a customer returns an item.</param>
         /// <param name="features">A list of features for the campaign.</param>
+        /// <param name="couponAttributes">Arbitrary properties associated with coupons in this campaign.</param>
         [JsonConstructor]
-        public NewRevisionVersion(Option<string> name = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, Option<string> description = default, Option<int?> activeRulesetId = default, Option<List<string>> tags = default, Option<CodeGeneratorSettings> couponSettings = default, Option<CodeGeneratorSettings> referralSettings = default, Option<List<LimitConfig>> limits = default, Option<bool?> reevaluateOnReturn = default, Option<List<NewRevisionVersion.FeaturesEnum>> features = default)
+        public NewRevisionVersion(Option<string> name = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, Option<string> description = default, Option<int?> activeRulesetId = default, Option<List<string>> tags = default, Option<CodeGeneratorSettings> couponSettings = default, Option<CodeGeneratorSettings> referralSettings = default, Option<List<LimitConfig>> limits = default, Option<bool?> reevaluateOnReturn = default, Option<List<NewRevisionVersion.FeaturesEnum>> features = default, Option<Object> couponAttributes = default)
         {
             NameOption = name;
             StartTimeOption = startTime;
@@ -58,6 +59,7 @@ namespace TalonOneSdk.Model
             LimitsOption = limits;
             ReevaluateOnReturnOption = reevaluateOnReturn;
             FeaturesOption = features;
+            CouponAttributesOption = couponAttributes;
             OnCreated();
         }
 
@@ -358,6 +360,20 @@ namespace TalonOneSdk.Model
         public List<NewRevisionVersion.FeaturesEnum> Features { get { return this.FeaturesOption; } set { this.FeaturesOption = new Option<List<NewRevisionVersion.FeaturesEnum>>(value); } }
 
         /// <summary>
+        /// Used to track the state of CouponAttributes
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> CouponAttributesOption { get; private set; }
+
+        /// <summary>
+        /// Arbitrary properties associated with coupons in this campaign.
+        /// </summary>
+        /// <value>Arbitrary properties associated with coupons in this campaign.</value>
+        [JsonPropertyName("couponAttributes")]
+        public Object CouponAttributes { get { return this.CouponAttributesOption; } set { this.CouponAttributesOption = new Option<Object>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -377,6 +393,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Limits: ").Append(Limits).Append("\n");
             sb.Append("  ReevaluateOnReturn: ").Append(ReevaluateOnReturn).Append("\n");
             sb.Append("  Features: ").Append(Features).Append("\n");
+            sb.Append("  CouponAttributes: ").Append(CouponAttributes).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -442,6 +459,7 @@ namespace TalonOneSdk.Model
             Option<List<LimitConfig>> limits = default;
             Option<bool?> reevaluateOnReturn = default;
             Option<List<NewRevisionVersion.FeaturesEnum>> features = default;
+            Option<Object> couponAttributes = default;
 
             while (utf8JsonReader.Read())
             {
@@ -515,37 +533,19 @@ namespace TalonOneSdk.Model
                             else
                                 throw new JsonException();
                             break;
+                        case "couponAttributes":
+                            couponAttributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
                 }
             }
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewRevisionVersion.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class NewRevisionVersion.");
-
-            if (tags.IsSet && tags.Value == null)
-                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class NewRevisionVersion.");
-
-            if (couponSettings.IsSet && couponSettings.Value == null)
-                throw new ArgumentNullException(nameof(couponSettings), "Property is not nullable for class NewRevisionVersion.");
-
-            if (referralSettings.IsSet && referralSettings.Value == null)
-                throw new ArgumentNullException(nameof(referralSettings), "Property is not nullable for class NewRevisionVersion.");
-
-            if (limits.IsSet && limits.Value == null)
-                throw new ArgumentNullException(nameof(limits), "Property is not nullable for class NewRevisionVersion.");
-
             if (reevaluateOnReturn.IsSet && reevaluateOnReturn.Value == null)
                 throw new ArgumentNullException(nameof(reevaluateOnReturn), "Property is not nullable for class NewRevisionVersion.");
 
-            if (features.IsSet && features.Value == null)
-                throw new ArgumentNullException(nameof(features), "Property is not nullable for class NewRevisionVersion.");
-
-            return new NewRevisionVersion(name, startTime, endTime, attributes, description, activeRulesetId, tags, couponSettings, referralSettings, limits, reevaluateOnReturn, features);
+            return new NewRevisionVersion(name, startTime, endTime, attributes, description, activeRulesetId, tags, couponSettings, referralSettings, limits, reevaluateOnReturn, features, couponAttributes);
         }
 
         /// <summary>
@@ -592,6 +592,9 @@ namespace TalonOneSdk.Model
 
             if (newRevisionVersion.FeaturesOption.IsSet && newRevisionVersion.Features == null)
                 throw new ArgumentNullException(nameof(newRevisionVersion.Features), "Property is required for class NewRevisionVersion.");
+
+            if (newRevisionVersion.CouponAttributesOption.IsSet && newRevisionVersion.CouponAttributes == null)
+                throw new ArgumentNullException(nameof(newRevisionVersion.CouponAttributes), "Property is required for class NewRevisionVersion.");
 
             if (newRevisionVersion.NameOption.IsSet)
                 writer.WriteString("name", newRevisionVersion.Name);
@@ -657,6 +660,11 @@ namespace TalonOneSdk.Model
                     writer.WriteStringValue(NewRevisionVersion.FeaturesEnumToJsonValue(featuresItem));
                 }
                 writer.WriteEndArray();
+            }
+            if (newRevisionVersion.CouponAttributesOption.IsSet)
+            {
+                writer.WritePropertyName("couponAttributes");
+                JsonSerializer.Serialize(writer, newRevisionVersion.CouponAttributes, jsonSerializerOptions);
             }
         }
     }

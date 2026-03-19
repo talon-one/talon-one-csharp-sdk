@@ -128,9 +128,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (formatted.IsSet && formatted.Value == null)
-                throw new ArgumentNullException(nameof(formatted), "Property is not nullable for class ScimBaseUserName.");
-
             return new ScimBaseUserName(formatted);
         }
 

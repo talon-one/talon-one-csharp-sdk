@@ -142,12 +142,6 @@ namespace TalonOneSdk.Model
             if (!variantID.IsSet)
                 throw new ArgumentException("Property is required for class ExperimentVariantAllocation.", nameof(variantID));
 
-            if (experimentID.IsSet && experimentID.Value == null)
-                throw new ArgumentNullException(nameof(experimentID), "Property is not nullable for class ExperimentVariantAllocation.");
-
-            if (variantID.IsSet && variantID.Value == null)
-                throw new ArgumentNullException(nameof(variantID), "Property is not nullable for class ExperimentVariantAllocation.");
-
             return new ExperimentVariantAllocation(experimentID.Value.Value, variantID.Value.Value);
         }
 

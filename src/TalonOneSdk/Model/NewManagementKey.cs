@@ -330,33 +330,6 @@ namespace TalonOneSdk.Model
             if (!key.IsSet)
                 throw new ArgumentException("Property is required for class NewManagementKey.", nameof(key));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewManagementKey.");
-
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class NewManagementKey.");
-
-            if (endpoints.IsSet && endpoints.Value == null)
-                throw new ArgumentNullException(nameof(endpoints), "Property is not nullable for class NewManagementKey.");
-
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class NewManagementKey.");
-
-            if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class NewManagementKey.");
-
-            if (accountID.IsSet && accountID.Value == null)
-                throw new ArgumentNullException(nameof(accountID), "Property is not nullable for class NewManagementKey.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class NewManagementKey.");
-
-            if (key.IsSet && key.Value == null)
-                throw new ArgumentNullException(nameof(key), "Property is not nullable for class NewManagementKey.");
-
-            if (allowedApplicationIds.IsSet && allowedApplicationIds.Value == null)
-                throw new ArgumentNullException(nameof(allowedApplicationIds), "Property is not nullable for class NewManagementKey.");
-
             if (disabled.IsSet && disabled.Value == null)
                 throw new ArgumentNullException(nameof(disabled), "Property is not nullable for class NewManagementKey.");
 

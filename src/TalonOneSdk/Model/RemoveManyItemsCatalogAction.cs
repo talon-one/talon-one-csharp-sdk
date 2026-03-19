@@ -127,9 +127,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (filters.IsSet && filters.Value == null)
-                throw new ArgumentNullException(nameof(filters), "Property is not nullable for class RemoveManyItemsCatalogAction.");
-
             return new RemoveManyItemsCatalogAction(filters);
         }
 

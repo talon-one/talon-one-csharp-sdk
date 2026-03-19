@@ -29,12 +29,6 @@ namespace TalonOneSdk.Test.Api
             {
                 ApiKeyToken apiKeyToken1 = new ApiKeyToken("<token>", ClientUtils.ApiKeyHeader.Authorization, timeout: TimeSpan.FromSeconds(1));
                 options.AddTokens(apiKeyToken1);
-
-                ApiKeyToken apiKeyToken2 = new ApiKeyToken("<token>", ClientUtils.ApiKeyHeader.Authorization, timeout: TimeSpan.FromSeconds(1));
-                options.AddTokens(apiKeyToken2);
-
-                ApiKeyToken apiKeyToken3 = new ApiKeyToken("<token>", ClientUtils.ApiKeyHeader.Authorization, timeout: TimeSpan.FromSeconds(1));
-                options.AddTokens(apiKeyToken3);
             })
             .Build();
 
@@ -43,12 +37,6 @@ namespace TalonOneSdk.Test.Api
             {
                 ApiKeyToken apiKeyToken1 = new ApiKeyToken("<token>", ClientUtils.ApiKeyHeader.Authorization, timeout: TimeSpan.FromSeconds(1));
                 options.AddTokens(apiKeyToken1);
-
-                ApiKeyToken apiKeyToken2 = new ApiKeyToken("<token>", ClientUtils.ApiKeyHeader.Authorization, timeout: TimeSpan.FromSeconds(1));
-                options.AddTokens(apiKeyToken2);
-
-                ApiKeyToken apiKeyToken3 = new ApiKeyToken("<token>", ClientUtils.ApiKeyHeader.Authorization, timeout: TimeSpan.FromSeconds(1));
-                options.AddTokens(apiKeyToken3);
                 options.AddApiHttpClients(client => client.BaseAddress = new Uri(ClientUtils.BASE_ADDRESS));
             })
             .Build();
@@ -60,12 +48,6 @@ namespace TalonOneSdk.Test.Api
                 {
                     ApiKeyToken apiKeyToken1 = new ApiKeyToken("<token>", ClientUtils.ApiKeyHeader.Authorization, timeout: TimeSpan.FromSeconds(1));
                     options.AddTokens(apiKeyToken1);
-
-                    ApiKeyToken apiKeyToken2 = new ApiKeyToken("<token>", ClientUtils.ApiKeyHeader.Authorization, timeout: TimeSpan.FromSeconds(1));
-                    options.AddTokens(apiKeyToken2);
-
-                    ApiKeyToken apiKeyToken3 = new ApiKeyToken("<token>", ClientUtils.ApiKeyHeader.Authorization, timeout: TimeSpan.FromSeconds(1));
-                    options.AddTokens(apiKeyToken3);
                 });
             })
             .Build();
@@ -77,12 +59,6 @@ namespace TalonOneSdk.Test.Api
                 {
                     ApiKeyToken apiKeyToken1 = new ApiKeyToken("<token>", ClientUtils.ApiKeyHeader.Authorization, timeout: TimeSpan.FromSeconds(1));
                     options.AddTokens(apiKeyToken1);
-
-                    ApiKeyToken apiKeyToken2 = new ApiKeyToken("<token>", ClientUtils.ApiKeyHeader.Authorization, timeout: TimeSpan.FromSeconds(1));
-                    options.AddTokens(apiKeyToken2);
-
-                    ApiKeyToken apiKeyToken3 = new ApiKeyToken("<token>", ClientUtils.ApiKeyHeader.Authorization, timeout: TimeSpan.FromSeconds(1));
-                    options.AddTokens(apiKeyToken3);
                     options.AddApiHttpClients(client => client.BaseAddress = new Uri(ClientUtils.BASE_ADDRESS));
                 });
             })

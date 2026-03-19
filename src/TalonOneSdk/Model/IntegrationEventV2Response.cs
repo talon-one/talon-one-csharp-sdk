@@ -283,33 +283,6 @@ namespace TalonOneSdk.Model
             if (!createdReferrals.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationEventV2Response.", nameof(createdReferrals));
 
-            if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class IntegrationEventV2Response.");
-
-            if (createdCoupons.IsSet && createdCoupons.Value == null)
-                throw new ArgumentNullException(nameof(createdCoupons), "Property is not nullable for class IntegrationEventV2Response.");
-
-            if (createdReferrals.IsSet && createdReferrals.Value == null)
-                throw new ArgumentNullException(nameof(createdReferrals), "Property is not nullable for class IntegrationEventV2Response.");
-
-            if (customerProfile.IsSet && customerProfile.Value == null)
-                throw new ArgumentNullException(nameof(customerProfile), "Property is not nullable for class IntegrationEventV2Response.");
-
-            if (loyalty.IsSet && loyalty.Value == null)
-                throw new ArgumentNullException(nameof(loyalty), "Property is not nullable for class IntegrationEventV2Response.");
-
-            if (triggeredCampaigns.IsSet && triggeredCampaigns.Value == null)
-                throw new ArgumentNullException(nameof(triggeredCampaigns), "Property is not nullable for class IntegrationEventV2Response.");
-
-            if (ruleFailureReasons.IsSet && ruleFailureReasons.Value == null)
-                throw new ArgumentNullException(nameof(ruleFailureReasons), "Property is not nullable for class IntegrationEventV2Response.");
-
-            if (awardedGiveaways.IsSet && awardedGiveaways.Value == null)
-                throw new ArgumentNullException(nameof(awardedGiveaways), "Property is not nullable for class IntegrationEventV2Response.");
-
-            if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class IntegrationEventV2Response.");
-
             return new IntegrationEventV2Response(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, loyalty, triggeredCampaigns, ruleFailureReasons, awardedGiveaways, varEvent);
         }
 

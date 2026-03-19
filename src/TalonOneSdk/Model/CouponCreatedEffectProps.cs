@@ -140,12 +140,6 @@ namespace TalonOneSdk.Model
             if (!profileId.IsSet)
                 throw new ArgumentException("Property is required for class CouponCreatedEffectProps.", nameof(profileId));
 
-            if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class CouponCreatedEffectProps.");
-
-            if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class CouponCreatedEffectProps.");
-
             return new CouponCreatedEffectProps(value.Value, profileId.Value);
         }
 

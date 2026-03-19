@@ -154,12 +154,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (transactionUUIDs.IsSet && transactionUUIDs.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUIDs), "Property is not nullable for class ActivateLoyaltyPoints.");
-
-            if (sessionId.IsSet && sessionId.Value == null)
-                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class ActivateLoyaltyPoints.");
-
             return new ActivateLoyaltyPoints(transactionUUIDs, sessionId);
         }
 

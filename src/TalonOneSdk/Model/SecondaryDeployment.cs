@@ -395,21 +395,6 @@ namespace TalonOneSdk.Model
             if (!createdAt.IsSet)
                 throw new ArgumentException("Property is required for class SecondaryDeployment.", nameof(createdAt));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class SecondaryDeployment.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SecondaryDeployment.");
-
-            if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class SecondaryDeployment.");
-
-            if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class SecondaryDeployment.");
-
-            if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class SecondaryDeployment.");
-
             if (activeAt.IsSet && activeAt.Value == null)
                 throw new ArgumentNullException(nameof(activeAt), "Property is not nullable for class SecondaryDeployment.");
 

@@ -438,36 +438,6 @@ namespace TalonOneSdk.Model
             if (!enabled.IsSet)
                 throw new ArgumentException("Property is required for class NewWebhook.", nameof(enabled));
 
-            if (applicationIds.IsSet && applicationIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class NewWebhook.");
-
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewWebhook.");
-
-            if (draft.IsSet && draft.Value == null)
-                throw new ArgumentNullException(nameof(draft), "Property is not nullable for class NewWebhook.");
-
-            if (verb.IsSet && verb.Value == null)
-                throw new ArgumentNullException(nameof(verb), "Property is not nullable for class NewWebhook.");
-
-            if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class NewWebhook.");
-
-            if (headers.IsSet && headers.Value == null)
-                throw new ArgumentNullException(nameof(headers), "Property is not nullable for class NewWebhook.");
-
-            if (varParams.IsSet && varParams.Value == null)
-                throw new ArgumentNullException(nameof(varParams), "Property is not nullable for class NewWebhook.");
-
-            if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class NewWebhook.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class NewWebhook.");
-
-            if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class NewWebhook.");
-
             if (authenticationId.IsSet && authenticationId.Value == null)
                 throw new ArgumentNullException(nameof(authenticationId), "Property is not nullable for class NewWebhook.");
 

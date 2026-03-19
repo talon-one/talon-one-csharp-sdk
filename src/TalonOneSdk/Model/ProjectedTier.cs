@@ -168,14 +168,8 @@ namespace TalonOneSdk.Model
             if (!projectedActivePoints.IsSet)
                 throw new ArgumentException("Property is required for class ProjectedTier.", nameof(projectedActivePoints));
 
-            if (projectedActivePoints.IsSet && projectedActivePoints.Value == null)
-                throw new ArgumentNullException(nameof(projectedActivePoints), "Property is not nullable for class ProjectedTier.");
-
             if (stayInTierPoints.IsSet && stayInTierPoints.Value == null)
                 throw new ArgumentNullException(nameof(stayInTierPoints), "Property is not nullable for class ProjectedTier.");
-
-            if (projectedTierName.IsSet && projectedTierName.Value == null)
-                throw new ArgumentNullException(nameof(projectedTierName), "Property is not nullable for class ProjectedTier.");
 
             return new ProjectedTier(projectedActivePoints.Value.Value, stayInTierPoints, projectedTierName);
         }

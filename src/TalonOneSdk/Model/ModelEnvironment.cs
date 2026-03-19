@@ -422,54 +422,6 @@ namespace TalonOneSdk.Model
             if (!variables.IsSet)
                 throw new ArgumentException("Property is required for class ModelEnvironment.", nameof(variables));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ModelEnvironment.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ModelEnvironment.");
-
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ModelEnvironment.");
-
-            if (slots.IsSet && slots.Value == null)
-                throw new ArgumentNullException(nameof(slots), "Property is not nullable for class ModelEnvironment.");
-
-            if (functions.IsSet && functions.Value == null)
-                throw new ArgumentNullException(nameof(functions), "Property is not nullable for class ModelEnvironment.");
-
-            if (templates.IsSet && templates.Value == null)
-                throw new ArgumentNullException(nameof(templates), "Property is not nullable for class ModelEnvironment.");
-
-            if (variables.IsSet && variables.Value == null)
-                throw new ArgumentNullException(nameof(variables), "Property is not nullable for class ModelEnvironment.");
-
-            if (giveawaysPools.IsSet && giveawaysPools.Value == null)
-                throw new ArgumentNullException(nameof(giveawaysPools), "Property is not nullable for class ModelEnvironment.");
-
-            if (loyaltyPrograms.IsSet && loyaltyPrograms.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyPrograms), "Property is not nullable for class ModelEnvironment.");
-
-            if (achievements.IsSet && achievements.Value == null)
-                throw new ArgumentNullException(nameof(achievements), "Property is not nullable for class ModelEnvironment.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class ModelEnvironment.");
-
-            if (additionalCosts.IsSet && additionalCosts.Value == null)
-                throw new ArgumentNullException(nameof(additionalCosts), "Property is not nullable for class ModelEnvironment.");
-
-            if (audiences.IsSet && audiences.Value == null)
-                throw new ArgumentNullException(nameof(audiences), "Property is not nullable for class ModelEnvironment.");
-
-            if (collections.IsSet && collections.Value == null)
-                throw new ArgumentNullException(nameof(collections), "Property is not nullable for class ModelEnvironment.");
-
-            if (applicationCartItemFilters.IsSet && applicationCartItemFilters.Value == null)
-                throw new ArgumentNullException(nameof(applicationCartItemFilters), "Property is not nullable for class ModelEnvironment.");
-
-            if (priceTypes.IsSet && priceTypes.Value == null)
-                throw new ArgumentNullException(nameof(priceTypes), "Property is not nullable for class ModelEnvironment.");
-
             return new ModelEnvironment(id.Value.Value, created.Value.Value, applicationId.Value.Value, slots.Value, functions.Value, templates.Value, variables.Value, giveawaysPools, loyaltyPrograms, achievements, attributes, additionalCosts, audiences, collections, applicationCartItemFilters, priceTypes);
         }
 

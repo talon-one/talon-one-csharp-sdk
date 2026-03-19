@@ -316,17 +316,8 @@ namespace TalonOneSdk.Model
             if (negativePoints.IsSet && negativePoints.Value == null)
                 throw new ArgumentNullException(nameof(negativePoints), "Property is not nullable for class LoyaltyBalanceWithTier.");
 
-            if (currentTier.IsSet && currentTier.Value == null)
-                throw new ArgumentNullException(nameof(currentTier), "Property is not nullable for class LoyaltyBalanceWithTier.");
-
-            if (projectedTier.IsSet && projectedTier.Value == null)
-                throw new ArgumentNullException(nameof(projectedTier), "Property is not nullable for class LoyaltyBalanceWithTier.");
-
             if (pointsToNextTier.IsSet && pointsToNextTier.Value == null)
                 throw new ArgumentNullException(nameof(pointsToNextTier), "Property is not nullable for class LoyaltyBalanceWithTier.");
-
-            if (nextTierName.IsSet && nextTierName.Value == null)
-                throw new ArgumentNullException(nameof(nextTierName), "Property is not nullable for class LoyaltyBalanceWithTier.");
 
             return new LoyaltyBalanceWithTier(activePoints, pendingPoints, spentPoints, expiredPoints, negativePoints, currentTier, projectedTier, pointsToNextTier, nextTierName);
         }

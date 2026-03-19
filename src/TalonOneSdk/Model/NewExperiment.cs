@@ -139,12 +139,6 @@ namespace TalonOneSdk.Model
             if (!campaign.IsSet)
                 throw new ArgumentException("Property is required for class NewExperiment.", nameof(campaign));
 
-            if (isVariantAssignmentExternal.IsSet && isVariantAssignmentExternal.Value == null)
-                throw new ArgumentNullException(nameof(isVariantAssignmentExternal), "Property is not nullable for class NewExperiment.");
-
-            if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class NewExperiment.");
-
             return new NewExperiment(isVariantAssignmentExternal.Value.Value, campaign.Value);
         }
 

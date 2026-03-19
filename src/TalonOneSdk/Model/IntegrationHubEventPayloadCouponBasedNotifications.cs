@@ -511,33 +511,6 @@ namespace TalonOneSdk.Model
             if (!employeeName.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.", nameof(employeeName));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
-
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
-
-            if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
-
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
-
-            if (usageCounter.IsSet && usageCounter.Value == null)
-                throw new ArgumentNullException(nameof(usageCounter), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
-
-            if (publishedAt.IsSet && publishedAt.Value == null)
-                throw new ArgumentNullException(nameof(publishedAt), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
-
-            if (sourceOfEvent.IsSet && sourceOfEvent.Value == null)
-                throw new ArgumentNullException(nameof(sourceOfEvent), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
-
-            if (employeeName.IsSet && employeeName.Value == null)
-                throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
-
             if (discountLimit.IsSet && discountLimit.Value == null)
                 throw new ArgumentNullException(nameof(discountLimit), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
 
@@ -559,20 +532,8 @@ namespace TalonOneSdk.Model
             if (referralId.IsSet && referralId.Value == null)
                 throw new ArgumentNullException(nameof(referralId), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
 
-            if (recipientIntegrationId.IsSet && recipientIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(recipientIntegrationId), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
-
             if (importId.IsSet && importId.Value == null)
                 throw new ArgumentNullException(nameof(importId), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
-
-            if (batchId.IsSet && batchId.Value == null)
-                throw new ArgumentNullException(nameof(batchId), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
-
-            if (limits.IsSet && limits.Value == null)
-                throw new ArgumentNullException(nameof(limits), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
 
             return new IntegrationHubEventPayloadCouponBasedNotifications(id.Value.Value, created.Value.Value, campaignId.Value.Value, value.Value, usageLimit.Value.Value, usageCounter.Value.Value, publishedAt.Value.Value, sourceOfEvent.Value, employeeName.Value, discountLimit, reservationLimit, startDate, expiryDate, discountCounter, discountRemainder, referralId, recipientIntegrationId, importId, batchId, attributes, limits);
         }

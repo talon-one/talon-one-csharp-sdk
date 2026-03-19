@@ -140,9 +140,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (storeIntegrationId.IsSet && storeIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(storeIntegrationId), "Property is not nullable for class IntegrationStoreEntity.");
-
             return new IntegrationStoreEntity(storeIntegrationId);
         }
 

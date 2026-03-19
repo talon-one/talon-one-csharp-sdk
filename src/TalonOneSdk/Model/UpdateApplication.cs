@@ -731,26 +731,8 @@ namespace TalonOneSdk.Model
             if (!currency.IsSet)
                 throw new ArgumentException("Property is required for class UpdateApplication.", nameof(currency));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateApplication.");
-
-            if (timezone.IsSet && timezone.Value == null)
-                throw new ArgumentNullException(nameof(timezone), "Property is not nullable for class UpdateApplication.");
-
-            if (currency.IsSet && currency.Value == null)
-                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class UpdateApplication.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class UpdateApplication.");
-
             if (caseSensitivity.IsSet && caseSensitivity.Value == null)
                 throw new ArgumentNullException(nameof(caseSensitivity), "Property is not nullable for class UpdateApplication.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class UpdateApplication.");
-
-            if (limits.IsSet && limits.Value == null)
-                throw new ArgumentNullException(nameof(limits), "Property is not nullable for class UpdateApplication.");
 
             if (defaultDiscountScope.IsSet && defaultDiscountScope.Value == null)
                 throw new ArgumentNullException(nameof(defaultDiscountScope), "Property is not nullable for class UpdateApplication.");
@@ -760,9 +742,6 @@ namespace TalonOneSdk.Model
 
             if (enableFlattenedCartItems.IsSet && enableFlattenedCartItems.Value == null)
                 throw new ArgumentNullException(nameof(enableFlattenedCartItems), "Property is not nullable for class UpdateApplication.");
-
-            if (attributesSettings.IsSet && attributesSettings.Value == null)
-                throw new ArgumentNullException(nameof(attributesSettings), "Property is not nullable for class UpdateApplication.");
 
             if (sandbox.IsSet && sandbox.Value == null)
                 throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class UpdateApplication.");

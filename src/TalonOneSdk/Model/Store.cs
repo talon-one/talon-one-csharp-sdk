@@ -310,33 +310,6 @@ namespace TalonOneSdk.Model
             if (!updated.IsSet)
                 throw new ArgumentException("Property is required for class Store.", nameof(updated));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Store.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Store.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Store.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class Store.");
-
-            if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class Store.");
-
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class Store.");
-
-            if (updated.IsSet && updated.Value == null)
-                throw new ArgumentNullException(nameof(updated), "Property is not nullable for class Store.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class Store.");
-
-            if (linkedCampaignIds.IsSet && linkedCampaignIds.Value == null)
-                throw new ArgumentNullException(nameof(linkedCampaignIds), "Property is not nullable for class Store.");
-
             return new Store(id.Value.Value, created.Value.Value, name.Value, description.Value, integrationId.Value, applicationId.Value.Value, updated.Value.Value, attributes, linkedCampaignIds);
         }
 

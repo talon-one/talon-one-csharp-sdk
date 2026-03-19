@@ -534,17 +534,8 @@ namespace TalonOneSdk.Model
             if (redeemed.IsSet && redeemed.Value == null)
                 throw new ArgumentNullException(nameof(redeemed), "Property is not nullable for class CouponDeletionFilters.");
 
-            if (recipientIntegrationId.IsSet && recipientIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(recipientIntegrationId), "Property is not nullable for class CouponDeletionFilters.");
-
             if (exactMatch.IsSet && exactMatch.Value == null)
                 throw new ArgumentNullException(nameof(exactMatch), "Property is not nullable for class CouponDeletionFilters.");
-
-            if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class CouponDeletionFilters.");
-
-            if (batchId.IsSet && batchId.Value == null)
-                throw new ArgumentNullException(nameof(batchId), "Property is not nullable for class CouponDeletionFilters.");
 
             if (referralId.IsSet && referralId.Value == null)
                 throw new ArgumentNullException(nameof(referralId), "Property is not nullable for class CouponDeletionFilters.");

@@ -341,39 +341,6 @@ namespace TalonOneSdk.Model
             if (!amount.IsSet)
                 throw new ArgumentException("Property is required for class LedgerPointsEntryIntegrationAPI.", nameof(amount));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
-
-            if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
-
-            if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
-
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
-
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
-
-            if (subledgerId.IsSet && subledgerId.Value == null)
-                throw new ArgumentNullException(nameof(subledgerId), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
-
-            if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
-
-            if (customerSessionId.IsSet && customerSessionId.Value == null)
-                throw new ArgumentNullException(nameof(customerSessionId), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
-
-            if (validityDuration.IsSet && validityDuration.Value == null)
-                throw new ArgumentNullException(nameof(validityDuration), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
-
             return new LedgerPointsEntryIntegrationAPI(id.Value.Value, transactionUUID.Value, created.Value.Value, programId.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, amount.Value.Value, customerSessionId, validityDuration);
         }
 

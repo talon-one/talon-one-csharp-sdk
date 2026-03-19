@@ -269,12 +269,6 @@ namespace TalonOneSdk.Model
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class FuncArgDef.", nameof(type));
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class FuncArgDef.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class FuncArgDef.");
-
             return new FuncArgDef(type.Value.Value, description);
         }
 

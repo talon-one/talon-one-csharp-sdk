@@ -180,9 +180,6 @@ namespace TalonOneSdk.Model
             if (createdAt.IsSet && createdAt.Value == null)
                 throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class MessageLogResponse.");
 
-            if (response.IsSet && response.Value == null)
-                throw new ArgumentNullException(nameof(response), "Property is not nullable for class MessageLogResponse.");
-
             if (status.IsSet && status.Value == null)
                 throw new ArgumentNullException(nameof(status), "Property is not nullable for class MessageLogResponse.");
 

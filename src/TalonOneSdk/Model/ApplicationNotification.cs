@@ -123,9 +123,6 @@ namespace TalonOneSdk.Model
             if (!varEvent.IsSet)
                 throw new ArgumentException("Property is required for class ApplicationNotification.", nameof(varEvent));
 
-            if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class ApplicationNotification.");
-
             return new ApplicationNotification(varEvent.Value);
         }
 

@@ -279,17 +279,8 @@ namespace TalonOneSdk.Model
             if (!numberOfCards.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyCardBatch.", nameof(numberOfCards));
 
-            if (numberOfCards.IsSet && numberOfCards.Value == null)
-                throw new ArgumentNullException(nameof(numberOfCards), "Property is not nullable for class LoyaltyCardBatch.");
-
-            if (batchId.IsSet && batchId.Value == null)
-                throw new ArgumentNullException(nameof(batchId), "Property is not nullable for class LoyaltyCardBatch.");
-
             if (status.IsSet && status.Value == null)
                 throw new ArgumentNullException(nameof(status), "Property is not nullable for class LoyaltyCardBatch.");
-
-            if (cardCodeSettings.IsSet && cardCodeSettings.Value == null)
-                throw new ArgumentNullException(nameof(cardCodeSettings), "Property is not nullable for class LoyaltyCardBatch.");
 
             return new LoyaltyCardBatch(numberOfCards.Value.Value, batchId, status, cardCodeSettings);
         }

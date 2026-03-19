@@ -196,18 +196,6 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class UpdateCampaignGroup.", nameof(name));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateCampaignGroup.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class UpdateCampaignGroup.");
-
-            if (subscribedApplicationsIds.IsSet && subscribedApplicationsIds.Value == null)
-                throw new ArgumentNullException(nameof(subscribedApplicationsIds), "Property is not nullable for class UpdateCampaignGroup.");
-
-            if (campaignIds.IsSet && campaignIds.Value == null)
-                throw new ArgumentNullException(nameof(campaignIds), "Property is not nullable for class UpdateCampaignGroup.");
-
             return new UpdateCampaignGroup(name.Value, description, subscribedApplicationsIds, campaignIds);
         }
 

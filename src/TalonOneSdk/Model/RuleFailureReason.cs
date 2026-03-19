@@ -383,32 +383,11 @@ namespace TalonOneSdk.Model
             if (!ruleName.IsSet)
                 throw new ArgumentException("Property is required for class RuleFailureReason.", nameof(ruleName));
 
-            if (campaignID.IsSet && campaignID.Value == null)
-                throw new ArgumentNullException(nameof(campaignID), "Property is not nullable for class RuleFailureReason.");
-
-            if (campaignName.IsSet && campaignName.Value == null)
-                throw new ArgumentNullException(nameof(campaignName), "Property is not nullable for class RuleFailureReason.");
-
-            if (rulesetID.IsSet && rulesetID.Value == null)
-                throw new ArgumentNullException(nameof(rulesetID), "Property is not nullable for class RuleFailureReason.");
-
-            if (ruleIndex.IsSet && ruleIndex.Value == null)
-                throw new ArgumentNullException(nameof(ruleIndex), "Property is not nullable for class RuleFailureReason.");
-
-            if (ruleName.IsSet && ruleName.Value == null)
-                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class RuleFailureReason.");
-
             if (couponID.IsSet && couponID.Value == null)
                 throw new ArgumentNullException(nameof(couponID), "Property is not nullable for class RuleFailureReason.");
 
-            if (couponValue.IsSet && couponValue.Value == null)
-                throw new ArgumentNullException(nameof(couponValue), "Property is not nullable for class RuleFailureReason.");
-
             if (referralID.IsSet && referralID.Value == null)
                 throw new ArgumentNullException(nameof(referralID), "Property is not nullable for class RuleFailureReason.");
-
-            if (referralValue.IsSet && referralValue.Value == null)
-                throw new ArgumentNullException(nameof(referralValue), "Property is not nullable for class RuleFailureReason.");
 
             if (conditionIndex.IsSet && conditionIndex.Value == null)
                 throw new ArgumentNullException(nameof(conditionIndex), "Property is not nullable for class RuleFailureReason.");
@@ -416,14 +395,8 @@ namespace TalonOneSdk.Model
             if (effectIndex.IsSet && effectIndex.Value == null)
                 throw new ArgumentNullException(nameof(effectIndex), "Property is not nullable for class RuleFailureReason.");
 
-            if (details.IsSet && details.Value == null)
-                throw new ArgumentNullException(nameof(details), "Property is not nullable for class RuleFailureReason.");
-
             if (evaluationGroupID.IsSet && evaluationGroupID.Value == null)
                 throw new ArgumentNullException(nameof(evaluationGroupID), "Property is not nullable for class RuleFailureReason.");
-
-            if (evaluationGroupMode.IsSet && evaluationGroupMode.Value == null)
-                throw new ArgumentNullException(nameof(evaluationGroupMode), "Property is not nullable for class RuleFailureReason.");
 
             return new RuleFailureReason(campaignID.Value.Value, campaignName.Value, rulesetID.Value.Value, ruleIndex.Value.Value, ruleName.Value, couponID, couponValue, referralID, referralValue, conditionIndex, effectIndex, details, evaluationGroupID, evaluationGroupMode);
         }

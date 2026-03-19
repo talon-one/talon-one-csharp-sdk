@@ -372,21 +372,6 @@ namespace TalonOneSdk.Model
             if (!ui.IsSet)
                 throw new ArgumentException("Property is required for class TemplateArgDef.", nameof(ui));
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class TemplateArgDef.");
-
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class TemplateArgDef.");
-
-            if (ui.IsSet && ui.Value == null)
-                throw new ArgumentNullException(nameof(ui), "Property is not nullable for class TemplateArgDef.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class TemplateArgDef.");
-
-            if (key.IsSet && key.Value == null)
-                throw new ArgumentNullException(nameof(key), "Property is not nullable for class TemplateArgDef.");
-
             if (picklistID.IsSet && picklistID.Value == null)
                 throw new ArgumentNullException(nameof(picklistID), "Property is not nullable for class TemplateArgDef.");
 

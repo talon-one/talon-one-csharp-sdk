@@ -193,18 +193,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (applications.IsSet && applications.Value == null)
-                throw new ArgumentNullException(nameof(applications), "Property is not nullable for class RoleV2RolesGroup.");
-
-            if (loyaltyPrograms.IsSet && loyaltyPrograms.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyPrograms), "Property is not nullable for class RoleV2RolesGroup.");
-
-            if (campaignAccessGroups.IsSet && campaignAccessGroups.Value == null)
-                throw new ArgumentNullException(nameof(campaignAccessGroups), "Property is not nullable for class RoleV2RolesGroup.");
-
-            if (account.IsSet && account.Value == null)
-                throw new ArgumentNullException(nameof(account), "Property is not nullable for class RoleV2RolesGroup.");
-
             return new RoleV2RolesGroup(applications, loyaltyPrograms, campaignAccessGroups, account);
         }
 

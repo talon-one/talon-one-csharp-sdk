@@ -124,9 +124,6 @@ namespace TalonOneSdk.Model
             if (!sessionId.IsSet)
                 throw new ArgumentException("Property is required for class ApplicationSessionEntity.", nameof(sessionId));
 
-            if (sessionId.IsSet && sessionId.Value == null)
-                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class ApplicationSessionEntity.");
-
             return new ApplicationSessionEntity(sessionId.Value.Value);
         }
 

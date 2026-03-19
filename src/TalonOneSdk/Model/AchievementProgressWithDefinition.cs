@@ -718,33 +718,6 @@ namespace TalonOneSdk.Model
             if (!achievementActivationPolicy.IsSet)
                 throw new ArgumentException("Property is required for class AchievementProgressWithDefinition.", nameof(achievementActivationPolicy));
 
-            if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class AchievementProgressWithDefinition.");
-
-            if (progress.IsSet && progress.Value == null)
-                throw new ArgumentNullException(nameof(progress), "Property is not nullable for class AchievementProgressWithDefinition.");
-
-            if (achievementId.IsSet && achievementId.Value == null)
-                throw new ArgumentNullException(nameof(achievementId), "Property is not nullable for class AchievementProgressWithDefinition.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AchievementProgressWithDefinition.");
-
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class AchievementProgressWithDefinition.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class AchievementProgressWithDefinition.");
-
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class AchievementProgressWithDefinition.");
-
-            if (achievementRecurrencePolicy.IsSet && achievementRecurrencePolicy.Value == null)
-                throw new ArgumentNullException(nameof(achievementRecurrencePolicy), "Property is not nullable for class AchievementProgressWithDefinition.");
-
-            if (achievementActivationPolicy.IsSet && achievementActivationPolicy.Value == null)
-                throw new ArgumentNullException(nameof(achievementActivationPolicy), "Property is not nullable for class AchievementProgressWithDefinition.");
-
             if (startDate.IsSet && startDate.Value == null)
                 throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class AchievementProgressWithDefinition.");
 

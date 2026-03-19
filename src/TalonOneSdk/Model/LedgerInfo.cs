@@ -305,21 +305,6 @@ namespace TalonOneSdk.Model
             if (!tentativeCurrentBalance.IsSet)
                 throw new ArgumentException("Property is required for class LedgerInfo.", nameof(tentativeCurrentBalance));
 
-            if (currentBalance.IsSet && currentBalance.Value == null)
-                throw new ArgumentNullException(nameof(currentBalance), "Property is not nullable for class LedgerInfo.");
-
-            if (pendingBalance.IsSet && pendingBalance.Value == null)
-                throw new ArgumentNullException(nameof(pendingBalance), "Property is not nullable for class LedgerInfo.");
-
-            if (expiredBalance.IsSet && expiredBalance.Value == null)
-                throw new ArgumentNullException(nameof(expiredBalance), "Property is not nullable for class LedgerInfo.");
-
-            if (spentBalance.IsSet && spentBalance.Value == null)
-                throw new ArgumentNullException(nameof(spentBalance), "Property is not nullable for class LedgerInfo.");
-
-            if (tentativeCurrentBalance.IsSet && tentativeCurrentBalance.Value == null)
-                throw new ArgumentNullException(nameof(tentativeCurrentBalance), "Property is not nullable for class LedgerInfo.");
-
             if (negativeBalance.IsSet && negativeBalance.Value == null)
                 throw new ArgumentNullException(nameof(negativeBalance), "Property is not nullable for class LedgerInfo.");
 
@@ -328,9 +313,6 @@ namespace TalonOneSdk.Model
 
             if (tentativeNegativeBalance.IsSet && tentativeNegativeBalance.Value == null)
                 throw new ArgumentNullException(nameof(tentativeNegativeBalance), "Property is not nullable for class LedgerInfo.");
-
-            if (currentTier.IsSet && currentTier.Value == null)
-                throw new ArgumentNullException(nameof(currentTier), "Property is not nullable for class LedgerInfo.");
 
             if (pointsToNextTier.IsSet && pointsToNextTier.Value == null)
                 throw new ArgumentNullException(nameof(pointsToNextTier), "Property is not nullable for class LedgerInfo.");

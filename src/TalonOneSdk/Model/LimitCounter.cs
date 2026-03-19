@@ -413,50 +413,14 @@ namespace TalonOneSdk.Model
             if (!counter.IsSet)
                 throw new ArgumentException("Property is required for class LimitCounter.", nameof(counter));
 
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class LimitCounter.");
-
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class LimitCounter.");
-
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class LimitCounter.");
-
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LimitCounter.");
-
-            if (action.IsSet && action.Value == null)
-                throw new ArgumentNullException(nameof(action), "Property is not nullable for class LimitCounter.");
-
-            if (limit.IsSet && limit.Value == null)
-                throw new ArgumentNullException(nameof(limit), "Property is not nullable for class LimitCounter.");
-
-            if (counter.IsSet && counter.Value == null)
-                throw new ArgumentNullException(nameof(counter), "Property is not nullable for class LimitCounter.");
-
             if (profileId.IsSet && profileId.Value == null)
                 throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class LimitCounter.");
-
-            if (profileIntegrationId.IsSet && profileIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationId), "Property is not nullable for class LimitCounter.");
 
             if (couponId.IsSet && couponId.Value == null)
                 throw new ArgumentNullException(nameof(couponId), "Property is not nullable for class LimitCounter.");
 
-            if (couponValue.IsSet && couponValue.Value == null)
-                throw new ArgumentNullException(nameof(couponValue), "Property is not nullable for class LimitCounter.");
-
             if (referralId.IsSet && referralId.Value == null)
                 throw new ArgumentNullException(nameof(referralId), "Property is not nullable for class LimitCounter.");
-
-            if (referralValue.IsSet && referralValue.Value == null)
-                throw new ArgumentNullException(nameof(referralValue), "Property is not nullable for class LimitCounter.");
-
-            if (identifier.IsSet && identifier.Value == null)
-                throw new ArgumentNullException(nameof(identifier), "Property is not nullable for class LimitCounter.");
-
-            if (period.IsSet && period.Value == null)
-                throw new ArgumentNullException(nameof(period), "Property is not nullable for class LimitCounter.");
 
             return new LimitCounter(campaignId.Value.Value, applicationId.Value.Value, accountId.Value.Value, id.Value.Value, action.Value, limit.Value.Value, counter.Value.Value, profileId, profileIntegrationId, couponId, couponValue, referralId, referralValue, identifier, period);
         }

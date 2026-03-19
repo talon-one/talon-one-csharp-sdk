@@ -210,24 +210,6 @@ namespace TalonOneSdk.Model
             if (!target.IsSet)
                 throw new ArgumentException("Property is required for class RollbackIncreasedAchievementProgressEffectProps.", nameof(target));
 
-            if (achievementId.IsSet && achievementId.Value == null)
-                throw new ArgumentNullException(nameof(achievementId), "Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps.");
-
-            if (achievementName.IsSet && achievementName.Value == null)
-                throw new ArgumentNullException(nameof(achievementName), "Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps.");
-
-            if (progressTrackerId.IsSet && progressTrackerId.Value == null)
-                throw new ArgumentNullException(nameof(progressTrackerId), "Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps.");
-
-            if (decreaseProgressBy.IsSet && decreaseProgressBy.Value == null)
-                throw new ArgumentNullException(nameof(decreaseProgressBy), "Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps.");
-
-            if (currentProgress.IsSet && currentProgress.Value == null)
-                throw new ArgumentNullException(nameof(currentProgress), "Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps.");
-
-            if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps.");
-
             return new RollbackIncreasedAchievementProgressEffectProps(achievementId.Value.Value, achievementName.Value, progressTrackerId.Value.Value, decreaseProgressBy.Value.Value, currentProgress.Value.Value, target.Value.Value);
         }
 

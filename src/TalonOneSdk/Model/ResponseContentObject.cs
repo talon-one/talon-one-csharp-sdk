@@ -271,9 +271,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (responseContent.IsSet && responseContent.Value == null)
-                throw new ArgumentNullException(nameof(responseContent), "Property is not nullable for class ResponseContentObject.");
-
             return new ResponseContentObject(responseContent);
         }
 

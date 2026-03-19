@@ -186,18 +186,6 @@ namespace TalonOneSdk.Model
             if (!sandbox.IsSet)
                 throw new ArgumentException("Property is required for class NewGiveawaysPool.", nameof(sandbox));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewGiveawaysPool.");
-
-            if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class NewGiveawaysPool.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class NewGiveawaysPool.");
-
-            if (subscribedApplicationsIds.IsSet && subscribedApplicationsIds.Value == null)
-                throw new ArgumentNullException(nameof(subscribedApplicationsIds), "Property is not nullable for class NewGiveawaysPool.");
-
             return new NewGiveawaysPool(name.Value, sandbox.Value.Value, description, subscribedApplicationsIds);
         }
 

@@ -152,9 +152,6 @@ namespace TalonOneSdk.Model
             if (applicationCartItemFilterId.IsSet && applicationCartItemFilterId.Value == null)
                 throw new ArgumentNullException(nameof(applicationCartItemFilterId), "Property is not nullable for class ApplicationCIFReferences.");
 
-            if (campaigns.IsSet && campaigns.Value == null)
-                throw new ArgumentNullException(nameof(campaigns), "Property is not nullable for class ApplicationCIFReferences.");
-
             return new ApplicationCIFReferences(applicationCartItemFilterId, campaigns);
         }
 

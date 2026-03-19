@@ -148,12 +148,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (campaigns.IsSet && campaigns.Value == null)
-                throw new ArgumentNullException(nameof(campaigns), "Property is not nullable for class AttributesMandatory.");
-
-            if (coupons.IsSet && coupons.Value == null)
-                throw new ArgumentNullException(nameof(coupons), "Property is not nullable for class AttributesMandatory.");
-
             return new AttributesMandatory(campaigns, coupons);
         }
 

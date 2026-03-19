@@ -248,20 +248,11 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ExperimentCampaignCopy.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class ExperimentCampaignCopy.");
-
             if (startTime.IsSet && startTime.Value == null)
                 throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class ExperimentCampaignCopy.");
 
             if (endTime.IsSet && endTime.Value == null)
                 throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class ExperimentCampaignCopy.");
-
-            if (tags.IsSet && tags.Value == null)
-                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class ExperimentCampaignCopy.");
 
             if (evaluationGroupId.IsSet && evaluationGroupId.Value == null)
                 throw new ArgumentNullException(nameof(evaluationGroupId), "Property is not nullable for class ExperimentCampaignCopy.");

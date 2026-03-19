@@ -62,6 +62,24 @@ jobs:
             }');
           export TALON_APPLICATION_ID=$(echo $APPLICATION_RESPONSE | jq ".id");
           echo "Application with ID $TALON_APPLICATION_ID was created"
+          ATTRIBUTE_RESPONSE=$(curl -s --location "http://localhost:9000/v1/attributes" \
+            --header "Content-Type: application/json" \
+            --header "Authorization: Bearer $TALON_USER_TOKEN" \
+            --data-raw '{
+                "entity": "CustomerSession",
+                "name": "shippingPostalCode",
+                "title": "Shipping Postal Code",
+                "type": "string",
+                "description": "Postal code used by the generated example for customer session attribute tests.",
+                "suggestions": [],
+                "editable": true
+            }');
+          echo "Attribute response: $ATTRIBUTE_RESPONSE";
+          export TALON_ATTRIBUTE_ID=$(echo $ATTRIBUTE_RESPONSE | jq ".id");
+          if [ "$TALON_ATTRIBUTE_ID" = "null" ]; then
+            echo "Failed to create shippingPostalCode attribute";
+            exit 1;
+          fi
           API_KEY_RESPONSE=$(curl -s -v --location "http://localhost:9000/v1/applications/$TALON_APPLICATION_ID/apikeys" \
             --header "Content-Type: application/json" \
             --header "Authorization: Bearer $TALON_USER_TOKEN" \

@@ -145,12 +145,6 @@ namespace TalonOneSdk.Model
             if (!priceTypeId.IsSet)
                 throw new ArgumentException("Property is required for class PriceTypeReferences.", nameof(priceTypeId));
 
-            if (priceTypeId.IsSet && priceTypeId.Value == null)
-                throw new ArgumentNullException(nameof(priceTypeId), "Property is not nullable for class PriceTypeReferences.");
-
-            if (references.IsSet && references.Value == null)
-                throw new ArgumentNullException(nameof(references), "Property is not nullable for class PriceTypeReferences.");
-
             return new PriceTypeReferences(priceTypeId.Value.Value, references);
         }
 

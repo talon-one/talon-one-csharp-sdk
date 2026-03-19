@@ -274,27 +274,6 @@ namespace TalonOneSdk.Model
             if (!subledgerID.IsSet)
                 throw new ArgumentException("Property is required for class TierDowngradeData.", nameof(subledgerID));
 
-            if (customerProfileID.IsSet && customerProfileID.Value == null)
-                throw new ArgumentNullException(nameof(customerProfileID), "Property is not nullable for class TierDowngradeData.");
-
-            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class TierDowngradeData.");
-
-            if (currentPoints.IsSet && currentPoints.Value == null)
-                throw new ArgumentNullException(nameof(currentPoints), "Property is not nullable for class TierDowngradeData.");
-
-            if (oldTier.IsSet && oldTier.Value == null)
-                throw new ArgumentNullException(nameof(oldTier), "Property is not nullable for class TierDowngradeData.");
-
-            if (timestampOfTierChange.IsSet && timestampOfTierChange.Value == null)
-                throw new ArgumentNullException(nameof(timestampOfTierChange), "Property is not nullable for class TierDowngradeData.");
-
-            if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class TierDowngradeData.");
-
-            if (currentTier.IsSet && currentTier.Value == null)
-                throw new ArgumentNullException(nameof(currentTier), "Property is not nullable for class TierDowngradeData.");
-
             if (tierExpirationDate.IsSet && tierExpirationDate.Value == null)
                 throw new ArgumentNullException(nameof(tierExpirationDate), "Property is not nullable for class TierDowngradeData.");
 

@@ -206,7 +206,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -234,7 +234,7 @@ Add points to the given loyalty card in the specified card-based loyalty program
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **loyaltyProgramId** | **long** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  |  |
+| **loyaltyProgramId** | **long** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  |  |
 | **loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  |  |
 | **addLoyaltyPoints** | [**AddLoyaltyPoints**](AddLoyaltyPoints.md) | body |  |
 
@@ -244,7 +244,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -285,7 +285,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -326,7 +326,7 @@ Copy the campaign into all specified Applications.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -362,7 +362,7 @@ Create an account-level collection.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -403,7 +403,7 @@ Create a new achievement in a specific campaign.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -442,7 +442,7 @@ Create an [additional cost](https://docs.talon.one/docs/product/account/dev-tool
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -478,7 +478,7 @@ Create a _custom attribute_ in this account. [Custom attributes](https://docs.ta
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -515,7 +515,7 @@ Create a batch of loyalty cards in a specified [card-based loyalty program](http
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -555,7 +555,7 @@ Use the campaign template referenced in the request body to create a new campaig
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -593,7 +593,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -633,7 +633,7 @@ Create a campaign-level collection in a given campaign.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -672,7 +672,7 @@ Create coupons according to some pattern. Up to 20.000 coupons can be created wi
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -711,7 +711,7 @@ Create up to 5,000,000 coupons asynchronously. You should typically use this enp
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -749,7 +749,7 @@ This endpoint handles creating a job to delete coupons asynchronously.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -788,7 +788,7 @@ Create coupons according to some pattern for up to 1000 recipients.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -825,7 +825,7 @@ Resend an email invitation to an existing user.  **Note:** The invitation token 
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -861,7 +861,7 @@ Create a new user in the account and send an invitation to their email address. 
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -897,7 +897,7 @@ Send an email with a password recovery link to the email address of an existing 
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -933,7 +933,7 @@ Create a session to use the Management API endpoints. Use the value of the `toke
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -970,7 +970,7 @@ Create a new store in a specific Application.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1008,7 +1008,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1037,7 +1037,7 @@ Deduct points from the given loyalty card in the specified card-based loyalty pr
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **loyaltyProgramId** | **long** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  |  |
-| **loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  |  |
+| **loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  |  |
 | **deductLoyaltyPoints** | [**DeductLoyaltyPoints**](DeductLoyaltyPoints.md) | body |  |
 
 ### Return type
@@ -1046,7 +1046,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1085,7 +1085,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1124,7 +1124,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1163,7 +1163,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1202,7 +1202,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1241,7 +1241,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1280,7 +1280,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1330,7 +1330,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1359,7 +1359,7 @@ Delete the given loyalty card.
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **loyaltyProgramId** | **long** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  |  |
-| **loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  |  |
+| **loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  |  |
 
 ### Return type
 
@@ -1367,7 +1367,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1407,7 +1407,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1444,7 +1444,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1481,7 +1481,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1517,7 +1517,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1549,7 +1549,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1586,7 +1586,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1625,7 +1625,7 @@ Download a CSV file containing items from a given account-level collection.  **T
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1665,7 +1665,7 @@ Download a CSV file containing a list of all the customers who have participated
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1689,7 +1689,7 @@ Download a CSV file containing a list of all the customers who have participated
 
 Export Application analytics aggregated by campaign
 
-Download a CSV file containing analytics data aggregated by campaign for the campaigns of an Application.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `campaign_id`: The ID of the campaign. This column also contains labels for the [total and influenced values](https://docs.talon.one/docs/product/campaigns/analytics/application-dashboard#understanding-the-analytics-data). - `start_date`: The start of the aggregation time frame in UTC. - `end_date`: The end of the aggregation time frame in UTC. - `revenue`: The total, pre-discount value of all items purchased in a customer session. - `sessions`: The number of all closed sessions. - `average_session_value`: The average customer session value, calculated by dividing the revenue value by the number of sessions. - `average_items_per_session`: The number of items from sessions divided by the number of sessions. - `coupons`: The number of times a coupon was successfully redeemed in sessions. - `discounts`: The total value of discounts given for cart items in sessions. 
+Download a CSV file containing analytics data aggregated by campaign for the campaigns of an Application.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `campaign_id`: The ID of the campaign. This column also contains labels for the [total and influenced values](https://docs.talon.one/docs/product/campaigns/analytics/application-dashboard#display-the-analytics-data). - `start_date`: The start of the aggregation time frame in UTC. - `end_date`: The end of the aggregation time frame in UTC. - `revenue`: The total, pre-discount value of all items purchased in a customer session. - `sessions`: The number of all closed sessions. - `average_session_value`: The average customer session value, calculated by dividing the revenue value by the number of sessions. - `average_items_per_session`: The number of items from sessions divided by the number of sessions. - `coupons`: The number of times a coupon was successfully redeemed in sessions. - `discounts`: The total value of discounts given for cart items in sessions. 
 
 
 ### Parameters
@@ -1707,7 +1707,7 @@ Download a CSV file containing analytics data aggregated by campaign for the cam
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1743,7 +1743,7 @@ Download a CSV file containing the integration IDs of the members of an audience
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1785,7 +1785,7 @@ Download a CSV file containing the store budgets for a given campaign.  **Tip:**
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1825,7 +1825,7 @@ Download a CSV file containing the stores linked to a specific campaign.  **Tip:
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1866,7 +1866,7 @@ Download a CSV file containing items from a given campaign-level collection.  **
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1918,7 +1918,7 @@ Download a CSV file containing the coupons that match the given properties.  **T
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1959,7 +1959,7 @@ Download a CSV file containing the customer sessions that match the request.  **
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -1997,7 +1997,7 @@ Download a CSV file containing the tier information for customers of the specifi
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2037,7 +2037,7 @@ Download a CSV file containing the triggered effects that match the given attrib
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2074,7 +2074,7 @@ Export customer loyalty balance to CSV
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2113,7 +2113,7 @@ Download a CSV file containing the balance of each customer in the loyalty progr
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2136,7 +2136,7 @@ Download a CSV file containing the balance of each customer in the loyalty progr
 
 Export all card transaction logs
 
-Download a CSV file containing the balances of all cards in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subdleger, when applicatble. - `cardIdentifier`: The alphanumeric identifier of the loyalty card. - `cardState`:The state of the loyalty card. It can be `active` or `inactive`. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. 
+Download a CSV file containing the balances of all cards in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subdleger, when applicatble. - `cardIdentifier`: The identifier of the loyalty card, which must match the regular expression `^[A-Za-z0-9._%+@-]+$`. - `cardState`:The state of the loyalty card. It can be `active` or `inactive`. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. 
 
 
 ### Parameters
@@ -2152,7 +2152,7 @@ Download a CSV file containing the balances of all cards in the loyalty program.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2183,7 +2183,7 @@ Download a CSV file containing a loyalty card ledger log of the loyalty program.
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **loyaltyProgramId** | **long** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  |  |
-| **loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  |  |
+| **loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  |  |
 | **rangeStart** | **DateTime** | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  |  |
 | **rangeEnd** | **DateTime** | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  |  |
 | **dateFormat** | **string** | Determines the format of dates in the export document. | [optional]  |
@@ -2194,7 +2194,7 @@ Download a CSV file containing a loyalty card ledger log of the loyalty program.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2236,7 +2236,7 @@ Download a CSV file containing the loyalty cards from a specified loyalty progra
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2274,7 +2274,7 @@ Download a CSV file containing the join dates of all customers in the loyalty pr
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2316,7 +2316,7 @@ Download a CSV file containing a customer's transaction logs in the loyalty prog
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2354,7 +2354,7 @@ Download a CSV file containing the giveaway codes of a specific giveaway pool.  
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2398,7 +2398,7 @@ Download a CSV file containing the referrals that match the given parameters.  *
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2437,7 +2437,7 @@ Create a summary of the reasons for coupon redemption failures in a given custom
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2481,7 +2481,7 @@ Retrieve the list of API calls sent to the specified Application.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2517,7 +2517,7 @@ Return the details of your companies Talon.One account.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2553,7 +2553,7 @@ Return the analytics of your Talon.One account.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2589,7 +2589,7 @@ Retrieve a given account-level collection.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2628,7 +2628,7 @@ Get the details of a specific achievement.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2666,7 +2666,7 @@ Returns the additional cost.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2704,7 +2704,7 @@ Returns all the defined additional costs for the account.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2740,7 +2740,7 @@ Get the application specified by the ID.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2776,7 +2776,7 @@ Display the health of the Application and show the last time the Application was
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2813,7 +2813,7 @@ Retrieve the customers of the specified application.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2854,7 +2854,7 @@ List the friends referred by the specified customer profile in this Application.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2894,7 +2894,7 @@ List all the customers of the specified application.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2934,7 +2934,7 @@ Get a list of the application customers matching the provided criteria.  The mat
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -2973,7 +2973,7 @@ Get all of the distinct values of the Event `type` property for events recorded 
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3024,7 +3024,7 @@ Lists all events recorded for an application. Instead of having the total number
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3061,7 +3061,7 @@ Get the details of the given session. You can list the sessions with the [List A
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3109,7 +3109,7 @@ List all the sessions of the specified Application.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3147,7 +3147,7 @@ List all applications in the current account.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3183,7 +3183,7 @@ Retrieve the specified custom attribute.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3226,7 +3226,7 @@ Return all the custom attributes for the account.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3266,7 +3266,7 @@ Get a paginated list of the customer profiles in a given audience.  A maximum of
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3306,7 +3306,7 @@ Get all audiences created in the account. To create an audience, use [Create aud
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3343,7 +3343,7 @@ Get a list of audience IDs and their member count.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3380,7 +3380,7 @@ Retrieve the given campaign.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3420,7 +3420,7 @@ Retrieve statistical data about the performance of the given campaign.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3461,7 +3461,7 @@ Get a list of all the campaigns that match a set of attributes.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3497,7 +3497,7 @@ Get a campaign access group specified by its ID.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3535,7 +3535,7 @@ List the campaign access groups in the current account.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3577,7 +3577,7 @@ Retrieve a list of campaign templates.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3628,7 +3628,7 @@ List the campaigns of the specified application that match your filter criteria.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3675,7 +3675,7 @@ Retrieve the audit logs displayed in **Accounts > Audit logs**.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3713,7 +3713,7 @@ Retrieve a given campaign-level collection.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3752,7 +3752,7 @@ Retrieve items from a given collection.  You can retrieve items from both accoun
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3808,7 +3808,7 @@ List all the coupons matching the specified criteria.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3849,7 +3849,7 @@ Fetch the summary report of a given customer in the given application, in a time
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3894,7 +3894,7 @@ Fetch summary reports for all application customers based on a time range. Inste
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3934,7 +3934,7 @@ Fetch analytics for a given customer in the given application.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -3970,7 +3970,7 @@ Return the details of the specified customer profile.  <div class=\"redoc-sectio
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4011,7 +4011,7 @@ For the given customer profile, list all the achievements that match your filter
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4051,7 +4051,7 @@ List all customer profiles.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4090,7 +4090,7 @@ Get a list of the customer profiles matching the provided criteria.  The match i
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4129,7 +4129,7 @@ Retrieve the statistics displayed on the specified loyalty program's dashboard, 
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4169,7 +4169,7 @@ Fetch all event type definitions for your account.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4206,7 +4206,7 @@ Retrieve the given experiment associated with the Application.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4246,7 +4246,7 @@ List all past exports
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4275,7 +4275,7 @@ Get the given loyalty card.
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **loyaltyProgramId** | **long** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  |  |
-| **loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  |  |
+| **loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  |  |
 
 ### Return type
 
@@ -4283,7 +4283,7 @@ Get the given loyalty card.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4315,14 +4315,14 @@ Retrieve the transaction logs for the given [loyalty card](https://docs.talon.on
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **loyaltyProgramId** | **long** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  |  |
-| **loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  |  |
+| **loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  |  |
 | **startDate** | **DateTime** | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [optional]  |
 | **endDate** | **DateTime** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [optional]  |
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 1000] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
 | **subledgerId** | **string** | The ID of the subledger by which we filter the data. | [optional]  |
-| **customerSessionIDs** | [**List&lt;string&gt;**](string.md) | Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  | [optional]  |
-| **transactionUUIDs** | [**List&lt;string&gt;**](string.md) | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  | [optional]  |
+| **customerSessionIDs** | [**List&lt;string&gt;**](string.md) | Filter the results by a list of customer session IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  | [optional]  |
+| **transactionUUIDs** | [**List&lt;string&gt;**](string.md) | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  | [optional]  |
 
 ### Return type
 
@@ -4330,7 +4330,7 @@ Retrieve the transaction logs for the given [loyalty card](https://docs.talon.on
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4364,7 +4364,7 @@ For the given card-based loyalty program, list the loyalty cards that match your
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 1000] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
 | **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [optional]  |
-| **identifier** | **string** | The card code by which to filter loyalty cards in the response. | [optional]  |
+| **identifier** | **string** | The card code by which to filter loyalty cards in the response.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  | [optional]  |
 | **profileId** | **long** | Filter results by customer profile ID. | [optional]  |
 | **batchId** | **string** | Filter results by loyalty card batch ID. | [optional]  |
 
@@ -4374,7 +4374,7 @@ For the given card-based loyalty program, list the loyalty cards that match your
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4417,7 +4417,7 @@ Retrieve loyalty ledger balances for the given Integration ID in the specified l
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4457,7 +4457,7 @@ Get the loyalty ledger for this profile integration ID.  To get the `integration
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4493,7 +4493,7 @@ Get the specified [loyalty program](https://docs.talon.one/docs/product/loyalty-
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4539,7 +4539,7 @@ Retrieve paginated results of loyalty transaction logs for the given Integration
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4587,7 +4587,7 @@ Retrieve loyalty program transaction logs in a given loyalty program with filter
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4622,7 +4622,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4658,7 +4658,7 @@ Get loyalty program statistics
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4707,7 +4707,7 @@ Retrieve all message log entries.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4753,7 +4753,7 @@ List all referrals of the specified campaign.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4789,7 +4789,7 @@ Get the details of a specific role. To see all the roles, use the [List roles](/
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4827,7 +4827,7 @@ Retrieve the specified ruleset.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4867,7 +4867,7 @@ List all rulesets of this campaign. A ruleset is a revision of the rules of a ca
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4904,7 +4904,7 @@ Get store details for a specific store ID.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4941,7 +4941,7 @@ Retrieve the data (including an invitation code) for a user. Non-admin users can
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -4979,7 +4979,7 @@ Retrieve all users in your account.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5015,7 +5015,7 @@ Returns a webhook by its id.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5058,7 +5058,7 @@ List all webhooks.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5095,7 +5095,7 @@ Upload a CSV file containing the collection of string values that should be atta
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5134,7 +5134,7 @@ Upload a CSV file containing a list of [picklist values](https://docs.talon.one/
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5174,7 +5174,7 @@ Upload a CSV file containing the integration IDs of the members you want to add 
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5217,7 +5217,7 @@ Upload a CSV file containing store budgets for a given campaign.  Send the file 
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5256,7 +5256,7 @@ Upload a CSV file containing the stores you want to link to a specific campaign.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5298,7 +5298,7 @@ Upload a CSV file containing the collection of string values that should be atta
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5338,7 +5338,7 @@ Upload a CSV file containing the coupons that should be created. The file should
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5359,7 +5359,7 @@ Upload a CSV file containing the coupons that should be created. The file should
 
 Import loyalty cards
 
-Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - `identifier` (required): The alphanumeric identifier of the loyalty card. - `state` (required): The state of the loyalty card. It can be `active` or `inactive`. - `customerprofileids` (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA ``` 
+Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program. Send the file as multipart data.  It contains the following columns for each card:  - `identifier` (required): The identifier of the loyalty card,  which must match the regular expression `^[A-Za-z0-9._%+@-]+$`. - `state` (required): The state of the loyalty card. It can be `active` or `inactive`. - `customerprofileids` (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA ``` 
 
 
 ### Parameters
@@ -5375,7 +5375,7 @@ Upload a CSV file containing the loyalty cards that you want to use in your card
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5414,7 +5414,7 @@ Upload a CSV file containing existing customers to be assigned to existing tiers
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5455,7 +5455,7 @@ Upload a CSV file containing the loyalty points you want to import into a given 
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5492,7 +5492,7 @@ Upload a CSV file containing the giveaway codes that should be created. Send the
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5530,7 +5530,7 @@ Upload a CSV file containing the referrals that should be created. The file shou
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5566,7 +5566,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5606,7 +5606,7 @@ List account-level collections in the account.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5649,7 +5649,7 @@ List all the achievements for a specific campaign.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5681,7 +5681,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5720,7 +5720,7 @@ Return the store budget limits for a given campaign.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5764,7 +5764,7 @@ Return a paginated list of cart items in the given catalog.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5806,7 +5806,7 @@ List collections in a given campaign.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5848,7 +5848,7 @@ List campaign-level collections from all campaigns in a given Application.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5888,7 +5888,7 @@ List all experiments of the specified Application that match your filter criteri
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5932,7 +5932,7 @@ List all stores for a specific Application.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -5964,7 +5964,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6002,7 +6002,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6041,7 +6041,7 @@ Consumes the supplied password reset token and updates the password for the asso
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6077,7 +6077,7 @@ Create a new Talon.One group using the SCIM Group provisioning protocol with an 
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6113,7 +6113,7 @@ Create a new Talon.One user using the SCIM provisioning protocol with an identit
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6149,7 +6149,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6185,7 +6185,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6221,7 +6221,7 @@ Retrieve data for a specific group created using the SCIM provisioning protocol 
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6253,7 +6253,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6285,7 +6285,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6317,7 +6317,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6349,7 +6349,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6385,7 +6385,7 @@ Retrieve data for a specific Talon.One user created using the SCIM provisioning 
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6417,7 +6417,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6454,7 +6454,7 @@ Update certain attributes of a group created using the SCIM provisioning protoco
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6491,7 +6491,7 @@ Update certain attributes of a specific Talon.One user created using the SCIM pr
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6528,7 +6528,7 @@ Update the details of a specific group created using the SCIM provisioning proto
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6565,7 +6565,7 @@ Update the details of a specific Talon.One user created using the SCIM provision
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6615,7 +6615,7 @@ List the coupons whose attributes match the query criteria in all the campaigns 
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6665,7 +6665,7 @@ List the coupons whose attributes match the query criteria in the given campaign
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6702,7 +6702,7 @@ Fetch a summary of all store budget information for a given campaign.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6734,7 +6734,7 @@ Transfer loyalty card data, such as linked customers, loyalty balances and trans
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **loyaltyProgramId** | **long** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  |  |
-| **loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  |  |
+| **loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  |  |
 | **transferLoyaltyCard** | [**TransferLoyaltyCard**](TransferLoyaltyCard.md) | body |  |
 
 ### Return type
@@ -6743,7 +6743,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6783,7 +6783,7 @@ Edit the description of a given account-level collection and enable or disable t
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6825,7 +6825,7 @@ Update the details of a specific achievement.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6865,7 +6865,7 @@ Updates an existing additional cost. Once created, the only property of an addit
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6902,7 +6902,7 @@ Update an existing custom attribute. Once created, the only property of a custom
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6940,7 +6940,7 @@ Update the given campaign.  **Important:** You cannot use this endpoint to updat
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -6979,7 +6979,7 @@ Edit the description of a given campaign-level collection.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -7019,7 +7019,7 @@ Update the specified coupon.  <div class=\"redoc-section\">   <p class=\"title\"
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -7057,7 +7057,7 @@ void (empty response body)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -7078,7 +7078,7 @@ void (empty response body)
 
 Update loyalty card
 
-Update the details of a specific loyalty card. You can set the card's status to `active` or `inactive` through this endpoint. At least one of `status` or `attributes` must be provided. 
+Update the details of a specific loyalty card. You can set the card's status to `active` or `inactive` through this endpoint. At least one of `status` or `attributes` must be provided.
 
 
 ### Parameters
@@ -7086,7 +7086,7 @@ Update the details of a specific loyalty card. You can set the card's status to 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **loyaltyProgramId** | **long** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  |  |
-| **loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  |  |
+| **loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;.  |  |
 | **updateLoyaltyCardRequest** | [**UpdateLoyaltyCardRequest**](UpdateLoyaltyCardRequest.md) | body |  |
 
 ### Return type
@@ -7095,7 +7095,7 @@ Update the details of a specific loyalty card. You can set the card's status to 
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -7137,7 +7137,7 @@ Update the specified referral.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -7174,7 +7174,7 @@ Update a specific role.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -7212,7 +7212,7 @@ Update store details for a specific store ID.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -7251,7 +7251,7 @@ Update the details of a specific user.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth), [api_key_v1](../README.md#api_key_v1)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 

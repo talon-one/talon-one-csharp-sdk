@@ -33,7 +33,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="status">Status of the loyalty card. (default to StatusEnum.Active)</param>
         /// <param name="customerProfileIds">Integration IDs of the customer profiles linked to the card.</param>
-        /// <param name="cardIdentifier">The alphanumeric identifier of the loyalty card. </param>
+        /// <param name="cardIdentifier">The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </param>
         [JsonConstructor]
         public GenerateLoyaltyCard(Option<StatusEnum?> status = default, Option<List<string>> customerProfileIds = default, Option<string> cardIdentifier = default)
         {
@@ -150,9 +150,9 @@ namespace TalonOneSdk.Model
         public Option<string> CardIdentifierOption { get; private set; }
 
         /// <summary>
-        /// The alphanumeric identifier of the loyalty card. 
+        /// The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. 
         /// </summary>
-        /// <value>The alphanumeric identifier of the loyalty card. </value>
+        /// <value>The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("cardIdentifier")]
         public string CardIdentifier { get { return this.CardIdentifierOption; } set { this.CardIdentifierOption = new Option<string>(value); } }
@@ -193,7 +193,7 @@ namespace TalonOneSdk.Model
 
             if (this.CardIdentifierOption.Value != null) {
                 // CardIdentifier (string) pattern
-                Regex regexCardIdentifier = new Regex(@"^[A-Za-z0-9_-]*$", RegexOptions.CultureInvariant);
+                Regex regexCardIdentifier = new Regex(@"^[A-Za-z0-9._%+@-]+$", RegexOptions.CultureInvariant);
 
                 if (this.CardIdentifierOption.Value != null &&!regexCardIdentifier.Match(this.CardIdentifierOption.Value).Success)
                 {
@@ -265,12 +265,6 @@ namespace TalonOneSdk.Model
 
             if (status.IsSet && status.Value == null)
                 throw new ArgumentNullException(nameof(status), "Property is not nullable for class GenerateLoyaltyCard.");
-
-            if (customerProfileIds.IsSet && customerProfileIds.Value == null)
-                throw new ArgumentNullException(nameof(customerProfileIds), "Property is not nullable for class GenerateLoyaltyCard.");
-
-            if (cardIdentifier.IsSet && cardIdentifier.Value == null)
-                throw new ArgumentNullException(nameof(cardIdentifier), "Property is not nullable for class GenerateLoyaltyCard.");
 
             return new GenerateLoyaltyCard(status, customerProfileIds, cardIdentifier);
         }

@@ -191,18 +191,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (application.IsSet && application.Value == null)
-                throw new ArgumentNullException(nameof(application), "Property is not nullable for class RoleV2ApplicationDetails.");
-
-            if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class RoleV2ApplicationDetails.");
-
-            if (draftCampaign.IsSet && draftCampaign.Value == null)
-                throw new ArgumentNullException(nameof(draftCampaign), "Property is not nullable for class RoleV2ApplicationDetails.");
-
-            if (tools.IsSet && tools.Value == null)
-                throw new ArgumentNullException(nameof(tools), "Property is not nullable for class RoleV2ApplicationDetails.");
-
             return new RoleV2ApplicationDetails(application, campaign, draftCampaign, tools);
         }
 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **TransactionUUID** | **string** | Unique identifier of the transaction in the UUID format. | 
 **Created** | **DateTime** | Date and time the loyalty card transaction occurred. | 
 **ProgramId** | **long** | ID of the loyalty program. | 
-**CardIdentifier** | **string** | The alphanumeric identifier of the loyalty card.  | 
+**CardIdentifier** | **string** | The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;.  | 
 **Type** | **string** | Type of transaction. Possible values:   - &#x60;addition&#x60;: Signifies added points.   - &#x60;subtraction&#x60;: Signifies deducted points.  | 
 **Name** | **string** | Name or reason of the loyalty ledger transaction. | 
 **StartDate** | **string** | When points become active. Possible values:   - &#x60;immediate&#x60;: Points are active immediately.   - &#x60;on_action&#x60;: Points become active based on the customer&#39;s action.   - a timestamp value: Points become active at a given date and time.  | 

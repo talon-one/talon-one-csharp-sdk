@@ -568,45 +568,6 @@ namespace TalonOneSdk.Model
             if (!enabled.IsSet)
                 throw new ArgumentException("Property is required for class WebhookWithOutgoingIntegrationDetails.", nameof(enabled));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
-
-            if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
-
-            if (applicationIds.IsSet && applicationIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
-
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
-
-            if (draft.IsSet && draft.Value == null)
-                throw new ArgumentNullException(nameof(draft), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
-
-            if (verb.IsSet && verb.Value == null)
-                throw new ArgumentNullException(nameof(verb), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
-
-            if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
-
-            if (headers.IsSet && headers.Value == null)
-                throw new ArgumentNullException(nameof(headers), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
-
-            if (varParams.IsSet && varParams.Value == null)
-                throw new ArgumentNullException(nameof(varParams), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
-
-            if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
-
-            if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
-
             if (authenticationId.IsSet && authenticationId.Value == null)
                 throw new ArgumentNullException(nameof(authenticationId), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
 
@@ -615,9 +576,6 @@ namespace TalonOneSdk.Model
 
             if (outgoingIntegrationTypeId.IsSet && outgoingIntegrationTypeId.Value == null)
                 throw new ArgumentNullException(nameof(outgoingIntegrationTypeId), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
-
-            if (outgoingIntegrationTypeName.IsSet && outgoingIntegrationTypeName.Value == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationTypeName), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
 
             return new WebhookWithOutgoingIntegrationDetails(id.Value.Value, created.Value.Value, modified.Value.Value, applicationIds.Value, title.Value, draft.Value.Value, verb.Value.Value, url.Value, headers.Value, varParams.Value, enabled.Value.Value, description, payload, authenticationId, outgoingIntegrationTemplateId, outgoingIntegrationTypeId, outgoingIntegrationTypeName);
         }

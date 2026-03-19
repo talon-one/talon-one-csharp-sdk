@@ -275,33 +275,6 @@ namespace TalonOneSdk.Model
             if (!createdReferrals.IsSet)
                 throw new ArgumentException("Property is required for class CustomerProfileIntegrationResponseV2.", nameof(createdReferrals));
 
-            if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class CustomerProfileIntegrationResponseV2.");
-
-            if (createdCoupons.IsSet && createdCoupons.Value == null)
-                throw new ArgumentNullException(nameof(createdCoupons), "Property is not nullable for class CustomerProfileIntegrationResponseV2.");
-
-            if (createdReferrals.IsSet && createdReferrals.Value == null)
-                throw new ArgumentNullException(nameof(createdReferrals), "Property is not nullable for class CustomerProfileIntegrationResponseV2.");
-
-            if (customerProfile.IsSet && customerProfile.Value == null)
-                throw new ArgumentNullException(nameof(customerProfile), "Property is not nullable for class CustomerProfileIntegrationResponseV2.");
-
-            if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CustomerProfileIntegrationResponseV2.");
-
-            if (loyalty.IsSet && loyalty.Value == null)
-                throw new ArgumentNullException(nameof(loyalty), "Property is not nullable for class CustomerProfileIntegrationResponseV2.");
-
-            if (triggeredCampaigns.IsSet && triggeredCampaigns.Value == null)
-                throw new ArgumentNullException(nameof(triggeredCampaigns), "Property is not nullable for class CustomerProfileIntegrationResponseV2.");
-
-            if (ruleFailureReasons.IsSet && ruleFailureReasons.Value == null)
-                throw new ArgumentNullException(nameof(ruleFailureReasons), "Property is not nullable for class CustomerProfileIntegrationResponseV2.");
-
-            if (awardedGiveaways.IsSet && awardedGiveaways.Value == null)
-                throw new ArgumentNullException(nameof(awardedGiveaways), "Property is not nullable for class CustomerProfileIntegrationResponseV2.");
-
             return new CustomerProfileIntegrationResponseV2(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, varEvent, loyalty, triggeredCampaigns, ruleFailureReasons, awardedGiveaways);
         }
 

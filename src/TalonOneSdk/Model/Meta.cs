@@ -209,21 +209,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (campaigns.IsSet && campaigns.Value == null)
-                throw new ArgumentNullException(nameof(campaigns), "Property is not nullable for class Meta.");
-
-            if (coupons.IsSet && coupons.Value == null)
-                throw new ArgumentNullException(nameof(coupons), "Property is not nullable for class Meta.");
-
-            if (couponRejectionReason.IsSet && couponRejectionReason.Value == null)
-                throw new ArgumentNullException(nameof(couponRejectionReason), "Property is not nullable for class Meta.");
-
-            if (referralRejectionReason.IsSet && referralRejectionReason.Value == null)
-                throw new ArgumentNullException(nameof(referralRejectionReason), "Property is not nullable for class Meta.");
-
-            if (warnings.IsSet && warnings.Value == null)
-                throw new ArgumentNullException(nameof(warnings), "Property is not nullable for class Meta.");
-
             return new Meta(campaigns, coupons, couponRejectionReason, referralRejectionReason, warnings);
         }
 

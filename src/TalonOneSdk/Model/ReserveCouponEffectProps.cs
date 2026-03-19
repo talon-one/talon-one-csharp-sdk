@@ -157,15 +157,6 @@ namespace TalonOneSdk.Model
             if (!isNewReservation.IsSet)
                 throw new ArgumentException("Property is required for class ReserveCouponEffectProps.", nameof(isNewReservation));
 
-            if (couponValue.IsSet && couponValue.Value == null)
-                throw new ArgumentNullException(nameof(couponValue), "Property is not nullable for class ReserveCouponEffectProps.");
-
-            if (profileIntegrationId.IsSet && profileIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationId), "Property is not nullable for class ReserveCouponEffectProps.");
-
-            if (isNewReservation.IsSet && isNewReservation.Value == null)
-                throw new ArgumentNullException(nameof(isNewReservation), "Property is not nullable for class ReserveCouponEffectProps.");
-
             return new ReserveCouponEffectProps(couponValue.Value, profileIntegrationId.Value, isNewReservation.Value.Value);
         }
 

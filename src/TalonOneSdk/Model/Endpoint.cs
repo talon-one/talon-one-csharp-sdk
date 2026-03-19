@@ -124,9 +124,6 @@ namespace TalonOneSdk.Model
             if (!path.IsSet)
                 throw new ArgumentException("Property is required for class Endpoint.", nameof(path));
 
-            if (path.IsSet && path.Value == null)
-                throw new ArgumentNullException(nameof(path), "Property is not nullable for class Endpoint.");
-
             return new Endpoint(path.Value);
         }
 

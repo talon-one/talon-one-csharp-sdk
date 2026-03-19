@@ -139,12 +139,6 @@ namespace TalonOneSdk.Model
             if (!data.IsSet)
                 throw new ArgumentException("Property is required for class GetCustomerProfileAchievementProgress200Response.", nameof(data));
 
-            if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class GetCustomerProfileAchievementProgress200Response.");
-
-            if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class GetCustomerProfileAchievementProgress200Response.");
-
             return new GetCustomerProfileAchievementProgress200Response(hasMore.Value.Value, data.Value);
         }
 

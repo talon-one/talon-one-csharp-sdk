@@ -140,12 +140,6 @@ namespace TalonOneSdk.Model
             if (!createdViaRuleEngine.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyDashboardPointsBreakdown.", nameof(createdViaRuleEngine));
 
-            if (createdManually.IsSet && createdManually.Value == null)
-                throw new ArgumentNullException(nameof(createdManually), "Property is not nullable for class LoyaltyDashboardPointsBreakdown.");
-
-            if (createdViaRuleEngine.IsSet && createdViaRuleEngine.Value == null)
-                throw new ArgumentNullException(nameof(createdViaRuleEngine), "Property is not nullable for class LoyaltyDashboardPointsBreakdown.");
-
             return new LoyaltyDashboardPointsBreakdown(createdManually.Value.Value, createdViaRuleEngine.Value.Value);
         }
 

@@ -349,42 +349,6 @@ namespace TalonOneSdk.Model
             if (!campaignName.IsSet)
                 throw new ArgumentException("Property is required for class CustomerActivityReport.", nameof(campaignName));
 
-            if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class CustomerActivityReport.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CustomerActivityReport.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CustomerActivityReport.");
-
-            if (customerId.IsSet && customerId.Value == null)
-                throw new ArgumentNullException(nameof(customerId), "Property is not nullable for class CustomerActivityReport.");
-
-            if (couponRedemptions.IsSet && couponRedemptions.Value == null)
-                throw new ArgumentNullException(nameof(couponRedemptions), "Property is not nullable for class CustomerActivityReport.");
-
-            if (couponUseAttempts.IsSet && couponUseAttempts.Value == null)
-                throw new ArgumentNullException(nameof(couponUseAttempts), "Property is not nullable for class CustomerActivityReport.");
-
-            if (couponFailedAttempts.IsSet && couponFailedAttempts.Value == null)
-                throw new ArgumentNullException(nameof(couponFailedAttempts), "Property is not nullable for class CustomerActivityReport.");
-
-            if (accruedDiscounts.IsSet && accruedDiscounts.Value == null)
-                throw new ArgumentNullException(nameof(accruedDiscounts), "Property is not nullable for class CustomerActivityReport.");
-
-            if (accruedRevenue.IsSet && accruedRevenue.Value == null)
-                throw new ArgumentNullException(nameof(accruedRevenue), "Property is not nullable for class CustomerActivityReport.");
-
-            if (totalOrders.IsSet && totalOrders.Value == null)
-                throw new ArgumentNullException(nameof(totalOrders), "Property is not nullable for class CustomerActivityReport.");
-
-            if (totalOrdersNoCoupon.IsSet && totalOrdersNoCoupon.Value == null)
-                throw new ArgumentNullException(nameof(totalOrdersNoCoupon), "Property is not nullable for class CustomerActivityReport.");
-
-            if (campaignName.IsSet && campaignName.Value == null)
-                throw new ArgumentNullException(nameof(campaignName), "Property is not nullable for class CustomerActivityReport.");
-
             if (lastActivity.IsSet && lastActivity.Value == null)
                 throw new ArgumentNullException(nameof(lastActivity), "Property is not nullable for class CustomerActivityReport.");
 

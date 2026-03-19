@@ -140,9 +140,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class AudienceIntegrationID.");
-
             return new AudienceIntegrationID(integrationId);
         }
 

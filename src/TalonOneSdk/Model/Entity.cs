@@ -147,12 +147,6 @@ namespace TalonOneSdk.Model
             if (!created.IsSet)
                 throw new ArgumentException("Property is required for class Entity.", nameof(created));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Entity.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Entity.");
-
             return new Entity(id.Value.Value, created.Value.Value);
         }
 

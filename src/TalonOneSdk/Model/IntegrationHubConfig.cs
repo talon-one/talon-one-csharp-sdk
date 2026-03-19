@@ -142,12 +142,6 @@ namespace TalonOneSdk.Model
             if (!accessToken.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubConfig.", nameof(accessToken));
 
-            if (integrationHubUrl.IsSet && integrationHubUrl.Value == null)
-                throw new ArgumentNullException(nameof(integrationHubUrl), "Property is not nullable for class IntegrationHubConfig.");
-
-            if (accessToken.IsSet && accessToken.Value == null)
-                throw new ArgumentNullException(nameof(accessToken), "Property is not nullable for class IntegrationHubConfig.");
-
             return new IntegrationHubConfig(integrationHubUrl.Value, accessToken.Value);
         }
 
