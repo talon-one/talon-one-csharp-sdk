@@ -34,7 +34,6 @@ namespace _example
 
             // Create the Integration API instance using the factory
             var integrationApi = apiFactory.Create<IIntegrationApi>();
-            var managementApi = apiFactory.Create<IManagementApi>();
             var customerSessionId = "my_unique_session_integration_id_2";  // string | The custom identifier for this session, must be unique within the account.
 
             // Preparing a NewCustomerSessionV2 object
@@ -144,31 +143,6 @@ namespace _example
             //
 
             Console.WriteLine("Testing UpdateCustomerSessionV2 custom attributes");
-
-            var createAttributeResponse = await managementApi.CreateAttributeAsync(
-                new NewAttribute(
-                    entity: NewAttribute.EntityEnum.CustomerSession,
-                    name: "shippingPostalCode",
-                    title: "Shipping Postal Code",
-                    type: NewAttribute.TypeEnum.String,
-                    description: "Postal code used by the generated example for customer session attribute tests.",
-                    suggestions: new List<string>(),
-                    editable: true
-                )
-            );
-
-            if (createAttributeResponse.IsCreated)
-            {
-                Console.WriteLine("Created customer session attribute shippingPostalCode");
-            }
-            else if ((int)createAttributeResponse.StatusCode == 409)
-            {
-                Console.WriteLine("Customer session attribute shippingPostalCode already exists");
-            }
-            else
-            {
-                throw new Exception($"Failed to ensure customer session attribute shippingPostalCode exists. Status {(int)createAttributeResponse.StatusCode} ({createAttributeResponse.ReasonPhrase}).{Environment.NewLine}{createAttributeResponse.RawContent}");
-            }
 
             string customerSession3Id = Guid.NewGuid().ToString();
 
