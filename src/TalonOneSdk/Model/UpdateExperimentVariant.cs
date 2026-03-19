@@ -199,18 +199,6 @@ namespace TalonOneSdk.Model
             if (!weight.IsSet)
                 throw new ArgumentException("Property is required for class UpdateExperimentVariant.", nameof(weight));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class UpdateExperimentVariant.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateExperimentVariant.");
-
-            if (ruleset.IsSet && ruleset.Value == null)
-                throw new ArgumentNullException(nameof(ruleset), "Property is not nullable for class UpdateExperimentVariant.");
-
-            if (weight.IsSet && weight.Value == null)
-                throw new ArgumentNullException(nameof(weight), "Property is not nullable for class UpdateExperimentVariant.");
-
             return new UpdateExperimentVariant(id.Value.Value, name.Value, ruleset.Value, weight.Value.Value);
         }
 

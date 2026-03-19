@@ -127,9 +127,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (campaignGroups.IsSet && campaignGroups.Value == null)
-                throw new ArgumentNullException(nameof(campaignGroups), "Property is not nullable for class CampaignGroupEntity.");
-
             return new CampaignGroupEntity(campaignGroups);
         }
 

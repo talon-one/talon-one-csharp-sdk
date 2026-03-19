@@ -201,21 +201,6 @@ namespace TalonOneSdk.Model
             if (!payload.IsSet)
                 throw new ArgumentException("Property is required for class StrikethroughTrigger.", nameof(payload));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class StrikethroughTrigger.");
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class StrikethroughTrigger.");
-
-            if (triggeredAt.IsSet && triggeredAt.Value == null)
-                throw new ArgumentNullException(nameof(triggeredAt), "Property is not nullable for class StrikethroughTrigger.");
-
-            if (totalAffectedItems.IsSet && totalAffectedItems.Value == null)
-                throw new ArgumentNullException(nameof(totalAffectedItems), "Property is not nullable for class StrikethroughTrigger.");
-
-            if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class StrikethroughTrigger.");
-
             return new StrikethroughTrigger(id.Value.Value, type.Value, triggeredAt.Value.Value, totalAffectedItems.Value.Value, payload.Value);
         }
 

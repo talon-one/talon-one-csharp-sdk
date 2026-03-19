@@ -210,20 +210,8 @@ namespace TalonOneSdk.Model
             if (!email.IsSet)
                 throw new ArgumentException("Property is required for class NewInvitation.", nameof(email));
 
-            if (email.IsSet && email.Value == null)
-                throw new ArgumentNullException(nameof(email), "Property is not nullable for class NewInvitation.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewInvitation.");
-
             if (isAdmin.IsSet && isAdmin.Value == null)
                 throw new ArgumentNullException(nameof(isAdmin), "Property is not nullable for class NewInvitation.");
-
-            if (roles.IsSet && roles.Value == null)
-                throw new ArgumentNullException(nameof(roles), "Property is not nullable for class NewInvitation.");
-
-            if (acl.IsSet && acl.Value == null)
-                throw new ArgumentNullException(nameof(acl), "Property is not nullable for class NewInvitation.");
 
             return new NewInvitation(email.Value, name, isAdmin, roles, acl);
         }

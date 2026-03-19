@@ -671,27 +671,6 @@ namespace TalonOneSdk.Model
             if (!applicationName.IsSet)
                 throw new ArgumentException("Property is required for class CouponWithApplication.", nameof(applicationName));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CouponWithApplication.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CouponWithApplication.");
-
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class CouponWithApplication.");
-
-            if (usageCounter.IsSet && usageCounter.Value == null)
-                throw new ArgumentNullException(nameof(usageCounter), "Property is not nullable for class CouponWithApplication.");
-
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CouponWithApplication.");
-
-            if (applicationName.IsSet && applicationName.Value == null)
-                throw new ArgumentNullException(nameof(applicationName), "Property is not nullable for class CouponWithApplication.");
-
-            if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class CouponWithApplication.");
-
             if (usageLimit.IsSet && usageLimit.Value == null)
                 throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class CouponWithApplication.");
 
@@ -707,9 +686,6 @@ namespace TalonOneSdk.Model
             if (expiryDate.IsSet && expiryDate.Value == null)
                 throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class CouponWithApplication.");
 
-            if (limits.IsSet && limits.Value == null)
-                throw new ArgumentNullException(nameof(limits), "Property is not nullable for class CouponWithApplication.");
-
             if (discountCounter.IsSet && discountCounter.Value == null)
                 throw new ArgumentNullException(nameof(discountCounter), "Property is not nullable for class CouponWithApplication.");
 
@@ -719,23 +695,14 @@ namespace TalonOneSdk.Model
             if (reservationCounter.IsSet && reservationCounter.Value == null)
                 throw new ArgumentNullException(nameof(reservationCounter), "Property is not nullable for class CouponWithApplication.");
 
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class CouponWithApplication.");
-
             if (referralId.IsSet && referralId.Value == null)
                 throw new ArgumentNullException(nameof(referralId), "Property is not nullable for class CouponWithApplication.");
-
-            if (recipientIntegrationId.IsSet && recipientIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(recipientIntegrationId), "Property is not nullable for class CouponWithApplication.");
 
             if (importId.IsSet && importId.Value == null)
                 throw new ArgumentNullException(nameof(importId), "Property is not nullable for class CouponWithApplication.");
 
             if (reservation.IsSet && reservation.Value == null)
                 throw new ArgumentNullException(nameof(reservation), "Property is not nullable for class CouponWithApplication.");
-
-            if (batchId.IsSet && batchId.Value == null)
-                throw new ArgumentNullException(nameof(batchId), "Property is not nullable for class CouponWithApplication.");
 
             if (isReservationMandatory.IsSet && isReservationMandatory.Value == null)
                 throw new ArgumentNullException(nameof(isReservationMandatory), "Property is not nullable for class CouponWithApplication.");

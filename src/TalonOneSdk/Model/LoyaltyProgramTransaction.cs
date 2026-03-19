@@ -43,7 +43,7 @@ namespace TalonOneSdk.Model
         /// <param name="subledgerId">ID of the subledger.</param>
         /// <param name="campaignId">ID of the campaign.</param>
         /// <param name="customerProfileId">Customer profile integration ID used in the loyalty program.</param>
-        /// <param name="cardIdentifier">The alphanumeric identifier of the loyalty card. </param>
+        /// <param name="cardIdentifier">The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </param>
         /// <param name="customerSessionId">ID of the customer session where the transaction occurred.</param>
         /// <param name="importId">ID of the import where the transaction occurred.</param>
         /// <param name="userId">ID of the user who manually added or deducted points. Applies only to manual transactions.</param>
@@ -266,9 +266,9 @@ namespace TalonOneSdk.Model
         public Option<string> CardIdentifierOption { get; private set; }
 
         /// <summary>
-        /// The alphanumeric identifier of the loyalty card. 
+        /// The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. 
         /// </summary>
-        /// <value>The alphanumeric identifier of the loyalty card. </value>
+        /// <value>The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("cardIdentifier")]
         public string CardIdentifier { get { return this.CardIdentifierOption; } set { this.CardIdentifierOption = new Option<string>(value); } }
@@ -470,7 +470,7 @@ namespace TalonOneSdk.Model
 
             if (this.CardIdentifierOption.Value != null) {
                 // CardIdentifier (string) pattern
-                Regex regexCardIdentifier = new Regex(@"^[A-Za-z0-9_-]*$", RegexOptions.CultureInvariant);
+                Regex regexCardIdentifier = new Regex(@"^[A-Za-z0-9._%+@-]+$", RegexOptions.CultureInvariant);
 
                 if (this.CardIdentifierOption.Value != null &&!regexCardIdentifier.Match(this.CardIdentifierOption.Value).Success)
                 {
@@ -653,47 +653,8 @@ namespace TalonOneSdk.Model
             if (!subledgerId.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyProgramTransaction.", nameof(subledgerId));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LoyaltyProgramTransaction.");
-
-            if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class LoyaltyProgramTransaction.");
-
-            if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class LoyaltyProgramTransaction.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class LoyaltyProgramTransaction.");
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class LoyaltyProgramTransaction.");
-
-            if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class LoyaltyProgramTransaction.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class LoyaltyProgramTransaction.");
-
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class LoyaltyProgramTransaction.");
-
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class LoyaltyProgramTransaction.");
-
-            if (subledgerId.IsSet && subledgerId.Value == null)
-                throw new ArgumentNullException(nameof(subledgerId), "Property is not nullable for class LoyaltyProgramTransaction.");
-
             if (campaignId.IsSet && campaignId.Value == null)
                 throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class LoyaltyProgramTransaction.");
-
-            if (customerProfileId.IsSet && customerProfileId.Value == null)
-                throw new ArgumentNullException(nameof(customerProfileId), "Property is not nullable for class LoyaltyProgramTransaction.");
-
-            if (cardIdentifier.IsSet && cardIdentifier.Value == null)
-                throw new ArgumentNullException(nameof(cardIdentifier), "Property is not nullable for class LoyaltyProgramTransaction.");
-
-            if (customerSessionId.IsSet && customerSessionId.Value == null)
-                throw new ArgumentNullException(nameof(customerSessionId), "Property is not nullable for class LoyaltyProgramTransaction.");
 
             if (importId.IsSet && importId.Value == null)
                 throw new ArgumentNullException(nameof(importId), "Property is not nullable for class LoyaltyProgramTransaction.");
@@ -701,20 +662,8 @@ namespace TalonOneSdk.Model
             if (userId.IsSet && userId.Value == null)
                 throw new ArgumentNullException(nameof(userId), "Property is not nullable for class LoyaltyProgramTransaction.");
 
-            if (userEmail.IsSet && userEmail.Value == null)
-                throw new ArgumentNullException(nameof(userEmail), "Property is not nullable for class LoyaltyProgramTransaction.");
-
             if (rulesetId.IsSet && rulesetId.Value == null)
                 throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class LoyaltyProgramTransaction.");
-
-            if (ruleName.IsSet && ruleName.Value == null)
-                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class LoyaltyProgramTransaction.");
-
-            if (flags.IsSet && flags.Value == null)
-                throw new ArgumentNullException(nameof(flags), "Property is not nullable for class LoyaltyProgramTransaction.");
-
-            if (validityDuration.IsSet && validityDuration.Value == null)
-                throw new ArgumentNullException(nameof(validityDuration), "Property is not nullable for class LoyaltyProgramTransaction.");
 
             return new LoyaltyProgramTransaction(id.Value.Value, transactionUUID.Value, programId.Value.Value, created.Value.Value, type.Value.Value, amount.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, campaignId, customerProfileId, cardIdentifier, customerSessionId, importId, userId, userEmail, rulesetId, ruleName, flags, validityDuration);
         }

@@ -248,15 +248,6 @@ namespace TalonOneSdk.Model
             if (!op.IsSet)
                 throw new ArgumentException("Property is required for class ScimPatchOperation.", nameof(op));
 
-            if (op.IsSet && op.Value == null)
-                throw new ArgumentNullException(nameof(op), "Property is not nullable for class ScimPatchOperation.");
-
-            if (path.IsSet && path.Value == null)
-                throw new ArgumentNullException(nameof(path), "Property is not nullable for class ScimPatchOperation.");
-
-            if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class ScimPatchOperation.");
-
             return new ScimPatchOperation(op.Value.Value, path, value);
         }
 

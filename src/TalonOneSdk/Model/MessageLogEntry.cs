@@ -522,41 +522,11 @@ namespace TalonOneSdk.Model
             if (!entityType.IsSet)
                 throw new ArgumentException("Property is required for class MessageLogEntry.", nameof(entityType));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class MessageLogEntry.");
-
-            if (service.IsSet && service.Value == null)
-                throw new ArgumentNullException(nameof(service), "Property is not nullable for class MessageLogEntry.");
-
-            if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class MessageLogEntry.");
-
-            if (entityType.IsSet && entityType.Value == null)
-                throw new ArgumentNullException(nameof(entityType), "Property is not nullable for class MessageLogEntry.");
-
-            if (changeType.IsSet && changeType.Value == null)
-                throw new ArgumentNullException(nameof(changeType), "Property is not nullable for class MessageLogEntry.");
-
             if (notificationId.IsSet && notificationId.Value == null)
                 throw new ArgumentNullException(nameof(notificationId), "Property is not nullable for class MessageLogEntry.");
 
-            if (notificationName.IsSet && notificationName.Value == null)
-                throw new ArgumentNullException(nameof(notificationName), "Property is not nullable for class MessageLogEntry.");
-
             if (webhookId.IsSet && webhookId.Value == null)
                 throw new ArgumentNullException(nameof(webhookId), "Property is not nullable for class MessageLogEntry.");
-
-            if (webhookName.IsSet && webhookName.Value == null)
-                throw new ArgumentNullException(nameof(webhookName), "Property is not nullable for class MessageLogEntry.");
-
-            if (request.IsSet && request.Value == null)
-                throw new ArgumentNullException(nameof(request), "Property is not nullable for class MessageLogEntry.");
-
-            if (response.IsSet && response.Value == null)
-                throw new ArgumentNullException(nameof(response), "Property is not nullable for class MessageLogEntry.");
-
-            if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class MessageLogEntry.");
 
             if (applicationId.IsSet && applicationId.Value == null)
                 throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class MessageLogEntry.");

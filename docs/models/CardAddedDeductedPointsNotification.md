@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **UserID** | **long** | The ID of the employee who added or deducted points. | 
 **UsersPerCardLimit** | **long** | The max amount of user profiles with whom a card can be shared. This can be set to &#x60;0&#x60; for no limit. | 
 **Amount** | **decimal** | The amount of added or deducted loyalty points. | 
-**Operation** | **string** | The action (addition or deduction) made with loyalty points. | 
+**Operation** | **string** | The action (addition or subtraction) made with loyalty points. | 
 **Reason** | **string** | The reason for the points addition or deduction. | 
 **TransactionUUID** | **Guid** | The identifier of the transaction in the loyalty ledger. | 
 **ExpiryDate** | **DateTime** | The expiration date for loyalty points. | [optional] 

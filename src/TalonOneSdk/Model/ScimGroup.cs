@@ -167,15 +167,6 @@ namespace TalonOneSdk.Model
             if (!id.IsSet)
                 throw new ArgumentException("Property is required for class ScimGroup.", nameof(id));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ScimGroup.");
-
-            if (displayName.IsSet && displayName.Value == null)
-                throw new ArgumentNullException(nameof(displayName), "Property is not nullable for class ScimGroup.");
-
-            if (members.IsSet && members.Value == null)
-                throw new ArgumentNullException(nameof(members), "Property is not nullable for class ScimGroup.");
-
             return new ScimGroup(id.Value, displayName, members);
         }
 

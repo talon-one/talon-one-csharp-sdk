@@ -126,9 +126,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class IntegrationCustomerProfileAudienceRequest.");
-
             return new IntegrationCustomerProfileAudienceRequest(data);
         }
 

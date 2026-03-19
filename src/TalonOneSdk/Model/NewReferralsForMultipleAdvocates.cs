@@ -308,12 +308,6 @@ namespace TalonOneSdk.Model
             if (!advocateProfileIntegrationIds.IsSet)
                 throw new ArgumentException("Property is required for class NewReferralsForMultipleAdvocates.", nameof(advocateProfileIntegrationIds));
 
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class NewReferralsForMultipleAdvocates.");
-
-            if (advocateProfileIntegrationIds.IsSet && advocateProfileIntegrationIds.Value == null)
-                throw new ArgumentNullException(nameof(advocateProfileIntegrationIds), "Property is not nullable for class NewReferralsForMultipleAdvocates.");
-
             if (startDate.IsSet && startDate.Value == null)
                 throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class NewReferralsForMultipleAdvocates.");
 
@@ -322,15 +316,6 @@ namespace TalonOneSdk.Model
 
             if (usageLimit.IsSet && usageLimit.Value == null)
                 throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class NewReferralsForMultipleAdvocates.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class NewReferralsForMultipleAdvocates.");
-
-            if (validCharacters.IsSet && validCharacters.Value == null)
-                throw new ArgumentNullException(nameof(validCharacters), "Property is not nullable for class NewReferralsForMultipleAdvocates.");
-
-            if (referralPattern.IsSet && referralPattern.Value == null)
-                throw new ArgumentNullException(nameof(referralPattern), "Property is not nullable for class NewReferralsForMultipleAdvocates.");
 
             return new NewReferralsForMultipleAdvocates(campaignId.Value.Value, advocateProfileIntegrationIds.Value, startDate, expiryDate, usageLimit, attributes, validCharacters, referralPattern);
         }

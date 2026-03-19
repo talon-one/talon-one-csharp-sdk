@@ -396,44 +396,8 @@ namespace TalonOneSdk.Model
             if (!createdBy.IsSet)
                 throw new ArgumentException("Property is required for class CustomEffect.", nameof(createdBy));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CustomEffect.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CustomEffect.");
-
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class CustomEffect.");
-
-            if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class CustomEffect.");
-
-            if (applicationIds.IsSet && applicationIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class CustomEffect.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CustomEffect.");
-
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class CustomEffect.");
-
-            if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class CustomEffect.");
-
-            if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class CustomEffect.");
-
-            if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class CustomEffect.");
-
             if (isPerItem.IsSet && isPerItem.Value == null)
                 throw new ArgumentNullException(nameof(isPerItem), "Property is not nullable for class CustomEffect.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class CustomEffect.");
-
-            if (varParams.IsSet && varParams.Value == null)
-                throw new ArgumentNullException(nameof(varParams), "Property is not nullable for class CustomEffect.");
 
             if (modifiedBy.IsSet && modifiedBy.Value == null)
                 throw new ArgumentNullException(nameof(modifiedBy), "Property is not nullable for class CustomEffect.");

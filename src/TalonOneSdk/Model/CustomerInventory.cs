@@ -227,24 +227,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (profile.IsSet && profile.Value == null)
-                throw new ArgumentNullException(nameof(profile), "Property is not nullable for class CustomerInventory.");
-
-            if (loyalty.IsSet && loyalty.Value == null)
-                throw new ArgumentNullException(nameof(loyalty), "Property is not nullable for class CustomerInventory.");
-
-            if (referrals.IsSet && referrals.Value == null)
-                throw new ArgumentNullException(nameof(referrals), "Property is not nullable for class CustomerInventory.");
-
-            if (coupons.IsSet && coupons.Value == null)
-                throw new ArgumentNullException(nameof(coupons), "Property is not nullable for class CustomerInventory.");
-
-            if (giveaways.IsSet && giveaways.Value == null)
-                throw new ArgumentNullException(nameof(giveaways), "Property is not nullable for class CustomerInventory.");
-
-            if (achievements.IsSet && achievements.Value == null)
-                throw new ArgumentNullException(nameof(achievements), "Property is not nullable for class CustomerInventory.");
-
             return new CustomerInventory(profile, loyalty, referrals, coupons, giveaways, achievements);
         }
 

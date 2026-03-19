@@ -140,12 +140,6 @@ namespace TalonOneSdk.Model
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class RedeemReferralEffectProps.", nameof(value));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RedeemReferralEffectProps.");
-
-            if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RedeemReferralEffectProps.");
-
             return new RedeemReferralEffectProps(id.Value.Value, value.Value);
         }
 

@@ -427,36 +427,6 @@ namespace TalonOneSdk.Model
             if (!currentPoints.IsSet)
                 throw new ArgumentException("Property is required for class AddedDeductedPointsBalancesNotification.", nameof(currentPoints));
 
-            if (employeeName.IsSet && employeeName.Value == null)
-                throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class AddedDeductedPointsBalancesNotification.");
-
-            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class AddedDeductedPointsBalancesNotification.");
-
-            if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class AddedDeductedPointsBalancesNotification.");
-
-            if (profileIntegrationID.IsSet && profileIntegrationID.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationID), "Property is not nullable for class AddedDeductedPointsBalancesNotification.");
-
-            if (sessionIntegrationID.IsSet && sessionIntegrationID.Value == null)
-                throw new ArgumentNullException(nameof(sessionIntegrationID), "Property is not nullable for class AddedDeductedPointsBalancesNotification.");
-
-            if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class AddedDeductedPointsBalancesNotification.");
-
-            if (typeOfChange.IsSet && typeOfChange.Value == null)
-                throw new ArgumentNullException(nameof(typeOfChange), "Property is not nullable for class AddedDeductedPointsBalancesNotification.");
-
-            if (userID.IsSet && userID.Value == null)
-                throw new ArgumentNullException(nameof(userID), "Property is not nullable for class AddedDeductedPointsBalancesNotification.");
-
-            if (actions.IsSet && actions.Value == null)
-                throw new ArgumentNullException(nameof(actions), "Property is not nullable for class AddedDeductedPointsBalancesNotification.");
-
-            if (currentPoints.IsSet && currentPoints.Value == null)
-                throw new ArgumentNullException(nameof(currentPoints), "Property is not nullable for class AddedDeductedPointsBalancesNotification.");
-
             return new AddedDeductedPointsBalancesNotification(employeeName.Value, loyaltyProgramID.Value.Value, notificationType.Value.Value, profileIntegrationID.Value, sessionIntegrationID.Value, subledgerID.Value, typeOfChange.Value.Value, userID.Value.Value, actions.Value, currentPoints.Value.Value);
         }
 

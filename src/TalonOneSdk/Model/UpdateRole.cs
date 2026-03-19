@@ -194,18 +194,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateRole.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class UpdateRole.");
-
-            if (acl.IsSet && acl.Value == null)
-                throw new ArgumentNullException(nameof(acl), "Property is not nullable for class UpdateRole.");
-
-            if (members.IsSet && members.Value == null)
-                throw new ArgumentNullException(nameof(members), "Property is not nullable for class UpdateRole.");
-
             return new UpdateRole(name, description, acl, members);
         }
 

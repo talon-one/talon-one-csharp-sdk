@@ -257,27 +257,6 @@ namespace TalonOneSdk.Model
             if (!minPoints.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyTier.", nameof(minPoints));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LoyaltyTier.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class LoyaltyTier.");
-
-            if (programID.IsSet && programID.Value == null)
-                throw new ArgumentNullException(nameof(programID), "Property is not nullable for class LoyaltyTier.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class LoyaltyTier.");
-
-            if (minPoints.IsSet && minPoints.Value == null)
-                throw new ArgumentNullException(nameof(minPoints), "Property is not nullable for class LoyaltyTier.");
-
-            if (programName.IsSet && programName.Value == null)
-                throw new ArgumentNullException(nameof(programName), "Property is not nullable for class LoyaltyTier.");
-
-            if (programTitle.IsSet && programTitle.Value == null)
-                throw new ArgumentNullException(nameof(programTitle), "Property is not nullable for class LoyaltyTier.");
-
             return new LoyaltyTier(id.Value.Value, created.Value.Value, programID.Value.Value, name.Value, minPoints.Value.Value, programName, programTitle);
         }
 

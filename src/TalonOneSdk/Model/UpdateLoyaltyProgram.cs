@@ -794,21 +794,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class UpdateLoyaltyProgram.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class UpdateLoyaltyProgram.");
-
-            if (subscribedApplications.IsSet && subscribedApplications.Value == null)
-                throw new ArgumentNullException(nameof(subscribedApplications), "Property is not nullable for class UpdateLoyaltyProgram.");
-
-            if (defaultValidity.IsSet && defaultValidity.Value == null)
-                throw new ArgumentNullException(nameof(defaultValidity), "Property is not nullable for class UpdateLoyaltyProgram.");
-
-            if (defaultPending.IsSet && defaultPending.Value == null)
-                throw new ArgumentNullException(nameof(defaultPending), "Property is not nullable for class UpdateLoyaltyProgram.");
-
             if (allowSubledger.IsSet && allowSubledger.Value == null)
                 throw new ArgumentNullException(nameof(allowSubledger), "Property is not nullable for class UpdateLoyaltyProgram.");
 
@@ -827,20 +812,11 @@ namespace TalonOneSdk.Model
             if (tierCycleStartDate.IsSet && tierCycleStartDate.Value == null)
                 throw new ArgumentNullException(nameof(tierCycleStartDate), "Property is not nullable for class UpdateLoyaltyProgram.");
 
-            if (tiersExpireIn.IsSet && tiersExpireIn.Value == null)
-                throw new ArgumentNullException(nameof(tiersExpireIn), "Property is not nullable for class UpdateLoyaltyProgram.");
-
             if (tiersDowngradePolicy.IsSet && tiersDowngradePolicy.Value == null)
                 throw new ArgumentNullException(nameof(tiersDowngradePolicy), "Property is not nullable for class UpdateLoyaltyProgram.");
 
-            if (cardCodeSettings.IsSet && cardCodeSettings.Value == null)
-                throw new ArgumentNullException(nameof(cardCodeSettings), "Property is not nullable for class UpdateLoyaltyProgram.");
-
             if (returnPolicy.IsSet && returnPolicy.Value == null)
                 throw new ArgumentNullException(nameof(returnPolicy), "Property is not nullable for class UpdateLoyaltyProgram.");
-
-            if (tiers.IsSet && tiers.Value == null)
-                throw new ArgumentNullException(nameof(tiers), "Property is not nullable for class UpdateLoyaltyProgram.");
 
             return new UpdateLoyaltyProgram(title, description, subscribedApplications, defaultValidity, defaultPending, allowSubledger, usersPerCardLimit, sandbox, programJoinPolicy, tiersExpirationPolicy, tierCycleStartDate, tiersExpireIn, tiersDowngradePolicy, cardCodeSettings, returnPolicy, tiers);
         }

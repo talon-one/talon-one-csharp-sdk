@@ -35,7 +35,7 @@ namespace TalonOneSdk.Model
         /// <param name="loyaltyProgramID">The ID of the loyalty program.</param>
         /// <param name="amountOfExpiringPoints">The amount of loyalty points that will be expired soon.</param>
         /// <param name="subledgerID">The ID of the subledger within the loyalty program where these points were added.</param>
-        /// <param name="cardIdentifier">The alphanumeric identifier of the loyalty card.</param>
+        /// <param name="cardIdentifier">The identifier of the loyalty card, &#x60;which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </param>
         /// <param name="usersPerCardLimit">The maximum number of customer profiles with which a card can be shared. This can be set to &#x60;0&#x60; for no limit. </param>
         /// <param name="profiles">The integration IDs of the customer profiles linked to the card.</param>
         [JsonConstructor]
@@ -85,9 +85,9 @@ namespace TalonOneSdk.Model
         public string SubledgerID { get; set; }
 
         /// <summary>
-        /// The alphanumeric identifier of the loyalty card.
+        /// The identifier of the loyalty card, &#x60;which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. 
         /// </summary>
-        /// <value>The alphanumeric identifier of the loyalty card.</value>
+        /// <value>The identifier of the loyalty card, &#x60;which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("CardIdentifier")]
         public string CardIdentifier { get; set; }
@@ -246,27 +246,6 @@ namespace TalonOneSdk.Model
 
             if (!profiles.IsSet)
                 throw new ArgumentException("Property is required for class ExpiringCardPointsData.", nameof(profiles));
-
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class ExpiringCardPointsData.");
-
-            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class ExpiringCardPointsData.");
-
-            if (amountOfExpiringPoints.IsSet && amountOfExpiringPoints.Value == null)
-                throw new ArgumentNullException(nameof(amountOfExpiringPoints), "Property is not nullable for class ExpiringCardPointsData.");
-
-            if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class ExpiringCardPointsData.");
-
-            if (cardIdentifier.IsSet && cardIdentifier.Value == null)
-                throw new ArgumentNullException(nameof(cardIdentifier), "Property is not nullable for class ExpiringCardPointsData.");
-
-            if (usersPerCardLimit.IsSet && usersPerCardLimit.Value == null)
-                throw new ArgumentNullException(nameof(usersPerCardLimit), "Property is not nullable for class ExpiringCardPointsData.");
-
-            if (profiles.IsSet && profiles.Value == null)
-                throw new ArgumentNullException(nameof(profiles), "Property is not nullable for class ExpiringCardPointsData.");
 
             return new ExpiringCardPointsData(expiryDate.Value.Value, loyaltyProgramID.Value.Value, amountOfExpiringPoints.Value.Value, subledgerID.Value, cardIdentifier.Value, usersPerCardLimit.Value.Value, profiles.Value);
         }

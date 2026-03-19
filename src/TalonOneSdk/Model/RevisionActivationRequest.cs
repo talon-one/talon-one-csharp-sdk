@@ -151,9 +151,6 @@ namespace TalonOneSdk.Model
             if (!userIds.IsSet)
                 throw new ArgumentException("Property is required for class RevisionActivationRequest.", nameof(userIds));
 
-            if (userIds.IsSet && userIds.Value == null)
-                throw new ArgumentNullException(nameof(userIds), "Property is not nullable for class RevisionActivationRequest.");
-
             if (activateAt.IsSet && activateAt.Value == null)
                 throw new ArgumentNullException(nameof(activateAt), "Property is not nullable for class RevisionActivationRequest.");
 

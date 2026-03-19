@@ -665,32 +665,8 @@ namespace TalonOneSdk.Model
             if (!visible.IsSet)
                 throw new ArgumentException("Property is required for class TalangAttribute.", nameof(visible));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class TalangAttribute.");
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class TalangAttribute.");
-
-            if (kind.IsSet && kind.Value == null)
-                throw new ArgumentNullException(nameof(kind), "Property is not nullable for class TalangAttribute.");
-
-            if (campaignsCount.IsSet && campaignsCount.Value == null)
-                throw new ArgumentNullException(nameof(campaignsCount), "Property is not nullable for class TalangAttribute.");
-
             if (entity.IsSet && entity.Value == null)
                 throw new ArgumentNullException(nameof(entity), "Property is not nullable for class TalangAttribute.");
-
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class TalangAttribute.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class TalangAttribute.");
-
-            if (visible.IsSet && visible.Value == null)
-                throw new ArgumentNullException(nameof(visible), "Property is not nullable for class TalangAttribute.");
-
-            if (exampleValue.IsSet && exampleValue.Value == null)
-                throw new ArgumentNullException(nameof(exampleValue), "Property is not nullable for class TalangAttribute.");
 
             return new TalangAttribute(name.Value, type.Value, kind.Value.Value, campaignsCount.Value.Value, entity, title, description, visible.Value.Value, exampleValue);
         }

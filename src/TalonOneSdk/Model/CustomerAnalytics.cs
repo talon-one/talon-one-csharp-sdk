@@ -225,27 +225,6 @@ namespace TalonOneSdk.Model
             if (!totalDiscounts.IsSet)
                 throw new ArgumentException("Property is required for class CustomerAnalytics.", nameof(totalDiscounts));
 
-            if (acceptedCoupons.IsSet && acceptedCoupons.Value == null)
-                throw new ArgumentNullException(nameof(acceptedCoupons), "Property is not nullable for class CustomerAnalytics.");
-
-            if (createdCoupons.IsSet && createdCoupons.Value == null)
-                throw new ArgumentNullException(nameof(createdCoupons), "Property is not nullable for class CustomerAnalytics.");
-
-            if (freeItems.IsSet && freeItems.Value == null)
-                throw new ArgumentNullException(nameof(freeItems), "Property is not nullable for class CustomerAnalytics.");
-
-            if (totalOrders.IsSet && totalOrders.Value == null)
-                throw new ArgumentNullException(nameof(totalOrders), "Property is not nullable for class CustomerAnalytics.");
-
-            if (totalDiscountedOrders.IsSet && totalDiscountedOrders.Value == null)
-                throw new ArgumentNullException(nameof(totalDiscountedOrders), "Property is not nullable for class CustomerAnalytics.");
-
-            if (totalRevenue.IsSet && totalRevenue.Value == null)
-                throw new ArgumentNullException(nameof(totalRevenue), "Property is not nullable for class CustomerAnalytics.");
-
-            if (totalDiscounts.IsSet && totalDiscounts.Value == null)
-                throw new ArgumentNullException(nameof(totalDiscounts), "Property is not nullable for class CustomerAnalytics.");
-
             return new CustomerAnalytics(acceptedCoupons.Value.Value, createdCoupons.Value.Value, freeItems.Value.Value, totalOrders.Value.Value, totalDiscountedOrders.Value.Value, totalRevenue.Value.Value, totalDiscounts.Value.Value);
         }
 

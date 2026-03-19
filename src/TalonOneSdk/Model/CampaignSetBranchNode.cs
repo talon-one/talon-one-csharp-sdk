@@ -556,33 +556,6 @@ namespace TalonOneSdk.Model
             if (!evaluationScope.IsSet)
                 throw new ArgumentException("Property is required for class CampaignSetBranchNode.", nameof(evaluationScope));
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CampaignSetBranchNode.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignSetBranchNode.");
-
-            if (varOperator.IsSet && varOperator.Value == null)
-                throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class CampaignSetBranchNode.");
-
-            if (elements.IsSet && elements.Value == null)
-                throw new ArgumentNullException(nameof(elements), "Property is not nullable for class CampaignSetBranchNode.");
-
-            if (groupId.IsSet && groupId.Value == null)
-                throw new ArgumentNullException(nameof(groupId), "Property is not nullable for class CampaignSetBranchNode.");
-
-            if (locked.IsSet && locked.Value == null)
-                throw new ArgumentNullException(nameof(locked), "Property is not nullable for class CampaignSetBranchNode.");
-
-            if (evaluationMode.IsSet && evaluationMode.Value == null)
-                throw new ArgumentNullException(nameof(evaluationMode), "Property is not nullable for class CampaignSetBranchNode.");
-
-            if (evaluationScope.IsSet && evaluationScope.Value == null)
-                throw new ArgumentNullException(nameof(evaluationScope), "Property is not nullable for class CampaignSetBranchNode.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class CampaignSetBranchNode.");
-
             return new CampaignSetBranchNode(type.Value.Value, name.Value, varOperator.Value.Value, elements.Value, groupId.Value.Value, locked.Value.Value, evaluationMode.Value.Value, evaluationScope.Value.Value, description);
         }
 

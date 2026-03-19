@@ -140,12 +140,6 @@ namespace TalonOneSdk.Model
             if (!webhookName.IsSet)
                 throw new ArgumentException("Property is required for class TriggerWebhookEffectProps.", nameof(webhookName));
 
-            if (webhookId.IsSet && webhookId.Value == null)
-                throw new ArgumentNullException(nameof(webhookId), "Property is not nullable for class TriggerWebhookEffectProps.");
-
-            if (webhookName.IsSet && webhookName.Value == null)
-                throw new ArgumentNullException(nameof(webhookName), "Property is not nullable for class TriggerWebhookEffectProps.");
-
             return new TriggerWebhookEffectProps(webhookId.Value.Value, webhookName.Value);
         }
 

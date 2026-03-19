@@ -142,12 +142,6 @@ namespace TalonOneSdk.Model
             if (!apiKey.IsSet)
                 throw new ArgumentException("Property is required for class OutgoingIntegrationBrazePolicy.", nameof(apiKey));
 
-            if (baseUrl.IsSet && baseUrl.Value == null)
-                throw new ArgumentNullException(nameof(baseUrl), "Property is not nullable for class OutgoingIntegrationBrazePolicy.");
-
-            if (apiKey.IsSet && apiKey.Value == null)
-                throw new ArgumentNullException(nameof(apiKey), "Property is not nullable for class OutgoingIntegrationBrazePolicy.");
-
             return new OutgoingIntegrationBrazePolicy(baseUrl.Value, apiKey.Value);
         }
 

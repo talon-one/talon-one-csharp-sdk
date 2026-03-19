@@ -243,9 +243,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (friendProfileIntegrationId.IsSet && friendProfileIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(friendProfileIntegrationId), "Property is not nullable for class UpdateReferral.");
-
             if (startDate.IsSet && startDate.Value == null)
                 throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class UpdateReferral.");
 
@@ -254,9 +251,6 @@ namespace TalonOneSdk.Model
 
             if (usageLimit.IsSet && usageLimit.Value == null)
                 throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class UpdateReferral.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class UpdateReferral.");
 
             return new UpdateReferral(friendProfileIntegrationId, startDate, expiryDate, usageLimit, attributes);
         }

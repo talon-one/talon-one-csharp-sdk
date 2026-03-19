@@ -164,15 +164,6 @@ namespace TalonOneSdk.Model
             if (!deletedAt.IsSet)
                 throw new ArgumentException("Property is required for class CampaignDeletedNotificationItem.", nameof(deletedAt));
 
-            if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignDeletedNotificationItem.");
-
-            if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CampaignDeletedNotificationItem.");
-
-            if (deletedAt.IsSet && deletedAt.Value == null)
-                throw new ArgumentNullException(nameof(deletedAt), "Property is not nullable for class CampaignDeletedNotificationItem.");
-
             return new CampaignDeletedNotificationItem(varEvent.Value, campaign.Value, deletedAt.Value.Value);
         }
 

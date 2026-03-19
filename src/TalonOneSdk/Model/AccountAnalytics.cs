@@ -470,66 +470,6 @@ namespace TalonOneSdk.Model
             if (!lastUpdatedAt.IsSet)
                 throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(lastUpdatedAt));
 
-            if (applications.IsSet && applications.Value == null)
-                throw new ArgumentNullException(nameof(applications), "Property is not nullable for class AccountAnalytics.");
-
-            if (liveApplications.IsSet && liveApplications.Value == null)
-                throw new ArgumentNullException(nameof(liveApplications), "Property is not nullable for class AccountAnalytics.");
-
-            if (sandboxApplications.IsSet && sandboxApplications.Value == null)
-                throw new ArgumentNullException(nameof(sandboxApplications), "Property is not nullable for class AccountAnalytics.");
-
-            if (campaigns.IsSet && campaigns.Value == null)
-                throw new ArgumentNullException(nameof(campaigns), "Property is not nullable for class AccountAnalytics.");
-
-            if (activeCampaigns.IsSet && activeCampaigns.Value == null)
-                throw new ArgumentNullException(nameof(activeCampaigns), "Property is not nullable for class AccountAnalytics.");
-
-            if (liveActiveCampaigns.IsSet && liveActiveCampaigns.Value == null)
-                throw new ArgumentNullException(nameof(liveActiveCampaigns), "Property is not nullable for class AccountAnalytics.");
-
-            if (coupons.IsSet && coupons.Value == null)
-                throw new ArgumentNullException(nameof(coupons), "Property is not nullable for class AccountAnalytics.");
-
-            if (activeCoupons.IsSet && activeCoupons.Value == null)
-                throw new ArgumentNullException(nameof(activeCoupons), "Property is not nullable for class AccountAnalytics.");
-
-            if (expiredCoupons.IsSet && expiredCoupons.Value == null)
-                throw new ArgumentNullException(nameof(expiredCoupons), "Property is not nullable for class AccountAnalytics.");
-
-            if (referralCodes.IsSet && referralCodes.Value == null)
-                throw new ArgumentNullException(nameof(referralCodes), "Property is not nullable for class AccountAnalytics.");
-
-            if (activeReferralCodes.IsSet && activeReferralCodes.Value == null)
-                throw new ArgumentNullException(nameof(activeReferralCodes), "Property is not nullable for class AccountAnalytics.");
-
-            if (expiredReferralCodes.IsSet && expiredReferralCodes.Value == null)
-                throw new ArgumentNullException(nameof(expiredReferralCodes), "Property is not nullable for class AccountAnalytics.");
-
-            if (activeRules.IsSet && activeRules.Value == null)
-                throw new ArgumentNullException(nameof(activeRules), "Property is not nullable for class AccountAnalytics.");
-
-            if (users.IsSet && users.Value == null)
-                throw new ArgumentNullException(nameof(users), "Property is not nullable for class AccountAnalytics.");
-
-            if (roles.IsSet && roles.Value == null)
-                throw new ArgumentNullException(nameof(roles), "Property is not nullable for class AccountAnalytics.");
-
-            if (customAttributes.IsSet && customAttributes.Value == null)
-                throw new ArgumentNullException(nameof(customAttributes), "Property is not nullable for class AccountAnalytics.");
-
-            if (webhooks.IsSet && webhooks.Value == null)
-                throw new ArgumentNullException(nameof(webhooks), "Property is not nullable for class AccountAnalytics.");
-
-            if (loyaltyPrograms.IsSet && loyaltyPrograms.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyPrograms), "Property is not nullable for class AccountAnalytics.");
-
-            if (liveLoyaltyPrograms.IsSet && liveLoyaltyPrograms.Value == null)
-                throw new ArgumentNullException(nameof(liveLoyaltyPrograms), "Property is not nullable for class AccountAnalytics.");
-
-            if (lastUpdatedAt.IsSet && lastUpdatedAt.Value == null)
-                throw new ArgumentNullException(nameof(lastUpdatedAt), "Property is not nullable for class AccountAnalytics.");
-
             return new AccountAnalytics(applications.Value.Value, liveApplications.Value.Value, sandboxApplications.Value.Value, campaigns.Value.Value, activeCampaigns.Value.Value, liveActiveCampaigns.Value.Value, coupons.Value.Value, activeCoupons.Value.Value, expiredCoupons.Value.Value, referralCodes.Value.Value, activeReferralCodes.Value.Value, expiredReferralCodes.Value.Value, activeRules.Value.Value, users.Value.Value, roles.Value.Value, customAttributes.Value.Value, webhooks.Value.Value, loyaltyPrograms.Value.Value, liveLoyaltyPrograms.Value.Value, lastUpdatedAt.Value.Value);
         }
 

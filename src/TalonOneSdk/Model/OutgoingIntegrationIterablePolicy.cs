@@ -142,12 +142,6 @@ namespace TalonOneSdk.Model
             if (!apiKey.IsSet)
                 throw new ArgumentException("Property is required for class OutgoingIntegrationIterablePolicy.", nameof(apiKey));
 
-            if (baseUrl.IsSet && baseUrl.Value == null)
-                throw new ArgumentNullException(nameof(baseUrl), "Property is not nullable for class OutgoingIntegrationIterablePolicy.");
-
-            if (apiKey.IsSet && apiKey.Value == null)
-                throw new ArgumentNullException(nameof(apiKey), "Property is not nullable for class OutgoingIntegrationIterablePolicy.");
-
             return new OutgoingIntegrationIterablePolicy(baseUrl.Value, apiKey.Value);
         }
 

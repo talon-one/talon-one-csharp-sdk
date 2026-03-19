@@ -329,9 +329,6 @@ namespace TalonOneSdk.Model
             if (variantId.IsSet && variantId.Value == null)
                 throw new ArgumentNullException(nameof(variantId), "Property is not nullable for class ExperimentVariantResult.");
 
-            if (variantName.IsSet && variantName.Value == null)
-                throw new ArgumentNullException(nameof(variantName), "Property is not nullable for class ExperimentVariantResult.");
-
             if (variantWeight.IsSet && variantWeight.Value == null)
                 throw new ArgumentNullException(nameof(variantWeight), "Property is not nullable for class ExperimentVariantResult.");
 

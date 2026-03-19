@@ -199,21 +199,6 @@ namespace TalonOneSdk.Model
             if (!limits.IsSet)
                 throw new ArgumentException("Property is required for class CampaignStoreBudget.", nameof(limits));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignStoreBudget.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CampaignStoreBudget.");
-
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class CampaignStoreBudget.");
-
-            if (storeId.IsSet && storeId.Value == null)
-                throw new ArgumentNullException(nameof(storeId), "Property is not nullable for class CampaignStoreBudget.");
-
-            if (limits.IsSet && limits.Value == null)
-                throw new ArgumentNullException(nameof(limits), "Property is not nullable for class CampaignStoreBudget.");
-
             return new CampaignStoreBudget(id.Value.Value, created.Value.Value, campaignId.Value.Value, storeId.Value.Value, limits.Value);
         }
 

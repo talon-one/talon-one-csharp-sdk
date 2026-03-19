@@ -126,9 +126,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (mandatory.IsSet && mandatory.Value == null)
-                throw new ArgumentNullException(nameof(mandatory), "Property is not nullable for class AttributesSettings.");
-
             return new AttributesSettings(mandatory);
         }
 

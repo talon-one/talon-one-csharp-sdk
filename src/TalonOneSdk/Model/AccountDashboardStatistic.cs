@@ -206,21 +206,6 @@ namespace TalonOneSdk.Model
             if (!campaigns.IsSet)
                 throw new ArgumentException("Property is required for class AccountDashboardStatistic.", nameof(campaigns));
 
-            if (campaigns.IsSet && campaigns.Value == null)
-                throw new ArgumentNullException(nameof(campaigns), "Property is not nullable for class AccountDashboardStatistic.");
-
-            if (revenue.IsSet && revenue.Value == null)
-                throw new ArgumentNullException(nameof(revenue), "Property is not nullable for class AccountDashboardStatistic.");
-
-            if (discounts.IsSet && discounts.Value == null)
-                throw new ArgumentNullException(nameof(discounts), "Property is not nullable for class AccountDashboardStatistic.");
-
-            if (loyaltyPoints.IsSet && loyaltyPoints.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyPoints), "Property is not nullable for class AccountDashboardStatistic.");
-
-            if (referrals.IsSet && referrals.Value == null)
-                throw new ArgumentNullException(nameof(referrals), "Property is not nullable for class AccountDashboardStatistic.");
-
             return new AccountDashboardStatistic(campaigns.Value, revenue, discounts, loyaltyPoints, referrals);
         }
 

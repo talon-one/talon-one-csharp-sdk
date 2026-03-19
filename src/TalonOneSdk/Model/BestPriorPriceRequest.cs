@@ -309,23 +309,8 @@ namespace TalonOneSdk.Model
             if (!strictEndDate.IsSet)
                 throw new ArgumentException("Property is required for class BestPriorPriceRequest.", nameof(strictEndDate));
 
-            if (skus.IsSet && skus.Value == null)
-                throw new ArgumentNullException(nameof(skus), "Property is not nullable for class BestPriorPriceRequest.");
-
-            if (timeframeEndDate.IsSet && timeframeEndDate.Value == null)
-                throw new ArgumentNullException(nameof(timeframeEndDate), "Property is not nullable for class BestPriorPriceRequest.");
-
-            if (timeframe.IsSet && timeframe.Value == null)
-                throw new ArgumentNullException(nameof(timeframe), "Property is not nullable for class BestPriorPriceRequest.");
-
-            if (strictEndDate.IsSet && strictEndDate.Value == null)
-                throw new ArgumentNullException(nameof(strictEndDate), "Property is not nullable for class BestPriorPriceRequest.");
-
             if (timeframeEndDateType.IsSet && timeframeEndDateType.Value == null)
                 throw new ArgumentNullException(nameof(timeframeEndDateType), "Property is not nullable for class BestPriorPriceRequest.");
-
-            if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class BestPriorPriceRequest.");
 
             return new BestPriorPriceRequest(skus.Value, timeframeEndDate.Value.Value, timeframe.Value, strictEndDate.Value.Value, timeframeEndDateType, target);
         }

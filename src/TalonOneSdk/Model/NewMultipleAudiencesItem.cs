@@ -164,12 +164,6 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class NewMultipleAudiencesItem.", nameof(name));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewMultipleAudiencesItem.");
-
-            if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class NewMultipleAudiencesItem.");
-
             return new NewMultipleAudiencesItem(name.Value, integrationId);
         }
 

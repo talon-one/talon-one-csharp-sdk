@@ -215,12 +215,6 @@ namespace TalonOneSdk.Model
             if (!period.IsSet)
                 throw new ArgumentException("Property is required for class CardExpiringPointsNotificationTrigger.", nameof(period));
 
-            if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class CardExpiringPointsNotificationTrigger.");
-
-            if (period.IsSet && period.Value == null)
-                throw new ArgumentNullException(nameof(period), "Property is not nullable for class CardExpiringPointsNotificationTrigger.");
-
             return new CardExpiringPointsNotificationTrigger(amount.Value.Value, period.Value.Value);
         }
 

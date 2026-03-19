@@ -158,15 +158,6 @@ namespace TalonOneSdk.Model
             if (!ruleset.IsSet)
                 throw new ArgumentException("Property is required for class CreateTemplateCampaignResponse.", nameof(ruleset));
 
-            if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CreateTemplateCampaignResponse.");
-
-            if (ruleset.IsSet && ruleset.Value == null)
-                throw new ArgumentNullException(nameof(ruleset), "Property is not nullable for class CreateTemplateCampaignResponse.");
-
-            if (collections.IsSet && collections.Value == null)
-                throw new ArgumentNullException(nameof(collections), "Property is not nullable for class CreateTemplateCampaignResponse.");
-
             return new CreateTemplateCampaignResponse(campaign.Value, ruleset.Value, collections);
         }
 

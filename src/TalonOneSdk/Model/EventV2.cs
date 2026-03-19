@@ -230,21 +230,6 @@ namespace TalonOneSdk.Model
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class EventV2.", nameof(type));
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class EventV2.");
-
-            if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class EventV2.");
-
-            if (storeIntegrationId.IsSet && storeIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(storeIntegrationId), "Property is not nullable for class EventV2.");
-
-            if (evaluableCampaignIds.IsSet && evaluableCampaignIds.Value == null)
-                throw new ArgumentNullException(nameof(evaluableCampaignIds), "Property is not nullable for class EventV2.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class EventV2.");
-
             return new EventV2(type.Value, profileId, storeIntegrationId, evaluableCampaignIds, attributes);
         }
 

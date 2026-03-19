@@ -219,24 +219,6 @@ namespace TalonOneSdk.Model
             if (!newState.IsSet)
                 throw new ArgumentException("Property is required for class CampaignStateChangedNotificationItem.", nameof(newState));
 
-            if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignStateChangedNotificationItem.");
-
-            if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CampaignStateChangedNotificationItem.");
-
-            if (oldState.IsSet && oldState.Value == null)
-                throw new ArgumentNullException(nameof(oldState), "Property is not nullable for class CampaignStateChangedNotificationItem.");
-
-            if (newState.IsSet && newState.Value == null)
-                throw new ArgumentNullException(nameof(newState), "Property is not nullable for class CampaignStateChangedNotificationItem.");
-
-            if (ruleset.IsSet && ruleset.Value == null)
-                throw new ArgumentNullException(nameof(ruleset), "Property is not nullable for class CampaignStateChangedNotificationItem.");
-
-            if (placeholders.IsSet && placeholders.Value == null)
-                throw new ArgumentNullException(nameof(placeholders), "Property is not nullable for class CampaignStateChangedNotificationItem.");
-
             return new CampaignStateChangedNotificationItem(varEvent.Value, campaign.Value, oldState.Value, newState.Value, ruleset, placeholders);
         }
 

@@ -165,15 +165,6 @@ namespace TalonOneSdk.Model
             if (!created.IsSet)
                 throw new ArgumentException("Property is required for class Session.", nameof(created));
 
-            if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class Session.");
-
-            if (token.IsSet && token.Value == null)
-                throw new ArgumentNullException(nameof(token), "Property is not nullable for class Session.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Session.");
-
             return new Session(userId.Value.Value, token.Value, created.Value.Value);
         }
 

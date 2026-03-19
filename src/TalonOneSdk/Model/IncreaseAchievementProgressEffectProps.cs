@@ -231,24 +231,6 @@ namespace TalonOneSdk.Model
             if (!isJustCompleted.IsSet)
                 throw new ArgumentException("Property is required for class IncreaseAchievementProgressEffectProps.", nameof(isJustCompleted));
 
-            if (achievementId.IsSet && achievementId.Value == null)
-                throw new ArgumentNullException(nameof(achievementId), "Property is not nullable for class IncreaseAchievementProgressEffectProps.");
-
-            if (achievementName.IsSet && achievementName.Value == null)
-                throw new ArgumentNullException(nameof(achievementName), "Property is not nullable for class IncreaseAchievementProgressEffectProps.");
-
-            if (delta.IsSet && delta.Value == null)
-                throw new ArgumentNullException(nameof(delta), "Property is not nullable for class IncreaseAchievementProgressEffectProps.");
-
-            if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class IncreaseAchievementProgressEffectProps.");
-
-            if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class IncreaseAchievementProgressEffectProps.");
-
-            if (isJustCompleted.IsSet && isJustCompleted.Value == null)
-                throw new ArgumentNullException(nameof(isJustCompleted), "Property is not nullable for class IncreaseAchievementProgressEffectProps.");
-
             if (progressTrackerId.IsSet && progressTrackerId.Value == null)
                 throw new ArgumentNullException(nameof(progressTrackerId), "Property is not nullable for class IncreaseAchievementProgressEffectProps.");
 

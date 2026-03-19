@@ -363,15 +363,6 @@ namespace TalonOneSdk.Model
             if (!reason.IsSet)
                 throw new ArgumentException("Property is required for class ReferralRejectionReason.", nameof(reason));
 
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class ReferralRejectionReason.");
-
-            if (referralId.IsSet && referralId.Value == null)
-                throw new ArgumentNullException(nameof(referralId), "Property is not nullable for class ReferralRejectionReason.");
-
-            if (reason.IsSet && reason.Value == null)
-                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class ReferralRejectionReason.");
-
             return new ReferralRejectionReason(campaignId.Value.Value, referralId.Value.Value, reason.Value.Value);
         }
 

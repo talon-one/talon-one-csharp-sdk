@@ -308,20 +308,8 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class UpdateBlueprint.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class UpdateBlueprint.");
-
             if (category.IsSet && category.Value == null)
                 throw new ArgumentNullException(nameof(category), "Property is not nullable for class UpdateBlueprint.");
-
-            if (rules.IsSet && rules.Value == null)
-                throw new ArgumentNullException(nameof(rules), "Property is not nullable for class UpdateBlueprint.");
-
-            if (cartItemFilters.IsSet && cartItemFilters.Value == null)
-                throw new ArgumentNullException(nameof(cartItemFilters), "Property is not nullable for class UpdateBlueprint.");
 
             return new UpdateBlueprint(title, description, category, rules, cartItemFilters);
         }

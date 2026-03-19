@@ -185,18 +185,6 @@ namespace TalonOneSdk.Model
             if (!metadataDocument.IsSet)
                 throw new ArgumentException("Property is required for class SamlConnectionMetadata.", nameof(metadataDocument));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SamlConnectionMetadata.");
-
-            if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class SamlConnectionMetadata.");
-
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class SamlConnectionMetadata.");
-
-            if (metadataDocument.IsSet && metadataDocument.Value == null)
-                throw new ArgumentNullException(nameof(metadataDocument), "Property is not nullable for class SamlConnectionMetadata.");
-
             return new SamlConnectionMetadata(name.Value, enabled.Value.Value, accountId.Value.Value, metadataDocument.Value);
         }
 

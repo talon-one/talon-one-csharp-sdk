@@ -152,9 +152,6 @@ namespace TalonOneSdk.Model
             if (hasMore.IsSet && hasMore.Value == null)
                 throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class LoyaltyLedgerTransactions.");
 
-            if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class LoyaltyLedgerTransactions.");
-
             return new LoyaltyLedgerTransactions(hasMore, data);
         }
 

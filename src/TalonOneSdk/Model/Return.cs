@@ -332,35 +332,8 @@ namespace TalonOneSdk.Model
             if (!sessionIntegrationId.IsSet)
                 throw new ArgumentException("Property is required for class Return.", nameof(sessionIntegrationId));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Return.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Return.");
-
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class Return.");
-
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Return.");
-
-            if (returnedCartItems.IsSet && returnedCartItems.Value == null)
-                throw new ArgumentNullException(nameof(returnedCartItems), "Property is not nullable for class Return.");
-
-            if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class Return.");
-
-            if (sessionId.IsSet && sessionId.Value == null)
-                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class Return.");
-
-            if (sessionIntegrationId.IsSet && sessionIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(sessionIntegrationId), "Property is not nullable for class Return.");
-
             if (profileId.IsSet && profileId.Value == null)
                 throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class Return.");
-
-            if (profileIntegrationId.IsSet && profileIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationId), "Property is not nullable for class Return.");
 
             if (createdBy.IsSet && createdBy.Value == null)
                 throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class Return.");
