@@ -182,15 +182,6 @@ namespace TalonOneSdk.Model
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class SetDiscountEffectProps.", nameof(value));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SetDiscountEffectProps.");
-
-            if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class SetDiscountEffectProps.");
-
-            if (scope.IsSet && scope.Value == null)
-                throw new ArgumentNullException(nameof(scope), "Property is not nullable for class SetDiscountEffectProps.");
-
             if (desiredValue.IsSet && desiredValue.Value == null)
                 throw new ArgumentNullException(nameof(desiredValue), "Property is not nullable for class SetDiscountEffectProps.");
 

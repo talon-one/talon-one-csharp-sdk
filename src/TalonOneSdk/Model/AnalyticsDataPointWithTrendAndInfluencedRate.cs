@@ -157,15 +157,6 @@ namespace TalonOneSdk.Model
             if (!trend.IsSet)
                 throw new ArgumentException("Property is required for class AnalyticsDataPointWithTrendAndInfluencedRate.", nameof(trend));
 
-            if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class AnalyticsDataPointWithTrendAndInfluencedRate.");
-
-            if (influencedRate.IsSet && influencedRate.Value == null)
-                throw new ArgumentNullException(nameof(influencedRate), "Property is not nullable for class AnalyticsDataPointWithTrendAndInfluencedRate.");
-
-            if (trend.IsSet && trend.Value == null)
-                throw new ArgumentNullException(nameof(trend), "Property is not nullable for class AnalyticsDataPointWithTrendAndInfluencedRate.");
-
             return new AnalyticsDataPointWithTrendAndInfluencedRate(value.Value.Value, influencedRate.Value.Value, trend.Value.Value);
         }
 

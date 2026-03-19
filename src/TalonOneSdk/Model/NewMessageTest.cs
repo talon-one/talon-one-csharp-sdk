@@ -364,24 +364,6 @@ namespace TalonOneSdk.Model
             if (!url.IsSet)
                 throw new ArgumentException("Property is required for class NewMessageTest.", nameof(url));
 
-            if (verb.IsSet && verb.Value == null)
-                throw new ArgumentNullException(nameof(verb), "Property is not nullable for class NewMessageTest.");
-
-            if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class NewMessageTest.");
-
-            if (headers.IsSet && headers.Value == null)
-                throw new ArgumentNullException(nameof(headers), "Property is not nullable for class NewMessageTest.");
-
-            if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class NewMessageTest.");
-
-            if (varParams.IsSet && varParams.Value == null)
-                throw new ArgumentNullException(nameof(varParams), "Property is not nullable for class NewMessageTest.");
-
-            if (applicationIds.IsSet && applicationIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class NewMessageTest.");
-
             if (authenticationId.IsSet && authenticationId.Value == null)
                 throw new ArgumentNullException(nameof(authenticationId), "Property is not nullable for class NewMessageTest.");
 

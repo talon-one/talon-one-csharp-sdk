@@ -157,12 +157,6 @@ namespace TalonOneSdk.Model
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class ItemAttribute.", nameof(value));
 
-            if (attributeid.IsSet && attributeid.Value == null)
-                throw new ArgumentNullException(nameof(attributeid), "Property is not nullable for class ItemAttribute.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ItemAttribute.");
-
             return new ItemAttribute(attributeid.Value.Value, name.Value, value.Value);
         }
 

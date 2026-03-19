@@ -122,9 +122,6 @@ namespace TalonOneSdk.Model
             if (!filters.IsSet)
                 throw new ArgumentException("Property is required for class NewCouponDeletionJob.", nameof(filters));
 
-            if (filters.IsSet && filters.Value == null)
-                throw new ArgumentNullException(nameof(filters), "Property is not nullable for class NewCouponDeletionJob.");
-
             return new NewCouponDeletionJob(filters.Value);
         }
 

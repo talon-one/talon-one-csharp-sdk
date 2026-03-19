@@ -262,21 +262,6 @@ namespace TalonOneSdk.Model
             if (!tentativeCurrentBalance.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyProgramBalance.", nameof(tentativeCurrentBalance));
 
-            if (currentBalance.IsSet && currentBalance.Value == null)
-                throw new ArgumentNullException(nameof(currentBalance), "Property is not nullable for class LoyaltyProgramBalance.");
-
-            if (pendingBalance.IsSet && pendingBalance.Value == null)
-                throw new ArgumentNullException(nameof(pendingBalance), "Property is not nullable for class LoyaltyProgramBalance.");
-
-            if (expiredBalance.IsSet && expiredBalance.Value == null)
-                throw new ArgumentNullException(nameof(expiredBalance), "Property is not nullable for class LoyaltyProgramBalance.");
-
-            if (spentBalance.IsSet && spentBalance.Value == null)
-                throw new ArgumentNullException(nameof(spentBalance), "Property is not nullable for class LoyaltyProgramBalance.");
-
-            if (tentativeCurrentBalance.IsSet && tentativeCurrentBalance.Value == null)
-                throw new ArgumentNullException(nameof(tentativeCurrentBalance), "Property is not nullable for class LoyaltyProgramBalance.");
-
             if (negativeBalance.IsSet && negativeBalance.Value == null)
                 throw new ArgumentNullException(nameof(negativeBalance), "Property is not nullable for class LoyaltyProgramBalance.");
 

@@ -199,18 +199,6 @@ namespace TalonOneSdk.Model
             if (!isPrimary.IsSet)
                 throw new ArgumentException("Property is required for class NewExperimentVariant.", nameof(isPrimary));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewExperimentVariant.");
-
-            if (weight.IsSet && weight.Value == null)
-                throw new ArgumentNullException(nameof(weight), "Property is not nullable for class NewExperimentVariant.");
-
-            if (ruleset.IsSet && ruleset.Value == null)
-                throw new ArgumentNullException(nameof(ruleset), "Property is not nullable for class NewExperimentVariant.");
-
-            if (isPrimary.IsSet && isPrimary.Value == null)
-                throw new ArgumentNullException(nameof(isPrimary), "Property is not nullable for class NewExperimentVariant.");
-
             return new NewExperimentVariant(name.Value, weight.Value.Value, ruleset.Value, isPrimary.Value.Value);
         }
 

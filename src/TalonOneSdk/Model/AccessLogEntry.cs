@@ -242,27 +242,6 @@ namespace TalonOneSdk.Model
             if (!responsePayload.IsSet)
                 throw new ArgumentException("Property is required for class AccessLogEntry.", nameof(responsePayload));
 
-            if (uuid.IsSet && uuid.Value == null)
-                throw new ArgumentNullException(nameof(uuid), "Property is not nullable for class AccessLogEntry.");
-
-            if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class AccessLogEntry.");
-
-            if (method.IsSet && method.Value == null)
-                throw new ArgumentNullException(nameof(method), "Property is not nullable for class AccessLogEntry.");
-
-            if (requestUri.IsSet && requestUri.Value == null)
-                throw new ArgumentNullException(nameof(requestUri), "Property is not nullable for class AccessLogEntry.");
-
-            if (time.IsSet && time.Value == null)
-                throw new ArgumentNullException(nameof(time), "Property is not nullable for class AccessLogEntry.");
-
-            if (requestPayload.IsSet && requestPayload.Value == null)
-                throw new ArgumentNullException(nameof(requestPayload), "Property is not nullable for class AccessLogEntry.");
-
-            if (responsePayload.IsSet && responsePayload.Value == null)
-                throw new ArgumentNullException(nameof(responsePayload), "Property is not nullable for class AccessLogEntry.");
-
             return new AccessLogEntry(uuid.Value, status.Value.Value, method.Value, requestUri.Value, time.Value.Value, requestPayload.Value, responsePayload.Value);
         }
 

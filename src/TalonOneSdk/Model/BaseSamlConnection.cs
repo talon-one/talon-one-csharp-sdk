@@ -273,30 +273,6 @@ namespace TalonOneSdk.Model
             if (!signOnURL.IsSet)
                 throw new ArgumentException("Property is required for class BaseSamlConnection.", nameof(signOnURL));
 
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class BaseSamlConnection.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class BaseSamlConnection.");
-
-            if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class BaseSamlConnection.");
-
-            if (issuer.IsSet && issuer.Value == null)
-                throw new ArgumentNullException(nameof(issuer), "Property is not nullable for class BaseSamlConnection.");
-
-            if (signOnURL.IsSet && signOnURL.Value == null)
-                throw new ArgumentNullException(nameof(signOnURL), "Property is not nullable for class BaseSamlConnection.");
-
-            if (signOutURL.IsSet && signOutURL.Value == null)
-                throw new ArgumentNullException(nameof(signOutURL), "Property is not nullable for class BaseSamlConnection.");
-
-            if (metadataURL.IsSet && metadataURL.Value == null)
-                throw new ArgumentNullException(nameof(metadataURL), "Property is not nullable for class BaseSamlConnection.");
-
-            if (audienceURI.IsSet && audienceURI.Value == null)
-                throw new ArgumentNullException(nameof(audienceURI), "Property is not nullable for class BaseSamlConnection.");
-
             return new BaseSamlConnection(accountId.Value.Value, name.Value, enabled.Value.Value, issuer.Value, signOnURL.Value, signOutURL, metadataURL, audienceURI);
         }
 

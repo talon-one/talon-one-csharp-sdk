@@ -70,5 +70,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'Value'
         }
+
+        /// <summary>
+        /// Test the property 'ExcludeFromBestPriorPriceHistory'
+        /// </summary>
+        [Fact]
+        public void ExcludeFromBestPriorPriceHistoryTest()
+        {
+            // TODO unit test for the property 'ExcludeFromBestPriorPriceHistory'
+        }
     }
 }

@@ -140,12 +140,6 @@ namespace TalonOneSdk.Model
             if (!history.IsSet)
                 throw new ArgumentException("Property is required for class PriceHistoryResponse.", nameof(history));
 
-            if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class PriceHistoryResponse.");
-
-            if (history.IsSet && history.Value == null)
-                throw new ArgumentNullException(nameof(history), "Property is not nullable for class PriceHistoryResponse.");
-
             return new PriceHistoryResponse(sku.Value, history.Value);
         }
 

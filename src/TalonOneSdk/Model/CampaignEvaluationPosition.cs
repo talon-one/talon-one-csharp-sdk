@@ -160,15 +160,6 @@ namespace TalonOneSdk.Model
             if (!position.IsSet)
                 throw new ArgumentException("Property is required for class CampaignEvaluationPosition.", nameof(position));
 
-            if (groupId.IsSet && groupId.Value == null)
-                throw new ArgumentNullException(nameof(groupId), "Property is not nullable for class CampaignEvaluationPosition.");
-
-            if (groupName.IsSet && groupName.Value == null)
-                throw new ArgumentNullException(nameof(groupName), "Property is not nullable for class CampaignEvaluationPosition.");
-
-            if (position.IsSet && position.Value == null)
-                throw new ArgumentNullException(nameof(position), "Property is not nullable for class CampaignEvaluationPosition.");
-
             return new CampaignEvaluationPosition(groupId.Value.Value, groupName.Value, position.Value.Value);
         }
 

@@ -306,30 +306,6 @@ namespace TalonOneSdk.Model
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class EventV3.", nameof(type));
 
-            if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class EventV3.");
-
-            if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class EventV3.");
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class EventV3.");
-
-            if (storeIntegrationId.IsSet && storeIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(storeIntegrationId), "Property is not nullable for class EventV3.");
-
-            if (evaluableCampaignIds.IsSet && evaluableCampaignIds.Value == null)
-                throw new ArgumentNullException(nameof(evaluableCampaignIds), "Property is not nullable for class EventV3.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class EventV3.");
-
-            if (connectedSessionID.IsSet && connectedSessionID.Value == null)
-                throw new ArgumentNullException(nameof(connectedSessionID), "Property is not nullable for class EventV3.");
-
-            if (previousEventID.IsSet && previousEventID.Value == null)
-                throw new ArgumentNullException(nameof(previousEventID), "Property is not nullable for class EventV3.");
-
             return new EventV3(profileId.Value, integrationId.Value, type.Value, storeIntegrationId, evaluableCampaignIds, attributes, connectedSessionID, previousEventID);
         }
 

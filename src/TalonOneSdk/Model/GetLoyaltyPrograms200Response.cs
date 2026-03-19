@@ -139,12 +139,6 @@ namespace TalonOneSdk.Model
             if (!data.IsSet)
                 throw new ArgumentException("Property is required for class GetLoyaltyPrograms200Response.", nameof(data));
 
-            if (totalResultSize.IsSet && totalResultSize.Value == null)
-                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class GetLoyaltyPrograms200Response.");
-
-            if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class GetLoyaltyPrograms200Response.");
-
             return new GetLoyaltyPrograms200Response(totalResultSize.Value.Value, data.Value);
         }
 

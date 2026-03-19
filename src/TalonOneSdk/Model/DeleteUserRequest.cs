@@ -124,9 +124,6 @@ namespace TalonOneSdk.Model
             if (!email.IsSet)
                 throw new ArgumentException("Property is required for class DeleteUserRequest.", nameof(email));
 
-            if (email.IsSet && email.Value == null)
-                throw new ArgumentNullException(nameof(email), "Property is not nullable for class DeleteUserRequest.");
-
             return new DeleteUserRequest(email.Value);
         }
 

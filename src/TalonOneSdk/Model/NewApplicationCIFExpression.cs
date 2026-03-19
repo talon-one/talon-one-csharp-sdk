@@ -178,9 +178,6 @@ namespace TalonOneSdk.Model
             if (createdBy.IsSet && createdBy.Value == null)
                 throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class NewApplicationCIFExpression.");
 
-            if (expression.IsSet && expression.Value == null)
-                throw new ArgumentNullException(nameof(expression), "Property is not nullable for class NewApplicationCIFExpression.");
-
             return new NewApplicationCIFExpression(cartItemFilterId, createdBy, expression);
         }
 

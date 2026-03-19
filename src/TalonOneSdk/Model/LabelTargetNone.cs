@@ -176,9 +176,6 @@ namespace TalonOneSdk.Model
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class LabelTargetNone.", nameof(type));
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class LabelTargetNone.");
-
             return new LabelTargetNone(type.Value.Value);
         }
 

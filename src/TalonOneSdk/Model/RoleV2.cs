@@ -297,30 +297,6 @@ namespace TalonOneSdk.Model
             if (!accountId.IsSet)
                 throw new ArgumentException("Property is required for class RoleV2.", nameof(accountId));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RoleV2.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class RoleV2.");
-
-            if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class RoleV2.");
-
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class RoleV2.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class RoleV2.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class RoleV2.");
-
-            if (permissions.IsSet && permissions.Value == null)
-                throw new ArgumentNullException(nameof(permissions), "Property is not nullable for class RoleV2.");
-
-            if (members.IsSet && members.Value == null)
-                throw new ArgumentNullException(nameof(members), "Property is not nullable for class RoleV2.");
-
             if (isReadonly.IsSet && isReadonly.Value == null)
                 throw new ArgumentNullException(nameof(isReadonly), "Property is not nullable for class RoleV2.");
 

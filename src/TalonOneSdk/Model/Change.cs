@@ -271,26 +271,8 @@ namespace TalonOneSdk.Model
             if (!entity.IsSet)
                 throw new ArgumentException("Property is required for class Change.", nameof(entity));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Change.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Change.");
-
-            if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class Change.");
-
-            if (entity.IsSet && entity.Value == null)
-                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class Change.");
-
             if (applicationId.IsSet && applicationId.Value == null)
                 throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class Change.");
-
-            if (old.IsSet && old.Value == null)
-                throw new ArgumentNullException(nameof(old), "Property is not nullable for class Change.");
-
-            if (varNew.IsSet && varNew.Value == null)
-                throw new ArgumentNullException(nameof(varNew), "Property is not nullable for class Change.");
 
             if (managementKeyId.IsSet && managementKeyId.Value == null)
                 throw new ArgumentNullException(nameof(managementKeyId), "Property is not nullable for class Change.");

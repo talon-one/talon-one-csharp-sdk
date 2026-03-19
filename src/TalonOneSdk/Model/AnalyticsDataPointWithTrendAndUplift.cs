@@ -157,15 +157,6 @@ namespace TalonOneSdk.Model
             if (!trend.IsSet)
                 throw new ArgumentException("Property is required for class AnalyticsDataPointWithTrendAndUplift.", nameof(trend));
 
-            if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class AnalyticsDataPointWithTrendAndUplift.");
-
-            if (uplift.IsSet && uplift.Value == null)
-                throw new ArgumentNullException(nameof(uplift), "Property is not nullable for class AnalyticsDataPointWithTrendAndUplift.");
-
-            if (trend.IsSet && trend.Value == null)
-                throw new ArgumentNullException(nameof(trend), "Property is not nullable for class AnalyticsDataPointWithTrendAndUplift.");
-
             return new AnalyticsDataPointWithTrendAndUplift(value.Value.Value, uplift.Value.Value, trend.Value.Value);
         }
 

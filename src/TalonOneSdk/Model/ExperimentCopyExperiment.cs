@@ -139,12 +139,6 @@ namespace TalonOneSdk.Model
             if (!campaign.IsSet)
                 throw new ArgumentException("Property is required for class ExperimentCopyExperiment.", nameof(campaign));
 
-            if (isVariantAssignmentExternal.IsSet && isVariantAssignmentExternal.Value == null)
-                throw new ArgumentNullException(nameof(isVariantAssignmentExternal), "Property is not nullable for class ExperimentCopyExperiment.");
-
-            if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class ExperimentCopyExperiment.");
-
             return new ExperimentCopyExperiment(isVariantAssignmentExternal.Value.Value, campaign.Value);
         }
 

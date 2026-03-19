@@ -379,29 +379,11 @@ namespace TalonOneSdk.Model
             if (!state.IsSet)
                 throw new ArgumentException("Property is required for class Experiment.", nameof(state));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Experiment.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Experiment.");
-
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class Experiment.");
-
             if (isVariantAssignmentExternal.IsSet && isVariantAssignmentExternal.Value == null)
                 throw new ArgumentNullException(nameof(isVariantAssignmentExternal), "Property is not nullable for class Experiment.");
 
-            if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class Experiment.");
-
             if (activated.IsSet && activated.Value == null)
                 throw new ArgumentNullException(nameof(activated), "Property is not nullable for class Experiment.");
-
-            if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class Experiment.");
-
-            if (variants.IsSet && variants.Value == null)
-                throw new ArgumentNullException(nameof(variants), "Property is not nullable for class Experiment.");
 
             if (deletedat.IsSet && deletedat.Value == null)
                 throw new ArgumentNullException(nameof(deletedat), "Property is not nullable for class Experiment.");

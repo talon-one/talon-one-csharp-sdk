@@ -124,9 +124,6 @@ namespace TalonOneSdk.Model
             if (!applicationId.IsSet)
                 throw new ArgumentException("Property is required for class ApplicationEntity.", nameof(applicationId));
 
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ApplicationEntity.");
-
             return new ApplicationEntity(applicationId.Value.Value);
         }
 

@@ -575,15 +575,6 @@ namespace TalonOneSdk.Model
             if (!quantity.IsSet)
                 throw new ArgumentException("Property is required for class CartItem.", nameof(quantity));
 
-            if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class CartItem.");
-
-            if (quantity.IsSet && quantity.Value == null)
-                throw new ArgumentNullException(nameof(quantity), "Property is not nullable for class CartItem.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CartItem.");
-
             if (returnedQuantity.IsSet && returnedQuantity.Value == null)
                 throw new ArgumentNullException(nameof(returnedQuantity), "Property is not nullable for class CartItem.");
 
@@ -592,12 +583,6 @@ namespace TalonOneSdk.Model
 
             if (price.IsSet && price.Value == null)
                 throw new ArgumentNullException(nameof(price), "Property is not nullable for class CartItem.");
-
-            if (category.IsSet && category.Value == null)
-                throw new ArgumentNullException(nameof(category), "Property is not nullable for class CartItem.");
-
-            if (product.IsSet && product.Value == null)
-                throw new ArgumentNullException(nameof(product), "Property is not nullable for class CartItem.");
 
             if (weight.IsSet && weight.Value == null)
                 throw new ArgumentNullException(nameof(weight), "Property is not nullable for class CartItem.");
@@ -614,17 +599,8 @@ namespace TalonOneSdk.Model
             if (position.IsSet && position.Value == null)
                 throw new ArgumentNullException(nameof(position), "Property is not nullable for class CartItem.");
 
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class CartItem.");
-
-            if (additionalCosts.IsSet && additionalCosts.Value == null)
-                throw new ArgumentNullException(nameof(additionalCosts), "Property is not nullable for class CartItem.");
-
             if (catalogItemID.IsSet && catalogItemID.Value == null)
                 throw new ArgumentNullException(nameof(catalogItemID), "Property is not nullable for class CartItem.");
-
-            if (selectedPriceType.IsSet && selectedPriceType.Value == null)
-                throw new ArgumentNullException(nameof(selectedPriceType), "Property is not nullable for class CartItem.");
 
             if (adjustmentReferenceId.IsSet && adjustmentReferenceId.Value == null)
                 throw new ArgumentNullException(nameof(adjustmentReferenceId), "Property is not nullable for class CartItem.");
@@ -634,9 +610,6 @@ namespace TalonOneSdk.Model
 
             if (adjustmentEffectiveUntil.IsSet && adjustmentEffectiveUntil.Value == null)
                 throw new ArgumentNullException(nameof(adjustmentEffectiveUntil), "Property is not nullable for class CartItem.");
-
-            if (prices.IsSet && prices.Value == null)
-                throw new ArgumentNullException(nameof(prices), "Property is not nullable for class CartItem.");
 
             return new CartItem(sku.Value, quantity.Value.Value, name, returnedQuantity, remainingQuantity, price, category, product, weight, height, width, length, position, attributes, additionalCosts, catalogItemID, selectedPriceType, adjustmentReferenceId, adjustmentEffectiveFrom, adjustmentEffectiveUntil, prices);
         }

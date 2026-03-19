@@ -160,15 +160,6 @@ namespace TalonOneSdk.Model
             if (!avgItemsPerSession.IsSet)
                 throw new ArgumentException("Property is required for class ExperimentVariantResultConfidence.", nameof(avgItemsPerSession));
 
-            if (avgSessionValue.IsSet && avgSessionValue.Value == null)
-                throw new ArgumentNullException(nameof(avgSessionValue), "Property is not nullable for class ExperimentVariantResultConfidence.");
-
-            if (avgDiscountedSessionValue.IsSet && avgDiscountedSessionValue.Value == null)
-                throw new ArgumentNullException(nameof(avgDiscountedSessionValue), "Property is not nullable for class ExperimentVariantResultConfidence.");
-
-            if (avgItemsPerSession.IsSet && avgItemsPerSession.Value == null)
-                throw new ArgumentNullException(nameof(avgItemsPerSession), "Property is not nullable for class ExperimentVariantResultConfidence.");
-
             return new ExperimentVariantResultConfidence(avgSessionValue.Value.Value, avgDiscountedSessionValue.Value.Value, avgItemsPerSession.Value.Value);
         }
 

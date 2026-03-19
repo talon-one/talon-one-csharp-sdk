@@ -316,12 +316,6 @@ namespace TalonOneSdk.Model
             if (!varReturn.IsSet)
                 throw new ArgumentException("Property is required for class ReturnIntegrationRequest.", nameof(varReturn));
 
-            if (varReturn.IsSet && varReturn.Value == null)
-                throw new ArgumentNullException(nameof(varReturn), "Property is not nullable for class ReturnIntegrationRequest.");
-
-            if (responseContent.IsSet && responseContent.Value == null)
-                throw new ArgumentNullException(nameof(responseContent), "Property is not nullable for class ReturnIntegrationRequest.");
-
             return new ReturnIntegrationRequest(varReturn.Value, responseContent);
         }
 

@@ -150,12 +150,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class GenerateRuleTitleRule.");
-
-            if (condition.IsSet && condition.Value == null)
-                throw new ArgumentNullException(nameof(condition), "Property is not nullable for class GenerateRuleTitleRule.");
-
             return new GenerateRuleTitleRule(effects, condition);
         }
 

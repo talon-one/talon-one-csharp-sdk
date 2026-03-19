@@ -164,12 +164,6 @@ namespace TalonOneSdk.Model
             if (!resources.IsSet)
                 throw new ArgumentException("Property is required for class ScimGroupsListResponse.", nameof(resources));
 
-            if (resources.IsSet && resources.Value == null)
-                throw new ArgumentNullException(nameof(resources), "Property is not nullable for class ScimGroupsListResponse.");
-
-            if (schemas.IsSet && schemas.Value == null)
-                throw new ArgumentNullException(nameof(schemas), "Property is not nullable for class ScimGroupsListResponse.");
-
             if (totalResults.IsSet && totalResults.Value == null)
                 throw new ArgumentNullException(nameof(totalResults), "Property is not nullable for class ScimGroupsListResponse.");
 

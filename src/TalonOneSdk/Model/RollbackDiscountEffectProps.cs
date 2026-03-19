@@ -245,12 +245,6 @@ namespace TalonOneSdk.Model
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class RollbackDiscountEffectProps.", nameof(value));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class RollbackDiscountEffectProps.");
-
-            if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RollbackDiscountEffectProps.");
-
             if (cartItemPosition.IsSet && cartItemPosition.Value == null)
                 throw new ArgumentNullException(nameof(cartItemPosition), "Property is not nullable for class RollbackDiscountEffectProps.");
 
@@ -259,12 +253,6 @@ namespace TalonOneSdk.Model
 
             if (additionalCostId.IsSet && additionalCostId.Value == null)
                 throw new ArgumentNullException(nameof(additionalCostId), "Property is not nullable for class RollbackDiscountEffectProps.");
-
-            if (additionalCost.IsSet && additionalCost.Value == null)
-                throw new ArgumentNullException(nameof(additionalCost), "Property is not nullable for class RollbackDiscountEffectProps.");
-
-            if (scope.IsSet && scope.Value == null)
-                throw new ArgumentNullException(nameof(scope), "Property is not nullable for class RollbackDiscountEffectProps.");
 
             return new RollbackDiscountEffectProps(name.Value, value.Value.Value, cartItemPosition, cartItemSubPosition, additionalCostId, additionalCost, scope);
         }

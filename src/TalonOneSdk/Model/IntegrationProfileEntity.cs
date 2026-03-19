@@ -128,9 +128,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class IntegrationProfileEntity.");
-
             return new IntegrationProfileEntity(profileId);
         }
 

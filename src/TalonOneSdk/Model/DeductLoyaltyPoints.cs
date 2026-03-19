@@ -202,15 +202,6 @@ namespace TalonOneSdk.Model
             if (!points.IsSet)
                 throw new ArgumentException("Property is required for class DeductLoyaltyPoints.", nameof(points));
 
-            if (points.IsSet && points.Value == null)
-                throw new ArgumentNullException(nameof(points), "Property is not nullable for class DeductLoyaltyPoints.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class DeductLoyaltyPoints.");
-
-            if (subledgerId.IsSet && subledgerId.Value == null)
-                throw new ArgumentNullException(nameof(subledgerId), "Property is not nullable for class DeductLoyaltyPoints.");
-
             if (applicationId.IsSet && applicationId.Value == null)
                 throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class DeductLoyaltyPoints.");
 

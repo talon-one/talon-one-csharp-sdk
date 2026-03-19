@@ -190,12 +190,6 @@ namespace TalonOneSdk.Model
             if (!triggers.IsSet)
                 throw new ArgumentException("Property is required for class ExpiringPointsNotificationPolicy.", nameof(triggers));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ExpiringPointsNotificationPolicy.");
-
-            if (triggers.IsSet && triggers.Value == null)
-                throw new ArgumentNullException(nameof(triggers), "Property is not nullable for class ExpiringPointsNotificationPolicy.");
-
             if (batchingEnabled.IsSet && batchingEnabled.Value == null)
                 throw new ArgumentNullException(nameof(batchingEnabled), "Property is not nullable for class ExpiringPointsNotificationPolicy.");
 

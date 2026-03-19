@@ -154,12 +154,6 @@ namespace TalonOneSdk.Model
             if (!minPoints.IsSet)
                 throw new ArgumentException("Property is required for class NewLoyaltyTier.", nameof(minPoints));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewLoyaltyTier.");
-
-            if (minPoints.IsSet && minPoints.Value == null)
-                throw new ArgumentNullException(nameof(minPoints), "Property is not nullable for class NewLoyaltyTier.");
-
             return new NewLoyaltyTier(name.Value, minPoints.Value.Value);
         }
 

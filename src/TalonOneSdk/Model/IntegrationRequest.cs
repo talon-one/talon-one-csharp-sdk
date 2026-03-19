@@ -344,12 +344,6 @@ namespace TalonOneSdk.Model
             if (!customerSession.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationRequest.", nameof(customerSession));
 
-            if (customerSession.IsSet && customerSession.Value == null)
-                throw new ArgumentNullException(nameof(customerSession), "Property is not nullable for class IntegrationRequest.");
-
-            if (responseContent.IsSet && responseContent.Value == null)
-                throw new ArgumentNullException(nameof(responseContent), "Property is not nullable for class IntegrationRequest.");
-
             return new IntegrationRequest(customerSession.Value, responseContent);
         }
 

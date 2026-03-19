@@ -266,23 +266,11 @@ namespace TalonOneSdk.Model
             if (!applicationIds.IsSet)
                 throw new ArgumentException("Property is required for class CampaignCopy.", nameof(applicationIds));
 
-            if (applicationIds.IsSet && applicationIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class CampaignCopy.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignCopy.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class CampaignCopy.");
-
             if (startTime.IsSet && startTime.Value == null)
                 throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class CampaignCopy.");
 
             if (endTime.IsSet && endTime.Value == null)
                 throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class CampaignCopy.");
-
-            if (tags.IsSet && tags.Value == null)
-                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class CampaignCopy.");
 
             if (evaluationGroupId.IsSet && evaluationGroupId.Value == null)
                 throw new ArgumentNullException(nameof(evaluationGroupId), "Property is not nullable for class CampaignCopy.");

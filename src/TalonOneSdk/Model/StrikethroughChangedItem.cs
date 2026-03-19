@@ -267,30 +267,6 @@ namespace TalonOneSdk.Model
             if (!evaluatedAt.IsSet)
                 throw new ArgumentException("Property is required for class StrikethroughChangedItem.", nameof(evaluatedAt));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class StrikethroughChangedItem.");
-
-            if (catalogId.IsSet && catalogId.Value == null)
-                throw new ArgumentNullException(nameof(catalogId), "Property is not nullable for class StrikethroughChangedItem.");
-
-            if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class StrikethroughChangedItem.");
-
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class StrikethroughChangedItem.");
-
-            if (price.IsSet && price.Value == null)
-                throw new ArgumentNullException(nameof(price), "Property is not nullable for class StrikethroughChangedItem.");
-
-            if (evaluatedAt.IsSet && evaluatedAt.Value == null)
-                throw new ArgumentNullException(nameof(evaluatedAt), "Property is not nullable for class StrikethroughChangedItem.");
-
-            if (prices.IsSet && prices.Value == null)
-                throw new ArgumentNullException(nameof(prices), "Property is not nullable for class StrikethroughChangedItem.");
-
-            if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class StrikethroughChangedItem.");
-
             return new StrikethroughChangedItem(id.Value.Value, catalogId.Value.Value, sku.Value, varVersion.Value.Value, price.Value.Value, evaluatedAt.Value.Value, prices, effects);
         }
 

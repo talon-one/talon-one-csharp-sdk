@@ -306,23 +306,11 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateUser.");
-
             if (state.IsSet && state.Value == null)
                 throw new ArgumentNullException(nameof(state), "Property is not nullable for class UpdateUser.");
 
             if (isAdmin.IsSet && isAdmin.Value == null)
                 throw new ArgumentNullException(nameof(isAdmin), "Property is not nullable for class UpdateUser.");
-
-            if (policy.IsSet && policy.Value == null)
-                throw new ArgumentNullException(nameof(policy), "Property is not nullable for class UpdateUser.");
-
-            if (roles.IsSet && roles.Value == null)
-                throw new ArgumentNullException(nameof(roles), "Property is not nullable for class UpdateUser.");
-
-            if (applicationNotificationSubscriptions.IsSet && applicationNotificationSubscriptions.Value == null)
-                throw new ArgumentNullException(nameof(applicationNotificationSubscriptions), "Property is not nullable for class UpdateUser.");
 
             return new UpdateUser(name, state, isAdmin, policy, roles, applicationNotificationSubscriptions);
         }

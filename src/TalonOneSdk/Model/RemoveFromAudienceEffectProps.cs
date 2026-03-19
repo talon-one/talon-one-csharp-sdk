@@ -197,12 +197,6 @@ namespace TalonOneSdk.Model
             if (audienceId.IsSet && audienceId.Value == null)
                 throw new ArgumentNullException(nameof(audienceId), "Property is not nullable for class RemoveFromAudienceEffectProps.");
 
-            if (audienceName.IsSet && audienceName.Value == null)
-                throw new ArgumentNullException(nameof(audienceName), "Property is not nullable for class RemoveFromAudienceEffectProps.");
-
-            if (profileIntegrationId.IsSet && profileIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationId), "Property is not nullable for class RemoveFromAudienceEffectProps.");
-
             if (profileId.IsSet && profileId.Value == null)
                 throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class RemoveFromAudienceEffectProps.");
 

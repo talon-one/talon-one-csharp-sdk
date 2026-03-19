@@ -167,15 +167,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class CustomerProfileSearchQuery.");
-
-            if (integrationIDs.IsSet && integrationIDs.Value == null)
-                throw new ArgumentNullException(nameof(integrationIDs), "Property is not nullable for class CustomerProfileSearchQuery.");
-
-            if (profileIDs.IsSet && profileIDs.Value == null)
-                throw new ArgumentNullException(nameof(profileIDs), "Property is not nullable for class CustomerProfileSearchQuery.");
-
             return new CustomerProfileSearchQuery(attributes, integrationIDs, profileIDs);
         }
 

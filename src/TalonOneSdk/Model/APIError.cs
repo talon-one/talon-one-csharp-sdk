@@ -160,15 +160,6 @@ namespace TalonOneSdk.Model
             if (!source.IsSet)
                 throw new ArgumentException("Property is required for class APIError.", nameof(source));
 
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class APIError.");
-
-            if (source.IsSet && source.Value == null)
-                throw new ArgumentNullException(nameof(source), "Property is not nullable for class APIError.");
-
-            if (details.IsSet && details.Value == null)
-                throw new ArgumentNullException(nameof(details), "Property is not nullable for class APIError.");
-
             return new APIError(title.Value, source.Value, details);
         }
 

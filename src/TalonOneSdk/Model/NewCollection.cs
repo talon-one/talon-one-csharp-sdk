@@ -184,15 +184,6 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class NewCollection.", nameof(name));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewCollection.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class NewCollection.");
-
-            if (subscribedApplicationsIds.IsSet && subscribedApplicationsIds.Value == null)
-                throw new ArgumentNullException(nameof(subscribedApplicationsIds), "Property is not nullable for class NewCollection.");
-
             return new NewCollection(name.Value, description, subscribedApplicationsIds);
         }
 

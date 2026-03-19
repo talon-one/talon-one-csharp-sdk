@@ -148,12 +148,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (permissionSets.IsSet && permissionSets.Value == null)
-                throw new ArgumentNullException(nameof(permissionSets), "Property is not nullable for class RoleV2Permissions.");
-
-            if (roles.IsSet && roles.Value == null)
-                throw new ArgumentNullException(nameof(roles), "Property is not nullable for class RoleV2Permissions.");
-
             return new RoleV2Permissions(permissionSets, roles);
         }
 

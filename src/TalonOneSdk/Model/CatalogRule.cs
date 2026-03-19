@@ -181,18 +181,6 @@ namespace TalonOneSdk.Model
             if (!effects.IsSet)
                 throw new ArgumentException("Property is required for class CatalogRule.", nameof(effects));
 
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class CatalogRule.");
-
-            if (condition.IsSet && condition.Value == null)
-                throw new ArgumentNullException(nameof(condition), "Property is not nullable for class CatalogRule.");
-
-            if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class CatalogRule.");
-
-            if (bindings.IsSet && bindings.Value == null)
-                throw new ArgumentNullException(nameof(bindings), "Property is not nullable for class CatalogRule.");
-
             return new CatalogRule(title.Value, condition.Value, effects.Value, bindings);
         }
 

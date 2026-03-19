@@ -142,12 +142,6 @@ namespace TalonOneSdk.Model
             if (!newPassword.IsSet)
                 throw new ArgumentException("Property is required for class ChangeProfilePassword.", nameof(newPassword));
 
-            if (password.IsSet && password.Value == null)
-                throw new ArgumentNullException(nameof(password), "Property is not nullable for class ChangeProfilePassword.");
-
-            if (newPassword.IsSet && newPassword.Value == null)
-                throw new ArgumentNullException(nameof(newPassword), "Property is not nullable for class ChangeProfilePassword.");
-
             return new ChangeProfilePassword(password.Value, newPassword.Value);
         }
 

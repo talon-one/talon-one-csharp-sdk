@@ -145,12 +145,6 @@ namespace TalonOneSdk.Model
             if (!data.IsSet)
                 throw new ArgumentException("Property is required for class MessageLogEntries.", nameof(data));
 
-            if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class MessageLogEntries.");
-
-            if (nextCursor.IsSet && nextCursor.Value == null)
-                throw new ArgumentNullException(nameof(nextCursor), "Property is not nullable for class MessageLogEntries.");
-
             return new MessageLogEntries(data.Value, nextCursor);
         }
 

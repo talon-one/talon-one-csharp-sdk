@@ -327,39 +327,6 @@ namespace TalonOneSdk.Model
             if (!assertionConsumerServiceURL.IsSet)
                 throw new ArgumentException("Property is required for class SamlConnection.", nameof(assertionConsumerServiceURL));
 
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class SamlConnection.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SamlConnection.");
-
-            if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class SamlConnection.");
-
-            if (issuer.IsSet && issuer.Value == null)
-                throw new ArgumentNullException(nameof(issuer), "Property is not nullable for class SamlConnection.");
-
-            if (signOnURL.IsSet && signOnURL.Value == null)
-                throw new ArgumentNullException(nameof(signOnURL), "Property is not nullable for class SamlConnection.");
-
-            if (audienceURI.IsSet && audienceURI.Value == null)
-                throw new ArgumentNullException(nameof(audienceURI), "Property is not nullable for class SamlConnection.");
-
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class SamlConnection.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class SamlConnection.");
-
-            if (assertionConsumerServiceURL.IsSet && assertionConsumerServiceURL.Value == null)
-                throw new ArgumentNullException(nameof(assertionConsumerServiceURL), "Property is not nullable for class SamlConnection.");
-
-            if (signOutURL.IsSet && signOutURL.Value == null)
-                throw new ArgumentNullException(nameof(signOutURL), "Property is not nullable for class SamlConnection.");
-
-            if (metadataURL.IsSet && metadataURL.Value == null)
-                throw new ArgumentNullException(nameof(metadataURL), "Property is not nullable for class SamlConnection.");
-
             return new SamlConnection(accountId.Value.Value, name.Value, enabled.Value.Value, issuer.Value, signOnURL.Value, audienceURI.Value, id.Value.Value, created.Value.Value, assertionConsumerServiceURL.Value, signOutURL, metadataURL);
         }
 

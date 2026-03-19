@@ -190,18 +190,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (pointer.IsSet && pointer.Value == null)
-                throw new ArgumentNullException(nameof(pointer), "Property is not nullable for class ErrorSource.");
-
-            if (varParameter.IsSet && varParameter.Value == null)
-                throw new ArgumentNullException(nameof(varParameter), "Property is not nullable for class ErrorSource.");
-
-            if (line.IsSet && line.Value == null)
-                throw new ArgumentNullException(nameof(line), "Property is not nullable for class ErrorSource.");
-
-            if (resource.IsSet && resource.Value == null)
-                throw new ArgumentNullException(nameof(resource), "Property is not nullable for class ErrorSource.");
-
             return new ErrorSource(pointer, varParameter, line, resource);
         }
 

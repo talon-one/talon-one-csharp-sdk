@@ -159,9 +159,6 @@ namespace TalonOneSdk.Model
             if (campaignId.IsSet && campaignId.Value == null)
                 throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class CampaignDetail.");
 
-            if (campaignName.IsSet && campaignName.Value == null)
-                throw new ArgumentNullException(nameof(campaignName), "Property is not nullable for class CampaignDetail.");
-
             return new CampaignDetail(campaignId, campaignName);
         }
 

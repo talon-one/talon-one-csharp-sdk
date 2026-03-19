@@ -206,18 +206,6 @@ namespace TalonOneSdk.Model
             if (!bindings.IsSet)
                 throw new ArgumentException("Property is required for class NewRuleset.", nameof(bindings));
 
-            if (rules.IsSet && rules.Value == null)
-                throw new ArgumentNullException(nameof(rules), "Property is not nullable for class NewRuleset.");
-
-            if (bindings.IsSet && bindings.Value == null)
-                throw new ArgumentNullException(nameof(bindings), "Property is not nullable for class NewRuleset.");
-
-            if (strikethroughRules.IsSet && strikethroughRules.Value == null)
-                throw new ArgumentNullException(nameof(strikethroughRules), "Property is not nullable for class NewRuleset.");
-
-            if (rbVersion.IsSet && rbVersion.Value == null)
-                throw new ArgumentNullException(nameof(rbVersion), "Property is not nullable for class NewRuleset.");
-
             if (activate.IsSet && activate.Value == null)
                 throw new ArgumentNullException(nameof(activate), "Property is not nullable for class NewRuleset.");
 

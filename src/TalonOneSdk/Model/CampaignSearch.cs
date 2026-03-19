@@ -123,9 +123,6 @@ namespace TalonOneSdk.Model
             if (!attributes.IsSet)
                 throw new ArgumentException("Property is required for class CampaignSearch.", nameof(attributes));
 
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class CampaignSearch.");
-
             return new CampaignSearch(attributes.Value);
         }
 

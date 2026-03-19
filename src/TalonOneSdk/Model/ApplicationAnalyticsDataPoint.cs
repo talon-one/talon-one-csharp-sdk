@@ -280,24 +280,6 @@ namespace TalonOneSdk.Model
             if (!endTime.IsSet)
                 throw new ArgumentException("Property is required for class ApplicationAnalyticsDataPoint.", nameof(endTime));
 
-            if (startTime.IsSet && startTime.Value == null)
-                throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class ApplicationAnalyticsDataPoint.");
-
-            if (endTime.IsSet && endTime.Value == null)
-                throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class ApplicationAnalyticsDataPoint.");
-
-            if (totalRevenue.IsSet && totalRevenue.Value == null)
-                throw new ArgumentNullException(nameof(totalRevenue), "Property is not nullable for class ApplicationAnalyticsDataPoint.");
-
-            if (sessionsCount.IsSet && sessionsCount.Value == null)
-                throw new ArgumentNullException(nameof(sessionsCount), "Property is not nullable for class ApplicationAnalyticsDataPoint.");
-
-            if (avgItemsPerSession.IsSet && avgItemsPerSession.Value == null)
-                throw new ArgumentNullException(nameof(avgItemsPerSession), "Property is not nullable for class ApplicationAnalyticsDataPoint.");
-
-            if (avgSessionValue.IsSet && avgSessionValue.Value == null)
-                throw new ArgumentNullException(nameof(avgSessionValue), "Property is not nullable for class ApplicationAnalyticsDataPoint.");
-
             if (totalDiscounts.IsSet && totalDiscounts.Value == null)
                 throw new ArgumentNullException(nameof(totalDiscounts), "Property is not nullable for class ApplicationAnalyticsDataPoint.");
 

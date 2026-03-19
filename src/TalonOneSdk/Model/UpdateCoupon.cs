@@ -391,15 +391,6 @@ namespace TalonOneSdk.Model
             if (expiryDate.IsSet && expiryDate.Value == null)
                 throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class UpdateCoupon.");
 
-            if (limits.IsSet && limits.Value == null)
-                throw new ArgumentNullException(nameof(limits), "Property is not nullable for class UpdateCoupon.");
-
-            if (recipientIntegrationId.IsSet && recipientIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(recipientIntegrationId), "Property is not nullable for class UpdateCoupon.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class UpdateCoupon.");
-
             if (isReservationMandatory.IsSet && isReservationMandatory.Value == null)
                 throw new ArgumentNullException(nameof(isReservationMandatory), "Property is not nullable for class UpdateCoupon.");
 

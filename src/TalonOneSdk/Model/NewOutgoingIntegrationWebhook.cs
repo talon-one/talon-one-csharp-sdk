@@ -164,15 +164,6 @@ namespace TalonOneSdk.Model
             if (!applicationIds.IsSet)
                 throw new ArgumentException("Property is required for class NewOutgoingIntegrationWebhook.", nameof(applicationIds));
 
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewOutgoingIntegrationWebhook.");
-
-            if (applicationIds.IsSet && applicationIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class NewOutgoingIntegrationWebhook.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class NewOutgoingIntegrationWebhook.");
-
             return new NewOutgoingIntegrationWebhook(title.Value, applicationIds.Value, description);
         }
 

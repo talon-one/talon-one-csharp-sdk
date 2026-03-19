@@ -148,12 +148,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (invisible.IsSet && invisible.Value == null)
-                throw new ArgumentNullException(nameof(invisible), "Property is not nullable for class TalangAttributeVisibility.");
-
-            if (visible.IsSet && visible.Value == null)
-                throw new ArgumentNullException(nameof(visible), "Property is not nullable for class TalangAttributeVisibility.");
-
             return new TalangAttributeVisibility(invisible, visible);
         }
 

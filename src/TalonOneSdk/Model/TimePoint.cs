@@ -261,15 +261,6 @@ namespace TalonOneSdk.Model
             if (!second.IsSet)
                 throw new ArgumentException("Property is required for class TimePoint.", nameof(second));
 
-            if (hour.IsSet && hour.Value == null)
-                throw new ArgumentNullException(nameof(hour), "Property is not nullable for class TimePoint.");
-
-            if (minute.IsSet && minute.Value == null)
-                throw new ArgumentNullException(nameof(minute), "Property is not nullable for class TimePoint.");
-
-            if (second.IsSet && second.Value == null)
-                throw new ArgumentNullException(nameof(second), "Property is not nullable for class TimePoint.");
-
             if (month.IsSet && month.Value == null)
                 throw new ArgumentNullException(nameof(month), "Property is not nullable for class TimePoint.");
 

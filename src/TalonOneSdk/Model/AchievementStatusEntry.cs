@@ -689,30 +689,6 @@ namespace TalonOneSdk.Model
             if (!target.IsSet)
                 throw new ArgumentException("Property is required for class AchievementStatusEntry.", nameof(target));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AchievementStatusEntry.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class AchievementStatusEntry.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AchievementStatusEntry.");
-
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class AchievementStatusEntry.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class AchievementStatusEntry.");
-
-            if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class AchievementStatusEntry.");
-
-            if (period.IsSet && period.Value == null)
-                throw new ArgumentNullException(nameof(period), "Property is not nullable for class AchievementStatusEntry.");
-
-            if (periodEndOverride.IsSet && periodEndOverride.Value == null)
-                throw new ArgumentNullException(nameof(periodEndOverride), "Property is not nullable for class AchievementStatusEntry.");
-
             if (recurrencePolicy.IsSet && recurrencePolicy.Value == null)
                 throw new ArgumentNullException(nameof(recurrencePolicy), "Property is not nullable for class AchievementStatusEntry.");
 
@@ -733,9 +709,6 @@ namespace TalonOneSdk.Model
 
             if (status.IsSet && status.Value == null)
                 throw new ArgumentNullException(nameof(status), "Property is not nullable for class AchievementStatusEntry.");
-
-            if (currentProgress.IsSet && currentProgress.Value == null)
-                throw new ArgumentNullException(nameof(currentProgress), "Property is not nullable for class AchievementStatusEntry.");
 
             return new AchievementStatusEntry(id.Value.Value, created.Value.Value, name.Value, title.Value, description.Value, target.Value.Value, period, periodEndOverride, recurrencePolicy, activationPolicy, fixedStartDate, endDate, allowRollbackAfterCompletion, campaignId, status, currentProgress);
         }

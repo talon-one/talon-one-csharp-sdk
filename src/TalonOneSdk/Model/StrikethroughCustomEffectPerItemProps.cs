@@ -159,15 +159,6 @@ namespace TalonOneSdk.Model
             if (!payload.IsSet)
                 throw new ArgumentException("Property is required for class StrikethroughCustomEffectPerItemProps.", nameof(payload));
 
-            if (effectId.IsSet && effectId.Value == null)
-                throw new ArgumentNullException(nameof(effectId), "Property is not nullable for class StrikethroughCustomEffectPerItemProps.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class StrikethroughCustomEffectPerItemProps.");
-
-            if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class StrikethroughCustomEffectPerItemProps.");
-
             return new StrikethroughCustomEffectPerItemProps(effectId.Value.Value, name.Value, payload.Value);
         }
 

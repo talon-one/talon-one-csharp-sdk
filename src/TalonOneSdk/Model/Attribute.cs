@@ -911,53 +911,11 @@ namespace TalonOneSdk.Model
             if (!editable.IsSet)
                 throw new ArgumentException("Property is required for class Attribute.", nameof(editable));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Attribute.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Attribute.");
-
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Attribute.");
-
-            if (entity.IsSet && entity.Value == null)
-                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class Attribute.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Attribute.");
-
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class Attribute.");
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class Attribute.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class Attribute.");
-
-            if (suggestions.IsSet && suggestions.Value == null)
-                throw new ArgumentNullException(nameof(suggestions), "Property is not nullable for class Attribute.");
-
-            if (editable.IsSet && editable.Value == null)
-                throw new ArgumentNullException(nameof(editable), "Property is not nullable for class Attribute.");
-
-            if (eventType.IsSet && eventType.Value == null)
-                throw new ArgumentNullException(nameof(eventType), "Property is not nullable for class Attribute.");
-
             if (hasAllowedList.IsSet && hasAllowedList.Value == null)
                 throw new ArgumentNullException(nameof(hasAllowedList), "Property is not nullable for class Attribute.");
 
             if (restrictedBySuggestions.IsSet && restrictedBySuggestions.Value == null)
                 throw new ArgumentNullException(nameof(restrictedBySuggestions), "Property is not nullable for class Attribute.");
-
-            if (subscribedApplicationsIds.IsSet && subscribedApplicationsIds.Value == null)
-                throw new ArgumentNullException(nameof(subscribedApplicationsIds), "Property is not nullable for class Attribute.");
-
-            if (subscribedCatalogsIds.IsSet && subscribedCatalogsIds.Value == null)
-                throw new ArgumentNullException(nameof(subscribedCatalogsIds), "Property is not nullable for class Attribute.");
-
-            if (allowedSubscriptions.IsSet && allowedSubscriptions.Value == null)
-                throw new ArgumentNullException(nameof(allowedSubscriptions), "Property is not nullable for class Attribute.");
 
             if (eventTypeId.IsSet && eventTypeId.Value == null)
                 throw new ArgumentNullException(nameof(eventTypeId), "Property is not nullable for class Attribute.");

@@ -194,21 +194,6 @@ namespace TalonOneSdk.Model
             if (!varEvent.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationState.", nameof(varEvent));
 
-            if (session.IsSet && session.Value == null)
-                throw new ArgumentNullException(nameof(session), "Property is not nullable for class IntegrationState.");
-
-            if (profile.IsSet && profile.Value == null)
-                throw new ArgumentNullException(nameof(profile), "Property is not nullable for class IntegrationState.");
-
-            if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class IntegrationState.");
-
-            if (loyalty.IsSet && loyalty.Value == null)
-                throw new ArgumentNullException(nameof(loyalty), "Property is not nullable for class IntegrationState.");
-
-            if (coupon.IsSet && coupon.Value == null)
-                throw new ArgumentNullException(nameof(coupon), "Property is not nullable for class IntegrationState.");
-
             return new IntegrationState(session.Value, profile.Value, varEvent.Value, loyalty, coupon);
         }
 

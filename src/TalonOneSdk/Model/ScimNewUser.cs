@@ -188,17 +188,8 @@ namespace TalonOneSdk.Model
             if (!userName.IsSet)
                 throw new ArgumentException("Property is required for class ScimNewUser.", nameof(userName));
 
-            if (userName.IsSet && userName.Value == null)
-                throw new ArgumentNullException(nameof(userName), "Property is not nullable for class ScimNewUser.");
-
             if (active.IsSet && active.Value == null)
                 throw new ArgumentNullException(nameof(active), "Property is not nullable for class ScimNewUser.");
-
-            if (displayName.IsSet && displayName.Value == null)
-                throw new ArgumentNullException(nameof(displayName), "Property is not nullable for class ScimNewUser.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ScimNewUser.");
 
             return new ScimNewUser(userName.Value, active, displayName, name);
         }

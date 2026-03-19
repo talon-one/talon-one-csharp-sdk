@@ -215,9 +215,6 @@ namespace TalonOneSdk.Model
             if (!scope.IsSet)
                 throw new ArgumentException("Property is required for class DeleteLoyaltyTransactionsRequest.", nameof(scope));
 
-            if (scope.IsSet && scope.Value == null)
-                throw new ArgumentNullException(nameof(scope), "Property is not nullable for class DeleteLoyaltyTransactionsRequest.");
-
             return new DeleteLoyaltyTransactionsRequest(scope.Value.Value, subledgerIds);
         }
 

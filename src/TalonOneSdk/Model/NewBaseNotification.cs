@@ -160,12 +160,6 @@ namespace TalonOneSdk.Model
             if (!webhook.IsSet)
                 throw new ArgumentException("Property is required for class NewBaseNotification.", nameof(webhook));
 
-            if (policy.IsSet && policy.Value == null)
-                throw new ArgumentNullException(nameof(policy), "Property is not nullable for class NewBaseNotification.");
-
-            if (webhook.IsSet && webhook.Value == null)
-                throw new ArgumentNullException(nameof(webhook), "Property is not nullable for class NewBaseNotification.");
-
             if (enabled.IsSet && enabled.Value == null)
                 throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class NewBaseNotification.");
 

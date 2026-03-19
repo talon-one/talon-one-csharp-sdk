@@ -177,15 +177,6 @@ namespace TalonOneSdk.Model
             if (!campaign.IsSet)
                 throw new ArgumentException("Property is required for class PromoteExperiment.", nameof(campaign));
 
-            if (targetApplicationId.IsSet && targetApplicationId.Value == null)
-                throw new ArgumentNullException(nameof(targetApplicationId), "Property is not nullable for class PromoteExperiment.");
-
-            if (variantId.IsSet && variantId.Value == null)
-                throw new ArgumentNullException(nameof(variantId), "Property is not nullable for class PromoteExperiment.");
-
-            if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class PromoteExperiment.");
-
             if (disableExperiment.IsSet && disableExperiment.Value == null)
                 throw new ArgumentNullException(nameof(disableExperiment), "Property is not nullable for class PromoteExperiment.");
 

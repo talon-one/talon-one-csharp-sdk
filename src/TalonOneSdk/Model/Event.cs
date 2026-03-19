@@ -343,39 +343,6 @@ namespace TalonOneSdk.Model
             if (!effects.IsSet)
                 throw new ArgumentException("Property is required for class Event.", nameof(effects));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Event.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Event.");
-
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class Event.");
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class Event.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class Event.");
-
-            if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class Event.");
-
-            if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class Event.");
-
-            if (storeIntegrationId.IsSet && storeIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(storeIntegrationId), "Property is not nullable for class Event.");
-
-            if (sessionId.IsSet && sessionId.Value == null)
-                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class Event.");
-
-            if (ledgerEntries.IsSet && ledgerEntries.Value == null)
-                throw new ArgumentNullException(nameof(ledgerEntries), "Property is not nullable for class Event.");
-
-            if (meta.IsSet && meta.Value == null)
-                throw new ArgumentNullException(nameof(meta), "Property is not nullable for class Event.");
-
             return new Event(id.Value.Value, created.Value.Value, applicationId.Value.Value, type.Value, attributes.Value, effects.Value, profileId, storeIntegrationId, sessionId, ledgerEntries, meta);
         }
 
