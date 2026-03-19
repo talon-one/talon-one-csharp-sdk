@@ -262,30 +262,6 @@ namespace TalonOneSdk.Model
             if (!createdReferrals.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationResponse.", nameof(createdReferrals));
 
-            if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class IntegrationResponse.");
-
-            if (createdCoupons.IsSet && createdCoupons.Value == null)
-                throw new ArgumentNullException(nameof(createdCoupons), "Property is not nullable for class IntegrationResponse.");
-
-            if (createdReferrals.IsSet && createdReferrals.Value == null)
-                throw new ArgumentNullException(nameof(createdReferrals), "Property is not nullable for class IntegrationResponse.");
-
-            if (customerProfile.IsSet && customerProfile.Value == null)
-                throw new ArgumentNullException(nameof(customerProfile), "Property is not nullable for class IntegrationResponse.");
-
-            if (loyalty.IsSet && loyalty.Value == null)
-                throw new ArgumentNullException(nameof(loyalty), "Property is not nullable for class IntegrationResponse.");
-
-            if (triggeredCampaigns.IsSet && triggeredCampaigns.Value == null)
-                throw new ArgumentNullException(nameof(triggeredCampaigns), "Property is not nullable for class IntegrationResponse.");
-
-            if (ruleFailureReasons.IsSet && ruleFailureReasons.Value == null)
-                throw new ArgumentNullException(nameof(ruleFailureReasons), "Property is not nullable for class IntegrationResponse.");
-
-            if (awardedGiveaways.IsSet && awardedGiveaways.Value == null)
-                throw new ArgumentNullException(nameof(awardedGiveaways), "Property is not nullable for class IntegrationResponse.");
-
             return new IntegrationResponse(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, loyalty, triggeredCampaigns, ruleFailureReasons, awardedGiveaways);
         }
 

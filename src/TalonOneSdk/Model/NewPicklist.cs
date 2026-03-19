@@ -239,12 +239,6 @@ namespace TalonOneSdk.Model
             if (!values.IsSet)
                 throw new ArgumentException("Property is required for class NewPicklist.", nameof(values));
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class NewPicklist.");
-
-            if (values.IsSet && values.Value == null)
-                throw new ArgumentNullException(nameof(values), "Property is not nullable for class NewPicklist.");
-
             return new NewPicklist(type.Value.Value, values.Value);
         }
 

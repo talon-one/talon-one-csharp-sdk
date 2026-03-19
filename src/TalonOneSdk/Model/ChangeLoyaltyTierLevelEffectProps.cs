@@ -221,21 +221,6 @@ namespace TalonOneSdk.Model
             if (!newTierName.IsSet)
                 throw new ArgumentException("Property is required for class ChangeLoyaltyTierLevelEffectProps.", nameof(newTierName));
 
-            if (ruleTitle.IsSet && ruleTitle.Value == null)
-                throw new ArgumentNullException(nameof(ruleTitle), "Property is not nullable for class ChangeLoyaltyTierLevelEffectProps.");
-
-            if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class ChangeLoyaltyTierLevelEffectProps.");
-
-            if (subLedgerId.IsSet && subLedgerId.Value == null)
-                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class ChangeLoyaltyTierLevelEffectProps.");
-
-            if (newTierName.IsSet && newTierName.Value == null)
-                throw new ArgumentNullException(nameof(newTierName), "Property is not nullable for class ChangeLoyaltyTierLevelEffectProps.");
-
-            if (previousTierName.IsSet && previousTierName.Value == null)
-                throw new ArgumentNullException(nameof(previousTierName), "Property is not nullable for class ChangeLoyaltyTierLevelEffectProps.");
-
             if (expiryDate.IsSet && expiryDate.Value == null)
                 throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class ChangeLoyaltyTierLevelEffectProps.");
 

@@ -146,12 +146,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class FeaturesFeed.");
-
-            if (pubDate.IsSet && pubDate.Value == null)
-                throw new ArgumentNullException(nameof(pubDate), "Property is not nullable for class FeaturesFeed.");
-
             return new FeaturesFeed(title, pubDate);
         }
 

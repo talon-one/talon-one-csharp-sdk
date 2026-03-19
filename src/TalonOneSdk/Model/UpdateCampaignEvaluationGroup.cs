@@ -388,24 +388,6 @@ namespace TalonOneSdk.Model
             if (!locked.IsSet)
                 throw new ArgumentException("Property is required for class UpdateCampaignEvaluationGroup.", nameof(locked));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateCampaignEvaluationGroup.");
-
-            if (parentId.IsSet && parentId.Value == null)
-                throw new ArgumentNullException(nameof(parentId), "Property is not nullable for class UpdateCampaignEvaluationGroup.");
-
-            if (evaluationMode.IsSet && evaluationMode.Value == null)
-                throw new ArgumentNullException(nameof(evaluationMode), "Property is not nullable for class UpdateCampaignEvaluationGroup.");
-
-            if (evaluationScope.IsSet && evaluationScope.Value == null)
-                throw new ArgumentNullException(nameof(evaluationScope), "Property is not nullable for class UpdateCampaignEvaluationGroup.");
-
-            if (locked.IsSet && locked.Value == null)
-                throw new ArgumentNullException(nameof(locked), "Property is not nullable for class UpdateCampaignEvaluationGroup.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class UpdateCampaignEvaluationGroup.");
-
             return new UpdateCampaignEvaluationGroup(name.Value, parentId.Value.Value, evaluationMode.Value.Value, evaluationScope.Value.Value, locked.Value.Value, description);
         }
 

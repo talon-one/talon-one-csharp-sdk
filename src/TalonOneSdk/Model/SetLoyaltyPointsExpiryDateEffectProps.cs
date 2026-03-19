@@ -184,18 +184,6 @@ namespace TalonOneSdk.Model
             if (!newExpiryDate.IsSet)
                 throw new ArgumentException("Property is required for class SetLoyaltyPointsExpiryDateEffectProps.", nameof(newExpiryDate));
 
-            if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class SetLoyaltyPointsExpiryDateEffectProps.");
-
-            if (subLedgerId.IsSet && subLedgerId.Value == null)
-                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class SetLoyaltyPointsExpiryDateEffectProps.");
-
-            if (newExpiryDate.IsSet && newExpiryDate.Value == null)
-                throw new ArgumentNullException(nameof(newExpiryDate), "Property is not nullable for class SetLoyaltyPointsExpiryDateEffectProps.");
-
-            if (affectedTransactions.IsSet && affectedTransactions.Value == null)
-                throw new ArgumentNullException(nameof(affectedTransactions), "Property is not nullable for class SetLoyaltyPointsExpiryDateEffectProps.");
-
             return new SetLoyaltyPointsExpiryDateEffectProps(programId.Value.Value, subLedgerId.Value, newExpiryDate.Value.Value, affectedTransactions);
         }
 

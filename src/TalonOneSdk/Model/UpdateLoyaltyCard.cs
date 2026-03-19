@@ -146,12 +146,6 @@ namespace TalonOneSdk.Model
             if (!status.IsSet)
                 throw new ArgumentException("Property is required for class UpdateLoyaltyCard.", nameof(status));
 
-            if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class UpdateLoyaltyCard.");
-
-            if (blockReason.IsSet && blockReason.Value == null)
-                throw new ArgumentNullException(nameof(blockReason), "Property is not nullable for class UpdateLoyaltyCard.");
-
             return new UpdateLoyaltyCard(status.Value, blockReason);
         }
 

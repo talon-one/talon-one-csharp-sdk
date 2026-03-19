@@ -174,9 +174,6 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class PendingPointsNotificationPolicy.", nameof(name));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class PendingPointsNotificationPolicy.");
-
             if (batchingEnabled.IsSet && batchingEnabled.Value == null)
                 throw new ArgumentNullException(nameof(batchingEnabled), "Property is not nullable for class PendingPointsNotificationPolicy.");
 

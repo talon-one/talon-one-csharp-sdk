@@ -274,29 +274,8 @@ namespace TalonOneSdk.Model
             if (!enabled.IsSet)
                 throw new ArgumentException("Property is required for class UpdateCustomEffect.", nameof(enabled));
 
-            if (applicationIds.IsSet && applicationIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class UpdateCustomEffect.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateCustomEffect.");
-
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class UpdateCustomEffect.");
-
-            if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class UpdateCustomEffect.");
-
-            if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class UpdateCustomEffect.");
-
             if (isPerItem.IsSet && isPerItem.Value == null)
                 throw new ArgumentNullException(nameof(isPerItem), "Property is not nullable for class UpdateCustomEffect.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class UpdateCustomEffect.");
-
-            if (varParams.IsSet && varParams.Value == null)
-                throw new ArgumentNullException(nameof(varParams), "Property is not nullable for class UpdateCustomEffect.");
 
             return new UpdateCustomEffect(applicationIds.Value, name.Value, title.Value, payload.Value, enabled.Value.Value, isPerItem, description, varParams);
         }

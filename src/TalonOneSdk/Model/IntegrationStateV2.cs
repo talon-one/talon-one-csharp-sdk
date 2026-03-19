@@ -409,51 +409,6 @@ namespace TalonOneSdk.Model
             if (!createdReferrals.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationStateV2.", nameof(createdReferrals));
 
-            if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class IntegrationStateV2.");
-
-            if (createdCoupons.IsSet && createdCoupons.Value == null)
-                throw new ArgumentNullException(nameof(createdCoupons), "Property is not nullable for class IntegrationStateV2.");
-
-            if (createdReferrals.IsSet && createdReferrals.Value == null)
-                throw new ArgumentNullException(nameof(createdReferrals), "Property is not nullable for class IntegrationStateV2.");
-
-            if (customerProfile.IsSet && customerProfile.Value == null)
-                throw new ArgumentNullException(nameof(customerProfile), "Property is not nullable for class IntegrationStateV2.");
-
-            if (loyalty.IsSet && loyalty.Value == null)
-                throw new ArgumentNullException(nameof(loyalty), "Property is not nullable for class IntegrationStateV2.");
-
-            if (triggeredCampaigns.IsSet && triggeredCampaigns.Value == null)
-                throw new ArgumentNullException(nameof(triggeredCampaigns), "Property is not nullable for class IntegrationStateV2.");
-
-            if (ruleFailureReasons.IsSet && ruleFailureReasons.Value == null)
-                throw new ArgumentNullException(nameof(ruleFailureReasons), "Property is not nullable for class IntegrationStateV2.");
-
-            if (awardedGiveaways.IsSet && awardedGiveaways.Value == null)
-                throw new ArgumentNullException(nameof(awardedGiveaways), "Property is not nullable for class IntegrationStateV2.");
-
-            if (referral.IsSet && referral.Value == null)
-                throw new ArgumentNullException(nameof(referral), "Property is not nullable for class IntegrationStateV2.");
-
-            if (coupons.IsSet && coupons.Value == null)
-                throw new ArgumentNullException(nameof(coupons), "Property is not nullable for class IntegrationStateV2.");
-
-            if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class IntegrationStateV2.");
-
-            if (advancedEvent.IsSet && advancedEvent.Value == null)
-                throw new ArgumentNullException(nameof(advancedEvent), "Property is not nullable for class IntegrationStateV2.");
-
-            if (customerSession.IsSet && customerSession.Value == null)
-                throw new ArgumentNullException(nameof(customerSession), "Property is not nullable for class IntegrationStateV2.");
-
-            if (varReturn.IsSet && varReturn.Value == null)
-                throw new ArgumentNullException(nameof(varReturn), "Property is not nullable for class IntegrationStateV2.");
-
-            if (previousReturns.IsSet && previousReturns.Value == null)
-                throw new ArgumentNullException(nameof(previousReturns), "Property is not nullable for class IntegrationStateV2.");
-
             return new IntegrationStateV2(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, loyalty, triggeredCampaigns, ruleFailureReasons, awardedGiveaways, referral, coupons, varEvent, advancedEvent, customerSession, varReturn, previousReturns);
         }
 

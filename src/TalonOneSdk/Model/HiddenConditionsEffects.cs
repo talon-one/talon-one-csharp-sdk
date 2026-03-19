@@ -194,18 +194,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (builtInEffects.IsSet && builtInEffects.Value == null)
-                throw new ArgumentNullException(nameof(builtInEffects), "Property is not nullable for class HiddenConditionsEffects.");
-
-            if (conditions.IsSet && conditions.Value == null)
-                throw new ArgumentNullException(nameof(conditions), "Property is not nullable for class HiddenConditionsEffects.");
-
-            if (customEffects.IsSet && customEffects.Value == null)
-                throw new ArgumentNullException(nameof(customEffects), "Property is not nullable for class HiddenConditionsEffects.");
-
-            if (webhooks.IsSet && webhooks.Value == null)
-                throw new ArgumentNullException(nameof(webhooks), "Property is not nullable for class HiddenConditionsEffects.");
-
             return new HiddenConditionsEffects(builtInEffects, conditions, customEffects, webhooks);
         }
 

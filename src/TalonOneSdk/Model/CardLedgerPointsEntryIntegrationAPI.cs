@@ -363,42 +363,6 @@ namespace TalonOneSdk.Model
             if (!amount.IsSet)
                 throw new ArgumentException("Property is required for class CardLedgerPointsEntryIntegrationAPI.", nameof(amount));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CardLedgerPointsEntryIntegrationAPI.");
-
-            if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class CardLedgerPointsEntryIntegrationAPI.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CardLedgerPointsEntryIntegrationAPI.");
-
-            if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class CardLedgerPointsEntryIntegrationAPI.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CardLedgerPointsEntryIntegrationAPI.");
-
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class CardLedgerPointsEntryIntegrationAPI.");
-
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class CardLedgerPointsEntryIntegrationAPI.");
-
-            if (subledgerId.IsSet && subledgerId.Value == null)
-                throw new ArgumentNullException(nameof(subledgerId), "Property is not nullable for class CardLedgerPointsEntryIntegrationAPI.");
-
-            if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class CardLedgerPointsEntryIntegrationAPI.");
-
-            if (customerProfileID.IsSet && customerProfileID.Value == null)
-                throw new ArgumentNullException(nameof(customerProfileID), "Property is not nullable for class CardLedgerPointsEntryIntegrationAPI.");
-
-            if (customerSessionId.IsSet && customerSessionId.Value == null)
-                throw new ArgumentNullException(nameof(customerSessionId), "Property is not nullable for class CardLedgerPointsEntryIntegrationAPI.");
-
-            if (validityDuration.IsSet && validityDuration.Value == null)
-                throw new ArgumentNullException(nameof(validityDuration), "Property is not nullable for class CardLedgerPointsEntryIntegrationAPI.");
-
             return new CardLedgerPointsEntryIntegrationAPI(id.Value.Value, transactionUUID.Value, created.Value.Value, programId.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, amount.Value.Value, customerProfileID, customerSessionId, validityDuration);
         }
 

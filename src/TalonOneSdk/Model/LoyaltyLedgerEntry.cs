@@ -439,32 +439,8 @@ namespace TalonOneSdk.Model
             if (!subLedgerID.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyLedgerEntry.", nameof(subLedgerID));
 
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class LoyaltyLedgerEntry.");
-
-            if (programID.IsSet && programID.Value == null)
-                throw new ArgumentNullException(nameof(programID), "Property is not nullable for class LoyaltyLedgerEntry.");
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class LoyaltyLedgerEntry.");
-
-            if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class LoyaltyLedgerEntry.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class LoyaltyLedgerEntry.");
-
-            if (subLedgerID.IsSet && subLedgerID.Value == null)
-                throw new ArgumentNullException(nameof(subLedgerID), "Property is not nullable for class LoyaltyLedgerEntry.");
-
-            if (customerProfileID.IsSet && customerProfileID.Value == null)
-                throw new ArgumentNullException(nameof(customerProfileID), "Property is not nullable for class LoyaltyLedgerEntry.");
-
             if (cardID.IsSet && cardID.Value == null)
                 throw new ArgumentNullException(nameof(cardID), "Property is not nullable for class LoyaltyLedgerEntry.");
-
-            if (customerSessionID.IsSet && customerSessionID.Value == null)
-                throw new ArgumentNullException(nameof(customerSessionID), "Property is not nullable for class LoyaltyLedgerEntry.");
 
             if (eventID.IsSet && eventID.Value == null)
                 throw new ArgumentNullException(nameof(eventID), "Property is not nullable for class LoyaltyLedgerEntry.");
@@ -480,12 +456,6 @@ namespace TalonOneSdk.Model
 
             if (archived.IsSet && archived.Value == null)
                 throw new ArgumentNullException(nameof(archived), "Property is not nullable for class LoyaltyLedgerEntry.");
-
-            if (flags.IsSet && flags.Value == null)
-                throw new ArgumentNullException(nameof(flags), "Property is not nullable for class LoyaltyLedgerEntry.");
-
-            if (validityDuration.IsSet && validityDuration.Value == null)
-                throw new ArgumentNullException(nameof(validityDuration), "Property is not nullable for class LoyaltyLedgerEntry.");
 
             return new LoyaltyLedgerEntry(created.Value.Value, programID.Value.Value, type.Value, amount.Value.Value, name.Value, subLedgerID.Value, customerProfileID, cardID, customerSessionID, eventID, startDate, expiryDate, userID, archived, flags, validityDuration);
         }

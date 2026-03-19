@@ -217,15 +217,6 @@ namespace TalonOneSdk.Model
             if (!totalResultSize.IsSet)
                 throw new ArgumentException("Property is required for class CampaignStateChangedNotification.", nameof(totalResultSize));
 
-            if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class CampaignStateChangedNotification.");
-
-            if (totalResultSize.IsSet && totalResultSize.Value == null)
-                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class CampaignStateChangedNotification.");
-
-            if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class CampaignStateChangedNotification.");
-
             return new CampaignStateChangedNotification(notificationType.Value.Value, totalResultSize.Value.Value, data);
         }
 

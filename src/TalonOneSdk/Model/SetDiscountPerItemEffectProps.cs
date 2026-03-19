@@ -346,23 +346,11 @@ namespace TalonOneSdk.Model
             if (!position.IsSet)
                 throw new ArgumentException("Property is required for class SetDiscountPerItemEffectProps.", nameof(position));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SetDiscountPerItemEffectProps.");
-
-            if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class SetDiscountPerItemEffectProps.");
-
-            if (position.IsSet && position.Value == null)
-                throw new ArgumentNullException(nameof(position), "Property is not nullable for class SetDiscountPerItemEffectProps.");
-
             if (subPosition.IsSet && subPosition.Value == null)
                 throw new ArgumentNullException(nameof(subPosition), "Property is not nullable for class SetDiscountPerItemEffectProps.");
 
             if (desiredValue.IsSet && desiredValue.Value == null)
                 throw new ArgumentNullException(nameof(desiredValue), "Property is not nullable for class SetDiscountPerItemEffectProps.");
-
-            if (scope.IsSet && scope.Value == null)
-                throw new ArgumentNullException(nameof(scope), "Property is not nullable for class SetDiscountPerItemEffectProps.");
 
             if (totalDiscount.IsSet && totalDiscount.Value == null)
                 throw new ArgumentNullException(nameof(totalDiscount), "Property is not nullable for class SetDiscountPerItemEffectProps.");
@@ -372,9 +360,6 @@ namespace TalonOneSdk.Model
 
             if (bundleIndex.IsSet && bundleIndex.Value == null)
                 throw new ArgumentNullException(nameof(bundleIndex), "Property is not nullable for class SetDiscountPerItemEffectProps.");
-
-            if (bundleName.IsSet && bundleName.Value == null)
-                throw new ArgumentNullException(nameof(bundleName), "Property is not nullable for class SetDiscountPerItemEffectProps.");
 
             if (targetedItemPosition.IsSet && targetedItemPosition.Value == null)
                 throw new ArgumentNullException(nameof(targetedItemPosition), "Property is not nullable for class SetDiscountPerItemEffectProps.");

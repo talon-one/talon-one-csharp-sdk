@@ -192,12 +192,6 @@ namespace TalonOneSdk.Model
             if (!audience.IsSet)
                 throw new ArgumentException("Property is required for class LabelTargetAudience.", nameof(audience));
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class LabelTargetAudience.");
-
-            if (audience.IsSet && audience.Value == null)
-                throw new ArgumentNullException(nameof(audience), "Property is not nullable for class LabelTargetAudience.");
-
             return new LabelTargetAudience(type.Value.Value, audience.Value);
         }
 

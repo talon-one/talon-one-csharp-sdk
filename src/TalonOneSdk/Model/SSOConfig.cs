@@ -146,12 +146,6 @@ namespace TalonOneSdk.Model
             if (!enforced.IsSet)
                 throw new ArgumentException("Property is required for class SSOConfig.", nameof(enforced));
 
-            if (enforced.IsSet && enforced.Value == null)
-                throw new ArgumentNullException(nameof(enforced), "Property is not nullable for class SSOConfig.");
-
-            if (newAcsUrl.IsSet && newAcsUrl.Value == null)
-                throw new ArgumentNullException(nameof(newAcsUrl), "Property is not nullable for class SSOConfig.");
-
             return new SSOConfig(enforced.Value.Value, newAcsUrl);
         }
 

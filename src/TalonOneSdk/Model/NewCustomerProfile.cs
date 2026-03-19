@@ -33,7 +33,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="attributes">Arbitrary properties associated with this item.</param>
         [JsonConstructor]
-        public NewCustomerProfile(Option<Object> attributes = default)
+        public NewCustomerProfile(Option<Dictionary<string, Object>> attributes = default)
         {
             AttributesOption = attributes;
             OnCreated();
@@ -46,7 +46,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Object> AttributesOption { get; private set; }
+        public Option<Dictionary<string, Object>> AttributesOption { get; private set; }
 
         /// <summary>
         /// Arbitrary properties associated with this item.
@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// <value>Arbitrary properties associated with this item.</value>
         /* <example>{Language&#x3D;english, ShippingCountry&#x3D;DE}</example> */
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Dictionary<string, Object> Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Dictionary<string, Object>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,7 +102,7 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<Object> attributes = default;
+            Option<Dictionary<string, Object>> attributes = default;
 
             while (utf8JsonReader.Read())
             {
@@ -120,16 +120,13 @@ namespace TalonOneSdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "attributes":
-                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Dictionary<string, Object>>(JsonSerializer.Deserialize<Dictionary<string, Object>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class NewCustomerProfile.");
 
             return new NewCustomerProfile(attributes);
         }

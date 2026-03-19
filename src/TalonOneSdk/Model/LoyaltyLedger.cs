@@ -145,12 +145,6 @@ namespace TalonOneSdk.Model
             if (!ledger.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyLedger.", nameof(ledger));
 
-            if (ledger.IsSet && ledger.Value == null)
-                throw new ArgumentNullException(nameof(ledger), "Property is not nullable for class LoyaltyLedger.");
-
-            if (subLedgers.IsSet && subLedgers.Value == null)
-                throw new ArgumentNullException(nameof(subLedgers), "Property is not nullable for class LoyaltyLedger.");
-
             return new LoyaltyLedger(ledger.Value, subLedgers);
         }
 

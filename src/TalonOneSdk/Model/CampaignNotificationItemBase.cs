@@ -124,9 +124,6 @@ namespace TalonOneSdk.Model
             if (!varEvent.IsSet)
                 throw new ArgumentException("Property is required for class CampaignNotificationItemBase.", nameof(varEvent));
 
-            if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignNotificationItemBase.");
-
             return new CampaignNotificationItemBase(varEvent.Value);
         }
 

@@ -127,9 +127,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (ledgerEntries.IsSet && ledgerEntries.Value == null)
-                throw new ArgumentNullException(nameof(ledgerEntries), "Property is not nullable for class ActivateLoyaltyPointsResponse.");
-
             return new ActivateLoyaltyPointsResponse(ledgerEntries);
         }
 

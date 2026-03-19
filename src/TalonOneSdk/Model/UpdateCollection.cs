@@ -150,12 +150,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class UpdateCollection.");
-
-            if (subscribedApplicationsIds.IsSet && subscribedApplicationsIds.Value == null)
-                throw new ArgumentNullException(nameof(subscribedApplicationsIds), "Property is not nullable for class UpdateCollection.");
-
             return new UpdateCollection(description, subscribedApplicationsIds);
         }
 

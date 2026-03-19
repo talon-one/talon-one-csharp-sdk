@@ -122,9 +122,6 @@ namespace TalonOneSdk.Model
             if (!data.IsSet)
                 throw new ArgumentException("Property is required for class OktaEventPayload.", nameof(data));
 
-            if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class OktaEventPayload.");
-
             return new OktaEventPayload(data.Value);
         }
 

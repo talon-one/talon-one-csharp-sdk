@@ -162,15 +162,6 @@ namespace TalonOneSdk.Model
             if (!evaluationTree.IsSet)
                 throw new ArgumentException("Property is required for class CampaignEvaluationTreeChangedNotification.", nameof(evaluationTree));
 
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CampaignEvaluationTreeChangedNotification.");
-
-            if (evaluationTree.IsSet && evaluationTree.Value == null)
-                throw new ArgumentNullException(nameof(evaluationTree), "Property is not nullable for class CampaignEvaluationTreeChangedNotification.");
-
-            if (oldEvaluationTree.IsSet && oldEvaluationTree.Value == null)
-                throw new ArgumentNullException(nameof(oldEvaluationTree), "Property is not nullable for class CampaignEvaluationTreeChangedNotification.");
-
             return new CampaignEvaluationTreeChangedNotification(applicationId.Value.Value, evaluationTree.Value, oldEvaluationTree);
         }
 

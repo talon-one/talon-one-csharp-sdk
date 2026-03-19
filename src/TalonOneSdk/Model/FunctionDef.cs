@@ -205,21 +205,6 @@ namespace TalonOneSdk.Model
             if (!args.IsSet)
                 throw new ArgumentException("Property is required for class FunctionDef.", nameof(args));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class FunctionDef.");
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class FunctionDef.");
-
-            if (args.IsSet && args.Value == null)
-                throw new ArgumentNullException(nameof(args), "Property is not nullable for class FunctionDef.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class FunctionDef.");
-
-            if (help.IsSet && help.Value == null)
-                throw new ArgumentNullException(nameof(help), "Property is not nullable for class FunctionDef.");
-
             return new FunctionDef(name.Value, type.Value, args.Value, description, help);
         }
 

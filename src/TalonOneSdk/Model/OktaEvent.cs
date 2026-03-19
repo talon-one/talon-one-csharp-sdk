@@ -140,12 +140,6 @@ namespace TalonOneSdk.Model
             if (!target.IsSet)
                 throw new ArgumentException("Property is required for class OktaEvent.", nameof(target));
 
-            if (eventType.IsSet && eventType.Value == null)
-                throw new ArgumentNullException(nameof(eventType), "Property is not nullable for class OktaEvent.");
-
-            if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class OktaEvent.");
-
             return new OktaEvent(eventType.Value, target.Value);
         }
 

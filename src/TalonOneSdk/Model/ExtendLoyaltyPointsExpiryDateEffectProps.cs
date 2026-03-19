@@ -179,18 +179,6 @@ namespace TalonOneSdk.Model
             if (!extensionDuration.IsSet)
                 throw new ArgumentException("Property is required for class ExtendLoyaltyPointsExpiryDateEffectProps.", nameof(extensionDuration));
 
-            if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class ExtendLoyaltyPointsExpiryDateEffectProps.");
-
-            if (subLedgerId.IsSet && subLedgerId.Value == null)
-                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class ExtendLoyaltyPointsExpiryDateEffectProps.");
-
-            if (extensionDuration.IsSet && extensionDuration.Value == null)
-                throw new ArgumentNullException(nameof(extensionDuration), "Property is not nullable for class ExtendLoyaltyPointsExpiryDateEffectProps.");
-
-            if (affectedTransactions.IsSet && affectedTransactions.Value == null)
-                throw new ArgumentNullException(nameof(affectedTransactions), "Property is not nullable for class ExtendLoyaltyPointsExpiryDateEffectProps.");
-
             return new ExtendLoyaltyPointsExpiryDateEffectProps(programId.Value.Value, subLedgerId.Value, extensionDuration.Value, affectedTransactions);
         }
 

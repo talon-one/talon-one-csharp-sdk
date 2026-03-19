@@ -212,15 +212,6 @@ namespace TalonOneSdk.Model
             if (!notificationType.IsSet)
                 throw new ArgumentException("Property is required for class TierUpgradeNotification.", nameof(notificationType));
 
-            if (totalResultSize.IsSet && totalResultSize.Value == null)
-                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class TierUpgradeNotification.");
-
-            if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class TierUpgradeNotification.");
-
-            if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class TierUpgradeNotification.");
-
             return new TierUpgradeNotification(totalResultSize.Value.Value, data.Value, notificationType.Value.Value);
         }
 

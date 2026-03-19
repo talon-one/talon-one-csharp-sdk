@@ -148,12 +148,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (campaignsIDs.IsSet && campaignsIDs.Value == null)
-                throw new ArgumentNullException(nameof(campaignsIDs), "Property is not nullable for class StrikethroughDebugResponse.");
-
-            if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class StrikethroughDebugResponse.");
-
             return new StrikethroughDebugResponse(campaignsIDs, effects);
         }
 

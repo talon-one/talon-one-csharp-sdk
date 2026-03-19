@@ -204,21 +204,6 @@ namespace TalonOneSdk.Model
             if (!set.IsSet)
                 throw new ArgumentException("Property is required for class CampaignSet.", nameof(set));
 
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CampaignSet.");
-
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignSet.");
-
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class CampaignSet.");
-
-            if (set.IsSet && set.Value == null)
-                throw new ArgumentNullException(nameof(set), "Property is not nullable for class CampaignSet.");
-
-            if (updatedBy.IsSet && updatedBy.Value == null)
-                throw new ArgumentNullException(nameof(updatedBy), "Property is not nullable for class CampaignSet.");
-
             return new CampaignSet(applicationId.Value.Value, id.Value.Value, varVersion.Value.Value, set.Value, updatedBy);
         }
 

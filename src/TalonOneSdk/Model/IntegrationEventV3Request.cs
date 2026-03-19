@@ -493,36 +493,6 @@ namespace TalonOneSdk.Model
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationEventV3Request.", nameof(type));
 
-            if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class IntegrationEventV3Request.");
-
-            if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class IntegrationEventV3Request.");
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class IntegrationEventV3Request.");
-
-            if (storeIntegrationId.IsSet && storeIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(storeIntegrationId), "Property is not nullable for class IntegrationEventV3Request.");
-
-            if (evaluableCampaignIds.IsSet && evaluableCampaignIds.Value == null)
-                throw new ArgumentNullException(nameof(evaluableCampaignIds), "Property is not nullable for class IntegrationEventV3Request.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class IntegrationEventV3Request.");
-
-            if (connectedSessionID.IsSet && connectedSessionID.Value == null)
-                throw new ArgumentNullException(nameof(connectedSessionID), "Property is not nullable for class IntegrationEventV3Request.");
-
-            if (previousEventID.IsSet && previousEventID.Value == null)
-                throw new ArgumentNullException(nameof(previousEventID), "Property is not nullable for class IntegrationEventV3Request.");
-
-            if (loyaltyCards.IsSet && loyaltyCards.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyCards), "Property is not nullable for class IntegrationEventV3Request.");
-
-            if (responseContent.IsSet && responseContent.Value == null)
-                throw new ArgumentNullException(nameof(responseContent), "Property is not nullable for class IntegrationEventV3Request.");
-
             return new IntegrationEventV3Request(profileId.Value, integrationId.Value, type.Value, storeIntegrationId, evaluableCampaignIds, attributes, connectedSessionID, previousEventID, loyaltyCards, responseContent);
         }
 

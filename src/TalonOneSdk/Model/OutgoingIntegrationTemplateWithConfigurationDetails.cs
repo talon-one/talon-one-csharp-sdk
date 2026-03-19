@@ -404,33 +404,6 @@ namespace TalonOneSdk.Model
             if (!policy.IsSet)
                 throw new ArgumentException("Property is required for class OutgoingIntegrationTemplateWithConfigurationDetails.", nameof(policy));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class OutgoingIntegrationTemplateWithConfigurationDetails.");
-
-            if (integrationType.IsSet && integrationType.Value == null)
-                throw new ArgumentNullException(nameof(integrationType), "Property is not nullable for class OutgoingIntegrationTemplateWithConfigurationDetails.");
-
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class OutgoingIntegrationTemplateWithConfigurationDetails.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class OutgoingIntegrationTemplateWithConfigurationDetails.");
-
-            if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class OutgoingIntegrationTemplateWithConfigurationDetails.");
-
-            if (method.IsSet && method.Value == null)
-                throw new ArgumentNullException(nameof(method), "Property is not nullable for class OutgoingIntegrationTemplateWithConfigurationDetails.");
-
-            if (relativeUrl.IsSet && relativeUrl.Value == null)
-                throw new ArgumentNullException(nameof(relativeUrl), "Property is not nullable for class OutgoingIntegrationTemplateWithConfigurationDetails.");
-
-            if (headers.IsSet && headers.Value == null)
-                throw new ArgumentNullException(nameof(headers), "Property is not nullable for class OutgoingIntegrationTemplateWithConfigurationDetails.");
-
-            if (policy.IsSet && policy.Value == null)
-                throw new ArgumentNullException(nameof(policy), "Property is not nullable for class OutgoingIntegrationTemplateWithConfigurationDetails.");
-
             return new OutgoingIntegrationTemplateWithConfigurationDetails(id.Value.Value, integrationType.Value.Value, title.Value, description.Value, payload.Value, method.Value.Value, relativeUrl.Value, headers.Value, policy.Value);
         }
 

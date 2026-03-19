@@ -142,12 +142,6 @@ namespace TalonOneSdk.Model
             if (!limit.IsSet)
                 throw new ArgumentException("Property is required for class NewCampaignStoreBudgetStoreLimit.", nameof(limit));
 
-            if (storeId.IsSet && storeId.Value == null)
-                throw new ArgumentNullException(nameof(storeId), "Property is not nullable for class NewCampaignStoreBudgetStoreLimit.");
-
-            if (limit.IsSet && limit.Value == null)
-                throw new ArgumentNullException(nameof(limit), "Property is not nullable for class NewCampaignStoreBudgetStoreLimit.");
-
             return new NewCampaignStoreBudgetStoreLimit(storeId.Value.Value, limit.Value.Value);
         }
 

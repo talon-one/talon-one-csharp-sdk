@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using TalonOneSdk.Api;
 using TalonOneSdk.Client;
 using TalonOneSdk.Model;
@@ -137,6 +138,59 @@ namespace _example
             Console.WriteLine("The response is ok");
             IntegrationStateV2? result2 = response2.Ok();
             Console.WriteLine(result2);
+
+            //
+            // Run test for custom session attributes serialization
+            //
+
+            Console.WriteLine("Testing UpdateCustomerSessionV2 custom attributes");
+
+            string customerSession3Id = Guid.NewGuid().ToString();
+
+            var customerSession3 = new NewCustomerSessionV2
+            {
+                Attributes = JsonDocument.Parse("""
+                                                { "shippingPostalCode": "12345" }
+                                                """).RootElement
+            };
+
+            var integrationRequestWithAttributes = new IntegrationRequest(customerSession3);
+
+            IUpdateCustomerSessionV2ApiResponse? response3 =
+                await integrationApi.UpdateCustomerSessionV2Async(customerSession3Id, integrationRequestWithAttributes, dry: true);
+
+            if (response3.IsBadRequest)
+            {
+                Console.WriteLine($"{response3.ReasonPhrase}{Environment.NewLine}{response3.RawContent}");
+            }
+            else
+            {
+                Console.WriteLine("The custom attributes response is ok");
+                Console.WriteLine(response3.Ok());
+            }
+
+            //
+            // Run test for bad request error deserialization
+            //
+
+            Console.WriteLine("Testing UpdateCustomerSessionV2 bad request error handling");
+
+            string customerSession4Id = Guid.NewGuid().ToString();
+
+            var customerSession4 = new NewCustomerSessionV2
+            {
+                StoreIntegrationId = "invalid"
+            };
+
+            var integrationRequestWithInvalidStore = new IntegrationRequest(customerSession4);
+
+            IUpdateCustomerSessionV2ApiResponse? response4 =
+                await integrationApi.UpdateCustomerSessionV2Async(customerSession4Id, integrationRequestWithInvalidStore);
+
+            if (response4.IsBadRequest)
+            {
+                Console.WriteLine(response4.BadRequest().Message);
+            }
         }
     }
 }

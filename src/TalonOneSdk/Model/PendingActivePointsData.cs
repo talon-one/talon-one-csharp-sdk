@@ -260,26 +260,11 @@ namespace TalonOneSdk.Model
             if (!subledgerID.IsSet)
                 throw new ArgumentException("Property is required for class PendingActivePointsData.", nameof(subledgerID));
 
-            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class PendingActivePointsData.");
-
-            if (customerProfileID.IsSet && customerProfileID.Value == null)
-                throw new ArgumentNullException(nameof(customerProfileID), "Property is not nullable for class PendingActivePointsData.");
-
-            if (points.IsSet && points.Value == null)
-                throw new ArgumentNullException(nameof(points), "Property is not nullable for class PendingActivePointsData.");
-
-            if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class PendingActivePointsData.");
-
             if (activeOn.IsSet && activeOn.Value == null)
                 throw new ArgumentNullException(nameof(activeOn), "Property is not nullable for class PendingActivePointsData.");
 
             if (expireOn.IsSet && expireOn.Value == null)
                 throw new ArgumentNullException(nameof(expireOn), "Property is not nullable for class PendingActivePointsData.");
-
-            if (sessionIntegrationID.IsSet && sessionIntegrationID.Value == null)
-                throw new ArgumentNullException(nameof(sessionIntegrationID), "Property is not nullable for class PendingActivePointsData.");
 
             return new PendingActivePointsData(loyaltyProgramID.Value.Value, customerProfileID.Value, points.Value.Value, subledgerID.Value, activeOn, expireOn, sessionIntegrationID);
         }

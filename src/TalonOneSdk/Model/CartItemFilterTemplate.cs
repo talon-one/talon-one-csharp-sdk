@@ -142,12 +142,6 @@ namespace TalonOneSdk.Model
             if (!expression.IsSet)
                 throw new ArgumentException("Property is required for class CartItemFilterTemplate.", nameof(expression));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CartItemFilterTemplate.");
-
-            if (expression.IsSet && expression.Value == null)
-                throw new ArgumentNullException(nameof(expression), "Property is not nullable for class CartItemFilterTemplate.");
-
             return new CartItemFilterTemplate(name.Value, expression.Value);
         }
 

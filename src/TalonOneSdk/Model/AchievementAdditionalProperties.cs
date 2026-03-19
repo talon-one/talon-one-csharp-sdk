@@ -304,15 +304,6 @@ namespace TalonOneSdk.Model
             if (!userId.IsSet)
                 throw new ArgumentException("Property is required for class AchievementAdditionalProperties.", nameof(userId));
 
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class AchievementAdditionalProperties.");
-
-            if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class AchievementAdditionalProperties.");
-
-            if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class AchievementAdditionalProperties.");
-
             if (hasProgress.IsSet && hasProgress.Value == null)
                 throw new ArgumentNullException(nameof(hasProgress), "Property is not nullable for class AchievementAdditionalProperties.");
 

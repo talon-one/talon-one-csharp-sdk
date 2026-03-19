@@ -229,9 +229,6 @@ namespace TalonOneSdk.Model
             if (price.IsSet && price.Value == null)
                 throw new ArgumentNullException(nameof(price), "Property is not nullable for class PriceDetail.");
 
-            if (adjustmentContextId.IsSet && adjustmentContextId.Value == null)
-                throw new ArgumentNullException(nameof(adjustmentContextId), "Property is not nullable for class PriceDetail.");
-
             if (adjustmentReferenceId.IsSet && adjustmentReferenceId.Value == null)
                 throw new ArgumentNullException(nameof(adjustmentReferenceId), "Property is not nullable for class PriceDetail.");
 

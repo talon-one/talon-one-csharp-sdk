@@ -207,17 +207,8 @@ namespace TalonOneSdk.Model
             if (!sku.IsSet)
                 throw new ArgumentException("Property is required for class PatchItemCatalogAction.", nameof(sku));
 
-            if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class PatchItemCatalogAction.");
-
             if (price.IsSet && price.Value == null)
                 throw new ArgumentNullException(nameof(price), "Property is not nullable for class PatchItemCatalogAction.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class PatchItemCatalogAction.");
-
-            if (product.IsSet && product.Value == null)
-                throw new ArgumentNullException(nameof(product), "Property is not nullable for class PatchItemCatalogAction.");
 
             if (createIfNotExists.IsSet && createIfNotExists.Value == null)
                 throw new ArgumentNullException(nameof(createIfNotExists), "Property is not nullable for class PatchItemCatalogAction.");

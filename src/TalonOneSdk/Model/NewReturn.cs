@@ -123,9 +123,6 @@ namespace TalonOneSdk.Model
             if (!returnedCartItems.IsSet)
                 throw new ArgumentException("Property is required for class NewReturn.", nameof(returnedCartItems));
 
-            if (returnedCartItems.IsSet && returnedCartItems.Value == null)
-                throw new ArgumentNullException(nameof(returnedCartItems), "Property is not nullable for class NewReturn.");
-
             return new NewReturn(returnedCartItems.Value);
         }
 

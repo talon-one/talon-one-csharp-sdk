@@ -144,12 +144,6 @@ namespace TalonOneSdk.Model
             if (!message.IsSet)
                 throw new ArgumentException("Property is required for class ErrorResponse.", nameof(message));
 
-            if (message.IsSet && message.Value == null)
-                throw new ArgumentNullException(nameof(message), "Property is not nullable for class ErrorResponse.");
-
-            if (errors.IsSet && errors.Value == null)
-                throw new ArgumentNullException(nameof(errors), "Property is not nullable for class ErrorResponse.");
-
             return new ErrorResponse(message.Value, errors);
         }
 

@@ -233,12 +233,6 @@ namespace TalonOneSdk.Model
             if (!batchID.IsSet)
                 throw new ArgumentException("Property is required for class UpdateReferralBatch.", nameof(batchID));
 
-            if (batchID.IsSet && batchID.Value == null)
-                throw new ArgumentNullException(nameof(batchID), "Property is not nullable for class UpdateReferralBatch.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class UpdateReferralBatch.");
-
             if (startDate.IsSet && startDate.Value == null)
                 throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class UpdateReferralBatch.");
 

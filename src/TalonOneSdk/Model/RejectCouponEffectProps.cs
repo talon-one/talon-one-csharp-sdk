@@ -225,23 +225,11 @@ namespace TalonOneSdk.Model
             if (!rejectionReason.IsSet)
                 throw new ArgumentException("Property is required for class RejectCouponEffectProps.", nameof(rejectionReason));
 
-            if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RejectCouponEffectProps.");
-
-            if (rejectionReason.IsSet && rejectionReason.Value == null)
-                throw new ArgumentNullException(nameof(rejectionReason), "Property is not nullable for class RejectCouponEffectProps.");
-
             if (conditionIndex.IsSet && conditionIndex.Value == null)
                 throw new ArgumentNullException(nameof(conditionIndex), "Property is not nullable for class RejectCouponEffectProps.");
 
             if (effectIndex.IsSet && effectIndex.Value == null)
                 throw new ArgumentNullException(nameof(effectIndex), "Property is not nullable for class RejectCouponEffectProps.");
-
-            if (details.IsSet && details.Value == null)
-                throw new ArgumentNullException(nameof(details), "Property is not nullable for class RejectCouponEffectProps.");
-
-            if (campaignExclusionReason.IsSet && campaignExclusionReason.Value == null)
-                throw new ArgumentNullException(nameof(campaignExclusionReason), "Property is not nullable for class RejectCouponEffectProps.");
 
             return new RejectCouponEffectProps(value.Value, rejectionReason.Value, conditionIndex, effectIndex, details, campaignExclusionReason);
         }

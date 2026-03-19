@@ -562,30 +562,6 @@ namespace TalonOneSdk.Model
             if (!key.IsSet)
                 throw new ArgumentException("Property is required for class NewApplicationAPIKey.", nameof(key));
 
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewApplicationAPIKey.");
-
-            if (expires.IsSet && expires.Value == null)
-                throw new ArgumentNullException(nameof(expires), "Property is not nullable for class NewApplicationAPIKey.");
-
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class NewApplicationAPIKey.");
-
-            if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class NewApplicationAPIKey.");
-
-            if (accountID.IsSet && accountID.Value == null)
-                throw new ArgumentNullException(nameof(accountID), "Property is not nullable for class NewApplicationAPIKey.");
-
-            if (applicationID.IsSet && applicationID.Value == null)
-                throw new ArgumentNullException(nameof(applicationID), "Property is not nullable for class NewApplicationAPIKey.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class NewApplicationAPIKey.");
-
-            if (key.IsSet && key.Value == null)
-                throw new ArgumentNullException(nameof(key), "Property is not nullable for class NewApplicationAPIKey.");
-
             if (platform.IsSet && platform.Value == null)
                 throw new ArgumentNullException(nameof(platform), "Property is not nullable for class NewApplicationAPIKey.");
 

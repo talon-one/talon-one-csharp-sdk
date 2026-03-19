@@ -127,9 +127,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (unitsSold.IsSet && unitsSold.Value == null)
-                throw new ArgumentNullException(nameof(unitsSold), "Property is not nullable for class ProductUnitAnalyticsTotals.");
-
             return new ProductUnitAnalyticsTotals(unitsSold);
         }
 

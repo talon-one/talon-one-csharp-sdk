@@ -47,9 +47,10 @@ namespace TalonOneSdk.Model
         /// <param name="campaignGroups">The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/managing-campaign-groups) this campaign belongs to. </param>
         /// <param name="type">The campaign type. Possible type values:   - &#x60;cartItem&#x60;: Type of campaign that can apply effects only to cart items.   - &#x60;advanced&#x60;: Type of campaign that can apply effects to customer sessions and cart items.  (default to TypeEnum.Advanced)</param>
         /// <param name="linkedStoreIds">A list of store IDs that you want to link to the campaign.  **Note:** Campaigns with linked store IDs will only be evaluated when there is a [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) that references a linked store. </param>
+        /// <param name="couponAttributes">Arbitrary properties associated with coupons in this campaign.</param>
         /// <param name="evaluationGroupId">The ID of the campaign evaluation group the campaign belongs to.</param>
         [JsonConstructor]
-        public NewCampaign(string name, List<string> tags, List<NewCampaign.FeaturesEnum> features, List<LimitConfig> limits, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, StateEnum state = StateEnum.Enabled, Option<long?> activeRulesetId = default, Option<bool?> reevaluateOnReturn = default, Option<CodeGeneratorSettings> couponSettings = default, Option<CodeGeneratorSettings> referralSettings = default, Option<List<long>> campaignGroups = default, Option<TypeEnum?> type = default, Option<List<long>> linkedStoreIds = default, Option<long?> evaluationGroupId = default)
+        public NewCampaign(string name, List<string> tags, List<NewCampaign.FeaturesEnum> features, List<LimitConfig> limits, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, StateEnum state = StateEnum.Enabled, Option<long?> activeRulesetId = default, Option<bool?> reevaluateOnReturn = default, Option<CodeGeneratorSettings> couponSettings = default, Option<CodeGeneratorSettings> referralSettings = default, Option<List<long>> campaignGroups = default, Option<TypeEnum?> type = default, Option<List<long>> linkedStoreIds = default, Option<Object> couponAttributes = default, Option<long?> evaluationGroupId = default)
         {
             Name = name;
             Tags = tags;
@@ -67,6 +68,7 @@ namespace TalonOneSdk.Model
             CampaignGroupsOption = campaignGroups;
             TypeOption = type;
             LinkedStoreIdsOption = linkedStoreIds;
+            CouponAttributesOption = couponAttributes;
             EvaluationGroupIdOption = evaluationGroupId;
             OnCreated();
         }
@@ -543,6 +545,20 @@ namespace TalonOneSdk.Model
         public List<long> LinkedStoreIds { get { return this.LinkedStoreIdsOption; } set { this.LinkedStoreIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
+        /// Used to track the state of CouponAttributes
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> CouponAttributesOption { get; private set; }
+
+        /// <summary>
+        /// Arbitrary properties associated with coupons in this campaign.
+        /// </summary>
+        /// <value>Arbitrary properties associated with coupons in this campaign.</value>
+        [JsonPropertyName("couponAttributes")]
+        public Object CouponAttributes { get { return this.CouponAttributesOption; } set { this.CouponAttributesOption = new Option<Object>(value); } }
+
+        /// <summary>
         /// Used to track the state of EvaluationGroupId
         /// </summary>
         [JsonIgnore]
@@ -581,6 +597,7 @@ namespace TalonOneSdk.Model
             sb.Append("  CampaignGroups: ").Append(CampaignGroups).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  LinkedStoreIds: ").Append(LinkedStoreIds).Append("\n");
+            sb.Append("  CouponAttributes: ").Append(CouponAttributes).Append("\n");
             sb.Append("  EvaluationGroupId: ").Append(EvaluationGroupId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -651,6 +668,7 @@ namespace TalonOneSdk.Model
             Option<List<long>> campaignGroups = default;
             Option<NewCampaign.TypeEnum?> type = default;
             Option<List<long>> linkedStoreIds = default;
+            Option<Object> couponAttributes = default;
             Option<long?> evaluationGroupId = default;
 
             while (utf8JsonReader.Read())
@@ -741,6 +759,9 @@ namespace TalonOneSdk.Model
                         case "linkedStoreIds":
                             linkedStoreIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "couponAttributes":
+                            couponAttributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "evaluationGroupId":
                             evaluationGroupId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
@@ -765,32 +786,11 @@ namespace TalonOneSdk.Model
             if (!state.IsSet)
                 throw new ArgumentException("Property is required for class NewCampaign.", nameof(state));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewCampaign.");
-
-            if (tags.IsSet && tags.Value == null)
-                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class NewCampaign.");
-
-            if (features.IsSet && features.Value == null)
-                throw new ArgumentNullException(nameof(features), "Property is not nullable for class NewCampaign.");
-
-            if (limits.IsSet && limits.Value == null)
-                throw new ArgumentNullException(nameof(limits), "Property is not nullable for class NewCampaign.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class NewCampaign.");
-
             if (startTime.IsSet && startTime.Value == null)
                 throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class NewCampaign.");
 
             if (endTime.IsSet && endTime.Value == null)
                 throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class NewCampaign.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class NewCampaign.");
-
-            if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class NewCampaign.");
 
             if (activeRulesetId.IsSet && activeRulesetId.Value == null)
                 throw new ArgumentNullException(nameof(activeRulesetId), "Property is not nullable for class NewCampaign.");
@@ -798,25 +798,13 @@ namespace TalonOneSdk.Model
             if (reevaluateOnReturn.IsSet && reevaluateOnReturn.Value == null)
                 throw new ArgumentNullException(nameof(reevaluateOnReturn), "Property is not nullable for class NewCampaign.");
 
-            if (couponSettings.IsSet && couponSettings.Value == null)
-                throw new ArgumentNullException(nameof(couponSettings), "Property is not nullable for class NewCampaign.");
-
-            if (referralSettings.IsSet && referralSettings.Value == null)
-                throw new ArgumentNullException(nameof(referralSettings), "Property is not nullable for class NewCampaign.");
-
-            if (campaignGroups.IsSet && campaignGroups.Value == null)
-                throw new ArgumentNullException(nameof(campaignGroups), "Property is not nullable for class NewCampaign.");
-
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class NewCampaign.");
-
-            if (linkedStoreIds.IsSet && linkedStoreIds.Value == null)
-                throw new ArgumentNullException(nameof(linkedStoreIds), "Property is not nullable for class NewCampaign.");
 
             if (evaluationGroupId.IsSet && evaluationGroupId.Value == null)
                 throw new ArgumentNullException(nameof(evaluationGroupId), "Property is not nullable for class NewCampaign.");
 
-            return new NewCampaign(name.Value, tags.Value, features.Value, limits.Value, description, startTime, endTime, attributes, state.Value.Value, activeRulesetId, reevaluateOnReturn, couponSettings, referralSettings, campaignGroups, type, linkedStoreIds, evaluationGroupId);
+            return new NewCampaign(name.Value, tags.Value, features.Value, limits.Value, description, startTime, endTime, attributes, state.Value.Value, activeRulesetId, reevaluateOnReturn, couponSettings, referralSettings, campaignGroups, type, linkedStoreIds, couponAttributes, evaluationGroupId);
         }
 
         /// <summary>
@@ -872,6 +860,9 @@ namespace TalonOneSdk.Model
 
             if (newCampaign.LinkedStoreIdsOption.IsSet && newCampaign.LinkedStoreIds == null)
                 throw new ArgumentNullException(nameof(newCampaign.LinkedStoreIds), "Property is required for class NewCampaign.");
+
+            if (newCampaign.CouponAttributesOption.IsSet && newCampaign.CouponAttributes == null)
+                throw new ArgumentNullException(nameof(newCampaign.CouponAttributes), "Property is required for class NewCampaign.");
 
             writer.WriteString("name", newCampaign.Name);
 
@@ -932,6 +923,11 @@ namespace TalonOneSdk.Model
             {
                 writer.WritePropertyName("linkedStoreIds");
                 JsonSerializer.Serialize(writer, newCampaign.LinkedStoreIds, jsonSerializerOptions);
+            }
+            if (newCampaign.CouponAttributesOption.IsSet)
+            {
+                writer.WritePropertyName("couponAttributes");
+                JsonSerializer.Serialize(writer, newCampaign.CouponAttributes, jsonSerializerOptions);
             }
             if (newCampaign.EvaluationGroupIdOption.IsSet)
                 writer.WriteNumber("evaluationGroupId", newCampaign.EvaluationGroupIdOption.Value.Value);

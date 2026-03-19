@@ -388,29 +388,11 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class NewCustomerSession.");
-
-            if (coupon.IsSet && coupon.Value == null)
-                throw new ArgumentNullException(nameof(coupon), "Property is not nullable for class NewCustomerSession.");
-
-            if (referral.IsSet && referral.Value == null)
-                throw new ArgumentNullException(nameof(referral), "Property is not nullable for class NewCustomerSession.");
-
             if (state.IsSet && state.Value == null)
                 throw new ArgumentNullException(nameof(state), "Property is not nullable for class NewCustomerSession.");
 
-            if (cartItems.IsSet && cartItems.Value == null)
-                throw new ArgumentNullException(nameof(cartItems), "Property is not nullable for class NewCustomerSession.");
-
-            if (identifiers.IsSet && identifiers.Value == null)
-                throw new ArgumentNullException(nameof(identifiers), "Property is not nullable for class NewCustomerSession.");
-
             if (total.IsSet && total.Value == null)
                 throw new ArgumentNullException(nameof(total), "Property is not nullable for class NewCustomerSession.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class NewCustomerSession.");
 
             return new NewCustomerSession(profileId, coupon, referral, state, cartItems, identifiers, total, attributes);
         }

@@ -157,15 +157,6 @@ namespace TalonOneSdk.Model
             if (!currency.IsSet)
                 throw new ArgumentException("Property is required for class GenerateCampaignSummary.", nameof(currency));
 
-            if (campaignID.IsSet && campaignID.Value == null)
-                throw new ArgumentNullException(nameof(campaignID), "Property is not nullable for class GenerateCampaignSummary.");
-
-            if (rulesetID.IsSet && rulesetID.Value == null)
-                throw new ArgumentNullException(nameof(rulesetID), "Property is not nullable for class GenerateCampaignSummary.");
-
-            if (currency.IsSet && currency.Value == null)
-                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class GenerateCampaignSummary.");
-
             return new GenerateCampaignSummary(campaignID.Value.Value, rulesetID.Value.Value, currency.Value);
         }
 

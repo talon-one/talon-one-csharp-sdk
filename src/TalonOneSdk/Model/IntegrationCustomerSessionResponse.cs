@@ -147,12 +147,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (customerSession.IsSet && customerSession.Value == null)
-                throw new ArgumentNullException(nameof(customerSession), "Property is not nullable for class IntegrationCustomerSessionResponse.");
-
-            if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class IntegrationCustomerSessionResponse.");
-
             return new IntegrationCustomerSessionResponse(customerSession, effects);
         }
 

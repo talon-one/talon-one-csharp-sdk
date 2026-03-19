@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// <param name="identifiers">Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts. See the [tutorial](https://docs.talon.one/docs/dev/tutorials/using-identifiers).  **Important**: Ensure the session contains an identifier by the time you close it if: - You [create a unique identifier budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign. - Your campaign has [coupons](https://docs.talon.one/docs/product/campaigns/coupons/coupon-page-overview). - We recommend passing an anonymized (hashed) version of the identifier value. </param>
         /// <param name="attributes">Use this property to set a value for the attributes of your choice. Attributes represent any information to attach to your session, like the shipping city.  You can use [built-in attributes](https://docs.talon.one/docs/dev/concepts/attributes#built-in-attributes) or [custom ones](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes). Custom attributes must be created in the Campaign Manager before you set them with this property. </param>
         [JsonConstructor]
-        public CustomerSessionV2(long id, DateTime created, string integrationId, long applicationId, bool firstSession, long updateCount, decimal total, decimal cartItemTotal, decimal additionalCostTotal, DateTime updated, Option<string> profileId = default, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<List<string>> couponCodes = default, Option<string> referralCode = default, Option<List<string>> loyaltyCards = default, Option<StateEnum?> state = default, Option<List<CartItem>> cartItems = default, Option<List<ExperimentVariantAllocation>> experimentVariantAllocations = default, Option<Dictionary<string, AdditionalCost>> additionalCosts = default, Option<List<string>> identifiers = default, Option<Object> attributes = default)
+        public CustomerSessionV2(long id, DateTime created, string integrationId, long applicationId, bool firstSession, long updateCount, decimal total, decimal cartItemTotal, decimal additionalCostTotal, DateTime updated, Option<string> profileId = default, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<List<string>> couponCodes = default, Option<string> referralCode = default, Option<List<string>> loyaltyCards = default, Option<StateEnum?> state = default, Option<List<CartItem>> cartItems = default, Option<List<ExperimentVariantAllocation>> experimentVariantAllocations = default, Option<Dictionary<string, AdditionalCost>> additionalCosts = default, Option<List<string>> identifiers = default, Option<Dictionary<string, Object>> attributes = default)
         {
             Id = id;
             Created = created;
@@ -426,7 +426,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Object> AttributesOption { get; private set; }
+        public Option<Dictionary<string, Object>> AttributesOption { get; private set; }
 
         /// <summary>
         /// Use this property to set a value for the attributes of your choice. Attributes represent any information to attach to your session, like the shipping city.  You can use [built-in attributes](https://docs.talon.one/docs/dev/concepts/attributes#built-in-attributes) or [custom ones](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes). Custom attributes must be created in the Campaign Manager before you set them with this property. 
@@ -434,7 +434,7 @@ namespace TalonOneSdk.Model
         /// <value>Use this property to set a value for the attributes of your choice. Attributes represent any information to attach to your session, like the shipping city.  You can use [built-in attributes](https://docs.talon.one/docs/dev/concepts/attributes#built-in-attributes) or [custom ones](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes). Custom attributes must be created in the Campaign Manager before you set them with this property. </value>
         /* <example>{ShippingCity&#x3D;Berlin}</example> */
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Dictionary<string, Object> Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Dictionary<string, Object>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -558,7 +558,7 @@ namespace TalonOneSdk.Model
             Option<List<ExperimentVariantAllocation>> experimentVariantAllocations = default;
             Option<Dictionary<string, AdditionalCost>> additionalCosts = default;
             Option<List<string>> identifiers = default;
-            Option<Object> attributes = default;
+            Option<Dictionary<string, Object>> attributes = default;
 
             while (utf8JsonReader.Read())
             {
@@ -641,7 +641,7 @@ namespace TalonOneSdk.Model
                             identifiers = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "attributes":
-                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Dictionary<string, Object>>(JsonSerializer.Deserialize<Dictionary<string, Object>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -679,71 +679,8 @@ namespace TalonOneSdk.Model
             if (!updated.IsSet)
                 throw new ArgumentException("Property is required for class CustomerSessionV2.", nameof(updated));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CustomerSessionV2.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CustomerSessionV2.");
-
-            if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class CustomerSessionV2.");
-
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CustomerSessionV2.");
-
-            if (firstSession.IsSet && firstSession.Value == null)
-                throw new ArgumentNullException(nameof(firstSession), "Property is not nullable for class CustomerSessionV2.");
-
-            if (updateCount.IsSet && updateCount.Value == null)
-                throw new ArgumentNullException(nameof(updateCount), "Property is not nullable for class CustomerSessionV2.");
-
-            if (total.IsSet && total.Value == null)
-                throw new ArgumentNullException(nameof(total), "Property is not nullable for class CustomerSessionV2.");
-
-            if (cartItemTotal.IsSet && cartItemTotal.Value == null)
-                throw new ArgumentNullException(nameof(cartItemTotal), "Property is not nullable for class CustomerSessionV2.");
-
-            if (additionalCostTotal.IsSet && additionalCostTotal.Value == null)
-                throw new ArgumentNullException(nameof(additionalCostTotal), "Property is not nullable for class CustomerSessionV2.");
-
-            if (updated.IsSet && updated.Value == null)
-                throw new ArgumentNullException(nameof(updated), "Property is not nullable for class CustomerSessionV2.");
-
-            if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class CustomerSessionV2.");
-
-            if (storeIntegrationId.IsSet && storeIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(storeIntegrationId), "Property is not nullable for class CustomerSessionV2.");
-
-            if (evaluableCampaignIds.IsSet && evaluableCampaignIds.Value == null)
-                throw new ArgumentNullException(nameof(evaluableCampaignIds), "Property is not nullable for class CustomerSessionV2.");
-
-            if (couponCodes.IsSet && couponCodes.Value == null)
-                throw new ArgumentNullException(nameof(couponCodes), "Property is not nullable for class CustomerSessionV2.");
-
-            if (referralCode.IsSet && referralCode.Value == null)
-                throw new ArgumentNullException(nameof(referralCode), "Property is not nullable for class CustomerSessionV2.");
-
-            if (loyaltyCards.IsSet && loyaltyCards.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyCards), "Property is not nullable for class CustomerSessionV2.");
-
             if (state.IsSet && state.Value == null)
                 throw new ArgumentNullException(nameof(state), "Property is not nullable for class CustomerSessionV2.");
-
-            if (cartItems.IsSet && cartItems.Value == null)
-                throw new ArgumentNullException(nameof(cartItems), "Property is not nullable for class CustomerSessionV2.");
-
-            if (experimentVariantAllocations.IsSet && experimentVariantAllocations.Value == null)
-                throw new ArgumentNullException(nameof(experimentVariantAllocations), "Property is not nullable for class CustomerSessionV2.");
-
-            if (additionalCosts.IsSet && additionalCosts.Value == null)
-                throw new ArgumentNullException(nameof(additionalCosts), "Property is not nullable for class CustomerSessionV2.");
-
-            if (identifiers.IsSet && identifiers.Value == null)
-                throw new ArgumentNullException(nameof(identifiers), "Property is not nullable for class CustomerSessionV2.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class CustomerSessionV2.");
 
             return new CustomerSessionV2(id.Value.Value, created.Value.Value, integrationId.Value, applicationId.Value.Value, firstSession.Value.Value, updateCount.Value.Value, total.Value.Value, cartItemTotal.Value.Value, additionalCostTotal.Value.Value, updated.Value.Value, profileId, storeIntegrationId, evaluableCampaignIds, couponCodes, referralCode, loyaltyCards, state, cartItems, experimentVariantAllocations, additionalCosts, identifiers, attributes);
         }

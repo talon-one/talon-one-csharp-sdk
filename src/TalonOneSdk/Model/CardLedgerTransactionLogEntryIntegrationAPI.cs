@@ -34,7 +34,7 @@ namespace TalonOneSdk.Model
         /// <param name="transactionUUID">Unique identifier of the transaction in the UUID format.</param>
         /// <param name="created">Date and time the loyalty card transaction occurred.</param>
         /// <param name="programId">ID of the loyalty program.</param>
-        /// <param name="cardIdentifier">The alphanumeric identifier of the loyalty card. </param>
+        /// <param name="cardIdentifier">The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </param>
         /// <param name="type">Type of transaction. Possible values:   - &#x60;addition&#x60;: Signifies added points.   - &#x60;subtraction&#x60;: Signifies deducted points. </param>
         /// <param name="name">Name or reason of the loyalty ledger transaction.</param>
         /// <param name="startDate">When points become active. Possible values:   - &#x60;immediate&#x60;: Points are active immediately.   - &#x60;on_action&#x60;: Points become active based on the customer&#39;s action.   - a timestamp value: Points become active at a given date and time. </param>
@@ -169,9 +169,9 @@ namespace TalonOneSdk.Model
         public long ProgramId { get; set; }
 
         /// <summary>
-        /// The alphanumeric identifier of the loyalty card. 
+        /// The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. 
         /// </summary>
-        /// <value>The alphanumeric identifier of the loyalty card. </value>
+        /// <value>The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("cardIdentifier")]
         public string CardIdentifier { get; set; }
@@ -332,7 +332,7 @@ namespace TalonOneSdk.Model
 
             if (this.CardIdentifier != null) {
                 // CardIdentifier (string) pattern
-                Regex regexCardIdentifier = new Regex(@"^[A-Za-z0-9_-]*$", RegexOptions.CultureInvariant);
+                Regex regexCardIdentifier = new Regex(@"^[A-Za-z0-9._%+@-]+$", RegexOptions.CultureInvariant);
 
                 if (!regexCardIdentifier.Match(this.CardIdentifier).Success)
                 {
@@ -512,50 +512,8 @@ namespace TalonOneSdk.Model
             if (!id.IsSet)
                 throw new ArgumentException("Property is required for class CardLedgerTransactionLogEntryIntegrationAPI.", nameof(id));
 
-            if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class CardLedgerTransactionLogEntryIntegrationAPI.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CardLedgerTransactionLogEntryIntegrationAPI.");
-
-            if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class CardLedgerTransactionLogEntryIntegrationAPI.");
-
-            if (cardIdentifier.IsSet && cardIdentifier.Value == null)
-                throw new ArgumentNullException(nameof(cardIdentifier), "Property is not nullable for class CardLedgerTransactionLogEntryIntegrationAPI.");
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CardLedgerTransactionLogEntryIntegrationAPI.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CardLedgerTransactionLogEntryIntegrationAPI.");
-
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class CardLedgerTransactionLogEntryIntegrationAPI.");
-
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class CardLedgerTransactionLogEntryIntegrationAPI.");
-
-            if (subledgerId.IsSet && subledgerId.Value == null)
-                throw new ArgumentNullException(nameof(subledgerId), "Property is not nullable for class CardLedgerTransactionLogEntryIntegrationAPI.");
-
-            if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class CardLedgerTransactionLogEntryIntegrationAPI.");
-
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CardLedgerTransactionLogEntryIntegrationAPI.");
-
-            if (customerSessionId.IsSet && customerSessionId.Value == null)
-                throw new ArgumentNullException(nameof(customerSessionId), "Property is not nullable for class CardLedgerTransactionLogEntryIntegrationAPI.");
-
             if (rulesetId.IsSet && rulesetId.Value == null)
                 throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class CardLedgerTransactionLogEntryIntegrationAPI.");
-
-            if (ruleName.IsSet && ruleName.Value == null)
-                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class CardLedgerTransactionLogEntryIntegrationAPI.");
-
-            if (validityDuration.IsSet && validityDuration.Value == null)
-                throw new ArgumentNullException(nameof(validityDuration), "Property is not nullable for class CardLedgerTransactionLogEntryIntegrationAPI.");
 
             return new CardLedgerTransactionLogEntryIntegrationAPI(transactionUUID.Value, created.Value.Value, programId.Value.Value, cardIdentifier.Value, type.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, amount.Value.Value, id.Value.Value, customerSessionId, rulesetId, ruleName, validityDuration);
         }

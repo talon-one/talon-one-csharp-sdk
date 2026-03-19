@@ -184,9 +184,6 @@ namespace TalonOneSdk.Model
             if (quantity.IsSet && quantity.Value == null)
                 throw new ArgumentNullException(nameof(quantity), "Property is not nullable for class ReturnedCartItem.");
 
-            if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class ReturnedCartItem.");
-
             return new ReturnedCartItem(position, quantity, sku);
         }
 

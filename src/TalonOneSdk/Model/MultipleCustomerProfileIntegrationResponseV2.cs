@@ -126,9 +126,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (integrationStates.IsSet && integrationStates.Value == null)
-                throw new ArgumentNullException(nameof(integrationStates), "Property is not nullable for class MultipleCustomerProfileIntegrationResponseV2.");
-
             return new MultipleCustomerProfileIntegrationResponseV2(integrationStates);
         }
 

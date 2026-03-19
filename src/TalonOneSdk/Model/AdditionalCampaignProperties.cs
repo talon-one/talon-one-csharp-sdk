@@ -782,15 +782,6 @@ namespace TalonOneSdk.Model
             if (!storesImported.IsSet)
                 throw new ArgumentException("Property is required for class AdditionalCampaignProperties.", nameof(storesImported));
 
-            if (frontendState.IsSet && frontendState.Value == null)
-                throw new ArgumentNullException(nameof(frontendState), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (storesImported.IsSet && storesImported.Value == null)
-                throw new ArgumentNullException(nameof(storesImported), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (budgets.IsSet && budgets.Value == null)
-                throw new ArgumentNullException(nameof(budgets), "Property is not nullable for class AdditionalCampaignProperties.");
-
             if (couponRedemptionCount.IsSet && couponRedemptionCount.Value == null)
                 throw new ArgumentNullException(nameof(couponRedemptionCount), "Property is not nullable for class AdditionalCampaignProperties.");
 
@@ -842,17 +833,8 @@ namespace TalonOneSdk.Model
             if (updated.IsSet && updated.Value == null)
                 throw new ArgumentNullException(nameof(updated), "Property is not nullable for class AdditionalCampaignProperties.");
 
-            if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (updatedBy.IsSet && updatedBy.Value == null)
-                throw new ArgumentNullException(nameof(updatedBy), "Property is not nullable for class AdditionalCampaignProperties.");
-
             if (templateId.IsSet && templateId.Value == null)
                 throw new ArgumentNullException(nameof(templateId), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (valueMapsIds.IsSet && valueMapsIds.Value == null)
-                throw new ArgumentNullException(nameof(valueMapsIds), "Property is not nullable for class AdditionalCampaignProperties.");
 
             if (experimentId.IsSet && experimentId.Value == null)
                 throw new ArgumentNullException(nameof(experimentId), "Property is not nullable for class AdditionalCampaignProperties.");

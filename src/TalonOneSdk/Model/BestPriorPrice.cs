@@ -233,27 +233,6 @@ namespace TalonOneSdk.Model
             if (!target.IsSet)
                 throw new ArgumentException("Property is required for class BestPriorPrice.", nameof(target));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class BestPriorPrice.");
-
-            if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class BestPriorPrice.");
-
-            if (observedAt.IsSet && observedAt.Value == null)
-                throw new ArgumentNullException(nameof(observedAt), "Property is not nullable for class BestPriorPrice.");
-
-            if (contextId.IsSet && contextId.Value == null)
-                throw new ArgumentNullException(nameof(contextId), "Property is not nullable for class BestPriorPrice.");
-
-            if (price.IsSet && price.Value == null)
-                throw new ArgumentNullException(nameof(price), "Property is not nullable for class BestPriorPrice.");
-
-            if (metadata.IsSet && metadata.Value == null)
-                throw new ArgumentNullException(nameof(metadata), "Property is not nullable for class BestPriorPrice.");
-
-            if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class BestPriorPrice.");
-
             return new BestPriorPrice(id.Value.Value, sku.Value, observedAt.Value.Value, contextId.Value, price.Value.Value, metadata.Value, target.Value);
         }
 

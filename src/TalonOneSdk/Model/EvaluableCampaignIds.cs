@@ -128,9 +128,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (varEvaluableCampaignIds.IsSet && varEvaluableCampaignIds.Value == null)
-                throw new ArgumentNullException(nameof(varEvaluableCampaignIds), "Property is not nullable for class EvaluableCampaignIds.");
-
             return new EvaluableCampaignIds(varEvaluableCampaignIds);
         }
 

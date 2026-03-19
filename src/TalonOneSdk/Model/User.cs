@@ -552,44 +552,8 @@ namespace TalonOneSdk.Model
             if (!policy.IsSet)
                 throw new ArgumentException("Property is required for class User.", nameof(policy));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class User.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class User.");
-
-            if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class User.");
-
-            if (email.IsSet && email.Value == null)
-                throw new ArgumentNullException(nameof(email), "Property is not nullable for class User.");
-
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class User.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class User.");
-
-            if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class User.");
-
-            if (inviteToken.IsSet && inviteToken.Value == null)
-                throw new ArgumentNullException(nameof(inviteToken), "Property is not nullable for class User.");
-
-            if (policy.IsSet && policy.Value == null)
-                throw new ArgumentNullException(nameof(policy), "Property is not nullable for class User.");
-
             if (isAdmin.IsSet && isAdmin.Value == null)
                 throw new ArgumentNullException(nameof(isAdmin), "Property is not nullable for class User.");
-
-            if (roles.IsSet && roles.Value == null)
-                throw new ArgumentNullException(nameof(roles), "Property is not nullable for class User.");
-
-            if (authMethod.IsSet && authMethod.Value == null)
-                throw new ArgumentNullException(nameof(authMethod), "Property is not nullable for class User.");
-
-            if (applicationNotificationSubscriptions.IsSet && applicationNotificationSubscriptions.Value == null)
-                throw new ArgumentNullException(nameof(applicationNotificationSubscriptions), "Property is not nullable for class User.");
 
             if (lastSignedIn.IsSet && lastSignedIn.Value == null)
                 throw new ArgumentNullException(nameof(lastSignedIn), "Property is not nullable for class User.");
@@ -599,9 +563,6 @@ namespace TalonOneSdk.Model
 
             if (latestFeedTimestamp.IsSet && latestFeedTimestamp.Value == null)
                 throw new ArgumentNullException(nameof(latestFeedTimestamp), "Property is not nullable for class User.");
-
-            if (additionalAttributes.IsSet && additionalAttributes.Value == null)
-                throw new ArgumentNullException(nameof(additionalAttributes), "Property is not nullable for class User.");
 
             return new User(id.Value.Value, created.Value.Value, modified.Value.Value, email.Value, accountId.Value.Value, name.Value, state.Value.Value, inviteToken.Value, policy.Value, isAdmin, roles, authMethod, applicationNotificationSubscriptions, lastSignedIn, lastAccessed, latestFeedTimestamp, additionalAttributes);
         }

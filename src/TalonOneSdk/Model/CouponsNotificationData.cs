@@ -289,21 +289,6 @@ namespace TalonOneSdk.Model
             if (!notificationType.IsSet)
                 throw new ArgumentException("Property is required for class CouponsNotificationData.", nameof(notificationType));
 
-            if (typeOfChange.IsSet && typeOfChange.Value == null)
-                throw new ArgumentNullException(nameof(typeOfChange), "Property is not nullable for class CouponsNotificationData.");
-
-            if (operation.IsSet && operation.Value == null)
-                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class CouponsNotificationData.");
-
-            if (employeeName.IsSet && employeeName.Value == null)
-                throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class CouponsNotificationData.");
-
-            if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class CouponsNotificationData.");
-
-            if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class CouponsNotificationData.");
-
             if (totalResultSize.IsSet && totalResultSize.Value == null)
                 throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class CouponsNotificationData.");
 

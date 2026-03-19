@@ -124,9 +124,6 @@ namespace TalonOneSdk.Model
             if (!userIds.IsSet)
                 throw new ArgumentException("Property is required for class CampaignActivationRequest.", nameof(userIds));
 
-            if (userIds.IsSet && userIds.Value == null)
-                throw new ArgumentNullException(nameof(userIds), "Property is not nullable for class CampaignActivationRequest.");
-
             return new CampaignActivationRequest(userIds.Value);
         }
 

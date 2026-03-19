@@ -472,9 +472,6 @@ namespace TalonOneSdk.Model
             if (!numberOfCoupons.IsSet)
                 throw new ArgumentException("Property is required for class NewCoupons.", nameof(numberOfCoupons));
 
-            if (numberOfCoupons.IsSet && numberOfCoupons.Value == null)
-                throw new ArgumentNullException(nameof(numberOfCoupons), "Property is not nullable for class NewCoupons.");
-
             if (usageLimit.IsSet && usageLimit.Value == null)
                 throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class NewCoupons.");
 
@@ -489,24 +486,6 @@ namespace TalonOneSdk.Model
 
             if (expiryDate.IsSet && expiryDate.Value == null)
                 throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class NewCoupons.");
-
-            if (limits.IsSet && limits.Value == null)
-                throw new ArgumentNullException(nameof(limits), "Property is not nullable for class NewCoupons.");
-
-            if (uniquePrefix.IsSet && uniquePrefix.Value == null)
-                throw new ArgumentNullException(nameof(uniquePrefix), "Property is not nullable for class NewCoupons.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class NewCoupons.");
-
-            if (recipientIntegrationId.IsSet && recipientIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(recipientIntegrationId), "Property is not nullable for class NewCoupons.");
-
-            if (validCharacters.IsSet && validCharacters.Value == null)
-                throw new ArgumentNullException(nameof(validCharacters), "Property is not nullable for class NewCoupons.");
-
-            if (couponPattern.IsSet && couponPattern.Value == null)
-                throw new ArgumentNullException(nameof(couponPattern), "Property is not nullable for class NewCoupons.");
 
             if (isReservationMandatory.IsSet && isReservationMandatory.Value == null)
                 throw new ArgumentNullException(nameof(isReservationMandatory), "Property is not nullable for class NewCoupons.");
