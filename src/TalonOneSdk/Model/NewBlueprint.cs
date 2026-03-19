@@ -305,20 +305,8 @@ namespace TalonOneSdk.Model
             if (!title.IsSet)
                 throw new ArgumentException("Property is required for class NewBlueprint.", nameof(title));
 
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewBlueprint.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class NewBlueprint.");
-
             if (category.IsSet && category.Value == null)
                 throw new ArgumentNullException(nameof(category), "Property is not nullable for class NewBlueprint.");
-
-            if (rules.IsSet && rules.Value == null)
-                throw new ArgumentNullException(nameof(rules), "Property is not nullable for class NewBlueprint.");
-
-            if (cartItemFilters.IsSet && cartItemFilters.Value == null)
-                throw new ArgumentNullException(nameof(cartItemFilters), "Property is not nullable for class NewBlueprint.");
 
             return new NewBlueprint(title.Value, description, category, rules, cartItemFilters);
         }

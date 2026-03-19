@@ -398,38 +398,8 @@ namespace TalonOneSdk.Model
             if (!publishedAt.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedNotification.", nameof(publishedAt));
 
-            if (profileIntegrationID.IsSet && profileIntegrationID.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedNotification.");
-
-            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedNotification.");
-
-            if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedNotification.");
-
-            if (sourceOfEvent.IsSet && sourceOfEvent.Value == null)
-                throw new ArgumentNullException(nameof(sourceOfEvent), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedNotification.");
-
-            if (currentPoints.IsSet && currentPoints.Value == null)
-                throw new ArgumentNullException(nameof(currentPoints), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedNotification.");
-
-            if (publishedAt.IsSet && publishedAt.Value == null)
-                throw new ArgumentNullException(nameof(publishedAt), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedNotification.");
-
-            if (employeeName.IsSet && employeeName.Value == null)
-                throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedNotification.");
-
             if (userID.IsSet && userID.Value == null)
                 throw new ArgumentNullException(nameof(userID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedNotification.");
-
-            if (actions.IsSet && actions.Value == null)
-                throw new ArgumentNullException(nameof(actions), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedNotification.");
-
-            if (currentTier.IsSet && currentTier.Value == null)
-                throw new ArgumentNullException(nameof(currentTier), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedNotification.");
-
-            if (oldTier.IsSet && oldTier.Value == null)
-                throw new ArgumentNullException(nameof(oldTier), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedNotification.");
 
             if (tierExpirationDate.IsSet && tierExpirationDate.Value == null)
                 throw new ArgumentNullException(nameof(tierExpirationDate), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedNotification.");
@@ -439,9 +409,6 @@ namespace TalonOneSdk.Model
 
             if (pointsRequiredToTheNextTier.IsSet && pointsRequiredToTheNextTier.Value == null)
                 throw new ArgumentNullException(nameof(pointsRequiredToTheNextTier), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedNotification.");
-
-            if (nextTier.IsSet && nextTier.Value == null)
-                throw new ArgumentNullException(nameof(nextTier), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedNotification.");
 
             return new IntegrationHubEventPayloadLoyaltyProfileBasedNotification(profileIntegrationID.Value, loyaltyProgramID.Value.Value, subledgerID.Value, sourceOfEvent.Value, currentPoints.Value.Value, publishedAt.Value.Value, employeeName, userID, actions, currentTier, oldTier, tierExpirationDate, timestampOfTierChange, pointsRequiredToTheNextTier, nextTier);
         }

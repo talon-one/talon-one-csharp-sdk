@@ -140,12 +140,6 @@ namespace TalonOneSdk.Model
             if (!influenced.IsSet)
                 throw new ArgumentException("Property is required for class AnalyticsDataPoint.", nameof(influenced));
 
-            if (total.IsSet && total.Value == null)
-                throw new ArgumentNullException(nameof(total), "Property is not nullable for class AnalyticsDataPoint.");
-
-            if (influenced.IsSet && influenced.Value == null)
-                throw new ArgumentNullException(nameof(influenced), "Property is not nullable for class AnalyticsDataPoint.");
-
             return new AnalyticsDataPoint(total.Value.Value, influenced.Value.Value);
         }
 

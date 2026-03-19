@@ -417,27 +417,6 @@ namespace TalonOneSdk.Model
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationEventV2Request.", nameof(type));
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class IntegrationEventV2Request.");
-
-            if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class IntegrationEventV2Request.");
-
-            if (storeIntegrationId.IsSet && storeIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(storeIntegrationId), "Property is not nullable for class IntegrationEventV2Request.");
-
-            if (evaluableCampaignIds.IsSet && evaluableCampaignIds.Value == null)
-                throw new ArgumentNullException(nameof(evaluableCampaignIds), "Property is not nullable for class IntegrationEventV2Request.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class IntegrationEventV2Request.");
-
-            if (responseContent.IsSet && responseContent.Value == null)
-                throw new ArgumentNullException(nameof(responseContent), "Property is not nullable for class IntegrationEventV2Request.");
-
-            if (loyaltyCards.IsSet && loyaltyCards.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyCards), "Property is not nullable for class IntegrationEventV2Request.");
-
             return new IntegrationEventV2Request(type.Value, profileId, storeIntegrationId, evaluableCampaignIds, attributes, responseContent, loyaltyCards);
         }
 

@@ -164,15 +164,6 @@ namespace TalonOneSdk.Model
             if (!companyName.IsSet)
                 throw new ArgumentException("Property is required for class NewAccountSignUp.", nameof(companyName));
 
-            if (email.IsSet && email.Value == null)
-                throw new ArgumentNullException(nameof(email), "Property is not nullable for class NewAccountSignUp.");
-
-            if (password.IsSet && password.Value == null)
-                throw new ArgumentNullException(nameof(password), "Property is not nullable for class NewAccountSignUp.");
-
-            if (companyName.IsSet && companyName.Value == null)
-                throw new ArgumentNullException(nameof(companyName), "Property is not nullable for class NewAccountSignUp.");
-
             return new NewAccountSignUp(email.Value, password.Value, companyName.Value);
         }
 

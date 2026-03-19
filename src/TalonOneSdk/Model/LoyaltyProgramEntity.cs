@@ -168,15 +168,6 @@ namespace TalonOneSdk.Model
             if (!programID.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyProgramEntity.", nameof(programID));
 
-            if (programID.IsSet && programID.Value == null)
-                throw new ArgumentNullException(nameof(programID), "Property is not nullable for class LoyaltyProgramEntity.");
-
-            if (programName.IsSet && programName.Value == null)
-                throw new ArgumentNullException(nameof(programName), "Property is not nullable for class LoyaltyProgramEntity.");
-
-            if (programTitle.IsSet && programTitle.Value == null)
-                throw new ArgumentNullException(nameof(programTitle), "Property is not nullable for class LoyaltyProgramEntity.");
-
             return new LoyaltyProgramEntity(programID.Value.Value, programName, programTitle);
         }
 

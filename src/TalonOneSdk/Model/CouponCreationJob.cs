@@ -608,54 +608,6 @@ namespace TalonOneSdk.Model
             if (!chunkExecutionCount.IsSet)
                 throw new ArgumentException("Property is required for class CouponCreationJob.", nameof(chunkExecutionCount));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CouponCreationJob.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CouponCreationJob.");
-
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class CouponCreationJob.");
-
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CouponCreationJob.");
-
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class CouponCreationJob.");
-
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class CouponCreationJob.");
-
-            if (numberOfCoupons.IsSet && numberOfCoupons.Value == null)
-                throw new ArgumentNullException(nameof(numberOfCoupons), "Property is not nullable for class CouponCreationJob.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class CouponCreationJob.");
-
-            if (batchId.IsSet && batchId.Value == null)
-                throw new ArgumentNullException(nameof(batchId), "Property is not nullable for class CouponCreationJob.");
-
-            if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class CouponCreationJob.");
-
-            if (createdAmount.IsSet && createdAmount.Value == null)
-                throw new ArgumentNullException(nameof(createdAmount), "Property is not nullable for class CouponCreationJob.");
-
-            if (failCount.IsSet && failCount.Value == null)
-                throw new ArgumentNullException(nameof(failCount), "Property is not nullable for class CouponCreationJob.");
-
-            if (errors.IsSet && errors.Value == null)
-                throw new ArgumentNullException(nameof(errors), "Property is not nullable for class CouponCreationJob.");
-
-            if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class CouponCreationJob.");
-
-            if (communicated.IsSet && communicated.Value == null)
-                throw new ArgumentNullException(nameof(communicated), "Property is not nullable for class CouponCreationJob.");
-
-            if (chunkExecutionCount.IsSet && chunkExecutionCount.Value == null)
-                throw new ArgumentNullException(nameof(chunkExecutionCount), "Property is not nullable for class CouponCreationJob.");
-
             if (discountLimit.IsSet && discountLimit.Value == null)
                 throw new ArgumentNullException(nameof(discountLimit), "Property is not nullable for class CouponCreationJob.");
 
@@ -667,9 +619,6 @@ namespace TalonOneSdk.Model
 
             if (expiryDate.IsSet && expiryDate.Value == null)
                 throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class CouponCreationJob.");
-
-            if (couponSettings.IsSet && couponSettings.Value == null)
-                throw new ArgumentNullException(nameof(couponSettings), "Property is not nullable for class CouponCreationJob.");
 
             if (isReservationMandatory.IsSet && isReservationMandatory.Value == null)
                 throw new ArgumentNullException(nameof(isReservationMandatory), "Property is not nullable for class CouponCreationJob.");

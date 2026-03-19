@@ -205,21 +205,6 @@ namespace TalonOneSdk.Model
             if (!productName.IsSet)
                 throw new ArgumentException("Property is required for class ProductUnitAnalyticsDataPoint.", nameof(productName));
 
-            if (startTime.IsSet && startTime.Value == null)
-                throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class ProductUnitAnalyticsDataPoint.");
-
-            if (endTime.IsSet && endTime.Value == null)
-                throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class ProductUnitAnalyticsDataPoint.");
-
-            if (unitsSold.IsSet && unitsSold.Value == null)
-                throw new ArgumentNullException(nameof(unitsSold), "Property is not nullable for class ProductUnitAnalyticsDataPoint.");
-
-            if (productId.IsSet && productId.Value == null)
-                throw new ArgumentNullException(nameof(productId), "Property is not nullable for class ProductUnitAnalyticsDataPoint.");
-
-            if (productName.IsSet && productName.Value == null)
-                throw new ArgumentNullException(nameof(productName), "Property is not nullable for class ProductUnitAnalyticsDataPoint.");
-
             return new ProductUnitAnalyticsDataPoint(startTime.Value.Value, endTime.Value.Value, unitsSold.Value, productId.Value.Value, productName.Value);
         }
 

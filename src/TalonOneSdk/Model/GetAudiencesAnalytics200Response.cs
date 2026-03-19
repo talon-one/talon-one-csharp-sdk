@@ -142,9 +142,6 @@ namespace TalonOneSdk.Model
             if (!data.IsSet)
                 throw new ArgumentException("Property is required for class GetAudiencesAnalytics200Response.", nameof(data));
 
-            if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class GetAudiencesAnalytics200Response.");
-
             if (hasMore.IsSet && hasMore.Value == null)
                 throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class GetAudiencesAnalytics200Response.");
 

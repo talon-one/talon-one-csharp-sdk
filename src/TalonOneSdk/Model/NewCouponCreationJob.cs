@@ -351,12 +351,6 @@ namespace TalonOneSdk.Model
             if (!attributes.IsSet)
                 throw new ArgumentException("Property is required for class NewCouponCreationJob.", nameof(attributes));
 
-            if (numberOfCoupons.IsSet && numberOfCoupons.Value == null)
-                throw new ArgumentNullException(nameof(numberOfCoupons), "Property is not nullable for class NewCouponCreationJob.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class NewCouponCreationJob.");
-
             if (usageLimit.IsSet && usageLimit.Value == null)
                 throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class NewCouponCreationJob.");
 
@@ -371,9 +365,6 @@ namespace TalonOneSdk.Model
 
             if (expiryDate.IsSet && expiryDate.Value == null)
                 throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class NewCouponCreationJob.");
-
-            if (couponSettings.IsSet && couponSettings.Value == null)
-                throw new ArgumentNullException(nameof(couponSettings), "Property is not nullable for class NewCouponCreationJob.");
 
             if (isReservationMandatory.IsSet && isReservationMandatory.Value == null)
                 throw new ArgumentNullException(nameof(isReservationMandatory), "Property is not nullable for class NewCouponCreationJob.");

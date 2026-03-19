@@ -171,12 +171,6 @@ namespace TalonOneSdk.Model
             if (!newExpiryDate.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyLedgerEntryExpiryDateChange.", nameof(newExpiryDate));
 
-            if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class LoyaltyLedgerEntryExpiryDateChange.");
-
-            if (newExpiryDate.IsSet && newExpiryDate.Value == null)
-                throw new ArgumentNullException(nameof(newExpiryDate), "Property is not nullable for class LoyaltyLedgerEntryExpiryDateChange.");
-
             if (previousExpiryDate.IsSet && previousExpiryDate.Value == null)
                 throw new ArgumentNullException(nameof(previousExpiryDate), "Property is not nullable for class LoyaltyLedgerEntryExpiryDateChange.");
 

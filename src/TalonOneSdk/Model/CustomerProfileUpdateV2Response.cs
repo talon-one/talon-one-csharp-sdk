@@ -122,9 +122,6 @@ namespace TalonOneSdk.Model
             if (!customerProfile.IsSet)
                 throw new ArgumentException("Property is required for class CustomerProfileUpdateV2Response.", nameof(customerProfile));
 
-            if (customerProfile.IsSet && customerProfile.Value == null)
-                throw new ArgumentNullException(nameof(customerProfile), "Property is not nullable for class CustomerProfileUpdateV2Response.");
-
             return new CustomerProfileUpdateV2Response(customerProfile.Value);
         }
 

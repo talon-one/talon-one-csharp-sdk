@@ -157,15 +157,6 @@ namespace TalonOneSdk.Model
             if (!lowOnBudget.IsSet)
                 throw new ArgumentException("Property is required for class AccountDashboardStatisticCampaigns.", nameof(lowOnBudget));
 
-            if (live.IsSet && live.Value == null)
-                throw new ArgumentNullException(nameof(live), "Property is not nullable for class AccountDashboardStatisticCampaigns.");
-
-            if (endingSoon.IsSet && endingSoon.Value == null)
-                throw new ArgumentNullException(nameof(endingSoon), "Property is not nullable for class AccountDashboardStatisticCampaigns.");
-
-            if (lowOnBudget.IsSet && lowOnBudget.Value == null)
-                throw new ArgumentNullException(nameof(lowOnBudget), "Property is not nullable for class AccountDashboardStatisticCampaigns.");
-
             return new AccountDashboardStatisticCampaigns(live.Value.Value, endingSoon.Value.Value, lowOnBudget.Value.Value);
         }
 

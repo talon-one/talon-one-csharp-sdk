@@ -140,12 +140,6 @@ namespace TalonOneSdk.Model
             if (!applicationID.IsSet)
                 throw new ArgumentException("Property is required for class GenerateUserSessionSummary.", nameof(applicationID));
 
-            if (sessionID.IsSet && sessionID.Value == null)
-                throw new ArgumentNullException(nameof(sessionID), "Property is not nullable for class GenerateUserSessionSummary.");
-
-            if (applicationID.IsSet && applicationID.Value == null)
-                throw new ArgumentNullException(nameof(applicationID), "Property is not nullable for class GenerateUserSessionSummary.");
-
             return new GenerateUserSessionSummary(sessionID.Value, applicationID.Value.Value);
         }
 

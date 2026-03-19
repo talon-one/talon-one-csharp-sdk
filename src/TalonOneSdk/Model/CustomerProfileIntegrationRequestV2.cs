@@ -36,7 +36,7 @@ namespace TalonOneSdk.Model
         /// <param name="responseContent">Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints. </param>
         /// <param name="audiencesChanges">Audiences memberships changes for this profile.</param>
         [JsonConstructor]
-        public CustomerProfileIntegrationRequestV2(Option<Object> attributes = default, Option<List<long>> evaluableCampaignIds = default, Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>> responseContent = default, Option<ProfileAudiencesChanges> audiencesChanges = default)
+        public CustomerProfileIntegrationRequestV2(Option<Dictionary<string, Object>> attributes = default, Option<List<long>> evaluableCampaignIds = default, Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>> responseContent = default, Option<ProfileAudiencesChanges> audiencesChanges = default)
         {
             AttributesOption = attributes;
             EvaluableCampaignIdsOption = evaluableCampaignIds;
@@ -174,7 +174,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Object> AttributesOption { get; private set; }
+        public Option<Dictionary<string, Object>> AttributesOption { get; private set; }
 
         /// <summary>
         /// Arbitrary properties associated with this item.
@@ -182,7 +182,7 @@ namespace TalonOneSdk.Model
         /// <value>Arbitrary properties associated with this item.</value>
         /* <example>{Language&#x3D;english, ShippingCountry&#x3D;DE}</example> */
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Dictionary<string, Object> Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Dictionary<string, Object>>(value); } }
 
         /// <summary>
         /// Used to track the state of EvaluableCampaignIds
@@ -277,7 +277,7 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<Object> attributes = default;
+            Option<Dictionary<string, Object>> attributes = default;
             Option<List<long>> evaluableCampaignIds = default;
             Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>> responseContent = default;
             Option<ProfileAudiencesChanges> audiencesChanges = default;
@@ -298,7 +298,7 @@ namespace TalonOneSdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "attributes":
-                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Dictionary<string, Object>>(JsonSerializer.Deserialize<Dictionary<string, Object>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "evaluableCampaignIds":
                             evaluableCampaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -335,18 +335,6 @@ namespace TalonOneSdk.Model
                     }
                 }
             }
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class CustomerProfileIntegrationRequestV2.");
-
-            if (evaluableCampaignIds.IsSet && evaluableCampaignIds.Value == null)
-                throw new ArgumentNullException(nameof(evaluableCampaignIds), "Property is not nullable for class CustomerProfileIntegrationRequestV2.");
-
-            if (responseContent.IsSet && responseContent.Value == null)
-                throw new ArgumentNullException(nameof(responseContent), "Property is not nullable for class CustomerProfileIntegrationRequestV2.");
-
-            if (audiencesChanges.IsSet && audiencesChanges.Value == null)
-                throw new ArgumentNullException(nameof(audiencesChanges), "Property is not nullable for class CustomerProfileIntegrationRequestV2.");
 
             return new CustomerProfileIntegrationRequestV2(attributes, evaluableCampaignIds, responseContent, audiencesChanges);
         }

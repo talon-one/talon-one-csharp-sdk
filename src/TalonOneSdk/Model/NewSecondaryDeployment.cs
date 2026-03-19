@@ -140,9 +140,6 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class NewSecondaryDeployment.", nameof(name));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewSecondaryDeployment.");
-
             return new NewSecondaryDeployment(name.Value);
         }
 

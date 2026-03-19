@@ -297,21 +297,6 @@ namespace TalonOneSdk.Model
             if (!applicationId.IsSet)
                 throw new ArgumentException("Property is required for class ApplicationCIF.", nameof(applicationId));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ApplicationCIF.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ApplicationCIF.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ApplicationCIF.");
-
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ApplicationCIF.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class ApplicationCIF.");
-
             if (activeExpressionId.IsSet && activeExpressionId.Value == null)
                 throw new ArgumentNullException(nameof(activeExpressionId), "Property is not nullable for class ApplicationCIF.");
 

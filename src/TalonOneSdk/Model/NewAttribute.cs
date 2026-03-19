@@ -831,44 +831,11 @@ namespace TalonOneSdk.Model
             if (!editable.IsSet)
                 throw new ArgumentException("Property is required for class NewAttribute.", nameof(editable));
 
-            if (entity.IsSet && entity.Value == null)
-                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class NewAttribute.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewAttribute.");
-
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewAttribute.");
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class NewAttribute.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class NewAttribute.");
-
-            if (suggestions.IsSet && suggestions.Value == null)
-                throw new ArgumentNullException(nameof(suggestions), "Property is not nullable for class NewAttribute.");
-
-            if (editable.IsSet && editable.Value == null)
-                throw new ArgumentNullException(nameof(editable), "Property is not nullable for class NewAttribute.");
-
-            if (eventType.IsSet && eventType.Value == null)
-                throw new ArgumentNullException(nameof(eventType), "Property is not nullable for class NewAttribute.");
-
             if (hasAllowedList.IsSet && hasAllowedList.Value == null)
                 throw new ArgumentNullException(nameof(hasAllowedList), "Property is not nullable for class NewAttribute.");
 
             if (restrictedBySuggestions.IsSet && restrictedBySuggestions.Value == null)
                 throw new ArgumentNullException(nameof(restrictedBySuggestions), "Property is not nullable for class NewAttribute.");
-
-            if (subscribedApplicationsIds.IsSet && subscribedApplicationsIds.Value == null)
-                throw new ArgumentNullException(nameof(subscribedApplicationsIds), "Property is not nullable for class NewAttribute.");
-
-            if (subscribedCatalogsIds.IsSet && subscribedCatalogsIds.Value == null)
-                throw new ArgumentNullException(nameof(subscribedCatalogsIds), "Property is not nullable for class NewAttribute.");
-
-            if (allowedSubscriptions.IsSet && allowedSubscriptions.Value == null)
-                throw new ArgumentNullException(nameof(allowedSubscriptions), "Property is not nullable for class NewAttribute.");
 
             return new NewAttribute(entity.Value.Value, name.Value, title.Value, type.Value.Value, description.Value, suggestions.Value, editable.Value.Value, eventType, hasAllowedList, restrictedBySuggestions, subscribedApplicationsIds, subscribedCatalogsIds, allowedSubscriptions);
         }

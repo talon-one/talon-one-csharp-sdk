@@ -228,21 +228,6 @@ namespace TalonOneSdk.Model
             if (!sessionId.IsSet)
                 throw new ArgumentException("Property is required for class NewEvent.", nameof(sessionId));
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class NewEvent.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class NewEvent.");
-
-            if (sessionId.IsSet && sessionId.Value == null)
-                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class NewEvent.");
-
-            if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class NewEvent.");
-
-            if (storeIntegrationId.IsSet && storeIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(storeIntegrationId), "Property is not nullable for class NewEvent.");
-
             return new NewEvent(type.Value, attributes.Value, sessionId.Value, profileId, storeIntegrationId);
         }
 

@@ -162,15 +162,6 @@ namespace TalonOneSdk.Model
             if (!datetime.IsSet)
                 throw new ArgumentException("Property is required for class AccountDashboardStatisticRevenue.", nameof(datetime));
 
-            if (total.IsSet && total.Value == null)
-                throw new ArgumentNullException(nameof(total), "Property is not nullable for class AccountDashboardStatisticRevenue.");
-
-            if (influenced.IsSet && influenced.Value == null)
-                throw new ArgumentNullException(nameof(influenced), "Property is not nullable for class AccountDashboardStatisticRevenue.");
-
-            if (datetime.IsSet && datetime.Value == null)
-                throw new ArgumentNullException(nameof(datetime), "Property is not nullable for class AccountDashboardStatisticRevenue.");
-
             return new AccountDashboardStatisticRevenue(total.Value.Value, influenced.Value.Value, datetime.Value.Value);
         }
 

@@ -147,12 +147,6 @@ namespace TalonOneSdk.Model
             if (!request.IsSet)
                 throw new ArgumentException("Property is required for class MessageLogRequest.", nameof(request));
 
-            if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class MessageLogRequest.");
-
-            if (request.IsSet && request.Value == null)
-                throw new ArgumentNullException(nameof(request), "Property is not nullable for class MessageLogRequest.");
-
             return new MessageLogRequest(createdAt.Value.Value, request.Value);
         }
 

@@ -830,41 +830,8 @@ namespace TalonOneSdk.Model
             if (!loyaltyPrograms.IsSet)
                 throw new ArgumentException("Property is required for class Application.", nameof(loyaltyPrograms));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Application.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Application.");
-
-            if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class Application.");
-
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Application.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Application.");
-
-            if (timezone.IsSet && timezone.Value == null)
-                throw new ArgumentNullException(nameof(timezone), "Property is not nullable for class Application.");
-
-            if (currency.IsSet && currency.Value == null)
-                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class Application.");
-
-            if (loyaltyPrograms.IsSet && loyaltyPrograms.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyPrograms), "Property is not nullable for class Application.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class Application.");
-
             if (caseSensitivity.IsSet && caseSensitivity.Value == null)
                 throw new ArgumentNullException(nameof(caseSensitivity), "Property is not nullable for class Application.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class Application.");
-
-            if (limits.IsSet && limits.Value == null)
-                throw new ArgumentNullException(nameof(limits), "Property is not nullable for class Application.");
 
             if (defaultDiscountScope.IsSet && defaultDiscountScope.Value == null)
                 throw new ArgumentNullException(nameof(defaultDiscountScope), "Property is not nullable for class Application.");
@@ -874,9 +841,6 @@ namespace TalonOneSdk.Model
 
             if (enableFlattenedCartItems.IsSet && enableFlattenedCartItems.Value == null)
                 throw new ArgumentNullException(nameof(enableFlattenedCartItems), "Property is not nullable for class Application.");
-
-            if (attributesSettings.IsSet && attributesSettings.Value == null)
-                throw new ArgumentNullException(nameof(attributesSettings), "Property is not nullable for class Application.");
 
             if (sandbox.IsSet && sandbox.Value == null)
                 throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class Application.");

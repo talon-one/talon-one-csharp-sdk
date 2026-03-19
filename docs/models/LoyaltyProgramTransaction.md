@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **SubledgerId** | **string** | ID of the subledger. | 
 **CampaignId** | **long** | ID of the campaign. | [optional] 
 **CustomerProfileId** | **string** | Customer profile integration ID used in the loyalty program. | [optional] 
-**CardIdentifier** | **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
+**CardIdentifier** | **string** | The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;.  | [optional] 
 **CustomerSessionId** | **string** | ID of the customer session where the transaction occurred. | [optional] 
 **ImportId** | **long** | ID of the import where the transaction occurred. | [optional] 
 **UserId** | **long** | ID of the user who manually added or deducted points. Applies only to manual transactions. | [optional] 

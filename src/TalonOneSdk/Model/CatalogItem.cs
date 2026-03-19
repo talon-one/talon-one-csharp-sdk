@@ -269,29 +269,8 @@ namespace TalonOneSdk.Model
             if (!varVersion.IsSet)
                 throw new ArgumentException("Property is required for class CatalogItem.", nameof(varVersion));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CatalogItem.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CatalogItem.");
-
-            if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class CatalogItem.");
-
-            if (catalogid.IsSet && catalogid.Value == null)
-                throw new ArgumentNullException(nameof(catalogid), "Property is not nullable for class CatalogItem.");
-
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class CatalogItem.");
-
             if (price.IsSet && price.Value == null)
                 throw new ArgumentNullException(nameof(price), "Property is not nullable for class CatalogItem.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class CatalogItem.");
-
-            if (product.IsSet && product.Value == null)
-                throw new ArgumentNullException(nameof(product), "Property is not nullable for class CatalogItem.");
 
             return new CatalogItem(id.Value.Value, created.Value.Value, sku.Value, catalogid.Value.Value, varVersion.Value.Value, price, attributes, product);
         }

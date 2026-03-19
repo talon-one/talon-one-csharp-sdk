@@ -209,9 +209,6 @@ namespace TalonOneSdk.Model
             if (!apiKey.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubFlowConfig.", nameof(apiKey));
 
-            if (apiKey.IsSet && apiKey.Value == null)
-                throw new ArgumentNullException(nameof(apiKey), "Property is not nullable for class IntegrationHubFlowConfig.");
-
             if (workerCount.IsSet && workerCount.Value == null)
                 throw new ArgumentNullException(nameof(workerCount), "Property is not nullable for class IntegrationHubFlowConfig.");
 

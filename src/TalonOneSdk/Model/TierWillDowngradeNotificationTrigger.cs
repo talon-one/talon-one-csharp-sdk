@@ -209,12 +209,6 @@ namespace TalonOneSdk.Model
             if (!period.IsSet)
                 throw new ArgumentException("Property is required for class TierWillDowngradeNotificationTrigger.", nameof(period));
 
-            if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class TierWillDowngradeNotificationTrigger.");
-
-            if (period.IsSet && period.Value == null)
-                throw new ArgumentNullException(nameof(period), "Property is not nullable for class TierWillDowngradeNotificationTrigger.");
-
             return new TierWillDowngradeNotificationTrigger(amount.Value.Value, period.Value.Value);
         }
 

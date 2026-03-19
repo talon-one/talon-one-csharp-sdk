@@ -181,7 +181,7 @@ namespace TalonOneSdk.Model
 
             if (this.CardIdentifierOption.Value != null) {
                 // CardIdentifier (string) pattern
-                Regex regexCardIdentifier = new Regex(@"^[A-Za-z0-9_-]*$", RegexOptions.CultureInvariant);
+                Regex regexCardIdentifier = new Regex(@"^[A-Za-z0-9._%+@-]+$", RegexOptions.CultureInvariant);
 
                 if (this.CardIdentifierOption.Value != null &&!regexCardIdentifier.Match(this.CardIdentifierOption.Value).Success)
                 {
@@ -294,29 +294,11 @@ namespace TalonOneSdk.Model
             if (!transactionUUID.IsSet)
                 throw new ArgumentException("Property is required for class RollbackDeductedLoyaltyPointsEffectProps.", nameof(transactionUUID));
 
-            if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps.");
-
-            if (subLedgerId.IsSet && subLedgerId.Value == null)
-                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps.");
-
-            if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps.");
-
-            if (recipientIntegrationId.IsSet && recipientIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(recipientIntegrationId), "Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps.");
-
-            if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps.");
-
             if (startDate.IsSet && startDate.Value == null)
                 throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps.");
 
             if (expiryDate.IsSet && expiryDate.Value == null)
                 throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps.");
-
-            if (cardIdentifier.IsSet && cardIdentifier.Value == null)
-                throw new ArgumentNullException(nameof(cardIdentifier), "Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps.");
 
             return new RollbackDeductedLoyaltyPointsEffectProps(programId.Value.Value, subLedgerId.Value, value.Value.Value, recipientIntegrationId.Value, transactionUUID.Value, startDate, expiryDate, cardIdentifier);
         }

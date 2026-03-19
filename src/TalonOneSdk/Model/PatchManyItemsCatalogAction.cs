@@ -173,12 +173,6 @@ namespace TalonOneSdk.Model
             if (price.IsSet && price.Value == null)
                 throw new ArgumentNullException(nameof(price), "Property is not nullable for class PatchManyItemsCatalogAction.");
 
-            if (filters.IsSet && filters.Value == null)
-                throw new ArgumentNullException(nameof(filters), "Property is not nullable for class PatchManyItemsCatalogAction.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class PatchManyItemsCatalogAction.");
-
             return new PatchManyItemsCatalogAction(price, filters, attributes);
         }
 

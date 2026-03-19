@@ -356,24 +356,6 @@ namespace TalonOneSdk.Model
             if (!filter.IsSet)
                 throw new ArgumentException("Property is required for class Export.", nameof(filter));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Export.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Export.");
-
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Export.");
-
-            if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class Export.");
-
-            if (entity.IsSet && entity.Value == null)
-                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class Export.");
-
-            if (filter.IsSet && filter.Value == null)
-                throw new ArgumentNullException(nameof(filter), "Property is not nullable for class Export.");
-
             return new Export(id.Value.Value, created.Value.Value, accountId.Value.Value, userId.Value.Value, entity.Value.Value, filter.Value);
         }
 

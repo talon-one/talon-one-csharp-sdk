@@ -346,35 +346,17 @@ namespace TalonOneSdk.Model
             if (!poolId.IsSet)
                 throw new ArgumentException("Property is required for class Giveaway.", nameof(poolId));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Giveaway.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Giveaway.");
-
-            if (code.IsSet && code.Value == null)
-                throw new ArgumentNullException(nameof(code), "Property is not nullable for class Giveaway.");
-
-            if (poolId.IsSet && poolId.Value == null)
-                throw new ArgumentNullException(nameof(poolId), "Property is not nullable for class Giveaway.");
-
             if (startDate.IsSet && startDate.Value == null)
                 throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class Giveaway.");
 
             if (endDate.IsSet && endDate.Value == null)
                 throw new ArgumentNullException(nameof(endDate), "Property is not nullable for class Giveaway.");
 
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class Giveaway.");
-
             if (used.IsSet && used.Value == null)
                 throw new ArgumentNullException(nameof(used), "Property is not nullable for class Giveaway.");
 
             if (importId.IsSet && importId.Value == null)
                 throw new ArgumentNullException(nameof(importId), "Property is not nullable for class Giveaway.");
-
-            if (profileIntegrationId.IsSet && profileIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationId), "Property is not nullable for class Giveaway.");
 
             if (profileId.IsSet && profileId.Value == null)
                 throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class Giveaway.");

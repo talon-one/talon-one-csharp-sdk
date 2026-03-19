@@ -123,9 +123,6 @@ namespace TalonOneSdk.Model
             if (!logID.IsSet)
                 throw new ArgumentException("Property is required for class GenerateAuditLogSummary.", nameof(logID));
 
-            if (logID.IsSet && logID.Value == null)
-                throw new ArgumentNullException(nameof(logID), "Property is not nullable for class GenerateAuditLogSummary.");
-
             return new GenerateAuditLogSummary(logID.Value.Value);
         }
 

@@ -126,9 +126,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class MultipleNewAttribute.");
-
             return new MultipleNewAttribute(attributes);
         }
 

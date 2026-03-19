@@ -164,15 +164,6 @@ namespace TalonOneSdk.Model
             if (!targetedAudiencesIds.IsSet)
                 throw new ArgumentException("Property is required for class UpdatePriceType.", nameof(targetedAudiencesIds));
 
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class UpdatePriceType.");
-
-            if (targetedAudiencesIds.IsSet && targetedAudiencesIds.Value == null)
-                throw new ArgumentNullException(nameof(targetedAudiencesIds), "Property is not nullable for class UpdatePriceType.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class UpdatePriceType.");
-
             return new UpdatePriceType(title.Value, targetedAudiencesIds.Value, description);
         }
 

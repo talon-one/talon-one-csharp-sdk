@@ -166,15 +166,6 @@ namespace TalonOneSdk.Model
             if (!recipientIntegrationId.IsSet)
                 throw new ArgumentException("Property is required for class WillAwardGiveawayEffectProps.", nameof(recipientIntegrationId));
 
-            if (poolId.IsSet && poolId.Value == null)
-                throw new ArgumentNullException(nameof(poolId), "Property is not nullable for class WillAwardGiveawayEffectProps.");
-
-            if (poolName.IsSet && poolName.Value == null)
-                throw new ArgumentNullException(nameof(poolName), "Property is not nullable for class WillAwardGiveawayEffectProps.");
-
-            if (recipientIntegrationId.IsSet && recipientIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(recipientIntegrationId), "Property is not nullable for class WillAwardGiveawayEffectProps.");
-
             return new WillAwardGiveawayEffectProps(poolId.Value.Value, poolName.Value, recipientIntegrationId.Value);
         }
 

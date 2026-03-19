@@ -338,29 +338,8 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class Audience.", nameof(name));
 
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Audience.");
-
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Audience.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Audience.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Audience.");
-
             if (sandbox.IsSet && sandbox.Value == null)
                 throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class Audience.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class Audience.");
-
-            if (integration.IsSet && integration.Value == null)
-                throw new ArgumentNullException(nameof(integration), "Property is not nullable for class Audience.");
-
-            if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class Audience.");
 
             if (createdIn3rdParty.IsSet && createdIn3rdParty.Value == null)
                 throw new ArgumentNullException(nameof(createdIn3rdParty), "Property is not nullable for class Audience.");

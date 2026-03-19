@@ -124,9 +124,6 @@ namespace TalonOneSdk.Model
             if (!integrationId.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyCardRegistration.", nameof(integrationId));
 
-            if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class LoyaltyCardRegistration.");
-
             return new LoyaltyCardRegistration(integrationId.Value);
         }
 

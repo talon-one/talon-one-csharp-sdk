@@ -975,71 +975,8 @@ namespace TalonOneSdk.Model
             if (!validApplicationIds.IsSet)
                 throw new ArgumentException("Property is required for class CampaignTemplate.", nameof(validApplicationIds));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignTemplate.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CampaignTemplate.");
-
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class CampaignTemplate.");
-
-            if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class CampaignTemplate.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignTemplate.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class CampaignTemplate.");
-
-            if (instructions.IsSet && instructions.Value == null)
-                throw new ArgumentNullException(nameof(instructions), "Property is not nullable for class CampaignTemplate.");
-
-            if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class CampaignTemplate.");
-
-            if (reevaluateOnReturn.IsSet && reevaluateOnReturn.Value == null)
-                throw new ArgumentNullException(nameof(reevaluateOnReturn), "Property is not nullable for class CampaignTemplate.");
-
-            if (applicationsIds.IsSet && applicationsIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationsIds), "Property is not nullable for class CampaignTemplate.");
-
-            if (validApplicationIds.IsSet && validApplicationIds.Value == null)
-                throw new ArgumentNullException(nameof(validApplicationIds), "Property is not nullable for class CampaignTemplate.");
-
-            if (campaignAttributes.IsSet && campaignAttributes.Value == null)
-                throw new ArgumentNullException(nameof(campaignAttributes), "Property is not nullable for class CampaignTemplate.");
-
-            if (couponAttributes.IsSet && couponAttributes.Value == null)
-                throw new ArgumentNullException(nameof(couponAttributes), "Property is not nullable for class CampaignTemplate.");
-
             if (activeRulesetId.IsSet && activeRulesetId.Value == null)
                 throw new ArgumentNullException(nameof(activeRulesetId), "Property is not nullable for class CampaignTemplate.");
-
-            if (tags.IsSet && tags.Value == null)
-                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class CampaignTemplate.");
-
-            if (features.IsSet && features.Value == null)
-                throw new ArgumentNullException(nameof(features), "Property is not nullable for class CampaignTemplate.");
-
-            if (couponSettings.IsSet && couponSettings.Value == null)
-                throw new ArgumentNullException(nameof(couponSettings), "Property is not nullable for class CampaignTemplate.");
-
-            if (couponReservationSettings.IsSet && couponReservationSettings.Value == null)
-                throw new ArgumentNullException(nameof(couponReservationSettings), "Property is not nullable for class CampaignTemplate.");
-
-            if (referralSettings.IsSet && referralSettings.Value == null)
-                throw new ArgumentNullException(nameof(referralSettings), "Property is not nullable for class CampaignTemplate.");
-
-            if (limits.IsSet && limits.Value == null)
-                throw new ArgumentNullException(nameof(limits), "Property is not nullable for class CampaignTemplate.");
-
-            if (templateParams.IsSet && templateParams.Value == null)
-                throw new ArgumentNullException(nameof(templateParams), "Property is not nullable for class CampaignTemplate.");
-
-            if (campaignCollections.IsSet && campaignCollections.Value == null)
-                throw new ArgumentNullException(nameof(campaignCollections), "Property is not nullable for class CampaignTemplate.");
 
             if (defaultCampaignGroupId.IsSet && defaultCampaignGroupId.Value == null)
                 throw new ArgumentNullException(nameof(defaultCampaignGroupId), "Property is not nullable for class CampaignTemplate.");
@@ -1052,9 +989,6 @@ namespace TalonOneSdk.Model
 
             if (updated.IsSet && updated.Value == null)
                 throw new ArgumentNullException(nameof(updated), "Property is not nullable for class CampaignTemplate.");
-
-            if (updatedBy.IsSet && updatedBy.Value == null)
-                throw new ArgumentNullException(nameof(updatedBy), "Property is not nullable for class CampaignTemplate.");
 
             if (isUserFavorite.IsSet && isUserFavorite.Value == null)
                 throw new ArgumentNullException(nameof(isUserFavorite), "Property is not nullable for class CampaignTemplate.");

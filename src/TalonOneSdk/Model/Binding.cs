@@ -274,18 +274,6 @@ namespace TalonOneSdk.Model
             if (!expression.IsSet)
                 throw new ArgumentException("Property is required for class Binding.", nameof(expression));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Binding.");
-
-            if (expression.IsSet && expression.Value == null)
-                throw new ArgumentNullException(nameof(expression), "Property is not nullable for class Binding.");
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class Binding.");
-
-            if (valueType.IsSet && valueType.Value == null)
-                throw new ArgumentNullException(nameof(valueType), "Property is not nullable for class Binding.");
-
             if (minValue.IsSet && minValue.Value == null)
                 throw new ArgumentNullException(nameof(minValue), "Property is not nullable for class Binding.");
 
@@ -294,9 +282,6 @@ namespace TalonOneSdk.Model
 
             if (attributeId.IsSet && attributeId.Value == null)
                 throw new ArgumentNullException(nameof(attributeId), "Property is not nullable for class Binding.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class Binding.");
 
             return new Binding(name.Value, expression.Value, type, valueType, minValue, maxValue, attributeId, description);
         }

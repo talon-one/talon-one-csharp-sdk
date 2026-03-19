@@ -449,12 +449,6 @@ namespace TalonOneSdk.Model
             if (!expires.IsSet)
                 throw new ArgumentException("Property is required for class CreateApplicationAPIKey.", nameof(expires));
 
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class CreateApplicationAPIKey.");
-
-            if (expires.IsSet && expires.Value == null)
-                throw new ArgumentNullException(nameof(expires), "Property is not nullable for class CreateApplicationAPIKey.");
-
             if (platform.IsSet && platform.Value == null)
                 throw new ArgumentNullException(nameof(platform), "Property is not nullable for class CreateApplicationAPIKey.");
 

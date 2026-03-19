@@ -527,50 +527,11 @@ namespace TalonOneSdk.Model
             if (!updated.IsSet)
                 throw new ArgumentException("Property is required for class CustomerSession.", nameof(updated));
 
-            if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class CustomerSession.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CustomerSession.");
-
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CustomerSession.");
-
-            if (firstSession.IsSet && firstSession.Value == null)
-                throw new ArgumentNullException(nameof(firstSession), "Property is not nullable for class CustomerSession.");
-
-            if (updateCount.IsSet && updateCount.Value == null)
-                throw new ArgumentNullException(nameof(updateCount), "Property is not nullable for class CustomerSession.");
-
-            if (discounts.IsSet && discounts.Value == null)
-                throw new ArgumentNullException(nameof(discounts), "Property is not nullable for class CustomerSession.");
-
-            if (updated.IsSet && updated.Value == null)
-                throw new ArgumentNullException(nameof(updated), "Property is not nullable for class CustomerSession.");
-
-            if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class CustomerSession.");
-
-            if (coupon.IsSet && coupon.Value == null)
-                throw new ArgumentNullException(nameof(coupon), "Property is not nullable for class CustomerSession.");
-
-            if (referral.IsSet && referral.Value == null)
-                throw new ArgumentNullException(nameof(referral), "Property is not nullable for class CustomerSession.");
-
             if (state.IsSet && state.Value == null)
                 throw new ArgumentNullException(nameof(state), "Property is not nullable for class CustomerSession.");
 
-            if (cartItems.IsSet && cartItems.Value == null)
-                throw new ArgumentNullException(nameof(cartItems), "Property is not nullable for class CustomerSession.");
-
-            if (identifiers.IsSet && identifiers.Value == null)
-                throw new ArgumentNullException(nameof(identifiers), "Property is not nullable for class CustomerSession.");
-
             if (total.IsSet && total.Value == null)
                 throw new ArgumentNullException(nameof(total), "Property is not nullable for class CustomerSession.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class CustomerSession.");
 
             return new CustomerSession(integrationId.Value, created.Value.Value, applicationId.Value.Value, firstSession.Value.Value, updateCount.Value.Value, discounts.Value, updated.Value.Value, profileId, coupon, referral, state, cartItems, identifiers, total, attributes);
         }

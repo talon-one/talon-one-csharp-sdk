@@ -338,21 +338,6 @@ namespace TalonOneSdk.Model
             if (!attributes.IsSet)
                 throw new ArgumentException("Property is required for class ExpiringCouponsData.", nameof(attributes));
 
-            if (couponValue.IsSet && couponValue.Value == null)
-                throw new ArgumentNullException(nameof(couponValue), "Property is not nullable for class ExpiringCouponsData.");
-
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class ExpiringCouponsData.");
-
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class ExpiringCouponsData.");
-
-            if (usageCounter.IsSet && usageCounter.Value == null)
-                throw new ArgumentNullException(nameof(usageCounter), "Property is not nullable for class ExpiringCouponsData.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class ExpiringCouponsData.");
-
             if (createdDate.IsSet && createdDate.Value == null)
                 throw new ArgumentNullException(nameof(createdDate), "Property is not nullable for class ExpiringCouponsData.");
 
@@ -361,12 +346,6 @@ namespace TalonOneSdk.Model
 
             if (validUntil.IsSet && validUntil.Value == null)
                 throw new ArgumentNullException(nameof(validUntil), "Property is not nullable for class ExpiringCouponsData.");
-
-            if (customerProfileId.IsSet && customerProfileId.Value == null)
-                throw new ArgumentNullException(nameof(customerProfileId), "Property is not nullable for class ExpiringCouponsData.");
-
-            if (batchId.IsSet && batchId.Value == null)
-                throw new ArgumentNullException(nameof(batchId), "Property is not nullable for class ExpiringCouponsData.");
 
             return new ExpiringCouponsData(couponValue.Value, campaignId.Value.Value, usageLimit.Value.Value, usageCounter.Value.Value, attributes.Value, createdDate, validFrom, validUntil, customerProfileId, batchId);
         }

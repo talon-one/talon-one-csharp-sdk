@@ -833,33 +833,6 @@ namespace TalonOneSdk.Model
             if (!cardBased.IsSet)
                 throw new ArgumentException("Property is required for class NewLoyaltyProgram.", nameof(cardBased));
 
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewLoyaltyProgram.");
-
-            if (defaultValidity.IsSet && defaultValidity.Value == null)
-                throw new ArgumentNullException(nameof(defaultValidity), "Property is not nullable for class NewLoyaltyProgram.");
-
-            if (defaultPending.IsSet && defaultPending.Value == null)
-                throw new ArgumentNullException(nameof(defaultPending), "Property is not nullable for class NewLoyaltyProgram.");
-
-            if (allowSubledger.IsSet && allowSubledger.Value == null)
-                throw new ArgumentNullException(nameof(allowSubledger), "Property is not nullable for class NewLoyaltyProgram.");
-
-            if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class NewLoyaltyProgram.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewLoyaltyProgram.");
-
-            if (timezone.IsSet && timezone.Value == null)
-                throw new ArgumentNullException(nameof(timezone), "Property is not nullable for class NewLoyaltyProgram.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class NewLoyaltyProgram.");
-
-            if (subscribedApplications.IsSet && subscribedApplications.Value == null)
-                throw new ArgumentNullException(nameof(subscribedApplications), "Property is not nullable for class NewLoyaltyProgram.");
-
             if (usersPerCardLimit.IsSet && usersPerCardLimit.Value == null)
                 throw new ArgumentNullException(nameof(usersPerCardLimit), "Property is not nullable for class NewLoyaltyProgram.");
 
@@ -872,23 +845,11 @@ namespace TalonOneSdk.Model
             if (tierCycleStartDate.IsSet && tierCycleStartDate.Value == null)
                 throw new ArgumentNullException(nameof(tierCycleStartDate), "Property is not nullable for class NewLoyaltyProgram.");
 
-            if (tiersExpireIn.IsSet && tiersExpireIn.Value == null)
-                throw new ArgumentNullException(nameof(tiersExpireIn), "Property is not nullable for class NewLoyaltyProgram.");
-
             if (tiersDowngradePolicy.IsSet && tiersDowngradePolicy.Value == null)
                 throw new ArgumentNullException(nameof(tiersDowngradePolicy), "Property is not nullable for class NewLoyaltyProgram.");
 
-            if (cardCodeSettings.IsSet && cardCodeSettings.Value == null)
-                throw new ArgumentNullException(nameof(cardCodeSettings), "Property is not nullable for class NewLoyaltyProgram.");
-
             if (returnPolicy.IsSet && returnPolicy.Value == null)
                 throw new ArgumentNullException(nameof(returnPolicy), "Property is not nullable for class NewLoyaltyProgram.");
-
-            if (tiers.IsSet && tiers.Value == null)
-                throw new ArgumentNullException(nameof(tiers), "Property is not nullable for class NewLoyaltyProgram.");
-
-            if (cardBased.IsSet && cardBased.Value == null)
-                throw new ArgumentNullException(nameof(cardBased), "Property is not nullable for class NewLoyaltyProgram.");
 
             return new NewLoyaltyProgram(title.Value, defaultValidity.Value, defaultPending.Value, allowSubledger.Value.Value, sandbox.Value.Value, name.Value, timezone.Value, description, subscribedApplications, usersPerCardLimit, programJoinPolicy, tiersExpirationPolicy, tierCycleStartDate, tiersExpireIn, tiersDowngradePolicy, cardCodeSettings, returnPolicy, tiers, cardBased.Value.Value);
         }

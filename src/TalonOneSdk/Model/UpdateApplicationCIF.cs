@@ -198,9 +198,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class UpdateApplicationCIF.");
-
             if (activeExpressionId.IsSet && activeExpressionId.Value == null)
                 throw new ArgumentNullException(nameof(activeExpressionId), "Property is not nullable for class UpdateApplicationCIF.");
 

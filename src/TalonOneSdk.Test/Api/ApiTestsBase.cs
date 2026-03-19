@@ -55,14 +55,6 @@ namespace TalonOneSdk.Test.Api
                 string apiKeyTokenValue1 = context.Configuration["<token>"] ?? throw new Exception("Token not found.");
                 ApiKeyToken apiKeyToken1 = new ApiKeyToken(apiKeyTokenValue1, ClientUtils.ApiKeyHeader.Authorization, timeout: TimeSpan.FromSeconds(1));
                 options.AddTokens(apiKeyToken1);
-
-                string apiKeyTokenValue2 = context.Configuration["<token>"] ?? throw new Exception("Token not found.");
-                ApiKeyToken apiKeyToken2 = new ApiKeyToken(apiKeyTokenValue2, ClientUtils.ApiKeyHeader.Authorization, timeout: TimeSpan.FromSeconds(1));
-                options.AddTokens(apiKeyToken2);
-
-                string apiKeyTokenValue3 = context.Configuration["<token>"] ?? throw new Exception("Token not found.");
-                ApiKeyToken apiKeyToken3 = new ApiKeyToken(apiKeyTokenValue3, ClientUtils.ApiKeyHeader.Authorization, timeout: TimeSpan.FromSeconds(1));
-                options.AddTokens(apiKeyToken3);
             });
     }
 }

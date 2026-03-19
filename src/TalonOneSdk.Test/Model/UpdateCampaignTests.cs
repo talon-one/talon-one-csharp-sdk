@@ -205,5 +205,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'LinkedStoreIds'
         }
+
+        /// <summary>
+        /// Test the property 'CouponAttributes'
+        /// </summary>
+        [Fact]
+        public void CouponAttributesTest()
+        {
+            // TODO unit test for the property 'CouponAttributes'
+        }
     }
 }

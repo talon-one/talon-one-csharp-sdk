@@ -127,9 +127,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (limits.IsSet && limits.Value == null)
-                throw new ArgumentNullException(nameof(limits), "Property is not nullable for class CouponLimitConfigs.");
-
             return new CouponLimitConfigs(limits);
         }
 

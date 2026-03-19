@@ -124,9 +124,6 @@ namespace TalonOneSdk.Model
             if (!profileId.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationProfileEntityV3.", nameof(profileId));
 
-            if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class IntegrationProfileEntityV3.");
-
             return new IntegrationProfileEntityV3(profileId.Value);
         }
 

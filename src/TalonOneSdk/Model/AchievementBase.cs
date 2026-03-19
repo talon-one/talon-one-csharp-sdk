@@ -531,23 +531,8 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AchievementBase.");
-
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class AchievementBase.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class AchievementBase.");
-
             if (target.IsSet && target.Value == null)
                 throw new ArgumentNullException(nameof(target), "Property is not nullable for class AchievementBase.");
-
-            if (period.IsSet && period.Value == null)
-                throw new ArgumentNullException(nameof(period), "Property is not nullable for class AchievementBase.");
-
-            if (periodEndOverride.IsSet && periodEndOverride.Value == null)
-                throw new ArgumentNullException(nameof(periodEndOverride), "Property is not nullable for class AchievementBase.");
 
             if (recurrencePolicy.IsSet && recurrencePolicy.Value == null)
                 throw new ArgumentNullException(nameof(recurrencePolicy), "Property is not nullable for class AchievementBase.");

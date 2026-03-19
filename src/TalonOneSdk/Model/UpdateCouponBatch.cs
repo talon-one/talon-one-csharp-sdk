@@ -319,12 +319,6 @@ namespace TalonOneSdk.Model
             if (expiryDate.IsSet && expiryDate.Value == null)
                 throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class UpdateCouponBatch.");
 
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class UpdateCouponBatch.");
-
-            if (batchID.IsSet && batchID.Value == null)
-                throw new ArgumentNullException(nameof(batchID), "Property is not nullable for class UpdateCouponBatch.");
-
             return new UpdateCouponBatch(usageLimit, discountLimit, reservationLimit, startDate, expiryDate, attributes, batchID);
         }
 

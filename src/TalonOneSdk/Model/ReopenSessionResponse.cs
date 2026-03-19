@@ -123,9 +123,6 @@ namespace TalonOneSdk.Model
             if (!effects.IsSet)
                 throw new ArgumentException("Property is required for class ReopenSessionResponse.", nameof(effects));
 
-            if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class ReopenSessionResponse.");
-
             return new ReopenSessionResponse(effects.Value);
         }
 

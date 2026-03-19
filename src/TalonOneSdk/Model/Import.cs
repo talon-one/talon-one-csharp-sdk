@@ -225,24 +225,6 @@ namespace TalonOneSdk.Model
             if (!amount.IsSet)
                 throw new ArgumentException("Property is required for class Import.", nameof(amount));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Import.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Import.");
-
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Import.");
-
-            if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class Import.");
-
-            if (entity.IsSet && entity.Value == null)
-                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class Import.");
-
-            if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class Import.");
-
             return new Import(id.Value.Value, created.Value.Value, accountId.Value.Value, userId.Value.Value, entity.Value, amount.Value.Value);
         }
 

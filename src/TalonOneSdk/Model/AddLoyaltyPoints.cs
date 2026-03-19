@@ -300,26 +300,11 @@ namespace TalonOneSdk.Model
             if (!points.IsSet)
                 throw new ArgumentException("Property is required for class AddLoyaltyPoints.", nameof(points));
 
-            if (points.IsSet && points.Value == null)
-                throw new ArgumentNullException(nameof(points), "Property is not nullable for class AddLoyaltyPoints.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AddLoyaltyPoints.");
-
-            if (validityDuration.IsSet && validityDuration.Value == null)
-                throw new ArgumentNullException(nameof(validityDuration), "Property is not nullable for class AddLoyaltyPoints.");
-
             if (validUntil.IsSet && validUntil.Value == null)
                 throw new ArgumentNullException(nameof(validUntil), "Property is not nullable for class AddLoyaltyPoints.");
 
-            if (pendingDuration.IsSet && pendingDuration.Value == null)
-                throw new ArgumentNullException(nameof(pendingDuration), "Property is not nullable for class AddLoyaltyPoints.");
-
             if (pendingUntil.IsSet && pendingUntil.Value == null)
                 throw new ArgumentNullException(nameof(pendingUntil), "Property is not nullable for class AddLoyaltyPoints.");
-
-            if (subledgerId.IsSet && subledgerId.Value == null)
-                throw new ArgumentNullException(nameof(subledgerId), "Property is not nullable for class AddLoyaltyPoints.");
 
             if (applicationId.IsSet && applicationId.Value == null)
                 throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class AddLoyaltyPoints.");

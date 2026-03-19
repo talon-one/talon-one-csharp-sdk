@@ -186,18 +186,6 @@ namespace TalonOneSdk.Model
             if (!endpoints.IsSet)
                 throw new ArgumentException("Property is required for class CreateManagementKey.", nameof(endpoints));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CreateManagementKey.");
-
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class CreateManagementKey.");
-
-            if (endpoints.IsSet && endpoints.Value == null)
-                throw new ArgumentNullException(nameof(endpoints), "Property is not nullable for class CreateManagementKey.");
-
-            if (allowedApplicationIds.IsSet && allowedApplicationIds.Value == null)
-                throw new ArgumentNullException(nameof(allowedApplicationIds), "Property is not nullable for class CreateManagementKey.");
-
             return new CreateManagementKey(name.Value, expiryDate.Value.Value, endpoints.Value, allowedApplicationIds);
         }
 

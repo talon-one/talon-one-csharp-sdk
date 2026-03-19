@@ -42,7 +42,7 @@ namespace TalonOneSdk.Model
         /// <param name="userID">The ID of the employee who added or deducted points.</param>
         /// <param name="usersPerCardLimit">The max amount of user profiles with whom a card can be shared. This can be set to &#x60;0&#x60; for no limit.</param>
         /// <param name="amount">The amount of added or deducted loyalty points.</param>
-        /// <param name="operation">The action (addition or deduction) made with loyalty points.</param>
+        /// <param name="operation">The action (addition or subtraction) made with loyalty points.</param>
         /// <param name="reason">The reason for the points addition or deduction.</param>
         /// <param name="transactionUUID">The identifier of the transaction in the loyalty ledger.</param>
         /// <param name="expiryDate">The expiration date for loyalty points.</param>
@@ -234,9 +234,9 @@ namespace TalonOneSdk.Model
         public TypeOfChangeEnum TypeOfChange { get; set; }
 
         /// <summary>
-        /// The action (addition or deduction) made with loyalty points.
+        /// The action (addition or subtraction) made with loyalty points.
         /// </summary>
-        /// <value>The action (addition or deduction) made with loyalty points.</value>
+        /// <value>The action (addition or subtraction) made with loyalty points.</value>
         public enum OperationEnum
         {
             /// <summary>
@@ -245,9 +245,9 @@ namespace TalonOneSdk.Model
             Addition = 1,
 
             /// <summary>
-            /// Enum Deduction for value: deduction
+            /// Enum Subtraction for value: subtraction
             /// </summary>
-            Deduction = 2
+            Subtraction = 2
         }
 
         /// <summary>
@@ -261,8 +261,8 @@ namespace TalonOneSdk.Model
             if (value.Equals("addition"))
                 return OperationEnum.Addition;
 
-            if (value.Equals("deduction"))
-                return OperationEnum.Deduction;
+            if (value.Equals("subtraction"))
+                return OperationEnum.Subtraction;
 
             throw new NotImplementedException($"Could not convert value to type OperationEnum: '{value}'");
         }
@@ -277,8 +277,8 @@ namespace TalonOneSdk.Model
             if (value.Equals("addition"))
                 return OperationEnum.Addition;
 
-            if (value.Equals("deduction"))
-                return OperationEnum.Deduction;
+            if (value.Equals("subtraction"))
+                return OperationEnum.Subtraction;
 
             return null;
         }
@@ -294,16 +294,16 @@ namespace TalonOneSdk.Model
             if (value == OperationEnum.Addition)
                 return "addition";
 
-            if (value == OperationEnum.Deduction)
-                return "deduction";
+            if (value == OperationEnum.Subtraction)
+                return "subtraction";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
 
         /// <summary>
-        /// The action (addition or deduction) made with loyalty points.
+        /// The action (addition or subtraction) made with loyalty points.
         /// </summary>
-        /// <value>The action (addition or deduction) made with loyalty points.</value>
+        /// <value>The action (addition or subtraction) made with loyalty points.</value>
         [JsonPropertyName("Operation")]
         public OperationEnum Operation { get; set; }
 
@@ -634,48 +634,6 @@ namespace TalonOneSdk.Model
 
             if (!transactionUUID.IsSet)
                 throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(transactionUUID));
-
-            if (cardIdentifier.IsSet && cardIdentifier.Value == null)
-                throw new ArgumentNullException(nameof(cardIdentifier), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (employeeName.IsSet && employeeName.Value == null)
-                throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (profileIntegrationIDs.IsSet && profileIntegrationIDs.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationIDs), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (sessionIntegrationID.IsSet && sessionIntegrationID.Value == null)
-                throw new ArgumentNullException(nameof(sessionIntegrationID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (typeOfChange.IsSet && typeOfChange.Value == null)
-                throw new ArgumentNullException(nameof(typeOfChange), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (userID.IsSet && userID.Value == null)
-                throw new ArgumentNullException(nameof(userID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (usersPerCardLimit.IsSet && usersPerCardLimit.Value == null)
-                throw new ArgumentNullException(nameof(usersPerCardLimit), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (operation.IsSet && operation.Value == null)
-                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (reason.IsSet && reason.Value == null)
-                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class CardAddedDeductedPointsNotification.");
-
-            if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
 
             if (expiryDate.IsSet && expiryDate.Value == null)
                 throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class CardAddedDeductedPointsNotification.");

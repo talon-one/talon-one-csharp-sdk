@@ -139,12 +139,6 @@ namespace TalonOneSdk.Model
             if (!currency.IsSet)
                 throw new ArgumentException("Property is required for class GenerateRuleTitle.", nameof(currency));
 
-            if (rule.IsSet && rule.Value == null)
-                throw new ArgumentNullException(nameof(rule), "Property is not nullable for class GenerateRuleTitle.");
-
-            if (currency.IsSet && currency.Value == null)
-                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class GenerateRuleTitle.");
-
             return new GenerateRuleTitle(rule.Value, currency.Value);
         }
 

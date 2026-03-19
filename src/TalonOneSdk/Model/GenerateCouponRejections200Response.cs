@@ -122,9 +122,6 @@ namespace TalonOneSdk.Model
             if (!data.IsSet)
                 throw new ArgumentException("Property is required for class GenerateCouponRejections200Response.", nameof(data));
 
-            if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class GenerateCouponRejections200Response.");
-
             return new GenerateCouponRejections200Response(data.Value);
         }
 

@@ -321,35 +321,8 @@ namespace TalonOneSdk.Model
             if (!templateId.IsSet)
                 throw new ArgumentException("Property is required for class CreateTemplateCampaign.", nameof(templateId));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CreateTemplateCampaign.");
-
-            if (templateId.IsSet && templateId.Value == null)
-                throw new ArgumentNullException(nameof(templateId), "Property is not nullable for class CreateTemplateCampaign.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class CreateTemplateCampaign.");
-
-            if (campaignAttributesOverrides.IsSet && campaignAttributesOverrides.Value == null)
-                throw new ArgumentNullException(nameof(campaignAttributesOverrides), "Property is not nullable for class CreateTemplateCampaign.");
-
-            if (templateParamValues.IsSet && templateParamValues.Value == null)
-                throw new ArgumentNullException(nameof(templateParamValues), "Property is not nullable for class CreateTemplateCampaign.");
-
-            if (limitOverrides.IsSet && limitOverrides.Value == null)
-                throw new ArgumentNullException(nameof(limitOverrides), "Property is not nullable for class CreateTemplateCampaign.");
-
-            if (campaignGroups.IsSet && campaignGroups.Value == null)
-                throw new ArgumentNullException(nameof(campaignGroups), "Property is not nullable for class CreateTemplateCampaign.");
-
-            if (tags.IsSet && tags.Value == null)
-                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class CreateTemplateCampaign.");
-
             if (evaluationGroupId.IsSet && evaluationGroupId.Value == null)
                 throw new ArgumentNullException(nameof(evaluationGroupId), "Property is not nullable for class CreateTemplateCampaign.");
-
-            if (linkedStoreIds.IsSet && linkedStoreIds.Value == null)
-                throw new ArgumentNullException(nameof(linkedStoreIds), "Property is not nullable for class CreateTemplateCampaign.");
 
             return new CreateTemplateCampaign(name.Value, templateId.Value.Value, description, campaignAttributesOverrides, templateParamValues, limitOverrides, campaignGroups, tags, evaluationGroupId, linkedStoreIds);
         }

@@ -438,21 +438,6 @@ namespace TalonOneSdk.Model
             if (!effectType.IsSet)
                 throw new ArgumentException("Property is required for class EffectEntity.", nameof(effectType));
 
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class EffectEntity.");
-
-            if (rulesetId.IsSet && rulesetId.Value == null)
-                throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class EffectEntity.");
-
-            if (ruleIndex.IsSet && ruleIndex.Value == null)
-                throw new ArgumentNullException(nameof(ruleIndex), "Property is not nullable for class EffectEntity.");
-
-            if (ruleName.IsSet && ruleName.Value == null)
-                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class EffectEntity.");
-
-            if (effectType.IsSet && effectType.Value == null)
-                throw new ArgumentNullException(nameof(effectType), "Property is not nullable for class EffectEntity.");
-
             if (experimentId.IsSet && experimentId.Value == null)
                 throw new ArgumentNullException(nameof(experimentId), "Property is not nullable for class EffectEntity.");
 
@@ -468,17 +453,11 @@ namespace TalonOneSdk.Model
             if (evaluationGroupID.IsSet && evaluationGroupID.Value == null)
                 throw new ArgumentNullException(nameof(evaluationGroupID), "Property is not nullable for class EffectEntity.");
 
-            if (evaluationGroupMode.IsSet && evaluationGroupMode.Value == null)
-                throw new ArgumentNullException(nameof(evaluationGroupMode), "Property is not nullable for class EffectEntity.");
-
             if (campaignRevisionId.IsSet && campaignRevisionId.Value == null)
                 throw new ArgumentNullException(nameof(campaignRevisionId), "Property is not nullable for class EffectEntity.");
 
             if (campaignRevisionVersionId.IsSet && campaignRevisionVersionId.Value == null)
                 throw new ArgumentNullException(nameof(campaignRevisionVersionId), "Property is not nullable for class EffectEntity.");
-
-            if (selectedPriceType.IsSet && selectedPriceType.Value == null)
-                throw new ArgumentNullException(nameof(selectedPriceType), "Property is not nullable for class EffectEntity.");
 
             if (selectedPrice.IsSet && selectedPrice.Value == null)
                 throw new ArgumentNullException(nameof(selectedPrice), "Property is not nullable for class EffectEntity.");

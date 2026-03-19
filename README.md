@@ -452,10 +452,14 @@ Class | Method | HTTP request | Description
 - [Model.AccountLimits](docs/models/AccountLimits.md)
 - [Model.Achievement](docs/models/Achievement.md)
 - [Model.AchievementAdditionalProperties](docs/models/AchievementAdditionalProperties.md)
+- [Model.AchievementAdditionalPropertiesV2](docs/models/AchievementAdditionalPropertiesV2.md)
 - [Model.AchievementBase](docs/models/AchievementBase.md)
+- [Model.AchievementBaseV2](docs/models/AchievementBaseV2.md)
 - [Model.AchievementProgress](docs/models/AchievementProgress.md)
 - [Model.AchievementProgressWithDefinition](docs/models/AchievementProgressWithDefinition.md)
+- [Model.AchievementReference](docs/models/AchievementReference.md)
 - [Model.AchievementStatusEntry](docs/models/AchievementStatusEntry.md)
+- [Model.AchievementV2](docs/models/AchievementV2.md)
 - [Model.ActivateLoyaltyPoints](docs/models/ActivateLoyaltyPoints.md)
 - [Model.ActivateLoyaltyPointsResponse](docs/models/ActivateLoyaltyPointsResponse.md)
 - [Model.ActivateUserRequest](docs/models/ActivateUserRequest.md)
@@ -611,6 +615,7 @@ Class | Method | HTTP request | Description
 - [Model.CouponsNotificationData](docs/models/CouponsNotificationData.md)
 - [Model.CouponsNotificationPolicy](docs/models/CouponsNotificationPolicy.md)
 - [Model.CreateAchievement](docs/models/CreateAchievement.md)
+- [Model.CreateAchievementV2](docs/models/CreateAchievementV2.md)
 - [Model.CreateApplicationAPIKey](docs/models/CreateApplicationAPIKey.md)
 - [Model.CreateCouponData](docs/models/CreateCouponData.md)
 - [Model.CreateCoupons200Response](docs/models/CreateCoupons200Response.md)
@@ -642,6 +647,9 @@ Class | Method | HTTP request | Description
 - [Model.Effect](docs/models/Effect.md)
 - [Model.EffectEntity](docs/models/EffectEntity.md)
 - [Model.EmailEntity](docs/models/EmailEntity.md)
+- [Model.EmbeddedAnalyticsConfiguration](docs/models/EmbeddedAnalyticsConfiguration.md)
+- [Model.EmbeddedAnalyticsConfigurationDashboards](docs/models/EmbeddedAnalyticsConfigurationDashboards.md)
+- [Model.EmbeddedDashboardConfiguration](docs/models/EmbeddedDashboardConfiguration.md)
 - [Model.Endpoint](docs/models/Endpoint.md)
 - [Model.Entity](docs/models/Entity.md)
 - [Model.EntityWithTalangVisibleID](docs/models/EntityWithTalangVisibleID.md)
@@ -745,6 +753,7 @@ Class | Method | HTTP request | Description
 - [Model.ImportEntity](docs/models/ImportEntity.md)
 - [Model.IncreaseAchievementProgressEffectProps](docs/models/IncreaseAchievementProgressEffectProps.md)
 - [Model.InfluencingCampaignDetails](docs/models/InfluencingCampaignDetails.md)
+- [Model.IntegrationCampaign](docs/models/IntegrationCampaign.md)
 - [Model.IntegrationCoupon](docs/models/IntegrationCoupon.md)
 - [Model.IntegrationCustomerProfileAudienceRequest](docs/models/IntegrationCustomerProfileAudienceRequest.md)
 - [Model.IntegrationCustomerProfileAudienceRequestItem](docs/models/IntegrationCustomerProfileAudienceRequestItem.md)
@@ -1058,6 +1067,7 @@ Class | Method | HTTP request | Description
 - [Model.TwoFAConfig](docs/models/TwoFAConfig.md)
 - [Model.UpdateAccount](docs/models/UpdateAccount.md)
 - [Model.UpdateAchievement](docs/models/UpdateAchievement.md)
+- [Model.UpdateAchievementV2](docs/models/UpdateAchievementV2.md)
 - [Model.UpdateApplication](docs/models/UpdateApplication.md)
 - [Model.UpdateApplicationAPIKey](docs/models/UpdateApplicationAPIKey.md)
 - [Model.UpdateApplicationCIF](docs/models/UpdateApplicationCIF.md)
@@ -1106,18 +1116,6 @@ Class | Method | HTTP request | Description
 ## Authorization
 
 ### api_key_v1
-
-- **Type**: API key
-- **API key parameter name**: Authorization
-- **Location**: HTTP header
-
-### manager_auth
-
-- **Type**: API key
-- **API key parameter name**: Authorization
-- **Location**: HTTP header
-
-### management_key
 
 - **Type**: API key
 - **API key parameter name**: Authorization

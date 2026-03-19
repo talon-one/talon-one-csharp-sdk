@@ -34,6 +34,7 @@ namespace _example
 
             // Create the Integration API instance using the factory
             var integrationApi = apiFactory.Create<IIntegrationApi>();
+            var managementApi = apiFactory.Create<IManagementApi>();
             var customerSessionId = "my_unique_session_integration_id_2";  // string | The custom identifier for this session, must be unique within the account.
 
             // Preparing a NewCustomerSessionV2 object
@@ -125,7 +126,7 @@ namespace _example
                 }
             );
 
-            IUpdateCustomerSessionV2ApiResponse? response2 =
+            IUpdateCustomerSessionV2ApiResponse response2 =
                 await integrationApi.UpdateCustomerSessionV2Async(customerSession2Id, integrationRequest);
 
             if (response2.IsBadRequest)
@@ -135,8 +136,96 @@ namespace _example
             }
 
             Console.WriteLine("The response is ok");
-            IntegrationStateV2? result2 = response2.Ok();
+            IntegrationStateV2 result2 = response2.Ok();
             Console.WriteLine(result2);
+
+            //
+            // Run test for custom session attributes serialization
+            //
+
+            Console.WriteLine("Testing UpdateCustomerSessionV2 custom attributes");
+
+            var createAttributeResponse = await managementApi.CreateAttributeAsync(
+                new NewAttribute(
+                    entity: NewAttribute.EntityEnum.CustomerSession,
+                    name: "shippingPostalCode",
+                    title: "Shipping Postal Code",
+                    type: NewAttribute.TypeEnum.String,
+                    description: "Postal code used by the generated example for customer session attribute tests.",
+                    suggestions: new List<string>(),
+                    editable: true
+                )
+            );
+
+            if (createAttributeResponse.IsCreated)
+            {
+                Console.WriteLine("Created customer session attribute shippingPostalCode");
+            }
+            else if ((int)createAttributeResponse.StatusCode == 409)
+            {
+                Console.WriteLine("Customer session attribute shippingPostalCode already exists");
+            }
+            else
+            {
+                throw new Exception($"Failed to ensure customer session attribute shippingPostalCode exists. Status {(int)createAttributeResponse.StatusCode} ({createAttributeResponse.ReasonPhrase}).{Environment.NewLine}{createAttributeResponse.RawContent}");
+            }
+
+            string customerSession3Id = Guid.NewGuid().ToString();
+
+            var customerSession3 = new NewCustomerSessionV2
+            {
+                Attributes = new Dictionary<string, object>
+                {
+                    ["shippingPostalCode"] = "12345"
+                }
+            };
+
+            var integrationRequestWithAttributes = new IntegrationRequest(customerSession3);
+
+            IUpdateCustomerSessionV2ApiResponse response3 =
+                await integrationApi.UpdateCustomerSessionV2Async(customerSession3Id, integrationRequestWithAttributes, dry: true);
+
+            if (response3.IsBadRequest)
+            {
+                throw new Exception($"Custom attributes scenario failed with a bad request.{Environment.NewLine}{response3.ReasonPhrase}{Environment.NewLine}{response3.RawContent}");
+            }
+
+            if (!response3.IsOk)
+            {
+                throw new Exception($"Custom attributes scenario returned unexpected status {(int)response3.StatusCode} ({response3.ReasonPhrase}).{Environment.NewLine}{response3.RawContent}");
+            }
+
+            Console.WriteLine("The custom attributes response is ok");
+            Console.WriteLine(response3.Ok());
+
+            //
+            // Run test for bad request error deserialization
+            //
+
+            Console.WriteLine("Testing UpdateCustomerSessionV2 bad request error handling");
+
+            string customerSession4Id = Guid.NewGuid().ToString();
+
+            var customerSession4 = new NewCustomerSessionV2
+            {
+                StoreIntegrationId = "invalid"
+            };
+
+            var integrationRequestWithInvalidStore = new IntegrationRequest(customerSession4);
+
+            IUpdateCustomerSessionV2ApiResponse response4 =
+                await integrationApi.UpdateCustomerSessionV2Async(customerSession4Id, integrationRequestWithInvalidStore);
+
+            if (!response4.IsBadRequest)
+            {
+                throw new Exception($"Invalid store scenario was expected to return a bad request but returned status {(int)response4.StatusCode} ({response4.ReasonPhrase}).{Environment.NewLine}{response4.RawContent}");
+            }
+
+            var badRequest = response4.BadRequest();
+            if (string.IsNullOrWhiteSpace(badRequest.Message))
+                throw new Exception("Invalid store scenario returned a bad request without a readable error message.");
+
+            Console.WriteLine(badRequest.Message);
         }
     }
 }

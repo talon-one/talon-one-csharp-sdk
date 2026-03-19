@@ -148,12 +148,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (balance.IsSet && balance.Value == null)
-                throw new ArgumentNullException(nameof(balance), "Property is not nullable for class LoyaltyBalances.");
-
-            if (subledgerBalances.IsSet && subledgerBalances.Value == null)
-                throw new ArgumentNullException(nameof(subledgerBalances), "Property is not nullable for class LoyaltyBalances.");
-
             return new LoyaltyBalances(balance, subledgerBalances);
         }
 

@@ -358,9 +358,6 @@ namespace TalonOneSdk.Model
             if (!recipientsIntegrationIds.IsSet)
                 throw new ArgumentException("Property is required for class NewCouponsForMultipleRecipients.", nameof(recipientsIntegrationIds));
 
-            if (recipientsIntegrationIds.IsSet && recipientsIntegrationIds.Value == null)
-                throw new ArgumentNullException(nameof(recipientsIntegrationIds), "Property is not nullable for class NewCouponsForMultipleRecipients.");
-
             if (usageLimit.IsSet && usageLimit.Value == null)
                 throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class NewCouponsForMultipleRecipients.");
 
@@ -375,15 +372,6 @@ namespace TalonOneSdk.Model
 
             if (expiryDate.IsSet && expiryDate.Value == null)
                 throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class NewCouponsForMultipleRecipients.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class NewCouponsForMultipleRecipients.");
-
-            if (validCharacters.IsSet && validCharacters.Value == null)
-                throw new ArgumentNullException(nameof(validCharacters), "Property is not nullable for class NewCouponsForMultipleRecipients.");
-
-            if (couponPattern.IsSet && couponPattern.Value == null)
-                throw new ArgumentNullException(nameof(couponPattern), "Property is not nullable for class NewCouponsForMultipleRecipients.");
 
             return new NewCouponsForMultipleRecipients(recipientsIntegrationIds.Value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, attributes, validCharacters, couponPattern);
         }

@@ -150,7 +150,7 @@ namespace TalonOneSdk.Model
 
             if (this.CardIdentifierOption.Value != null) {
                 // CardIdentifier (string) pattern
-                Regex regexCardIdentifier = new Regex(@"^[A-Za-z0-9_-]*$", RegexOptions.CultureInvariant);
+                Regex regexCardIdentifier = new Regex(@"^[A-Za-z0-9._%+@-]+$", RegexOptions.CultureInvariant);
 
                 if (this.CardIdentifierOption.Value != null &&!regexCardIdentifier.Match(this.CardIdentifierOption.Value).Success)
                 {
@@ -251,27 +251,6 @@ namespace TalonOneSdk.Model
 
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class DeductLoyaltyPointsEffectProps.", nameof(name));
-
-            if (ruleTitle.IsSet && ruleTitle.Value == null)
-                throw new ArgumentNullException(nameof(ruleTitle), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
-
-            if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
-
-            if (subLedgerId.IsSet && subLedgerId.Value == null)
-                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
-
-            if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
-
-            if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
-
-            if (cardIdentifier.IsSet && cardIdentifier.Value == null)
-                throw new ArgumentNullException(nameof(cardIdentifier), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
 
             return new DeductLoyaltyPointsEffectProps(ruleTitle.Value, programId.Value.Value, subLedgerId.Value, value.Value.Value, transactionUUID.Value, name.Value, cardIdentifier);
         }

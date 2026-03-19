@@ -140,12 +140,6 @@ namespace TalonOneSdk.Model
             if (!password.IsSet)
                 throw new ArgumentException("Property is required for class WebhookAuthenticationDataBasic.", nameof(password));
 
-            if (username.IsSet && username.Value == null)
-                throw new ArgumentNullException(nameof(username), "Property is not nullable for class WebhookAuthenticationDataBasic.");
-
-            if (password.IsSet && password.Value == null)
-                throw new ArgumentNullException(nameof(password), "Property is not nullable for class WebhookAuthenticationDataBasic.");
-
             return new WebhookAuthenticationDataBasic(username.Value, password.Value);
         }
 

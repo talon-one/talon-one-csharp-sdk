@@ -204,21 +204,6 @@ namespace TalonOneSdk.Model
             if (!coupon.IsSet)
                 throw new ArgumentException("Property is required for class GenerateCouponFailureDetailedSummary.", nameof(coupon));
 
-            if (applicationID.IsSet && applicationID.Value == null)
-                throw new ArgumentNullException(nameof(applicationID), "Property is not nullable for class GenerateCouponFailureDetailedSummary.");
-
-            if (sessionID.IsSet && sessionID.Value == null)
-                throw new ArgumentNullException(nameof(sessionID), "Property is not nullable for class GenerateCouponFailureDetailedSummary.");
-
-            if (eventID.IsSet && eventID.Value == null)
-                throw new ArgumentNullException(nameof(eventID), "Property is not nullable for class GenerateCouponFailureDetailedSummary.");
-
-            if (coupon.IsSet && coupon.Value == null)
-                throw new ArgumentNullException(nameof(coupon), "Property is not nullable for class GenerateCouponFailureDetailedSummary.");
-
-            if (language.IsSet && language.Value == null)
-                throw new ArgumentNullException(nameof(language), "Property is not nullable for class GenerateCouponFailureDetailedSummary.");
-
             return new GenerateCouponFailureDetailedSummary(applicationID.Value.Value, sessionID.Value, eventID.Value.Value, coupon.Value, language);
         }
 

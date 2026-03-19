@@ -334,42 +334,6 @@ namespace TalonOneSdk.Model
             if (!totalNegativePoints.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltySubLedger.", nameof(totalNegativePoints));
 
-            if (total.IsSet && total.Value == null)
-                throw new ArgumentNullException(nameof(total), "Property is not nullable for class LoyaltySubLedger.");
-
-            if (totalActivePoints.IsSet && totalActivePoints.Value == null)
-                throw new ArgumentNullException(nameof(totalActivePoints), "Property is not nullable for class LoyaltySubLedger.");
-
-            if (totalPendingPoints.IsSet && totalPendingPoints.Value == null)
-                throw new ArgumentNullException(nameof(totalPendingPoints), "Property is not nullable for class LoyaltySubLedger.");
-
-            if (totalSpentPoints.IsSet && totalSpentPoints.Value == null)
-                throw new ArgumentNullException(nameof(totalSpentPoints), "Property is not nullable for class LoyaltySubLedger.");
-
-            if (totalExpiredPoints.IsSet && totalExpiredPoints.Value == null)
-                throw new ArgumentNullException(nameof(totalExpiredPoints), "Property is not nullable for class LoyaltySubLedger.");
-
-            if (totalNegativePoints.IsSet && totalNegativePoints.Value == null)
-                throw new ArgumentNullException(nameof(totalNegativePoints), "Property is not nullable for class LoyaltySubLedger.");
-
-            if (transactions.IsSet && transactions.Value == null)
-                throw new ArgumentNullException(nameof(transactions), "Property is not nullable for class LoyaltySubLedger.");
-
-            if (expiringPoints.IsSet && expiringPoints.Value == null)
-                throw new ArgumentNullException(nameof(expiringPoints), "Property is not nullable for class LoyaltySubLedger.");
-
-            if (activePoints.IsSet && activePoints.Value == null)
-                throw new ArgumentNullException(nameof(activePoints), "Property is not nullable for class LoyaltySubLedger.");
-
-            if (pendingPoints.IsSet && pendingPoints.Value == null)
-                throw new ArgumentNullException(nameof(pendingPoints), "Property is not nullable for class LoyaltySubLedger.");
-
-            if (expiredPoints.IsSet && expiredPoints.Value == null)
-                throw new ArgumentNullException(nameof(expiredPoints), "Property is not nullable for class LoyaltySubLedger.");
-
-            if (currentTier.IsSet && currentTier.Value == null)
-                throw new ArgumentNullException(nameof(currentTier), "Property is not nullable for class LoyaltySubLedger.");
-
             return new LoyaltySubLedger(total.Value.Value, totalActivePoints.Value.Value, totalPendingPoints.Value.Value, totalSpentPoints.Value.Value, totalExpiredPoints.Value.Value, totalNegativePoints.Value.Value, transactions, expiringPoints, activePoints, pendingPoints, expiredPoints, currentTier);
         }
 

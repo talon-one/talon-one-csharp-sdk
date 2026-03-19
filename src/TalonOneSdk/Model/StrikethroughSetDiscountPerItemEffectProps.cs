@@ -33,11 +33,13 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="name">effect name.</param>
         /// <param name="value">value</param>
+        /// <param name="excludeFromBestPriorPriceHistory">excludeFromBestPriorPriceHistory</param>
         [JsonConstructor]
-        public StrikethroughSetDiscountPerItemEffectProps(string name, Object value = default)
+        public StrikethroughSetDiscountPerItemEffectProps(string name, Object value = default, Option<bool?> excludeFromBestPriorPriceHistory = default)
         {
             Name = name;
             Value = value;
+            ExcludeFromBestPriorPriceHistoryOption = excludeFromBestPriorPriceHistory;
             OnCreated();
         }
 
@@ -58,6 +60,19 @@ namespace TalonOneSdk.Model
         public Object Value { get; set; }
 
         /// <summary>
+        /// Used to track the state of ExcludeFromBestPriorPriceHistory
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> ExcludeFromBestPriorPriceHistoryOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets ExcludeFromBestPriorPriceHistory
+        /// </summary>
+        [JsonPropertyName("excludeFromBestPriorPriceHistory")]
+        public bool? ExcludeFromBestPriorPriceHistory { get { return this.ExcludeFromBestPriorPriceHistoryOption; } set { this.ExcludeFromBestPriorPriceHistoryOption = new Option<bool?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -67,6 +82,7 @@ namespace TalonOneSdk.Model
             sb.Append("class StrikethroughSetDiscountPerItemEffectProps {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("  ExcludeFromBestPriorPriceHistory: ").Append(ExcludeFromBestPriorPriceHistory).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -106,6 +122,7 @@ namespace TalonOneSdk.Model
 
             Option<string> name = default;
             Option<Object> value = default;
+            Option<bool?> excludeFromBestPriorPriceHistory = default;
 
             while (utf8JsonReader.Read())
             {
@@ -128,6 +145,9 @@ namespace TalonOneSdk.Model
                         case "value":
                             value = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "excludeFromBestPriorPriceHistory":
+                            excludeFromBestPriorPriceHistory = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         default:
                             break;
                     }
@@ -140,10 +160,10 @@ namespace TalonOneSdk.Model
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class StrikethroughSetDiscountPerItemEffectProps.", nameof(value));
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class StrikethroughSetDiscountPerItemEffectProps.");
+            if (excludeFromBestPriorPriceHistory.IsSet && excludeFromBestPriorPriceHistory.Value == null)
+                throw new ArgumentNullException(nameof(excludeFromBestPriorPriceHistory), "Property is not nullable for class StrikethroughSetDiscountPerItemEffectProps.");
 
-            return new StrikethroughSetDiscountPerItemEffectProps(name.Value, value.Value);
+            return new StrikethroughSetDiscountPerItemEffectProps(name.Value, value.Value, excludeFromBestPriorPriceHistory);
         }
 
         /// <summary>
@@ -182,6 +202,8 @@ namespace TalonOneSdk.Model
             }
             else
                 writer.WriteNull("value");
+            if (strikethroughSetDiscountPerItemEffectProps.ExcludeFromBestPriorPriceHistoryOption.IsSet)
+                writer.WriteBoolean("excludeFromBestPriorPriceHistory", strikethroughSetDiscountPerItemEffectProps.ExcludeFromBestPriorPriceHistoryOption.Value.Value);
         }
     }
 }

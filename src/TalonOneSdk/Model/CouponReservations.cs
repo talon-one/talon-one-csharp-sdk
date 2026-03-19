@@ -124,9 +124,6 @@ namespace TalonOneSdk.Model
             if (!integrationIDs.IsSet)
                 throw new ArgumentException("Property is required for class CouponReservations.", nameof(integrationIDs));
 
-            if (integrationIDs.IsSet && integrationIDs.Value == null)
-                throw new ArgumentNullException(nameof(integrationIDs), "Property is not nullable for class CouponReservations.");
-
             return new CouponReservations(integrationIDs.Value);
         }
 

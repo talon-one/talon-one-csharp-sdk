@@ -174,18 +174,6 @@ namespace TalonOneSdk.Model
             if (!entities.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotificationsLimits.", nameof(entities));
 
-            if (action.IsSet && action.Value == null)
-                throw new ArgumentNullException(nameof(action), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotificationsLimits.");
-
-            if (limit.IsSet && limit.Value == null)
-                throw new ArgumentNullException(nameof(limit), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotificationsLimits.");
-
-            if (entities.IsSet && entities.Value == null)
-                throw new ArgumentNullException(nameof(entities), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotificationsLimits.");
-
-            if (period.IsSet && period.Value == null)
-                throw new ArgumentNullException(nameof(period), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotificationsLimits.");
-
             return new IntegrationHubEventPayloadCouponBasedNotificationsLimits(action.Value, limit.Value.Value, entities.Value, period);
         }
 

@@ -189,18 +189,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ScimSchemaResource.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ScimSchemaResource.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class ScimSchemaResource.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class ScimSchemaResource.");
-
             return new ScimSchemaResource(id, name, description, attributes);
         }
 

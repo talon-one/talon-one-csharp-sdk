@@ -247,15 +247,6 @@ namespace TalonOneSdk.Model
             if (!payload.IsSet)
                 throw new ArgumentException("Property is required for class CustomEffectProps.", nameof(payload));
 
-            if (effectId.IsSet && effectId.Value == null)
-                throw new ArgumentNullException(nameof(effectId), "Property is not nullable for class CustomEffectProps.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CustomEffectProps.");
-
-            if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class CustomEffectProps.");
-
             if (cartItemPosition.IsSet && cartItemPosition.Value == null)
                 throw new ArgumentNullException(nameof(cartItemPosition), "Property is not nullable for class CustomEffectProps.");
 
@@ -264,9 +255,6 @@ namespace TalonOneSdk.Model
 
             if (bundleIndex.IsSet && bundleIndex.Value == null)
                 throw new ArgumentNullException(nameof(bundleIndex), "Property is not nullable for class CustomEffectProps.");
-
-            if (bundleName.IsSet && bundleName.Value == null)
-                throw new ArgumentNullException(nameof(bundleName), "Property is not nullable for class CustomEffectProps.");
 
             return new CustomEffectProps(effectId.Value.Value, name.Value, payload.Value, cartItemPosition, cartItemSubPosition, bundleIndex, bundleName);
         }

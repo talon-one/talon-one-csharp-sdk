@@ -754,36 +754,6 @@ namespace TalonOneSdk.Model
             if (!userId.IsSet)
                 throw new ArgumentException("Property is required for class Achievement.", nameof(userId));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Achievement.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Achievement.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Achievement.");
-
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class Achievement.");
-
-            if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class Achievement.");
-
-            if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class Achievement.");
-
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class Achievement.");
-
-            if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class Achievement.");
-
-            if (period.IsSet && period.Value == null)
-                throw new ArgumentNullException(nameof(period), "Property is not nullable for class Achievement.");
-
-            if (periodEndOverride.IsSet && periodEndOverride.Value == null)
-                throw new ArgumentNullException(nameof(periodEndOverride), "Property is not nullable for class Achievement.");
-
             if (recurrencePolicy.IsSet && recurrencePolicy.Value == null)
                 throw new ArgumentNullException(nameof(recurrencePolicy), "Property is not nullable for class Achievement.");
 
@@ -798,9 +768,6 @@ namespace TalonOneSdk.Model
 
             if (allowRollbackAfterCompletion.IsSet && allowRollbackAfterCompletion.Value == null)
                 throw new ArgumentNullException(nameof(allowRollbackAfterCompletion), "Property is not nullable for class Achievement.");
-
-            if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class Achievement.");
 
             if (hasProgress.IsSet && hasProgress.Value == null)
                 throw new ArgumentNullException(nameof(hasProgress), "Property is not nullable for class Achievement.");

@@ -123,9 +123,6 @@ namespace TalonOneSdk.Model
             if (!applicationIds.IsSet)
                 throw new ArgumentException("Property is required for class MultiApplicationEntity.", nameof(applicationIds));
 
-            if (applicationIds.IsSet && applicationIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class MultiApplicationEntity.");
-
             return new MultiApplicationEntity(applicationIds.Value);
         }
 

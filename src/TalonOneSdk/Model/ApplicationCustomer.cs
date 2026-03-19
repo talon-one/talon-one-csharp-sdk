@@ -44,7 +44,7 @@ namespace TalonOneSdk.Model
         /// <param name="sandbox">An indicator of whether the customer is part of a sandbox or live Application. See the [docs](https://docs.talon.one/docs/product/applications/overview#application-environments). </param>
         /// <param name="advocateIntegrationId">The Integration ID of the Customer Profile that referred this Customer in the Application.</param>
         [JsonConstructor]
-        public ApplicationCustomer(long id, DateTime created, string integrationId, long accountId, long closedSessions, decimal totalSales, DateTime lastActivity, Option<Object> attributes = default, Option<List<LoyaltyMembership>> loyaltyMemberships = default, Option<List<AudienceMembership>> audienceMemberships = default, Option<bool?> sandbox = default, Option<string> advocateIntegrationId = default)
+        public ApplicationCustomer(long id, DateTime created, string integrationId, long accountId, long closedSessions, decimal totalSales, DateTime lastActivity, Option<Dictionary<string, Object>> attributes = default, Option<List<LoyaltyMembership>> loyaltyMemberships = default, Option<List<AudienceMembership>> audienceMemberships = default, Option<bool?> sandbox = default, Option<string> advocateIntegrationId = default)
         {
             Id = id;
             Created = created;
@@ -123,7 +123,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Object> AttributesOption { get; private set; }
+        public Option<Dictionary<string, Object>> AttributesOption { get; private set; }
 
         /// <summary>
         /// Arbitrary properties associated with this item.
@@ -131,7 +131,7 @@ namespace TalonOneSdk.Model
         /// <value>Arbitrary properties associated with this item.</value>
         /* <example>{Language&#x3D;english, ShippingCountry&#x3D;DE}</example> */
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Dictionary<string, Object> Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Dictionary<string, Object>>(value); } }
 
         /// <summary>
         /// Used to track the state of LoyaltyMemberships
@@ -276,7 +276,7 @@ namespace TalonOneSdk.Model
             Option<long?> closedSessions = default;
             Option<decimal?> totalSales = default;
             Option<DateTime?> lastActivity = default;
-            Option<Object> attributes = default;
+            Option<Dictionary<string, Object>> attributes = default;
             Option<List<LoyaltyMembership>> loyaltyMemberships = default;
             Option<List<AudienceMembership>> audienceMemberships = default;
             Option<bool?> sandbox = default;
@@ -319,7 +319,7 @@ namespace TalonOneSdk.Model
                             lastActivity = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "attributes":
-                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            attributes = new Option<Dictionary<string, Object>>(JsonSerializer.Deserialize<Dictionary<string, Object>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "loyaltyMemberships":
                             loyaltyMemberships = new Option<List<LoyaltyMembership>>(JsonSerializer.Deserialize<List<LoyaltyMembership>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -360,41 +360,8 @@ namespace TalonOneSdk.Model
             if (!lastActivity.IsSet)
                 throw new ArgumentException("Property is required for class ApplicationCustomer.", nameof(lastActivity));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ApplicationCustomer.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ApplicationCustomer.");
-
-            if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class ApplicationCustomer.");
-
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class ApplicationCustomer.");
-
-            if (closedSessions.IsSet && closedSessions.Value == null)
-                throw new ArgumentNullException(nameof(closedSessions), "Property is not nullable for class ApplicationCustomer.");
-
-            if (totalSales.IsSet && totalSales.Value == null)
-                throw new ArgumentNullException(nameof(totalSales), "Property is not nullable for class ApplicationCustomer.");
-
-            if (lastActivity.IsSet && lastActivity.Value == null)
-                throw new ArgumentNullException(nameof(lastActivity), "Property is not nullable for class ApplicationCustomer.");
-
-            if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class ApplicationCustomer.");
-
-            if (loyaltyMemberships.IsSet && loyaltyMemberships.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyMemberships), "Property is not nullable for class ApplicationCustomer.");
-
-            if (audienceMemberships.IsSet && audienceMemberships.Value == null)
-                throw new ArgumentNullException(nameof(audienceMemberships), "Property is not nullable for class ApplicationCustomer.");
-
             if (sandbox.IsSet && sandbox.Value == null)
                 throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class ApplicationCustomer.");
-
-            if (advocateIntegrationId.IsSet && advocateIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(advocateIntegrationId), "Property is not nullable for class ApplicationCustomer.");
 
             return new ApplicationCustomer(id.Value.Value, created.Value.Value, integrationId.Value, accountId.Value.Value, closedSessions.Value.Value, totalSales.Value.Value, lastActivity.Value.Value, attributes, loyaltyMemberships, audienceMemberships, sandbox, advocateIntegrationId);
         }

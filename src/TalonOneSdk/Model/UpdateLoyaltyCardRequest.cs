@@ -128,9 +128,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class UpdateLoyaltyCardRequest.");
-
             return new UpdateLoyaltyCardRequest(status);
         }
 

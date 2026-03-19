@@ -168,12 +168,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (message.IsSet && message.Value == null)
-                throw new ArgumentNullException(nameof(message), "Property is not nullable for class ErrorResponseWithStatus.");
-
-            if (errors.IsSet && errors.Value == null)
-                throw new ArgumentNullException(nameof(errors), "Property is not nullable for class ErrorResponseWithStatus.");
-
             if (statusCode.IsSet && statusCode.Value == null)
                 throw new ArgumentNullException(nameof(statusCode), "Property is not nullable for class ErrorResponseWithStatus.");
 
