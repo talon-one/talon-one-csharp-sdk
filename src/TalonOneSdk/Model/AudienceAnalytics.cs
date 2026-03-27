@@ -150,12 +150,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (audienceId.IsSet && audienceId.Value == null)
-                throw new ArgumentNullException(nameof(audienceId), "Property is not nullable for class AudienceAnalytics.");
-
-            if (membersCount.IsSet && membersCount.Value == null)
-                throw new ArgumentNullException(nameof(membersCount), "Property is not nullable for class AudienceAnalytics.");
-
             return new AudienceAnalytics(audienceId, membersCount);
         }
 

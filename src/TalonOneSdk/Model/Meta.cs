@@ -236,21 +236,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Meta meta, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (meta.CampaignsOption.IsSet && meta.Campaigns == null)
-                throw new ArgumentNullException(nameof(meta.Campaigns), "Property is required for class Meta.");
-
-            if (meta.CouponsOption.IsSet && meta.Coupons == null)
-                throw new ArgumentNullException(nameof(meta.Coupons), "Property is required for class Meta.");
-
-            if (meta.CouponRejectionReasonOption.IsSet && meta.CouponRejectionReason == null)
-                throw new ArgumentNullException(nameof(meta.CouponRejectionReason), "Property is required for class Meta.");
-
-            if (meta.ReferralRejectionReasonOption.IsSet && meta.ReferralRejectionReason == null)
-                throw new ArgumentNullException(nameof(meta.ReferralRejectionReason), "Property is required for class Meta.");
-
-            if (meta.WarningsOption.IsSet && meta.Warnings == null)
-                throw new ArgumentNullException(nameof(meta.Warnings), "Property is required for class Meta.");
-
             if (meta.CampaignsOption.IsSet)
             {
                 writer.WritePropertyName("campaigns");

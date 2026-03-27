@@ -144,6 +144,9 @@ namespace TalonOneSdk.Model
             if (!programs.IsSet)
                 throw new ArgumentException("Property is required for class Loyalty.", nameof(programs));
 
+            if (programs.IsSet && programs.Value == null)
+                throw new ArgumentNullException(nameof(programs), "Property is not nullable for class Loyalty.");
+
             return new Loyalty(programs.Value, cards);
         }
 
@@ -173,9 +176,6 @@ namespace TalonOneSdk.Model
         {
             if (loyalty.Programs == null)
                 throw new ArgumentNullException(nameof(loyalty.Programs), "Property is required for class Loyalty.");
-
-            if (loyalty.CardsOption.IsSet && loyalty.Cards == null)
-                throw new ArgumentNullException(nameof(loyalty.Cards), "Property is required for class Loyalty.");
 
             writer.WritePropertyName("programs");
             JsonSerializer.Serialize(writer, loyalty.Programs, jsonSerializerOptions);

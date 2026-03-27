@@ -178,6 +178,18 @@ namespace TalonOneSdk.Model
             if (!enabled.IsSet)
                 throw new ArgumentException("Property is required for class NotificationListItem.", nameof(enabled));
 
+            if (notificationId.IsSet && notificationId.Value == null)
+                throw new ArgumentNullException(nameof(notificationId), "Property is not nullable for class NotificationListItem.");
+
+            if (notificationName.IsSet && notificationName.Value == null)
+                throw new ArgumentNullException(nameof(notificationName), "Property is not nullable for class NotificationListItem.");
+
+            if (entityId.IsSet && entityId.Value == null)
+                throw new ArgumentNullException(nameof(entityId), "Property is not nullable for class NotificationListItem.");
+
+            if (enabled.IsSet && enabled.Value == null)
+                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class NotificationListItem.");
+
             return new NotificationListItem(notificationId.Value.Value, notificationName.Value, entityId.Value.Value, enabled.Value.Value);
         }
 

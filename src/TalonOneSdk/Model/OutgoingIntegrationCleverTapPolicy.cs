@@ -160,6 +160,15 @@ namespace TalonOneSdk.Model
             if (!passcode.IsSet)
                 throw new ArgumentException("Property is required for class OutgoingIntegrationCleverTapPolicy.", nameof(passcode));
 
+            if (baseUrl.IsSet && baseUrl.Value == null)
+                throw new ArgumentNullException(nameof(baseUrl), "Property is not nullable for class OutgoingIntegrationCleverTapPolicy.");
+
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class OutgoingIntegrationCleverTapPolicy.");
+
+            if (passcode.IsSet && passcode.Value == null)
+                throw new ArgumentNullException(nameof(passcode), "Property is not nullable for class OutgoingIntegrationCleverTapPolicy.");
+
             return new OutgoingIntegrationCleverTapPolicy(baseUrl.Value, accountId.Value, passcode.Value);
         }
 

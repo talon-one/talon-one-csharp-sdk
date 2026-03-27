@@ -177,7 +177,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates the current state of the session. Sessions can be created as &#x60;open&#x60; or &#x60;closed&#x60;. The state transitions are:  1. &#x60;open&#x60; → &#x60;closed&#x60; 2. &#x60;open&#x60; → &#x60;cancelled&#x60; 3. &#x60;closed&#x60; → &#x60;cancelled&#x60; or &#x60;partially_returned&#x60; 4. &#x60;partially_returned&#x60; → &#x60;cancelled&#x60;  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). </value>
         /* <example>open</example> */
         [JsonPropertyName("state")]
-        public StateEnum? State { get { return this.StateOption; } set { this.StateOption = new Option<StateEnum?>(value); } }
+        public StateEnum? State { get { return this.StateOption.Value; } set { this.StateOption = new Option<StateEnum?>(value); } }
 
         /// <summary>
         /// Gets or Sets IntegrationId
@@ -527,11 +527,26 @@ namespace TalonOneSdk.Model
             if (!updated.IsSet)
                 throw new ArgumentException("Property is required for class CustomerSession.", nameof(updated));
 
-            if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class CustomerSession.");
+            if (integrationId.IsSet && integrationId.Value == null)
+                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class CustomerSession.");
 
-            if (total.IsSet && total.Value == null)
-                throw new ArgumentNullException(nameof(total), "Property is not nullable for class CustomerSession.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CustomerSession.");
+
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CustomerSession.");
+
+            if (firstSession.IsSet && firstSession.Value == null)
+                throw new ArgumentNullException(nameof(firstSession), "Property is not nullable for class CustomerSession.");
+
+            if (updateCount.IsSet && updateCount.Value == null)
+                throw new ArgumentNullException(nameof(updateCount), "Property is not nullable for class CustomerSession.");
+
+            if (discounts.IsSet && discounts.Value == null)
+                throw new ArgumentNullException(nameof(discounts), "Property is not nullable for class CustomerSession.");
+
+            if (updated.IsSet && updated.Value == null)
+                throw new ArgumentNullException(nameof(updated), "Property is not nullable for class CustomerSession.");
 
             return new CustomerSession(integrationId.Value, created.Value.Value, applicationId.Value.Value, firstSession.Value.Value, updateCount.Value.Value, discounts.Value, updated.Value.Value, profileId, coupon, referral, state, cartItems, identifiers, total, attributes);
         }
@@ -565,24 +580,6 @@ namespace TalonOneSdk.Model
 
             if (customerSession.Discounts == null)
                 throw new ArgumentNullException(nameof(customerSession.Discounts), "Property is required for class CustomerSession.");
-
-            if (customerSession.ProfileIdOption.IsSet && customerSession.ProfileId == null)
-                throw new ArgumentNullException(nameof(customerSession.ProfileId), "Property is required for class CustomerSession.");
-
-            if (customerSession.CouponOption.IsSet && customerSession.Coupon == null)
-                throw new ArgumentNullException(nameof(customerSession.Coupon), "Property is required for class CustomerSession.");
-
-            if (customerSession.ReferralOption.IsSet && customerSession.Referral == null)
-                throw new ArgumentNullException(nameof(customerSession.Referral), "Property is required for class CustomerSession.");
-
-            if (customerSession.CartItemsOption.IsSet && customerSession.CartItems == null)
-                throw new ArgumentNullException(nameof(customerSession.CartItems), "Property is required for class CustomerSession.");
-
-            if (customerSession.IdentifiersOption.IsSet && customerSession.Identifiers == null)
-                throw new ArgumentNullException(nameof(customerSession.Identifiers), "Property is required for class CustomerSession.");
-
-            if (customerSession.AttributesOption.IsSet && customerSession.Attributes == null)
-                throw new ArgumentNullException(nameof(customerSession.Attributes), "Property is required for class CustomerSession.");
 
             writer.WriteString("integrationId", customerSession.IntegrationId);
 

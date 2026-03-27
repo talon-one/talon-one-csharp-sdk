@@ -204,6 +204,18 @@ namespace TalonOneSdk.Model
             if (!set.IsSet)
                 throw new ArgumentException("Property is required for class CampaignSet.", nameof(set));
 
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CampaignSet.");
+
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignSet.");
+
+            if (varVersion.IsSet && varVersion.Value == null)
+                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class CampaignSet.");
+
+            if (set.IsSet && set.Value == null)
+                throw new ArgumentNullException(nameof(set), "Property is not nullable for class CampaignSet.");
+
             return new CampaignSet(applicationId.Value.Value, id.Value.Value, varVersion.Value.Value, set.Value, updatedBy);
         }
 
@@ -233,9 +245,6 @@ namespace TalonOneSdk.Model
         {
             if (campaignSet.Set == null)
                 throw new ArgumentNullException(nameof(campaignSet.Set), "Property is required for class CampaignSet.");
-
-            if (campaignSet.UpdatedByOption.IsSet && campaignSet.UpdatedBy == null)
-                throw new ArgumentNullException(nameof(campaignSet.UpdatedBy), "Property is required for class CampaignSet.");
 
             writer.WriteNumber("applicationId", campaignSet.ApplicationId);
 

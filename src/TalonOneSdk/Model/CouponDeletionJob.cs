@@ -331,8 +331,35 @@ namespace TalonOneSdk.Model
             if (!communicated.IsSet)
                 throw new ArgumentException("Property is required for class CouponDeletionJob.", nameof(communicated));
 
-            if (deletedAmount.IsSet && deletedAmount.Value == null)
-                throw new ArgumentNullException(nameof(deletedAmount), "Property is not nullable for class CouponDeletionJob.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CouponDeletionJob.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CouponDeletionJob.");
+
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CouponDeletionJob.");
+
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class CouponDeletionJob.");
+
+            if (filters.IsSet && filters.Value == null)
+                throw new ArgumentNullException(nameof(filters), "Property is not nullable for class CouponDeletionJob.");
+
+            if (status.IsSet && status.Value == null)
+                throw new ArgumentNullException(nameof(status), "Property is not nullable for class CouponDeletionJob.");
+
+            if (failCount.IsSet && failCount.Value == null)
+                throw new ArgumentNullException(nameof(failCount), "Property is not nullable for class CouponDeletionJob.");
+
+            if (errors.IsSet && errors.Value == null)
+                throw new ArgumentNullException(nameof(errors), "Property is not nullable for class CouponDeletionJob.");
+
+            if (createdBy.IsSet && createdBy.Value == null)
+                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class CouponDeletionJob.");
+
+            if (communicated.IsSet && communicated.Value == null)
+                throw new ArgumentNullException(nameof(communicated), "Property is not nullable for class CouponDeletionJob.");
 
             return new CouponDeletionJob(id.Value.Value, created.Value.Value, applicationId.Value.Value, accountId.Value.Value, filters.Value, status.Value, failCount.Value.Value, errors.Value, createdBy.Value.Value, communicated.Value.Value, deletedAmount, campaignIDs);
         }
@@ -369,9 +396,6 @@ namespace TalonOneSdk.Model
 
             if (couponDeletionJob.Errors == null)
                 throw new ArgumentNullException(nameof(couponDeletionJob.Errors), "Property is required for class CouponDeletionJob.");
-
-            if (couponDeletionJob.CampaignIDsOption.IsSet && couponDeletionJob.CampaignIDs == null)
-                throw new ArgumentNullException(nameof(couponDeletionJob.CampaignIDs), "Property is required for class CouponDeletionJob.");
 
             writer.WriteNumber("id", couponDeletionJob.Id);
 

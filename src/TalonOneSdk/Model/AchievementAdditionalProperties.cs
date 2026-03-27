@@ -157,7 +157,7 @@ namespace TalonOneSdk.Model
         /// <value>The status of the achievement.</value>
         /* <example>inprogress</example> */
         [JsonPropertyName("status")]
-        public StatusEnum? Status { get { return this.StatusOption; } set { this.StatusOption = new Option<StatusEnum?>(value); } }
+        public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new Option<StatusEnum?>(value); } }
 
         /// <summary>
         /// The ID of the campaign the achievement belongs to.
@@ -304,11 +304,11 @@ namespace TalonOneSdk.Model
             if (!userId.IsSet)
                 throw new ArgumentException("Property is required for class AchievementAdditionalProperties.", nameof(userId));
 
-            if (hasProgress.IsSet && hasProgress.Value == null)
-                throw new ArgumentNullException(nameof(hasProgress), "Property is not nullable for class AchievementAdditionalProperties.");
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class AchievementAdditionalProperties.");
 
-            if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class AchievementAdditionalProperties.");
+            if (userId.IsSet && userId.Value == null)
+                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class AchievementAdditionalProperties.");
 
             return new AchievementAdditionalProperties(campaignId.Value.Value, userId.Value.Value, createdBy, hasProgress, status);
         }
@@ -337,9 +337,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AchievementAdditionalProperties achievementAdditionalProperties, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (achievementAdditionalProperties.CreatedByOption.IsSet && achievementAdditionalProperties.CreatedBy == null)
-                throw new ArgumentNullException(nameof(achievementAdditionalProperties.CreatedBy), "Property is required for class AchievementAdditionalProperties.");
-
             writer.WriteNumber("campaignId", achievementAdditionalProperties.CampaignId);
 
             writer.WriteNumber("userId", achievementAdditionalProperties.UserId);

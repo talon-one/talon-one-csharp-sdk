@@ -156,7 +156,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Category used to group blueprints.</value>
         [JsonPropertyName("category")]
-        public CategoryEnum? Category { get { return this.CategoryOption; } set { this.CategoryOption = new Option<CategoryEnum?>(value); } }
+        public CategoryEnum? Category { get { return this.CategoryOption.Value; } set { this.CategoryOption = new Option<CategoryEnum?>(value); } }
 
         /// <summary>
         /// Used to track the state of Title
@@ -308,9 +308,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (category.IsSet && category.Value == null)
-                throw new ArgumentNullException(nameof(category), "Property is not nullable for class UpdateBlueprint.");
-
             return new UpdateBlueprint(title, description, category, rules, cartItemFilters);
         }
 
@@ -338,18 +335,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateBlueprint updateBlueprint, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateBlueprint.TitleOption.IsSet && updateBlueprint.Title == null)
-                throw new ArgumentNullException(nameof(updateBlueprint.Title), "Property is required for class UpdateBlueprint.");
-
-            if (updateBlueprint.DescriptionOption.IsSet && updateBlueprint.Description == null)
-                throw new ArgumentNullException(nameof(updateBlueprint.Description), "Property is required for class UpdateBlueprint.");
-
-            if (updateBlueprint.RulesOption.IsSet && updateBlueprint.Rules == null)
-                throw new ArgumentNullException(nameof(updateBlueprint.Rules), "Property is required for class UpdateBlueprint.");
-
-            if (updateBlueprint.CartItemFiltersOption.IsSet && updateBlueprint.CartItemFilters == null)
-                throw new ArgumentNullException(nameof(updateBlueprint.CartItemFilters), "Property is required for class UpdateBlueprint.");
-
             if (updateBlueprint.TitleOption.IsSet)
                 writer.WriteString("title", updateBlueprint.Title);
 

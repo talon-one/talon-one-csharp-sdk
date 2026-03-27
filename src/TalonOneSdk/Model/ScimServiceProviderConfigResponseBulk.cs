@@ -169,15 +169,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (maxOperations.IsSet && maxOperations.Value == null)
-                throw new ArgumentNullException(nameof(maxOperations), "Property is not nullable for class ScimServiceProviderConfigResponseBulk.");
-
-            if (maxPayloadSize.IsSet && maxPayloadSize.Value == null)
-                throw new ArgumentNullException(nameof(maxPayloadSize), "Property is not nullable for class ScimServiceProviderConfigResponseBulk.");
-
-            if (supported.IsSet && supported.Value == null)
-                throw new ArgumentNullException(nameof(supported), "Property is not nullable for class ScimServiceProviderConfigResponseBulk.");
-
             return new ScimServiceProviderConfigResponseBulk(maxOperations, maxPayloadSize, supported);
         }
 

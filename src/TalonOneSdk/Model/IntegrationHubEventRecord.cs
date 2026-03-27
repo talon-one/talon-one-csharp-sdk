@@ -253,8 +253,23 @@ namespace TalonOneSdk.Model
             if (!eventData.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventRecord.", nameof(eventData));
 
-            if (processedAt.IsSet && processedAt.Value == null)
-                throw new ArgumentNullException(nameof(processedAt), "Property is not nullable for class IntegrationHubEventRecord.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class IntegrationHubEventRecord.");
+
+            if (flowId.IsSet && flowId.Value == null)
+                throw new ArgumentNullException(nameof(flowId), "Property is not nullable for class IntegrationHubEventRecord.");
+
+            if (eventType.IsSet && eventType.Value == null)
+                throw new ArgumentNullException(nameof(eventType), "Property is not nullable for class IntegrationHubEventRecord.");
+
+            if (publishedAt.IsSet && publishedAt.Value == null)
+                throw new ArgumentNullException(nameof(publishedAt), "Property is not nullable for class IntegrationHubEventRecord.");
+
+            if (processAfter.IsSet && processAfter.Value == null)
+                throw new ArgumentNullException(nameof(processAfter), "Property is not nullable for class IntegrationHubEventRecord.");
+
+            if (retry.IsSet && retry.Value == null)
+                throw new ArgumentNullException(nameof(retry), "Property is not nullable for class IntegrationHubEventRecord.");
 
             return new IntegrationHubEventRecord(id.Value.Value, flowId.Value.Value, eventType.Value, publishedAt.Value.Value, processAfter.Value.Value, retry.Value.Value, eventData.Value, processedAt);
         }

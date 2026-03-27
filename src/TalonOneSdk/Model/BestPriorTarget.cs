@@ -215,8 +215,8 @@ namespace TalonOneSdk.Model
             if (!targetType.IsSet)
                 throw new ArgumentException("Property is required for class BestPriorTarget.", nameof(targetType));
 
-            if (audienceID.IsSet && audienceID.Value == null)
-                throw new ArgumentNullException(nameof(audienceID), "Property is not nullable for class BestPriorTarget.");
+            if (targetType.IsSet && targetType.Value == null)
+                throw new ArgumentNullException(nameof(targetType), "Property is not nullable for class BestPriorTarget.");
 
             return new BestPriorTarget(targetType.Value.Value, audienceID);
         }

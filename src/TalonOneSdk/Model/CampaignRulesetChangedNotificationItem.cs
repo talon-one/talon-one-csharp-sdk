@@ -225,6 +225,12 @@ namespace TalonOneSdk.Model
             if (!campaign.IsSet)
                 throw new ArgumentException("Property is required for class CampaignRulesetChangedNotificationItem.", nameof(campaign));
 
+            if (varEvent.IsSet && varEvent.Value == null)
+                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignRulesetChangedNotificationItem.");
+
+            if (campaign.IsSet && campaign.Value == null)
+                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CampaignRulesetChangedNotificationItem.");
+
             return new CampaignRulesetChangedNotificationItem(varEvent.Value, campaign.Value, oldRuleset, oldPlaceholders, ruleset, placeholders);
         }
 
@@ -257,18 +263,6 @@ namespace TalonOneSdk.Model
 
             if (campaignRulesetChangedNotificationItem.Campaign == null)
                 throw new ArgumentNullException(nameof(campaignRulesetChangedNotificationItem.Campaign), "Property is required for class CampaignRulesetChangedNotificationItem.");
-
-            if (campaignRulesetChangedNotificationItem.OldRulesetOption.IsSet && campaignRulesetChangedNotificationItem.OldRuleset == null)
-                throw new ArgumentNullException(nameof(campaignRulesetChangedNotificationItem.OldRuleset), "Property is required for class CampaignRulesetChangedNotificationItem.");
-
-            if (campaignRulesetChangedNotificationItem.OldPlaceholdersOption.IsSet && campaignRulesetChangedNotificationItem.OldPlaceholders == null)
-                throw new ArgumentNullException(nameof(campaignRulesetChangedNotificationItem.OldPlaceholders), "Property is required for class CampaignRulesetChangedNotificationItem.");
-
-            if (campaignRulesetChangedNotificationItem.RulesetOption.IsSet && campaignRulesetChangedNotificationItem.Ruleset == null)
-                throw new ArgumentNullException(nameof(campaignRulesetChangedNotificationItem.Ruleset), "Property is required for class CampaignRulesetChangedNotificationItem.");
-
-            if (campaignRulesetChangedNotificationItem.PlaceholdersOption.IsSet && campaignRulesetChangedNotificationItem.Placeholders == null)
-                throw new ArgumentNullException(nameof(campaignRulesetChangedNotificationItem.Placeholders), "Property is required for class CampaignRulesetChangedNotificationItem.");
 
             writer.WriteString("Event", campaignRulesetChangedNotificationItem.Event);
 

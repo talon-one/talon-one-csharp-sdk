@@ -140,6 +140,12 @@ namespace TalonOneSdk.Model
             if (!userID.IsSet)
                 throw new ArgumentException("Property is required for class RoleMembership.", nameof(userID));
 
+            if (roleID.IsSet && roleID.Value == null)
+                throw new ArgumentNullException(nameof(roleID), "Property is not nullable for class RoleMembership.");
+
+            if (userID.IsSet && userID.Value == null)
+                throw new ArgumentNullException(nameof(userID), "Property is not nullable for class RoleMembership.");
+
             return new RoleMembership(roleID.Value.Value, userID.Value.Value);
         }
 

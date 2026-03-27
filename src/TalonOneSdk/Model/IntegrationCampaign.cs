@@ -515,11 +515,23 @@ namespace TalonOneSdk.Model
             if (!state.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationCampaign.", nameof(state));
 
-            if (startTime.IsSet && startTime.Value == null)
-                throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class IntegrationCampaign.");
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class IntegrationCampaign.");
 
-            if (endTime.IsSet && endTime.Value == null)
-                throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class IntegrationCampaign.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class IntegrationCampaign.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class IntegrationCampaign.");
+
+            if (tags.IsSet && tags.Value == null)
+                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class IntegrationCampaign.");
+
+            if (features.IsSet && features.Value == null)
+                throw new ArgumentNullException(nameof(features), "Property is not nullable for class IntegrationCampaign.");
+
+            if (state.IsSet && state.Value == null)
+                throw new ArgumentNullException(nameof(state), "Property is not nullable for class IntegrationCampaign.");
 
             return new IntegrationCampaign(applicationId.Value.Value, id.Value.Value, name.Value, tags.Value, features.Value, description, startTime, endTime, attributes, state.Value.Value);
         }
@@ -556,12 +568,6 @@ namespace TalonOneSdk.Model
 
             if (integrationCampaign.Features == null)
                 throw new ArgumentNullException(nameof(integrationCampaign.Features), "Property is required for class IntegrationCampaign.");
-
-            if (integrationCampaign.DescriptionOption.IsSet && integrationCampaign.Description == null)
-                throw new ArgumentNullException(nameof(integrationCampaign.Description), "Property is required for class IntegrationCampaign.");
-
-            if (integrationCampaign.AttributesOption.IsSet && integrationCampaign.Attributes == null)
-                throw new ArgumentNullException(nameof(integrationCampaign.Attributes), "Property is required for class IntegrationCampaign.");
 
             writer.WriteNumber("applicationId", integrationCampaign.ApplicationId);
 

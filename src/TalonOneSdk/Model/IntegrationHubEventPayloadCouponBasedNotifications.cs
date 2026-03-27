@@ -511,29 +511,32 @@ namespace TalonOneSdk.Model
             if (!employeeName.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.", nameof(employeeName));
 
-            if (discountLimit.IsSet && discountLimit.Value == null)
-                throw new ArgumentNullException(nameof(discountLimit), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
 
-            if (reservationLimit.IsSet && reservationLimit.Value == null)
-                throw new ArgumentNullException(nameof(reservationLimit), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
 
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+            if (value.IsSet && value.Value == null)
+                throw new ArgumentNullException(nameof(value), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
 
-            if (discountCounter.IsSet && discountCounter.Value == null)
-                throw new ArgumentNullException(nameof(discountCounter), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+            if (usageLimit.IsSet && usageLimit.Value == null)
+                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
 
-            if (discountRemainder.IsSet && discountRemainder.Value == null)
-                throw new ArgumentNullException(nameof(discountRemainder), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+            if (usageCounter.IsSet && usageCounter.Value == null)
+                throw new ArgumentNullException(nameof(usageCounter), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
 
-            if (referralId.IsSet && referralId.Value == null)
-                throw new ArgumentNullException(nameof(referralId), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+            if (publishedAt.IsSet && publishedAt.Value == null)
+                throw new ArgumentNullException(nameof(publishedAt), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
 
-            if (importId.IsSet && importId.Value == null)
-                throw new ArgumentNullException(nameof(importId), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+            if (sourceOfEvent.IsSet && sourceOfEvent.Value == null)
+                throw new ArgumentNullException(nameof(sourceOfEvent), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+
+            if (employeeName.IsSet && employeeName.Value == null)
+                throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
 
             return new IntegrationHubEventPayloadCouponBasedNotifications(id.Value.Value, created.Value.Value, campaignId.Value.Value, value.Value, usageLimit.Value.Value, usageCounter.Value.Value, publishedAt.Value.Value, sourceOfEvent.Value, employeeName.Value, discountLimit, reservationLimit, startDate, expiryDate, discountCounter, discountRemainder, referralId, recipientIntegrationId, importId, batchId, attributes, limits);
         }
@@ -570,18 +573,6 @@ namespace TalonOneSdk.Model
 
             if (integrationHubEventPayloadCouponBasedNotifications.EmployeeName == null)
                 throw new ArgumentNullException(nameof(integrationHubEventPayloadCouponBasedNotifications.EmployeeName), "Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.");
-
-            if (integrationHubEventPayloadCouponBasedNotifications.RecipientIntegrationIdOption.IsSet && integrationHubEventPayloadCouponBasedNotifications.RecipientIntegrationId == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadCouponBasedNotifications.RecipientIntegrationId), "Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.");
-
-            if (integrationHubEventPayloadCouponBasedNotifications.BatchIdOption.IsSet && integrationHubEventPayloadCouponBasedNotifications.BatchId == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadCouponBasedNotifications.BatchId), "Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.");
-
-            if (integrationHubEventPayloadCouponBasedNotifications.AttributesOption.IsSet && integrationHubEventPayloadCouponBasedNotifications.Attributes == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadCouponBasedNotifications.Attributes), "Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.");
-
-            if (integrationHubEventPayloadCouponBasedNotifications.LimitsOption.IsSet && integrationHubEventPayloadCouponBasedNotifications.Limits == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadCouponBasedNotifications.Limits), "Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.");
 
             writer.WriteNumber("Id", integrationHubEventPayloadCouponBasedNotifications.Id);
 

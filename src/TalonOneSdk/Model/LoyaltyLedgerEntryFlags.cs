@@ -127,9 +127,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (createsNegativeBalance.IsSet && createsNegativeBalance.Value == null)
-                throw new ArgumentNullException(nameof(createsNegativeBalance), "Property is not nullable for class LoyaltyLedgerEntryFlags.");
-
             return new LoyaltyLedgerEntryFlags(createsNegativeBalance);
         }
 

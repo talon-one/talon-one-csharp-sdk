@@ -273,14 +273,11 @@ namespace TalonOneSdk.Model
             if (!referenceId.IsSet)
                 throw new ArgumentException("Property is required for class NewPriceAdjustment.", nameof(referenceId));
 
-            if (calculatedAt.IsSet && calculatedAt.Value == null)
-                throw new ArgumentNullException(nameof(calculatedAt), "Property is not nullable for class NewPriceAdjustment.");
+            if (priceType.IsSet && priceType.Value == null)
+                throw new ArgumentNullException(nameof(priceType), "Property is not nullable for class NewPriceAdjustment.");
 
-            if (effectiveFrom.IsSet && effectiveFrom.Value == null)
-                throw new ArgumentNullException(nameof(effectiveFrom), "Property is not nullable for class NewPriceAdjustment.");
-
-            if (effectiveUntil.IsSet && effectiveUntil.Value == null)
-                throw new ArgumentNullException(nameof(effectiveUntil), "Property is not nullable for class NewPriceAdjustment.");
+            if (referenceId.IsSet && referenceId.Value == null)
+                throw new ArgumentNullException(nameof(referenceId), "Property is not nullable for class NewPriceAdjustment.");
 
             return new NewPriceAdjustment(priceType.Value, referenceId.Value, price, calculatedAt, effectiveFrom, effectiveUntil, contextId);
         }
@@ -314,9 +311,6 @@ namespace TalonOneSdk.Model
 
             if (newPriceAdjustment.ReferenceId == null)
                 throw new ArgumentNullException(nameof(newPriceAdjustment.ReferenceId), "Property is required for class NewPriceAdjustment.");
-
-            if (newPriceAdjustment.ContextIdOption.IsSet && newPriceAdjustment.ContextId == null)
-                throw new ArgumentNullException(nameof(newPriceAdjustment.ContextId), "Property is required for class NewPriceAdjustment.");
 
             writer.WriteString("priceType", newPriceAdjustment.PriceType);
 

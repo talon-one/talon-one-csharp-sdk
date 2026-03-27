@@ -142,6 +142,12 @@ namespace TalonOneSdk.Model
             if (!password.IsSet)
                 throw new ArgumentException("Property is required for class LoginParams.", nameof(password));
 
+            if (email.IsSet && email.Value == null)
+                throw new ArgumentNullException(nameof(email), "Property is not nullable for class LoginParams.");
+
+            if (password.IsSet && password.Value == null)
+                throw new ArgumentNullException(nameof(password), "Property is not nullable for class LoginParams.");
+
             return new LoginParams(email.Value, password.Value);
         }
 

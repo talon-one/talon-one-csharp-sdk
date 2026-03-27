@@ -177,6 +177,18 @@ namespace TalonOneSdk.Model
             if (!policy.IsSet)
                 throw new ArgumentException("Property is required for class OutgoingIntegrationConfiguration.", nameof(policy));
 
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class OutgoingIntegrationConfiguration.");
+
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class OutgoingIntegrationConfiguration.");
+
+            if (typeId.IsSet && typeId.Value == null)
+                throw new ArgumentNullException(nameof(typeId), "Property is not nullable for class OutgoingIntegrationConfiguration.");
+
+            if (policy.IsSet && policy.Value == null)
+                throw new ArgumentNullException(nameof(policy), "Property is not nullable for class OutgoingIntegrationConfiguration.");
+
             return new OutgoingIntegrationConfiguration(id.Value.Value, accountId.Value.Value, typeId.Value.Value, policy.Value);
         }
 

@@ -254,24 +254,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomerInventory customerInventory, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (customerInventory.ProfileOption.IsSet && customerInventory.Profile == null)
-                throw new ArgumentNullException(nameof(customerInventory.Profile), "Property is required for class CustomerInventory.");
-
-            if (customerInventory.LoyaltyOption.IsSet && customerInventory.Loyalty == null)
-                throw new ArgumentNullException(nameof(customerInventory.Loyalty), "Property is required for class CustomerInventory.");
-
-            if (customerInventory.ReferralsOption.IsSet && customerInventory.Referrals == null)
-                throw new ArgumentNullException(nameof(customerInventory.Referrals), "Property is required for class CustomerInventory.");
-
-            if (customerInventory.CouponsOption.IsSet && customerInventory.Coupons == null)
-                throw new ArgumentNullException(nameof(customerInventory.Coupons), "Property is required for class CustomerInventory.");
-
-            if (customerInventory.GiveawaysOption.IsSet && customerInventory.Giveaways == null)
-                throw new ArgumentNullException(nameof(customerInventory.Giveaways), "Property is required for class CustomerInventory.");
-
-            if (customerInventory.AchievementsOption.IsSet && customerInventory.Achievements == null)
-                throw new ArgumentNullException(nameof(customerInventory.Achievements), "Property is required for class CustomerInventory.");
-
             if (customerInventory.ProfileOption.IsSet)
             {
                 writer.WritePropertyName("profile");

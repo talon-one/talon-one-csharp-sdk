@@ -144,8 +144,8 @@ namespace TalonOneSdk.Model
             if (!policy.IsSet)
                 throw new ArgumentException("Property is required for class BaseNotificationEntity.", nameof(policy));
 
-            if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class BaseNotificationEntity.");
+            if (policy.IsSet && policy.Value == null)
+                throw new ArgumentNullException(nameof(policy), "Property is not nullable for class BaseNotificationEntity.");
 
             return new BaseNotificationEntity(policy.Value, enabled);
         }

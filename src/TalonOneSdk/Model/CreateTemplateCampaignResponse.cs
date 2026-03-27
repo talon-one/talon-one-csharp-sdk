@@ -158,6 +158,12 @@ namespace TalonOneSdk.Model
             if (!ruleset.IsSet)
                 throw new ArgumentException("Property is required for class CreateTemplateCampaignResponse.", nameof(ruleset));
 
+            if (campaign.IsSet && campaign.Value == null)
+                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CreateTemplateCampaignResponse.");
+
+            if (ruleset.IsSet && ruleset.Value == null)
+                throw new ArgumentNullException(nameof(ruleset), "Property is not nullable for class CreateTemplateCampaignResponse.");
+
             return new CreateTemplateCampaignResponse(campaign.Value, ruleset.Value, collections);
         }
 
@@ -190,9 +196,6 @@ namespace TalonOneSdk.Model
 
             if (createTemplateCampaignResponse.Ruleset == null)
                 throw new ArgumentNullException(nameof(createTemplateCampaignResponse.Ruleset), "Property is required for class CreateTemplateCampaignResponse.");
-
-            if (createTemplateCampaignResponse.CollectionsOption.IsSet && createTemplateCampaignResponse.Collections == null)
-                throw new ArgumentNullException(nameof(createTemplateCampaignResponse.Collections), "Property is required for class CreateTemplateCampaignResponse.");
 
             writer.WritePropertyName("campaign");
             JsonSerializer.Serialize(writer, createTemplateCampaignResponse.Campaign, jsonSerializerOptions);

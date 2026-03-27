@@ -316,6 +316,9 @@ namespace TalonOneSdk.Model
             if (!varReturn.IsSet)
                 throw new ArgumentException("Property is required for class ReturnIntegrationRequest.", nameof(varReturn));
 
+            if (varReturn.IsSet && varReturn.Value == null)
+                throw new ArgumentNullException(nameof(varReturn), "Property is not nullable for class ReturnIntegrationRequest.");
+
             return new ReturnIntegrationRequest(varReturn.Value, responseContent);
         }
 
@@ -345,9 +348,6 @@ namespace TalonOneSdk.Model
         {
             if (returnIntegrationRequest.Return == null)
                 throw new ArgumentNullException(nameof(returnIntegrationRequest.Return), "Property is required for class ReturnIntegrationRequest.");
-
-            if (returnIntegrationRequest.ResponseContentOption.IsSet && returnIntegrationRequest.ResponseContent == null)
-                throw new ArgumentNullException(nameof(returnIntegrationRequest.ResponseContent), "Property is required for class ReturnIntegrationRequest.");
 
             writer.WritePropertyName("return");
             JsonSerializer.Serialize(writer, returnIntegrationRequest.Return, jsonSerializerOptions);

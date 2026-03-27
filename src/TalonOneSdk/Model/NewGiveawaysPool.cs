@@ -186,6 +186,12 @@ namespace TalonOneSdk.Model
             if (!sandbox.IsSet)
                 throw new ArgumentException("Property is required for class NewGiveawaysPool.", nameof(sandbox));
 
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewGiveawaysPool.");
+
+            if (sandbox.IsSet && sandbox.Value == null)
+                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class NewGiveawaysPool.");
+
             return new NewGiveawaysPool(name.Value, sandbox.Value.Value, description, subscribedApplicationsIds);
         }
 
@@ -215,12 +221,6 @@ namespace TalonOneSdk.Model
         {
             if (newGiveawaysPool.Name == null)
                 throw new ArgumentNullException(nameof(newGiveawaysPool.Name), "Property is required for class NewGiveawaysPool.");
-
-            if (newGiveawaysPool.DescriptionOption.IsSet && newGiveawaysPool.Description == null)
-                throw new ArgumentNullException(nameof(newGiveawaysPool.Description), "Property is required for class NewGiveawaysPool.");
-
-            if (newGiveawaysPool.SubscribedApplicationsIdsOption.IsSet && newGiveawaysPool.SubscribedApplicationsIds == null)
-                throw new ArgumentNullException(nameof(newGiveawaysPool.SubscribedApplicationsIds), "Property is required for class NewGiveawaysPool.");
 
             writer.WriteString("name", newGiveawaysPool.Name);
 

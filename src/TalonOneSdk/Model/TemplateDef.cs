@@ -331,8 +331,29 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class TemplateDef.", nameof(name));
 
-            if (expose.IsSet && expose.Value == null)
-                throw new ArgumentNullException(nameof(expose), "Property is not nullable for class TemplateDef.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class TemplateDef.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class TemplateDef.");
+
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class TemplateDef.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class TemplateDef.");
+
+            if (category.IsSet && category.Value == null)
+                throw new ArgumentNullException(nameof(category), "Property is not nullable for class TemplateDef.");
+
+            if (expr.IsSet && expr.Value == null)
+                throw new ArgumentNullException(nameof(expr), "Property is not nullable for class TemplateDef.");
+
+            if (args.IsSet && args.Value == null)
+                throw new ArgumentNullException(nameof(args), "Property is not nullable for class TemplateDef.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class TemplateDef.");
 
             return new TemplateDef(id.Value.Value, created.Value.Value, applicationId.Value.Value, title.Value, category.Value, expr.Value, args.Value, name.Value, description, help, expose);
         }
@@ -375,12 +396,6 @@ namespace TalonOneSdk.Model
 
             if (templateDef.Name == null)
                 throw new ArgumentNullException(nameof(templateDef.Name), "Property is required for class TemplateDef.");
-
-            if (templateDef.DescriptionOption.IsSet && templateDef.Description == null)
-                throw new ArgumentNullException(nameof(templateDef.Description), "Property is required for class TemplateDef.");
-
-            if (templateDef.HelpOption.IsSet && templateDef.Help == null)
-                throw new ArgumentNullException(nameof(templateDef.Help), "Property is required for class TemplateDef.");
 
             writer.WriteNumber("id", templateDef.Id);
 

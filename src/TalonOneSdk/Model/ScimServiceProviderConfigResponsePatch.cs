@@ -127,9 +127,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (supported.IsSet && supported.Value == null)
-                throw new ArgumentNullException(nameof(supported), "Property is not nullable for class ScimServiceProviderConfigResponsePatch.");
-
             return new ScimServiceProviderConfigResponsePatch(supported);
         }
 

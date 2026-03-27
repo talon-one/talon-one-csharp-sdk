@@ -283,6 +283,21 @@ namespace TalonOneSdk.Model
             if (!summary.IsSet)
                 throw new ArgumentException("Property is required for class CampaignLogSummary.", nameof(summary));
 
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignLogSummary.");
+
+            if (email.IsSet && email.Value == null)
+                throw new ArgumentNullException(nameof(email), "Property is not nullable for class CampaignLogSummary.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CampaignLogSummary.");
+
+            if (action.IsSet && action.Value == null)
+                throw new ArgumentNullException(nameof(action), "Property is not nullable for class CampaignLogSummary.");
+
+            if (summary.IsSet && summary.Value == null)
+                throw new ArgumentNullException(nameof(summary), "Property is not nullable for class CampaignLogSummary.");
+
             return new CampaignLogSummary(name.Value, email.Value, created.Value.Value, action.Value.Value, summary.Value);
         }
 

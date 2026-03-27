@@ -193,15 +193,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (workerCount.IsSet && workerCount.Value == null)
-                throw new ArgumentNullException(nameof(workerCount), "Property is not nullable for class IntegrationHubFlowConfigResponse.");
-
-            if (maxEventsPerMessage.IsSet && maxEventsPerMessage.Value == null)
-                throw new ArgumentNullException(nameof(maxEventsPerMessage), "Property is not nullable for class IntegrationHubFlowConfigResponse.");
-
-            if (maxRetries.IsSet && maxRetries.Value == null)
-                throw new ArgumentNullException(nameof(maxRetries), "Property is not nullable for class IntegrationHubFlowConfigResponse.");
-
             return new IntegrationHubFlowConfigResponse(workerCount, maxEventsPerMessage, maxRetries);
         }
 

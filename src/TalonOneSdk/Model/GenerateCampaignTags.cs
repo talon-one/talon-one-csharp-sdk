@@ -123,6 +123,9 @@ namespace TalonOneSdk.Model
             if (!rulesetID.IsSet)
                 throw new ArgumentException("Property is required for class GenerateCampaignTags.", nameof(rulesetID));
 
+            if (rulesetID.IsSet && rulesetID.Value == null)
+                throw new ArgumentNullException(nameof(rulesetID), "Property is not nullable for class GenerateCampaignTags.");
+
             return new GenerateCampaignTags(rulesetID.Value.Value);
         }
 

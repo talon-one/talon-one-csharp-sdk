@@ -155,7 +155,7 @@ namespace TalonOneSdk.Model
         /// <value>The status of the achievement.</value>
         /* <example>inprogress</example> */
         [JsonPropertyName("status")]
-        public StatusEnum? Status { get { return this.StatusOption; } set { this.StatusOption = new Option<StatusEnum?>(value); } }
+        public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new Option<StatusEnum?>(value); } }
 
         /// <summary>
         /// The ID of the user that created this achievement.
@@ -286,11 +286,8 @@ namespace TalonOneSdk.Model
             if (!userId.IsSet)
                 throw new ArgumentException("Property is required for class AchievementAdditionalPropertiesV2.", nameof(userId));
 
-            if (hasProgress.IsSet && hasProgress.Value == null)
-                throw new ArgumentNullException(nameof(hasProgress), "Property is not nullable for class AchievementAdditionalPropertiesV2.");
-
-            if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class AchievementAdditionalPropertiesV2.");
+            if (userId.IsSet && userId.Value == null)
+                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class AchievementAdditionalPropertiesV2.");
 
             return new AchievementAdditionalPropertiesV2(userId.Value.Value, createdBy, hasProgress, status);
         }
@@ -319,9 +316,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AchievementAdditionalPropertiesV2 achievementAdditionalPropertiesV2, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (achievementAdditionalPropertiesV2.CreatedByOption.IsSet && achievementAdditionalPropertiesV2.CreatedBy == null)
-                throw new ArgumentNullException(nameof(achievementAdditionalPropertiesV2.CreatedBy), "Property is required for class AchievementAdditionalPropertiesV2.");
-
             writer.WriteNumber("userId", achievementAdditionalPropertiesV2.UserId);
 
             if (achievementAdditionalPropertiesV2.CreatedByOption.IsSet)

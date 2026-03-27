@@ -131,7 +131,7 @@ namespace TalonOneSdk.Model
         /// <value>The state of the user.   - &#x60;deactivated&#x60;: The user has been deactivated.   - &#x60;active&#x60;: The user is active.  **Note**: Only &#x60;admin&#x60; users can update the state of another user. </value>
         /* <example>deactivated</example> */
         [JsonPropertyName("state")]
-        public StateEnum? State { get { return this.StateOption; } set { this.StateOption = new Option<StateEnum?>(value); } }
+        public StateEnum? State { get { return this.StateOption.Value; } set { this.StateOption = new Option<StateEnum?>(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -306,12 +306,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class UpdateUser.");
-
-            if (isAdmin.IsSet && isAdmin.Value == null)
-                throw new ArgumentNullException(nameof(isAdmin), "Property is not nullable for class UpdateUser.");
-
             return new UpdateUser(name, state, isAdmin, policy, roles, applicationNotificationSubscriptions);
         }
 
@@ -339,18 +333,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateUser updateUser, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateUser.NameOption.IsSet && updateUser.Name == null)
-                throw new ArgumentNullException(nameof(updateUser.Name), "Property is required for class UpdateUser.");
-
-            if (updateUser.PolicyOption.IsSet && updateUser.Policy == null)
-                throw new ArgumentNullException(nameof(updateUser.Policy), "Property is required for class UpdateUser.");
-
-            if (updateUser.RolesOption.IsSet && updateUser.Roles == null)
-                throw new ArgumentNullException(nameof(updateUser.Roles), "Property is required for class UpdateUser.");
-
-            if (updateUser.ApplicationNotificationSubscriptionsOption.IsSet && updateUser.ApplicationNotificationSubscriptions == null)
-                throw new ArgumentNullException(nameof(updateUser.ApplicationNotificationSubscriptions), "Property is required for class UpdateUser.");
-
             if (updateUser.NameOption.IsSet)
                 writer.WriteString("name", updateUser.Name);
 

@@ -155,9 +155,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ScimBaseUserName scimBaseUserName, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (scimBaseUserName.FormattedOption.IsSet && scimBaseUserName.Formatted == null)
-                throw new ArgumentNullException(nameof(scimBaseUserName.Formatted), "Property is required for class ScimBaseUserName.");
-
             if (scimBaseUserName.FormattedOption.IsSet)
                 writer.WriteString("formatted", scimBaseUserName.Formatted);
         }

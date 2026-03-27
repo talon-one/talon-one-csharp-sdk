@@ -167,9 +167,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationStoreEntity integrationStoreEntity, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (integrationStoreEntity.StoreIntegrationIdOption.IsSet && integrationStoreEntity.StoreIntegrationId == null)
-                throw new ArgumentNullException(nameof(integrationStoreEntity.StoreIntegrationId), "Property is required for class IntegrationStoreEntity.");
-
             if (integrationStoreEntity.StoreIntegrationIdOption.IsSet)
                 writer.WriteString("storeIntegrationId", integrationStoreEntity.StoreIntegrationId);
         }

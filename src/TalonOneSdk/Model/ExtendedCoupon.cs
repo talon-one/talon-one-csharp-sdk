@@ -652,44 +652,20 @@ namespace TalonOneSdk.Model
             if (!applicationId.IsSet)
                 throw new ArgumentException("Property is required for class ExtendedCoupon.", nameof(applicationId));
 
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class ExtendedCoupon.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ExtendedCoupon.");
 
-            if (discountLimit.IsSet && discountLimit.Value == null)
-                throw new ArgumentNullException(nameof(discountLimit), "Property is not nullable for class ExtendedCoupon.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ExtendedCoupon.");
 
-            if (reservationLimit.IsSet && reservationLimit.Value == null)
-                throw new ArgumentNullException(nameof(reservationLimit), "Property is not nullable for class ExtendedCoupon.");
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class ExtendedCoupon.");
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class ExtendedCoupon.");
+            if (usageCounter.IsSet && usageCounter.Value == null)
+                throw new ArgumentNullException(nameof(usageCounter), "Property is not nullable for class ExtendedCoupon.");
 
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class ExtendedCoupon.");
-
-            if (discountCounter.IsSet && discountCounter.Value == null)
-                throw new ArgumentNullException(nameof(discountCounter), "Property is not nullable for class ExtendedCoupon.");
-
-            if (discountRemainder.IsSet && discountRemainder.Value == null)
-                throw new ArgumentNullException(nameof(discountRemainder), "Property is not nullable for class ExtendedCoupon.");
-
-            if (reservationCounter.IsSet && reservationCounter.Value == null)
-                throw new ArgumentNullException(nameof(reservationCounter), "Property is not nullable for class ExtendedCoupon.");
-
-            if (referralId.IsSet && referralId.Value == null)
-                throw new ArgumentNullException(nameof(referralId), "Property is not nullable for class ExtendedCoupon.");
-
-            if (importId.IsSet && importId.Value == null)
-                throw new ArgumentNullException(nameof(importId), "Property is not nullable for class ExtendedCoupon.");
-
-            if (reservation.IsSet && reservation.Value == null)
-                throw new ArgumentNullException(nameof(reservation), "Property is not nullable for class ExtendedCoupon.");
-
-            if (isReservationMandatory.IsSet && isReservationMandatory.Value == null)
-                throw new ArgumentNullException(nameof(isReservationMandatory), "Property is not nullable for class ExtendedCoupon.");
-
-            if (implicitlyReserved.IsSet && implicitlyReserved.Value == null)
-                throw new ArgumentNullException(nameof(implicitlyReserved), "Property is not nullable for class ExtendedCoupon.");
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ExtendedCoupon.");
 
             return new ExtendedCoupon(id.Value.Value, created.Value.Value, campaignId.Value.Value, usageCounter.Value.Value, applicationId.Value.Value, value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, limits, discountCounter, discountRemainder, reservationCounter, attributes, referralId, recipientIntegrationId, importId, reservation, batchId, isReservationMandatory, implicitlyReserved);
         }
@@ -718,21 +694,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExtendedCoupon extendedCoupon, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (extendedCoupon.ValueOption.IsSet && extendedCoupon.Value == null)
-                throw new ArgumentNullException(nameof(extendedCoupon.Value), "Property is required for class ExtendedCoupon.");
-
-            if (extendedCoupon.LimitsOption.IsSet && extendedCoupon.Limits == null)
-                throw new ArgumentNullException(nameof(extendedCoupon.Limits), "Property is required for class ExtendedCoupon.");
-
-            if (extendedCoupon.AttributesOption.IsSet && extendedCoupon.Attributes == null)
-                throw new ArgumentNullException(nameof(extendedCoupon.Attributes), "Property is required for class ExtendedCoupon.");
-
-            if (extendedCoupon.RecipientIntegrationIdOption.IsSet && extendedCoupon.RecipientIntegrationId == null)
-                throw new ArgumentNullException(nameof(extendedCoupon.RecipientIntegrationId), "Property is required for class ExtendedCoupon.");
-
-            if (extendedCoupon.BatchIdOption.IsSet && extendedCoupon.BatchId == null)
-                throw new ArgumentNullException(nameof(extendedCoupon.BatchId), "Property is required for class ExtendedCoupon.");
-
             writer.WriteNumber("id", extendedCoupon.Id);
 
             writer.WriteString("created", extendedCoupon.Created.ToString(CreatedFormat));

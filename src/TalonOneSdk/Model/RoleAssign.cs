@@ -142,6 +142,12 @@ namespace TalonOneSdk.Model
             if (!roles.IsSet)
                 throw new ArgumentException("Property is required for class RoleAssign.", nameof(roles));
 
+            if (users.IsSet && users.Value == null)
+                throw new ArgumentNullException(nameof(users), "Property is not nullable for class RoleAssign.");
+
+            if (roles.IsSet && roles.Value == null)
+                throw new ArgumentNullException(nameof(roles), "Property is not nullable for class RoleAssign.");
+
             return new RoleAssign(users.Value, roles.Value);
         }
 

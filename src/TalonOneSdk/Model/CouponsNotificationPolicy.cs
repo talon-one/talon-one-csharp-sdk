@@ -327,14 +327,11 @@ namespace TalonOneSdk.Model
             if (!scopes.IsSet)
                 throw new ArgumentException("Property is required for class CouponsNotificationPolicy.", nameof(scopes));
 
-            if (batchingEnabled.IsSet && batchingEnabled.Value == null)
-                throw new ArgumentNullException(nameof(batchingEnabled), "Property is not nullable for class CouponsNotificationPolicy.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CouponsNotificationPolicy.");
 
-            if (includeData.IsSet && includeData.Value == null)
-                throw new ArgumentNullException(nameof(includeData), "Property is not nullable for class CouponsNotificationPolicy.");
-
-            if (batchSize.IsSet && batchSize.Value == null)
-                throw new ArgumentNullException(nameof(batchSize), "Property is not nullable for class CouponsNotificationPolicy.");
+            if (scopes.IsSet && scopes.Value == null)
+                throw new ArgumentNullException(nameof(scopes), "Property is not nullable for class CouponsNotificationPolicy.");
 
             return new CouponsNotificationPolicy(name.Value, scopes.Value, batchingEnabled, includeData, batchSize);
         }

@@ -1119,7 +1119,7 @@ Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/enti
 
 Return cart items
 
-Create a new return request for the specified cart items.  This endpoint automatically changes the session state from `closed` to `partially_returned`.  **Important:** This will roll back any effects associated with these cart items. For more information, see [our documentation on session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session).  **Note:** To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests. Also: - Requests with the `Idempotency-Key` header are logged in the Talon.One access logs. - Responses for idempotent requests are stored in the database and expire 24 hours after the request is sent. - Idempotency keys are typically UUID keys and should not exceed 255 characters in length. 
+Create a new return request for the specified cart items.  This endpoint automatically changes the session state from `closed` to `partially_returned`.  **Note:** This will roll back any effects associated with these cart items. For more information, see [our documentation on session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session). 
 
 
 ### Parameters

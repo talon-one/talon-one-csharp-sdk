@@ -261,6 +261,12 @@ namespace TalonOneSdk.Model
             if (!scopes.IsSet)
                 throw new ArgumentException("Property is required for class AddedDeductedPointsNotificationPolicy.", nameof(scopes));
 
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AddedDeductedPointsNotificationPolicy.");
+
+            if (scopes.IsSet && scopes.Value == null)
+                throw new ArgumentNullException(nameof(scopes), "Property is not nullable for class AddedDeductedPointsNotificationPolicy.");
+
             return new AddedDeductedPointsNotificationPolicy(name.Value, scopes.Value);
         }
 

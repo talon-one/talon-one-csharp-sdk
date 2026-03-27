@@ -344,6 +344,9 @@ namespace TalonOneSdk.Model
             if (!customerSession.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationRequest.", nameof(customerSession));
 
+            if (customerSession.IsSet && customerSession.Value == null)
+                throw new ArgumentNullException(nameof(customerSession), "Property is not nullable for class IntegrationRequest.");
+
             return new IntegrationRequest(customerSession.Value, responseContent);
         }
 
@@ -373,9 +376,6 @@ namespace TalonOneSdk.Model
         {
             if (integrationRequest.CustomerSession == null)
                 throw new ArgumentNullException(nameof(integrationRequest.CustomerSession), "Property is required for class IntegrationRequest.");
-
-            if (integrationRequest.ResponseContentOption.IsSet && integrationRequest.ResponseContent == null)
-                throw new ArgumentNullException(nameof(integrationRequest.ResponseContent), "Property is required for class IntegrationRequest.");
 
             writer.WritePropertyName("customerSession");
             JsonSerializer.Serialize(writer, integrationRequest.CustomerSession, jsonSerializerOptions);

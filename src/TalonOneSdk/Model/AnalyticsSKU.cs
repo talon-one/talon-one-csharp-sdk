@@ -234,14 +234,11 @@ namespace TalonOneSdk.Model
             if (!sku.IsSet)
                 throw new ArgumentException("Property is required for class AnalyticsSKU.", nameof(sku));
 
-            if (lastUpdated.IsSet && lastUpdated.Value == null)
-                throw new ArgumentNullException(nameof(lastUpdated), "Property is not nullable for class AnalyticsSKU.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AnalyticsSKU.");
 
-            if (catalogId.IsSet && catalogId.Value == null)
-                throw new ArgumentNullException(nameof(catalogId), "Property is not nullable for class AnalyticsSKU.");
-
-            if (productId.IsSet && productId.Value == null)
-                throw new ArgumentNullException(nameof(productId), "Property is not nullable for class AnalyticsSKU.");
+            if (sku.IsSet && sku.Value == null)
+                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class AnalyticsSKU.");
 
             return new AnalyticsSKU(id.Value.Value, sku.Value, lastUpdated, catalogId, productId, unitsSold);
         }
@@ -272,9 +269,6 @@ namespace TalonOneSdk.Model
         {
             if (analyticsSKU.Sku == null)
                 throw new ArgumentNullException(nameof(analyticsSKU.Sku), "Property is required for class AnalyticsSKU.");
-
-            if (analyticsSKU.UnitsSoldOption.IsSet && analyticsSKU.UnitsSold == null)
-                throw new ArgumentNullException(nameof(analyticsSKU.UnitsSold), "Property is required for class AnalyticsSKU.");
 
             writer.WriteNumber("id", analyticsSKU.Id);
 

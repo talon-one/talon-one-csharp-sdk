@@ -264,8 +264,14 @@ namespace TalonOneSdk.Model
             if (!referencingName.IsSet)
                 throw new ArgumentException("Property is required for class PriceTypeReferenceDetail.", nameof(referencingName));
 
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class PriceTypeReferenceDetail.");
+            if (referencingType.IsSet && referencingType.Value == null)
+                throw new ArgumentNullException(nameof(referencingType), "Property is not nullable for class PriceTypeReferenceDetail.");
+
+            if (referencingId.IsSet && referencingId.Value == null)
+                throw new ArgumentNullException(nameof(referencingId), "Property is not nullable for class PriceTypeReferenceDetail.");
+
+            if (referencingName.IsSet && referencingName.Value == null)
+                throw new ArgumentNullException(nameof(referencingName), "Property is not nullable for class PriceTypeReferenceDetail.");
 
             return new PriceTypeReferenceDetail(referencingType.Value.Value, referencingId.Value.Value, referencingName.Value, applicationId);
         }

@@ -160,8 +160,8 @@ namespace TalonOneSdk.Model
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class StrikethroughSetDiscountPerItemEffectProps.", nameof(value));
 
-            if (excludeFromBestPriorPriceHistory.IsSet && excludeFromBestPriorPriceHistory.Value == null)
-                throw new ArgumentNullException(nameof(excludeFromBestPriorPriceHistory), "Property is not nullable for class StrikethroughSetDiscountPerItemEffectProps.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class StrikethroughSetDiscountPerItemEffectProps.");
 
             return new StrikethroughSetDiscountPerItemEffectProps(name.Value, value.Value, excludeFromBestPriorPriceHistory);
         }

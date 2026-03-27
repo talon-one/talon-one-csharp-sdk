@@ -142,6 +142,12 @@ namespace TalonOneSdk.Model
             if (!deletes.IsSet)
                 throw new ArgumentException("Property is required for class ProfileAudiencesChanges.", nameof(deletes));
 
+            if (adds.IsSet && adds.Value == null)
+                throw new ArgumentNullException(nameof(adds), "Property is not nullable for class ProfileAudiencesChanges.");
+
+            if (deletes.IsSet && deletes.Value == null)
+                throw new ArgumentNullException(nameof(deletes), "Property is not nullable for class ProfileAudiencesChanges.");
+
             return new ProfileAudiencesChanges(adds.Value, deletes.Value);
         }
 

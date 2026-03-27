@@ -225,9 +225,6 @@ docs/models/DeleteUserRequest.md
 docs/models/Effect.md
 docs/models/EffectEntity.md
 docs/models/EmailEntity.md
-docs/models/EmbeddedAnalyticsConfiguration.md
-docs/models/EmbeddedAnalyticsConfigurationDashboards.md
-docs/models/EmbeddedDashboardConfiguration.md
 docs/models/Endpoint.md
 docs/models/Entity.md
 docs/models/EntityWithTalangVisibleID.md
@@ -908,9 +905,6 @@ src/TalonOneSdk.Test/Model/DeleteUserRequestTests.cs
 src/TalonOneSdk.Test/Model/EffectEntityTests.cs
 src/TalonOneSdk.Test/Model/EffectTests.cs
 src/TalonOneSdk.Test/Model/EmailEntityTests.cs
-src/TalonOneSdk.Test/Model/EmbeddedAnalyticsConfigurationDashboardsTests.cs
-src/TalonOneSdk.Test/Model/EmbeddedAnalyticsConfigurationTests.cs
-src/TalonOneSdk.Test/Model/EmbeddedDashboardConfigurationTests.cs
 src/TalonOneSdk.Test/Model/EndpointTests.cs
 src/TalonOneSdk.Test/Model/EntityTests.cs
 src/TalonOneSdk.Test/Model/EntityWithTalangVisibleIDTests.cs
@@ -1388,6 +1382,7 @@ src/TalonOneSdk/Client/CookieContainer.cs
 src/TalonOneSdk/Client/DateTimeJsonConverter.cs
 src/TalonOneSdk/Client/DateTimeNullableJsonConverter.cs
 src/TalonOneSdk/Client/ExceptionEventArgs.cs
+src/TalonOneSdk/Client/FileParameter.cs
 src/TalonOneSdk/Client/HostConfiguration.cs
 src/TalonOneSdk/Client/JsonSerializerOptionsProvider.cs
 src/TalonOneSdk/Client/Option.cs
@@ -1610,9 +1605,6 @@ src/TalonOneSdk/Model/DeleteUserRequest.cs
 src/TalonOneSdk/Model/Effect.cs
 src/TalonOneSdk/Model/EffectEntity.cs
 src/TalonOneSdk/Model/EmailEntity.cs
-src/TalonOneSdk/Model/EmbeddedAnalyticsConfiguration.cs
-src/TalonOneSdk/Model/EmbeddedAnalyticsConfigurationDashboards.cs
-src/TalonOneSdk/Model/EmbeddedDashboardConfiguration.cs
 src/TalonOneSdk/Model/Endpoint.cs
 src/TalonOneSdk/Model/Entity.cs
 src/TalonOneSdk/Model/EntityWithTalangVisibleID.cs

@@ -269,6 +269,9 @@ namespace TalonOneSdk.Model
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class FuncArgDef.", nameof(type));
 
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class FuncArgDef.");
+
             return new FuncArgDef(type.Value.Value, description);
         }
 
@@ -296,9 +299,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FuncArgDef funcArgDef, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (funcArgDef.DescriptionOption.IsSet && funcArgDef.Description == null)
-                throw new ArgumentNullException(nameof(funcArgDef.Description), "Property is required for class FuncArgDef.");
-
             var typeRawValue = FuncArgDef.TypeEnumToJsonValue(funcArgDef.Type);
             writer.WriteString("type", typeRawValue);
             if (funcArgDef.DescriptionOption.IsSet)

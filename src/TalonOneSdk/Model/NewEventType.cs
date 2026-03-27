@@ -176,6 +176,12 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class NewEventType.", nameof(name));
 
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewEventType.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewEventType.");
+
             return new NewEventType(title.Value, name.Value, description);
         }
 
@@ -208,9 +214,6 @@ namespace TalonOneSdk.Model
 
             if (newEventType.Name == null)
                 throw new ArgumentNullException(nameof(newEventType.Name), "Property is required for class NewEventType.");
-
-            if (newEventType.DescriptionOption.IsSet && newEventType.Description == null)
-                throw new ArgumentNullException(nameof(newEventType.Description), "Property is required for class NewEventType.");
 
             writer.WriteString("title", newEventType.Title);
 

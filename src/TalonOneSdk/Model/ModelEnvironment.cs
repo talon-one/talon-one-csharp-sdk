@@ -422,6 +422,27 @@ namespace TalonOneSdk.Model
             if (!variables.IsSet)
                 throw new ArgumentException("Property is required for class ModelEnvironment.", nameof(variables));
 
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ModelEnvironment.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ModelEnvironment.");
+
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ModelEnvironment.");
+
+            if (slots.IsSet && slots.Value == null)
+                throw new ArgumentNullException(nameof(slots), "Property is not nullable for class ModelEnvironment.");
+
+            if (functions.IsSet && functions.Value == null)
+                throw new ArgumentNullException(nameof(functions), "Property is not nullable for class ModelEnvironment.");
+
+            if (templates.IsSet && templates.Value == null)
+                throw new ArgumentNullException(nameof(templates), "Property is not nullable for class ModelEnvironment.");
+
+            if (variables.IsSet && variables.Value == null)
+                throw new ArgumentNullException(nameof(variables), "Property is not nullable for class ModelEnvironment.");
+
             return new ModelEnvironment(id.Value.Value, created.Value.Value, applicationId.Value.Value, slots.Value, functions.Value, templates.Value, variables.Value, giveawaysPools, loyaltyPrograms, achievements, attributes, additionalCosts, audiences, collections, applicationCartItemFilters, priceTypes);
         }
 
@@ -460,33 +481,6 @@ namespace TalonOneSdk.Model
 
             if (modelEnvironment.Variables == null)
                 throw new ArgumentNullException(nameof(modelEnvironment.Variables), "Property is required for class ModelEnvironment.");
-
-            if (modelEnvironment.GiveawaysPoolsOption.IsSet && modelEnvironment.GiveawaysPools == null)
-                throw new ArgumentNullException(nameof(modelEnvironment.GiveawaysPools), "Property is required for class ModelEnvironment.");
-
-            if (modelEnvironment.LoyaltyProgramsOption.IsSet && modelEnvironment.LoyaltyPrograms == null)
-                throw new ArgumentNullException(nameof(modelEnvironment.LoyaltyPrograms), "Property is required for class ModelEnvironment.");
-
-            if (modelEnvironment.AchievementsOption.IsSet && modelEnvironment.Achievements == null)
-                throw new ArgumentNullException(nameof(modelEnvironment.Achievements), "Property is required for class ModelEnvironment.");
-
-            if (modelEnvironment.AttributesOption.IsSet && modelEnvironment.Attributes == null)
-                throw new ArgumentNullException(nameof(modelEnvironment.Attributes), "Property is required for class ModelEnvironment.");
-
-            if (modelEnvironment.AdditionalCostsOption.IsSet && modelEnvironment.AdditionalCosts == null)
-                throw new ArgumentNullException(nameof(modelEnvironment.AdditionalCosts), "Property is required for class ModelEnvironment.");
-
-            if (modelEnvironment.AudiencesOption.IsSet && modelEnvironment.Audiences == null)
-                throw new ArgumentNullException(nameof(modelEnvironment.Audiences), "Property is required for class ModelEnvironment.");
-
-            if (modelEnvironment.CollectionsOption.IsSet && modelEnvironment.Collections == null)
-                throw new ArgumentNullException(nameof(modelEnvironment.Collections), "Property is required for class ModelEnvironment.");
-
-            if (modelEnvironment.ApplicationCartItemFiltersOption.IsSet && modelEnvironment.ApplicationCartItemFilters == null)
-                throw new ArgumentNullException(nameof(modelEnvironment.ApplicationCartItemFilters), "Property is required for class ModelEnvironment.");
-
-            if (modelEnvironment.PriceTypesOption.IsSet && modelEnvironment.PriceTypes == null)
-                throw new ArgumentNullException(nameof(modelEnvironment.PriceTypes), "Property is required for class ModelEnvironment.");
 
             writer.WriteNumber("id", modelEnvironment.Id);
 

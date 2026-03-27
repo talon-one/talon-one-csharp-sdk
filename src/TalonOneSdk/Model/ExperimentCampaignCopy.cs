@@ -248,15 +248,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (startTime.IsSet && startTime.Value == null)
-                throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class ExperimentCampaignCopy.");
-
-            if (endTime.IsSet && endTime.Value == null)
-                throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class ExperimentCampaignCopy.");
-
-            if (evaluationGroupId.IsSet && evaluationGroupId.Value == null)
-                throw new ArgumentNullException(nameof(evaluationGroupId), "Property is not nullable for class ExperimentCampaignCopy.");
-
             return new ExperimentCampaignCopy(name, description, startTime, endTime, tags, evaluationGroupId);
         }
 
@@ -284,15 +275,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentCampaignCopy experimentCampaignCopy, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (experimentCampaignCopy.NameOption.IsSet && experimentCampaignCopy.Name == null)
-                throw new ArgumentNullException(nameof(experimentCampaignCopy.Name), "Property is required for class ExperimentCampaignCopy.");
-
-            if (experimentCampaignCopy.DescriptionOption.IsSet && experimentCampaignCopy.Description == null)
-                throw new ArgumentNullException(nameof(experimentCampaignCopy.Description), "Property is required for class ExperimentCampaignCopy.");
-
-            if (experimentCampaignCopy.TagsOption.IsSet && experimentCampaignCopy.Tags == null)
-                throw new ArgumentNullException(nameof(experimentCampaignCopy.Tags), "Property is required for class ExperimentCampaignCopy.");
-
             if (experimentCampaignCopy.NameOption.IsSet)
                 writer.WriteString("name", experimentCampaignCopy.Name);
 

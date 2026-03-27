@@ -153,6 +153,12 @@ namespace TalonOneSdk.Model
             if (!limit.IsSet)
                 throw new ArgumentException("Property is required for class GetIntegrationCouponRequest.", nameof(limit));
 
+            if (campaignIds.IsSet && campaignIds.Value == null)
+                throw new ArgumentNullException(nameof(campaignIds), "Property is not nullable for class GetIntegrationCouponRequest.");
+
+            if (limit.IsSet && limit.Value == null)
+                throw new ArgumentNullException(nameof(limit), "Property is not nullable for class GetIntegrationCouponRequest.");
+
             return new GetIntegrationCouponRequest(campaignIds.Value, limit.Value.Value);
         }
 

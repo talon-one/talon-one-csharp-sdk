@@ -438,32 +438,20 @@ namespace TalonOneSdk.Model
             if (!effectType.IsSet)
                 throw new ArgumentException("Property is required for class EffectEntity.", nameof(effectType));
 
-            if (experimentId.IsSet && experimentId.Value == null)
-                throw new ArgumentNullException(nameof(experimentId), "Property is not nullable for class EffectEntity.");
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class EffectEntity.");
 
-            if (triggeredByCoupon.IsSet && triggeredByCoupon.Value == null)
-                throw new ArgumentNullException(nameof(triggeredByCoupon), "Property is not nullable for class EffectEntity.");
+            if (rulesetId.IsSet && rulesetId.Value == null)
+                throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class EffectEntity.");
 
-            if (triggeredForCatalogItem.IsSet && triggeredForCatalogItem.Value == null)
-                throw new ArgumentNullException(nameof(triggeredForCatalogItem), "Property is not nullable for class EffectEntity.");
+            if (ruleIndex.IsSet && ruleIndex.Value == null)
+                throw new ArgumentNullException(nameof(ruleIndex), "Property is not nullable for class EffectEntity.");
 
-            if (conditionIndex.IsSet && conditionIndex.Value == null)
-                throw new ArgumentNullException(nameof(conditionIndex), "Property is not nullable for class EffectEntity.");
+            if (ruleName.IsSet && ruleName.Value == null)
+                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class EffectEntity.");
 
-            if (evaluationGroupID.IsSet && evaluationGroupID.Value == null)
-                throw new ArgumentNullException(nameof(evaluationGroupID), "Property is not nullable for class EffectEntity.");
-
-            if (campaignRevisionId.IsSet && campaignRevisionId.Value == null)
-                throw new ArgumentNullException(nameof(campaignRevisionId), "Property is not nullable for class EffectEntity.");
-
-            if (campaignRevisionVersionId.IsSet && campaignRevisionVersionId.Value == null)
-                throw new ArgumentNullException(nameof(campaignRevisionVersionId), "Property is not nullable for class EffectEntity.");
-
-            if (selectedPrice.IsSet && selectedPrice.Value == null)
-                throw new ArgumentNullException(nameof(selectedPrice), "Property is not nullable for class EffectEntity.");
-
-            if (adjustmentReferenceId.IsSet && adjustmentReferenceId.Value == null)
-                throw new ArgumentNullException(nameof(adjustmentReferenceId), "Property is not nullable for class EffectEntity.");
+            if (effectType.IsSet && effectType.Value == null)
+                throw new ArgumentNullException(nameof(effectType), "Property is not nullable for class EffectEntity.");
 
             return new EffectEntity(campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, effectType.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId);
         }
@@ -497,12 +485,6 @@ namespace TalonOneSdk.Model
 
             if (effectEntity.EffectType == null)
                 throw new ArgumentNullException(nameof(effectEntity.EffectType), "Property is required for class EffectEntity.");
-
-            if (effectEntity.EvaluationGroupModeOption.IsSet && effectEntity.EvaluationGroupMode == null)
-                throw new ArgumentNullException(nameof(effectEntity.EvaluationGroupMode), "Property is required for class EffectEntity.");
-
-            if (effectEntity.SelectedPriceTypeOption.IsSet && effectEntity.SelectedPriceType == null)
-                throw new ArgumentNullException(nameof(effectEntity.SelectedPriceType), "Property is required for class EffectEntity.");
 
             writer.WriteNumber("campaignId", effectEntity.CampaignId);
 

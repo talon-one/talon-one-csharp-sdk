@@ -216,18 +216,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ScimSchemaResource scimSchemaResource, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (scimSchemaResource.IdOption.IsSet && scimSchemaResource.Id == null)
-                throw new ArgumentNullException(nameof(scimSchemaResource.Id), "Property is required for class ScimSchemaResource.");
-
-            if (scimSchemaResource.NameOption.IsSet && scimSchemaResource.Name == null)
-                throw new ArgumentNullException(nameof(scimSchemaResource.Name), "Property is required for class ScimSchemaResource.");
-
-            if (scimSchemaResource.DescriptionOption.IsSet && scimSchemaResource.Description == null)
-                throw new ArgumentNullException(nameof(scimSchemaResource.Description), "Property is required for class ScimSchemaResource.");
-
-            if (scimSchemaResource.AttributesOption.IsSet && scimSchemaResource.Attributes == null)
-                throw new ArgumentNullException(nameof(scimSchemaResource.Attributes), "Property is required for class ScimSchemaResource.");
-
             if (scimSchemaResource.IdOption.IsSet)
                 writer.WriteString("id", scimSchemaResource.Id);
 

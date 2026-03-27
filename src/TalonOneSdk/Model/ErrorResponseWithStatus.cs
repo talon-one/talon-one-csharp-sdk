@@ -168,9 +168,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (statusCode.IsSet && statusCode.Value == null)
-                throw new ArgumentNullException(nameof(statusCode), "Property is not nullable for class ErrorResponseWithStatus.");
-
             return new ErrorResponseWithStatus(message, errors, statusCode);
         }
 
@@ -198,12 +195,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ErrorResponseWithStatus errorResponseWithStatus, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (errorResponseWithStatus.MessageOption.IsSet && errorResponseWithStatus.Message == null)
-                throw new ArgumentNullException(nameof(errorResponseWithStatus.Message), "Property is required for class ErrorResponseWithStatus.");
-
-            if (errorResponseWithStatus.ErrorsOption.IsSet && errorResponseWithStatus.Errors == null)
-                throw new ArgumentNullException(nameof(errorResponseWithStatus.Errors), "Property is required for class ErrorResponseWithStatus.");
-
             if (errorResponseWithStatus.MessageOption.IsSet)
                 writer.WriteString("message", errorResponseWithStatus.Message);
 

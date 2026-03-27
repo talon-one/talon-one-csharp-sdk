@@ -302,8 +302,29 @@ namespace TalonOneSdk.Model
             if (!expiryDate.IsSet)
                 throw new ArgumentException("Property is required for class LedgerEntry.", nameof(expiryDate));
 
-            if (referenceId.IsSet && referenceId.Value == null)
-                throw new ArgumentNullException(nameof(referenceId), "Property is not nullable for class LedgerEntry.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LedgerEntry.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class LedgerEntry.");
+
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class LedgerEntry.");
+
+            if (loyaltyProgramId.IsSet && loyaltyProgramId.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyProgramId), "Property is not nullable for class LedgerEntry.");
+
+            if (eventId.IsSet && eventId.Value == null)
+                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class LedgerEntry.");
+
+            if (amount.IsSet && amount.Value == null)
+                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class LedgerEntry.");
+
+            if (reason.IsSet && reason.Value == null)
+                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class LedgerEntry.");
+
+            if (expiryDate.IsSet && expiryDate.Value == null)
+                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class LedgerEntry.");
 
             return new LedgerEntry(id.Value.Value, created.Value.Value, accountId.Value.Value, loyaltyProgramId.Value.Value, eventId.Value.Value, amount.Value.Value, reason.Value, expiryDate.Value.Value, profileId, referenceId);
         }
@@ -334,9 +355,6 @@ namespace TalonOneSdk.Model
         {
             if (ledgerEntry.Reason == null)
                 throw new ArgumentNullException(nameof(ledgerEntry.Reason), "Property is required for class LedgerEntry.");
-
-            if (ledgerEntry.ProfileIdOption.IsSet && ledgerEntry.ProfileId == null)
-                throw new ArgumentNullException(nameof(ledgerEntry.ProfileId), "Property is required for class LedgerEntry.");
 
             writer.WriteNumber("id", ledgerEntry.Id);
 

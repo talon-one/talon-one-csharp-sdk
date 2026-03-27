@@ -274,14 +274,11 @@ namespace TalonOneSdk.Model
             if (!expression.IsSet)
                 throw new ArgumentException("Property is required for class Binding.", nameof(expression));
 
-            if (minValue.IsSet && minValue.Value == null)
-                throw new ArgumentNullException(nameof(minValue), "Property is not nullable for class Binding.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Binding.");
 
-            if (maxValue.IsSet && maxValue.Value == null)
-                throw new ArgumentNullException(nameof(maxValue), "Property is not nullable for class Binding.");
-
-            if (attributeId.IsSet && attributeId.Value == null)
-                throw new ArgumentNullException(nameof(attributeId), "Property is not nullable for class Binding.");
+            if (expression.IsSet && expression.Value == null)
+                throw new ArgumentNullException(nameof(expression), "Property is not nullable for class Binding.");
 
             return new Binding(name.Value, expression.Value, type, valueType, minValue, maxValue, attributeId, description);
         }
@@ -315,15 +312,6 @@ namespace TalonOneSdk.Model
 
             if (binding.Expression == null)
                 throw new ArgumentNullException(nameof(binding.Expression), "Property is required for class Binding.");
-
-            if (binding.TypeOption.IsSet && binding.Type == null)
-                throw new ArgumentNullException(nameof(binding.Type), "Property is required for class Binding.");
-
-            if (binding.ValueTypeOption.IsSet && binding.ValueType == null)
-                throw new ArgumentNullException(nameof(binding.ValueType), "Property is required for class Binding.");
-
-            if (binding.DescriptionOption.IsSet && binding.Description == null)
-                throw new ArgumentNullException(nameof(binding.Description), "Property is required for class Binding.");
 
             writer.WriteString("name", binding.Name);
 

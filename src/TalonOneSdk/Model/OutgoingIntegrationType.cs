@@ -256,6 +256,12 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class OutgoingIntegrationType.", nameof(name));
 
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class OutgoingIntegrationType.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class OutgoingIntegrationType.");
+
             return new OutgoingIntegrationType(id.Value.Value, name.Value, description, category, documentationLink);
         }
 
@@ -285,15 +291,6 @@ namespace TalonOneSdk.Model
         {
             if (outgoingIntegrationType.Name == null)
                 throw new ArgumentNullException(nameof(outgoingIntegrationType.Name), "Property is required for class OutgoingIntegrationType.");
-
-            if (outgoingIntegrationType.DescriptionOption.IsSet && outgoingIntegrationType.Description == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationType.Description), "Property is required for class OutgoingIntegrationType.");
-
-            if (outgoingIntegrationType.CategoryOption.IsSet && outgoingIntegrationType.Category == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationType.Category), "Property is required for class OutgoingIntegrationType.");
-
-            if (outgoingIntegrationType.DocumentationLinkOption.IsSet && outgoingIntegrationType.DocumentationLink == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationType.DocumentationLink), "Property is required for class OutgoingIntegrationType.");
 
             writer.WriteNumber("id", outgoingIntegrationType.Id);
 

@@ -184,7 +184,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The policy that defines when the customer joins the loyalty program.   - &#x60;not_join&#x60;: The customer does not join the loyalty program but can still earn and spend loyalty points.       **Note**: The customer does not have a program join date.   - &#x60;points_activated&#x60;: The customer joins the loyalty program only when their earned loyalty points become active for the first time.   - &#x60;points_earned&#x60;: The customer joins the loyalty program when they earn loyalty points for the first time. </value>
         [JsonPropertyName("programJoinPolicy")]
-        public ProgramJoinPolicyEnum? ProgramJoinPolicy { get { return this.ProgramJoinPolicyOption; } set { this.ProgramJoinPolicyOption = new Option<ProgramJoinPolicyEnum?>(value); } }
+        public ProgramJoinPolicyEnum? ProgramJoinPolicy { get { return this.ProgramJoinPolicyOption.Value; } set { this.ProgramJoinPolicyOption = new Option<ProgramJoinPolicyEnum?>(value); } }
 
         /// <summary>
         /// The policy that defines how tier expiration, used to reevaluate the customer&#39;s current tier, is determined.  - &#x60;tier_start_date&#x60;: The tier expiration is relative to when the customer joined the current tier.  - &#x60;program_join_date&#x60;: The tier expiration is relative to when the customer joined the loyalty program.  - &#x60;customer_attribute&#x60;: The tier expiration is determined by a custom customer attribute.  - &#x60;absolute_expiration&#x60;: The tier is reevaluated at the start of each tier cycle. For this policy, it is required to provide a &#x60;tierCycleStartDate&#x60;. 
@@ -293,7 +293,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The policy that defines how tier expiration, used to reevaluate the customer&#39;s current tier, is determined.  - &#x60;tier_start_date&#x60;: The tier expiration is relative to when the customer joined the current tier.  - &#x60;program_join_date&#x60;: The tier expiration is relative to when the customer joined the loyalty program.  - &#x60;customer_attribute&#x60;: The tier expiration is determined by a custom customer attribute.  - &#x60;absolute_expiration&#x60;: The tier is reevaluated at the start of each tier cycle. For this policy, it is required to provide a &#x60;tierCycleStartDate&#x60;. </value>
         [JsonPropertyName("tiersExpirationPolicy")]
-        public TiersExpirationPolicyEnum? TiersExpirationPolicy { get { return this.TiersExpirationPolicyOption; } set { this.TiersExpirationPolicyOption = new Option<TiersExpirationPolicyEnum?>(value); } }
+        public TiersExpirationPolicyEnum? TiersExpirationPolicy { get { return this.TiersExpirationPolicyOption.Value; } set { this.TiersExpirationPolicyOption = new Option<TiersExpirationPolicyEnum?>(value); } }
 
         /// <summary>
         /// The policy that defines how customer tiers are downgraded in the loyalty program after tier reevaluation.  - &#x60;one_down&#x60;: If the customer doesn&#39;t have enough points to stay in the current tier, they are downgraded by one tier.  - &#x60;balance_based&#x60;: The customer&#39;s tier is reevaluated based on the amount of active points they have at the moment. 
@@ -374,7 +374,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The policy that defines how customer tiers are downgraded in the loyalty program after tier reevaluation.  - &#x60;one_down&#x60;: If the customer doesn&#39;t have enough points to stay in the current tier, they are downgraded by one tier.  - &#x60;balance_based&#x60;: The customer&#39;s tier is reevaluated based on the amount of active points they have at the moment. </value>
         [JsonPropertyName("tiersDowngradePolicy")]
-        public TiersDowngradePolicyEnum? TiersDowngradePolicy { get { return this.TiersDowngradePolicyOption; } set { this.TiersDowngradePolicyOption = new Option<TiersDowngradePolicyEnum?>(value); } }
+        public TiersDowngradePolicyEnum? TiersDowngradePolicy { get { return this.TiersDowngradePolicyOption.Value; } set { this.TiersDowngradePolicyOption = new Option<TiersDowngradePolicyEnum?>(value); } }
 
         /// <summary>
         /// The policy that defines the rollback of points in case of a partially returned, cancelled, or reopened [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). - &#x60;only_pending&#x60;: Only pending points can be rolled back. - &#x60;within_balance&#x60;: Available active points can be rolled back if there aren&#39;t enough pending points. The active balance of the customer cannot be negative. - &#x60;unlimited&#x60;: Allows negative balance without any limit. 
@@ -469,7 +469,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The policy that defines the rollback of points in case of a partially returned, cancelled, or reopened [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). - &#x60;only_pending&#x60;: Only pending points can be rolled back. - &#x60;within_balance&#x60;: Available active points can be rolled back if there aren&#39;t enough pending points. The active balance of the customer cannot be negative. - &#x60;unlimited&#x60;: Allows negative balance without any limit. </value>
         [JsonPropertyName("returnPolicy")]
-        public ReturnPolicyEnum? ReturnPolicy { get { return this.ReturnPolicyOption; } set { this.ReturnPolicyOption = new Option<ReturnPolicyEnum?>(value); } }
+        public ReturnPolicyEnum? ReturnPolicy { get { return this.ReturnPolicyOption.Value; } set { this.ReturnPolicyOption = new Option<ReturnPolicyEnum?>(value); } }
 
         /// <summary>
         /// The ID of loyalty program.
@@ -1002,41 +1002,23 @@ namespace TalonOneSdk.Model
             if (!cardBased.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyProgram.", nameof(cardBased));
 
-            if (allowSubledger.IsSet && allowSubledger.Value == null)
-                throw new ArgumentNullException(nameof(allowSubledger), "Property is not nullable for class LoyaltyProgram.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LoyaltyProgram.");
 
-            if (usersPerCardLimit.IsSet && usersPerCardLimit.Value == null)
-                throw new ArgumentNullException(nameof(usersPerCardLimit), "Property is not nullable for class LoyaltyProgram.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class LoyaltyProgram.");
 
-            if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class LoyaltyProgram.");
+            if (accountID.IsSet && accountID.Value == null)
+                throw new ArgumentNullException(nameof(accountID), "Property is not nullable for class LoyaltyProgram.");
 
-            if (programJoinPolicy.IsSet && programJoinPolicy.Value == null)
-                throw new ArgumentNullException(nameof(programJoinPolicy), "Property is not nullable for class LoyaltyProgram.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class LoyaltyProgram.");
 
-            if (tiersExpirationPolicy.IsSet && tiersExpirationPolicy.Value == null)
-                throw new ArgumentNullException(nameof(tiersExpirationPolicy), "Property is not nullable for class LoyaltyProgram.");
+            if (timezone.IsSet && timezone.Value == null)
+                throw new ArgumentNullException(nameof(timezone), "Property is not nullable for class LoyaltyProgram.");
 
-            if (tierCycleStartDate.IsSet && tierCycleStartDate.Value == null)
-                throw new ArgumentNullException(nameof(tierCycleStartDate), "Property is not nullable for class LoyaltyProgram.");
-
-            if (tiersDowngradePolicy.IsSet && tiersDowngradePolicy.Value == null)
-                throw new ArgumentNullException(nameof(tiersDowngradePolicy), "Property is not nullable for class LoyaltyProgram.");
-
-            if (returnPolicy.IsSet && returnPolicy.Value == null)
-                throw new ArgumentNullException(nameof(returnPolicy), "Property is not nullable for class LoyaltyProgram.");
-
-            if (canUpdateTiers.IsSet && canUpdateTiers.Value == null)
-                throw new ArgumentNullException(nameof(canUpdateTiers), "Property is not nullable for class LoyaltyProgram.");
-
-            if (canUpdateTierExpirationPolicy.IsSet && canUpdateTierExpirationPolicy.Value == null)
-                throw new ArgumentNullException(nameof(canUpdateTierExpirationPolicy), "Property is not nullable for class LoyaltyProgram.");
-
-            if (canUpgradeToAdvancedTiers.IsSet && canUpgradeToAdvancedTiers.Value == null)
-                throw new ArgumentNullException(nameof(canUpgradeToAdvancedTiers), "Property is not nullable for class LoyaltyProgram.");
-
-            if (canUpdateSubledgers.IsSet && canUpdateSubledgers.Value == null)
-                throw new ArgumentNullException(nameof(canUpdateSubledgers), "Property is not nullable for class LoyaltyProgram.");
+            if (cardBased.IsSet && cardBased.Value == null)
+                throw new ArgumentNullException(nameof(cardBased), "Property is not nullable for class LoyaltyProgram.");
 
             return new LoyaltyProgram(id.Value.Value, created.Value.Value, accountID.Value.Value, name.Value, timezone.Value, title, description, subscribedApplications, defaultValidity, defaultPending, allowSubledger, usersPerCardLimit, sandbox, programJoinPolicy, tiersExpirationPolicy, tierCycleStartDate, tiersExpireIn, tiersDowngradePolicy, cardCodeSettings, returnPolicy, tiers, cardBased.Value.Value, canUpdateTiers, canUpdateTierExpirationPolicy, canUpgradeToAdvancedTiers, canUpdateSubledgers);
         }
@@ -1070,30 +1052,6 @@ namespace TalonOneSdk.Model
 
             if (loyaltyProgram.Timezone == null)
                 throw new ArgumentNullException(nameof(loyaltyProgram.Timezone), "Property is required for class LoyaltyProgram.");
-
-            if (loyaltyProgram.TitleOption.IsSet && loyaltyProgram.Title == null)
-                throw new ArgumentNullException(nameof(loyaltyProgram.Title), "Property is required for class LoyaltyProgram.");
-
-            if (loyaltyProgram.DescriptionOption.IsSet && loyaltyProgram.Description == null)
-                throw new ArgumentNullException(nameof(loyaltyProgram.Description), "Property is required for class LoyaltyProgram.");
-
-            if (loyaltyProgram.SubscribedApplicationsOption.IsSet && loyaltyProgram.SubscribedApplications == null)
-                throw new ArgumentNullException(nameof(loyaltyProgram.SubscribedApplications), "Property is required for class LoyaltyProgram.");
-
-            if (loyaltyProgram.DefaultValidityOption.IsSet && loyaltyProgram.DefaultValidity == null)
-                throw new ArgumentNullException(nameof(loyaltyProgram.DefaultValidity), "Property is required for class LoyaltyProgram.");
-
-            if (loyaltyProgram.DefaultPendingOption.IsSet && loyaltyProgram.DefaultPending == null)
-                throw new ArgumentNullException(nameof(loyaltyProgram.DefaultPending), "Property is required for class LoyaltyProgram.");
-
-            if (loyaltyProgram.TiersExpireInOption.IsSet && loyaltyProgram.TiersExpireIn == null)
-                throw new ArgumentNullException(nameof(loyaltyProgram.TiersExpireIn), "Property is required for class LoyaltyProgram.");
-
-            if (loyaltyProgram.CardCodeSettingsOption.IsSet && loyaltyProgram.CardCodeSettings == null)
-                throw new ArgumentNullException(nameof(loyaltyProgram.CardCodeSettings), "Property is required for class LoyaltyProgram.");
-
-            if (loyaltyProgram.TiersOption.IsSet && loyaltyProgram.Tiers == null)
-                throw new ArgumentNullException(nameof(loyaltyProgram.Tiers), "Property is required for class LoyaltyProgram.");
 
             writer.WriteNumber("id", loyaltyProgram.Id);
 

@@ -334,6 +334,24 @@ namespace TalonOneSdk.Model
             if (!totalNegativePoints.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltySubLedger.", nameof(totalNegativePoints));
 
+            if (total.IsSet && total.Value == null)
+                throw new ArgumentNullException(nameof(total), "Property is not nullable for class LoyaltySubLedger.");
+
+            if (totalActivePoints.IsSet && totalActivePoints.Value == null)
+                throw new ArgumentNullException(nameof(totalActivePoints), "Property is not nullable for class LoyaltySubLedger.");
+
+            if (totalPendingPoints.IsSet && totalPendingPoints.Value == null)
+                throw new ArgumentNullException(nameof(totalPendingPoints), "Property is not nullable for class LoyaltySubLedger.");
+
+            if (totalSpentPoints.IsSet && totalSpentPoints.Value == null)
+                throw new ArgumentNullException(nameof(totalSpentPoints), "Property is not nullable for class LoyaltySubLedger.");
+
+            if (totalExpiredPoints.IsSet && totalExpiredPoints.Value == null)
+                throw new ArgumentNullException(nameof(totalExpiredPoints), "Property is not nullable for class LoyaltySubLedger.");
+
+            if (totalNegativePoints.IsSet && totalNegativePoints.Value == null)
+                throw new ArgumentNullException(nameof(totalNegativePoints), "Property is not nullable for class LoyaltySubLedger.");
+
             return new LoyaltySubLedger(total.Value.Value, totalActivePoints.Value.Value, totalPendingPoints.Value.Value, totalSpentPoints.Value.Value, totalExpiredPoints.Value.Value, totalNegativePoints.Value.Value, transactions, expiringPoints, activePoints, pendingPoints, expiredPoints, currentTier);
         }
 
@@ -361,24 +379,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltySubLedger loyaltySubLedger, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (loyaltySubLedger.TransactionsOption.IsSet && loyaltySubLedger.Transactions == null)
-                throw new ArgumentNullException(nameof(loyaltySubLedger.Transactions), "Property is required for class LoyaltySubLedger.");
-
-            if (loyaltySubLedger.ExpiringPointsOption.IsSet && loyaltySubLedger.ExpiringPoints == null)
-                throw new ArgumentNullException(nameof(loyaltySubLedger.ExpiringPoints), "Property is required for class LoyaltySubLedger.");
-
-            if (loyaltySubLedger.ActivePointsOption.IsSet && loyaltySubLedger.ActivePoints == null)
-                throw new ArgumentNullException(nameof(loyaltySubLedger.ActivePoints), "Property is required for class LoyaltySubLedger.");
-
-            if (loyaltySubLedger.PendingPointsOption.IsSet && loyaltySubLedger.PendingPoints == null)
-                throw new ArgumentNullException(nameof(loyaltySubLedger.PendingPoints), "Property is required for class LoyaltySubLedger.");
-
-            if (loyaltySubLedger.ExpiredPointsOption.IsSet && loyaltySubLedger.ExpiredPoints == null)
-                throw new ArgumentNullException(nameof(loyaltySubLedger.ExpiredPoints), "Property is required for class LoyaltySubLedger.");
-
-            if (loyaltySubLedger.CurrentTierOption.IsSet && loyaltySubLedger.CurrentTier == null)
-                throw new ArgumentNullException(nameof(loyaltySubLedger.CurrentTier), "Property is required for class LoyaltySubLedger.");
-
             writer.WriteNumber("total", loyaltySubLedger.Total);
 
             writer.WriteNumber("totalActivePoints", loyaltySubLedger.TotalActivePoints);

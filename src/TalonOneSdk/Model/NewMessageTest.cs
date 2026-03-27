@@ -364,8 +364,11 @@ namespace TalonOneSdk.Model
             if (!url.IsSet)
                 throw new ArgumentException("Property is required for class NewMessageTest.", nameof(url));
 
-            if (authenticationId.IsSet && authenticationId.Value == null)
-                throw new ArgumentNullException(nameof(authenticationId), "Property is not nullable for class NewMessageTest.");
+            if (verb.IsSet && verb.Value == null)
+                throw new ArgumentNullException(nameof(verb), "Property is not nullable for class NewMessageTest.");
+
+            if (url.IsSet && url.Value == null)
+                throw new ArgumentNullException(nameof(url), "Property is not nullable for class NewMessageTest.");
 
             return new NewMessageTest(verb.Value.Value, url.Value, headers, payload, varParams, applicationIds, authenticationId);
         }
@@ -396,18 +399,6 @@ namespace TalonOneSdk.Model
         {
             if (newMessageTest.Url == null)
                 throw new ArgumentNullException(nameof(newMessageTest.Url), "Property is required for class NewMessageTest.");
-
-            if (newMessageTest.HeadersOption.IsSet && newMessageTest.Headers == null)
-                throw new ArgumentNullException(nameof(newMessageTest.Headers), "Property is required for class NewMessageTest.");
-
-            if (newMessageTest.PayloadOption.IsSet && newMessageTest.Payload == null)
-                throw new ArgumentNullException(nameof(newMessageTest.Payload), "Property is required for class NewMessageTest.");
-
-            if (newMessageTest.ParamsOption.IsSet && newMessageTest.Params == null)
-                throw new ArgumentNullException(nameof(newMessageTest.Params), "Property is required for class NewMessageTest.");
-
-            if (newMessageTest.ApplicationIdsOption.IsSet && newMessageTest.ApplicationIds == null)
-                throw new ArgumentNullException(nameof(newMessageTest.ApplicationIds), "Property is required for class NewMessageTest.");
 
             var verbRawValue = NewMessageTest.VerbEnumToJsonValue(newMessageTest.Verb);
             writer.WriteString("verb", verbRawValue);

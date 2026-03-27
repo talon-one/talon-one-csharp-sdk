@@ -178,6 +178,18 @@ namespace TalonOneSdk.Model
             if (!dataApiKey.IsSet)
                 throw new ArgumentException("Property is required for class OutgoingIntegrationMoEngagePolicy.", nameof(dataApiKey));
 
+            if (baseUrl.IsSet && baseUrl.Value == null)
+                throw new ArgumentNullException(nameof(baseUrl), "Property is not nullable for class OutgoingIntegrationMoEngagePolicy.");
+
+            if (appId.IsSet && appId.Value == null)
+                throw new ArgumentNullException(nameof(appId), "Property is not nullable for class OutgoingIntegrationMoEngagePolicy.");
+
+            if (dataApiId.IsSet && dataApiId.Value == null)
+                throw new ArgumentNullException(nameof(dataApiId), "Property is not nullable for class OutgoingIntegrationMoEngagePolicy.");
+
+            if (dataApiKey.IsSet && dataApiKey.Value == null)
+                throw new ArgumentNullException(nameof(dataApiKey), "Property is not nullable for class OutgoingIntegrationMoEngagePolicy.");
+
             return new OutgoingIntegrationMoEngagePolicy(baseUrl.Value, appId.Value, dataApiId.Value, dataApiKey.Value);
         }
 

@@ -168,6 +168,9 @@ namespace TalonOneSdk.Model
             if (!email.IsSet)
                 throw new ArgumentException("Property is required for class NewExternalInvitation.", nameof(email));
 
+            if (email.IsSet && email.Value == null)
+                throw new ArgumentNullException(nameof(email), "Property is not nullable for class NewExternalInvitation.");
+
             return new NewExternalInvitation(email.Value, name, userGroups);
         }
 
@@ -197,12 +200,6 @@ namespace TalonOneSdk.Model
         {
             if (newExternalInvitation.Email == null)
                 throw new ArgumentNullException(nameof(newExternalInvitation.Email), "Property is required for class NewExternalInvitation.");
-
-            if (newExternalInvitation.NameOption.IsSet && newExternalInvitation.Name == null)
-                throw new ArgumentNullException(nameof(newExternalInvitation.Name), "Property is required for class NewExternalInvitation.");
-
-            if (newExternalInvitation.UserGroupsOption.IsSet && newExternalInvitation.UserGroups == null)
-                throw new ArgumentNullException(nameof(newExternalInvitation.UserGroups), "Property is required for class NewExternalInvitation.");
 
             writer.WriteString("email", newExternalInvitation.Email);
 

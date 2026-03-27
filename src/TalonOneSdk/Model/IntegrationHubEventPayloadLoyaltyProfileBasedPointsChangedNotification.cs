@@ -268,8 +268,23 @@ namespace TalonOneSdk.Model
             if (!publishedAt.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(publishedAt));
 
-            if (userID.IsSet && userID.Value == null)
-                throw new ArgumentNullException(nameof(userID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+            if (profileIntegrationID.IsSet && profileIntegrationID.Value == null)
+                throw new ArgumentNullException(nameof(profileIntegrationID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+
+            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+
+            if (subledgerID.IsSet && subledgerID.Value == null)
+                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+
+            if (sourceOfEvent.IsSet && sourceOfEvent.Value == null)
+                throw new ArgumentNullException(nameof(sourceOfEvent), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+
+            if (currentPoints.IsSet && currentPoints.Value == null)
+                throw new ArgumentNullException(nameof(currentPoints), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+
+            if (publishedAt.IsSet && publishedAt.Value == null)
+                throw new ArgumentNullException(nameof(publishedAt), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
 
             return new IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(profileIntegrationID.Value, loyaltyProgramID.Value.Value, subledgerID.Value, sourceOfEvent.Value, currentPoints.Value.Value, publishedAt.Value.Value, employeeName, userID, actions);
         }
@@ -306,12 +321,6 @@ namespace TalonOneSdk.Model
 
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SourceOfEvent == null)
                 throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SourceOfEvent), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
-
-            if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.EmployeeNameOption.IsSet && integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.EmployeeName == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.EmployeeName), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
-
-            if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.ActionsOption.IsSet && integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.Actions == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.Actions), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
 
             writer.WriteString("ProfileIntegrationID", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.ProfileIntegrationID);
 

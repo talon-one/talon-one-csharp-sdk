@@ -141,6 +141,12 @@ namespace TalonOneSdk.Model
             if (!adjustments.IsSet)
                 throw new ArgumentException("Property is required for class AddPriceAdjustmentCatalogAction.", nameof(adjustments));
 
+            if (sku.IsSet && sku.Value == null)
+                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class AddPriceAdjustmentCatalogAction.");
+
+            if (adjustments.IsSet && adjustments.Value == null)
+                throw new ArgumentNullException(nameof(adjustments), "Property is not nullable for class AddPriceAdjustmentCatalogAction.");
+
             return new AddPriceAdjustmentCatalogAction(sku.Value, adjustments.Value);
         }
 

@@ -181,12 +181,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ActivateLoyaltyPoints activateLoyaltyPoints, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (activateLoyaltyPoints.TransactionUUIDsOption.IsSet && activateLoyaltyPoints.TransactionUUIDs == null)
-                throw new ArgumentNullException(nameof(activateLoyaltyPoints.TransactionUUIDs), "Property is required for class ActivateLoyaltyPoints.");
-
-            if (activateLoyaltyPoints.SessionIdOption.IsSet && activateLoyaltyPoints.SessionId == null)
-                throw new ArgumentNullException(nameof(activateLoyaltyPoints.SessionId), "Property is required for class ActivateLoyaltyPoints.");
-
             if (activateLoyaltyPoints.TransactionUUIDsOption.IsSet)
             {
                 writer.WritePropertyName("transactionUUIDs");

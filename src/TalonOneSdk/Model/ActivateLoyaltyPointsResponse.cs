@@ -154,9 +154,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ActivateLoyaltyPointsResponse activateLoyaltyPointsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (activateLoyaltyPointsResponse.LedgerEntriesOption.IsSet && activateLoyaltyPointsResponse.LedgerEntries == null)
-                throw new ArgumentNullException(nameof(activateLoyaltyPointsResponse.LedgerEntries), "Property is required for class ActivateLoyaltyPointsResponse.");
-
             if (activateLoyaltyPointsResponse.LedgerEntriesOption.IsSet)
             {
                 writer.WritePropertyName("ledgerEntries");

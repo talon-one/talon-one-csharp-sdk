@@ -164,6 +164,12 @@ namespace TalonOneSdk.Model
             if (!couponPattern.IsSet)
                 throw new ArgumentException("Property is required for class CodeGeneratorSettings.", nameof(couponPattern));
 
+            if (validCharacters.IsSet && validCharacters.Value == null)
+                throw new ArgumentNullException(nameof(validCharacters), "Property is not nullable for class CodeGeneratorSettings.");
+
+            if (couponPattern.IsSet && couponPattern.Value == null)
+                throw new ArgumentNullException(nameof(couponPattern), "Property is not nullable for class CodeGeneratorSettings.");
+
             return new CodeGeneratorSettings(validCharacters.Value, couponPattern.Value);
         }
 

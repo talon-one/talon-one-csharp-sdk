@@ -327,6 +327,33 @@ namespace TalonOneSdk.Model
             if (!assertionConsumerServiceURL.IsSet)
                 throw new ArgumentException("Property is required for class SamlConnection.", nameof(assertionConsumerServiceURL));
 
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class SamlConnection.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SamlConnection.");
+
+            if (enabled.IsSet && enabled.Value == null)
+                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class SamlConnection.");
+
+            if (issuer.IsSet && issuer.Value == null)
+                throw new ArgumentNullException(nameof(issuer), "Property is not nullable for class SamlConnection.");
+
+            if (signOnURL.IsSet && signOnURL.Value == null)
+                throw new ArgumentNullException(nameof(signOnURL), "Property is not nullable for class SamlConnection.");
+
+            if (audienceURI.IsSet && audienceURI.Value == null)
+                throw new ArgumentNullException(nameof(audienceURI), "Property is not nullable for class SamlConnection.");
+
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class SamlConnection.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class SamlConnection.");
+
+            if (assertionConsumerServiceURL.IsSet && assertionConsumerServiceURL.Value == null)
+                throw new ArgumentNullException(nameof(assertionConsumerServiceURL), "Property is not nullable for class SamlConnection.");
+
             return new SamlConnection(accountId.Value.Value, name.Value, enabled.Value.Value, issuer.Value, signOnURL.Value, audienceURI.Value, id.Value.Value, created.Value.Value, assertionConsumerServiceURL.Value, signOutURL, metadataURL);
         }
 
@@ -368,12 +395,6 @@ namespace TalonOneSdk.Model
 
             if (samlConnection.AssertionConsumerServiceURL == null)
                 throw new ArgumentNullException(nameof(samlConnection.AssertionConsumerServiceURL), "Property is required for class SamlConnection.");
-
-            if (samlConnection.SignOutURLOption.IsSet && samlConnection.SignOutURL == null)
-                throw new ArgumentNullException(nameof(samlConnection.SignOutURL), "Property is required for class SamlConnection.");
-
-            if (samlConnection.MetadataURLOption.IsSet && samlConnection.MetadataURL == null)
-                throw new ArgumentNullException(nameof(samlConnection.MetadataURL), "Property is required for class SamlConnection.");
 
             writer.WriteNumber("accountId", samlConnection.AccountId);
 

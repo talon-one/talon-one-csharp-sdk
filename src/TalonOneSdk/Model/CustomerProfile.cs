@@ -334,8 +334,26 @@ namespace TalonOneSdk.Model
             if (!lastActivity.IsSet)
                 throw new ArgumentException("Property is required for class CustomerProfile.", nameof(lastActivity));
 
-            if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class CustomerProfile.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CustomerProfile.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CustomerProfile.");
+
+            if (integrationId.IsSet && integrationId.Value == null)
+                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class CustomerProfile.");
+
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class CustomerProfile.");
+
+            if (closedSessions.IsSet && closedSessions.Value == null)
+                throw new ArgumentNullException(nameof(closedSessions), "Property is not nullable for class CustomerProfile.");
+
+            if (totalSales.IsSet && totalSales.Value == null)
+                throw new ArgumentNullException(nameof(totalSales), "Property is not nullable for class CustomerProfile.");
+
+            if (lastActivity.IsSet && lastActivity.Value == null)
+                throw new ArgumentNullException(nameof(lastActivity), "Property is not nullable for class CustomerProfile.");
 
             return new CustomerProfile(id.Value.Value, created.Value.Value, integrationId.Value, accountId.Value.Value, closedSessions.Value.Value, totalSales.Value.Value, lastActivity.Value.Value, attributes, loyaltyMemberships, audienceMemberships, sandbox);
         }
@@ -366,15 +384,6 @@ namespace TalonOneSdk.Model
         {
             if (customerProfile.IntegrationId == null)
                 throw new ArgumentNullException(nameof(customerProfile.IntegrationId), "Property is required for class CustomerProfile.");
-
-            if (customerProfile.AttributesOption.IsSet && customerProfile.Attributes == null)
-                throw new ArgumentNullException(nameof(customerProfile.Attributes), "Property is required for class CustomerProfile.");
-
-            if (customerProfile.LoyaltyMembershipsOption.IsSet && customerProfile.LoyaltyMemberships == null)
-                throw new ArgumentNullException(nameof(customerProfile.LoyaltyMemberships), "Property is required for class CustomerProfile.");
-
-            if (customerProfile.AudienceMembershipsOption.IsSet && customerProfile.AudienceMemberships == null)
-                throw new ArgumentNullException(nameof(customerProfile.AudienceMemberships), "Property is required for class CustomerProfile.");
 
             writer.WriteNumber("id", customerProfile.Id);
 

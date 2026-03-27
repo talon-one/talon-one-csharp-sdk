@@ -16,7 +16,6 @@ Name | Type | Description | Notes
 **Limits** | [**List&lt;LimitConfig&gt;**](LimitConfig.md) | The set of limits that will operate for this campaign version. | [optional] 
 **ReevaluateOnReturn** | **bool** | Indicates whether this campaign should be reevaluated when a customer returns an item. | [optional] 
 **Features** | **List&lt;NewRevisionVersion.FeaturesEnum&gt;** | A list of features for the campaign. | [optional] 
-**CouponAttributes** | **Object** | Arbitrary properties associated with coupons in this campaign. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

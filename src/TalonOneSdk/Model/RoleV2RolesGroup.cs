@@ -220,18 +220,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RoleV2RolesGroup roleV2RolesGroup, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (roleV2RolesGroup.ApplicationsOption.IsSet && roleV2RolesGroup.Applications == null)
-                throw new ArgumentNullException(nameof(roleV2RolesGroup.Applications), "Property is required for class RoleV2RolesGroup.");
-
-            if (roleV2RolesGroup.LoyaltyProgramsOption.IsSet && roleV2RolesGroup.LoyaltyPrograms == null)
-                throw new ArgumentNullException(nameof(roleV2RolesGroup.LoyaltyPrograms), "Property is required for class RoleV2RolesGroup.");
-
-            if (roleV2RolesGroup.CampaignAccessGroupsOption.IsSet && roleV2RolesGroup.CampaignAccessGroups == null)
-                throw new ArgumentNullException(nameof(roleV2RolesGroup.CampaignAccessGroups), "Property is required for class RoleV2RolesGroup.");
-
-            if (roleV2RolesGroup.AccountOption.IsSet && roleV2RolesGroup.Account == null)
-                throw new ArgumentNullException(nameof(roleV2RolesGroup.Account), "Property is required for class RoleV2RolesGroup.");
-
             if (roleV2RolesGroup.ApplicationsOption.IsSet)
             {
                 writer.WritePropertyName("applications");

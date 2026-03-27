@@ -462,7 +462,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The name of the entity of the attribute.</value>
         [JsonPropertyName("entity")]
-        public EntityEnum? Entity { get { return this.EntityOption; } set { this.EntityOption = new Option<EntityEnum?>(value); } }
+        public EntityEnum? Entity { get { return this.EntityOption.Value; } set { this.EntityOption = new Option<EntityEnum?>(value); } }
 
         /// <summary>
         /// The attribute name that will be used in API requests and Talang. E.g. if &#x60;name &#x3D;&#x3D; \&quot;region\&quot;&#x60; then you would set the region attribute by including an &#x60;attributes.region&#x60; property in your request payload. 
@@ -665,8 +665,20 @@ namespace TalonOneSdk.Model
             if (!visible.IsSet)
                 throw new ArgumentException("Property is required for class TalangAttribute.", nameof(visible));
 
-            if (entity.IsSet && entity.Value == null)
-                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class TalangAttribute.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class TalangAttribute.");
+
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class TalangAttribute.");
+
+            if (kind.IsSet && kind.Value == null)
+                throw new ArgumentNullException(nameof(kind), "Property is not nullable for class TalangAttribute.");
+
+            if (campaignsCount.IsSet && campaignsCount.Value == null)
+                throw new ArgumentNullException(nameof(campaignsCount), "Property is not nullable for class TalangAttribute.");
+
+            if (visible.IsSet && visible.Value == null)
+                throw new ArgumentNullException(nameof(visible), "Property is not nullable for class TalangAttribute.");
 
             return new TalangAttribute(name.Value, type.Value, kind.Value.Value, campaignsCount.Value.Value, entity, title, description, visible.Value.Value, exampleValue);
         }
@@ -700,15 +712,6 @@ namespace TalonOneSdk.Model
 
             if (talangAttribute.Type == null)
                 throw new ArgumentNullException(nameof(talangAttribute.Type), "Property is required for class TalangAttribute.");
-
-            if (talangAttribute.TitleOption.IsSet && talangAttribute.Title == null)
-                throw new ArgumentNullException(nameof(talangAttribute.Title), "Property is required for class TalangAttribute.");
-
-            if (talangAttribute.DescriptionOption.IsSet && talangAttribute.Description == null)
-                throw new ArgumentNullException(nameof(talangAttribute.Description), "Property is required for class TalangAttribute.");
-
-            if (talangAttribute.ExampleValueOption.IsSet && talangAttribute.ExampleValue == null)
-                throw new ArgumentNullException(nameof(talangAttribute.ExampleValue), "Property is required for class TalangAttribute.");
 
             writer.WriteString("name", talangAttribute.Name);
 

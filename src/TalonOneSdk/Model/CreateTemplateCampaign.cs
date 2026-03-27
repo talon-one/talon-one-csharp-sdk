@@ -321,8 +321,11 @@ namespace TalonOneSdk.Model
             if (!templateId.IsSet)
                 throw new ArgumentException("Property is required for class CreateTemplateCampaign.", nameof(templateId));
 
-            if (evaluationGroupId.IsSet && evaluationGroupId.Value == null)
-                throw new ArgumentNullException(nameof(evaluationGroupId), "Property is not nullable for class CreateTemplateCampaign.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CreateTemplateCampaign.");
+
+            if (templateId.IsSet && templateId.Value == null)
+                throw new ArgumentNullException(nameof(templateId), "Property is not nullable for class CreateTemplateCampaign.");
 
             return new CreateTemplateCampaign(name.Value, templateId.Value.Value, description, campaignAttributesOverrides, templateParamValues, limitOverrides, campaignGroups, tags, evaluationGroupId, linkedStoreIds);
         }
@@ -353,27 +356,6 @@ namespace TalonOneSdk.Model
         {
             if (createTemplateCampaign.Name == null)
                 throw new ArgumentNullException(nameof(createTemplateCampaign.Name), "Property is required for class CreateTemplateCampaign.");
-
-            if (createTemplateCampaign.DescriptionOption.IsSet && createTemplateCampaign.Description == null)
-                throw new ArgumentNullException(nameof(createTemplateCampaign.Description), "Property is required for class CreateTemplateCampaign.");
-
-            if (createTemplateCampaign.CampaignAttributesOverridesOption.IsSet && createTemplateCampaign.CampaignAttributesOverrides == null)
-                throw new ArgumentNullException(nameof(createTemplateCampaign.CampaignAttributesOverrides), "Property is required for class CreateTemplateCampaign.");
-
-            if (createTemplateCampaign.TemplateParamValuesOption.IsSet && createTemplateCampaign.TemplateParamValues == null)
-                throw new ArgumentNullException(nameof(createTemplateCampaign.TemplateParamValues), "Property is required for class CreateTemplateCampaign.");
-
-            if (createTemplateCampaign.LimitOverridesOption.IsSet && createTemplateCampaign.LimitOverrides == null)
-                throw new ArgumentNullException(nameof(createTemplateCampaign.LimitOverrides), "Property is required for class CreateTemplateCampaign.");
-
-            if (createTemplateCampaign.CampaignGroupsOption.IsSet && createTemplateCampaign.CampaignGroups == null)
-                throw new ArgumentNullException(nameof(createTemplateCampaign.CampaignGroups), "Property is required for class CreateTemplateCampaign.");
-
-            if (createTemplateCampaign.TagsOption.IsSet && createTemplateCampaign.Tags == null)
-                throw new ArgumentNullException(nameof(createTemplateCampaign.Tags), "Property is required for class CreateTemplateCampaign.");
-
-            if (createTemplateCampaign.LinkedStoreIdsOption.IsSet && createTemplateCampaign.LinkedStoreIds == null)
-                throw new ArgumentNullException(nameof(createTemplateCampaign.LinkedStoreIds), "Property is required for class CreateTemplateCampaign.");
 
             writer.WriteString("name", createTemplateCampaign.Name);
 

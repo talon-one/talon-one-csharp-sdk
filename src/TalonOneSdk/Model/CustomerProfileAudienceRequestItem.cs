@@ -235,6 +235,15 @@ namespace TalonOneSdk.Model
             if (!audienceId.IsSet)
                 throw new ArgumentException("Property is required for class CustomerProfileAudienceRequestItem.", nameof(audienceId));
 
+            if (action.IsSet && action.Value == null)
+                throw new ArgumentNullException(nameof(action), "Property is not nullable for class CustomerProfileAudienceRequestItem.");
+
+            if (profileIntegrationId.IsSet && profileIntegrationId.Value == null)
+                throw new ArgumentNullException(nameof(profileIntegrationId), "Property is not nullable for class CustomerProfileAudienceRequestItem.");
+
+            if (audienceId.IsSet && audienceId.Value == null)
+                throw new ArgumentNullException(nameof(audienceId), "Property is not nullable for class CustomerProfileAudienceRequestItem.");
+
             return new CustomerProfileAudienceRequestItem(action.Value.Value, profileIntegrationId.Value, audienceId.Value.Value);
         }
 

@@ -363,18 +363,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (customerProfileIntegrationRequestV2.AttributesOption.IsSet && customerProfileIntegrationRequestV2.Attributes == null)
-                throw new ArgumentNullException(nameof(customerProfileIntegrationRequestV2.Attributes), "Property is required for class CustomerProfileIntegrationRequestV2.");
-
-            if (customerProfileIntegrationRequestV2.EvaluableCampaignIdsOption.IsSet && customerProfileIntegrationRequestV2.EvaluableCampaignIds == null)
-                throw new ArgumentNullException(nameof(customerProfileIntegrationRequestV2.EvaluableCampaignIds), "Property is required for class CustomerProfileIntegrationRequestV2.");
-
-            if (customerProfileIntegrationRequestV2.ResponseContentOption.IsSet && customerProfileIntegrationRequestV2.ResponseContent == null)
-                throw new ArgumentNullException(nameof(customerProfileIntegrationRequestV2.ResponseContent), "Property is required for class CustomerProfileIntegrationRequestV2.");
-
-            if (customerProfileIntegrationRequestV2.AudiencesChangesOption.IsSet && customerProfileIntegrationRequestV2.AudiencesChanges == null)
-                throw new ArgumentNullException(nameof(customerProfileIntegrationRequestV2.AudiencesChanges), "Property is required for class CustomerProfileIntegrationRequestV2.");
-
             if (customerProfileIntegrationRequestV2.AttributesOption.IsSet)
             {
                 writer.WritePropertyName("attributes");

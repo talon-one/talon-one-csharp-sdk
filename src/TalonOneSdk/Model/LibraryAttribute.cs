@@ -461,6 +461,27 @@ namespace TalonOneSdk.Model
             if (!suggestions.IsSet)
                 throw new ArgumentException("Property is required for class LibraryAttribute.", nameof(suggestions));
 
+            if (entity.IsSet && entity.Value == null)
+                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class LibraryAttribute.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class LibraryAttribute.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class LibraryAttribute.");
+
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class LibraryAttribute.");
+
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description), "Property is not nullable for class LibraryAttribute.");
+
+            if (presets.IsSet && presets.Value == null)
+                throw new ArgumentNullException(nameof(presets), "Property is not nullable for class LibraryAttribute.");
+
+            if (suggestions.IsSet && suggestions.Value == null)
+                throw new ArgumentNullException(nameof(suggestions), "Property is not nullable for class LibraryAttribute.");
+
             return new LibraryAttribute(entity.Value.Value, name.Value, title.Value, type.Value.Value, description.Value, presets.Value, suggestions.Value);
         }
 

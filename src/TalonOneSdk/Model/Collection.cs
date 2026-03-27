@@ -372,14 +372,23 @@ namespace TalonOneSdk.Model
             if (!createdBy.IsSet)
                 throw new ArgumentException("Property is required for class Collection.", nameof(createdBy));
 
-            if (modifiedBy.IsSet && modifiedBy.Value == null)
-                throw new ArgumentNullException(nameof(modifiedBy), "Property is not nullable for class Collection.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Collection.");
 
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class Collection.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Collection.");
 
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class Collection.");
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Collection.");
+
+            if (modified.IsSet && modified.Value == null)
+                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class Collection.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Collection.");
+
+            if (createdBy.IsSet && createdBy.Value == null)
+                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class Collection.");
 
             return new Collection(id.Value.Value, created.Value.Value, accountId.Value.Value, modified.Value.Value, name.Value, createdBy.Value.Value, description, subscribedApplicationsIds, modifiedBy, applicationId, campaignId, payload);
         }
@@ -410,15 +419,6 @@ namespace TalonOneSdk.Model
         {
             if (collection.Name == null)
                 throw new ArgumentNullException(nameof(collection.Name), "Property is required for class Collection.");
-
-            if (collection.DescriptionOption.IsSet && collection.Description == null)
-                throw new ArgumentNullException(nameof(collection.Description), "Property is required for class Collection.");
-
-            if (collection.SubscribedApplicationsIdsOption.IsSet && collection.SubscribedApplicationsIds == null)
-                throw new ArgumentNullException(nameof(collection.SubscribedApplicationsIds), "Property is required for class Collection.");
-
-            if (collection.PayloadOption.IsSet && collection.Payload == null)
-                throw new ArgumentNullException(nameof(collection.Payload), "Property is required for class Collection.");
 
             writer.WriteNumber("id", collection.Id);
 

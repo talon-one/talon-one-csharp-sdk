@@ -162,12 +162,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (reservationLimit.IsSet && reservationLimit.Value == null)
-                throw new ArgumentNullException(nameof(reservationLimit), "Property is not nullable for class CampaignTemplateCouponReservationSettings.");
-
-            if (isReservationMandatory.IsSet && isReservationMandatory.Value == null)
-                throw new ArgumentNullException(nameof(isReservationMandatory), "Property is not nullable for class CampaignTemplateCouponReservationSettings.");
-
             return new CampaignTemplateCouponReservationSettings(reservationLimit, isReservationMandatory);
         }
 

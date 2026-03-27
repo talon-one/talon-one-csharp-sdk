@@ -463,6 +463,42 @@ namespace TalonOneSdk.Model
             if (!currentPoints.IsSet)
                 throw new ArgumentException("Property is required for class CardAddedDeductedPointsBalancesNotification.", nameof(currentPoints));
 
+            if (cardIdentifier.IsSet && cardIdentifier.Value == null)
+                throw new ArgumentNullException(nameof(cardIdentifier), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+
+            if (employeeName.IsSet && employeeName.Value == null)
+                throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+
+            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+
+            if (notificationType.IsSet && notificationType.Value == null)
+                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+
+            if (profileIntegrationIDs.IsSet && profileIntegrationIDs.Value == null)
+                throw new ArgumentNullException(nameof(profileIntegrationIDs), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+
+            if (sessionIntegrationID.IsSet && sessionIntegrationID.Value == null)
+                throw new ArgumentNullException(nameof(sessionIntegrationID), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+
+            if (subledgerID.IsSet && subledgerID.Value == null)
+                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+
+            if (typeOfChange.IsSet && typeOfChange.Value == null)
+                throw new ArgumentNullException(nameof(typeOfChange), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+
+            if (userID.IsSet && userID.Value == null)
+                throw new ArgumentNullException(nameof(userID), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+
+            if (usersPerCardLimit.IsSet && usersPerCardLimit.Value == null)
+                throw new ArgumentNullException(nameof(usersPerCardLimit), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+
+            if (actions.IsSet && actions.Value == null)
+                throw new ArgumentNullException(nameof(actions), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+
+            if (currentPoints.IsSet && currentPoints.Value == null)
+                throw new ArgumentNullException(nameof(currentPoints), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+
             return new CardAddedDeductedPointsBalancesNotification(cardIdentifier.Value, employeeName.Value, loyaltyProgramID.Value.Value, notificationType.Value.Value, profileIntegrationIDs.Value, sessionIntegrationID.Value, subledgerID.Value, typeOfChange.Value.Value, userID.Value.Value, usersPerCardLimit.Value.Value, actions.Value, currentPoints.Value.Value);
         }
 
