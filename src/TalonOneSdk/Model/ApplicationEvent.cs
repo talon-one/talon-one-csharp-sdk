@@ -335,14 +335,23 @@ namespace TalonOneSdk.Model
             if (!effects.IsSet)
                 throw new ArgumentException("Property is required for class ApplicationEvent.", nameof(effects));
 
-            if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class ApplicationEvent.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ApplicationEvent.");
 
-            if (storeId.IsSet && storeId.Value == null)
-                throw new ArgumentNullException(nameof(storeId), "Property is not nullable for class ApplicationEvent.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ApplicationEvent.");
 
-            if (sessionId.IsSet && sessionId.Value == null)
-                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class ApplicationEvent.");
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ApplicationEvent.");
+
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class ApplicationEvent.");
+
+            if (attributes.IsSet && attributes.Value == null)
+                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class ApplicationEvent.");
+
+            if (effects.IsSet && effects.Value == null)
+                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class ApplicationEvent.");
 
             return new ApplicationEvent(id.Value.Value, created.Value.Value, applicationId.Value.Value, type.Value, attributes.Value, effects.Value, profileId, storeId, storeIntegrationId, sessionId, ruleFailureReasons);
         }
@@ -379,12 +388,6 @@ namespace TalonOneSdk.Model
 
             if (applicationEvent.Effects == null)
                 throw new ArgumentNullException(nameof(applicationEvent.Effects), "Property is required for class ApplicationEvent.");
-
-            if (applicationEvent.StoreIntegrationIdOption.IsSet && applicationEvent.StoreIntegrationId == null)
-                throw new ArgumentNullException(nameof(applicationEvent.StoreIntegrationId), "Property is required for class ApplicationEvent.");
-
-            if (applicationEvent.RuleFailureReasonsOption.IsSet && applicationEvent.RuleFailureReasons == null)
-                throw new ArgumentNullException(nameof(applicationEvent.RuleFailureReasons), "Property is required for class ApplicationEvent.");
 
             writer.WriteNumber("id", applicationEvent.Id);
 

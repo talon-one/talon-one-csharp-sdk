@@ -170,9 +170,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (price.IsSet && price.Value == null)
-                throw new ArgumentNullException(nameof(price), "Property is not nullable for class PatchManyItemsCatalogAction.");
-
             return new PatchManyItemsCatalogAction(price, filters, attributes);
         }
 
@@ -200,12 +197,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PatchManyItemsCatalogAction patchManyItemsCatalogAction, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (patchManyItemsCatalogAction.FiltersOption.IsSet && patchManyItemsCatalogAction.Filters == null)
-                throw new ArgumentNullException(nameof(patchManyItemsCatalogAction.Filters), "Property is required for class PatchManyItemsCatalogAction.");
-
-            if (patchManyItemsCatalogAction.AttributesOption.IsSet && patchManyItemsCatalogAction.Attributes == null)
-                throw new ArgumentNullException(nameof(patchManyItemsCatalogAction.Attributes), "Property is required for class PatchManyItemsCatalogAction.");
-
             if (patchManyItemsCatalogAction.PriceOption.IsSet)
                 writer.WriteNumber("price", patchManyItemsCatalogAction.PriceOption.Value.Value);
 

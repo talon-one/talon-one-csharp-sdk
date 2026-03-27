@@ -204,6 +204,12 @@ namespace TalonOneSdk.Model
             if (!attributes.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationEvent.", nameof(attributes));
 
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class IntegrationEvent.");
+
+            if (attributes.IsSet && attributes.Value == null)
+                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class IntegrationEvent.");
+
             return new IntegrationEvent(type.Value, attributes.Value, profileId, storeIntegrationId);
         }
 
@@ -236,12 +242,6 @@ namespace TalonOneSdk.Model
 
             if (integrationEvent.Attributes == null)
                 throw new ArgumentNullException(nameof(integrationEvent.Attributes), "Property is required for class IntegrationEvent.");
-
-            if (integrationEvent.ProfileIdOption.IsSet && integrationEvent.ProfileId == null)
-                throw new ArgumentNullException(nameof(integrationEvent.ProfileId), "Property is required for class IntegrationEvent.");
-
-            if (integrationEvent.StoreIntegrationIdOption.IsSet && integrationEvent.StoreIntegrationId == null)
-                throw new ArgumentNullException(nameof(integrationEvent.StoreIntegrationId), "Property is required for class IntegrationEvent.");
 
             writer.WriteString("type", integrationEvent.Type);
 

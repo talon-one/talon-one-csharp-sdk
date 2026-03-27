@@ -206,8 +206,11 @@ namespace TalonOneSdk.Model
             if (!bindings.IsSet)
                 throw new ArgumentException("Property is required for class NewRuleset.", nameof(bindings));
 
-            if (activate.IsSet && activate.Value == null)
-                throw new ArgumentNullException(nameof(activate), "Property is not nullable for class NewRuleset.");
+            if (rules.IsSet && rules.Value == null)
+                throw new ArgumentNullException(nameof(rules), "Property is not nullable for class NewRuleset.");
+
+            if (bindings.IsSet && bindings.Value == null)
+                throw new ArgumentNullException(nameof(bindings), "Property is not nullable for class NewRuleset.");
 
             return new NewRuleset(rules.Value, bindings.Value, strikethroughRules, rbVersion, activate);
         }
@@ -241,12 +244,6 @@ namespace TalonOneSdk.Model
 
             if (newRuleset.Bindings == null)
                 throw new ArgumentNullException(nameof(newRuleset.Bindings), "Property is required for class NewRuleset.");
-
-            if (newRuleset.StrikethroughRulesOption.IsSet && newRuleset.StrikethroughRules == null)
-                throw new ArgumentNullException(nameof(newRuleset.StrikethroughRules), "Property is required for class NewRuleset.");
-
-            if (newRuleset.RbVersionOption.IsSet && newRuleset.RbVersion == null)
-                throw new ArgumentNullException(nameof(newRuleset.RbVersion), "Property is required for class NewRuleset.");
 
             writer.WritePropertyName("rules");
             JsonSerializer.Serialize(writer, newRuleset.Rules, jsonSerializerOptions);

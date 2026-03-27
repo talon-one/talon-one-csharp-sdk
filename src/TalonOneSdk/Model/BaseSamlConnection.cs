@@ -273,6 +273,21 @@ namespace TalonOneSdk.Model
             if (!signOnURL.IsSet)
                 throw new ArgumentException("Property is required for class BaseSamlConnection.", nameof(signOnURL));
 
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class BaseSamlConnection.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class BaseSamlConnection.");
+
+            if (enabled.IsSet && enabled.Value == null)
+                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class BaseSamlConnection.");
+
+            if (issuer.IsSet && issuer.Value == null)
+                throw new ArgumentNullException(nameof(issuer), "Property is not nullable for class BaseSamlConnection.");
+
+            if (signOnURL.IsSet && signOnURL.Value == null)
+                throw new ArgumentNullException(nameof(signOnURL), "Property is not nullable for class BaseSamlConnection.");
+
             return new BaseSamlConnection(accountId.Value.Value, name.Value, enabled.Value.Value, issuer.Value, signOnURL.Value, signOutURL, metadataURL, audienceURI);
         }
 
@@ -308,15 +323,6 @@ namespace TalonOneSdk.Model
 
             if (baseSamlConnection.SignOnURL == null)
                 throw new ArgumentNullException(nameof(baseSamlConnection.SignOnURL), "Property is required for class BaseSamlConnection.");
-
-            if (baseSamlConnection.SignOutURLOption.IsSet && baseSamlConnection.SignOutURL == null)
-                throw new ArgumentNullException(nameof(baseSamlConnection.SignOutURL), "Property is required for class BaseSamlConnection.");
-
-            if (baseSamlConnection.MetadataURLOption.IsSet && baseSamlConnection.MetadataURL == null)
-                throw new ArgumentNullException(nameof(baseSamlConnection.MetadataURL), "Property is required for class BaseSamlConnection.");
-
-            if (baseSamlConnection.AudienceURIOption.IsSet && baseSamlConnection.AudienceURI == null)
-                throw new ArgumentNullException(nameof(baseSamlConnection.AudienceURI), "Property is required for class BaseSamlConnection.");
 
             writer.WriteNumber("accountId", baseSamlConnection.AccountId);
 

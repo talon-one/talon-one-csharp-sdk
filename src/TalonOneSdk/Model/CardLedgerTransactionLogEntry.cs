@@ -490,11 +490,38 @@ namespace TalonOneSdk.Model
             if (!id.IsSet)
                 throw new ArgumentException("Property is required for class CardLedgerTransactionLogEntry.", nameof(id));
 
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+            if (transactionUUID.IsSet && transactionUUID.Value == null)
+                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class CardLedgerTransactionLogEntry.");
 
-            if (sessionId.IsSet && sessionId.Value == null)
-                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+
+            if (programId.IsSet && programId.Value == null)
+                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+
+            if (cardIdentifier.IsSet && cardIdentifier.Value == null)
+                throw new ArgumentNullException(nameof(cardIdentifier), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+
+            if (startDate.IsSet && startDate.Value == null)
+                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+
+            if (expiryDate.IsSet && expiryDate.Value == null)
+                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+
+            if (subledgerId.IsSet && subledgerId.Value == null)
+                throw new ArgumentNullException(nameof(subledgerId), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+
+            if (amount.IsSet && amount.Value == null)
+                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CardLedgerTransactionLogEntry.");
 
             return new CardLedgerTransactionLogEntry(transactionUUID.Value, created.Value.Value, programId.Value.Value, cardIdentifier.Value, type.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, amount.Value.Value, id.Value.Value, applicationId, sessionId, customerSessionId);
         }
@@ -540,9 +567,6 @@ namespace TalonOneSdk.Model
 
             if (cardLedgerTransactionLogEntry.SubledgerId == null)
                 throw new ArgumentNullException(nameof(cardLedgerTransactionLogEntry.SubledgerId), "Property is required for class CardLedgerTransactionLogEntry.");
-
-            if (cardLedgerTransactionLogEntry.CustomerSessionIdOption.IsSet && cardLedgerTransactionLogEntry.CustomerSessionId == null)
-                throw new ArgumentNullException(nameof(cardLedgerTransactionLogEntry.CustomerSessionId), "Property is required for class CardLedgerTransactionLogEntry.");
 
             writer.WriteString("transactionUUID", cardLedgerTransactionLogEntry.TransactionUUID);
 

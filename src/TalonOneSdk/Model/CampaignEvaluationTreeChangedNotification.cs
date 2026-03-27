@@ -162,6 +162,12 @@ namespace TalonOneSdk.Model
             if (!evaluationTree.IsSet)
                 throw new ArgumentException("Property is required for class CampaignEvaluationTreeChangedNotification.", nameof(evaluationTree));
 
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CampaignEvaluationTreeChangedNotification.");
+
+            if (evaluationTree.IsSet && evaluationTree.Value == null)
+                throw new ArgumentNullException(nameof(evaluationTree), "Property is not nullable for class CampaignEvaluationTreeChangedNotification.");
+
             return new CampaignEvaluationTreeChangedNotification(applicationId.Value.Value, evaluationTree.Value, oldEvaluationTree);
         }
 
@@ -191,9 +197,6 @@ namespace TalonOneSdk.Model
         {
             if (campaignEvaluationTreeChangedNotification.EvaluationTree == null)
                 throw new ArgumentNullException(nameof(campaignEvaluationTreeChangedNotification.EvaluationTree), "Property is required for class CampaignEvaluationTreeChangedNotification.");
-
-            if (campaignEvaluationTreeChangedNotification.OldEvaluationTreeOption.IsSet && campaignEvaluationTreeChangedNotification.OldEvaluationTree == null)
-                throw new ArgumentNullException(nameof(campaignEvaluationTreeChangedNotification.OldEvaluationTree), "Property is required for class CampaignEvaluationTreeChangedNotification.");
 
             writer.WriteNumber("applicationId", campaignEvaluationTreeChangedNotification.ApplicationId);
 

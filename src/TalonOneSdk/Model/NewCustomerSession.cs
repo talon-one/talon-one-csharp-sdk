@@ -163,7 +163,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates the current state of the session. Sessions can be created as &#x60;open&#x60; or &#x60;closed&#x60;. The state transitions are:  1. &#x60;open&#x60; → &#x60;closed&#x60; 2. &#x60;open&#x60; → &#x60;cancelled&#x60; 3. &#x60;closed&#x60; → &#x60;cancelled&#x60; or &#x60;partially_returned&#x60; 4. &#x60;partially_returned&#x60; → &#x60;cancelled&#x60;  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). </value>
         /* <example>open</example> */
         [JsonPropertyName("state")]
-        public StateEnum? State { get { return this.StateOption; } set { this.StateOption = new Option<StateEnum?>(value); } }
+        public StateEnum? State { get { return this.StateOption.Value; } set { this.StateOption = new Option<StateEnum?>(value); } }
 
         /// <summary>
         /// Used to track the state of ProfileId
@@ -388,12 +388,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class NewCustomerSession.");
-
-            if (total.IsSet && total.Value == null)
-                throw new ArgumentNullException(nameof(total), "Property is not nullable for class NewCustomerSession.");
-
             return new NewCustomerSession(profileId, coupon, referral, state, cartItems, identifiers, total, attributes);
         }
 
@@ -421,24 +415,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewCustomerSession newCustomerSession, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (newCustomerSession.ProfileIdOption.IsSet && newCustomerSession.ProfileId == null)
-                throw new ArgumentNullException(nameof(newCustomerSession.ProfileId), "Property is required for class NewCustomerSession.");
-
-            if (newCustomerSession.CouponOption.IsSet && newCustomerSession.Coupon == null)
-                throw new ArgumentNullException(nameof(newCustomerSession.Coupon), "Property is required for class NewCustomerSession.");
-
-            if (newCustomerSession.ReferralOption.IsSet && newCustomerSession.Referral == null)
-                throw new ArgumentNullException(nameof(newCustomerSession.Referral), "Property is required for class NewCustomerSession.");
-
-            if (newCustomerSession.CartItemsOption.IsSet && newCustomerSession.CartItems == null)
-                throw new ArgumentNullException(nameof(newCustomerSession.CartItems), "Property is required for class NewCustomerSession.");
-
-            if (newCustomerSession.IdentifiersOption.IsSet && newCustomerSession.Identifiers == null)
-                throw new ArgumentNullException(nameof(newCustomerSession.Identifiers), "Property is required for class NewCustomerSession.");
-
-            if (newCustomerSession.AttributesOption.IsSet && newCustomerSession.Attributes == null)
-                throw new ArgumentNullException(nameof(newCustomerSession.Attributes), "Property is required for class NewCustomerSession.");
-
             if (newCustomerSession.ProfileIdOption.IsSet)
                 writer.WriteString("profileId", newCustomerSession.ProfileId);
 

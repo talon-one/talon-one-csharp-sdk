@@ -142,6 +142,9 @@ namespace TalonOneSdk.Model
             if (!confidence.IsSet)
                 throw new ArgumentException("Property is required for class ExperimentResults.", nameof(confidence));
 
+            if (confidence.IsSet && confidence.Value == null)
+                throw new ArgumentNullException(nameof(confidence), "Property is not nullable for class ExperimentResults.");
+
             return new ExperimentResults(confidence.Value, variants);
         }
 
@@ -171,9 +174,6 @@ namespace TalonOneSdk.Model
         {
             if (experimentResults.Confidence == null)
                 throw new ArgumentNullException(nameof(experimentResults.Confidence), "Property is required for class ExperimentResults.");
-
-            if (experimentResults.VariantsOption.IsSet && experimentResults.Variants == null)
-                throw new ArgumentNullException(nameof(experimentResults.Variants), "Property is required for class ExperimentResults.");
 
             writer.WritePropertyName("confidence");
             JsonSerializer.Serialize(writer, experimentResults.Confidence, jsonSerializerOptions);

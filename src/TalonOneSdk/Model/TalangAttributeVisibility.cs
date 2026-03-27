@@ -175,12 +175,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TalangAttributeVisibility talangAttributeVisibility, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (talangAttributeVisibility.InvisibleOption.IsSet && talangAttributeVisibility.Invisible == null)
-                throw new ArgumentNullException(nameof(talangAttributeVisibility.Invisible), "Property is required for class TalangAttributeVisibility.");
-
-            if (talangAttributeVisibility.VisibleOption.IsSet && talangAttributeVisibility.Visible == null)
-                throw new ArgumentNullException(nameof(talangAttributeVisibility.Visible), "Property is required for class TalangAttributeVisibility.");
-
             if (talangAttributeVisibility.InvisibleOption.IsSet)
             {
                 writer.WritePropertyName("invisible");

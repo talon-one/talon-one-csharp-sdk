@@ -298,9 +298,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ResponseContentObject responseContentObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (responseContentObject.ResponseContentOption.IsSet && responseContentObject.ResponseContent == null)
-                throw new ArgumentNullException(nameof(responseContentObject.ResponseContent), "Property is required for class ResponseContentObject.");
-
             if (responseContentObject.ResponseContentOption.IsSet)
             {
                 writer.WritePropertyName("responseContent");

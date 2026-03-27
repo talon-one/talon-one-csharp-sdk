@@ -40,12 +40,25 @@ jobs:
             fi
           fi
 
+      - name: Normalize version
+        id: normalize_version
+        # Strip leading zeros from each version segment so that inputs like
+        # "26.06.01" are normalized to "26.6.1", which is required by NuGet.
+        run: |
+          ver="${{ steps.get_version.outputs.version }}"
+          if [ -n "$ver" ]; then
+            normalized=$(echo "$ver" | awk -F. 'BEGIN{OFS="."} {for(i=1;i<=NF;i++) $i=int($i); print}')
+            echo "version=$normalized" >> $GITHUB_OUTPUT
+          else
+            echo "version=" >> $GITHUB_OUTPUT
+          fi
+
       - name: Skip when no version
-        if: ${{ steps.get_version.outputs.version == '' }}
+        if: ${{ steps.normalize_version.outputs.version == '' }}
         run: echo "Nothing to do."
 
       - name: Get diff of README endpoint section
-        if: ${{ steps.get_version.outputs.version != '' }}
+        if: ${{ steps.normalize_version.outputs.version != '' }}
         id: get_diff
         run: |
           # Get section from old commit
@@ -61,7 +74,7 @@ jobs:
           cat endpoints.diff
 
       - name: Generate release notes
-        if: ${{ steps.get_version.outputs.version != '' }}
+        if: ${{ steps.normalize_version.outputs.version != '' }}
         id: relnotes
         run: |
           ADD=()
@@ -99,24 +112,24 @@ jobs:
           echo "notes_file=release-notes.md" >> "$GITHUB_OUTPUT"
 
       - name: pack and publish
-        if: ${{ steps.get_version.outputs.version != '' }}
+        if: ${{ steps.normalize_version.outputs.version != '' }}
         run: |
           make pack
           make publish apiKey=${{ secrets.NUGET_PUBLISHING_KEY }}
 
       - name: Create Git tag
-        if: ${{ steps.get_version.outputs.version != '' }}
+        if: ${{ steps.normalize_version.outputs.version != '' }}
         run: |
-          ver="${{ steps.get_version.outputs.version }}"
+          ver="${{ steps.normalize_version.outputs.version }}"
           git tag -f "$ver" "$GITHUB_SHA"
           git push -f origin "refs/tags/$ver"
 
       - name: Create GitHub release
-        if: ${{ steps.get_version.outputs.version != '' }}
+        if: ${{ steps.normalize_version.outputs.version != '' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ver="${{ steps.get_version.outputs.version }}"
+          ver="${{ steps.normalize_version.outputs.version }}"
           notes_file="${{ steps.relnotes.outputs.notes_file }}"
 
           if gh release view "$ver" &>/dev/null; then

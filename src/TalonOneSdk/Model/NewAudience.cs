@@ -279,14 +279,8 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class NewAudience.", nameof(name));
 
-            if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class NewAudience.");
-
-            if (createdIn3rdParty.IsSet && createdIn3rdParty.Value == null)
-                throw new ArgumentNullException(nameof(createdIn3rdParty), "Property is not nullable for class NewAudience.");
-
-            if (lastUpdate.IsSet && lastUpdate.Value == null)
-                throw new ArgumentNullException(nameof(lastUpdate), "Property is not nullable for class NewAudience.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewAudience.");
 
             return new NewAudience(name.Value, sandbox, description, integration, integrationId, createdIn3rdParty, lastUpdate);
         }
@@ -317,15 +311,6 @@ namespace TalonOneSdk.Model
         {
             if (newAudience.Name == null)
                 throw new ArgumentNullException(nameof(newAudience.Name), "Property is required for class NewAudience.");
-
-            if (newAudience.DescriptionOption.IsSet && newAudience.Description == null)
-                throw new ArgumentNullException(nameof(newAudience.Description), "Property is required for class NewAudience.");
-
-            if (newAudience.IntegrationOption.IsSet && newAudience.Integration == null)
-                throw new ArgumentNullException(nameof(newAudience.Integration), "Property is required for class NewAudience.");
-
-            if (newAudience.IntegrationIdOption.IsSet && newAudience.IntegrationId == null)
-                throw new ArgumentNullException(nameof(newAudience.IntegrationId), "Property is required for class NewAudience.");
 
             writer.WriteString("name", newAudience.Name);
 

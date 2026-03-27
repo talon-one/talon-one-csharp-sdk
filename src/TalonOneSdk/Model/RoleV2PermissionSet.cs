@@ -142,6 +142,12 @@ namespace TalonOneSdk.Model
             if (!logicalOperations.IsSet)
                 throw new ArgumentException("Property is required for class RoleV2PermissionSet.", nameof(logicalOperations));
 
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class RoleV2PermissionSet.");
+
+            if (logicalOperations.IsSet && logicalOperations.Value == null)
+                throw new ArgumentNullException(nameof(logicalOperations), "Property is not nullable for class RoleV2PermissionSet.");
+
             return new RoleV2PermissionSet(name.Value, logicalOperations.Value);
         }
 

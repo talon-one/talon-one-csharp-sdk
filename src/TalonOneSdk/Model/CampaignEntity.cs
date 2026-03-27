@@ -124,6 +124,9 @@ namespace TalonOneSdk.Model
             if (!campaignId.IsSet)
                 throw new ArgumentException("Property is required for class CampaignEntity.", nameof(campaignId));
 
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class CampaignEntity.");
+
             return new CampaignEntity(campaignId.Value.Value);
         }
 

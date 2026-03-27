@@ -206,6 +206,15 @@ namespace TalonOneSdk.Model
             if (!integrationId.IsSet)
                 throw new ArgumentException("Property is required for class NewStore.", nameof(integrationId));
 
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewStore.");
+
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description), "Property is not nullable for class NewStore.");
+
+            if (integrationId.IsSet && integrationId.Value == null)
+                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class NewStore.");
+
             return new NewStore(name.Value, description.Value, integrationId.Value, attributes);
         }
 
@@ -241,9 +250,6 @@ namespace TalonOneSdk.Model
 
             if (newStore.IntegrationId == null)
                 throw new ArgumentNullException(nameof(newStore.IntegrationId), "Property is required for class NewStore.");
-
-            if (newStore.AttributesOption.IsSet && newStore.Attributes == null)
-                throw new ArgumentNullException(nameof(newStore.Attributes), "Property is required for class NewStore.");
 
             writer.WriteString("name", newStore.Name);
 

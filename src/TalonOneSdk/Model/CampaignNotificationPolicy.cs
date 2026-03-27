@@ -174,11 +174,8 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class CampaignNotificationPolicy.", nameof(name));
 
-            if (batchingEnabled.IsSet && batchingEnabled.Value == null)
-                throw new ArgumentNullException(nameof(batchingEnabled), "Property is not nullable for class CampaignNotificationPolicy.");
-
-            if (batchSize.IsSet && batchSize.Value == null)
-                throw new ArgumentNullException(nameof(batchSize), "Property is not nullable for class CampaignNotificationPolicy.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignNotificationPolicy.");
 
             return new CampaignNotificationPolicy(name.Value, batchingEnabled, batchSize);
         }

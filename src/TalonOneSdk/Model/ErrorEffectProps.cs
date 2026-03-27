@@ -123,6 +123,9 @@ namespace TalonOneSdk.Model
             if (!message.IsSet)
                 throw new ArgumentException("Property is required for class ErrorEffectProps.", nameof(message));
 
+            if (message.IsSet && message.Value == null)
+                throw new ArgumentNullException(nameof(message), "Property is not nullable for class ErrorEffectProps.");
+
             return new ErrorEffectProps(message.Value);
         }
 

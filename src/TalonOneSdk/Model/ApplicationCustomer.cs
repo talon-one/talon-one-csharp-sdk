@@ -360,8 +360,26 @@ namespace TalonOneSdk.Model
             if (!lastActivity.IsSet)
                 throw new ArgumentException("Property is required for class ApplicationCustomer.", nameof(lastActivity));
 
-            if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class ApplicationCustomer.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ApplicationCustomer.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ApplicationCustomer.");
+
+            if (integrationId.IsSet && integrationId.Value == null)
+                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class ApplicationCustomer.");
+
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class ApplicationCustomer.");
+
+            if (closedSessions.IsSet && closedSessions.Value == null)
+                throw new ArgumentNullException(nameof(closedSessions), "Property is not nullable for class ApplicationCustomer.");
+
+            if (totalSales.IsSet && totalSales.Value == null)
+                throw new ArgumentNullException(nameof(totalSales), "Property is not nullable for class ApplicationCustomer.");
+
+            if (lastActivity.IsSet && lastActivity.Value == null)
+                throw new ArgumentNullException(nameof(lastActivity), "Property is not nullable for class ApplicationCustomer.");
 
             return new ApplicationCustomer(id.Value.Value, created.Value.Value, integrationId.Value, accountId.Value.Value, closedSessions.Value.Value, totalSales.Value.Value, lastActivity.Value.Value, attributes, loyaltyMemberships, audienceMemberships, sandbox, advocateIntegrationId);
         }
@@ -392,18 +410,6 @@ namespace TalonOneSdk.Model
         {
             if (applicationCustomer.IntegrationId == null)
                 throw new ArgumentNullException(nameof(applicationCustomer.IntegrationId), "Property is required for class ApplicationCustomer.");
-
-            if (applicationCustomer.AttributesOption.IsSet && applicationCustomer.Attributes == null)
-                throw new ArgumentNullException(nameof(applicationCustomer.Attributes), "Property is required for class ApplicationCustomer.");
-
-            if (applicationCustomer.LoyaltyMembershipsOption.IsSet && applicationCustomer.LoyaltyMemberships == null)
-                throw new ArgumentNullException(nameof(applicationCustomer.LoyaltyMemberships), "Property is required for class ApplicationCustomer.");
-
-            if (applicationCustomer.AudienceMembershipsOption.IsSet && applicationCustomer.AudienceMemberships == null)
-                throw new ArgumentNullException(nameof(applicationCustomer.AudienceMemberships), "Property is required for class ApplicationCustomer.");
-
-            if (applicationCustomer.AdvocateIntegrationIdOption.IsSet && applicationCustomer.AdvocateIntegrationId == null)
-                throw new ArgumentNullException(nameof(applicationCustomer.AdvocateIntegrationId), "Property is required for class ApplicationCustomer.");
 
             writer.WriteNumber("id", applicationCustomer.Id);
 

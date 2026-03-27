@@ -182,7 +182,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The version of the strikethrough pricing notification.</value>
         [JsonPropertyName("version")]
-        public VarVersionEnum? VarVersion { get { return this.VarVersionOption; } set { this.VarVersionOption = new Option<VarVersionEnum?>(value); } }
+        public VarVersionEnum? VarVersion { get { return this.VarVersionOption.Value; } set { this.VarVersionOption = new Option<VarVersionEnum?>(value); } }
 
         /// <summary>
         /// The ID of the Application to which the catalog items labels belongs.
@@ -389,11 +389,26 @@ namespace TalonOneSdk.Model
             if (!sentAt.IsSet)
                 throw new ArgumentException("Property is required for class StrikethroughLabelingNotification.", nameof(sentAt));
 
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class StrikethroughLabelingNotification.");
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class StrikethroughLabelingNotification.");
 
-            if (validFrom.IsSet && validFrom.Value == null)
-                throw new ArgumentNullException(nameof(validFrom), "Property is not nullable for class StrikethroughLabelingNotification.");
+            if (currentBatch.IsSet && currentBatch.Value == null)
+                throw new ArgumentNullException(nameof(currentBatch), "Property is not nullable for class StrikethroughLabelingNotification.");
+
+            if (totalBatches.IsSet && totalBatches.Value == null)
+                throw new ArgumentNullException(nameof(totalBatches), "Property is not nullable for class StrikethroughLabelingNotification.");
+
+            if (trigger.IsSet && trigger.Value == null)
+                throw new ArgumentNullException(nameof(trigger), "Property is not nullable for class StrikethroughLabelingNotification.");
+
+            if (changedItems.IsSet && changedItems.Value == null)
+                throw new ArgumentNullException(nameof(changedItems), "Property is not nullable for class StrikethroughLabelingNotification.");
+
+            if (notificationType.IsSet && notificationType.Value == null)
+                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class StrikethroughLabelingNotification.");
+
+            if (sentAt.IsSet && sentAt.Value == null)
+                throw new ArgumentNullException(nameof(sentAt), "Property is not nullable for class StrikethroughLabelingNotification.");
 
             return new StrikethroughLabelingNotification(applicationId.Value.Value, currentBatch.Value.Value, totalBatches.Value.Value, trigger.Value, changedItems.Value, notificationType.Value.Value, sentAt.Value.Value, varVersion, validFrom);
         }

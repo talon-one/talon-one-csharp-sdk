@@ -173,12 +173,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FeaturesFeed featuresFeed, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (featuresFeed.TitleOption.IsSet && featuresFeed.Title == null)
-                throw new ArgumentNullException(nameof(featuresFeed.Title), "Property is required for class FeaturesFeed.");
-
-            if (featuresFeed.PubDateOption.IsSet && featuresFeed.PubDate == null)
-                throw new ArgumentNullException(nameof(featuresFeed.PubDate), "Property is required for class FeaturesFeed.");
-
             if (featuresFeed.TitleOption.IsSet)
                 writer.WriteString("title", featuresFeed.Title);
 

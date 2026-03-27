@@ -424,17 +424,26 @@ namespace TalonOneSdk.Model
             if (!referredCustomers.IsSet)
                 throw new ArgumentException("Property is required for class InventoryReferral.", nameof(referredCustomers));
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class InventoryReferral.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class InventoryReferral.");
 
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class InventoryReferral.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class InventoryReferral.");
 
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class InventoryReferral.");
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class InventoryReferral.");
 
-            if (importId.IsSet && importId.Value == null)
-                throw new ArgumentNullException(nameof(importId), "Property is not nullable for class InventoryReferral.");
+            if (advocateProfileIntegrationId.IsSet && advocateProfileIntegrationId.Value == null)
+                throw new ArgumentNullException(nameof(advocateProfileIntegrationId), "Property is not nullable for class InventoryReferral.");
+
+            if (code.IsSet && code.Value == null)
+                throw new ArgumentNullException(nameof(code), "Property is not nullable for class InventoryReferral.");
+
+            if (usageCounter.IsSet && usageCounter.Value == null)
+                throw new ArgumentNullException(nameof(usageCounter), "Property is not nullable for class InventoryReferral.");
+
+            if (referredCustomers.IsSet && referredCustomers.Value == null)
+                throw new ArgumentNullException(nameof(referredCustomers), "Property is not nullable for class InventoryReferral.");
 
             return new InventoryReferral(id.Value.Value, created.Value.Value, campaignId.Value.Value, advocateProfileIntegrationId.Value, code.Value, usageCounter.Value.Value, referredCustomers.Value, startDate, expiryDate, usageLimit, friendProfileIntegrationId, attributes, importId, batchId);
         }
@@ -471,15 +480,6 @@ namespace TalonOneSdk.Model
 
             if (inventoryReferral.ReferredCustomers == null)
                 throw new ArgumentNullException(nameof(inventoryReferral.ReferredCustomers), "Property is required for class InventoryReferral.");
-
-            if (inventoryReferral.FriendProfileIntegrationIdOption.IsSet && inventoryReferral.FriendProfileIntegrationId == null)
-                throw new ArgumentNullException(nameof(inventoryReferral.FriendProfileIntegrationId), "Property is required for class InventoryReferral.");
-
-            if (inventoryReferral.AttributesOption.IsSet && inventoryReferral.Attributes == null)
-                throw new ArgumentNullException(nameof(inventoryReferral.Attributes), "Property is required for class InventoryReferral.");
-
-            if (inventoryReferral.BatchIdOption.IsSet && inventoryReferral.BatchId == null)
-                throw new ArgumentNullException(nameof(inventoryReferral.BatchId), "Property is required for class InventoryReferral.");
 
             writer.WriteNumber("id", inventoryReferral.Id);
 

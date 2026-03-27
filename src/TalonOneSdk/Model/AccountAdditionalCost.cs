@@ -149,7 +149,7 @@ namespace TalonOneSdk.Model
         /// <value>The type of additional cost. Possible value: - &#x60;session&#x60;: Additional cost will be added per session. - &#x60;item&#x60;: Additional cost will be added per item. - &#x60;both&#x60;: Additional cost will be added per item and session. </value>
         /* <example>session</example> */
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this.TypeOption; } set { this.TypeOption = new Option<TypeEnum?>(value); } }
+        public TypeEnum? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new Option<TypeEnum?>(value); } }
 
         /// <summary>
         /// The internal ID of this entity.
@@ -366,8 +366,23 @@ namespace TalonOneSdk.Model
             if (!description.IsSet)
                 throw new ArgumentException("Property is required for class AccountAdditionalCost.", nameof(description));
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AccountAdditionalCost.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AccountAdditionalCost.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class AccountAdditionalCost.");
+
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class AccountAdditionalCost.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AccountAdditionalCost.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class AccountAdditionalCost.");
+
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description), "Property is not nullable for class AccountAdditionalCost.");
 
             return new AccountAdditionalCost(id.Value.Value, created.Value.Value, accountId.Value.Value, name.Value, title.Value, description.Value, subscribedApplicationsIds, type);
         }
@@ -404,9 +419,6 @@ namespace TalonOneSdk.Model
 
             if (accountAdditionalCost.Description == null)
                 throw new ArgumentNullException(nameof(accountAdditionalCost.Description), "Property is required for class AccountAdditionalCost.");
-
-            if (accountAdditionalCost.SubscribedApplicationsIdsOption.IsSet && accountAdditionalCost.SubscribedApplicationsIds == null)
-                throw new ArgumentNullException(nameof(accountAdditionalCost.SubscribedApplicationsIds), "Property is required for class AccountAdditionalCost.");
 
             writer.WriteNumber("id", accountAdditionalCost.Id);
 

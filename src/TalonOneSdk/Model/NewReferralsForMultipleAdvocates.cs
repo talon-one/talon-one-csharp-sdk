@@ -308,14 +308,11 @@ namespace TalonOneSdk.Model
             if (!advocateProfileIntegrationIds.IsSet)
                 throw new ArgumentException("Property is required for class NewReferralsForMultipleAdvocates.", nameof(advocateProfileIntegrationIds));
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class NewReferralsForMultipleAdvocates.");
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class NewReferralsForMultipleAdvocates.");
 
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class NewReferralsForMultipleAdvocates.");
-
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class NewReferralsForMultipleAdvocates.");
+            if (advocateProfileIntegrationIds.IsSet && advocateProfileIntegrationIds.Value == null)
+                throw new ArgumentNullException(nameof(advocateProfileIntegrationIds), "Property is not nullable for class NewReferralsForMultipleAdvocates.");
 
             return new NewReferralsForMultipleAdvocates(campaignId.Value.Value, advocateProfileIntegrationIds.Value, startDate, expiryDate, usageLimit, attributes, validCharacters, referralPattern);
         }
@@ -346,15 +343,6 @@ namespace TalonOneSdk.Model
         {
             if (newReferralsForMultipleAdvocates.AdvocateProfileIntegrationIds == null)
                 throw new ArgumentNullException(nameof(newReferralsForMultipleAdvocates.AdvocateProfileIntegrationIds), "Property is required for class NewReferralsForMultipleAdvocates.");
-
-            if (newReferralsForMultipleAdvocates.AttributesOption.IsSet && newReferralsForMultipleAdvocates.Attributes == null)
-                throw new ArgumentNullException(nameof(newReferralsForMultipleAdvocates.Attributes), "Property is required for class NewReferralsForMultipleAdvocates.");
-
-            if (newReferralsForMultipleAdvocates.ValidCharactersOption.IsSet && newReferralsForMultipleAdvocates.ValidCharacters == null)
-                throw new ArgumentNullException(nameof(newReferralsForMultipleAdvocates.ValidCharacters), "Property is required for class NewReferralsForMultipleAdvocates.");
-
-            if (newReferralsForMultipleAdvocates.ReferralPatternOption.IsSet && newReferralsForMultipleAdvocates.ReferralPattern == null)
-                throw new ArgumentNullException(nameof(newReferralsForMultipleAdvocates.ReferralPattern), "Property is required for class NewReferralsForMultipleAdvocates.");
 
             writer.WriteNumber("campaignId", newReferralsForMultipleAdvocates.CampaignId);
 

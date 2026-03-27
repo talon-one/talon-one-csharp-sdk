@@ -338,14 +338,20 @@ namespace TalonOneSdk.Model
             if (!attributes.IsSet)
                 throw new ArgumentException("Property is required for class ExpiringCouponsData.", nameof(attributes));
 
-            if (createdDate.IsSet && createdDate.Value == null)
-                throw new ArgumentNullException(nameof(createdDate), "Property is not nullable for class ExpiringCouponsData.");
+            if (couponValue.IsSet && couponValue.Value == null)
+                throw new ArgumentNullException(nameof(couponValue), "Property is not nullable for class ExpiringCouponsData.");
 
-            if (validFrom.IsSet && validFrom.Value == null)
-                throw new ArgumentNullException(nameof(validFrom), "Property is not nullable for class ExpiringCouponsData.");
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class ExpiringCouponsData.");
 
-            if (validUntil.IsSet && validUntil.Value == null)
-                throw new ArgumentNullException(nameof(validUntil), "Property is not nullable for class ExpiringCouponsData.");
+            if (usageLimit.IsSet && usageLimit.Value == null)
+                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class ExpiringCouponsData.");
+
+            if (usageCounter.IsSet && usageCounter.Value == null)
+                throw new ArgumentNullException(nameof(usageCounter), "Property is not nullable for class ExpiringCouponsData.");
+
+            if (attributes.IsSet && attributes.Value == null)
+                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class ExpiringCouponsData.");
 
             return new ExpiringCouponsData(couponValue.Value, campaignId.Value.Value, usageLimit.Value.Value, usageCounter.Value.Value, attributes.Value, createdDate, validFrom, validUntil, customerProfileId, batchId);
         }
@@ -379,12 +385,6 @@ namespace TalonOneSdk.Model
 
             if (expiringCouponsData.Attributes == null)
                 throw new ArgumentNullException(nameof(expiringCouponsData.Attributes), "Property is required for class ExpiringCouponsData.");
-
-            if (expiringCouponsData.CustomerProfileIdOption.IsSet && expiringCouponsData.CustomerProfileId == null)
-                throw new ArgumentNullException(nameof(expiringCouponsData.CustomerProfileId), "Property is required for class ExpiringCouponsData.");
-
-            if (expiringCouponsData.BatchIdOption.IsSet && expiringCouponsData.BatchId == null)
-                throw new ArgumentNullException(nameof(expiringCouponsData.BatchId), "Property is required for class ExpiringCouponsData.");
 
             writer.WriteString("CouponValue", expiringCouponsData.CouponValue);
 

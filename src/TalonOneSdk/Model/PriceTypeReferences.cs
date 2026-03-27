@@ -145,6 +145,9 @@ namespace TalonOneSdk.Model
             if (!priceTypeId.IsSet)
                 throw new ArgumentException("Property is required for class PriceTypeReferences.", nameof(priceTypeId));
 
+            if (priceTypeId.IsSet && priceTypeId.Value == null)
+                throw new ArgumentNullException(nameof(priceTypeId), "Property is not nullable for class PriceTypeReferences.");
+
             return new PriceTypeReferences(priceTypeId.Value.Value, references);
         }
 
@@ -172,9 +175,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PriceTypeReferences priceTypeReferences, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (priceTypeReferences.ReferencesOption.IsSet && priceTypeReferences.References == null)
-                throw new ArgumentNullException(nameof(priceTypeReferences.References), "Property is required for class PriceTypeReferences.");
-
             writer.WriteNumber("priceTypeId", priceTypeReferences.PriceTypeId);
 
             if (priceTypeReferences.ReferencesOption.IsSet)

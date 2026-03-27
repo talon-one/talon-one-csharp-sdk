@@ -194,12 +194,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (audienceId.IsSet && audienceId.Value == null)
-                throw new ArgumentNullException(nameof(audienceId), "Property is not nullable for class RemoveFromAudienceEffectProps.");
-
-            if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class RemoveFromAudienceEffectProps.");
-
             return new RemoveFromAudienceEffectProps(audienceId, audienceName, profileIntegrationId, profileId);
         }
 
@@ -227,12 +221,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RemoveFromAudienceEffectProps removeFromAudienceEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (removeFromAudienceEffectProps.AudienceNameOption.IsSet && removeFromAudienceEffectProps.AudienceName == null)
-                throw new ArgumentNullException(nameof(removeFromAudienceEffectProps.AudienceName), "Property is required for class RemoveFromAudienceEffectProps.");
-
-            if (removeFromAudienceEffectProps.ProfileIntegrationIdOption.IsSet && removeFromAudienceEffectProps.ProfileIntegrationId == null)
-                throw new ArgumentNullException(nameof(removeFromAudienceEffectProps.ProfileIntegrationId), "Property is required for class RemoveFromAudienceEffectProps.");
-
             if (removeFromAudienceEffectProps.AudienceIdOption.IsSet)
                 writer.WriteNumber("audienceId", removeFromAudienceEffectProps.AudienceIdOption.Value.Value);
 

@@ -123,6 +123,9 @@ namespace TalonOneSdk.Model
             if (!price.IsSet)
                 throw new ArgumentException("Property is required for class AdditionalCost.", nameof(price));
 
+            if (price.IsSet && price.Value == null)
+                throw new ArgumentNullException(nameof(price), "Property is not nullable for class AdditionalCost.");
+
             return new AdditionalCost(price.Value.Value);
         }
 

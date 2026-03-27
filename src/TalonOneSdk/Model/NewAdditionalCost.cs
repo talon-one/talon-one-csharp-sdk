@@ -143,7 +143,7 @@ namespace TalonOneSdk.Model
         /// <value>The type of additional cost. Possible value: - &#x60;session&#x60;: Additional cost will be added per session. - &#x60;item&#x60;: Additional cost will be added per item. - &#x60;both&#x60;: Additional cost will be added per item and session. </value>
         /* <example>session</example> */
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this.TypeOption; } set { this.TypeOption = new Option<TypeEnum?>(value); } }
+        public TypeEnum? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new Option<TypeEnum?>(value); } }
 
         /// <summary>
         /// The internal name used in API requests.
@@ -307,8 +307,14 @@ namespace TalonOneSdk.Model
             if (!description.IsSet)
                 throw new ArgumentException("Property is required for class NewAdditionalCost.", nameof(description));
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class NewAdditionalCost.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewAdditionalCost.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewAdditionalCost.");
+
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description), "Property is not nullable for class NewAdditionalCost.");
 
             return new NewAdditionalCost(name.Value, title.Value, description.Value, subscribedApplicationsIds, type);
         }
@@ -345,9 +351,6 @@ namespace TalonOneSdk.Model
 
             if (newAdditionalCost.Description == null)
                 throw new ArgumentNullException(nameof(newAdditionalCost.Description), "Property is required for class NewAdditionalCost.");
-
-            if (newAdditionalCost.SubscribedApplicationsIdsOption.IsSet && newAdditionalCost.SubscribedApplicationsIds == null)
-                throw new ArgumentNullException(nameof(newAdditionalCost.SubscribedApplicationsIds), "Property is required for class NewAdditionalCost.");
 
             writer.WriteString("name", newAdditionalCost.Name);
 

@@ -208,7 +208,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Period
         /// </summary>
         [JsonPropertyName("period")]
-        public PeriodEnum? Period { get { return this.PeriodOption; } set { this.PeriodOption = new Option<PeriodEnum?>(value); } }
+        public PeriodEnum? Period { get { return this.PeriodOption.Value; } set { this.PeriodOption = new Option<PeriodEnum?>(value); } }
 
         /// <summary>
         /// The set of budget limits for stores linked to the campaign.
@@ -309,8 +309,11 @@ namespace TalonOneSdk.Model
             if (!storeLimits.IsSet)
                 throw new ArgumentException("Property is required for class NewCampaignStoreBudget.", nameof(storeLimits));
 
-            if (period.IsSet && period.Value == null)
-                throw new ArgumentNullException(nameof(period), "Property is not nullable for class NewCampaignStoreBudget.");
+            if (action.IsSet && action.Value == null)
+                throw new ArgumentNullException(nameof(action), "Property is not nullable for class NewCampaignStoreBudget.");
+
+            if (storeLimits.IsSet && storeLimits.Value == null)
+                throw new ArgumentNullException(nameof(storeLimits), "Property is not nullable for class NewCampaignStoreBudget.");
 
             return new NewCampaignStoreBudget(action.Value.Value, storeLimits.Value, period);
         }

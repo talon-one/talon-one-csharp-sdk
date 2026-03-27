@@ -278,6 +278,21 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class CampaignGroup.", nameof(name));
 
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignGroup.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CampaignGroup.");
+
+            if (modified.IsSet && modified.Value == null)
+                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class CampaignGroup.");
+
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class CampaignGroup.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignGroup.");
+
             return new CampaignGroup(id.Value.Value, created.Value.Value, modified.Value.Value, accountId.Value.Value, name.Value, description, subscribedApplicationsIds, campaignIds);
         }
 
@@ -307,15 +322,6 @@ namespace TalonOneSdk.Model
         {
             if (campaignGroup.Name == null)
                 throw new ArgumentNullException(nameof(campaignGroup.Name), "Property is required for class CampaignGroup.");
-
-            if (campaignGroup.DescriptionOption.IsSet && campaignGroup.Description == null)
-                throw new ArgumentNullException(nameof(campaignGroup.Description), "Property is required for class CampaignGroup.");
-
-            if (campaignGroup.SubscribedApplicationsIdsOption.IsSet && campaignGroup.SubscribedApplicationsIds == null)
-                throw new ArgumentNullException(nameof(campaignGroup.SubscribedApplicationsIds), "Property is required for class CampaignGroup.");
-
-            if (campaignGroup.CampaignIdsOption.IsSet && campaignGroup.CampaignIds == null)
-                throw new ArgumentNullException(nameof(campaignGroup.CampaignIds), "Property is required for class CampaignGroup.");
 
             writer.WriteNumber("id", campaignGroup.Id);
 

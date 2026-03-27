@@ -216,21 +216,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (activePoints.IsSet && activePoints.Value == null)
-                throw new ArgumentNullException(nameof(activePoints), "Property is not nullable for class LoyaltyBalance.");
-
-            if (pendingPoints.IsSet && pendingPoints.Value == null)
-                throw new ArgumentNullException(nameof(pendingPoints), "Property is not nullable for class LoyaltyBalance.");
-
-            if (spentPoints.IsSet && spentPoints.Value == null)
-                throw new ArgumentNullException(nameof(spentPoints), "Property is not nullable for class LoyaltyBalance.");
-
-            if (expiredPoints.IsSet && expiredPoints.Value == null)
-                throw new ArgumentNullException(nameof(expiredPoints), "Property is not nullable for class LoyaltyBalance.");
-
-            if (negativePoints.IsSet && negativePoints.Value == null)
-                throw new ArgumentNullException(nameof(negativePoints), "Property is not nullable for class LoyaltyBalance.");
-
             return new LoyaltyBalance(activePoints, pendingPoints, spentPoints, expiredPoints, negativePoints);
         }
 

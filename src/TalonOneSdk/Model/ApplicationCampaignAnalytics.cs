@@ -475,6 +475,24 @@ namespace TalonOneSdk.Model
             if (!campaignState.IsSet)
                 throw new ArgumentException("Property is required for class ApplicationCampaignAnalytics.", nameof(campaignState));
 
+            if (startTime.IsSet && startTime.Value == null)
+                throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class ApplicationCampaignAnalytics.");
+
+            if (endTime.IsSet && endTime.Value == null)
+                throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class ApplicationCampaignAnalytics.");
+
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class ApplicationCampaignAnalytics.");
+
+            if (campaignName.IsSet && campaignName.Value == null)
+                throw new ArgumentNullException(nameof(campaignName), "Property is not nullable for class ApplicationCampaignAnalytics.");
+
+            if (campaignTags.IsSet && campaignTags.Value == null)
+                throw new ArgumentNullException(nameof(campaignTags), "Property is not nullable for class ApplicationCampaignAnalytics.");
+
+            if (campaignState.IsSet && campaignState.Value == null)
+                throw new ArgumentNullException(nameof(campaignState), "Property is not nullable for class ApplicationCampaignAnalytics.");
+
             return new ApplicationCampaignAnalytics(startTime.Value.Value, endTime.Value.Value, campaignId.Value.Value, campaignName.Value, campaignTags.Value, campaignState.Value.Value, totalRevenue, sessionsCount, avgItemsPerSession, avgSessionValue, totalDiscounts, couponsCount);
         }
 
@@ -507,24 +525,6 @@ namespace TalonOneSdk.Model
 
             if (applicationCampaignAnalytics.CampaignTags == null)
                 throw new ArgumentNullException(nameof(applicationCampaignAnalytics.CampaignTags), "Property is required for class ApplicationCampaignAnalytics.");
-
-            if (applicationCampaignAnalytics.TotalRevenueOption.IsSet && applicationCampaignAnalytics.TotalRevenue == null)
-                throw new ArgumentNullException(nameof(applicationCampaignAnalytics.TotalRevenue), "Property is required for class ApplicationCampaignAnalytics.");
-
-            if (applicationCampaignAnalytics.SessionsCountOption.IsSet && applicationCampaignAnalytics.SessionsCount == null)
-                throw new ArgumentNullException(nameof(applicationCampaignAnalytics.SessionsCount), "Property is required for class ApplicationCampaignAnalytics.");
-
-            if (applicationCampaignAnalytics.AvgItemsPerSessionOption.IsSet && applicationCampaignAnalytics.AvgItemsPerSession == null)
-                throw new ArgumentNullException(nameof(applicationCampaignAnalytics.AvgItemsPerSession), "Property is required for class ApplicationCampaignAnalytics.");
-
-            if (applicationCampaignAnalytics.AvgSessionValueOption.IsSet && applicationCampaignAnalytics.AvgSessionValue == null)
-                throw new ArgumentNullException(nameof(applicationCampaignAnalytics.AvgSessionValue), "Property is required for class ApplicationCampaignAnalytics.");
-
-            if (applicationCampaignAnalytics.TotalDiscountsOption.IsSet && applicationCampaignAnalytics.TotalDiscounts == null)
-                throw new ArgumentNullException(nameof(applicationCampaignAnalytics.TotalDiscounts), "Property is required for class ApplicationCampaignAnalytics.");
-
-            if (applicationCampaignAnalytics.CouponsCountOption.IsSet && applicationCampaignAnalytics.CouponsCount == null)
-                throw new ArgumentNullException(nameof(applicationCampaignAnalytics.CouponsCount), "Property is required for class ApplicationCampaignAnalytics.");
 
             writer.WriteString("startTime", applicationCampaignAnalytics.StartTime.ToString(StartTimeFormat));
 

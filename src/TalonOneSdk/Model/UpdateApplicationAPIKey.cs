@@ -124,6 +124,9 @@ namespace TalonOneSdk.Model
             if (!timeOffset.IsSet)
                 throw new ArgumentException("Property is required for class UpdateApplicationAPIKey.", nameof(timeOffset));
 
+            if (timeOffset.IsSet && timeOffset.Value == null)
+                throw new ArgumentNullException(nameof(timeOffset), "Property is not nullable for class UpdateApplicationAPIKey.");
+
             return new UpdateApplicationAPIKey(timeOffset.Value.Value);
         }
 

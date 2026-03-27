@@ -175,12 +175,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RoleV2Permissions roleV2Permissions, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (roleV2Permissions.PermissionSetsOption.IsSet && roleV2Permissions.PermissionSets == null)
-                throw new ArgumentNullException(nameof(roleV2Permissions.PermissionSets), "Property is required for class RoleV2Permissions.");
-
-            if (roleV2Permissions.RolesOption.IsSet && roleV2Permissions.Roles == null)
-                throw new ArgumentNullException(nameof(roleV2Permissions.Roles), "Property is required for class RoleV2Permissions.");
-
             if (roleV2Permissions.PermissionSetsOption.IsSet)
             {
                 writer.WritePropertyName("permissionSets");

@@ -269,8 +269,23 @@ namespace TalonOneSdk.Model
             if (!subledgerID.IsSet)
                 throw new ArgumentException("Property is required for class TierWillDowngradeData.", nameof(subledgerID));
 
-            if (tierExpirationDate.IsSet && tierExpirationDate.Value == null)
-                throw new ArgumentNullException(nameof(tierExpirationDate), "Property is not nullable for class TierWillDowngradeData.");
+            if (customerProfileID.IsSet && customerProfileID.Value == null)
+                throw new ArgumentNullException(nameof(customerProfileID), "Property is not nullable for class TierWillDowngradeData.");
+
+            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class TierWillDowngradeData.");
+
+            if (currentTier.IsSet && currentTier.Value == null)
+                throw new ArgumentNullException(nameof(currentTier), "Property is not nullable for class TierWillDowngradeData.");
+
+            if (currentPoints.IsSet && currentPoints.Value == null)
+                throw new ArgumentNullException(nameof(currentPoints), "Property is not nullable for class TierWillDowngradeData.");
+
+            if (pointsRequiredToRemain.IsSet && pointsRequiredToRemain.Value == null)
+                throw new ArgumentNullException(nameof(pointsRequiredToRemain), "Property is not nullable for class TierWillDowngradeData.");
+
+            if (subledgerID.IsSet && subledgerID.Value == null)
+                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class TierWillDowngradeData.");
 
             return new TierWillDowngradeData(customerProfileID.Value, loyaltyProgramID.Value.Value, currentTier.Value, currentPoints.Value.Value, pointsRequiredToRemain.Value.Value, subledgerID.Value, nextTier, tierExpirationDate);
         }
@@ -307,9 +322,6 @@ namespace TalonOneSdk.Model
 
             if (tierWillDowngradeData.SubledgerID == null)
                 throw new ArgumentNullException(nameof(tierWillDowngradeData.SubledgerID), "Property is required for class TierWillDowngradeData.");
-
-            if (tierWillDowngradeData.NextTierOption.IsSet && tierWillDowngradeData.NextTier == null)
-                throw new ArgumentNullException(nameof(tierWillDowngradeData.NextTier), "Property is required for class TierWillDowngradeData.");
 
             writer.WriteString("CustomerProfileID", tierWillDowngradeData.CustomerProfileID);
 

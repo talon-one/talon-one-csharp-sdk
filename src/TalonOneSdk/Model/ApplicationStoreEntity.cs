@@ -127,9 +127,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (storeId.IsSet && storeId.Value == null)
-                throw new ArgumentNullException(nameof(storeId), "Property is not nullable for class ApplicationStoreEntity.");
-
             return new ApplicationStoreEntity(storeId);
         }
 

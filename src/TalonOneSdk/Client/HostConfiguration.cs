@@ -251,9 +251,6 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new EffectJsonConverter());
             _jsonOptions.Converters.Add(new EffectEntityJsonConverter());
             _jsonOptions.Converters.Add(new EmailEntityJsonConverter());
-            _jsonOptions.Converters.Add(new EmbeddedAnalyticsConfigurationJsonConverter());
-            _jsonOptions.Converters.Add(new EmbeddedAnalyticsConfigurationDashboardsJsonConverter());
-            _jsonOptions.Converters.Add(new EmbeddedDashboardConfigurationJsonConverter());
             _jsonOptions.Converters.Add(new EndpointJsonConverter());
             _jsonOptions.Converters.Add(new EntityJsonConverter());
             _jsonOptions.Converters.Add(new EntityWithTalangVisibleIDJsonConverter());

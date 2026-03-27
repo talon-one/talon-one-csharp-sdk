@@ -297,17 +297,17 @@ namespace TalonOneSdk.Model
             if (!applicationId.IsSet)
                 throw new ArgumentException("Property is required for class ApplicationCIF.", nameof(applicationId));
 
-            if (activeExpressionId.IsSet && activeExpressionId.Value == null)
-                throw new ArgumentNullException(nameof(activeExpressionId), "Property is not nullable for class ApplicationCIF.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ApplicationCIF.");
 
-            if (modifiedBy.IsSet && modifiedBy.Value == null)
-                throw new ArgumentNullException(nameof(modifiedBy), "Property is not nullable for class ApplicationCIF.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ApplicationCIF.");
 
-            if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class ApplicationCIF.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ApplicationCIF.");
 
-            if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class ApplicationCIF.");
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ApplicationCIF.");
 
             return new ApplicationCIF(id.Value.Value, created.Value.Value, name.Value, applicationId.Value.Value, description, activeExpressionId, modifiedBy, createdBy, modified);
         }
@@ -338,9 +338,6 @@ namespace TalonOneSdk.Model
         {
             if (applicationCIF.Name == null)
                 throw new ArgumentNullException(nameof(applicationCIF.Name), "Property is required for class ApplicationCIF.");
-
-            if (applicationCIF.DescriptionOption.IsSet && applicationCIF.Description == null)
-                throw new ArgumentNullException(nameof(applicationCIF.Description), "Property is required for class ApplicationCIF.");
 
             writer.WriteNumber("id", applicationCIF.Id);
 

@@ -182,6 +182,15 @@ namespace TalonOneSdk.Model
             if (!token.IsSet)
                 throw new ArgumentException("Property is required for class OneTimeCode.", nameof(token));
 
+            if (userId.IsSet && userId.Value == null)
+                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class OneTimeCode.");
+
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class OneTimeCode.");
+
+            if (token.IsSet && token.Value == null)
+                throw new ArgumentNullException(nameof(token), "Property is not nullable for class OneTimeCode.");
+
             return new OneTimeCode(userId.Value.Value, accountId.Value.Value, token.Value, code);
         }
 
@@ -211,9 +220,6 @@ namespace TalonOneSdk.Model
         {
             if (oneTimeCode.Token == null)
                 throw new ArgumentNullException(nameof(oneTimeCode.Token), "Property is required for class OneTimeCode.");
-
-            if (oneTimeCode.CodeOption.IsSet && oneTimeCode.Code == null)
-                throw new ArgumentNullException(nameof(oneTimeCode.Code), "Property is required for class OneTimeCode.");
 
             writer.WriteNumber("userId", oneTimeCode.UserId);
 

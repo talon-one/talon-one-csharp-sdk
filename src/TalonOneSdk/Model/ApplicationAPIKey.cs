@@ -251,7 +251,7 @@ namespace TalonOneSdk.Model
         /// <value>The third-party platform the API key is valid for. Use &#x60;none&#x60; for a generic API key to be used from your own integration layer. </value>
         /* <example>none</example> */
         [JsonPropertyName("platform")]
-        public PlatformEnum? Platform { get { return this.PlatformOption; } set { this.PlatformOption = new Option<PlatformEnum?>(value); } }
+        public PlatformEnum? Platform { get { return this.PlatformOption.Value; } set { this.PlatformOption = new Option<PlatformEnum?>(value); } }
 
         /// <summary>
         /// The API key type. Can be empty or &#x60;staging&#x60;.  Staging API keys can only be used for dry requests with the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint, [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint, and [Track event](https://docs.talon.one/integration-api#tag/Events/operation/trackEventV2) endpoint.  When using the _Update customer profile_ endpoint with a staging API key, the query parameter &#x60;runRuleEngine&#x60; must be &#x60;true&#x60;. 
@@ -319,7 +319,7 @@ namespace TalonOneSdk.Model
         /// <value>The API key type. Can be empty or &#x60;staging&#x60;.  Staging API keys can only be used for dry requests with the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint, [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint, and [Track event](https://docs.talon.one/integration-api#tag/Events/operation/trackEventV2) endpoint.  When using the _Update customer profile_ endpoint with a staging API key, the query parameter &#x60;runRuleEngine&#x60; must be &#x60;true&#x60;. </value>
         /* <example>staging</example> */
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this.TypeOption; } set { this.TypeOption = new Option<TypeEnum?>(value); } }
+        public TypeEnum? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new Option<TypeEnum?>(value); } }
 
         /// <summary>
         /// Title of the API key.
@@ -544,14 +544,26 @@ namespace TalonOneSdk.Model
             if (!created.IsSet)
                 throw new ArgumentException("Property is required for class ApplicationAPIKey.", nameof(created));
 
-            if (platform.IsSet && platform.Value == null)
-                throw new ArgumentNullException(nameof(platform), "Property is not nullable for class ApplicationAPIKey.");
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class ApplicationAPIKey.");
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class ApplicationAPIKey.");
+            if (expires.IsSet && expires.Value == null)
+                throw new ArgumentNullException(nameof(expires), "Property is not nullable for class ApplicationAPIKey.");
 
-            if (timeOffset.IsSet && timeOffset.Value == null)
-                throw new ArgumentNullException(nameof(timeOffset), "Property is not nullable for class ApplicationAPIKey.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ApplicationAPIKey.");
+
+            if (createdBy.IsSet && createdBy.Value == null)
+                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class ApplicationAPIKey.");
+
+            if (accountID.IsSet && accountID.Value == null)
+                throw new ArgumentNullException(nameof(accountID), "Property is not nullable for class ApplicationAPIKey.");
+
+            if (applicationID.IsSet && applicationID.Value == null)
+                throw new ArgumentNullException(nameof(applicationID), "Property is not nullable for class ApplicationAPIKey.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ApplicationAPIKey.");
 
             return new ApplicationAPIKey(title.Value, expires.Value.Value, id.Value.Value, createdBy.Value.Value, accountID.Value.Value, applicationID.Value.Value, created.Value.Value, platform, type, timeOffset);
         }

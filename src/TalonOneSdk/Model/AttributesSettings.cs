@@ -153,9 +153,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AttributesSettings attributesSettings, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (attributesSettings.MandatoryOption.IsSet && attributesSettings.Mandatory == null)
-                throw new ArgumentNullException(nameof(attributesSettings.Mandatory), "Property is required for class AttributesSettings.");
-
             if (attributesSettings.MandatoryOption.IsSet)
             {
                 writer.WritePropertyName("mandatory");

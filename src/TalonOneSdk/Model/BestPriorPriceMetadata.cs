@@ -144,6 +144,9 @@ namespace TalonOneSdk.Model
             if (!influencingCampaignDetails.IsSet)
                 throw new ArgumentException("Property is required for class BestPriorPriceMetadata.", nameof(influencingCampaignDetails));
 
+            if (influencingCampaignDetails.IsSet && influencingCampaignDetails.Value == null)
+                throw new ArgumentNullException(nameof(influencingCampaignDetails), "Property is not nullable for class BestPriorPriceMetadata.");
+
             return new BestPriorPriceMetadata(influencingCampaignDetails.Value, adjustmentDetails);
         }
 
@@ -173,9 +176,6 @@ namespace TalonOneSdk.Model
         {
             if (bestPriorPriceMetadata.InfluencingCampaignDetails == null)
                 throw new ArgumentNullException(nameof(bestPriorPriceMetadata.InfluencingCampaignDetails), "Property is required for class BestPriorPriceMetadata.");
-
-            if (bestPriorPriceMetadata.AdjustmentDetailsOption.IsSet && bestPriorPriceMetadata.AdjustmentDetails == null)
-                throw new ArgumentNullException(nameof(bestPriorPriceMetadata.AdjustmentDetails), "Property is required for class BestPriorPriceMetadata.");
 
             writer.WritePropertyName("influencingCampaignDetails");
             JsonSerializer.Serialize(writer, bestPriorPriceMetadata.InfluencingCampaignDetails, jsonSerializerOptions);

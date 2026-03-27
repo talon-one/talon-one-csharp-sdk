@@ -196,6 +196,12 @@ namespace TalonOneSdk.Model
             if (!title.IsSet)
                 throw new ArgumentException("Property is required for class NewPriceType.", nameof(title));
 
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewPriceType.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewPriceType.");
+
             return new NewPriceType(name.Value, title.Value, description, targetedAudiencesIds);
         }
 
@@ -228,12 +234,6 @@ namespace TalonOneSdk.Model
 
             if (newPriceType.Title == null)
                 throw new ArgumentNullException(nameof(newPriceType.Title), "Property is required for class NewPriceType.");
-
-            if (newPriceType.DescriptionOption.IsSet && newPriceType.Description == null)
-                throw new ArgumentNullException(nameof(newPriceType.Description), "Property is required for class NewPriceType.");
-
-            if (newPriceType.TargetedAudiencesIdsOption.IsSet && newPriceType.TargetedAudiencesIds == null)
-                throw new ArgumentNullException(nameof(newPriceType.TargetedAudiencesIds), "Property is required for class NewPriceType.");
 
             writer.WriteString("name", newPriceType.Name);
 

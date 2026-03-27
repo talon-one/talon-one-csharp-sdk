@@ -297,8 +297,17 @@ namespace TalonOneSdk.Model
             if (!accountId.IsSet)
                 throw new ArgumentException("Property is required for class RoleV2.", nameof(accountId));
 
-            if (isReadonly.IsSet && isReadonly.Value == null)
-                throw new ArgumentNullException(nameof(isReadonly), "Property is not nullable for class RoleV2.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RoleV2.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class RoleV2.");
+
+            if (modified.IsSet && modified.Value == null)
+                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class RoleV2.");
+
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class RoleV2.");
 
             return new RoleV2(id.Value.Value, created.Value.Value, modified.Value.Value, accountId.Value.Value, name, description, permissions, members, isReadonly);
         }
@@ -327,18 +336,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RoleV2 roleV2, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (roleV2.NameOption.IsSet && roleV2.Name == null)
-                throw new ArgumentNullException(nameof(roleV2.Name), "Property is required for class RoleV2.");
-
-            if (roleV2.DescriptionOption.IsSet && roleV2.Description == null)
-                throw new ArgumentNullException(nameof(roleV2.Description), "Property is required for class RoleV2.");
-
-            if (roleV2.PermissionsOption.IsSet && roleV2.Permissions == null)
-                throw new ArgumentNullException(nameof(roleV2.Permissions), "Property is required for class RoleV2.");
-
-            if (roleV2.MembersOption.IsSet && roleV2.Members == null)
-                throw new ArgumentNullException(nameof(roleV2.Members), "Property is required for class RoleV2.");
-
             writer.WriteNumber("id", roleV2.Id);
 
             writer.WriteString("created", roleV2.Created.ToString(CreatedFormat));

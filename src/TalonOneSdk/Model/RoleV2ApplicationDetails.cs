@@ -218,18 +218,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RoleV2ApplicationDetails roleV2ApplicationDetails, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (roleV2ApplicationDetails.ApplicationOption.IsSet && roleV2ApplicationDetails.Application == null)
-                throw new ArgumentNullException(nameof(roleV2ApplicationDetails.Application), "Property is required for class RoleV2ApplicationDetails.");
-
-            if (roleV2ApplicationDetails.CampaignOption.IsSet && roleV2ApplicationDetails.Campaign == null)
-                throw new ArgumentNullException(nameof(roleV2ApplicationDetails.Campaign), "Property is required for class RoleV2ApplicationDetails.");
-
-            if (roleV2ApplicationDetails.DraftCampaignOption.IsSet && roleV2ApplicationDetails.DraftCampaign == null)
-                throw new ArgumentNullException(nameof(roleV2ApplicationDetails.DraftCampaign), "Property is required for class RoleV2ApplicationDetails.");
-
-            if (roleV2ApplicationDetails.ToolsOption.IsSet && roleV2ApplicationDetails.Tools == null)
-                throw new ArgumentNullException(nameof(roleV2ApplicationDetails.Tools), "Property is required for class RoleV2ApplicationDetails.");
-
             if (roleV2ApplicationDetails.ApplicationOption.IsSet)
                 writer.WriteString("application", roleV2ApplicationDetails.Application);
 

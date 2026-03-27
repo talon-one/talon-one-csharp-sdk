@@ -274,8 +274,20 @@ namespace TalonOneSdk.Model
             if (!enabled.IsSet)
                 throw new ArgumentException("Property is required for class UpdateCustomEffect.", nameof(enabled));
 
-            if (isPerItem.IsSet && isPerItem.Value == null)
-                throw new ArgumentNullException(nameof(isPerItem), "Property is not nullable for class UpdateCustomEffect.");
+            if (applicationIds.IsSet && applicationIds.Value == null)
+                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class UpdateCustomEffect.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateCustomEffect.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class UpdateCustomEffect.");
+
+            if (payload.IsSet && payload.Value == null)
+                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class UpdateCustomEffect.");
+
+            if (enabled.IsSet && enabled.Value == null)
+                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class UpdateCustomEffect.");
 
             return new UpdateCustomEffect(applicationIds.Value, name.Value, title.Value, payload.Value, enabled.Value.Value, isPerItem, description, varParams);
         }
@@ -315,12 +327,6 @@ namespace TalonOneSdk.Model
 
             if (updateCustomEffect.Payload == null)
                 throw new ArgumentNullException(nameof(updateCustomEffect.Payload), "Property is required for class UpdateCustomEffect.");
-
-            if (updateCustomEffect.DescriptionOption.IsSet && updateCustomEffect.Description == null)
-                throw new ArgumentNullException(nameof(updateCustomEffect.Description), "Property is required for class UpdateCustomEffect.");
-
-            if (updateCustomEffect.ParamsOption.IsSet && updateCustomEffect.Params == null)
-                throw new ArgumentNullException(nameof(updateCustomEffect.Params), "Property is required for class UpdateCustomEffect.");
 
             writer.WritePropertyName("applicationIds");
             JsonSerializer.Serialize(writer, updateCustomEffect.ApplicationIds, jsonSerializerOptions);

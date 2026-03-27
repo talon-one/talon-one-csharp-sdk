@@ -266,14 +266,8 @@ namespace TalonOneSdk.Model
             if (!applicationIds.IsSet)
                 throw new ArgumentException("Property is required for class CampaignCopy.", nameof(applicationIds));
 
-            if (startTime.IsSet && startTime.Value == null)
-                throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class CampaignCopy.");
-
-            if (endTime.IsSet && endTime.Value == null)
-                throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class CampaignCopy.");
-
-            if (evaluationGroupId.IsSet && evaluationGroupId.Value == null)
-                throw new ArgumentNullException(nameof(evaluationGroupId), "Property is not nullable for class CampaignCopy.");
+            if (applicationIds.IsSet && applicationIds.Value == null)
+                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class CampaignCopy.");
 
             return new CampaignCopy(applicationIds.Value, name, description, startTime, endTime, tags, evaluationGroupId);
         }
@@ -304,15 +298,6 @@ namespace TalonOneSdk.Model
         {
             if (campaignCopy.ApplicationIds == null)
                 throw new ArgumentNullException(nameof(campaignCopy.ApplicationIds), "Property is required for class CampaignCopy.");
-
-            if (campaignCopy.NameOption.IsSet && campaignCopy.Name == null)
-                throw new ArgumentNullException(nameof(campaignCopy.Name), "Property is required for class CampaignCopy.");
-
-            if (campaignCopy.DescriptionOption.IsSet && campaignCopy.Description == null)
-                throw new ArgumentNullException(nameof(campaignCopy.Description), "Property is required for class CampaignCopy.");
-
-            if (campaignCopy.TagsOption.IsSet && campaignCopy.Tags == null)
-                throw new ArgumentNullException(nameof(campaignCopy.Tags), "Property is required for class CampaignCopy.");
 
             writer.WritePropertyName("applicationIds");
             JsonSerializer.Serialize(writer, campaignCopy.ApplicationIds, jsonSerializerOptions);

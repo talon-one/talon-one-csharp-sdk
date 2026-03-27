@@ -145,7 +145,7 @@ namespace TalonOneSdk.Model
         /// <value>Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of the current &#x60;contextId&#x60; with the current price value. Identical price records are merged. If there is no &#x60;contextId&#x60; for the most recent price, the most recent timestamp for the price is used.  - &#x60;sale&#x60;:  The timeframe ends at the start of current &#x60;contextId&#x60; and takes the prices prior to the start of the &#x60;contextId&#x60; into account. </value>
         /* <example>sale</example> */
         [JsonPropertyName("timeframeEndDateType")]
-        public TimeframeEndDateTypeEnum? TimeframeEndDateType { get { return this.TimeframeEndDateTypeOption; } set { this.TimeframeEndDateTypeOption = new Option<TimeframeEndDateTypeEnum?>(value); } }
+        public TimeframeEndDateTypeEnum? TimeframeEndDateType { get { return this.TimeframeEndDateTypeOption.Value; } set { this.TimeframeEndDateTypeOption = new Option<TimeframeEndDateTypeEnum?>(value); } }
 
         /// <summary>
         /// List of product SKUs to check when determining the best prior price.
@@ -309,8 +309,17 @@ namespace TalonOneSdk.Model
             if (!strictEndDate.IsSet)
                 throw new ArgumentException("Property is required for class BestPriorPriceRequest.", nameof(strictEndDate));
 
-            if (timeframeEndDateType.IsSet && timeframeEndDateType.Value == null)
-                throw new ArgumentNullException(nameof(timeframeEndDateType), "Property is not nullable for class BestPriorPriceRequest.");
+            if (skus.IsSet && skus.Value == null)
+                throw new ArgumentNullException(nameof(skus), "Property is not nullable for class BestPriorPriceRequest.");
+
+            if (timeframeEndDate.IsSet && timeframeEndDate.Value == null)
+                throw new ArgumentNullException(nameof(timeframeEndDate), "Property is not nullable for class BestPriorPriceRequest.");
+
+            if (timeframe.IsSet && timeframe.Value == null)
+                throw new ArgumentNullException(nameof(timeframe), "Property is not nullable for class BestPriorPriceRequest.");
+
+            if (strictEndDate.IsSet && strictEndDate.Value == null)
+                throw new ArgumentNullException(nameof(strictEndDate), "Property is not nullable for class BestPriorPriceRequest.");
 
             return new BestPriorPriceRequest(skus.Value, timeframeEndDate.Value.Value, timeframe.Value, strictEndDate.Value.Value, timeframeEndDateType, target);
         }
@@ -344,9 +353,6 @@ namespace TalonOneSdk.Model
 
             if (bestPriorPriceRequest.Timeframe == null)
                 throw new ArgumentNullException(nameof(bestPriorPriceRequest.Timeframe), "Property is required for class BestPriorPriceRequest.");
-
-            if (bestPriorPriceRequest.TargetOption.IsSet && bestPriorPriceRequest.Target == null)
-                throw new ArgumentNullException(nameof(bestPriorPriceRequest.Target), "Property is required for class BestPriorPriceRequest.");
 
             writer.WritePropertyName("skus");
             JsonSerializer.Serialize(writer, bestPriorPriceRequest.Skus, jsonSerializerOptions);

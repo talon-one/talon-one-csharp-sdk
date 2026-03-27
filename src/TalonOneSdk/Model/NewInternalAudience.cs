@@ -174,8 +174,8 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class NewInternalAudience.", nameof(name));
 
-            if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class NewInternalAudience.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewInternalAudience.");
 
             return new NewInternalAudience(name.Value, sandbox, description);
         }
@@ -206,9 +206,6 @@ namespace TalonOneSdk.Model
         {
             if (newInternalAudience.Name == null)
                 throw new ArgumentNullException(nameof(newInternalAudience.Name), "Property is required for class NewInternalAudience.");
-
-            if (newInternalAudience.DescriptionOption.IsSet && newInternalAudience.Description == null)
-                throw new ArgumentNullException(nameof(newInternalAudience.Description), "Property is required for class NewInternalAudience.");
 
             writer.WriteString("name", newInternalAudience.Name);
 

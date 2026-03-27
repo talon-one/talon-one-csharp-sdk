@@ -152,6 +152,9 @@ namespace TalonOneSdk.Model
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class EventAttributesEntity.", nameof(type));
 
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class EventAttributesEntity.");
+
             return new EventAttributesEntity(type.Value, attributes);
         }
 
@@ -181,9 +184,6 @@ namespace TalonOneSdk.Model
         {
             if (eventAttributesEntity.Type == null)
                 throw new ArgumentNullException(nameof(eventAttributesEntity.Type), "Property is required for class EventAttributesEntity.");
-
-            if (eventAttributesEntity.AttributesOption.IsSet && eventAttributesEntity.Attributes == null)
-                throw new ArgumentNullException(nameof(eventAttributesEntity.Attributes), "Property is required for class EventAttributesEntity.");
 
             writer.WriteString("type", eventAttributesEntity.Type);
 

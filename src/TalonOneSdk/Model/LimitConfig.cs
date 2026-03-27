@@ -277,7 +277,7 @@ namespace TalonOneSdk.Model
         /// <value>The period on which the budget limit recurs.</value>
         /* <example>yearly</example> */
         [JsonPropertyName("period")]
-        public PeriodEnum? Period { get { return this.PeriodOption; } set { this.PeriodOption = new Option<PeriodEnum?>(value); } }
+        public PeriodEnum? Period { get { return this.PeriodOption.Value; } set { this.PeriodOption = new Option<PeriodEnum?>(value); } }
 
         /// <summary>
         /// The limitable action to which this limit applies. For example: - &#x60;setDiscount&#x60; - &#x60;setDiscountEffect&#x60; - &#x60;redeemCoupon&#x60; - &#x60;createCoupon&#x60; 
@@ -428,8 +428,14 @@ namespace TalonOneSdk.Model
             if (!entities.IsSet)
                 throw new ArgumentException("Property is required for class LimitConfig.", nameof(entities));
 
-            if (period.IsSet && period.Value == null)
-                throw new ArgumentNullException(nameof(period), "Property is not nullable for class LimitConfig.");
+            if (action.IsSet && action.Value == null)
+                throw new ArgumentNullException(nameof(action), "Property is not nullable for class LimitConfig.");
+
+            if (limit.IsSet && limit.Value == null)
+                throw new ArgumentNullException(nameof(limit), "Property is not nullable for class LimitConfig.");
+
+            if (entities.IsSet && entities.Value == null)
+                throw new ArgumentNullException(nameof(entities), "Property is not nullable for class LimitConfig.");
 
             return new LimitConfig(action.Value, limit.Value.Value, entities.Value, period);
         }

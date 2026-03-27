@@ -417,6 +417,9 @@ namespace TalonOneSdk.Model
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationEventV2Request.", nameof(type));
 
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class IntegrationEventV2Request.");
+
             return new IntegrationEventV2Request(type.Value, profileId, storeIntegrationId, evaluableCampaignIds, attributes, responseContent, loyaltyCards);
         }
 
@@ -446,24 +449,6 @@ namespace TalonOneSdk.Model
         {
             if (integrationEventV2Request.Type == null)
                 throw new ArgumentNullException(nameof(integrationEventV2Request.Type), "Property is required for class IntegrationEventV2Request.");
-
-            if (integrationEventV2Request.ProfileIdOption.IsSet && integrationEventV2Request.ProfileId == null)
-                throw new ArgumentNullException(nameof(integrationEventV2Request.ProfileId), "Property is required for class IntegrationEventV2Request.");
-
-            if (integrationEventV2Request.StoreIntegrationIdOption.IsSet && integrationEventV2Request.StoreIntegrationId == null)
-                throw new ArgumentNullException(nameof(integrationEventV2Request.StoreIntegrationId), "Property is required for class IntegrationEventV2Request.");
-
-            if (integrationEventV2Request.EvaluableCampaignIdsOption.IsSet && integrationEventV2Request.EvaluableCampaignIds == null)
-                throw new ArgumentNullException(nameof(integrationEventV2Request.EvaluableCampaignIds), "Property is required for class IntegrationEventV2Request.");
-
-            if (integrationEventV2Request.AttributesOption.IsSet && integrationEventV2Request.Attributes == null)
-                throw new ArgumentNullException(nameof(integrationEventV2Request.Attributes), "Property is required for class IntegrationEventV2Request.");
-
-            if (integrationEventV2Request.ResponseContentOption.IsSet && integrationEventV2Request.ResponseContent == null)
-                throw new ArgumentNullException(nameof(integrationEventV2Request.ResponseContent), "Property is required for class IntegrationEventV2Request.");
-
-            if (integrationEventV2Request.LoyaltyCardsOption.IsSet && integrationEventV2Request.LoyaltyCards == null)
-                throw new ArgumentNullException(nameof(integrationEventV2Request.LoyaltyCards), "Property is required for class IntegrationEventV2Request.");
 
             writer.WriteString("type", integrationEventV2Request.Type);
 

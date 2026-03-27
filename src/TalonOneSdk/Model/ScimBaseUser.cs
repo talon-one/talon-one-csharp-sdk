@@ -192,9 +192,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (active.IsSet && active.Value == null)
-                throw new ArgumentNullException(nameof(active), "Property is not nullable for class ScimBaseUser.");
-
             return new ScimBaseUser(active, displayName, userName, name);
         }
 
@@ -222,15 +219,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ScimBaseUser scimBaseUser, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (scimBaseUser.DisplayNameOption.IsSet && scimBaseUser.DisplayName == null)
-                throw new ArgumentNullException(nameof(scimBaseUser.DisplayName), "Property is required for class ScimBaseUser.");
-
-            if (scimBaseUser.UserNameOption.IsSet && scimBaseUser.UserName == null)
-                throw new ArgumentNullException(nameof(scimBaseUser.UserName), "Property is required for class ScimBaseUser.");
-
-            if (scimBaseUser.NameOption.IsSet && scimBaseUser.Name == null)
-                throw new ArgumentNullException(nameof(scimBaseUser.Name), "Property is required for class ScimBaseUser.");
-
             if (scimBaseUser.ActiveOption.IsSet)
                 writer.WriteBoolean("active", scimBaseUser.ActiveOption.Value.Value);
 

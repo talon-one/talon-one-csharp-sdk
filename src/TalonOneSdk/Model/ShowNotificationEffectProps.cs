@@ -157,6 +157,15 @@ namespace TalonOneSdk.Model
             if (!body.IsSet)
                 throw new ArgumentException("Property is required for class ShowNotificationEffectProps.", nameof(body));
 
+            if (notificationType.IsSet && notificationType.Value == null)
+                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class ShowNotificationEffectProps.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class ShowNotificationEffectProps.");
+
+            if (body.IsSet && body.Value == null)
+                throw new ArgumentNullException(nameof(body), "Property is not nullable for class ShowNotificationEffectProps.");
+
             return new ShowNotificationEffectProps(notificationType.Value, title.Value, body.Value);
         }
 

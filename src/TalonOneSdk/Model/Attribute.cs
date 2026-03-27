@@ -911,14 +911,35 @@ namespace TalonOneSdk.Model
             if (!editable.IsSet)
                 throw new ArgumentException("Property is required for class Attribute.", nameof(editable));
 
-            if (hasAllowedList.IsSet && hasAllowedList.Value == null)
-                throw new ArgumentNullException(nameof(hasAllowedList), "Property is not nullable for class Attribute.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Attribute.");
 
-            if (restrictedBySuggestions.IsSet && restrictedBySuggestions.Value == null)
-                throw new ArgumentNullException(nameof(restrictedBySuggestions), "Property is not nullable for class Attribute.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Attribute.");
 
-            if (eventTypeId.IsSet && eventTypeId.Value == null)
-                throw new ArgumentNullException(nameof(eventTypeId), "Property is not nullable for class Attribute.");
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Attribute.");
+
+            if (entity.IsSet && entity.Value == null)
+                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class Attribute.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Attribute.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class Attribute.");
+
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class Attribute.");
+
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description), "Property is not nullable for class Attribute.");
+
+            if (suggestions.IsSet && suggestions.Value == null)
+                throw new ArgumentNullException(nameof(suggestions), "Property is not nullable for class Attribute.");
+
+            if (editable.IsSet && editable.Value == null)
+                throw new ArgumentNullException(nameof(editable), "Property is not nullable for class Attribute.");
 
             return new Attribute(id.Value.Value, created.Value.Value, accountId.Value.Value, entity.Value.Value, name.Value, title.Value, type.Value.Value, description.Value, suggestions.Value, editable.Value.Value, eventType, hasAllowedList, restrictedBySuggestions, subscribedApplicationsIds, subscribedCatalogsIds, allowedSubscriptions, eventTypeId);
         }
@@ -958,18 +979,6 @@ namespace TalonOneSdk.Model
 
             if (attribute.Suggestions == null)
                 throw new ArgumentNullException(nameof(attribute.Suggestions), "Property is required for class Attribute.");
-
-            if (attribute.EventTypeOption.IsSet && attribute.EventType == null)
-                throw new ArgumentNullException(nameof(attribute.EventType), "Property is required for class Attribute.");
-
-            if (attribute.SubscribedApplicationsIdsOption.IsSet && attribute.SubscribedApplicationsIds == null)
-                throw new ArgumentNullException(nameof(attribute.SubscribedApplicationsIds), "Property is required for class Attribute.");
-
-            if (attribute.SubscribedCatalogsIdsOption.IsSet && attribute.SubscribedCatalogsIds == null)
-                throw new ArgumentNullException(nameof(attribute.SubscribedCatalogsIds), "Property is required for class Attribute.");
-
-            if (attribute.AllowedSubscriptionsOption.IsSet && attribute.AllowedSubscriptions == null)
-                throw new ArgumentNullException(nameof(attribute.AllowedSubscriptions), "Property is required for class Attribute.");
 
             writer.WriteNumber("id", attribute.Id);
 

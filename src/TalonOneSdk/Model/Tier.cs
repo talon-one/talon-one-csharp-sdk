@@ -128,7 +128,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The policy that defines how customer tiers are downgraded in the loyalty program after tier reevaluation.  - &#x60;one_down&#x60;: If the customer doesn&#39;t have enough points to stay in the current tier, they are downgraded by one tier.  - &#x60;balance_based&#x60;: The customer&#39;s tier is reevaluated based on the amount of active points they have at the moment. </value>
         [JsonPropertyName("downgradePolicy")]
-        public DowngradePolicyEnum? DowngradePolicy { get { return this.DowngradePolicyOption; } set { this.DowngradePolicyOption = new Option<DowngradePolicyEnum?>(value); } }
+        public DowngradePolicyEnum? DowngradePolicy { get { return this.DowngradePolicyOption.Value; } set { this.DowngradePolicyOption = new Option<DowngradePolicyEnum?>(value); } }
 
         /// <summary>
         /// The internal ID of the tier.
@@ -286,14 +286,11 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class Tier.", nameof(name));
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class Tier.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Tier.");
 
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class Tier.");
-
-            if (downgradePolicy.IsSet && downgradePolicy.Value == null)
-                throw new ArgumentNullException(nameof(downgradePolicy), "Property is not nullable for class Tier.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Tier.");
 
             return new Tier(id.Value.Value, name.Value, startDate, expiryDate, downgradePolicy);
         }

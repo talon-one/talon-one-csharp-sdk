@@ -160,6 +160,15 @@ namespace TalonOneSdk.Model
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class PlaceholderDetails.", nameof(value));
 
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class PlaceholderDetails.");
+
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class PlaceholderDetails.");
+
+            if (value.IsSet && value.Value == null)
+                throw new ArgumentNullException(nameof(value), "Property is not nullable for class PlaceholderDetails.");
+
             return new PlaceholderDetails(name.Value, type.Value, value.Value);
         }
 

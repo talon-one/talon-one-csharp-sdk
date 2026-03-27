@@ -532,20 +532,38 @@ namespace TalonOneSdk.Model
             if (!campaignsInactiveCount.IsSet)
                 throw new ArgumentException("Property is required for class Account.", nameof(campaignsInactiveCount));
 
-            if (planExpires.IsSet && planExpires.Value == null)
-                throw new ArgumentNullException(nameof(planExpires), "Property is not nullable for class Account.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Account.");
 
-            if (applicationLimit.IsSet && applicationLimit.Value == null)
-                throw new ArgumentNullException(nameof(applicationLimit), "Property is not nullable for class Account.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Account.");
 
-            if (userLimit.IsSet && userLimit.Value == null)
-                throw new ArgumentNullException(nameof(userLimit), "Property is not nullable for class Account.");
+            if (modified.IsSet && modified.Value == null)
+                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class Account.");
 
-            if (campaignLimit.IsSet && campaignLimit.Value == null)
-                throw new ArgumentNullException(nameof(campaignLimit), "Property is not nullable for class Account.");
+            if (companyName.IsSet && companyName.Value == null)
+                throw new ArgumentNullException(nameof(companyName), "Property is not nullable for class Account.");
 
-            if (apiLimit.IsSet && apiLimit.Value == null)
-                throw new ArgumentNullException(nameof(apiLimit), "Property is not nullable for class Account.");
+            if (domainName.IsSet && domainName.Value == null)
+                throw new ArgumentNullException(nameof(domainName), "Property is not nullable for class Account.");
+
+            if (state.IsSet && state.Value == null)
+                throw new ArgumentNullException(nameof(state), "Property is not nullable for class Account.");
+
+            if (billingEmail.IsSet && billingEmail.Value == null)
+                throw new ArgumentNullException(nameof(billingEmail), "Property is not nullable for class Account.");
+
+            if (applicationCount.IsSet && applicationCount.Value == null)
+                throw new ArgumentNullException(nameof(applicationCount), "Property is not nullable for class Account.");
+
+            if (userCount.IsSet && userCount.Value == null)
+                throw new ArgumentNullException(nameof(userCount), "Property is not nullable for class Account.");
+
+            if (campaignsActiveCount.IsSet && campaignsActiveCount.Value == null)
+                throw new ArgumentNullException(nameof(campaignsActiveCount), "Property is not nullable for class Account.");
+
+            if (campaignsInactiveCount.IsSet && campaignsInactiveCount.Value == null)
+                throw new ArgumentNullException(nameof(campaignsInactiveCount), "Property is not nullable for class Account.");
 
             return new Account(id.Value.Value, created.Value.Value, modified.Value.Value, companyName.Value, domainName.Value, state.Value.Value, billingEmail.Value, applicationCount.Value.Value, userCount.Value.Value, campaignsActiveCount.Value.Value, campaignsInactiveCount.Value.Value, planName, planExpires, applicationLimit, userLimit, campaignLimit, apiLimit, attributes);
         }
@@ -582,12 +600,6 @@ namespace TalonOneSdk.Model
 
             if (account.BillingEmail == null)
                 throw new ArgumentNullException(nameof(account.BillingEmail), "Property is required for class Account.");
-
-            if (account.PlanNameOption.IsSet && account.PlanName == null)
-                throw new ArgumentNullException(nameof(account.PlanName), "Property is required for class Account.");
-
-            if (account.AttributesOption.IsSet && account.Attributes == null)
-                throw new ArgumentNullException(nameof(account.Attributes), "Property is required for class Account.");
 
             writer.WriteNumber("id", account.Id);
 

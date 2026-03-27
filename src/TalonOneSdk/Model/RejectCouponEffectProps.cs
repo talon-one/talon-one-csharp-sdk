@@ -225,11 +225,11 @@ namespace TalonOneSdk.Model
             if (!rejectionReason.IsSet)
                 throw new ArgumentException("Property is required for class RejectCouponEffectProps.", nameof(rejectionReason));
 
-            if (conditionIndex.IsSet && conditionIndex.Value == null)
-                throw new ArgumentNullException(nameof(conditionIndex), "Property is not nullable for class RejectCouponEffectProps.");
+            if (value.IsSet && value.Value == null)
+                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RejectCouponEffectProps.");
 
-            if (effectIndex.IsSet && effectIndex.Value == null)
-                throw new ArgumentNullException(nameof(effectIndex), "Property is not nullable for class RejectCouponEffectProps.");
+            if (rejectionReason.IsSet && rejectionReason.Value == null)
+                throw new ArgumentNullException(nameof(rejectionReason), "Property is not nullable for class RejectCouponEffectProps.");
 
             return new RejectCouponEffectProps(value.Value, rejectionReason.Value, conditionIndex, effectIndex, details, campaignExclusionReason);
         }
@@ -263,12 +263,6 @@ namespace TalonOneSdk.Model
 
             if (rejectCouponEffectProps.RejectionReason == null)
                 throw new ArgumentNullException(nameof(rejectCouponEffectProps.RejectionReason), "Property is required for class RejectCouponEffectProps.");
-
-            if (rejectCouponEffectProps.DetailsOption.IsSet && rejectCouponEffectProps.Details == null)
-                throw new ArgumentNullException(nameof(rejectCouponEffectProps.Details), "Property is required for class RejectCouponEffectProps.");
-
-            if (rejectCouponEffectProps.CampaignExclusionReasonOption.IsSet && rejectCouponEffectProps.CampaignExclusionReason == null)
-                throw new ArgumentNullException(nameof(rejectCouponEffectProps.CampaignExclusionReason), "Property is required for class RejectCouponEffectProps.");
 
             writer.WriteString("value", rejectCouponEffectProps.Value);
 

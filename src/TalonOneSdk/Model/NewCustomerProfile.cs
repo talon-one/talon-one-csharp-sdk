@@ -155,9 +155,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewCustomerProfile newCustomerProfile, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (newCustomerProfile.AttributesOption.IsSet && newCustomerProfile.Attributes == null)
-                throw new ArgumentNullException(nameof(newCustomerProfile.Attributes), "Property is required for class NewCustomerProfile.");
-
             if (newCustomerProfile.AttributesOption.IsSet)
             {
                 writer.WritePropertyName("attributes");

@@ -262,21 +262,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class CouponConstraints.");
-
-            if (discountLimit.IsSet && discountLimit.Value == null)
-                throw new ArgumentNullException(nameof(discountLimit), "Property is not nullable for class CouponConstraints.");
-
-            if (reservationLimit.IsSet && reservationLimit.Value == null)
-                throw new ArgumentNullException(nameof(reservationLimit), "Property is not nullable for class CouponConstraints.");
-
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class CouponConstraints.");
-
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class CouponConstraints.");
-
             return new CouponConstraints(usageLimit, discountLimit, reservationLimit, startDate, expiryDate);
         }
 

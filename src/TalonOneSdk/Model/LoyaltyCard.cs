@@ -513,8 +513,23 @@ namespace TalonOneSdk.Model
             if (!usersPerCardLimit.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyCard.", nameof(usersPerCardLimit));
 
-            if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class LoyaltyCard.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LoyaltyCard.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class LoyaltyCard.");
+
+            if (programID.IsSet && programID.Value == null)
+                throw new ArgumentNullException(nameof(programID), "Property is not nullable for class LoyaltyCard.");
+
+            if (status.IsSet && status.Value == null)
+                throw new ArgumentNullException(nameof(status), "Property is not nullable for class LoyaltyCard.");
+
+            if (identifier.IsSet && identifier.Value == null)
+                throw new ArgumentNullException(nameof(identifier), "Property is not nullable for class LoyaltyCard.");
+
+            if (usersPerCardLimit.IsSet && usersPerCardLimit.Value == null)
+                throw new ArgumentNullException(nameof(usersPerCardLimit), "Property is not nullable for class LoyaltyCard.");
 
             return new LoyaltyCard(id.Value.Value, created.Value.Value, programID.Value.Value, status.Value, identifier.Value, usersPerCardLimit.Value.Value, programName, programTitle, blockReason, profiles, ledger, subledgers, modified, oldCardIdentifier, newCardIdentifier, batchId);
         }
@@ -548,33 +563,6 @@ namespace TalonOneSdk.Model
 
             if (loyaltyCard.Identifier == null)
                 throw new ArgumentNullException(nameof(loyaltyCard.Identifier), "Property is required for class LoyaltyCard.");
-
-            if (loyaltyCard.ProgramNameOption.IsSet && loyaltyCard.ProgramName == null)
-                throw new ArgumentNullException(nameof(loyaltyCard.ProgramName), "Property is required for class LoyaltyCard.");
-
-            if (loyaltyCard.ProgramTitleOption.IsSet && loyaltyCard.ProgramTitle == null)
-                throw new ArgumentNullException(nameof(loyaltyCard.ProgramTitle), "Property is required for class LoyaltyCard.");
-
-            if (loyaltyCard.BlockReasonOption.IsSet && loyaltyCard.BlockReason == null)
-                throw new ArgumentNullException(nameof(loyaltyCard.BlockReason), "Property is required for class LoyaltyCard.");
-
-            if (loyaltyCard.ProfilesOption.IsSet && loyaltyCard.Profiles == null)
-                throw new ArgumentNullException(nameof(loyaltyCard.Profiles), "Property is required for class LoyaltyCard.");
-
-            if (loyaltyCard.LedgerOption.IsSet && loyaltyCard.Ledger == null)
-                throw new ArgumentNullException(nameof(loyaltyCard.Ledger), "Property is required for class LoyaltyCard.");
-
-            if (loyaltyCard.SubledgersOption.IsSet && loyaltyCard.Subledgers == null)
-                throw new ArgumentNullException(nameof(loyaltyCard.Subledgers), "Property is required for class LoyaltyCard.");
-
-            if (loyaltyCard.OldCardIdentifierOption.IsSet && loyaltyCard.OldCardIdentifier == null)
-                throw new ArgumentNullException(nameof(loyaltyCard.OldCardIdentifier), "Property is required for class LoyaltyCard.");
-
-            if (loyaltyCard.NewCardIdentifierOption.IsSet && loyaltyCard.NewCardIdentifier == null)
-                throw new ArgumentNullException(nameof(loyaltyCard.NewCardIdentifier), "Property is required for class LoyaltyCard.");
-
-            if (loyaltyCard.BatchIdOption.IsSet && loyaltyCard.BatchId == null)
-                throw new ArgumentNullException(nameof(loyaltyCard.BatchId), "Property is required for class LoyaltyCard.");
 
             writer.WriteNumber("id", loyaltyCard.Id);
 

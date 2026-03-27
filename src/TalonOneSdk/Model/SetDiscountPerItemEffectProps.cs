@@ -346,26 +346,14 @@ namespace TalonOneSdk.Model
             if (!position.IsSet)
                 throw new ArgumentException("Property is required for class SetDiscountPerItemEffectProps.", nameof(position));
 
-            if (subPosition.IsSet && subPosition.Value == null)
-                throw new ArgumentNullException(nameof(subPosition), "Property is not nullable for class SetDiscountPerItemEffectProps.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SetDiscountPerItemEffectProps.");
 
-            if (desiredValue.IsSet && desiredValue.Value == null)
-                throw new ArgumentNullException(nameof(desiredValue), "Property is not nullable for class SetDiscountPerItemEffectProps.");
+            if (value.IsSet && value.Value == null)
+                throw new ArgumentNullException(nameof(value), "Property is not nullable for class SetDiscountPerItemEffectProps.");
 
-            if (totalDiscount.IsSet && totalDiscount.Value == null)
-                throw new ArgumentNullException(nameof(totalDiscount), "Property is not nullable for class SetDiscountPerItemEffectProps.");
-
-            if (desiredTotalDiscount.IsSet && desiredTotalDiscount.Value == null)
-                throw new ArgumentNullException(nameof(desiredTotalDiscount), "Property is not nullable for class SetDiscountPerItemEffectProps.");
-
-            if (bundleIndex.IsSet && bundleIndex.Value == null)
-                throw new ArgumentNullException(nameof(bundleIndex), "Property is not nullable for class SetDiscountPerItemEffectProps.");
-
-            if (targetedItemPosition.IsSet && targetedItemPosition.Value == null)
-                throw new ArgumentNullException(nameof(targetedItemPosition), "Property is not nullable for class SetDiscountPerItemEffectProps.");
-
-            if (targetedItemSubPosition.IsSet && targetedItemSubPosition.Value == null)
-                throw new ArgumentNullException(nameof(targetedItemSubPosition), "Property is not nullable for class SetDiscountPerItemEffectProps.");
+            if (position.IsSet && position.Value == null)
+                throw new ArgumentNullException(nameof(position), "Property is not nullable for class SetDiscountPerItemEffectProps.");
 
             return new SetDiscountPerItemEffectProps(name.Value, value.Value.Value, position.Value.Value, subPosition, desiredValue, scope, totalDiscount, desiredTotalDiscount, bundleIndex, bundleName, targetedItemPosition, targetedItemSubPosition);
         }
@@ -396,12 +384,6 @@ namespace TalonOneSdk.Model
         {
             if (setDiscountPerItemEffectProps.Name == null)
                 throw new ArgumentNullException(nameof(setDiscountPerItemEffectProps.Name), "Property is required for class SetDiscountPerItemEffectProps.");
-
-            if (setDiscountPerItemEffectProps.ScopeOption.IsSet && setDiscountPerItemEffectProps.Scope == null)
-                throw new ArgumentNullException(nameof(setDiscountPerItemEffectProps.Scope), "Property is required for class SetDiscountPerItemEffectProps.");
-
-            if (setDiscountPerItemEffectProps.BundleNameOption.IsSet && setDiscountPerItemEffectProps.BundleName == null)
-                throw new ArgumentNullException(nameof(setDiscountPerItemEffectProps.BundleName), "Property is required for class SetDiscountPerItemEffectProps.");
 
             writer.WriteString("name", setDiscountPerItemEffectProps.Name);
 

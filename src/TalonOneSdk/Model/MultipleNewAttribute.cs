@@ -153,9 +153,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MultipleNewAttribute multipleNewAttribute, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (multipleNewAttribute.AttributesOption.IsSet && multipleNewAttribute.Attributes == null)
-                throw new ArgumentNullException(nameof(multipleNewAttribute.Attributes), "Property is required for class MultipleNewAttribute.");
-
             if (multipleNewAttribute.AttributesOption.IsSet)
             {
                 writer.WritePropertyName("attributes");

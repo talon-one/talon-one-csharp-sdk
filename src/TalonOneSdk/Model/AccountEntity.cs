@@ -124,6 +124,9 @@ namespace TalonOneSdk.Model
             if (!accountId.IsSet)
                 throw new ArgumentException("Property is required for class AccountEntity.", nameof(accountId));
 
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class AccountEntity.");
+
             return new AccountEntity(accountId.Value.Value);
         }
 

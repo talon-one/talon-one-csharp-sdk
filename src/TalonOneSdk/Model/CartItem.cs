@@ -575,41 +575,11 @@ namespace TalonOneSdk.Model
             if (!quantity.IsSet)
                 throw new ArgumentException("Property is required for class CartItem.", nameof(quantity));
 
-            if (returnedQuantity.IsSet && returnedQuantity.Value == null)
-                throw new ArgumentNullException(nameof(returnedQuantity), "Property is not nullable for class CartItem.");
+            if (sku.IsSet && sku.Value == null)
+                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class CartItem.");
 
-            if (remainingQuantity.IsSet && remainingQuantity.Value == null)
-                throw new ArgumentNullException(nameof(remainingQuantity), "Property is not nullable for class CartItem.");
-
-            if (price.IsSet && price.Value == null)
-                throw new ArgumentNullException(nameof(price), "Property is not nullable for class CartItem.");
-
-            if (weight.IsSet && weight.Value == null)
-                throw new ArgumentNullException(nameof(weight), "Property is not nullable for class CartItem.");
-
-            if (height.IsSet && height.Value == null)
-                throw new ArgumentNullException(nameof(height), "Property is not nullable for class CartItem.");
-
-            if (width.IsSet && width.Value == null)
-                throw new ArgumentNullException(nameof(width), "Property is not nullable for class CartItem.");
-
-            if (length.IsSet && length.Value == null)
-                throw new ArgumentNullException(nameof(length), "Property is not nullable for class CartItem.");
-
-            if (position.IsSet && position.Value == null)
-                throw new ArgumentNullException(nameof(position), "Property is not nullable for class CartItem.");
-
-            if (catalogItemID.IsSet && catalogItemID.Value == null)
-                throw new ArgumentNullException(nameof(catalogItemID), "Property is not nullable for class CartItem.");
-
-            if (adjustmentReferenceId.IsSet && adjustmentReferenceId.Value == null)
-                throw new ArgumentNullException(nameof(adjustmentReferenceId), "Property is not nullable for class CartItem.");
-
-            if (adjustmentEffectiveFrom.IsSet && adjustmentEffectiveFrom.Value == null)
-                throw new ArgumentNullException(nameof(adjustmentEffectiveFrom), "Property is not nullable for class CartItem.");
-
-            if (adjustmentEffectiveUntil.IsSet && adjustmentEffectiveUntil.Value == null)
-                throw new ArgumentNullException(nameof(adjustmentEffectiveUntil), "Property is not nullable for class CartItem.");
+            if (quantity.IsSet && quantity.Value == null)
+                throw new ArgumentNullException(nameof(quantity), "Property is not nullable for class CartItem.");
 
             return new CartItem(sku.Value, quantity.Value.Value, name, returnedQuantity, remainingQuantity, price, category, product, weight, height, width, length, position, attributes, additionalCosts, catalogItemID, selectedPriceType, adjustmentReferenceId, adjustmentEffectiveFrom, adjustmentEffectiveUntil, prices);
         }
@@ -640,27 +610,6 @@ namespace TalonOneSdk.Model
         {
             if (cartItem.Sku == null)
                 throw new ArgumentNullException(nameof(cartItem.Sku), "Property is required for class CartItem.");
-
-            if (cartItem.NameOption.IsSet && cartItem.Name == null)
-                throw new ArgumentNullException(nameof(cartItem.Name), "Property is required for class CartItem.");
-
-            if (cartItem.CategoryOption.IsSet && cartItem.Category == null)
-                throw new ArgumentNullException(nameof(cartItem.Category), "Property is required for class CartItem.");
-
-            if (cartItem.ProductOption.IsSet && cartItem.Product == null)
-                throw new ArgumentNullException(nameof(cartItem.Product), "Property is required for class CartItem.");
-
-            if (cartItem.AttributesOption.IsSet && cartItem.Attributes == null)
-                throw new ArgumentNullException(nameof(cartItem.Attributes), "Property is required for class CartItem.");
-
-            if (cartItem.AdditionalCostsOption.IsSet && cartItem.AdditionalCosts == null)
-                throw new ArgumentNullException(nameof(cartItem.AdditionalCosts), "Property is required for class CartItem.");
-
-            if (cartItem.SelectedPriceTypeOption.IsSet && cartItem.SelectedPriceType == null)
-                throw new ArgumentNullException(nameof(cartItem.SelectedPriceType), "Property is required for class CartItem.");
-
-            if (cartItem.PricesOption.IsSet && cartItem.Prices == null)
-                throw new ArgumentNullException(nameof(cartItem.Prices), "Property is required for class CartItem.");
 
             writer.WriteString("sku", cartItem.Sku);
 

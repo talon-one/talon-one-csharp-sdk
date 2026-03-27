@@ -225,8 +225,17 @@ namespace TalonOneSdk.Model
             if (!ledger.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyProgramLedgers.", nameof(ledger));
 
-            if (joinDate.IsSet && joinDate.Value == null)
-                throw new ArgumentNullException(nameof(joinDate), "Property is not nullable for class LoyaltyProgramLedgers.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LoyaltyProgramLedgers.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class LoyaltyProgramLedgers.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class LoyaltyProgramLedgers.");
+
+            if (ledger.IsSet && ledger.Value == null)
+                throw new ArgumentNullException(nameof(ledger), "Property is not nullable for class LoyaltyProgramLedgers.");
 
             return new LoyaltyProgramLedgers(id.Value.Value, title.Value, name.Value, ledger.Value, joinDate, subLedgers);
         }
@@ -263,9 +272,6 @@ namespace TalonOneSdk.Model
 
             if (loyaltyProgramLedgers.Ledger == null)
                 throw new ArgumentNullException(nameof(loyaltyProgramLedgers.Ledger), "Property is required for class LoyaltyProgramLedgers.");
-
-            if (loyaltyProgramLedgers.SubLedgersOption.IsSet && loyaltyProgramLedgers.SubLedgers == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramLedgers.SubLedgers), "Property is required for class LoyaltyProgramLedgers.");
 
             writer.WriteNumber("id", loyaltyProgramLedgers.Id);
 

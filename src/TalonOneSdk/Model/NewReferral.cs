@@ -280,14 +280,11 @@ namespace TalonOneSdk.Model
             if (!advocateProfileIntegrationId.IsSet)
                 throw new ArgumentException("Property is required for class NewReferral.", nameof(advocateProfileIntegrationId));
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class NewReferral.");
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class NewReferral.");
 
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class NewReferral.");
-
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class NewReferral.");
+            if (advocateProfileIntegrationId.IsSet && advocateProfileIntegrationId.Value == null)
+                throw new ArgumentNullException(nameof(advocateProfileIntegrationId), "Property is not nullable for class NewReferral.");
 
             return new NewReferral(campaignId.Value.Value, advocateProfileIntegrationId.Value, startDate, expiryDate, usageLimit, friendProfileIntegrationId, attributes);
         }
@@ -318,12 +315,6 @@ namespace TalonOneSdk.Model
         {
             if (newReferral.AdvocateProfileIntegrationId == null)
                 throw new ArgumentNullException(nameof(newReferral.AdvocateProfileIntegrationId), "Property is required for class NewReferral.");
-
-            if (newReferral.FriendProfileIntegrationIdOption.IsSet && newReferral.FriendProfileIntegrationId == null)
-                throw new ArgumentNullException(nameof(newReferral.FriendProfileIntegrationId), "Property is required for class NewReferral.");
-
-            if (newReferral.AttributesOption.IsSet && newReferral.Attributes == null)
-                throw new ArgumentNullException(nameof(newReferral.Attributes), "Property is required for class NewReferral.");
 
             writer.WriteNumber("campaignId", newReferral.CampaignId);
 

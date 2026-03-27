@@ -124,6 +124,9 @@ namespace TalonOneSdk.Model
             if (!userId.IsSet)
                 throw new ArgumentException("Property is required for class UserEntity.", nameof(userId));
 
+            if (userId.IsSet && userId.Value == null)
+                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class UserEntity.");
+
             return new UserEntity(userId.Value.Value);
         }
 

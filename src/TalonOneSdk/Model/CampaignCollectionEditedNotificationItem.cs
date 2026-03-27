@@ -200,6 +200,15 @@ namespace TalonOneSdk.Model
             if (!collection.IsSet)
                 throw new ArgumentException("Property is required for class CampaignCollectionEditedNotificationItem.", nameof(collection));
 
+            if (varEvent.IsSet && varEvent.Value == null)
+                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignCollectionEditedNotificationItem.");
+
+            if (campaign.IsSet && campaign.Value == null)
+                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CampaignCollectionEditedNotificationItem.");
+
+            if (collection.IsSet && collection.Value == null)
+                throw new ArgumentNullException(nameof(collection), "Property is not nullable for class CampaignCollectionEditedNotificationItem.");
+
             return new CampaignCollectionEditedNotificationItem(varEvent.Value, campaign.Value, collection.Value, ruleset, placeholders);
         }
 
@@ -235,12 +244,6 @@ namespace TalonOneSdk.Model
 
             if (campaignCollectionEditedNotificationItem.Collection == null)
                 throw new ArgumentNullException(nameof(campaignCollectionEditedNotificationItem.Collection), "Property is required for class CampaignCollectionEditedNotificationItem.");
-
-            if (campaignCollectionEditedNotificationItem.RulesetOption.IsSet && campaignCollectionEditedNotificationItem.Ruleset == null)
-                throw new ArgumentNullException(nameof(campaignCollectionEditedNotificationItem.Ruleset), "Property is required for class CampaignCollectionEditedNotificationItem.");
-
-            if (campaignCollectionEditedNotificationItem.PlaceholdersOption.IsSet && campaignCollectionEditedNotificationItem.Placeholders == null)
-                throw new ArgumentNullException(nameof(campaignCollectionEditedNotificationItem.Placeholders), "Property is required for class CampaignCollectionEditedNotificationItem.");
 
             writer.WriteString("Event", campaignCollectionEditedNotificationItem.Event);
 

@@ -635,11 +635,47 @@ namespace TalonOneSdk.Model
             if (!transactionUUID.IsSet)
                 throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(transactionUUID));
 
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+            if (cardIdentifier.IsSet && cardIdentifier.Value == null)
+                throw new ArgumentNullException(nameof(cardIdentifier), "Property is not nullable for class CardAddedDeductedPointsNotification.");
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+            if (employeeName.IsSet && employeeName.Value == null)
+                throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (notificationType.IsSet && notificationType.Value == null)
+                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (profileIntegrationIDs.IsSet && profileIntegrationIDs.Value == null)
+                throw new ArgumentNullException(nameof(profileIntegrationIDs), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (sessionIntegrationID.IsSet && sessionIntegrationID.Value == null)
+                throw new ArgumentNullException(nameof(sessionIntegrationID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (subledgerID.IsSet && subledgerID.Value == null)
+                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (typeOfChange.IsSet && typeOfChange.Value == null)
+                throw new ArgumentNullException(nameof(typeOfChange), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (userID.IsSet && userID.Value == null)
+                throw new ArgumentNullException(nameof(userID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (usersPerCardLimit.IsSet && usersPerCardLimit.Value == null)
+                throw new ArgumentNullException(nameof(usersPerCardLimit), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (amount.IsSet && amount.Value == null)
+                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (operation.IsSet && operation.Value == null)
+                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (reason.IsSet && reason.Value == null)
+                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+
+            if (transactionUUID.IsSet && transactionUUID.Value == null)
+                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
 
             return new CardAddedDeductedPointsNotification(cardIdentifier.Value, employeeName.Value, loyaltyProgramID.Value.Value, notificationType.Value.Value, profileIntegrationIDs.Value, sessionIntegrationID.Value, subledgerID.Value, typeOfChange.Value.Value, userID.Value.Value, usersPerCardLimit.Value.Value, amount.Value.Value, operation.Value.Value, reason.Value, transactionUUID.Value.Value, expiryDate, startDate);
         }

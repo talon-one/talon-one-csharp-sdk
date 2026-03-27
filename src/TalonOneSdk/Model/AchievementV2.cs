@@ -171,7 +171,7 @@ namespace TalonOneSdk.Model
         /// <value>The policy that determines if and how the achievement recurs. - &#x60;no_recurrence&#x60;: The achievement can be completed only once. - &#x60;on_expiration&#x60;: The achievement resets after it expires and becomes available again. - &#x60;on_completion&#x60;: When the customer progress status reaches &#x60;completed&#x60;, the achievement resets and becomes available again. </value>
         /* <example>no_recurrence</example> */
         [JsonPropertyName("recurrencePolicy")]
-        public RecurrencePolicyEnum? RecurrencePolicy { get { return this.RecurrencePolicyOption; } set { this.RecurrencePolicyOption = new Option<RecurrencePolicyEnum?>(value); } }
+        public RecurrencePolicyEnum? RecurrencePolicy { get { return this.RecurrencePolicyOption.Value; } set { this.RecurrencePolicyOption = new Option<RecurrencePolicyEnum?>(value); } }
 
         /// <summary>
         /// The policy that determines how the achievement starts, ends, or resets. - &#x60;user_action&#x60;: The achievement ends or resets relative to when the customer started the achievement. - &#x60;fixed_schedule&#x60;: The achievement starts, ends, or resets for all customers following a fixed schedule. 
@@ -253,7 +253,7 @@ namespace TalonOneSdk.Model
         /// <value>The policy that determines how the achievement starts, ends, or resets. - &#x60;user_action&#x60;: The achievement ends or resets relative to when the customer started the achievement. - &#x60;fixed_schedule&#x60;: The achievement starts, ends, or resets for all customers following a fixed schedule. </value>
         /* <example>fixed_schedule</example> */
         [JsonPropertyName("activationPolicy")]
-        public ActivationPolicyEnum? ActivationPolicy { get { return this.ActivationPolicyOption; } set { this.ActivationPolicyOption = new Option<ActivationPolicyEnum?>(value); } }
+        public ActivationPolicyEnum? ActivationPolicy { get { return this.ActivationPolicyOption.Value; } set { this.ActivationPolicyOption = new Option<ActivationPolicyEnum?>(value); } }
 
         /// <summary>
         /// The status of the achievement.
@@ -363,7 +363,7 @@ namespace TalonOneSdk.Model
         /// <value>The status of the achievement.</value>
         /* <example>inprogress</example> */
         [JsonPropertyName("status")]
-        public StatusEnum? Status { get { return this.StatusOption; } set { this.StatusOption = new Option<StatusEnum?>(value); } }
+        public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new Option<StatusEnum?>(value); } }
 
         /// <summary>
         /// The internal ID of this entity.
@@ -803,32 +803,14 @@ namespace TalonOneSdk.Model
             if (!userId.IsSet)
                 throw new ArgumentException("Property is required for class AchievementV2.", nameof(userId));
 
-            if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class AchievementV2.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AchievementV2.");
 
-            if (recurrencePolicy.IsSet && recurrencePolicy.Value == null)
-                throw new ArgumentNullException(nameof(recurrencePolicy), "Property is not nullable for class AchievementV2.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class AchievementV2.");
 
-            if (activationPolicy.IsSet && activationPolicy.Value == null)
-                throw new ArgumentNullException(nameof(activationPolicy), "Property is not nullable for class AchievementV2.");
-
-            if (fixedStartDate.IsSet && fixedStartDate.Value == null)
-                throw new ArgumentNullException(nameof(fixedStartDate), "Property is not nullable for class AchievementV2.");
-
-            if (endDate.IsSet && endDate.Value == null)
-                throw new ArgumentNullException(nameof(endDate), "Property is not nullable for class AchievementV2.");
-
-            if (allowRollbackAfterCompletion.IsSet && allowRollbackAfterCompletion.Value == null)
-                throw new ArgumentNullException(nameof(allowRollbackAfterCompletion), "Property is not nullable for class AchievementV2.");
-
-            if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class AchievementV2.");
-
-            if (hasProgress.IsSet && hasProgress.Value == null)
-                throw new ArgumentNullException(nameof(hasProgress), "Property is not nullable for class AchievementV2.");
-
-            if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class AchievementV2.");
+            if (userId.IsSet && userId.Value == null)
+                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class AchievementV2.");
 
             return new AchievementV2(id.Value.Value, created.Value.Value, userId.Value.Value, name, title, description, target, period, recurrencePolicy, activationPolicy, fixedStartDate, endDate, allowRollbackAfterCompletion, sandbox, subscribedApplications, timezone, createdBy, hasProgress, status);
         }
@@ -857,27 +839,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AchievementV2 achievementV2, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (achievementV2.NameOption.IsSet && achievementV2.Name == null)
-                throw new ArgumentNullException(nameof(achievementV2.Name), "Property is required for class AchievementV2.");
-
-            if (achievementV2.TitleOption.IsSet && achievementV2.Title == null)
-                throw new ArgumentNullException(nameof(achievementV2.Title), "Property is required for class AchievementV2.");
-
-            if (achievementV2.DescriptionOption.IsSet && achievementV2.Description == null)
-                throw new ArgumentNullException(nameof(achievementV2.Description), "Property is required for class AchievementV2.");
-
-            if (achievementV2.PeriodOption.IsSet && achievementV2.Period == null)
-                throw new ArgumentNullException(nameof(achievementV2.Period), "Property is required for class AchievementV2.");
-
-            if (achievementV2.SubscribedApplicationsOption.IsSet && achievementV2.SubscribedApplications == null)
-                throw new ArgumentNullException(nameof(achievementV2.SubscribedApplications), "Property is required for class AchievementV2.");
-
-            if (achievementV2.TimezoneOption.IsSet && achievementV2.Timezone == null)
-                throw new ArgumentNullException(nameof(achievementV2.Timezone), "Property is required for class AchievementV2.");
-
-            if (achievementV2.CreatedByOption.IsSet && achievementV2.CreatedBy == null)
-                throw new ArgumentNullException(nameof(achievementV2.CreatedBy), "Property is required for class AchievementV2.");
-
             writer.WriteNumber("id", achievementV2.Id);
 
             writer.WriteString("created", achievementV2.Created.ToString(CreatedFormat));

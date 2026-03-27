@@ -247,11 +247,14 @@ namespace TalonOneSdk.Model
             if (!effects.IsSet)
                 throw new ArgumentException("Property is required for class Rule.", nameof(effects));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Rule.");
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class Rule.");
 
-            if (parentId.IsSet && parentId.Value == null)
-                throw new ArgumentNullException(nameof(parentId), "Property is not nullable for class Rule.");
+            if (condition.IsSet && condition.Value == null)
+                throw new ArgumentNullException(nameof(condition), "Property is not nullable for class Rule.");
+
+            if (effects.IsSet && effects.Value == null)
+                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class Rule.");
 
             return new Rule(title.Value, condition.Value, effects.Value, id, parentId, description, bindings);
         }
@@ -288,12 +291,6 @@ namespace TalonOneSdk.Model
 
             if (rule.Effects == null)
                 throw new ArgumentNullException(nameof(rule.Effects), "Property is required for class Rule.");
-
-            if (rule.DescriptionOption.IsSet && rule.Description == null)
-                throw new ArgumentNullException(nameof(rule.Description), "Property is required for class Rule.");
-
-            if (rule.BindingsOption.IsSet && rule.Bindings == null)
-                throw new ArgumentNullException(nameof(rule.Bindings), "Property is required for class Rule.");
 
             writer.WriteString("title", rule.Title);
 

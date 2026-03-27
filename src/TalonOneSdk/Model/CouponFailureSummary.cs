@@ -304,6 +304,30 @@ namespace TalonOneSdk.Model
             if (!updatedAt.IsSet)
                 throw new ArgumentException("Property is required for class CouponFailureSummary.", nameof(updatedAt));
 
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CouponFailureSummary.");
+
+            if (eventID.IsSet && eventID.Value == null)
+                throw new ArgumentNullException(nameof(eventID), "Property is not nullable for class CouponFailureSummary.");
+
+            if (status.IsSet && status.Value == null)
+                throw new ArgumentNullException(nameof(status), "Property is not nullable for class CouponFailureSummary.");
+
+            if (couponCode.IsSet && couponCode.Value == null)
+                throw new ArgumentNullException(nameof(couponCode), "Property is not nullable for class CouponFailureSummary.");
+
+            if (language.IsSet && language.Value == null)
+                throw new ArgumentNullException(nameof(language), "Property is not nullable for class CouponFailureSummary.");
+
+            if (summary.IsSet && summary.Value == null)
+                throw new ArgumentNullException(nameof(summary), "Property is not nullable for class CouponFailureSummary.");
+
+            if (createdAt.IsSet && createdAt.Value == null)
+                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class CouponFailureSummary.");
+
+            if (updatedAt.IsSet && updatedAt.Value == null)
+                throw new ArgumentNullException(nameof(updatedAt), "Property is not nullable for class CouponFailureSummary.");
+
             return new CouponFailureSummary(id.Value.Value, eventID.Value.Value, status.Value, couponCode.Value, language.Value, summary.Value, createdAt.Value.Value, updatedAt.Value.Value, sessionID, profileID);
         }
 
@@ -342,12 +366,6 @@ namespace TalonOneSdk.Model
 
             if (couponFailureSummary.Summary == null)
                 throw new ArgumentNullException(nameof(couponFailureSummary.Summary), "Property is required for class CouponFailureSummary.");
-
-            if (couponFailureSummary.SessionIDOption.IsSet && couponFailureSummary.SessionID == null)
-                throw new ArgumentNullException(nameof(couponFailureSummary.SessionID), "Property is required for class CouponFailureSummary.");
-
-            if (couponFailureSummary.ProfileIDOption.IsSet && couponFailureSummary.ProfileID == null)
-                throw new ArgumentNullException(nameof(couponFailureSummary.ProfileID), "Property is required for class CouponFailureSummary.");
 
             writer.WriteNumber("id", couponFailureSummary.Id);
 

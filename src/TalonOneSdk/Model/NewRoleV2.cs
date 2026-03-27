@@ -185,6 +185,12 @@ namespace TalonOneSdk.Model
             if (!description.IsSet)
                 throw new ArgumentException("Property is required for class NewRoleV2.", nameof(description));
 
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewRoleV2.");
+
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description), "Property is not nullable for class NewRoleV2.");
+
             return new NewRoleV2(name.Value, description.Value, permissions, members);
         }
 
@@ -217,12 +223,6 @@ namespace TalonOneSdk.Model
 
             if (newRoleV2.Description == null)
                 throw new ArgumentNullException(nameof(newRoleV2.Description), "Property is required for class NewRoleV2.");
-
-            if (newRoleV2.PermissionsOption.IsSet && newRoleV2.Permissions == null)
-                throw new ArgumentNullException(nameof(newRoleV2.Permissions), "Property is required for class NewRoleV2.");
-
-            if (newRoleV2.MembersOption.IsSet && newRoleV2.Members == null)
-                throw new ArgumentNullException(nameof(newRoleV2.Members), "Property is required for class NewRoleV2.");
 
             writer.WriteString("name", newRoleV2.Name);
 

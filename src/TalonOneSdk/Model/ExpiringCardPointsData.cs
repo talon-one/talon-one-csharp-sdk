@@ -247,6 +247,27 @@ namespace TalonOneSdk.Model
             if (!profiles.IsSet)
                 throw new ArgumentException("Property is required for class ExpiringCardPointsData.", nameof(profiles));
 
+            if (expiryDate.IsSet && expiryDate.Value == null)
+                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class ExpiringCardPointsData.");
+
+            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class ExpiringCardPointsData.");
+
+            if (amountOfExpiringPoints.IsSet && amountOfExpiringPoints.Value == null)
+                throw new ArgumentNullException(nameof(amountOfExpiringPoints), "Property is not nullable for class ExpiringCardPointsData.");
+
+            if (subledgerID.IsSet && subledgerID.Value == null)
+                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class ExpiringCardPointsData.");
+
+            if (cardIdentifier.IsSet && cardIdentifier.Value == null)
+                throw new ArgumentNullException(nameof(cardIdentifier), "Property is not nullable for class ExpiringCardPointsData.");
+
+            if (usersPerCardLimit.IsSet && usersPerCardLimit.Value == null)
+                throw new ArgumentNullException(nameof(usersPerCardLimit), "Property is not nullable for class ExpiringCardPointsData.");
+
+            if (profiles.IsSet && profiles.Value == null)
+                throw new ArgumentNullException(nameof(profiles), "Property is not nullable for class ExpiringCardPointsData.");
+
             return new ExpiringCardPointsData(expiryDate.Value.Value, loyaltyProgramID.Value.Value, amountOfExpiringPoints.Value.Value, subledgerID.Value, cardIdentifier.Value, usersPerCardLimit.Value.Value, profiles.Value);
         }
 

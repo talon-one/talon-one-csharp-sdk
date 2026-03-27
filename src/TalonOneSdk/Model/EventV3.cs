@@ -306,6 +306,15 @@ namespace TalonOneSdk.Model
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class EventV3.", nameof(type));
 
+            if (profileId.IsSet && profileId.Value == null)
+                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class EventV3.");
+
+            if (integrationId.IsSet && integrationId.Value == null)
+                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class EventV3.");
+
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class EventV3.");
+
             return new EventV3(profileId.Value, integrationId.Value, type.Value, storeIntegrationId, evaluableCampaignIds, attributes, connectedSessionID, previousEventID);
         }
 
@@ -341,21 +350,6 @@ namespace TalonOneSdk.Model
 
             if (eventV3.Type == null)
                 throw new ArgumentNullException(nameof(eventV3.Type), "Property is required for class EventV3.");
-
-            if (eventV3.StoreIntegrationIdOption.IsSet && eventV3.StoreIntegrationId == null)
-                throw new ArgumentNullException(nameof(eventV3.StoreIntegrationId), "Property is required for class EventV3.");
-
-            if (eventV3.EvaluableCampaignIdsOption.IsSet && eventV3.EvaluableCampaignIds == null)
-                throw new ArgumentNullException(nameof(eventV3.EvaluableCampaignIds), "Property is required for class EventV3.");
-
-            if (eventV3.AttributesOption.IsSet && eventV3.Attributes == null)
-                throw new ArgumentNullException(nameof(eventV3.Attributes), "Property is required for class EventV3.");
-
-            if (eventV3.ConnectedSessionIDOption.IsSet && eventV3.ConnectedSessionID == null)
-                throw new ArgumentNullException(nameof(eventV3.ConnectedSessionID), "Property is required for class EventV3.");
-
-            if (eventV3.PreviousEventIDOption.IsSet && eventV3.PreviousEventID == null)
-                throw new ArgumentNullException(nameof(eventV3.PreviousEventID), "Property is required for class EventV3.");
 
             writer.WriteString("profileId", eventV3.ProfileId);
 

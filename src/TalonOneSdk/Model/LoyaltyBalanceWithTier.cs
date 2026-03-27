@@ -301,24 +301,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (activePoints.IsSet && activePoints.Value == null)
-                throw new ArgumentNullException(nameof(activePoints), "Property is not nullable for class LoyaltyBalanceWithTier.");
-
-            if (pendingPoints.IsSet && pendingPoints.Value == null)
-                throw new ArgumentNullException(nameof(pendingPoints), "Property is not nullable for class LoyaltyBalanceWithTier.");
-
-            if (spentPoints.IsSet && spentPoints.Value == null)
-                throw new ArgumentNullException(nameof(spentPoints), "Property is not nullable for class LoyaltyBalanceWithTier.");
-
-            if (expiredPoints.IsSet && expiredPoints.Value == null)
-                throw new ArgumentNullException(nameof(expiredPoints), "Property is not nullable for class LoyaltyBalanceWithTier.");
-
-            if (negativePoints.IsSet && negativePoints.Value == null)
-                throw new ArgumentNullException(nameof(negativePoints), "Property is not nullable for class LoyaltyBalanceWithTier.");
-
-            if (pointsToNextTier.IsSet && pointsToNextTier.Value == null)
-                throw new ArgumentNullException(nameof(pointsToNextTier), "Property is not nullable for class LoyaltyBalanceWithTier.");
-
             return new LoyaltyBalanceWithTier(activePoints, pendingPoints, spentPoints, expiredPoints, negativePoints, currentTier, projectedTier, pointsToNextTier, nextTierName);
         }
 
@@ -346,15 +328,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyBalanceWithTier loyaltyBalanceWithTier, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (loyaltyBalanceWithTier.CurrentTierOption.IsSet && loyaltyBalanceWithTier.CurrentTier == null)
-                throw new ArgumentNullException(nameof(loyaltyBalanceWithTier.CurrentTier), "Property is required for class LoyaltyBalanceWithTier.");
-
-            if (loyaltyBalanceWithTier.ProjectedTierOption.IsSet && loyaltyBalanceWithTier.ProjectedTier == null)
-                throw new ArgumentNullException(nameof(loyaltyBalanceWithTier.ProjectedTier), "Property is required for class LoyaltyBalanceWithTier.");
-
-            if (loyaltyBalanceWithTier.NextTierNameOption.IsSet && loyaltyBalanceWithTier.NextTierName == null)
-                throw new ArgumentNullException(nameof(loyaltyBalanceWithTier.NextTierName), "Property is required for class LoyaltyBalanceWithTier.");
-
             if (loyaltyBalanceWithTier.ActivePointsOption.IsSet)
                 writer.WriteNumber("activePoints", loyaltyBalanceWithTier.ActivePointsOption.Value.Value);
 

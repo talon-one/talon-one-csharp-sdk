@@ -191,7 +191,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates the current state of the session. Sessions can be created as &#x60;open&#x60; or &#x60;closed&#x60;. The state transitions are:  1. &#x60;open&#x60; → &#x60;closed&#x60; 2. &#x60;open&#x60; → &#x60;cancelled&#x60; 3. Either:    - &#x60;closed&#x60; → &#x60;cancelled&#x60; (**only** via [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2)) or    - &#x60;closed&#x60; → &#x60;partially_returned&#x60; (**only** via [Return cart items](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/returnCartItems))    - &#x60;closed&#x60; → &#x60;open&#x60; (**only** via [Reopen customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/reopenCustomerSession)) 4. &#x60;partially_returned&#x60; → &#x60;cancelled&#x60;  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). </value>
         /* <example>open</example> */
         [JsonPropertyName("state")]
-        public StateEnum? State { get { return this.StateOption; } set { this.StateOption = new Option<StateEnum?>(value); } }
+        public StateEnum? State { get { return this.StateOption.Value; } set { this.StateOption = new Option<StateEnum?>(value); } }
 
         /// <summary>
         /// The internal ID of this entity.
@@ -679,8 +679,35 @@ namespace TalonOneSdk.Model
             if (!updated.IsSet)
                 throw new ArgumentException("Property is required for class CustomerSessionV2.", nameof(updated));
 
-            if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class CustomerSessionV2.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CustomerSessionV2.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CustomerSessionV2.");
+
+            if (integrationId.IsSet && integrationId.Value == null)
+                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class CustomerSessionV2.");
+
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CustomerSessionV2.");
+
+            if (firstSession.IsSet && firstSession.Value == null)
+                throw new ArgumentNullException(nameof(firstSession), "Property is not nullable for class CustomerSessionV2.");
+
+            if (updateCount.IsSet && updateCount.Value == null)
+                throw new ArgumentNullException(nameof(updateCount), "Property is not nullable for class CustomerSessionV2.");
+
+            if (total.IsSet && total.Value == null)
+                throw new ArgumentNullException(nameof(total), "Property is not nullable for class CustomerSessionV2.");
+
+            if (cartItemTotal.IsSet && cartItemTotal.Value == null)
+                throw new ArgumentNullException(nameof(cartItemTotal), "Property is not nullable for class CustomerSessionV2.");
+
+            if (additionalCostTotal.IsSet && additionalCostTotal.Value == null)
+                throw new ArgumentNullException(nameof(additionalCostTotal), "Property is not nullable for class CustomerSessionV2.");
+
+            if (updated.IsSet && updated.Value == null)
+                throw new ArgumentNullException(nameof(updated), "Property is not nullable for class CustomerSessionV2.");
 
             return new CustomerSessionV2(id.Value.Value, created.Value.Value, integrationId.Value, applicationId.Value.Value, firstSession.Value.Value, updateCount.Value.Value, total.Value.Value, cartItemTotal.Value.Value, additionalCostTotal.Value.Value, updated.Value.Value, profileId, storeIntegrationId, evaluableCampaignIds, couponCodes, referralCode, loyaltyCards, state, cartItems, experimentVariantAllocations, additionalCosts, identifiers, attributes);
         }
@@ -711,39 +738,6 @@ namespace TalonOneSdk.Model
         {
             if (customerSessionV2.IntegrationId == null)
                 throw new ArgumentNullException(nameof(customerSessionV2.IntegrationId), "Property is required for class CustomerSessionV2.");
-
-            if (customerSessionV2.ProfileIdOption.IsSet && customerSessionV2.ProfileId == null)
-                throw new ArgumentNullException(nameof(customerSessionV2.ProfileId), "Property is required for class CustomerSessionV2.");
-
-            if (customerSessionV2.StoreIntegrationIdOption.IsSet && customerSessionV2.StoreIntegrationId == null)
-                throw new ArgumentNullException(nameof(customerSessionV2.StoreIntegrationId), "Property is required for class CustomerSessionV2.");
-
-            if (customerSessionV2.EvaluableCampaignIdsOption.IsSet && customerSessionV2.EvaluableCampaignIds == null)
-                throw new ArgumentNullException(nameof(customerSessionV2.EvaluableCampaignIds), "Property is required for class CustomerSessionV2.");
-
-            if (customerSessionV2.CouponCodesOption.IsSet && customerSessionV2.CouponCodes == null)
-                throw new ArgumentNullException(nameof(customerSessionV2.CouponCodes), "Property is required for class CustomerSessionV2.");
-
-            if (customerSessionV2.ReferralCodeOption.IsSet && customerSessionV2.ReferralCode == null)
-                throw new ArgumentNullException(nameof(customerSessionV2.ReferralCode), "Property is required for class CustomerSessionV2.");
-
-            if (customerSessionV2.LoyaltyCardsOption.IsSet && customerSessionV2.LoyaltyCards == null)
-                throw new ArgumentNullException(nameof(customerSessionV2.LoyaltyCards), "Property is required for class CustomerSessionV2.");
-
-            if (customerSessionV2.CartItemsOption.IsSet && customerSessionV2.CartItems == null)
-                throw new ArgumentNullException(nameof(customerSessionV2.CartItems), "Property is required for class CustomerSessionV2.");
-
-            if (customerSessionV2.ExperimentVariantAllocationsOption.IsSet && customerSessionV2.ExperimentVariantAllocations == null)
-                throw new ArgumentNullException(nameof(customerSessionV2.ExperimentVariantAllocations), "Property is required for class CustomerSessionV2.");
-
-            if (customerSessionV2.AdditionalCostsOption.IsSet && customerSessionV2.AdditionalCosts == null)
-                throw new ArgumentNullException(nameof(customerSessionV2.AdditionalCosts), "Property is required for class CustomerSessionV2.");
-
-            if (customerSessionV2.IdentifiersOption.IsSet && customerSessionV2.Identifiers == null)
-                throw new ArgumentNullException(nameof(customerSessionV2.Identifiers), "Property is required for class CustomerSessionV2.");
-
-            if (customerSessionV2.AttributesOption.IsSet && customerSessionV2.Attributes == null)
-                throw new ArgumentNullException(nameof(customerSessionV2.Attributes), "Property is required for class CustomerSessionV2.");
 
             writer.WriteNumber("id", customerSessionV2.Id);
 

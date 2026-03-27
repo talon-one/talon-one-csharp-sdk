@@ -154,9 +154,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CouponLimitConfigs couponLimitConfigs, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (couponLimitConfigs.LimitsOption.IsSet && couponLimitConfigs.Limits == null)
-                throw new ArgumentNullException(nameof(couponLimitConfigs.Limits), "Property is required for class CouponLimitConfigs.");
-
             if (couponLimitConfigs.LimitsOption.IsSet)
             {
                 writer.WritePropertyName("limits");

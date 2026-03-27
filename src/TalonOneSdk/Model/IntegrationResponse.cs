@@ -262,6 +262,15 @@ namespace TalonOneSdk.Model
             if (!createdReferrals.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationResponse.", nameof(createdReferrals));
 
+            if (effects.IsSet && effects.Value == null)
+                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class IntegrationResponse.");
+
+            if (createdCoupons.IsSet && createdCoupons.Value == null)
+                throw new ArgumentNullException(nameof(createdCoupons), "Property is not nullable for class IntegrationResponse.");
+
+            if (createdReferrals.IsSet && createdReferrals.Value == null)
+                throw new ArgumentNullException(nameof(createdReferrals), "Property is not nullable for class IntegrationResponse.");
+
             return new IntegrationResponse(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, loyalty, triggeredCampaigns, ruleFailureReasons, awardedGiveaways);
         }
 
@@ -297,21 +306,6 @@ namespace TalonOneSdk.Model
 
             if (integrationResponse.CreatedReferrals == null)
                 throw new ArgumentNullException(nameof(integrationResponse.CreatedReferrals), "Property is required for class IntegrationResponse.");
-
-            if (integrationResponse.CustomerProfileOption.IsSet && integrationResponse.CustomerProfile == null)
-                throw new ArgumentNullException(nameof(integrationResponse.CustomerProfile), "Property is required for class IntegrationResponse.");
-
-            if (integrationResponse.LoyaltyOption.IsSet && integrationResponse.Loyalty == null)
-                throw new ArgumentNullException(nameof(integrationResponse.Loyalty), "Property is required for class IntegrationResponse.");
-
-            if (integrationResponse.TriggeredCampaignsOption.IsSet && integrationResponse.TriggeredCampaigns == null)
-                throw new ArgumentNullException(nameof(integrationResponse.TriggeredCampaigns), "Property is required for class IntegrationResponse.");
-
-            if (integrationResponse.RuleFailureReasonsOption.IsSet && integrationResponse.RuleFailureReasons == null)
-                throw new ArgumentNullException(nameof(integrationResponse.RuleFailureReasons), "Property is required for class IntegrationResponse.");
-
-            if (integrationResponse.AwardedGiveawaysOption.IsSet && integrationResponse.AwardedGiveaways == null)
-                throw new ArgumentNullException(nameof(integrationResponse.AwardedGiveaways), "Property is required for class IntegrationResponse.");
 
             writer.WritePropertyName("effects");
             JsonSerializer.Serialize(writer, integrationResponse.Effects, jsonSerializerOptions);

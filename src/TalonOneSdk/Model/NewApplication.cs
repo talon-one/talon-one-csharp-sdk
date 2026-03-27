@@ -165,7 +165,7 @@ namespace TalonOneSdk.Model
         /// <value>The case sensitivity behavior to check coupon codes in the campaigns of this Application.</value>
         /* <example>sensitive</example> */
         [JsonPropertyName("caseSensitivity")]
-        public CaseSensitivityEnum? CaseSensitivity { get { return this.CaseSensitivityOption; } set { this.CaseSensitivityOption = new Option<CaseSensitivityEnum?>(value); } }
+        public CaseSensitivityEnum? CaseSensitivity { get { return this.CaseSensitivityOption.Value; } set { this.CaseSensitivityOption = new Option<CaseSensitivityEnum?>(value); } }
 
         /// <summary>
         /// The default scope to apply &#x60;setDiscount&#x60; effects on if no scope was provided with the effect. 
@@ -260,7 +260,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The default scope to apply &#x60;setDiscount&#x60; effects on if no scope was provided with the effect. </value>
         [JsonPropertyName("defaultDiscountScope")]
-        public DefaultDiscountScopeEnum? DefaultDiscountScope { get { return this.DefaultDiscountScopeOption; } set { this.DefaultDiscountScopeOption = new Option<DefaultDiscountScopeEnum?>(value); } }
+        public DefaultDiscountScopeEnum? DefaultDiscountScope { get { return this.DefaultDiscountScopeOption.Value; } set { this.DefaultDiscountScopeOption = new Option<DefaultDiscountScopeEnum?>(value); } }
 
         /// <summary>
         /// The default scope to apply &#x60;setDiscountPerItem&#x60; effects on if no scope was provided with the effect. 
@@ -355,7 +355,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The default scope to apply &#x60;setDiscountPerItem&#x60; effects on if no scope was provided with the effect. </value>
         [JsonPropertyName("defaultDiscountAdditionalCostPerItemScope")]
-        public DefaultDiscountAdditionalCostPerItemScopeEnum? DefaultDiscountAdditionalCostPerItemScope { get { return this.DefaultDiscountAdditionalCostPerItemScopeOption; } set { this.DefaultDiscountAdditionalCostPerItemScopeOption = new Option<DefaultDiscountAdditionalCostPerItemScopeEnum?>(value); } }
+        public DefaultDiscountAdditionalCostPerItemScopeEnum? DefaultDiscountAdditionalCostPerItemScope { get { return this.DefaultDiscountAdditionalCostPerItemScopeOption.Value; } set { this.DefaultDiscountAdditionalCostPerItemScopeOption = new Option<DefaultDiscountAdditionalCostPerItemScopeEnum?>(value); } }
 
         /// <summary>
         /// The name of this application.
@@ -713,29 +713,14 @@ namespace TalonOneSdk.Model
             if (!currency.IsSet)
                 throw new ArgumentException("Property is required for class NewApplication.", nameof(currency));
 
-            if (caseSensitivity.IsSet && caseSensitivity.Value == null)
-                throw new ArgumentNullException(nameof(caseSensitivity), "Property is not nullable for class NewApplication.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewApplication.");
 
-            if (defaultDiscountScope.IsSet && defaultDiscountScope.Value == null)
-                throw new ArgumentNullException(nameof(defaultDiscountScope), "Property is not nullable for class NewApplication.");
+            if (timezone.IsSet && timezone.Value == null)
+                throw new ArgumentNullException(nameof(timezone), "Property is not nullable for class NewApplication.");
 
-            if (enableCascadingDiscounts.IsSet && enableCascadingDiscounts.Value == null)
-                throw new ArgumentNullException(nameof(enableCascadingDiscounts), "Property is not nullable for class NewApplication.");
-
-            if (enableFlattenedCartItems.IsSet && enableFlattenedCartItems.Value == null)
-                throw new ArgumentNullException(nameof(enableFlattenedCartItems), "Property is not nullable for class NewApplication.");
-
-            if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class NewApplication.");
-
-            if (enablePartialDiscounts.IsSet && enablePartialDiscounts.Value == null)
-                throw new ArgumentNullException(nameof(enablePartialDiscounts), "Property is not nullable for class NewApplication.");
-
-            if (defaultDiscountAdditionalCostPerItemScope.IsSet && defaultDiscountAdditionalCostPerItemScope.Value == null)
-                throw new ArgumentNullException(nameof(defaultDiscountAdditionalCostPerItemScope), "Property is not nullable for class NewApplication.");
-
-            if (enableCampaignStateManagement.IsSet && enableCampaignStateManagement.Value == null)
-                throw new ArgumentNullException(nameof(enableCampaignStateManagement), "Property is not nullable for class NewApplication.");
+            if (currency.IsSet && currency.Value == null)
+                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class NewApplication.");
 
             return new NewApplication(name.Value, timezone.Value, currency.Value, description, caseSensitivity, attributes, limits, defaultDiscountScope, enableCascadingDiscounts, enableFlattenedCartItems, attributesSettings, sandbox, enablePartialDiscounts, defaultDiscountAdditionalCostPerItemScope, key, enableCampaignStateManagement);
         }
@@ -772,21 +757,6 @@ namespace TalonOneSdk.Model
 
             if (newApplication.Currency == null)
                 throw new ArgumentNullException(nameof(newApplication.Currency), "Property is required for class NewApplication.");
-
-            if (newApplication.DescriptionOption.IsSet && newApplication.Description == null)
-                throw new ArgumentNullException(nameof(newApplication.Description), "Property is required for class NewApplication.");
-
-            if (newApplication.AttributesOption.IsSet && newApplication.Attributes == null)
-                throw new ArgumentNullException(nameof(newApplication.Attributes), "Property is required for class NewApplication.");
-
-            if (newApplication.LimitsOption.IsSet && newApplication.Limits == null)
-                throw new ArgumentNullException(nameof(newApplication.Limits), "Property is required for class NewApplication.");
-
-            if (newApplication.AttributesSettingsOption.IsSet && newApplication.AttributesSettings == null)
-                throw new ArgumentNullException(nameof(newApplication.AttributesSettings), "Property is required for class NewApplication.");
-
-            if (newApplication.KeyOption.IsSet && newApplication.Key == null)
-                throw new ArgumentNullException(nameof(newApplication.Key), "Property is required for class NewApplication.");
 
             writer.WriteString("name", newApplication.Name);
 

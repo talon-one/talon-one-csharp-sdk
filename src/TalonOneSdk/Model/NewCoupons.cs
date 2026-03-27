@@ -472,26 +472,8 @@ namespace TalonOneSdk.Model
             if (!numberOfCoupons.IsSet)
                 throw new ArgumentException("Property is required for class NewCoupons.", nameof(numberOfCoupons));
 
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class NewCoupons.");
-
-            if (discountLimit.IsSet && discountLimit.Value == null)
-                throw new ArgumentNullException(nameof(discountLimit), "Property is not nullable for class NewCoupons.");
-
-            if (reservationLimit.IsSet && reservationLimit.Value == null)
-                throw new ArgumentNullException(nameof(reservationLimit), "Property is not nullable for class NewCoupons.");
-
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class NewCoupons.");
-
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class NewCoupons.");
-
-            if (isReservationMandatory.IsSet && isReservationMandatory.Value == null)
-                throw new ArgumentNullException(nameof(isReservationMandatory), "Property is not nullable for class NewCoupons.");
-
-            if (implicitlyReserved.IsSet && implicitlyReserved.Value == null)
-                throw new ArgumentNullException(nameof(implicitlyReserved), "Property is not nullable for class NewCoupons.");
+            if (numberOfCoupons.IsSet && numberOfCoupons.Value == null)
+                throw new ArgumentNullException(nameof(numberOfCoupons), "Property is not nullable for class NewCoupons.");
 
             return new NewCoupons(numberOfCoupons.Value.Value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, limits, uniquePrefix, attributes, recipientIntegrationId, validCharacters, couponPattern, isReservationMandatory, implicitlyReserved);
         }
@@ -520,24 +502,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewCoupons newCoupons, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (newCoupons.LimitsOption.IsSet && newCoupons.Limits == null)
-                throw new ArgumentNullException(nameof(newCoupons.Limits), "Property is required for class NewCoupons.");
-
-            if (newCoupons.UniquePrefixOption.IsSet && newCoupons.UniquePrefix == null)
-                throw new ArgumentNullException(nameof(newCoupons.UniquePrefix), "Property is required for class NewCoupons.");
-
-            if (newCoupons.AttributesOption.IsSet && newCoupons.Attributes == null)
-                throw new ArgumentNullException(nameof(newCoupons.Attributes), "Property is required for class NewCoupons.");
-
-            if (newCoupons.RecipientIntegrationIdOption.IsSet && newCoupons.RecipientIntegrationId == null)
-                throw new ArgumentNullException(nameof(newCoupons.RecipientIntegrationId), "Property is required for class NewCoupons.");
-
-            if (newCoupons.ValidCharactersOption.IsSet && newCoupons.ValidCharacters == null)
-                throw new ArgumentNullException(nameof(newCoupons.ValidCharacters), "Property is required for class NewCoupons.");
-
-            if (newCoupons.CouponPatternOption.IsSet && newCoupons.CouponPattern == null)
-                throw new ArgumentNullException(nameof(newCoupons.CouponPattern), "Property is required for class NewCoupons.");
-
             writer.WriteNumber("numberOfCoupons", newCoupons.NumberOfCoupons);
 
             if (newCoupons.UsageLimitOption.IsSet)

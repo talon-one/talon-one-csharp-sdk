@@ -230,6 +230,9 @@ namespace TalonOneSdk.Model
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class EventV2.", nameof(type));
 
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class EventV2.");
+
             return new EventV2(type.Value, profileId, storeIntegrationId, evaluableCampaignIds, attributes);
         }
 
@@ -259,18 +262,6 @@ namespace TalonOneSdk.Model
         {
             if (eventV2.Type == null)
                 throw new ArgumentNullException(nameof(eventV2.Type), "Property is required for class EventV2.");
-
-            if (eventV2.ProfileIdOption.IsSet && eventV2.ProfileId == null)
-                throw new ArgumentNullException(nameof(eventV2.ProfileId), "Property is required for class EventV2.");
-
-            if (eventV2.StoreIntegrationIdOption.IsSet && eventV2.StoreIntegrationId == null)
-                throw new ArgumentNullException(nameof(eventV2.StoreIntegrationId), "Property is required for class EventV2.");
-
-            if (eventV2.EvaluableCampaignIdsOption.IsSet && eventV2.EvaluableCampaignIds == null)
-                throw new ArgumentNullException(nameof(eventV2.EvaluableCampaignIds), "Property is required for class EventV2.");
-
-            if (eventV2.AttributesOption.IsSet && eventV2.Attributes == null)
-                throw new ArgumentNullException(nameof(eventV2.Attributes), "Property is required for class EventV2.");
 
             writer.WriteString("type", eventV2.Type);
 

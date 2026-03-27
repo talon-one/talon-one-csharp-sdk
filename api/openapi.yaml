@@ -335,15 +335,9 @@ paths:
 
         This endpoint automatically changes the session state from `closed` to `partially_returned`.
 
-        **Important:** This will roll back any effects associated with these cart items. For more information, see
+        **Note:** This will roll back any effects associated with these cart items. For more information, see
         [our documentation on session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states)
         and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session).
-
-        **Note:** To make request processing idempotent for this endpoint, include the `Idempotency-Key` header with an idempotency key in requests.
-        Also:
-        - Requests with the `Idempotency-Key` header are logged in the Talon.One access logs.
-        - Responses for idempotent requests are stored in the database and expire 24 hours after the request is sent.
-        - Idempotency keys are typically UUID keys and should not exceed 255 characters in length.
       operationId: returnCartItems
       parameters:
       - description: |
@@ -15744,9 +15738,6 @@ components:
             format: int64
             type: integer
           type: array
-        couponAttributes:
-          description: Arbitrary properties associated with coupons in this campaign.
-          type: object
       required:
       - features
       - limits
@@ -16062,7 +16053,6 @@ components:
         experimentId: 1
         id: 4
         state: enabled
-        couponAttributes: "{}"
         reservecouponEffectCount: 9
         updatedBy: Jane Doe
         frontendState: running
@@ -17379,7 +17369,6 @@ components:
           experimentId: 1
           id: 4
           state: enabled
-          couponAttributes: "{}"
           reservecouponEffectCount: 9
           updatedBy: Jane Doe
           frontendState: running
@@ -17534,7 +17523,6 @@ components:
           experimentId: 1
           id: 4
           state: enabled
-          couponAttributes: "{}"
           reservecouponEffectCount: 9
           updatedBy: Jane Doe
           frontendState: running
@@ -18013,7 +18001,6 @@ components:
           experimentId: 1
           id: 4
           state: enabled
-          couponAttributes: "{}"
           reservecouponEffectCount: 9
           updatedBy: Jane Doe
           frontendState: running
@@ -18168,7 +18155,6 @@ components:
           experimentId: 1
           id: 4
           state: enabled
-          couponAttributes: "{}"
           reservecouponEffectCount: 9
           updatedBy: Jane Doe
           frontendState: running
@@ -20378,7 +20364,6 @@ components:
           experimentId: 1
           id: 4
           state: enabled
-          couponAttributes: "{}"
           reservecouponEffectCount: 9
           updatedBy: Jane Doe
           frontendState: running
@@ -20533,7 +20518,6 @@ components:
           experimentId: 1
           id: 4
           state: enabled
-          couponAttributes: "{}"
           reservecouponEffectCount: 9
           updatedBy: Jane Doe
           frontendState: running
@@ -22344,9 +22328,6 @@ components:
             - achievements
             type: string
           type: array
-        couponAttributes:
-          description: Arbitrary properties associated with coupons in this campaign.
-          type: object
     RevisionVersion:
       allOf:
       - $ref: "#/components/schemas/IdentifiableEntity"
@@ -22715,7 +22696,6 @@ components:
           myattribute: 20
         endTime: 2021-10-01T02:00:00Z
         state: disabled
-        couponAttributes: "{}"
         limits:
         - period: yearly
           entities:
@@ -22855,9 +22835,6 @@ components:
             format: int64
             type: integer
           type: array
-        couponAttributes:
-          description: Arbitrary properties associated with coupons in this campaign.
-          type: object
       required:
       - features
       - limits
@@ -26080,7 +26057,6 @@ components:
           experimentId: 1
           id: 4
           state: enabled
-          couponAttributes: "{}"
           reservecouponEffectCount: 9
           updatedBy: Jane Doe
           frontendState: running
@@ -27310,7 +27286,6 @@ components:
           experimentId: 1
           id: 4
           state: enabled
-          couponAttributes: "{}"
           reservecouponEffectCount: 9
           updatedBy: Jane Doe
           frontendState: running
@@ -34716,25 +34691,6 @@ components:
             allOf:
             - $ref: "#/components/schemas/EventV3"
             description: The advanced event that was processed.
-    EmbeddedDashboardConfiguration:
-      properties:
-        workspaceId:
-          description: The ID of the workspace that contains dashboards.
-          example: main_workspace
-          type: string
-        dashboardId:
-          description: The ID of the dashboard that contains metrics.
-          example: campaign_insights_metrics
-          type: string
-      required:
-      - dashboardId
-      - workspaceId
-    EmbeddedAnalyticsConfiguration:
-      properties:
-        dashboards:
-          $ref: "#/components/schemas/EmbeddedAnalyticsConfiguration_dashboards"
-      required:
-      - dashboards
     CampaignNotificationBase:
       properties:
         NotificationType:
@@ -37115,7 +37071,6 @@ components:
           experimentId: 1
           id: 4
           state: enabled
-          couponAttributes: "{}"
           reservecouponEffectCount: 9
           updatedBy: Jane Doe
           frontendState: running
@@ -37270,7 +37225,6 @@ components:
           experimentId: 1
           id: 4
           state: enabled
-          couponAttributes: "{}"
           reservecouponEffectCount: 9
           updatedBy: Jane Doe
           frontendState: running
@@ -38341,7 +38295,6 @@ components:
             experimentId: 1
             id: 4
             state: enabled
-            couponAttributes: "{}"
             reservecouponEffectCount: 9
             updatedBy: Jane Doe
             frontendState: running
@@ -38861,7 +38814,6 @@ components:
             experimentId: 1
             id: 4
             state: enabled
-            couponAttributes: "{}"
             reservecouponEffectCount: 9
             updatedBy: Jane Doe
             frontendState: running
@@ -41487,12 +41439,6 @@ components:
           description: The number of times the product or SKU was purchased.
     IntegrationHubEventPayloadCouponBasedNotifications_allOf_Attributes:
       type: object
-    EmbeddedAnalyticsConfiguration_dashboards:
-      properties:
-        campaignInsights:
-          allOf:
-          - $ref: "#/components/schemas/EmbeddedDashboardConfiguration"
-          description: The configuration of the embedded Insights dashboard for campaigns.
   securitySchemes:
     api_key_v1:
       description: |

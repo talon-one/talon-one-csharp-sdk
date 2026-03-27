@@ -190,11 +190,11 @@ namespace TalonOneSdk.Model
             if (!triggers.IsSet)
                 throw new ArgumentException("Property is required for class ExpiringCouponsNotificationPolicy.", nameof(triggers));
 
-            if (batchingEnabled.IsSet && batchingEnabled.Value == null)
-                throw new ArgumentNullException(nameof(batchingEnabled), "Property is not nullable for class ExpiringCouponsNotificationPolicy.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ExpiringCouponsNotificationPolicy.");
 
-            if (batchSize.IsSet && batchSize.Value == null)
-                throw new ArgumentNullException(nameof(batchSize), "Property is not nullable for class ExpiringCouponsNotificationPolicy.");
+            if (triggers.IsSet && triggers.Value == null)
+                throw new ArgumentNullException(nameof(triggers), "Property is not nullable for class ExpiringCouponsNotificationPolicy.");
 
             return new ExpiringCouponsNotificationPolicy(name.Value, triggers.Value, batchingEnabled, batchSize);
         }

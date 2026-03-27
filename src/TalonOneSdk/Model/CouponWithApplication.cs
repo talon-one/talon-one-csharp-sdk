@@ -671,44 +671,23 @@ namespace TalonOneSdk.Model
             if (!applicationName.IsSet)
                 throw new ArgumentException("Property is required for class CouponWithApplication.", nameof(applicationName));
 
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class CouponWithApplication.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CouponWithApplication.");
 
-            if (discountLimit.IsSet && discountLimit.Value == null)
-                throw new ArgumentNullException(nameof(discountLimit), "Property is not nullable for class CouponWithApplication.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CouponWithApplication.");
 
-            if (reservationLimit.IsSet && reservationLimit.Value == null)
-                throw new ArgumentNullException(nameof(reservationLimit), "Property is not nullable for class CouponWithApplication.");
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class CouponWithApplication.");
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class CouponWithApplication.");
+            if (usageCounter.IsSet && usageCounter.Value == null)
+                throw new ArgumentNullException(nameof(usageCounter), "Property is not nullable for class CouponWithApplication.");
 
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class CouponWithApplication.");
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CouponWithApplication.");
 
-            if (discountCounter.IsSet && discountCounter.Value == null)
-                throw new ArgumentNullException(nameof(discountCounter), "Property is not nullable for class CouponWithApplication.");
-
-            if (discountRemainder.IsSet && discountRemainder.Value == null)
-                throw new ArgumentNullException(nameof(discountRemainder), "Property is not nullable for class CouponWithApplication.");
-
-            if (reservationCounter.IsSet && reservationCounter.Value == null)
-                throw new ArgumentNullException(nameof(reservationCounter), "Property is not nullable for class CouponWithApplication.");
-
-            if (referralId.IsSet && referralId.Value == null)
-                throw new ArgumentNullException(nameof(referralId), "Property is not nullable for class CouponWithApplication.");
-
-            if (importId.IsSet && importId.Value == null)
-                throw new ArgumentNullException(nameof(importId), "Property is not nullable for class CouponWithApplication.");
-
-            if (reservation.IsSet && reservation.Value == null)
-                throw new ArgumentNullException(nameof(reservation), "Property is not nullable for class CouponWithApplication.");
-
-            if (isReservationMandatory.IsSet && isReservationMandatory.Value == null)
-                throw new ArgumentNullException(nameof(isReservationMandatory), "Property is not nullable for class CouponWithApplication.");
-
-            if (implicitlyReserved.IsSet && implicitlyReserved.Value == null)
-                throw new ArgumentNullException(nameof(implicitlyReserved), "Property is not nullable for class CouponWithApplication.");
+            if (applicationName.IsSet && applicationName.Value == null)
+                throw new ArgumentNullException(nameof(applicationName), "Property is not nullable for class CouponWithApplication.");
 
             return new CouponWithApplication(id.Value.Value, created.Value.Value, campaignId.Value.Value, usageCounter.Value.Value, applicationId.Value.Value, applicationName.Value, value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, limits, discountCounter, discountRemainder, reservationCounter, attributes, referralId, recipientIntegrationId, importId, reservation, batchId, isReservationMandatory, implicitlyReserved);
         }
@@ -739,21 +718,6 @@ namespace TalonOneSdk.Model
         {
             if (couponWithApplication.ApplicationName == null)
                 throw new ArgumentNullException(nameof(couponWithApplication.ApplicationName), "Property is required for class CouponWithApplication.");
-
-            if (couponWithApplication.ValueOption.IsSet && couponWithApplication.Value == null)
-                throw new ArgumentNullException(nameof(couponWithApplication.Value), "Property is required for class CouponWithApplication.");
-
-            if (couponWithApplication.LimitsOption.IsSet && couponWithApplication.Limits == null)
-                throw new ArgumentNullException(nameof(couponWithApplication.Limits), "Property is required for class CouponWithApplication.");
-
-            if (couponWithApplication.AttributesOption.IsSet && couponWithApplication.Attributes == null)
-                throw new ArgumentNullException(nameof(couponWithApplication.Attributes), "Property is required for class CouponWithApplication.");
-
-            if (couponWithApplication.RecipientIntegrationIdOption.IsSet && couponWithApplication.RecipientIntegrationId == null)
-                throw new ArgumentNullException(nameof(couponWithApplication.RecipientIntegrationId), "Property is required for class CouponWithApplication.");
-
-            if (couponWithApplication.BatchIdOption.IsSet && couponWithApplication.BatchId == null)
-                throw new ArgumentNullException(nameof(couponWithApplication.BatchId), "Property is required for class CouponWithApplication.");
 
             writer.WriteNumber("id", couponWithApplication.Id);
 

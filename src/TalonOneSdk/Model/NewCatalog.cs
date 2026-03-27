@@ -164,6 +164,12 @@ namespace TalonOneSdk.Model
             if (!description.IsSet)
                 throw new ArgumentException("Property is required for class NewCatalog.", nameof(description));
 
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewCatalog.");
+
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description), "Property is not nullable for class NewCatalog.");
+
             return new NewCatalog(name.Value, description.Value, subscribedApplicationsIds);
         }
 
@@ -196,9 +202,6 @@ namespace TalonOneSdk.Model
 
             if (newCatalog.Description == null)
                 throw new ArgumentNullException(nameof(newCatalog.Description), "Property is required for class NewCatalog.");
-
-            if (newCatalog.SubscribedApplicationsIdsOption.IsSet && newCatalog.SubscribedApplicationsIds == null)
-                throw new ArgumentNullException(nameof(newCatalog.SubscribedApplicationsIds), "Property is required for class NewCatalog.");
 
             writer.WriteString("name", newCatalog.Name);
 

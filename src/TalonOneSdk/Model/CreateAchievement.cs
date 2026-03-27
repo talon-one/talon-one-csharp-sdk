@@ -155,7 +155,7 @@ namespace TalonOneSdk.Model
         /// <value>The policy that determines if and how the achievement recurs. - &#x60;no_recurrence&#x60;: The achievement can be completed only once. - &#x60;on_expiration&#x60;: The achievement resets after it expires and becomes available again. - &#x60;on_completion&#x60;: When the customer progress status reaches &#x60;completed&#x60;, the achievement resets and becomes available again. </value>
         /* <example>no_recurrence</example> */
         [JsonPropertyName("recurrencePolicy")]
-        public RecurrencePolicyEnum? RecurrencePolicy { get { return this.RecurrencePolicyOption; } set { this.RecurrencePolicyOption = new Option<RecurrencePolicyEnum?>(value); } }
+        public RecurrencePolicyEnum? RecurrencePolicy { get { return this.RecurrencePolicyOption.Value; } set { this.RecurrencePolicyOption = new Option<RecurrencePolicyEnum?>(value); } }
 
         /// <summary>
         /// The policy that determines how the achievement starts, ends, or resets. - &#x60;user_action&#x60;: The achievement ends or resets relative to when the customer started the achievement. - &#x60;fixed_schedule&#x60;: The achievement starts, ends, or resets for all customers following a fixed schedule. 
@@ -237,7 +237,7 @@ namespace TalonOneSdk.Model
         /// <value>The policy that determines how the achievement starts, ends, or resets. - &#x60;user_action&#x60;: The achievement ends or resets relative to when the customer started the achievement. - &#x60;fixed_schedule&#x60;: The achievement starts, ends, or resets for all customers following a fixed schedule. </value>
         /* <example>fixed_schedule</example> */
         [JsonPropertyName("activationPolicy")]
-        public ActivationPolicyEnum? ActivationPolicy { get { return this.ActivationPolicyOption; } set { this.ActivationPolicyOption = new Option<ActivationPolicyEnum?>(value); } }
+        public ActivationPolicyEnum? ActivationPolicy { get { return this.ActivationPolicyOption.Value; } set { this.ActivationPolicyOption = new Option<ActivationPolicyEnum?>(value); } }
 
         /// <summary>
         /// The internal name of the achievement used in API requests.  **Note**: The name should start with a letter. This cannot be changed after the achievement has been created. 
@@ -515,20 +515,17 @@ namespace TalonOneSdk.Model
             if (!target.IsSet)
                 throw new ArgumentException("Property is required for class CreateAchievement.", nameof(target));
 
-            if (recurrencePolicy.IsSet && recurrencePolicy.Value == null)
-                throw new ArgumentNullException(nameof(recurrencePolicy), "Property is not nullable for class CreateAchievement.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CreateAchievement.");
 
-            if (activationPolicy.IsSet && activationPolicy.Value == null)
-                throw new ArgumentNullException(nameof(activationPolicy), "Property is not nullable for class CreateAchievement.");
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class CreateAchievement.");
 
-            if (fixedStartDate.IsSet && fixedStartDate.Value == null)
-                throw new ArgumentNullException(nameof(fixedStartDate), "Property is not nullable for class CreateAchievement.");
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description), "Property is not nullable for class CreateAchievement.");
 
-            if (endDate.IsSet && endDate.Value == null)
-                throw new ArgumentNullException(nameof(endDate), "Property is not nullable for class CreateAchievement.");
-
-            if (allowRollbackAfterCompletion.IsSet && allowRollbackAfterCompletion.Value == null)
-                throw new ArgumentNullException(nameof(allowRollbackAfterCompletion), "Property is not nullable for class CreateAchievement.");
+            if (target.IsSet && target.Value == null)
+                throw new ArgumentNullException(nameof(target), "Property is not nullable for class CreateAchievement.");
 
             return new CreateAchievement(name.Value, title.Value, description.Value, target.Value.Value, period, periodEndOverride, recurrencePolicy, activationPolicy, fixedStartDate, endDate, allowRollbackAfterCompletion);
         }
@@ -565,12 +562,6 @@ namespace TalonOneSdk.Model
 
             if (createAchievement.Description == null)
                 throw new ArgumentNullException(nameof(createAchievement.Description), "Property is required for class CreateAchievement.");
-
-            if (createAchievement.PeriodOption.IsSet && createAchievement.Period == null)
-                throw new ArgumentNullException(nameof(createAchievement.Period), "Property is required for class CreateAchievement.");
-
-            if (createAchievement.PeriodEndOverrideOption.IsSet && createAchievement.PeriodEndOverride == null)
-                throw new ArgumentNullException(nameof(createAchievement.PeriodEndOverride), "Property is required for class CreateAchievement.");
 
             writer.WriteString("name", createAchievement.Name);
 

@@ -454,32 +454,20 @@ namespace TalonOneSdk.Model
             if (!props.IsSet)
                 throw new ArgumentException("Property is required for class Effect.", nameof(props));
 
-            if (experimentId.IsSet && experimentId.Value == null)
-                throw new ArgumentNullException(nameof(experimentId), "Property is not nullable for class Effect.");
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class Effect.");
 
-            if (triggeredByCoupon.IsSet && triggeredByCoupon.Value == null)
-                throw new ArgumentNullException(nameof(triggeredByCoupon), "Property is not nullable for class Effect.");
+            if (rulesetId.IsSet && rulesetId.Value == null)
+                throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class Effect.");
 
-            if (triggeredForCatalogItem.IsSet && triggeredForCatalogItem.Value == null)
-                throw new ArgumentNullException(nameof(triggeredForCatalogItem), "Property is not nullable for class Effect.");
+            if (ruleIndex.IsSet && ruleIndex.Value == null)
+                throw new ArgumentNullException(nameof(ruleIndex), "Property is not nullable for class Effect.");
 
-            if (conditionIndex.IsSet && conditionIndex.Value == null)
-                throw new ArgumentNullException(nameof(conditionIndex), "Property is not nullable for class Effect.");
+            if (ruleName.IsSet && ruleName.Value == null)
+                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class Effect.");
 
-            if (evaluationGroupID.IsSet && evaluationGroupID.Value == null)
-                throw new ArgumentNullException(nameof(evaluationGroupID), "Property is not nullable for class Effect.");
-
-            if (campaignRevisionId.IsSet && campaignRevisionId.Value == null)
-                throw new ArgumentNullException(nameof(campaignRevisionId), "Property is not nullable for class Effect.");
-
-            if (campaignRevisionVersionId.IsSet && campaignRevisionVersionId.Value == null)
-                throw new ArgumentNullException(nameof(campaignRevisionVersionId), "Property is not nullable for class Effect.");
-
-            if (selectedPrice.IsSet && selectedPrice.Value == null)
-                throw new ArgumentNullException(nameof(selectedPrice), "Property is not nullable for class Effect.");
-
-            if (adjustmentReferenceId.IsSet && adjustmentReferenceId.Value == null)
-                throw new ArgumentNullException(nameof(adjustmentReferenceId), "Property is not nullable for class Effect.");
+            if (effectType.IsSet && effectType.Value == null)
+                throw new ArgumentNullException(nameof(effectType), "Property is not nullable for class Effect.");
 
             return new Effect(campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, effectType.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, props.Value);
         }
@@ -513,12 +501,6 @@ namespace TalonOneSdk.Model
 
             if (effect.EffectType == null)
                 throw new ArgumentNullException(nameof(effect.EffectType), "Property is required for class Effect.");
-
-            if (effect.EvaluationGroupModeOption.IsSet && effect.EvaluationGroupMode == null)
-                throw new ArgumentNullException(nameof(effect.EvaluationGroupMode), "Property is required for class Effect.");
-
-            if (effect.SelectedPriceTypeOption.IsSet && effect.SelectedPriceType == null)
-                throw new ArgumentNullException(nameof(effect.SelectedPriceType), "Property is required for class Effect.");
 
             writer.WriteNumber("campaignId", effect.CampaignId);
 

@@ -176,12 +176,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ScimBaseGroup scimBaseGroup, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (scimBaseGroup.DisplayNameOption.IsSet && scimBaseGroup.DisplayName == null)
-                throw new ArgumentNullException(nameof(scimBaseGroup.DisplayName), "Property is required for class ScimBaseGroup.");
-
-            if (scimBaseGroup.MembersOption.IsSet && scimBaseGroup.Members == null)
-                throw new ArgumentNullException(nameof(scimBaseGroup.Members), "Property is required for class ScimBaseGroup.");
-
             if (scimBaseGroup.DisplayNameOption.IsSet)
                 writer.WriteString("displayName", scimBaseGroup.DisplayName);
 

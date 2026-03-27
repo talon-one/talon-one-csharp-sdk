@@ -260,11 +260,17 @@ namespace TalonOneSdk.Model
             if (!subledgerID.IsSet)
                 throw new ArgumentException("Property is required for class PendingActivePointsData.", nameof(subledgerID));
 
-            if (activeOn.IsSet && activeOn.Value == null)
-                throw new ArgumentNullException(nameof(activeOn), "Property is not nullable for class PendingActivePointsData.");
+            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class PendingActivePointsData.");
 
-            if (expireOn.IsSet && expireOn.Value == null)
-                throw new ArgumentNullException(nameof(expireOn), "Property is not nullable for class PendingActivePointsData.");
+            if (customerProfileID.IsSet && customerProfileID.Value == null)
+                throw new ArgumentNullException(nameof(customerProfileID), "Property is not nullable for class PendingActivePointsData.");
+
+            if (points.IsSet && points.Value == null)
+                throw new ArgumentNullException(nameof(points), "Property is not nullable for class PendingActivePointsData.");
+
+            if (subledgerID.IsSet && subledgerID.Value == null)
+                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class PendingActivePointsData.");
 
             return new PendingActivePointsData(loyaltyProgramID.Value.Value, customerProfileID.Value, points.Value.Value, subledgerID.Value, activeOn, expireOn, sessionIntegrationID);
         }
@@ -298,9 +304,6 @@ namespace TalonOneSdk.Model
 
             if (pendingActivePointsData.SubledgerID == null)
                 throw new ArgumentNullException(nameof(pendingActivePointsData.SubledgerID), "Property is required for class PendingActivePointsData.");
-
-            if (pendingActivePointsData.SessionIntegrationIDOption.IsSet && pendingActivePointsData.SessionIntegrationID == null)
-                throw new ArgumentNullException(nameof(pendingActivePointsData.SessionIntegrationID), "Property is required for class PendingActivePointsData.");
 
             writer.WriteNumber("LoyaltyProgramID", pendingActivePointsData.LoyaltyProgramID);
 
