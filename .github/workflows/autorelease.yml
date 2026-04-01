@@ -101,8 +101,8 @@ jobs:
       - name: pack and publish
         if: ${{ steps.get_version.outputs.version != '' }}
         run: |
-          make pack
-          make publish apiKey=${{ secrets.NUGET_PUBLISHING_KEY }}
+          make pack ver=${{ steps.get_version.outputs.version }}
+          make publish apiKey=${{ secrets.NUGET_PUBLISHING_KEY }} ver=${{ steps.get_version.outputs.version }}
 
       - name: Create Git tag
         if: ${{ steps.get_version.outputs.version != '' }}
