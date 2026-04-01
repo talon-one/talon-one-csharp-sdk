@@ -225,6 +225,9 @@ docs/models/DeleteUserRequest.md
 docs/models/Effect.md
 docs/models/EffectEntity.md
 docs/models/EmailEntity.md
+docs/models/EmbeddedAnalyticsConfiguration.md
+docs/models/EmbeddedAnalyticsConfigurationDashboards.md
+docs/models/EmbeddedDashboardConfiguration.md
 docs/models/Endpoint.md
 docs/models/Entity.md
 docs/models/EntityWithTalangVisibleID.md
@@ -242,6 +245,9 @@ docs/models/Experiment.md
 docs/models/ExperimentCampaignCopy.md
 docs/models/ExperimentCopy.md
 docs/models/ExperimentCopyExperiment.md
+docs/models/ExperimentListResults.md
+docs/models/ExperimentListResultsRequest.md
+docs/models/ExperimentResult.md
 docs/models/ExperimentResults.md
 docs/models/ExperimentVariant.md
 docs/models/ExperimentVariantAllocation.md
@@ -320,6 +326,8 @@ docs/models/GetRulesets200Response.md
 docs/models/GetUsers200Response.md
 docs/models/GetWebhooks200Response.md
 docs/models/Giveaway.md
+docs/models/GiveawayPoolNotification.md
+docs/models/GiveawayPoolNotificationData.md
 docs/models/GiveawaysPool.md
 docs/models/HiddenConditionsEffects.md
 docs/models/History.md
@@ -562,6 +570,7 @@ docs/models/RoleV2PermissionSet.md
 docs/models/RoleV2Permissions.md
 docs/models/RoleV2Readonly.md
 docs/models/RoleV2RolesGroup.md
+docs/models/RolesV2Thresholds.md
 docs/models/RollbackAddedLoyaltyPointsEffectProps.md
 docs/models/RollbackCouponEffectProps.md
 docs/models/RollbackDeductedLoyaltyPointsEffectProps.md
@@ -570,6 +579,7 @@ docs/models/RollbackIncreasedAchievementProgressEffectProps.md
 docs/models/RollbackReferralEffectProps.md
 docs/models/Rule.md
 docs/models/RuleFailureReason.md
+docs/models/RuleMetadata.md
 docs/models/Ruleset.md
 docs/models/SSOConfig.md
 docs/models/SamlConnection.md
@@ -905,6 +915,9 @@ src/TalonOneSdk.Test/Model/DeleteUserRequestTests.cs
 src/TalonOneSdk.Test/Model/EffectEntityTests.cs
 src/TalonOneSdk.Test/Model/EffectTests.cs
 src/TalonOneSdk.Test/Model/EmailEntityTests.cs
+src/TalonOneSdk.Test/Model/EmbeddedAnalyticsConfigurationDashboardsTests.cs
+src/TalonOneSdk.Test/Model/EmbeddedAnalyticsConfigurationTests.cs
+src/TalonOneSdk.Test/Model/EmbeddedDashboardConfigurationTests.cs
 src/TalonOneSdk.Test/Model/EndpointTests.cs
 src/TalonOneSdk.Test/Model/EntityTests.cs
 src/TalonOneSdk.Test/Model/EntityWithTalangVisibleIDTests.cs
@@ -921,6 +934,9 @@ src/TalonOneSdk.Test/Model/EventV3Tests.cs
 src/TalonOneSdk.Test/Model/ExperimentCampaignCopyTests.cs
 src/TalonOneSdk.Test/Model/ExperimentCopyExperimentTests.cs
 src/TalonOneSdk.Test/Model/ExperimentCopyTests.cs
+src/TalonOneSdk.Test/Model/ExperimentListResultsRequestTests.cs
+src/TalonOneSdk.Test/Model/ExperimentListResultsTests.cs
+src/TalonOneSdk.Test/Model/ExperimentResultTests.cs
 src/TalonOneSdk.Test/Model/ExperimentResultsTests.cs
 src/TalonOneSdk.Test/Model/ExperimentTests.cs
 src/TalonOneSdk.Test/Model/ExperimentVariantAllocationTests.cs
@@ -999,6 +1015,8 @@ src/TalonOneSdk.Test/Model/GetReservedCustomers200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetRulesets200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetUsers200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetWebhooks200ResponseTests.cs
+src/TalonOneSdk.Test/Model/GiveawayPoolNotificationDataTests.cs
+src/TalonOneSdk.Test/Model/GiveawayPoolNotificationTests.cs
 src/TalonOneSdk.Test/Model/GiveawayTests.cs
 src/TalonOneSdk.Test/Model/GiveawaysPoolTests.cs
 src/TalonOneSdk.Test/Model/HiddenConditionsEffectsTests.cs
@@ -1242,6 +1260,7 @@ src/TalonOneSdk.Test/Model/RoleV2PermissionsTests.cs
 src/TalonOneSdk.Test/Model/RoleV2ReadonlyTests.cs
 src/TalonOneSdk.Test/Model/RoleV2RolesGroupTests.cs
 src/TalonOneSdk.Test/Model/RoleV2Tests.cs
+src/TalonOneSdk.Test/Model/RolesV2ThresholdsTests.cs
 src/TalonOneSdk.Test/Model/RollbackAddedLoyaltyPointsEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RollbackCouponEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RollbackDeductedLoyaltyPointsEffectPropsTests.cs
@@ -1249,6 +1268,7 @@ src/TalonOneSdk.Test/Model/RollbackDiscountEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RollbackIncreasedAchievementProgressEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RollbackReferralEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RuleFailureReasonTests.cs
+src/TalonOneSdk.Test/Model/RuleMetadataTests.cs
 src/TalonOneSdk.Test/Model/RuleTests.cs
 src/TalonOneSdk.Test/Model/RulesetTests.cs
 src/TalonOneSdk.Test/Model/SSOConfigTests.cs
@@ -1605,6 +1625,9 @@ src/TalonOneSdk/Model/DeleteUserRequest.cs
 src/TalonOneSdk/Model/Effect.cs
 src/TalonOneSdk/Model/EffectEntity.cs
 src/TalonOneSdk/Model/EmailEntity.cs
+src/TalonOneSdk/Model/EmbeddedAnalyticsConfiguration.cs
+src/TalonOneSdk/Model/EmbeddedAnalyticsConfigurationDashboards.cs
+src/TalonOneSdk/Model/EmbeddedDashboardConfiguration.cs
 src/TalonOneSdk/Model/Endpoint.cs
 src/TalonOneSdk/Model/Entity.cs
 src/TalonOneSdk/Model/EntityWithTalangVisibleID.cs
@@ -1622,6 +1645,9 @@ src/TalonOneSdk/Model/Experiment.cs
 src/TalonOneSdk/Model/ExperimentCampaignCopy.cs
 src/TalonOneSdk/Model/ExperimentCopy.cs
 src/TalonOneSdk/Model/ExperimentCopyExperiment.cs
+src/TalonOneSdk/Model/ExperimentListResults.cs
+src/TalonOneSdk/Model/ExperimentListResultsRequest.cs
+src/TalonOneSdk/Model/ExperimentResult.cs
 src/TalonOneSdk/Model/ExperimentResults.cs
 src/TalonOneSdk/Model/ExperimentVariant.cs
 src/TalonOneSdk/Model/ExperimentVariantAllocation.cs
@@ -1700,6 +1726,8 @@ src/TalonOneSdk/Model/GetRulesets200Response.cs
 src/TalonOneSdk/Model/GetUsers200Response.cs
 src/TalonOneSdk/Model/GetWebhooks200Response.cs
 src/TalonOneSdk/Model/Giveaway.cs
+src/TalonOneSdk/Model/GiveawayPoolNotification.cs
+src/TalonOneSdk/Model/GiveawayPoolNotificationData.cs
 src/TalonOneSdk/Model/GiveawaysPool.cs
 src/TalonOneSdk/Model/HiddenConditionsEffects.cs
 src/TalonOneSdk/Model/History.cs
@@ -1942,6 +1970,7 @@ src/TalonOneSdk/Model/RoleV2PermissionSet.cs
 src/TalonOneSdk/Model/RoleV2Permissions.cs
 src/TalonOneSdk/Model/RoleV2Readonly.cs
 src/TalonOneSdk/Model/RoleV2RolesGroup.cs
+src/TalonOneSdk/Model/RolesV2Thresholds.cs
 src/TalonOneSdk/Model/RollbackAddedLoyaltyPointsEffectProps.cs
 src/TalonOneSdk/Model/RollbackCouponEffectProps.cs
 src/TalonOneSdk/Model/RollbackDeductedLoyaltyPointsEffectProps.cs
@@ -1950,6 +1979,7 @@ src/TalonOneSdk/Model/RollbackIncreasedAchievementProgressEffectProps.cs
 src/TalonOneSdk/Model/RollbackReferralEffectProps.cs
 src/TalonOneSdk/Model/Rule.cs
 src/TalonOneSdk/Model/RuleFailureReason.cs
+src/TalonOneSdk/Model/RuleMetadata.cs
 src/TalonOneSdk/Model/Ruleset.cs
 src/TalonOneSdk/Model/SSOConfig.cs
 src/TalonOneSdk/Model/SamlConnection.cs
