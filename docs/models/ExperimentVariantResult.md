@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **VariantId** | **long** | The ID of the variant. | [optional] 
 **VariantName** | **string** | The name of the variant. | [optional] 
 **VariantWeight** | **long** | The weight of the variant. | [optional] 
+**IsWinner** | **bool** | Calculated flag if the variant is the winner. | [optional] 
 **TotalRevenue** | **decimal** | The total, pre-discount value of all items purchased in a customer session. | [optional] 
 **SessionsCount** | **decimal** | The number of all closed sessions. | [optional] 
 **AvgItemsPerSession** | **decimal** | The number of items from sessions divided by the number of sessions. | [optional] 
