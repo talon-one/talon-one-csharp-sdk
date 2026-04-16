@@ -227,8 +227,20 @@ namespace TalonOneSdk.Model
             if (!headers.IsSet)
                 throw new ArgumentException("Property is required for class BaseNotificationWebhook.", nameof(headers));
 
-            if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class BaseNotificationWebhook.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class BaseNotificationWebhook.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class BaseNotificationWebhook.");
+
+            if (modified.IsSet && modified.Value == null)
+                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class BaseNotificationWebhook.");
+
+            if (url.IsSet && url.Value == null)
+                throw new ArgumentNullException(nameof(url), "Property is not nullable for class BaseNotificationWebhook.");
+
+            if (headers.IsSet && headers.Value == null)
+                throw new ArgumentNullException(nameof(headers), "Property is not nullable for class BaseNotificationWebhook.");
 
             return new BaseNotificationWebhook(id.Value.Value, created.Value.Value, modified.Value.Value, url.Value, headers.Value, enabled);
         }

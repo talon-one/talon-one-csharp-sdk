@@ -140,6 +140,12 @@ namespace TalonOneSdk.Model
             if (!discountValue.IsSet)
                 throw new ArgumentException("Property is required for class InfluencingCampaignDetails.", nameof(discountValue));
 
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class InfluencingCampaignDetails.");
+
+            if (discountValue.IsSet && discountValue.Value == null)
+                throw new ArgumentNullException(nameof(discountValue), "Property is not nullable for class InfluencingCampaignDetails.");
+
             return new InfluencingCampaignDetails(campaignId.Value.Value, discountValue.Value.Value);
         }
 

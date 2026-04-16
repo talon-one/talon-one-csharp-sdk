@@ -206,6 +206,9 @@ namespace TalonOneSdk.Model
             if (!campaigns.IsSet)
                 throw new ArgumentException("Property is required for class AccountDashboardStatistic.", nameof(campaigns));
 
+            if (campaigns.IsSet && campaigns.Value == null)
+                throw new ArgumentNullException(nameof(campaigns), "Property is not nullable for class AccountDashboardStatistic.");
+
             return new AccountDashboardStatistic(campaigns.Value, revenue, discounts, loyaltyPoints, referrals);
         }
 
@@ -235,18 +238,6 @@ namespace TalonOneSdk.Model
         {
             if (accountDashboardStatistic.Campaigns == null)
                 throw new ArgumentNullException(nameof(accountDashboardStatistic.Campaigns), "Property is required for class AccountDashboardStatistic.");
-
-            if (accountDashboardStatistic.RevenueOption.IsSet && accountDashboardStatistic.Revenue == null)
-                throw new ArgumentNullException(nameof(accountDashboardStatistic.Revenue), "Property is required for class AccountDashboardStatistic.");
-
-            if (accountDashboardStatistic.DiscountsOption.IsSet && accountDashboardStatistic.Discounts == null)
-                throw new ArgumentNullException(nameof(accountDashboardStatistic.Discounts), "Property is required for class AccountDashboardStatistic.");
-
-            if (accountDashboardStatistic.LoyaltyPointsOption.IsSet && accountDashboardStatistic.LoyaltyPoints == null)
-                throw new ArgumentNullException(nameof(accountDashboardStatistic.LoyaltyPoints), "Property is required for class AccountDashboardStatistic.");
-
-            if (accountDashboardStatistic.ReferralsOption.IsSet && accountDashboardStatistic.Referrals == null)
-                throw new ArgumentNullException(nameof(accountDashboardStatistic.Referrals), "Property is required for class AccountDashboardStatistic.");
 
             writer.WritePropertyName("campaigns");
             JsonSerializer.Serialize(writer, accountDashboardStatistic.Campaigns, jsonSerializerOptions);

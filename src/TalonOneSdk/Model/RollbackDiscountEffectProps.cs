@@ -245,14 +245,11 @@ namespace TalonOneSdk.Model
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class RollbackDiscountEffectProps.", nameof(value));
 
-            if (cartItemPosition.IsSet && cartItemPosition.Value == null)
-                throw new ArgumentNullException(nameof(cartItemPosition), "Property is not nullable for class RollbackDiscountEffectProps.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class RollbackDiscountEffectProps.");
 
-            if (cartItemSubPosition.IsSet && cartItemSubPosition.Value == null)
-                throw new ArgumentNullException(nameof(cartItemSubPosition), "Property is not nullable for class RollbackDiscountEffectProps.");
-
-            if (additionalCostId.IsSet && additionalCostId.Value == null)
-                throw new ArgumentNullException(nameof(additionalCostId), "Property is not nullable for class RollbackDiscountEffectProps.");
+            if (value.IsSet && value.Value == null)
+                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RollbackDiscountEffectProps.");
 
             return new RollbackDiscountEffectProps(name.Value, value.Value.Value, cartItemPosition, cartItemSubPosition, additionalCostId, additionalCost, scope);
         }
@@ -283,12 +280,6 @@ namespace TalonOneSdk.Model
         {
             if (rollbackDiscountEffectProps.Name == null)
                 throw new ArgumentNullException(nameof(rollbackDiscountEffectProps.Name), "Property is required for class RollbackDiscountEffectProps.");
-
-            if (rollbackDiscountEffectProps.AdditionalCostOption.IsSet && rollbackDiscountEffectProps.AdditionalCost == null)
-                throw new ArgumentNullException(nameof(rollbackDiscountEffectProps.AdditionalCost), "Property is required for class RollbackDiscountEffectProps.");
-
-            if (rollbackDiscountEffectProps.ScopeOption.IsSet && rollbackDiscountEffectProps.Scope == null)
-                throw new ArgumentNullException(nameof(rollbackDiscountEffectProps.Scope), "Property is required for class RollbackDiscountEffectProps.");
 
             writer.WriteString("name", rollbackDiscountEffectProps.Name);
 

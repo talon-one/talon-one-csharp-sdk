@@ -142,6 +142,12 @@ namespace TalonOneSdk.Model
             if (!dashboardId.IsSet)
                 throw new ArgumentException("Property is required for class EmbeddedDashboardConfiguration.", nameof(dashboardId));
 
+            if (workspaceId.IsSet && workspaceId.Value == null)
+                throw new ArgumentNullException(nameof(workspaceId), "Property is not nullable for class EmbeddedDashboardConfiguration.");
+
+            if (dashboardId.IsSet && dashboardId.Value == null)
+                throw new ArgumentNullException(nameof(dashboardId), "Property is not nullable for class EmbeddedDashboardConfiguration.");
+
             return new EmbeddedDashboardConfiguration(workspaceId.Value, dashboardId.Value);
         }
 

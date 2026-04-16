@@ -142,5 +142,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'PointsToNextTier'
         }
+
+        /// <summary>
+        /// Test the property 'NextTierName'
+        /// </summary>
+        [Fact]
+        public void NextTierNameTest()
+        {
+            // TODO unit test for the property 'NextTierName'
+        }
     }
 }

@@ -378,8 +378,8 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="newCouponCreationJob">body</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateCouponsAsyncApiResponse"/>&gt;</returns>
-        Task<ICreateCouponsAsyncApiResponse> CreateCouponsAsyncAsync(long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="ICreateCouponsAsynchronouslyApiResponse"/>&gt;</returns>
+        Task<ICreateCouponsAsynchronouslyApiResponse> CreateCouponsAsynchronouslyAsync(long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create coupons asynchronously
@@ -391,8 +391,8 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="newCouponCreationJob">body</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateCouponsAsyncApiResponse"/>&gt;</returns>
-        Task<ICreateCouponsAsyncApiResponse> CreateCouponsAsyncOrDefaultAsync(long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="ICreateCouponsAsynchronouslyApiResponse"/>&gt;</returns>
+        Task<ICreateCouponsAsynchronouslyApiResponse> CreateCouponsAsynchronouslyOrDefaultAsync(long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Creates a coupon deletion job
@@ -1152,6 +1152,33 @@ namespace TalonOneSdk.Api
         Task<IExportCampaignStoresApiResponse> ExportCampaignStoresOrDefaultAsync(long applicationId, long campaignId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Export campaign value map
+        /// </summary>
+        /// <remarks>
+        /// Download a CSV file containing all the value map items in a campaign. If there are multiple versions of the value map, only the items of the current version are exported.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;identifier&#x60;: The value of the attribute in the targeted item, for example, an item&#39;s SKU. - &#x60;value&#x60;: The value that is associated with the identifier, for example, the item&#39;s price. 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="valueMapId">The ID of the value map. </param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IExportCampaignValueMapApiResponse"/>&gt;</returns>
+        Task<IExportCampaignValueMapApiResponse> ExportCampaignValueMapAsync(long applicationId, long campaignId, long valueMapId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Export campaign value map
+        /// </summary>
+        /// <remarks>
+        /// Download a CSV file containing all the value map items in a campaign. If there are multiple versions of the value map, only the items of the current version are exported.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;identifier&#x60;: The value of the attribute in the targeted item, for example, an item&#39;s SKU. - &#x60;value&#x60;: The value that is associated with the identifier, for example, the item&#39;s price. 
+        /// </remarks>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="valueMapId">The ID of the value map. </param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IExportCampaignValueMapApiResponse"/>&gt;</returns>
+        Task<IExportCampaignValueMapApiResponse> ExportCampaignValueMapOrDefaultAsync(long applicationId, long campaignId, long valueMapId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Export campaign-level collection&#39;s items
         /// </summary>
         /// <remarks>
@@ -1795,7 +1822,7 @@ namespace TalonOneSdk.Api
         /// Get Application
         /// </summary>
         /// <remarks>
-        /// Get the application specified by the ID.
+        /// Get the Application specified by the ID.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
@@ -1807,7 +1834,7 @@ namespace TalonOneSdk.Api
         /// Get Application
         /// </summary>
         /// <remarks>
-        /// Get the application specified by the ID.
+        /// Get the Application specified by the ID.
         /// </remarks>
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1836,6 +1863,33 @@ namespace TalonOneSdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationApiHealthApiResponse"/>&gt;</returns>
         Task<IGetApplicationApiHealthApiResponse> GetApplicationApiHealthOrDefaultAsync(long applicationId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get Application cart item filter expression
+        /// </summary>
+        /// <remarks>
+        /// Get an Application cart item filter expression for a specific Application.
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="cartItemFilterId">The ID of the Application cart item filter. You can get this ID with the [List Application cart item filters](https://docs.talon.one/management-api#tag/Applications/operation/listApplicationCartItemFilters) endpoint.</param>
+        /// <param name="expressionId">The ID of the Application cart item filter expression.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCartItemFilterExpressionApiResponse"/>&gt;</returns>
+        Task<IGetApplicationCartItemFilterExpressionApiResponse> GetApplicationCartItemFilterExpressionAsync(long applicationId, long cartItemFilterId, long expressionId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get Application cart item filter expression
+        /// </summary>
+        /// <remarks>
+        /// Get an Application cart item filter expression for a specific Application.
+        /// </remarks>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="cartItemFilterId">The ID of the Application cart item filter. You can get this ID with the [List Application cart item filters](https://docs.talon.one/management-api#tag/Applications/operation/listApplicationCartItemFilters) endpoint.</param>
+        /// <param name="expressionId">The ID of the Application cart item filter expression.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCartItemFilterExpressionApiResponse"/>&gt;</returns>
+        Task<IGetApplicationCartItemFilterExpressionApiResponse> GetApplicationCartItemFilterExpressionOrDefaultAsync(long applicationId, long cartItemFilterId, long expressionId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get application&#39;s customer
@@ -1874,7 +1928,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomerFriendsApiResponse"/>&gt;</returns>
         Task<IGetApplicationCustomerFriendsApiResponse> GetApplicationCustomerFriendsAsync(long applicationId, string integrationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1890,7 +1944,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomerFriendsApiResponse"/>&gt;</returns>
         Task<IGetApplicationCustomerFriendsApiResponse> GetApplicationCustomerFriendsOrDefaultAsync(long applicationId, string integrationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1906,7 +1960,7 @@ namespace TalonOneSdk.Api
         /// <param name="integrationId">Filter results performing an exact matching against the profile integration identifier. (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomersApiResponse"/>&gt;</returns>
         Task<IGetApplicationCustomersApiResponse> GetApplicationCustomersAsync(long applicationId, Option<string> integrationId = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1921,7 +1975,7 @@ namespace TalonOneSdk.Api
         /// <param name="integrationId">Filter results performing an exact matching against the profile integration identifier. (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomersApiResponse"/>&gt;</returns>
         Task<IGetApplicationCustomersApiResponse> GetApplicationCustomersOrDefaultAsync(long applicationId, Option<string> integrationId = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1937,7 +1991,7 @@ namespace TalonOneSdk.Api
         /// <param name="customerProfileSearchQuery">body</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomersByAttributesApiResponse"/>&gt;</returns>
         Task<IGetApplicationCustomersByAttributesApiResponse> GetApplicationCustomersByAttributesAsync(long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1952,7 +2006,7 @@ namespace TalonOneSdk.Api
         /// <param name="customerProfileSearchQuery">body</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomersByAttributesApiResponse"/>&gt;</returns>
         Task<IGetApplicationCustomersByAttributesApiResponse> GetApplicationCustomersByAttributesOrDefaultAsync(long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default);
@@ -2115,7 +2169,7 @@ namespace TalonOneSdk.Api
         /// List Applications
         /// </summary>
         /// <remarks>
-        /// List all applications in the current account.
+        /// List all the Applications in the current account.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
@@ -2129,7 +2183,7 @@ namespace TalonOneSdk.Api
         /// List Applications
         /// </summary>
         /// <remarks>
-        /// List all applications in the current account.
+        /// List all the Applications in the current account.
         /// </remarks>
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
@@ -2239,7 +2293,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetAudiencesApiResponse"/>&gt;</returns>
         Task<IGetAudiencesApiResponse> GetAudiencesAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default);
@@ -2253,7 +2307,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetAudiencesApiResponse"/>&gt;</returns>
         Task<IGetAudiencesApiResponse> GetAudiencesOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default);
@@ -2525,7 +2579,7 @@ namespace TalonOneSdk.Api
         /// <param name="userId">Filter results by user ID. (optional)</param>
         /// <param name="createdBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="createdAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="managementKeyId">Filter results that match the given management key ID. (optional)</param>
         /// <param name="includeOld">When this flag is set to false, the state without the change will not be returned. The default value is true. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2546,7 +2600,7 @@ namespace TalonOneSdk.Api
         /// <param name="userId">Filter results by user ID. (optional)</param>
         /// <param name="createdBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="createdAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="managementKeyId">Filter results that match the given management key ID. (optional)</param>
         /// <param name="includeOld">When this flag is set to false, the state without the change will not be returned. The default value is true. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -3974,7 +4028,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="name">Filter by collection name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListAccountCollectionsApiResponse"/>&gt;</returns>
@@ -3989,7 +4043,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="name">Filter by collection name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListAccountCollectionsApiResponse"/>&gt;</returns>
@@ -4048,6 +4102,35 @@ namespace TalonOneSdk.Api
         Task<IListAllRolesV2ApiResponse> ListAllRolesV2OrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// List Application cart item filters
+        /// </summary>
+        /// <remarks>
+        /// Return all the Application cart item filters for a specific Application.
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="title">Filter by the display name of the Application cart item filter in the Application.  **Note**: If no &#x60;title&#x60; is provided, all the Application cart item filters in the Application are returned.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IListApplicationCartItemFiltersApiResponse"/>&gt;</returns>
+        Task<IListApplicationCartItemFiltersApiResponse> ListApplicationCartItemFiltersAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> title = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List Application cart item filters
+        /// </summary>
+        /// <remarks>
+        /// Return all the Application cart item filters for a specific Application.
+        /// </remarks>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="title">Filter by the display name of the Application cart item filter in the Application.  **Note**: If no &#x60;title&#x60; is provided, all the Application cart item filters in the Application are returned.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IListApplicationCartItemFiltersApiResponse"/>&gt;</returns>
+        Task<IListApplicationCartItemFiltersApiResponse> ListApplicationCartItemFiltersOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> title = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// List campaign store budget limits
         /// </summary>
         /// <remarks>
@@ -4086,7 +4169,7 @@ namespace TalonOneSdk.Api
         /// <param name="catalogId">The ID of the catalog. You can find the ID in the Campaign Manager in **Account** &gt; **Tools** &gt; **Cart item catalogs**.</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="sku">Filter results by one or more SKUs. Must be exact match. (optional)</param>
         /// <param name="productNames">Filter results by one or more product names. Must be exact match. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -4102,7 +4185,7 @@ namespace TalonOneSdk.Api
         /// <param name="catalogId">The ID of the catalog. You can find the ID in the Campaign Manager in **Account** &gt; **Tools** &gt; **Cart item catalogs**.</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="sku">Filter results by one or more SKUs. Must be exact match. (optional)</param>
         /// <param name="productNames">Filter results by one or more product names. Must be exact match. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -4121,7 +4204,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="name">Filter by collection name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListCollectionsApiResponse"/>&gt;</returns>
@@ -4138,7 +4221,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="name">Filter by collection name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListCollectionsApiResponse"/>&gt;</returns>
@@ -4155,7 +4238,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="name">Filter by collection name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListCollectionsInApplicationApiResponse"/>&gt;</returns>
@@ -4171,7 +4254,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="name">Filter by collection name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListCollectionsInApplicationApiResponse"/>&gt;</returns>
@@ -4217,7 +4300,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="campaignId">Filter results by campaign ID. (optional)</param>
         /// <param name="name">The name of the store. (optional)</param>
         /// <param name="integrationId">The integration ID of the store. (optional)</param>
@@ -4236,7 +4319,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="campaignId">Filter results by campaign ID. (optional)</param>
         /// <param name="name">The name of the store. (optional)</param>
         /// <param name="integrationId">The integration ID of the store. (optional)</param>
@@ -5453,9 +5536,9 @@ namespace TalonOneSdk.Api
     }
 
     /// <summary>
-    /// The <see cref="ICreateCouponsAsyncApiResponse"/>
+    /// The <see cref="ICreateCouponsAsynchronouslyApiResponse"/>
     /// </summary>
-    public interface ICreateCouponsAsyncApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.AsyncCouponCreationResponse>
+    public interface ICreateCouponsAsynchronouslyApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.AsyncCouponCreationResponse>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -5999,6 +6082,36 @@ namespace TalonOneSdk.Api
     }
 
     /// <summary>
+    /// The <see cref="IExportCampaignValueMapApiResponse"/>
+    /// </summary>
+    public interface IExportCampaignValueMapApiResponse : TalonOneSdk.Client.IApiResponse, IOk<string>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+    }
+
+    /// <summary>
     /// The <see cref="IExportCollectionItemsApiResponse"/>
     /// </summary>
     public interface IExportCollectionItemsApiResponse : TalonOneSdk.Client.IApiResponse, IOk<string>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
@@ -6386,6 +6499,18 @@ namespace TalonOneSdk.Api
     /// The <see cref="IGetApplicationApiHealthApiResponse"/>
     /// </summary>
     public interface IGetApplicationApiHealthApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.ApplicationApiHealth>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IGetApplicationCartItemFilterExpressionApiResponse"/>
+    /// </summary>
+    public interface IGetApplicationCartItemFilterExpressionApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.ApplicationCIFExpression>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -7523,6 +7648,18 @@ namespace TalonOneSdk.Api
     }
 
     /// <summary>
+    /// The <see cref="IListApplicationCartItemFiltersApiResponse"/>
+    /// </summary>
+    public interface IListApplicationCartItemFiltersApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.ListApplicationCartItemFilters200Response>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+    }
+
+    /// <summary>
     /// The <see cref="IListCampaignStoreBudgetLimitsApiResponse"/>
     /// </summary>
     public interface IListCampaignStoreBudgetLimitsApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.ListCampaignStoreBudgetLimits200Response>, IBadRequest<TalonOneSdk.Model.ErrorResponse>, IUnauthorized<TalonOneSdk.Model.ErrorResponse>, INotFound<TalonOneSdk.Model.ErrorResponse>
@@ -8450,21 +8587,21 @@ namespace TalonOneSdk.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs> OnCreateCouponsAsync;
+        public event EventHandler<ApiResponseEventArgs> OnCreateCouponsAsynchronously;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs> OnErrorCreateCouponsAsync;
+        public event EventHandler<ExceptionEventArgs> OnErrorCreateCouponsAsynchronously;
 
-        internal void ExecuteOnCreateCouponsAsync(ManagementApi.CreateCouponsAsyncApiResponse apiResponse)
+        internal void ExecuteOnCreateCouponsAsynchronously(ManagementApi.CreateCouponsAsynchronouslyApiResponse apiResponse)
         {
-            OnCreateCouponsAsync?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnCreateCouponsAsynchronously?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateCouponsAsync(Exception exception)
+        internal void ExecuteOnErrorCreateCouponsAsynchronously(Exception exception)
         {
-            OnErrorCreateCouponsAsync?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorCreateCouponsAsynchronously?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -9050,6 +9187,26 @@ namespace TalonOneSdk.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnExportCampaignValueMap;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorExportCampaignValueMap;
+
+        internal void ExecuteOnExportCampaignValueMap(ManagementApi.ExportCampaignValueMapApiResponse apiResponse)
+        {
+            OnExportCampaignValueMap?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorExportCampaignValueMap(Exception exception)
+        {
+            OnErrorExportCampaignValueMap?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
         public event EventHandler<ApiResponseEventArgs> OnExportCollectionItems;
 
         /// <summary>
@@ -9525,6 +9682,26 @@ namespace TalonOneSdk.Api
         internal void ExecuteOnErrorGetApplicationApiHealth(Exception exception)
         {
             OnErrorGetApplicationApiHealth?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnGetApplicationCartItemFilterExpression;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorGetApplicationCartItemFilterExpression;
+
+        internal void ExecuteOnGetApplicationCartItemFilterExpression(ManagementApi.GetApplicationCartItemFilterExpressionApiResponse apiResponse)
+        {
+            OnGetApplicationCartItemFilterExpression?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorGetApplicationCartItemFilterExpression(Exception exception)
+        {
+            OnErrorGetApplicationCartItemFilterExpression?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -10965,6 +11142,26 @@ namespace TalonOneSdk.Api
         internal void ExecuteOnErrorListAllRolesV2(Exception exception)
         {
             OnErrorListAllRolesV2?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnListApplicationCartItemFilters;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorListApplicationCartItemFilters;
+
+        internal void ExecuteOnListApplicationCartItemFilters(ManagementApi.ListApplicationCartItemFiltersApiResponse apiResponse)
+        {
+            OnListApplicationCartItemFilters?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorListApplicationCartItemFilters(Exception exception)
+        {
+            OnErrorListApplicationCartItemFilters?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -15886,14 +16083,14 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatCreateCouponsAsync(ref long applicationId, ref long campaignId, NewCouponCreationJob newCouponCreationJob);
+        partial void FormatCreateCouponsAsynchronously(ref long applicationId, ref long campaignId, NewCouponCreationJob newCouponCreationJob);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="newCouponCreationJob"></param>
         /// <returns></returns>
-        private void ValidateCreateCouponsAsync(NewCouponCreationJob newCouponCreationJob)
+        private void ValidateCreateCouponsAsynchronously(NewCouponCreationJob newCouponCreationJob)
         {
             if (newCouponCreationJob == null)
                 throw new ArgumentNullException(nameof(newCouponCreationJob));
@@ -15906,10 +16103,10 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="campaignId"></param>
         /// <param name="newCouponCreationJob"></param>
-        private void AfterCreateCouponsAsyncDefaultImplementation(ICreateCouponsAsyncApiResponse apiResponseLocalVar, long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob)
+        private void AfterCreateCouponsAsynchronouslyDefaultImplementation(ICreateCouponsAsynchronouslyApiResponse apiResponseLocalVar, long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob)
         {
             bool suppressDefaultLog = false;
-            AfterCreateCouponsAsync(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, newCouponCreationJob);
+            AfterCreateCouponsAsynchronously(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, newCouponCreationJob);
             if (!suppressDefaultLog)
                 Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -15922,7 +16119,7 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="campaignId"></param>
         /// <param name="newCouponCreationJob"></param>
-        partial void AfterCreateCouponsAsync(ref bool suppressDefaultLog, ICreateCouponsAsyncApiResponse apiResponseLocalVar, long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob);
+        partial void AfterCreateCouponsAsynchronously(ref bool suppressDefaultLog, ICreateCouponsAsynchronouslyApiResponse apiResponseLocalVar, long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -15933,10 +16130,10 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="campaignId"></param>
         /// <param name="newCouponCreationJob"></param>
-        private void OnErrorCreateCouponsAsyncDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob)
+        private void OnErrorCreateCouponsAsynchronouslyDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateCouponsAsync(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, campaignId, newCouponCreationJob);
+            OnErrorCreateCouponsAsynchronously(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, campaignId, newCouponCreationJob);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -15951,7 +16148,7 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="campaignId"></param>
         /// <param name="newCouponCreationJob"></param>
-        partial void OnErrorCreateCouponsAsync(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob);
+        partial void OnErrorCreateCouponsAsynchronously(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob);
 
         /// <summary>
         /// Create coupons asynchronously Create up to 5,000,000 coupons asynchronously. You should typically use this enpdoint when you create at least 20,001 coupons. You receive an email when the creation is complete.  If you want to create less than 20,001 coupons, you can use the [Create coupons](https://docs.talon.one/management-api#tag/Coupons/operation/createCoupons) endpoint. 
@@ -15960,12 +16157,12 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="newCouponCreationJob">body</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateCouponsAsyncApiResponse"/>&gt;</returns>
-        public async Task<ICreateCouponsAsyncApiResponse> CreateCouponsAsyncOrDefaultAsync(long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="ICreateCouponsAsynchronouslyApiResponse"/>&gt;</returns>
+        public async Task<ICreateCouponsAsynchronouslyApiResponse> CreateCouponsAsynchronouslyOrDefaultAsync(long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await CreateCouponsAsyncAsync(applicationId, campaignId, newCouponCreationJob, cancellationToken).ConfigureAwait(false);
+                return await CreateCouponsAsynchronouslyAsync(applicationId, campaignId, newCouponCreationJob, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -15981,16 +16178,16 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="newCouponCreationJob">body</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateCouponsAsyncApiResponse"/>&gt;</returns>
-        public async Task<ICreateCouponsAsyncApiResponse> CreateCouponsAsyncAsync(long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="ICreateCouponsAsynchronouslyApiResponse"/>&gt;</returns>
+        public async Task<ICreateCouponsAsynchronouslyApiResponse> CreateCouponsAsynchronouslyAsync(long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateCreateCouponsAsync(newCouponCreationJob);
+                ValidateCreateCouponsAsynchronously(newCouponCreationJob);
 
-                FormatCreateCouponsAsync(ref applicationId, ref campaignId, newCouponCreationJob);
+                FormatCreateCouponsAsynchronously(ref applicationId, ref campaignId, newCouponCreationJob);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -16037,21 +16234,21 @@ namespace TalonOneSdk.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<CreateCouponsAsyncApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<CreateCouponsAsyncApiResponse>();
-                        CreateCouponsAsyncApiResponse apiResponseLocalVar;
+                        ILogger<CreateCouponsAsynchronouslyApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<CreateCouponsAsynchronouslyApiResponse>();
+                        CreateCouponsAsynchronouslyApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
                                 string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
-                                apiResponseLocalVar = new CreateCouponsAsyncApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/applications/{applicationId}/campaigns/{campaignId}/coupons_async", requestedAtLocalVar, _jsonSerializerOptions);
+                                apiResponseLocalVar = new CreateCouponsAsynchronouslyApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/applications/{applicationId}/campaigns/{campaignId}/coupons_async", requestedAtLocalVar, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
 
-                        AfterCreateCouponsAsyncDefaultImplementation(apiResponseLocalVar, applicationId, campaignId, newCouponCreationJob);
+                        AfterCreateCouponsAsynchronouslyDefaultImplementation(apiResponseLocalVar, applicationId, campaignId, newCouponCreationJob);
 
-                        Events.ExecuteOnCreateCouponsAsync(apiResponseLocalVar);
+                        Events.ExecuteOnCreateCouponsAsynchronously(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -16063,24 +16260,24 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorCreateCouponsAsyncDefaultImplementation(e, "/v1/applications/{applicationId}/campaigns/{campaignId}/coupons_async", uriBuilderLocalVar.Path, applicationId, campaignId, newCouponCreationJob);
-                Events.ExecuteOnErrorCreateCouponsAsync(e);
+                OnErrorCreateCouponsAsynchronouslyDefaultImplementation(e, "/v1/applications/{applicationId}/campaigns/{campaignId}/coupons_async", uriBuilderLocalVar.Path, applicationId, campaignId, newCouponCreationJob);
+                Events.ExecuteOnErrorCreateCouponsAsynchronously(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="CreateCouponsAsyncApiResponse"/>
+        /// The <see cref="CreateCouponsAsynchronouslyApiResponse"/>
         /// </summary>
-        public partial class CreateCouponsAsyncApiResponse : TalonOneSdk.Client.ApiResponse, ICreateCouponsAsyncApiResponse
+        public partial class CreateCouponsAsynchronouslyApiResponse : TalonOneSdk.Client.ApiResponse, ICreateCouponsAsynchronouslyApiResponse
         {
             /// <summary>
             /// The logger
             /// </summary>
-            public ILogger<CreateCouponsAsyncApiResponse> Logger { get; }
+            public ILogger<CreateCouponsAsynchronouslyApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="CreateCouponsAsyncApiResponse"/>
+            /// The <see cref="CreateCouponsAsynchronouslyApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -16089,14 +16286,14 @@ namespace TalonOneSdk.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateCouponsAsyncApiResponse(ILogger<CreateCouponsAsyncApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public CreateCouponsAsynchronouslyApiResponse(ILogger<CreateCouponsAsynchronouslyApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="CreateCouponsAsyncApiResponse"/>
+            /// The <see cref="CreateCouponsAsynchronouslyApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -16105,7 +16302,7 @@ namespace TalonOneSdk.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateCouponsAsyncApiResponse(ILogger<CreateCouponsAsyncApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public CreateCouponsAsynchronouslyApiResponse(ILogger<CreateCouponsAsynchronouslyApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -24355,6 +24552,372 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
+        partial void FormatExportCampaignValueMap(ref long applicationId, ref long campaignId, ref long valueMapId);
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="campaignId"></param>
+        /// <param name="valueMapId"></param>
+        private void AfterExportCampaignValueMapDefaultImplementation(IExportCampaignValueMapApiResponse apiResponseLocalVar, long applicationId, long campaignId, long valueMapId)
+        {
+            bool suppressDefaultLog = false;
+            AfterExportCampaignValueMap(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, valueMapId);
+            if (!suppressDefaultLog)
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="campaignId"></param>
+        /// <param name="valueMapId"></param>
+        partial void AfterExportCampaignValueMap(ref bool suppressDefaultLog, IExportCampaignValueMapApiResponse apiResponseLocalVar, long applicationId, long campaignId, long valueMapId);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="campaignId"></param>
+        /// <param name="valueMapId"></param>
+        private void OnErrorExportCampaignValueMapDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, long valueMapId)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorExportCampaignValueMap(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, campaignId, valueMapId);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="campaignId"></param>
+        /// <param name="valueMapId"></param>
+        partial void OnErrorExportCampaignValueMap(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, long valueMapId);
+
+        /// <summary>
+        /// Export campaign value map Download a CSV file containing all the value map items in a campaign. If there are multiple versions of the value map, only the items of the current version are exported.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;identifier&#x60;: The value of the attribute in the targeted item, for example, an item&#39;s SKU. - &#x60;value&#x60;: The value that is associated with the identifier, for example, the item&#39;s price. 
+        /// </summary>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="valueMapId">The ID of the value map. </param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IExportCampaignValueMapApiResponse"/>&gt;</returns>
+        public async Task<IExportCampaignValueMapApiResponse> ExportCampaignValueMapOrDefaultAsync(long applicationId, long campaignId, long valueMapId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await ExportCampaignValueMapAsync(applicationId, campaignId, valueMapId, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Export campaign value map Download a CSV file containing all the value map items in a campaign. If there are multiple versions of the value map, only the items of the current version are exported.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;identifier&#x60;: The value of the attribute in the targeted item, for example, an item&#39;s SKU. - &#x60;value&#x60;: The value that is associated with the identifier, for example, the item&#39;s price. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="valueMapId">The ID of the value map. </param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IExportCampaignValueMapApiResponse"/>&gt;</returns>
+        public async Task<IExportCampaignValueMapApiResponse> ExportCampaignValueMapAsync(long applicationId, long campaignId, long valueMapId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                FormatExportCampaignValueMap(ref applicationId, ref campaignId, ref valueMapId);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/applications/{applicationId}/campaigns/{campaignId}/value_maps/{valueMapId}/export"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/applications/{applicationId}/campaigns/{campaignId}/value_maps/{valueMapId}/export");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcampaignId%7D", Uri.EscapeDataString(campaignId.ToString()));
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BvalueMapId%7D", Uri.EscapeDataString(valueMapId.ToString()));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/csv",
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("GET");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<ExportCampaignValueMapApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<ExportCampaignValueMapApiResponse>();
+                        ExportCampaignValueMapApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new ExportCampaignValueMapApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/applications/{applicationId}/campaigns/{campaignId}/value_maps/{valueMapId}/export", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterExportCampaignValueMapDefaultImplementation(apiResponseLocalVar, applicationId, campaignId, valueMapId);
+
+                        Events.ExecuteOnExportCampaignValueMap(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorExportCampaignValueMapDefaultImplementation(e, "/v1/applications/{applicationId}/campaigns/{campaignId}/value_maps/{valueMapId}/export", uriBuilderLocalVar.Path, applicationId, campaignId, valueMapId);
+                Events.ExecuteOnErrorExportCampaignValueMap(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="ExportCampaignValueMapApiResponse"/>
+        /// </summary>
+        public partial class ExportCampaignValueMapApiResponse : TalonOneSdk.Client.ApiResponse, IExportCampaignValueMapApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ExportCampaignValueMapApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="ExportCampaignValueMapApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public ExportCampaignValueMapApiResponse(ILogger<ExportCampaignValueMapApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="ExportCampaignValueMapApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public ExportCampaignValueMapApiResponse(ILogger<ExportCampaignValueMapApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public string Ok()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out string result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryUnauthorized(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsNotFound
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryNotFound(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = NotFound();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
         partial void FormatExportCollectionItems(ref long applicationId, ref long campaignId, ref long collectionId);
 
         /// <summary>
@@ -31212,7 +31775,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorGetApplication(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId);
 
         /// <summary>
-        /// Get Application Get the application specified by the ID.
+        /// Get Application Get the Application specified by the ID.
         /// </summary>
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -31230,7 +31793,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Get Application Get the application specified by the ID.
+        /// Get Application Get the Application specified by the ID.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
@@ -31637,6 +32200,257 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
+        partial void FormatGetApplicationCartItemFilterExpression(ref long applicationId, ref long cartItemFilterId, ref long expressionId);
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="cartItemFilterId"></param>
+        /// <param name="expressionId"></param>
+        private void AfterGetApplicationCartItemFilterExpressionDefaultImplementation(IGetApplicationCartItemFilterExpressionApiResponse apiResponseLocalVar, long applicationId, long cartItemFilterId, long expressionId)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetApplicationCartItemFilterExpression(ref suppressDefaultLog, apiResponseLocalVar, applicationId, cartItemFilterId, expressionId);
+            if (!suppressDefaultLog)
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="cartItemFilterId"></param>
+        /// <param name="expressionId"></param>
+        partial void AfterGetApplicationCartItemFilterExpression(ref bool suppressDefaultLog, IGetApplicationCartItemFilterExpressionApiResponse apiResponseLocalVar, long applicationId, long cartItemFilterId, long expressionId);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="cartItemFilterId"></param>
+        /// <param name="expressionId"></param>
+        private void OnErrorGetApplicationCartItemFilterExpressionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long cartItemFilterId, long expressionId)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetApplicationCartItemFilterExpression(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, cartItemFilterId, expressionId);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="cartItemFilterId"></param>
+        /// <param name="expressionId"></param>
+        partial void OnErrorGetApplicationCartItemFilterExpression(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long cartItemFilterId, long expressionId);
+
+        /// <summary>
+        /// Get Application cart item filter expression Get an Application cart item filter expression for a specific Application.
+        /// </summary>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="cartItemFilterId">The ID of the Application cart item filter. You can get this ID with the [List Application cart item filters](https://docs.talon.one/management-api#tag/Applications/operation/listApplicationCartItemFilters) endpoint.</param>
+        /// <param name="expressionId">The ID of the Application cart item filter expression.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCartItemFilterExpressionApiResponse"/>&gt;</returns>
+        public async Task<IGetApplicationCartItemFilterExpressionApiResponse> GetApplicationCartItemFilterExpressionOrDefaultAsync(long applicationId, long cartItemFilterId, long expressionId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetApplicationCartItemFilterExpressionAsync(applicationId, cartItemFilterId, expressionId, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Get Application cart item filter expression Get an Application cart item filter expression for a specific Application.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="cartItemFilterId">The ID of the Application cart item filter. You can get this ID with the [List Application cart item filters](https://docs.talon.one/management-api#tag/Applications/operation/listApplicationCartItemFilters) endpoint.</param>
+        /// <param name="expressionId">The ID of the Application cart item filter expression.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCartItemFilterExpressionApiResponse"/>&gt;</returns>
+        public async Task<IGetApplicationCartItemFilterExpressionApiResponse> GetApplicationCartItemFilterExpressionAsync(long applicationId, long cartItemFilterId, long expressionId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                FormatGetApplicationCartItemFilterExpression(ref applicationId, ref cartItemFilterId, ref expressionId);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/applications/{applicationId}/cart_item_filters/{cartItemFilterId}/expressions/{expressionId}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/applications/{applicationId}/cart_item_filters/{cartItemFilterId}/expressions/{expressionId}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcartItemFilterId%7D", Uri.EscapeDataString(cartItemFilterId.ToString()));
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BexpressionId%7D", Uri.EscapeDataString(expressionId.ToString()));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("GET");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<GetApplicationCartItemFilterExpressionApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<GetApplicationCartItemFilterExpressionApiResponse>();
+                        GetApplicationCartItemFilterExpressionApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GetApplicationCartItemFilterExpressionApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/applications/{applicationId}/cart_item_filters/{cartItemFilterId}/expressions/{expressionId}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetApplicationCartItemFilterExpressionDefaultImplementation(apiResponseLocalVar, applicationId, cartItemFilterId, expressionId);
+
+                        Events.ExecuteOnGetApplicationCartItemFilterExpression(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetApplicationCartItemFilterExpressionDefaultImplementation(e, "/v1/applications/{applicationId}/cart_item_filters/{cartItemFilterId}/expressions/{expressionId}", uriBuilderLocalVar.Path, applicationId, cartItemFilterId, expressionId);
+                Events.ExecuteOnErrorGetApplicationCartItemFilterExpression(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetApplicationCartItemFilterExpressionApiResponse"/>
+        /// </summary>
+        public partial class GetApplicationCartItemFilterExpressionApiResponse : TalonOneSdk.Client.ApiResponse, IGetApplicationCartItemFilterExpressionApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<GetApplicationCartItemFilterExpressionApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetApplicationCartItemFilterExpressionApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetApplicationCartItemFilterExpressionApiResponse(ILogger<GetApplicationCartItemFilterExpressionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetApplicationCartItemFilterExpressionApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetApplicationCartItemFilterExpressionApiResponse(ILogger<GetApplicationCartItemFilterExpressionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ApplicationCIFExpression Ok()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ApplicationCIFExpression>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out TalonOneSdk.Model.ApplicationCIFExpression result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
         partial void FormatGetApplicationCustomer(ref long applicationId, ref long customerId);
 
         /// <summary>
@@ -31972,7 +32786,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomerFriendsApiResponse"/>&gt;</returns>
         public async Task<IGetApplicationCustomerFriendsApiResponse> GetApplicationCustomerFriendsOrDefaultAsync(long applicationId, string integrationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default)
@@ -31996,7 +32810,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomerFriendsApiResponse"/>&gt;</returns>
         public async Task<IGetApplicationCustomerFriendsApiResponse> GetApplicationCustomerFriendsAsync(long applicationId, string integrationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default)
@@ -32264,7 +33078,7 @@ namespace TalonOneSdk.Api
         /// <param name="integrationId">Filter results performing an exact matching against the profile integration identifier. (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomersApiResponse"/>&gt;</returns>
         public async Task<IGetApplicationCustomersApiResponse> GetApplicationCustomersOrDefaultAsync(long applicationId, Option<string> integrationId = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default)
@@ -32287,7 +33101,7 @@ namespace TalonOneSdk.Api
         /// <param name="integrationId">Filter results performing an exact matching against the profile integration identifier. (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomersApiResponse"/>&gt;</returns>
         public async Task<IGetApplicationCustomersApiResponse> GetApplicationCustomersAsync(long applicationId, Option<string> integrationId = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default)
@@ -32554,7 +33368,7 @@ namespace TalonOneSdk.Api
         /// <param name="customerProfileSearchQuery">body</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomersByAttributesApiResponse"/>&gt;</returns>
         public async Task<IGetApplicationCustomersByAttributesApiResponse> GetApplicationCustomersByAttributesOrDefaultAsync(long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default)
@@ -32577,7 +33391,7 @@ namespace TalonOneSdk.Api
         /// <param name="customerProfileSearchQuery">body</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomersByAttributesApiResponse"/>&gt;</returns>
         public async Task<IGetApplicationCustomersByAttributesApiResponse> GetApplicationCustomersByAttributesAsync(long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default)
@@ -34180,7 +34994,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorGetApplications(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<long> skip, Option<string> sort);
 
         /// <summary>
-        /// List Applications List all applications in the current account.
+        /// List Applications List all the Applications in the current account.
         /// </summary>
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
@@ -34200,7 +35014,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// List Applications List all applications in the current account.
+        /// List Applications List all the Applications in the current account.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
@@ -35371,7 +36185,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetAudiencesApiResponse"/>&gt;</returns>
         public async Task<IGetAudiencesApiResponse> GetAudiencesOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default)
@@ -35393,7 +36207,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetAudiencesApiResponse"/>&gt;</returns>
         public async Task<IGetAudiencesApiResponse> GetAudiencesAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default)
@@ -38077,7 +38891,7 @@ namespace TalonOneSdk.Api
         /// <param name="userId">Filter results by user ID. (optional)</param>
         /// <param name="createdBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="createdAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="managementKeyId">Filter results that match the given management key ID. (optional)</param>
         /// <param name="includeOld">When this flag is set to false, the state without the change will not be returned. The default value is true. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -38106,7 +38920,7 @@ namespace TalonOneSdk.Api
         /// <param name="userId">Filter results by user ID. (optional)</param>
         /// <param name="createdBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="createdAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="managementKeyId">Filter results that match the given management key ID. (optional)</param>
         /// <param name="includeOld">When this flag is set to false, the state without the change will not be returned. The default value is true. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -53286,7 +54100,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="name">Filter by collection name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListAccountCollectionsApiResponse"/>&gt;</returns>
@@ -53309,7 +54123,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="name">Filter by collection name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListAccountCollectionsApiResponse"/>&gt;</returns>
@@ -54125,6 +54939,287 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
+        partial void FormatListApplicationCartItemFilters(ref long applicationId, ref Option<long> pageSize, ref Option<long> skip, ref Option<string> title);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        private void ValidateListApplicationCartItemFilters(Option<string> title)
+        {
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="title"></param>
+        private void AfterListApplicationCartItemFiltersDefaultImplementation(IListApplicationCartItemFiltersApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> title)
+        {
+            bool suppressDefaultLog = false;
+            AfterListApplicationCartItemFilters(ref suppressDefaultLog, apiResponseLocalVar, applicationId, pageSize, skip, title);
+            if (!suppressDefaultLog)
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="title"></param>
+        partial void AfterListApplicationCartItemFilters(ref bool suppressDefaultLog, IListApplicationCartItemFiltersApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> title);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="title"></param>
+        private void OnErrorListApplicationCartItemFiltersDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> title)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorListApplicationCartItemFilters(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, pageSize, skip, title);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="title"></param>
+        partial void OnErrorListApplicationCartItemFilters(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> title);
+
+        /// <summary>
+        /// List Application cart item filters Return all the Application cart item filters for a specific Application.
+        /// </summary>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="title">Filter by the display name of the Application cart item filter in the Application.  **Note**: If no &#x60;title&#x60; is provided, all the Application cart item filters in the Application are returned.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IListApplicationCartItemFiltersApiResponse"/>&gt;</returns>
+        public async Task<IListApplicationCartItemFiltersApiResponse> ListApplicationCartItemFiltersOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> title = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await ListApplicationCartItemFiltersAsync(applicationId, pageSize, skip, title, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// List Application cart item filters Return all the Application cart item filters for a specific Application.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="title">Filter by the display name of the Application cart item filter in the Application.  **Note**: If no &#x60;title&#x60; is provided, all the Application cart item filters in the Application are returned.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IListApplicationCartItemFiltersApiResponse"/>&gt;</returns>
+        public async Task<IListApplicationCartItemFiltersApiResponse> ListApplicationCartItemFiltersAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> title = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateListApplicationCartItemFilters(title);
+
+                FormatListApplicationCartItemFilters(ref applicationId, ref pageSize, ref skip, ref title);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/applications/{applicationId}/cart_item_filters"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/applications/{applicationId}/cart_item_filters");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (pageSize.IsSet)
+                        parseQueryStringLocalVar["pageSize"] = ClientUtils.ParameterToString(pageSize.Value);
+
+                    if (skip.IsSet)
+                        parseQueryStringLocalVar["skip"] = ClientUtils.ParameterToString(skip.Value);
+
+                    if (title.IsSet)
+                        parseQueryStringLocalVar["title"] = ClientUtils.ParameterToString(title.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("GET");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<ListApplicationCartItemFiltersApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<ListApplicationCartItemFiltersApiResponse>();
+                        ListApplicationCartItemFiltersApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new ListApplicationCartItemFiltersApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/applications/{applicationId}/cart_item_filters", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterListApplicationCartItemFiltersDefaultImplementation(apiResponseLocalVar, applicationId, pageSize, skip, title);
+
+                        Events.ExecuteOnListApplicationCartItemFilters(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorListApplicationCartItemFiltersDefaultImplementation(e, "/v1/applications/{applicationId}/cart_item_filters", uriBuilderLocalVar.Path, applicationId, pageSize, skip, title);
+                Events.ExecuteOnErrorListApplicationCartItemFilters(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="ListApplicationCartItemFiltersApiResponse"/>
+        /// </summary>
+        public partial class ListApplicationCartItemFiltersApiResponse : TalonOneSdk.Client.ApiResponse, IListApplicationCartItemFiltersApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ListApplicationCartItemFiltersApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="ListApplicationCartItemFiltersApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public ListApplicationCartItemFiltersApiResponse(ILogger<ListApplicationCartItemFiltersApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="ListApplicationCartItemFiltersApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public ListApplicationCartItemFiltersApiResponse(ILogger<ListApplicationCartItemFiltersApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ListApplicationCartItemFilters200Response Ok()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ListApplicationCartItemFilters200Response>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out TalonOneSdk.Model.ListApplicationCartItemFilters200Response result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
         partial void FormatListCampaignStoreBudgetLimits(ref long applicationId, ref long campaignId, ref Option<string> action, ref Option<string> period);
 
         /// <summary>
@@ -54611,7 +55706,7 @@ namespace TalonOneSdk.Api
         /// <param name="catalogId">The ID of the catalog. You can find the ID in the Campaign Manager in **Account** &gt; **Tools** &gt; **Cart item catalogs**.</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="sku">Filter results by one or more SKUs. Must be exact match. (optional)</param>
         /// <param name="productNames">Filter results by one or more product names. Must be exact match. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -54635,7 +55730,7 @@ namespace TalonOneSdk.Api
         /// <param name="catalogId">The ID of the catalog. You can find the ID in the Campaign Manager in **Account** &gt; **Tools** &gt; **Cart item catalogs**.</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="sku">Filter results by one or more SKUs. Must be exact match. (optional)</param>
         /// <param name="productNames">Filter results by one or more product names. Must be exact match. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -54920,7 +56015,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="name">Filter by collection name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListCollectionsApiResponse"/>&gt;</returns>
@@ -54945,7 +56040,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="name">Filter by collection name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListCollectionsApiResponse"/>&gt;</returns>
@@ -55263,7 +56358,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="name">Filter by collection name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListCollectionsInApplicationApiResponse"/>&gt;</returns>
@@ -55287,7 +56382,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="name">Filter by collection name. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListCollectionsInApplicationApiResponse"/>&gt;</returns>
@@ -55905,7 +57000,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="campaignId">Filter results by campaign ID. (optional)</param>
         /// <param name="name">The name of the store. (optional)</param>
         /// <param name="integrationId">The integration ID of the store. (optional)</param>
@@ -55932,7 +57027,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
-        /// <param name="withTotalResultSize">When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
         /// <param name="campaignId">Filter results by campaign ID. (optional)</param>
         /// <param name="name">The name of the store. (optional)</param>
         /// <param name="integrationId">The integration ID of the store. (optional)</param>

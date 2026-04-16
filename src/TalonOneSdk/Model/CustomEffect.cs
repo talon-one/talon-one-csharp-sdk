@@ -396,11 +396,35 @@ namespace TalonOneSdk.Model
             if (!createdBy.IsSet)
                 throw new ArgumentException("Property is required for class CustomEffect.", nameof(createdBy));
 
-            if (isPerItem.IsSet && isPerItem.Value == null)
-                throw new ArgumentNullException(nameof(isPerItem), "Property is not nullable for class CustomEffect.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CustomEffect.");
 
-            if (modifiedBy.IsSet && modifiedBy.Value == null)
-                throw new ArgumentNullException(nameof(modifiedBy), "Property is not nullable for class CustomEffect.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CustomEffect.");
+
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class CustomEffect.");
+
+            if (modified.IsSet && modified.Value == null)
+                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class CustomEffect.");
+
+            if (applicationIds.IsSet && applicationIds.Value == null)
+                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class CustomEffect.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CustomEffect.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class CustomEffect.");
+
+            if (payload.IsSet && payload.Value == null)
+                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class CustomEffect.");
+
+            if (enabled.IsSet && enabled.Value == null)
+                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class CustomEffect.");
+
+            if (createdBy.IsSet && createdBy.Value == null)
+                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class CustomEffect.");
 
             return new CustomEffect(id.Value.Value, created.Value.Value, accountId.Value.Value, modified.Value.Value, applicationIds.Value, name.Value, title.Value, payload.Value, enabled.Value.Value, createdBy.Value.Value, isPerItem, description, varParams, modifiedBy);
         }
@@ -440,12 +464,6 @@ namespace TalonOneSdk.Model
 
             if (customEffect.Payload == null)
                 throw new ArgumentNullException(nameof(customEffect.Payload), "Property is required for class CustomEffect.");
-
-            if (customEffect.DescriptionOption.IsSet && customEffect.Description == null)
-                throw new ArgumentNullException(nameof(customEffect.Description), "Property is required for class CustomEffect.");
-
-            if (customEffect.ParamsOption.IsSet && customEffect.Params == null)
-                throw new ArgumentNullException(nameof(customEffect.Params), "Property is required for class CustomEffect.");
 
             writer.WriteNumber("id", customEffect.Id);
 

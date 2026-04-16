@@ -200,6 +200,15 @@ namespace TalonOneSdk.Model
             if (!oldCampaign.IsSet)
                 throw new ArgumentException("Property is required for class CampaignEditedNotificationItem.", nameof(oldCampaign));
 
+            if (varEvent.IsSet && varEvent.Value == null)
+                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignEditedNotificationItem.");
+
+            if (campaign.IsSet && campaign.Value == null)
+                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CampaignEditedNotificationItem.");
+
+            if (oldCampaign.IsSet && oldCampaign.Value == null)
+                throw new ArgumentNullException(nameof(oldCampaign), "Property is not nullable for class CampaignEditedNotificationItem.");
+
             return new CampaignEditedNotificationItem(varEvent.Value, campaign.Value, oldCampaign.Value, ruleset, placeholders);
         }
 
@@ -235,12 +244,6 @@ namespace TalonOneSdk.Model
 
             if (campaignEditedNotificationItem.OldCampaign == null)
                 throw new ArgumentNullException(nameof(campaignEditedNotificationItem.OldCampaign), "Property is required for class CampaignEditedNotificationItem.");
-
-            if (campaignEditedNotificationItem.RulesetOption.IsSet && campaignEditedNotificationItem.Ruleset == null)
-                throw new ArgumentNullException(nameof(campaignEditedNotificationItem.Ruleset), "Property is required for class CampaignEditedNotificationItem.");
-
-            if (campaignEditedNotificationItem.PlaceholdersOption.IsSet && campaignEditedNotificationItem.Placeholders == null)
-                throw new ArgumentNullException(nameof(campaignEditedNotificationItem.Placeholders), "Property is required for class CampaignEditedNotificationItem.");
 
             writer.WriteString("Event", campaignEditedNotificationItem.Event);
 

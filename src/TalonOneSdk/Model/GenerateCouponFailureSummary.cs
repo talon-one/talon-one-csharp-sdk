@@ -145,6 +145,9 @@ namespace TalonOneSdk.Model
             if (!eventID.IsSet)
                 throw new ArgumentException("Property is required for class GenerateCouponFailureSummary.", nameof(eventID));
 
+            if (eventID.IsSet && eventID.Value == null)
+                throw new ArgumentNullException(nameof(eventID), "Property is not nullable for class GenerateCouponFailureSummary.");
+
             return new GenerateCouponFailureSummary(eventID.Value.Value, language);
         }
 
@@ -172,9 +175,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GenerateCouponFailureSummary generateCouponFailureSummary, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (generateCouponFailureSummary.LanguageOption.IsSet && generateCouponFailureSummary.Language == null)
-                throw new ArgumentNullException(nameof(generateCouponFailureSummary.Language), "Property is required for class GenerateCouponFailureSummary.");
-
             writer.WriteNumber("eventID", generateCouponFailureSummary.EventID);
 
             if (generateCouponFailureSummary.LanguageOption.IsSet)

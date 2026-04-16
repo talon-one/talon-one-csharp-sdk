@@ -243,15 +243,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class UpdateReferral.");
-
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class UpdateReferral.");
-
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class UpdateReferral.");
-
             return new UpdateReferral(friendProfileIntegrationId, startDate, expiryDate, usageLimit, attributes);
         }
 
@@ -279,12 +270,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateReferral updateReferral, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateReferral.FriendProfileIntegrationIdOption.IsSet && updateReferral.FriendProfileIntegrationId == null)
-                throw new ArgumentNullException(nameof(updateReferral.FriendProfileIntegrationId), "Property is required for class UpdateReferral.");
-
-            if (updateReferral.AttributesOption.IsSet && updateReferral.Attributes == null)
-                throw new ArgumentNullException(nameof(updateReferral.Attributes), "Property is required for class UpdateReferral.");
-
             if (updateReferral.FriendProfileIntegrationIdOption.IsSet)
                 writer.WriteString("friendProfileIntegrationId", updateReferral.FriendProfileIntegrationId);
 

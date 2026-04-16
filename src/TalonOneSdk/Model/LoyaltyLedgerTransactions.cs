@@ -149,9 +149,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class LoyaltyLedgerTransactions.");
-
             return new LoyaltyLedgerTransactions(hasMore, data);
         }
 
@@ -179,9 +176,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyLedgerTransactions loyaltyLedgerTransactions, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (loyaltyLedgerTransactions.DataOption.IsSet && loyaltyLedgerTransactions.Data == null)
-                throw new ArgumentNullException(nameof(loyaltyLedgerTransactions.Data), "Property is required for class LoyaltyLedgerTransactions.");
-
             if (loyaltyLedgerTransactions.HasMoreOption.IsSet)
                 writer.WriteBoolean("hasMore", loyaltyLedgerTransactions.HasMoreOption.Value.Value);
 

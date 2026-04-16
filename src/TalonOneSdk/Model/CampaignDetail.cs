@@ -156,9 +156,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class CampaignDetail.");
-
             return new CampaignDetail(campaignId, campaignName);
         }
 
@@ -186,9 +183,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignDetail campaignDetail, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (campaignDetail.CampaignNameOption.IsSet && campaignDetail.CampaignName == null)
-                throw new ArgumentNullException(nameof(campaignDetail.CampaignName), "Property is required for class CampaignDetail.");
-
             if (campaignDetail.CampaignIdOption.IsSet)
                 writer.WriteNumber("campaignId", campaignDetail.CampaignIdOption.Value.Value);
 

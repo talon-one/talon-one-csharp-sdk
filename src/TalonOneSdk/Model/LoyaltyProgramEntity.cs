@@ -168,6 +168,9 @@ namespace TalonOneSdk.Model
             if (!programID.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyProgramEntity.", nameof(programID));
 
+            if (programID.IsSet && programID.Value == null)
+                throw new ArgumentNullException(nameof(programID), "Property is not nullable for class LoyaltyProgramEntity.");
+
             return new LoyaltyProgramEntity(programID.Value.Value, programName, programTitle);
         }
 
@@ -195,12 +198,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyProgramEntity loyaltyProgramEntity, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (loyaltyProgramEntity.ProgramNameOption.IsSet && loyaltyProgramEntity.ProgramName == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramEntity.ProgramName), "Property is required for class LoyaltyProgramEntity.");
-
-            if (loyaltyProgramEntity.ProgramTitleOption.IsSet && loyaltyProgramEntity.ProgramTitle == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramEntity.ProgramTitle), "Property is required for class LoyaltyProgramEntity.");
-
             writer.WriteNumber("programID", loyaltyProgramEntity.ProgramID);
 
             if (loyaltyProgramEntity.ProgramNameOption.IsSet)

@@ -299,11 +299,17 @@ namespace TalonOneSdk.Model
             if (!transactionUUID.IsSet)
                 throw new ArgumentException("Property is required for class AddedDeductedPointsBalancesAction.", nameof(transactionUUID));
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class AddedDeductedPointsBalancesAction.");
+            if (amount.IsSet && amount.Value == null)
+                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class AddedDeductedPointsBalancesAction.");
 
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class AddedDeductedPointsBalancesAction.");
+            if (reason.IsSet && reason.Value == null)
+                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class AddedDeductedPointsBalancesAction.");
+
+            if (operation.IsSet && operation.Value == null)
+                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class AddedDeductedPointsBalancesAction.");
+
+            if (transactionUUID.IsSet && transactionUUID.Value == null)
+                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class AddedDeductedPointsBalancesAction.");
 
             return new AddedDeductedPointsBalancesAction(amount.Value.Value, reason.Value, operation.Value.Value, transactionUUID.Value.Value, startDate, expiryDate);
         }

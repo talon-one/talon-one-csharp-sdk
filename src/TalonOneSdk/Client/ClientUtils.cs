@@ -362,6 +362,12 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.DeleteLoyaltyTransactionsRequest.ScopeEnumToJsonValue(deleteLoyaltyTransactionsRequestScopeEnum);
             if (obj is TalonOneSdk.Model.Experiment.StateEnum experimentStateEnum)
                 return TalonOneSdk.Model.Experiment.StateEnumToJsonValue(experimentStateEnum);
+            if (obj is TalonOneSdk.Model.ExperimentSegmentInsight.DimensionEnum experimentSegmentInsightDimensionEnum)
+                return TalonOneSdk.Model.ExperimentSegmentInsight.DimensionEnumToJsonValue(experimentSegmentInsightDimensionEnum);
+            if (obj is TalonOneSdk.Model.ExperimentSegmentInsight.BucketEnum experimentSegmentInsightBucketEnum)
+                return TalonOneSdk.Model.ExperimentSegmentInsight.BucketEnumToJsonValue(experimentSegmentInsightBucketEnum);
+            if (obj is TalonOneSdk.Model.ExperimentSegmentInsightMetric.MetricEnum experimentSegmentInsightMetricMetricEnum)
+                return TalonOneSdk.Model.ExperimentSegmentInsightMetric.MetricEnumToJsonValue(experimentSegmentInsightMetricMetricEnum);
             if (obj is TalonOneSdk.Model.ExpiringCardPointsNotification.NotificationTypeEnum expiringCardPointsNotificationNotificationTypeEnum)
                 return TalonOneSdk.Model.ExpiringCardPointsNotification.NotificationTypeEnumToJsonValue(expiringCardPointsNotificationNotificationTypeEnum);
             if (obj is TalonOneSdk.Model.ExpiringCouponsNotification.NotificationTypeEnum expiringCouponsNotificationNotificationTypeEnum)
@@ -504,6 +510,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.ReturnIntegrationRequest.ResponseContentEnumToJsonValue(returnIntegrationRequestResponseContentEnum);
             if (obj is TalonOneSdk.Model.RevisionVersion.FeaturesEnum revisionVersionFeaturesEnum)
                 return TalonOneSdk.Model.RevisionVersion.FeaturesEnumToJsonValue(revisionVersionFeaturesEnum);
+            if (obj is TalonOneSdk.Model.Reward.StatusEnum rewardStatusEnum)
+                return TalonOneSdk.Model.Reward.StatusEnumToJsonValue(rewardStatusEnum);
             if (obj is TalonOneSdk.Model.ScimPatchOperation.OpEnum scimPatchOperationOpEnum)
                 return TalonOneSdk.Model.ScimPatchOperation.OpEnumToJsonValue(scimPatchOperationOpEnum);
             if (obj is TalonOneSdk.Model.SecondaryDeployment.StatusEnum secondaryDeploymentStatusEnum)

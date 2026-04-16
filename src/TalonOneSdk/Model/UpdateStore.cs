@@ -176,6 +176,12 @@ namespace TalonOneSdk.Model
             if (!description.IsSet)
                 throw new ArgumentException("Property is required for class UpdateStore.", nameof(description));
 
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateStore.");
+
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description), "Property is not nullable for class UpdateStore.");
+
             return new UpdateStore(name.Value, description.Value, attributes);
         }
 
@@ -208,9 +214,6 @@ namespace TalonOneSdk.Model
 
             if (updateStore.Description == null)
                 throw new ArgumentNullException(nameof(updateStore.Description), "Property is required for class UpdateStore.");
-
-            if (updateStore.AttributesOption.IsSet && updateStore.Attributes == null)
-                throw new ArgumentNullException(nameof(updateStore.Attributes), "Property is required for class UpdateStore.");
 
             writer.WriteString("name", updateStore.Name);
 

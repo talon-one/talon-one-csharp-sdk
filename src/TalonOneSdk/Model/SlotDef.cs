@@ -216,6 +216,18 @@ namespace TalonOneSdk.Model
             if (!writable.IsSet)
                 throw new ArgumentException("Property is required for class SlotDef.", nameof(writable));
 
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SlotDef.");
+
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class SlotDef.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class SlotDef.");
+
+            if (writable.IsSet && writable.Value == null)
+                throw new ArgumentNullException(nameof(writable), "Property is not nullable for class SlotDef.");
+
             return new SlotDef(name.Value, type.Value, title.Value, writable.Value.Value, description, help);
         }
 
@@ -251,12 +263,6 @@ namespace TalonOneSdk.Model
 
             if (slotDef.Title == null)
                 throw new ArgumentNullException(nameof(slotDef.Title), "Property is required for class SlotDef.");
-
-            if (slotDef.DescriptionOption.IsSet && slotDef.Description == null)
-                throw new ArgumentNullException(nameof(slotDef.Description), "Property is required for class SlotDef.");
-
-            if (slotDef.HelpOption.IsSet && slotDef.Help == null)
-                throw new ArgumentNullException(nameof(slotDef.Help), "Property is required for class SlotDef.");
 
             writer.WriteString("name", slotDef.Name);
 

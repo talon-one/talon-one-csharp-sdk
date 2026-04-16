@@ -198,15 +198,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (activeExpressionId.IsSet && activeExpressionId.Value == null)
-                throw new ArgumentNullException(nameof(activeExpressionId), "Property is not nullable for class UpdateApplicationCIF.");
-
-            if (modifiedBy.IsSet && modifiedBy.Value == null)
-                throw new ArgumentNullException(nameof(modifiedBy), "Property is not nullable for class UpdateApplicationCIF.");
-
-            if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class UpdateApplicationCIF.");
-
             return new UpdateApplicationCIF(description, activeExpressionId, modifiedBy, modified);
         }
 
@@ -234,9 +225,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateApplicationCIF updateApplicationCIF, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateApplicationCIF.DescriptionOption.IsSet && updateApplicationCIF.Description == null)
-                throw new ArgumentNullException(nameof(updateApplicationCIF.Description), "Property is required for class UpdateApplicationCIF.");
-
             if (updateApplicationCIF.DescriptionOption.IsSet)
                 writer.WriteString("description", updateApplicationCIF.Description);
 

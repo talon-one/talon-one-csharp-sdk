@@ -81,15 +81,6 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'StrictEndDate'
-        /// </summary>
-        [Fact]
-        public void StrictEndDateTest()
-        {
-            // TODO unit test for the property 'StrictEndDate'
-        }
-
-        /// <summary>
         /// Test the property 'TimeframeEndDateType'
         /// </summary>
         [Fact]

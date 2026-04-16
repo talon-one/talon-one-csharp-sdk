@@ -731,35 +731,14 @@ namespace TalonOneSdk.Model
             if (!currency.IsSet)
                 throw new ArgumentException("Property is required for class UpdateApplication.", nameof(currency));
 
-            if (caseSensitivity.IsSet && caseSensitivity.Value == null)
-                throw new ArgumentNullException(nameof(caseSensitivity), "Property is not nullable for class UpdateApplication.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateApplication.");
 
-            if (defaultDiscountScope.IsSet && defaultDiscountScope.Value == null)
-                throw new ArgumentNullException(nameof(defaultDiscountScope), "Property is not nullable for class UpdateApplication.");
+            if (timezone.IsSet && timezone.Value == null)
+                throw new ArgumentNullException(nameof(timezone), "Property is not nullable for class UpdateApplication.");
 
-            if (enableCascadingDiscounts.IsSet && enableCascadingDiscounts.Value == null)
-                throw new ArgumentNullException(nameof(enableCascadingDiscounts), "Property is not nullable for class UpdateApplication.");
-
-            if (enableFlattenedCartItems.IsSet && enableFlattenedCartItems.Value == null)
-                throw new ArgumentNullException(nameof(enableFlattenedCartItems), "Property is not nullable for class UpdateApplication.");
-
-            if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class UpdateApplication.");
-
-            if (enablePartialDiscounts.IsSet && enablePartialDiscounts.Value == null)
-                throw new ArgumentNullException(nameof(enablePartialDiscounts), "Property is not nullable for class UpdateApplication.");
-
-            if (defaultDiscountAdditionalCostPerItemScope.IsSet && defaultDiscountAdditionalCostPerItemScope.Value == null)
-                throw new ArgumentNullException(nameof(defaultDiscountAdditionalCostPerItemScope), "Property is not nullable for class UpdateApplication.");
-
-            if (defaultEvaluationGroupId.IsSet && defaultEvaluationGroupId.Value == null)
-                throw new ArgumentNullException(nameof(defaultEvaluationGroupId), "Property is not nullable for class UpdateApplication.");
-
-            if (defaultCartItemFilterId.IsSet && defaultCartItemFilterId.Value == null)
-                throw new ArgumentNullException(nameof(defaultCartItemFilterId), "Property is not nullable for class UpdateApplication.");
-
-            if (enableCampaignStateManagement.IsSet && enableCampaignStateManagement.Value == null)
-                throw new ArgumentNullException(nameof(enableCampaignStateManagement), "Property is not nullable for class UpdateApplication.");
+            if (currency.IsSet && currency.Value == null)
+                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class UpdateApplication.");
 
             return new UpdateApplication(name.Value, timezone.Value, currency.Value, description, caseSensitivity, attributes, limits, defaultDiscountScope, enableCascadingDiscounts, enableFlattenedCartItems, attributesSettings, sandbox, enablePartialDiscounts, defaultDiscountAdditionalCostPerItemScope, defaultEvaluationGroupId, defaultCartItemFilterId, enableCampaignStateManagement);
         }
@@ -796,18 +775,6 @@ namespace TalonOneSdk.Model
 
             if (updateApplication.Currency == null)
                 throw new ArgumentNullException(nameof(updateApplication.Currency), "Property is required for class UpdateApplication.");
-
-            if (updateApplication.DescriptionOption.IsSet && updateApplication.Description == null)
-                throw new ArgumentNullException(nameof(updateApplication.Description), "Property is required for class UpdateApplication.");
-
-            if (updateApplication.AttributesOption.IsSet && updateApplication.Attributes == null)
-                throw new ArgumentNullException(nameof(updateApplication.Attributes), "Property is required for class UpdateApplication.");
-
-            if (updateApplication.LimitsOption.IsSet && updateApplication.Limits == null)
-                throw new ArgumentNullException(nameof(updateApplication.Limits), "Property is required for class UpdateApplication.");
-
-            if (updateApplication.AttributesSettingsOption.IsSet && updateApplication.AttributesSettings == null)
-                throw new ArgumentNullException(nameof(updateApplication.AttributesSettings), "Property is required for class UpdateApplication.");
 
             writer.WriteString("name", updateApplication.Name);
 

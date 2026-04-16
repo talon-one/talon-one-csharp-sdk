@@ -542,9 +542,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (reevaluateOnReturn.IsSet && reevaluateOnReturn.Value == null)
-                throw new ArgumentNullException(nameof(reevaluateOnReturn), "Property is not nullable for class NewRevisionVersion.");
-
             return new NewRevisionVersion(name, startTime, endTime, attributes, description, activeRulesetId, tags, couponSettings, referralSettings, limits, reevaluateOnReturn, features, couponAttributes);
         }
 
@@ -572,30 +569,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewRevisionVersion newRevisionVersion, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (newRevisionVersion.NameOption.IsSet && newRevisionVersion.Name == null)
-                throw new ArgumentNullException(nameof(newRevisionVersion.Name), "Property is required for class NewRevisionVersion.");
-
-            if (newRevisionVersion.AttributesOption.IsSet && newRevisionVersion.Attributes == null)
-                throw new ArgumentNullException(nameof(newRevisionVersion.Attributes), "Property is required for class NewRevisionVersion.");
-
-            if (newRevisionVersion.TagsOption.IsSet && newRevisionVersion.Tags == null)
-                throw new ArgumentNullException(nameof(newRevisionVersion.Tags), "Property is required for class NewRevisionVersion.");
-
-            if (newRevisionVersion.CouponSettingsOption.IsSet && newRevisionVersion.CouponSettings == null)
-                throw new ArgumentNullException(nameof(newRevisionVersion.CouponSettings), "Property is required for class NewRevisionVersion.");
-
-            if (newRevisionVersion.ReferralSettingsOption.IsSet && newRevisionVersion.ReferralSettings == null)
-                throw new ArgumentNullException(nameof(newRevisionVersion.ReferralSettings), "Property is required for class NewRevisionVersion.");
-
-            if (newRevisionVersion.LimitsOption.IsSet && newRevisionVersion.Limits == null)
-                throw new ArgumentNullException(nameof(newRevisionVersion.Limits), "Property is required for class NewRevisionVersion.");
-
-            if (newRevisionVersion.FeaturesOption.IsSet && newRevisionVersion.Features == null)
-                throw new ArgumentNullException(nameof(newRevisionVersion.Features), "Property is required for class NewRevisionVersion.");
-
-            if (newRevisionVersion.CouponAttributesOption.IsSet && newRevisionVersion.CouponAttributes == null)
-                throw new ArgumentNullException(nameof(newRevisionVersion.CouponAttributes), "Property is required for class NewRevisionVersion.");
-
             if (newRevisionVersion.NameOption.IsSet)
                 writer.WriteString("name", newRevisionVersion.Name);
 

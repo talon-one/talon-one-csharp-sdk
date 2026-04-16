@@ -304,21 +304,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class UpdateCouponBatch.");
-
-            if (discountLimit.IsSet && discountLimit.Value == null)
-                throw new ArgumentNullException(nameof(discountLimit), "Property is not nullable for class UpdateCouponBatch.");
-
-            if (reservationLimit.IsSet && reservationLimit.Value == null)
-                throw new ArgumentNullException(nameof(reservationLimit), "Property is not nullable for class UpdateCouponBatch.");
-
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class UpdateCouponBatch.");
-
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class UpdateCouponBatch.");
-
             return new UpdateCouponBatch(usageLimit, discountLimit, reservationLimit, startDate, expiryDate, attributes, batchID);
         }
 
@@ -346,12 +331,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateCouponBatch updateCouponBatch, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateCouponBatch.AttributesOption.IsSet && updateCouponBatch.Attributes == null)
-                throw new ArgumentNullException(nameof(updateCouponBatch.Attributes), "Property is required for class UpdateCouponBatch.");
-
-            if (updateCouponBatch.BatchIDOption.IsSet && updateCouponBatch.BatchID == null)
-                throw new ArgumentNullException(nameof(updateCouponBatch.BatchID), "Property is required for class UpdateCouponBatch.");
-
             if (updateCouponBatch.UsageLimitOption.IsSet)
                 writer.WriteNumber("usageLimit", updateCouponBatch.UsageLimitOption.Value.Value);
 

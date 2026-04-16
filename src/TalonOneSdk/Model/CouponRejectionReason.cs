@@ -365,6 +365,15 @@ namespace TalonOneSdk.Model
             if (!reason.IsSet)
                 throw new ArgumentException("Property is required for class CouponRejectionReason.", nameof(reason));
 
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class CouponRejectionReason.");
+
+            if (couponId.IsSet && couponId.Value == null)
+                throw new ArgumentNullException(nameof(couponId), "Property is not nullable for class CouponRejectionReason.");
+
+            if (reason.IsSet && reason.Value == null)
+                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class CouponRejectionReason.");
+
             return new CouponRejectionReason(campaignId.Value.Value, couponId.Value.Value, reason.Value.Value);
         }
 

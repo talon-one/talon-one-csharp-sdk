@@ -168,11 +168,8 @@ namespace TalonOneSdk.Model
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class ProductSearchMatch.", nameof(value));
 
-            if (productId.IsSet && productId.Value == null)
-                throw new ArgumentNullException(nameof(productId), "Property is not nullable for class ProductSearchMatch.");
-
-            if (productSkuId.IsSet && productSkuId.Value == null)
-                throw new ArgumentNullException(nameof(productSkuId), "Property is not nullable for class ProductSearchMatch.");
+            if (value.IsSet && value.Value == null)
+                throw new ArgumentNullException(nameof(value), "Property is not nullable for class ProductSearchMatch.");
 
             return new ProductSearchMatch(value.Value, productId, productSkuId);
         }

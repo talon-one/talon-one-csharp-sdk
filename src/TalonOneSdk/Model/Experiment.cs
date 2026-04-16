@@ -379,14 +379,17 @@ namespace TalonOneSdk.Model
             if (!state.IsSet)
                 throw new ArgumentException("Property is required for class Experiment.", nameof(state));
 
-            if (isVariantAssignmentExternal.IsSet && isVariantAssignmentExternal.Value == null)
-                throw new ArgumentNullException(nameof(isVariantAssignmentExternal), "Property is not nullable for class Experiment.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Experiment.");
 
-            if (activated.IsSet && activated.Value == null)
-                throw new ArgumentNullException(nameof(activated), "Property is not nullable for class Experiment.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Experiment.");
 
-            if (deletedat.IsSet && deletedat.Value == null)
-                throw new ArgumentNullException(nameof(deletedat), "Property is not nullable for class Experiment.");
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class Experiment.");
+
+            if (state.IsSet && state.Value == null)
+                throw new ArgumentNullException(nameof(state), "Property is not nullable for class Experiment.");
 
             return new Experiment(id.Value.Value, created.Value.Value, applicationId.Value.Value, isVariantAssignmentExternal, campaign, activated, state.Value.Value, variants, deletedat);
         }
@@ -415,12 +418,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Experiment experiment, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (experiment.CampaignOption.IsSet && experiment.Campaign == null)
-                throw new ArgumentNullException(nameof(experiment.Campaign), "Property is required for class Experiment.");
-
-            if (experiment.VariantsOption.IsSet && experiment.Variants == null)
-                throw new ArgumentNullException(nameof(experiment.Variants), "Property is required for class Experiment.");
-
             writer.WriteNumber("id", experiment.Id);
 
             writer.WriteString("created", experiment.Created.ToString(CreatedFormat));

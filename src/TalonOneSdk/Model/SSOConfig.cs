@@ -146,6 +146,9 @@ namespace TalonOneSdk.Model
             if (!enforced.IsSet)
                 throw new ArgumentException("Property is required for class SSOConfig.", nameof(enforced));
 
+            if (enforced.IsSet && enforced.Value == null)
+                throw new ArgumentNullException(nameof(enforced), "Property is not nullable for class SSOConfig.");
+
             return new SSOConfig(enforced.Value.Value, newAcsUrl);
         }
 
@@ -173,9 +176,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SSOConfig sSOConfig, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (sSOConfig.NewAcsUrlOption.IsSet && sSOConfig.NewAcsUrl == null)
-                throw new ArgumentNullException(nameof(sSOConfig.NewAcsUrl), "Property is required for class SSOConfig.");
-
             writer.WriteBoolean("enforced", sSOConfig.Enforced);
 
             if (sSOConfig.NewAcsUrlOption.IsSet)

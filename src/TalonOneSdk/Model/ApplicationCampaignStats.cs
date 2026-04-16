@@ -208,6 +208,24 @@ namespace TalonOneSdk.Model
             if (!archived.IsSet)
                 throw new ArgumentException("Property is required for class ApplicationCampaignStats.", nameof(archived));
 
+            if (disabled.IsSet && disabled.Value == null)
+                throw new ArgumentNullException(nameof(disabled), "Property is not nullable for class ApplicationCampaignStats.");
+
+            if (staged.IsSet && staged.Value == null)
+                throw new ArgumentNullException(nameof(staged), "Property is not nullable for class ApplicationCampaignStats.");
+
+            if (scheduled.IsSet && scheduled.Value == null)
+                throw new ArgumentNullException(nameof(scheduled), "Property is not nullable for class ApplicationCampaignStats.");
+
+            if (running.IsSet && running.Value == null)
+                throw new ArgumentNullException(nameof(running), "Property is not nullable for class ApplicationCampaignStats.");
+
+            if (expired.IsSet && expired.Value == null)
+                throw new ArgumentNullException(nameof(expired), "Property is not nullable for class ApplicationCampaignStats.");
+
+            if (archived.IsSet && archived.Value == null)
+                throw new ArgumentNullException(nameof(archived), "Property is not nullable for class ApplicationCampaignStats.");
+
             return new ApplicationCampaignStats(disabled.Value.Value, staged.Value.Value, scheduled.Value.Value, running.Value.Value, expired.Value.Value, archived.Value.Value);
         }
 

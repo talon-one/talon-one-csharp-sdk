@@ -217,6 +217,12 @@ namespace TalonOneSdk.Model
             if (!totalResultSize.IsSet)
                 throw new ArgumentException("Property is required for class CampaignRulesetChangedNotification.", nameof(totalResultSize));
 
+            if (notificationType.IsSet && notificationType.Value == null)
+                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class CampaignRulesetChangedNotification.");
+
+            if (totalResultSize.IsSet && totalResultSize.Value == null)
+                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class CampaignRulesetChangedNotification.");
+
             return new CampaignRulesetChangedNotification(notificationType.Value.Value, totalResultSize.Value.Value, data);
         }
 
@@ -244,9 +250,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignRulesetChangedNotification campaignRulesetChangedNotification, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (campaignRulesetChangedNotification.DataOption.IsSet && campaignRulesetChangedNotification.Data == null)
-                throw new ArgumentNullException(nameof(campaignRulesetChangedNotification.Data), "Property is required for class CampaignRulesetChangedNotification.");
-
             var notificationTypeRawValue = CampaignRulesetChangedNotification.NotificationTypeEnumToJsonValue(campaignRulesetChangedNotification.NotificationType);
             writer.WriteString("NotificationType", notificationTypeRawValue);
             writer.WriteNumber("TotalResultSize", campaignRulesetChangedNotification.TotalResultSize);

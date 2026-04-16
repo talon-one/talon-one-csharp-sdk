@@ -202,8 +202,8 @@ namespace TalonOneSdk.Model
             if (!points.IsSet)
                 throw new ArgumentException("Property is required for class DeductLoyaltyPoints.", nameof(points));
 
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class DeductLoyaltyPoints.");
+            if (points.IsSet && points.Value == null)
+                throw new ArgumentNullException(nameof(points), "Property is not nullable for class DeductLoyaltyPoints.");
 
             return new DeductLoyaltyPoints(points.Value.Value, name, subledgerId, applicationId);
         }
@@ -232,12 +232,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DeductLoyaltyPoints deductLoyaltyPoints, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (deductLoyaltyPoints.NameOption.IsSet && deductLoyaltyPoints.Name == null)
-                throw new ArgumentNullException(nameof(deductLoyaltyPoints.Name), "Property is required for class DeductLoyaltyPoints.");
-
-            if (deductLoyaltyPoints.SubledgerIdOption.IsSet && deductLoyaltyPoints.SubledgerId == null)
-                throw new ArgumentNullException(nameof(deductLoyaltyPoints.SubledgerId), "Property is required for class DeductLoyaltyPoints.");
-
             writer.WriteNumber("points", deductLoyaltyPoints.Points);
 
             if (deductLoyaltyPoints.NameOption.IsSet)

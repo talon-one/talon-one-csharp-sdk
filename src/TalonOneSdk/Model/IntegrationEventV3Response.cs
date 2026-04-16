@@ -283,6 +283,15 @@ namespace TalonOneSdk.Model
             if (!createdReferrals.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationEventV3Response.", nameof(createdReferrals));
 
+            if (effects.IsSet && effects.Value == null)
+                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class IntegrationEventV3Response.");
+
+            if (createdCoupons.IsSet && createdCoupons.Value == null)
+                throw new ArgumentNullException(nameof(createdCoupons), "Property is not nullable for class IntegrationEventV3Response.");
+
+            if (createdReferrals.IsSet && createdReferrals.Value == null)
+                throw new ArgumentNullException(nameof(createdReferrals), "Property is not nullable for class IntegrationEventV3Response.");
+
             return new IntegrationEventV3Response(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, loyalty, triggeredCampaigns, ruleFailureReasons, awardedGiveaways, advancedEvent);
         }
 
@@ -318,24 +327,6 @@ namespace TalonOneSdk.Model
 
             if (integrationEventV3Response.CreatedReferrals == null)
                 throw new ArgumentNullException(nameof(integrationEventV3Response.CreatedReferrals), "Property is required for class IntegrationEventV3Response.");
-
-            if (integrationEventV3Response.CustomerProfileOption.IsSet && integrationEventV3Response.CustomerProfile == null)
-                throw new ArgumentNullException(nameof(integrationEventV3Response.CustomerProfile), "Property is required for class IntegrationEventV3Response.");
-
-            if (integrationEventV3Response.LoyaltyOption.IsSet && integrationEventV3Response.Loyalty == null)
-                throw new ArgumentNullException(nameof(integrationEventV3Response.Loyalty), "Property is required for class IntegrationEventV3Response.");
-
-            if (integrationEventV3Response.TriggeredCampaignsOption.IsSet && integrationEventV3Response.TriggeredCampaigns == null)
-                throw new ArgumentNullException(nameof(integrationEventV3Response.TriggeredCampaigns), "Property is required for class IntegrationEventV3Response.");
-
-            if (integrationEventV3Response.RuleFailureReasonsOption.IsSet && integrationEventV3Response.RuleFailureReasons == null)
-                throw new ArgumentNullException(nameof(integrationEventV3Response.RuleFailureReasons), "Property is required for class IntegrationEventV3Response.");
-
-            if (integrationEventV3Response.AwardedGiveawaysOption.IsSet && integrationEventV3Response.AwardedGiveaways == null)
-                throw new ArgumentNullException(nameof(integrationEventV3Response.AwardedGiveaways), "Property is required for class IntegrationEventV3Response.");
-
-            if (integrationEventV3Response.AdvancedEventOption.IsSet && integrationEventV3Response.AdvancedEvent == null)
-                throw new ArgumentNullException(nameof(integrationEventV3Response.AdvancedEvent), "Property is required for class IntegrationEventV3Response.");
 
             writer.WritePropertyName("effects");
             JsonSerializer.Serialize(writer, integrationEventV3Response.Effects, jsonSerializerOptions);

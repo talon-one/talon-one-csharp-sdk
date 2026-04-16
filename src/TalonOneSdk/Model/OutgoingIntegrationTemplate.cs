@@ -387,6 +387,30 @@ namespace TalonOneSdk.Model
             if (!headers.IsSet)
                 throw new ArgumentException("Property is required for class OutgoingIntegrationTemplate.", nameof(headers));
 
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class OutgoingIntegrationTemplate.");
+
+            if (integrationType.IsSet && integrationType.Value == null)
+                throw new ArgumentNullException(nameof(integrationType), "Property is not nullable for class OutgoingIntegrationTemplate.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class OutgoingIntegrationTemplate.");
+
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description), "Property is not nullable for class OutgoingIntegrationTemplate.");
+
+            if (payload.IsSet && payload.Value == null)
+                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class OutgoingIntegrationTemplate.");
+
+            if (method.IsSet && method.Value == null)
+                throw new ArgumentNullException(nameof(method), "Property is not nullable for class OutgoingIntegrationTemplate.");
+
+            if (relativeUrl.IsSet && relativeUrl.Value == null)
+                throw new ArgumentNullException(nameof(relativeUrl), "Property is not nullable for class OutgoingIntegrationTemplate.");
+
+            if (headers.IsSet && headers.Value == null)
+                throw new ArgumentNullException(nameof(headers), "Property is not nullable for class OutgoingIntegrationTemplate.");
+
             return new OutgoingIntegrationTemplate(id.Value.Value, integrationType.Value.Value, title.Value, description.Value, payload.Value, method.Value.Value, relativeUrl.Value, headers.Value);
         }
 

@@ -493,6 +493,15 @@ namespace TalonOneSdk.Model
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationEventV3Request.", nameof(type));
 
+            if (profileId.IsSet && profileId.Value == null)
+                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class IntegrationEventV3Request.");
+
+            if (integrationId.IsSet && integrationId.Value == null)
+                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class IntegrationEventV3Request.");
+
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class IntegrationEventV3Request.");
+
             return new IntegrationEventV3Request(profileId.Value, integrationId.Value, type.Value, storeIntegrationId, evaluableCampaignIds, attributes, connectedSessionID, previousEventID, loyaltyCards, responseContent);
         }
 
@@ -528,27 +537,6 @@ namespace TalonOneSdk.Model
 
             if (integrationEventV3Request.Type == null)
                 throw new ArgumentNullException(nameof(integrationEventV3Request.Type), "Property is required for class IntegrationEventV3Request.");
-
-            if (integrationEventV3Request.StoreIntegrationIdOption.IsSet && integrationEventV3Request.StoreIntegrationId == null)
-                throw new ArgumentNullException(nameof(integrationEventV3Request.StoreIntegrationId), "Property is required for class IntegrationEventV3Request.");
-
-            if (integrationEventV3Request.EvaluableCampaignIdsOption.IsSet && integrationEventV3Request.EvaluableCampaignIds == null)
-                throw new ArgumentNullException(nameof(integrationEventV3Request.EvaluableCampaignIds), "Property is required for class IntegrationEventV3Request.");
-
-            if (integrationEventV3Request.AttributesOption.IsSet && integrationEventV3Request.Attributes == null)
-                throw new ArgumentNullException(nameof(integrationEventV3Request.Attributes), "Property is required for class IntegrationEventV3Request.");
-
-            if (integrationEventV3Request.ConnectedSessionIDOption.IsSet && integrationEventV3Request.ConnectedSessionID == null)
-                throw new ArgumentNullException(nameof(integrationEventV3Request.ConnectedSessionID), "Property is required for class IntegrationEventV3Request.");
-
-            if (integrationEventV3Request.PreviousEventIDOption.IsSet && integrationEventV3Request.PreviousEventID == null)
-                throw new ArgumentNullException(nameof(integrationEventV3Request.PreviousEventID), "Property is required for class IntegrationEventV3Request.");
-
-            if (integrationEventV3Request.LoyaltyCardsOption.IsSet && integrationEventV3Request.LoyaltyCards == null)
-                throw new ArgumentNullException(nameof(integrationEventV3Request.LoyaltyCards), "Property is required for class IntegrationEventV3Request.");
-
-            if (integrationEventV3Request.ResponseContentOption.IsSet && integrationEventV3Request.ResponseContent == null)
-                throw new ArgumentNullException(nameof(integrationEventV3Request.ResponseContent), "Property is required for class IntegrationEventV3Request.");
 
             writer.WriteString("profileId", integrationEventV3Request.ProfileId);
 

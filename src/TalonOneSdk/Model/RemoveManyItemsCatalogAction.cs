@@ -154,9 +154,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RemoveManyItemsCatalogAction removeManyItemsCatalogAction, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (removeManyItemsCatalogAction.FiltersOption.IsSet && removeManyItemsCatalogAction.Filters == null)
-                throw new ArgumentNullException(nameof(removeManyItemsCatalogAction.Filters), "Property is required for class RemoveManyItemsCatalogAction.");
-
             if (removeManyItemsCatalogAction.FiltersOption.IsSet)
             {
                 writer.WritePropertyName("filters");

@@ -483,9 +483,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class NewCustomerSessionV2.");
-
             return new NewCustomerSessionV2(profileId, storeIntegrationId, evaluableCampaignIds, couponCodes, referralCode, loyaltyCards, state, cartItems, experimentVariantAllocations, additionalCosts, identifiers, attributes);
         }
 
@@ -513,39 +510,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewCustomerSessionV2 newCustomerSessionV2, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (newCustomerSessionV2.ProfileIdOption.IsSet && newCustomerSessionV2.ProfileId == null)
-                throw new ArgumentNullException(nameof(newCustomerSessionV2.ProfileId), "Property is required for class NewCustomerSessionV2.");
-
-            if (newCustomerSessionV2.StoreIntegrationIdOption.IsSet && newCustomerSessionV2.StoreIntegrationId == null)
-                throw new ArgumentNullException(nameof(newCustomerSessionV2.StoreIntegrationId), "Property is required for class NewCustomerSessionV2.");
-
-            if (newCustomerSessionV2.EvaluableCampaignIdsOption.IsSet && newCustomerSessionV2.EvaluableCampaignIds == null)
-                throw new ArgumentNullException(nameof(newCustomerSessionV2.EvaluableCampaignIds), "Property is required for class NewCustomerSessionV2.");
-
-            if (newCustomerSessionV2.CouponCodesOption.IsSet && newCustomerSessionV2.CouponCodes == null)
-                throw new ArgumentNullException(nameof(newCustomerSessionV2.CouponCodes), "Property is required for class NewCustomerSessionV2.");
-
-            if (newCustomerSessionV2.ReferralCodeOption.IsSet && newCustomerSessionV2.ReferralCode == null)
-                throw new ArgumentNullException(nameof(newCustomerSessionV2.ReferralCode), "Property is required for class NewCustomerSessionV2.");
-
-            if (newCustomerSessionV2.LoyaltyCardsOption.IsSet && newCustomerSessionV2.LoyaltyCards == null)
-                throw new ArgumentNullException(nameof(newCustomerSessionV2.LoyaltyCards), "Property is required for class NewCustomerSessionV2.");
-
-            if (newCustomerSessionV2.CartItemsOption.IsSet && newCustomerSessionV2.CartItems == null)
-                throw new ArgumentNullException(nameof(newCustomerSessionV2.CartItems), "Property is required for class NewCustomerSessionV2.");
-
-            if (newCustomerSessionV2.ExperimentVariantAllocationsOption.IsSet && newCustomerSessionV2.ExperimentVariantAllocations == null)
-                throw new ArgumentNullException(nameof(newCustomerSessionV2.ExperimentVariantAllocations), "Property is required for class NewCustomerSessionV2.");
-
-            if (newCustomerSessionV2.AdditionalCostsOption.IsSet && newCustomerSessionV2.AdditionalCosts == null)
-                throw new ArgumentNullException(nameof(newCustomerSessionV2.AdditionalCosts), "Property is required for class NewCustomerSessionV2.");
-
-            if (newCustomerSessionV2.IdentifiersOption.IsSet && newCustomerSessionV2.Identifiers == null)
-                throw new ArgumentNullException(nameof(newCustomerSessionV2.Identifiers), "Property is required for class NewCustomerSessionV2.");
-
-            if (newCustomerSessionV2.AttributesOption.IsSet && newCustomerSessionV2.Attributes == null)
-                throw new ArgumentNullException(nameof(newCustomerSessionV2.Attributes), "Property is required for class NewCustomerSessionV2.");
-
             if (newCustomerSessionV2.ProfileIdOption.IsSet)
                 writer.WriteString("profileId", newCustomerSessionV2.ProfileId);
 

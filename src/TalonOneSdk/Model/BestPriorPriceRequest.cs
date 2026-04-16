@@ -34,17 +34,15 @@ namespace TalonOneSdk.Model
         /// <param name="skus">List of product SKUs to check when determining the best prior price.</param>
         /// <param name="timeframeEndDate">The end date and time that defines the latest time for retrieving historical SKU prices.</param>
         /// <param name="timeframe">The number of days prior to the timeframeEndDate. Only prices within this look back period are considered for the best prior price evaluation.</param>
-        /// <param name="strictEndDate">This property is **deprecated**. Use &#x60;timeframeEndDateType&#x60; instead.  Indicates whether the timeframe includes the start of the current sale. - When &#x60;false&#x60;, the timeframe includes the start date of the current sale. - When &#x60;true&#x60;, the timeframe strictly uses the number of days specified in &#x60;timeframe&#x60;. </param>
-        /// <param name="timeframeEndDateType">Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of the current &#x60;contextId&#x60; with the current price value. Identical price records are merged. If there is no &#x60;contextId&#x60; for the most recent price, the most recent timestamp for the price is used.  - &#x60;sale&#x60;:  The timeframe ends at the start of current &#x60;contextId&#x60; and takes the prices prior to the start of the &#x60;contextId&#x60; into account. </param>
+        /// <param name="timeframeEndDateType">Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account. - &#x60;sale&#x60;:  The timeframe ends at the start of current &#x60;contextId&#x60; and takes the prices prior to the start of the &#x60;contextId&#x60; into account. </param>
         /// <param name="target">target</param>
         [JsonConstructor]
-        public BestPriorPriceRequest(List<string> skus, DateTime timeframeEndDate, string timeframe, bool strictEndDate, Option<TimeframeEndDateTypeEnum?> timeframeEndDateType = default, Option<BestPriorTarget> target = default)
+        public BestPriorPriceRequest(List<string> skus, DateTime timeframeEndDate, string timeframe, TimeframeEndDateTypeEnum timeframeEndDateType, Option<BestPriorTarget> target = default)
         {
             Skus = skus;
             TimeframeEndDate = timeframeEndDate;
             Timeframe = timeframe;
-            StrictEndDate = strictEndDate;
-            TimeframeEndDateTypeOption = timeframeEndDateType;
+            TimeframeEndDateType = timeframeEndDateType;
             TargetOption = target;
             OnCreated();
         }
@@ -52,9 +50,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of the current &#x60;contextId&#x60; with the current price value. Identical price records are merged. If there is no &#x60;contextId&#x60; for the most recent price, the most recent timestamp for the price is used.  - &#x60;sale&#x60;:  The timeframe ends at the start of current &#x60;contextId&#x60; and takes the prices prior to the start of the &#x60;contextId&#x60; into account. 
+        /// Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account. - &#x60;sale&#x60;:  The timeframe ends at the start of current &#x60;contextId&#x60; and takes the prices prior to the start of the &#x60;contextId&#x60; into account. 
         /// </summary>
-        /// <value>Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of the current &#x60;contextId&#x60; with the current price value. Identical price records are merged. If there is no &#x60;contextId&#x60; for the most recent price, the most recent timestamp for the price is used.  - &#x60;sale&#x60;:  The timeframe ends at the start of current &#x60;contextId&#x60; and takes the prices prior to the start of the &#x60;contextId&#x60; into account. </value>
+        /// <value>Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account. - &#x60;sale&#x60;:  The timeframe ends at the start of current &#x60;contextId&#x60; and takes the prices prior to the start of the &#x60;contextId&#x60; into account. </value>
         public enum TimeframeEndDateTypeEnum
         {
             /// <summary>
@@ -118,7 +116,7 @@ namespace TalonOneSdk.Model
         /// <param name="value"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public static string TimeframeEndDateTypeEnumToJsonValue(TimeframeEndDateTypeEnum? value)
+        public static string TimeframeEndDateTypeEnumToJsonValue(TimeframeEndDateTypeEnum value)
         {
             if (value == TimeframeEndDateTypeEnum.Strict)
                 return "strict";
@@ -133,19 +131,12 @@ namespace TalonOneSdk.Model
         }
 
         /// <summary>
-        /// Used to track the state of TimeframeEndDateType
+        /// Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account. - &#x60;sale&#x60;:  The timeframe ends at the start of current &#x60;contextId&#x60; and takes the prices prior to the start of the &#x60;contextId&#x60; into account. 
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<TimeframeEndDateTypeEnum?> TimeframeEndDateTypeOption { get; private set; }
-
-        /// <summary>
-        /// Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of the current &#x60;contextId&#x60; with the current price value. Identical price records are merged. If there is no &#x60;contextId&#x60; for the most recent price, the most recent timestamp for the price is used.  - &#x60;sale&#x60;:  The timeframe ends at the start of current &#x60;contextId&#x60; and takes the prices prior to the start of the &#x60;contextId&#x60; into account. 
-        /// </summary>
-        /// <value>Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of the current &#x60;contextId&#x60; with the current price value. Identical price records are merged. If there is no &#x60;contextId&#x60; for the most recent price, the most recent timestamp for the price is used.  - &#x60;sale&#x60;:  The timeframe ends at the start of current &#x60;contextId&#x60; and takes the prices prior to the start of the &#x60;contextId&#x60; into account. </value>
+        /// <value>Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account. - &#x60;sale&#x60;:  The timeframe ends at the start of current &#x60;contextId&#x60; and takes the prices prior to the start of the &#x60;contextId&#x60; into account. </value>
         /* <example>sale</example> */
         [JsonPropertyName("timeframeEndDateType")]
-        public TimeframeEndDateTypeEnum? TimeframeEndDateType { get { return this.TimeframeEndDateTypeOption.Value; } set { this.TimeframeEndDateTypeOption = new Option<TimeframeEndDateTypeEnum?>(value); } }
+        public TimeframeEndDateTypeEnum TimeframeEndDateType { get; set; }
 
         /// <summary>
         /// List of product SKUs to check when determining the best prior price.
@@ -172,15 +163,6 @@ namespace TalonOneSdk.Model
         public string Timeframe { get; set; }
 
         /// <summary>
-        /// This property is **deprecated**. Use &#x60;timeframeEndDateType&#x60; instead.  Indicates whether the timeframe includes the start of the current sale. - When &#x60;false&#x60;, the timeframe includes the start date of the current sale. - When &#x60;true&#x60;, the timeframe strictly uses the number of days specified in &#x60;timeframe&#x60;. 
-        /// </summary>
-        /// <value>This property is **deprecated**. Use &#x60;timeframeEndDateType&#x60; instead.  Indicates whether the timeframe includes the start of the current sale. - When &#x60;false&#x60;, the timeframe includes the start date of the current sale. - When &#x60;true&#x60;, the timeframe strictly uses the number of days specified in &#x60;timeframe&#x60;. </value>
-        /* <example>true</example> */
-        [JsonPropertyName("strictEndDate")]
-        [Obsolete]
-        public bool StrictEndDate { get; set; }
-
-        /// <summary>
         /// Used to track the state of Target
         /// </summary>
         [JsonIgnore]
@@ -204,7 +186,6 @@ namespace TalonOneSdk.Model
             sb.Append("  Skus: ").Append(Skus).Append("\n");
             sb.Append("  TimeframeEndDate: ").Append(TimeframeEndDate).Append("\n");
             sb.Append("  Timeframe: ").Append(Timeframe).Append("\n");
-            sb.Append("  StrictEndDate: ").Append(StrictEndDate).Append("\n");
             sb.Append("  TimeframeEndDateType: ").Append(TimeframeEndDateType).Append("\n");
             sb.Append("  Target: ").Append(Target).Append("\n");
             sb.Append("}\n");
@@ -252,7 +233,6 @@ namespace TalonOneSdk.Model
             Option<List<string>> skus = default;
             Option<DateTime?> timeframeEndDate = default;
             Option<string> timeframe = default;
-            Option<bool?> strictEndDate = default;
             Option<BestPriorPriceRequest.TimeframeEndDateTypeEnum?> timeframeEndDateType = default;
             Option<BestPriorTarget> target = default;
 
@@ -280,9 +260,6 @@ namespace TalonOneSdk.Model
                         case "timeframe":
                             timeframe = new Option<string>(utf8JsonReader.GetString());
                             break;
-                        case "strictEndDate":
-                            strictEndDate = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
-                            break;
                         case "timeframeEndDateType":
                             string timeframeEndDateTypeRawValue = utf8JsonReader.GetString();
                             if (timeframeEndDateTypeRawValue != null)
@@ -306,13 +283,22 @@ namespace TalonOneSdk.Model
             if (!timeframe.IsSet)
                 throw new ArgumentException("Property is required for class BestPriorPriceRequest.", nameof(timeframe));
 
-            if (!strictEndDate.IsSet)
-                throw new ArgumentException("Property is required for class BestPriorPriceRequest.", nameof(strictEndDate));
+            if (!timeframeEndDateType.IsSet)
+                throw new ArgumentException("Property is required for class BestPriorPriceRequest.", nameof(timeframeEndDateType));
+
+            if (skus.IsSet && skus.Value == null)
+                throw new ArgumentNullException(nameof(skus), "Property is not nullable for class BestPriorPriceRequest.");
+
+            if (timeframeEndDate.IsSet && timeframeEndDate.Value == null)
+                throw new ArgumentNullException(nameof(timeframeEndDate), "Property is not nullable for class BestPriorPriceRequest.");
+
+            if (timeframe.IsSet && timeframe.Value == null)
+                throw new ArgumentNullException(nameof(timeframe), "Property is not nullable for class BestPriorPriceRequest.");
 
             if (timeframeEndDateType.IsSet && timeframeEndDateType.Value == null)
                 throw new ArgumentNullException(nameof(timeframeEndDateType), "Property is not nullable for class BestPriorPriceRequest.");
 
-            return new BestPriorPriceRequest(skus.Value, timeframeEndDate.Value.Value, timeframe.Value, strictEndDate.Value.Value, timeframeEndDateType, target);
+            return new BestPriorPriceRequest(skus.Value, timeframeEndDate.Value.Value, timeframe.Value, timeframeEndDateType.Value.Value, target);
         }
 
         /// <summary>
@@ -345,22 +331,14 @@ namespace TalonOneSdk.Model
             if (bestPriorPriceRequest.Timeframe == null)
                 throw new ArgumentNullException(nameof(bestPriorPriceRequest.Timeframe), "Property is required for class BestPriorPriceRequest.");
 
-            if (bestPriorPriceRequest.TargetOption.IsSet && bestPriorPriceRequest.Target == null)
-                throw new ArgumentNullException(nameof(bestPriorPriceRequest.Target), "Property is required for class BestPriorPriceRequest.");
-
             writer.WritePropertyName("skus");
             JsonSerializer.Serialize(writer, bestPriorPriceRequest.Skus, jsonSerializerOptions);
             writer.WriteString("timeframeEndDate", bestPriorPriceRequest.TimeframeEndDate.ToString(TimeframeEndDateFormat));
 
             writer.WriteString("timeframe", bestPriorPriceRequest.Timeframe);
 
-            writer.WriteBoolean("strictEndDate", bestPriorPriceRequest.StrictEndDate);
-
-            if (bestPriorPriceRequest.TimeframeEndDateTypeOption.IsSet)
-            {
-                var timeframeEndDateTypeRawValue = BestPriorPriceRequest.TimeframeEndDateTypeEnumToJsonValue(bestPriorPriceRequest.TimeframeEndDateTypeOption.Value);
-                writer.WriteString("timeframeEndDateType", timeframeEndDateTypeRawValue);
-            }
+            var timeframeEndDateTypeRawValue = BestPriorPriceRequest.TimeframeEndDateTypeEnumToJsonValue(bestPriorPriceRequest.TimeframeEndDateType);
+            writer.WriteString("timeframeEndDateType", timeframeEndDateTypeRawValue);
             if (bestPriorPriceRequest.TargetOption.IsSet)
             {
                 writer.WritePropertyName("target");

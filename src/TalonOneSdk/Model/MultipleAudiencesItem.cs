@@ -306,6 +306,18 @@ namespace TalonOneSdk.Model
             if (!status.IsSet)
                 throw new ArgumentException("Property is required for class MultipleAudiencesItem.", nameof(status));
 
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class MultipleAudiencesItem.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class MultipleAudiencesItem.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class MultipleAudiencesItem.");
+
+            if (status.IsSet && status.Value == null)
+                throw new ArgumentNullException(nameof(status), "Property is not nullable for class MultipleAudiencesItem.");
+
             return new MultipleAudiencesItem(id.Value.Value, created.Value.Value, name.Value, status.Value.Value, integrationId);
         }
 
@@ -335,9 +347,6 @@ namespace TalonOneSdk.Model
         {
             if (multipleAudiencesItem.Name == null)
                 throw new ArgumentNullException(nameof(multipleAudiencesItem.Name), "Property is required for class MultipleAudiencesItem.");
-
-            if (multipleAudiencesItem.IntegrationIdOption.IsSet && multipleAudiencesItem.IntegrationId == null)
-                throw new ArgumentNullException(nameof(multipleAudiencesItem.IntegrationId), "Property is required for class MultipleAudiencesItem.");
 
             writer.WriteNumber("id", multipleAudiencesItem.Id);
 

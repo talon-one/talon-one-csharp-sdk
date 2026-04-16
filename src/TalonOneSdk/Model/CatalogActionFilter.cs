@@ -281,6 +281,12 @@ namespace TalonOneSdk.Model
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class CatalogActionFilter.", nameof(value));
 
+            if (attr.IsSet && attr.Value == null)
+                throw new ArgumentNullException(nameof(attr), "Property is not nullable for class CatalogActionFilter.");
+
+            if (op.IsSet && op.Value == null)
+                throw new ArgumentNullException(nameof(op), "Property is not nullable for class CatalogActionFilter.");
+
             return new CatalogActionFilter(attr.Value, op.Value.Value, value.Value);
         }
 

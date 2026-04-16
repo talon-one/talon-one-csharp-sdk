@@ -764,20 +764,20 @@ namespace TalonOneSdk.Model
             if (!state.IsSet)
                 throw new ArgumentException("Property is required for class BaseCampaign.", nameof(state));
 
-            if (startTime.IsSet && startTime.Value == null)
-                throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class BaseCampaign.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class BaseCampaign.");
 
-            if (endTime.IsSet && endTime.Value == null)
-                throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class BaseCampaign.");
+            if (tags.IsSet && tags.Value == null)
+                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class BaseCampaign.");
 
-            if (activeRulesetId.IsSet && activeRulesetId.Value == null)
-                throw new ArgumentNullException(nameof(activeRulesetId), "Property is not nullable for class BaseCampaign.");
+            if (features.IsSet && features.Value == null)
+                throw new ArgumentNullException(nameof(features), "Property is not nullable for class BaseCampaign.");
 
-            if (reevaluateOnReturn.IsSet && reevaluateOnReturn.Value == null)
-                throw new ArgumentNullException(nameof(reevaluateOnReturn), "Property is not nullable for class BaseCampaign.");
+            if (limits.IsSet && limits.Value == null)
+                throw new ArgumentNullException(nameof(limits), "Property is not nullable for class BaseCampaign.");
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class BaseCampaign.");
+            if (state.IsSet && state.Value == null)
+                throw new ArgumentNullException(nameof(state), "Property is not nullable for class BaseCampaign.");
 
             return new BaseCampaign(name.Value, tags.Value, features.Value, limits.Value, description, startTime, endTime, attributes, state.Value.Value, activeRulesetId, reevaluateOnReturn, couponSettings, referralSettings, campaignGroups, type, linkedStoreIds, couponAttributes);
         }
@@ -817,27 +817,6 @@ namespace TalonOneSdk.Model
 
             if (baseCampaign.Limits == null)
                 throw new ArgumentNullException(nameof(baseCampaign.Limits), "Property is required for class BaseCampaign.");
-
-            if (baseCampaign.DescriptionOption.IsSet && baseCampaign.Description == null)
-                throw new ArgumentNullException(nameof(baseCampaign.Description), "Property is required for class BaseCampaign.");
-
-            if (baseCampaign.AttributesOption.IsSet && baseCampaign.Attributes == null)
-                throw new ArgumentNullException(nameof(baseCampaign.Attributes), "Property is required for class BaseCampaign.");
-
-            if (baseCampaign.CouponSettingsOption.IsSet && baseCampaign.CouponSettings == null)
-                throw new ArgumentNullException(nameof(baseCampaign.CouponSettings), "Property is required for class BaseCampaign.");
-
-            if (baseCampaign.ReferralSettingsOption.IsSet && baseCampaign.ReferralSettings == null)
-                throw new ArgumentNullException(nameof(baseCampaign.ReferralSettings), "Property is required for class BaseCampaign.");
-
-            if (baseCampaign.CampaignGroupsOption.IsSet && baseCampaign.CampaignGroups == null)
-                throw new ArgumentNullException(nameof(baseCampaign.CampaignGroups), "Property is required for class BaseCampaign.");
-
-            if (baseCampaign.LinkedStoreIdsOption.IsSet && baseCampaign.LinkedStoreIds == null)
-                throw new ArgumentNullException(nameof(baseCampaign.LinkedStoreIds), "Property is required for class BaseCampaign.");
-
-            if (baseCampaign.CouponAttributesOption.IsSet && baseCampaign.CouponAttributes == null)
-                throw new ArgumentNullException(nameof(baseCampaign.CouponAttributes), "Property is required for class BaseCampaign.");
 
             writer.WriteString("name", baseCampaign.Name);
 

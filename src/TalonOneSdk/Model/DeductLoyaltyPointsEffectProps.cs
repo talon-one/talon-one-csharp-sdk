@@ -252,6 +252,24 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class DeductLoyaltyPointsEffectProps.", nameof(name));
 
+            if (ruleTitle.IsSet && ruleTitle.Value == null)
+                throw new ArgumentNullException(nameof(ruleTitle), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
+
+            if (programId.IsSet && programId.Value == null)
+                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
+
+            if (subLedgerId.IsSet && subLedgerId.Value == null)
+                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
+
+            if (value.IsSet && value.Value == null)
+                throw new ArgumentNullException(nameof(value), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
+
+            if (transactionUUID.IsSet && transactionUUID.Value == null)
+                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
+
             return new DeductLoyaltyPointsEffectProps(ruleTitle.Value, programId.Value.Value, subLedgerId.Value, value.Value.Value, transactionUUID.Value, name.Value, cardIdentifier);
         }
 
@@ -290,9 +308,6 @@ namespace TalonOneSdk.Model
 
             if (deductLoyaltyPointsEffectProps.Name == null)
                 throw new ArgumentNullException(nameof(deductLoyaltyPointsEffectProps.Name), "Property is required for class DeductLoyaltyPointsEffectProps.");
-
-            if (deductLoyaltyPointsEffectProps.CardIdentifierOption.IsSet && deductLoyaltyPointsEffectProps.CardIdentifier == null)
-                throw new ArgumentNullException(nameof(deductLoyaltyPointsEffectProps.CardIdentifier), "Property is required for class DeductLoyaltyPointsEffectProps.");
 
             writer.WriteString("ruleTitle", deductLoyaltyPointsEffectProps.RuleTitle);
 

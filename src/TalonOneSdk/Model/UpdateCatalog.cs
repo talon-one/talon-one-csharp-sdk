@@ -199,15 +199,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateCatalog updateCatalog, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateCatalog.DescriptionOption.IsSet && updateCatalog.Description == null)
-                throw new ArgumentNullException(nameof(updateCatalog.Description), "Property is required for class UpdateCatalog.");
-
-            if (updateCatalog.NameOption.IsSet && updateCatalog.Name == null)
-                throw new ArgumentNullException(nameof(updateCatalog.Name), "Property is required for class UpdateCatalog.");
-
-            if (updateCatalog.SubscribedApplicationsIdsOption.IsSet && updateCatalog.SubscribedApplicationsIds == null)
-                throw new ArgumentNullException(nameof(updateCatalog.SubscribedApplicationsIds), "Property is required for class UpdateCatalog.");
-
             if (updateCatalog.DescriptionOption.IsSet)
                 writer.WriteString("description", updateCatalog.Description);
 

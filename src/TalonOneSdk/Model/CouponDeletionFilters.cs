@@ -513,39 +513,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (createdBefore.IsSet && createdBefore.Value == null)
-                throw new ArgumentNullException(nameof(createdBefore), "Property is not nullable for class CouponDeletionFilters.");
-
-            if (createdAfter.IsSet && createdAfter.Value == null)
-                throw new ArgumentNullException(nameof(createdAfter), "Property is not nullable for class CouponDeletionFilters.");
-
-            if (startsAfter.IsSet && startsAfter.Value == null)
-                throw new ArgumentNullException(nameof(startsAfter), "Property is not nullable for class CouponDeletionFilters.");
-
-            if (startsBefore.IsSet && startsBefore.Value == null)
-                throw new ArgumentNullException(nameof(startsBefore), "Property is not nullable for class CouponDeletionFilters.");
-
-            if (valid.IsSet && valid.Value == null)
-                throw new ArgumentNullException(nameof(valid), "Property is not nullable for class CouponDeletionFilters.");
-
-            if (usable.IsSet && usable.Value == null)
-                throw new ArgumentNullException(nameof(usable), "Property is not nullable for class CouponDeletionFilters.");
-
-            if (redeemed.IsSet && redeemed.Value == null)
-                throw new ArgumentNullException(nameof(redeemed), "Property is not nullable for class CouponDeletionFilters.");
-
-            if (exactMatch.IsSet && exactMatch.Value == null)
-                throw new ArgumentNullException(nameof(exactMatch), "Property is not nullable for class CouponDeletionFilters.");
-
-            if (referralId.IsSet && referralId.Value == null)
-                throw new ArgumentNullException(nameof(referralId), "Property is not nullable for class CouponDeletionFilters.");
-
-            if (expiresAfter.IsSet && expiresAfter.Value == null)
-                throw new ArgumentNullException(nameof(expiresAfter), "Property is not nullable for class CouponDeletionFilters.");
-
-            if (expiresBefore.IsSet && expiresBefore.Value == null)
-                throw new ArgumentNullException(nameof(expiresBefore), "Property is not nullable for class CouponDeletionFilters.");
-
             return new CouponDeletionFilters(createdBefore, createdAfter, startsAfter, startsBefore, valid, usable, redeemed, recipientIntegrationId, exactMatch, value, batchId, referralId, expiresAfter, expiresBefore);
         }
 
@@ -573,15 +540,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CouponDeletionFilters couponDeletionFilters, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (couponDeletionFilters.RecipientIntegrationIdOption.IsSet && couponDeletionFilters.RecipientIntegrationId == null)
-                throw new ArgumentNullException(nameof(couponDeletionFilters.RecipientIntegrationId), "Property is required for class CouponDeletionFilters.");
-
-            if (couponDeletionFilters.ValueOption.IsSet && couponDeletionFilters.Value == null)
-                throw new ArgumentNullException(nameof(couponDeletionFilters.Value), "Property is required for class CouponDeletionFilters.");
-
-            if (couponDeletionFilters.BatchIdOption.IsSet && couponDeletionFilters.BatchId == null)
-                throw new ArgumentNullException(nameof(couponDeletionFilters.BatchId), "Property is required for class CouponDeletionFilters.");
-
             if (couponDeletionFilters.CreatedBeforeOption.IsSet)
                 writer.WriteString("createdBefore", couponDeletionFilters.CreatedBeforeOption.Value.Value.ToString(CreatedBeforeFormat));
 

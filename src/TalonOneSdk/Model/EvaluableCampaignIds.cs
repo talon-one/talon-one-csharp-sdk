@@ -155,9 +155,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, EvaluableCampaignIds evaluableCampaignIds, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (evaluableCampaignIds.VarEvaluableCampaignIdsOption.IsSet && evaluableCampaignIds.VarEvaluableCampaignIds == null)
-                throw new ArgumentNullException(nameof(evaluableCampaignIds.VarEvaluableCampaignIds), "Property is required for class EvaluableCampaignIds.");
-
             if (evaluableCampaignIds.VarEvaluableCampaignIdsOption.IsSet)
             {
                 writer.WritePropertyName("evaluableCampaignIds");

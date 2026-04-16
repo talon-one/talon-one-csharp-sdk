@@ -372,11 +372,14 @@ namespace TalonOneSdk.Model
             if (!ui.IsSet)
                 throw new ArgumentException("Property is required for class TemplateArgDef.", nameof(ui));
 
-            if (picklistID.IsSet && picklistID.Value == null)
-                throw new ArgumentNullException(nameof(picklistID), "Property is not nullable for class TemplateArgDef.");
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class TemplateArgDef.");
 
-            if (restrictedByPicklist.IsSet && restrictedByPicklist.Value == null)
-                throw new ArgumentNullException(nameof(restrictedByPicklist), "Property is not nullable for class TemplateArgDef.");
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class TemplateArgDef.");
+
+            if (ui.IsSet && ui.Value == null)
+                throw new ArgumentNullException(nameof(ui), "Property is not nullable for class TemplateArgDef.");
 
             return new TemplateArgDef(type.Value.Value, title.Value, ui.Value, description, key, picklistID, restrictedByPicklist);
         }
@@ -410,12 +413,6 @@ namespace TalonOneSdk.Model
 
             if (templateArgDef.Ui == null)
                 throw new ArgumentNullException(nameof(templateArgDef.Ui), "Property is required for class TemplateArgDef.");
-
-            if (templateArgDef.DescriptionOption.IsSet && templateArgDef.Description == null)
-                throw new ArgumentNullException(nameof(templateArgDef.Description), "Property is required for class TemplateArgDef.");
-
-            if (templateArgDef.KeyOption.IsSet && templateArgDef.Key == null)
-                throw new ArgumentNullException(nameof(templateArgDef.Key), "Property is required for class TemplateArgDef.");
 
             var typeRawValue = TemplateArgDef.TypeEnumToJsonValue(templateArgDef.Type);
             writer.WriteString("type", typeRawValue);

@@ -131,9 +131,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (activateAt.IsSet && activateAt.Value == null)
-                throw new ArgumentNullException(nameof(activateAt), "Property is not nullable for class RevisionActivation.");
-
             return new RevisionActivation(activateAt);
         }
 

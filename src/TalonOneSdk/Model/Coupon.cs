@@ -635,44 +635,17 @@ namespace TalonOneSdk.Model
             if (!usageCounter.IsSet)
                 throw new ArgumentException("Property is required for class Coupon.", nameof(usageCounter));
 
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class Coupon.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Coupon.");
 
-            if (discountLimit.IsSet && discountLimit.Value == null)
-                throw new ArgumentNullException(nameof(discountLimit), "Property is not nullable for class Coupon.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Coupon.");
 
-            if (reservationLimit.IsSet && reservationLimit.Value == null)
-                throw new ArgumentNullException(nameof(reservationLimit), "Property is not nullable for class Coupon.");
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class Coupon.");
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class Coupon.");
-
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class Coupon.");
-
-            if (discountCounter.IsSet && discountCounter.Value == null)
-                throw new ArgumentNullException(nameof(discountCounter), "Property is not nullable for class Coupon.");
-
-            if (discountRemainder.IsSet && discountRemainder.Value == null)
-                throw new ArgumentNullException(nameof(discountRemainder), "Property is not nullable for class Coupon.");
-
-            if (reservationCounter.IsSet && reservationCounter.Value == null)
-                throw new ArgumentNullException(nameof(reservationCounter), "Property is not nullable for class Coupon.");
-
-            if (referralId.IsSet && referralId.Value == null)
-                throw new ArgumentNullException(nameof(referralId), "Property is not nullable for class Coupon.");
-
-            if (importId.IsSet && importId.Value == null)
-                throw new ArgumentNullException(nameof(importId), "Property is not nullable for class Coupon.");
-
-            if (reservation.IsSet && reservation.Value == null)
-                throw new ArgumentNullException(nameof(reservation), "Property is not nullable for class Coupon.");
-
-            if (isReservationMandatory.IsSet && isReservationMandatory.Value == null)
-                throw new ArgumentNullException(nameof(isReservationMandatory), "Property is not nullable for class Coupon.");
-
-            if (implicitlyReserved.IsSet && implicitlyReserved.Value == null)
-                throw new ArgumentNullException(nameof(implicitlyReserved), "Property is not nullable for class Coupon.");
+            if (usageCounter.IsSet && usageCounter.Value == null)
+                throw new ArgumentNullException(nameof(usageCounter), "Property is not nullable for class Coupon.");
 
             return new Coupon(id.Value.Value, created.Value.Value, campaignId.Value.Value, usageCounter.Value.Value, value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, limits, discountCounter, discountRemainder, reservationCounter, attributes, referralId, recipientIntegrationId, importId, reservation, batchId, isReservationMandatory, implicitlyReserved);
         }
@@ -701,21 +674,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Coupon coupon, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (coupon.ValueOption.IsSet && coupon.Value == null)
-                throw new ArgumentNullException(nameof(coupon.Value), "Property is required for class Coupon.");
-
-            if (coupon.LimitsOption.IsSet && coupon.Limits == null)
-                throw new ArgumentNullException(nameof(coupon.Limits), "Property is required for class Coupon.");
-
-            if (coupon.AttributesOption.IsSet && coupon.Attributes == null)
-                throw new ArgumentNullException(nameof(coupon.Attributes), "Property is required for class Coupon.");
-
-            if (coupon.RecipientIntegrationIdOption.IsSet && coupon.RecipientIntegrationId == null)
-                throw new ArgumentNullException(nameof(coupon.RecipientIntegrationId), "Property is required for class Coupon.");
-
-            if (coupon.BatchIdOption.IsSet && coupon.BatchId == null)
-                throw new ArgumentNullException(nameof(coupon.BatchId), "Property is required for class Coupon.");
-
             writer.WriteNumber("id", coupon.Id);
 
             writer.WriteString("created", coupon.Created.ToString(CreatedFormat));

@@ -124,6 +124,9 @@ namespace TalonOneSdk.Model
             if (!id.IsSet)
                 throw new ArgumentException("Property is required for class AsyncCouponDeletionJobResponse.", nameof(id));
 
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AsyncCouponDeletionJobResponse.");
+
             return new AsyncCouponDeletionJobResponse(id.Value.Value);
         }
 

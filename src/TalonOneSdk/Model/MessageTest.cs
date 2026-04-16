@@ -150,6 +150,12 @@ Content-Length: 256
             if (!httpStatus.IsSet)
                 throw new ArgumentException("Property is required for class MessageTest.", nameof(httpStatus));
 
+            if (httpResponse.IsSet && httpResponse.Value == null)
+                throw new ArgumentNullException(nameof(httpResponse), "Property is not nullable for class MessageTest.");
+
+            if (httpStatus.IsSet && httpStatus.Value == null)
+                throw new ArgumentNullException(nameof(httpStatus), "Property is not nullable for class MessageTest.");
+
             return new MessageTest(httpResponse.Value, httpStatus.Value.Value);
         }
 

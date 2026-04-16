@@ -17,7 +17,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**CreateCampaignStoreBudget**](ManagementApi.md#createcampaignstorebudget) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets | Create campaign store budget |
 | [**CreateCollection**](ManagementApi.md#createcollection) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | Create campaign-level collection |
 | [**CreateCoupons**](ManagementApi.md#createcoupons) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Create coupons |
-| [**CreateCouponsAsync**](ManagementApi.md#createcouponsasync) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_async | Create coupons asynchronously |
+| [**CreateCouponsAsynchronously**](ManagementApi.md#createcouponsasynchronously) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_async | Create coupons asynchronously |
 | [**CreateCouponsDeletionJob**](ManagementApi.md#createcouponsdeletionjob) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_deletion_jobs | Creates a coupon deletion job |
 | [**CreateCouponsForMultipleRecipients**](ManagementApi.md#createcouponsformultiplerecipients) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_with_recipients | Create coupons for multiple recipients |
 | [**CreateInviteEmail**](ManagementApi.md#createinviteemail) | **POST** /v1/invite_emails | Resend invitation email |
@@ -47,6 +47,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**ExportAudiencesMemberships**](ManagementApi.md#exportaudiencesmemberships) | **GET** /v1/audiences/{audienceId}/memberships/export | Export audience members |
 | [**ExportCampaignStoreBudgets**](ManagementApi.md#exportcampaignstorebudgets) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets/export | Export campaign store budgets |
 | [**ExportCampaignStores**](ManagementApi.md#exportcampaignstores) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/export | Export stores |
+| [**ExportCampaignValueMap**](ManagementApi.md#exportcampaignvaluemap) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/value_maps/{valueMapId}/export | Export campaign value map |
 | [**ExportCollectionItems**](ManagementApi.md#exportcollectionitems) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}/export | Export campaign-level collection&#39;s items |
 | [**ExportCoupons**](ManagementApi.md#exportcoupons) | **GET** /v1/applications/{applicationId}/export_coupons | Export coupons |
 | [**ExportCustomerSessions**](ManagementApi.md#exportcustomersessions) | **GET** /v1/applications/{applicationId}/export_customer_sessions | Export customer sessions |
@@ -71,6 +72,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**GetAdditionalCosts**](ManagementApi.md#getadditionalcosts) | **GET** /v1/additional_costs | List additional costs |
 | [**GetApplication**](ManagementApi.md#getapplication) | **GET** /v1/applications/{applicationId} | Get Application |
 | [**GetApplicationApiHealth**](ManagementApi.md#getapplicationapihealth) | **GET** /v1/applications/{applicationId}/health_report | Get Application health |
+| [**GetApplicationCartItemFilterExpression**](ManagementApi.md#getapplicationcartitemfilterexpression) | **GET** /v1/applications/{applicationId}/cart_item_filters/{cartItemFilterId}/expressions/{expressionId} | Get Application cart item filter expression |
 | [**GetApplicationCustomer**](ManagementApi.md#getapplicationcustomer) | **GET** /v1/applications/{applicationId}/customers/{customerId} | Get application&#39;s customer |
 | [**GetApplicationCustomerFriends**](ManagementApi.md#getapplicationcustomerfriends) | **GET** /v1/applications/{applicationId}/profile/{integrationId}/friends | List friends referred by customer profile |
 | [**GetApplicationCustomers**](ManagementApi.md#getapplicationcustomers) | **GET** /v1/applications/{applicationId}/customers | List application&#39;s customers |
@@ -143,6 +145,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**ListAccountCollections**](ManagementApi.md#listaccountcollections) | **GET** /v1/collections | List collections in account |
 | [**ListAchievements**](ManagementApi.md#listachievements) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements | List achievements |
 | [**ListAllRolesV2**](ManagementApi.md#listallrolesv2) | **GET** /v2/roles | List roles |
+| [**ListApplicationCartItemFilters**](ManagementApi.md#listapplicationcartitemfilters) | **GET** /v1/applications/{applicationId}/cart_item_filters | List Application cart item filters |
 | [**ListCampaignStoreBudgetLimits**](ManagementApi.md#listcampaignstorebudgetlimits) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets | List campaign store budget limits |
 | [**ListCatalogItems**](ManagementApi.md#listcatalogitems) | **GET** /v1/catalogs/{catalogId}/items | List items in a catalog |
 | [**ListCollections**](ManagementApi.md#listcollections) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | List collections in campaign |
@@ -689,9 +692,9 @@ Create coupons according to some pattern. Up to 20.000 coupons can be created wi
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-<a id="createcouponsasync"></a>
-# **CreateCouponsAsync**
-> AsyncCouponCreationResponse CreateCouponsAsync (long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob)
+<a id="createcouponsasynchronously"></a>
+# **CreateCouponsAsynchronously**
+> AsyncCouponCreationResponse CreateCouponsAsynchronously (long applicationId, long campaignId, NewCouponCreationJob newCouponCreationJob)
 
 Create coupons asynchronously
 
@@ -1844,6 +1847,47 @@ Download a CSV file containing the stores linked to a specific campaign.  > [!ti
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+<a id="exportcampaignvaluemap"></a>
+# **ExportCampaignValueMap**
+> string ExportCampaignValueMap (long applicationId, long campaignId, long valueMapId)
+
+Export campaign value map
+
+Download a CSV file containing all the value map items in a campaign. If there are multiple versions of the value map, only the items of the current version are exported.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `identifier`: The value of the attribute in the targeted item, for example, an item's SKU. - `value`: The value that is associated with the identifier, for example, the item's price. 
+
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **applicationId** | **long** | The ID of the Application. It is displayed in your Talon.One deployment URL. |  |
+| **campaignId** | **long** | The ID of the campaign. It is displayed in your Talon.One deployment URL. |  |
+| **valueMapId** | **long** | The ID of the value map.  |  |
+
+### Return type
+
+**string**
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/csv, application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 <a id="exportcollectionitems"></a>
 # **ExportCollectionItems**
 > string ExportCollectionItems (long applicationId, long campaignId, long collectionId)
@@ -2726,7 +2770,7 @@ Returns all the defined additional costs for the account.
 
 Get Application
 
-Get the application specified by the ID.
+Get the Application specified by the ID.
 
 
 ### Parameters
@@ -2792,6 +2836,44 @@ Display the health of the Application and show the last time the Application was
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+<a id="getapplicationcartitemfilterexpression"></a>
+# **GetApplicationCartItemFilterExpression**
+> ApplicationCIFExpression GetApplicationCartItemFilterExpression (long applicationId, long cartItemFilterId, long expressionId)
+
+Get Application cart item filter expression
+
+Get an Application cart item filter expression for a specific Application.
+
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **applicationId** | **long** | The ID of the Application. It is displayed in your Talon.One deployment URL. |  |
+| **cartItemFilterId** | **long** | The ID of the Application cart item filter. You can get this ID with the [List Application cart item filters](https://docs.talon.one/management-api#tag/Applications/operation/listApplicationCartItemFilters) endpoint. |  |
+| **expressionId** | **long** | The ID of the Application cart item filter expression. |  |
+
+### Return type
+
+[**ApplicationCIFExpression**](ApplicationCIFExpression.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ok |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 <a id="getapplicationcustomer"></a>
 # **GetApplicationCustomer**
 > ApplicationCustomer GetApplicationCustomer (long applicationId, long customerId)
@@ -2847,7 +2929,7 @@ List the friends referred by the specified customer profile in this Application.
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 1000] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
 | **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [optional]  |
-| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | [optional]  |
+| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | [optional]  |
 
 ### Return type
 
@@ -2887,7 +2969,7 @@ List all the customers of the specified application.
 | **integrationId** | **string** | Filter results performing an exact matching against the profile integration identifier. | [optional]  |
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 1000] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
-| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | [optional]  |
+| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | [optional]  |
 
 ### Return type
 
@@ -2927,7 +3009,7 @@ Get a list of the application customers matching the provided criteria.  The mat
 | **customerProfileSearchQuery** | [**CustomerProfileSearchQuery**](CustomerProfileSearchQuery.md) | body |  |
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 1000] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
-| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | [optional]  |
+| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | [optional]  |
 
 ### Return type
 
@@ -3131,7 +3213,7 @@ List all the sessions of the specified Application.
 
 List Applications
 
-List all applications in the current account.
+List all the Applications in the current account.
 
 
 ### Parameters
@@ -3299,7 +3381,7 @@ Get all audiences created in the account. To create an audience, use [Create aud
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 1000] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
 | **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [optional]  |
-| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | [optional]  |
+| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | [optional]  |
 
 ### Return type
 
@@ -3666,7 +3748,7 @@ Retrieve the audit logs displayed in **Accounts > Audit logs**.
 | **userId** | **long** | Filter results by user ID. | [optional]  |
 | **createdBefore** | **DateTime** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | [optional]  |
 | **createdAfter** | **DateTime** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | [optional]  |
-| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | [optional]  |
+| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | [optional]  |
 | **managementKeyId** | **long** | Filter results that match the given management key ID. | [optional]  |
 | **includeOld** | **bool** | When this flag is set to false, the state without the change will not be returned. The default value is true. | [optional]  |
 
@@ -5598,7 +5680,7 @@ List account-level collections in the account.
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 1000] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
 | **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [optional]  |
-| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | [optional]  |
+| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | [optional]  |
 | **name** | **string** | Filter by collection name. | [optional]  |
 
 ### Return type
@@ -5697,6 +5779,45 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+<a id="listapplicationcartitemfilters"></a>
+# **ListApplicationCartItemFilters**
+> ListApplicationCartItemFilters200Response ListApplicationCartItemFilters (long applicationId, long pageSize = null, long skip = null, string title = null)
+
+List Application cart item filters
+
+Return all the Application cart item filters for a specific Application.
+
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **applicationId** | **long** | The ID of the Application. It is displayed in your Talon.One deployment URL. |  |
+| **pageSize** | **long** | The number of items in the response. | [optional] [default to 50] |
+| **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
+| **title** | **string** | Filter by the display name of the Application cart item filter in the Application.  **Note**: If no &#x60;title&#x60; is provided, all the Application cart item filters in the Application are returned.  | [optional]  |
+
+### Return type
+
+[**ListApplicationCartItemFilters200Response**](ListApplicationCartItemFilters200Response.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 <a id="listcampaignstorebudgetlimits"></a>
 # **ListCampaignStoreBudgetLimits**
 > ListCampaignStoreBudgetLimits200Response ListCampaignStoreBudgetLimits (long applicationId, long campaignId, string action = null, string period = null)
@@ -5755,7 +5876,7 @@ Return a paginated list of cart items in the given catalog.
 | **catalogId** | **long** | The ID of the catalog. You can find the ID in the Campaign Manager in **Account** &gt; **Tools** &gt; **Cart item catalogs**. |  |
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 1000] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
-| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | [optional]  |
+| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | [optional]  |
 | **sku** | [**List&lt;string&gt;**](string.md) | Filter results by one or more SKUs. Must be exact match. | [optional]  |
 | **productNames** | [**List&lt;string&gt;**](string.md) | Filter results by one or more product names. Must be exact match. | [optional]  |
 
@@ -5798,7 +5919,7 @@ List collections in a given campaign.
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 1000] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
 | **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [optional]  |
-| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | [optional]  |
+| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | [optional]  |
 | **name** | **string** | Filter by collection name. | [optional]  |
 
 ### Return type
@@ -5840,7 +5961,7 @@ List campaign-level collections from all campaigns in a given Application.
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 1000] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
 | **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [optional]  |
-| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | [optional]  |
+| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | [optional]  |
 | **name** | **string** | Filter by collection name. | [optional]  |
 
 ### Return type
@@ -5921,7 +6042,7 @@ List all stores for a specific Application.
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 1000] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
 | **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [optional]  |
-| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | [optional]  |
+| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | [optional]  |
 | **campaignId** | **decimal** | Filter results by campaign ID. | [optional]  |
 | **name** | **string** | The name of the store. | [optional]  |
 | **integrationId** | **string** | The integration ID of the store. | [optional]  |

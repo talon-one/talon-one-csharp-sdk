@@ -424,6 +424,27 @@ namespace TalonOneSdk.Model
             if (!id.IsSet)
                 throw new ArgumentException("Property is required for class CampaignEvaluationGroup.", nameof(id));
 
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CampaignEvaluationGroup.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignEvaluationGroup.");
+
+            if (parentId.IsSet && parentId.Value == null)
+                throw new ArgumentNullException(nameof(parentId), "Property is not nullable for class CampaignEvaluationGroup.");
+
+            if (evaluationMode.IsSet && evaluationMode.Value == null)
+                throw new ArgumentNullException(nameof(evaluationMode), "Property is not nullable for class CampaignEvaluationGroup.");
+
+            if (evaluationScope.IsSet && evaluationScope.Value == null)
+                throw new ArgumentNullException(nameof(evaluationScope), "Property is not nullable for class CampaignEvaluationGroup.");
+
+            if (locked.IsSet && locked.Value == null)
+                throw new ArgumentNullException(nameof(locked), "Property is not nullable for class CampaignEvaluationGroup.");
+
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignEvaluationGroup.");
+
             return new CampaignEvaluationGroup(applicationId.Value.Value, name.Value, parentId.Value.Value, evaluationMode.Value.Value, evaluationScope.Value.Value, locked.Value.Value, id.Value.Value, description);
         }
 
@@ -453,9 +474,6 @@ namespace TalonOneSdk.Model
         {
             if (campaignEvaluationGroup.Name == null)
                 throw new ArgumentNullException(nameof(campaignEvaluationGroup.Name), "Property is required for class CampaignEvaluationGroup.");
-
-            if (campaignEvaluationGroup.DescriptionOption.IsSet && campaignEvaluationGroup.Description == null)
-                throw new ArgumentNullException(nameof(campaignEvaluationGroup.Description), "Property is required for class CampaignEvaluationGroup.");
 
             writer.WriteNumber("applicationId", campaignEvaluationGroup.ApplicationId);
 

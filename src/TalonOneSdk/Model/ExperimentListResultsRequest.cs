@@ -122,6 +122,9 @@ namespace TalonOneSdk.Model
             if (!experimentIds.IsSet)
                 throw new ArgumentException("Property is required for class ExperimentListResultsRequest.", nameof(experimentIds));
 
+            if (experimentIds.IsSet && experimentIds.Value == null)
+                throw new ArgumentNullException(nameof(experimentIds), "Property is not nullable for class ExperimentListResultsRequest.");
+
             return new ExperimentListResultsRequest(experimentIds.Value);
         }
 

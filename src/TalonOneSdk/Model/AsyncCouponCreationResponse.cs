@@ -124,6 +124,9 @@ namespace TalonOneSdk.Model
             if (!batchId.IsSet)
                 throw new ArgumentException("Property is required for class AsyncCouponCreationResponse.", nameof(batchId));
 
+            if (batchId.IsSet && batchId.Value == null)
+                throw new ArgumentNullException(nameof(batchId), "Property is not nullable for class AsyncCouponCreationResponse.");
+
             return new AsyncCouponCreationResponse(batchId.Value);
         }
 

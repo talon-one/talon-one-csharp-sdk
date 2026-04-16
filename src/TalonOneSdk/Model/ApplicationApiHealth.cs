@@ -257,6 +257,12 @@ namespace TalonOneSdk.Model
             if (!lastUsed.IsSet)
                 throw new ArgumentException("Property is required for class ApplicationApiHealth.", nameof(lastUsed));
 
+            if (summary.IsSet && summary.Value == null)
+                throw new ArgumentNullException(nameof(summary), "Property is not nullable for class ApplicationApiHealth.");
+
+            if (lastUsed.IsSet && lastUsed.Value == null)
+                throw new ArgumentNullException(nameof(lastUsed), "Property is not nullable for class ApplicationApiHealth.");
+
             return new ApplicationApiHealth(summary.Value.Value, lastUsed.Value.Value);
         }
 

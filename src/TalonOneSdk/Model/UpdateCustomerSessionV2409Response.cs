@@ -168,9 +168,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (statusCode.IsSet && statusCode.Value == null)
-                throw new ArgumentNullException(nameof(statusCode), "Property is not nullable for class UpdateCustomerSessionV2409Response.");
-
             return new UpdateCustomerSessionV2409Response(message, errors, statusCode);
         }
 
@@ -198,12 +195,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateCustomerSessionV2409Response updateCustomerSessionV2409Response, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateCustomerSessionV2409Response.MessageOption.IsSet && updateCustomerSessionV2409Response.Message == null)
-                throw new ArgumentNullException(nameof(updateCustomerSessionV2409Response.Message), "Property is required for class UpdateCustomerSessionV2409Response.");
-
-            if (updateCustomerSessionV2409Response.ErrorsOption.IsSet && updateCustomerSessionV2409Response.Errors == null)
-                throw new ArgumentNullException(nameof(updateCustomerSessionV2409Response.Errors), "Property is required for class UpdateCustomerSessionV2409Response.");
-
             if (updateCustomerSessionV2409Response.MessageOption.IsSet)
                 writer.WriteString("message", updateCustomerSessionV2409Response.Message);
 

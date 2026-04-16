@@ -197,6 +197,7 @@ docs/models/CreateAchievementV2.md
 docs/models/CreateApplicationAPIKey.md
 docs/models/CreateCouponData.md
 docs/models/CreateCoupons200Response.md
+docs/models/CreateMCPKey.md
 docs/models/CreateManagementKey.md
 docs/models/CreateReferralsForMultipleAdvocates201Response.md
 docs/models/CreateTemplateCampaign.md
@@ -249,10 +250,16 @@ docs/models/ExperimentListResults.md
 docs/models/ExperimentListResultsRequest.md
 docs/models/ExperimentResult.md
 docs/models/ExperimentResults.md
+docs/models/ExperimentSegmentInsight.md
+docs/models/ExperimentSegmentInsightMetric.md
+docs/models/ExperimentSegmentInsightVariant.md
+docs/models/ExperimentSegmentInsights.md
 docs/models/ExperimentVariant.md
 docs/models/ExperimentVariantAllocation.md
 docs/models/ExperimentVariantResult.md
 docs/models/ExperimentVariantResultConfidence.md
+docs/models/ExperimentVerdict.md
+docs/models/ExperimentVerdictResponse.md
 docs/models/ExpiringCardPointsData.md
 docs/models/ExpiringCardPointsNotification.md
 docs/models/ExpiringCouponsData.md
@@ -347,6 +354,7 @@ docs/models/IntegrationEventV2Request.md
 docs/models/IntegrationEventV2Response.md
 docs/models/IntegrationEventV3Request.md
 docs/models/IntegrationEventV3Response.md
+docs/models/IntegrationGetAllCampaigns200Response.md
 docs/models/IntegrationHubConfig.md
 docs/models/IntegrationHubEventPayloadCouponBasedNotifications.md
 docs/models/IntegrationHubEventPayloadCouponBasedNotificationsLimits.md
@@ -384,6 +392,7 @@ docs/models/LimitCounter.md
 docs/models/ListAccountCollections200Response.md
 docs/models/ListAchievements200Response.md
 docs/models/ListAllRolesV2200Response.md
+docs/models/ListApplicationCartItemFilters200Response.md
 docs/models/ListCampaignStoreBudgetLimits200Response.md
 docs/models/ListCampaignStoreBudgets.md
 docs/models/ListCampaignStoreBudgetsStore.md
@@ -417,6 +426,7 @@ docs/models/LoyaltyProgramLedgers.md
 docs/models/LoyaltyProgramTransaction.md
 docs/models/LoyaltySubLedger.md
 docs/models/LoyaltyTier.md
+docs/models/MCPKey.md
 docs/models/ManagementKey.md
 docs/models/ManagerConfig.md
 docs/models/MessageLogEntries.md
@@ -478,6 +488,7 @@ docs/models/NewInvitation.md
 docs/models/NewInviteEmail.md
 docs/models/NewLoyaltyProgram.md
 docs/models/NewLoyaltyTier.md
+docs/models/NewMCPKey.md
 docs/models/NewManagementKey.md
 docs/models/NewMessageTest.md
 docs/models/NewMultipleAudiencesItem.md
@@ -492,6 +503,7 @@ docs/models/NewReferral.md
 docs/models/NewReferralsForMultipleAdvocates.md
 docs/models/NewReturn.md
 docs/models/NewRevisionVersion.md
+docs/models/NewReward.md
 docs/models/NewRole.md
 docs/models/NewRoleV2.md
 docs/models/NewRuleset.md
@@ -560,6 +572,7 @@ docs/models/Revision.md
 docs/models/RevisionActivation.md
 docs/models/RevisionActivationRequest.md
 docs/models/RevisionVersion.md
+docs/models/Reward.md
 docs/models/Role.md
 docs/models/RoleAssign.md
 docs/models/RoleMembership.md
@@ -887,6 +900,7 @@ src/TalonOneSdk.Test/Model/CreateAchievementV2Tests.cs
 src/TalonOneSdk.Test/Model/CreateApplicationAPIKeyTests.cs
 src/TalonOneSdk.Test/Model/CreateCouponDataTests.cs
 src/TalonOneSdk.Test/Model/CreateCoupons200ResponseTests.cs
+src/TalonOneSdk.Test/Model/CreateMCPKeyTests.cs
 src/TalonOneSdk.Test/Model/CreateManagementKeyTests.cs
 src/TalonOneSdk.Test/Model/CreateReferralsForMultipleAdvocates201ResponseTests.cs
 src/TalonOneSdk.Test/Model/CreateTemplateCampaignResponseTests.cs
@@ -938,11 +952,17 @@ src/TalonOneSdk.Test/Model/ExperimentListResultsRequestTests.cs
 src/TalonOneSdk.Test/Model/ExperimentListResultsTests.cs
 src/TalonOneSdk.Test/Model/ExperimentResultTests.cs
 src/TalonOneSdk.Test/Model/ExperimentResultsTests.cs
+src/TalonOneSdk.Test/Model/ExperimentSegmentInsightMetricTests.cs
+src/TalonOneSdk.Test/Model/ExperimentSegmentInsightTests.cs
+src/TalonOneSdk.Test/Model/ExperimentSegmentInsightVariantTests.cs
+src/TalonOneSdk.Test/Model/ExperimentSegmentInsightsTests.cs
 src/TalonOneSdk.Test/Model/ExperimentTests.cs
 src/TalonOneSdk.Test/Model/ExperimentVariantAllocationTests.cs
 src/TalonOneSdk.Test/Model/ExperimentVariantResultConfidenceTests.cs
 src/TalonOneSdk.Test/Model/ExperimentVariantResultTests.cs
 src/TalonOneSdk.Test/Model/ExperimentVariantTests.cs
+src/TalonOneSdk.Test/Model/ExperimentVerdictResponseTests.cs
+src/TalonOneSdk.Test/Model/ExperimentVerdictTests.cs
 src/TalonOneSdk.Test/Model/ExpiringCardPointsDataTests.cs
 src/TalonOneSdk.Test/Model/ExpiringCardPointsNotificationTests.cs
 src/TalonOneSdk.Test/Model/ExpiringCouponsDataTests.cs
@@ -1037,6 +1057,7 @@ src/TalonOneSdk.Test/Model/IntegrationEventV2RequestTests.cs
 src/TalonOneSdk.Test/Model/IntegrationEventV2ResponseTests.cs
 src/TalonOneSdk.Test/Model/IntegrationEventV3RequestTests.cs
 src/TalonOneSdk.Test/Model/IntegrationEventV3ResponseTests.cs
+src/TalonOneSdk.Test/Model/IntegrationGetAllCampaigns200ResponseTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubConfigTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubEventPayloadCouponBasedNotificationsLimitsTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubEventPayloadCouponBasedNotificationsTests.cs
@@ -1074,6 +1095,7 @@ src/TalonOneSdk.Test/Model/LimitCounterTests.cs
 src/TalonOneSdk.Test/Model/ListAccountCollections200ResponseTests.cs
 src/TalonOneSdk.Test/Model/ListAchievements200ResponseTests.cs
 src/TalonOneSdk.Test/Model/ListAllRolesV2200ResponseTests.cs
+src/TalonOneSdk.Test/Model/ListApplicationCartItemFilters200ResponseTests.cs
 src/TalonOneSdk.Test/Model/ListCampaignStoreBudgetLimits200ResponseTests.cs
 src/TalonOneSdk.Test/Model/ListCampaignStoreBudgetsStoreTests.cs
 src/TalonOneSdk.Test/Model/ListCampaignStoreBudgetsTests.cs
@@ -1107,6 +1129,7 @@ src/TalonOneSdk.Test/Model/LoyaltyProgramTransactionTests.cs
 src/TalonOneSdk.Test/Model/LoyaltySubLedgerTests.cs
 src/TalonOneSdk.Test/Model/LoyaltyTests.cs
 src/TalonOneSdk.Test/Model/LoyaltyTierTests.cs
+src/TalonOneSdk.Test/Model/MCPKeyTests.cs
 src/TalonOneSdk.Test/Model/ManagementKeyTests.cs
 src/TalonOneSdk.Test/Model/ManagerConfigTests.cs
 src/TalonOneSdk.Test/Model/MessageLogEntriesTests.cs
@@ -1168,6 +1191,7 @@ src/TalonOneSdk.Test/Model/NewInvitationTests.cs
 src/TalonOneSdk.Test/Model/NewInviteEmailTests.cs
 src/TalonOneSdk.Test/Model/NewLoyaltyProgramTests.cs
 src/TalonOneSdk.Test/Model/NewLoyaltyTierTests.cs
+src/TalonOneSdk.Test/Model/NewMCPKeyTests.cs
 src/TalonOneSdk.Test/Model/NewManagementKeyTests.cs
 src/TalonOneSdk.Test/Model/NewMessageTestTests.cs
 src/TalonOneSdk.Test/Model/NewMultipleAudiencesItemTests.cs
@@ -1182,6 +1206,7 @@ src/TalonOneSdk.Test/Model/NewReferralTests.cs
 src/TalonOneSdk.Test/Model/NewReferralsForMultipleAdvocatesTests.cs
 src/TalonOneSdk.Test/Model/NewReturnTests.cs
 src/TalonOneSdk.Test/Model/NewRevisionVersionTests.cs
+src/TalonOneSdk.Test/Model/NewRewardTests.cs
 src/TalonOneSdk.Test/Model/NewRoleTests.cs
 src/TalonOneSdk.Test/Model/NewRoleV2Tests.cs
 src/TalonOneSdk.Test/Model/NewRulesetTests.cs
@@ -1250,6 +1275,7 @@ src/TalonOneSdk.Test/Model/RevisionActivationRequestTests.cs
 src/TalonOneSdk.Test/Model/RevisionActivationTests.cs
 src/TalonOneSdk.Test/Model/RevisionTests.cs
 src/TalonOneSdk.Test/Model/RevisionVersionTests.cs
+src/TalonOneSdk.Test/Model/RewardTests.cs
 src/TalonOneSdk.Test/Model/RoleAssignTests.cs
 src/TalonOneSdk.Test/Model/RoleMembershipTests.cs
 src/TalonOneSdk.Test/Model/RoleTests.cs
@@ -1597,6 +1623,7 @@ src/TalonOneSdk/Model/CreateAchievementV2.cs
 src/TalonOneSdk/Model/CreateApplicationAPIKey.cs
 src/TalonOneSdk/Model/CreateCouponData.cs
 src/TalonOneSdk/Model/CreateCoupons200Response.cs
+src/TalonOneSdk/Model/CreateMCPKey.cs
 src/TalonOneSdk/Model/CreateManagementKey.cs
 src/TalonOneSdk/Model/CreateReferralsForMultipleAdvocates201Response.cs
 src/TalonOneSdk/Model/CreateTemplateCampaign.cs
@@ -1649,10 +1676,16 @@ src/TalonOneSdk/Model/ExperimentListResults.cs
 src/TalonOneSdk/Model/ExperimentListResultsRequest.cs
 src/TalonOneSdk/Model/ExperimentResult.cs
 src/TalonOneSdk/Model/ExperimentResults.cs
+src/TalonOneSdk/Model/ExperimentSegmentInsight.cs
+src/TalonOneSdk/Model/ExperimentSegmentInsightMetric.cs
+src/TalonOneSdk/Model/ExperimentSegmentInsightVariant.cs
+src/TalonOneSdk/Model/ExperimentSegmentInsights.cs
 src/TalonOneSdk/Model/ExperimentVariant.cs
 src/TalonOneSdk/Model/ExperimentVariantAllocation.cs
 src/TalonOneSdk/Model/ExperimentVariantResult.cs
 src/TalonOneSdk/Model/ExperimentVariantResultConfidence.cs
+src/TalonOneSdk/Model/ExperimentVerdict.cs
+src/TalonOneSdk/Model/ExperimentVerdictResponse.cs
 src/TalonOneSdk/Model/ExpiringCardPointsData.cs
 src/TalonOneSdk/Model/ExpiringCardPointsNotification.cs
 src/TalonOneSdk/Model/ExpiringCouponsData.cs
@@ -1747,6 +1780,7 @@ src/TalonOneSdk/Model/IntegrationEventV2Request.cs
 src/TalonOneSdk/Model/IntegrationEventV2Response.cs
 src/TalonOneSdk/Model/IntegrationEventV3Request.cs
 src/TalonOneSdk/Model/IntegrationEventV3Response.cs
+src/TalonOneSdk/Model/IntegrationGetAllCampaigns200Response.cs
 src/TalonOneSdk/Model/IntegrationHubConfig.cs
 src/TalonOneSdk/Model/IntegrationHubEventPayloadCouponBasedNotifications.cs
 src/TalonOneSdk/Model/IntegrationHubEventPayloadCouponBasedNotificationsLimits.cs
@@ -1784,6 +1818,7 @@ src/TalonOneSdk/Model/LimitCounter.cs
 src/TalonOneSdk/Model/ListAccountCollections200Response.cs
 src/TalonOneSdk/Model/ListAchievements200Response.cs
 src/TalonOneSdk/Model/ListAllRolesV2200Response.cs
+src/TalonOneSdk/Model/ListApplicationCartItemFilters200Response.cs
 src/TalonOneSdk/Model/ListCampaignStoreBudgetLimits200Response.cs
 src/TalonOneSdk/Model/ListCampaignStoreBudgets.cs
 src/TalonOneSdk/Model/ListCampaignStoreBudgetsStore.cs
@@ -1817,6 +1852,7 @@ src/TalonOneSdk/Model/LoyaltyProgramLedgers.cs
 src/TalonOneSdk/Model/LoyaltyProgramTransaction.cs
 src/TalonOneSdk/Model/LoyaltySubLedger.cs
 src/TalonOneSdk/Model/LoyaltyTier.cs
+src/TalonOneSdk/Model/MCPKey.cs
 src/TalonOneSdk/Model/ManagementKey.cs
 src/TalonOneSdk/Model/ManagerConfig.cs
 src/TalonOneSdk/Model/MessageLogEntries.cs
@@ -1878,6 +1914,7 @@ src/TalonOneSdk/Model/NewInvitation.cs
 src/TalonOneSdk/Model/NewInviteEmail.cs
 src/TalonOneSdk/Model/NewLoyaltyProgram.cs
 src/TalonOneSdk/Model/NewLoyaltyTier.cs
+src/TalonOneSdk/Model/NewMCPKey.cs
 src/TalonOneSdk/Model/NewManagementKey.cs
 src/TalonOneSdk/Model/NewMessageTest.cs
 src/TalonOneSdk/Model/NewMultipleAudiencesItem.cs
@@ -1892,6 +1929,7 @@ src/TalonOneSdk/Model/NewReferral.cs
 src/TalonOneSdk/Model/NewReferralsForMultipleAdvocates.cs
 src/TalonOneSdk/Model/NewReturn.cs
 src/TalonOneSdk/Model/NewRevisionVersion.cs
+src/TalonOneSdk/Model/NewReward.cs
 src/TalonOneSdk/Model/NewRole.cs
 src/TalonOneSdk/Model/NewRoleV2.cs
 src/TalonOneSdk/Model/NewRuleset.cs
@@ -1960,6 +1998,7 @@ src/TalonOneSdk/Model/Revision.cs
 src/TalonOneSdk/Model/RevisionActivation.cs
 src/TalonOneSdk/Model/RevisionActivationRequest.cs
 src/TalonOneSdk/Model/RevisionVersion.cs
+src/TalonOneSdk/Model/Reward.cs
 src/TalonOneSdk/Model/Role.cs
 src/TalonOneSdk/Model/RoleAssign.cs
 src/TalonOneSdk/Model/RoleMembership.cs

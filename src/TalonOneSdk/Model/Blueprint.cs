@@ -516,11 +516,35 @@ namespace TalonOneSdk.Model
             if (!createdBy.IsSet)
                 throw new ArgumentException("Property is required for class Blueprint.", nameof(createdBy));
 
-            if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class Blueprint.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Blueprint.");
 
-            if (modifiedBy.IsSet && modifiedBy.Value == null)
-                throw new ArgumentNullException(nameof(modifiedBy), "Property is not nullable for class Blueprint.");
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Blueprint.");
+
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class Blueprint.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class Blueprint.");
+
+            if (category.IsSet && category.Value == null)
+                throw new ArgumentNullException(nameof(category), "Property is not nullable for class Blueprint.");
+
+            if (source.IsSet && source.Value == null)
+                throw new ArgumentNullException(nameof(source), "Property is not nullable for class Blueprint.");
+
+            if (rules.IsSet && rules.Value == null)
+                throw new ArgumentNullException(nameof(rules), "Property is not nullable for class Blueprint.");
+
+            if (cartItemFilters.IsSet && cartItemFilters.Value == null)
+                throw new ArgumentNullException(nameof(cartItemFilters), "Property is not nullable for class Blueprint.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Blueprint.");
+
+            if (createdBy.IsSet && createdBy.Value == null)
+                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class Blueprint.");
 
             return new Blueprint(id.Value.Value, accountId.Value.Value, applicationId.Value.Value, title.Value, category.Value.Value, source.Value.Value, rules.Value, cartItemFilters.Value, created.Value.Value, createdBy.Value.Value, description, modified, modifiedBy);
         }
@@ -557,9 +581,6 @@ namespace TalonOneSdk.Model
 
             if (blueprint.CartItemFilters == null)
                 throw new ArgumentNullException(nameof(blueprint.CartItemFilters), "Property is required for class Blueprint.");
-
-            if (blueprint.DescriptionOption.IsSet && blueprint.Description == null)
-                throw new ArgumentNullException(nameof(blueprint.Description), "Property is required for class Blueprint.");
 
             writer.WriteNumber("id", blueprint.Id);
 

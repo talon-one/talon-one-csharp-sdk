@@ -288,6 +288,36 @@ namespace TalonOneSdk.Model
             if (!earnedPoints.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyDashboardData.", nameof(earnedPoints));
 
+            if (date.IsSet && date.Value == null)
+                throw new ArgumentNullException(nameof(date), "Property is not nullable for class LoyaltyDashboardData.");
+
+            if (totalActivePoints.IsSet && totalActivePoints.Value == null)
+                throw new ArgumentNullException(nameof(totalActivePoints), "Property is not nullable for class LoyaltyDashboardData.");
+
+            if (totalPendingPoints.IsSet && totalPendingPoints.Value == null)
+                throw new ArgumentNullException(nameof(totalPendingPoints), "Property is not nullable for class LoyaltyDashboardData.");
+
+            if (totalSpentPoints.IsSet && totalSpentPoints.Value == null)
+                throw new ArgumentNullException(nameof(totalSpentPoints), "Property is not nullable for class LoyaltyDashboardData.");
+
+            if (totalExpiredPoints.IsSet && totalExpiredPoints.Value == null)
+                throw new ArgumentNullException(nameof(totalExpiredPoints), "Property is not nullable for class LoyaltyDashboardData.");
+
+            if (totalNegativePoints.IsSet && totalNegativePoints.Value == null)
+                throw new ArgumentNullException(nameof(totalNegativePoints), "Property is not nullable for class LoyaltyDashboardData.");
+
+            if (totalMembers.IsSet && totalMembers.Value == null)
+                throw new ArgumentNullException(nameof(totalMembers), "Property is not nullable for class LoyaltyDashboardData.");
+
+            if (newMembers.IsSet && newMembers.Value == null)
+                throw new ArgumentNullException(nameof(newMembers), "Property is not nullable for class LoyaltyDashboardData.");
+
+            if (spentPoints.IsSet && spentPoints.Value == null)
+                throw new ArgumentNullException(nameof(spentPoints), "Property is not nullable for class LoyaltyDashboardData.");
+
+            if (earnedPoints.IsSet && earnedPoints.Value == null)
+                throw new ArgumentNullException(nameof(earnedPoints), "Property is not nullable for class LoyaltyDashboardData.");
+
             return new LoyaltyDashboardData(date.Value.Value, totalActivePoints.Value.Value, totalPendingPoints.Value.Value, totalSpentPoints.Value.Value, totalExpiredPoints.Value.Value, totalNegativePoints.Value.Value, totalMembers.Value.Value, newMembers.Value.Value, spentPoints.Value, earnedPoints.Value);
         }
 

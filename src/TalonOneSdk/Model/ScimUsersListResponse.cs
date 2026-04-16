@@ -164,8 +164,8 @@ namespace TalonOneSdk.Model
             if (!resources.IsSet)
                 throw new ArgumentException("Property is required for class ScimUsersListResponse.", nameof(resources));
 
-            if (totalResults.IsSet && totalResults.Value == null)
-                throw new ArgumentNullException(nameof(totalResults), "Property is not nullable for class ScimUsersListResponse.");
+            if (resources.IsSet && resources.Value == null)
+                throw new ArgumentNullException(nameof(resources), "Property is not nullable for class ScimUsersListResponse.");
 
             return new ScimUsersListResponse(resources.Value, schemas, totalResults);
         }
@@ -196,9 +196,6 @@ namespace TalonOneSdk.Model
         {
             if (scimUsersListResponse.Resources == null)
                 throw new ArgumentNullException(nameof(scimUsersListResponse.Resources), "Property is required for class ScimUsersListResponse.");
-
-            if (scimUsersListResponse.SchemasOption.IsSet && scimUsersListResponse.Schemas == null)
-                throw new ArgumentNullException(nameof(scimUsersListResponse.Schemas), "Property is required for class ScimUsersListResponse.");
 
             writer.WritePropertyName("Resources");
             JsonSerializer.Serialize(writer, scimUsersListResponse.Resources, jsonSerializerOptions);

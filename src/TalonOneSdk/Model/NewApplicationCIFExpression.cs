@@ -172,12 +172,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (cartItemFilterId.IsSet && cartItemFilterId.Value == null)
-                throw new ArgumentNullException(nameof(cartItemFilterId), "Property is not nullable for class NewApplicationCIFExpression.");
-
-            if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class NewApplicationCIFExpression.");
-
             return new NewApplicationCIFExpression(cartItemFilterId, createdBy, expression);
         }
 
@@ -205,9 +199,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewApplicationCIFExpression newApplicationCIFExpression, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (newApplicationCIFExpression.ExpressionOption.IsSet && newApplicationCIFExpression.Expression == null)
-                throw new ArgumentNullException(nameof(newApplicationCIFExpression.Expression), "Property is required for class NewApplicationCIFExpression.");
-
             if (newApplicationCIFExpression.CartItemFilterIdOption.IsSet)
                 writer.WriteNumber("cartItemFilterId", newApplicationCIFExpression.CartItemFilterIdOption.Value.Value);
 

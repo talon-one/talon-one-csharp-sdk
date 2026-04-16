@@ -458,26 +458,23 @@ namespace TalonOneSdk.Model
             if (!transactionUUID.IsSet)
                 throw new ArgumentException("Property is required for class AddLoyaltyPointsEffectProps.", nameof(transactionUUID));
 
-            if (desiredValue.IsSet && desiredValue.Value == null)
-                throw new ArgumentNullException(nameof(desiredValue), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
+            if (programId.IsSet && programId.Value == null)
+                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
 
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
+            if (subLedgerId.IsSet && subLedgerId.Value == null)
+                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
 
-            if (cartItemPosition.IsSet && cartItemPosition.Value == null)
-                throw new ArgumentNullException(nameof(cartItemPosition), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
+            if (value.IsSet && value.Value == null)
+                throw new ArgumentNullException(nameof(value), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
 
-            if (cartItemSubPosition.IsSet && cartItemSubPosition.Value == null)
-                throw new ArgumentNullException(nameof(cartItemSubPosition), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
+            if (recipientIntegrationId.IsSet && recipientIntegrationId.Value == null)
+                throw new ArgumentNullException(nameof(recipientIntegrationId), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
 
-            if (bundleIndex.IsSet && bundleIndex.Value == null)
-                throw new ArgumentNullException(nameof(bundleIndex), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
-
-            if (awaitsActivation.IsSet && awaitsActivation.Value == null)
-                throw new ArgumentNullException(nameof(awaitsActivation), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
+            if (transactionUUID.IsSet && transactionUUID.Value == null)
+                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
 
             return new AddLoyaltyPointsEffectProps(name.Value, programId.Value.Value, subLedgerId.Value, value.Value.Value, recipientIntegrationId.Value, transactionUUID.Value, desiredValue, startDate, expiryDate, cartItemPosition, cartItemSubPosition, cardIdentifier, bundleIndex, bundleName, awaitsActivation, validityDuration);
         }
@@ -517,15 +514,6 @@ namespace TalonOneSdk.Model
 
             if (addLoyaltyPointsEffectProps.TransactionUUID == null)
                 throw new ArgumentNullException(nameof(addLoyaltyPointsEffectProps.TransactionUUID), "Property is required for class AddLoyaltyPointsEffectProps.");
-
-            if (addLoyaltyPointsEffectProps.CardIdentifierOption.IsSet && addLoyaltyPointsEffectProps.CardIdentifier == null)
-                throw new ArgumentNullException(nameof(addLoyaltyPointsEffectProps.CardIdentifier), "Property is required for class AddLoyaltyPointsEffectProps.");
-
-            if (addLoyaltyPointsEffectProps.BundleNameOption.IsSet && addLoyaltyPointsEffectProps.BundleName == null)
-                throw new ArgumentNullException(nameof(addLoyaltyPointsEffectProps.BundleName), "Property is required for class AddLoyaltyPointsEffectProps.");
-
-            if (addLoyaltyPointsEffectProps.ValidityDurationOption.IsSet && addLoyaltyPointsEffectProps.ValidityDuration == null)
-                throw new ArgumentNullException(nameof(addLoyaltyPointsEffectProps.ValidityDuration), "Property is required for class AddLoyaltyPointsEffectProps.");
 
             writer.WriteString("name", addLoyaltyPointsEffectProps.Name);
 

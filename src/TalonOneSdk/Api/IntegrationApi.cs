@@ -702,6 +702,41 @@ namespace TalonOneSdk.Api
         Task<IGetReservedCustomersApiResponse> GetReservedCustomersOrDefaultAsync(string couponValue, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// List all running campaigns
+        /// </summary>
+        /// <remarks>
+        /// Retrieve all running campaigns for the specified Application. You can filter the results by providing specific campaign IDs or a range of  start and end dates. 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="campaignIds">Filter by one or more campaign IDs, separated by a comma.  **Note:** If no campaigns are specified, data for all the campaigns in the Application is returned.  (optional)</param>
+        /// <param name="startAfter">Filter results to only include campaigns that start on or after  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="startBefore">Filter results to only include campaigns that start on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="endAfter">Filter results to only include campaigns that end on or after  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="endBefore">Filter results to only include campaigns that end on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationGetAllCampaignsApiResponse"/>&gt;</returns>
+        Task<IIntegrationGetAllCampaignsApiResponse> IntegrationGetAllCampaignsAsync(Option<long> pageSize = default, Option<long> skip = default, Option<List<string>> campaignIds = default, Option<DateTime> startAfter = default, Option<DateTime> startBefore = default, Option<DateTime> endAfter = default, Option<DateTime> endBefore = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List all running campaigns
+        /// </summary>
+        /// <remarks>
+        /// Retrieve all running campaigns for the specified Application. You can filter the results by providing specific campaign IDs or a range of  start and end dates. 
+        /// </remarks>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="campaignIds">Filter by one or more campaign IDs, separated by a comma.  **Note:** If no campaigns are specified, data for all the campaigns in the Application is returned.  (optional)</param>
+        /// <param name="startAfter">Filter results to only include campaigns that start on or after  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="startBefore">Filter results to only include campaigns that start on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="endAfter">Filter results to only include campaigns that end on or after  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="endBefore">Filter results to only include campaigns that end on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationGetAllCampaignsApiResponse"/>&gt;</returns>
+        Task<IIntegrationGetAllCampaignsApiResponse> IntegrationGetAllCampaignsOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<List<string>> campaignIds = default, Option<DateTime> startAfter = default, Option<DateTime> startBefore = default, Option<DateTime> endAfter = default, Option<DateTime> endBefore = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Link customer profile to card
         /// </summary>
         /// <remarks>
@@ -761,9 +796,10 @@ namespace TalonOneSdk.Api
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
         /// <param name="returnIntegrationRequest">body</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  (optional)</param>
+        /// <param name="runRuleEngine">When set to &#x60;true&#x60;, reevaluates the updated session after items are returned. Only reevaluates campaigns where &#x60;reevaluateOnReturn&#x60; is set to &#x60;true&#x60; and which produced an effect when the session was closed.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IReturnCartItemsApiResponse"/>&gt;</returns>
-        Task<IReturnCartItemsApiResponse> ReturnCartItemsAsync(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IReturnCartItemsApiResponse> ReturnCartItemsAsync(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry = default, Option<bool> runRuleEngine = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Return cart items
@@ -774,9 +810,10 @@ namespace TalonOneSdk.Api
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
         /// <param name="returnIntegrationRequest">body</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  (optional)</param>
+        /// <param name="runRuleEngine">When set to &#x60;true&#x60;, reevaluates the updated session after items are returned. Only reevaluates campaigns where &#x60;reevaluateOnReturn&#x60; is set to &#x60;true&#x60; and which produced an effect when the session was closed.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IReturnCartItemsApiResponse"/>&gt;</returns>
-        Task<IReturnCartItemsApiResponse> ReturnCartItemsOrDefaultAsync(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IReturnCartItemsApiResponse> ReturnCartItemsOrDefaultAsync(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry = default, Option<bool> runRuleEngine = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Sync cart item catalog
@@ -1653,6 +1690,36 @@ namespace TalonOneSdk.Api
     }
 
     /// <summary>
+    /// The <see cref="IIntegrationGetAllCampaignsApiResponse"/>
+    /// </summary>
+    public interface IIntegrationGetAllCampaignsApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.IntegrationGetAllCampaigns200Response>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+    }
+
+    /// <summary>
     /// The <see cref="ILinkLoyaltyCardToProfileApiResponse"/>
     /// </summary>
     public interface ILinkLoyaltyCardToProfileApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.LoyaltyCard>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
@@ -2445,6 +2512,26 @@ namespace TalonOneSdk.Api
         internal void ExecuteOnErrorGetReservedCustomers(Exception exception)
         {
             OnErrorGetReservedCustomers?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnIntegrationGetAllCampaigns;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorIntegrationGetAllCampaigns;
+
+        internal void ExecuteOnIntegrationGetAllCampaigns(IntegrationApi.IntegrationGetAllCampaignsApiResponse apiResponse)
+        {
+            OnIntegrationGetAllCampaigns?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorIntegrationGetAllCampaigns(Exception exception)
+        {
+            OnErrorIntegrationGetAllCampaigns?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -11406,6 +11493,430 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
+        partial void FormatIntegrationGetAllCampaigns(ref Option<long> pageSize, ref Option<long> skip, Option<List<string>> campaignIds, ref Option<DateTime> startAfter, ref Option<DateTime> startBefore, ref Option<DateTime> endAfter, ref Option<DateTime> endBefore);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="campaignIds"></param>
+        /// <returns></returns>
+        private void ValidateIntegrationGetAllCampaigns(Option<List<string>> campaignIds)
+        {
+            if (campaignIds.IsSet && campaignIds.Value == null)
+                throw new ArgumentNullException(nameof(campaignIds));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="campaignIds"></param>
+        /// <param name="startAfter"></param>
+        /// <param name="startBefore"></param>
+        /// <param name="endAfter"></param>
+        /// <param name="endBefore"></param>
+        private void AfterIntegrationGetAllCampaignsDefaultImplementation(IIntegrationGetAllCampaignsApiResponse apiResponseLocalVar, Option<long> pageSize, Option<long> skip, Option<List<string>> campaignIds, Option<DateTime> startAfter, Option<DateTime> startBefore, Option<DateTime> endAfter, Option<DateTime> endBefore)
+        {
+            bool suppressDefaultLog = false;
+            AfterIntegrationGetAllCampaigns(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore);
+            if (!suppressDefaultLog)
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="campaignIds"></param>
+        /// <param name="startAfter"></param>
+        /// <param name="startBefore"></param>
+        /// <param name="endAfter"></param>
+        /// <param name="endBefore"></param>
+        partial void AfterIntegrationGetAllCampaigns(ref bool suppressDefaultLog, IIntegrationGetAllCampaignsApiResponse apiResponseLocalVar, Option<long> pageSize, Option<long> skip, Option<List<string>> campaignIds, Option<DateTime> startAfter, Option<DateTime> startBefore, Option<DateTime> endAfter, Option<DateTime> endBefore);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="campaignIds"></param>
+        /// <param name="startAfter"></param>
+        /// <param name="startBefore"></param>
+        /// <param name="endAfter"></param>
+        /// <param name="endBefore"></param>
+        private void OnErrorIntegrationGetAllCampaignsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<long> skip, Option<List<string>> campaignIds, Option<DateTime> startAfter, Option<DateTime> startBefore, Option<DateTime> endAfter, Option<DateTime> endBefore)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorIntegrationGetAllCampaigns(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="campaignIds"></param>
+        /// <param name="startAfter"></param>
+        /// <param name="startBefore"></param>
+        /// <param name="endAfter"></param>
+        /// <param name="endBefore"></param>
+        partial void OnErrorIntegrationGetAllCampaigns(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<long> skip, Option<List<string>> campaignIds, Option<DateTime> startAfter, Option<DateTime> startBefore, Option<DateTime> endAfter, Option<DateTime> endBefore);
+
+        /// <summary>
+        /// List all running campaigns Retrieve all running campaigns for the specified Application. You can filter the results by providing specific campaign IDs or a range of  start and end dates. 
+        /// </summary>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="campaignIds">Filter by one or more campaign IDs, separated by a comma.  **Note:** If no campaigns are specified, data for all the campaigns in the Application is returned.  (optional)</param>
+        /// <param name="startAfter">Filter results to only include campaigns that start on or after  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="startBefore">Filter results to only include campaigns that start on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="endAfter">Filter results to only include campaigns that end on or after  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="endBefore">Filter results to only include campaigns that end on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationGetAllCampaignsApiResponse"/>&gt;</returns>
+        public async Task<IIntegrationGetAllCampaignsApiResponse> IntegrationGetAllCampaignsOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<List<string>> campaignIds = default, Option<DateTime> startAfter = default, Option<DateTime> startBefore = default, Option<DateTime> endAfter = default, Option<DateTime> endBefore = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await IntegrationGetAllCampaignsAsync(pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// List all running campaigns Retrieve all running campaigns for the specified Application. You can filter the results by providing specific campaign IDs or a range of  start and end dates. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="campaignIds">Filter by one or more campaign IDs, separated by a comma.  **Note:** If no campaigns are specified, data for all the campaigns in the Application is returned.  (optional)</param>
+        /// <param name="startAfter">Filter results to only include campaigns that start on or after  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="startBefore">Filter results to only include campaigns that start on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="endAfter">Filter results to only include campaigns that end on or after  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="endBefore">Filter results to only include campaigns that end on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationGetAllCampaignsApiResponse"/>&gt;</returns>
+        public async Task<IIntegrationGetAllCampaignsApiResponse> IntegrationGetAllCampaignsAsync(Option<long> pageSize = default, Option<long> skip = default, Option<List<string>> campaignIds = default, Option<DateTime> startAfter = default, Option<DateTime> startBefore = default, Option<DateTime> endAfter = default, Option<DateTime> endBefore = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateIntegrationGetAllCampaigns(campaignIds);
+
+                FormatIntegrationGetAllCampaigns(ref pageSize, ref skip, campaignIds, ref startAfter, ref startBefore, ref endAfter, ref endBefore);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/integration/campaigns"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/integration/campaigns");
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (pageSize.IsSet)
+                        parseQueryStringLocalVar["pageSize"] = ClientUtils.ParameterToString(pageSize.Value);
+
+                    if (skip.IsSet)
+                        parseQueryStringLocalVar["skip"] = ClientUtils.ParameterToString(skip.Value);
+
+                    if (campaignIds.IsSet)
+                        parseQueryStringLocalVar["campaignIds"] = ClientUtils.ParameterToString(campaignIds.Value);
+
+                    if (startAfter.IsSet)
+                        parseQueryStringLocalVar["startAfter"] = ClientUtils.ParameterToString(startAfter.Value);
+
+                    if (startBefore.IsSet)
+                        parseQueryStringLocalVar["startBefore"] = ClientUtils.ParameterToString(startBefore.Value);
+
+                    if (endAfter.IsSet)
+                        parseQueryStringLocalVar["endAfter"] = ClientUtils.ParameterToString(endAfter.Value);
+
+                    if (endBefore.IsSet)
+                        parseQueryStringLocalVar["endBefore"] = ClientUtils.ParameterToString(endBefore.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("GET");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<IntegrationGetAllCampaignsApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<IntegrationGetAllCampaignsApiResponse>();
+                        IntegrationGetAllCampaignsApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new IntegrationGetAllCampaignsApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/integration/campaigns", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterIntegrationGetAllCampaignsDefaultImplementation(apiResponseLocalVar, pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore);
+
+                        Events.ExecuteOnIntegrationGetAllCampaigns(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorIntegrationGetAllCampaignsDefaultImplementation(e, "/v1/integration/campaigns", uriBuilderLocalVar.Path, pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore);
+                Events.ExecuteOnErrorIntegrationGetAllCampaigns(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="IntegrationGetAllCampaignsApiResponse"/>
+        /// </summary>
+        public partial class IntegrationGetAllCampaignsApiResponse : TalonOneSdk.Client.ApiResponse, IIntegrationGetAllCampaignsApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<IntegrationGetAllCampaignsApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="IntegrationGetAllCampaignsApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public IntegrationGetAllCampaignsApiResponse(ILogger<IntegrationGetAllCampaignsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="IntegrationGetAllCampaignsApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public IntegrationGetAllCampaignsApiResponse(ILogger<IntegrationGetAllCampaignsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.IntegrationGetAllCampaigns200Response Ok()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.IntegrationGetAllCampaigns200Response>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out TalonOneSdk.Model.IntegrationGetAllCampaigns200Response result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryUnauthorized(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsNotFound
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryNotFound(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = NotFound();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
         partial void FormatLinkLoyaltyCardToProfile(ref long loyaltyProgramId, ref string loyaltyCardId, LoyaltyCardRegistration loyaltyCardRegistration);
 
         /// <summary>
@@ -12126,7 +12637,7 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatReturnCartItems(ref string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, ref Option<bool> dry);
+        partial void FormatReturnCartItems(ref string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, ref Option<bool> dry, ref Option<bool> runRuleEngine);
 
         /// <summary>
         /// Validates the request parameters
@@ -12150,10 +12661,11 @@ namespace TalonOneSdk.Api
         /// <param name="customerSessionId"></param>
         /// <param name="returnIntegrationRequest"></param>
         /// <param name="dry"></param>
-        private void AfterReturnCartItemsDefaultImplementation(IReturnCartItemsApiResponse apiResponseLocalVar, string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry)
+        /// <param name="runRuleEngine"></param>
+        private void AfterReturnCartItemsDefaultImplementation(IReturnCartItemsApiResponse apiResponseLocalVar, string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry, Option<bool> runRuleEngine)
         {
             bool suppressDefaultLog = false;
-            AfterReturnCartItems(ref suppressDefaultLog, apiResponseLocalVar, customerSessionId, returnIntegrationRequest, dry);
+            AfterReturnCartItems(ref suppressDefaultLog, apiResponseLocalVar, customerSessionId, returnIntegrationRequest, dry, runRuleEngine);
             if (!suppressDefaultLog)
                 Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -12166,7 +12678,8 @@ namespace TalonOneSdk.Api
         /// <param name="customerSessionId"></param>
         /// <param name="returnIntegrationRequest"></param>
         /// <param name="dry"></param>
-        partial void AfterReturnCartItems(ref bool suppressDefaultLog, IReturnCartItemsApiResponse apiResponseLocalVar, string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry);
+        /// <param name="runRuleEngine"></param>
+        partial void AfterReturnCartItems(ref bool suppressDefaultLog, IReturnCartItemsApiResponse apiResponseLocalVar, string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry, Option<bool> runRuleEngine);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -12177,10 +12690,11 @@ namespace TalonOneSdk.Api
         /// <param name="customerSessionId"></param>
         /// <param name="returnIntegrationRequest"></param>
         /// <param name="dry"></param>
-        private void OnErrorReturnCartItemsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry)
+        /// <param name="runRuleEngine"></param>
+        private void OnErrorReturnCartItemsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry, Option<bool> runRuleEngine)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorReturnCartItems(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, customerSessionId, returnIntegrationRequest, dry);
+            OnErrorReturnCartItems(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, customerSessionId, returnIntegrationRequest, dry, runRuleEngine);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -12195,7 +12709,8 @@ namespace TalonOneSdk.Api
         /// <param name="customerSessionId"></param>
         /// <param name="returnIntegrationRequest"></param>
         /// <param name="dry"></param>
-        partial void OnErrorReturnCartItems(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry);
+        /// <param name="runRuleEngine"></param>
+        partial void OnErrorReturnCartItems(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry, Option<bool> runRuleEngine);
 
         /// <summary>
         /// Return cart items Create a new return request for the specified cart items.  This endpoint automatically changes the session state from &#x60;closed&#x60; to &#x60;partially_returned&#x60;.  &gt; [!note] This will roll back any effects associated with these cart items. &gt; For more information, see [our documentation on session &gt; states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) &gt; and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session).  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Also: &gt; - Requests with the &#x60;Idempotency-Key&#x60; header are logged in the Talon.One access logs. &gt; - Responses for idempotent requests are stored in the database and expire 24 hours after the request is sent. &gt; - Idempotency keys are typically UUID keys and should not exceed 255 characters in length. 
@@ -12203,13 +12718,14 @@ namespace TalonOneSdk.Api
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
         /// <param name="returnIntegrationRequest">body</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  (optional)</param>
+        /// <param name="runRuleEngine">When set to &#x60;true&#x60;, reevaluates the updated session after items are returned. Only reevaluates campaigns where &#x60;reevaluateOnReturn&#x60; is set to &#x60;true&#x60; and which produced an effect when the session was closed.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IReturnCartItemsApiResponse"/>&gt;</returns>
-        public async Task<IReturnCartItemsApiResponse> ReturnCartItemsOrDefaultAsync(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IReturnCartItemsApiResponse> ReturnCartItemsOrDefaultAsync(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry = default, Option<bool> runRuleEngine = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ReturnCartItemsAsync(customerSessionId, returnIntegrationRequest, dry, cancellationToken).ConfigureAwait(false);
+                return await ReturnCartItemsAsync(customerSessionId, returnIntegrationRequest, dry, runRuleEngine, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -12224,9 +12740,10 @@ namespace TalonOneSdk.Api
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
         /// <param name="returnIntegrationRequest">body</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  (optional)</param>
+        /// <param name="runRuleEngine">When set to &#x60;true&#x60;, reevaluates the updated session after items are returned. Only reevaluates campaigns where &#x60;reevaluateOnReturn&#x60; is set to &#x60;true&#x60; and which produced an effect when the session was closed.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IReturnCartItemsApiResponse"/>&gt;</returns>
-        public async Task<IReturnCartItemsApiResponse> ReturnCartItemsAsync(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IReturnCartItemsApiResponse> ReturnCartItemsAsync(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry = default, Option<bool> runRuleEngine = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -12234,7 +12751,7 @@ namespace TalonOneSdk.Api
             {
                 ValidateReturnCartItems(customerSessionId, returnIntegrationRequest);
 
-                FormatReturnCartItems(ref customerSessionId, returnIntegrationRequest, ref dry);
+                FormatReturnCartItems(ref customerSessionId, returnIntegrationRequest, ref dry, ref runRuleEngine);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -12250,6 +12767,9 @@ namespace TalonOneSdk.Api
 
                     if (dry.IsSet)
                         parseQueryStringLocalVar["dry"] = ClientUtils.ParameterToString(dry.Value);
+
+                    if (runRuleEngine.IsSet)
+                        parseQueryStringLocalVar["runRuleEngine"] = ClientUtils.ParameterToString(runRuleEngine.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -12299,7 +12819,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterReturnCartItemsDefaultImplementation(apiResponseLocalVar, customerSessionId, returnIntegrationRequest, dry);
+                        AfterReturnCartItemsDefaultImplementation(apiResponseLocalVar, customerSessionId, returnIntegrationRequest, dry, runRuleEngine);
 
                         Events.ExecuteOnReturnCartItems(apiResponseLocalVar);
 
@@ -12313,7 +12833,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorReturnCartItemsDefaultImplementation(e, "/v2/customer_sessions/{customerSessionId}/returns", uriBuilderLocalVar.Path, customerSessionId, returnIntegrationRequest, dry);
+                OnErrorReturnCartItemsDefaultImplementation(e, "/v2/customer_sessions/{customerSessionId}/returns", uriBuilderLocalVar.Path, customerSessionId, returnIntegrationRequest, dry, runRuleEngine);
                 Events.ExecuteOnErrorReturnCartItems(e);
                 throw;
             }

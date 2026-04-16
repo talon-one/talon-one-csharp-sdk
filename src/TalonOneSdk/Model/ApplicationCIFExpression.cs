@@ -231,11 +231,14 @@ namespace TalonOneSdk.Model
             if (!applicationId.IsSet)
                 throw new ArgumentException("Property is required for class ApplicationCIFExpression.", nameof(applicationId));
 
-            if (cartItemFilterId.IsSet && cartItemFilterId.Value == null)
-                throw new ArgumentNullException(nameof(cartItemFilterId), "Property is not nullable for class ApplicationCIFExpression.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ApplicationCIFExpression.");
 
-            if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class ApplicationCIFExpression.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ApplicationCIFExpression.");
+
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ApplicationCIFExpression.");
 
             return new ApplicationCIFExpression(id.Value.Value, created.Value.Value, applicationId.Value.Value, cartItemFilterId, createdBy, expression);
         }
@@ -264,9 +267,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationCIFExpression applicationCIFExpression, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (applicationCIFExpression.ExpressionOption.IsSet && applicationCIFExpression.Expression == null)
-                throw new ArgumentNullException(nameof(applicationCIFExpression.Expression), "Property is required for class ApplicationCIFExpression.");
-
             writer.WriteNumber("id", applicationCIFExpression.Id);
 
             writer.WriteString("created", applicationCIFExpression.Created.ToString(CreatedFormat));

@@ -157,6 +157,15 @@ namespace TalonOneSdk.Model
             if (!itemsIndices.IsSet)
                 throw new ArgumentException("Property is required for class ShowBundleMetadataEffectProps.", nameof(itemsIndices));
 
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description), "Property is not nullable for class ShowBundleMetadataEffectProps.");
+
+            if (bundleAttributes.IsSet && bundleAttributes.Value == null)
+                throw new ArgumentNullException(nameof(bundleAttributes), "Property is not nullable for class ShowBundleMetadataEffectProps.");
+
+            if (itemsIndices.IsSet && itemsIndices.Value == null)
+                throw new ArgumentNullException(nameof(itemsIndices), "Property is not nullable for class ShowBundleMetadataEffectProps.");
+
             return new ShowBundleMetadataEffectProps(description.Value, bundleAttributes.Value, itemsIndices.Value);
         }
 

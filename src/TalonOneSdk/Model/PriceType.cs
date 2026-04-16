@@ -296,8 +296,26 @@ namespace TalonOneSdk.Model
             if (!targetedAudiencesIds.IsSet)
                 throw new ArgumentException("Property is required for class PriceType.", nameof(targetedAudiencesIds));
 
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class PriceType.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class PriceType.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class PriceType.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class PriceType.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class PriceType.");
+
+            if (modified.IsSet && modified.Value == null)
+                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class PriceType.");
+
+            if (subscribedCatalogsIds.IsSet && subscribedCatalogsIds.Value == null)
+                throw new ArgumentNullException(nameof(subscribedCatalogsIds), "Property is not nullable for class PriceType.");
+
+            if (targetedAudiencesIds.IsSet && targetedAudiencesIds.Value == null)
+                throw new ArgumentNullException(nameof(targetedAudiencesIds), "Property is not nullable for class PriceType.");
 
             return new PriceType(id.Value.Value, created.Value.Value, name.Value, title.Value, modified.Value.Value, subscribedCatalogsIds.Value, targetedAudiencesIds.Value, accountId, description);
         }
@@ -337,9 +355,6 @@ namespace TalonOneSdk.Model
 
             if (priceType.TargetedAudiencesIds == null)
                 throw new ArgumentNullException(nameof(priceType.TargetedAudiencesIds), "Property is required for class PriceType.");
-
-            if (priceType.DescriptionOption.IsSet && priceType.Description == null)
-                throw new ArgumentNullException(nameof(priceType.Description), "Property is required for class PriceType.");
 
             writer.WriteNumber("id", priceType.Id);
 

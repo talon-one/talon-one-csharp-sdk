@@ -122,6 +122,9 @@ namespace TalonOneSdk.Model
             if (!headers.IsSet)
                 throw new ArgumentException("Property is required for class WebhookAuthenticationDataCustom.", nameof(headers));
 
+            if (headers.IsSet && headers.Value == null)
+                throw new ArgumentNullException(nameof(headers), "Property is not nullable for class WebhookAuthenticationDataCustom.");
+
             return new WebhookAuthenticationDataCustom(headers.Value);
         }
 

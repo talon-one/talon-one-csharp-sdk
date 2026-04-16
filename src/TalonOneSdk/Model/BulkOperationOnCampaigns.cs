@@ -251,8 +251,11 @@ namespace TalonOneSdk.Model
             if (!campaignIds.IsSet)
                 throw new ArgumentException("Property is required for class BulkOperationOnCampaigns.", nameof(campaignIds));
 
-            if (activateAt.IsSet && activateAt.Value == null)
-                throw new ArgumentNullException(nameof(activateAt), "Property is not nullable for class BulkOperationOnCampaigns.");
+            if (operation.IsSet && operation.Value == null)
+                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class BulkOperationOnCampaigns.");
+
+            if (campaignIds.IsSet && campaignIds.Value == null)
+                throw new ArgumentNullException(nameof(campaignIds), "Property is not nullable for class BulkOperationOnCampaigns.");
 
             return new BulkOperationOnCampaigns(operation.Value.Value, campaignIds.Value, activateAt);
         }

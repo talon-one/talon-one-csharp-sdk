@@ -206,6 +206,21 @@ namespace TalonOneSdk.Model
             if (!subledgerID.IsSet)
                 throw new ArgumentException("Property is required for class ExpiringPointsData.", nameof(subledgerID));
 
+            if (expiryDate.IsSet && expiryDate.Value == null)
+                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class ExpiringPointsData.");
+
+            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class ExpiringPointsData.");
+
+            if (customerProfileID.IsSet && customerProfileID.Value == null)
+                throw new ArgumentNullException(nameof(customerProfileID), "Property is not nullable for class ExpiringPointsData.");
+
+            if (amountOfExpiringPoints.IsSet && amountOfExpiringPoints.Value == null)
+                throw new ArgumentNullException(nameof(amountOfExpiringPoints), "Property is not nullable for class ExpiringPointsData.");
+
+            if (subledgerID.IsSet && subledgerID.Value == null)
+                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class ExpiringPointsData.");
+
             return new ExpiringPointsData(expiryDate.Value.Value, loyaltyProgramID.Value.Value, customerProfileID.Value, amountOfExpiringPoints.Value.Value, subledgerID.Value);
         }
 

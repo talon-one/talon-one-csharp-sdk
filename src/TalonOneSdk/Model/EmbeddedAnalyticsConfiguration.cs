@@ -122,6 +122,9 @@ namespace TalonOneSdk.Model
             if (!dashboards.IsSet)
                 throw new ArgumentException("Property is required for class EmbeddedAnalyticsConfiguration.", nameof(dashboards));
 
+            if (dashboards.IsSet && dashboards.Value == null)
+                throw new ArgumentNullException(nameof(dashboards), "Property is not nullable for class EmbeddedAnalyticsConfiguration.");
+
             return new EmbeddedAnalyticsConfiguration(dashboards.Value);
         }
 

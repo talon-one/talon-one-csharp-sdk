@@ -151,8 +151,8 @@ namespace TalonOneSdk.Model
             if (!loyaltyProgramId.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyMembership.", nameof(loyaltyProgramId));
 
-            if (joined.IsSet && joined.Value == null)
-                throw new ArgumentNullException(nameof(joined), "Property is not nullable for class LoyaltyMembership.");
+            if (loyaltyProgramId.IsSet && loyaltyProgramId.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyProgramId), "Property is not nullable for class LoyaltyMembership.");
 
             return new LoyaltyMembership(loyaltyProgramId.Value.Value, joined);
         }

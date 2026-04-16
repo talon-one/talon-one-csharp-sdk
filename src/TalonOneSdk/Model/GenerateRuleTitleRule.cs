@@ -177,12 +177,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GenerateRuleTitleRule generateRuleTitleRule, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (generateRuleTitleRule.EffectsOption.IsSet && generateRuleTitleRule.Effects == null)
-                throw new ArgumentNullException(nameof(generateRuleTitleRule.Effects), "Property is required for class GenerateRuleTitleRule.");
-
-            if (generateRuleTitleRule.ConditionOption.IsSet && generateRuleTitleRule.Condition == null)
-                throw new ArgumentNullException(nameof(generateRuleTitleRule.Condition), "Property is required for class GenerateRuleTitleRule.");
-
             if (generateRuleTitleRule.EffectsOption.IsSet)
             {
                 writer.WritePropertyName("effects");

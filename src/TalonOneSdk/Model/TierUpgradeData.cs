@@ -314,8 +314,26 @@ namespace TalonOneSdk.Model
             if (!subledgerID.IsSet)
                 throw new ArgumentException("Property is required for class TierUpgradeData.", nameof(subledgerID));
 
-            if (pointsRequiredToTheNextTier.IsSet && pointsRequiredToTheNextTier.Value == null)
-                throw new ArgumentNullException(nameof(pointsRequiredToTheNextTier), "Property is not nullable for class TierUpgradeData.");
+            if (customerProfileID.IsSet && customerProfileID.Value == null)
+                throw new ArgumentNullException(nameof(customerProfileID), "Property is not nullable for class TierUpgradeData.");
+
+            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class TierUpgradeData.");
+
+            if (currentTier.IsSet && currentTier.Value == null)
+                throw new ArgumentNullException(nameof(currentTier), "Property is not nullable for class TierUpgradeData.");
+
+            if (currentPoints.IsSet && currentPoints.Value == null)
+                throw new ArgumentNullException(nameof(currentPoints), "Property is not nullable for class TierUpgradeData.");
+
+            if (tierExpirationDate.IsSet && tierExpirationDate.Value == null)
+                throw new ArgumentNullException(nameof(tierExpirationDate), "Property is not nullable for class TierUpgradeData.");
+
+            if (timestampOfTierChange.IsSet && timestampOfTierChange.Value == null)
+                throw new ArgumentNullException(nameof(timestampOfTierChange), "Property is not nullable for class TierUpgradeData.");
+
+            if (subledgerID.IsSet && subledgerID.Value == null)
+                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class TierUpgradeData.");
 
             return new TierUpgradeData(customerProfileID.Value, loyaltyProgramID.Value.Value, currentTier.Value, currentPoints.Value.Value, tierExpirationDate.Value.Value, timestampOfTierChange.Value.Value, subledgerID.Value, oldTier, pointsRequiredToTheNextTier, nextTier);
         }
@@ -352,12 +370,6 @@ namespace TalonOneSdk.Model
 
             if (tierUpgradeData.SubledgerID == null)
                 throw new ArgumentNullException(nameof(tierUpgradeData.SubledgerID), "Property is required for class TierUpgradeData.");
-
-            if (tierUpgradeData.OldTierOption.IsSet && tierUpgradeData.OldTier == null)
-                throw new ArgumentNullException(nameof(tierUpgradeData.OldTier), "Property is required for class TierUpgradeData.");
-
-            if (tierUpgradeData.NextTierOption.IsSet && tierUpgradeData.NextTier == null)
-                throw new ArgumentNullException(nameof(tierUpgradeData.NextTier), "Property is required for class TierUpgradeData.");
 
             writer.WriteString("CustomerProfileID", tierUpgradeData.CustomerProfileID);
 

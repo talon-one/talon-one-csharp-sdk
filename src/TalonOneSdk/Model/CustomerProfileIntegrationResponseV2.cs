@@ -275,6 +275,15 @@ namespace TalonOneSdk.Model
             if (!createdReferrals.IsSet)
                 throw new ArgumentException("Property is required for class CustomerProfileIntegrationResponseV2.", nameof(createdReferrals));
 
+            if (effects.IsSet && effects.Value == null)
+                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class CustomerProfileIntegrationResponseV2.");
+
+            if (createdCoupons.IsSet && createdCoupons.Value == null)
+                throw new ArgumentNullException(nameof(createdCoupons), "Property is not nullable for class CustomerProfileIntegrationResponseV2.");
+
+            if (createdReferrals.IsSet && createdReferrals.Value == null)
+                throw new ArgumentNullException(nameof(createdReferrals), "Property is not nullable for class CustomerProfileIntegrationResponseV2.");
+
             return new CustomerProfileIntegrationResponseV2(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, varEvent, loyalty, triggeredCampaigns, ruleFailureReasons, awardedGiveaways);
         }
 
@@ -310,24 +319,6 @@ namespace TalonOneSdk.Model
 
             if (customerProfileIntegrationResponseV2.CreatedReferrals == null)
                 throw new ArgumentNullException(nameof(customerProfileIntegrationResponseV2.CreatedReferrals), "Property is required for class CustomerProfileIntegrationResponseV2.");
-
-            if (customerProfileIntegrationResponseV2.CustomerProfileOption.IsSet && customerProfileIntegrationResponseV2.CustomerProfile == null)
-                throw new ArgumentNullException(nameof(customerProfileIntegrationResponseV2.CustomerProfile), "Property is required for class CustomerProfileIntegrationResponseV2.");
-
-            if (customerProfileIntegrationResponseV2.EventOption.IsSet && customerProfileIntegrationResponseV2.Event == null)
-                throw new ArgumentNullException(nameof(customerProfileIntegrationResponseV2.Event), "Property is required for class CustomerProfileIntegrationResponseV2.");
-
-            if (customerProfileIntegrationResponseV2.LoyaltyOption.IsSet && customerProfileIntegrationResponseV2.Loyalty == null)
-                throw new ArgumentNullException(nameof(customerProfileIntegrationResponseV2.Loyalty), "Property is required for class CustomerProfileIntegrationResponseV2.");
-
-            if (customerProfileIntegrationResponseV2.TriggeredCampaignsOption.IsSet && customerProfileIntegrationResponseV2.TriggeredCampaigns == null)
-                throw new ArgumentNullException(nameof(customerProfileIntegrationResponseV2.TriggeredCampaigns), "Property is required for class CustomerProfileIntegrationResponseV2.");
-
-            if (customerProfileIntegrationResponseV2.RuleFailureReasonsOption.IsSet && customerProfileIntegrationResponseV2.RuleFailureReasons == null)
-                throw new ArgumentNullException(nameof(customerProfileIntegrationResponseV2.RuleFailureReasons), "Property is required for class CustomerProfileIntegrationResponseV2.");
-
-            if (customerProfileIntegrationResponseV2.AwardedGiveawaysOption.IsSet && customerProfileIntegrationResponseV2.AwardedGiveaways == null)
-                throw new ArgumentNullException(nameof(customerProfileIntegrationResponseV2.AwardedGiveaways), "Property is required for class CustomerProfileIntegrationResponseV2.");
 
             writer.WritePropertyName("effects");
             JsonSerializer.Serialize(writer, customerProfileIntegrationResponseV2.Effects, jsonSerializerOptions);

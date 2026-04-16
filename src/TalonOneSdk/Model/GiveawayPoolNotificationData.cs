@@ -304,6 +304,36 @@ namespace TalonOneSdk.Model
             if (!thresholdPercent.IsSet)
                 throw new ArgumentException("Property is required for class GiveawayPoolNotificationData.", nameof(thresholdPercent));
 
+            if (varEvent.IsSet && varEvent.Value == null)
+                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class GiveawayPoolNotificationData.");
+
+            if (poolId.IsSet && poolId.Value == null)
+                throw new ArgumentNullException(nameof(poolId), "Property is not nullable for class GiveawayPoolNotificationData.");
+
+            if (poolName.IsSet && poolName.Value == null)
+                throw new ArgumentNullException(nameof(poolName), "Property is not nullable for class GiveawayPoolNotificationData.");
+
+            if (poolDescription.IsSet && poolDescription.Value == null)
+                throw new ArgumentNullException(nameof(poolDescription), "Property is not nullable for class GiveawayPoolNotificationData.");
+
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class GiveawayPoolNotificationData.");
+
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class GiveawayPoolNotificationData.");
+
+            if (totalCodes.IsSet && totalCodes.Value == null)
+                throw new ArgumentNullException(nameof(totalCodes), "Property is not nullable for class GiveawayPoolNotificationData.");
+
+            if (usedCodes.IsSet && usedCodes.Value == null)
+                throw new ArgumentNullException(nameof(usedCodes), "Property is not nullable for class GiveawayPoolNotificationData.");
+
+            if (remainingCodes.IsSet && remainingCodes.Value == null)
+                throw new ArgumentNullException(nameof(remainingCodes), "Property is not nullable for class GiveawayPoolNotificationData.");
+
+            if (thresholdPercent.IsSet && thresholdPercent.Value == null)
+                throw new ArgumentNullException(nameof(thresholdPercent), "Property is not nullable for class GiveawayPoolNotificationData.");
+
             return new GiveawayPoolNotificationData(varEvent.Value, poolId.Value.Value, poolName.Value, poolDescription.Value, accountId.Value.Value, applicationId.Value.Value, totalCodes.Value.Value, usedCodes.Value.Value, remainingCodes.Value.Value, thresholdPercent.Value.Value);
         }
 

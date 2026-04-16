@@ -152,6 +152,12 @@ namespace TalonOneSdk.Model
             if (!metadataDocument.IsSet)
                 throw new ArgumentException("Property is required for class SamlConnectionInternal.", nameof(metadataDocument));
 
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SamlConnectionInternal.");
+
+            if (metadataDocument.IsSet && metadataDocument.Value == null)
+                throw new ArgumentNullException(nameof(metadataDocument), "Property is not nullable for class SamlConnectionInternal.");
+
             return new SamlConnectionInternal(name.Value, metadataDocument.Value);
         }
 

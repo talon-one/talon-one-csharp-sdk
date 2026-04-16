@@ -582,27 +582,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class UpdateAchievementV2.");
-
-            if (recurrencePolicy.IsSet && recurrencePolicy.Value == null)
-                throw new ArgumentNullException(nameof(recurrencePolicy), "Property is not nullable for class UpdateAchievementV2.");
-
-            if (activationPolicy.IsSet && activationPolicy.Value == null)
-                throw new ArgumentNullException(nameof(activationPolicy), "Property is not nullable for class UpdateAchievementV2.");
-
-            if (fixedStartDate.IsSet && fixedStartDate.Value == null)
-                throw new ArgumentNullException(nameof(fixedStartDate), "Property is not nullable for class UpdateAchievementV2.");
-
-            if (endDate.IsSet && endDate.Value == null)
-                throw new ArgumentNullException(nameof(endDate), "Property is not nullable for class UpdateAchievementV2.");
-
-            if (allowRollbackAfterCompletion.IsSet && allowRollbackAfterCompletion.Value == null)
-                throw new ArgumentNullException(nameof(allowRollbackAfterCompletion), "Property is not nullable for class UpdateAchievementV2.");
-
-            if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class UpdateAchievementV2.");
-
             return new UpdateAchievementV2(name, title, description, target, period, recurrencePolicy, activationPolicy, fixedStartDate, endDate, allowRollbackAfterCompletion, sandbox, subscribedApplications, timezone);
         }
 
@@ -630,24 +609,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateAchievementV2 updateAchievementV2, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateAchievementV2.NameOption.IsSet && updateAchievementV2.Name == null)
-                throw new ArgumentNullException(nameof(updateAchievementV2.Name), "Property is required for class UpdateAchievementV2.");
-
-            if (updateAchievementV2.TitleOption.IsSet && updateAchievementV2.Title == null)
-                throw new ArgumentNullException(nameof(updateAchievementV2.Title), "Property is required for class UpdateAchievementV2.");
-
-            if (updateAchievementV2.DescriptionOption.IsSet && updateAchievementV2.Description == null)
-                throw new ArgumentNullException(nameof(updateAchievementV2.Description), "Property is required for class UpdateAchievementV2.");
-
-            if (updateAchievementV2.PeriodOption.IsSet && updateAchievementV2.Period == null)
-                throw new ArgumentNullException(nameof(updateAchievementV2.Period), "Property is required for class UpdateAchievementV2.");
-
-            if (updateAchievementV2.SubscribedApplicationsOption.IsSet && updateAchievementV2.SubscribedApplications == null)
-                throw new ArgumentNullException(nameof(updateAchievementV2.SubscribedApplications), "Property is required for class UpdateAchievementV2.");
-
-            if (updateAchievementV2.TimezoneOption.IsSet && updateAchievementV2.Timezone == null)
-                throw new ArgumentNullException(nameof(updateAchievementV2.Timezone), "Property is required for class UpdateAchievementV2.");
-
             if (updateAchievementV2.NameOption.IsSet)
                 writer.WriteString("name", updateAchievementV2.Name);
 

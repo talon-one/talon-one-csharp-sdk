@@ -239,6 +239,7 @@ Class | Method | HTTP request | Description
 *IntegrationApi* | [**GetLoyaltyProgramProfilePoints**](docs/apis/IntegrationApi.md#getloyaltyprogramprofilepoints) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/points | List customer's unused loyalty points
 *IntegrationApi* | [**GetLoyaltyProgramProfileTransactions**](docs/apis/IntegrationApi.md#getloyaltyprogramprofiletransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions | List customer's loyalty transactions
 *IntegrationApi* | [**GetReservedCustomers**](docs/apis/IntegrationApi.md#getreservedcustomers) | **GET** /v1/coupon_reservations/customerprofiles/{couponValue} | List customers that have this coupon reserved
+*IntegrationApi* | [**IntegrationGetAllCampaigns**](docs/apis/IntegrationApi.md#integrationgetallcampaigns) | **GET** /v1/integration/campaigns | List all running campaigns
 *IntegrationApi* | [**LinkLoyaltyCardToProfile**](docs/apis/IntegrationApi.md#linkloyaltycardtoprofile) | **POST** /v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile | Link customer profile to card
 *IntegrationApi* | [**ReopenCustomerSession**](docs/apis/IntegrationApi.md#reopencustomersession) | **PUT** /v2/customer_sessions/{customerSessionId}/reopen | Reopen customer session
 *IntegrationApi* | [**ReturnCartItems**](docs/apis/IntegrationApi.md#returncartitems) | **POST** /v2/customer_sessions/{customerSessionId}/returns | Return cart items
@@ -264,7 +265,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**CreateCampaignStoreBudget**](docs/apis/ManagementApi.md#createcampaignstorebudget) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets | Create campaign store budget
 *ManagementApi* | [**CreateCollection**](docs/apis/ManagementApi.md#createcollection) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | Create campaign-level collection
 *ManagementApi* | [**CreateCoupons**](docs/apis/ManagementApi.md#createcoupons) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Create coupons
-*ManagementApi* | [**CreateCouponsAsync**](docs/apis/ManagementApi.md#createcouponsasync) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_async | Create coupons asynchronously
+*ManagementApi* | [**CreateCouponsAsynchronously**](docs/apis/ManagementApi.md#createcouponsasynchronously) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_async | Create coupons asynchronously
 *ManagementApi* | [**CreateCouponsDeletionJob**](docs/apis/ManagementApi.md#createcouponsdeletionjob) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_deletion_jobs | Creates a coupon deletion job
 *ManagementApi* | [**CreateCouponsForMultipleRecipients**](docs/apis/ManagementApi.md#createcouponsformultiplerecipients) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_with_recipients | Create coupons for multiple recipients
 *ManagementApi* | [**CreateInviteEmail**](docs/apis/ManagementApi.md#createinviteemail) | **POST** /v1/invite_emails | Resend invitation email
@@ -294,6 +295,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**ExportAudiencesMemberships**](docs/apis/ManagementApi.md#exportaudiencesmemberships) | **GET** /v1/audiences/{audienceId}/memberships/export | Export audience members
 *ManagementApi* | [**ExportCampaignStoreBudgets**](docs/apis/ManagementApi.md#exportcampaignstorebudgets) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets/export | Export campaign store budgets
 *ManagementApi* | [**ExportCampaignStores**](docs/apis/ManagementApi.md#exportcampaignstores) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/export | Export stores
+*ManagementApi* | [**ExportCampaignValueMap**](docs/apis/ManagementApi.md#exportcampaignvaluemap) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/value_maps/{valueMapId}/export | Export campaign value map
 *ManagementApi* | [**ExportCollectionItems**](docs/apis/ManagementApi.md#exportcollectionitems) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}/export | Export campaign-level collection's items
 *ManagementApi* | [**ExportCoupons**](docs/apis/ManagementApi.md#exportcoupons) | **GET** /v1/applications/{applicationId}/export_coupons | Export coupons
 *ManagementApi* | [**ExportCustomerSessions**](docs/apis/ManagementApi.md#exportcustomersessions) | **GET** /v1/applications/{applicationId}/export_customer_sessions | Export customer sessions
@@ -318,6 +320,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**GetAdditionalCosts**](docs/apis/ManagementApi.md#getadditionalcosts) | **GET** /v1/additional_costs | List additional costs
 *ManagementApi* | [**GetApplication**](docs/apis/ManagementApi.md#getapplication) | **GET** /v1/applications/{applicationId} | Get Application
 *ManagementApi* | [**GetApplicationApiHealth**](docs/apis/ManagementApi.md#getapplicationapihealth) | **GET** /v1/applications/{applicationId}/health_report | Get Application health
+*ManagementApi* | [**GetApplicationCartItemFilterExpression**](docs/apis/ManagementApi.md#getapplicationcartitemfilterexpression) | **GET** /v1/applications/{applicationId}/cart_item_filters/{cartItemFilterId}/expressions/{expressionId} | Get Application cart item filter expression
 *ManagementApi* | [**GetApplicationCustomer**](docs/apis/ManagementApi.md#getapplicationcustomer) | **GET** /v1/applications/{applicationId}/customers/{customerId} | Get application's customer
 *ManagementApi* | [**GetApplicationCustomerFriends**](docs/apis/ManagementApi.md#getapplicationcustomerfriends) | **GET** /v1/applications/{applicationId}/profile/{integrationId}/friends | List friends referred by customer profile
 *ManagementApi* | [**GetApplicationCustomers**](docs/apis/ManagementApi.md#getapplicationcustomers) | **GET** /v1/applications/{applicationId}/customers | List application's customers
@@ -390,6 +393,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**ListAccountCollections**](docs/apis/ManagementApi.md#listaccountcollections) | **GET** /v1/collections | List collections in account
 *ManagementApi* | [**ListAchievements**](docs/apis/ManagementApi.md#listachievements) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements | List achievements
 *ManagementApi* | [**ListAllRolesV2**](docs/apis/ManagementApi.md#listallrolesv2) | **GET** /v2/roles | List roles
+*ManagementApi* | [**ListApplicationCartItemFilters**](docs/apis/ManagementApi.md#listapplicationcartitemfilters) | **GET** /v1/applications/{applicationId}/cart_item_filters | List Application cart item filters
 *ManagementApi* | [**ListCampaignStoreBudgetLimits**](docs/apis/ManagementApi.md#listcampaignstorebudgetlimits) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets | List campaign store budget limits
 *ManagementApi* | [**ListCatalogItems**](docs/apis/ManagementApi.md#listcatalogitems) | **GET** /v1/catalogs/{catalogId}/items | List items in a catalog
 *ManagementApi* | [**ListCollections**](docs/apis/ManagementApi.md#listcollections) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | List collections in campaign
@@ -619,6 +623,7 @@ Class | Method | HTTP request | Description
 - [Model.CreateApplicationAPIKey](docs/models/CreateApplicationAPIKey.md)
 - [Model.CreateCouponData](docs/models/CreateCouponData.md)
 - [Model.CreateCoupons200Response](docs/models/CreateCoupons200Response.md)
+- [Model.CreateMCPKey](docs/models/CreateMCPKey.md)
 - [Model.CreateManagementKey](docs/models/CreateManagementKey.md)
 - [Model.CreateReferralsForMultipleAdvocates201Response](docs/models/CreateReferralsForMultipleAdvocates201Response.md)
 - [Model.CreateTemplateCampaign](docs/models/CreateTemplateCampaign.md)
@@ -671,10 +676,16 @@ Class | Method | HTTP request | Description
 - [Model.ExperimentListResultsRequest](docs/models/ExperimentListResultsRequest.md)
 - [Model.ExperimentResult](docs/models/ExperimentResult.md)
 - [Model.ExperimentResults](docs/models/ExperimentResults.md)
+- [Model.ExperimentSegmentInsight](docs/models/ExperimentSegmentInsight.md)
+- [Model.ExperimentSegmentInsightMetric](docs/models/ExperimentSegmentInsightMetric.md)
+- [Model.ExperimentSegmentInsightVariant](docs/models/ExperimentSegmentInsightVariant.md)
+- [Model.ExperimentSegmentInsights](docs/models/ExperimentSegmentInsights.md)
 - [Model.ExperimentVariant](docs/models/ExperimentVariant.md)
 - [Model.ExperimentVariantAllocation](docs/models/ExperimentVariantAllocation.md)
 - [Model.ExperimentVariantResult](docs/models/ExperimentVariantResult.md)
 - [Model.ExperimentVariantResultConfidence](docs/models/ExperimentVariantResultConfidence.md)
+- [Model.ExperimentVerdict](docs/models/ExperimentVerdict.md)
+- [Model.ExperimentVerdictResponse](docs/models/ExperimentVerdictResponse.md)
 - [Model.ExpiringCardPointsData](docs/models/ExpiringCardPointsData.md)
 - [Model.ExpiringCardPointsNotification](docs/models/ExpiringCardPointsNotification.md)
 - [Model.ExpiringCouponsData](docs/models/ExpiringCouponsData.md)
@@ -769,6 +780,7 @@ Class | Method | HTTP request | Description
 - [Model.IntegrationEventV2Response](docs/models/IntegrationEventV2Response.md)
 - [Model.IntegrationEventV3Request](docs/models/IntegrationEventV3Request.md)
 - [Model.IntegrationEventV3Response](docs/models/IntegrationEventV3Response.md)
+- [Model.IntegrationGetAllCampaigns200Response](docs/models/IntegrationGetAllCampaigns200Response.md)
 - [Model.IntegrationHubConfig](docs/models/IntegrationHubConfig.md)
 - [Model.IntegrationHubEventPayloadCouponBasedNotifications](docs/models/IntegrationHubEventPayloadCouponBasedNotifications.md)
 - [Model.IntegrationHubEventPayloadCouponBasedNotificationsLimits](docs/models/IntegrationHubEventPayloadCouponBasedNotificationsLimits.md)
@@ -806,6 +818,7 @@ Class | Method | HTTP request | Description
 - [Model.ListAccountCollections200Response](docs/models/ListAccountCollections200Response.md)
 - [Model.ListAchievements200Response](docs/models/ListAchievements200Response.md)
 - [Model.ListAllRolesV2200Response](docs/models/ListAllRolesV2200Response.md)
+- [Model.ListApplicationCartItemFilters200Response](docs/models/ListApplicationCartItemFilters200Response.md)
 - [Model.ListCampaignStoreBudgetLimits200Response](docs/models/ListCampaignStoreBudgetLimits200Response.md)
 - [Model.ListCampaignStoreBudgets](docs/models/ListCampaignStoreBudgets.md)
 - [Model.ListCampaignStoreBudgetsStore](docs/models/ListCampaignStoreBudgetsStore.md)
@@ -839,6 +852,7 @@ Class | Method | HTTP request | Description
 - [Model.LoyaltyProgramTransaction](docs/models/LoyaltyProgramTransaction.md)
 - [Model.LoyaltySubLedger](docs/models/LoyaltySubLedger.md)
 - [Model.LoyaltyTier](docs/models/LoyaltyTier.md)
+- [Model.MCPKey](docs/models/MCPKey.md)
 - [Model.ManagementKey](docs/models/ManagementKey.md)
 - [Model.ManagerConfig](docs/models/ManagerConfig.md)
 - [Model.MessageLogEntries](docs/models/MessageLogEntries.md)
@@ -900,6 +914,7 @@ Class | Method | HTTP request | Description
 - [Model.NewInviteEmail](docs/models/NewInviteEmail.md)
 - [Model.NewLoyaltyProgram](docs/models/NewLoyaltyProgram.md)
 - [Model.NewLoyaltyTier](docs/models/NewLoyaltyTier.md)
+- [Model.NewMCPKey](docs/models/NewMCPKey.md)
 - [Model.NewManagementKey](docs/models/NewManagementKey.md)
 - [Model.NewMessageTest](docs/models/NewMessageTest.md)
 - [Model.NewMultipleAudiencesItem](docs/models/NewMultipleAudiencesItem.md)
@@ -914,6 +929,7 @@ Class | Method | HTTP request | Description
 - [Model.NewReferralsForMultipleAdvocates](docs/models/NewReferralsForMultipleAdvocates.md)
 - [Model.NewReturn](docs/models/NewReturn.md)
 - [Model.NewRevisionVersion](docs/models/NewRevisionVersion.md)
+- [Model.NewReward](docs/models/NewReward.md)
 - [Model.NewRole](docs/models/NewRole.md)
 - [Model.NewRoleV2](docs/models/NewRoleV2.md)
 - [Model.NewRuleset](docs/models/NewRuleset.md)
@@ -982,6 +998,7 @@ Class | Method | HTTP request | Description
 - [Model.RevisionActivation](docs/models/RevisionActivation.md)
 - [Model.RevisionActivationRequest](docs/models/RevisionActivationRequest.md)
 - [Model.RevisionVersion](docs/models/RevisionVersion.md)
+- [Model.Reward](docs/models/Reward.md)
 - [Model.Role](docs/models/Role.md)
 - [Model.RoleAssign](docs/models/RoleAssign.md)
 - [Model.RoleMembership](docs/models/RoleMembership.md)

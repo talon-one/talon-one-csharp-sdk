@@ -217,6 +217,12 @@ namespace TalonOneSdk.Model
             if (!totalResultSize.IsSet)
                 throw new ArgumentException("Property is required for class CampaignDeletedNotification.", nameof(totalResultSize));
 
+            if (notificationType.IsSet && notificationType.Value == null)
+                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class CampaignDeletedNotification.");
+
+            if (totalResultSize.IsSet && totalResultSize.Value == null)
+                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class CampaignDeletedNotification.");
+
             return new CampaignDeletedNotification(notificationType.Value.Value, totalResultSize.Value.Value, data);
         }
 
@@ -244,9 +250,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignDeletedNotification campaignDeletedNotification, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (campaignDeletedNotification.DataOption.IsSet && campaignDeletedNotification.Data == null)
-                throw new ArgumentNullException(nameof(campaignDeletedNotification.Data), "Property is required for class CampaignDeletedNotification.");
-
             var notificationTypeRawValue = CampaignDeletedNotification.NotificationTypeEnumToJsonValue(campaignDeletedNotification.NotificationType);
             writer.WriteString("NotificationType", notificationTypeRawValue);
             writer.WriteNumber("TotalResultSize", campaignDeletedNotification.TotalResultSize);

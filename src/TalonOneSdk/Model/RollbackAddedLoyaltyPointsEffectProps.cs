@@ -284,11 +284,20 @@ namespace TalonOneSdk.Model
             if (!transactionUUID.IsSet)
                 throw new ArgumentException("Property is required for class RollbackAddedLoyaltyPointsEffectProps.", nameof(transactionUUID));
 
-            if (cartItemPosition.IsSet && cartItemPosition.Value == null)
-                throw new ArgumentNullException(nameof(cartItemPosition), "Property is not nullable for class RollbackAddedLoyaltyPointsEffectProps.");
+            if (programId.IsSet && programId.Value == null)
+                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class RollbackAddedLoyaltyPointsEffectProps.");
 
-            if (cartItemSubPosition.IsSet && cartItemSubPosition.Value == null)
-                throw new ArgumentNullException(nameof(cartItemSubPosition), "Property is not nullable for class RollbackAddedLoyaltyPointsEffectProps.");
+            if (subLedgerId.IsSet && subLedgerId.Value == null)
+                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class RollbackAddedLoyaltyPointsEffectProps.");
+
+            if (value.IsSet && value.Value == null)
+                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RollbackAddedLoyaltyPointsEffectProps.");
+
+            if (recipientIntegrationId.IsSet && recipientIntegrationId.Value == null)
+                throw new ArgumentNullException(nameof(recipientIntegrationId), "Property is not nullable for class RollbackAddedLoyaltyPointsEffectProps.");
+
+            if (transactionUUID.IsSet && transactionUUID.Value == null)
+                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class RollbackAddedLoyaltyPointsEffectProps.");
 
             return new RollbackAddedLoyaltyPointsEffectProps(programId.Value.Value, subLedgerId.Value, value.Value.Value, recipientIntegrationId.Value, transactionUUID.Value, cartItemPosition, cartItemSubPosition, cardIdentifier);
         }
@@ -325,9 +334,6 @@ namespace TalonOneSdk.Model
 
             if (rollbackAddedLoyaltyPointsEffectProps.TransactionUUID == null)
                 throw new ArgumentNullException(nameof(rollbackAddedLoyaltyPointsEffectProps.TransactionUUID), "Property is required for class RollbackAddedLoyaltyPointsEffectProps.");
-
-            if (rollbackAddedLoyaltyPointsEffectProps.CardIdentifierOption.IsSet && rollbackAddedLoyaltyPointsEffectProps.CardIdentifier == null)
-                throw new ArgumentNullException(nameof(rollbackAddedLoyaltyPointsEffectProps.CardIdentifier), "Property is required for class RollbackAddedLoyaltyPointsEffectProps.");
 
             writer.WriteNumber("programId", rollbackAddedLoyaltyPointsEffectProps.ProgramId);
 

@@ -142,8 +142,8 @@ namespace TalonOneSdk.Model
             if (!data.IsSet)
                 throw new ArgumentException("Property is required for class ListAchievements200Response.", nameof(data));
 
-            if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class ListAchievements200Response.");
+            if (data.IsSet && data.Value == null)
+                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ListAchievements200Response.");
 
             return new ListAchievements200Response(data.Value, hasMore);
         }

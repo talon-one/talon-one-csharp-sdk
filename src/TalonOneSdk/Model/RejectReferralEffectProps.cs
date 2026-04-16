@@ -225,11 +225,11 @@ namespace TalonOneSdk.Model
             if (!rejectionReason.IsSet)
                 throw new ArgumentException("Property is required for class RejectReferralEffectProps.", nameof(rejectionReason));
 
-            if (conditionIndex.IsSet && conditionIndex.Value == null)
-                throw new ArgumentNullException(nameof(conditionIndex), "Property is not nullable for class RejectReferralEffectProps.");
+            if (value.IsSet && value.Value == null)
+                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RejectReferralEffectProps.");
 
-            if (effectIndex.IsSet && effectIndex.Value == null)
-                throw new ArgumentNullException(nameof(effectIndex), "Property is not nullable for class RejectReferralEffectProps.");
+            if (rejectionReason.IsSet && rejectionReason.Value == null)
+                throw new ArgumentNullException(nameof(rejectionReason), "Property is not nullable for class RejectReferralEffectProps.");
 
             return new RejectReferralEffectProps(value.Value, rejectionReason.Value, conditionIndex, effectIndex, details, campaignExclusionReason);
         }
@@ -263,12 +263,6 @@ namespace TalonOneSdk.Model
 
             if (rejectReferralEffectProps.RejectionReason == null)
                 throw new ArgumentNullException(nameof(rejectReferralEffectProps.RejectionReason), "Property is required for class RejectReferralEffectProps.");
-
-            if (rejectReferralEffectProps.DetailsOption.IsSet && rejectReferralEffectProps.Details == null)
-                throw new ArgumentNullException(nameof(rejectReferralEffectProps.Details), "Property is required for class RejectReferralEffectProps.");
-
-            if (rejectReferralEffectProps.CampaignExclusionReasonOption.IsSet && rejectReferralEffectProps.CampaignExclusionReason == null)
-                throw new ArgumentNullException(nameof(rejectReferralEffectProps.CampaignExclusionReason), "Property is required for class RejectReferralEffectProps.");
 
             writer.WriteString("value", rejectReferralEffectProps.Value);
 

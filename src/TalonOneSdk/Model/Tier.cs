@@ -286,14 +286,11 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class Tier.", nameof(name));
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class Tier.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Tier.");
 
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class Tier.");
-
-            if (downgradePolicy.IsSet && downgradePolicy.Value == null)
-                throw new ArgumentNullException(nameof(downgradePolicy), "Property is not nullable for class Tier.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Tier.");
 
             return new Tier(id.Value.Value, name.Value, startDate, expiryDate, downgradePolicy);
         }

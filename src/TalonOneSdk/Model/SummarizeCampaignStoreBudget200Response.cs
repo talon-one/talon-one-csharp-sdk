@@ -153,9 +153,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SummarizeCampaignStoreBudget200Response summarizeCampaignStoreBudget200Response, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (summarizeCampaignStoreBudget200Response.DataOption.IsSet && summarizeCampaignStoreBudget200Response.Data == null)
-                throw new ArgumentNullException(nameof(summarizeCampaignStoreBudget200Response.Data), "Property is required for class SummarizeCampaignStoreBudget200Response.");
-
             if (summarizeCampaignStoreBudget200Response.DataOption.IsSet)
             {
                 writer.WritePropertyName("data");

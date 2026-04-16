@@ -154,9 +154,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BaseNotifications baseNotifications, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (baseNotifications.DataOption.IsSet && baseNotifications.Data == null)
-                throw new ArgumentNullException(nameof(baseNotifications.Data), "Property is required for class BaseNotifications.");
-
             if (baseNotifications.DataOption.IsSet)
             {
                 writer.WritePropertyName("data");

@@ -233,11 +233,20 @@ namespace TalonOneSdk.Model
             if (!additionalCost.IsSet)
                 throw new ArgumentException("Property is required for class SetDiscountPerAdditionalCostPerItemEffectProps.", nameof(additionalCost));
 
-            if (subPosition.IsSet && subPosition.Value == null)
-                throw new ArgumentNullException(nameof(subPosition), "Property is not nullable for class SetDiscountPerAdditionalCostPerItemEffectProps.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SetDiscountPerAdditionalCostPerItemEffectProps.");
 
-            if (desiredValue.IsSet && desiredValue.Value == null)
-                throw new ArgumentNullException(nameof(desiredValue), "Property is not nullable for class SetDiscountPerAdditionalCostPerItemEffectProps.");
+            if (additionalCostId.IsSet && additionalCostId.Value == null)
+                throw new ArgumentNullException(nameof(additionalCostId), "Property is not nullable for class SetDiscountPerAdditionalCostPerItemEffectProps.");
+
+            if (value.IsSet && value.Value == null)
+                throw new ArgumentNullException(nameof(value), "Property is not nullable for class SetDiscountPerAdditionalCostPerItemEffectProps.");
+
+            if (position.IsSet && position.Value == null)
+                throw new ArgumentNullException(nameof(position), "Property is not nullable for class SetDiscountPerAdditionalCostPerItemEffectProps.");
+
+            if (additionalCost.IsSet && additionalCost.Value == null)
+                throw new ArgumentNullException(nameof(additionalCost), "Property is not nullable for class SetDiscountPerAdditionalCostPerItemEffectProps.");
 
             return new SetDiscountPerAdditionalCostPerItemEffectProps(name.Value, additionalCostId.Value.Value, value.Value.Value, position.Value.Value, additionalCost.Value, subPosition, desiredValue);
         }

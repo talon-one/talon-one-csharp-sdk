@@ -149,9 +149,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (applicationCartItemFilterId.IsSet && applicationCartItemFilterId.Value == null)
-                throw new ArgumentNullException(nameof(applicationCartItemFilterId), "Property is not nullable for class ApplicationCIFReferences.");
-
             return new ApplicationCIFReferences(applicationCartItemFilterId, campaigns);
         }
 
@@ -179,9 +176,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationCIFReferences applicationCIFReferences, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (applicationCIFReferences.CampaignsOption.IsSet && applicationCIFReferences.Campaigns == null)
-                throw new ArgumentNullException(nameof(applicationCIFReferences.Campaigns), "Property is required for class ApplicationCIFReferences.");
-
             if (applicationCIFReferences.ApplicationCartItemFilterIdOption.IsSet)
                 writer.WriteNumber("applicationCartItemFilterId", applicationCIFReferences.ApplicationCartItemFilterIdOption.Value.Value);
 

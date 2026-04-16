@@ -175,12 +175,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyBalances loyaltyBalances, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (loyaltyBalances.BalanceOption.IsSet && loyaltyBalances.Balance == null)
-                throw new ArgumentNullException(nameof(loyaltyBalances.Balance), "Property is required for class LoyaltyBalances.");
-
-            if (loyaltyBalances.SubledgerBalancesOption.IsSet && loyaltyBalances.SubledgerBalances == null)
-                throw new ArgumentNullException(nameof(loyaltyBalances.SubledgerBalances), "Property is required for class LoyaltyBalances.");
-
             if (loyaltyBalances.BalanceOption.IsSet)
             {
                 writer.WritePropertyName("balance");

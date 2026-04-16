@@ -159,6 +159,15 @@ namespace TalonOneSdk.Model
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class AdjustmentDetails.", nameof(value));
 
+            if (referenceId.IsSet && referenceId.Value == null)
+                throw new ArgumentNullException(nameof(referenceId), "Property is not nullable for class AdjustmentDetails.");
+
+            if (selectedPriceType.IsSet && selectedPriceType.Value == null)
+                throw new ArgumentNullException(nameof(selectedPriceType), "Property is not nullable for class AdjustmentDetails.");
+
+            if (value.IsSet && value.Value == null)
+                throw new ArgumentNullException(nameof(value), "Property is not nullable for class AdjustmentDetails.");
+
             return new AdjustmentDetails(referenceId.Value, selectedPriceType.Value, value.Value.Value);
         }
 

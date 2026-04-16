@@ -327,8 +327,14 @@ namespace TalonOneSdk.Model
             if (!description.IsSet)
                 throw new ArgumentException("Property is required for class CampaignTemplateParams.", nameof(description));
 
-            if (attributeId.IsSet && attributeId.Value == null)
-                throw new ArgumentNullException(nameof(attributeId), "Property is not nullable for class CampaignTemplateParams.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignTemplateParams.");
+
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CampaignTemplateParams.");
+
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description), "Property is not nullable for class CampaignTemplateParams.");
 
             return new CampaignTemplateParams(name.Value, type.Value.Value, description.Value, attributeId);
         }

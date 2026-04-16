@@ -279,8 +279,8 @@ namespace TalonOneSdk.Model
             if (!numberOfCards.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyCardBatch.", nameof(numberOfCards));
 
-            if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class LoyaltyCardBatch.");
+            if (numberOfCards.IsSet && numberOfCards.Value == null)
+                throw new ArgumentNullException(nameof(numberOfCards), "Property is not nullable for class LoyaltyCardBatch.");
 
             return new LoyaltyCardBatch(numberOfCards.Value.Value, batchId, status, cardCodeSettings);
         }
@@ -309,12 +309,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyCardBatch loyaltyCardBatch, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (loyaltyCardBatch.BatchIdOption.IsSet && loyaltyCardBatch.BatchId == null)
-                throw new ArgumentNullException(nameof(loyaltyCardBatch.BatchId), "Property is required for class LoyaltyCardBatch.");
-
-            if (loyaltyCardBatch.CardCodeSettingsOption.IsSet && loyaltyCardBatch.CardCodeSettings == null)
-                throw new ArgumentNullException(nameof(loyaltyCardBatch.CardCodeSettings), "Property is required for class LoyaltyCardBatch.");
-
             writer.WriteNumber("numberOfCards", loyaltyCardBatch.NumberOfCards);
 
             if (loyaltyCardBatch.BatchIdOption.IsSet)

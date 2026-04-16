@@ -153,6 +153,12 @@ namespace TalonOneSdk.Model
             if (!created.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationEntity.", nameof(created));
 
+            if (integrationId.IsSet && integrationId.Value == null)
+                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class IntegrationEntity.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class IntegrationEntity.");
+
             return new IntegrationEntity(integrationId.Value, created.Value.Value);
         }
 

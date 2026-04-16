@@ -152,6 +152,9 @@ namespace TalonOneSdk.Model
             if (!integrationId.IsSet)
                 throw new ArgumentException("Property is required for class MultipleCustomerProfileIntegrationRequestItem.", nameof(integrationId));
 
+            if (integrationId.IsSet && integrationId.Value == null)
+                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class MultipleCustomerProfileIntegrationRequestItem.");
+
             return new MultipleCustomerProfileIntegrationRequestItem(integrationId.Value, attributes);
         }
 
@@ -181,9 +184,6 @@ namespace TalonOneSdk.Model
         {
             if (multipleCustomerProfileIntegrationRequestItem.IntegrationId == null)
                 throw new ArgumentNullException(nameof(multipleCustomerProfileIntegrationRequestItem.IntegrationId), "Property is required for class MultipleCustomerProfileIntegrationRequestItem.");
-
-            if (multipleCustomerProfileIntegrationRequestItem.AttributesOption.IsSet && multipleCustomerProfileIntegrationRequestItem.Attributes == null)
-                throw new ArgumentNullException(nameof(multipleCustomerProfileIntegrationRequestItem.Attributes), "Property is required for class MultipleCustomerProfileIntegrationRequestItem.");
 
             writer.WriteString("integrationId", multipleCustomerProfileIntegrationRequestItem.IntegrationId);
 

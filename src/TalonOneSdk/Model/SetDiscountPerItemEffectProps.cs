@@ -43,8 +43,9 @@ namespace TalonOneSdk.Model
         /// <param name="bundleName">The name of the bundle definition.</param>
         /// <param name="targetedItemPosition">The index of the targeted bundle item on which the applied discount is based.</param>
         /// <param name="targetedItemSubPosition">The sub-position of the targeted bundle item on which the applied discount is based. </param>
+        /// <param name="excludedFromPriceHistory">When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history.</param>
         [JsonConstructor]
-        public SetDiscountPerItemEffectProps(string name, decimal value, decimal position, Option<decimal?> subPosition = default, Option<decimal?> desiredValue = default, Option<string> scope = default, Option<decimal?> totalDiscount = default, Option<decimal?> desiredTotalDiscount = default, Option<long?> bundleIndex = default, Option<string> bundleName = default, Option<decimal?> targetedItemPosition = default, Option<decimal?> targetedItemSubPosition = default)
+        public SetDiscountPerItemEffectProps(string name, decimal value, decimal position, Option<decimal?> subPosition = default, Option<decimal?> desiredValue = default, Option<string> scope = default, Option<decimal?> totalDiscount = default, Option<decimal?> desiredTotalDiscount = default, Option<long?> bundleIndex = default, Option<string> bundleName = default, Option<decimal?> targetedItemPosition = default, Option<decimal?> targetedItemSubPosition = default, Option<bool?> excludedFromPriceHistory = default)
         {
             Name = name;
             Value = value;
@@ -58,6 +59,7 @@ namespace TalonOneSdk.Model
             BundleNameOption = bundleName;
             TargetedItemPositionOption = targetedItemPosition;
             TargetedItemSubPositionOption = targetedItemSubPosition;
+            ExcludedFromPriceHistoryOption = excludedFromPriceHistory;
             OnCreated();
         }
 
@@ -211,6 +213,20 @@ namespace TalonOneSdk.Model
         public decimal? TargetedItemSubPosition { get { return this.TargetedItemSubPositionOption; } set { this.TargetedItemSubPositionOption = new Option<decimal?>(value); } }
 
         /// <summary>
+        /// Used to track the state of ExcludedFromPriceHistory
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> ExcludedFromPriceHistoryOption { get; private set; }
+
+        /// <summary>
+        /// When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history.
+        /// </summary>
+        /// <value>When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history.</value>
+        [JsonPropertyName("excludedFromPriceHistory")]
+        public bool? ExcludedFromPriceHistory { get { return this.ExcludedFromPriceHistoryOption; } set { this.ExcludedFromPriceHistoryOption = new Option<bool?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -230,6 +246,7 @@ namespace TalonOneSdk.Model
             sb.Append("  BundleName: ").Append(BundleName).Append("\n");
             sb.Append("  TargetedItemPosition: ").Append(TargetedItemPosition).Append("\n");
             sb.Append("  TargetedItemSubPosition: ").Append(TargetedItemSubPosition).Append("\n");
+            sb.Append("  ExcludedFromPriceHistory: ").Append(ExcludedFromPriceHistory).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -279,6 +296,7 @@ namespace TalonOneSdk.Model
             Option<string> bundleName = default;
             Option<decimal?> targetedItemPosition = default;
             Option<decimal?> targetedItemSubPosition = default;
+            Option<bool?> excludedFromPriceHistory = default;
 
             while (utf8JsonReader.Read())
             {
@@ -331,6 +349,9 @@ namespace TalonOneSdk.Model
                         case "targetedItemSubPosition":
                             targetedItemSubPosition = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
+                        case "excludedFromPriceHistory":
+                            excludedFromPriceHistory = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         default:
                             break;
                     }
@@ -346,28 +367,16 @@ namespace TalonOneSdk.Model
             if (!position.IsSet)
                 throw new ArgumentException("Property is required for class SetDiscountPerItemEffectProps.", nameof(position));
 
-            if (subPosition.IsSet && subPosition.Value == null)
-                throw new ArgumentNullException(nameof(subPosition), "Property is not nullable for class SetDiscountPerItemEffectProps.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SetDiscountPerItemEffectProps.");
 
-            if (desiredValue.IsSet && desiredValue.Value == null)
-                throw new ArgumentNullException(nameof(desiredValue), "Property is not nullable for class SetDiscountPerItemEffectProps.");
+            if (value.IsSet && value.Value == null)
+                throw new ArgumentNullException(nameof(value), "Property is not nullable for class SetDiscountPerItemEffectProps.");
 
-            if (totalDiscount.IsSet && totalDiscount.Value == null)
-                throw new ArgumentNullException(nameof(totalDiscount), "Property is not nullable for class SetDiscountPerItemEffectProps.");
+            if (position.IsSet && position.Value == null)
+                throw new ArgumentNullException(nameof(position), "Property is not nullable for class SetDiscountPerItemEffectProps.");
 
-            if (desiredTotalDiscount.IsSet && desiredTotalDiscount.Value == null)
-                throw new ArgumentNullException(nameof(desiredTotalDiscount), "Property is not nullable for class SetDiscountPerItemEffectProps.");
-
-            if (bundleIndex.IsSet && bundleIndex.Value == null)
-                throw new ArgumentNullException(nameof(bundleIndex), "Property is not nullable for class SetDiscountPerItemEffectProps.");
-
-            if (targetedItemPosition.IsSet && targetedItemPosition.Value == null)
-                throw new ArgumentNullException(nameof(targetedItemPosition), "Property is not nullable for class SetDiscountPerItemEffectProps.");
-
-            if (targetedItemSubPosition.IsSet && targetedItemSubPosition.Value == null)
-                throw new ArgumentNullException(nameof(targetedItemSubPosition), "Property is not nullable for class SetDiscountPerItemEffectProps.");
-
-            return new SetDiscountPerItemEffectProps(name.Value, value.Value.Value, position.Value.Value, subPosition, desiredValue, scope, totalDiscount, desiredTotalDiscount, bundleIndex, bundleName, targetedItemPosition, targetedItemSubPosition);
+            return new SetDiscountPerItemEffectProps(name.Value, value.Value.Value, position.Value.Value, subPosition, desiredValue, scope, totalDiscount, desiredTotalDiscount, bundleIndex, bundleName, targetedItemPosition, targetedItemSubPosition, excludedFromPriceHistory);
         }
 
         /// <summary>
@@ -396,12 +405,6 @@ namespace TalonOneSdk.Model
         {
             if (setDiscountPerItemEffectProps.Name == null)
                 throw new ArgumentNullException(nameof(setDiscountPerItemEffectProps.Name), "Property is required for class SetDiscountPerItemEffectProps.");
-
-            if (setDiscountPerItemEffectProps.ScopeOption.IsSet && setDiscountPerItemEffectProps.Scope == null)
-                throw new ArgumentNullException(nameof(setDiscountPerItemEffectProps.Scope), "Property is required for class SetDiscountPerItemEffectProps.");
-
-            if (setDiscountPerItemEffectProps.BundleNameOption.IsSet && setDiscountPerItemEffectProps.BundleName == null)
-                throw new ArgumentNullException(nameof(setDiscountPerItemEffectProps.BundleName), "Property is required for class SetDiscountPerItemEffectProps.");
 
             writer.WriteString("name", setDiscountPerItemEffectProps.Name);
 
@@ -435,6 +438,9 @@ namespace TalonOneSdk.Model
 
             if (setDiscountPerItemEffectProps.TargetedItemSubPositionOption.IsSet)
                 writer.WriteNumber("targetedItemSubPosition", setDiscountPerItemEffectProps.TargetedItemSubPositionOption.Value.Value);
+
+            if (setDiscountPerItemEffectProps.ExcludedFromPriceHistoryOption.IsSet)
+                writer.WriteBoolean("excludedFromPriceHistory", setDiscountPerItemEffectProps.ExcludedFromPriceHistoryOption.Value.Value);
         }
     }
 }

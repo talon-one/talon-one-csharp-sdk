@@ -128,9 +128,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (isReadonly.IsSet && isReadonly.Value == null)
-                throw new ArgumentNullException(nameof(isReadonly), "Property is not nullable for class RoleV2Readonly.");
-
             return new RoleV2Readonly(isReadonly);
         }
 

@@ -534,8 +534,14 @@ namespace TalonOneSdk.Model
             if (!imported.IsSet)
                 throw new ArgumentException("Property is required for class SummaryCampaignStoreBudget.", nameof(imported));
 
-            if (period.IsSet && period.Value == null)
-                throw new ArgumentNullException(nameof(period), "Property is not nullable for class SummaryCampaignStoreBudget.");
+            if (action.IsSet && action.Value == null)
+                throw new ArgumentNullException(nameof(action), "Property is not nullable for class SummaryCampaignStoreBudget.");
+
+            if (storeCount.IsSet && storeCount.Value == null)
+                throw new ArgumentNullException(nameof(storeCount), "Property is not nullable for class SummaryCampaignStoreBudget.");
+
+            if (imported.IsSet && imported.Value == null)
+                throw new ArgumentNullException(nameof(imported), "Property is not nullable for class SummaryCampaignStoreBudget.");
 
             return new SummaryCampaignStoreBudget(action.Value.Value, storeCount.Value.Value, imported.Value.Value, period);
         }

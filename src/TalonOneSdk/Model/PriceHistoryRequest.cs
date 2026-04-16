@@ -170,6 +170,15 @@ namespace TalonOneSdk.Model
             if (!endDate.IsSet)
                 throw new ArgumentException("Property is required for class PriceHistoryRequest.", nameof(endDate));
 
+            if (sku.IsSet && sku.Value == null)
+                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class PriceHistoryRequest.");
+
+            if (startDate.IsSet && startDate.Value == null)
+                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class PriceHistoryRequest.");
+
+            if (endDate.IsSet && endDate.Value == null)
+                throw new ArgumentNullException(nameof(endDate), "Property is not nullable for class PriceHistoryRequest.");
+
             return new PriceHistoryRequest(sku.Value, startDate.Value.Value, endDate.Value.Value);
         }
 

@@ -376,27 +376,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class UpdateCoupon.");
-
-            if (discountLimit.IsSet && discountLimit.Value == null)
-                throw new ArgumentNullException(nameof(discountLimit), "Property is not nullable for class UpdateCoupon.");
-
-            if (reservationLimit.IsSet && reservationLimit.Value == null)
-                throw new ArgumentNullException(nameof(reservationLimit), "Property is not nullable for class UpdateCoupon.");
-
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class UpdateCoupon.");
-
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class UpdateCoupon.");
-
-            if (isReservationMandatory.IsSet && isReservationMandatory.Value == null)
-                throw new ArgumentNullException(nameof(isReservationMandatory), "Property is not nullable for class UpdateCoupon.");
-
-            if (implicitlyReserved.IsSet && implicitlyReserved.Value == null)
-                throw new ArgumentNullException(nameof(implicitlyReserved), "Property is not nullable for class UpdateCoupon.");
-
             return new UpdateCoupon(usageLimit, discountLimit, reservationLimit, startDate, expiryDate, limits, recipientIntegrationId, attributes, isReservationMandatory, implicitlyReserved);
         }
 
@@ -424,15 +403,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateCoupon updateCoupon, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateCoupon.LimitsOption.IsSet && updateCoupon.Limits == null)
-                throw new ArgumentNullException(nameof(updateCoupon.Limits), "Property is required for class UpdateCoupon.");
-
-            if (updateCoupon.RecipientIntegrationIdOption.IsSet && updateCoupon.RecipientIntegrationId == null)
-                throw new ArgumentNullException(nameof(updateCoupon.RecipientIntegrationId), "Property is required for class UpdateCoupon.");
-
-            if (updateCoupon.AttributesOption.IsSet && updateCoupon.Attributes == null)
-                throw new ArgumentNullException(nameof(updateCoupon.Attributes), "Property is required for class UpdateCoupon.");
-
             if (updateCoupon.UsageLimitOption.IsSet)
                 writer.WriteNumber("usageLimit", updateCoupon.UsageLimitOption.Value.Value);
 

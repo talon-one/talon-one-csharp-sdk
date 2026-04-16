@@ -386,6 +386,24 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test IntegrationGetAllCampaigns
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task IntegrationGetAllCampaignsAsyncTest()
+        {
+            Client.Option<long> pageSize = default;
+            Client.Option<long> skip = default;
+            Client.Option<List<string>> campaignIds = default;
+            Client.Option<DateTime> startAfter = default;
+            Client.Option<DateTime> startBefore = default;
+            Client.Option<DateTime> endAfter = default;
+            Client.Option<DateTime> endBefore = default;
+            var response = await _instance.IntegrationGetAllCampaignsAsync(pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore);
+            var model = response.Ok();
+            Assert.IsType<TalonOneSdk.Model.IntegrationGetAllCampaigns200Response>(model);
+        }
+
+        /// <summary>
         /// Test LinkLoyaltyCardToProfile
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -420,7 +438,8 @@ namespace TalonOneSdk.Test.Api
             string customerSessionId = default;
             ReturnIntegrationRequest returnIntegrationRequest = default;
             Client.Option<bool> dry = default;
-            var response = await _instance.ReturnCartItemsAsync(customerSessionId, returnIntegrationRequest, dry);
+            Client.Option<bool> runRuleEngine = default;
+            var response = await _instance.ReturnCartItemsAsync(customerSessionId, returnIntegrationRequest, dry, runRuleEngine);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.IntegrationStateV2>(model);
         }

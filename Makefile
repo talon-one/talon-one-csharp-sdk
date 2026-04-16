@@ -1,13 +1,14 @@
 BUILD_DIR:=src/TalonOneSdk
+VERSION:=$(shell sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p' $(PWD)/$(BUILD_DIR)/TalonOneSdk.csproj)
 
 default: testenv
 
 clean:
-	rm -rf $(PWD)/$(BUILD_DIR)/TalonOneSdk.$(ver)*.nupkg && \
-	rm -rf $(PWD)/$(BUILD_DIR)/TalonOneSdk.$(ver).snupkg
+	rm -rf $(PWD)/$(BUILD_DIR)/TalonOneSdk.$(VERSION)*.nupkg && \
+	rm -rf $(PWD)/$(BUILD_DIR)/TalonOneSdk.$(VERSION).snupkg
 
 pack: clean
-ifeq ($(ver),)
+ifeq ($(VERSION),)
 	@echo "***\033[0;31mERROR:\033[0m NO VERSION COULD BE EXTRACTED. Check out the TalonOneSdk.csproj file"
 	@exit 1
 endif
@@ -17,13 +18,13 @@ endif
 		-w "/tmp/talon-client/$(BUILD_DIR)" \
 		mcr.microsoft.com/dotnet/sdk:8.0 \
 			dotnet pack TalonOneSdk.csproj \
-				-p:PackageVersion=$(ver) \
+				-p:PackageVersion=$(VERSION) \
 				--output . \
 				--configuration Release \
 				--include-source
 
 publish: pack
-ifeq ($(ver),)
+ifeq ($(VERSION),)
 	@echo "***\033[0;31mERROR:\033[0m NO VERSION COULD BE EXTRACTED. Check out the TalonOneSdk.csproj file"
 	@exit 1
 endif
@@ -36,7 +37,7 @@ endif
 		-v $(PWD):/tmp/talon-client \
 		-w "/tmp/talon-client/$(BUILD_DIR)" \
 		mcr.microsoft.com/dotnet/sdk:8.0 \
-			dotnet nuget push TalonOneSdk.$(ver).nupkg \
+			dotnet nuget push TalonOneSdk.$(VERSION).nupkg \
 				--api-key $(apiKey) \
 				--source https://api.nuget.org/v3/index.json \
 				--skip-duplicate

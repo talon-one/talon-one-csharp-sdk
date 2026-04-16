@@ -830,35 +830,29 @@ namespace TalonOneSdk.Model
             if (!loyaltyPrograms.IsSet)
                 throw new ArgumentException("Property is required for class Application.", nameof(loyaltyPrograms));
 
-            if (caseSensitivity.IsSet && caseSensitivity.Value == null)
-                throw new ArgumentNullException(nameof(caseSensitivity), "Property is not nullable for class Application.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Application.");
 
-            if (defaultDiscountScope.IsSet && defaultDiscountScope.Value == null)
-                throw new ArgumentNullException(nameof(defaultDiscountScope), "Property is not nullable for class Application.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Application.");
 
-            if (enableCascadingDiscounts.IsSet && enableCascadingDiscounts.Value == null)
-                throw new ArgumentNullException(nameof(enableCascadingDiscounts), "Property is not nullable for class Application.");
+            if (modified.IsSet && modified.Value == null)
+                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class Application.");
 
-            if (enableFlattenedCartItems.IsSet && enableFlattenedCartItems.Value == null)
-                throw new ArgumentNullException(nameof(enableFlattenedCartItems), "Property is not nullable for class Application.");
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Application.");
 
-            if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class Application.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Application.");
 
-            if (enablePartialDiscounts.IsSet && enablePartialDiscounts.Value == null)
-                throw new ArgumentNullException(nameof(enablePartialDiscounts), "Property is not nullable for class Application.");
+            if (timezone.IsSet && timezone.Value == null)
+                throw new ArgumentNullException(nameof(timezone), "Property is not nullable for class Application.");
 
-            if (defaultDiscountAdditionalCostPerItemScope.IsSet && defaultDiscountAdditionalCostPerItemScope.Value == null)
-                throw new ArgumentNullException(nameof(defaultDiscountAdditionalCostPerItemScope), "Property is not nullable for class Application.");
+            if (currency.IsSet && currency.Value == null)
+                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class Application.");
 
-            if (defaultEvaluationGroupId.IsSet && defaultEvaluationGroupId.Value == null)
-                throw new ArgumentNullException(nameof(defaultEvaluationGroupId), "Property is not nullable for class Application.");
-
-            if (defaultCartItemFilterId.IsSet && defaultCartItemFilterId.Value == null)
-                throw new ArgumentNullException(nameof(defaultCartItemFilterId), "Property is not nullable for class Application.");
-
-            if (enableCampaignStateManagement.IsSet && enableCampaignStateManagement.Value == null)
-                throw new ArgumentNullException(nameof(enableCampaignStateManagement), "Property is not nullable for class Application.");
+            if (loyaltyPrograms.IsSet && loyaltyPrograms.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyPrograms), "Property is not nullable for class Application.");
 
             return new Application(id.Value.Value, created.Value.Value, modified.Value.Value, accountId.Value.Value, name.Value, timezone.Value, currency.Value, loyaltyPrograms.Value, description, caseSensitivity, attributes, limits, defaultDiscountScope, enableCascadingDiscounts, enableFlattenedCartItems, attributesSettings, sandbox, enablePartialDiscounts, defaultDiscountAdditionalCostPerItemScope, defaultEvaluationGroupId, defaultCartItemFilterId, enableCampaignStateManagement);
         }
@@ -898,18 +892,6 @@ namespace TalonOneSdk.Model
 
             if (application.LoyaltyPrograms == null)
                 throw new ArgumentNullException(nameof(application.LoyaltyPrograms), "Property is required for class Application.");
-
-            if (application.DescriptionOption.IsSet && application.Description == null)
-                throw new ArgumentNullException(nameof(application.Description), "Property is required for class Application.");
-
-            if (application.AttributesOption.IsSet && application.Attributes == null)
-                throw new ArgumentNullException(nameof(application.Attributes), "Property is required for class Application.");
-
-            if (application.LimitsOption.IsSet && application.Limits == null)
-                throw new ArgumentNullException(nameof(application.Limits), "Property is required for class Application.");
-
-            if (application.AttributesSettingsOption.IsSet && application.AttributesSettings == null)
-                throw new ArgumentNullException(nameof(application.AttributesSettings), "Property is required for class Application.");
 
             writer.WriteNumber("id", application.Id);
 

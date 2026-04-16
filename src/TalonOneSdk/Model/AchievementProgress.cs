@@ -320,14 +320,11 @@ namespace TalonOneSdk.Model
             if (!progress.IsSet)
                 throw new ArgumentException("Property is required for class AchievementProgress.", nameof(progress));
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class AchievementProgress.");
+            if (status.IsSet && status.Value == null)
+                throw new ArgumentNullException(nameof(status), "Property is not nullable for class AchievementProgress.");
 
-            if (completionDate.IsSet && completionDate.Value == null)
-                throw new ArgumentNullException(nameof(completionDate), "Property is not nullable for class AchievementProgress.");
-
-            if (endDate.IsSet && endDate.Value == null)
-                throw new ArgumentNullException(nameof(endDate), "Property is not nullable for class AchievementProgress.");
+            if (progress.IsSet && progress.Value == null)
+                throw new ArgumentNullException(nameof(progress), "Property is not nullable for class AchievementProgress.");
 
             return new AchievementProgress(status.Value.Value, progress.Value.Value, startDate, completionDate, endDate);
         }

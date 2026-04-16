@@ -531,24 +531,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class UpdateAchievement.");
-
-            if (recurrencePolicy.IsSet && recurrencePolicy.Value == null)
-                throw new ArgumentNullException(nameof(recurrencePolicy), "Property is not nullable for class UpdateAchievement.");
-
-            if (activationPolicy.IsSet && activationPolicy.Value == null)
-                throw new ArgumentNullException(nameof(activationPolicy), "Property is not nullable for class UpdateAchievement.");
-
-            if (fixedStartDate.IsSet && fixedStartDate.Value == null)
-                throw new ArgumentNullException(nameof(fixedStartDate), "Property is not nullable for class UpdateAchievement.");
-
-            if (endDate.IsSet && endDate.Value == null)
-                throw new ArgumentNullException(nameof(endDate), "Property is not nullable for class UpdateAchievement.");
-
-            if (allowRollbackAfterCompletion.IsSet && allowRollbackAfterCompletion.Value == null)
-                throw new ArgumentNullException(nameof(allowRollbackAfterCompletion), "Property is not nullable for class UpdateAchievement.");
-
             return new UpdateAchievement(name, title, description, target, period, periodEndOverride, recurrencePolicy, activationPolicy, fixedStartDate, endDate, allowRollbackAfterCompletion);
         }
 
@@ -576,21 +558,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateAchievement updateAchievement, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateAchievement.NameOption.IsSet && updateAchievement.Name == null)
-                throw new ArgumentNullException(nameof(updateAchievement.Name), "Property is required for class UpdateAchievement.");
-
-            if (updateAchievement.TitleOption.IsSet && updateAchievement.Title == null)
-                throw new ArgumentNullException(nameof(updateAchievement.Title), "Property is required for class UpdateAchievement.");
-
-            if (updateAchievement.DescriptionOption.IsSet && updateAchievement.Description == null)
-                throw new ArgumentNullException(nameof(updateAchievement.Description), "Property is required for class UpdateAchievement.");
-
-            if (updateAchievement.PeriodOption.IsSet && updateAchievement.Period == null)
-                throw new ArgumentNullException(nameof(updateAchievement.Period), "Property is required for class UpdateAchievement.");
-
-            if (updateAchievement.PeriodEndOverrideOption.IsSet && updateAchievement.PeriodEndOverride == null)
-                throw new ArgumentNullException(nameof(updateAchievement.PeriodEndOverride), "Property is required for class UpdateAchievement.");
-
             if (updateAchievement.NameOption.IsSet)
                 writer.WriteString("name", updateAchievement.Name);
 
