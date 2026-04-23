@@ -33,42 +33,42 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="id">The internal ID of this entity.</param>
         /// <param name="created">The time this entity was created.</param>
-        /// <param name="userId">The ID of the user that created this achievement.</param>
         /// <param name="name">The internal name of the achievement used in API requests.  **Note**: The name should start with a letter. This cannot be changed after the achievement has been created. </param>
         /// <param name="title">The display name for the achievement in the Campaign Manager.</param>
         /// <param name="description">A description of the achievement.</param>
         /// <param name="target">The required number of actions or the transactional milestone to complete the achievement.</param>
-        /// <param name="period">The relative duration after which the achievement ends and resets for a particular customer profile.  **Note**: The &#x60;period&#x60; does not start when the achievement is created.  The period is a **positive real number** followed by one letter indicating the time unit.  Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.  Available units:  - &#x60;s&#x60;: seconds - &#x60;m&#x60;: minutes - &#x60;h&#x60;: hours - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  You can also round certain units down to the beginning of period and up to the end of period.: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. Example: &#x60;30D_D&#x60; - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year. Example: &#x60;23W_U&#x60;  **Note**: You can either use the round down and round up option or set an absolute period. </param>
         /// <param name="recurrencePolicy">The policy that determines if and how the achievement recurs. - &#x60;no_recurrence&#x60;: The achievement can be completed only once. - &#x60;on_expiration&#x60;: The achievement resets after it expires and becomes available again. - &#x60;on_completion&#x60;: When the customer progress status reaches &#x60;completed&#x60;, the achievement resets and becomes available again. </param>
         /// <param name="activationPolicy">The policy that determines how the achievement starts, ends, or resets. - &#x60;user_action&#x60;: The achievement ends or resets relative to when the customer started the achievement. - &#x60;fixed_schedule&#x60;: The achievement starts, ends, or resets for all customers following a fixed schedule. </param>
-        /// <param name="fixedStartDate">The achievement&#39;s start date when &#x60;activationPolicy&#x60; is set to &#x60;fixed_schedule&#x60;.  **Note:** It must be an RFC3339 timestamp string. </param>
-        /// <param name="endDate">The achievement&#39;s end date. If defined, customers cannot participate in the achievement after this date.  **Note:** It must be an RFC3339 timestamp string. </param>
-        /// <param name="allowRollbackAfterCompletion">When &#x60;true&#x60;, customer progress can be rolled back in completed achievements.</param>
         /// <param name="sandbox">Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.</param>
         /// <param name="subscribedApplications">A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement.</param>
         /// <param name="timezone">A string containing an IANA timezone descriptor.</param>
+        /// <param name="userId">The ID of the user that created this achievement.</param>
+        /// <param name="period">The relative duration after which the achievement ends and resets for a particular customer profile.  **Note**: The &#x60;period&#x60; does not start when the achievement is created.  The period is a **positive real number** followed by one letter indicating the time unit.  Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.  Available units:  - &#x60;s&#x60;: seconds - &#x60;m&#x60;: minutes - &#x60;h&#x60;: hours - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  You can also round certain units down to the beginning of period and up to the end of period.: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. Example: &#x60;30D_D&#x60; - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year. Example: &#x60;23W_U&#x60;  **Note**: You can either use the round down and round up option or set an absolute period. </param>
+        /// <param name="fixedStartDate">The achievement&#39;s start date when &#x60;activationPolicy&#x60; is set to &#x60;fixed_schedule&#x60;.  **Note:** It must be an RFC3339 timestamp string. </param>
+        /// <param name="endDate">The achievement&#39;s end date. If defined, customers cannot participate in the achievement after this date.  **Note:** It must be an RFC3339 timestamp string. </param>
+        /// <param name="allowRollbackAfterCompletion">When &#x60;true&#x60;, customer progress can be rolled back in completed achievements.</param>
         /// <param name="createdBy">Name of the user that created the achievement.  **Note**: This is not available if the user has been deleted. </param>
         /// <param name="hasProgress">Indicates if a customer has made progress in the achievement.</param>
         /// <param name="status">The status of the achievement.</param>
         [JsonConstructor]
-        public AchievementV2(long id, DateTime created, long userId, Option<string> name = default, Option<string> title = default, Option<string> description = default, Option<decimal?> target = default, Option<string> period = default, Option<RecurrencePolicyEnum?> recurrencePolicy = default, Option<ActivationPolicyEnum?> activationPolicy = default, Option<DateTime?> fixedStartDate = default, Option<DateTime?> endDate = default, Option<bool?> allowRollbackAfterCompletion = default, Option<bool?> sandbox = default, Option<List<long>> subscribedApplications = default, Option<string> timezone = default, Option<string> createdBy = default, Option<bool?> hasProgress = default, Option<StatusEnum?> status = default)
+        public AchievementV2(long id, DateTime created, string name, string title, string description, decimal target, RecurrencePolicyEnum recurrencePolicy, ActivationPolicyEnum activationPolicy, bool sandbox, List<long> subscribedApplications, string timezone, long userId, Option<string> period = default, Option<DateTime?> fixedStartDate = default, Option<DateTime?> endDate = default, Option<bool?> allowRollbackAfterCompletion = default, Option<string> createdBy = default, Option<bool?> hasProgress = default, Option<StatusEnum?> status = default)
         {
             Id = id;
             Created = created;
+            Name = name;
+            Title = title;
+            Description = description;
+            Target = target;
+            RecurrencePolicy = recurrencePolicy;
+            ActivationPolicy = activationPolicy;
+            Sandbox = sandbox;
+            SubscribedApplications = subscribedApplications;
+            Timezone = timezone;
             UserId = userId;
-            NameOption = name;
-            TitleOption = title;
-            DescriptionOption = description;
-            TargetOption = target;
             PeriodOption = period;
-            RecurrencePolicyOption = recurrencePolicy;
-            ActivationPolicyOption = activationPolicy;
             FixedStartDateOption = fixedStartDate;
             EndDateOption = endDate;
             AllowRollbackAfterCompletionOption = allowRollbackAfterCompletion;
-            SandboxOption = sandbox;
-            SubscribedApplicationsOption = subscribedApplications;
-            TimezoneOption = timezone;
             CreatedByOption = createdBy;
             HasProgressOption = hasProgress;
             StatusOption = status;
@@ -144,7 +144,7 @@ namespace TalonOneSdk.Model
         /// <param name="value"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public static string RecurrencePolicyEnumToJsonValue(RecurrencePolicyEnum? value)
+        public static string RecurrencePolicyEnumToJsonValue(RecurrencePolicyEnum value)
         {
             if (value == RecurrencePolicyEnum.NoRecurrence)
                 return "no_recurrence";
@@ -159,19 +159,12 @@ namespace TalonOneSdk.Model
         }
 
         /// <summary>
-        /// Used to track the state of RecurrencePolicy
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<RecurrencePolicyEnum?> RecurrencePolicyOption { get; private set; }
-
-        /// <summary>
         /// The policy that determines if and how the achievement recurs. - &#x60;no_recurrence&#x60;: The achievement can be completed only once. - &#x60;on_expiration&#x60;: The achievement resets after it expires and becomes available again. - &#x60;on_completion&#x60;: When the customer progress status reaches &#x60;completed&#x60;, the achievement resets and becomes available again. 
         /// </summary>
         /// <value>The policy that determines if and how the achievement recurs. - &#x60;no_recurrence&#x60;: The achievement can be completed only once. - &#x60;on_expiration&#x60;: The achievement resets after it expires and becomes available again. - &#x60;on_completion&#x60;: When the customer progress status reaches &#x60;completed&#x60;, the achievement resets and becomes available again. </value>
         /* <example>no_recurrence</example> */
         [JsonPropertyName("recurrencePolicy")]
-        public RecurrencePolicyEnum? RecurrencePolicy { get { return this.RecurrencePolicyOption.Value; } set { this.RecurrencePolicyOption = new Option<RecurrencePolicyEnum?>(value); } }
+        public RecurrencePolicyEnum RecurrencePolicy { get; set; }
 
         /// <summary>
         /// The policy that determines how the achievement starts, ends, or resets. - &#x60;user_action&#x60;: The achievement ends or resets relative to when the customer started the achievement. - &#x60;fixed_schedule&#x60;: The achievement starts, ends, or resets for all customers following a fixed schedule. 
@@ -229,7 +222,7 @@ namespace TalonOneSdk.Model
         /// <param name="value"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public static string ActivationPolicyEnumToJsonValue(ActivationPolicyEnum? value)
+        public static string ActivationPolicyEnumToJsonValue(ActivationPolicyEnum value)
         {
             if (value == ActivationPolicyEnum.UserAction)
                 return "user_action";
@@ -241,19 +234,12 @@ namespace TalonOneSdk.Model
         }
 
         /// <summary>
-        /// Used to track the state of ActivationPolicy
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<ActivationPolicyEnum?> ActivationPolicyOption { get; private set; }
-
-        /// <summary>
         /// The policy that determines how the achievement starts, ends, or resets. - &#x60;user_action&#x60;: The achievement ends or resets relative to when the customer started the achievement. - &#x60;fixed_schedule&#x60;: The achievement starts, ends, or resets for all customers following a fixed schedule. 
         /// </summary>
         /// <value>The policy that determines how the achievement starts, ends, or resets. - &#x60;user_action&#x60;: The achievement ends or resets relative to when the customer started the achievement. - &#x60;fixed_schedule&#x60;: The achievement starts, ends, or resets for all customers following a fixed schedule. </value>
         /* <example>fixed_schedule</example> */
         [JsonPropertyName("activationPolicy")]
-        public ActivationPolicyEnum? ActivationPolicy { get { return this.ActivationPolicyOption.Value; } set { this.ActivationPolicyOption = new Option<ActivationPolicyEnum?>(value); } }
+        public ActivationPolicyEnum ActivationPolicy { get; set; }
 
         /// <summary>
         /// The status of the achievement.
@@ -382,34 +368,12 @@ namespace TalonOneSdk.Model
         public DateTime Created { get; set; }
 
         /// <summary>
-        /// The ID of the user that created this achievement.
-        /// </summary>
-        /// <value>The ID of the user that created this achievement.</value>
-        /* <example>1234</example> */
-        [JsonPropertyName("userId")]
-        public long UserId { get; set; }
-
-        /// <summary>
-        /// Used to track the state of Name
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> NameOption { get; private set; }
-
-        /// <summary>
         /// The internal name of the achievement used in API requests.  **Note**: The name should start with a letter. This cannot be changed after the achievement has been created. 
         /// </summary>
         /// <value>The internal name of the achievement used in API requests.  **Note**: The name should start with a letter. This cannot be changed after the achievement has been created. </value>
         /* <example>Order50Discount</example> */
         [JsonPropertyName("name")]
-        public string Name { get { return this.NameOption; } set { this.NameOption = new Option<string>(value); } }
-
-        /// <summary>
-        /// Used to track the state of Title
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> TitleOption { get; private set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// The display name for the achievement in the Campaign Manager.
@@ -417,14 +381,7 @@ namespace TalonOneSdk.Model
         /// <value>The display name for the achievement in the Campaign Manager.</value>
         /* <example>50% off on 50th purchase.</example> */
         [JsonPropertyName("title")]
-        public string Title { get { return this.TitleOption; } set { this.TitleOption = new Option<string>(value); } }
-
-        /// <summary>
-        /// Used to track the state of Description
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> DescriptionOption { get; private set; }
+        public string Title { get; set; }
 
         /// <summary>
         /// A description of the achievement.
@@ -432,14 +389,7 @@ namespace TalonOneSdk.Model
         /// <value>A description of the achievement.</value>
         /* <example>50% off for every 50th purchase in a year.</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
-
-        /// <summary>
-        /// Used to track the state of Target
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<decimal?> TargetOption { get; private set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// The required number of actions or the transactional milestone to complete the achievement.
@@ -447,7 +397,39 @@ namespace TalonOneSdk.Model
         /// <value>The required number of actions or the transactional milestone to complete the achievement.</value>
         /* <example>50</example> */
         [JsonPropertyName("target")]
-        public decimal? Target { get { return this.TargetOption; } set { this.TargetOption = new Option<decimal?>(value); } }
+        public decimal Target { get; set; }
+
+        /// <summary>
+        /// Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.
+        /// </summary>
+        /// <value>Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.</value>
+        /* <example>true</example> */
+        [JsonPropertyName("sandbox")]
+        public bool Sandbox { get; set; }
+
+        /// <summary>
+        /// A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement.
+        /// </summary>
+        /// <value>A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement.</value>
+        /* <example>[132, 97]</example> */
+        [JsonPropertyName("subscribedApplications")]
+        public List<long> SubscribedApplications { get; set; }
+
+        /// <summary>
+        /// A string containing an IANA timezone descriptor.
+        /// </summary>
+        /// <value>A string containing an IANA timezone descriptor.</value>
+        /* <example>Europe/Berlin</example> */
+        [JsonPropertyName("timezone")]
+        public string Timezone { get; set; }
+
+        /// <summary>
+        /// The ID of the user that created this achievement.
+        /// </summary>
+        /// <value>The ID of the user that created this achievement.</value>
+        /* <example>1234</example> */
+        [JsonPropertyName("userId")]
+        public long UserId { get; set; }
 
         /// <summary>
         /// Used to track the state of Period
@@ -510,51 +492,6 @@ namespace TalonOneSdk.Model
         public bool? AllowRollbackAfterCompletion { get { return this.AllowRollbackAfterCompletionOption; } set { this.AllowRollbackAfterCompletionOption = new Option<bool?>(value); } }
 
         /// <summary>
-        /// Used to track the state of Sandbox
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<bool?> SandboxOption { get; private set; }
-
-        /// <summary>
-        /// Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.
-        /// </summary>
-        /// <value>Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.</value>
-        /* <example>true</example> */
-        [JsonPropertyName("sandbox")]
-        public bool? Sandbox { get { return this.SandboxOption; } set { this.SandboxOption = new Option<bool?>(value); } }
-
-        /// <summary>
-        /// Used to track the state of SubscribedApplications
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<long>> SubscribedApplicationsOption { get; private set; }
-
-        /// <summary>
-        /// A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement.
-        /// </summary>
-        /// <value>A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement.</value>
-        /* <example>[132, 97]</example> */
-        [JsonPropertyName("subscribedApplications")]
-        public List<long> SubscribedApplications { get { return this.SubscribedApplicationsOption; } set { this.SubscribedApplicationsOption = new Option<List<long>>(value); } }
-
-        /// <summary>
-        /// Used to track the state of Timezone
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> TimezoneOption { get; private set; }
-
-        /// <summary>
-        /// A string containing an IANA timezone descriptor.
-        /// </summary>
-        /// <value>A string containing an IANA timezone descriptor.</value>
-        /* <example>Europe/Berlin</example> */
-        [JsonPropertyName("timezone")]
-        public string Timezone { get { return this.TimezoneOption; } set { this.TimezoneOption = new Option<string>(value); } }
-
-        /// <summary>
         /// Used to track the state of CreatedBy
         /// </summary>
         [JsonIgnore]
@@ -593,20 +530,20 @@ namespace TalonOneSdk.Model
             sb.Append("class AchievementV2 {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
-            sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Target: ").Append(Target).Append("\n");
-            sb.Append("  Period: ").Append(Period).Append("\n");
             sb.Append("  RecurrencePolicy: ").Append(RecurrencePolicy).Append("\n");
             sb.Append("  ActivationPolicy: ").Append(ActivationPolicy).Append("\n");
-            sb.Append("  FixedStartDate: ").Append(FixedStartDate).Append("\n");
-            sb.Append("  EndDate: ").Append(EndDate).Append("\n");
-            sb.Append("  AllowRollbackAfterCompletion: ").Append(AllowRollbackAfterCompletion).Append("\n");
             sb.Append("  Sandbox: ").Append(Sandbox).Append("\n");
             sb.Append("  SubscribedApplications: ").Append(SubscribedApplications).Append("\n");
             sb.Append("  Timezone: ").Append(Timezone).Append("\n");
+            sb.Append("  UserId: ").Append(UserId).Append("\n");
+            sb.Append("  Period: ").Append(Period).Append("\n");
+            sb.Append("  FixedStartDate: ").Append(FixedStartDate).Append("\n");
+            sb.Append("  EndDate: ").Append(EndDate).Append("\n");
+            sb.Append("  AllowRollbackAfterCompletion: ").Append(AllowRollbackAfterCompletion).Append("\n");
             sb.Append("  CreatedBy: ").Append(CreatedBy).Append("\n");
             sb.Append("  HasProgress: ").Append(HasProgress).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
@@ -633,11 +570,11 @@ namespace TalonOneSdk.Model
                 yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
-            if (this.NameOption.Value != null) {
+            if (this.Name != null) {
                 // Name (string) pattern
                 Regex regexName = new Regex(@"^[a-zA-Z]\w+$", RegexOptions.CultureInvariant);
 
-                if (this.NameOption.Value != null &&!regexName.Match(this.NameOption.Value).Success)
+                if (!regexName.Match(this.Name).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, must match a pattern of " + regexName, new [] { "Name" });
                 }
@@ -692,20 +629,20 @@ namespace TalonOneSdk.Model
 
             Option<long?> id = default;
             Option<DateTime?> created = default;
-            Option<long?> userId = default;
             Option<string> name = default;
             Option<string> title = default;
             Option<string> description = default;
             Option<decimal?> target = default;
-            Option<string> period = default;
             Option<AchievementV2.RecurrencePolicyEnum?> recurrencePolicy = default;
             Option<AchievementV2.ActivationPolicyEnum?> activationPolicy = default;
-            Option<DateTime?> fixedStartDate = default;
-            Option<DateTime?> endDate = default;
-            Option<bool?> allowRollbackAfterCompletion = default;
             Option<bool?> sandbox = default;
             Option<List<long>> subscribedApplications = default;
             Option<string> timezone = default;
+            Option<long?> userId = default;
+            Option<string> period = default;
+            Option<DateTime?> fixedStartDate = default;
+            Option<DateTime?> endDate = default;
+            Option<bool?> allowRollbackAfterCompletion = default;
             Option<string> createdBy = default;
             Option<bool?> hasProgress = default;
             Option<AchievementV2.StatusEnum?> status = default;
@@ -731,9 +668,6 @@ namespace TalonOneSdk.Model
                         case "created":
                             created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "userId":
-                            userId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -746,9 +680,6 @@ namespace TalonOneSdk.Model
                         case "target":
                             target = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
-                        case "period":
-                            period = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "recurrencePolicy":
                             string recurrencePolicyRawValue = utf8JsonReader.GetString();
                             if (recurrencePolicyRawValue != null)
@@ -759,15 +690,6 @@ namespace TalonOneSdk.Model
                             if (activationPolicyRawValue != null)
                                 activationPolicy = new Option<AchievementV2.ActivationPolicyEnum?>(AchievementV2.ActivationPolicyEnumFromStringOrDefault(activationPolicyRawValue));
                             break;
-                        case "fixedStartDate":
-                            fixedStartDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "endDate":
-                            endDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "allowRollbackAfterCompletion":
-                            allowRollbackAfterCompletion = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
-                            break;
                         case "sandbox":
                             sandbox = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
@@ -776,6 +698,21 @@ namespace TalonOneSdk.Model
                             break;
                         case "timezone":
                             timezone = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "userId":
+                            userId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "period":
+                            period = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "fixedStartDate":
+                            fixedStartDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "endDate":
+                            endDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "allowRollbackAfterCompletion":
+                            allowRollbackAfterCompletion = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "createdBy":
                             createdBy = new Option<string>(utf8JsonReader.GetString());
@@ -800,8 +737,50 @@ namespace TalonOneSdk.Model
             if (!created.IsSet)
                 throw new ArgumentException("Property is required for class AchievementV2.", nameof(created));
 
+            if (!name.IsSet)
+                throw new ArgumentException("Property is required for class AchievementV2.", nameof(name));
+
+            if (!title.IsSet)
+                throw new ArgumentException("Property is required for class AchievementV2.", nameof(title));
+
+            if (!description.IsSet)
+                throw new ArgumentException("Property is required for class AchievementV2.", nameof(description));
+
+            if (!target.IsSet)
+                throw new ArgumentException("Property is required for class AchievementV2.", nameof(target));
+
+            if (!recurrencePolicy.IsSet)
+                throw new ArgumentException("Property is required for class AchievementV2.", nameof(recurrencePolicy));
+
+            if (!activationPolicy.IsSet)
+                throw new ArgumentException("Property is required for class AchievementV2.", nameof(activationPolicy));
+
+            if (!sandbox.IsSet)
+                throw new ArgumentException("Property is required for class AchievementV2.", nameof(sandbox));
+
+            if (!subscribedApplications.IsSet)
+                throw new ArgumentException("Property is required for class AchievementV2.", nameof(subscribedApplications));
+
+            if (!timezone.IsSet)
+                throw new ArgumentException("Property is required for class AchievementV2.", nameof(timezone));
+
             if (!userId.IsSet)
                 throw new ArgumentException("Property is required for class AchievementV2.", nameof(userId));
+
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AchievementV2.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class AchievementV2.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AchievementV2.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class AchievementV2.");
+
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description), "Property is not nullable for class AchievementV2.");
 
             if (target.IsSet && target.Value == null)
                 throw new ArgumentNullException(nameof(target), "Property is not nullable for class AchievementV2.");
@@ -812,25 +791,19 @@ namespace TalonOneSdk.Model
             if (activationPolicy.IsSet && activationPolicy.Value == null)
                 throw new ArgumentNullException(nameof(activationPolicy), "Property is not nullable for class AchievementV2.");
 
-            if (fixedStartDate.IsSet && fixedStartDate.Value == null)
-                throw new ArgumentNullException(nameof(fixedStartDate), "Property is not nullable for class AchievementV2.");
-
-            if (endDate.IsSet && endDate.Value == null)
-                throw new ArgumentNullException(nameof(endDate), "Property is not nullable for class AchievementV2.");
-
-            if (allowRollbackAfterCompletion.IsSet && allowRollbackAfterCompletion.Value == null)
-                throw new ArgumentNullException(nameof(allowRollbackAfterCompletion), "Property is not nullable for class AchievementV2.");
-
             if (sandbox.IsSet && sandbox.Value == null)
                 throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class AchievementV2.");
 
-            if (hasProgress.IsSet && hasProgress.Value == null)
-                throw new ArgumentNullException(nameof(hasProgress), "Property is not nullable for class AchievementV2.");
+            if (subscribedApplications.IsSet && subscribedApplications.Value == null)
+                throw new ArgumentNullException(nameof(subscribedApplications), "Property is not nullable for class AchievementV2.");
 
-            if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class AchievementV2.");
+            if (timezone.IsSet && timezone.Value == null)
+                throw new ArgumentNullException(nameof(timezone), "Property is not nullable for class AchievementV2.");
 
-            return new AchievementV2(id.Value.Value, created.Value.Value, userId.Value.Value, name, title, description, target, period, recurrencePolicy, activationPolicy, fixedStartDate, endDate, allowRollbackAfterCompletion, sandbox, subscribedApplications, timezone, createdBy, hasProgress, status);
+            if (userId.IsSet && userId.Value == null)
+                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class AchievementV2.");
+
+            return new AchievementV2(id.Value.Value, created.Value.Value, name.Value, title.Value, description.Value, target.Value.Value, recurrencePolicy.Value.Value, activationPolicy.Value.Value, sandbox.Value.Value, subscribedApplications.Value, timezone.Value, userId.Value.Value, period, fixedStartDate, endDate, allowRollbackAfterCompletion, createdBy, hasProgress, status);
         }
 
         /// <summary>
@@ -857,58 +830,48 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AchievementV2 achievementV2, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (achievementV2.NameOption.IsSet && achievementV2.Name == null)
+            if (achievementV2.Name == null)
                 throw new ArgumentNullException(nameof(achievementV2.Name), "Property is required for class AchievementV2.");
 
-            if (achievementV2.TitleOption.IsSet && achievementV2.Title == null)
+            if (achievementV2.Title == null)
                 throw new ArgumentNullException(nameof(achievementV2.Title), "Property is required for class AchievementV2.");
 
-            if (achievementV2.DescriptionOption.IsSet && achievementV2.Description == null)
+            if (achievementV2.Description == null)
                 throw new ArgumentNullException(nameof(achievementV2.Description), "Property is required for class AchievementV2.");
 
-            if (achievementV2.PeriodOption.IsSet && achievementV2.Period == null)
-                throw new ArgumentNullException(nameof(achievementV2.Period), "Property is required for class AchievementV2.");
-
-            if (achievementV2.SubscribedApplicationsOption.IsSet && achievementV2.SubscribedApplications == null)
+            if (achievementV2.SubscribedApplications == null)
                 throw new ArgumentNullException(nameof(achievementV2.SubscribedApplications), "Property is required for class AchievementV2.");
 
-            if (achievementV2.TimezoneOption.IsSet && achievementV2.Timezone == null)
+            if (achievementV2.Timezone == null)
                 throw new ArgumentNullException(nameof(achievementV2.Timezone), "Property is required for class AchievementV2.");
-
-            if (achievementV2.CreatedByOption.IsSet && achievementV2.CreatedBy == null)
-                throw new ArgumentNullException(nameof(achievementV2.CreatedBy), "Property is required for class AchievementV2.");
 
             writer.WriteNumber("id", achievementV2.Id);
 
             writer.WriteString("created", achievementV2.Created.ToString(CreatedFormat));
 
+            writer.WriteString("name", achievementV2.Name);
+
+            writer.WriteString("title", achievementV2.Title);
+
+            writer.WriteString("description", achievementV2.Description);
+
+            writer.WriteNumber("target", achievementV2.Target);
+
+            var recurrencePolicyRawValue = AchievementV2.RecurrencePolicyEnumToJsonValue(achievementV2.RecurrencePolicy);
+            writer.WriteString("recurrencePolicy", recurrencePolicyRawValue);
+            var activationPolicyRawValue = AchievementV2.ActivationPolicyEnumToJsonValue(achievementV2.ActivationPolicy);
+            writer.WriteString("activationPolicy", activationPolicyRawValue);
+            writer.WriteBoolean("sandbox", achievementV2.Sandbox);
+
+            writer.WritePropertyName("subscribedApplications");
+            JsonSerializer.Serialize(writer, achievementV2.SubscribedApplications, jsonSerializerOptions);
+            writer.WriteString("timezone", achievementV2.Timezone);
+
             writer.WriteNumber("userId", achievementV2.UserId);
-
-            if (achievementV2.NameOption.IsSet)
-                writer.WriteString("name", achievementV2.Name);
-
-            if (achievementV2.TitleOption.IsSet)
-                writer.WriteString("title", achievementV2.Title);
-
-            if (achievementV2.DescriptionOption.IsSet)
-                writer.WriteString("description", achievementV2.Description);
-
-            if (achievementV2.TargetOption.IsSet)
-                writer.WriteNumber("target", achievementV2.TargetOption.Value.Value);
 
             if (achievementV2.PeriodOption.IsSet)
                 writer.WriteString("period", achievementV2.Period);
 
-            if (achievementV2.RecurrencePolicyOption.IsSet)
-            {
-                var recurrencePolicyRawValue = AchievementV2.RecurrencePolicyEnumToJsonValue(achievementV2.RecurrencePolicyOption.Value);
-                writer.WriteString("recurrencePolicy", recurrencePolicyRawValue);
-            }
-            if (achievementV2.ActivationPolicyOption.IsSet)
-            {
-                var activationPolicyRawValue = AchievementV2.ActivationPolicyEnumToJsonValue(achievementV2.ActivationPolicyOption.Value);
-                writer.WriteString("activationPolicy", activationPolicyRawValue);
-            }
             if (achievementV2.FixedStartDateOption.IsSet)
                 writer.WriteString("fixedStartDate", achievementV2.FixedStartDateOption.Value.Value.ToString(FixedStartDateFormat));
 
@@ -917,17 +880,6 @@ namespace TalonOneSdk.Model
 
             if (achievementV2.AllowRollbackAfterCompletionOption.IsSet)
                 writer.WriteBoolean("allowRollbackAfterCompletion", achievementV2.AllowRollbackAfterCompletionOption.Value.Value);
-
-            if (achievementV2.SandboxOption.IsSet)
-                writer.WriteBoolean("sandbox", achievementV2.SandboxOption.Value.Value);
-
-            if (achievementV2.SubscribedApplicationsOption.IsSet)
-            {
-                writer.WritePropertyName("subscribedApplications");
-                JsonSerializer.Serialize(writer, achievementV2.SubscribedApplications, jsonSerializerOptions);
-            }
-            if (achievementV2.TimezoneOption.IsSet)
-                writer.WriteString("timezone", achievementV2.Timezone);
 
             if (achievementV2.CreatedByOption.IsSet)
                 writer.WriteString("createdBy", achievementV2.CreatedBy);

@@ -139,6 +139,12 @@ namespace TalonOneSdk.Model
             if (!experiment.IsSet)
                 throw new ArgumentException("Property is required for class ExperimentCopy.", nameof(experiment));
 
+            if (targetApplicationId.IsSet && targetApplicationId.Value == null)
+                throw new ArgumentNullException(nameof(targetApplicationId), "Property is not nullable for class ExperimentCopy.");
+
+            if (experiment.IsSet && experiment.Value == null)
+                throw new ArgumentNullException(nameof(experiment), "Property is not nullable for class ExperimentCopy.");
+
             return new ExperimentCopy(targetApplicationId.Value.Value, experiment.Value);
         }
 

@@ -153,9 +153,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentListResults experimentListResults, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (experimentListResults.ResultsOption.IsSet && experimentListResults.Results == null)
-                throw new ArgumentNullException(nameof(experimentListResults.Results), "Property is required for class ExperimentListResults.");
-
             if (experimentListResults.ResultsOption.IsSet)
             {
                 writer.WritePropertyName("results");

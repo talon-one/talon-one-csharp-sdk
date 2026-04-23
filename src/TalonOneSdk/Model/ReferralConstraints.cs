@@ -194,15 +194,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class ReferralConstraints.");
-
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class ReferralConstraints.");
-
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class ReferralConstraints.");
-
             return new ReferralConstraints(startDate, expiryDate, usageLimit);
         }
 

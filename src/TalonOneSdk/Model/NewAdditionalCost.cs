@@ -307,8 +307,14 @@ namespace TalonOneSdk.Model
             if (!description.IsSet)
                 throw new ArgumentException("Property is required for class NewAdditionalCost.", nameof(description));
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class NewAdditionalCost.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewAdditionalCost.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewAdditionalCost.");
+
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description), "Property is not nullable for class NewAdditionalCost.");
 
             return new NewAdditionalCost(name.Value, title.Value, description.Value, subscribedApplicationsIds, type);
         }
@@ -345,9 +351,6 @@ namespace TalonOneSdk.Model
 
             if (newAdditionalCost.Description == null)
                 throw new ArgumentNullException(nameof(newAdditionalCost.Description), "Property is required for class NewAdditionalCost.");
-
-            if (newAdditionalCost.SubscribedApplicationsIdsOption.IsSet && newAdditionalCost.SubscribedApplicationsIds == null)
-                throw new ArgumentNullException(nameof(newAdditionalCost.SubscribedApplicationsIds), "Property is required for class NewAdditionalCost.");
 
             writer.WriteString("name", newAdditionalCost.Name);
 

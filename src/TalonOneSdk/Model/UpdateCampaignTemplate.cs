@@ -792,17 +792,20 @@ namespace TalonOneSdk.Model
             if (!applicationsIds.IsSet)
                 throw new ArgumentException("Property is required for class UpdateCampaignTemplate.", nameof(applicationsIds));
 
-            if (activeRulesetId.IsSet && activeRulesetId.Value == null)
-                throw new ArgumentNullException(nameof(activeRulesetId), "Property is not nullable for class UpdateCampaignTemplate.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateCampaignTemplate.");
 
-            if (reevaluateOnReturn.IsSet && reevaluateOnReturn.Value == null)
-                throw new ArgumentNullException(nameof(reevaluateOnReturn), "Property is not nullable for class UpdateCampaignTemplate.");
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description), "Property is not nullable for class UpdateCampaignTemplate.");
 
-            if (defaultCampaignGroupId.IsSet && defaultCampaignGroupId.Value == null)
-                throw new ArgumentNullException(nameof(defaultCampaignGroupId), "Property is not nullable for class UpdateCampaignTemplate.");
+            if (instructions.IsSet && instructions.Value == null)
+                throw new ArgumentNullException(nameof(instructions), "Property is not nullable for class UpdateCampaignTemplate.");
 
-            if (campaignType.IsSet && campaignType.Value == null)
-                throw new ArgumentNullException(nameof(campaignType), "Property is not nullable for class UpdateCampaignTemplate.");
+            if (state.IsSet && state.Value == null)
+                throw new ArgumentNullException(nameof(state), "Property is not nullable for class UpdateCampaignTemplate.");
+
+            if (applicationsIds.IsSet && applicationsIds.Value == null)
+                throw new ArgumentNullException(nameof(applicationsIds), "Property is not nullable for class UpdateCampaignTemplate.");
 
             return new UpdateCampaignTemplate(name.Value, description.Value, instructions.Value, state.Value.Value, applicationsIds.Value, campaignAttributes, couponAttributes, activeRulesetId, tags, reevaluateOnReturn, features, couponSettings, couponReservationSettings, referralSettings, limits, templateParams, campaignCollections, defaultCampaignGroupId, campaignType);
         }
@@ -842,36 +845,6 @@ namespace TalonOneSdk.Model
 
             if (updateCampaignTemplate.ApplicationsIds == null)
                 throw new ArgumentNullException(nameof(updateCampaignTemplate.ApplicationsIds), "Property is required for class UpdateCampaignTemplate.");
-
-            if (updateCampaignTemplate.CampaignAttributesOption.IsSet && updateCampaignTemplate.CampaignAttributes == null)
-                throw new ArgumentNullException(nameof(updateCampaignTemplate.CampaignAttributes), "Property is required for class UpdateCampaignTemplate.");
-
-            if (updateCampaignTemplate.CouponAttributesOption.IsSet && updateCampaignTemplate.CouponAttributes == null)
-                throw new ArgumentNullException(nameof(updateCampaignTemplate.CouponAttributes), "Property is required for class UpdateCampaignTemplate.");
-
-            if (updateCampaignTemplate.TagsOption.IsSet && updateCampaignTemplate.Tags == null)
-                throw new ArgumentNullException(nameof(updateCampaignTemplate.Tags), "Property is required for class UpdateCampaignTemplate.");
-
-            if (updateCampaignTemplate.FeaturesOption.IsSet && updateCampaignTemplate.Features == null)
-                throw new ArgumentNullException(nameof(updateCampaignTemplate.Features), "Property is required for class UpdateCampaignTemplate.");
-
-            if (updateCampaignTemplate.CouponSettingsOption.IsSet && updateCampaignTemplate.CouponSettings == null)
-                throw new ArgumentNullException(nameof(updateCampaignTemplate.CouponSettings), "Property is required for class UpdateCampaignTemplate.");
-
-            if (updateCampaignTemplate.CouponReservationSettingsOption.IsSet && updateCampaignTemplate.CouponReservationSettings == null)
-                throw new ArgumentNullException(nameof(updateCampaignTemplate.CouponReservationSettings), "Property is required for class UpdateCampaignTemplate.");
-
-            if (updateCampaignTemplate.ReferralSettingsOption.IsSet && updateCampaignTemplate.ReferralSettings == null)
-                throw new ArgumentNullException(nameof(updateCampaignTemplate.ReferralSettings), "Property is required for class UpdateCampaignTemplate.");
-
-            if (updateCampaignTemplate.LimitsOption.IsSet && updateCampaignTemplate.Limits == null)
-                throw new ArgumentNullException(nameof(updateCampaignTemplate.Limits), "Property is required for class UpdateCampaignTemplate.");
-
-            if (updateCampaignTemplate.TemplateParamsOption.IsSet && updateCampaignTemplate.TemplateParams == null)
-                throw new ArgumentNullException(nameof(updateCampaignTemplate.TemplateParams), "Property is required for class UpdateCampaignTemplate.");
-
-            if (updateCampaignTemplate.CampaignCollectionsOption.IsSet && updateCampaignTemplate.CampaignCollections == null)
-                throw new ArgumentNullException(nameof(updateCampaignTemplate.CampaignCollections), "Property is required for class UpdateCampaignTemplate.");
 
             writer.WriteString("name", updateCampaignTemplate.Name);
 

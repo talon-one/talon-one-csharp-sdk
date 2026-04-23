@@ -27,6 +27,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**GetLoyaltyProgramProfilePoints**](IntegrationApi.md#getloyaltyprogramprofilepoints) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/points | List customer&#39;s unused loyalty points |
 | [**GetLoyaltyProgramProfileTransactions**](IntegrationApi.md#getloyaltyprogramprofiletransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions | List customer&#39;s loyalty transactions |
 | [**GetReservedCustomers**](IntegrationApi.md#getreservedcustomers) | **GET** /v1/coupon_reservations/customerprofiles/{couponValue} | List customers that have this coupon reserved |
+| [**IntegrationGetAllCampaigns**](IntegrationApi.md#integrationgetallcampaigns) | **GET** /v1/integration/campaigns | List all running campaigns |
 | [**LinkLoyaltyCardToProfile**](IntegrationApi.md#linkloyaltycardtoprofile) | **POST** /v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile | Link customer profile to card |
 | [**ReopenCustomerSession**](IntegrationApi.md#reopencustomersession) | **PUT** /v2/customer_sessions/{customerSessionId}/reopen | Reopen customer session |
 | [**ReturnCartItems**](IntegrationApi.md#returncartitems) | **POST** /v2/customer_sessions/{customerSessionId}/returns | Return cart items |
@@ -997,6 +998,51 @@ Return all customers that have this coupon marked as reserved. This includes har
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+<a id="integrationgetallcampaigns"></a>
+# **IntegrationGetAllCampaigns**
+> IntegrationGetAllCampaigns200Response IntegrationGetAllCampaigns (long pageSize = null, long skip = null, List<string> campaignIds = null, DateTime startAfter = null, DateTime startBefore = null, DateTime endAfter = null, DateTime endBefore = null)
+
+List all running campaigns
+
+Retrieve all running campaigns for the specified Application. You can filter the results by providing specific campaign IDs or a range of  start and end dates. 
+
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **pageSize** | **long** | The number of items in the response. | [optional] [default to 50] |
+| **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
+| **campaignIds** | [**List&lt;string&gt;**](string.md) | Filter by one or more campaign IDs, separated by a comma.  **Note:** If no campaigns are specified, data for all the campaigns in the Application is returned.  | [optional]  |
+| **startAfter** | **DateTime** | Filter results to only include campaigns that start on or after  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [optional]  |
+| **startBefore** | **DateTime** | Filter results to only include campaigns that start on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [optional]  |
+| **endAfter** | **DateTime** | Filter results to only include campaigns that end on or after  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [optional]  |
+| **endBefore** | **DateTime** | Filter results to only include campaigns that end on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [optional]  |
+
+### Return type
+
+[**IntegrationGetAllCampaigns200Response**](IntegrationGetAllCampaigns200Response.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 <a id="linkloyaltycardtoprofile"></a>
 # **LinkLoyaltyCardToProfile**
 > LoyaltyCard LinkLoyaltyCardToProfile (long loyaltyProgramId, string loyaltyCardId, LoyaltyCardRegistration loyaltyCardRegistration)
@@ -1078,7 +1124,7 @@ Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/enti
 
 <a id="returncartitems"></a>
 # **ReturnCartItems**
-> IntegrationStateV2 ReturnCartItems (string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, bool dry = null)
+> IntegrationStateV2 ReturnCartItems (string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, bool dry = null, bool runRuleEngine = null)
 
 Return cart items
 
@@ -1092,6 +1138,7 @@ Create a new return request for the specified cart items.  This endpoint automat
 | **customerSessionId** | **string** | The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint.  |  |
 | **returnIntegrationRequest** | [**ReturnIntegrationRequest**](ReturnIntegrationRequest.md) | body |  |
 | **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  | [optional]  |
+| **runRuleEngine** | **bool** | When set to &#x60;true&#x60;, reevaluates the updated session after items are returned. Only reevaluates campaigns where &#x60;reevaluateOnReturn&#x60; is set to &#x60;true&#x60; and which produced an effect when the session was closed.  | [optional]  |
 
 ### Return type
 

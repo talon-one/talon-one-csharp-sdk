@@ -195,8 +195,17 @@ namespace TalonOneSdk.Model
             if (!config.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubFlowResponse.", nameof(config));
 
-            if (applicationID.IsSet && applicationID.Value == null)
-                throw new ArgumentNullException(nameof(applicationID), "Property is not nullable for class IntegrationHubFlowResponse.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class IntegrationHubFlowResponse.");
+
+            if (eventType.IsSet && eventType.Value == null)
+                throw new ArgumentNullException(nameof(eventType), "Property is not nullable for class IntegrationHubFlowResponse.");
+
+            if (integrationHubFlowUrl.IsSet && integrationHubFlowUrl.Value == null)
+                throw new ArgumentNullException(nameof(integrationHubFlowUrl), "Property is not nullable for class IntegrationHubFlowResponse.");
+
+            if (config.IsSet && config.Value == null)
+                throw new ArgumentNullException(nameof(config), "Property is not nullable for class IntegrationHubFlowResponse.");
 
             return new IntegrationHubFlowResponse(id.Value.Value, eventType.Value, integrationHubFlowUrl.Value, config.Value, applicationID);
         }

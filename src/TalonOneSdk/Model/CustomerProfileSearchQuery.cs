@@ -194,15 +194,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomerProfileSearchQuery customerProfileSearchQuery, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (customerProfileSearchQuery.AttributesOption.IsSet && customerProfileSearchQuery.Attributes == null)
-                throw new ArgumentNullException(nameof(customerProfileSearchQuery.Attributes), "Property is required for class CustomerProfileSearchQuery.");
-
-            if (customerProfileSearchQuery.IntegrationIDsOption.IsSet && customerProfileSearchQuery.IntegrationIDs == null)
-                throw new ArgumentNullException(nameof(customerProfileSearchQuery.IntegrationIDs), "Property is required for class CustomerProfileSearchQuery.");
-
-            if (customerProfileSearchQuery.ProfileIDsOption.IsSet && customerProfileSearchQuery.ProfileIDs == null)
-                throw new ArgumentNullException(nameof(customerProfileSearchQuery.ProfileIDs), "Property is required for class CustomerProfileSearchQuery.");
-
             if (customerProfileSearchQuery.AttributesOption.IsSet)
             {
                 writer.WritePropertyName("attributes");

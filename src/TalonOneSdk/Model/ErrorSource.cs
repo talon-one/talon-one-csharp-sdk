@@ -217,18 +217,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ErrorSource errorSource, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (errorSource.PointerOption.IsSet && errorSource.Pointer == null)
-                throw new ArgumentNullException(nameof(errorSource.Pointer), "Property is required for class ErrorSource.");
-
-            if (errorSource.ParameterOption.IsSet && errorSource.Parameter == null)
-                throw new ArgumentNullException(nameof(errorSource.Parameter), "Property is required for class ErrorSource.");
-
-            if (errorSource.LineOption.IsSet && errorSource.Line == null)
-                throw new ArgumentNullException(nameof(errorSource.Line), "Property is required for class ErrorSource.");
-
-            if (errorSource.ResourceOption.IsSet && errorSource.Resource == null)
-                throw new ArgumentNullException(nameof(errorSource.Resource), "Property is required for class ErrorSource.");
-
             if (errorSource.PointerOption.IsSet)
                 writer.WriteString("pointer", errorSource.Pointer);
 

@@ -154,9 +154,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OutgoingIntegrationTypes outgoingIntegrationTypes, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (outgoingIntegrationTypes.DataOption.IsSet && outgoingIntegrationTypes.Data == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationTypes.Data), "Property is required for class OutgoingIntegrationTypes.");
-
             if (outgoingIntegrationTypes.DataOption.IsSet)
             {
                 writer.WritePropertyName("data");

@@ -207,11 +207,8 @@ namespace TalonOneSdk.Model
             if (!sku.IsSet)
                 throw new ArgumentException("Property is required for class PatchItemCatalogAction.", nameof(sku));
 
-            if (price.IsSet && price.Value == null)
-                throw new ArgumentNullException(nameof(price), "Property is not nullable for class PatchItemCatalogAction.");
-
-            if (createIfNotExists.IsSet && createIfNotExists.Value == null)
-                throw new ArgumentNullException(nameof(createIfNotExists), "Property is not nullable for class PatchItemCatalogAction.");
+            if (sku.IsSet && sku.Value == null)
+                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class PatchItemCatalogAction.");
 
             return new PatchItemCatalogAction(sku.Value, price, attributes, product, createIfNotExists);
         }
@@ -242,12 +239,6 @@ namespace TalonOneSdk.Model
         {
             if (patchItemCatalogAction.Sku == null)
                 throw new ArgumentNullException(nameof(patchItemCatalogAction.Sku), "Property is required for class PatchItemCatalogAction.");
-
-            if (patchItemCatalogAction.AttributesOption.IsSet && patchItemCatalogAction.Attributes == null)
-                throw new ArgumentNullException(nameof(patchItemCatalogAction.Attributes), "Property is required for class PatchItemCatalogAction.");
-
-            if (patchItemCatalogAction.ProductOption.IsSet && patchItemCatalogAction.Product == null)
-                throw new ArgumentNullException(nameof(patchItemCatalogAction.Product), "Property is required for class PatchItemCatalogAction.");
 
             writer.WriteString("sku", patchItemCatalogAction.Sku);
 

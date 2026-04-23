@@ -155,9 +155,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateLoyaltyCardRequest updateLoyaltyCardRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateLoyaltyCardRequest.StatusOption.IsSet && updateLoyaltyCardRequest.Status == null)
-                throw new ArgumentNullException(nameof(updateLoyaltyCardRequest.Status), "Property is required for class UpdateLoyaltyCardRequest.");
-
             if (updateLoyaltyCardRequest.StatusOption.IsSet)
                 writer.WriteString("status", updateLoyaltyCardRequest.Status);
         }

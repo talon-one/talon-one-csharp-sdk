@@ -299,14 +299,23 @@ namespace TalonOneSdk.Model
             if (!createdBy.IsSet)
                 throw new ArgumentException("Property is required for class Revision.", nameof(createdBy));
 
-            if (activateAt.IsSet && activateAt.Value == null)
-                throw new ArgumentNullException(nameof(activateAt), "Property is not nullable for class Revision.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Revision.");
 
-            if (activatedAt.IsSet && activatedAt.Value == null)
-                throw new ArgumentNullException(nameof(activatedAt), "Property is not nullable for class Revision.");
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Revision.");
 
-            if (activatedBy.IsSet && activatedBy.Value == null)
-                throw new ArgumentNullException(nameof(activatedBy), "Property is not nullable for class Revision.");
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class Revision.");
+
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class Revision.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Revision.");
+
+            if (createdBy.IsSet && createdBy.Value == null)
+                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class Revision.");
 
             return new Revision(id.Value.Value, accountId.Value.Value, applicationId.Value.Value, campaignId.Value.Value, created.Value.Value, createdBy.Value.Value, activateAt, activatedAt, activatedBy, currentVersion);
         }
@@ -335,9 +344,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Revision revision, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (revision.CurrentVersionOption.IsSet && revision.CurrentVersion == null)
-                throw new ArgumentNullException(nameof(revision.CurrentVersion), "Property is required for class Revision.");
-
             writer.WriteNumber("id", revision.Id);
 
             writer.WriteNumber("accountId", revision.AccountId);

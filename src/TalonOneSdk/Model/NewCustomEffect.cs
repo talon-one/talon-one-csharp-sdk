@@ -274,8 +274,20 @@ namespace TalonOneSdk.Model
             if (!enabled.IsSet)
                 throw new ArgumentException("Property is required for class NewCustomEffect.", nameof(enabled));
 
-            if (isPerItem.IsSet && isPerItem.Value == null)
-                throw new ArgumentNullException(nameof(isPerItem), "Property is not nullable for class NewCustomEffect.");
+            if (applicationIds.IsSet && applicationIds.Value == null)
+                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class NewCustomEffect.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewCustomEffect.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewCustomEffect.");
+
+            if (payload.IsSet && payload.Value == null)
+                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class NewCustomEffect.");
+
+            if (enabled.IsSet && enabled.Value == null)
+                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class NewCustomEffect.");
 
             return new NewCustomEffect(applicationIds.Value, name.Value, title.Value, payload.Value, enabled.Value.Value, isPerItem, description, varParams);
         }
@@ -315,12 +327,6 @@ namespace TalonOneSdk.Model
 
             if (newCustomEffect.Payload == null)
                 throw new ArgumentNullException(nameof(newCustomEffect.Payload), "Property is required for class NewCustomEffect.");
-
-            if (newCustomEffect.DescriptionOption.IsSet && newCustomEffect.Description == null)
-                throw new ArgumentNullException(nameof(newCustomEffect.Description), "Property is required for class NewCustomEffect.");
-
-            if (newCustomEffect.ParamsOption.IsSet && newCustomEffect.Params == null)
-                throw new ArgumentNullException(nameof(newCustomEffect.Params), "Property is required for class NewCustomEffect.");
 
             writer.WritePropertyName("applicationIds");
             JsonSerializer.Serialize(writer, newCustomEffect.ApplicationIds, jsonSerializerOptions);

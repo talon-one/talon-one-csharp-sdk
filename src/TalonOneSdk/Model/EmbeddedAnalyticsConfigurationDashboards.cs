@@ -154,9 +154,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, EmbeddedAnalyticsConfigurationDashboards embeddedAnalyticsConfigurationDashboards, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (embeddedAnalyticsConfigurationDashboards.CampaignInsightsOption.IsSet && embeddedAnalyticsConfigurationDashboards.CampaignInsights == null)
-                throw new ArgumentNullException(nameof(embeddedAnalyticsConfigurationDashboards.CampaignInsights), "Property is required for class EmbeddedAnalyticsConfigurationDashboards.");
-
             if (embeddedAnalyticsConfigurationDashboards.CampaignInsightsOption.IsSet)
             {
                 writer.WritePropertyName("campaignInsights");

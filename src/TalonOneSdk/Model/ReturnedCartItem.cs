@@ -178,12 +178,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (position.IsSet && position.Value == null)
-                throw new ArgumentNullException(nameof(position), "Property is not nullable for class ReturnedCartItem.");
-
-            if (quantity.IsSet && quantity.Value == null)
-                throw new ArgumentNullException(nameof(quantity), "Property is not nullable for class ReturnedCartItem.");
-
             return new ReturnedCartItem(position, quantity, sku);
         }
 
@@ -211,9 +205,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ReturnedCartItem returnedCartItem, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (returnedCartItem.SkuOption.IsSet && returnedCartItem.Sku == null)
-                throw new ArgumentNullException(nameof(returnedCartItem.Sku), "Property is required for class ReturnedCartItem.");
-
             if (returnedCartItem.PositionOption.IsSet)
                 writer.WriteNumber("position", returnedCartItem.PositionOption.Value.Value);
 

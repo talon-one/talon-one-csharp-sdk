@@ -786,23 +786,20 @@ namespace TalonOneSdk.Model
             if (!state.IsSet)
                 throw new ArgumentException("Property is required for class NewCampaign.", nameof(state));
 
-            if (startTime.IsSet && startTime.Value == null)
-                throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class NewCampaign.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewCampaign.");
 
-            if (endTime.IsSet && endTime.Value == null)
-                throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class NewCampaign.");
+            if (tags.IsSet && tags.Value == null)
+                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class NewCampaign.");
 
-            if (activeRulesetId.IsSet && activeRulesetId.Value == null)
-                throw new ArgumentNullException(nameof(activeRulesetId), "Property is not nullable for class NewCampaign.");
+            if (features.IsSet && features.Value == null)
+                throw new ArgumentNullException(nameof(features), "Property is not nullable for class NewCampaign.");
 
-            if (reevaluateOnReturn.IsSet && reevaluateOnReturn.Value == null)
-                throw new ArgumentNullException(nameof(reevaluateOnReturn), "Property is not nullable for class NewCampaign.");
+            if (limits.IsSet && limits.Value == null)
+                throw new ArgumentNullException(nameof(limits), "Property is not nullable for class NewCampaign.");
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class NewCampaign.");
-
-            if (evaluationGroupId.IsSet && evaluationGroupId.Value == null)
-                throw new ArgumentNullException(nameof(evaluationGroupId), "Property is not nullable for class NewCampaign.");
+            if (state.IsSet && state.Value == null)
+                throw new ArgumentNullException(nameof(state), "Property is not nullable for class NewCampaign.");
 
             return new NewCampaign(name.Value, tags.Value, features.Value, limits.Value, description, startTime, endTime, attributes, state.Value.Value, activeRulesetId, reevaluateOnReturn, couponSettings, referralSettings, campaignGroups, type, linkedStoreIds, couponAttributes, evaluationGroupId);
         }
@@ -842,27 +839,6 @@ namespace TalonOneSdk.Model
 
             if (newCampaign.Limits == null)
                 throw new ArgumentNullException(nameof(newCampaign.Limits), "Property is required for class NewCampaign.");
-
-            if (newCampaign.DescriptionOption.IsSet && newCampaign.Description == null)
-                throw new ArgumentNullException(nameof(newCampaign.Description), "Property is required for class NewCampaign.");
-
-            if (newCampaign.AttributesOption.IsSet && newCampaign.Attributes == null)
-                throw new ArgumentNullException(nameof(newCampaign.Attributes), "Property is required for class NewCampaign.");
-
-            if (newCampaign.CouponSettingsOption.IsSet && newCampaign.CouponSettings == null)
-                throw new ArgumentNullException(nameof(newCampaign.CouponSettings), "Property is required for class NewCampaign.");
-
-            if (newCampaign.ReferralSettingsOption.IsSet && newCampaign.ReferralSettings == null)
-                throw new ArgumentNullException(nameof(newCampaign.ReferralSettings), "Property is required for class NewCampaign.");
-
-            if (newCampaign.CampaignGroupsOption.IsSet && newCampaign.CampaignGroups == null)
-                throw new ArgumentNullException(nameof(newCampaign.CampaignGroups), "Property is required for class NewCampaign.");
-
-            if (newCampaign.LinkedStoreIdsOption.IsSet && newCampaign.LinkedStoreIds == null)
-                throw new ArgumentNullException(nameof(newCampaign.LinkedStoreIds), "Property is required for class NewCampaign.");
-
-            if (newCampaign.CouponAttributesOption.IsSet && newCampaign.CouponAttributes == null)
-                throw new ArgumentNullException(nameof(newCampaign.CouponAttributes), "Property is required for class NewCampaign.");
 
             writer.WriteString("name", newCampaign.Name);
 

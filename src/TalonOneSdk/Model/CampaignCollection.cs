@@ -350,14 +350,23 @@ namespace TalonOneSdk.Model
             if (!createdBy.IsSet)
                 throw new ArgumentException("Property is required for class CampaignCollection.", nameof(createdBy));
 
-            if (modifiedBy.IsSet && modifiedBy.Value == null)
-                throw new ArgumentNullException(nameof(modifiedBy), "Property is not nullable for class CampaignCollection.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignCollection.");
 
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CampaignCollection.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CampaignCollection.");
 
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class CampaignCollection.");
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class CampaignCollection.");
+
+            if (modified.IsSet && modified.Value == null)
+                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class CampaignCollection.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignCollection.");
+
+            if (createdBy.IsSet && createdBy.Value == null)
+                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class CampaignCollection.");
 
             return new CampaignCollection(id.Value.Value, created.Value.Value, accountId.Value.Value, modified.Value.Value, name.Value, createdBy.Value.Value, description, modifiedBy, applicationId, campaignId, payload);
         }
@@ -388,12 +397,6 @@ namespace TalonOneSdk.Model
         {
             if (campaignCollection.Name == null)
                 throw new ArgumentNullException(nameof(campaignCollection.Name), "Property is required for class CampaignCollection.");
-
-            if (campaignCollection.DescriptionOption.IsSet && campaignCollection.Description == null)
-                throw new ArgumentNullException(nameof(campaignCollection.Description), "Property is required for class CampaignCollection.");
-
-            if (campaignCollection.PayloadOption.IsSet && campaignCollection.Payload == null)
-                throw new ArgumentNullException(nameof(campaignCollection.Payload), "Property is required for class CampaignCollection.");
 
             writer.WriteNumber("id", campaignCollection.Id);
 

@@ -146,8 +146,8 @@ namespace TalonOneSdk.Model
             if (!enabled.IsSet)
                 throw new ArgumentException("Property is required for class TwoFAConfig.", nameof(enabled));
 
-            if (requireEverySignIn.IsSet && requireEverySignIn.Value == null)
-                throw new ArgumentNullException(nameof(requireEverySignIn), "Property is not nullable for class TwoFAConfig.");
+            if (enabled.IsSet && enabled.Value == null)
+                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class TwoFAConfig.");
 
             return new TwoFAConfig(enabled.Value.Value, requireEverySignIn);
         }

@@ -515,20 +515,17 @@ namespace TalonOneSdk.Model
             if (!target.IsSet)
                 throw new ArgumentException("Property is required for class CreateAchievement.", nameof(target));
 
-            if (recurrencePolicy.IsSet && recurrencePolicy.Value == null)
-                throw new ArgumentNullException(nameof(recurrencePolicy), "Property is not nullable for class CreateAchievement.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CreateAchievement.");
 
-            if (activationPolicy.IsSet && activationPolicy.Value == null)
-                throw new ArgumentNullException(nameof(activationPolicy), "Property is not nullable for class CreateAchievement.");
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class CreateAchievement.");
 
-            if (fixedStartDate.IsSet && fixedStartDate.Value == null)
-                throw new ArgumentNullException(nameof(fixedStartDate), "Property is not nullable for class CreateAchievement.");
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description), "Property is not nullable for class CreateAchievement.");
 
-            if (endDate.IsSet && endDate.Value == null)
-                throw new ArgumentNullException(nameof(endDate), "Property is not nullable for class CreateAchievement.");
-
-            if (allowRollbackAfterCompletion.IsSet && allowRollbackAfterCompletion.Value == null)
-                throw new ArgumentNullException(nameof(allowRollbackAfterCompletion), "Property is not nullable for class CreateAchievement.");
+            if (target.IsSet && target.Value == null)
+                throw new ArgumentNullException(nameof(target), "Property is not nullable for class CreateAchievement.");
 
             return new CreateAchievement(name.Value, title.Value, description.Value, target.Value.Value, period, periodEndOverride, recurrencePolicy, activationPolicy, fixedStartDate, endDate, allowRollbackAfterCompletion);
         }
@@ -565,12 +562,6 @@ namespace TalonOneSdk.Model
 
             if (createAchievement.Description == null)
                 throw new ArgumentNullException(nameof(createAchievement.Description), "Property is required for class CreateAchievement.");
-
-            if (createAchievement.PeriodOption.IsSet && createAchievement.Period == null)
-                throw new ArgumentNullException(nameof(createAchievement.Period), "Property is required for class CreateAchievement.");
-
-            if (createAchievement.PeriodEndOverrideOption.IsSet && createAchievement.PeriodEndOverride == null)
-                throw new ArgumentNullException(nameof(createAchievement.PeriodEndOverride), "Property is required for class CreateAchievement.");
 
             writer.WriteString("name", createAchievement.Name);
 

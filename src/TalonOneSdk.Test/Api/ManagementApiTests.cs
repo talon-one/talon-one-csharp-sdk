@@ -216,15 +216,15 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
-        /// Test CreateCouponsAsync
+        /// Test CreateCouponsAsynchronously
         /// </summary>
         [Fact (Skip = "not implemented")]
-        public async Task CreateCouponsAsyncAsyncTest()
+        public async Task CreateCouponsAsynchronouslyAsyncTest()
         {
             long applicationId = default;
             long campaignId = default;
             NewCouponCreationJob newCouponCreationJob = default;
-            var response = await _instance.CreateCouponsAsyncAsync(applicationId, campaignId, newCouponCreationJob);
+            var response = await _instance.CreateCouponsAsynchronouslyAsync(applicationId, campaignId, newCouponCreationJob);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.AsyncCouponCreationResponse>(model);
         }
@@ -591,6 +591,20 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test ExportCampaignValueMap
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task ExportCampaignValueMapAsyncTest()
+        {
+            long applicationId = default;
+            long campaignId = default;
+            long valueMapId = default;
+            var response = await _instance.ExportCampaignValueMapAsync(applicationId, campaignId, valueMapId);
+            var model = response.Ok();
+            Assert.IsType<string>(model);
+        }
+
+        /// <summary>
         /// Test ExportCollectionItems
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -942,6 +956,20 @@ namespace TalonOneSdk.Test.Api
             var response = await _instance.GetApplicationApiHealthAsync(applicationId);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.ApplicationApiHealth>(model);
+        }
+
+        /// <summary>
+        /// Test GetApplicationCartItemFilterExpression
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task GetApplicationCartItemFilterExpressionAsyncTest()
+        {
+            long applicationId = default;
+            long cartItemFilterId = default;
+            long expressionId = default;
+            var response = await _instance.GetApplicationCartItemFilterExpressionAsync(applicationId, cartItemFilterId, expressionId);
+            var model = response.Ok();
+            Assert.IsType<TalonOneSdk.Model.ApplicationCIFExpression>(model);
         }
 
         /// <summary>
@@ -2079,6 +2107,21 @@ namespace TalonOneSdk.Test.Api
             var response = await _instance.ListAllRolesV2Async();
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.ListAllRolesV2200Response>(model);
+        }
+
+        /// <summary>
+        /// Test ListApplicationCartItemFilters
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task ListApplicationCartItemFiltersAsyncTest()
+        {
+            long applicationId = default;
+            Client.Option<long> pageSize = default;
+            Client.Option<long> skip = default;
+            Client.Option<string> title = default;
+            var response = await _instance.ListApplicationCartItemFiltersAsync(applicationId, pageSize, skip, title);
+            var model = response.Ok();
+            Assert.IsType<TalonOneSdk.Model.ListApplicationCartItemFilters200Response>(model);
         }
 
         /// <summary>

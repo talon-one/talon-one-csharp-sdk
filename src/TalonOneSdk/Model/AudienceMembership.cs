@@ -142,6 +142,12 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class AudienceMembership.", nameof(name));
 
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AudienceMembership.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AudienceMembership.");
+
             return new AudienceMembership(id.Value.Value, name.Value);
         }
 

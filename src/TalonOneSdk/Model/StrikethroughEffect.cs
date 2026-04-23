@@ -354,14 +354,23 @@ namespace TalonOneSdk.Model
             if (!props.IsSet)
                 throw new ArgumentException("Property is required for class StrikethroughEffect.", nameof(props));
 
-            if (startTime.IsSet && startTime.Value == null)
-                throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class StrikethroughEffect.");
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class StrikethroughEffect.");
 
-            if (endTime.IsSet && endTime.Value == null)
-                throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class StrikethroughEffect.");
+            if (rulesetId.IsSet && rulesetId.Value == null)
+                throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class StrikethroughEffect.");
 
-            if (selectedPrice.IsSet && selectedPrice.Value == null)
-                throw new ArgumentNullException(nameof(selectedPrice), "Property is not nullable for class StrikethroughEffect.");
+            if (ruleIndex.IsSet && ruleIndex.Value == null)
+                throw new ArgumentNullException(nameof(ruleIndex), "Property is not nullable for class StrikethroughEffect.");
+
+            if (ruleName.IsSet && ruleName.Value == null)
+                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class StrikethroughEffect.");
+
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class StrikethroughEffect.");
+
+            if (props.IsSet && props.Value == null)
+                throw new ArgumentNullException(nameof(props), "Property is not nullable for class StrikethroughEffect.");
 
             return new StrikethroughEffect(campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, type.Value, props.Value, startTime, endTime, selectedPriceType, selectedPrice, adjustmentReferenceId, targets);
         }
@@ -398,15 +407,6 @@ namespace TalonOneSdk.Model
 
             if (strikethroughEffect.Props == null)
                 throw new ArgumentNullException(nameof(strikethroughEffect.Props), "Property is required for class StrikethroughEffect.");
-
-            if (strikethroughEffect.SelectedPriceTypeOption.IsSet && strikethroughEffect.SelectedPriceType == null)
-                throw new ArgumentNullException(nameof(strikethroughEffect.SelectedPriceType), "Property is required for class StrikethroughEffect.");
-
-            if (strikethroughEffect.AdjustmentReferenceIdOption.IsSet && strikethroughEffect.AdjustmentReferenceId == null)
-                throw new ArgumentNullException(nameof(strikethroughEffect.AdjustmentReferenceId), "Property is required for class StrikethroughEffect.");
-
-            if (strikethroughEffect.TargetsOption.IsSet && strikethroughEffect.Targets == null)
-                throw new ArgumentNullException(nameof(strikethroughEffect.Targets), "Property is required for class StrikethroughEffect.");
 
             writer.WriteNumber("campaignId", strikethroughEffect.CampaignId);
 

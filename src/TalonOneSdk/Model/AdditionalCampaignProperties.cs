@@ -782,62 +782,11 @@ namespace TalonOneSdk.Model
             if (!storesImported.IsSet)
                 throw new ArgumentException("Property is required for class AdditionalCampaignProperties.", nameof(storesImported));
 
-            if (couponRedemptionCount.IsSet && couponRedemptionCount.Value == null)
-                throw new ArgumentNullException(nameof(couponRedemptionCount), "Property is not nullable for class AdditionalCampaignProperties.");
+            if (frontendState.IsSet && frontendState.Value == null)
+                throw new ArgumentNullException(nameof(frontendState), "Property is not nullable for class AdditionalCampaignProperties.");
 
-            if (referralRedemptionCount.IsSet && referralRedemptionCount.Value == null)
-                throw new ArgumentNullException(nameof(referralRedemptionCount), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (discountCount.IsSet && discountCount.Value == null)
-                throw new ArgumentNullException(nameof(discountCount), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (discountEffectCount.IsSet && discountEffectCount.Value == null)
-                throw new ArgumentNullException(nameof(discountEffectCount), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (couponCreationCount.IsSet && couponCreationCount.Value == null)
-                throw new ArgumentNullException(nameof(couponCreationCount), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (customEffectCount.IsSet && customEffectCount.Value == null)
-                throw new ArgumentNullException(nameof(customEffectCount), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (referralCreationCount.IsSet && referralCreationCount.Value == null)
-                throw new ArgumentNullException(nameof(referralCreationCount), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (addFreeItemEffectCount.IsSet && addFreeItemEffectCount.Value == null)
-                throw new ArgumentNullException(nameof(addFreeItemEffectCount), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (awardedGiveawaysCount.IsSet && awardedGiveawaysCount.Value == null)
-                throw new ArgumentNullException(nameof(awardedGiveawaysCount), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (createdLoyaltyPointsCount.IsSet && createdLoyaltyPointsCount.Value == null)
-                throw new ArgumentNullException(nameof(createdLoyaltyPointsCount), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (createdLoyaltyPointsEffectCount.IsSet && createdLoyaltyPointsEffectCount.Value == null)
-                throw new ArgumentNullException(nameof(createdLoyaltyPointsEffectCount), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (redeemedLoyaltyPointsCount.IsSet && redeemedLoyaltyPointsCount.Value == null)
-                throw new ArgumentNullException(nameof(redeemedLoyaltyPointsCount), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (redeemedLoyaltyPointsEffectCount.IsSet && redeemedLoyaltyPointsEffectCount.Value == null)
-                throw new ArgumentNullException(nameof(redeemedLoyaltyPointsEffectCount), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (callApiEffectCount.IsSet && callApiEffectCount.Value == null)
-                throw new ArgumentNullException(nameof(callApiEffectCount), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (reservecouponEffectCount.IsSet && reservecouponEffectCount.Value == null)
-                throw new ArgumentNullException(nameof(reservecouponEffectCount), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (lastActivity.IsSet && lastActivity.Value == null)
-                throw new ArgumentNullException(nameof(lastActivity), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (updated.IsSet && updated.Value == null)
-                throw new ArgumentNullException(nameof(updated), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (templateId.IsSet && templateId.Value == null)
-                throw new ArgumentNullException(nameof(templateId), "Property is not nullable for class AdditionalCampaignProperties.");
-
-            if (experimentId.IsSet && experimentId.Value == null)
-                throw new ArgumentNullException(nameof(experimentId), "Property is not nullable for class AdditionalCampaignProperties.");
+            if (storesImported.IsSet && storesImported.Value == null)
+                throw new ArgumentNullException(nameof(storesImported), "Property is not nullable for class AdditionalCampaignProperties.");
 
             return new AdditionalCampaignProperties(frontendState.Value.Value, storesImported.Value.Value, budgets, couponRedemptionCount, referralRedemptionCount, discountCount, discountEffectCount, couponCreationCount, customEffectCount, referralCreationCount, addFreeItemEffectCount, awardedGiveawaysCount, createdLoyaltyPointsCount, createdLoyaltyPointsEffectCount, redeemedLoyaltyPointsCount, redeemedLoyaltyPointsEffectCount, callApiEffectCount, reservecouponEffectCount, lastActivity, updated, createdBy, updatedBy, templateId, valueMapsIds, experimentId);
         }
@@ -866,18 +815,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AdditionalCampaignProperties additionalCampaignProperties, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (additionalCampaignProperties.BudgetsOption.IsSet && additionalCampaignProperties.Budgets == null)
-                throw new ArgumentNullException(nameof(additionalCampaignProperties.Budgets), "Property is required for class AdditionalCampaignProperties.");
-
-            if (additionalCampaignProperties.CreatedByOption.IsSet && additionalCampaignProperties.CreatedBy == null)
-                throw new ArgumentNullException(nameof(additionalCampaignProperties.CreatedBy), "Property is required for class AdditionalCampaignProperties.");
-
-            if (additionalCampaignProperties.UpdatedByOption.IsSet && additionalCampaignProperties.UpdatedBy == null)
-                throw new ArgumentNullException(nameof(additionalCampaignProperties.UpdatedBy), "Property is required for class AdditionalCampaignProperties.");
-
-            if (additionalCampaignProperties.ValueMapsIdsOption.IsSet && additionalCampaignProperties.ValueMapsIds == null)
-                throw new ArgumentNullException(nameof(additionalCampaignProperties.ValueMapsIds), "Property is required for class AdditionalCampaignProperties.");
-
             var frontendStateRawValue = AdditionalCampaignProperties.FrontendStateEnumToJsonValue(additionalCampaignProperties.FrontendState);
             writer.WriteString("frontendState", frontendStateRawValue);
             writer.WriteBoolean("storesImported", additionalCampaignProperties.StoresImported);

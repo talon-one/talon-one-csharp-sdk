@@ -298,11 +298,23 @@ namespace TalonOneSdk.Model
             if (!publishedAt.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.", nameof(publishedAt));
 
-            if (tierExpirationDate.IsSet && tierExpirationDate.Value == null)
-                throw new ArgumentNullException(nameof(tierExpirationDate), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+            if (profileIntegrationID.IsSet && profileIntegrationID.Value == null)
+                throw new ArgumentNullException(nameof(profileIntegrationID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
 
-            if (timestampOfTierChange.IsSet && timestampOfTierChange.Value == null)
-                throw new ArgumentNullException(nameof(timestampOfTierChange), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+            if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+
+            if (subledgerID.IsSet && subledgerID.Value == null)
+                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+
+            if (sourceOfEvent.IsSet && sourceOfEvent.Value == null)
+                throw new ArgumentNullException(nameof(sourceOfEvent), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+
+            if (currentPoints.IsSet && currentPoints.Value == null)
+                throw new ArgumentNullException(nameof(currentPoints), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+
+            if (publishedAt.IsSet && publishedAt.Value == null)
+                throw new ArgumentNullException(nameof(publishedAt), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
 
             return new IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification(profileIntegrationID.Value, loyaltyProgramID.Value.Value, subledgerID.Value, sourceOfEvent.Value, currentPoints.Value.Value, publishedAt.Value.Value, currentTier, oldTier, tierExpirationDate, timestampOfTierChange);
         }
@@ -339,12 +351,6 @@ namespace TalonOneSdk.Model
 
             if (integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.SourceOfEvent == null)
                 throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.SourceOfEvent), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
-
-            if (integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.CurrentTierOption.IsSet && integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.CurrentTier == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.CurrentTier), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
-
-            if (integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.OldTierOption.IsSet && integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.OldTier == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.OldTier), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
 
             writer.WriteString("ProfileIntegrationID", integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.ProfileIntegrationID);
 

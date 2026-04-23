@@ -178,6 +178,18 @@ namespace TalonOneSdk.Model
             if (!campaignId.IsSet)
                 throw new ArgumentException("Property is required for class AchievementReference.", nameof(campaignId));
 
+            if (achievementId.IsSet && achievementId.Value == null)
+                throw new ArgumentNullException(nameof(achievementId), "Property is not nullable for class AchievementReference.");
+
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class AchievementReference.");
+
+            if (applicationName.IsSet && applicationName.Value == null)
+                throw new ArgumentNullException(nameof(applicationName), "Property is not nullable for class AchievementReference.");
+
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class AchievementReference.");
+
             return new AchievementReference(achievementId.Value.Value, applicationId.Value.Value, applicationName.Value, campaignId.Value.Value);
         }
 

@@ -162,6 +162,9 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class NewCampaignCollection.", nameof(name));
 
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewCampaignCollection.");
+
             return new NewCampaignCollection(name.Value, description);
         }
 
@@ -191,9 +194,6 @@ namespace TalonOneSdk.Model
         {
             if (newCampaignCollection.Name == null)
                 throw new ArgumentNullException(nameof(newCampaignCollection.Name), "Property is required for class NewCampaignCollection.");
-
-            if (newCampaignCollection.DescriptionOption.IsSet && newCampaignCollection.Description == null)
-                throw new ArgumentNullException(nameof(newCampaignCollection.Description), "Property is required for class NewCampaignCollection.");
 
             writer.WriteString("name", newCampaignCollection.Name);
 

@@ -123,6 +123,9 @@ namespace TalonOneSdk.Model
             if (!sku.IsSet)
                 throw new ArgumentException("Property is required for class RemoveItemCatalogAction.", nameof(sku));
 
+            if (sku.IsSet && sku.Value == null)
+                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class RemoveItemCatalogAction.");
+
             return new RemoveItemCatalogAction(sku.Value);
         }
 

@@ -248,6 +248,9 @@ namespace TalonOneSdk.Model
             if (!op.IsSet)
                 throw new ArgumentException("Property is required for class ScimPatchOperation.", nameof(op));
 
+            if (op.IsSet && op.Value == null)
+                throw new ArgumentNullException(nameof(op), "Property is not nullable for class ScimPatchOperation.");
+
             return new ScimPatchOperation(op.Value.Value, path, value);
         }
 
@@ -275,12 +278,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ScimPatchOperation scimPatchOperation, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (scimPatchOperation.PathOption.IsSet && scimPatchOperation.Path == null)
-                throw new ArgumentNullException(nameof(scimPatchOperation.Path), "Property is required for class ScimPatchOperation.");
-
-            if (scimPatchOperation.ValueOption.IsSet && scimPatchOperation.Value == null)
-                throw new ArgumentNullException(nameof(scimPatchOperation.Value), "Property is required for class ScimPatchOperation.");
-
             var opRawValue = ScimPatchOperation.OpEnumToJsonValue(scimPatchOperation.Op);
             writer.WriteString("op", opRawValue);
             if (scimPatchOperation.PathOption.IsSet)

@@ -170,6 +170,15 @@ namespace TalonOneSdk.Model
             if (!loginURL.IsSet)
                 throw new ArgumentException("Property is required for class SamlLoginEndpoint.", nameof(loginURL));
 
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class SamlLoginEndpoint.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SamlLoginEndpoint.");
+
+            if (loginURL.IsSet && loginURL.Value == null)
+                throw new ArgumentNullException(nameof(loginURL), "Property is not nullable for class SamlLoginEndpoint.");
+
             return new SamlLoginEndpoint(id.Value.Value, name.Value, loginURL.Value);
         }
 

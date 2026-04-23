@@ -275,27 +275,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ScimServiceProviderConfigResponse scimServiceProviderConfigResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (scimServiceProviderConfigResponse.BulkOption.IsSet && scimServiceProviderConfigResponse.Bulk == null)
-                throw new ArgumentNullException(nameof(scimServiceProviderConfigResponse.Bulk), "Property is required for class ScimServiceProviderConfigResponse.");
-
-            if (scimServiceProviderConfigResponse.ChangePasswordOption.IsSet && scimServiceProviderConfigResponse.ChangePassword == null)
-                throw new ArgumentNullException(nameof(scimServiceProviderConfigResponse.ChangePassword), "Property is required for class ScimServiceProviderConfigResponse.");
-
-            if (scimServiceProviderConfigResponse.DocumentationUriOption.IsSet && scimServiceProviderConfigResponse.DocumentationUri == null)
-                throw new ArgumentNullException(nameof(scimServiceProviderConfigResponse.DocumentationUri), "Property is required for class ScimServiceProviderConfigResponse.");
-
-            if (scimServiceProviderConfigResponse.FilterOption.IsSet && scimServiceProviderConfigResponse.Filter == null)
-                throw new ArgumentNullException(nameof(scimServiceProviderConfigResponse.Filter), "Property is required for class ScimServiceProviderConfigResponse.");
-
-            if (scimServiceProviderConfigResponse.PatchOption.IsSet && scimServiceProviderConfigResponse.Patch == null)
-                throw new ArgumentNullException(nameof(scimServiceProviderConfigResponse.Patch), "Property is required for class ScimServiceProviderConfigResponse.");
-
-            if (scimServiceProviderConfigResponse.SchemasOption.IsSet && scimServiceProviderConfigResponse.Schemas == null)
-                throw new ArgumentNullException(nameof(scimServiceProviderConfigResponse.Schemas), "Property is required for class ScimServiceProviderConfigResponse.");
-
-            if (scimServiceProviderConfigResponse.SortOption.IsSet && scimServiceProviderConfigResponse.Sort == null)
-                throw new ArgumentNullException(nameof(scimServiceProviderConfigResponse.Sort), "Property is required for class ScimServiceProviderConfigResponse.");
-
             if (scimServiceProviderConfigResponse.BulkOption.IsSet)
             {
                 writer.WritePropertyName("bulk");

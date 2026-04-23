@@ -221,8 +221,17 @@ namespace TalonOneSdk.Model
             if (!newTierName.IsSet)
                 throw new ArgumentException("Property is required for class ChangeLoyaltyTierLevelEffectProps.", nameof(newTierName));
 
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class ChangeLoyaltyTierLevelEffectProps.");
+            if (ruleTitle.IsSet && ruleTitle.Value == null)
+                throw new ArgumentNullException(nameof(ruleTitle), "Property is not nullable for class ChangeLoyaltyTierLevelEffectProps.");
+
+            if (programId.IsSet && programId.Value == null)
+                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class ChangeLoyaltyTierLevelEffectProps.");
+
+            if (subLedgerId.IsSet && subLedgerId.Value == null)
+                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class ChangeLoyaltyTierLevelEffectProps.");
+
+            if (newTierName.IsSet && newTierName.Value == null)
+                throw new ArgumentNullException(nameof(newTierName), "Property is not nullable for class ChangeLoyaltyTierLevelEffectProps.");
 
             return new ChangeLoyaltyTierLevelEffectProps(ruleTitle.Value, programId.Value.Value, subLedgerId.Value, newTierName.Value, previousTierName, expiryDate);
         }
@@ -259,9 +268,6 @@ namespace TalonOneSdk.Model
 
             if (changeLoyaltyTierLevelEffectProps.NewTierName == null)
                 throw new ArgumentNullException(nameof(changeLoyaltyTierLevelEffectProps.NewTierName), "Property is required for class ChangeLoyaltyTierLevelEffectProps.");
-
-            if (changeLoyaltyTierLevelEffectProps.PreviousTierNameOption.IsSet && changeLoyaltyTierLevelEffectProps.PreviousTierName == null)
-                throw new ArgumentNullException(nameof(changeLoyaltyTierLevelEffectProps.PreviousTierName), "Property is required for class ChangeLoyaltyTierLevelEffectProps.");
 
             writer.WriteString("ruleTitle", changeLoyaltyTierLevelEffectProps.RuleTitle);
 

@@ -233,14 +233,8 @@ namespace TalonOneSdk.Model
             if (!batchID.IsSet)
                 throw new ArgumentException("Property is required for class UpdateReferralBatch.", nameof(batchID));
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class UpdateReferralBatch.");
-
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class UpdateReferralBatch.");
-
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class UpdateReferralBatch.");
+            if (batchID.IsSet && batchID.Value == null)
+                throw new ArgumentNullException(nameof(batchID), "Property is not nullable for class UpdateReferralBatch.");
 
             return new UpdateReferralBatch(batchID.Value, attributes, startDate, expiryDate, usageLimit);
         }
@@ -271,9 +265,6 @@ namespace TalonOneSdk.Model
         {
             if (updateReferralBatch.BatchID == null)
                 throw new ArgumentNullException(nameof(updateReferralBatch.BatchID), "Property is required for class UpdateReferralBatch.");
-
-            if (updateReferralBatch.AttributesOption.IsSet && updateReferralBatch.Attributes == null)
-                throw new ArgumentNullException(nameof(updateReferralBatch.Attributes), "Property is required for class UpdateReferralBatch.");
 
             writer.WriteString("batchID", updateReferralBatch.BatchID);
 

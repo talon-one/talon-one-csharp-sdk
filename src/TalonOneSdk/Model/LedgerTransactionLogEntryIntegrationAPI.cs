@@ -493,8 +493,35 @@ namespace TalonOneSdk.Model
             if (!id.IsSet)
                 throw new ArgumentException("Property is required for class LedgerTransactionLogEntryIntegrationAPI.", nameof(id));
 
-            if (rulesetId.IsSet && rulesetId.Value == null)
-                throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class LedgerTransactionLogEntryIntegrationAPI.");
+            if (transactionUUID.IsSet && transactionUUID.Value == null)
+                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class LedgerTransactionLogEntryIntegrationAPI.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class LedgerTransactionLogEntryIntegrationAPI.");
+
+            if (programId.IsSet && programId.Value == null)
+                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class LedgerTransactionLogEntryIntegrationAPI.");
+
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class LedgerTransactionLogEntryIntegrationAPI.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class LedgerTransactionLogEntryIntegrationAPI.");
+
+            if (startDate.IsSet && startDate.Value == null)
+                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class LedgerTransactionLogEntryIntegrationAPI.");
+
+            if (expiryDate.IsSet && expiryDate.Value == null)
+                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class LedgerTransactionLogEntryIntegrationAPI.");
+
+            if (subledgerId.IsSet && subledgerId.Value == null)
+                throw new ArgumentNullException(nameof(subledgerId), "Property is not nullable for class LedgerTransactionLogEntryIntegrationAPI.");
+
+            if (amount.IsSet && amount.Value == null)
+                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class LedgerTransactionLogEntryIntegrationAPI.");
+
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LedgerTransactionLogEntryIntegrationAPI.");
 
             return new LedgerTransactionLogEntryIntegrationAPI(transactionUUID.Value, created.Value.Value, programId.Value.Value, type.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, amount.Value.Value, id.Value.Value, customerSessionId, rulesetId, ruleName, flags, validityDuration);
         }
@@ -537,18 +564,6 @@ namespace TalonOneSdk.Model
 
             if (ledgerTransactionLogEntryIntegrationAPI.SubledgerId == null)
                 throw new ArgumentNullException(nameof(ledgerTransactionLogEntryIntegrationAPI.SubledgerId), "Property is required for class LedgerTransactionLogEntryIntegrationAPI.");
-
-            if (ledgerTransactionLogEntryIntegrationAPI.CustomerSessionIdOption.IsSet && ledgerTransactionLogEntryIntegrationAPI.CustomerSessionId == null)
-                throw new ArgumentNullException(nameof(ledgerTransactionLogEntryIntegrationAPI.CustomerSessionId), "Property is required for class LedgerTransactionLogEntryIntegrationAPI.");
-
-            if (ledgerTransactionLogEntryIntegrationAPI.RuleNameOption.IsSet && ledgerTransactionLogEntryIntegrationAPI.RuleName == null)
-                throw new ArgumentNullException(nameof(ledgerTransactionLogEntryIntegrationAPI.RuleName), "Property is required for class LedgerTransactionLogEntryIntegrationAPI.");
-
-            if (ledgerTransactionLogEntryIntegrationAPI.FlagsOption.IsSet && ledgerTransactionLogEntryIntegrationAPI.Flags == null)
-                throw new ArgumentNullException(nameof(ledgerTransactionLogEntryIntegrationAPI.Flags), "Property is required for class LedgerTransactionLogEntryIntegrationAPI.");
-
-            if (ledgerTransactionLogEntryIntegrationAPI.ValidityDurationOption.IsSet && ledgerTransactionLogEntryIntegrationAPI.ValidityDuration == null)
-                throw new ArgumentNullException(nameof(ledgerTransactionLogEntryIntegrationAPI.ValidityDuration), "Property is required for class LedgerTransactionLogEntryIntegrationAPI.");
 
             writer.WriteString("transactionUUID", ledgerTransactionLogEntryIntegrationAPI.TransactionUUID);
 

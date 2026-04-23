@@ -128,9 +128,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (loyaltyPointsLimit.IsSet && loyaltyPointsLimit.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyPointsLimit), "Property is not nullable for class RolesV2Thresholds.");
-
             return new RolesV2Thresholds(loyaltyPointsLimit);
         }
 

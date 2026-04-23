@@ -329,27 +329,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (revisionFrontendState.IsSet && revisionFrontendState.Value == null)
-                throw new ArgumentNullException(nameof(revisionFrontendState), "Property is not nullable for class CampaignVersions.");
-
-            if (activeRevisionId.IsSet && activeRevisionId.Value == null)
-                throw new ArgumentNullException(nameof(activeRevisionId), "Property is not nullable for class CampaignVersions.");
-
-            if (activeRevisionVersionId.IsSet && activeRevisionVersionId.Value == null)
-                throw new ArgumentNullException(nameof(activeRevisionVersionId), "Property is not nullable for class CampaignVersions.");
-
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class CampaignVersions.");
-
-            if (currentRevisionId.IsSet && currentRevisionId.Value == null)
-                throw new ArgumentNullException(nameof(currentRevisionId), "Property is not nullable for class CampaignVersions.");
-
-            if (currentRevisionVersionId.IsSet && currentRevisionVersionId.Value == null)
-                throw new ArgumentNullException(nameof(currentRevisionVersionId), "Property is not nullable for class CampaignVersions.");
-
-            if (stageRevision.IsSet && stageRevision.Value == null)
-                throw new ArgumentNullException(nameof(stageRevision), "Property is not nullable for class CampaignVersions.");
-
             return new CampaignVersions(revisionFrontendState, activeRevisionId, activeRevisionVersionId, varVersion, currentRevisionId, currentRevisionVersionId, stageRevision);
         }
 

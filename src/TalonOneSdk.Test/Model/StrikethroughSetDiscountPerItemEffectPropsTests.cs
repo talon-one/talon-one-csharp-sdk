@@ -72,12 +72,12 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'ExcludeFromBestPriorPriceHistory'
+        /// Test the property 'ExcludedFromPriceHistory'
         /// </summary>
         [Fact]
-        public void ExcludeFromBestPriorPriceHistoryTest()
+        public void ExcludedFromPriceHistoryTest()
         {
-            // TODO unit test for the property 'ExcludeFromBestPriorPriceHistory'
+            // TODO unit test for the property 'ExcludedFromPriceHistory'
         }
     }
 }

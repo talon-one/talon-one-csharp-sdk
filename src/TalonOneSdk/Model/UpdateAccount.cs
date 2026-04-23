@@ -283,11 +283,11 @@ namespace TalonOneSdk.Model
             if (!billingEmail.IsSet)
                 throw new ArgumentException("Property is required for class UpdateAccount.", nameof(billingEmail));
 
-            if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class UpdateAccount.");
+            if (companyName.IsSet && companyName.Value == null)
+                throw new ArgumentNullException(nameof(companyName), "Property is not nullable for class UpdateAccount.");
 
-            if (planExpires.IsSet && planExpires.Value == null)
-                throw new ArgumentNullException(nameof(planExpires), "Property is not nullable for class UpdateAccount.");
+            if (billingEmail.IsSet && billingEmail.Value == null)
+                throw new ArgumentNullException(nameof(billingEmail), "Property is not nullable for class UpdateAccount.");
 
             return new UpdateAccount(companyName.Value, billingEmail.Value, attributes, state, planExpires);
         }
@@ -321,9 +321,6 @@ namespace TalonOneSdk.Model
 
             if (updateAccount.BillingEmail == null)
                 throw new ArgumentNullException(nameof(updateAccount.BillingEmail), "Property is required for class UpdateAccount.");
-
-            if (updateAccount.AttributesOption.IsSet && updateAccount.Attributes == null)
-                throw new ArgumentNullException(nameof(updateAccount.Attributes), "Property is required for class UpdateAccount.");
 
             writer.WriteString("companyName", updateAccount.CompanyName);
 

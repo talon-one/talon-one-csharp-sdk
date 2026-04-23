@@ -130,6 +130,9 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class UpdateAudience.", nameof(name));
 
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateAudience.");
+
             return new UpdateAudience(name.Value);
         }
 

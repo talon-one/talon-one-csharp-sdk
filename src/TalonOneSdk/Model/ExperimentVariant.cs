@@ -243,11 +243,17 @@ namespace TalonOneSdk.Model
             if (!isPrimary.IsSet)
                 throw new ArgumentException("Property is required for class ExperimentVariant.", nameof(isPrimary));
 
-            if (experimentId.IsSet && experimentId.Value == null)
-                throw new ArgumentNullException(nameof(experimentId), "Property is not nullable for class ExperimentVariant.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ExperimentVariant.");
 
-            if (weight.IsSet && weight.Value == null)
-                throw new ArgumentNullException(nameof(weight), "Property is not nullable for class ExperimentVariant.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ExperimentVariant.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ExperimentVariant.");
+
+            if (isPrimary.IsSet && isPrimary.Value == null)
+                throw new ArgumentNullException(nameof(isPrimary), "Property is not nullable for class ExperimentVariant.");
 
             return new ExperimentVariant(id.Value.Value, created.Value.Value, name.Value, isPrimary.Value.Value, experimentId, ruleset, weight);
         }
@@ -278,9 +284,6 @@ namespace TalonOneSdk.Model
         {
             if (experimentVariant.Name == null)
                 throw new ArgumentNullException(nameof(experimentVariant.Name), "Property is required for class ExperimentVariant.");
-
-            if (experimentVariant.RulesetOption.IsSet && experimentVariant.Ruleset == null)
-                throw new ArgumentNullException(nameof(experimentVariant.Ruleset), "Property is required for class ExperimentVariant.");
 
             writer.WriteNumber("id", experimentVariant.Id);
 

@@ -338,6 +338,30 @@ namespace TalonOneSdk.Model
             if (!data.IsSet)
                 throw new ArgumentException("Property is required for class WebhookAuthentication.", nameof(data));
 
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class WebhookAuthentication.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class WebhookAuthentication.");
+
+            if (modified.IsSet && modified.Value == null)
+                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class WebhookAuthentication.");
+
+            if (createdBy.IsSet && createdBy.Value == null)
+                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class WebhookAuthentication.");
+
+            if (modifiedBy.IsSet && modifiedBy.Value == null)
+                throw new ArgumentNullException(nameof(modifiedBy), "Property is not nullable for class WebhookAuthentication.");
+
+            if (webhooks.IsSet && webhooks.Value == null)
+                throw new ArgumentNullException(nameof(webhooks), "Property is not nullable for class WebhookAuthentication.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class WebhookAuthentication.");
+
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class WebhookAuthentication.");
+
             return new WebhookAuthentication(id.Value.Value, created.Value.Value, modified.Value.Value, createdBy.Value, modifiedBy.Value, webhooks.Value, name.Value, type.Value.Value, data.Value);
         }
 

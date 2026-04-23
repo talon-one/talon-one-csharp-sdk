@@ -185,11 +185,8 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class CatalogsStrikethroughNotificationPolicy.", nameof(name));
 
-            if (aheadOfDaysTrigger.IsSet && aheadOfDaysTrigger.Value == null)
-                throw new ArgumentNullException(nameof(aheadOfDaysTrigger), "Property is not nullable for class CatalogsStrikethroughNotificationPolicy.");
-
-            if (batchSize.IsSet && batchSize.Value == null)
-                throw new ArgumentNullException(nameof(batchSize), "Property is not nullable for class CatalogsStrikethroughNotificationPolicy.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CatalogsStrikethroughNotificationPolicy.");
 
             return new CatalogsStrikethroughNotificationPolicy(name.Value, aheadOfDaysTrigger, batchSize);
         }

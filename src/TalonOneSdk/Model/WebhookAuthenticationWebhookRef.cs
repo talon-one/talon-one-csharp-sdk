@@ -174,6 +174,12 @@ namespace TalonOneSdk.Model
             if (!title.IsSet)
                 throw new ArgumentException("Property is required for class WebhookAuthenticationWebhookRef.", nameof(title));
 
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class WebhookAuthenticationWebhookRef.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class WebhookAuthenticationWebhookRef.");
+
             return new WebhookAuthenticationWebhookRef(id.Value.Value, title.Value, description);
         }
 
@@ -203,9 +209,6 @@ namespace TalonOneSdk.Model
         {
             if (webhookAuthenticationWebhookRef.Title == null)
                 throw new ArgumentNullException(nameof(webhookAuthenticationWebhookRef.Title), "Property is required for class WebhookAuthenticationWebhookRef.");
-
-            if (webhookAuthenticationWebhookRef.DescriptionOption.IsSet && webhookAuthenticationWebhookRef.Description == null)
-                throw new ArgumentNullException(nameof(webhookAuthenticationWebhookRef.Description), "Property is required for class WebhookAuthenticationWebhookRef.");
 
             writer.WriteNumber("id", webhookAuthenticationWebhookRef.Id);
 

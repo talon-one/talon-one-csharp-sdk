@@ -194,6 +194,15 @@ namespace TalonOneSdk.Model
             if (!varEvent.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationState.", nameof(varEvent));
 
+            if (session.IsSet && session.Value == null)
+                throw new ArgumentNullException(nameof(session), "Property is not nullable for class IntegrationState.");
+
+            if (profile.IsSet && profile.Value == null)
+                throw new ArgumentNullException(nameof(profile), "Property is not nullable for class IntegrationState.");
+
+            if (varEvent.IsSet && varEvent.Value == null)
+                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class IntegrationState.");
+
             return new IntegrationState(session.Value, profile.Value, varEvent.Value, loyalty, coupon);
         }
 
@@ -229,12 +238,6 @@ namespace TalonOneSdk.Model
 
             if (integrationState.Event == null)
                 throw new ArgumentNullException(nameof(integrationState.Event), "Property is required for class IntegrationState.");
-
-            if (integrationState.LoyaltyOption.IsSet && integrationState.Loyalty == null)
-                throw new ArgumentNullException(nameof(integrationState.Loyalty), "Property is required for class IntegrationState.");
-
-            if (integrationState.CouponOption.IsSet && integrationState.Coupon == null)
-                throw new ArgumentNullException(nameof(integrationState.Coupon), "Property is required for class IntegrationState.");
 
             writer.WritePropertyName("session");
             JsonSerializer.Serialize(writer, integrationState.Session, jsonSerializerOptions);

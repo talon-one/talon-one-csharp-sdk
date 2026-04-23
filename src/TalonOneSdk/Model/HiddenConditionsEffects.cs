@@ -221,18 +221,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, HiddenConditionsEffects hiddenConditionsEffects, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (hiddenConditionsEffects.BuiltInEffectsOption.IsSet && hiddenConditionsEffects.BuiltInEffects == null)
-                throw new ArgumentNullException(nameof(hiddenConditionsEffects.BuiltInEffects), "Property is required for class HiddenConditionsEffects.");
-
-            if (hiddenConditionsEffects.ConditionsOption.IsSet && hiddenConditionsEffects.Conditions == null)
-                throw new ArgumentNullException(nameof(hiddenConditionsEffects.Conditions), "Property is required for class HiddenConditionsEffects.");
-
-            if (hiddenConditionsEffects.CustomEffectsOption.IsSet && hiddenConditionsEffects.CustomEffects == null)
-                throw new ArgumentNullException(nameof(hiddenConditionsEffects.CustomEffects), "Property is required for class HiddenConditionsEffects.");
-
-            if (hiddenConditionsEffects.WebhooksOption.IsSet && hiddenConditionsEffects.Webhooks == null)
-                throw new ArgumentNullException(nameof(hiddenConditionsEffects.Webhooks), "Property is required for class HiddenConditionsEffects.");
-
             if (hiddenConditionsEffects.BuiltInEffectsOption.IsSet)
             {
                 writer.WritePropertyName("builtInEffects");

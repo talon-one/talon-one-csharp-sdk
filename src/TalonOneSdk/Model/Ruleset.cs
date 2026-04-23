@@ -335,17 +335,20 @@ namespace TalonOneSdk.Model
             if (!bindings.IsSet)
                 throw new ArgumentException("Property is required for class Ruleset.", nameof(bindings));
 
-            if (activate.IsSet && activate.Value == null)
-                throw new ArgumentNullException(nameof(activate), "Property is not nullable for class Ruleset.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Ruleset.");
 
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class Ruleset.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Ruleset.");
 
-            if (templateId.IsSet && templateId.Value == null)
-                throw new ArgumentNullException(nameof(templateId), "Property is not nullable for class Ruleset.");
+            if (userId.IsSet && userId.Value == null)
+                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class Ruleset.");
 
-            if (activatedAt.IsSet && activatedAt.Value == null)
-                throw new ArgumentNullException(nameof(activatedAt), "Property is not nullable for class Ruleset.");
+            if (rules.IsSet && rules.Value == null)
+                throw new ArgumentNullException(nameof(rules), "Property is not nullable for class Ruleset.");
+
+            if (bindings.IsSet && bindings.Value == null)
+                throw new ArgumentNullException(nameof(bindings), "Property is not nullable for class Ruleset.");
 
             return new Ruleset(id.Value.Value, created.Value.Value, userId.Value.Value, rules.Value, bindings.Value, strikethroughRules, rbVersion, activate, campaignId, templateId, activatedAt);
         }
@@ -379,12 +382,6 @@ namespace TalonOneSdk.Model
 
             if (ruleset.Bindings == null)
                 throw new ArgumentNullException(nameof(ruleset.Bindings), "Property is required for class Ruleset.");
-
-            if (ruleset.StrikethroughRulesOption.IsSet && ruleset.StrikethroughRules == null)
-                throw new ArgumentNullException(nameof(ruleset.StrikethroughRules), "Property is required for class Ruleset.");
-
-            if (ruleset.RbVersionOption.IsSet && ruleset.RbVersion == null)
-                throw new ArgumentNullException(nameof(ruleset.RbVersion), "Property is required for class Ruleset.");
 
             writer.WriteNumber("id", ruleset.Id);
 

@@ -123,6 +123,9 @@ namespace TalonOneSdk.Model
             if (!variants.IsSet)
                 throw new ArgumentException("Property is required for class UpdateExperimentVariantArray.", nameof(variants));
 
+            if (variants.IsSet && variants.Value == null)
+                throw new ArgumentNullException(nameof(variants), "Property is not nullable for class UpdateExperimentVariantArray.");
+
             return new UpdateExperimentVariantArray(variants.Value);
         }
 

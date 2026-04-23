@@ -154,6 +154,15 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class ListCampaignStoreBudgetsStore.", nameof(name));
 
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ListCampaignStoreBudgetsStore.");
+
+            if (integrationId.IsSet && integrationId.Value == null)
+                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class ListCampaignStoreBudgetsStore.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ListCampaignStoreBudgetsStore.");
+
             return new ListCampaignStoreBudgetsStore(id.Value.Value, integrationId.Value, name.Value);
         }
 

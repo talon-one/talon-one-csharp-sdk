@@ -124,6 +124,9 @@ namespace TalonOneSdk.Model
             if (!email.IsSet)
                 throw new ArgumentException("Property is required for class EmailEntity.", nameof(email));
 
+            if (email.IsSet && email.Value == null)
+                throw new ArgumentNullException(nameof(email), "Property is not nullable for class EmailEntity.");
+
             return new EmailEntity(email.Value);
         }
 

@@ -219,6 +219,18 @@ namespace TalonOneSdk.Model
             if (!newState.IsSet)
                 throw new ArgumentException("Property is required for class CampaignStateChangedNotificationItem.", nameof(newState));
 
+            if (varEvent.IsSet && varEvent.Value == null)
+                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignStateChangedNotificationItem.");
+
+            if (campaign.IsSet && campaign.Value == null)
+                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CampaignStateChangedNotificationItem.");
+
+            if (oldState.IsSet && oldState.Value == null)
+                throw new ArgumentNullException(nameof(oldState), "Property is not nullable for class CampaignStateChangedNotificationItem.");
+
+            if (newState.IsSet && newState.Value == null)
+                throw new ArgumentNullException(nameof(newState), "Property is not nullable for class CampaignStateChangedNotificationItem.");
+
             return new CampaignStateChangedNotificationItem(varEvent.Value, campaign.Value, oldState.Value, newState.Value, ruleset, placeholders);
         }
 
@@ -257,12 +269,6 @@ namespace TalonOneSdk.Model
 
             if (campaignStateChangedNotificationItem.NewState == null)
                 throw new ArgumentNullException(nameof(campaignStateChangedNotificationItem.NewState), "Property is required for class CampaignStateChangedNotificationItem.");
-
-            if (campaignStateChangedNotificationItem.RulesetOption.IsSet && campaignStateChangedNotificationItem.Ruleset == null)
-                throw new ArgumentNullException(nameof(campaignStateChangedNotificationItem.Ruleset), "Property is required for class CampaignStateChangedNotificationItem.");
-
-            if (campaignStateChangedNotificationItem.PlaceholdersOption.IsSet && campaignStateChangedNotificationItem.Placeholders == null)
-                throw new ArgumentNullException(nameof(campaignStateChangedNotificationItem.Placeholders), "Property is required for class CampaignStateChangedNotificationItem.");
 
             writer.WriteString("Event", campaignStateChangedNotificationItem.Event);
 

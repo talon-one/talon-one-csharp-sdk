@@ -338,14 +338,17 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class Audience.", nameof(name));
 
-            if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class Audience.");
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Audience.");
 
-            if (createdIn3rdParty.IsSet && createdIn3rdParty.Value == null)
-                throw new ArgumentNullException(nameof(createdIn3rdParty), "Property is not nullable for class Audience.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Audience.");
 
-            if (lastUpdate.IsSet && lastUpdate.Value == null)
-                throw new ArgumentNullException(nameof(lastUpdate), "Property is not nullable for class Audience.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Audience.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Audience.");
 
             return new Audience(accountId.Value.Value, id.Value.Value, created.Value.Value, name.Value, sandbox, description, integration, integrationId, createdIn3rdParty, lastUpdate);
         }
@@ -376,15 +379,6 @@ namespace TalonOneSdk.Model
         {
             if (audience.Name == null)
                 throw new ArgumentNullException(nameof(audience.Name), "Property is required for class Audience.");
-
-            if (audience.DescriptionOption.IsSet && audience.Description == null)
-                throw new ArgumentNullException(nameof(audience.Description), "Property is required for class Audience.");
-
-            if (audience.IntegrationOption.IsSet && audience.Integration == null)
-                throw new ArgumentNullException(nameof(audience.Integration), "Property is required for class Audience.");
-
-            if (audience.IntegrationIdOption.IsSet && audience.IntegrationId == null)
-                throw new ArgumentNullException(nameof(audience.IntegrationId), "Property is required for class Audience.");
 
             writer.WriteNumber("accountId", audience.AccountId);
 

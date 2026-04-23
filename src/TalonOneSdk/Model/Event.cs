@@ -343,6 +343,24 @@ namespace TalonOneSdk.Model
             if (!effects.IsSet)
                 throw new ArgumentException("Property is required for class Event.", nameof(effects));
 
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Event.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Event.");
+
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class Event.");
+
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class Event.");
+
+            if (attributes.IsSet && attributes.Value == null)
+                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class Event.");
+
+            if (effects.IsSet && effects.Value == null)
+                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class Event.");
+
             return new Event(id.Value.Value, created.Value.Value, applicationId.Value.Value, type.Value, attributes.Value, effects.Value, profileId, storeIntegrationId, sessionId, ledgerEntries, meta);
         }
 
@@ -378,21 +396,6 @@ namespace TalonOneSdk.Model
 
             if (varEvent.Effects == null)
                 throw new ArgumentNullException(nameof(varEvent.Effects), "Property is required for class Event.");
-
-            if (varEvent.ProfileIdOption.IsSet && varEvent.ProfileId == null)
-                throw new ArgumentNullException(nameof(varEvent.ProfileId), "Property is required for class Event.");
-
-            if (varEvent.StoreIntegrationIdOption.IsSet && varEvent.StoreIntegrationId == null)
-                throw new ArgumentNullException(nameof(varEvent.StoreIntegrationId), "Property is required for class Event.");
-
-            if (varEvent.SessionIdOption.IsSet && varEvent.SessionId == null)
-                throw new ArgumentNullException(nameof(varEvent.SessionId), "Property is required for class Event.");
-
-            if (varEvent.LedgerEntriesOption.IsSet && varEvent.LedgerEntries == null)
-                throw new ArgumentNullException(nameof(varEvent.LedgerEntries), "Property is required for class Event.");
-
-            if (varEvent.MetaOption.IsSet && varEvent.Meta == null)
-                throw new ArgumentNullException(nameof(varEvent.Meta), "Property is required for class Event.");
 
             writer.WriteNumber("id", varEvent.Id);
 

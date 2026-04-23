@@ -293,11 +293,14 @@ namespace TalonOneSdk.Model
             if (!transactionUUID.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.", nameof(transactionUUID));
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.");
+            if (amount.IsSet && amount.Value == null)
+                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.");
 
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.");
+            if (operation.IsSet && operation.Value == null)
+                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.");
+
+            if (transactionUUID.IsSet && transactionUUID.Value == null)
+                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.");
 
             return new IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction(amount.Value.Value, operation.Value.Value, transactionUUID.Value.Value, reason, startDate, expiryDate);
         }
@@ -326,9 +329,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.ReasonOption.IsSet && integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.Reason == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.Reason), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.");
-
             writer.WriteNumber("Amount", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.Amount);
 
             var operationRawValue = IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnumToJsonValue(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.Operation);

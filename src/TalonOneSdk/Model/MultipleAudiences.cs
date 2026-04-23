@@ -140,6 +140,12 @@ namespace TalonOneSdk.Model
             if (!audiences.IsSet)
                 throw new ArgumentException("Property is required for class MultipleAudiences.", nameof(audiences));
 
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class MultipleAudiences.");
+
+            if (audiences.IsSet && audiences.Value == null)
+                throw new ArgumentNullException(nameof(audiences), "Property is not nullable for class MultipleAudiences.");
+
             return new MultipleAudiences(accountId.Value.Value, audiences.Value);
         }
 

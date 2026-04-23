@@ -123,6 +123,9 @@ namespace TalonOneSdk.Model
             if (!enabled.IsSet)
                 throw new ArgumentException("Property is required for class NotificationActivation.", nameof(enabled));
 
+            if (enabled.IsSet && enabled.Value == null)
+                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class NotificationActivation.");
+
             return new NotificationActivation(enabled.Value.Value);
         }
 

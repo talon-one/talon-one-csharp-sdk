@@ -162,8 +162,11 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class AddFreeItemEffectProps.", nameof(name));
 
-            if (desiredQuantity.IsSet && desiredQuantity.Value == null)
-                throw new ArgumentNullException(nameof(desiredQuantity), "Property is not nullable for class AddFreeItemEffectProps.");
+            if (sku.IsSet && sku.Value == null)
+                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class AddFreeItemEffectProps.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AddFreeItemEffectProps.");
 
             return new AddFreeItemEffectProps(sku.Value, name.Value, desiredQuantity);
         }

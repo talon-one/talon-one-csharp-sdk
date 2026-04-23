@@ -175,12 +175,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, StrikethroughDebugResponse strikethroughDebugResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (strikethroughDebugResponse.CampaignsIDsOption.IsSet && strikethroughDebugResponse.CampaignsIDs == null)
-                throw new ArgumentNullException(nameof(strikethroughDebugResponse.CampaignsIDs), "Property is required for class StrikethroughDebugResponse.");
-
-            if (strikethroughDebugResponse.EffectsOption.IsSet && strikethroughDebugResponse.Effects == null)
-                throw new ArgumentNullException(nameof(strikethroughDebugResponse.Effects), "Property is required for class StrikethroughDebugResponse.");
-
             if (strikethroughDebugResponse.CampaignsIDsOption.IsSet)
             {
                 writer.WritePropertyName("campaignsIDs");

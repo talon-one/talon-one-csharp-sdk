@@ -148,12 +148,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (maxResults.IsSet && maxResults.Value == null)
-                throw new ArgumentNullException(nameof(maxResults), "Property is not nullable for class ScimServiceProviderConfigResponseFilter.");
-
-            if (supported.IsSet && supported.Value == null)
-                throw new ArgumentNullException(nameof(supported), "Property is not nullable for class ScimServiceProviderConfigResponseFilter.");
-
             return new ScimServiceProviderConfigResponseFilter(maxResults, supported);
         }
 

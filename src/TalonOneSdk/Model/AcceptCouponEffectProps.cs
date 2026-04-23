@@ -123,6 +123,9 @@ namespace TalonOneSdk.Model
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class AcceptCouponEffectProps.", nameof(value));
 
+            if (value.IsSet && value.Value == null)
+                throw new ArgumentNullException(nameof(value), "Property is not nullable for class AcceptCouponEffectProps.");
+
             return new AcceptCouponEffectProps(value.Value);
         }
 

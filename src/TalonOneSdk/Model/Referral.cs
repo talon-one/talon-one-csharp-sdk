@@ -407,17 +407,23 @@ namespace TalonOneSdk.Model
             if (!usageCounter.IsSet)
                 throw new ArgumentException("Property is required for class Referral.", nameof(usageCounter));
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class Referral.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Referral.");
 
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class Referral.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Referral.");
 
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class Referral.");
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class Referral.");
 
-            if (importId.IsSet && importId.Value == null)
-                throw new ArgumentNullException(nameof(importId), "Property is not nullable for class Referral.");
+            if (advocateProfileIntegrationId.IsSet && advocateProfileIntegrationId.Value == null)
+                throw new ArgumentNullException(nameof(advocateProfileIntegrationId), "Property is not nullable for class Referral.");
+
+            if (code.IsSet && code.Value == null)
+                throw new ArgumentNullException(nameof(code), "Property is not nullable for class Referral.");
+
+            if (usageCounter.IsSet && usageCounter.Value == null)
+                throw new ArgumentNullException(nameof(usageCounter), "Property is not nullable for class Referral.");
 
             return new Referral(id.Value.Value, created.Value.Value, campaignId.Value.Value, advocateProfileIntegrationId.Value, code.Value, usageCounter.Value.Value, startDate, expiryDate, usageLimit, friendProfileIntegrationId, attributes, importId, batchId);
         }
@@ -451,15 +457,6 @@ namespace TalonOneSdk.Model
 
             if (referral.Code == null)
                 throw new ArgumentNullException(nameof(referral.Code), "Property is required for class Referral.");
-
-            if (referral.FriendProfileIntegrationIdOption.IsSet && referral.FriendProfileIntegrationId == null)
-                throw new ArgumentNullException(nameof(referral.FriendProfileIntegrationId), "Property is required for class Referral.");
-
-            if (referral.AttributesOption.IsSet && referral.Attributes == null)
-                throw new ArgumentNullException(nameof(referral.Attributes), "Property is required for class Referral.");
-
-            if (referral.BatchIdOption.IsSet && referral.BatchId == null)
-                throw new ArgumentNullException(nameof(referral.BatchId), "Property is required for class Referral.");
 
             writer.WriteNumber("id", referral.Id);
 

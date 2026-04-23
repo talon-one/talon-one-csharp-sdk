@@ -177,12 +177,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class MessageLogResponse.");
-
-            if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class MessageLogResponse.");
-
             return new MessageLogResponse(createdAt, response, status);
         }
 
@@ -210,9 +204,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageLogResponse messageLogResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (messageLogResponse.ResponseOption.IsSet && messageLogResponse.Response == null)
-                throw new ArgumentNullException(nameof(messageLogResponse.Response), "Property is required for class MessageLogResponse.");
-
             if (messageLogResponse.CreatedAtOption.IsSet)
                 writer.WriteString("createdAt", messageLogResponse.CreatedAtOption.Value.Value.ToString(CreatedAtFormat));
 

@@ -153,9 +153,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (multipleCustomerProfileIntegrationRequest.CustomerProfilesOption.IsSet && multipleCustomerProfileIntegrationRequest.CustomerProfiles == null)
-                throw new ArgumentNullException(nameof(multipleCustomerProfileIntegrationRequest.CustomerProfiles), "Property is required for class MultipleCustomerProfileIntegrationRequest.");
-
             if (multipleCustomerProfileIntegrationRequest.CustomerProfilesOption.IsSet)
             {
                 writer.WritePropertyName("customerProfiles");

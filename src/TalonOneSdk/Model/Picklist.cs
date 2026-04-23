@@ -364,14 +364,20 @@ namespace TalonOneSdk.Model
             if (!createdBy.IsSet)
                 throw new ArgumentException("Property is required for class Picklist.", nameof(createdBy));
 
-            if (modifiedBy.IsSet && modifiedBy.Value == null)
-                throw new ArgumentNullException(nameof(modifiedBy), "Property is not nullable for class Picklist.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Picklist.");
 
-            if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Picklist.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Picklist.");
 
-            if (imported.IsSet && imported.Value == null)
-                throw new ArgumentNullException(nameof(imported), "Property is not nullable for class Picklist.");
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class Picklist.");
+
+            if (values.IsSet && values.Value == null)
+                throw new ArgumentNullException(nameof(values), "Property is not nullable for class Picklist.");
+
+            if (createdBy.IsSet && createdBy.Value == null)
+                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class Picklist.");
 
             return new Picklist(id.Value.Value, created.Value.Value, type.Value.Value, values.Value, createdBy.Value.Value, modifiedBy, accountId, imported);
         }

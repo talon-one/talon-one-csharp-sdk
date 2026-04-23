@@ -282,6 +282,30 @@ namespace TalonOneSdk.Model
             if (!createdBy.IsSet)
                 throw new ArgumentException("Property is required for class Catalog.", nameof(createdBy));
 
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Catalog.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Catalog.");
+
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Catalog.");
+
+            if (modified.IsSet && modified.Value == null)
+                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class Catalog.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Catalog.");
+
+            if (description.IsSet && description.Value == null)
+                throw new ArgumentNullException(nameof(description), "Property is not nullable for class Catalog.");
+
+            if (varVersion.IsSet && varVersion.Value == null)
+                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class Catalog.");
+
+            if (createdBy.IsSet && createdBy.Value == null)
+                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class Catalog.");
+
             return new Catalog(id.Value.Value, created.Value.Value, accountId.Value.Value, modified.Value.Value, name.Value, description.Value, varVersion.Value.Value, createdBy.Value.Value, subscribedApplicationsIds);
         }
 
@@ -314,9 +338,6 @@ namespace TalonOneSdk.Model
 
             if (catalog.Description == null)
                 throw new ArgumentNullException(nameof(catalog.Description), "Property is required for class Catalog.");
-
-            if (catalog.SubscribedApplicationsIdsOption.IsSet && catalog.SubscribedApplicationsIds == null)
-                throw new ArgumentNullException(nameof(catalog.SubscribedApplicationsIds), "Property is required for class Catalog.");
 
             writer.WriteNumber("id", catalog.Id);
 

@@ -72,15 +72,6 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'UserId'
-        /// </summary>
-        [Fact]
-        public void UserIdTest()
-        {
-            // TODO unit test for the property 'UserId'
-        }
-
-        /// <summary>
         /// Test the property 'Name'
         /// </summary>
         [Fact]
@@ -117,15 +108,6 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Period'
-        /// </summary>
-        [Fact]
-        public void PeriodTest()
-        {
-            // TODO unit test for the property 'Period'
-        }
-
-        /// <summary>
         /// Test the property 'RecurrencePolicy'
         /// </summary>
         [Fact]
@@ -141,33 +123,6 @@ namespace TalonOneSdk.Test.Model
         public void ActivationPolicyTest()
         {
             // TODO unit test for the property 'ActivationPolicy'
-        }
-
-        /// <summary>
-        /// Test the property 'FixedStartDate'
-        /// </summary>
-        [Fact]
-        public void FixedStartDateTest()
-        {
-            // TODO unit test for the property 'FixedStartDate'
-        }
-
-        /// <summary>
-        /// Test the property 'EndDate'
-        /// </summary>
-        [Fact]
-        public void EndDateTest()
-        {
-            // TODO unit test for the property 'EndDate'
-        }
-
-        /// <summary>
-        /// Test the property 'AllowRollbackAfterCompletion'
-        /// </summary>
-        [Fact]
-        public void AllowRollbackAfterCompletionTest()
-        {
-            // TODO unit test for the property 'AllowRollbackAfterCompletion'
         }
 
         /// <summary>
@@ -195,6 +150,51 @@ namespace TalonOneSdk.Test.Model
         public void TimezoneTest()
         {
             // TODO unit test for the property 'Timezone'
+        }
+
+        /// <summary>
+        /// Test the property 'UserId'
+        /// </summary>
+        [Fact]
+        public void UserIdTest()
+        {
+            // TODO unit test for the property 'UserId'
+        }
+
+        /// <summary>
+        /// Test the property 'Period'
+        /// </summary>
+        [Fact]
+        public void PeriodTest()
+        {
+            // TODO unit test for the property 'Period'
+        }
+
+        /// <summary>
+        /// Test the property 'FixedStartDate'
+        /// </summary>
+        [Fact]
+        public void FixedStartDateTest()
+        {
+            // TODO unit test for the property 'FixedStartDate'
+        }
+
+        /// <summary>
+        /// Test the property 'EndDate'
+        /// </summary>
+        [Fact]
+        public void EndDateTest()
+        {
+            // TODO unit test for the property 'EndDate'
+        }
+
+        /// <summary>
+        /// Test the property 'AllowRollbackAfterCompletion'
+        /// </summary>
+        [Fact]
+        public void AllowRollbackAfterCompletionTest()
+        {
+            // TODO unit test for the property 'AllowRollbackAfterCompletion'
         }
 
         /// <summary>

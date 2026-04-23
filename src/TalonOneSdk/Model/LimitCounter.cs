@@ -413,14 +413,26 @@ namespace TalonOneSdk.Model
             if (!counter.IsSet)
                 throw new ArgumentException("Property is required for class LimitCounter.", nameof(counter));
 
-            if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class LimitCounter.");
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class LimitCounter.");
 
-            if (couponId.IsSet && couponId.Value == null)
-                throw new ArgumentNullException(nameof(couponId), "Property is not nullable for class LimitCounter.");
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class LimitCounter.");
 
-            if (referralId.IsSet && referralId.Value == null)
-                throw new ArgumentNullException(nameof(referralId), "Property is not nullable for class LimitCounter.");
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class LimitCounter.");
+
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LimitCounter.");
+
+            if (action.IsSet && action.Value == null)
+                throw new ArgumentNullException(nameof(action), "Property is not nullable for class LimitCounter.");
+
+            if (limit.IsSet && limit.Value == null)
+                throw new ArgumentNullException(nameof(limit), "Property is not nullable for class LimitCounter.");
+
+            if (counter.IsSet && counter.Value == null)
+                throw new ArgumentNullException(nameof(counter), "Property is not nullable for class LimitCounter.");
 
             return new LimitCounter(campaignId.Value.Value, applicationId.Value.Value, accountId.Value.Value, id.Value.Value, action.Value, limit.Value.Value, counter.Value.Value, profileId, profileIntegrationId, couponId, couponValue, referralId, referralValue, identifier, period);
         }
@@ -451,21 +463,6 @@ namespace TalonOneSdk.Model
         {
             if (limitCounter.Action == null)
                 throw new ArgumentNullException(nameof(limitCounter.Action), "Property is required for class LimitCounter.");
-
-            if (limitCounter.ProfileIntegrationIdOption.IsSet && limitCounter.ProfileIntegrationId == null)
-                throw new ArgumentNullException(nameof(limitCounter.ProfileIntegrationId), "Property is required for class LimitCounter.");
-
-            if (limitCounter.CouponValueOption.IsSet && limitCounter.CouponValue == null)
-                throw new ArgumentNullException(nameof(limitCounter.CouponValue), "Property is required for class LimitCounter.");
-
-            if (limitCounter.ReferralValueOption.IsSet && limitCounter.ReferralValue == null)
-                throw new ArgumentNullException(nameof(limitCounter.ReferralValue), "Property is required for class LimitCounter.");
-
-            if (limitCounter.IdentifierOption.IsSet && limitCounter.Identifier == null)
-                throw new ArgumentNullException(nameof(limitCounter.Identifier), "Property is required for class LimitCounter.");
-
-            if (limitCounter.PeriodOption.IsSet && limitCounter.Period == null)
-                throw new ArgumentNullException(nameof(limitCounter.Period), "Property is required for class LimitCounter.");
 
             writer.WriteNumber("campaignId", limitCounter.CampaignId);
 

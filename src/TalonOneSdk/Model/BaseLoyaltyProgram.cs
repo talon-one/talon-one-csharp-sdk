@@ -773,30 +773,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (allowSubledger.IsSet && allowSubledger.Value == null)
-                throw new ArgumentNullException(nameof(allowSubledger), "Property is not nullable for class BaseLoyaltyProgram.");
-
-            if (usersPerCardLimit.IsSet && usersPerCardLimit.Value == null)
-                throw new ArgumentNullException(nameof(usersPerCardLimit), "Property is not nullable for class BaseLoyaltyProgram.");
-
-            if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class BaseLoyaltyProgram.");
-
-            if (programJoinPolicy.IsSet && programJoinPolicy.Value == null)
-                throw new ArgumentNullException(nameof(programJoinPolicy), "Property is not nullable for class BaseLoyaltyProgram.");
-
-            if (tiersExpirationPolicy.IsSet && tiersExpirationPolicy.Value == null)
-                throw new ArgumentNullException(nameof(tiersExpirationPolicy), "Property is not nullable for class BaseLoyaltyProgram.");
-
-            if (tierCycleStartDate.IsSet && tierCycleStartDate.Value == null)
-                throw new ArgumentNullException(nameof(tierCycleStartDate), "Property is not nullable for class BaseLoyaltyProgram.");
-
-            if (tiersDowngradePolicy.IsSet && tiersDowngradePolicy.Value == null)
-                throw new ArgumentNullException(nameof(tiersDowngradePolicy), "Property is not nullable for class BaseLoyaltyProgram.");
-
-            if (returnPolicy.IsSet && returnPolicy.Value == null)
-                throw new ArgumentNullException(nameof(returnPolicy), "Property is not nullable for class BaseLoyaltyProgram.");
-
             return new BaseLoyaltyProgram(title, description, subscribedApplications, defaultValidity, defaultPending, allowSubledger, usersPerCardLimit, sandbox, programJoinPolicy, tiersExpirationPolicy, tierCycleStartDate, tiersExpireIn, tiersDowngradePolicy, cardCodeSettings, returnPolicy);
         }
 
@@ -824,27 +800,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BaseLoyaltyProgram baseLoyaltyProgram, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (baseLoyaltyProgram.TitleOption.IsSet && baseLoyaltyProgram.Title == null)
-                throw new ArgumentNullException(nameof(baseLoyaltyProgram.Title), "Property is required for class BaseLoyaltyProgram.");
-
-            if (baseLoyaltyProgram.DescriptionOption.IsSet && baseLoyaltyProgram.Description == null)
-                throw new ArgumentNullException(nameof(baseLoyaltyProgram.Description), "Property is required for class BaseLoyaltyProgram.");
-
-            if (baseLoyaltyProgram.SubscribedApplicationsOption.IsSet && baseLoyaltyProgram.SubscribedApplications == null)
-                throw new ArgumentNullException(nameof(baseLoyaltyProgram.SubscribedApplications), "Property is required for class BaseLoyaltyProgram.");
-
-            if (baseLoyaltyProgram.DefaultValidityOption.IsSet && baseLoyaltyProgram.DefaultValidity == null)
-                throw new ArgumentNullException(nameof(baseLoyaltyProgram.DefaultValidity), "Property is required for class BaseLoyaltyProgram.");
-
-            if (baseLoyaltyProgram.DefaultPendingOption.IsSet && baseLoyaltyProgram.DefaultPending == null)
-                throw new ArgumentNullException(nameof(baseLoyaltyProgram.DefaultPending), "Property is required for class BaseLoyaltyProgram.");
-
-            if (baseLoyaltyProgram.TiersExpireInOption.IsSet && baseLoyaltyProgram.TiersExpireIn == null)
-                throw new ArgumentNullException(nameof(baseLoyaltyProgram.TiersExpireIn), "Property is required for class BaseLoyaltyProgram.");
-
-            if (baseLoyaltyProgram.CardCodeSettingsOption.IsSet && baseLoyaltyProgram.CardCodeSettings == null)
-                throw new ArgumentNullException(nameof(baseLoyaltyProgram.CardCodeSettings), "Property is required for class BaseLoyaltyProgram.");
-
             if (baseLoyaltyProgram.TitleOption.IsSet)
                 writer.WriteString("title", baseLoyaltyProgram.Title);
 

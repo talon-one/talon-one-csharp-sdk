@@ -438,8 +438,29 @@ namespace TalonOneSdk.Model
             if (!enabled.IsSet)
                 throw new ArgumentException("Property is required for class NewWebhook.", nameof(enabled));
 
-            if (authenticationId.IsSet && authenticationId.Value == null)
-                throw new ArgumentNullException(nameof(authenticationId), "Property is not nullable for class NewWebhook.");
+            if (applicationIds.IsSet && applicationIds.Value == null)
+                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class NewWebhook.");
+
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewWebhook.");
+
+            if (draft.IsSet && draft.Value == null)
+                throw new ArgumentNullException(nameof(draft), "Property is not nullable for class NewWebhook.");
+
+            if (verb.IsSet && verb.Value == null)
+                throw new ArgumentNullException(nameof(verb), "Property is not nullable for class NewWebhook.");
+
+            if (url.IsSet && url.Value == null)
+                throw new ArgumentNullException(nameof(url), "Property is not nullable for class NewWebhook.");
+
+            if (headers.IsSet && headers.Value == null)
+                throw new ArgumentNullException(nameof(headers), "Property is not nullable for class NewWebhook.");
+
+            if (varParams.IsSet && varParams.Value == null)
+                throw new ArgumentNullException(nameof(varParams), "Property is not nullable for class NewWebhook.");
+
+            if (enabled.IsSet && enabled.Value == null)
+                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class NewWebhook.");
 
             return new NewWebhook(applicationIds.Value, title.Value, draft.Value.Value, verb.Value.Value, url.Value, headers.Value, varParams.Value, enabled.Value.Value, description, payload, authenticationId);
         }
@@ -482,12 +503,6 @@ namespace TalonOneSdk.Model
 
             if (newWebhook.Params == null)
                 throw new ArgumentNullException(nameof(newWebhook.Params), "Property is required for class NewWebhook.");
-
-            if (newWebhook.DescriptionOption.IsSet && newWebhook.Description == null)
-                throw new ArgumentNullException(nameof(newWebhook.Description), "Property is required for class NewWebhook.");
-
-            if (newWebhook.PayloadOption.IsSet && newWebhook.Payload == null)
-                throw new ArgumentNullException(nameof(newWebhook.Payload), "Property is required for class NewWebhook.");
 
             writer.WritePropertyName("applicationIds");
             JsonSerializer.Serialize(writer, newWebhook.ApplicationIds, jsonSerializerOptions);

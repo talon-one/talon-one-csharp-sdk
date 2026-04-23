@@ -139,6 +139,9 @@ namespace TalonOneSdk.Model
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class UpdateAttributeEffectProps.", nameof(value));
 
+            if (path.IsSet && path.Value == null)
+                throw new ArgumentNullException(nameof(path), "Property is not nullable for class UpdateAttributeEffectProps.");
+
             return new UpdateAttributeEffectProps(path.Value, value.Value);
         }
 

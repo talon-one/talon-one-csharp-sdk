@@ -653,17 +653,35 @@ namespace TalonOneSdk.Model
             if (!subledgerId.IsSet)
                 throw new ArgumentException("Property is required for class LoyaltyProgramTransaction.", nameof(subledgerId));
 
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class LoyaltyProgramTransaction.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LoyaltyProgramTransaction.");
 
-            if (importId.IsSet && importId.Value == null)
-                throw new ArgumentNullException(nameof(importId), "Property is not nullable for class LoyaltyProgramTransaction.");
+            if (transactionUUID.IsSet && transactionUUID.Value == null)
+                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class LoyaltyProgramTransaction.");
 
-            if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class LoyaltyProgramTransaction.");
+            if (programId.IsSet && programId.Value == null)
+                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class LoyaltyProgramTransaction.");
 
-            if (rulesetId.IsSet && rulesetId.Value == null)
-                throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class LoyaltyProgramTransaction.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class LoyaltyProgramTransaction.");
+
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class LoyaltyProgramTransaction.");
+
+            if (amount.IsSet && amount.Value == null)
+                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class LoyaltyProgramTransaction.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class LoyaltyProgramTransaction.");
+
+            if (startDate.IsSet && startDate.Value == null)
+                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class LoyaltyProgramTransaction.");
+
+            if (expiryDate.IsSet && expiryDate.Value == null)
+                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class LoyaltyProgramTransaction.");
+
+            if (subledgerId.IsSet && subledgerId.Value == null)
+                throw new ArgumentNullException(nameof(subledgerId), "Property is not nullable for class LoyaltyProgramTransaction.");
 
             return new LoyaltyProgramTransaction(id.Value.Value, transactionUUID.Value, programId.Value.Value, created.Value.Value, type.Value.Value, amount.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, campaignId, customerProfileId, cardIdentifier, customerSessionId, importId, userId, userEmail, rulesetId, ruleName, flags, validityDuration);
         }
@@ -706,27 +724,6 @@ namespace TalonOneSdk.Model
 
             if (loyaltyProgramTransaction.SubledgerId == null)
                 throw new ArgumentNullException(nameof(loyaltyProgramTransaction.SubledgerId), "Property is required for class LoyaltyProgramTransaction.");
-
-            if (loyaltyProgramTransaction.CustomerProfileIdOption.IsSet && loyaltyProgramTransaction.CustomerProfileId == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramTransaction.CustomerProfileId), "Property is required for class LoyaltyProgramTransaction.");
-
-            if (loyaltyProgramTransaction.CardIdentifierOption.IsSet && loyaltyProgramTransaction.CardIdentifier == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramTransaction.CardIdentifier), "Property is required for class LoyaltyProgramTransaction.");
-
-            if (loyaltyProgramTransaction.CustomerSessionIdOption.IsSet && loyaltyProgramTransaction.CustomerSessionId == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramTransaction.CustomerSessionId), "Property is required for class LoyaltyProgramTransaction.");
-
-            if (loyaltyProgramTransaction.UserEmailOption.IsSet && loyaltyProgramTransaction.UserEmail == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramTransaction.UserEmail), "Property is required for class LoyaltyProgramTransaction.");
-
-            if (loyaltyProgramTransaction.RuleNameOption.IsSet && loyaltyProgramTransaction.RuleName == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramTransaction.RuleName), "Property is required for class LoyaltyProgramTransaction.");
-
-            if (loyaltyProgramTransaction.FlagsOption.IsSet && loyaltyProgramTransaction.Flags == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramTransaction.Flags), "Property is required for class LoyaltyProgramTransaction.");
-
-            if (loyaltyProgramTransaction.ValidityDurationOption.IsSet && loyaltyProgramTransaction.ValidityDuration == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramTransaction.ValidityDuration), "Property is required for class LoyaltyProgramTransaction.");
 
             writer.WriteNumber("id", loyaltyProgramTransaction.Id);
 

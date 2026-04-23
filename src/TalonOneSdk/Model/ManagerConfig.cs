@@ -122,6 +122,9 @@ namespace TalonOneSdk.Model
             if (!schemaVersion.IsSet)
                 throw new ArgumentException("Property is required for class ManagerConfig.", nameof(schemaVersion));
 
+            if (schemaVersion.IsSet && schemaVersion.Value == null)
+                throw new ArgumentNullException(nameof(schemaVersion), "Property is not nullable for class ManagerConfig.");
+
             return new ManagerConfig(schemaVersion.Value.Value);
         }
 

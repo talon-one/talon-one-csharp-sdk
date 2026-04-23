@@ -129,6 +129,9 @@ namespace TalonOneSdk.Model
             if (!modified.IsSet)
                 throw new ArgumentException("Property is required for class MutableEntity.", nameof(modified));
 
+            if (modified.IsSet && modified.Value == null)
+                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class MutableEntity.");
+
             return new MutableEntity(modified.Value.Value);
         }
 

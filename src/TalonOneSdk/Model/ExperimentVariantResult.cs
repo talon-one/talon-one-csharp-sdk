@@ -348,36 +348,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (variantId.IsSet && variantId.Value == null)
-                throw new ArgumentNullException(nameof(variantId), "Property is not nullable for class ExperimentVariantResult.");
-
-            if (variantWeight.IsSet && variantWeight.Value == null)
-                throw new ArgumentNullException(nameof(variantWeight), "Property is not nullable for class ExperimentVariantResult.");
-
-            if (isWinner.IsSet && isWinner.Value == null)
-                throw new ArgumentNullException(nameof(isWinner), "Property is not nullable for class ExperimentVariantResult.");
-
-            if (totalRevenue.IsSet && totalRevenue.Value == null)
-                throw new ArgumentNullException(nameof(totalRevenue), "Property is not nullable for class ExperimentVariantResult.");
-
-            if (sessionsCount.IsSet && sessionsCount.Value == null)
-                throw new ArgumentNullException(nameof(sessionsCount), "Property is not nullable for class ExperimentVariantResult.");
-
-            if (avgItemsPerSession.IsSet && avgItemsPerSession.Value == null)
-                throw new ArgumentNullException(nameof(avgItemsPerSession), "Property is not nullable for class ExperimentVariantResult.");
-
-            if (avgSessionValue.IsSet && avgSessionValue.Value == null)
-                throw new ArgumentNullException(nameof(avgSessionValue), "Property is not nullable for class ExperimentVariantResult.");
-
-            if (avgDiscountedSessionValue.IsSet && avgDiscountedSessionValue.Value == null)
-                throw new ArgumentNullException(nameof(avgDiscountedSessionValue), "Property is not nullable for class ExperimentVariantResult.");
-
-            if (totalDiscounts.IsSet && totalDiscounts.Value == null)
-                throw new ArgumentNullException(nameof(totalDiscounts), "Property is not nullable for class ExperimentVariantResult.");
-
-            if (couponsCount.IsSet && couponsCount.Value == null)
-                throw new ArgumentNullException(nameof(couponsCount), "Property is not nullable for class ExperimentVariantResult.");
-
             return new ExperimentVariantResult(variantId, variantName, variantWeight, isWinner, totalRevenue, sessionsCount, avgItemsPerSession, avgSessionValue, avgDiscountedSessionValue, totalDiscounts, couponsCount);
         }
 
@@ -405,9 +375,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentVariantResult experimentVariantResult, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (experimentVariantResult.VariantNameOption.IsSet && experimentVariantResult.VariantName == null)
-                throw new ArgumentNullException(nameof(experimentVariantResult.VariantName), "Property is required for class ExperimentVariantResult.");
-
             if (experimentVariantResult.VariantIdOption.IsSet)
                 writer.WriteNumber("variantId", experimentVariantResult.VariantIdOption.Value.Value);
 

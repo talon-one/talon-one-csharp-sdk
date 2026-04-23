@@ -32,9 +32,9 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="RuleMetadata" /> class.
         /// </summary>
         /// <param name="title">A short description of the rule.</param>
-        /// <param name="displayName">A customer-facing name used to identify the reward defined within the rule.</param>
-        /// <param name="displayDescription">A customer-facing description of the reward defined in the rule.   For example, this property can contain details about eligibility requirements, reward timelines, or terms and conditions. </param>
-        /// <param name="relatedData">Data related to the reward, such as a vendor name, an image URL, or a content management system (CMS) ID. </param>
+        /// <param name="displayName">A customer-facing name for the rule.</param>
+        /// <param name="displayDescription">A customer-facing description that explains the details of the rule.   For example, this property can contain details about eligibility requirements, reward timelines, or terms and conditions. </param>
+        /// <param name="relatedData">Any additional data associated with the rule, such as an image URL, vendor name, or a content management system (CMS) ID. </param>
         [JsonConstructor]
         public RuleMetadata(string title, Option<string> displayName = default, Option<string> displayDescription = default, Option<string> relatedData = default)
         {
@@ -63,9 +63,9 @@ namespace TalonOneSdk.Model
         public Option<string> DisplayNameOption { get; private set; }
 
         /// <summary>
-        /// A customer-facing name used to identify the reward defined within the rule.
+        /// A customer-facing name for the rule.
         /// </summary>
-        /// <value>A customer-facing name used to identify the reward defined within the rule.</value>
+        /// <value>A customer-facing name for the rule.</value>
         /* <example>20% off all shoes!</example> */
         [JsonPropertyName("displayName")]
         public string DisplayName { get { return this.DisplayNameOption; } set { this.DisplayNameOption = new Option<string>(value); } }
@@ -78,9 +78,9 @@ namespace TalonOneSdk.Model
         public Option<string> DisplayDescriptionOption { get; private set; }
 
         /// <summary>
-        /// A customer-facing description of the reward defined in the rule.   For example, this property can contain details about eligibility requirements, reward timelines, or terms and conditions. 
+        /// A customer-facing description that explains the details of the rule.   For example, this property can contain details about eligibility requirements, reward timelines, or terms and conditions. 
         /// </summary>
-        /// <value>A customer-facing description of the reward defined in the rule.   For example, this property can contain details about eligibility requirements, reward timelines, or terms and conditions. </value>
+        /// <value>A customer-facing description that explains the details of the rule.   For example, this property can contain details about eligibility requirements, reward timelines, or terms and conditions. </value>
         /* <example>Get a 20% discount on all shoes during Thanksgiving! Offer valid till Dec 5 only.</example> */
         [JsonPropertyName("displayDescription")]
         public string DisplayDescription { get { return this.DisplayDescriptionOption; } set { this.DisplayDescriptionOption = new Option<string>(value); } }
@@ -93,9 +93,9 @@ namespace TalonOneSdk.Model
         public Option<string> RelatedDataOption { get; private set; }
 
         /// <summary>
-        /// Data related to the reward, such as a vendor name, an image URL, or a content management system (CMS) ID. 
+        /// Any additional data associated with the rule, such as an image URL, vendor name, or a content management system (CMS) ID. 
         /// </summary>
-        /// <value>Data related to the reward, such as a vendor name, an image URL, or a content management system (CMS) ID. </value>
+        /// <value>Any additional data associated with the rule, such as an image URL, vendor name, or a content management system (CMS) ID. </value>
         /* <example>https://example.com/discounts/20-off-shoes.png</example> */
         [JsonPropertyName("relatedData")]
         public string RelatedData { get { return this.RelatedDataOption; } set { this.RelatedDataOption = new Option<string>(value); } }
@@ -190,6 +190,9 @@ namespace TalonOneSdk.Model
             if (!title.IsSet)
                 throw new ArgumentException("Property is required for class RuleMetadata.", nameof(title));
 
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class RuleMetadata.");
+
             return new RuleMetadata(title.Value, displayName, displayDescription, relatedData);
         }
 
@@ -219,15 +222,6 @@ namespace TalonOneSdk.Model
         {
             if (ruleMetadata.Title == null)
                 throw new ArgumentNullException(nameof(ruleMetadata.Title), "Property is required for class RuleMetadata.");
-
-            if (ruleMetadata.DisplayNameOption.IsSet && ruleMetadata.DisplayName == null)
-                throw new ArgumentNullException(nameof(ruleMetadata.DisplayName), "Property is required for class RuleMetadata.");
-
-            if (ruleMetadata.DisplayDescriptionOption.IsSet && ruleMetadata.DisplayDescription == null)
-                throw new ArgumentNullException(nameof(ruleMetadata.DisplayDescription), "Property is required for class RuleMetadata.");
-
-            if (ruleMetadata.RelatedDataOption.IsSet && ruleMetadata.RelatedData == null)
-                throw new ArgumentNullException(nameof(ruleMetadata.RelatedData), "Property is required for class RuleMetadata.");
 
             writer.WriteString("title", ruleMetadata.Title);
 

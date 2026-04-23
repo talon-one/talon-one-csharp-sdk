@@ -428,8 +428,14 @@ namespace TalonOneSdk.Model
             if (!entities.IsSet)
                 throw new ArgumentException("Property is required for class LimitConfig.", nameof(entities));
 
-            if (period.IsSet && period.Value == null)
-                throw new ArgumentNullException(nameof(period), "Property is not nullable for class LimitConfig.");
+            if (action.IsSet && action.Value == null)
+                throw new ArgumentNullException(nameof(action), "Property is not nullable for class LimitConfig.");
+
+            if (limit.IsSet && limit.Value == null)
+                throw new ArgumentNullException(nameof(limit), "Property is not nullable for class LimitConfig.");
+
+            if (entities.IsSet && entities.Value == null)
+                throw new ArgumentNullException(nameof(entities), "Property is not nullable for class LimitConfig.");
 
             return new LimitConfig(action.Value, limit.Value.Value, entities.Value, period);
         }

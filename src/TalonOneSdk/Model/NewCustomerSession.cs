@@ -388,12 +388,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class NewCustomerSession.");
-
-            if (total.IsSet && total.Value == null)
-                throw new ArgumentNullException(nameof(total), "Property is not nullable for class NewCustomerSession.");
-
             return new NewCustomerSession(profileId, coupon, referral, state, cartItems, identifiers, total, attributes);
         }
 
@@ -421,24 +415,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewCustomerSession newCustomerSession, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (newCustomerSession.ProfileIdOption.IsSet && newCustomerSession.ProfileId == null)
-                throw new ArgumentNullException(nameof(newCustomerSession.ProfileId), "Property is required for class NewCustomerSession.");
-
-            if (newCustomerSession.CouponOption.IsSet && newCustomerSession.Coupon == null)
-                throw new ArgumentNullException(nameof(newCustomerSession.Coupon), "Property is required for class NewCustomerSession.");
-
-            if (newCustomerSession.ReferralOption.IsSet && newCustomerSession.Referral == null)
-                throw new ArgumentNullException(nameof(newCustomerSession.Referral), "Property is required for class NewCustomerSession.");
-
-            if (newCustomerSession.CartItemsOption.IsSet && newCustomerSession.CartItems == null)
-                throw new ArgumentNullException(nameof(newCustomerSession.CartItems), "Property is required for class NewCustomerSession.");
-
-            if (newCustomerSession.IdentifiersOption.IsSet && newCustomerSession.Identifiers == null)
-                throw new ArgumentNullException(nameof(newCustomerSession.Identifiers), "Property is required for class NewCustomerSession.");
-
-            if (newCustomerSession.AttributesOption.IsSet && newCustomerSession.Attributes == null)
-                throw new ArgumentNullException(nameof(newCustomerSession.Attributes), "Property is required for class NewCustomerSession.");
-
             if (newCustomerSession.ProfileIdOption.IsSet)
                 writer.WriteString("profileId", newCustomerSession.ProfileId);
 

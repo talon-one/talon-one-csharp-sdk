@@ -515,8 +515,38 @@ namespace TalonOneSdk.Model
             if (!total.IsSet)
                 throw new ArgumentException("Property is required for class ApplicationSession.", nameof(total));
 
-            if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class ApplicationSession.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ApplicationSession.");
+
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ApplicationSession.");
+
+            if (integrationId.IsSet && integrationId.Value == null)
+                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class ApplicationSession.");
+
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ApplicationSession.");
+
+            if (coupon.IsSet && coupon.Value == null)
+                throw new ArgumentNullException(nameof(coupon), "Property is not nullable for class ApplicationSession.");
+
+            if (referral.IsSet && referral.Value == null)
+                throw new ArgumentNullException(nameof(referral), "Property is not nullable for class ApplicationSession.");
+
+            if (state.IsSet && state.Value == null)
+                throw new ArgumentNullException(nameof(state), "Property is not nullable for class ApplicationSession.");
+
+            if (cartItems.IsSet && cartItems.Value == null)
+                throw new ArgumentNullException(nameof(cartItems), "Property is not nullable for class ApplicationSession.");
+
+            if (discounts.IsSet && discounts.Value == null)
+                throw new ArgumentNullException(nameof(discounts), "Property is not nullable for class ApplicationSession.");
+
+            if (totalDiscounts.IsSet && totalDiscounts.Value == null)
+                throw new ArgumentNullException(nameof(totalDiscounts), "Property is not nullable for class ApplicationSession.");
+
+            if (total.IsSet && total.Value == null)
+                throw new ArgumentNullException(nameof(total), "Property is not nullable for class ApplicationSession.");
 
             return new ApplicationSession(id.Value.Value, created.Value.Value, integrationId.Value, applicationId.Value.Value, coupon.Value, referral.Value, state.Value.Value, cartItems.Value, discounts.Value, totalDiscounts.Value.Value, total.Value.Value, storeIntegrationId, profileId, profileintegrationid, attributes);
         }
@@ -559,15 +589,6 @@ namespace TalonOneSdk.Model
 
             if (applicationSession.Discounts == null)
                 throw new ArgumentNullException(nameof(applicationSession.Discounts), "Property is required for class ApplicationSession.");
-
-            if (applicationSession.StoreIntegrationIdOption.IsSet && applicationSession.StoreIntegrationId == null)
-                throw new ArgumentNullException(nameof(applicationSession.StoreIntegrationId), "Property is required for class ApplicationSession.");
-
-            if (applicationSession.ProfileintegrationidOption.IsSet && applicationSession.Profileintegrationid == null)
-                throw new ArgumentNullException(nameof(applicationSession.Profileintegrationid), "Property is required for class ApplicationSession.");
-
-            if (applicationSession.AttributesOption.IsSet && applicationSession.Attributes == null)
-                throw new ArgumentNullException(nameof(applicationSession.Attributes), "Property is required for class ApplicationSession.");
 
             writer.WriteNumber("id", applicationSession.Id);
 

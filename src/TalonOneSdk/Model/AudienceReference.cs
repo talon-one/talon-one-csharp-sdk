@@ -178,6 +178,9 @@ namespace TalonOneSdk.Model
             if (!id.IsSet)
                 throw new ArgumentException("Property is required for class AudienceReference.", nameof(id));
 
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AudienceReference.");
+
             return new AudienceReference(id.Value.Value, integrationId, integration);
         }
 
@@ -205,12 +208,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AudienceReference audienceReference, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (audienceReference.IntegrationIdOption.IsSet && audienceReference.IntegrationId == null)
-                throw new ArgumentNullException(nameof(audienceReference.IntegrationId), "Property is required for class AudienceReference.");
-
-            if (audienceReference.IntegrationOption.IsSet && audienceReference.Integration == null)
-                throw new ArgumentNullException(nameof(audienceReference.Integration), "Property is required for class AudienceReference.");
-
             writer.WriteNumber("id", audienceReference.Id);
 
             if (audienceReference.IntegrationIdOption.IsSet)

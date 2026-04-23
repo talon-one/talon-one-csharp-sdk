@@ -124,6 +124,9 @@ namespace TalonOneSdk.Model
             if (!itemFilter.IsSet)
                 throw new ArgumentException("Property is required for class GenerateItemFilterDescription.", nameof(itemFilter));
 
+            if (itemFilter.IsSet && itemFilter.Value == null)
+                throw new ArgumentNullException(nameof(itemFilter), "Property is not nullable for class GenerateItemFilterDescription.");
+
             return new GenerateItemFilterDescription(itemFilter.Value);
         }
 

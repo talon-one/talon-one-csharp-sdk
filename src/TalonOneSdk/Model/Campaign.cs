@@ -1736,95 +1736,41 @@ namespace TalonOneSdk.Model
             if (!state.IsSet)
                 throw new ArgumentException("Property is required for class Campaign.", nameof(state));
 
-            if (startTime.IsSet && startTime.Value == null)
-                throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class Campaign.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Campaign.");
 
-            if (endTime.IsSet && endTime.Value == null)
-                throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class Campaign.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Campaign.");
 
-            if (activeRulesetId.IsSet && activeRulesetId.Value == null)
-                throw new ArgumentNullException(nameof(activeRulesetId), "Property is not nullable for class Campaign.");
+            if (applicationId.IsSet && applicationId.Value == null)
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class Campaign.");
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class Campaign.");
+            if (userId.IsSet && userId.Value == null)
+                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class Campaign.");
 
-            if (couponRedemptionCount.IsSet && couponRedemptionCount.Value == null)
-                throw new ArgumentNullException(nameof(couponRedemptionCount), "Property is not nullable for class Campaign.");
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Campaign.");
 
-            if (referralRedemptionCount.IsSet && referralRedemptionCount.Value == null)
-                throw new ArgumentNullException(nameof(referralRedemptionCount), "Property is not nullable for class Campaign.");
+            if (tags.IsSet && tags.Value == null)
+                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class Campaign.");
 
-            if (discountCount.IsSet && discountCount.Value == null)
-                throw new ArgumentNullException(nameof(discountCount), "Property is not nullable for class Campaign.");
+            if (reevaluateOnReturn.IsSet && reevaluateOnReturn.Value == null)
+                throw new ArgumentNullException(nameof(reevaluateOnReturn), "Property is not nullable for class Campaign.");
 
-            if (discountEffectCount.IsSet && discountEffectCount.Value == null)
-                throw new ArgumentNullException(nameof(discountEffectCount), "Property is not nullable for class Campaign.");
+            if (features.IsSet && features.Value == null)
+                throw new ArgumentNullException(nameof(features), "Property is not nullable for class Campaign.");
 
-            if (couponCreationCount.IsSet && couponCreationCount.Value == null)
-                throw new ArgumentNullException(nameof(couponCreationCount), "Property is not nullable for class Campaign.");
+            if (limits.IsSet && limits.Value == null)
+                throw new ArgumentNullException(nameof(limits), "Property is not nullable for class Campaign.");
 
-            if (customEffectCount.IsSet && customEffectCount.Value == null)
-                throw new ArgumentNullException(nameof(customEffectCount), "Property is not nullable for class Campaign.");
+            if (frontendState.IsSet && frontendState.Value == null)
+                throw new ArgumentNullException(nameof(frontendState), "Property is not nullable for class Campaign.");
 
-            if (referralCreationCount.IsSet && referralCreationCount.Value == null)
-                throw new ArgumentNullException(nameof(referralCreationCount), "Property is not nullable for class Campaign.");
+            if (storesImported.IsSet && storesImported.Value == null)
+                throw new ArgumentNullException(nameof(storesImported), "Property is not nullable for class Campaign.");
 
-            if (addFreeItemEffectCount.IsSet && addFreeItemEffectCount.Value == null)
-                throw new ArgumentNullException(nameof(addFreeItemEffectCount), "Property is not nullable for class Campaign.");
-
-            if (awardedGiveawaysCount.IsSet && awardedGiveawaysCount.Value == null)
-                throw new ArgumentNullException(nameof(awardedGiveawaysCount), "Property is not nullable for class Campaign.");
-
-            if (createdLoyaltyPointsCount.IsSet && createdLoyaltyPointsCount.Value == null)
-                throw new ArgumentNullException(nameof(createdLoyaltyPointsCount), "Property is not nullable for class Campaign.");
-
-            if (createdLoyaltyPointsEffectCount.IsSet && createdLoyaltyPointsEffectCount.Value == null)
-                throw new ArgumentNullException(nameof(createdLoyaltyPointsEffectCount), "Property is not nullable for class Campaign.");
-
-            if (redeemedLoyaltyPointsCount.IsSet && redeemedLoyaltyPointsCount.Value == null)
-                throw new ArgumentNullException(nameof(redeemedLoyaltyPointsCount), "Property is not nullable for class Campaign.");
-
-            if (redeemedLoyaltyPointsEffectCount.IsSet && redeemedLoyaltyPointsEffectCount.Value == null)
-                throw new ArgumentNullException(nameof(redeemedLoyaltyPointsEffectCount), "Property is not nullable for class Campaign.");
-
-            if (callApiEffectCount.IsSet && callApiEffectCount.Value == null)
-                throw new ArgumentNullException(nameof(callApiEffectCount), "Property is not nullable for class Campaign.");
-
-            if (reservecouponEffectCount.IsSet && reservecouponEffectCount.Value == null)
-                throw new ArgumentNullException(nameof(reservecouponEffectCount), "Property is not nullable for class Campaign.");
-
-            if (lastActivity.IsSet && lastActivity.Value == null)
-                throw new ArgumentNullException(nameof(lastActivity), "Property is not nullable for class Campaign.");
-
-            if (updated.IsSet && updated.Value == null)
-                throw new ArgumentNullException(nameof(updated), "Property is not nullable for class Campaign.");
-
-            if (templateId.IsSet && templateId.Value == null)
-                throw new ArgumentNullException(nameof(templateId), "Property is not nullable for class Campaign.");
-
-            if (experimentId.IsSet && experimentId.Value == null)
-                throw new ArgumentNullException(nameof(experimentId), "Property is not nullable for class Campaign.");
-
-            if (revisionFrontendState.IsSet && revisionFrontendState.Value == null)
-                throw new ArgumentNullException(nameof(revisionFrontendState), "Property is not nullable for class Campaign.");
-
-            if (activeRevisionId.IsSet && activeRevisionId.Value == null)
-                throw new ArgumentNullException(nameof(activeRevisionId), "Property is not nullable for class Campaign.");
-
-            if (activeRevisionVersionId.IsSet && activeRevisionVersionId.Value == null)
-                throw new ArgumentNullException(nameof(activeRevisionVersionId), "Property is not nullable for class Campaign.");
-
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class Campaign.");
-
-            if (currentRevisionId.IsSet && currentRevisionId.Value == null)
-                throw new ArgumentNullException(nameof(currentRevisionId), "Property is not nullable for class Campaign.");
-
-            if (currentRevisionVersionId.IsSet && currentRevisionVersionId.Value == null)
-                throw new ArgumentNullException(nameof(currentRevisionVersionId), "Property is not nullable for class Campaign.");
-
-            if (stageRevision.IsSet && stageRevision.Value == null)
-                throw new ArgumentNullException(nameof(stageRevision), "Property is not nullable for class Campaign.");
+            if (state.IsSet && state.Value == null)
+                throw new ArgumentNullException(nameof(state), "Property is not nullable for class Campaign.");
 
             return new Campaign(id.Value.Value, created.Value.Value, applicationId.Value.Value, userId.Value.Value, name.Value, tags.Value, reevaluateOnReturn.Value.Value, features.Value, limits.Value, frontendState.Value.Value, storesImported.Value.Value, description, startTime, endTime, attributes, state.Value.Value, activeRulesetId, couponSettings, referralSettings, campaignGroups, type, linkedStoreIds, couponAttributes, budgets, couponRedemptionCount, referralRedemptionCount, discountCount, discountEffectCount, couponCreationCount, customEffectCount, referralCreationCount, addFreeItemEffectCount, awardedGiveawaysCount, createdLoyaltyPointsCount, createdLoyaltyPointsEffectCount, redeemedLoyaltyPointsCount, redeemedLoyaltyPointsEffectCount, callApiEffectCount, reservecouponEffectCount, lastActivity, updated, createdBy, updatedBy, templateId, valueMapsIds, experimentId, revisionFrontendState, activeRevisionId, activeRevisionVersionId, varVersion, currentRevisionId, currentRevisionVersionId, stageRevision);
         }
@@ -1864,39 +1810,6 @@ namespace TalonOneSdk.Model
 
             if (campaign.Limits == null)
                 throw new ArgumentNullException(nameof(campaign.Limits), "Property is required for class Campaign.");
-
-            if (campaign.DescriptionOption.IsSet && campaign.Description == null)
-                throw new ArgumentNullException(nameof(campaign.Description), "Property is required for class Campaign.");
-
-            if (campaign.AttributesOption.IsSet && campaign.Attributes == null)
-                throw new ArgumentNullException(nameof(campaign.Attributes), "Property is required for class Campaign.");
-
-            if (campaign.CouponSettingsOption.IsSet && campaign.CouponSettings == null)
-                throw new ArgumentNullException(nameof(campaign.CouponSettings), "Property is required for class Campaign.");
-
-            if (campaign.ReferralSettingsOption.IsSet && campaign.ReferralSettings == null)
-                throw new ArgumentNullException(nameof(campaign.ReferralSettings), "Property is required for class Campaign.");
-
-            if (campaign.CampaignGroupsOption.IsSet && campaign.CampaignGroups == null)
-                throw new ArgumentNullException(nameof(campaign.CampaignGroups), "Property is required for class Campaign.");
-
-            if (campaign.LinkedStoreIdsOption.IsSet && campaign.LinkedStoreIds == null)
-                throw new ArgumentNullException(nameof(campaign.LinkedStoreIds), "Property is required for class Campaign.");
-
-            if (campaign.CouponAttributesOption.IsSet && campaign.CouponAttributes == null)
-                throw new ArgumentNullException(nameof(campaign.CouponAttributes), "Property is required for class Campaign.");
-
-            if (campaign.BudgetsOption.IsSet && campaign.Budgets == null)
-                throw new ArgumentNullException(nameof(campaign.Budgets), "Property is required for class Campaign.");
-
-            if (campaign.CreatedByOption.IsSet && campaign.CreatedBy == null)
-                throw new ArgumentNullException(nameof(campaign.CreatedBy), "Property is required for class Campaign.");
-
-            if (campaign.UpdatedByOption.IsSet && campaign.UpdatedBy == null)
-                throw new ArgumentNullException(nameof(campaign.UpdatedBy), "Property is required for class Campaign.");
-
-            if (campaign.ValueMapsIdsOption.IsSet && campaign.ValueMapsIds == null)
-                throw new ArgumentNullException(nameof(campaign.ValueMapsIds), "Property is required for class Campaign.");
 
             writer.WriteNumber("id", campaign.Id);
 

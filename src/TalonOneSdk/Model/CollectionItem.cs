@@ -122,6 +122,9 @@ namespace TalonOneSdk.Model
             if (!item.IsSet)
                 throw new ArgumentException("Property is required for class CollectionItem.", nameof(item));
 
+            if (item.IsSet && item.Value == null)
+                throw new ArgumentNullException(nameof(item), "Property is not nullable for class CollectionItem.");
+
             return new CollectionItem(item.Value);
         }
 

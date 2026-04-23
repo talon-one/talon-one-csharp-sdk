@@ -168,6 +168,9 @@ namespace TalonOneSdk.Model
             if (!newCardIdentifier.IsSet)
                 throw new ArgumentException("Property is required for class TransferLoyaltyCard.", nameof(newCardIdentifier));
 
+            if (newCardIdentifier.IsSet && newCardIdentifier.Value == null)
+                throw new ArgumentNullException(nameof(newCardIdentifier), "Property is not nullable for class TransferLoyaltyCard.");
+
             return new TransferLoyaltyCard(newCardIdentifier.Value, blockReason);
         }
 
@@ -197,9 +200,6 @@ namespace TalonOneSdk.Model
         {
             if (transferLoyaltyCard.NewCardIdentifier == null)
                 throw new ArgumentNullException(nameof(transferLoyaltyCard.NewCardIdentifier), "Property is required for class TransferLoyaltyCard.");
-
-            if (transferLoyaltyCard.BlockReasonOption.IsSet && transferLoyaltyCard.BlockReason == null)
-                throw new ArgumentNullException(nameof(transferLoyaltyCard.BlockReason), "Property is required for class TransferLoyaltyCard.");
 
             writer.WriteString("newCardIdentifier", transferLoyaltyCard.NewCardIdentifier);
 

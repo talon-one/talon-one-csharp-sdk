@@ -358,20 +358,8 @@ namespace TalonOneSdk.Model
             if (!recipientsIntegrationIds.IsSet)
                 throw new ArgumentException("Property is required for class NewCouponsForMultipleRecipients.", nameof(recipientsIntegrationIds));
 
-            if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class NewCouponsForMultipleRecipients.");
-
-            if (discountLimit.IsSet && discountLimit.Value == null)
-                throw new ArgumentNullException(nameof(discountLimit), "Property is not nullable for class NewCouponsForMultipleRecipients.");
-
-            if (reservationLimit.IsSet && reservationLimit.Value == null)
-                throw new ArgumentNullException(nameof(reservationLimit), "Property is not nullable for class NewCouponsForMultipleRecipients.");
-
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class NewCouponsForMultipleRecipients.");
-
-            if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class NewCouponsForMultipleRecipients.");
+            if (recipientsIntegrationIds.IsSet && recipientsIntegrationIds.Value == null)
+                throw new ArgumentNullException(nameof(recipientsIntegrationIds), "Property is not nullable for class NewCouponsForMultipleRecipients.");
 
             return new NewCouponsForMultipleRecipients(recipientsIntegrationIds.Value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, attributes, validCharacters, couponPattern);
         }
@@ -402,15 +390,6 @@ namespace TalonOneSdk.Model
         {
             if (newCouponsForMultipleRecipients.RecipientsIntegrationIds == null)
                 throw new ArgumentNullException(nameof(newCouponsForMultipleRecipients.RecipientsIntegrationIds), "Property is required for class NewCouponsForMultipleRecipients.");
-
-            if (newCouponsForMultipleRecipients.AttributesOption.IsSet && newCouponsForMultipleRecipients.Attributes == null)
-                throw new ArgumentNullException(nameof(newCouponsForMultipleRecipients.Attributes), "Property is required for class NewCouponsForMultipleRecipients.");
-
-            if (newCouponsForMultipleRecipients.ValidCharactersOption.IsSet && newCouponsForMultipleRecipients.ValidCharacters == null)
-                throw new ArgumentNullException(nameof(newCouponsForMultipleRecipients.ValidCharacters), "Property is required for class NewCouponsForMultipleRecipients.");
-
-            if (newCouponsForMultipleRecipients.CouponPatternOption.IsSet && newCouponsForMultipleRecipients.CouponPattern == null)
-                throw new ArgumentNullException(nameof(newCouponsForMultipleRecipients.CouponPattern), "Property is required for class NewCouponsForMultipleRecipients.");
 
             writer.WritePropertyName("recipientsIntegrationIds");
             JsonSerializer.Serialize(writer, newCouponsForMultipleRecipients.RecipientsIntegrationIds, jsonSerializerOptions);

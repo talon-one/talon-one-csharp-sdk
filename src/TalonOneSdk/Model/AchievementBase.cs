@@ -531,24 +531,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class AchievementBase.");
-
-            if (recurrencePolicy.IsSet && recurrencePolicy.Value == null)
-                throw new ArgumentNullException(nameof(recurrencePolicy), "Property is not nullable for class AchievementBase.");
-
-            if (activationPolicy.IsSet && activationPolicy.Value == null)
-                throw new ArgumentNullException(nameof(activationPolicy), "Property is not nullable for class AchievementBase.");
-
-            if (fixedStartDate.IsSet && fixedStartDate.Value == null)
-                throw new ArgumentNullException(nameof(fixedStartDate), "Property is not nullable for class AchievementBase.");
-
-            if (endDate.IsSet && endDate.Value == null)
-                throw new ArgumentNullException(nameof(endDate), "Property is not nullable for class AchievementBase.");
-
-            if (allowRollbackAfterCompletion.IsSet && allowRollbackAfterCompletion.Value == null)
-                throw new ArgumentNullException(nameof(allowRollbackAfterCompletion), "Property is not nullable for class AchievementBase.");
-
             return new AchievementBase(name, title, description, target, period, periodEndOverride, recurrencePolicy, activationPolicy, fixedStartDate, endDate, allowRollbackAfterCompletion);
         }
 
@@ -576,21 +558,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AchievementBase achievementBase, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (achievementBase.NameOption.IsSet && achievementBase.Name == null)
-                throw new ArgumentNullException(nameof(achievementBase.Name), "Property is required for class AchievementBase.");
-
-            if (achievementBase.TitleOption.IsSet && achievementBase.Title == null)
-                throw new ArgumentNullException(nameof(achievementBase.Title), "Property is required for class AchievementBase.");
-
-            if (achievementBase.DescriptionOption.IsSet && achievementBase.Description == null)
-                throw new ArgumentNullException(nameof(achievementBase.Description), "Property is required for class AchievementBase.");
-
-            if (achievementBase.PeriodOption.IsSet && achievementBase.Period == null)
-                throw new ArgumentNullException(nameof(achievementBase.Period), "Property is required for class AchievementBase.");
-
-            if (achievementBase.PeriodEndOverrideOption.IsSet && achievementBase.PeriodEndOverride == null)
-                throw new ArgumentNullException(nameof(achievementBase.PeriodEndOverride), "Property is required for class AchievementBase.");
-
             if (achievementBase.NameOption.IsSet)
                 writer.WriteString("name", achievementBase.Name);
 

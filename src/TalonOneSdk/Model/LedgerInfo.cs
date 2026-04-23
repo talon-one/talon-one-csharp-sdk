@@ -41,8 +41,9 @@ namespace TalonOneSdk.Model
         /// <param name="tentativeNegativeBalance">The tentative negative balance after all additions and deductions from the current customer session are applied to &#x60;negativeBalance&#x60;. When the session is closed, the tentative effects are applied and &#x60;negativeBalance&#x60; is updated to this value.  **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer. </param>
         /// <param name="currentTier">Tier for which the ledger is eligible.</param>
         /// <param name="pointsToNextTier">Points required to move up a tier.</param>
+        /// <param name="nextTierName">The name of the next higher tier level in the loyalty program.  **Note**: - Returns &#x60;null&#x60; if the customer has reached the highest available tier. - Returns the lowest level tier name if the customer is not currently assigned to any tier. </param>
         [JsonConstructor]
-        public LedgerInfo(decimal currentBalance, decimal pendingBalance, decimal expiredBalance, decimal spentBalance, decimal tentativeCurrentBalance, Option<decimal?> negativeBalance = default, Option<decimal?> tentativePendingBalance = default, Option<decimal?> tentativeNegativeBalance = default, Option<Tier> currentTier = default, Option<decimal?> pointsToNextTier = default)
+        public LedgerInfo(decimal currentBalance, decimal pendingBalance, decimal expiredBalance, decimal spentBalance, decimal tentativeCurrentBalance, Option<decimal?> negativeBalance = default, Option<decimal?> tentativePendingBalance = default, Option<decimal?> tentativeNegativeBalance = default, Option<Tier> currentTier = default, Option<decimal?> pointsToNextTier = default, Option<string> nextTierName = default)
         {
             CurrentBalance = currentBalance;
             PendingBalance = pendingBalance;
@@ -54,6 +55,7 @@ namespace TalonOneSdk.Model
             TentativeNegativeBalanceOption = tentativeNegativeBalance;
             CurrentTierOption = currentTier;
             PointsToNextTierOption = pointsToNextTier;
+            NextTierNameOption = nextTierName;
             OnCreated();
         }
 
@@ -174,6 +176,21 @@ namespace TalonOneSdk.Model
         public decimal? PointsToNextTier { get { return this.PointsToNextTierOption; } set { this.PointsToNextTierOption = new Option<decimal?>(value); } }
 
         /// <summary>
+        /// Used to track the state of NextTierName
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> NextTierNameOption { get; private set; }
+
+        /// <summary>
+        /// The name of the next higher tier level in the loyalty program.  **Note**: - Returns &#x60;null&#x60; if the customer has reached the highest available tier. - Returns the lowest level tier name if the customer is not currently assigned to any tier. 
+        /// </summary>
+        /// <value>The name of the next higher tier level in the loyalty program.  **Note**: - Returns &#x60;null&#x60; if the customer has reached the highest available tier. - Returns the lowest level tier name if the customer is not currently assigned to any tier. </value>
+        /* <example>Silver</example> */
+        [JsonPropertyName("nextTierName")]
+        public string NextTierName { get { return this.NextTierNameOption; } set { this.NextTierNameOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -191,6 +208,7 @@ namespace TalonOneSdk.Model
             sb.Append("  TentativeNegativeBalance: ").Append(TentativeNegativeBalance).Append("\n");
             sb.Append("  CurrentTier: ").Append(CurrentTier).Append("\n");
             sb.Append("  PointsToNextTier: ").Append(PointsToNextTier).Append("\n");
+            sb.Append("  NextTierName: ").Append(NextTierName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -238,6 +256,7 @@ namespace TalonOneSdk.Model
             Option<decimal?> tentativeNegativeBalance = default;
             Option<Tier> currentTier = default;
             Option<decimal?> pointsToNextTier = default;
+            Option<string> nextTierName = default;
 
             while (utf8JsonReader.Read())
             {
@@ -284,6 +303,9 @@ namespace TalonOneSdk.Model
                         case "pointsToNextTier":
                             pointsToNextTier = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
+                        case "nextTierName":
+                            nextTierName = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
@@ -305,19 +327,22 @@ namespace TalonOneSdk.Model
             if (!tentativeCurrentBalance.IsSet)
                 throw new ArgumentException("Property is required for class LedgerInfo.", nameof(tentativeCurrentBalance));
 
-            if (negativeBalance.IsSet && negativeBalance.Value == null)
-                throw new ArgumentNullException(nameof(negativeBalance), "Property is not nullable for class LedgerInfo.");
+            if (currentBalance.IsSet && currentBalance.Value == null)
+                throw new ArgumentNullException(nameof(currentBalance), "Property is not nullable for class LedgerInfo.");
 
-            if (tentativePendingBalance.IsSet && tentativePendingBalance.Value == null)
-                throw new ArgumentNullException(nameof(tentativePendingBalance), "Property is not nullable for class LedgerInfo.");
+            if (pendingBalance.IsSet && pendingBalance.Value == null)
+                throw new ArgumentNullException(nameof(pendingBalance), "Property is not nullable for class LedgerInfo.");
 
-            if (tentativeNegativeBalance.IsSet && tentativeNegativeBalance.Value == null)
-                throw new ArgumentNullException(nameof(tentativeNegativeBalance), "Property is not nullable for class LedgerInfo.");
+            if (expiredBalance.IsSet && expiredBalance.Value == null)
+                throw new ArgumentNullException(nameof(expiredBalance), "Property is not nullable for class LedgerInfo.");
 
-            if (pointsToNextTier.IsSet && pointsToNextTier.Value == null)
-                throw new ArgumentNullException(nameof(pointsToNextTier), "Property is not nullable for class LedgerInfo.");
+            if (spentBalance.IsSet && spentBalance.Value == null)
+                throw new ArgumentNullException(nameof(spentBalance), "Property is not nullable for class LedgerInfo.");
 
-            return new LedgerInfo(currentBalance.Value.Value, pendingBalance.Value.Value, expiredBalance.Value.Value, spentBalance.Value.Value, tentativeCurrentBalance.Value.Value, negativeBalance, tentativePendingBalance, tentativeNegativeBalance, currentTier, pointsToNextTier);
+            if (tentativeCurrentBalance.IsSet && tentativeCurrentBalance.Value == null)
+                throw new ArgumentNullException(nameof(tentativeCurrentBalance), "Property is not nullable for class LedgerInfo.");
+
+            return new LedgerInfo(currentBalance.Value.Value, pendingBalance.Value.Value, expiredBalance.Value.Value, spentBalance.Value.Value, tentativeCurrentBalance.Value.Value, negativeBalance, tentativePendingBalance, tentativeNegativeBalance, currentTier, pointsToNextTier, nextTierName);
         }
 
         /// <summary>
@@ -344,9 +369,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LedgerInfo ledgerInfo, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (ledgerInfo.CurrentTierOption.IsSet && ledgerInfo.CurrentTier == null)
-                throw new ArgumentNullException(nameof(ledgerInfo.CurrentTier), "Property is required for class LedgerInfo.");
-
             writer.WriteNumber("currentBalance", ledgerInfo.CurrentBalance);
 
             writer.WriteNumber("pendingBalance", ledgerInfo.PendingBalance);
@@ -373,6 +395,9 @@ namespace TalonOneSdk.Model
             }
             if (ledgerInfo.PointsToNextTierOption.IsSet)
                 writer.WriteNumber("pointsToNextTier", ledgerInfo.PointsToNextTierOption.Value.Value);
+
+            if (ledgerInfo.NextTierNameOption.IsSet)
+                writer.WriteString("nextTierName", ledgerInfo.NextTierName);
         }
     }
 }

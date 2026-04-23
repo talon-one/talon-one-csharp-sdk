@@ -263,9 +263,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class GenerateLoyaltyCard.");
-
             return new GenerateLoyaltyCard(status, customerProfileIds, cardIdentifier);
         }
 
@@ -293,12 +290,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GenerateLoyaltyCard generateLoyaltyCard, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (generateLoyaltyCard.CustomerProfileIdsOption.IsSet && generateLoyaltyCard.CustomerProfileIds == null)
-                throw new ArgumentNullException(nameof(generateLoyaltyCard.CustomerProfileIds), "Property is required for class GenerateLoyaltyCard.");
-
-            if (generateLoyaltyCard.CardIdentifierOption.IsSet && generateLoyaltyCard.CardIdentifier == null)
-                throw new ArgumentNullException(nameof(generateLoyaltyCard.CardIdentifier), "Property is required for class GenerateLoyaltyCard.");
-
             if (generateLoyaltyCard.StatusOption.IsSet)
             {
                 var statusRawValue = GenerateLoyaltyCard.StatusEnumToJsonValue(generateLoyaltyCard.StatusOption.Value);

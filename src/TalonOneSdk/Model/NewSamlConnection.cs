@@ -296,6 +296,24 @@ namespace TalonOneSdk.Model
             if (!x509certificate.IsSet)
                 throw new ArgumentException("Property is required for class NewSamlConnection.", nameof(x509certificate));
 
+            if (accountId.IsSet && accountId.Value == null)
+                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class NewSamlConnection.");
+
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewSamlConnection.");
+
+            if (enabled.IsSet && enabled.Value == null)
+                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class NewSamlConnection.");
+
+            if (issuer.IsSet && issuer.Value == null)
+                throw new ArgumentNullException(nameof(issuer), "Property is not nullable for class NewSamlConnection.");
+
+            if (signOnURL.IsSet && signOnURL.Value == null)
+                throw new ArgumentNullException(nameof(signOnURL), "Property is not nullable for class NewSamlConnection.");
+
+            if (x509certificate.IsSet && x509certificate.Value == null)
+                throw new ArgumentNullException(nameof(x509certificate), "Property is not nullable for class NewSamlConnection.");
+
             return new NewSamlConnection(accountId.Value.Value, name.Value, enabled.Value.Value, issuer.Value, signOnURL.Value, x509certificate.Value, signOutURL, metadataURL, audienceURI);
         }
 
@@ -334,15 +352,6 @@ namespace TalonOneSdk.Model
 
             if (newSamlConnection.X509certificate == null)
                 throw new ArgumentNullException(nameof(newSamlConnection.X509certificate), "Property is required for class NewSamlConnection.");
-
-            if (newSamlConnection.SignOutURLOption.IsSet && newSamlConnection.SignOutURL == null)
-                throw new ArgumentNullException(nameof(newSamlConnection.SignOutURL), "Property is required for class NewSamlConnection.");
-
-            if (newSamlConnection.MetadataURLOption.IsSet && newSamlConnection.MetadataURL == null)
-                throw new ArgumentNullException(nameof(newSamlConnection.MetadataURL), "Property is required for class NewSamlConnection.");
-
-            if (newSamlConnection.AudienceURIOption.IsSet && newSamlConnection.AudienceURI == null)
-                throw new ArgumentNullException(nameof(newSamlConnection.AudienceURI), "Property is required for class NewSamlConnection.");
 
             writer.WriteNumber("accountId", newSamlConnection.AccountId);
 

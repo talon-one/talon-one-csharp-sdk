@@ -138,6 +138,12 @@ namespace TalonOneSdk.Model
             if (!confidence.IsSet)
                 throw new ArgumentException("Property is required for class ExperimentResults.", nameof(confidence));
 
+            if (variants.IsSet && variants.Value == null)
+                throw new ArgumentNullException(nameof(variants), "Property is not nullable for class ExperimentResults.");
+
+            if (confidence.IsSet && confidence.Value == null)
+                throw new ArgumentNullException(nameof(confidence), "Property is not nullable for class ExperimentResults.");
+
             return new ExperimentResults(variants.Value, confidence.Value);
         }
 

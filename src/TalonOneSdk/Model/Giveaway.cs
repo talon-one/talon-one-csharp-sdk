@@ -346,20 +346,17 @@ namespace TalonOneSdk.Model
             if (!poolId.IsSet)
                 throw new ArgumentException("Property is required for class Giveaway.", nameof(poolId));
 
-            if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class Giveaway.");
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Giveaway.");
 
-            if (endDate.IsSet && endDate.Value == null)
-                throw new ArgumentNullException(nameof(endDate), "Property is not nullable for class Giveaway.");
+            if (created.IsSet && created.Value == null)
+                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Giveaway.");
 
-            if (used.IsSet && used.Value == null)
-                throw new ArgumentNullException(nameof(used), "Property is not nullable for class Giveaway.");
+            if (code.IsSet && code.Value == null)
+                throw new ArgumentNullException(nameof(code), "Property is not nullable for class Giveaway.");
 
-            if (importId.IsSet && importId.Value == null)
-                throw new ArgumentNullException(nameof(importId), "Property is not nullable for class Giveaway.");
-
-            if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class Giveaway.");
+            if (poolId.IsSet && poolId.Value == null)
+                throw new ArgumentNullException(nameof(poolId), "Property is not nullable for class Giveaway.");
 
             return new Giveaway(id.Value.Value, created.Value.Value, code.Value, poolId.Value.Value, startDate, endDate, attributes, used, importId, profileIntegrationId, profileId);
         }
@@ -390,12 +387,6 @@ namespace TalonOneSdk.Model
         {
             if (giveaway.Code == null)
                 throw new ArgumentNullException(nameof(giveaway.Code), "Property is required for class Giveaway.");
-
-            if (giveaway.AttributesOption.IsSet && giveaway.Attributes == null)
-                throw new ArgumentNullException(nameof(giveaway.Attributes), "Property is required for class Giveaway.");
-
-            if (giveaway.ProfileIntegrationIdOption.IsSet && giveaway.ProfileIntegrationId == null)
-                throw new ArgumentNullException(nameof(giveaway.ProfileIntegrationId), "Property is required for class Giveaway.");
 
             writer.WriteNumber("id", giveaway.Id);
 

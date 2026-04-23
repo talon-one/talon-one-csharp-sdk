@@ -150,8 +150,8 @@ namespace TalonOneSdk.Model
             if (!actions.IsSet)
                 throw new ArgumentException("Property is required for class CatalogSyncRequest.", nameof(actions));
 
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class CatalogSyncRequest.");
+            if (actions.IsSet && actions.Value == null)
+                throw new ArgumentNullException(nameof(actions), "Property is not nullable for class CatalogSyncRequest.");
 
             return new CatalogSyncRequest(actions.Value, varVersion);
         }

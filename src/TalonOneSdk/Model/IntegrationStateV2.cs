@@ -409,6 +409,15 @@ namespace TalonOneSdk.Model
             if (!createdReferrals.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationStateV2.", nameof(createdReferrals));
 
+            if (effects.IsSet && effects.Value == null)
+                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class IntegrationStateV2.");
+
+            if (createdCoupons.IsSet && createdCoupons.Value == null)
+                throw new ArgumentNullException(nameof(createdCoupons), "Property is not nullable for class IntegrationStateV2.");
+
+            if (createdReferrals.IsSet && createdReferrals.Value == null)
+                throw new ArgumentNullException(nameof(createdReferrals), "Property is not nullable for class IntegrationStateV2.");
+
             return new IntegrationStateV2(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, loyalty, triggeredCampaigns, ruleFailureReasons, awardedGiveaways, referral, coupons, varEvent, advancedEvent, customerSession, varReturn, previousReturns);
         }
 
@@ -444,42 +453,6 @@ namespace TalonOneSdk.Model
 
             if (integrationStateV2.CreatedReferrals == null)
                 throw new ArgumentNullException(nameof(integrationStateV2.CreatedReferrals), "Property is required for class IntegrationStateV2.");
-
-            if (integrationStateV2.CustomerProfileOption.IsSet && integrationStateV2.CustomerProfile == null)
-                throw new ArgumentNullException(nameof(integrationStateV2.CustomerProfile), "Property is required for class IntegrationStateV2.");
-
-            if (integrationStateV2.LoyaltyOption.IsSet && integrationStateV2.Loyalty == null)
-                throw new ArgumentNullException(nameof(integrationStateV2.Loyalty), "Property is required for class IntegrationStateV2.");
-
-            if (integrationStateV2.TriggeredCampaignsOption.IsSet && integrationStateV2.TriggeredCampaigns == null)
-                throw new ArgumentNullException(nameof(integrationStateV2.TriggeredCampaigns), "Property is required for class IntegrationStateV2.");
-
-            if (integrationStateV2.RuleFailureReasonsOption.IsSet && integrationStateV2.RuleFailureReasons == null)
-                throw new ArgumentNullException(nameof(integrationStateV2.RuleFailureReasons), "Property is required for class IntegrationStateV2.");
-
-            if (integrationStateV2.AwardedGiveawaysOption.IsSet && integrationStateV2.AwardedGiveaways == null)
-                throw new ArgumentNullException(nameof(integrationStateV2.AwardedGiveaways), "Property is required for class IntegrationStateV2.");
-
-            if (integrationStateV2.ReferralOption.IsSet && integrationStateV2.Referral == null)
-                throw new ArgumentNullException(nameof(integrationStateV2.Referral), "Property is required for class IntegrationStateV2.");
-
-            if (integrationStateV2.CouponsOption.IsSet && integrationStateV2.Coupons == null)
-                throw new ArgumentNullException(nameof(integrationStateV2.Coupons), "Property is required for class IntegrationStateV2.");
-
-            if (integrationStateV2.EventOption.IsSet && integrationStateV2.Event == null)
-                throw new ArgumentNullException(nameof(integrationStateV2.Event), "Property is required for class IntegrationStateV2.");
-
-            if (integrationStateV2.AdvancedEventOption.IsSet && integrationStateV2.AdvancedEvent == null)
-                throw new ArgumentNullException(nameof(integrationStateV2.AdvancedEvent), "Property is required for class IntegrationStateV2.");
-
-            if (integrationStateV2.CustomerSessionOption.IsSet && integrationStateV2.CustomerSession == null)
-                throw new ArgumentNullException(nameof(integrationStateV2.CustomerSession), "Property is required for class IntegrationStateV2.");
-
-            if (integrationStateV2.ReturnOption.IsSet && integrationStateV2.Return == null)
-                throw new ArgumentNullException(nameof(integrationStateV2.Return), "Property is required for class IntegrationStateV2.");
-
-            if (integrationStateV2.PreviousReturnsOption.IsSet && integrationStateV2.PreviousReturns == null)
-                throw new ArgumentNullException(nameof(integrationStateV2.PreviousReturns), "Property is required for class IntegrationStateV2.");
 
             writer.WritePropertyName("effects");
             JsonSerializer.Serialize(writer, integrationStateV2.Effects, jsonSerializerOptions);

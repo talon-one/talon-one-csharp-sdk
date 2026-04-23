@@ -249,8 +249,17 @@ namespace TalonOneSdk.Model
             if (!args.IsSet)
                 throw new ArgumentException("Property is required for class NewTemplateDef.", nameof(args));
 
-            if (expose.IsSet && expose.Value == null)
-                throw new ArgumentNullException(nameof(expose), "Property is not nullable for class NewTemplateDef.");
+            if (title.IsSet && title.Value == null)
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewTemplateDef.");
+
+            if (category.IsSet && category.Value == null)
+                throw new ArgumentNullException(nameof(category), "Property is not nullable for class NewTemplateDef.");
+
+            if (expr.IsSet && expr.Value == null)
+                throw new ArgumentNullException(nameof(expr), "Property is not nullable for class NewTemplateDef.");
+
+            if (args.IsSet && args.Value == null)
+                throw new ArgumentNullException(nameof(args), "Property is not nullable for class NewTemplateDef.");
 
             return new NewTemplateDef(title.Value, category.Value, expr.Value, args.Value, description, help, expose);
         }
@@ -290,12 +299,6 @@ namespace TalonOneSdk.Model
 
             if (newTemplateDef.Args == null)
                 throw new ArgumentNullException(nameof(newTemplateDef.Args), "Property is required for class NewTemplateDef.");
-
-            if (newTemplateDef.DescriptionOption.IsSet && newTemplateDef.Description == null)
-                throw new ArgumentNullException(nameof(newTemplateDef.Description), "Property is required for class NewTemplateDef.");
-
-            if (newTemplateDef.HelpOption.IsSet && newTemplateDef.Help == null)
-                throw new ArgumentNullException(nameof(newTemplateDef.Help), "Property is required for class NewTemplateDef.");
 
             writer.WriteString("title", newTemplateDef.Title);
 

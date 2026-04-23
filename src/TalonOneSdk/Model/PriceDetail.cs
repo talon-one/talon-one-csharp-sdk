@@ -226,18 +226,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (price.IsSet && price.Value == null)
-                throw new ArgumentNullException(nameof(price), "Property is not nullable for class PriceDetail.");
-
-            if (adjustmentReferenceId.IsSet && adjustmentReferenceId.Value == null)
-                throw new ArgumentNullException(nameof(adjustmentReferenceId), "Property is not nullable for class PriceDetail.");
-
-            if (adjustmentEffectiveFrom.IsSet && adjustmentEffectiveFrom.Value == null)
-                throw new ArgumentNullException(nameof(adjustmentEffectiveFrom), "Property is not nullable for class PriceDetail.");
-
-            if (adjustmentEffectiveUntil.IsSet && adjustmentEffectiveUntil.Value == null)
-                throw new ArgumentNullException(nameof(adjustmentEffectiveUntil), "Property is not nullable for class PriceDetail.");
-
             return new PriceDetail(price, adjustmentContextId, adjustmentReferenceId, adjustmentEffectiveFrom, adjustmentEffectiveUntil);
         }
 
@@ -265,9 +253,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PriceDetail priceDetail, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (priceDetail.AdjustmentContextIdOption.IsSet && priceDetail.AdjustmentContextId == null)
-                throw new ArgumentNullException(nameof(priceDetail.AdjustmentContextId), "Property is required for class PriceDetail.");
-
             if (priceDetail.PriceOption.IsSet)
                 writer.WriteNumber("price", priceDetail.PriceOption.Value.Value);
 
