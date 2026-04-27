@@ -1,11 +1,11 @@
-on: [push]
+on: [ push ]
 
 jobs:
   test:
     strategy:
       fail-fast: false
       matrix:
-        dotnet-version: ["8.0", "9.0", "10.0.200"]
+        dotnet-version: [ "8.0", "9.0", "10.0.200" ]
     runs-on: ubuntu-latest
     permissions:
       contents: "read"
@@ -90,4 +90,42 @@ jobs:
           echo "Api-Key-Response: $API_KEY_RESPONSE";
           export TALON_API_KEY=$(echo $API_KEY_RESPONSE | jq ".key" | tr -d '"');
           echo "Api-Key $TALON_API_KEY created"
+          CAMPAIGN_RESPONSE=$(curl -s --location "http://localhost:9000/v1/applications/$TALON_APPLICATION_ID/campaigns" \
+            --header "Content-Type: application/json" \
+            --header "Authorization: Bearer $TALON_USER_TOKEN" \
+            --data-raw '{
+                "name": "Test Coupon Campaign",
+                "state": "disabled",
+                "startTime": "2000-01-01T00:00:00Z",
+                "endTime": "2099-01-01T00:00:00Z",
+                "tags": [],
+                "limits": [],
+                "features": ["coupons"]
+            }');
+          echo "Campaign response: $CAMPAIGN_RESPONSE";
+          export TALON_CAMPAIGN_ID=$(echo $CAMPAIGN_RESPONSE | jq ".id");
+          if [ "$TALON_CAMPAIGN_ID" = "null" ]; then
+            echo "Failed to create campaign";
+            exit 1;
+          fi
+          echo "Campaign with ID $TALON_CAMPAIGN_ID was created"
+          COUPON_ATTR_RESPONSE=$(curl -s --location "http://localhost:9000/v1/attributes" \
+            --header "Content-Type: application/json" \
+            --header "Authorization: Bearer $TALON_USER_TOKEN" \
+            --data-raw '{
+                "entity": "Coupon",
+                "name": "couponIsActive",
+                "title": "Coupon Is Active",
+                "type": "boolean",
+                "description": "Test attribute for coupon attribute serialization tests.",
+                "suggestions": [],
+                "editable": true
+            }');
+          echo "Coupon attribute response: $COUPON_ATTR_RESPONSE";
+          export TALON_COUPON_ATTR_ID=$(echo $COUPON_ATTR_RESPONSE | jq ".id");
+          if [ "$TALON_COUPON_ATTR_ID" = "null" ]; then
+            echo "Failed to create coupon attribute";
+            exit 1;
+          fi
+          echo "Coupon attribute with ID $TALON_COUPON_ATTR_ID was created"
           dotnet run
