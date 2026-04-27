@@ -90,7 +90,7 @@ namespace TalonOneSdk.Model
         /// <value>A unique identifier for the rule.</value>
         /* <example>7fa800a8-ac8d-4792-85dc-c4650dcc8f23</example> */
         [JsonPropertyName("id")]
-        public Guid? Id { get { return this.IdOption; } set { this.IdOption = new Option<Guid?>(value); } }
+        public Guid? Id { get { return this.IdOption.Value; } set { this.IdOption = new Option<Guid?>(value); } }
 
         /// <summary>
         /// Used to track the state of ParentId
@@ -105,7 +105,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the rule that was copied to create this rule.</value>
         /* <example>7fa800a8-ac8d-4792-85dc-c4650dcc8f23</example> */
         [JsonPropertyName("parentId")]
-        public Guid? ParentId { get { return this.ParentIdOption; } set { this.ParentIdOption = new Option<Guid?>(value); } }
+        public Guid? ParentId { get { return this.ParentIdOption.Value; } set { this.ParentIdOption = new Option<Guid?>(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -120,7 +120,7 @@ namespace TalonOneSdk.Model
         /// <value>A longer, more detailed description of the rule.</value>
         /* <example>Creates a discount when a coupon is valid</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Bindings
@@ -134,7 +134,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>An array that provides objects with variable names (name) and talang expressions to whose result they are bound (expression) during rule evaluation. The order of the evaluation is decided by the position in the array.</value>
         [JsonPropertyName("bindings")]
-        public List<Binding> Bindings { get { return this.BindingsOption; } set { this.BindingsOption = new Option<List<Binding>>(value); } }
+        public List<Binding> Bindings { get { return this.BindingsOption.Value; } set { this.BindingsOption = new Option<List<Binding>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

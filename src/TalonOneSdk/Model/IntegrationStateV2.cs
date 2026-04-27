@@ -102,7 +102,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The customer profile associated with the event.</value>
         [JsonPropertyName("customerProfile")]
-        public CustomerProfile CustomerProfile { get { return this.CustomerProfileOption; } set { this.CustomerProfileOption = new Option<CustomerProfile>(value); } }
+        public CustomerProfile CustomerProfile { get { return this.CustomerProfileOption.Value; } set { this.CustomerProfileOption = new Option<CustomerProfile>(value); } }
 
         /// <summary>
         /// Used to track the state of Loyalty
@@ -116,7 +116,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The loyalty program status of the customer.</value>
         [JsonPropertyName("loyalty")]
-        public Loyalty Loyalty { get { return this.LoyaltyOption; } set { this.LoyaltyOption = new Option<Loyalty>(value); } }
+        public Loyalty Loyalty { get { return this.LoyaltyOption.Value; } set { this.LoyaltyOption = new Option<Loyalty>(value); } }
 
         /// <summary>
         /// Used to track the state of TriggeredCampaigns
@@ -130,7 +130,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The campaigns that were triggered as a result of processing the event.</value>
         [JsonPropertyName("triggeredCampaigns")]
-        public List<Campaign> TriggeredCampaigns { get { return this.TriggeredCampaignsOption; } set { this.TriggeredCampaignsOption = new Option<List<Campaign>>(value); } }
+        public List<Campaign> TriggeredCampaigns { get { return this.TriggeredCampaignsOption.Value; } set { this.TriggeredCampaignsOption = new Option<List<Campaign>>(value); } }
 
         /// <summary>
         /// Used to track the state of RuleFailureReasons
@@ -144,7 +144,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The reasons why certain rules were not triggered during the event processing. </value>
         [JsonPropertyName("ruleFailureReasons")]
-        public List<RuleFailureReason> RuleFailureReasons { get { return this.RuleFailureReasonsOption; } set { this.RuleFailureReasonsOption = new Option<List<RuleFailureReason>>(value); } }
+        public List<RuleFailureReason> RuleFailureReasons { get { return this.RuleFailureReasonsOption.Value; } set { this.RuleFailureReasonsOption = new Option<List<RuleFailureReason>>(value); } }
 
         /// <summary>
         /// Used to track the state of AwardedGiveaways
@@ -158,7 +158,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The giveaways that were awarded during the event processing.</value>
         [JsonPropertyName("awardedGiveaways")]
-        public List<Giveaway> AwardedGiveaways { get { return this.AwardedGiveawaysOption; } set { this.AwardedGiveawaysOption = new Option<List<Giveaway>>(value); } }
+        public List<Giveaway> AwardedGiveaways { get { return this.AwardedGiveawaysOption.Value; } set { this.AwardedGiveawaysOption = new Option<List<Giveaway>>(value); } }
 
         /// <summary>
         /// Used to track the state of Referral
@@ -172,7 +172,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The referral that was processed.</value>
         [JsonPropertyName("referral")]
-        public InventoryReferral Referral { get { return this.ReferralOption; } set { this.ReferralOption = new Option<InventoryReferral>(value); } }
+        public InventoryReferral Referral { get { return this.ReferralOption.Value; } set { this.ReferralOption = new Option<InventoryReferral>(value); } }
 
         /// <summary>
         /// Used to track the state of Coupons
@@ -186,7 +186,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The coupons that were processed.</value>
         [JsonPropertyName("coupons")]
-        public List<IntegrationCoupon> Coupons { get { return this.CouponsOption; } set { this.CouponsOption = new Option<List<IntegrationCoupon>>(value); } }
+        public List<IntegrationCoupon> Coupons { get { return this.CouponsOption.Value; } set { this.CouponsOption = new Option<List<IntegrationCoupon>>(value); } }
 
         /// <summary>
         /// Used to track the state of Event
@@ -200,7 +200,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The event that was processed.</value>
         [JsonPropertyName("event")]
-        public Event Event { get { return this.EventOption; } set { this.EventOption = new Option<Event>(value); } }
+        public Event Event { get { return this.EventOption.Value; } set { this.EventOption = new Option<Event>(value); } }
 
         /// <summary>
         /// Used to track the state of AdvancedEvent
@@ -214,7 +214,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The advanced event that was processed.</value>
         [JsonPropertyName("advancedEvent")]
-        public EventV3 AdvancedEvent { get { return this.AdvancedEventOption; } set { this.AdvancedEventOption = new Option<EventV3>(value); } }
+        public EventV3 AdvancedEvent { get { return this.AdvancedEventOption.Value; } set { this.AdvancedEventOption = new Option<EventV3>(value); } }
 
         /// <summary>
         /// Used to track the state of CustomerSession
@@ -228,7 +228,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The session that was processed.</value>
         [JsonPropertyName("customerSession")]
-        public CustomerSessionV2 CustomerSession { get { return this.CustomerSessionOption; } set { this.CustomerSessionOption = new Option<CustomerSessionV2>(value); } }
+        public CustomerSessionV2 CustomerSession { get { return this.CustomerSessionOption.Value; } set { this.CustomerSessionOption = new Option<CustomerSessionV2>(value); } }
 
         /// <summary>
         /// Used to track the state of Return
@@ -242,7 +242,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The return that was processed.</value>
         [JsonPropertyName("return")]
-        public Return Return { get { return this.ReturnOption; } set { this.ReturnOption = new Option<Return>(value); } }
+        public Return Return { get { return this.ReturnOption.Value; } set { this.ReturnOption = new Option<Return>(value); } }
 
         /// <summary>
         /// Used to track the state of PreviousReturns
@@ -256,7 +256,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The previous returns associated with the event.</value>
         [JsonPropertyName("previousReturns")]
-        public List<Return> PreviousReturns { get { return this.PreviousReturnsOption; } set { this.PreviousReturnsOption = new Option<List<Return>>(value); } }
+        public List<Return> PreviousReturns { get { return this.PreviousReturnsOption.Value; } set { this.PreviousReturnsOption = new Option<List<Return>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -76,7 +76,7 @@ namespace TalonOneSdk.Model
         /// <value>Name / reason for the point addition.</value>
         /* <example>Compensation</example> */
         [JsonPropertyName("name")]
-        public string Name { get { return this.NameOption; } set { this.NameOption = new Option<string>(value); } }
+        public string Name { get { return this.NameOption.Value; } set { this.NameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ValidityDuration
@@ -91,7 +91,7 @@ namespace TalonOneSdk.Model
         /// <value>The time format is either: - &#x60;unlimited&#x60; or, - an **integer** followed by one letter indicating the time unit.  Examples: &#x60;unlimited&#x60;, &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.  Available units:  - &#x60;s&#x60;: seconds - &#x60;m&#x60;: minutes - &#x60;h&#x60;: hours - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  You can round certain units up or down: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.  If passed, &#x60;validUntil&#x60; should be omitted. </value>
         /* <example>5D</example> */
         [JsonPropertyName("validityDuration")]
-        public string ValidityDuration { get { return this.ValidityDurationOption; } set { this.ValidityDurationOption = new Option<string>(value); } }
+        public string ValidityDuration { get { return this.ValidityDurationOption.Value; } set { this.ValidityDurationOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ValidUntil
@@ -106,7 +106,7 @@ namespace TalonOneSdk.Model
         /// <value>Date and time when points should expire. The value should be provided in RFC 3339 format. If passed, &#x60;validityDuration&#x60; should be omitted. </value>
         /* <example>2021-07-20T22:00:00Z</example> */
         [JsonPropertyName("validUntil")]
-        public DateTime? ValidUntil { get { return this.ValidUntilOption; } set { this.ValidUntilOption = new Option<DateTime?>(value); } }
+        public DateTime? ValidUntil { get { return this.ValidUntilOption.Value; } set { this.ValidUntilOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of PendingDuration
@@ -121,7 +121,7 @@ namespace TalonOneSdk.Model
         /// <value>The amount of time before the points are considered valid.  The time format is either: - &#x60;immediate&#x60; or, - &#x60;on_action&#x60; or, - an **integer** followed by one letter indicating the time unit.  Examples: &#x60;immediate&#x60;, &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;, &#x60;on_action&#x60;.  Available units:  - &#x60;s&#x60;: seconds - &#x60;m&#x60;: minutes - &#x60;h&#x60;: hours - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  You can round certain units up or down: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year. </value>
         /* <example>12h</example> */
         [JsonPropertyName("pendingDuration")]
-        public string PendingDuration { get { return this.PendingDurationOption; } set { this.PendingDurationOption = new Option<string>(value); } }
+        public string PendingDuration { get { return this.PendingDurationOption.Value; } set { this.PendingDurationOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of PendingUntil
@@ -136,7 +136,7 @@ namespace TalonOneSdk.Model
         /// <value>Date and time after the points are considered valid. The value should be provided in RFC 3339 format. If passed, &#x60;pendingDuration&#x60; should be omitted. </value>
         /* <example>2021-07-20T22:00:00Z</example> */
         [JsonPropertyName("pendingUntil")]
-        public DateTime? PendingUntil { get { return this.PendingUntilOption; } set { this.PendingUntilOption = new Option<DateTime?>(value); } }
+        public DateTime? PendingUntil { get { return this.PendingUntilOption.Value; } set { this.PendingUntilOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of SubledgerId
@@ -151,7 +151,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the subledger the points are added to. If there is no existing subledger with this ID, the subledger is created automatically.</value>
         /* <example>sub-123</example> */
         [JsonPropertyName("subledgerId")]
-        public string SubledgerId { get { return this.SubledgerIdOption; } set { this.SubledgerIdOption = new Option<string>(value); } }
+        public string SubledgerId { get { return this.SubledgerIdOption.Value; } set { this.SubledgerIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ApplicationId
@@ -166,7 +166,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the Application that is connected to the loyalty program. It is displayed in your Talon.One deployment URL.</value>
         /* <example>322</example> */
         [JsonPropertyName("applicationId")]
-        public long? ApplicationId { get { return this.ApplicationIdOption; } set { this.ApplicationIdOption = new Option<long?>(value); } }
+        public long? ApplicationId { get { return this.ApplicationIdOption.Value; } set { this.ApplicationIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -219,12 +219,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize ValidUntil
         /// </summary>
-        public static string ValidUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ValidUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize PendingUntil
         /// </summary>
-        public static string PendingUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string PendingUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AddLoyaltyPoints" />

@@ -102,7 +102,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize DeletedAt
         /// </summary>
-        public static string DeletedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string DeletedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CampaignDeletedNotificationItem" />

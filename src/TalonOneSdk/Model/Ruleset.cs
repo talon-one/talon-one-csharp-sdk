@@ -112,7 +112,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Set of rules to apply for strikethrough.</value>
         [JsonPropertyName("strikethroughRules")]
-        public List<Rule> StrikethroughRules { get { return this.StrikethroughRulesOption; } set { this.StrikethroughRulesOption = new Option<List<Rule>>(value); } }
+        public List<Rule> StrikethroughRules { get { return this.StrikethroughRulesOption.Value; } set { this.StrikethroughRulesOption = new Option<List<Rule>>(value); } }
 
         /// <summary>
         /// Used to track the state of RbVersion
@@ -127,7 +127,7 @@ namespace TalonOneSdk.Model
         /// <value>The version of the rulebuilder used to create this ruleset.</value>
         /* <example>v2</example> */
         [JsonPropertyName("rbVersion")]
-        public string RbVersion { get { return this.RbVersionOption; } set { this.RbVersionOption = new Option<string>(value); } }
+        public string RbVersion { get { return this.RbVersionOption.Value; } set { this.RbVersionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Activate
@@ -142,7 +142,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates whether this created ruleset should be activated for the campaign that owns it.</value>
         /* <example>true</example> */
         [JsonPropertyName("activate")]
-        public bool? Activate { get { return this.ActivateOption; } set { this.ActivateOption = new Option<bool?>(value); } }
+        public bool? Activate { get { return this.ActivateOption.Value; } set { this.ActivateOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of CampaignId
@@ -157,7 +157,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the campaign that owns this entity.</value>
         /* <example>320</example> */
         [JsonPropertyName("campaignId")]
-        public long? CampaignId { get { return this.CampaignIdOption; } set { this.CampaignIdOption = new Option<long?>(value); } }
+        public long? CampaignId { get { return this.CampaignIdOption.Value; } set { this.CampaignIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of TemplateId
@@ -172,7 +172,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the campaign template that owns this entity.</value>
         /* <example>3</example> */
         [JsonPropertyName("templateId")]
-        public long? TemplateId { get { return this.TemplateIdOption; } set { this.TemplateIdOption = new Option<long?>(value); } }
+        public long? TemplateId { get { return this.TemplateIdOption.Value; } set { this.TemplateIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ActivatedAt
@@ -186,7 +186,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Timestamp indicating when this Ruleset was activated.</value>
         [JsonPropertyName("activatedAt")]
-        public DateTime? ActivatedAt { get { return this.ActivatedAtOption; } set { this.ActivatedAtOption = new Option<DateTime?>(value); } }
+        public DateTime? ActivatedAt { get { return this.ActivatedAtOption.Value; } set { this.ActivatedAtOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -230,12 +230,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ActivatedAt
         /// </summary>
-        public static string ActivatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ActivatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Ruleset" />

@@ -66,7 +66,7 @@ namespace TalonOneSdk.Model
         /// <value>Name of the user.</value>
         /* <example>John Doe</example> */
         [JsonPropertyName("name")]
-        public string Name { get { return this.NameOption; } set { this.NameOption = new Option<string>(value); } }
+        public string Name { get { return this.NameOption.Value; } set { this.NameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of UserGroups
@@ -81,7 +81,7 @@ namespace TalonOneSdk.Model
         /// <value>List of user groups in the external identity provider.  If there are roles in Talon.One whose names match these user groups, those roles will be automatically assigned to the user upon invitation. </value>
         /* <example>[Managers, Customer support]</example> */
         [JsonPropertyName("userGroups")]
-        public List<string> UserGroups { get { return this.UserGroupsOption; } set { this.UserGroupsOption = new Option<List<string>>(value); } }
+        public List<string> UserGroups { get { return this.UserGroupsOption.Value; } set { this.UserGroupsOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -132,7 +132,7 @@ namespace TalonOneSdk.Model
         /// <value>The integration name of the loyalty program that owns this entity.</value>
         /* <example>Loyalty_program</example> */
         [JsonPropertyName("programName")]
-        public string ProgramName { get { return this.ProgramNameOption; } set { this.ProgramNameOption = new Option<string>(value); } }
+        public string ProgramName { get { return this.ProgramNameOption.Value; } set { this.ProgramNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ProgramTitle
@@ -147,7 +147,7 @@ namespace TalonOneSdk.Model
         /// <value>The Campaign Manager-displayed name of the loyalty program that owns this entity.</value>
         /* <example>Loyalty program</example> */
         [JsonPropertyName("programTitle")]
-        public string ProgramTitle { get { return this.ProgramTitleOption; } set { this.ProgramTitleOption = new Option<string>(value); } }
+        public string ProgramTitle { get { return this.ProgramTitleOption.Value; } set { this.ProgramTitleOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of BlockReason
@@ -162,7 +162,7 @@ namespace TalonOneSdk.Model
         /// <value>Reason for transferring and blocking the loyalty card. </value>
         /* <example>Current card lost. Customer needs a new card.</example> */
         [JsonPropertyName("blockReason")]
-        public string BlockReason { get { return this.BlockReasonOption; } set { this.BlockReasonOption = new Option<string>(value); } }
+        public string BlockReason { get { return this.BlockReasonOption.Value; } set { this.BlockReasonOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Profiles
@@ -176,7 +176,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Integration IDs of the customers profiles linked to the card.</value>
         [JsonPropertyName("profiles")]
-        public List<LoyaltyCardProfileRegistration> Profiles { get { return this.ProfilesOption; } set { this.ProfilesOption = new Option<List<LoyaltyCardProfileRegistration>>(value); } }
+        public List<LoyaltyCardProfileRegistration> Profiles { get { return this.ProfilesOption.Value; } set { this.ProfilesOption = new Option<List<LoyaltyCardProfileRegistration>>(value); } }
 
         /// <summary>
         /// Used to track the state of Ledger
@@ -190,7 +190,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Displays point balances of the card in the main ledger of the loyalty program.</value>
         [JsonPropertyName("ledger")]
-        public LedgerInfo Ledger { get { return this.LedgerOption; } set { this.LedgerOption = new Option<LedgerInfo>(value); } }
+        public LedgerInfo Ledger { get { return this.LedgerOption.Value; } set { this.LedgerOption = new Option<LedgerInfo>(value); } }
 
         /// <summary>
         /// Used to track the state of Subledgers
@@ -204,7 +204,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Displays point balances of the card in the subledgers of the loyalty program.</value>
         [JsonPropertyName("subledgers")]
-        public Dictionary<string, LedgerInfo> Subledgers { get { return this.SubledgersOption; } set { this.SubledgersOption = new Option<Dictionary<string, LedgerInfo>>(value); } }
+        public Dictionary<string, LedgerInfo> Subledgers { get { return this.SubledgersOption.Value; } set { this.SubledgersOption = new Option<Dictionary<string, LedgerInfo>>(value); } }
 
         /// <summary>
         /// Used to track the state of Modified
@@ -219,7 +219,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp of the most recent update of the loyalty card.</value>
         /* <example>2021-09-12T10:12:42Z</example> */
         [JsonPropertyName("modified")]
-        public DateTime? Modified { get { return this.ModifiedOption; } set { this.ModifiedOption = new Option<DateTime?>(value); } }
+        public DateTime? Modified { get { return this.ModifiedOption.Value; } set { this.ModifiedOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of OldCardIdentifier
@@ -234,7 +234,7 @@ namespace TalonOneSdk.Model
         /// <value>The identifier of the card from which the points were transferred.</value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("oldCardIdentifier")]
-        public string OldCardIdentifier { get { return this.OldCardIdentifierOption; } set { this.OldCardIdentifierOption = new Option<string>(value); } }
+        public string OldCardIdentifier { get { return this.OldCardIdentifierOption.Value; } set { this.OldCardIdentifierOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of NewCardIdentifier
@@ -249,7 +249,7 @@ namespace TalonOneSdk.Model
         /// <value>The identifier of the card to which the points were transferred.</value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("newCardIdentifier")]
-        public string NewCardIdentifier { get { return this.NewCardIdentifierOption; } set { this.NewCardIdentifierOption = new Option<string>(value); } }
+        public string NewCardIdentifier { get { return this.NewCardIdentifierOption.Value; } set { this.NewCardIdentifierOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of BatchId
@@ -264,7 +264,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the batch in which the loyalty card was created.</value>
         /* <example>wdefpov</example> */
         [JsonPropertyName("batchId")]
-        public string BatchId { get { return this.BatchIdOption; } set { this.BatchIdOption = new Option<string>(value); } }
+        public string BatchId { get { return this.BatchIdOption.Value; } set { this.BatchIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -385,12 +385,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
-        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyCard" />

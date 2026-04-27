@@ -73,7 +73,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The scope which the discount was applied on, can be one of (cartItems,additionalCosts,sessionTotal).</value>
         [JsonPropertyName("scope")]
-        public string Scope { get { return this.ScopeOption; } set { this.ScopeOption = new Option<string>(value); } }
+        public string Scope { get { return this.ScopeOption.Value; } set { this.ScopeOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of DesiredValue
@@ -87,7 +87,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The original value of the discount.</value>
         [JsonPropertyName("desiredValue")]
-        public decimal? DesiredValue { get { return this.DesiredValueOption; } set { this.DesiredValueOption = new Option<decimal?>(value); } }
+        public decimal? DesiredValue { get { return this.DesiredValueOption.Value; } set { this.DesiredValueOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -182,7 +182,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. </value>
         [JsonPropertyName("isVariantAssignmentExternal")]
-        public bool? IsVariantAssignmentExternal { get { return this.IsVariantAssignmentExternalOption; } set { this.IsVariantAssignmentExternalOption = new Option<bool?>(value); } }
+        public bool? IsVariantAssignmentExternal { get { return this.IsVariantAssignmentExternalOption.Value; } set { this.IsVariantAssignmentExternalOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of Campaign
@@ -195,7 +195,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Campaign
         /// </summary>
         [JsonPropertyName("campaign")]
-        public Campaign Campaign { get { return this.CampaignOption; } set { this.CampaignOption = new Option<Campaign>(value); } }
+        public Campaign Campaign { get { return this.CampaignOption.Value; } set { this.CampaignOption = new Option<Campaign>(value); } }
 
         /// <summary>
         /// Used to track the state of Activated
@@ -209,7 +209,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The date and time the experiment was activated. </value>
         [JsonPropertyName("activated")]
-        public DateTime? Activated { get { return this.ActivatedOption; } set { this.ActivatedOption = new Option<DateTime?>(value); } }
+        public DateTime? Activated { get { return this.ActivatedOption.Value; } set { this.ActivatedOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of Variants
@@ -222,7 +222,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Variants
         /// </summary>
         [JsonPropertyName("variants")]
-        public List<ExperimentVariant> Variants { get { return this.VariantsOption; } set { this.VariantsOption = new Option<List<ExperimentVariant>>(value); } }
+        public List<ExperimentVariant> Variants { get { return this.VariantsOption.Value; } set { this.VariantsOption = new Option<List<ExperimentVariant>>(value); } }
 
         /// <summary>
         /// Used to track the state of Deletedat
@@ -236,7 +236,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The date and time the experiment was deleted. </value>
         [JsonPropertyName("deletedat")]
-        public DateTime? Deletedat { get { return this.DeletedatOption; } set { this.DeletedatOption = new Option<DateTime?>(value); } }
+        public DateTime? Deletedat { get { return this.DeletedatOption.Value; } set { this.DeletedatOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -278,17 +278,17 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Activated
         /// </summary>
-        public static string ActivatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ActivatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Deletedat
         /// </summary>
-        public static string DeletedatFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string DeletedatFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Experiment" />

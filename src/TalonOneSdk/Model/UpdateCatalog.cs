@@ -58,7 +58,7 @@ namespace TalonOneSdk.Model
         /// <value>A description of this cart item catalog.</value>
         /* <example>seafood catalog</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -73,7 +73,7 @@ namespace TalonOneSdk.Model
         /// <value>Name of this cart item catalog.</value>
         /* <example>seafood</example> */
         [JsonPropertyName("name")]
-        public string Name { get { return this.NameOption; } set { this.NameOption = new Option<string>(value); } }
+        public string Name { get { return this.NameOption.Value; } set { this.NameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of SubscribedApplicationsIds
@@ -88,7 +88,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of the IDs of the applications that are subscribed to this catalog.</value>
         /* <example>[1, 2, 3]</example> */
         [JsonPropertyName("subscribedApplicationsIds")]
-        public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
+        public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption.Value; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

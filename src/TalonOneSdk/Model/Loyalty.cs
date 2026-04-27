@@ -62,7 +62,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Displays information about the balances of the loyalty cards.</value>
         [JsonPropertyName("cards")]
-        public List<LoyaltyCard> Cards { get { return this.CardsOption; } set { this.CardsOption = new Option<List<LoyaltyCard>>(value); } }
+        public List<LoyaltyCard> Cards { get { return this.CardsOption.Value; } set { this.CardsOption = new Option<List<LoyaltyCard>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

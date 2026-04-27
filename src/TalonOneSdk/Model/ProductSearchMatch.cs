@@ -66,7 +66,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the product.</value>
         /* <example>1</example> */
         [JsonPropertyName("productId")]
-        public long? ProductId { get { return this.ProductIdOption; } set { this.ProductIdOption = new Option<long?>(value); } }
+        public long? ProductId { get { return this.ProductIdOption.Value; } set { this.ProductIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ProductSkuId
@@ -81,7 +81,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the SKU linked to a product. If empty, this is an product.</value>
         /* <example>1</example> */
         [JsonPropertyName("productSkuId")]
-        public long? ProductSkuId { get { return this.ProductSkuIdOption; } set { this.ProductSkuIdOption = new Option<long?>(value); } }
+        public long? ProductSkuId { get { return this.ProductSkuIdOption.Value; } set { this.ProductSkuIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

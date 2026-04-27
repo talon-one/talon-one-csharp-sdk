@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// <value>Identifies if the role is read-only. For read-only roles, you can only assign or unassign users. You cannot edit any other properties, such as the name, description, or permissions. The &#39;isReadonly&#39; property cannot be set for new or existing roles. It is reserved for predefined roles, such as the Talon.One support role.</value>
         /* <example>false</example> */
         [JsonPropertyName("isReadonly")]
-        public bool? IsReadonly { get { return this.IsReadonlyOption; } set { this.IsReadonlyOption = new Option<bool?>(value); } }
+        public bool? IsReadonly { get { return this.IsReadonlyOption.Value; } set { this.IsReadonlyOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

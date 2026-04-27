@@ -148,7 +148,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the revision that was last activated on this campaign. </value>
         /* <example>6</example> */
         [JsonPropertyName("activeRevisionId")]
-        public long? ActiveRevisionId { get { return this.ActiveRevisionIdOption; } set { this.ActiveRevisionIdOption = new Option<long?>(value); } }
+        public long? ActiveRevisionId { get { return this.ActiveRevisionIdOption.Value; } set { this.ActiveRevisionIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ActiveRevisionVersionId
@@ -163,7 +163,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the revision version that is active on the campaign. </value>
         /* <example>6</example> */
         [JsonPropertyName("activeRevisionVersionId")]
-        public long? ActiveRevisionVersionId { get { return this.ActiveRevisionVersionIdOption; } set { this.ActiveRevisionVersionIdOption = new Option<long?>(value); } }
+        public long? ActiveRevisionVersionId { get { return this.ActiveRevisionVersionIdOption.Value; } set { this.ActiveRevisionVersionIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of VarVersion
@@ -178,7 +178,7 @@ namespace TalonOneSdk.Model
         /// <value>Incrementing number representing how many revisions have been activated on this campaign, starts from 0 for a new campaign. </value>
         /* <example>6</example> */
         [JsonPropertyName("version")]
-        public long? VarVersion { get { return this.VarVersionOption; } set { this.VarVersionOption = new Option<long?>(value); } }
+        public long? VarVersion { get { return this.VarVersionOption.Value; } set { this.VarVersionOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CurrentRevisionId
@@ -193,7 +193,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the revision currently being modified for the campaign. </value>
         /* <example>6</example> */
         [JsonPropertyName("currentRevisionId")]
-        public long? CurrentRevisionId { get { return this.CurrentRevisionIdOption; } set { this.CurrentRevisionIdOption = new Option<long?>(value); } }
+        public long? CurrentRevisionId { get { return this.CurrentRevisionIdOption.Value; } set { this.CurrentRevisionIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CurrentRevisionVersionId
@@ -208,7 +208,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the latest version applied on the current revision. </value>
         /* <example>6</example> */
         [JsonPropertyName("currentRevisionVersionId")]
-        public long? CurrentRevisionVersionId { get { return this.CurrentRevisionVersionIdOption; } set { this.CurrentRevisionVersionIdOption = new Option<long?>(value); } }
+        public long? CurrentRevisionVersionId { get { return this.CurrentRevisionVersionIdOption.Value; } set { this.CurrentRevisionVersionIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of StageRevision
@@ -223,7 +223,7 @@ namespace TalonOneSdk.Model
         /// <value>Flag for determining whether we use current revision when sending requests with staging API key. </value>
         /* <example>false</example> */
         [JsonPropertyName("stageRevision")]
-        public bool? StageRevision { get { return this.StageRevisionOption; } set { this.StageRevisionOption = new Option<bool?>(value); } }
+        public bool? StageRevision { get { return this.StageRevisionOption.Value; } set { this.StageRevisionOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

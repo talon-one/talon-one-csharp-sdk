@@ -114,7 +114,7 @@ namespace TalonOneSdk.Model
         /// <value>Sum of negative points. This implies that &#x60;currentBalance&#x60; is &#x60;0&#x60;.</value>
         /* <example>10</example> */
         [JsonPropertyName("negativeBalance")]
-        public decimal? NegativeBalance { get { return this.NegativeBalanceOption; } set { this.NegativeBalanceOption = new Option<decimal?>(value); } }
+        public decimal? NegativeBalance { get { return this.NegativeBalanceOption.Value; } set { this.NegativeBalanceOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of TentativePendingBalance
@@ -129,7 +129,7 @@ namespace TalonOneSdk.Model
         /// <value>The tentative points balance, reflecting the &#x60;pendingBalance&#x60; and all point additions with a future activation date within the current open customer session. When the session is closed, the effects are applied and the &#x60;pendingBalance&#x60; is updated to this value.  **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer. </value>
         /* <example>20</example> */
         [JsonPropertyName("tentativePendingBalance")]
-        public decimal? TentativePendingBalance { get { return this.TentativePendingBalanceOption; } set { this.TentativePendingBalanceOption = new Option<decimal?>(value); } }
+        public decimal? TentativePendingBalance { get { return this.TentativePendingBalanceOption.Value; } set { this.TentativePendingBalanceOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of TentativeNegativeBalance
@@ -144,7 +144,7 @@ namespace TalonOneSdk.Model
         /// <value>The tentative negative balance after all additions and deductions from the current customer session are applied to &#x60;negativeBalance&#x60;. When the session is closed, the tentative effects are applied and &#x60;negativeBalance&#x60; is updated to this value.  **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer. </value>
         /* <example>100</example> */
         [JsonPropertyName("tentativeNegativeBalance")]
-        public decimal? TentativeNegativeBalance { get { return this.TentativeNegativeBalanceOption; } set { this.TentativeNegativeBalanceOption = new Option<decimal?>(value); } }
+        public decimal? TentativeNegativeBalance { get { return this.TentativeNegativeBalanceOption.Value; } set { this.TentativeNegativeBalanceOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of CurrentTier
@@ -158,7 +158,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Tier for which the ledger is eligible.</value>
         [JsonPropertyName("currentTier")]
-        public Tier CurrentTier { get { return this.CurrentTierOption; } set { this.CurrentTierOption = new Option<Tier>(value); } }
+        public Tier CurrentTier { get { return this.CurrentTierOption.Value; } set { this.CurrentTierOption = new Option<Tier>(value); } }
 
         /// <summary>
         /// Used to track the state of PointsToNextTier
@@ -173,7 +173,7 @@ namespace TalonOneSdk.Model
         /// <value>Points required to move up a tier.</value>
         /* <example>20</example> */
         [JsonPropertyName("pointsToNextTier")]
-        public decimal? PointsToNextTier { get { return this.PointsToNextTierOption; } set { this.PointsToNextTierOption = new Option<decimal?>(value); } }
+        public decimal? PointsToNextTier { get { return this.PointsToNextTierOption.Value; } set { this.PointsToNextTierOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of NextTierName
@@ -188,7 +188,7 @@ namespace TalonOneSdk.Model
         /// <value>The name of the next higher tier level in the loyalty program.  **Note**: - Returns &#x60;null&#x60; if the customer has reached the highest available tier. - Returns the lowest level tier name if the customer is not currently assigned to any tier. </value>
         /* <example>Silver</example> */
         [JsonPropertyName("nextTierName")]
-        public string NextTierName { get { return this.NextTierNameOption; } set { this.NextTierNameOption = new Option<string>(value); } }
+        public string NextTierName { get { return this.NextTierNameOption.Value; } set { this.NextTierNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -218,7 +218,7 @@ namespace TalonOneSdk.Model
         /// <value>The integration ID of the store. You choose this ID when you create a store.</value>
         /* <example>STORE-001</example> */
         [JsonPropertyName("storeIntegrationId")]
-        public string StoreIntegrationId { get { return this.StoreIntegrationIdOption; } set { this.StoreIntegrationIdOption = new Option<string>(value); } }
+        public string StoreIntegrationId { get { return this.StoreIntegrationIdOption.Value; } set { this.StoreIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of EvaluableCampaignIds
@@ -233,7 +233,7 @@ namespace TalonOneSdk.Model
         /// <value>When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them. </value>
         /* <example>[10, 12]</example> */
         [JsonPropertyName("evaluableCampaignIds")]
-        public List<long> EvaluableCampaignIds { get { return this.EvaluableCampaignIdsOption; } set { this.EvaluableCampaignIdsOption = new Option<List<long>>(value); } }
+        public List<long> EvaluableCampaignIds { get { return this.EvaluableCampaignIdsOption.Value; } set { this.EvaluableCampaignIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -248,7 +248,7 @@ namespace TalonOneSdk.Model
         /// <value>Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute).</value>
         /* <example>{myAttribute&#x3D;myValue}</example> */
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of ConnectedSessionID
@@ -263,7 +263,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the session that happened in the past.</value>
         /* <example>175KJPS947296</example> */
         [JsonPropertyName("connectedSessionID")]
-        public string ConnectedSessionID { get { return this.ConnectedSessionIDOption; } set { this.ConnectedSessionIDOption = new Option<string>(value); } }
+        public string ConnectedSessionID { get { return this.ConnectedSessionIDOption.Value; } set { this.ConnectedSessionIDOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of PreviousEventID
@@ -278,7 +278,7 @@ namespace TalonOneSdk.Model
         /// <value>The unique identifier of the event that happened in the past.</value>
         /* <example>175KJPS947296</example> */
         [JsonPropertyName("previousEventID")]
-        public string PreviousEventID { get { return this.PreviousEventIDOption; } set { this.PreviousEventIDOption = new Option<string>(value); } }
+        public string PreviousEventID { get { return this.PreviousEventIDOption.Value; } set { this.PreviousEventIDOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of LoyaltyCards
@@ -293,7 +293,7 @@ namespace TalonOneSdk.Model
         /// <value>Identifiers of the loyalty cards used during this event.</value>
         /* <example>[loyalty-card-1]</example> */
         [JsonPropertyName("loyaltyCards")]
-        public List<string> LoyaltyCards { get { return this.LoyaltyCardsOption; } set { this.LoyaltyCardsOption = new Option<List<string>>(value); } }
+        public List<string> LoyaltyCards { get { return this.LoyaltyCardsOption.Value; } set { this.LoyaltyCardsOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of ResponseContent
@@ -308,7 +308,7 @@ namespace TalonOneSdk.Model
         /// <value>Optional list of requested information to be present on the response related to the tracking custom event. </value>
         /* <example>[triggeredCampaigns, customerProfile]</example> */
         [JsonPropertyName("responseContent")]
-        public List<IntegrationEventV3Request.ResponseContentEnum> ResponseContent { get { return this.ResponseContentOption; } set { this.ResponseContentOption = new Option<List<IntegrationEventV3Request.ResponseContentEnum>>(value); } }
+        public List<IntegrationEventV3Request.ResponseContentEnum> ResponseContent { get { return this.ResponseContentOption.Value; } set { this.ResponseContentOption = new Option<List<IntegrationEventV3Request.ResponseContentEnum>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

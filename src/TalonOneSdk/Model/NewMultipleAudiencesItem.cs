@@ -32,11 +32,13 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="NewMultipleAudiencesItem" /> class.
         /// </summary>
         /// <param name="name">The human-friendly display name for this audience.</param>
+        /// <param name="subscribedApplicationsIds">A list of the IDs of the Applications that are connected to this audience.</param>
         /// <param name="integrationId">The ID of this audience in the third-party integration.</param>
         [JsonConstructor]
-        public NewMultipleAudiencesItem(string name, Option<string> integrationId = default)
+        public NewMultipleAudiencesItem(string name, Option<List<long>> subscribedApplicationsIds = default, Option<string> integrationId = default)
         {
             Name = name;
+            SubscribedApplicationsIdsOption = subscribedApplicationsIds;
             IntegrationIdOption = integrationId;
             OnCreated();
         }
@@ -52,6 +54,21 @@ namespace TalonOneSdk.Model
         public string Name { get; set; }
 
         /// <summary>
+        /// Used to track the state of SubscribedApplicationsIds
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<long>> SubscribedApplicationsIdsOption { get; private set; }
+
+        /// <summary>
+        /// A list of the IDs of the Applications that are connected to this audience.
+        /// </summary>
+        /// <value>A list of the IDs of the Applications that are connected to this audience.</value>
+        /* <example>[3, 13]</example> */
+        [JsonPropertyName("subscribedApplicationsIds")]
+        public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption.Value; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
+
+        /// <summary>
         /// Used to track the state of IntegrationId
         /// </summary>
         [JsonIgnore]
@@ -64,7 +81,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of this audience in the third-party integration.</value>
         /* <example>382370BKDB946</example> */
         [JsonPropertyName("integrationId")]
-        public string IntegrationId { get { return this.IntegrationIdOption; } set { this.IntegrationIdOption = new Option<string>(value); } }
+        public string IntegrationId { get { return this.IntegrationIdOption.Value; } set { this.IntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -75,6 +92,7 @@ namespace TalonOneSdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class NewMultipleAudiencesItem {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  SubscribedApplicationsIds: ").Append(SubscribedApplicationsIds).Append("\n");
             sb.Append("  IntegrationId: ").Append(IntegrationId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -132,6 +150,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string> name = default;
+            Option<List<long>> subscribedApplicationsIds = default;
             Option<string> integrationId = default;
 
             while (utf8JsonReader.Read())
@@ -152,6 +171,9 @@ namespace TalonOneSdk.Model
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "subscribedApplicationsIds":
+                            subscribedApplicationsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "integrationId":
                             integrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -167,7 +189,7 @@ namespace TalonOneSdk.Model
             if (name.IsSet && name.Value == null)
                 throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewMultipleAudiencesItem.");
 
-            return new NewMultipleAudiencesItem(name.Value, integrationId);
+            return new NewMultipleAudiencesItem(name.Value, subscribedApplicationsIds, integrationId);
         }
 
         /// <summary>
@@ -199,6 +221,11 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("name", newMultipleAudiencesItem.Name);
 
+            if (newMultipleAudiencesItem.SubscribedApplicationsIdsOption.IsSet)
+            {
+                writer.WritePropertyName("subscribedApplicationsIds");
+                JsonSerializer.Serialize(writer, newMultipleAudiencesItem.SubscribedApplicationsIds, jsonSerializerOptions);
+            }
             if (newMultipleAudiencesItem.IntegrationIdOption.IsSet)
                 writer.WriteString("integrationId", newMultipleAudiencesItem.IntegrationId);
         }

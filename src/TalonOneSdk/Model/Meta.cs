@@ -61,7 +61,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Maps each evaluated campaign ID to a key-value list of that campaigns attributes. Campaigns without attributes will be omitted.</value>
         [JsonPropertyName("campaigns")]
-        public Object Campaigns { get { return this.CampaignsOption; } set { this.CampaignsOption = new Option<Object>(value); } }
+        public Object Campaigns { get { return this.CampaignsOption.Value; } set { this.CampaignsOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of Coupons
@@ -75,7 +75,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Maps the coupon value to a key-value list of that coupons attributes.</value>
         [JsonPropertyName("coupons")]
-        public Object Coupons { get { return this.CouponsOption; } set { this.CouponsOption = new Option<Object>(value); } }
+        public Object Coupons { get { return this.CouponsOption.Value; } set { this.CouponsOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponRejectionReason
@@ -88,7 +88,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets CouponRejectionReason
         /// </summary>
         [JsonPropertyName("couponRejectionReason")]
-        public CouponRejectionReason CouponRejectionReason { get { return this.CouponRejectionReasonOption; } set { this.CouponRejectionReasonOption = new Option<CouponRejectionReason>(value); } }
+        public CouponRejectionReason CouponRejectionReason { get { return this.CouponRejectionReasonOption.Value; } set { this.CouponRejectionReasonOption = new Option<CouponRejectionReason>(value); } }
 
         /// <summary>
         /// Used to track the state of ReferralRejectionReason
@@ -101,7 +101,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ReferralRejectionReason
         /// </summary>
         [JsonPropertyName("referralRejectionReason")]
-        public ReferralRejectionReason ReferralRejectionReason { get { return this.ReferralRejectionReasonOption; } set { this.ReferralRejectionReasonOption = new Option<ReferralRejectionReason>(value); } }
+        public ReferralRejectionReason ReferralRejectionReason { get { return this.ReferralRejectionReasonOption.Value; } set { this.ReferralRejectionReasonOption = new Option<ReferralRejectionReason>(value); } }
 
         /// <summary>
         /// Used to track the state of Warnings
@@ -115,7 +115,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Contains warnings about possible misuse.</value>
         [JsonPropertyName("warnings")]
-        public Object Warnings { get { return this.WarningsOption; } set { this.WarningsOption = new Option<Object>(value); } }
+        public Object Warnings { get { return this.WarningsOption.Value; } set { this.WarningsOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

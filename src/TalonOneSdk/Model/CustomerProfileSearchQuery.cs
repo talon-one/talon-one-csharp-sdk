@@ -57,7 +57,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Properties to match against a customer profile. All provided attributes will be exactly matched against profile attributes.</value>
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of IntegrationIDs
@@ -70,7 +70,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets IntegrationIDs
         /// </summary>
         [JsonPropertyName("integrationIDs")]
-        public List<string> IntegrationIDs { get { return this.IntegrationIDsOption; } set { this.IntegrationIDsOption = new Option<List<string>>(value); } }
+        public List<string> IntegrationIDs { get { return this.IntegrationIDsOption.Value; } set { this.IntegrationIDsOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of ProfileIDs
@@ -83,7 +83,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ProfileIDs
         /// </summary>
         [JsonPropertyName("profileIDs")]
-        public List<long> ProfileIDs { get { return this.ProfileIDsOption; } set { this.ProfileIDsOption = new Option<List<long>>(value); } }
+        public List<long> ProfileIDs { get { return this.ProfileIDsOption.Value; } set { this.ProfileIDsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

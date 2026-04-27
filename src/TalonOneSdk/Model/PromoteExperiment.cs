@@ -79,7 +79,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Force disable the experiment. </value>
         [JsonPropertyName("disableExperiment")]
-        public bool? DisableExperiment { get { return this.DisableExperimentOption; } set { this.DisableExperimentOption = new Option<bool?>(value); } }
+        public bool? DisableExperiment { get { return this.DisableExperimentOption.Value; } set { this.DisableExperimentOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

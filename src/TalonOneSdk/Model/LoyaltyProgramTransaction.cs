@@ -241,7 +241,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the campaign.</value>
         /* <example>324</example> */
         [JsonPropertyName("campaignId")]
-        public long? CampaignId { get { return this.CampaignIdOption; } set { this.CampaignIdOption = new Option<long?>(value); } }
+        public long? CampaignId { get { return this.CampaignIdOption.Value; } set { this.CampaignIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CustomerProfileId
@@ -256,7 +256,7 @@ namespace TalonOneSdk.Model
         /// <value>Customer profile integration ID used in the loyalty program.</value>
         /* <example>kda0fajs0-fad9f-fd9dfsa9-fd9dasjf9</example> */
         [JsonPropertyName("customerProfileId")]
-        public string CustomerProfileId { get { return this.CustomerProfileIdOption; } set { this.CustomerProfileIdOption = new Option<string>(value); } }
+        public string CustomerProfileId { get { return this.CustomerProfileIdOption.Value; } set { this.CustomerProfileIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of CardIdentifier
@@ -271,7 +271,7 @@ namespace TalonOneSdk.Model
         /// <value>The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("cardIdentifier")]
-        public string CardIdentifier { get { return this.CardIdentifierOption; } set { this.CardIdentifierOption = new Option<string>(value); } }
+        public string CardIdentifier { get { return this.CardIdentifierOption.Value; } set { this.CardIdentifierOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of CustomerSessionId
@@ -286,7 +286,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the customer session where the transaction occurred.</value>
         /* <example>05c2da0d-48fa-4aa1-b629-898f58f1584d</example> */
         [JsonPropertyName("customerSessionId")]
-        public string CustomerSessionId { get { return this.CustomerSessionIdOption; } set { this.CustomerSessionIdOption = new Option<string>(value); } }
+        public string CustomerSessionId { get { return this.CustomerSessionIdOption.Value; } set { this.CustomerSessionIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ImportId
@@ -301,7 +301,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the import where the transaction occurred.</value>
         /* <example>4</example> */
         [JsonPropertyName("importId")]
-        public long? ImportId { get { return this.ImportIdOption; } set { this.ImportIdOption = new Option<long?>(value); } }
+        public long? ImportId { get { return this.ImportIdOption.Value; } set { this.ImportIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of UserId
@@ -316,7 +316,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the user who manually added or deducted points. Applies only to manual transactions.</value>
         /* <example>5</example> */
         [JsonPropertyName("userId")]
-        public long? UserId { get { return this.UserIdOption; } set { this.UserIdOption = new Option<long?>(value); } }
+        public long? UserId { get { return this.UserIdOption.Value; } set { this.UserIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of UserEmail
@@ -331,7 +331,7 @@ namespace TalonOneSdk.Model
         /// <value>The email of the Campaign Manager account that manually added or deducted points. Applies only to manual transactions.</value>
         /* <example>john.doe@example.com</example> */
         [JsonPropertyName("userEmail")]
-        public string UserEmail { get { return this.UserEmailOption; } set { this.UserEmailOption = new Option<string>(value); } }
+        public string UserEmail { get { return this.UserEmailOption.Value; } set { this.UserEmailOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of RulesetId
@@ -346,7 +346,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the ruleset containing the rule that triggered the effect. Applies only for transactions that resulted from a customer session.</value>
         /* <example>11</example> */
         [JsonPropertyName("rulesetId")]
-        public long? RulesetId { get { return this.RulesetIdOption; } set { this.RulesetIdOption = new Option<long?>(value); } }
+        public long? RulesetId { get { return this.RulesetIdOption.Value; } set { this.RulesetIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of RuleName
@@ -361,7 +361,7 @@ namespace TalonOneSdk.Model
         /// <value>Name of the rule that triggered the effect. Applies only for transactions that resulted from a customer session.</value>
         /* <example>10 points for every $100 spent</example> */
         [JsonPropertyName("ruleName")]
-        public string RuleName { get { return this.RuleNameOption; } set { this.RuleNameOption = new Option<string>(value); } }
+        public string RuleName { get { return this.RuleNameOption.Value; } set { this.RuleNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Flags
@@ -375,7 +375,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The flags of the transaction, when applicable. The &#x60;createsNegativeBalance&#x60;  flag indicates whether the transaction results in a negative balance.</value>
         [JsonPropertyName("flags")]
-        public LoyaltyLedgerEntryFlags Flags { get { return this.FlagsOption; } set { this.FlagsOption = new Option<LoyaltyLedgerEntryFlags>(value); } }
+        public LoyaltyLedgerEntryFlags Flags { get { return this.FlagsOption.Value; } set { this.FlagsOption = new Option<LoyaltyLedgerEntryFlags>(value); } }
 
         /// <summary>
         /// Used to track the state of ValidityDuration
@@ -390,7 +390,7 @@ namespace TalonOneSdk.Model
         /// <value>The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. </value>
         /* <example>30D</example> */
         [JsonPropertyName("validityDuration")]
-        public string ValidityDuration { get { return this.ValidityDurationOption; } set { this.ValidityDurationOption = new Option<string>(value); } }
+        public string ValidityDuration { get { return this.ValidityDurationOption.Value; } set { this.ValidityDurationOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -496,7 +496,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyProgramTransaction" />

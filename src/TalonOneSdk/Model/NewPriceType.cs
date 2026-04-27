@@ -76,7 +76,7 @@ namespace TalonOneSdk.Model
         /// <value>A description of the price type.</value>
         /* <example>The price available exclusively to members.</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of TargetedAudiencesIds
@@ -91,7 +91,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of the IDs of the audiences targeted by this price type.</value>
         /* <example>[1, 2, 3]</example> */
         [JsonPropertyName("targetedAudiencesIds")]
-        public List<long> TargetedAudiencesIds { get { return this.TargetedAudiencesIdsOption; } set { this.TargetedAudiencesIdsOption = new Option<List<long>>(value); } }
+        public List<long> TargetedAudiencesIds { get { return this.TargetedAudiencesIdsOption.Value; } set { this.TargetedAudiencesIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -71,7 +71,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Expiry date of the transactions before applying the extension or update.</value>
         [JsonPropertyName("previousExpiryDate")]
-        public DateTime? PreviousExpiryDate { get { return this.PreviousExpiryDateOption; } set { this.PreviousExpiryDateOption = new Option<DateTime?>(value); } }
+        public DateTime? PreviousExpiryDate { get { return this.PreviousExpiryDateOption.Value; } set { this.PreviousExpiryDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -107,12 +107,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize NewExpiryDate
         /// </summary>
-        public static string NewExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string NewExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize PreviousExpiryDate
         /// </summary>
-        public static string PreviousExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string PreviousExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyLedgerEntryExpiryDateChange" />

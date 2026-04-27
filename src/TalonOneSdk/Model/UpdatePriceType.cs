@@ -74,7 +74,7 @@ namespace TalonOneSdk.Model
         /// <value>A description of the price type.</value>
         /* <example>The price available exclusively to members.</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -148,7 +148,7 @@ namespace TalonOneSdk.Model
         /// <value>Integration ID of the customer profile linked to the card.</value>
         /* <example>URNGV8294NV</example> */
         [JsonPropertyName("customerProfileID")]
-        public string CustomerProfileID { get { return this.CustomerProfileIDOption; } set { this.CustomerProfileIDOption = new Option<string>(value); } }
+        public string CustomerProfileID { get { return this.CustomerProfileIDOption.Value; } set { this.CustomerProfileIDOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of CustomerSessionId
@@ -163,7 +163,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the customer session where points were added.</value>
         /* <example>05c2da0d-48fa-4aa1-b629-898f58f1584d</example> */
         [JsonPropertyName("customerSessionId")]
-        public string CustomerSessionId { get { return this.CustomerSessionIdOption; } set { this.CustomerSessionIdOption = new Option<string>(value); } }
+        public string CustomerSessionId { get { return this.CustomerSessionIdOption.Value; } set { this.CustomerSessionIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ValidityDuration
@@ -178,7 +178,7 @@ namespace TalonOneSdk.Model
         /// <value>The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. </value>
         /* <example>30D</example> */
         [JsonPropertyName("validityDuration")]
-        public string ValidityDuration { get { return this.ValidityDurationOption; } set { this.ValidityDurationOption = new Option<string>(value); } }
+        public string ValidityDuration { get { return this.ValidityDurationOption.Value; } set { this.ValidityDurationOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -247,7 +247,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CardLedgerPointsEntryIntegrationAPI" />

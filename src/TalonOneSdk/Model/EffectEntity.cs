@@ -124,7 +124,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the experiment that campaign belongs to.</value>
         /* <example>12</example> */
         [JsonPropertyName("experimentId")]
-        public long? ExperimentId { get { return this.ExperimentIdOption; } set { this.ExperimentIdOption = new Option<long?>(value); } }
+        public long? ExperimentId { get { return this.ExperimentIdOption.Value; } set { this.ExperimentIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of TriggeredByCoupon
@@ -139,7 +139,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the coupon that was being evaluated when this effect was triggered.</value>
         /* <example>4928</example> */
         [JsonPropertyName("triggeredByCoupon")]
-        public long? TriggeredByCoupon { get { return this.TriggeredByCouponOption; } set { this.TriggeredByCouponOption = new Option<long?>(value); } }
+        public long? TriggeredByCoupon { get { return this.TriggeredByCouponOption.Value; } set { this.TriggeredByCouponOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of TriggeredForCatalogItem
@@ -154,7 +154,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the catalog item that was being evaluated when this effect was triggered.</value>
         /* <example>786</example> */
         [JsonPropertyName("triggeredForCatalogItem")]
-        public long? TriggeredForCatalogItem { get { return this.TriggeredForCatalogItemOption; } set { this.TriggeredForCatalogItemOption = new Option<long?>(value); } }
+        public long? TriggeredForCatalogItem { get { return this.TriggeredForCatalogItemOption.Value; } set { this.TriggeredForCatalogItemOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ConditionIndex
@@ -169,7 +169,7 @@ namespace TalonOneSdk.Model
         /// <value>The index of the condition that was triggered.</value>
         /* <example>786</example> */
         [JsonPropertyName("conditionIndex")]
-        public long? ConditionIndex { get { return this.ConditionIndexOption; } set { this.ConditionIndexOption = new Option<long?>(value); } }
+        public long? ConditionIndex { get { return this.ConditionIndexOption.Value; } set { this.ConditionIndexOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of EvaluationGroupID
@@ -184,7 +184,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</value>
         /* <example>3</example> */
         [JsonPropertyName("evaluationGroupID")]
-        public long? EvaluationGroupID { get { return this.EvaluationGroupIDOption; } set { this.EvaluationGroupIDOption = new Option<long?>(value); } }
+        public long? EvaluationGroupID { get { return this.EvaluationGroupIDOption.Value; } set { this.EvaluationGroupIDOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of EvaluationGroupMode
@@ -199,7 +199,7 @@ namespace TalonOneSdk.Model
         /// <value>The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</value>
         /* <example>stackable</example> */
         [JsonPropertyName("evaluationGroupMode")]
-        public string EvaluationGroupMode { get { return this.EvaluationGroupModeOption; } set { this.EvaluationGroupModeOption = new Option<string>(value); } }
+        public string EvaluationGroupMode { get { return this.EvaluationGroupModeOption.Value; } set { this.EvaluationGroupModeOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of CampaignRevisionId
@@ -214,7 +214,7 @@ namespace TalonOneSdk.Model
         /// <value>The revision ID of the campaign that was used when triggering the effect.</value>
         /* <example>1</example> */
         [JsonPropertyName("campaignRevisionId")]
-        public long? CampaignRevisionId { get { return this.CampaignRevisionIdOption; } set { this.CampaignRevisionIdOption = new Option<long?>(value); } }
+        public long? CampaignRevisionId { get { return this.CampaignRevisionIdOption.Value; } set { this.CampaignRevisionIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CampaignRevisionVersionId
@@ -229,7 +229,7 @@ namespace TalonOneSdk.Model
         /// <value>The revision version ID of the campaign that was used when triggering the effect.</value>
         /* <example>5</example> */
         [JsonPropertyName("campaignRevisionVersionId")]
-        public long? CampaignRevisionVersionId { get { return this.CampaignRevisionVersionIdOption; } set { this.CampaignRevisionVersionIdOption = new Option<long?>(value); } }
+        public long? CampaignRevisionVersionId { get { return this.CampaignRevisionVersionIdOption.Value; } set { this.CampaignRevisionVersionIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of SelectedPriceType
@@ -244,7 +244,7 @@ namespace TalonOneSdk.Model
         /// <value>The selected price type for the SKU targeted by this effect.</value>
         /* <example>member</example> */
         [JsonPropertyName("selectedPriceType")]
-        public string SelectedPriceType { get { return this.SelectedPriceTypeOption; } set { this.SelectedPriceTypeOption = new Option<string>(value); } }
+        public string SelectedPriceType { get { return this.SelectedPriceTypeOption.Value; } set { this.SelectedPriceTypeOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of SelectedPrice
@@ -259,7 +259,7 @@ namespace TalonOneSdk.Model
         /// <value>The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</value>
         /* <example>100</example> */
         [JsonPropertyName("selectedPrice")]
-        public decimal? SelectedPrice { get { return this.SelectedPriceOption; } set { this.SelectedPriceOption = new Option<decimal?>(value); } }
+        public decimal? SelectedPrice { get { return this.SelectedPriceOption.Value; } set { this.SelectedPriceOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of AdjustmentReferenceId
@@ -274,7 +274,7 @@ namespace TalonOneSdk.Model
         /// <value>The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</value>
         /* <example>68851723-e6fa-488f-ace9-112581e6c19b</example> */
         [JsonPropertyName("adjustmentReferenceId")]
-        public Guid? AdjustmentReferenceId { get { return this.AdjustmentReferenceIdOption; } set { this.AdjustmentReferenceIdOption = new Option<Guid?>(value); } }
+        public Guid? AdjustmentReferenceId { get { return this.AdjustmentReferenceIdOption.Value; } set { this.AdjustmentReferenceIdOption = new Option<Guid?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -65,7 +65,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Number of IntegrationHub workers to run in parallel for this flow (maximum 500).</value>
         [JsonPropertyName("WorkerCount")]
-        public long? WorkerCount { get { return this.WorkerCountOption; } set { this.WorkerCountOption = new Option<long?>(value); } }
+        public long? WorkerCount { get { return this.WorkerCountOption.Value; } set { this.WorkerCountOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of MaxEventsPerMessage
@@ -79,7 +79,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Maximum number of events to send in a single message to IntegrationHub.</value>
         [JsonPropertyName("MaxEventsPerMessage")]
-        public long? MaxEventsPerMessage { get { return this.MaxEventsPerMessageOption; } set { this.MaxEventsPerMessageOption = new Option<long?>(value); } }
+        public long? MaxEventsPerMessage { get { return this.MaxEventsPerMessageOption.Value; } set { this.MaxEventsPerMessageOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of MaxRetries
@@ -93,7 +93,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Maximum number of retries for a IntegrationHub event before it is ignored.</value>
         [JsonPropertyName("MaxRetries")]
-        public long? MaxRetries { get { return this.MaxRetriesOption; } set { this.MaxRetriesOption = new Option<long?>(value); } }
+        public long? MaxRetries { get { return this.MaxRetriesOption.Value; } set { this.MaxRetriesOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

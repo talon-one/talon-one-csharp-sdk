@@ -1356,10 +1356,11 @@ namespace TalonOneSdk.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">The identifier for the loyalty program.</param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="balances">Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyBalanceApiResponse"/>&gt;</returns>
         [Obsolete]
-        Task<IExportLoyaltyBalanceApiResponse> ExportLoyaltyBalanceAsync(string loyaltyProgramId, Option<DateTime> endDate = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IExportLoyaltyBalanceApiResponse> ExportLoyaltyBalanceAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Export customer loyalty balance to CSV
@@ -1369,10 +1370,11 @@ namespace TalonOneSdk.Api
         /// </remarks>
         /// <param name="loyaltyProgramId">The identifier for the loyalty program.</param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="balances">Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyBalanceApiResponse"/>&gt;</returns>
         [Obsolete]
-        Task<IExportLoyaltyBalanceApiResponse> ExportLoyaltyBalanceOrDefaultAsync(string loyaltyProgramId, Option<DateTime> endDate = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IExportLoyaltyBalanceApiResponse> ExportLoyaltyBalanceOrDefaultAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Export customer loyalty balances
@@ -1383,9 +1385,10 @@ namespace TalonOneSdk.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">The identifier for the loyalty program.</param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. &gt; - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file, which shows the customer&#39;s tier at the time of export.  (optional)</param>
+        /// <param name="balances">Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyBalancesApiResponse"/>&gt;</returns>
-        Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesAsync(string loyaltyProgramId, Option<DateTime> endDate = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Export customer loyalty balances
@@ -1395,9 +1398,10 @@ namespace TalonOneSdk.Api
         /// </remarks>
         /// <param name="loyaltyProgramId">The identifier for the loyalty program.</param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. &gt; - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file, which shows the customer&#39;s tier at the time of export.  (optional)</param>
+        /// <param name="balances">Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyBalancesApiResponse"/>&gt;</returns>
-        Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesOrDefaultAsync(string loyaltyProgramId, Option<DateTime> endDate = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesOrDefaultAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Export all card transaction logs
@@ -1408,9 +1412,10 @@ namespace TalonOneSdk.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="balances">Filters which balance fields are included in the CSV export. By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  **Note:** - The &#x60;negativeBalance&#x60; value is not supported for card balance exports. - Providing an unsupported or invalid value returns a &#x60;400 Bad Request&#x60; error.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyCardBalancesApiResponse"/>&gt;</returns>
-        Task<IExportLoyaltyCardBalancesApiResponse> ExportLoyaltyCardBalancesAsync(long loyaltyProgramId, Option<DateTime> endDate = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IExportLoyaltyCardBalancesApiResponse> ExportLoyaltyCardBalancesAsync(long loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Export all card transaction logs
@@ -1420,9 +1425,10 @@ namespace TalonOneSdk.Api
         /// </remarks>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="balances">Filters which balance fields are included in the CSV export. By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  **Note:** - The &#x60;negativeBalance&#x60; value is not supported for card balance exports. - Providing an unsupported or invalid value returns a &#x60;400 Bad Request&#x60; error.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyCardBalancesApiResponse"/>&gt;</returns>
-        Task<IExportLoyaltyCardBalancesApiResponse> ExportLoyaltyCardBalancesOrDefaultAsync(long loyaltyProgramId, Option<DateTime> endDate = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IExportLoyaltyCardBalancesApiResponse> ExportLoyaltyCardBalancesOrDefaultAsync(long loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Export card&#39;s ledger log
@@ -26530,17 +26536,21 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatExportLoyaltyBalance(ref string loyaltyProgramId, ref Option<DateTime> endDate);
+        partial void FormatExportLoyaltyBalance(ref string loyaltyProgramId, ref Option<DateTime> endDate, ref Option<string> balances);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="loyaltyProgramId"></param>
+        /// <param name="balances"></param>
         /// <returns></returns>
-        private void ValidateExportLoyaltyBalance(string loyaltyProgramId)
+        private void ValidateExportLoyaltyBalance(string loyaltyProgramId, Option<string> balances)
         {
             if (loyaltyProgramId == null)
                 throw new ArgumentNullException(nameof(loyaltyProgramId));
+
+            if (balances.IsSet && balances.Value == null)
+                throw new ArgumentNullException(nameof(balances));
         }
 
         /// <summary>
@@ -26549,10 +26559,11 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="endDate"></param>
-        private void AfterExportLoyaltyBalanceDefaultImplementation(IExportLoyaltyBalanceApiResponse apiResponseLocalVar, string loyaltyProgramId, Option<DateTime> endDate)
+        /// <param name="balances"></param>
+        private void AfterExportLoyaltyBalanceDefaultImplementation(IExportLoyaltyBalanceApiResponse apiResponseLocalVar, string loyaltyProgramId, Option<DateTime> endDate, Option<string> balances)
         {
             bool suppressDefaultLog = false;
-            AfterExportLoyaltyBalance(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, endDate);
+            AfterExportLoyaltyBalance(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, endDate, balances);
             if (!suppressDefaultLog)
                 Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -26564,7 +26575,8 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="endDate"></param>
-        partial void AfterExportLoyaltyBalance(ref bool suppressDefaultLog, IExportLoyaltyBalanceApiResponse apiResponseLocalVar, string loyaltyProgramId, Option<DateTime> endDate);
+        /// <param name="balances"></param>
+        partial void AfterExportLoyaltyBalance(ref bool suppressDefaultLog, IExportLoyaltyBalanceApiResponse apiResponseLocalVar, string loyaltyProgramId, Option<DateTime> endDate, Option<string> balances);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -26574,10 +26586,11 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="endDate"></param>
-        private void OnErrorExportLoyaltyBalanceDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string loyaltyProgramId, Option<DateTime> endDate)
+        /// <param name="balances"></param>
+        private void OnErrorExportLoyaltyBalanceDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string loyaltyProgramId, Option<DateTime> endDate, Option<string> balances)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorExportLoyaltyBalance(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, endDate);
+            OnErrorExportLoyaltyBalance(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, endDate, balances);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -26591,20 +26604,22 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="endDate"></param>
-        partial void OnErrorExportLoyaltyBalance(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string loyaltyProgramId, Option<DateTime> endDate);
+        /// <param name="balances"></param>
+        partial void OnErrorExportLoyaltyBalance(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string loyaltyProgramId, Option<DateTime> endDate, Option<string> balances);
 
         /// <summary>
         /// Export customer loyalty balance to CSV To export customer loyalty balances to CSV, use the [Export customer loyalty balances to CSV](/management-api#tag/Loyalty/operation/exportLoyaltyBalances) endpoint.  Download a CSV file containing the balance of each customer in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files). 
         /// </summary>
         /// <param name="loyaltyProgramId">The identifier for the loyalty program.</param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="balances">Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyBalanceApiResponse"/>&gt;</returns>
-        public async Task<IExportLoyaltyBalanceApiResponse> ExportLoyaltyBalanceOrDefaultAsync(string loyaltyProgramId, Option<DateTime> endDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IExportLoyaltyBalanceApiResponse> ExportLoyaltyBalanceOrDefaultAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ExportLoyaltyBalanceAsync(loyaltyProgramId, endDate, cancellationToken).ConfigureAwait(false);
+                return await ExportLoyaltyBalanceAsync(loyaltyProgramId, endDate, balances, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -26618,17 +26633,18 @@ namespace TalonOneSdk.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">The identifier for the loyalty program.</param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="balances">Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyBalanceApiResponse"/>&gt;</returns>
-        public async Task<IExportLoyaltyBalanceApiResponse> ExportLoyaltyBalanceAsync(string loyaltyProgramId, Option<DateTime> endDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IExportLoyaltyBalanceApiResponse> ExportLoyaltyBalanceAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateExportLoyaltyBalance(loyaltyProgramId);
+                ValidateExportLoyaltyBalance(loyaltyProgramId, balances);
 
-                FormatExportLoyaltyBalance(ref loyaltyProgramId, ref endDate);
+                FormatExportLoyaltyBalance(ref loyaltyProgramId, ref endDate, ref balances);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -26644,6 +26660,9 @@ namespace TalonOneSdk.Api
 
                     if (endDate.IsSet)
                         parseQueryStringLocalVar["endDate"] = ClientUtils.ParameterToString(endDate.Value);
+
+                    if (balances.IsSet)
+                        parseQueryStringLocalVar["balances"] = ClientUtils.ParameterToString(balances.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -26680,7 +26699,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterExportLoyaltyBalanceDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, endDate);
+                        AfterExportLoyaltyBalanceDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, endDate, balances);
 
                         Events.ExecuteOnExportLoyaltyBalance(apiResponseLocalVar);
 
@@ -26694,7 +26713,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorExportLoyaltyBalanceDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/export_customer_balance", uriBuilderLocalVar.Path, loyaltyProgramId, endDate);
+                OnErrorExportLoyaltyBalanceDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/export_customer_balance", uriBuilderLocalVar.Path, loyaltyProgramId, endDate, balances);
                 Events.ExecuteOnErrorExportLoyaltyBalance(e);
                 throw;
             }
@@ -26869,17 +26888,21 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatExportLoyaltyBalances(ref string loyaltyProgramId, ref Option<DateTime> endDate);
+        partial void FormatExportLoyaltyBalances(ref string loyaltyProgramId, ref Option<DateTime> endDate, ref Option<string> balances);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="loyaltyProgramId"></param>
+        /// <param name="balances"></param>
         /// <returns></returns>
-        private void ValidateExportLoyaltyBalances(string loyaltyProgramId)
+        private void ValidateExportLoyaltyBalances(string loyaltyProgramId, Option<string> balances)
         {
             if (loyaltyProgramId == null)
                 throw new ArgumentNullException(nameof(loyaltyProgramId));
+
+            if (balances.IsSet && balances.Value == null)
+                throw new ArgumentNullException(nameof(balances));
         }
 
         /// <summary>
@@ -26888,10 +26911,11 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="endDate"></param>
-        private void AfterExportLoyaltyBalancesDefaultImplementation(IExportLoyaltyBalancesApiResponse apiResponseLocalVar, string loyaltyProgramId, Option<DateTime> endDate)
+        /// <param name="balances"></param>
+        private void AfterExportLoyaltyBalancesDefaultImplementation(IExportLoyaltyBalancesApiResponse apiResponseLocalVar, string loyaltyProgramId, Option<DateTime> endDate, Option<string> balances)
         {
             bool suppressDefaultLog = false;
-            AfterExportLoyaltyBalances(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, endDate);
+            AfterExportLoyaltyBalances(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, endDate, balances);
             if (!suppressDefaultLog)
                 Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -26903,7 +26927,8 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="endDate"></param>
-        partial void AfterExportLoyaltyBalances(ref bool suppressDefaultLog, IExportLoyaltyBalancesApiResponse apiResponseLocalVar, string loyaltyProgramId, Option<DateTime> endDate);
+        /// <param name="balances"></param>
+        partial void AfterExportLoyaltyBalances(ref bool suppressDefaultLog, IExportLoyaltyBalancesApiResponse apiResponseLocalVar, string loyaltyProgramId, Option<DateTime> endDate, Option<string> balances);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -26913,10 +26938,11 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="endDate"></param>
-        private void OnErrorExportLoyaltyBalancesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string loyaltyProgramId, Option<DateTime> endDate)
+        /// <param name="balances"></param>
+        private void OnErrorExportLoyaltyBalancesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string loyaltyProgramId, Option<DateTime> endDate, Option<string> balances)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorExportLoyaltyBalances(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, endDate);
+            OnErrorExportLoyaltyBalances(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, endDate, balances);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -26930,20 +26956,22 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="endDate"></param>
-        partial void OnErrorExportLoyaltyBalances(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string loyaltyProgramId, Option<DateTime> endDate);
+        /// <param name="balances"></param>
+        partial void OnErrorExportLoyaltyBalances(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string loyaltyProgramId, Option<DateTime> endDate, Option<string> balances);
 
         /// <summary>
         /// Export customer loyalty balances Download a CSV file containing the balance of each customer in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;loyaltySubledger&#x60;: The name of the subledger, when applicable. - &#x60;profileIntegrationID&#x60;: The integration ID of the customer profile. - &#x60;currentBalance&#x60;: The current point balance. - &#x60;pendingBalance&#x60;: The number of pending points. - &#x60;expiredBalance&#x60;: The number of expired points. - &#x60;spentBalance&#x60;: The number of spent points. - &#x60;currentTier&#x60;: The tier that the customer is in at the time of the export. 
         /// </summary>
         /// <param name="loyaltyProgramId">The identifier for the loyalty program.</param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. &gt; - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file, which shows the customer&#39;s tier at the time of export.  (optional)</param>
+        /// <param name="balances">Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyBalancesApiResponse"/>&gt;</returns>
-        public async Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesOrDefaultAsync(string loyaltyProgramId, Option<DateTime> endDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesOrDefaultAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ExportLoyaltyBalancesAsync(loyaltyProgramId, endDate, cancellationToken).ConfigureAwait(false);
+                return await ExportLoyaltyBalancesAsync(loyaltyProgramId, endDate, balances, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -26957,17 +26985,18 @@ namespace TalonOneSdk.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">The identifier for the loyalty program.</param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. &gt; - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file, which shows the customer&#39;s tier at the time of export.  (optional)</param>
+        /// <param name="balances">Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyBalancesApiResponse"/>&gt;</returns>
-        public async Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesAsync(string loyaltyProgramId, Option<DateTime> endDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateExportLoyaltyBalances(loyaltyProgramId);
+                ValidateExportLoyaltyBalances(loyaltyProgramId, balances);
 
-                FormatExportLoyaltyBalances(ref loyaltyProgramId, ref endDate);
+                FormatExportLoyaltyBalances(ref loyaltyProgramId, ref endDate, ref balances);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -26983,6 +27012,9 @@ namespace TalonOneSdk.Api
 
                     if (endDate.IsSet)
                         parseQueryStringLocalVar["endDate"] = ClientUtils.ParameterToString(endDate.Value);
+
+                    if (balances.IsSet)
+                        parseQueryStringLocalVar["balances"] = ClientUtils.ParameterToString(balances.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -27019,7 +27051,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterExportLoyaltyBalancesDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, endDate);
+                        AfterExportLoyaltyBalancesDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, endDate, balances);
 
                         Events.ExecuteOnExportLoyaltyBalances(apiResponseLocalVar);
 
@@ -27033,7 +27065,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorExportLoyaltyBalancesDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/export_customer_balances", uriBuilderLocalVar.Path, loyaltyProgramId, endDate);
+                OnErrorExportLoyaltyBalancesDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/export_customer_balances", uriBuilderLocalVar.Path, loyaltyProgramId, endDate, balances);
                 Events.ExecuteOnErrorExportLoyaltyBalances(e);
                 throw;
             }
@@ -27208,7 +27240,18 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatExportLoyaltyCardBalances(ref long loyaltyProgramId, ref Option<DateTime> endDate);
+        partial void FormatExportLoyaltyCardBalances(ref long loyaltyProgramId, ref Option<DateTime> endDate, ref Option<string> balances);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="balances"></param>
+        /// <returns></returns>
+        private void ValidateExportLoyaltyCardBalances(Option<string> balances)
+        {
+            if (balances.IsSet && balances.Value == null)
+                throw new ArgumentNullException(nameof(balances));
+        }
 
         /// <summary>
         /// Processes the server response
@@ -27216,10 +27259,11 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="endDate"></param>
-        private void AfterExportLoyaltyCardBalancesDefaultImplementation(IExportLoyaltyCardBalancesApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<DateTime> endDate)
+        /// <param name="balances"></param>
+        private void AfterExportLoyaltyCardBalancesDefaultImplementation(IExportLoyaltyCardBalancesApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<DateTime> endDate, Option<string> balances)
         {
             bool suppressDefaultLog = false;
-            AfterExportLoyaltyCardBalances(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, endDate);
+            AfterExportLoyaltyCardBalances(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, endDate, balances);
             if (!suppressDefaultLog)
                 Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -27231,7 +27275,8 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="endDate"></param>
-        partial void AfterExportLoyaltyCardBalances(ref bool suppressDefaultLog, IExportLoyaltyCardBalancesApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<DateTime> endDate);
+        /// <param name="balances"></param>
+        partial void AfterExportLoyaltyCardBalances(ref bool suppressDefaultLog, IExportLoyaltyCardBalancesApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<DateTime> endDate, Option<string> balances);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -27241,10 +27286,11 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="endDate"></param>
-        private void OnErrorExportLoyaltyCardBalancesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<DateTime> endDate)
+        /// <param name="balances"></param>
+        private void OnErrorExportLoyaltyCardBalancesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<DateTime> endDate, Option<string> balances)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorExportLoyaltyCardBalances(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, endDate);
+            OnErrorExportLoyaltyCardBalances(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, endDate, balances);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -27258,20 +27304,22 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="endDate"></param>
-        partial void OnErrorExportLoyaltyCardBalances(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<DateTime> endDate);
+        /// <param name="balances"></param>
+        partial void OnErrorExportLoyaltyCardBalances(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<DateTime> endDate, Option<string> balances);
 
         /// <summary>
         /// Export all card transaction logs Download a CSV file containing the balances of all cards in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following columns: - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;loyaltySubledger&#x60;: The name of the subdleger, when applicatble. - &#x60;cardIdentifier&#x60;: The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;cardState&#x60;:The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;currentBalance&#x60;: The current point balance. - &#x60;pendingBalance&#x60;: The number of pending points. - &#x60;expiredBalance&#x60;: The number of expired points. - &#x60;spentBalance&#x60;: The number of spent points. 
         /// </summary>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="balances">Filters which balance fields are included in the CSV export. By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  **Note:** - The &#x60;negativeBalance&#x60; value is not supported for card balance exports. - Providing an unsupported or invalid value returns a &#x60;400 Bad Request&#x60; error.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyCardBalancesApiResponse"/>&gt;</returns>
-        public async Task<IExportLoyaltyCardBalancesApiResponse> ExportLoyaltyCardBalancesOrDefaultAsync(long loyaltyProgramId, Option<DateTime> endDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IExportLoyaltyCardBalancesApiResponse> ExportLoyaltyCardBalancesOrDefaultAsync(long loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ExportLoyaltyCardBalancesAsync(loyaltyProgramId, endDate, cancellationToken).ConfigureAwait(false);
+                return await ExportLoyaltyCardBalancesAsync(loyaltyProgramId, endDate, balances, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -27285,15 +27333,18 @@ namespace TalonOneSdk.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="balances">Filters which balance fields are included in the CSV export. By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  **Note:** - The &#x60;negativeBalance&#x60; value is not supported for card balance exports. - Providing an unsupported or invalid value returns a &#x60;400 Bad Request&#x60; error.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyCardBalancesApiResponse"/>&gt;</returns>
-        public async Task<IExportLoyaltyCardBalancesApiResponse> ExportLoyaltyCardBalancesAsync(long loyaltyProgramId, Option<DateTime> endDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IExportLoyaltyCardBalancesApiResponse> ExportLoyaltyCardBalancesAsync(long loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatExportLoyaltyCardBalances(ref loyaltyProgramId, ref endDate);
+                ValidateExportLoyaltyCardBalances(balances);
+
+                FormatExportLoyaltyCardBalances(ref loyaltyProgramId, ref endDate, ref balances);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -27309,6 +27360,9 @@ namespace TalonOneSdk.Api
 
                     if (endDate.IsSet)
                         parseQueryStringLocalVar["endDate"] = ClientUtils.ParameterToString(endDate.Value);
+
+                    if (balances.IsSet)
+                        parseQueryStringLocalVar["balances"] = ClientUtils.ParameterToString(balances.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -27345,7 +27399,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterExportLoyaltyCardBalancesDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, endDate);
+                        AfterExportLoyaltyCardBalancesDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, endDate, balances);
 
                         Events.ExecuteOnExportLoyaltyCardBalances(apiResponseLocalVar);
 
@@ -27359,7 +27413,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorExportLoyaltyCardBalancesDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/export_card_balances", uriBuilderLocalVar.Path, loyaltyProgramId, endDate);
+                OnErrorExportLoyaltyCardBalancesDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/export_card_balances", uriBuilderLocalVar.Path, loyaltyProgramId, endDate, balances);
                 Events.ExecuteOnErrorExportLoyaltyCardBalances(e);
                 throw;
             }

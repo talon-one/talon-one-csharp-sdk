@@ -70,7 +70,7 @@ namespace TalonOneSdk.Model
         /// <value>Name of the user.</value>
         /* <example>John Doe</example> */
         [JsonPropertyName("name")]
-        public string Name { get { return this.NameOption; } set { this.NameOption = new Option<string>(value); } }
+        public string Name { get { return this.NameOption.Value; } set { this.NameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of IsAdmin
@@ -85,7 +85,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates whether the user is an &#x60;admin&#x60;.</value>
         /* <example>false</example> */
         [JsonPropertyName("isAdmin")]
-        public bool? IsAdmin { get { return this.IsAdminOption; } set { this.IsAdminOption = new Option<bool?>(value); } }
+        public bool? IsAdmin { get { return this.IsAdminOption.Value; } set { this.IsAdminOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of Roles
@@ -99,7 +99,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A list of the IDs of the roles assigned to the user.</value>
         [JsonPropertyName("roles")]
-        public List<long> Roles { get { return this.RolesOption; } set { this.RolesOption = new Option<List<long>>(value); } }
+        public List<long> Roles { get { return this.RolesOption.Value; } set { this.RolesOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of Acl
@@ -113,7 +113,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Indicates the access level of the user.</value>
         [JsonPropertyName("acl")]
-        public string Acl { get { return this.AclOption; } set { this.AclOption = new Option<string>(value); } }
+        public string Acl { get { return this.AclOption.Value; } set { this.AclOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

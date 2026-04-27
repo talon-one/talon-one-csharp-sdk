@@ -52,7 +52,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets IntegrationStates
         /// </summary>
         [JsonPropertyName("integrationStates")]
-        public List<CustomerProfileUpdateV2Response> IntegrationStates { get { return this.IntegrationStatesOption; } set { this.IntegrationStatesOption = new Option<List<CustomerProfileUpdateV2Response>>(value); } }
+        public List<CustomerProfileUpdateV2Response> IntegrationStates { get { return this.IntegrationStatesOption.Value; } set { this.IntegrationStatesOption = new Option<List<CustomerProfileUpdateV2Response>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -56,7 +56,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string Message { get { return this.MessageOption; } set { this.MessageOption = new Option<string>(value); } }
+        public string Message { get { return this.MessageOption.Value; } set { this.MessageOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Errors
@@ -70,7 +70,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>An array of individual problems encountered during the request.</value>
         [JsonPropertyName("errors")]
-        public List<APIError> Errors { get { return this.ErrorsOption; } set { this.ErrorsOption = new Option<List<APIError>>(value); } }
+        public List<APIError> Errors { get { return this.ErrorsOption.Value; } set { this.ErrorsOption = new Option<List<APIError>>(value); } }
 
         /// <summary>
         /// Used to track the state of StatusCode
@@ -84,7 +84,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The error code</value>
         [JsonPropertyName("StatusCode")]
-        public long? StatusCode { get { return this.StatusCodeOption; } set { this.StatusCodeOption = new Option<long?>(value); } }
+        public long? StatusCode { get { return this.StatusCodeOption.Value; } set { this.StatusCodeOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

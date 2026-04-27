@@ -148,7 +148,7 @@ namespace TalonOneSdk.Model
         /// <value>The coupon code.</value>
         /* <example>XMAS-20-2021</example> */
         [JsonPropertyName("value")]
-        public string Value { get { return this.ValueOption; } set { this.ValueOption = new Option<string>(value); } }
+        public string Value { get { return this.ValueOption.Value; } set { this.ValueOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of UsageLimit
@@ -163,7 +163,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply. </value>
         /* <example>100</example> */
         [JsonPropertyName("usageLimit")]
-        public long? UsageLimit { get { return this.UsageLimitOption; } set { this.UsageLimitOption = new Option<long?>(value); } }
+        public long? UsageLimit { get { return this.UsageLimitOption.Value; } set { this.UsageLimitOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of DiscountLimit
@@ -178,7 +178,7 @@ namespace TalonOneSdk.Model
         /// <value>The total discount value that the code can give. Typically used to represent a gift card value. </value>
         /* <example>30</example> */
         [JsonPropertyName("discountLimit")]
-        public decimal? DiscountLimit { get { return this.DiscountLimitOption; } set { this.DiscountLimitOption = new Option<decimal?>(value); } }
+        public decimal? DiscountLimit { get { return this.DiscountLimitOption.Value; } set { this.DiscountLimitOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of ReservationLimit
@@ -193,7 +193,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of reservations that can be made with this coupon code. </value>
         /* <example>45</example> */
         [JsonPropertyName("reservationLimit")]
-        public long? ReservationLimit { get { return this.ReservationLimitOption; } set { this.ReservationLimitOption = new Option<long?>(value); } }
+        public long? ReservationLimit { get { return this.ReservationLimitOption.Value; } set { this.ReservationLimitOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of StartDate
@@ -208,7 +208,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp at which point the coupon becomes valid.</value>
         /* <example>2020-01-24T14:15:22Z</example> */
         [JsonPropertyName("startDate")]
-        public DateTime? StartDate { get { return this.StartDateOption; } set { this.StartDateOption = new Option<DateTime?>(value); } }
+        public DateTime? StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiryDate
@@ -223,7 +223,7 @@ namespace TalonOneSdk.Model
         /// <value>Expiration date of the coupon. Coupon never expires if this is omitted.</value>
         /* <example>2023-08-24T14:15:22Z</example> */
         [JsonPropertyName("expiryDate")]
-        public DateTime? ExpiryDate { get { return this.ExpiryDateOption; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
+        public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of Limits
@@ -237,7 +237,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Limits configuration for a coupon. These limits will override the limits set from the campaign.  **Note:** Only usable when creating a single coupon which is not tied to a specific recipient. Only per-profile limits are allowed to be configured. </value>
         [JsonPropertyName("limits")]
-        public List<LimitConfig> Limits { get { return this.LimitsOption; } set { this.LimitsOption = new Option<List<LimitConfig>>(value); } }
+        public List<LimitConfig> Limits { get { return this.LimitsOption.Value; } set { this.LimitsOption = new Option<List<LimitConfig>>(value); } }
 
         /// <summary>
         /// Used to track the state of DiscountCounter
@@ -252,7 +252,7 @@ namespace TalonOneSdk.Model
         /// <value>The amount of discounts given on rules redeeming this coupon. Only usable if a coupon discount budget was set for this coupon.</value>
         /* <example>10</example> */
         [JsonPropertyName("discountCounter")]
-        public decimal? DiscountCounter { get { return this.DiscountCounterOption; } set { this.DiscountCounterOption = new Option<decimal?>(value); } }
+        public decimal? DiscountCounter { get { return this.DiscountCounterOption.Value; } set { this.DiscountCounterOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of DiscountRemainder
@@ -267,7 +267,7 @@ namespace TalonOneSdk.Model
         /// <value>The remaining discount this coupon can give.</value>
         /* <example>5</example> */
         [JsonPropertyName("discountRemainder")]
-        public decimal? DiscountRemainder { get { return this.DiscountRemainderOption; } set { this.DiscountRemainderOption = new Option<decimal?>(value); } }
+        public decimal? DiscountRemainder { get { return this.DiscountRemainderOption.Value; } set { this.DiscountRemainderOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of ReservationCounter
@@ -282,7 +282,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of times this coupon has been reserved.</value>
         /* <example>1</example> */
         [JsonPropertyName("reservationCounter")]
-        public decimal? ReservationCounter { get { return this.ReservationCounterOption; } set { this.ReservationCounterOption = new Option<decimal?>(value); } }
+        public decimal? ReservationCounter { get { return this.ReservationCounterOption.Value; } set { this.ReservationCounterOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -296,7 +296,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Custom attributes associated with this coupon.</value>
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of ReferralId
@@ -311,7 +311,7 @@ namespace TalonOneSdk.Model
         /// <value>The integration ID of the referring customer (if any) for whom this coupon was created as an effect.</value>
         /* <example>326632952</example> */
         [JsonPropertyName("referralId")]
-        public long? ReferralId { get { return this.ReferralIdOption; } set { this.ReferralIdOption = new Option<long?>(value); } }
+        public long? ReferralId { get { return this.ReferralIdOption.Value; } set { this.ReferralIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of RecipientIntegrationId
@@ -326,7 +326,7 @@ namespace TalonOneSdk.Model
         /// <value>The Integration ID of the customer that is allowed to redeem this coupon.</value>
         /* <example>URNGV8294NV</example> */
         [JsonPropertyName("recipientIntegrationId")]
-        public string RecipientIntegrationId { get { return this.RecipientIntegrationIdOption; } set { this.RecipientIntegrationIdOption = new Option<string>(value); } }
+        public string RecipientIntegrationId { get { return this.RecipientIntegrationIdOption.Value; } set { this.RecipientIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ImportId
@@ -341,7 +341,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the Import which created this coupon.</value>
         /* <example>4</example> */
         [JsonPropertyName("importId")]
-        public long? ImportId { get { return this.ImportIdOption; } set { this.ImportIdOption = new Option<long?>(value); } }
+        public long? ImportId { get { return this.ImportIdOption.Value; } set { this.ImportIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Reservation
@@ -356,7 +356,7 @@ namespace TalonOneSdk.Model
         /// <value>Defines the reservation type: - &#x60;true&#x60;: The coupon can be reserved for multiple customers. - &#x60;false&#x60;: The coupon can be reserved only for one customer. It is a personal code. </value>
         /* <example>false</example> */
         [JsonPropertyName("reservation")]
-        public bool? Reservation { get { return this.ReservationOption; } set { this.ReservationOption = new Option<bool?>(value); } }
+        public bool? Reservation { get { return this.ReservationOption.Value; } set { this.ReservationOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of BatchId
@@ -371,7 +371,7 @@ namespace TalonOneSdk.Model
         /// <value>The id of the batch the coupon belongs to.</value>
         /* <example>32535-43255</example> */
         [JsonPropertyName("batchId")]
-        public string BatchId { get { return this.BatchIdOption; } set { this.BatchIdOption = new Option<string>(value); } }
+        public string BatchId { get { return this.BatchIdOption.Value; } set { this.BatchIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of IsReservationMandatory
@@ -386,7 +386,7 @@ namespace TalonOneSdk.Model
         /// <value>An indication of whether the code can be redeemed only if it has been reserved first.</value>
         /* <example>false</example> */
         [JsonPropertyName("isReservationMandatory")]
-        public bool? IsReservationMandatory { get { return this.IsReservationMandatoryOption; } set { this.IsReservationMandatoryOption = new Option<bool?>(value); } }
+        public bool? IsReservationMandatory { get { return this.IsReservationMandatoryOption.Value; } set { this.IsReservationMandatoryOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of ImplicitlyReserved
@@ -401,7 +401,7 @@ namespace TalonOneSdk.Model
         /// <value>An indication of whether the coupon is implicitly reserved for all customers.</value>
         /* <example>false</example> */
         [JsonPropertyName("implicitlyReserved")]
-        public bool? ImplicitlyReserved { get { return this.ImplicitlyReservedOption; } set { this.ImplicitlyReservedOption = new Option<bool?>(value); } }
+        public bool? ImplicitlyReserved { get { return this.ImplicitlyReservedOption.Value; } set { this.ImplicitlyReservedOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -506,17 +506,17 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="InventoryCoupon" />

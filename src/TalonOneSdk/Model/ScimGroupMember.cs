@@ -56,7 +56,7 @@ namespace TalonOneSdk.Model
         /// <value>Unique identifier of the member.</value>
         /* <example>258</example> */
         [JsonPropertyName("value")]
-        public string Value { get { return this.ValueOption; } set { this.ValueOption = new Option<string>(value); } }
+        public string Value { get { return this.ValueOption.Value; } set { this.ValueOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Display
@@ -71,7 +71,7 @@ namespace TalonOneSdk.Model
         /// <value>Identifier of the user. This is usually an email address.</value>
         /* <example>john.doe@example.com</example> */
         [JsonPropertyName("display")]
-        public string Display { get { return this.DisplayOption; } set { this.DisplayOption = new Option<string>(value); } }
+        public string Display { get { return this.DisplayOption.Value; } set { this.DisplayOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

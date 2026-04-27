@@ -195,7 +195,7 @@ namespace TalonOneSdk.Model
         /// <value>Type of change that triggered the notification.</value>
         /* <example>Update</example> */
         [JsonPropertyName("changeType")]
-        public string ChangeType { get { return this.ChangeTypeOption; } set { this.ChangeTypeOption = new Option<string>(value); } }
+        public string ChangeType { get { return this.ChangeTypeOption.Value; } set { this.ChangeTypeOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of NotificationId
@@ -210,7 +210,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the notification.</value>
         /* <example>101</example> */
         [JsonPropertyName("notificationId")]
-        public long? NotificationId { get { return this.NotificationIdOption; } set { this.NotificationIdOption = new Option<long?>(value); } }
+        public long? NotificationId { get { return this.NotificationIdOption.Value; } set { this.NotificationIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of NotificationName
@@ -225,7 +225,7 @@ namespace TalonOneSdk.Model
         /// <value>The name of the notification.</value>
         /* <example>My campaign notification</example> */
         [JsonPropertyName("notificationName")]
-        public string NotificationName { get { return this.NotificationNameOption; } set { this.NotificationNameOption = new Option<string>(value); } }
+        public string NotificationName { get { return this.NotificationNameOption.Value; } set { this.NotificationNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of WebhookId
@@ -240,7 +240,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the webhook.</value>
         /* <example>101</example> */
         [JsonPropertyName("webhookId")]
-        public long? WebhookId { get { return this.WebhookIdOption; } set { this.WebhookIdOption = new Option<long?>(value); } }
+        public long? WebhookId { get { return this.WebhookIdOption.Value; } set { this.WebhookIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of WebhookName
@@ -255,7 +255,7 @@ namespace TalonOneSdk.Model
         /// <value>The name of the webhook.</value>
         /* <example>My webhook</example> */
         [JsonPropertyName("webhookName")]
-        public string WebhookName { get { return this.WebhookNameOption; } set { this.WebhookNameOption = new Option<string>(value); } }
+        public string WebhookName { get { return this.WebhookNameOption.Value; } set { this.WebhookNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Request
@@ -268,7 +268,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Request
         /// </summary>
         [JsonPropertyName("request")]
-        public MessageLogRequest Request { get { return this.RequestOption; } set { this.RequestOption = new Option<MessageLogRequest>(value); } }
+        public MessageLogRequest Request { get { return this.RequestOption.Value; } set { this.RequestOption = new Option<MessageLogRequest>(value); } }
 
         /// <summary>
         /// Used to track the state of Response
@@ -281,7 +281,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Response
         /// </summary>
         [JsonPropertyName("response")]
-        public MessageLogResponse Response { get { return this.ResponseOption; } set { this.ResponseOption = new Option<MessageLogResponse>(value); } }
+        public MessageLogResponse Response { get { return this.ResponseOption.Value; } set { this.ResponseOption = new Option<MessageLogResponse>(value); } }
 
         /// <summary>
         /// Used to track the state of Url
@@ -296,7 +296,7 @@ namespace TalonOneSdk.Model
         /// <value>The target URL of the request.</value>
         /* <example>www.my-company.com/my-endpoint-name</example> */
         [JsonPropertyName("url")]
-        public string Url { get { return this.UrlOption; } set { this.UrlOption = new Option<string>(value); } }
+        public string Url { get { return this.UrlOption.Value; } set { this.UrlOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ApplicationId
@@ -311,7 +311,7 @@ namespace TalonOneSdk.Model
         /// <value>Identifier of the Application.</value>
         /* <example>5</example> */
         [JsonPropertyName("applicationId")]
-        public long? ApplicationId { get { return this.ApplicationIdOption; } set { this.ApplicationIdOption = new Option<long?>(value); } }
+        public long? ApplicationId { get { return this.ApplicationIdOption.Value; } set { this.ApplicationIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of LoyaltyProgramId
@@ -326,7 +326,7 @@ namespace TalonOneSdk.Model
         /// <value>Identifier of the loyalty program.</value>
         /* <example>2</example> */
         [JsonPropertyName("loyaltyProgramId")]
-        public long? LoyaltyProgramId { get { return this.LoyaltyProgramIdOption; } set { this.LoyaltyProgramIdOption = new Option<long?>(value); } }
+        public long? LoyaltyProgramId { get { return this.LoyaltyProgramIdOption.Value; } set { this.LoyaltyProgramIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CampaignId
@@ -341,7 +341,7 @@ namespace TalonOneSdk.Model
         /// <value>Identifier of the campaign.</value>
         /* <example>2</example> */
         [JsonPropertyName("campaignId")]
-        public long? CampaignId { get { return this.CampaignIdOption; } set { this.CampaignIdOption = new Option<long?>(value); } }
+        public long? CampaignId { get { return this.CampaignIdOption.Value; } set { this.CampaignIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -407,7 +407,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="MessageLogEntry" />

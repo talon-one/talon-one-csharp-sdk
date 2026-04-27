@@ -88,7 +88,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply. </value>
         /* <example>100</example> */
         [JsonPropertyName("usageLimit")]
-        public long? UsageLimit { get { return this.UsageLimitOption; } set { this.UsageLimitOption = new Option<long?>(value); } }
+        public long? UsageLimit { get { return this.UsageLimitOption.Value; } set { this.UsageLimitOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of DiscountLimit
@@ -103,7 +103,7 @@ namespace TalonOneSdk.Model
         /// <value>The total discount value that the code can give. Typically used to represent a gift card value. </value>
         /* <example>30</example> */
         [JsonPropertyName("discountLimit")]
-        public decimal? DiscountLimit { get { return this.DiscountLimitOption; } set { this.DiscountLimitOption = new Option<decimal?>(value); } }
+        public decimal? DiscountLimit { get { return this.DiscountLimitOption.Value; } set { this.DiscountLimitOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of ReservationLimit
@@ -118,7 +118,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of reservations that can be made with this coupon code. </value>
         /* <example>45</example> */
         [JsonPropertyName("reservationLimit")]
-        public long? ReservationLimit { get { return this.ReservationLimitOption; } set { this.ReservationLimitOption = new Option<long?>(value); } }
+        public long? ReservationLimit { get { return this.ReservationLimitOption.Value; } set { this.ReservationLimitOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of StartDate
@@ -133,7 +133,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp at which point the coupon becomes valid.</value>
         /* <example>2020-01-24T14:15:22Z</example> */
         [JsonPropertyName("startDate")]
-        public DateTime? StartDate { get { return this.StartDateOption; } set { this.StartDateOption = new Option<DateTime?>(value); } }
+        public DateTime? StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiryDate
@@ -148,7 +148,7 @@ namespace TalonOneSdk.Model
         /// <value>Expiration date of the coupon. Coupon never expires if this is omitted.</value>
         /* <example>2023-08-24T14:15:22Z</example> */
         [JsonPropertyName("expiryDate")]
-        public DateTime? ExpiryDate { get { return this.ExpiryDateOption; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
+        public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of Limits
@@ -162,7 +162,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Limits configuration for a coupon. These limits will override the limits set from the campaign.  **Note:** Only usable when creating a single coupon which is not tied to a specific recipient. Only per-profile limits are allowed to be configured. </value>
         [JsonPropertyName("limits")]
-        public List<LimitConfig> Limits { get { return this.LimitsOption; } set { this.LimitsOption = new Option<List<LimitConfig>>(value); } }
+        public List<LimitConfig> Limits { get { return this.LimitsOption.Value; } set { this.LimitsOption = new Option<List<LimitConfig>>(value); } }
 
         /// <summary>
         /// Used to track the state of UniquePrefix
@@ -176,7 +176,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>**DEPRECATED** To create more than 20,000 coupons in one request, use [Create coupons asynchronously](https://docs.talon.one/management-api#tag/Coupons/operation/createCouponsAsync) endpoint. </value>
         [JsonPropertyName("uniquePrefix")]
-        public string UniquePrefix { get { return this.UniquePrefixOption; } set { this.UniquePrefixOption = new Option<string>(value); } }
+        public string UniquePrefix { get { return this.UniquePrefixOption.Value; } set { this.UniquePrefixOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -191,7 +191,7 @@ namespace TalonOneSdk.Model
         /// <value>Arbitrary properties associated with this item.</value>
         /* <example>{venueId&#x3D;12}</example> */
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of RecipientIntegrationId
@@ -206,7 +206,7 @@ namespace TalonOneSdk.Model
         /// <value>The integration ID for this coupon&#39;s beneficiary&#39;s profile.</value>
         /* <example>URNGV8294NV</example> */
         [JsonPropertyName("recipientIntegrationId")]
-        public string RecipientIntegrationId { get { return this.RecipientIntegrationIdOption; } set { this.RecipientIntegrationIdOption = new Option<string>(value); } }
+        public string RecipientIntegrationId { get { return this.RecipientIntegrationIdOption.Value; } set { this.RecipientIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ValidCharacters
@@ -221,7 +221,7 @@ namespace TalonOneSdk.Model
         /// <value>List of characters used to generate the random parts of a code. By default, the list of characters is equivalent to the &#x60;[A-Z, 0-9]&#x60; regular expression. </value>
         /* <example>[A, B, G, Y]</example> */
         [JsonPropertyName("validCharacters")]
-        public List<string> ValidCharacters { get { return this.ValidCharactersOption; } set { this.ValidCharactersOption = new Option<List<string>>(value); } }
+        public List<string> ValidCharacters { get { return this.ValidCharactersOption.Value; } set { this.ValidCharactersOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponPattern
@@ -236,7 +236,7 @@ namespace TalonOneSdk.Model
         /// <value>The pattern used to generate coupon codes. The character &#x60;#&#x60; is a placeholder and is replaced by a random character from the &#x60;validCharacters&#x60; set. </value>
         /* <example>SUMMER-#####</example> */
         [JsonPropertyName("couponPattern")]
-        public string CouponPattern { get { return this.CouponPatternOption; } set { this.CouponPatternOption = new Option<string>(value); } }
+        public string CouponPattern { get { return this.CouponPatternOption.Value; } set { this.CouponPatternOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of IsReservationMandatory
@@ -251,7 +251,7 @@ namespace TalonOneSdk.Model
         /// <value>An indication of whether the code can be redeemed only if it has been reserved first.</value>
         /* <example>false</example> */
         [JsonPropertyName("isReservationMandatory")]
-        public bool? IsReservationMandatory { get { return this.IsReservationMandatoryOption; } set { this.IsReservationMandatoryOption = new Option<bool?>(value); } }
+        public bool? IsReservationMandatory { get { return this.IsReservationMandatoryOption.Value; } set { this.IsReservationMandatoryOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of ImplicitlyReserved
@@ -266,7 +266,7 @@ namespace TalonOneSdk.Model
         /// <value>An indication of whether the coupon is implicitly reserved for all customers.</value>
         /* <example>false</example> */
         [JsonPropertyName("implicitlyReserved")]
-        public bool? ImplicitlyReserved { get { return this.ImplicitlyReservedOption; } set { this.ImplicitlyReservedOption = new Option<bool?>(value); } }
+        public bool? ImplicitlyReserved { get { return this.ImplicitlyReservedOption.Value; } set { this.ImplicitlyReservedOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -367,12 +367,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="NewCoupons" />

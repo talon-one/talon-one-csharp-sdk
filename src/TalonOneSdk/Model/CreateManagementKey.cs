@@ -83,7 +83,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of Application IDs that you can access with the management key. An empty or missing list means the management key can be used for all Applications in the account. </value>
         /* <example>[1, 2, 3]</example> */
         [JsonPropertyName("allowedApplicationIds")]
-        public List<long> AllowedApplicationIds { get { return this.AllowedApplicationIdsOption; } set { this.AllowedApplicationIdsOption = new Option<List<long>>(value); } }
+        public List<long> AllowedApplicationIds { get { return this.AllowedApplicationIdsOption.Value; } set { this.AllowedApplicationIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -120,7 +120,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CreateManagementKey" />

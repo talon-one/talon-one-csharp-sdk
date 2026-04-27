@@ -76,7 +76,7 @@ namespace TalonOneSdk.Model
         /// <value>The time this entity was last created.</value>
         /* <example>2021-09-22T12:24:14.956203Z</example> */
         [JsonPropertyName("created")]
-        public DateTime? Created { get { return this.CreatedOption; } set { this.CreatedOption = new Option<DateTime?>(value); } }
+        public DateTime? Created { get { return this.CreatedOption.Value; } set { this.CreatedOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of Modified
@@ -91,7 +91,7 @@ namespace TalonOneSdk.Model
         /// <value>The time this entity was last modified.</value>
         /* <example>2021-09-25T10:34:12.956203Z</example> */
         [JsonPropertyName("modified")]
-        public DateTime? Modified { get { return this.ModifiedOption; } set { this.ModifiedOption = new Option<DateTime?>(value); } }
+        public DateTime? Modified { get { return this.ModifiedOption.Value; } set { this.ModifiedOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -128,12 +128,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
-        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="FeatureFlag" />

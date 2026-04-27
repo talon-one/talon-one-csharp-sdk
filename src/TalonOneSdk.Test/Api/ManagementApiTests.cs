@@ -699,7 +699,8 @@ namespace TalonOneSdk.Test.Api
         {
             string loyaltyProgramId = default;
             Client.Option<DateTime> endDate = default;
-            var response = await _instance.ExportLoyaltyBalanceAsync(loyaltyProgramId, endDate);
+            Client.Option<string> balances = default;
+            var response = await _instance.ExportLoyaltyBalanceAsync(loyaltyProgramId, endDate, balances);
             var model = response.Ok();
             Assert.IsType<string>(model);
         }
@@ -712,7 +713,8 @@ namespace TalonOneSdk.Test.Api
         {
             string loyaltyProgramId = default;
             Client.Option<DateTime> endDate = default;
-            var response = await _instance.ExportLoyaltyBalancesAsync(loyaltyProgramId, endDate);
+            Client.Option<string> balances = default;
+            var response = await _instance.ExportLoyaltyBalancesAsync(loyaltyProgramId, endDate, balances);
             var model = response.Ok();
             Assert.IsType<string>(model);
         }
@@ -725,7 +727,8 @@ namespace TalonOneSdk.Test.Api
         {
             long loyaltyProgramId = default;
             Client.Option<DateTime> endDate = default;
-            var response = await _instance.ExportLoyaltyCardBalancesAsync(loyaltyProgramId, endDate);
+            Client.Option<string> balances = default;
+            var response = await _instance.ExportLoyaltyCardBalancesAsync(loyaltyProgramId, endDate, balances);
             var model = response.Ok();
             Assert.IsType<string>(model);
         }

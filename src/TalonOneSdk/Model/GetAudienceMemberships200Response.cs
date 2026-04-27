@@ -60,7 +60,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets HasMore
         /// </summary>
         [JsonPropertyName("hasMore")]
-        public bool? HasMore { get { return this.HasMoreOption; } set { this.HasMoreOption = new Option<bool?>(value); } }
+        public bool? HasMore { get { return this.HasMoreOption.Value; } set { this.HasMoreOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

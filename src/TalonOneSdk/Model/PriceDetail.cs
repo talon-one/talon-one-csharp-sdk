@@ -62,7 +62,7 @@ namespace TalonOneSdk.Model
         /// <value>The value of this price type.</value>
         /* <example>90</example> */
         [JsonPropertyName("price")]
-        public float? Price { get { return this.PriceOption; } set { this.PriceOption = new Option<float?>(value); } }
+        public float? Price { get { return this.PriceOption.Value; } set { this.PriceOption = new Option<float?>(value); } }
 
         /// <summary>
         /// Used to track the state of AdjustmentContextId
@@ -77,7 +77,7 @@ namespace TalonOneSdk.Model
         /// <value>The context identifier of the selected price adjustment.</value>
         /* <example>summer25</example> */
         [JsonPropertyName("adjustmentContextId")]
-        public string AdjustmentContextId { get { return this.AdjustmentContextIdOption; } set { this.AdjustmentContextIdOption = new Option<string>(value); } }
+        public string AdjustmentContextId { get { return this.AdjustmentContextIdOption.Value; } set { this.AdjustmentContextIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of AdjustmentReferenceId
@@ -92,7 +92,7 @@ namespace TalonOneSdk.Model
         /// <value>The reference identifier of the selected price adjustment for this SKU.</value>
         /* <example>68851723-e6fa-488f-ace9-112581e6c19b</example> */
         [JsonPropertyName("adjustmentReferenceId")]
-        public Guid? AdjustmentReferenceId { get { return this.AdjustmentReferenceIdOption; } set { this.AdjustmentReferenceIdOption = new Option<Guid?>(value); } }
+        public Guid? AdjustmentReferenceId { get { return this.AdjustmentReferenceIdOption.Value; } set { this.AdjustmentReferenceIdOption = new Option<Guid?>(value); } }
 
         /// <summary>
         /// Used to track the state of AdjustmentEffectiveFrom
@@ -107,7 +107,7 @@ namespace TalonOneSdk.Model
         /// <value>The date and time from which the price adjustment is effective.</value>
         /* <example>2025-05-25T00:00:00Z</example> */
         [JsonPropertyName("adjustmentEffectiveFrom")]
-        public DateTime? AdjustmentEffectiveFrom { get { return this.AdjustmentEffectiveFromOption; } set { this.AdjustmentEffectiveFromOption = new Option<DateTime?>(value); } }
+        public DateTime? AdjustmentEffectiveFrom { get { return this.AdjustmentEffectiveFromOption.Value; } set { this.AdjustmentEffectiveFromOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of AdjustmentEffectiveUntil
@@ -122,7 +122,7 @@ namespace TalonOneSdk.Model
         /// <value>The date and time until which the price adjustment is effective.</value>
         /* <example>2025-05-30T00:00:00Z</example> */
         [JsonPropertyName("adjustmentEffectiveUntil")]
-        public DateTime? AdjustmentEffectiveUntil { get { return this.AdjustmentEffectiveUntilOption; } set { this.AdjustmentEffectiveUntilOption = new Option<DateTime?>(value); } }
+        public DateTime? AdjustmentEffectiveUntil { get { return this.AdjustmentEffectiveUntilOption.Value; } set { this.AdjustmentEffectiveUntilOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -160,12 +160,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize AdjustmentEffectiveFrom
         /// </summary>
-        public static string AdjustmentEffectiveFromFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string AdjustmentEffectiveFromFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize AdjustmentEffectiveUntil
         /// </summary>
-        public static string AdjustmentEffectiveUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string AdjustmentEffectiveUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="PriceDetail" />

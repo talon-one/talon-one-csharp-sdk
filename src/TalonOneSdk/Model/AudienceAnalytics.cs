@@ -56,7 +56,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the audience.</value>
         /* <example>1</example> */
         [JsonPropertyName("audienceId")]
-        public long? AudienceId { get { return this.AudienceIdOption; } set { this.AudienceIdOption = new Option<long?>(value); } }
+        public long? AudienceId { get { return this.AudienceIdOption.Value; } set { this.AudienceIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of MembersCount
@@ -71,7 +71,7 @@ namespace TalonOneSdk.Model
         /// <value>The member count of the audience.</value>
         /* <example>1234</example> */
         [JsonPropertyName("membersCount")]
-        public long? MembersCount { get { return this.MembersCountOption; } set { this.MembersCountOption = new Option<long?>(value); } }
+        public long? MembersCount { get { return this.MembersCountOption.Value; } set { this.MembersCountOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

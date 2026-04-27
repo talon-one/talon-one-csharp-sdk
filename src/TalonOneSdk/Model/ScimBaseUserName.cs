@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// <value>The full name, including all middle names, titles, and suffixes as appropriate, formatted for display.</value>
         /* <example>Mr. John J Doe</example> */
         [JsonPropertyName("formatted")]
-        public string Formatted { get { return this.FormattedOption; } set { this.FormattedOption = new Option<string>(value); } }
+        public string Formatted { get { return this.FormattedOption.Value; } set { this.FormattedOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

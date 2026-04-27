@@ -145,7 +145,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The path specifying the attribute that should be updated.</value>
         [JsonPropertyName("path")]
-        public string Path { get { return this.PathOption; } set { this.PathOption = new Option<string>(value); } }
+        public string Path { get { return this.PathOption.Value; } set { this.PathOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Value
@@ -159,7 +159,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The value that should be updated. Required if &#x60;op&#x60; is &#x60;add&#x60; or &#x60;replace&#x60;.</value>
         [JsonPropertyName("value")]
-        public string Value { get { return this.ValueOption; } set { this.ValueOption = new Option<string>(value); } }
+        public string Value { get { return this.ValueOption.Value; } set { this.ValueOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

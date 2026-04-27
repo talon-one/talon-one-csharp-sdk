@@ -35,14 +35,16 @@ namespace TalonOneSdk.Model
         /// <param name="created">The time this entity was created.</param>
         /// <param name="name">The human-friendly display name for this audience.</param>
         /// <param name="status">Indicates whether the audience is new, updated or unmodified by the request. </param>
+        /// <param name="subscribedApplicationsIds">A list of the IDs of the Applications that are connected to this audience.</param>
         /// <param name="integrationId">The ID of this audience in the third-party integration.</param>
         [JsonConstructor]
-        public MultipleAudiencesItem(long id, DateTime created, string name, StatusEnum status, Option<string> integrationId = default)
+        public MultipleAudiencesItem(long id, DateTime created, string name, StatusEnum status, Option<List<long>> subscribedApplicationsIds = default, Option<string> integrationId = default)
         {
             Id = id;
             Created = created;
             Name = name;
             Status = status;
+            SubscribedApplicationsIdsOption = subscribedApplicationsIds;
             IntegrationIdOption = integrationId;
             OnCreated();
         }
@@ -163,6 +165,21 @@ namespace TalonOneSdk.Model
         public string Name { get; set; }
 
         /// <summary>
+        /// Used to track the state of SubscribedApplicationsIds
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<long>> SubscribedApplicationsIdsOption { get; private set; }
+
+        /// <summary>
+        /// A list of the IDs of the Applications that are connected to this audience.
+        /// </summary>
+        /// <value>A list of the IDs of the Applications that are connected to this audience.</value>
+        /* <example>[3, 13]</example> */
+        [JsonPropertyName("subscribedApplicationsIds")]
+        public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption.Value; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
+
+        /// <summary>
         /// Used to track the state of IntegrationId
         /// </summary>
         [JsonIgnore]
@@ -175,7 +192,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of this audience in the third-party integration.</value>
         /* <example>382370BKDB946</example> */
         [JsonPropertyName("integrationId")]
-        public string IntegrationId { get { return this.IntegrationIdOption; } set { this.IntegrationIdOption = new Option<string>(value); } }
+        public string IntegrationId { get { return this.IntegrationIdOption.Value; } set { this.IntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -189,6 +206,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  SubscribedApplicationsIds: ").Append(SubscribedApplicationsIds).Append("\n");
             sb.Append("  IntegrationId: ").Append(IntegrationId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -231,7 +249,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="MultipleAudiencesItem" />
@@ -254,6 +272,7 @@ namespace TalonOneSdk.Model
             Option<DateTime?> created = default;
             Option<string> name = default;
             Option<MultipleAudiencesItem.StatusEnum?> status = default;
+            Option<List<long>> subscribedApplicationsIds = default;
             Option<string> integrationId = default;
 
             while (utf8JsonReader.Read())
@@ -284,6 +303,9 @@ namespace TalonOneSdk.Model
                             string statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
                                 status = new Option<MultipleAudiencesItem.StatusEnum?>(MultipleAudiencesItem.StatusEnumFromStringOrDefault(statusRawValue));
+                            break;
+                        case "subscribedApplicationsIds":
+                            subscribedApplicationsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "integrationId":
                             integrationId = new Option<string>(utf8JsonReader.GetString());
@@ -318,7 +340,7 @@ namespace TalonOneSdk.Model
             if (status.IsSet && status.Value == null)
                 throw new ArgumentNullException(nameof(status), "Property is not nullable for class MultipleAudiencesItem.");
 
-            return new MultipleAudiencesItem(id.Value.Value, created.Value.Value, name.Value, status.Value.Value, integrationId);
+            return new MultipleAudiencesItem(id.Value.Value, created.Value.Value, name.Value, status.Value.Value, subscribedApplicationsIds, integrationId);
         }
 
         /// <summary>
@@ -356,6 +378,11 @@ namespace TalonOneSdk.Model
 
             var statusRawValue = MultipleAudiencesItem.StatusEnumToJsonValue(multipleAudiencesItem.Status);
             writer.WriteString("status", statusRawValue);
+            if (multipleAudiencesItem.SubscribedApplicationsIdsOption.IsSet)
+            {
+                writer.WritePropertyName("subscribedApplicationsIds");
+                JsonSerializer.Serialize(writer, multipleAudiencesItem.SubscribedApplicationsIds, jsonSerializerOptions);
+            }
             if (multipleAudiencesItem.IntegrationIdOption.IsSet)
                 writer.WriteString("integrationId", multipleAudiencesItem.IntegrationId);
         }

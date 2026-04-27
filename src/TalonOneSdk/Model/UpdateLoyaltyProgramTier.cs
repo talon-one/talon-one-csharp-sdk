@@ -66,7 +66,7 @@ namespace TalonOneSdk.Model
         /// <value>The name of the tier.</value>
         /* <example>Gold</example> */
         [JsonPropertyName("name")]
-        public string Name { get { return this.NameOption; } set { this.NameOption = new Option<string>(value); } }
+        public string Name { get { return this.NameOption.Value; } set { this.NameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of MinPoints
@@ -81,7 +81,7 @@ namespace TalonOneSdk.Model
         /// <value>The minimum amount of points required to enter the tier.</value>
         /* <example>300</example> */
         [JsonPropertyName("minPoints")]
-        public decimal? MinPoints { get { return this.MinPointsOption; } set { this.MinPointsOption = new Option<decimal?>(value); } }
+        public decimal? MinPoints { get { return this.MinPointsOption.Value; } set { this.MinPointsOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

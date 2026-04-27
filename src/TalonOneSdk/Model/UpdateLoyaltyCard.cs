@@ -64,7 +64,7 @@ namespace TalonOneSdk.Model
         /// <value>Reason for transferring and blocking the loyalty card. </value>
         /* <example>Current card lost. Customer needs a new card.</example> */
         [JsonPropertyName("blockReason")]
-        public string BlockReason { get { return this.BlockReasonOption; } set { this.BlockReasonOption = new Option<string>(value); } }
+        public string BlockReason { get { return this.BlockReasonOption.Value; } set { this.BlockReasonOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

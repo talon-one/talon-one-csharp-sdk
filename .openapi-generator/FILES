@@ -1,5 +1,7 @@
 .github/.example/.example.csproj
 .github/.example/Program.cs
+.github/ISSUE_TEMPLATE/bug_report.yml
+.github/ISSUE_TEMPLATE/config.yml
 .github/workflows/autorelease.yml
 .github/workflows/test.yml
 .gitignore
@@ -124,6 +126,7 @@ docs/models/CampaignDeletedNotificationItem.md
 docs/models/CampaignDetail.md
 docs/models/CampaignEditedNotification.md
 docs/models/CampaignEditedNotificationItem.md
+docs/models/CampaignEligibility.md
 docs/models/CampaignEntity.md
 docs/models/CampaignEvaluationGroup.md
 docs/models/CampaignEvaluationPosition.md
@@ -697,6 +700,7 @@ docs/models/UpdatePicklist.md
 docs/models/UpdatePriceType.md
 docs/models/UpdateReferral.md
 docs/models/UpdateReferralBatch.md
+docs/models/UpdateReward.md
 docs/models/UpdateRole.md
 docs/models/UpdateStore.md
 docs/models/UpdateUser.md
@@ -826,6 +830,7 @@ src/TalonOneSdk.Test/Model/CampaignDeletedNotificationTests.cs
 src/TalonOneSdk.Test/Model/CampaignDetailTests.cs
 src/TalonOneSdk.Test/Model/CampaignEditedNotificationItemTests.cs
 src/TalonOneSdk.Test/Model/CampaignEditedNotificationTests.cs
+src/TalonOneSdk.Test/Model/CampaignEligibilityTests.cs
 src/TalonOneSdk.Test/Model/CampaignEntityTests.cs
 src/TalonOneSdk.Test/Model/CampaignEvaluationGroupTests.cs
 src/TalonOneSdk.Test/Model/CampaignEvaluationPositionTests.cs
@@ -1400,6 +1405,7 @@ src/TalonOneSdk.Test/Model/UpdatePicklistTests.cs
 src/TalonOneSdk.Test/Model/UpdatePriceTypeTests.cs
 src/TalonOneSdk.Test/Model/UpdateReferralBatchTests.cs
 src/TalonOneSdk.Test/Model/UpdateReferralTests.cs
+src/TalonOneSdk.Test/Model/UpdateRewardTests.cs
 src/TalonOneSdk.Test/Model/UpdateRoleTests.cs
 src/TalonOneSdk.Test/Model/UpdateStoreTests.cs
 src/TalonOneSdk.Test/Model/UpdateUserTests.cs
@@ -1550,6 +1556,7 @@ src/TalonOneSdk/Model/CampaignDeletedNotificationItem.cs
 src/TalonOneSdk/Model/CampaignDetail.cs
 src/TalonOneSdk/Model/CampaignEditedNotification.cs
 src/TalonOneSdk/Model/CampaignEditedNotificationItem.cs
+src/TalonOneSdk/Model/CampaignEligibility.cs
 src/TalonOneSdk/Model/CampaignEntity.cs
 src/TalonOneSdk/Model/CampaignEvaluationGroup.cs
 src/TalonOneSdk/Model/CampaignEvaluationPosition.cs
@@ -2123,6 +2130,7 @@ src/TalonOneSdk/Model/UpdatePicklist.cs
 src/TalonOneSdk/Model/UpdatePriceType.cs
 src/TalonOneSdk/Model/UpdateReferral.cs
 src/TalonOneSdk/Model/UpdateReferralBatch.cs
+src/TalonOneSdk/Model/UpdateReward.cs
 src/TalonOneSdk/Model/UpdateRole.cs
 src/TalonOneSdk/Model/UpdateStore.cs
 src/TalonOneSdk/Model/UpdateUser.cs

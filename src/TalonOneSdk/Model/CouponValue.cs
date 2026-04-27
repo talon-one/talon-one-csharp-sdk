@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// <value>The coupon code.</value>
         /* <example>XMAS-20-2021</example> */
         [JsonPropertyName("value")]
-        public string Value { get { return this.ValueOption; } set { this.ValueOption = new Option<string>(value); } }
+        public string Value { get { return this.ValueOption.Value; } set { this.ValueOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

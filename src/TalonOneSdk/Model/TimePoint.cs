@@ -88,7 +88,7 @@ namespace TalonOneSdk.Model
         /// <value>The achievement ends and resets in this month.  **Note**: Only applicable if the period is set to &#x60;Y&#x60;. </value>
         /* <example>11</example> */
         [JsonPropertyName("month")]
-        public long? Month { get { return this.MonthOption; } set { this.MonthOption = new Option<long?>(value); } }
+        public long? Month { get { return this.MonthOption.Value; } set { this.MonthOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of DayOfMonth
@@ -103,7 +103,7 @@ namespace TalonOneSdk.Model
         /// <value>The achievement ends and resets on this day of the month.  **Note**: Only applicable if the period is set to &#x60;Y&#x60; or &#x60;M&#x60;. </value>
         /* <example>23</example> */
         [JsonPropertyName("dayOfMonth")]
-        public long? DayOfMonth { get { return this.DayOfMonthOption; } set { this.DayOfMonthOption = new Option<long?>(value); } }
+        public long? DayOfMonth { get { return this.DayOfMonthOption.Value; } set { this.DayOfMonthOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of DayOfWeek
@@ -117,7 +117,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The achievement ends and resets on this day of the week. &#x60;1&#x60; represents &#x60;Monday&#x60; and &#x60;7&#x60; represents &#x60;Sunday&#x60;.  **Note**: Only applicable if the period is set to &#x60;W&#x60;. </value>
         [JsonPropertyName("dayOfWeek")]
-        public long? DayOfWeek { get { return this.DayOfWeekOption; } set { this.DayOfWeekOption = new Option<long?>(value); } }
+        public long? DayOfWeek { get { return this.DayOfWeekOption.Value; } set { this.DayOfWeekOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

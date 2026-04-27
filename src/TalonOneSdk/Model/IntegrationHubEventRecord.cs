@@ -108,7 +108,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ProcessedAt
         /// </summary>
         [JsonPropertyName("ProcessedAt")]
-        public DateTime? ProcessedAt { get { return this.ProcessedAtOption; } set { this.ProcessedAtOption = new Option<DateTime?>(value); } }
+        public DateTime? ProcessedAt { get { return this.ProcessedAtOption.Value; } set { this.ProcessedAtOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -149,17 +149,17 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize PublishedAt
         /// </summary>
-        public static string PublishedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string PublishedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ProcessAfter
         /// </summary>
-        public static string ProcessAfterFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ProcessAfterFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ProcessedAt
         /// </summary>
-        public static string ProcessedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ProcessedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventRecord" />

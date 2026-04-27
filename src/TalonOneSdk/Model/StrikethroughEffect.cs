@@ -123,7 +123,7 @@ namespace TalonOneSdk.Model
         /// <value>The start of the time frame where the effect is active in UTC.</value>
         /* <example>2021-07-20T22:00:00Z</example> */
         [JsonPropertyName("startTime")]
-        public DateTime? StartTime { get { return this.StartTimeOption; } set { this.StartTimeOption = new Option<DateTime?>(value); } }
+        public DateTime? StartTime { get { return this.StartTimeOption.Value; } set { this.StartTimeOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of EndTime
@@ -138,7 +138,7 @@ namespace TalonOneSdk.Model
         /// <value>The end of the time frame where the effect is active in UTC.</value>
         /* <example>2021-10-01T02:00:00Z</example> */
         [JsonPropertyName("endTime")]
-        public DateTime? EndTime { get { return this.EndTimeOption; } set { this.EndTimeOption = new Option<DateTime?>(value); } }
+        public DateTime? EndTime { get { return this.EndTimeOption.Value; } set { this.EndTimeOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of SelectedPriceType
@@ -153,7 +153,7 @@ namespace TalonOneSdk.Model
         /// <value>The selected price type for this cart item (e.g. the price for members only).</value>
         /* <example>member</example> */
         [JsonPropertyName("selectedPriceType")]
-        public string SelectedPriceType { get { return this.SelectedPriceTypeOption; } set { this.SelectedPriceTypeOption = new Option<string>(value); } }
+        public string SelectedPriceType { get { return this.SelectedPriceTypeOption.Value; } set { this.SelectedPriceTypeOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of SelectedPrice
@@ -168,7 +168,7 @@ namespace TalonOneSdk.Model
         /// <value>The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</value>
         /* <example>100</example> */
         [JsonPropertyName("selectedPrice")]
-        public decimal? SelectedPrice { get { return this.SelectedPriceOption; } set { this.SelectedPriceOption = new Option<decimal?>(value); } }
+        public decimal? SelectedPrice { get { return this.SelectedPriceOption.Value; } set { this.SelectedPriceOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of AdjustmentReferenceId
@@ -183,7 +183,7 @@ namespace TalonOneSdk.Model
         /// <value>The reference identifier of the selected price adjustment for this cart item.</value>
         /* <example>68851723-e6fa-488f-ace9-112581e6c19b</example> */
         [JsonPropertyName("adjustmentReferenceId")]
-        public string AdjustmentReferenceId { get { return this.AdjustmentReferenceIdOption; } set { this.AdjustmentReferenceIdOption = new Option<string>(value); } }
+        public string AdjustmentReferenceId { get { return this.AdjustmentReferenceIdOption.Value; } set { this.AdjustmentReferenceIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Targets
@@ -197,7 +197,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A list of entities (e.g. audiences) targeted by this effect.</value>
         [JsonPropertyName("targets")]
-        public List<Object> Targets { get { return this.TargetsOption; } set { this.TargetsOption = new Option<List<Object>>(value); } }
+        public List<Object> Targets { get { return this.TargetsOption.Value; } set { this.TargetsOption = new Option<List<Object>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -242,12 +242,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize StartTime
         /// </summary>
-        public static string StartTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EndTime
         /// </summary>
-        public static string EndTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string EndTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="StrikethroughEffect" />

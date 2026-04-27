@@ -61,7 +61,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Name of the Application-related permission set for the given Application.</value>
         [JsonPropertyName("application")]
-        public string Application { get { return this.ApplicationOption; } set { this.ApplicationOption = new Option<string>(value); } }
+        public string Application { get { return this.ApplicationOption.Value; } set { this.ApplicationOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Campaign
@@ -75,7 +75,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Name of the campaign-related permission set for the given Application.</value>
         [JsonPropertyName("campaign")]
-        public string Campaign { get { return this.CampaignOption; } set { this.CampaignOption = new Option<string>(value); } }
+        public string Campaign { get { return this.CampaignOption.Value; } set { this.CampaignOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of DraftCampaign
@@ -89,7 +89,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Name of the draft campaign-related permission set for the given Application.</value>
         [JsonPropertyName("draftCampaign")]
-        public string DraftCampaign { get { return this.DraftCampaignOption; } set { this.DraftCampaignOption = new Option<string>(value); } }
+        public string DraftCampaign { get { return this.DraftCampaignOption.Value; } set { this.DraftCampaignOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Tools
@@ -104,7 +104,7 @@ namespace TalonOneSdk.Model
         /// <value>Name of the tools-related permission set.</value>
         /* <example>Tools permission set</example> */
         [JsonPropertyName("tools")]
-        public string Tools { get { return this.ToolsOption; } set { this.ToolsOption = new Option<string>(value); } }
+        public string Tools { get { return this.ToolsOption.Value; } set { this.ToolsOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Thresholds
@@ -118,7 +118,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Support user limits for actions that require admin approval within the given application.</value>
         [JsonPropertyName("thresholds")]
-        public RolesV2Thresholds Thresholds { get { return this.ThresholdsOption; } set { this.ThresholdsOption = new Option<RolesV2Thresholds>(value); } }
+        public RolesV2Thresholds Thresholds { get { return this.ThresholdsOption.Value; } set { this.ThresholdsOption = new Option<RolesV2Thresholds>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

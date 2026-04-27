@@ -52,7 +52,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
-        public List<IntegrationCustomerProfileAudienceRequestItem> Data { get { return this.DataOption; } set { this.DataOption = new Option<List<IntegrationCustomerProfileAudienceRequestItem>>(value); } }
+        public List<IntegrationCustomerProfileAudienceRequestItem> Data { get { return this.DataOption.Value; } set { this.DataOption = new Option<List<IntegrationCustomerProfileAudienceRequestItem>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -58,7 +58,7 @@ namespace TalonOneSdk.Model
         /// <value>The index of the cart item in the provided customer session&#39;s &#x60;cartItems&#x60; property.</value>
         /* <example>2</example> */
         [JsonPropertyName("position")]
-        public long? Position { get { return this.PositionOption; } set { this.PositionOption = new Option<long?>(value); } }
+        public long? Position { get { return this.PositionOption.Value; } set { this.PositionOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Quantity
@@ -73,7 +73,7 @@ namespace TalonOneSdk.Model
         /// <value>Number of cart items to return. </value>
         /* <example>1</example> */
         [JsonPropertyName("quantity")]
-        public long? Quantity { get { return this.QuantityOption; } set { this.QuantityOption = new Option<long?>(value); } }
+        public long? Quantity { get { return this.QuantityOption.Value; } set { this.QuantityOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Sku
@@ -88,7 +88,7 @@ namespace TalonOneSdk.Model
         /// <value>The SKU of the cart item in the provided customer session&#39;s &#x60;cartItems&#x60; property.</value>
         /* <example>SKU1241028</example> */
         [JsonPropertyName("sku")]
-        public string Sku { get { return this.SkuOption; } set { this.SkuOption = new Option<string>(value); } }
+        public string Sku { get { return this.SkuOption.Value; } set { this.SkuOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

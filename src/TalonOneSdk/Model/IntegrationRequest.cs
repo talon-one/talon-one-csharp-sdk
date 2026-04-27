@@ -96,7 +96,12 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum PreviousReturns for value: previousReturns
             /// </summary>
-            PreviousReturns = 10
+            PreviousReturns = 10,
+
+            /// <summary>
+            /// Enum CampaignEligibility for value: campaignEligibility
+            /// </summary>
+            CampaignEligibility = 11
         }
 
         /// <summary>
@@ -137,6 +142,9 @@ namespace TalonOneSdk.Model
             if (value.Equals("previousReturns"))
                 return ResponseContentEnum.PreviousReturns;
 
+            if (value.Equals("campaignEligibility"))
+                return ResponseContentEnum.CampaignEligibility;
+
             throw new NotImplementedException($"Could not convert value to type ResponseContentEnum: '{value}'");
         }
 
@@ -176,6 +184,9 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("previousReturns"))
                 return ResponseContentEnum.PreviousReturns;
+
+            if (value.Equals("campaignEligibility"))
+                return ResponseContentEnum.CampaignEligibility;
 
             return null;
         }
@@ -218,6 +229,9 @@ namespace TalonOneSdk.Model
             if (value == ResponseContentEnum.PreviousReturns)
                 return "previousReturns";
 
+            if (value == ResponseContentEnum.CampaignEligibility)
+                return "campaignEligibility";
+
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
 
@@ -241,7 +255,7 @@ namespace TalonOneSdk.Model
         /// <value>Extends the response with the chosen data entities. Use this property to get as much data as you need in one _Update customer session_ request instead of sending extra requests to other endpoints.  **Note:** To retrieve loyalty card details, your request must include a loyalty card ID. </value>
         /* <example>[customerSession, customerProfile]</example> */
         [JsonPropertyName("responseContent")]
-        public List<IntegrationRequest.ResponseContentEnum> ResponseContent { get { return this.ResponseContentOption; } set { this.ResponseContentOption = new Option<List<IntegrationRequest.ResponseContentEnum>>(value); } }
+        public List<IntegrationRequest.ResponseContentEnum> ResponseContent { get { return this.ResponseContentOption.Value; } set { this.ResponseContentOption = new Option<List<IntegrationRequest.ResponseContentEnum>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

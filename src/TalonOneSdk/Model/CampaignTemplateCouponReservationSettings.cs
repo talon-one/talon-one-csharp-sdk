@@ -56,7 +56,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of reservations that can be made with this coupon code. </value>
         /* <example>45</example> */
         [JsonPropertyName("reservationLimit")]
-        public long? ReservationLimit { get { return this.ReservationLimitOption; } set { this.ReservationLimitOption = new Option<long?>(value); } }
+        public long? ReservationLimit { get { return this.ReservationLimitOption.Value; } set { this.ReservationLimitOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of IsReservationMandatory
@@ -71,7 +71,7 @@ namespace TalonOneSdk.Model
         /// <value>An indication of whether the code can be redeemed only if it has been reserved first.</value>
         /* <example>false</example> */
         [JsonPropertyName("isReservationMandatory")]
-        public bool? IsReservationMandatory { get { return this.IsReservationMandatoryOption; } set { this.IsReservationMandatoryOption = new Option<bool?>(value); } }
+        public bool? IsReservationMandatory { get { return this.IsReservationMandatoryOption.Value; } set { this.IsReservationMandatoryOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

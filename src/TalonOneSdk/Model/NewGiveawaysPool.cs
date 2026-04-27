@@ -76,7 +76,7 @@ namespace TalonOneSdk.Model
         /// <value>The description of this giveaways pool.</value>
         /* <example>Generic pool</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of SubscribedApplicationsIds
@@ -91,7 +91,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of the IDs of the applications that this giveaways pool is enabled for.</value>
         /* <example>[2, 4]</example> */
         [JsonPropertyName("subscribedApplicationsIds")]
-        public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
+        public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption.Value; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

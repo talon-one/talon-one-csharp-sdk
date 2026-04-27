@@ -497,7 +497,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The name of the attribute that is displayed to the user in the Campaign Manager.</value>
         [JsonPropertyName("title")]
-        public string Title { get { return this.TitleOption; } set { this.TitleOption = new Option<string>(value); } }
+        public string Title { get { return this.TitleOption.Value; } set { this.TitleOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -511,7 +511,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A description of the attribute.</value>
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Indicates whether the attribute is visible in the UI or not.
@@ -532,7 +532,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Examples of values that can be assigned to the attribute.</value>
         [JsonPropertyName("exampleValue")]
-        public List<string> ExampleValue { get { return this.ExampleValueOption; } set { this.ExampleValueOption = new Option<List<string>>(value); } }
+        public List<string> ExampleValue { get { return this.ExampleValueOption.Value; } set { this.ExampleValueOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

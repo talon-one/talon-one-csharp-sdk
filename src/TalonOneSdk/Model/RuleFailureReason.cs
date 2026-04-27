@@ -115,7 +115,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the coupon that was being evaluated at the time of the rule failure.</value>
         /* <example>4928</example> */
         [JsonPropertyName("couponID")]
-        public long? CouponID { get { return this.CouponIDOption; } set { this.CouponIDOption = new Option<long?>(value); } }
+        public long? CouponID { get { return this.CouponIDOption.Value; } set { this.CouponIDOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponValue
@@ -129,7 +129,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The code of the coupon that was being evaluated at the time of the rule failure.</value>
         [JsonPropertyName("couponValue")]
-        public string CouponValue { get { return this.CouponValueOption; } set { this.CouponValueOption = new Option<string>(value); } }
+        public string CouponValue { get { return this.CouponValueOption.Value; } set { this.CouponValueOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ReferralID
@@ -143,7 +143,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The ID of the referral that was being evaluated at the time of the rule failure.</value>
         [JsonPropertyName("referralID")]
-        public long? ReferralID { get { return this.ReferralIDOption; } set { this.ReferralIDOption = new Option<long?>(value); } }
+        public long? ReferralID { get { return this.ReferralIDOption.Value; } set { this.ReferralIDOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ReferralValue
@@ -157,7 +157,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The code of the referral that was being evaluated at the time of the rule failure.</value>
         [JsonPropertyName("referralValue")]
-        public string ReferralValue { get { return this.ReferralValueOption; } set { this.ReferralValueOption = new Option<string>(value); } }
+        public string ReferralValue { get { return this.ReferralValueOption.Value; } set { this.ReferralValueOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ConditionIndex
@@ -171,7 +171,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The index of the condition that failed.</value>
         [JsonPropertyName("conditionIndex")]
-        public long? ConditionIndex { get { return this.ConditionIndexOption; } set { this.ConditionIndexOption = new Option<long?>(value); } }
+        public long? ConditionIndex { get { return this.ConditionIndexOption.Value; } set { this.ConditionIndexOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of EffectIndex
@@ -185,7 +185,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The index of the effect that failed.</value>
         [JsonPropertyName("effectIndex")]
-        public long? EffectIndex { get { return this.EffectIndexOption; } set { this.EffectIndexOption = new Option<long?>(value); } }
+        public long? EffectIndex { get { return this.EffectIndexOption.Value; } set { this.EffectIndexOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Details
@@ -199,7 +199,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>More details about the failure.</value>
         [JsonPropertyName("details")]
-        public string Details { get { return this.DetailsOption; } set { this.DetailsOption = new Option<string>(value); } }
+        public string Details { get { return this.DetailsOption.Value; } set { this.DetailsOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of EvaluationGroupID
@@ -214,7 +214,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</value>
         /* <example>3</example> */
         [JsonPropertyName("evaluationGroupID")]
-        public long? EvaluationGroupID { get { return this.EvaluationGroupIDOption; } set { this.EvaluationGroupIDOption = new Option<long?>(value); } }
+        public long? EvaluationGroupID { get { return this.EvaluationGroupIDOption.Value; } set { this.EvaluationGroupIDOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of EvaluationGroupMode
@@ -229,7 +229,7 @@ namespace TalonOneSdk.Model
         /// <value>The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-</value>
         /* <example>stackable</example> */
         [JsonPropertyName("evaluationGroupMode")]
-        public string EvaluationGroupMode { get { return this.EvaluationGroupModeOption; } set { this.EvaluationGroupModeOption = new Option<string>(value); } }
+        public string EvaluationGroupMode { get { return this.EvaluationGroupModeOption.Value; } set { this.EvaluationGroupModeOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

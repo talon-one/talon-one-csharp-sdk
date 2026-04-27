@@ -398,7 +398,7 @@ namespace TalonOneSdk.Model
         /// <value>A longer description of the application.</value>
         /* <example>A test Application</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -412,7 +412,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of Limits
@@ -426,7 +426,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Default limits for campaigns created in this application.</value>
         [JsonPropertyName("limits")]
-        public List<LimitConfig> Limits { get { return this.LimitsOption; } set { this.LimitsOption = new Option<List<LimitConfig>>(value); } }
+        public List<LimitConfig> Limits { get { return this.LimitsOption.Value; } set { this.LimitsOption = new Option<List<LimitConfig>>(value); } }
 
         /// <summary>
         /// Used to track the state of EnableCascadingDiscounts
@@ -441,7 +441,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates if discounts should cascade for this Application.</value>
         /* <example>true</example> */
         [JsonPropertyName("enableCascadingDiscounts")]
-        public bool? EnableCascadingDiscounts { get { return this.EnableCascadingDiscountsOption; } set { this.EnableCascadingDiscountsOption = new Option<bool?>(value); } }
+        public bool? EnableCascadingDiscounts { get { return this.EnableCascadingDiscountsOption.Value; } set { this.EnableCascadingDiscountsOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of EnableFlattenedCartItems
@@ -456,7 +456,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates if cart items of quantity larger than one should be separated into different items of quantity one. </value>
         /* <example>true</example> */
         [JsonPropertyName("enableFlattenedCartItems")]
-        public bool? EnableFlattenedCartItems { get { return this.EnableFlattenedCartItemsOption; } set { this.EnableFlattenedCartItemsOption = new Option<bool?>(value); } }
+        public bool? EnableFlattenedCartItems { get { return this.EnableFlattenedCartItemsOption.Value; } set { this.EnableFlattenedCartItemsOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of AttributesSettings
@@ -469,7 +469,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets AttributesSettings
         /// </summary>
         [JsonPropertyName("attributesSettings")]
-        public AttributesSettings AttributesSettings { get { return this.AttributesSettingsOption; } set { this.AttributesSettingsOption = new Option<AttributesSettings>(value); } }
+        public AttributesSettings AttributesSettings { get { return this.AttributesSettingsOption.Value; } set { this.AttributesSettingsOption = new Option<AttributesSettings>(value); } }
 
         /// <summary>
         /// Used to track the state of Sandbox
@@ -484,7 +484,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates if this is a live or sandbox Application.</value>
         /* <example>true</example> */
         [JsonPropertyName("sandbox")]
-        public bool? Sandbox { get { return this.SandboxOption; } set { this.SandboxOption = new Option<bool?>(value); } }
+        public bool? Sandbox { get { return this.SandboxOption.Value; } set { this.SandboxOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of EnablePartialDiscounts
@@ -499,7 +499,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates if this Application supports partial discounts.</value>
         /* <example>false</example> */
         [JsonPropertyName("enablePartialDiscounts")]
-        public bool? EnablePartialDiscounts { get { return this.EnablePartialDiscountsOption; } set { this.EnablePartialDiscountsOption = new Option<bool?>(value); } }
+        public bool? EnablePartialDiscounts { get { return this.EnablePartialDiscountsOption.Value; } set { this.EnablePartialDiscountsOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of DefaultEvaluationGroupId
@@ -514,7 +514,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the default campaign evaluation group to which new campaigns will be added unless a different group is selected when creating the campaign.</value>
         /* <example>3</example> */
         [JsonPropertyName("defaultEvaluationGroupId")]
-        public long? DefaultEvaluationGroupId { get { return this.DefaultEvaluationGroupIdOption; } set { this.DefaultEvaluationGroupIdOption = new Option<long?>(value); } }
+        public long? DefaultEvaluationGroupId { get { return this.DefaultEvaluationGroupIdOption.Value; } set { this.DefaultEvaluationGroupIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of DefaultCartItemFilterId
@@ -529,7 +529,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the default Cart-Item-Filter for this application.</value>
         /* <example>3</example> */
         [JsonPropertyName("defaultCartItemFilterId")]
-        public long? DefaultCartItemFilterId { get { return this.DefaultCartItemFilterIdOption; } set { this.DefaultCartItemFilterIdOption = new Option<long?>(value); } }
+        public long? DefaultCartItemFilterId { get { return this.DefaultCartItemFilterIdOption.Value; } set { this.DefaultCartItemFilterIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of EnableCampaignStateManagement
@@ -544,7 +544,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates whether the campaign staging and revisions feature is enabled for the Application.  **Important:** After this feature is enabled, it cannot be disabled. </value>
         /* <example>false</example> */
         [JsonPropertyName("enableCampaignStateManagement")]
-        public bool? EnableCampaignStateManagement { get { return this.EnableCampaignStateManagementOption; } set { this.EnableCampaignStateManagementOption = new Option<bool?>(value); } }
+        public bool? EnableCampaignStateManagement { get { return this.EnableCampaignStateManagementOption.Value; } set { this.EnableCampaignStateManagementOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

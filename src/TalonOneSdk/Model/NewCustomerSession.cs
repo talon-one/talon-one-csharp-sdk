@@ -178,7 +178,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </value>
         /* <example>URNGV8294NV</example> */
         [JsonPropertyName("profileId")]
-        public string ProfileId { get { return this.ProfileIdOption; } set { this.ProfileIdOption = new Option<string>(value); } }
+        public string ProfileId { get { return this.ProfileIdOption.Value; } set { this.ProfileIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Coupon
@@ -193,7 +193,7 @@ namespace TalonOneSdk.Model
         /// <value>Any coupon code entered.</value>
         /* <example>XMAS-2021</example> */
         [JsonPropertyName("coupon")]
-        public string Coupon { get { return this.CouponOption; } set { this.CouponOption = new Option<string>(value); } }
+        public string Coupon { get { return this.CouponOption.Value; } set { this.CouponOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Referral
@@ -208,7 +208,7 @@ namespace TalonOneSdk.Model
         /// <value>Any referral code entered.</value>
         /* <example>2740-tbjua-6720</example> */
         [JsonPropertyName("referral")]
-        public string Referral { get { return this.ReferralOption; } set { this.ReferralOption = new Option<string>(value); } }
+        public string Referral { get { return this.ReferralOption.Value; } set { this.ReferralOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of CartItems
@@ -222,7 +222,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Serialized JSON representation.</value>
         [JsonPropertyName("cartItems")]
-        public List<CartItem> CartItems { get { return this.CartItemsOption; } set { this.CartItemsOption = new Option<List<CartItem>>(value); } }
+        public List<CartItem> CartItems { get { return this.CartItemsOption.Value; } set { this.CartItemsOption = new Option<List<CartItem>>(value); } }
 
         /// <summary>
         /// Used to track the state of Identifiers
@@ -237,7 +237,7 @@ namespace TalonOneSdk.Model
         /// <value>Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts. See the [tutorial](https://docs.talon.one/docs/dev/tutorials/using-identifiers). </value>
         /* <example>[91.11.156.141]</example> */
         [JsonPropertyName("identifiers")]
-        public List<string> Identifiers { get { return this.IdentifiersOption; } set { this.IdentifiersOption = new Option<List<string>>(value); } }
+        public List<string> Identifiers { get { return this.IdentifiersOption.Value; } set { this.IdentifiersOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of Total
@@ -251,7 +251,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The total sum of the cart in one session.</value>
         [JsonPropertyName("total")]
-        public decimal? Total { get { return this.TotalOption; } set { this.TotalOption = new Option<decimal?>(value); } }
+        public decimal? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -265,7 +265,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings. </value>
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -77,7 +77,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The index of the condition that caused the rejection of the coupon.</value>
         [JsonPropertyName("conditionIndex")]
-        public long? ConditionIndex { get { return this.ConditionIndexOption; } set { this.ConditionIndexOption = new Option<long?>(value); } }
+        public long? ConditionIndex { get { return this.ConditionIndexOption.Value; } set { this.ConditionIndexOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of EffectIndex
@@ -91,7 +91,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The index of the effect that caused the rejection of the coupon.</value>
         [JsonPropertyName("effectIndex")]
-        public long? EffectIndex { get { return this.EffectIndexOption; } set { this.EffectIndexOption = new Option<long?>(value); } }
+        public long? EffectIndex { get { return this.EffectIndexOption.Value; } set { this.EffectIndexOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Details
@@ -105,7 +105,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>More details about the failure.</value>
         [JsonPropertyName("details")]
-        public string Details { get { return this.DetailsOption; } set { this.DetailsOption = new Option<string>(value); } }
+        public string Details { get { return this.DetailsOption.Value; } set { this.DetailsOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of CampaignExclusionReason
@@ -120,7 +120,7 @@ namespace TalonOneSdk.Model
         /// <value>The reason why the campaign was not applied.</value>
         /* <example>CampaignGaveLowerDiscount</example> */
         [JsonPropertyName("campaignExclusionReason")]
-        public string CampaignExclusionReason { get { return this.CampaignExclusionReasonOption; } set { this.CampaignExclusionReasonOption = new Option<string>(value); } }
+        public string CampaignExclusionReason { get { return this.CampaignExclusionReasonOption.Value; } set { this.CampaignExclusionReasonOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

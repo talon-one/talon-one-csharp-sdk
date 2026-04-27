@@ -419,7 +419,7 @@ namespace TalonOneSdk.Model
         /// <value>A detailed description of the campaign.</value>
         /* <example>Campaign for all summer 2021 promotions</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of StartTime
@@ -434,7 +434,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp when the campaign will become active.</value>
         /* <example>2021-07-20T22:00:00Z</example> */
         [JsonPropertyName("startTime")]
-        public DateTime? StartTime { get { return this.StartTimeOption; } set { this.StartTimeOption = new Option<DateTime?>(value); } }
+        public DateTime? StartTime { get { return this.StartTimeOption.Value; } set { this.StartTimeOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of EndTime
@@ -449,7 +449,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp when the campaign will become inactive.</value>
         /* <example>2021-10-01T02:00:00Z</example> */
         [JsonPropertyName("endTime")]
-        public DateTime? EndTime { get { return this.EndTimeOption; } set { this.EndTimeOption = new Option<DateTime?>(value); } }
+        public DateTime? EndTime { get { return this.EndTimeOption.Value; } set { this.EndTimeOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -464,7 +464,7 @@ namespace TalonOneSdk.Model
         /// <value>Arbitrary properties associated with this campaign.</value>
         /* <example>{myattribute&#x3D;20}</example> */
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of ActiveRulesetId
@@ -479,7 +479,7 @@ namespace TalonOneSdk.Model
         /// <value>[ID of Ruleset](https://docs.talon.one/management-api#tag/Campaigns/operation/getRulesets) this campaign applies on customer session evaluation. </value>
         /* <example>2</example> */
         [JsonPropertyName("activeRulesetId")]
-        public long? ActiveRulesetId { get { return this.ActiveRulesetIdOption; } set { this.ActiveRulesetIdOption = new Option<long?>(value); } }
+        public long? ActiveRulesetId { get { return this.ActiveRulesetIdOption.Value; } set { this.ActiveRulesetIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ReevaluateOnReturn
@@ -494,7 +494,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates whether this campaign should be reevaluated when a customer returns an item.</value>
         /* <example>true</example> */
         [JsonPropertyName("reevaluateOnReturn")]
-        public bool? ReevaluateOnReturn { get { return this.ReevaluateOnReturnOption; } set { this.ReevaluateOnReturnOption = new Option<bool?>(value); } }
+        public bool? ReevaluateOnReturn { get { return this.ReevaluateOnReturnOption.Value; } set { this.ReevaluateOnReturnOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponSettings
@@ -507,7 +507,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets CouponSettings
         /// </summary>
         [JsonPropertyName("couponSettings")]
-        public CodeGeneratorSettings CouponSettings { get { return this.CouponSettingsOption; } set { this.CouponSettingsOption = new Option<CodeGeneratorSettings>(value); } }
+        public CodeGeneratorSettings CouponSettings { get { return this.CouponSettingsOption.Value; } set { this.CouponSettingsOption = new Option<CodeGeneratorSettings>(value); } }
 
         /// <summary>
         /// Used to track the state of ReferralSettings
@@ -520,7 +520,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ReferralSettings
         /// </summary>
         [JsonPropertyName("referralSettings")]
-        public CodeGeneratorSettings ReferralSettings { get { return this.ReferralSettingsOption; } set { this.ReferralSettingsOption = new Option<CodeGeneratorSettings>(value); } }
+        public CodeGeneratorSettings ReferralSettings { get { return this.ReferralSettingsOption.Value; } set { this.ReferralSettingsOption = new Option<CodeGeneratorSettings>(value); } }
 
         /// <summary>
         /// Used to track the state of CampaignGroups
@@ -535,7 +535,7 @@ namespace TalonOneSdk.Model
         /// <value>The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/account-settings/managing-campaign-groups) this campaign belongs to. </value>
         /* <example>[1, 3]</example> */
         [JsonPropertyName("campaignGroups")]
-        public List<long> CampaignGroups { get { return this.CampaignGroupsOption; } set { this.CampaignGroupsOption = new Option<List<long>>(value); } }
+        public List<long> CampaignGroups { get { return this.CampaignGroupsOption.Value; } set { this.CampaignGroupsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of EvaluationGroupId
@@ -550,7 +550,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the campaign evaluation group the campaign belongs to.</value>
         /* <example>2</example> */
         [JsonPropertyName("evaluationGroupId")]
-        public long? EvaluationGroupId { get { return this.EvaluationGroupIdOption; } set { this.EvaluationGroupIdOption = new Option<long?>(value); } }
+        public long? EvaluationGroupId { get { return this.EvaluationGroupIdOption.Value; } set { this.EvaluationGroupIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of LinkedStoreIds
@@ -565,7 +565,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of store IDs that you want to link to the campaign.  &gt; [!note] **Note** &gt; - Campaigns with linked store IDs will only be evaluated when there is a &gt;   [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) &gt;   that references a linked store. &gt; - If you linked stores to the campaign by uploading a CSV file, you cannot use this property and it should be empty. &gt; - Use of this property is limited to 50 stores. To link more than 50 stores, upload them via a CSV file. </value>
         /* <example>[1, 2, 3]</example> */
         [JsonPropertyName("linkedStoreIds")]
-        public List<long> LinkedStoreIds { get { return this.LinkedStoreIdsOption; } set { this.LinkedStoreIdsOption = new Option<List<long>>(value); } }
+        public List<long> LinkedStoreIds { get { return this.LinkedStoreIdsOption.Value; } set { this.LinkedStoreIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponAttributes
@@ -579,7 +579,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Arbitrary properties associated with coupons in this campaign.</value>
         [JsonPropertyName("couponAttributes")]
-        public Object CouponAttributes { get { return this.CouponAttributesOption; } set { this.CouponAttributesOption = new Option<Object>(value); } }
+        public Object CouponAttributes { get { return this.CouponAttributesOption.Value; } set { this.CouponAttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -636,12 +636,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize StartTime
         /// </summary>
-        public static string StartTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EndTime
         /// </summary>
-        public static string EndTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string EndTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="UpdateCampaign" />

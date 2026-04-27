@@ -304,7 +304,7 @@ namespace TalonOneSdk.Model
         /// <value>The relative duration after which the achievement ends and resets for a particular customer profile.  **Note**: The &#x60;period&#x60; does not start when the achievement is created.  The period is a **positive real number** followed by one letter indicating the time unit.  Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.  Available units:  - &#x60;s&#x60;: seconds - &#x60;m&#x60;: minutes - &#x60;h&#x60;: hours - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  You can also round certain units down to the beginning of period and up to the end of period.: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. Example: &#x60;30D_D&#x60; - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year. Example: &#x60;23W_U&#x60;  **Note**: You can either use the round down and round up option or set an absolute period. </value>
         /* <example>1Y</example> */
         [JsonPropertyName("period")]
-        public string Period { get { return this.PeriodOption; } set { this.PeriodOption = new Option<string>(value); } }
+        public string Period { get { return this.PeriodOption.Value; } set { this.PeriodOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of FixedStartDate
@@ -319,7 +319,7 @@ namespace TalonOneSdk.Model
         /// <value>The achievement&#39;s start date when &#x60;activationPolicy&#x60; is set to &#x60;fixed_schedule&#x60;.  **Note:** It must be an RFC3339 timestamp string. </value>
         /* <example>2024-01-15T15:04:05+07:00</example> */
         [JsonPropertyName("fixedStartDate")]
-        public DateTime? FixedStartDate { get { return this.FixedStartDateOption; } set { this.FixedStartDateOption = new Option<DateTime?>(value); } }
+        public DateTime? FixedStartDate { get { return this.FixedStartDateOption.Value; } set { this.FixedStartDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of EndDate
@@ -334,7 +334,7 @@ namespace TalonOneSdk.Model
         /// <value>The achievement&#39;s end date. If defined, customers cannot participate in the achievement after this date.  **Note:** It must be an RFC3339 timestamp string. </value>
         /* <example>2024-01-15T15:04:05+07:00</example> */
         [JsonPropertyName("endDate")]
-        public DateTime? EndDate { get { return this.EndDateOption; } set { this.EndDateOption = new Option<DateTime?>(value); } }
+        public DateTime? EndDate { get { return this.EndDateOption.Value; } set { this.EndDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of AllowRollbackAfterCompletion
@@ -349,7 +349,7 @@ namespace TalonOneSdk.Model
         /// <value>When &#x60;true&#x60;, customer progress can be rolled back in completed achievements.</value>
         /* <example>false</example> */
         [JsonPropertyName("allowRollbackAfterCompletion")]
-        public bool? AllowRollbackAfterCompletion { get { return this.AllowRollbackAfterCompletionOption; } set { this.AllowRollbackAfterCompletionOption = new Option<bool?>(value); } }
+        public bool? AllowRollbackAfterCompletion { get { return this.AllowRollbackAfterCompletionOption.Value; } set { this.AllowRollbackAfterCompletionOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of SubscribedApplications
@@ -364,7 +364,7 @@ namespace TalonOneSdk.Model
         /// <value>A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement.</value>
         /* <example>[132, 97]</example> */
         [JsonPropertyName("subscribedApplications")]
-        public List<long> SubscribedApplications { get { return this.SubscribedApplicationsOption; } set { this.SubscribedApplicationsOption = new Option<List<long>>(value); } }
+        public List<long> SubscribedApplications { get { return this.SubscribedApplicationsOption.Value; } set { this.SubscribedApplicationsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -438,12 +438,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize FixedStartDate
         /// </summary>
-        public static string FixedStartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string FixedStartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EndDate
         /// </summary>
-        public static string EndDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string EndDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CreateAchievementV2" />

@@ -72,7 +72,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The previous campaign evaluation tree.</value>
         [JsonPropertyName("oldEvaluationTree")]
-        public CampaignSet OldEvaluationTree { get { return this.OldEvaluationTreeOption; } set { this.OldEvaluationTreeOption = new Option<CampaignSet>(value); } }
+        public CampaignSet OldEvaluationTree { get { return this.OldEvaluationTreeOption.Value; } set { this.OldEvaluationTreeOption = new Option<CampaignSet>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

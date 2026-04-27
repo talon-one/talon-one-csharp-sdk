@@ -74,7 +74,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /* <example>2021-07-20T22:00:00Z</example> */
         [JsonPropertyName("created")]
-        public DateTime? Created { get { return this.CreatedOption; } set { this.CreatedOption = new Option<DateTime?>(value); } }
+        public DateTime? Created { get { return this.CreatedOption.Value; } set { this.CreatedOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedBy
@@ -89,7 +89,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the user who created the value map.</value>
         /* <example>216</example> */
         [JsonPropertyName("createdBy")]
-        public long? CreatedBy { get { return this.CreatedByOption; } set { this.CreatedByOption = new Option<long?>(value); } }
+        public long? CreatedBy { get { return this.CreatedByOption.Value; } set { this.CreatedByOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -126,7 +126,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ValueMap" />

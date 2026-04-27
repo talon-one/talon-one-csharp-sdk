@@ -57,7 +57,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The maximum number of individual operations that can be included in a single bulk request.</value>
         [JsonPropertyName("maxOperations")]
-        public long? MaxOperations { get { return this.MaxOperationsOption; } set { this.MaxOperationsOption = new Option<long?>(value); } }
+        public long? MaxOperations { get { return this.MaxOperationsOption.Value; } set { this.MaxOperationsOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of MaxPayloadSize
@@ -71,7 +71,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The maximum size, in bytes, of the entire payload for a bulk operation request.</value>
         [JsonPropertyName("maxPayloadSize")]
-        public long? MaxPayloadSize { get { return this.MaxPayloadSizeOption; } set { this.MaxPayloadSizeOption = new Option<long?>(value); } }
+        public long? MaxPayloadSize { get { return this.MaxPayloadSizeOption.Value; } set { this.MaxPayloadSizeOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Supported
@@ -85,7 +85,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Indicates whether the SCIM service provider supports bulk operations.</value>
         [JsonPropertyName("supported")]
-        public bool? Supported { get { return this.SupportedOption; } set { this.SupportedOption = new Option<bool?>(value); } }
+        public bool? Supported { get { return this.SupportedOption.Value; } set { this.SupportedOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

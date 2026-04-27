@@ -152,7 +152,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Time
         /// </summary>
-        public static string TimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string TimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AccessLogEntry" />

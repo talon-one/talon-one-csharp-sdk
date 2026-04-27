@@ -154,7 +154,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of coupon codes that were already deleted for this request.</value>
         /* <example>1000000</example> */
         [JsonPropertyName("deletedAmount")]
-        public long? DeletedAmount { get { return this.DeletedAmountOption; } set { this.DeletedAmountOption = new Option<long?>(value); } }
+        public long? DeletedAmount { get { return this.DeletedAmountOption.Value; } set { this.DeletedAmountOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CampaignIDs
@@ -167,7 +167,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets CampaignIDs
         /// </summary>
         [JsonPropertyName("campaignIDs")]
-        public List<long> CampaignIDs { get { return this.CampaignIDsOption; } set { this.CampaignIDsOption = new Option<List<long>>(value); } }
+        public List<long> CampaignIDs { get { return this.CampaignIDsOption.Value; } set { this.CampaignIDsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -212,7 +212,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CouponDeletionJob" />

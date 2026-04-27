@@ -66,7 +66,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of points the customer needs to stay in the current tier.  **Note**: This is included in the response when the customer is projected to be downgraded. </value>
         /* <example>2</example> */
         [JsonPropertyName("stayInTierPoints")]
-        public decimal? StayInTierPoints { get { return this.StayInTierPointsOption; } set { this.StayInTierPointsOption = new Option<decimal?>(value); } }
+        public decimal? StayInTierPoints { get { return this.StayInTierPointsOption.Value; } set { this.StayInTierPointsOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectedTierName
@@ -81,7 +81,7 @@ namespace TalonOneSdk.Model
         /// <value>The name of the tier the user will enter once their current tier expires.</value>
         /* <example>Tier 1</example> */
         [JsonPropertyName("projectedTierName")]
-        public string ProjectedTierName { get { return this.ProjectedTierNameOption; } set { this.ProjectedTierNameOption = new Option<string>(value); } }
+        public string ProjectedTierName { get { return this.ProjectedTierNameOption.Value; } set { this.ProjectedTierNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

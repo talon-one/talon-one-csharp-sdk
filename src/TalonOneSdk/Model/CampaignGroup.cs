@@ -108,7 +108,7 @@ namespace TalonOneSdk.Model
         /// <value>A longer description of the campaign access group.</value>
         /* <example>A group that gives access to all the campaigns for the Europe market.</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of SubscribedApplicationsIds
@@ -123,7 +123,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of IDs of the Applications that this campaign access group is enabled for.</value>
         /* <example>[1, 2, 3]</example> */
         [JsonPropertyName("subscribedApplicationsIds")]
-        public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
+        public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption.Value; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of CampaignIds
@@ -138,7 +138,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of IDs of the campaigns that are part of the campaign access group.</value>
         /* <example>[4, 6, 8]</example> */
         [JsonPropertyName("campaignIds")]
-        public List<long> CampaignIds { get { return this.CampaignIdsOption; } set { this.CampaignIdsOption = new Option<List<long>>(value); } }
+        public List<long> CampaignIds { get { return this.CampaignIdsOption.Value; } set { this.CampaignIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -185,12 +185,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
-        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CampaignGroup" />

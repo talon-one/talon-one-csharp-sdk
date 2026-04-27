@@ -154,7 +154,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Indicates if this effect is per item or not.</value>
         [JsonPropertyName("isPerItem")]
-        public bool? IsPerItem { get { return this.IsPerItemOption; } set { this.IsPerItemOption = new Option<bool?>(value); } }
+        public bool? IsPerItem { get { return this.IsPerItemOption.Value; } set { this.IsPerItemOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -168,7 +168,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The description of this effect.</value>
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Params
@@ -182,7 +182,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Array of template argument definitions.</value>
         [JsonPropertyName("params")]
-        public List<TemplateArgDef> Params { get { return this.ParamsOption; } set { this.ParamsOption = new Option<List<TemplateArgDef>>(value); } }
+        public List<TemplateArgDef> Params { get { return this.ParamsOption.Value; } set { this.ParamsOption = new Option<List<TemplateArgDef>>(value); } }
 
         /// <summary>
         /// Used to track the state of ModifiedBy
@@ -197,7 +197,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the user who last updated this effect if available.</value>
         /* <example>334</example> */
         [JsonPropertyName("modifiedBy")]
-        public long? ModifiedBy { get { return this.ModifiedByOption; } set { this.ModifiedByOption = new Option<long?>(value); } }
+        public long? ModifiedBy { get { return this.ModifiedByOption.Value; } set { this.ModifiedByOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -264,12 +264,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
-        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CustomEffect" />

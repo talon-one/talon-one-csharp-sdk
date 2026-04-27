@@ -91,7 +91,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The name of the tier from which the user was upgraded.</value>
         [JsonPropertyName("previousTierName")]
-        public string PreviousTierName { get { return this.PreviousTierNameOption; } set { this.PreviousTierNameOption = new Option<string>(value); } }
+        public string PreviousTierName { get { return this.PreviousTierNameOption.Value; } set { this.PreviousTierNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiryDate
@@ -105,7 +105,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The expiration date of the new tier.</value>
         [JsonPropertyName("expiryDate")]
-        public DateTime? ExpiryDate { get { return this.ExpiryDateOption; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
+        public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -144,7 +144,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ChangeLoyaltyTierLevelEffectProps" />

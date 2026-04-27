@@ -100,7 +100,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>For cart items with &#x60;quantity&#x60; &gt; 1, the sub position indicates which item the discount applies to. </value>
         [JsonPropertyName("subPosition")]
-        public decimal? SubPosition { get { return this.SubPositionOption; } set { this.SubPositionOption = new Option<decimal?>(value); } }
+        public decimal? SubPosition { get { return this.SubPositionOption.Value; } set { this.SubPositionOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of DesiredValue
@@ -114,7 +114,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Only with [partial discounts enabled](https://docs.talon.one/docs/product/campaigns/campaign-evaluation/#partial-discounts). Represents the monetary value of the discount to be applied to additional discount without considering budget limitations. </value>
         [JsonPropertyName("desiredValue")]
-        public decimal? DesiredValue { get { return this.DesiredValueOption; } set { this.DesiredValueOption = new Option<decimal?>(value); } }
+        public decimal? DesiredValue { get { return this.DesiredValueOption.Value; } set { this.DesiredValueOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

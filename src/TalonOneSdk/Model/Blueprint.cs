@@ -310,7 +310,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A longer, more detailed description of the blueprint.</value>
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Modified
@@ -324,7 +324,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Timestamp when the blueprint was last updated.</value>
         [JsonPropertyName("modified")]
-        public DateTime? Modified { get { return this.ModifiedOption; } set { this.ModifiedOption = new Option<DateTime?>(value); } }
+        public DateTime? Modified { get { return this.ModifiedOption.Value; } set { this.ModifiedOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ModifiedBy
@@ -338,7 +338,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>ID of the user who last updated the blueprint.</value>
         [JsonPropertyName("modifiedBy")]
-        public long? ModifiedBy { get { return this.ModifiedByOption; } set { this.ModifiedByOption = new Option<long?>(value); } }
+        public long? ModifiedBy { get { return this.ModifiedByOption.Value; } set { this.ModifiedByOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -384,12 +384,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
-        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Blueprint" />

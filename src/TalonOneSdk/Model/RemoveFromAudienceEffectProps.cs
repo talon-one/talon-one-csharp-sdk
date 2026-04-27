@@ -60,7 +60,7 @@ namespace TalonOneSdk.Model
         /// <value>The internal ID of the audience.</value>
         /* <example>10</example> */
         [JsonPropertyName("audienceId")]
-        public long? AudienceId { get { return this.AudienceIdOption; } set { this.AudienceIdOption = new Option<long?>(value); } }
+        public long? AudienceId { get { return this.AudienceIdOption.Value; } set { this.AudienceIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of AudienceName
@@ -75,7 +75,7 @@ namespace TalonOneSdk.Model
         /// <value>The name of the audience.</value>
         /* <example>My audience</example> */
         [JsonPropertyName("audienceName")]
-        public string AudienceName { get { return this.AudienceNameOption; } set { this.AudienceNameOption = new Option<string>(value); } }
+        public string AudienceName { get { return this.AudienceNameOption.Value; } set { this.AudienceNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ProfileIntegrationId
@@ -90,7 +90,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the customer profile in the third-party integration platform.</value>
         /* <example>URNGV8294NV</example> */
         [JsonPropertyName("profileIntegrationId")]
-        public string ProfileIntegrationId { get { return this.ProfileIntegrationIdOption; } set { this.ProfileIntegrationIdOption = new Option<string>(value); } }
+        public string ProfileIntegrationId { get { return this.ProfileIntegrationIdOption.Value; } set { this.ProfileIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ProfileId
@@ -105,7 +105,7 @@ namespace TalonOneSdk.Model
         /// <value>The internal ID of the customer profile.</value>
         /* <example>150</example> */
         [JsonPropertyName("profileId")]
-        public long? ProfileId { get { return this.ProfileIdOption; } set { this.ProfileIdOption = new Option<long?>(value); } }
+        public long? ProfileId { get { return this.ProfileIdOption.Value; } set { this.ProfileIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

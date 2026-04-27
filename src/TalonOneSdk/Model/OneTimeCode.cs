@@ -84,7 +84,7 @@ namespace TalonOneSdk.Model
         /// <value>The one-time security code used for signing in.</value>
         /* <example>552917</example> */
         [JsonPropertyName("code")]
-        public string Code { get { return this.CodeOption; } set { this.CodeOption = new Option<string>(value); } }
+        public string Code { get { return this.CodeOption.Value; } set { this.CodeOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -80,7 +80,12 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum RuleFailureReasons for value: ruleFailureReasons
             /// </summary>
-            RuleFailureReasons = 6
+            RuleFailureReasons = 6,
+
+            /// <summary>
+            /// Enum CampaignEligibility for value: campaignEligibility
+            /// </summary>
+            CampaignEligibility = 7
         }
 
         /// <summary>
@@ -109,6 +114,9 @@ namespace TalonOneSdk.Model
             if (value.Equals("ruleFailureReasons"))
                 return ResponseContentEnum.RuleFailureReasons;
 
+            if (value.Equals("campaignEligibility"))
+                return ResponseContentEnum.CampaignEligibility;
+
             throw new NotImplementedException($"Could not convert value to type ResponseContentEnum: '{value}'");
         }
 
@@ -136,6 +144,9 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("ruleFailureReasons"))
                 return ResponseContentEnum.RuleFailureReasons;
+
+            if (value.Equals("campaignEligibility"))
+                return ResponseContentEnum.CampaignEligibility;
 
             return null;
         }
@@ -166,6 +177,9 @@ namespace TalonOneSdk.Model
             if (value == ResponseContentEnum.RuleFailureReasons)
                 return "ruleFailureReasons";
 
+            if (value == ResponseContentEnum.CampaignEligibility)
+                return "campaignEligibility";
+
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
 
@@ -182,7 +196,7 @@ namespace TalonOneSdk.Model
         /// <value>Arbitrary properties associated with this item.</value>
         /* <example>{Language&#x3D;english, ShippingCountry&#x3D;DE}</example> */
         [JsonPropertyName("attributes")]
-        public Dictionary<string, Object> Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Dictionary<string, Object>>(value); } }
+        public Dictionary<string, Object> Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Dictionary<string, Object>>(value); } }
 
         /// <summary>
         /// Used to track the state of EvaluableCampaignIds
@@ -197,7 +211,7 @@ namespace TalonOneSdk.Model
         /// <value>When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them. </value>
         /* <example>[10, 12]</example> */
         [JsonPropertyName("evaluableCampaignIds")]
-        public List<long> EvaluableCampaignIds { get { return this.EvaluableCampaignIdsOption; } set { this.EvaluableCampaignIdsOption = new Option<List<long>>(value); } }
+        public List<long> EvaluableCampaignIds { get { return this.EvaluableCampaignIdsOption.Value; } set { this.EvaluableCampaignIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of ResponseContent
@@ -212,7 +226,7 @@ namespace TalonOneSdk.Model
         /// <value>Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints. </value>
         /* <example>[triggeredCampaigns, customerProfile]</example> */
         [JsonPropertyName("responseContent")]
-        public List<CustomerProfileIntegrationRequestV2.ResponseContentEnum> ResponseContent { get { return this.ResponseContentOption; } set { this.ResponseContentOption = new Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>>(value); } }
+        public List<CustomerProfileIntegrationRequestV2.ResponseContentEnum> ResponseContent { get { return this.ResponseContentOption.Value; } set { this.ResponseContentOption = new Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>>(value); } }
 
         /// <summary>
         /// Used to track the state of AudiencesChanges
@@ -226,7 +240,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Audiences memberships changes for this profile.</value>
         [JsonPropertyName("audiencesChanges")]
-        public ProfileAudiencesChanges AudiencesChanges { get { return this.AudiencesChangesOption; } set { this.AudiencesChangesOption = new Option<ProfileAudiencesChanges>(value); } }
+        public ProfileAudiencesChanges AudiencesChanges { get { return this.AudiencesChangesOption.Value; } set { this.AudiencesChangesOption = new Option<ProfileAudiencesChanges>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

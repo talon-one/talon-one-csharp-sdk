@@ -56,7 +56,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Balance
         /// </summary>
         [JsonPropertyName("balance")]
-        public LoyaltyBalance Balance { get { return this.BalanceOption; } set { this.BalanceOption = new Option<LoyaltyBalance>(value); } }
+        public LoyaltyBalance Balance { get { return this.BalanceOption.Value; } set { this.BalanceOption = new Option<LoyaltyBalance>(value); } }
 
         /// <summary>
         /// Used to track the state of SubledgerBalances
@@ -71,7 +71,7 @@ namespace TalonOneSdk.Model
         /// <value>Map of the loyalty balances of the subledgers of a ledger.</value>
         /* <example>{mysubledger&#x3D;{activePoints&#x3D;286, pendingPoints&#x3D;50, spentPoints&#x3D;150, expiredPoints&#x3D;25, negativePoints&#x3D;0}}</example> */
         [JsonPropertyName("subledgerBalances")]
-        public Dictionary<string, LoyaltyBalance> SubledgerBalances { get { return this.SubledgerBalancesOption; } set { this.SubledgerBalancesOption = new Option<Dictionary<string, LoyaltyBalance>>(value); } }
+        public Dictionary<string, LoyaltyBalance> SubledgerBalances { get { return this.SubledgerBalancesOption.Value; } set { this.SubledgerBalancesOption = new Option<Dictionary<string, LoyaltyBalance>>(value); } }
 
         /// <summary>
         /// Used to track the state of Profiles
@@ -85,7 +85,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Customer profiles linked to the loyalty card.</value>
         [JsonPropertyName("profiles")]
-        public List<LoyaltyCardProfileRegistration> Profiles { get { return this.ProfilesOption; } set { this.ProfilesOption = new Option<List<LoyaltyCardProfileRegistration>>(value); } }
+        public List<LoyaltyCardProfileRegistration> Profiles { get { return this.ProfilesOption.Value; } set { this.ProfilesOption = new Option<List<LoyaltyCardProfileRegistration>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

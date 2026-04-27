@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// <value>When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them. </value>
         /* <example>[10, 12]</example> */
         [JsonPropertyName("evaluableCampaignIds")]
-        public List<long> VarEvaluableCampaignIds { get { return this.VarEvaluableCampaignIdsOption; } set { this.VarEvaluableCampaignIdsOption = new Option<List<long>>(value); } }
+        public List<long> VarEvaluableCampaignIds { get { return this.VarEvaluableCampaignIdsOption.Value; } set { this.VarEvaluableCampaignIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

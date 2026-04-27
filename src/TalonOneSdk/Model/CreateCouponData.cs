@@ -147,7 +147,7 @@ namespace TalonOneSdk.Model
         /// <value>The array of coupons codes. If 1000 or fewer coupons are requested, all coupon data is sent. If 1001 or more coupons are requested, only &#x60;BatchID&#x60; is sent.</value>
         /* <example>[{&quot;id&quot;:1,&quot;created&quot;:&quot;2023-01-31T15:19:25.18417+01:00&quot;,&quot;campaignId&quot;:1,&quot;value&quot;:&quot;73KXKKFP&quot;,&quot;usageLimit&quot;:1,&quot;reservationLimit&quot;:0,&quot;usageCounter&quot;:0,&quot;attributes&quot;:{},&quot;reservation&quot;:true,&quot;batchId&quot;:&quot;nqylhnni&quot;},{&quot;id&quot;:2,&quot;created&quot;:&quot;2023-01-31T15:19:25.18417+01:00&quot;,&quot;campaignId&quot;:1,&quot;value&quot;:&quot;BH3CXXLW&quot;,&quot;usageLimit&quot;:1,&quot;reservationLimit&quot;:0,&quot;usageCounter&quot;:0,&quot;attributes&quot;:{},&quot;reservation&quot;:true,&quot;batchId&quot;:&quot;nqylhnni&quot;}]</example> */
         [JsonPropertyName("data")]
-        public List<ExtendedCoupon> Data { get { return this.DataOption; } set { this.DataOption = new Option<List<ExtendedCoupon>>(value); } }
+        public List<ExtendedCoupon> Data { get { return this.DataOption.Value; } set { this.DataOption = new Option<List<ExtendedCoupon>>(value); } }
 
         /// <summary>
         /// Used to track the state of TotalResultSize
@@ -161,7 +161,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /* <example>1</example> */
         [JsonPropertyName("totalResultSize")]
-        public long? TotalResultSize { get { return this.TotalResultSizeOption; } set { this.TotalResultSizeOption = new Option<long?>(value); } }
+        public long? TotalResultSize { get { return this.TotalResultSizeOption.Value; } set { this.TotalResultSizeOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of BatchID
@@ -176,7 +176,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the batch to which the coupon belongs.  **Note:** The Batch ID is generated when coupons are created. </value>
         /* <example>haanlypn</example> */
         [JsonPropertyName("BatchID")]
-        public string BatchID { get { return this.BatchIDOption; } set { this.BatchIDOption = new Option<string>(value); } }
+        public string BatchID { get { return this.BatchIDOption.Value; } set { this.BatchIDOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

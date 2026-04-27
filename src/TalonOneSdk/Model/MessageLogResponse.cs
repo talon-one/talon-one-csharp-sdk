@@ -58,7 +58,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp when the response was received.</value>
         /* <example>2021-07-20T22:00:50Z</example> */
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new Option<DateTime?>(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of Response
@@ -73,7 +73,7 @@ namespace TalonOneSdk.Model
         /// <value>Raw response data.</value>
         /* <example>UmVzcG9uc2UgY29udGVudA&#x3D;&#x3D;</example> */
         [JsonPropertyName("response")]
-        public byte[] Response { get { return this.ResponseOption; } set { this.ResponseOption = new Option<byte[]>(value); } }
+        public byte[] Response { get { return this.ResponseOption.Value; } set { this.ResponseOption = new Option<byte[]>(value); } }
 
         /// <summary>
         /// Used to track the state of Status
@@ -88,7 +88,7 @@ namespace TalonOneSdk.Model
         /// <value>HTTP status code of the response.</value>
         /* <example>200</example> */
         [JsonPropertyName("status")]
-        public long? Status { get { return this.StatusOption; } set { this.StatusOption = new Option<long?>(value); } }
+        public long? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -124,7 +124,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="MessageLogResponse" />

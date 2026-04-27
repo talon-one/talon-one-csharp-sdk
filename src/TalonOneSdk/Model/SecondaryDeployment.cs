@@ -203,7 +203,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp when the deployment became active.</value>
         /* <example>2023-01-17T16:00:00.700763Z</example> */
         [JsonPropertyName("activeAt")]
-        public DateTime? ActiveAt { get { return this.ActiveAtOption; } set { this.ActiveAtOption = new Option<DateTime?>(value); } }
+        public DateTime? ActiveAt { get { return this.ActiveAtOption.Value; } set { this.ActiveAtOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of FailedAt
@@ -218,7 +218,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp when the deployment failed.</value>
         /* <example>2023-01-17T16:00:00.700763Z</example> */
         [JsonPropertyName("failedAt")]
-        public DateTime? FailedAt { get { return this.FailedAtOption; } set { this.FailedAtOption = new Option<DateTime?>(value); } }
+        public DateTime? FailedAt { get { return this.FailedAtOption.Value; } set { this.FailedAtOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of DeletedAt
@@ -233,7 +233,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp when the deployment was deleted.</value>
         /* <example>2023-01-18T16:00:00.700763Z</example> */
         [JsonPropertyName("deletedAt")]
-        public DateTime? DeletedAt { get { return this.DeletedAtOption; } set { this.DeletedAtOption = new Option<DateTime?>(value); } }
+        public DateTime? DeletedAt { get { return this.DeletedAtOption.Value; } set { this.DeletedAtOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -290,22 +290,22 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ActiveAt
         /// </summary>
-        public static string ActiveAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ActiveAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize FailedAt
         /// </summary>
-        public static string FailedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string FailedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize DeletedAt
         /// </summary>
-        public static string DeletedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string DeletedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="SecondaryDeployment" />

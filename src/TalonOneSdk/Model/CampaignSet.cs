@@ -92,7 +92,7 @@ namespace TalonOneSdk.Model
         /// <value>Name of the user who last updated this campaign set, if available.</value>
         /* <example>Jane Doe</example> */
         [JsonPropertyName("updatedBy")]
-        public string UpdatedBy { get { return this.UpdatedByOption; } set { this.UpdatedByOption = new Option<string>(value); } }
+        public string UpdatedBy { get { return this.UpdatedByOption.Value; } set { this.UpdatedByOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

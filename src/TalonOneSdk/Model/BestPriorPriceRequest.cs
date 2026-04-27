@@ -173,7 +173,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Target
         /// </summary>
         [JsonPropertyName("target")]
-        public BestPriorTarget Target { get { return this.TargetOption; } set { this.TargetOption = new Option<BestPriorTarget>(value); } }
+        public BestPriorTarget Target { get { return this.TargetOption.Value; } set { this.TargetOption = new Option<BestPriorTarget>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -211,7 +211,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize TimeframeEndDate
         /// </summary>
-        public static string TimeframeEndDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string TimeframeEndDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="BestPriorPriceRequest" />

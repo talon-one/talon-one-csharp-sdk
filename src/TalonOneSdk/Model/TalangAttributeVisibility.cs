@@ -55,7 +55,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>List of attribute names to hide in the UI.</value>
         [JsonPropertyName("invisible")]
-        public List<string> Invisible { get { return this.InvisibleOption; } set { this.InvisibleOption = new Option<List<string>>(value); } }
+        public List<string> Invisible { get { return this.InvisibleOption.Value; } set { this.InvisibleOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of Visible
@@ -69,7 +69,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>List of attribute names to show in the UI.</value>
         [JsonPropertyName("visible")]
-        public List<string> Visible { get { return this.VisibleOption; } set { this.VisibleOption = new Option<List<string>>(value); } }
+        public List<string> Visible { get { return this.VisibleOption.Value; } set { this.VisibleOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
