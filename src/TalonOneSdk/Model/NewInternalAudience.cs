@@ -34,12 +34,14 @@ namespace TalonOneSdk.Model
         /// <param name="name">The human-friendly display name for this audience.</param>
         /// <param name="sandbox">Indicates if this is a live or sandbox Application.</param>
         /// <param name="description">A description of the audience.</param>
+        /// <param name="subscribedApplicationsIds">A list of the IDs of the Applications that are connected to this audience.</param>
         [JsonConstructor]
-        public NewInternalAudience(string name, Option<bool?> sandbox = default, Option<string> description = default)
+        public NewInternalAudience(string name, Option<bool?> sandbox = default, Option<string> description = default, Option<List<long>> subscribedApplicationsIds = default)
         {
             Name = name;
             SandboxOption = sandbox;
             DescriptionOption = description;
+            SubscribedApplicationsIdsOption = subscribedApplicationsIds;
             OnCreated();
         }
 
@@ -66,7 +68,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates if this is a live or sandbox Application.</value>
         /* <example>true</example> */
         [JsonPropertyName("sandbox")]
-        public bool? Sandbox { get { return this.SandboxOption; } set { this.SandboxOption = new Option<bool?>(value); } }
+        public bool? Sandbox { get { return this.SandboxOption.Value; } set { this.SandboxOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -81,7 +83,22 @@ namespace TalonOneSdk.Model
         /// <value>A description of the audience.</value>
         /* <example>Travel audience 18-27</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
+
+        /// <summary>
+        /// Used to track the state of SubscribedApplicationsIds
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<long>> SubscribedApplicationsIdsOption { get; private set; }
+
+        /// <summary>
+        /// A list of the IDs of the Applications that are connected to this audience.
+        /// </summary>
+        /// <value>A list of the IDs of the Applications that are connected to this audience.</value>
+        /* <example>[3, 13]</example> */
+        [JsonPropertyName("subscribedApplicationsIds")]
+        public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption.Value; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -94,6 +111,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Sandbox: ").Append(Sandbox).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  SubscribedApplicationsIds: ").Append(SubscribedApplicationsIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -140,6 +158,7 @@ namespace TalonOneSdk.Model
             Option<string> name = default;
             Option<bool?> sandbox = default;
             Option<string> description = default;
+            Option<List<long>> subscribedApplicationsIds = default;
 
             while (utf8JsonReader.Read())
             {
@@ -165,6 +184,9 @@ namespace TalonOneSdk.Model
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "subscribedApplicationsIds":
+                            subscribedApplicationsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
@@ -177,7 +199,7 @@ namespace TalonOneSdk.Model
             if (name.IsSet && name.Value == null)
                 throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewInternalAudience.");
 
-            return new NewInternalAudience(name.Value, sandbox, description);
+            return new NewInternalAudience(name.Value, sandbox, description, subscribedApplicationsIds);
         }
 
         /// <summary>
@@ -214,6 +236,12 @@ namespace TalonOneSdk.Model
 
             if (newInternalAudience.DescriptionOption.IsSet)
                 writer.WriteString("description", newInternalAudience.Description);
+
+            if (newInternalAudience.SubscribedApplicationsIdsOption.IsSet)
+            {
+                writer.WritePropertyName("subscribedApplicationsIds");
+                JsonSerializer.Serialize(writer, newInternalAudience.SubscribedApplicationsIds, jsonSerializerOptions);
+            }
         }
     }
 }

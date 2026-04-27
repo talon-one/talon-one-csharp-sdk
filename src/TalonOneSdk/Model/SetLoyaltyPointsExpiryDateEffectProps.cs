@@ -81,7 +81,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>List of transactions affected by the expiry date update.</value>
         [JsonPropertyName("affectedTransactions")]
-        public List<LoyaltyLedgerEntryExpiryDateChange> AffectedTransactions { get { return this.AffectedTransactionsOption; } set { this.AffectedTransactionsOption = new Option<List<LoyaltyLedgerEntryExpiryDateChange>>(value); } }
+        public List<LoyaltyLedgerEntryExpiryDateChange> AffectedTransactions { get { return this.AffectedTransactionsOption.Value; } set { this.AffectedTransactionsOption = new Option<List<LoyaltyLedgerEntryExpiryDateChange>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -118,7 +118,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize NewExpiryDate
         /// </summary>
-        public static string NewExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string NewExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="SetLoyaltyPointsExpiryDateEffectProps" />

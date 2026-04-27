@@ -178,7 +178,7 @@ namespace TalonOneSdk.Model
         /// <value>Name of the user that created the achievement.  **Note**: This is not available if the user has been deleted. </value>
         /* <example>John Doe</example> */
         [JsonPropertyName("createdBy")]
-        public string CreatedBy { get { return this.CreatedByOption; } set { this.CreatedByOption = new Option<string>(value); } }
+        public string CreatedBy { get { return this.CreatedByOption.Value; } set { this.CreatedByOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of HasProgress
@@ -192,7 +192,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Indicates if a customer has made progress in the achievement.</value>
         [JsonPropertyName("hasProgress")]
-        public bool? HasProgress { get { return this.HasProgressOption; } set { this.HasProgressOption = new Option<bool?>(value); } }
+        public bool? HasProgress { get { return this.HasProgressOption.Value; } set { this.HasProgressOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -60,7 +60,7 @@ namespace TalonOneSdk.Model
         /// <value>Name of the role.</value>
         /* <example>Campaign Manager</example> */
         [JsonPropertyName("name")]
-        public string Name { get { return this.NameOption; } set { this.NameOption = new Option<string>(value); } }
+        public string Name { get { return this.NameOption.Value; } set { this.NameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -75,7 +75,7 @@ namespace TalonOneSdk.Model
         /// <value>Description of the role.</value>
         /* <example>Manages the campaigns</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Acl
@@ -90,7 +90,7 @@ namespace TalonOneSdk.Model
         /// <value>The &#x60;Access Control List&#x60; json defining the role of the user. This represents the access control on the user level.</value>
         /* <example>{Role&#x3D;128}</example> */
         [JsonPropertyName("acl")]
-        public string Acl { get { return this.AclOption; } set { this.AclOption = new Option<string>(value); } }
+        public string Acl { get { return this.AclOption.Value; } set { this.AclOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Members
@@ -105,7 +105,7 @@ namespace TalonOneSdk.Model
         /// <value>An array of user identifiers.</value>
         /* <example>[48, 562, 475, 18]</example> */
         [JsonPropertyName("members")]
-        public List<long> Members { get { return this.MembersOption; } set { this.MembersOption = new Option<List<long>>(value); } }
+        public List<long> Members { get { return this.MembersOption.Value; } set { this.MembersOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

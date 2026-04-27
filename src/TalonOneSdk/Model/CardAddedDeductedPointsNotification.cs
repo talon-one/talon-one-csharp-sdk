@@ -407,7 +407,7 @@ namespace TalonOneSdk.Model
         /// <value>The expiration date for loyalty points.</value>
         /* <example>2024-01-24T14:15:22Z</example> */
         [JsonPropertyName("ExpiryDate")]
-        public DateTime? ExpiryDate { get { return this.ExpiryDateOption; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
+        public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of StartDate
@@ -422,7 +422,7 @@ namespace TalonOneSdk.Model
         /// <value>The start date for loyalty points.</value>
         /* <example>2023-01-24T14:15:22Z</example> */
         [JsonPropertyName("StartDate")]
-        public DateTime? StartDate { get { return this.StartDateOption; } set { this.StartDateOption = new Option<DateTime?>(value); } }
+        public DateTime? StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -477,12 +477,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CardAddedDeductedPointsNotification" />

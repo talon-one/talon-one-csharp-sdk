@@ -103,7 +103,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The index of the item in the cart items for which the loyalty points were rolled back.</value>
         [JsonPropertyName("cartItemPosition")]
-        public decimal? CartItemPosition { get { return this.CartItemPositionOption; } set { this.CartItemPositionOption = new Option<decimal?>(value); } }
+        public decimal? CartItemPosition { get { return this.CartItemPositionOption.Value; } set { this.CartItemPositionOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of CartItemSubPosition
@@ -117,7 +117,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>For cart items with &#x60;quantity&#x60; &gt; 1, the sub-position indicates to which item the loyalty points were rolled back. </value>
         [JsonPropertyName("cartItemSubPosition")]
-        public decimal? CartItemSubPosition { get { return this.CartItemSubPositionOption; } set { this.CartItemSubPositionOption = new Option<decimal?>(value); } }
+        public decimal? CartItemSubPosition { get { return this.CartItemSubPositionOption.Value; } set { this.CartItemSubPositionOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of CardIdentifier
@@ -132,7 +132,7 @@ namespace TalonOneSdk.Model
         /// <value>The card on which these points were originally added.</value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("cardIdentifier")]
-        public string CardIdentifier { get { return this.CardIdentifierOption; } set { this.CardIdentifierOption = new Option<string>(value); } }
+        public string CardIdentifier { get { return this.CardIdentifierOption.Value; } set { this.CardIdentifierOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

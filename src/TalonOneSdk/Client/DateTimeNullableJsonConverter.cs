@@ -76,7 +76,7 @@ namespace TalonOneSdk.Client
             if (dateTimeValue == null)
                 writer.WriteNullValue();
             else
-                writer.WriteStringValue(dateTimeValue.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK", CultureInfo.InvariantCulture));
+                writer.WriteStringValue(dateTimeValue.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK", CultureInfo.InvariantCulture));
         }
     }
 }

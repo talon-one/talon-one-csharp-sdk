@@ -134,7 +134,7 @@ namespace TalonOneSdk.Model
         /// <value>Arbitrary properties associated with this item.</value>
         /* <example>{Language&#x3D;english, ShippingCountry&#x3D;DE}</example> */
         [JsonPropertyName("attributes")]
-        public Dictionary<string, Object> Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Dictionary<string, Object>>(value); } }
+        public Dictionary<string, Object> Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Dictionary<string, Object>>(value); } }
 
         /// <summary>
         /// Used to track the state of LoyaltyMemberships
@@ -148,7 +148,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>**DEPRECATED. Always returns &#x60;null&#x60;.** A list of loyalty programs joined by the customer. </value>
         [JsonPropertyName("loyaltyMemberships")]
-        public List<LoyaltyMembership> LoyaltyMemberships { get { return this.LoyaltyMembershipsOption; } set { this.LoyaltyMembershipsOption = new Option<List<LoyaltyMembership>>(value); } }
+        public List<LoyaltyMembership> LoyaltyMemberships { get { return this.LoyaltyMembershipsOption.Value; } set { this.LoyaltyMembershipsOption = new Option<List<LoyaltyMembership>>(value); } }
 
         /// <summary>
         /// Used to track the state of AudienceMemberships
@@ -162,7 +162,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The audiences the customer belongs to.</value>
         [JsonPropertyName("audienceMemberships")]
-        public List<AudienceMembership> AudienceMemberships { get { return this.AudienceMembershipsOption; } set { this.AudienceMembershipsOption = new Option<List<AudienceMembership>>(value); } }
+        public List<AudienceMembership> AudienceMemberships { get { return this.AudienceMembershipsOption.Value; } set { this.AudienceMembershipsOption = new Option<List<AudienceMembership>>(value); } }
 
         /// <summary>
         /// Used to track the state of Sandbox
@@ -177,7 +177,7 @@ namespace TalonOneSdk.Model
         /// <value>An indicator of whether the customer is part of a sandbox or live Application. See the [docs](https://docs.talon.one/docs/product/applications/overview#application-environments). </value>
         /* <example>false</example> */
         [JsonPropertyName("sandbox")]
-        public bool? Sandbox { get { return this.SandboxOption; } set { this.SandboxOption = new Option<bool?>(value); } }
+        public bool? Sandbox { get { return this.SandboxOption.Value; } set { this.SandboxOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of ConnectedApplicationsIds
@@ -192,7 +192,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of the IDs of the Applications that are connected to this customer profile.</value>
         /* <example>[1,2,3]</example> */
         [JsonPropertyName("connectedApplicationsIds")]
-        public List<long> ConnectedApplicationsIds { get { return this.ConnectedApplicationsIdsOption; } set { this.ConnectedApplicationsIdsOption = new Option<List<long>>(value); } }
+        public List<long> ConnectedApplicationsIds { get { return this.ConnectedApplicationsIdsOption.Value; } set { this.ConnectedApplicationsIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of ConnectedAudiences
@@ -207,7 +207,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of the IDs of the audiences that are connected to this customer profile.</value>
         /* <example>[1,2,3]</example> */
         [JsonPropertyName("connectedAudiences")]
-        public List<long> ConnectedAudiences { get { return this.ConnectedAudiencesOption; } set { this.ConnectedAudiencesOption = new Option<List<long>>(value); } }
+        public List<long> ConnectedAudiences { get { return this.ConnectedAudiencesOption.Value; } set { this.ConnectedAudiencesOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -259,12 +259,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize LastActivity
         /// </summary>
-        public static string LastActivityFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string LastActivityFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AudienceCustomer" />

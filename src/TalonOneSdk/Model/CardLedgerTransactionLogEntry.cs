@@ -235,7 +235,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the Application that owns this entity.</value>
         /* <example>322</example> */
         [JsonPropertyName("applicationId")]
-        public long? ApplicationId { get { return this.ApplicationIdOption; } set { this.ApplicationIdOption = new Option<long?>(value); } }
+        public long? ApplicationId { get { return this.ApplicationIdOption.Value; } set { this.ApplicationIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of SessionId
@@ -250,7 +250,7 @@ namespace TalonOneSdk.Model
         /// <value>The **internal** ID of the session. </value>
         /* <example>233</example> */
         [JsonPropertyName("sessionId")]
-        public long? SessionId { get { return this.SessionIdOption; } set { this.SessionIdOption = new Option<long?>(value); } }
+        public long? SessionId { get { return this.SessionIdOption.Value; } set { this.SessionIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CustomerSessionId
@@ -265,7 +265,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the customer session where the transaction occurred.</value>
         /* <example>05c2da0d-48fa-4aa1-b629-898f58f1584d</example> */
         [JsonPropertyName("customerSessionId")]
-        public string CustomerSessionId { get { return this.CustomerSessionIdOption; } set { this.CustomerSessionIdOption = new Option<string>(value); } }
+        public string CustomerSessionId { get { return this.CustomerSessionIdOption.Value; } set { this.CustomerSessionIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -358,7 +358,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CardLedgerTransactionLogEntry" />

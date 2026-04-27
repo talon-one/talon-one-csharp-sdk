@@ -62,7 +62,7 @@ namespace TalonOneSdk.Model
         /// <value>Total amount of points awarded to this customer and available to spend.</value>
         /* <example>286</example> */
         [JsonPropertyName("activePoints")]
-        public decimal? ActivePoints { get { return this.ActivePointsOption; } set { this.ActivePointsOption = new Option<decimal?>(value); } }
+        public decimal? ActivePoints { get { return this.ActivePointsOption.Value; } set { this.ActivePointsOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of PendingPoints
@@ -77,7 +77,7 @@ namespace TalonOneSdk.Model
         /// <value>Total amount of points awarded to this customer but not available until their start date.</value>
         /* <example>50</example> */
         [JsonPropertyName("pendingPoints")]
-        public decimal? PendingPoints { get { return this.PendingPointsOption; } set { this.PendingPointsOption = new Option<decimal?>(value); } }
+        public decimal? PendingPoints { get { return this.PendingPointsOption.Value; } set { this.PendingPointsOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of SpentPoints
@@ -92,7 +92,7 @@ namespace TalonOneSdk.Model
         /// <value>Total amount of points already spent by this customer.</value>
         /* <example>150</example> */
         [JsonPropertyName("spentPoints")]
-        public decimal? SpentPoints { get { return this.SpentPointsOption; } set { this.SpentPointsOption = new Option<decimal?>(value); } }
+        public decimal? SpentPoints { get { return this.SpentPointsOption.Value; } set { this.SpentPointsOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiredPoints
@@ -107,7 +107,7 @@ namespace TalonOneSdk.Model
         /// <value>Total amount of points awarded but never redeemed. They cannot be used anymore.</value>
         /* <example>286</example> */
         [JsonPropertyName("expiredPoints")]
-        public decimal? ExpiredPoints { get { return this.ExpiredPointsOption; } set { this.ExpiredPointsOption = new Option<decimal?>(value); } }
+        public decimal? ExpiredPoints { get { return this.ExpiredPointsOption.Value; } set { this.ExpiredPointsOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of NegativePoints
@@ -122,7 +122,7 @@ namespace TalonOneSdk.Model
         /// <value>Total amount of negative points. This implies that &#x60;activePoints&#x60; is &#x60;0&#x60;.</value>
         /* <example>286</example> */
         [JsonPropertyName("negativePoints")]
-        public decimal? NegativePoints { get { return this.NegativePointsOption; } set { this.NegativePointsOption = new Option<decimal?>(value); } }
+        public decimal? NegativePoints { get { return this.NegativePointsOption.Value; } set { this.NegativePointsOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

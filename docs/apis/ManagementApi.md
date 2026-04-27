@@ -2099,7 +2099,7 @@ Download a CSV file containing the triggered effects that match the given attrib
 
 <a id="exportloyaltybalance"></a>
 # **ExportLoyaltyBalance**
-> string ExportLoyaltyBalance (string loyaltyProgramId, DateTime endDate = null)
+> string ExportLoyaltyBalance (string loyaltyProgramId, DateTime endDate = null, string balances = null)
 
 Export customer loyalty balance to CSV
 
@@ -2112,6 +2112,7 @@ To export customer loyalty balances to CSV, use the [Export customer loyalty bal
 |------|------|-------------|-------|
 | **loyaltyProgramId** | **string** | The identifier for the loyalty program. |  |
 | **endDate** | **DateTime** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [optional]  |
+| **balances** | **string** | Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  | [optional]  |
 
 ### Return type
 
@@ -2138,7 +2139,7 @@ To export customer loyalty balances to CSV, use the [Export customer loyalty bal
 
 <a id="exportloyaltybalances"></a>
 # **ExportLoyaltyBalances**
-> string ExportLoyaltyBalances (string loyaltyProgramId, DateTime endDate = null)
+> string ExportLoyaltyBalances (string loyaltyProgramId, DateTime endDate = null, string balances = null)
 
 Export customer loyalty balances
 
@@ -2151,6 +2152,7 @@ Download a CSV file containing the balance of each customer in the loyalty progr
 |------|------|-------------|-------|
 | **loyaltyProgramId** | **string** | The identifier for the loyalty program. |  |
 | **endDate** | **DateTime** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. &gt; - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file, which shows the customer&#39;s tier at the time of export.  | [optional]  |
+| **balances** | **string** | Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  | [optional]  |
 
 ### Return type
 
@@ -2177,7 +2179,7 @@ Download a CSV file containing the balance of each customer in the loyalty progr
 
 <a id="exportloyaltycardbalances"></a>
 # **ExportLoyaltyCardBalances**
-> string ExportLoyaltyCardBalances (long loyaltyProgramId, DateTime endDate = null)
+> string ExportLoyaltyCardBalances (long loyaltyProgramId, DateTime endDate = null, string balances = null)
 
 Export all card transaction logs
 
@@ -2190,6 +2192,7 @@ Download a CSV file containing the balances of all cards in the loyalty program.
 |------|------|-------------|-------|
 | **loyaltyProgramId** | **long** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  |  |
 | **endDate** | **DateTime** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | [optional]  |
+| **balances** | **string** | Filters which balance fields are included in the CSV export. By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  **Note:** - The &#x60;negativeBalance&#x60; value is not supported for card balance exports. - Providing an unsupported or invalid value returns a &#x60;400 Bad Request&#x60; error.  | [optional]  |
 
 ### Return type
 

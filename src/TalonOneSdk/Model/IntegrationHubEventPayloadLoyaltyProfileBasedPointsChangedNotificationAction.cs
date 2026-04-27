@@ -147,7 +147,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Reason
         /// </summary>
         [JsonPropertyName("Reason")]
-        public string Reason { get { return this.ReasonOption; } set { this.ReasonOption = new Option<string>(value); } }
+        public string Reason { get { return this.ReasonOption.Value; } set { this.ReasonOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of StartDate
@@ -160,7 +160,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets StartDate
         /// </summary>
         [JsonPropertyName("StartDate")]
-        public DateTime? StartDate { get { return this.StartDateOption; } set { this.StartDateOption = new Option<DateTime?>(value); } }
+        public DateTime? StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiryDate
@@ -173,7 +173,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ExpiryDate
         /// </summary>
         [JsonPropertyName("ExpiryDate")]
-        public DateTime? ExpiryDate { get { return this.ExpiryDateOption; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
+        public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -212,12 +212,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction" />

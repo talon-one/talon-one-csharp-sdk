@@ -127,7 +127,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of Application IDs that you can access with the management key. An empty or missing list means the management key can be used for all Applications in the account. </value>
         /* <example>[1, 2, 3]</example> */
         [JsonPropertyName("allowedApplicationIds")]
-        public List<long> AllowedApplicationIds { get { return this.AllowedApplicationIdsOption; } set { this.AllowedApplicationIdsOption = new Option<List<long>>(value); } }
+        public List<long> AllowedApplicationIds { get { return this.AllowedApplicationIdsOption.Value; } set { this.AllowedApplicationIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of Disabled
@@ -142,7 +142,7 @@ namespace TalonOneSdk.Model
         /// <value>The management key is disabled (this property is set to &#x60;true&#x60;) when the user who created the key is disabled or deleted.</value>
         /* <example>true</example> */
         [JsonPropertyName("disabled")]
-        public bool? Disabled { get { return this.DisabledOption; } set { this.DisabledOption = new Option<bool?>(value); } }
+        public bool? Disabled { get { return this.DisabledOption.Value; } set { this.DisabledOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of LastUsed
@@ -157,7 +157,7 @@ namespace TalonOneSdk.Model
         /// <value>The last time the management key was used.</value>
         /* <example>2022-03-02T16:46:17.758585Z</example> */
         [JsonPropertyName("lastUsed")]
-        public DateTime? LastUsed { get { return this.LastUsedOption; } set { this.LastUsedOption = new Option<DateTime?>(value); } }
+        public DateTime? LastUsed { get { return this.LastUsedOption.Value; } set { this.LastUsedOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -200,17 +200,17 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize LastUsed
         /// </summary>
-        public static string LastUsedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string LastUsedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ManagementKey" />

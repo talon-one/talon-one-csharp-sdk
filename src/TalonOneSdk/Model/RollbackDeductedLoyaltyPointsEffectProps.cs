@@ -103,7 +103,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Date after which the reimbursed points will be valid.</value>
         [JsonPropertyName("startDate")]
-        public DateTime? StartDate { get { return this.StartDateOption; } set { this.StartDateOption = new Option<DateTime?>(value); } }
+        public DateTime? StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiryDate
@@ -117,7 +117,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Date after which the reimbursed points will expire.</value>
         [JsonPropertyName("expiryDate")]
-        public DateTime? ExpiryDate { get { return this.ExpiryDateOption; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
+        public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of CardIdentifier
@@ -132,7 +132,7 @@ namespace TalonOneSdk.Model
         /// <value>The card on which these points were added.</value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("cardIdentifier")]
-        public string CardIdentifier { get { return this.CardIdentifierOption; } set { this.CardIdentifierOption = new Option<string>(value); } }
+        public string CardIdentifier { get { return this.CardIdentifierOption.Value; } set { this.CardIdentifierOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -201,12 +201,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="RollbackDeductedLoyaltyPointsEffectProps" />

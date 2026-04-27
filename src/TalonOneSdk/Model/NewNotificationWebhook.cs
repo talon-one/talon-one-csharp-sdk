@@ -73,7 +73,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates whether the notification is activated.</value>
         /* <example>true</example> */
         [JsonPropertyName("enabled")]
-        public bool? Enabled { get { return this.EnabledOption; } set { this.EnabledOption = new Option<bool?>(value); } }
+        public bool? Enabled { get { return this.EnabledOption.Value; } set { this.EnabledOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

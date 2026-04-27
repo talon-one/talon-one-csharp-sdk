@@ -150,7 +150,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the loyalty card batch.</value>
         /* <example>hwernpjz</example> */
         [JsonPropertyName("batchId")]
-        public string BatchId { get { return this.BatchIdOption; } set { this.BatchIdOption = new Option<string>(value); } }
+        public string BatchId { get { return this.BatchIdOption.Value; } set { this.BatchIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of CardCodeSettings
@@ -163,7 +163,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets CardCodeSettings
         /// </summary>
         [JsonPropertyName("cardCodeSettings")]
-        public CodeGeneratorSettings CardCodeSettings { get { return this.CardCodeSettingsOption; } set { this.CardCodeSettingsOption = new Option<CodeGeneratorSettings>(value); } }
+        public CodeGeneratorSettings CardCodeSettings { get { return this.CardCodeSettingsOption.Value; } set { this.CardCodeSettingsOption = new Option<CodeGeneratorSettings>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

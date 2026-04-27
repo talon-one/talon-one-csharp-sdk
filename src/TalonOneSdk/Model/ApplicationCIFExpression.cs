@@ -88,7 +88,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the Application cart item filter.</value>
         /* <example>216</example> */
         [JsonPropertyName("cartItemFilterId")]
-        public long? CartItemFilterId { get { return this.CartItemFilterIdOption; } set { this.CartItemFilterIdOption = new Option<long?>(value); } }
+        public long? CartItemFilterId { get { return this.CartItemFilterIdOption.Value; } set { this.CartItemFilterIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedBy
@@ -103,7 +103,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the user who created the Application cart item filter.</value>
         /* <example>216</example> */
         [JsonPropertyName("createdBy")]
-        public long? CreatedBy { get { return this.CreatedByOption; } set { this.CreatedByOption = new Option<long?>(value); } }
+        public long? CreatedBy { get { return this.CreatedByOption.Value; } set { this.CreatedByOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Expression
@@ -118,7 +118,7 @@ namespace TalonOneSdk.Model
         /// <value>Arbitrary additional JSON data associated with the Application cart item filter.</value>
         /* <example>{expr&#x3D;[filter, [., Session, CartItems], [[Item], [catch, false, [&#x3D;, [., Item, Category], Kitchen]]]]}</example> */
         [JsonPropertyName("expression")]
-        public List<Object> Expression { get { return this.ExpressionOption; } set { this.ExpressionOption = new Option<List<Object>>(value); } }
+        public List<Object> Expression { get { return this.ExpressionOption.Value; } set { this.ExpressionOption = new Option<List<Object>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -157,7 +157,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApplicationCIFExpression" />

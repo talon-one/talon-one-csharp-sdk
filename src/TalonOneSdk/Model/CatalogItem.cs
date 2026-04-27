@@ -108,7 +108,7 @@ namespace TalonOneSdk.Model
         /// <value>Price of the item.</value>
         /* <example>99.99</example> */
         [JsonPropertyName("price")]
-        public decimal? Price { get { return this.PriceOption; } set { this.PriceOption = new Option<decimal?>(value); } }
+        public decimal? Price { get { return this.PriceOption.Value; } set { this.PriceOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -121,7 +121,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Attributes
         /// </summary>
         [JsonPropertyName("attributes")]
-        public List<ItemAttribute> Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<List<ItemAttribute>>(value); } }
+        public List<ItemAttribute> Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<List<ItemAttribute>>(value); } }
 
         /// <summary>
         /// Used to track the state of Product
@@ -134,7 +134,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Product
         /// </summary>
         [JsonPropertyName("product")]
-        public Product Product { get { return this.ProductOption; } set { this.ProductOption = new Option<Product>(value); } }
+        public Product Product { get { return this.ProductOption.Value; } set { this.ProductOption = new Option<Product>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -181,7 +181,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CatalogItem" />

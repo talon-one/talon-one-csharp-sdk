@@ -1239,6 +1239,7 @@ Triggers a custom event.  To use this endpoint:  1. Define a [custom event](http
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
+| **204** | No content |  -  |
 | **400** | Bad request |  -  |
 | **401** | Unauthorized - Invalid API key |  -  |
 | **409** | Too many requests or limit reached - Avoid parallel requests. See the [docs](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one#managing-parallel-requests). |  -  |
@@ -1479,6 +1480,7 @@ Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/de
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
+| **204** | No content |  -  |
 | **400** | Bad request |  -  |
 | **401** | Unauthorized - Invalid API key |  -  |
 

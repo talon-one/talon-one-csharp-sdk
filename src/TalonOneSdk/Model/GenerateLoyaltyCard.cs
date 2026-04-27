@@ -140,7 +140,7 @@ namespace TalonOneSdk.Model
         /// <value>Integration IDs of the customer profiles linked to the card.</value>
         /* <example>[R195412, G244519]</example> */
         [JsonPropertyName("customerProfileIds")]
-        public List<string> CustomerProfileIds { get { return this.CustomerProfileIdsOption; } set { this.CustomerProfileIdsOption = new Option<List<string>>(value); } }
+        public List<string> CustomerProfileIds { get { return this.CustomerProfileIdsOption.Value; } set { this.CustomerProfileIdsOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of CardIdentifier
@@ -155,7 +155,7 @@ namespace TalonOneSdk.Model
         /// <value>The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("cardIdentifier")]
-        public string CardIdentifier { get { return this.CardIdentifierOption; } set { this.CardIdentifierOption = new Option<string>(value); } }
+        public string CardIdentifier { get { return this.CardIdentifierOption.Value; } set { this.CardIdentifierOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

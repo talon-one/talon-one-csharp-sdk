@@ -246,7 +246,7 @@ namespace TalonOneSdk.Model
         /// <value>A description of the webhook.</value>
         /* <example>A webhook to send a coupon to the user.</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Payload
@@ -263,7 +263,7 @@ namespace TalonOneSdk.Model
 	&quot;message&quot;: &quot;${message}&quot;
 }</example> */
         [JsonPropertyName("payload")]
-        public string Payload { get { return this.PayloadOption; } set { this.PayloadOption = new Option<string>(value); } }
+        public string Payload { get { return this.PayloadOption.Value; } set { this.PayloadOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of AuthenticationId
@@ -278,7 +278,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the credential that this webhook is using.</value>
         /* <example>1</example> */
         [JsonPropertyName("authenticationId")]
-        public long? AuthenticationId { get { return this.AuthenticationIdOption; } set { this.AuthenticationIdOption = new Option<long?>(value); } }
+        public long? AuthenticationId { get { return this.AuthenticationIdOption.Value; } set { this.AuthenticationIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

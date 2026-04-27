@@ -108,7 +108,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ActivateAt
         /// </summary>
         [JsonPropertyName("activateAt")]
-        public DateTime? ActivateAt { get { return this.ActivateAtOption; } set { this.ActivateAtOption = new Option<DateTime?>(value); } }
+        public DateTime? ActivateAt { get { return this.ActivateAtOption.Value; } set { this.ActivateAtOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ActivatedAt
@@ -121,7 +121,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ActivatedAt
         /// </summary>
         [JsonPropertyName("activatedAt")]
-        public DateTime? ActivatedAt { get { return this.ActivatedAtOption; } set { this.ActivatedAtOption = new Option<DateTime?>(value); } }
+        public DateTime? ActivatedAt { get { return this.ActivatedAtOption.Value; } set { this.ActivatedAtOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ActivatedBy
@@ -134,7 +134,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ActivatedBy
         /// </summary>
         [JsonPropertyName("activatedBy")]
-        public long? ActivatedBy { get { return this.ActivatedByOption; } set { this.ActivatedByOption = new Option<long?>(value); } }
+        public long? ActivatedBy { get { return this.ActivatedByOption.Value; } set { this.ActivatedByOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CurrentVersion
@@ -147,7 +147,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets CurrentVersion
         /// </summary>
         [JsonPropertyName("currentVersion")]
-        public RevisionVersion CurrentVersion { get { return this.CurrentVersionOption; } set { this.CurrentVersionOption = new Option<RevisionVersion>(value); } }
+        public RevisionVersion CurrentVersion { get { return this.CurrentVersionOption.Value; } set { this.CurrentVersionOption = new Option<RevisionVersion>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -190,17 +190,17 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ActivateAt
         /// </summary>
-        public static string ActivateAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ActivateAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ActivatedAt
         /// </summary>
-        public static string ActivatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ActivatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Revision" />

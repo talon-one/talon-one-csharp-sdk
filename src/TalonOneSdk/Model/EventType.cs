@@ -94,7 +94,7 @@ namespace TalonOneSdk.Model
         /// <value>A description of what the event represents. </value>
         /* <example>The survey was submitted by the customer.</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -144,7 +144,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="EventType" />

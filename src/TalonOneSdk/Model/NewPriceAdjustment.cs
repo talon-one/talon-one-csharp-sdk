@@ -82,7 +82,7 @@ namespace TalonOneSdk.Model
         /// <value>The value of the price type applied to the SKU. When set to &#x60;null&#x60;, the defined price type no longer applies to the SKU.</value>
         /* <example>100</example> */
         [JsonPropertyName("price")]
-        public decimal? Price { get { return this.PriceOption; } set { this.PriceOption = new Option<decimal?>(value); } }
+        public decimal? Price { get { return this.PriceOption.Value; } set { this.PriceOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of CalculatedAt
@@ -97,7 +97,7 @@ namespace TalonOneSdk.Model
         /// <value>The time at which this price was calculated. If provided, this is used to determine the most recent price adjustment to choose if price adjustments overlap. Defaults to internal creation time if not provided.</value>
         /* <example>2021-09-12T10:12:42Z</example> */
         [JsonPropertyName("calculatedAt")]
-        public DateTime? CalculatedAt { get { return this.CalculatedAtOption; } set { this.CalculatedAtOption = new Option<DateTime?>(value); } }
+        public DateTime? CalculatedAt { get { return this.CalculatedAtOption.Value; } set { this.CalculatedAtOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of EffectiveFrom
@@ -112,7 +112,7 @@ namespace TalonOneSdk.Model
         /// <value>The date and time from which the price adjustment is effective.</value>
         /* <example>2021-09-12T10:12:42Z</example> */
         [JsonPropertyName("effectiveFrom")]
-        public DateTime? EffectiveFrom { get { return this.EffectiveFromOption; } set { this.EffectiveFromOption = new Option<DateTime?>(value); } }
+        public DateTime? EffectiveFrom { get { return this.EffectiveFromOption.Value; } set { this.EffectiveFromOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of EffectiveUntil
@@ -127,7 +127,7 @@ namespace TalonOneSdk.Model
         /// <value>The date and time until which the price adjustment is effective.</value>
         /* <example>2021-09-12T10:12:42Z</example> */
         [JsonPropertyName("effectiveUntil")]
-        public DateTime? EffectiveUntil { get { return this.EffectiveUntilOption; } set { this.EffectiveUntilOption = new Option<DateTime?>(value); } }
+        public DateTime? EffectiveUntil { get { return this.EffectiveUntilOption.Value; } set { this.EffectiveUntilOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ContextId
@@ -142,7 +142,7 @@ namespace TalonOneSdk.Model
         /// <value>Identifier of the context of this price adjustment (e.g. summer sale).</value>
         /* <example>Summer2025</example> */
         [JsonPropertyName("contextId")]
-        public string ContextId { get { return this.ContextIdOption; } set { this.ContextIdOption = new Option<string>(value); } }
+        public string ContextId { get { return this.ContextIdOption.Value; } set { this.ContextIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -188,17 +188,17 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize CalculatedAt
         /// </summary>
-        public static string CalculatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CalculatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EffectiveFrom
         /// </summary>
-        public static string EffectiveFromFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string EffectiveFromFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EffectiveUntil
         /// </summary>
-        public static string EffectiveUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string EffectiveUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="NewPriceAdjustment" />

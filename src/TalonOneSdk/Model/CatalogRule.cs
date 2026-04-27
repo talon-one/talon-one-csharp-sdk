@@ -83,7 +83,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>An array that provides objects with variable names (name) and talang expressions to whose result they are bound (expression) during rule evaluation. The order of the evaluation is decided by the position in the array.</value>
         [JsonPropertyName("bindings")]
-        public List<Binding> Bindings { get { return this.BindingsOption; } set { this.BindingsOption = new Option<List<Binding>>(value); } }
+        public List<Binding> Bindings { get { return this.BindingsOption.Value; } set { this.BindingsOption = new Option<List<Binding>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

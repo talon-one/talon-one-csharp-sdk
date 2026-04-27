@@ -125,7 +125,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The array of changes.</value>
         [JsonPropertyName("Data")]
-        public List<ApplicationNotification> Data { get { return this.DataOption; } set { this.DataOption = new Option<List<ApplicationNotification>>(value); } }
+        public List<ApplicationNotification> Data { get { return this.DataOption.Value; } set { this.DataOption = new Option<List<ApplicationNotification>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

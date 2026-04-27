@@ -209,7 +209,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A campaigner-friendly description of the argument, this will also be shown in the rule editor.</value>
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Key
@@ -223,7 +223,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The identifier for the associated value within the JSON object.</value>
         [JsonPropertyName("key")]
-        public string Key { get { return this.KeyOption; } set { this.KeyOption = new Option<string>(value); } }
+        public string Key { get { return this.KeyOption.Value; } set { this.KeyOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of PicklistID
@@ -237,7 +237,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>ID of the picklist linked to a template.</value>
         [JsonPropertyName("picklistID")]
-        public long? PicklistID { get { return this.PicklistIDOption; } set { this.PicklistIDOption = new Option<long?>(value); } }
+        public long? PicklistID { get { return this.PicklistIDOption.Value; } set { this.PicklistIDOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of RestrictedByPicklist
@@ -251,7 +251,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Whether or not this attribute&#39;s value is restricted by picklist (&#x60;picklist&#x60; property)</value>
         [JsonPropertyName("restrictedByPicklist")]
-        public bool? RestrictedByPicklist { get { return this.RestrictedByPicklistOption; } set { this.RestrictedByPicklistOption = new Option<bool?>(value); } }
+        public bool? RestrictedByPicklist { get { return this.RestrictedByPicklistOption.Value; } set { this.RestrictedByPicklistOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

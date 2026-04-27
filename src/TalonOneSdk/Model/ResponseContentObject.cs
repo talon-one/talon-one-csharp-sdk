@@ -74,7 +74,12 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum RuleFailureReasons for value: ruleFailureReasons
             /// </summary>
-            RuleFailureReasons = 6
+            RuleFailureReasons = 6,
+
+            /// <summary>
+            /// Enum CampaignEligibility for value: campaignEligibility
+            /// </summary>
+            CampaignEligibility = 7
         }
 
         /// <summary>
@@ -103,6 +108,9 @@ namespace TalonOneSdk.Model
             if (value.Equals("ruleFailureReasons"))
                 return ResponseContentEnum.RuleFailureReasons;
 
+            if (value.Equals("campaignEligibility"))
+                return ResponseContentEnum.CampaignEligibility;
+
             throw new NotImplementedException($"Could not convert value to type ResponseContentEnum: '{value}'");
         }
 
@@ -130,6 +138,9 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("ruleFailureReasons"))
                 return ResponseContentEnum.RuleFailureReasons;
+
+            if (value.Equals("campaignEligibility"))
+                return ResponseContentEnum.CampaignEligibility;
 
             return null;
         }
@@ -160,6 +171,9 @@ namespace TalonOneSdk.Model
             if (value == ResponseContentEnum.RuleFailureReasons)
                 return "ruleFailureReasons";
 
+            if (value == ResponseContentEnum.CampaignEligibility)
+                return "campaignEligibility";
+
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
 
@@ -176,7 +190,7 @@ namespace TalonOneSdk.Model
         /// <value>Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints. </value>
         /* <example>[triggeredCampaigns, customerProfile]</example> */
         [JsonPropertyName("responseContent")]
-        public List<ResponseContentObject.ResponseContentEnum> ResponseContent { get { return this.ResponseContentOption; } set { this.ResponseContentOption = new Option<List<ResponseContentObject.ResponseContentEnum>>(value); } }
+        public List<ResponseContentObject.ResponseContentEnum> ResponseContent { get { return this.ResponseContentOption.Value; } set { this.ResponseContentOption = new Option<List<ResponseContentObject.ResponseContentEnum>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

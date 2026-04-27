@@ -84,7 +84,7 @@ namespace TalonOneSdk.Model
         /// <value>The kind of binding. Possible values are: - &#x60;bundle&#x60; - &#x60;cartItemFilter&#x60; - &#x60;subledgerBalance&#x60; - &#x60;templateParameter&#x60; </value>
         /* <example>templateParameter</example> */
         [JsonPropertyName("type")]
-        public string Type { get { return this.TypeOption; } set { this.TypeOption = new Option<string>(value); } }
+        public string Type { get { return this.TypeOption.Value; } set { this.TypeOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ValueType
@@ -99,7 +99,7 @@ namespace TalonOneSdk.Model
         /// <value>Can be one of the following: - &#x60;string&#x60; - &#x60;number&#x60; - &#x60;boolean&#x60; </value>
         /* <example>string</example> */
         [JsonPropertyName("valueType")]
-        public string ValueType { get { return this.ValueTypeOption; } set { this.ValueTypeOption = new Option<string>(value); } }
+        public string ValueType { get { return this.ValueTypeOption.Value; } set { this.ValueTypeOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of MinValue
@@ -114,7 +114,7 @@ namespace TalonOneSdk.Model
         /// <value>The minimum value allowed for this placeholder.</value>
         /* <example>0</example> */
         [JsonPropertyName("minValue")]
-        public decimal? MinValue { get { return this.MinValueOption; } set { this.MinValueOption = new Option<decimal?>(value); } }
+        public decimal? MinValue { get { return this.MinValueOption.Value; } set { this.MinValueOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of MaxValue
@@ -129,7 +129,7 @@ namespace TalonOneSdk.Model
         /// <value>The maximum value allowed for this placeholder.</value>
         /* <example>19.9</example> */
         [JsonPropertyName("maxValue")]
-        public decimal? MaxValue { get { return this.MaxValueOption; } set { this.MaxValueOption = new Option<decimal?>(value); } }
+        public decimal? MaxValue { get { return this.MaxValueOption.Value; } set { this.MaxValueOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of AttributeId
@@ -144,7 +144,7 @@ namespace TalonOneSdk.Model
         /// <value>Id of the attribute attached to the placeholder.</value>
         /* <example>100</example> */
         [JsonPropertyName("attributeId")]
-        public long? AttributeId { get { return this.AttributeIdOption; } set { this.AttributeIdOption = new Option<long?>(value); } }
+        public long? AttributeId { get { return this.AttributeIdOption.Value; } set { this.AttributeIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -159,7 +159,7 @@ namespace TalonOneSdk.Model
         /// <value>Describes the placeholder field and value in the template. This description can be used when creating campaigns from this template.</value>
         /* <example>This is a template parameter of type &#x60;number&#x60;.</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </value>
         /* <example>URNGV8294NV</example> */
         [JsonPropertyName("profileId")]
-        public string ProfileId { get { return this.ProfileIdOption; } set { this.ProfileIdOption = new Option<string>(value); } }
+        public string ProfileId { get { return this.ProfileIdOption.Value; } set { this.ProfileIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

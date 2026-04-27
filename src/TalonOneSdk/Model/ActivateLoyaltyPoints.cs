@@ -56,7 +56,7 @@ namespace TalonOneSdk.Model
         /// <value>An array of transaction UUIDs used to activate specific pending point transactions.  If provided, do not include the &#x60;sessionId&#x60; parameter. </value>
         /* <example>[8f1a8d7c-9c3e-4a5e-9f0d-2c5f7a3b1cde]</example> */
         [JsonPropertyName("transactionUUIDs")]
-        public List<Guid> TransactionUUIDs { get { return this.TransactionUUIDsOption; } set { this.TransactionUUIDsOption = new Option<List<Guid>>(value); } }
+        public List<Guid> TransactionUUIDs { get { return this.TransactionUUIDsOption.Value; } set { this.TransactionUUIDsOption = new Option<List<Guid>>(value); } }
 
         /// <summary>
         /// Used to track the state of SessionId
@@ -71,7 +71,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the session containing the pending point transactions to activate.  If provided, do not include the &#x60;transactionUUIDs&#x60; parameter. </value>
         /* <example>ac08cc3c43470426591ad75b2d685ec04_v2</example> */
         [JsonPropertyName("sessionId")]
-        public string SessionId { get { return this.SessionIdOption; } set { this.SessionIdOption = new Option<string>(value); } }
+        public string SessionId { get { return this.SessionIdOption.Value; } set { this.SessionIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

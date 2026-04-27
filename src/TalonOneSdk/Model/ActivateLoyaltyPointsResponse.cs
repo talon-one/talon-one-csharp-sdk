@@ -53,7 +53,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Updated ledger entries after activation.</value>
         [JsonPropertyName("ledgerEntries")]
-        public List<LoyaltyLedgerEntry> LedgerEntries { get { return this.LedgerEntriesOption; } set { this.LedgerEntriesOption = new Option<List<LoyaltyLedgerEntry>>(value); } }
+        public List<LoyaltyLedgerEntry> LedgerEntries { get { return this.LedgerEntriesOption.Value; } set { this.LedgerEntriesOption = new Option<List<LoyaltyLedgerEntry>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -178,7 +178,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A longer, more detailed description of the blueprint.</value>
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Rules
@@ -192,7 +192,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Array of rules to store in this blueprint. Rules should only contain title (no description, as description is at the blueprint level). At least one rule or cart item filter is required.</value>
         [JsonPropertyName("rules")]
-        public List<CatalogRule> Rules { get { return this.RulesOption; } set { this.RulesOption = new Option<List<CatalogRule>>(value); } }
+        public List<CatalogRule> Rules { get { return this.RulesOption.Value; } set { this.RulesOption = new Option<List<CatalogRule>>(value); } }
 
         /// <summary>
         /// Used to track the state of CartItemFilters
@@ -206,7 +206,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Array of cart item filters to store in this blueprint. If not provided, will be extracted from the rules. Cart item filters should only contain name (no description, as description is at the blueprint level).</value>
         [JsonPropertyName("cartItemFilters")]
-        public List<CartItemFilterTemplate> CartItemFilters { get { return this.CartItemFiltersOption; } set { this.CartItemFiltersOption = new Option<List<CartItemFilterTemplate>>(value); } }
+        public List<CartItemFilterTemplate> CartItemFilters { get { return this.CartItemFiltersOption.Value; } set { this.CartItemFiltersOption = new Option<List<CartItemFilterTemplate>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

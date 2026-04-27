@@ -53,7 +53,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Limits configuration for a coupon. These limits will override the limits set from the campaign.  **Note:** Only usable when creating a single coupon which is not tied to a specific recipient. Only per-profile limits are allowed to be configured. </value>
         [JsonPropertyName("limits")]
-        public List<LimitConfig> Limits { get { return this.LimitsOption; } set { this.LimitsOption = new Option<List<LimitConfig>>(value); } }
+        public List<LimitConfig> Limits { get { return this.LimitsOption.Value; } set { this.LimitsOption = new Option<List<LimitConfig>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

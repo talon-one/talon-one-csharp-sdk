@@ -62,7 +62,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>An array of individual problems encountered during the request.</value>
         [JsonPropertyName("errors")]
-        public List<APIError> Errors { get { return this.ErrorsOption; } set { this.ErrorsOption = new Option<List<APIError>>(value); } }
+        public List<APIError> Errors { get { return this.ErrorsOption.Value; } set { this.ErrorsOption = new Option<List<APIError>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

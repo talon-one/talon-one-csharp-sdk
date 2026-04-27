@@ -105,7 +105,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets EmployeeName
         /// </summary>
         [JsonPropertyName("EmployeeName")]
-        public string EmployeeName { get { return this.EmployeeNameOption; } set { this.EmployeeNameOption = new Option<string>(value); } }
+        public string EmployeeName { get { return this.EmployeeNameOption.Value; } set { this.EmployeeNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of UserID
@@ -118,7 +118,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets UserID
         /// </summary>
         [JsonPropertyName("UserID")]
-        public long? UserID { get { return this.UserIDOption; } set { this.UserIDOption = new Option<long?>(value); } }
+        public long? UserID { get { return this.UserIDOption.Value; } set { this.UserIDOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Actions
@@ -131,7 +131,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Actions
         /// </summary>
         [JsonPropertyName("Actions")]
-        public List<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction> Actions { get { return this.ActionsOption; } set { this.ActionsOption = new Option<List<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction>>(value); } }
+        public List<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction> Actions { get { return this.ActionsOption.Value; } set { this.ActionsOption = new Option<List<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -173,7 +173,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize PublishedAt
         /// </summary>
-        public static string PublishedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string PublishedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification" />

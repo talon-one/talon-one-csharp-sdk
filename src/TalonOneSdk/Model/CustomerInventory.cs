@@ -62,7 +62,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Profile
         /// </summary>
         [JsonPropertyName("profile")]
-        public CustomerProfile Profile { get { return this.ProfileOption; } set { this.ProfileOption = new Option<CustomerProfile>(value); } }
+        public CustomerProfile Profile { get { return this.ProfileOption.Value; } set { this.ProfileOption = new Option<CustomerProfile>(value); } }
 
         /// <summary>
         /// Used to track the state of Loyalty
@@ -75,7 +75,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Loyalty
         /// </summary>
         [JsonPropertyName("loyalty")]
-        public Loyalty Loyalty { get { return this.LoyaltyOption; } set { this.LoyaltyOption = new Option<Loyalty>(value); } }
+        public Loyalty Loyalty { get { return this.LoyaltyOption.Value; } set { this.LoyaltyOption = new Option<Loyalty>(value); } }
 
         /// <summary>
         /// Used to track the state of Referrals
@@ -88,7 +88,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Referrals
         /// </summary>
         [JsonPropertyName("referrals")]
-        public List<InventoryReferral> Referrals { get { return this.ReferralsOption; } set { this.ReferralsOption = new Option<List<InventoryReferral>>(value); } }
+        public List<InventoryReferral> Referrals { get { return this.ReferralsOption.Value; } set { this.ReferralsOption = new Option<List<InventoryReferral>>(value); } }
 
         /// <summary>
         /// Used to track the state of Coupons
@@ -102,7 +102,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The coupons reserved by this profile. This array includes hard and soft reservations. </value>
         [JsonPropertyName("coupons")]
-        public List<InventoryCoupon> Coupons { get { return this.CouponsOption; } set { this.CouponsOption = new Option<List<InventoryCoupon>>(value); } }
+        public List<InventoryCoupon> Coupons { get { return this.CouponsOption.Value; } set { this.CouponsOption = new Option<List<InventoryCoupon>>(value); } }
 
         /// <summary>
         /// Used to track the state of Giveaways
@@ -115,7 +115,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Giveaways
         /// </summary>
         [JsonPropertyName("giveaways")]
-        public List<Giveaway> Giveaways { get { return this.GiveawaysOption; } set { this.GiveawaysOption = new Option<List<Giveaway>>(value); } }
+        public List<Giveaway> Giveaways { get { return this.GiveawaysOption.Value; } set { this.GiveawaysOption = new Option<List<Giveaway>>(value); } }
 
         /// <summary>
         /// Used to track the state of Achievements
@@ -128,7 +128,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Achievements
         /// </summary>
         [JsonPropertyName("achievements")]
-        public List<AchievementProgressWithDefinition> Achievements { get { return this.AchievementsOption; } set { this.AchievementsOption = new Option<List<AchievementProgressWithDefinition>>(value); } }
+        public List<AchievementProgressWithDefinition> Achievements { get { return this.AchievementsOption.Value; } set { this.AchievementsOption = new Option<List<AchievementProgressWithDefinition>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -240,7 +240,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp at which the strikethrough pricing update becomes valid. Set for **scheduled** strikethrough pricing updates (version: v2) only. </value>
         /* <example>2021-07-20T22:00:00Z</example> */
         [JsonPropertyName("validFrom")]
-        public DateTime? ValidFrom { get { return this.ValidFromOption; } set { this.ValidFromOption = new Option<DateTime?>(value); } }
+        public DateTime? ValidFrom { get { return this.ValidFromOption.Value; } set { this.ValidFromOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -282,12 +282,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize SentAt
         /// </summary>
-        public static string SentAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string SentAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ValidFrom
         /// </summary>
-        public static string ValidFromFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ValidFromFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="StrikethroughLabelingNotification" />

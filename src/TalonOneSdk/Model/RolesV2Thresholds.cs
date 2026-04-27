@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// <value>Maximum number of loyalty points a support user can award without approval.</value>
         /* <example>100</example> */
         [JsonPropertyName("loyaltyPointsLimit")]
-        public long? LoyaltyPointsLimit { get { return this.LoyaltyPointsLimitOption; } set { this.LoyaltyPointsLimitOption = new Option<long?>(value); } }
+        public long? LoyaltyPointsLimit { get { return this.LoyaltyPointsLimitOption.Value; } set { this.LoyaltyPointsLimitOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

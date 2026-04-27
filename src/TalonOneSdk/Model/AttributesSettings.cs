@@ -52,7 +52,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Mandatory
         /// </summary>
         [JsonPropertyName("mandatory")]
-        public AttributesMandatory Mandatory { get { return this.MandatoryOption; } set { this.MandatoryOption = new Option<AttributesMandatory>(value); } }
+        public AttributesMandatory Mandatory { get { return this.MandatoryOption.Value; } set { this.MandatoryOption = new Option<AttributesMandatory>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

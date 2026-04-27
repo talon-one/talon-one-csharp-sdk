@@ -59,7 +59,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>ID of the resource.</value>
         [JsonPropertyName("id")]
-        public string Id { get { return this.IdOption; } set { this.IdOption = new Option<string>(value); } }
+        public string Id { get { return this.IdOption.Value; } set { this.IdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -73,7 +73,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Name of the resource.</value>
         [JsonPropertyName("name")]
-        public string Name { get { return this.NameOption; } set { this.NameOption = new Option<string>(value); } }
+        public string Name { get { return this.NameOption.Value; } set { this.NameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -87,7 +87,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Human-readable description of the schema resource.</value>
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -100,7 +100,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Attributes
         /// </summary>
         [JsonPropertyName("attributes")]
-        public List<Object> Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<List<Object>>(value); } }
+        public List<Object> Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<List<Object>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

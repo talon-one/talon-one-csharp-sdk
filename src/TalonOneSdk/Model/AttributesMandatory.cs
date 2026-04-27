@@ -55,7 +55,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>List of mandatory attributes for campaigns.</value>
         [JsonPropertyName("campaigns")]
-        public List<string> Campaigns { get { return this.CampaignsOption; } set { this.CampaignsOption = new Option<List<string>>(value); } }
+        public List<string> Campaigns { get { return this.CampaignsOption.Value; } set { this.CampaignsOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of Coupons
@@ -69,7 +69,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>List of mandatory attributes for campaigns.</value>
         [JsonPropertyName("coupons")]
-        public List<string> Coupons { get { return this.CouponsOption; } set { this.CouponsOption = new Option<List<string>>(value); } }
+        public List<string> Coupons { get { return this.CouponsOption.Value; } set { this.CouponsOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

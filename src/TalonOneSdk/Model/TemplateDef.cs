@@ -132,7 +132,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A short description of the template that will be shown in the rule editor.</value>
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Help
@@ -146,7 +146,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Extended help text for the template.</value>
         [JsonPropertyName("help")]
-        public string Help { get { return this.HelpOption; } set { this.HelpOption = new Option<string>(value); } }
+        public string Help { get { return this.HelpOption.Value; } set { this.HelpOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Expose
@@ -160,7 +160,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A flag to control exposure in Rule Builder.</value>
         [JsonPropertyName("expose")]
-        public bool? Expose { get { return this.ExposeOption; } set { this.ExposeOption = new Option<bool?>(value); } }
+        public bool? Expose { get { return this.ExposeOption.Value; } set { this.ExposeOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -222,7 +222,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="TemplateDef" />

@@ -65,7 +65,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The number of days in advance that strikethrough pricing updates should be sent.</value>
         [JsonPropertyName("aheadOfDaysTrigger")]
-        public long? AheadOfDaysTrigger { get { return this.AheadOfDaysTriggerOption; } set { this.AheadOfDaysTriggerOption = new Option<long?>(value); } }
+        public long? AheadOfDaysTrigger { get { return this.AheadOfDaysTriggerOption.Value; } set { this.AheadOfDaysTriggerOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of BatchSize
@@ -80,7 +80,7 @@ namespace TalonOneSdk.Model
         /// <value>The required size of each batch of data.</value>
         /* <example>1000</example> */
         [JsonPropertyName("batchSize")]
-        public long? BatchSize { get { return this.BatchSizeOption; } set { this.BatchSizeOption = new Option<long?>(value); } }
+        public long? BatchSize { get { return this.BatchSizeOption.Value; } set { this.BatchSizeOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

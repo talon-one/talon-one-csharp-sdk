@@ -203,7 +203,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the user who last updated this effect if available.</value>
         /* <example>124</example> */
         [JsonPropertyName("modifiedBy")]
-        public long? ModifiedBy { get { return this.ModifiedByOption; } set { this.ModifiedByOption = new Option<long?>(value); } }
+        public long? ModifiedBy { get { return this.ModifiedByOption.Value; } set { this.ModifiedByOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of AccountId
@@ -218,7 +218,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the account that owns this entity.</value>
         /* <example>3886</example> */
         [JsonPropertyName("accountId")]
-        public long? AccountId { get { return this.AccountIdOption; } set { this.AccountIdOption = new Option<long?>(value); } }
+        public long? AccountId { get { return this.AccountIdOption.Value; } set { this.AccountIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Imported
@@ -233,7 +233,7 @@ namespace TalonOneSdk.Model
         /// <value>Imported flag shows that a picklist is imported by a CSV file or not</value>
         /* <example>true</example> */
         [JsonPropertyName("imported")]
-        public bool? Imported { get { return this.ImportedOption; } set { this.ImportedOption = new Option<bool?>(value); } }
+        public bool? Imported { get { return this.ImportedOption.Value; } set { this.ImportedOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -274,7 +274,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Picklist" />

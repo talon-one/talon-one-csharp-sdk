@@ -87,7 +87,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets CustomerProfile
         /// </summary>
         [JsonPropertyName("customerProfile")]
-        public CustomerProfile CustomerProfile { get { return this.CustomerProfileOption; } set { this.CustomerProfileOption = new Option<CustomerProfile>(value); } }
+        public CustomerProfile CustomerProfile { get { return this.CustomerProfileOption.Value; } set { this.CustomerProfileOption = new Option<CustomerProfile>(value); } }
 
         /// <summary>
         /// Used to track the state of Event
@@ -100,7 +100,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Event
         /// </summary>
         [JsonPropertyName("event")]
-        public Event Event { get { return this.EventOption; } set { this.EventOption = new Option<Event>(value); } }
+        public Event Event { get { return this.EventOption.Value; } set { this.EventOption = new Option<Event>(value); } }
 
         /// <summary>
         /// Used to track the state of Loyalty
@@ -113,7 +113,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Loyalty
         /// </summary>
         [JsonPropertyName("loyalty")]
-        public Loyalty Loyalty { get { return this.LoyaltyOption; } set { this.LoyaltyOption = new Option<Loyalty>(value); } }
+        public Loyalty Loyalty { get { return this.LoyaltyOption.Value; } set { this.LoyaltyOption = new Option<Loyalty>(value); } }
 
         /// <summary>
         /// Used to track the state of TriggeredCampaigns
@@ -126,7 +126,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets TriggeredCampaigns
         /// </summary>
         [JsonPropertyName("triggeredCampaigns")]
-        public List<Campaign> TriggeredCampaigns { get { return this.TriggeredCampaignsOption; } set { this.TriggeredCampaignsOption = new Option<List<Campaign>>(value); } }
+        public List<Campaign> TriggeredCampaigns { get { return this.TriggeredCampaignsOption.Value; } set { this.TriggeredCampaignsOption = new Option<List<Campaign>>(value); } }
 
         /// <summary>
         /// Used to track the state of RuleFailureReasons
@@ -139,7 +139,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets RuleFailureReasons
         /// </summary>
         [JsonPropertyName("ruleFailureReasons")]
-        public List<RuleFailureReason> RuleFailureReasons { get { return this.RuleFailureReasonsOption; } set { this.RuleFailureReasonsOption = new Option<List<RuleFailureReason>>(value); } }
+        public List<RuleFailureReason> RuleFailureReasons { get { return this.RuleFailureReasonsOption.Value; } set { this.RuleFailureReasonsOption = new Option<List<RuleFailureReason>>(value); } }
 
         /// <summary>
         /// Used to track the state of AwardedGiveaways
@@ -152,7 +152,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets AwardedGiveaways
         /// </summary>
         [JsonPropertyName("awardedGiveaways")]
-        public List<Giveaway> AwardedGiveaways { get { return this.AwardedGiveawaysOption; } set { this.AwardedGiveawaysOption = new Option<List<Giveaway>>(value); } }
+        public List<Giveaway> AwardedGiveaways { get { return this.AwardedGiveawaysOption.Value; } set { this.AwardedGiveawaysOption = new Option<List<Giveaway>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

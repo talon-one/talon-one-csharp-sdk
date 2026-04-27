@@ -162,7 +162,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A list of extended coupon data.</value>
         [JsonPropertyName("data")]
-        public List<ExtendedCoupon> Data { get { return this.DataOption; } set { this.DataOption = new Option<List<ExtendedCoupon>>(value); } }
+        public List<ExtendedCoupon> Data { get { return this.DataOption.Value; } set { this.DataOption = new Option<List<ExtendedCoupon>>(value); } }
 
         /// <summary>
         /// Used to track the state of TotalResultSize
@@ -176,7 +176,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /* <example>1</example> */
         [JsonPropertyName("totalResultSize")]
-        public long? TotalResultSize { get { return this.TotalResultSizeOption; } set { this.TotalResultSizeOption = new Option<long?>(value); } }
+        public long? TotalResultSize { get { return this.TotalResultSizeOption.Value; } set { this.TotalResultSizeOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

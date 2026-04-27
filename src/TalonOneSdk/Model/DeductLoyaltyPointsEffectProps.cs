@@ -108,7 +108,7 @@ namespace TalonOneSdk.Model
         /// <value>The card on which these points were added.</value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("cardIdentifier")]
-        public string CardIdentifier { get { return this.CardIdentifierOption; } set { this.CardIdentifierOption = new Option<string>(value); } }
+        public string CardIdentifier { get { return this.CardIdentifierOption.Value; } set { this.CardIdentifierOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

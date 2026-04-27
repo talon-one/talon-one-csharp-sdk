@@ -106,7 +106,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp at which point the giveaway becomes valid.</value>
         /* <example>2022-01-02T15:04:05Z07:00</example> */
         [JsonPropertyName("startDate")]
-        public DateTime? StartDate { get { return this.StartDateOption; } set { this.StartDateOption = new Option<DateTime?>(value); } }
+        public DateTime? StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of EndDate
@@ -121,7 +121,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp at which point the giveaway becomes invalid.</value>
         /* <example>2023-01-02T15:04:05Z07:00</example> */
         [JsonPropertyName("endDate")]
-        public DateTime? EndDate { get { return this.EndDateOption; } set { this.EndDateOption = new Option<DateTime?>(value); } }
+        public DateTime? EndDate { get { return this.EndDateOption.Value; } set { this.EndDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -135,7 +135,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Arbitrary properties associated with this giveaway.</value>
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of Used
@@ -150,7 +150,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates whether this giveaway code was given before.</value>
         /* <example>true</example> */
         [JsonPropertyName("used")]
-        public bool? Used { get { return this.UsedOption; } set { this.UsedOption = new Option<bool?>(value); } }
+        public bool? Used { get { return this.UsedOption.Value; } set { this.UsedOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of ImportId
@@ -165,7 +165,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the Import which created this giveaway.</value>
         /* <example>4</example> */
         [JsonPropertyName("importId")]
-        public long? ImportId { get { return this.ImportIdOption; } set { this.ImportIdOption = new Option<long?>(value); } }
+        public long? ImportId { get { return this.ImportIdOption.Value; } set { this.ImportIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ProfileIntegrationId
@@ -180,7 +180,7 @@ namespace TalonOneSdk.Model
         /// <value>The third-party integration ID of the customer profile that was awarded the giveaway, if the giveaway was awarded.</value>
         /* <example>R195412</example> */
         [JsonPropertyName("profileIntegrationId")]
-        public string ProfileIntegrationId { get { return this.ProfileIntegrationIdOption; } set { this.ProfileIntegrationIdOption = new Option<string>(value); } }
+        public string ProfileIntegrationId { get { return this.ProfileIntegrationIdOption.Value; } set { this.ProfileIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ProfileId
@@ -195,7 +195,7 @@ namespace TalonOneSdk.Model
         /// <value>The internal ID of the customer profile that was awarded the giveaway, if the giveaway was awarded and an internal ID exists.</value>
         /* <example>1</example> */
         [JsonPropertyName("profileId")]
-        public long? ProfileId { get { return this.ProfileIdOption; } set { this.ProfileIdOption = new Option<long?>(value); } }
+        public long? ProfileId { get { return this.ProfileIdOption.Value; } set { this.ProfileIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -239,17 +239,17 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EndDate
         /// </summary>
-        public static string EndDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string EndDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Giveaway" />

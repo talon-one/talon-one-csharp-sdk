@@ -284,7 +284,7 @@ namespace TalonOneSdk.Model
         /// <value>A description of the campaign evaluation group.</value>
         /* <example>This campaign evaluation group contains all campaigns that are running in the summer.</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -135,7 +135,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The giveaways pools that the application is subscribed to.</value>
         [JsonPropertyName("giveawaysPools")]
-        public List<GiveawaysPool> GiveawaysPools { get { return this.GiveawaysPoolsOption; } set { this.GiveawaysPoolsOption = new Option<List<GiveawaysPool>>(value); } }
+        public List<GiveawaysPool> GiveawaysPools { get { return this.GiveawaysPoolsOption.Value; } set { this.GiveawaysPoolsOption = new Option<List<GiveawaysPool>>(value); } }
 
         /// <summary>
         /// Used to track the state of LoyaltyPrograms
@@ -149,7 +149,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The loyalty programs that the application is subscribed to.</value>
         [JsonPropertyName("loyaltyPrograms")]
-        public List<LoyaltyProgram> LoyaltyPrograms { get { return this.LoyaltyProgramsOption; } set { this.LoyaltyProgramsOption = new Option<List<LoyaltyProgram>>(value); } }
+        public List<LoyaltyProgram> LoyaltyPrograms { get { return this.LoyaltyProgramsOption.Value; } set { this.LoyaltyProgramsOption = new Option<List<LoyaltyProgram>>(value); } }
 
         /// <summary>
         /// Used to track the state of Achievements
@@ -163,7 +163,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The achievements, linked to the campaigns, belonging to the application.</value>
         [JsonPropertyName("achievements")]
-        public List<Achievement> Achievements { get { return this.AchievementsOption; } set { this.AchievementsOption = new Option<List<Achievement>>(value); } }
+        public List<Achievement> Achievements { get { return this.AchievementsOption.Value; } set { this.AchievementsOption = new Option<List<Achievement>>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -177,7 +177,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The attributes that the application is subscribed to.</value>
         [JsonPropertyName("attributes")]
-        public List<Attribute> Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<List<Attribute>>(value); } }
+        public List<Attribute> Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<List<Attribute>>(value); } }
 
         /// <summary>
         /// Used to track the state of AdditionalCosts
@@ -191,7 +191,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The additional costs that the application is subscribed to.</value>
         [JsonPropertyName("additionalCosts")]
-        public List<AccountAdditionalCost> AdditionalCosts { get { return this.AdditionalCostsOption; } set { this.AdditionalCostsOption = new Option<List<AccountAdditionalCost>>(value); } }
+        public List<AccountAdditionalCost> AdditionalCosts { get { return this.AdditionalCostsOption.Value; } set { this.AdditionalCostsOption = new Option<List<AccountAdditionalCost>>(value); } }
 
         /// <summary>
         /// Used to track the state of Audiences
@@ -205,7 +205,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The audiences contained in the account which the application belongs to.</value>
         [JsonPropertyName("audiences")]
-        public List<Audience> Audiences { get { return this.AudiencesOption; } set { this.AudiencesOption = new Option<List<Audience>>(value); } }
+        public List<Audience> Audiences { get { return this.AudiencesOption.Value; } set { this.AudiencesOption = new Option<List<Audience>>(value); } }
 
         /// <summary>
         /// Used to track the state of Collections
@@ -219,7 +219,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The account-level collections that the application is subscribed to.</value>
         [JsonPropertyName("collections")]
-        public List<Collection> Collections { get { return this.CollectionsOption; } set { this.CollectionsOption = new Option<List<Collection>>(value); } }
+        public List<Collection> Collections { get { return this.CollectionsOption.Value; } set { this.CollectionsOption = new Option<List<Collection>>(value); } }
 
         /// <summary>
         /// Used to track the state of ApplicationCartItemFilters
@@ -233,7 +233,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The cart item filters belonging to the Application.</value>
         [JsonPropertyName("applicationCartItemFilters")]
-        public List<ApplicationCIF> ApplicationCartItemFilters { get { return this.ApplicationCartItemFiltersOption; } set { this.ApplicationCartItemFiltersOption = new Option<List<ApplicationCIF>>(value); } }
+        public List<ApplicationCIF> ApplicationCartItemFilters { get { return this.ApplicationCartItemFiltersOption.Value; } set { this.ApplicationCartItemFiltersOption = new Option<List<ApplicationCIF>>(value); } }
 
         /// <summary>
         /// Used to track the state of PriceTypes
@@ -247,7 +247,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The price types that this Application can use.</value>
         [JsonPropertyName("priceTypes")]
-        public List<PriceType> PriceTypes { get { return this.PriceTypesOption; } set { this.PriceTypesOption = new Option<List<PriceType>>(value); } }
+        public List<PriceType> PriceTypes { get { return this.PriceTypesOption.Value; } set { this.PriceTypesOption = new Option<List<PriceType>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -296,7 +296,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ModelEnvironment" />

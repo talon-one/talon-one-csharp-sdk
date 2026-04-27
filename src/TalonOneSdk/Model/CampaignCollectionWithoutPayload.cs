@@ -120,7 +120,7 @@ namespace TalonOneSdk.Model
         /// <value>A short description of the purpose of this collection.</value>
         /* <example>My collection of SKUs</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ModifiedBy
@@ -135,7 +135,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the user who last updated this effect if available.</value>
         /* <example>48</example> */
         [JsonPropertyName("modifiedBy")]
-        public long? ModifiedBy { get { return this.ModifiedByOption; } set { this.ModifiedByOption = new Option<long?>(value); } }
+        public long? ModifiedBy { get { return this.ModifiedByOption.Value; } set { this.ModifiedByOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ApplicationId
@@ -150,7 +150,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the Application that owns this entity.</value>
         /* <example>1</example> */
         [JsonPropertyName("applicationId")]
-        public long? ApplicationId { get { return this.ApplicationIdOption; } set { this.ApplicationIdOption = new Option<long?>(value); } }
+        public long? ApplicationId { get { return this.ApplicationIdOption.Value; } set { this.ApplicationIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CampaignId
@@ -165,7 +165,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the campaign that owns this entity.</value>
         /* <example>7</example> */
         [JsonPropertyName("campaignId")]
-        public long? CampaignId { get { return this.CampaignIdOption; } set { this.CampaignIdOption = new Option<long?>(value); } }
+        public long? CampaignId { get { return this.CampaignIdOption.Value; } set { this.CampaignIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -224,12 +224,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
-        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CampaignCollectionWithoutPayload" />

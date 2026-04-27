@@ -74,7 +74,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates whether batching is activated.</value>
         /* <example>true</example> */
         [JsonPropertyName("batchingEnabled")]
-        public bool? BatchingEnabled { get { return this.BatchingEnabledOption; } set { this.BatchingEnabledOption = new Option<bool?>(value); } }
+        public bool? BatchingEnabled { get { return this.BatchingEnabledOption.Value; } set { this.BatchingEnabledOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of BatchSize
@@ -89,7 +89,7 @@ namespace TalonOneSdk.Model
         /// <value>The required size of each batch of data. This value applies only when &#x60;batchingEnabled&#x60; is &#x60;true&#x60;.</value>
         /* <example>1000</example> */
         [JsonPropertyName("batchSize")]
-        public long? BatchSize { get { return this.BatchSizeOption; } set { this.BatchSizeOption = new Option<long?>(value); } }
+        public long? BatchSize { get { return this.BatchSizeOption.Value; } set { this.BatchSizeOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

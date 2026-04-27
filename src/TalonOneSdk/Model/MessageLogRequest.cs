@@ -92,7 +92,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="MessageLogRequest" />

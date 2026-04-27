@@ -102,7 +102,7 @@ namespace TalonOneSdk.Model
         /// <value>A short description of the Application cart item filter.</value>
         /* <example>This filter allows filtering by shoes</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ActiveExpressionId
@@ -117,7 +117,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the expression that the Application cart item filter uses.</value>
         /* <example>1</example> */
         [JsonPropertyName("activeExpressionId")]
-        public long? ActiveExpressionId { get { return this.ActiveExpressionIdOption; } set { this.ActiveExpressionIdOption = new Option<long?>(value); } }
+        public long? ActiveExpressionId { get { return this.ActiveExpressionIdOption.Value; } set { this.ActiveExpressionIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ModifiedBy
@@ -132,7 +132,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the user who last updated the Application cart item filter.</value>
         /* <example>334</example> */
         [JsonPropertyName("modifiedBy")]
-        public long? ModifiedBy { get { return this.ModifiedByOption; } set { this.ModifiedByOption = new Option<long?>(value); } }
+        public long? ModifiedBy { get { return this.ModifiedByOption.Value; } set { this.ModifiedByOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedBy
@@ -147,7 +147,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the user who created the Application cart item filter.</value>
         /* <example>216</example> */
         [JsonPropertyName("createdBy")]
-        public long? CreatedBy { get { return this.CreatedByOption; } set { this.CreatedByOption = new Option<long?>(value); } }
+        public long? CreatedBy { get { return this.CreatedByOption.Value; } set { this.CreatedByOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Modified
@@ -161,7 +161,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Timestamp of the most recent update to the Application cart item filter.</value>
         [JsonPropertyName("modified")]
-        public DateTime? Modified { get { return this.ModifiedOption; } set { this.ModifiedOption = new Option<DateTime?>(value); } }
+        public DateTime? Modified { get { return this.ModifiedOption.Value; } set { this.ModifiedOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -203,12 +203,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
-        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApplicationCIF" />

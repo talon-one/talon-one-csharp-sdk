@@ -82,7 +82,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A short description of the function.</value>
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Help
@@ -96,7 +96,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Extended help text for the function.</value>
         [JsonPropertyName("help")]
-        public string Help { get { return this.HelpOption; } set { this.HelpOption = new Option<string>(value); } }
+        public string Help { get { return this.HelpOption.Value; } set { this.HelpOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

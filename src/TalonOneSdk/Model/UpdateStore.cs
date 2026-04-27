@@ -74,7 +74,7 @@ namespace TalonOneSdk.Model
         /// <value>The attributes of the store.</value>
         /* <example>{country&#x3D;USA, code&#x3D;1234}</example> */
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

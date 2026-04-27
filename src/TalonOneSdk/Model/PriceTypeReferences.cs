@@ -63,7 +63,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A list of entities that reference the price type, including details about the entities.</value>
         [JsonPropertyName("references")]
-        public List<PriceTypeReferenceDetail> References { get { return this.ReferencesOption; } set { this.ReferencesOption = new Option<List<PriceTypeReferenceDetail>>(value); } }
+        public List<PriceTypeReferenceDetail> References { get { return this.ReferencesOption.Value; } set { this.ReferencesOption = new Option<List<PriceTypeReferenceDetail>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

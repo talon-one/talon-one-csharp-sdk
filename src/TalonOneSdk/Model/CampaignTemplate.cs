@@ -478,7 +478,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The campaign attributes that campaigns created from this template will have by default.</value>
         [JsonPropertyName("campaignAttributes")]
-        public Object CampaignAttributes { get { return this.CampaignAttributesOption; } set { this.CampaignAttributesOption = new Option<Object>(value); } }
+        public Object CampaignAttributes { get { return this.CampaignAttributesOption.Value; } set { this.CampaignAttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponAttributes
@@ -492,7 +492,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The campaign attributes that coupons created from this template will have by default.</value>
         [JsonPropertyName("couponAttributes")]
-        public Object CouponAttributes { get { return this.CouponAttributesOption; } set { this.CouponAttributesOption = new Option<Object>(value); } }
+        public Object CouponAttributes { get { return this.CouponAttributesOption.Value; } set { this.CouponAttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of ActiveRulesetId
@@ -507,7 +507,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the ruleset this campaign template will use.</value>
         /* <example>5</example> */
         [JsonPropertyName("activeRulesetId")]
-        public long? ActiveRulesetId { get { return this.ActiveRulesetIdOption; } set { this.ActiveRulesetIdOption = new Option<long?>(value); } }
+        public long? ActiveRulesetId { get { return this.ActiveRulesetIdOption.Value; } set { this.ActiveRulesetIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Tags
@@ -522,7 +522,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of tags for the campaign template.</value>
         /* <example>[discount]</example> */
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of Features
@@ -536,7 +536,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A list of features for the campaign template.</value>
         [JsonPropertyName("features")]
-        public List<CampaignTemplate.FeaturesEnum> Features { get { return this.FeaturesOption; } set { this.FeaturesOption = new Option<List<CampaignTemplate.FeaturesEnum>>(value); } }
+        public List<CampaignTemplate.FeaturesEnum> Features { get { return this.FeaturesOption.Value; } set { this.FeaturesOption = new Option<List<CampaignTemplate.FeaturesEnum>>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponSettings
@@ -549,7 +549,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets CouponSettings
         /// </summary>
         [JsonPropertyName("couponSettings")]
-        public CodeGeneratorSettings CouponSettings { get { return this.CouponSettingsOption; } set { this.CouponSettingsOption = new Option<CodeGeneratorSettings>(value); } }
+        public CodeGeneratorSettings CouponSettings { get { return this.CouponSettingsOption.Value; } set { this.CouponSettingsOption = new Option<CodeGeneratorSettings>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponReservationSettings
@@ -562,7 +562,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets CouponReservationSettings
         /// </summary>
         [JsonPropertyName("couponReservationSettings")]
-        public CampaignTemplateCouponReservationSettings CouponReservationSettings { get { return this.CouponReservationSettingsOption; } set { this.CouponReservationSettingsOption = new Option<CampaignTemplateCouponReservationSettings>(value); } }
+        public CampaignTemplateCouponReservationSettings CouponReservationSettings { get { return this.CouponReservationSettingsOption.Value; } set { this.CouponReservationSettingsOption = new Option<CampaignTemplateCouponReservationSettings>(value); } }
 
         /// <summary>
         /// Used to track the state of ReferralSettings
@@ -575,7 +575,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ReferralSettings
         /// </summary>
         [JsonPropertyName("referralSettings")]
-        public CodeGeneratorSettings ReferralSettings { get { return this.ReferralSettingsOption; } set { this.ReferralSettingsOption = new Option<CodeGeneratorSettings>(value); } }
+        public CodeGeneratorSettings ReferralSettings { get { return this.ReferralSettingsOption.Value; } set { this.ReferralSettingsOption = new Option<CodeGeneratorSettings>(value); } }
 
         /// <summary>
         /// Used to track the state of Limits
@@ -589,7 +589,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The set of limits that operate for this campaign template.</value>
         [JsonPropertyName("limits")]
-        public List<TemplateLimitConfig> Limits { get { return this.LimitsOption; } set { this.LimitsOption = new Option<List<TemplateLimitConfig>>(value); } }
+        public List<TemplateLimitConfig> Limits { get { return this.LimitsOption.Value; } set { this.LimitsOption = new Option<List<TemplateLimitConfig>>(value); } }
 
         /// <summary>
         /// Used to track the state of TemplateParams
@@ -603,7 +603,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Fields which can be used to replace values in a rule.</value>
         [JsonPropertyName("templateParams")]
-        public List<CampaignTemplateParams> TemplateParams { get { return this.TemplateParamsOption; } set { this.TemplateParamsOption = new Option<List<CampaignTemplateParams>>(value); } }
+        public List<CampaignTemplateParams> TemplateParams { get { return this.TemplateParamsOption.Value; } set { this.TemplateParamsOption = new Option<List<CampaignTemplateParams>>(value); } }
 
         /// <summary>
         /// Used to track the state of CampaignCollections
@@ -617,7 +617,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The campaign collections from the blueprint campaign for the template.</value>
         [JsonPropertyName("campaignCollections")]
-        public List<CampaignTemplateCollection> CampaignCollections { get { return this.CampaignCollectionsOption; } set { this.CampaignCollectionsOption = new Option<List<CampaignTemplateCollection>>(value); } }
+        public List<CampaignTemplateCollection> CampaignCollections { get { return this.CampaignCollectionsOption.Value; } set { this.CampaignCollectionsOption = new Option<List<CampaignTemplateCollection>>(value); } }
 
         /// <summary>
         /// Used to track the state of DefaultCampaignGroupId
@@ -632,7 +632,7 @@ namespace TalonOneSdk.Model
         /// <value>The default campaign group ID.</value>
         /* <example>42</example> */
         [JsonPropertyName("defaultCampaignGroupId")]
-        public long? DefaultCampaignGroupId { get { return this.DefaultCampaignGroupIdOption; } set { this.DefaultCampaignGroupIdOption = new Option<long?>(value); } }
+        public long? DefaultCampaignGroupId { get { return this.DefaultCampaignGroupIdOption.Value; } set { this.DefaultCampaignGroupIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CampaignsCount
@@ -647,7 +647,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of Campaigns created from this template.</value>
         /* <example>3</example> */
         [JsonPropertyName("campaignsCount")]
-        public long? CampaignsCount { get { return this.CampaignsCountOption; } set { this.CampaignsCountOption = new Option<long?>(value); } }
+        public long? CampaignsCount { get { return this.CampaignsCountOption.Value; } set { this.CampaignsCountOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Updated
@@ -662,7 +662,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp of the most recent update to the campaign template or any of its elements.</value>
         /* <example>2022-08-24T14:15:22Z</example> */
         [JsonPropertyName("updated")]
-        public DateTime? Updated { get { return this.UpdatedOption; } set { this.UpdatedOption = new Option<DateTime?>(value); } }
+        public DateTime? Updated { get { return this.UpdatedOption.Value; } set { this.UpdatedOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of UpdatedBy
@@ -677,7 +677,7 @@ namespace TalonOneSdk.Model
         /// <value>Name of the user who last updated this campaign template, if available.</value>
         /* <example>Jane Doe</example> */
         [JsonPropertyName("updatedBy")]
-        public string UpdatedBy { get { return this.UpdatedByOption; } set { this.UpdatedByOption = new Option<string>(value); } }
+        public string UpdatedBy { get { return this.UpdatedByOption.Value; } set { this.UpdatedByOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of IsUserFavorite
@@ -692,7 +692,7 @@ namespace TalonOneSdk.Model
         /// <value>A flag indicating whether the user marked the template as a favorite.</value>
         /* <example>false</example> */
         [JsonPropertyName("isUserFavorite")]
-        public bool? IsUserFavorite { get { return this.IsUserFavoriteOption; } set { this.IsUserFavoriteOption = new Option<bool?>(value); } }
+        public bool? IsUserFavorite { get { return this.IsUserFavoriteOption.Value; } set { this.IsUserFavoriteOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -759,12 +759,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Updated
         /// </summary>
-        public static string UpdatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string UpdatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CampaignTemplate" />

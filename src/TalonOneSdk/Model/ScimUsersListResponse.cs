@@ -63,7 +63,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>SCIM schema for the given resource.</value>
         [JsonPropertyName("schemas")]
-        public List<string> Schemas { get { return this.SchemasOption; } set { this.SchemasOption = new Option<List<string>>(value); } }
+        public List<string> Schemas { get { return this.SchemasOption.Value; } set { this.SchemasOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of TotalResults
@@ -77,7 +77,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Number of total results in the response.</value>
         [JsonPropertyName("totalResults")]
-        public long? TotalResults { get { return this.TotalResultsOption; } set { this.TotalResultsOption = new Option<long?>(value); } }
+        public long? TotalResults { get { return this.TotalResultsOption.Value; } set { this.TotalResultsOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

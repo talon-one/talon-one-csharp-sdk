@@ -410,7 +410,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A description of the campaign set.</value>
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

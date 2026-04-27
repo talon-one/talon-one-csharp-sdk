@@ -40,8 +40,10 @@ namespace TalonOneSdk.Model
         /// <param name="sandbox">Indicates if this is a live or sandbox reward. Rewards of a given type can only be connected to Applications of the same type.</param>
         /// <param name="status">The status of the reward.</param>
         /// <param name="description">A description of the reward.</param>
+        /// <param name="rule">Rule to apply.</param>
+        /// <param name="bindings">A list of named variables created before the reward&#39;s rules are evaluated.  Each binding pairs a name with a talang expression. The expression is evaluated once  and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.</param>
         [JsonConstructor]
-        public Reward(long id, DateTime created, long accountId, string name, string apiName, List<long> applicationIds, bool sandbox, StatusEnum status, Option<string> description = default)
+        public Reward(long id, DateTime created, long accountId, string name, string apiName, List<long> applicationIds, bool sandbox, StatusEnum status, Option<string> description = default, Option<List<Rule>> rule = default, Option<List<Binding>> bindings = default)
         {
             Id = id;
             Created = created;
@@ -52,6 +54,8 @@ namespace TalonOneSdk.Model
             Sandbox = sandbox;
             Status = status;
             DescriptionOption = description;
+            RuleOption = rule;
+            BindingsOption = bindings;
             OnCreated();
         }
 
@@ -201,7 +205,36 @@ namespace TalonOneSdk.Model
         /// <value>A description of the reward.</value>
         /* <example>This reward gets you one free coffee.</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Rule
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<Rule>> RuleOption { get; private set; }
+
+        /// <summary>
+        /// Rule to apply.
+        /// </summary>
+        /// <value>Rule to apply.</value>
+        [JsonPropertyName("rule")]
+        public List<Rule> Rule { get { return this.RuleOption.Value; } set { this.RuleOption = new Option<List<Rule>>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Bindings
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<Binding>> BindingsOption { get; private set; }
+
+        /// <summary>
+        /// A list of named variables created before the reward&#39;s rules are evaluated.  Each binding pairs a name with a talang expression. The expression is evaluated once  and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.
+        /// </summary>
+        /// <value>A list of named variables created before the reward&#39;s rules are evaluated.  Each binding pairs a name with a talang expression. The expression is evaluated once  and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.</value>
+        /* <example>[]</example> */
+        [JsonPropertyName("bindings")]
+        public List<Binding> Bindings { get { return this.BindingsOption.Value; } set { this.BindingsOption = new Option<List<Binding>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -220,6 +253,8 @@ namespace TalonOneSdk.Model
             sb.Append("  Sandbox: ").Append(Sandbox).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Rule: ").Append(Rule).Append("\n");
+            sb.Append("  Bindings: ").Append(Bindings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -255,7 +290,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Reward" />
@@ -283,6 +318,8 @@ namespace TalonOneSdk.Model
             Option<bool?> sandbox = default;
             Option<Reward.StatusEnum?> status = default;
             Option<string> description = default;
+            Option<List<Rule>> rule = default;
+            Option<List<Binding>> bindings = default;
 
             while (utf8JsonReader.Read())
             {
@@ -327,6 +364,12 @@ namespace TalonOneSdk.Model
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "rule":
+                            rule = new Option<List<Rule>>(JsonSerializer.Deserialize<List<Rule>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "bindings":
+                            bindings = new Option<List<Binding>>(JsonSerializer.Deserialize<List<Binding>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -382,7 +425,7 @@ namespace TalonOneSdk.Model
             if (status.IsSet && status.Value == null)
                 throw new ArgumentNullException(nameof(status), "Property is not nullable for class Reward.");
 
-            return new Reward(id.Value.Value, created.Value.Value, accountId.Value.Value, name.Value, apiName.Value, applicationIds.Value, sandbox.Value.Value, status.Value.Value, description);
+            return new Reward(id.Value.Value, created.Value.Value, accountId.Value.Value, name.Value, apiName.Value, applicationIds.Value, sandbox.Value.Value, status.Value.Value, description, rule, bindings);
         }
 
         /// <summary>
@@ -436,6 +479,17 @@ namespace TalonOneSdk.Model
             writer.WriteString("status", statusRawValue);
             if (reward.DescriptionOption.IsSet)
                 writer.WriteString("description", reward.Description);
+
+            if (reward.RuleOption.IsSet)
+            {
+                writer.WritePropertyName("rule");
+                JsonSerializer.Serialize(writer, reward.Rule, jsonSerializerOptions);
+            }
+            if (reward.BindingsOption.IsSet)
+            {
+                writer.WritePropertyName("bindings");
+                JsonSerializer.Serialize(writer, reward.Bindings, jsonSerializerOptions);
+            }
         }
     }
 }

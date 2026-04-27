@@ -56,7 +56,7 @@ namespace TalonOneSdk.Model
         /// <value>Display name of the group (Talon.One role).</value>
         /* <example>Manager</example> */
         [JsonPropertyName("displayName")]
-        public string DisplayName { get { return this.DisplayNameOption; } set { this.DisplayNameOption = new Option<string>(value); } }
+        public string DisplayName { get { return this.DisplayNameOption.Value; } set { this.DisplayNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Members
@@ -70,7 +70,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>List of members to assign to the new Talon.One role.</value>
         [JsonPropertyName("members")]
-        public List<ScimGroupMember> Members { get { return this.MembersOption; } set { this.MembersOption = new Option<List<ScimGroupMember>>(value); } }
+        public List<ScimGroupMember> Members { get { return this.MembersOption.Value; } set { this.MembersOption = new Option<List<ScimGroupMember>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

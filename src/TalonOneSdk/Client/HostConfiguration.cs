@@ -150,6 +150,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new CampaignDetailJsonConverter());
             _jsonOptions.Converters.Add(new CampaignEditedNotificationJsonConverter());
             _jsonOptions.Converters.Add(new CampaignEditedNotificationItemJsonConverter());
+            _jsonOptions.Converters.Add(new CampaignEligibilityJsonConverter());
             _jsonOptions.Converters.Add(new CampaignEntityJsonConverter());
             _jsonOptions.Converters.Add(new CampaignEvaluationGroupJsonConverter());
             _jsonOptions.Converters.Add(new CampaignEvaluationPositionJsonConverter());
@@ -723,6 +724,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new UpdatePriceTypeJsonConverter());
             _jsonOptions.Converters.Add(new UpdateReferralJsonConverter());
             _jsonOptions.Converters.Add(new UpdateReferralBatchJsonConverter());
+            _jsonOptions.Converters.Add(new UpdateRewardJsonConverter());
             _jsonOptions.Converters.Add(new UpdateRoleJsonConverter());
             _jsonOptions.Converters.Add(new UpdateStoreJsonConverter());
             _jsonOptions.Converters.Add(new UpdateUserJsonConverter());

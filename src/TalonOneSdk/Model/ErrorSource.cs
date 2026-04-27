@@ -59,7 +59,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Pointer to the path in the payload that caused this error.</value>
         [JsonPropertyName("pointer")]
-        public string Pointer { get { return this.PointerOption; } set { this.PointerOption = new Option<string>(value); } }
+        public string Pointer { get { return this.PointerOption.Value; } set { this.PointerOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Parameter
@@ -73,7 +73,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Query parameter that caused this error.</value>
         [JsonPropertyName("parameter")]
-        public string Parameter { get { return this.ParameterOption; } set { this.ParameterOption = new Option<string>(value); } }
+        public string Parameter { get { return this.ParameterOption.Value; } set { this.ParameterOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Line
@@ -87,7 +87,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Line number in uploaded multipart file that caused this error. &#39;N/A&#39; if unknown.</value>
         [JsonPropertyName("line")]
-        public string Line { get { return this.LineOption; } set { this.LineOption = new Option<string>(value); } }
+        public string Line { get { return this.LineOption.Value; } set { this.LineOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Resource
@@ -101,7 +101,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Pointer to the resource that caused this error.</value>
         [JsonPropertyName("resource")]
-        public string Resource { get { return this.ResourceOption; } set { this.ResourceOption = new Option<string>(value); } }
+        public string Resource { get { return this.ResourceOption.Value; } set { this.ResourceOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

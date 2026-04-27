@@ -64,7 +64,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Bulk
         /// </summary>
         [JsonPropertyName("bulk")]
-        public ScimServiceProviderConfigResponseBulk Bulk { get { return this.BulkOption; } set { this.BulkOption = new Option<ScimServiceProviderConfigResponseBulk>(value); } }
+        public ScimServiceProviderConfigResponseBulk Bulk { get { return this.BulkOption.Value; } set { this.BulkOption = new Option<ScimServiceProviderConfigResponseBulk>(value); } }
 
         /// <summary>
         /// Used to track the state of ChangePassword
@@ -77,7 +77,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ChangePassword
         /// </summary>
         [JsonPropertyName("changePassword")]
-        public ScimServiceProviderConfigResponseChangePassword ChangePassword { get { return this.ChangePasswordOption; } set { this.ChangePasswordOption = new Option<ScimServiceProviderConfigResponseChangePassword>(value); } }
+        public ScimServiceProviderConfigResponseChangePassword ChangePassword { get { return this.ChangePasswordOption.Value; } set { this.ChangePasswordOption = new Option<ScimServiceProviderConfigResponseChangePassword>(value); } }
 
         /// <summary>
         /// Used to track the state of DocumentationUri
@@ -91,7 +91,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The URI that points to the SCIM service provider&#39;s documentation, providing further details about the service&#39;s capabilities and usage.</value>
         [JsonPropertyName("documentationUri")]
-        public string DocumentationUri { get { return this.DocumentationUriOption; } set { this.DocumentationUriOption = new Option<string>(value); } }
+        public string DocumentationUri { get { return this.DocumentationUriOption.Value; } set { this.DocumentationUriOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Filter
@@ -104,7 +104,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Filter
         /// </summary>
         [JsonPropertyName("filter")]
-        public ScimServiceProviderConfigResponseFilter Filter { get { return this.FilterOption; } set { this.FilterOption = new Option<ScimServiceProviderConfigResponseFilter>(value); } }
+        public ScimServiceProviderConfigResponseFilter Filter { get { return this.FilterOption.Value; } set { this.FilterOption = new Option<ScimServiceProviderConfigResponseFilter>(value); } }
 
         /// <summary>
         /// Used to track the state of Patch
@@ -117,7 +117,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Patch
         /// </summary>
         [JsonPropertyName("patch")]
-        public ScimServiceProviderConfigResponsePatch Patch { get { return this.PatchOption; } set { this.PatchOption = new Option<ScimServiceProviderConfigResponsePatch>(value); } }
+        public ScimServiceProviderConfigResponsePatch Patch { get { return this.PatchOption.Value; } set { this.PatchOption = new Option<ScimServiceProviderConfigResponsePatch>(value); } }
 
         /// <summary>
         /// Used to track the state of Schemas
@@ -131,7 +131,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A list of SCIM schemas that define the structure and data types supported by the service provider.</value>
         [JsonPropertyName("schemas")]
-        public List<string> Schemas { get { return this.SchemasOption; } set { this.SchemasOption = new Option<List<string>>(value); } }
+        public List<string> Schemas { get { return this.SchemasOption.Value; } set { this.SchemasOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of Sort
@@ -144,7 +144,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Sort
         /// </summary>
         [JsonPropertyName("sort")]
-        public ScimServiceProviderConfigResponseSort Sort { get { return this.SortOption; } set { this.SortOption = new Option<ScimServiceProviderConfigResponseSort>(value); } }
+        public ScimServiceProviderConfigResponseSort Sort { get { return this.SortOption.Value; } set { this.SortOption = new Option<ScimServiceProviderConfigResponseSort>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

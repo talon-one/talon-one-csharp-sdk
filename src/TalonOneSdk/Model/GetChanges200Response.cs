@@ -63,7 +63,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /* <example>1</example> */
         [JsonPropertyName("totalResultSize")]
-        public long? TotalResultSize { get { return this.TotalResultSizeOption; } set { this.TotalResultSizeOption = new Option<long?>(value); } }
+        public long? TotalResultSize { get { return this.TotalResultSizeOption.Value; } set { this.TotalResultSizeOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of HasMore
@@ -76,7 +76,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets HasMore
         /// </summary>
         [JsonPropertyName("hasMore")]
-        public bool? HasMore { get { return this.HasMoreOption; } set { this.HasMoreOption = new Option<bool?>(value); } }
+        public bool? HasMore { get { return this.HasMoreOption.Value; } set { this.HasMoreOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

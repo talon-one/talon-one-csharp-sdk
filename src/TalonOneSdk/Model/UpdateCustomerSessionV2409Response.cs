@@ -57,7 +57,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /* <example>Too many requests are updating this session at the same time</example> */
         [JsonPropertyName("message")]
-        public string Message { get { return this.MessageOption; } set { this.MessageOption = new Option<string>(value); } }
+        public string Message { get { return this.MessageOption.Value; } set { this.MessageOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Errors
@@ -70,7 +70,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Errors
         /// </summary>
         [JsonPropertyName("errors")]
-        public List<Object> Errors { get { return this.ErrorsOption; } set { this.ErrorsOption = new Option<List<Object>>(value); } }
+        public List<Object> Errors { get { return this.ErrorsOption.Value; } set { this.ErrorsOption = new Option<List<Object>>(value); } }
 
         /// <summary>
         /// Used to track the state of StatusCode
@@ -84,7 +84,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /* <example>409</example> */
         [JsonPropertyName("StatusCode")]
-        public long? StatusCode { get { return this.StatusCodeOption; } set { this.StatusCodeOption = new Option<long?>(value); } }
+        public long? StatusCode { get { return this.StatusCodeOption.Value; } set { this.StatusCodeOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

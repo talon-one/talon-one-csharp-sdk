@@ -62,7 +62,7 @@ namespace TalonOneSdk.Model
         /// <value>The version number of the catalog to apply the actions on.</value>
         /* <example>244</example> */
         [JsonPropertyName("version")]
-        public long? VarVersion { get { return this.VarVersionOption; } set { this.VarVersionOption = new Option<long?>(value); } }
+        public long? VarVersion { get { return this.VarVersionOption.Value; } set { this.VarVersionOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

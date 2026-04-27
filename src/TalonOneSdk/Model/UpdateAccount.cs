@@ -156,7 +156,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of PlanExpires
@@ -170,7 +170,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The point in time at which your current plan expires.</value>
         [JsonPropertyName("planExpires")]
-        public DateTime? PlanExpires { get { return this.PlanExpiresOption; } set { this.PlanExpiresOption = new Option<DateTime?>(value); } }
+        public DateTime? PlanExpires { get { return this.PlanExpiresOption.Value; } set { this.PlanExpiresOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -214,7 +214,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize PlanExpires
         /// </summary>
-        public static string PlanExpiresFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string PlanExpiresFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="UpdateAccount" />

@@ -97,5 +97,23 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'Description'
         }
+
+        /// <summary>
+        /// Test the property 'Rule'
+        /// </summary>
+        [Fact]
+        public void RuleTest()
+        {
+            // TODO unit test for the property 'Rule'
+        }
+
+        /// <summary>
+        /// Test the property 'Bindings'
+        /// </summary>
+        [Fact]
+        public void BindingsTest()
+        {
+            // TODO unit test for the property 'Bindings'
+        }
     }
 }

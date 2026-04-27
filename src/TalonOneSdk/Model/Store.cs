@@ -126,7 +126,7 @@ namespace TalonOneSdk.Model
         /// <value>The attributes of the store.</value>
         /* <example>{country&#x3D;USA, code&#x3D;1234}</example> */
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of LinkedCampaignIds
@@ -141,7 +141,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of IDs of the campaigns that are linked with current store.</value>
         /* <example>[4, 6, 8]</example> */
         [JsonPropertyName("linkedCampaignIds")]
-        public List<long> LinkedCampaignIds { get { return this.LinkedCampaignIdsOption; } set { this.LinkedCampaignIdsOption = new Option<List<long>>(value); } }
+        public List<long> LinkedCampaignIds { get { return this.LinkedCampaignIdsOption.Value; } set { this.LinkedCampaignIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -207,12 +207,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Updated
         /// </summary>
-        public static string UpdatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string UpdatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Store" />

@@ -118,7 +118,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the [Campaign Group](https://docs.talon.one/docs/product/account/account-settings/managing-campaign-groups) this role was created for. </value>
         /* <example>3</example> */
         [JsonPropertyName("campaignGroupID")]
-        public long? CampaignGroupID { get { return this.CampaignGroupIDOption; } set { this.CampaignGroupIDOption = new Option<long?>(value); } }
+        public long? CampaignGroupID { get { return this.CampaignGroupIDOption.Value; } set { this.CampaignGroupIDOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -133,7 +133,7 @@ namespace TalonOneSdk.Model
         /// <value>Description of the role.</value>
         /* <example>Reviews the campaigns</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Members
@@ -148,7 +148,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of user identifiers assigned to this role.</value>
         /* <example>[48,562,475,18]</example> */
         [JsonPropertyName("members")]
-        public List<long> Members { get { return this.MembersOption; } set { this.MembersOption = new Option<List<long>>(value); } }
+        public List<long> Members { get { return this.MembersOption.Value; } set { this.MembersOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -190,12 +190,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
-        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Role" />

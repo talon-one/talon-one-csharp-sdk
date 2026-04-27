@@ -163,7 +163,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The last activity of the customer.</value>
         [JsonPropertyName("lastActivity")]
-        public DateTime? LastActivity { get { return this.LastActivityOption; } set { this.LastActivityOption = new Option<DateTime?>(value); } }
+        public DateTime? LastActivity { get { return this.LastActivityOption.Value; } set { this.LastActivityOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -215,12 +215,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize LastActivity
         /// </summary>
-        public static string LastActivityFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string LastActivityFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CustomerActivityReport" />

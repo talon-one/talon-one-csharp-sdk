@@ -174,7 +174,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.</value>
         [JsonPropertyName("createdBefore")]
-        public DateTime? CreatedBefore { get { return this.CreatedBeforeOption; } set { this.CreatedBeforeOption = new Option<DateTime?>(value); } }
+        public DateTime? CreatedBefore { get { return this.CreatedBeforeOption.Value; } set { this.CreatedBeforeOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAfter
@@ -188,7 +188,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.</value>
         [JsonPropertyName("createdAfter")]
-        public DateTime? CreatedAfter { get { return this.CreatedAfterOption; } set { this.CreatedAfterOption = new Option<DateTime?>(value); } }
+        public DateTime? CreatedAfter { get { return this.CreatedAfterOption.Value; } set { this.CreatedAfterOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of StartsAfter
@@ -202,7 +202,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.</value>
         [JsonPropertyName("startsAfter")]
-        public DateTime? StartsAfter { get { return this.StartsAfterOption; } set { this.StartsAfterOption = new Option<DateTime?>(value); } }
+        public DateTime? StartsAfter { get { return this.StartsAfterOption.Value; } set { this.StartsAfterOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of StartsBefore
@@ -216,7 +216,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.</value>
         [JsonPropertyName("startsBefore")]
-        public DateTime? StartsBefore { get { return this.StartsBeforeOption; } set { this.StartsBeforeOption = new Option<DateTime?>(value); } }
+        public DateTime? StartsBefore { get { return this.StartsBeforeOption.Value; } set { this.StartsBeforeOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of Usable
@@ -230,7 +230,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>- &#x60;true&#x60;: only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned. - &#x60;false&#x60;: only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60; will be returned. - This field cannot be used in conjunction with the &#x60;usable&#x60; query parameter. </value>
         [JsonPropertyName("usable")]
-        public bool? Usable { get { return this.UsableOption; } set { this.UsableOption = new Option<bool?>(value); } }
+        public bool? Usable { get { return this.UsableOption.Value; } set { this.UsableOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of Redeemed
@@ -244,7 +244,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>- &#x60;true&#x60;: only coupons where &#x60;usageCounter &gt; 0&#x60; will be returned. - &#x60;false&#x60;: only coupons where &#x60;usageCounter &#x3D; 0&#x60; will be returned.  **Note:** This field cannot be used in conjunction with the &#x60;usable&#x60; query parameter. </value>
         [JsonPropertyName("redeemed")]
-        public bool? Redeemed { get { return this.RedeemedOption; } set { this.RedeemedOption = new Option<bool?>(value); } }
+        public bool? Redeemed { get { return this.RedeemedOption.Value; } set { this.RedeemedOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of RecipientIntegrationId
@@ -258,7 +258,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Filter results by match with a profile id specified in the coupon&#39;s &#x60;RecipientIntegrationId&#x60; field. </value>
         [JsonPropertyName("recipientIntegrationId")]
-        public string RecipientIntegrationId { get { return this.RecipientIntegrationIdOption; } set { this.RecipientIntegrationIdOption = new Option<string>(value); } }
+        public string RecipientIntegrationId { get { return this.RecipientIntegrationIdOption.Value; } set { this.RecipientIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ExactMatch
@@ -272,7 +272,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Filter results to an exact case-insensitive matching against the coupon code</value>
         [JsonPropertyName("exactMatch")]
-        public bool? ExactMatch { get { return this.ExactMatchOption; } set { this.ExactMatchOption = new Option<bool?>(value); } }
+        public bool? ExactMatch { get { return this.ExactMatchOption.Value; } set { this.ExactMatchOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of Value
@@ -286,7 +286,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Filter results by the coupon code</value>
         [JsonPropertyName("value")]
-        public string Value { get { return this.ValueOption; } set { this.ValueOption = new Option<string>(value); } }
+        public string Value { get { return this.ValueOption.Value; } set { this.ValueOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of BatchId
@@ -300,7 +300,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Filter results by batches of coupons</value>
         [JsonPropertyName("batchId")]
-        public string BatchId { get { return this.BatchIdOption; } set { this.BatchIdOption = new Option<string>(value); } }
+        public string BatchId { get { return this.BatchIdOption.Value; } set { this.BatchIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ReferralId
@@ -314,7 +314,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code.</value>
         [JsonPropertyName("referralId")]
-        public long? ReferralId { get { return this.ReferralIdOption; } set { this.ReferralIdOption = new Option<long?>(value); } }
+        public long? ReferralId { get { return this.ReferralIdOption.Value; } set { this.ReferralIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresAfter
@@ -328,7 +328,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.</value>
         [JsonPropertyName("expiresAfter")]
-        public DateTime? ExpiresAfter { get { return this.ExpiresAfterOption; } set { this.ExpiresAfterOption = new Option<DateTime?>(value); } }
+        public DateTime? ExpiresAfter { get { return this.ExpiresAfterOption.Value; } set { this.ExpiresAfterOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresBefore
@@ -342,7 +342,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.</value>
         [JsonPropertyName("expiresBefore")]
-        public DateTime? ExpiresBefore { get { return this.ExpiresBeforeOption; } set { this.ExpiresBeforeOption = new Option<DateTime?>(value); } }
+        public DateTime? ExpiresBefore { get { return this.ExpiresBeforeOption.Value; } set { this.ExpiresBeforeOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -389,32 +389,32 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize CreatedBefore
         /// </summary>
-        public static string CreatedBeforeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedBeforeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize CreatedAfter
         /// </summary>
-        public static string CreatedAfterFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedAfterFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize StartsAfter
         /// </summary>
-        public static string StartsAfterFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartsAfterFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize StartsBefore
         /// </summary>
-        public static string StartsBeforeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartsBeforeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpiresAfter
         /// </summary>
-        public static string ExpiresAfterFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpiresAfterFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpiresBefore
         /// </summary>
-        public static string ExpiresBeforeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpiresBeforeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CouponDeletionFilters" />

@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// <value>Status of the loyalty card. Can be &#x60;active&#x60; or &#x60;inactive&#x60;. </value>
         /* <example>active</example> */
         [JsonPropertyName("status")]
-        public string Status { get { return this.StatusOption; } set { this.StatusOption = new Option<string>(value); } }
+        public string Status { get { return this.StatusOption.Value; } set { this.StatusOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -69,7 +69,7 @@ namespace TalonOneSdk.Model
         /// <value>Price of the item.</value>
         /* <example>99.99</example> */
         [JsonPropertyName("price")]
-        public decimal? Price { get { return this.PriceOption; } set { this.PriceOption = new Option<decimal?>(value); } }
+        public decimal? Price { get { return this.PriceOption.Value; } set { this.PriceOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -83,7 +83,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The attributes of the item to patch.</value>
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of Product
@@ -96,7 +96,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Product
         /// </summary>
         [JsonPropertyName("product")]
-        public Product Product { get { return this.ProductOption; } set { this.ProductOption = new Option<Product>(value); } }
+        public Product Product { get { return this.ProductOption.Value; } set { this.ProductOption = new Option<Product>(value); } }
 
         /// <summary>
         /// Used to track the state of CreateIfNotExists
@@ -110,7 +110,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Indicates whether to create an item if the SKU does not exist.</value>
         [JsonPropertyName("createIfNotExists")]
-        public bool? CreateIfNotExists { get { return this.CreateIfNotExistsOption; } set { this.CreateIfNotExistsOption = new Option<bool?>(value); } }
+        public bool? CreateIfNotExists { get { return this.CreateIfNotExistsOption.Value; } set { this.CreateIfNotExistsOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

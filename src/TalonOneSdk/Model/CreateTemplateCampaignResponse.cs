@@ -68,7 +68,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Collections
         /// </summary>
         [JsonPropertyName("collections")]
-        public List<Collection> Collections { get { return this.CollectionsOption; } set { this.CollectionsOption = new Option<List<Collection>>(value); } }
+        public List<Collection> Collections { get { return this.CollectionsOption.Value; } set { this.CollectionsOption = new Option<List<Collection>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

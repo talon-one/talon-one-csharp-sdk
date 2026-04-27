@@ -62,7 +62,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Details about the applied price adjustment.</value>
         [JsonPropertyName("adjustmentDetails")]
-        public AdjustmentDetails AdjustmentDetails { get { return this.AdjustmentDetailsOption; } set { this.AdjustmentDetailsOption = new Option<AdjustmentDetails>(value); } }
+        public AdjustmentDetails AdjustmentDetails { get { return this.AdjustmentDetailsOption.Value; } set { this.AdjustmentDetailsOption = new Option<AdjustmentDetails>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

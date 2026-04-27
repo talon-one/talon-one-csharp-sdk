@@ -199,7 +199,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Timestamp when the batch was created.</value>
         [JsonPropertyName("BatchedAt")]
-        public DateTime? BatchedAt { get { return this.BatchedAtOption; } set { this.BatchedAtOption = new Option<DateTime?>(value); } }
+        public DateTime? BatchedAt { get { return this.BatchedAtOption.Value; } set { this.BatchedAtOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -236,7 +236,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize BatchedAt
         /// </summary>
-        public static string BatchedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string BatchedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubPaginatedEventPayload" />

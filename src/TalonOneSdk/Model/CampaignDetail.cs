@@ -56,7 +56,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the campaign that references the application cart item filter.</value>
         /* <example>1</example> */
         [JsonPropertyName("campaignId")]
-        public long? CampaignId { get { return this.CampaignIdOption; } set { this.CampaignIdOption = new Option<long?>(value); } }
+        public long? CampaignId { get { return this.CampaignIdOption.Value; } set { this.CampaignIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CampaignName
@@ -71,7 +71,7 @@ namespace TalonOneSdk.Model
         /// <value>A user-facing name for this campaign.</value>
         /* <example>Summer promotions</example> */
         [JsonPropertyName("campaignName")]
-        public string CampaignName { get { return this.CampaignNameOption; } set { this.CampaignNameOption = new Option<string>(value); } }
+        public string CampaignName { get { return this.CampaignNameOption.Value; } set { this.CampaignNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

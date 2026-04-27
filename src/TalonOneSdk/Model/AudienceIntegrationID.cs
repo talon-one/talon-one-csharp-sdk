@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of this audience in the third-party integration.</value>
         /* <example>382370BKDB946</example> */
         [JsonPropertyName("integrationId")]
-        public string IntegrationId { get { return this.IntegrationIdOption; } set { this.IntegrationIdOption = new Option<string>(value); } }
+        public string IntegrationId { get { return this.IntegrationIdOption.Value; } set { this.IntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -135,7 +135,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </value>
         /* <example>URNGV8294NV</example> */
         [JsonPropertyName("profileId")]
-        public string ProfileId { get { return this.ProfileIdOption; } set { this.ProfileIdOption = new Option<string>(value); } }
+        public string ProfileId { get { return this.ProfileIdOption.Value; } set { this.ProfileIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ReferenceId
@@ -149,7 +149,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The ID of the balancing ledgerEntry.</value>
         [JsonPropertyName("referenceId")]
-        public long? ReferenceId { get { return this.ReferenceIdOption; } set { this.ReferenceIdOption = new Option<long?>(value); } }
+        public long? ReferenceId { get { return this.ReferenceIdOption.Value; } set { this.ReferenceIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -192,12 +192,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LedgerEntry" />

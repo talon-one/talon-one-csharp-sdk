@@ -743,7 +743,7 @@ namespace TalonOneSdk.Model
         /// <value>A detailed description of the campaign.</value>
         /* <example>Campaign for all summer 2021 promotions</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of StartTime
@@ -758,7 +758,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp when the campaign will become active.</value>
         /* <example>2021-07-20T22:00:00Z</example> */
         [JsonPropertyName("startTime")]
-        public DateTime? StartTime { get { return this.StartTimeOption; } set { this.StartTimeOption = new Option<DateTime?>(value); } }
+        public DateTime? StartTime { get { return this.StartTimeOption.Value; } set { this.StartTimeOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of EndTime
@@ -773,7 +773,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp when the campaign will become inactive.</value>
         /* <example>2021-09-22T22:00:00Z</example> */
         [JsonPropertyName("endTime")]
-        public DateTime? EndTime { get { return this.EndTimeOption; } set { this.EndTimeOption = new Option<DateTime?>(value); } }
+        public DateTime? EndTime { get { return this.EndTimeOption.Value; } set { this.EndTimeOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -787,7 +787,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of ActiveRulesetId
@@ -802,7 +802,7 @@ namespace TalonOneSdk.Model
         /// <value>[ID of Ruleset](https://docs.talon.one/management-api#tag/Campaigns/operation/getRulesets) this campaign applies on customer session evaluation. </value>
         /* <example>6</example> */
         [JsonPropertyName("activeRulesetId")]
-        public long? ActiveRulesetId { get { return this.ActiveRulesetIdOption; } set { this.ActiveRulesetIdOption = new Option<long?>(value); } }
+        public long? ActiveRulesetId { get { return this.ActiveRulesetIdOption.Value; } set { this.ActiveRulesetIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponSettings
@@ -815,7 +815,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets CouponSettings
         /// </summary>
         [JsonPropertyName("couponSettings")]
-        public CodeGeneratorSettings CouponSettings { get { return this.CouponSettingsOption; } set { this.CouponSettingsOption = new Option<CodeGeneratorSettings>(value); } }
+        public CodeGeneratorSettings CouponSettings { get { return this.CouponSettingsOption.Value; } set { this.CouponSettingsOption = new Option<CodeGeneratorSettings>(value); } }
 
         /// <summary>
         /// Used to track the state of ReferralSettings
@@ -828,7 +828,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ReferralSettings
         /// </summary>
         [JsonPropertyName("referralSettings")]
-        public CodeGeneratorSettings ReferralSettings { get { return this.ReferralSettingsOption; } set { this.ReferralSettingsOption = new Option<CodeGeneratorSettings>(value); } }
+        public CodeGeneratorSettings ReferralSettings { get { return this.ReferralSettingsOption.Value; } set { this.ReferralSettingsOption = new Option<CodeGeneratorSettings>(value); } }
 
         /// <summary>
         /// Used to track the state of CampaignGroups
@@ -843,7 +843,7 @@ namespace TalonOneSdk.Model
         /// <value>The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/managing-campaign-groups) this campaign belongs to. </value>
         /* <example>[1, 3]</example> */
         [JsonPropertyName("campaignGroups")]
-        public List<long> CampaignGroups { get { return this.CampaignGroupsOption; } set { this.CampaignGroupsOption = new Option<List<long>>(value); } }
+        public List<long> CampaignGroups { get { return this.CampaignGroupsOption.Value; } set { this.CampaignGroupsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of LinkedStoreIds
@@ -858,7 +858,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of store IDs that you want to link to the campaign.  **Note:** Campaigns with linked store IDs will only be evaluated when there is a [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) that references a linked store. </value>
         /* <example>[1, 2, 3]</example> */
         [JsonPropertyName("linkedStoreIds")]
-        public List<long> LinkedStoreIds { get { return this.LinkedStoreIdsOption; } set { this.LinkedStoreIdsOption = new Option<List<long>>(value); } }
+        public List<long> LinkedStoreIds { get { return this.LinkedStoreIdsOption.Value; } set { this.LinkedStoreIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponAttributes
@@ -872,7 +872,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Arbitrary properties associated with coupons in this campaign.</value>
         [JsonPropertyName("couponAttributes")]
-        public Object CouponAttributes { get { return this.CouponAttributesOption; } set { this.CouponAttributesOption = new Option<Object>(value); } }
+        public Object CouponAttributes { get { return this.CouponAttributesOption.Value; } set { this.CouponAttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of Budgets
@@ -886,7 +886,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A list of all the budgets that are defined by this campaign and their usage.  **Note:** Budgets that are not defined do not appear in this list and their usage is not counted until they are defined. </value>
         [JsonPropertyName("budgets")]
-        public List<CampaignBudget> Budgets { get { return this.BudgetsOption; } set { this.BudgetsOption = new Option<List<CampaignBudget>>(value); } }
+        public List<CampaignBudget> Budgets { get { return this.BudgetsOption.Value; } set { this.BudgetsOption = new Option<List<CampaignBudget>>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponRedemptionCount
@@ -901,7 +901,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Number of coupons redeemed in the campaign. </value>
         /* <example>163</example> */
         [JsonPropertyName("couponRedemptionCount")]
-        public long? CouponRedemptionCount { get { return this.CouponRedemptionCountOption; } set { this.CouponRedemptionCountOption = new Option<long?>(value); } }
+        public long? CouponRedemptionCount { get { return this.CouponRedemptionCountOption.Value; } set { this.CouponRedemptionCountOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ReferralRedemptionCount
@@ -916,7 +916,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Number of referral codes redeemed in the campaign. </value>
         /* <example>3</example> */
         [JsonPropertyName("referralRedemptionCount")]
-        public long? ReferralRedemptionCount { get { return this.ReferralRedemptionCountOption; } set { this.ReferralRedemptionCountOption = new Option<long?>(value); } }
+        public long? ReferralRedemptionCount { get { return this.ReferralRedemptionCountOption.Value; } set { this.ReferralRedemptionCountOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of DiscountCount
@@ -931,7 +931,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total amount of discounts redeemed in the campaign. </value>
         /* <example>288</example> */
         [JsonPropertyName("discountCount")]
-        public decimal? DiscountCount { get { return this.DiscountCountOption; } set { this.DiscountCountOption = new Option<decimal?>(value); } }
+        public decimal? DiscountCount { get { return this.DiscountCountOption.Value; } set { this.DiscountCountOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of DiscountEffectCount
@@ -946,7 +946,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of times discounts were redeemed in this campaign. </value>
         /* <example>343</example> */
         [JsonPropertyName("discountEffectCount")]
-        public long? DiscountEffectCount { get { return this.DiscountEffectCountOption; } set { this.DiscountEffectCountOption = new Option<long?>(value); } }
+        public long? DiscountEffectCount { get { return this.DiscountEffectCountOption.Value; } set { this.DiscountEffectCountOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponCreationCount
@@ -961,7 +961,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of coupons created by rules in this campaign. </value>
         /* <example>16</example> */
         [JsonPropertyName("couponCreationCount")]
-        public long? CouponCreationCount { get { return this.CouponCreationCountOption; } set { this.CouponCreationCountOption = new Option<long?>(value); } }
+        public long? CouponCreationCount { get { return this.CouponCreationCountOption.Value; } set { this.CouponCreationCountOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CustomEffectCount
@@ -976,7 +976,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of custom effects triggered by rules in this campaign. </value>
         /* <example>0</example> */
         [JsonPropertyName("customEffectCount")]
-        public long? CustomEffectCount { get { return this.CustomEffectCountOption; } set { this.CustomEffectCountOption = new Option<long?>(value); } }
+        public long? CustomEffectCount { get { return this.CustomEffectCountOption.Value; } set { this.CustomEffectCountOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ReferralCreationCount
@@ -991,7 +991,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of referrals created by rules in this campaign. </value>
         /* <example>8</example> */
         [JsonPropertyName("referralCreationCount")]
-        public long? ReferralCreationCount { get { return this.ReferralCreationCountOption; } set { this.ReferralCreationCountOption = new Option<long?>(value); } }
+        public long? ReferralCreationCount { get { return this.ReferralCreationCountOption.Value; } set { this.ReferralCreationCountOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of AddFreeItemEffectCount
@@ -1006,7 +1006,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of times the [add free item effect](https://docs.talon.one/docs/dev/integration-api/api-effects#addfreeitem) can be triggered in this campaign. </value>
         /* <example>0</example> */
         [JsonPropertyName("addFreeItemEffectCount")]
-        public long? AddFreeItemEffectCount { get { return this.AddFreeItemEffectCountOption; } set { this.AddFreeItemEffectCountOption = new Option<long?>(value); } }
+        public long? AddFreeItemEffectCount { get { return this.AddFreeItemEffectCountOption.Value; } set { this.AddFreeItemEffectCountOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of AwardedGiveawaysCount
@@ -1021,7 +1021,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of giveaways awarded by rules in this campaign. </value>
         /* <example>9</example> */
         [JsonPropertyName("awardedGiveawaysCount")]
-        public long? AwardedGiveawaysCount { get { return this.AwardedGiveawaysCountOption; } set { this.AwardedGiveawaysCountOption = new Option<long?>(value); } }
+        public long? AwardedGiveawaysCount { get { return this.AwardedGiveawaysCountOption.Value; } set { this.AwardedGiveawaysCountOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedLoyaltyPointsCount
@@ -1036,7 +1036,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty points created by rules in this campaign. </value>
         /* <example>9</example> */
         [JsonPropertyName("createdLoyaltyPointsCount")]
-        public decimal? CreatedLoyaltyPointsCount { get { return this.CreatedLoyaltyPointsCountOption; } set { this.CreatedLoyaltyPointsCountOption = new Option<decimal?>(value); } }
+        public decimal? CreatedLoyaltyPointsCount { get { return this.CreatedLoyaltyPointsCountOption.Value; } set { this.CreatedLoyaltyPointsCountOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedLoyaltyPointsEffectCount
@@ -1051,7 +1051,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty point creation effects triggered by rules in this campaign. </value>
         /* <example>2</example> */
         [JsonPropertyName("createdLoyaltyPointsEffectCount")]
-        public long? CreatedLoyaltyPointsEffectCount { get { return this.CreatedLoyaltyPointsEffectCountOption; } set { this.CreatedLoyaltyPointsEffectCountOption = new Option<long?>(value); } }
+        public long? CreatedLoyaltyPointsEffectCount { get { return this.CreatedLoyaltyPointsEffectCountOption.Value; } set { this.CreatedLoyaltyPointsEffectCountOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of RedeemedLoyaltyPointsCount
@@ -1066,7 +1066,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty points redeemed by rules in this campaign. </value>
         /* <example>8</example> */
         [JsonPropertyName("redeemedLoyaltyPointsCount")]
-        public decimal? RedeemedLoyaltyPointsCount { get { return this.RedeemedLoyaltyPointsCountOption; } set { this.RedeemedLoyaltyPointsCountOption = new Option<decimal?>(value); } }
+        public decimal? RedeemedLoyaltyPointsCount { get { return this.RedeemedLoyaltyPointsCountOption.Value; } set { this.RedeemedLoyaltyPointsCountOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of RedeemedLoyaltyPointsEffectCount
@@ -1081,7 +1081,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty point redemption effects triggered by rules in this campaign. </value>
         /* <example>9</example> */
         [JsonPropertyName("redeemedLoyaltyPointsEffectCount")]
-        public long? RedeemedLoyaltyPointsEffectCount { get { return this.RedeemedLoyaltyPointsEffectCountOption; } set { this.RedeemedLoyaltyPointsEffectCountOption = new Option<long?>(value); } }
+        public long? RedeemedLoyaltyPointsEffectCount { get { return this.RedeemedLoyaltyPointsEffectCountOption.Value; } set { this.RedeemedLoyaltyPointsEffectCountOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CallApiEffectCount
@@ -1096,7 +1096,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of webhooks triggered by rules in this campaign. </value>
         /* <example>0</example> */
         [JsonPropertyName("callApiEffectCount")]
-        public long? CallApiEffectCount { get { return this.CallApiEffectCountOption; } set { this.CallApiEffectCountOption = new Option<long?>(value); } }
+        public long? CallApiEffectCount { get { return this.CallApiEffectCountOption.Value; } set { this.CallApiEffectCountOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ReservecouponEffectCount
@@ -1111,7 +1111,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of reserve coupon effects triggered by rules in this campaign. </value>
         /* <example>9</example> */
         [JsonPropertyName("reservecouponEffectCount")]
-        public long? ReservecouponEffectCount { get { return this.ReservecouponEffectCountOption; } set { this.ReservecouponEffectCountOption = new Option<long?>(value); } }
+        public long? ReservecouponEffectCount { get { return this.ReservecouponEffectCountOption.Value; } set { this.ReservecouponEffectCountOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of LastActivity
@@ -1126,7 +1126,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp of the most recent event received by this campaign.</value>
         /* <example>2022-11-10T23:00:00Z</example> */
         [JsonPropertyName("lastActivity")]
-        public DateTime? LastActivity { get { return this.LastActivityOption; } set { this.LastActivityOption = new Option<DateTime?>(value); } }
+        public DateTime? LastActivity { get { return this.LastActivityOption.Value; } set { this.LastActivityOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of Updated
@@ -1141,7 +1141,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp of the most recent update to the campaign&#39;s property. Updates to external entities used in this campaign are **not** registered by this property, such as collection or coupon updates. </value>
         /* <example>2022-10-97T35:00:00Z</example> */
         [JsonPropertyName("updated")]
-        public DateTime? Updated { get { return this.UpdatedOption; } set { this.UpdatedOption = new Option<DateTime?>(value); } }
+        public DateTime? Updated { get { return this.UpdatedOption.Value; } set { this.UpdatedOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedBy
@@ -1156,7 +1156,7 @@ namespace TalonOneSdk.Model
         /// <value>Name of the user who created this campaign if available.</value>
         /* <example>John Doe</example> */
         [JsonPropertyName("createdBy")]
-        public string CreatedBy { get { return this.CreatedByOption; } set { this.CreatedByOption = new Option<string>(value); } }
+        public string CreatedBy { get { return this.CreatedByOption.Value; } set { this.CreatedByOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of UpdatedBy
@@ -1171,7 +1171,7 @@ namespace TalonOneSdk.Model
         /// <value>Name of the user who last updated this campaign if available.</value>
         /* <example>Jane Doe</example> */
         [JsonPropertyName("updatedBy")]
-        public string UpdatedBy { get { return this.UpdatedByOption; } set { this.UpdatedByOption = new Option<string>(value); } }
+        public string UpdatedBy { get { return this.UpdatedByOption.Value; } set { this.UpdatedByOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of TemplateId
@@ -1186,7 +1186,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the Campaign Template this Campaign was created from.</value>
         /* <example>3</example> */
         [JsonPropertyName("templateId")]
-        public long? TemplateId { get { return this.TemplateIdOption; } set { this.TemplateIdOption = new Option<long?>(value); } }
+        public long? TemplateId { get { return this.TemplateIdOption.Value; } set { this.TemplateIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ValueMapsIds
@@ -1201,7 +1201,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of value map IDs for the campaign.</value>
         /* <example>[100, 215]</example> */
         [JsonPropertyName("valueMapsIds")]
-        public List<long> ValueMapsIds { get { return this.ValueMapsIdsOption; } set { this.ValueMapsIdsOption = new Option<List<long>>(value); } }
+        public List<long> ValueMapsIds { get { return this.ValueMapsIdsOption.Value; } set { this.ValueMapsIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of ExperimentId
@@ -1216,7 +1216,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the Experiment this Campaign is part of.</value>
         /* <example>1</example> */
         [JsonPropertyName("experimentId")]
-        public long? ExperimentId { get { return this.ExperimentIdOption; } set { this.ExperimentIdOption = new Option<long?>(value); } }
+        public long? ExperimentId { get { return this.ExperimentIdOption.Value; } set { this.ExperimentIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ActiveRevisionId
@@ -1231,7 +1231,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the revision that was last activated on this campaign. </value>
         /* <example>6</example> */
         [JsonPropertyName("activeRevisionId")]
-        public long? ActiveRevisionId { get { return this.ActiveRevisionIdOption; } set { this.ActiveRevisionIdOption = new Option<long?>(value); } }
+        public long? ActiveRevisionId { get { return this.ActiveRevisionIdOption.Value; } set { this.ActiveRevisionIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ActiveRevisionVersionId
@@ -1246,7 +1246,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the revision version that is active on the campaign. </value>
         /* <example>6</example> */
         [JsonPropertyName("activeRevisionVersionId")]
-        public long? ActiveRevisionVersionId { get { return this.ActiveRevisionVersionIdOption; } set { this.ActiveRevisionVersionIdOption = new Option<long?>(value); } }
+        public long? ActiveRevisionVersionId { get { return this.ActiveRevisionVersionIdOption.Value; } set { this.ActiveRevisionVersionIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of VarVersion
@@ -1261,7 +1261,7 @@ namespace TalonOneSdk.Model
         /// <value>Incrementing number representing how many revisions have been activated on this campaign, starts from 0 for a new campaign. </value>
         /* <example>6</example> */
         [JsonPropertyName("version")]
-        public long? VarVersion { get { return this.VarVersionOption; } set { this.VarVersionOption = new Option<long?>(value); } }
+        public long? VarVersion { get { return this.VarVersionOption.Value; } set { this.VarVersionOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CurrentRevisionId
@@ -1276,7 +1276,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the revision currently being modified for the campaign. </value>
         /* <example>6</example> */
         [JsonPropertyName("currentRevisionId")]
-        public long? CurrentRevisionId { get { return this.CurrentRevisionIdOption; } set { this.CurrentRevisionIdOption = new Option<long?>(value); } }
+        public long? CurrentRevisionId { get { return this.CurrentRevisionIdOption.Value; } set { this.CurrentRevisionIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CurrentRevisionVersionId
@@ -1291,7 +1291,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the latest version applied on the current revision. </value>
         /* <example>6</example> */
         [JsonPropertyName("currentRevisionVersionId")]
-        public long? CurrentRevisionVersionId { get { return this.CurrentRevisionVersionIdOption; } set { this.CurrentRevisionVersionIdOption = new Option<long?>(value); } }
+        public long? CurrentRevisionVersionId { get { return this.CurrentRevisionVersionIdOption.Value; } set { this.CurrentRevisionVersionIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of StageRevision
@@ -1306,7 +1306,7 @@ namespace TalonOneSdk.Model
         /// <value>Flag for determining whether we use current revision when sending requests with staging API key. </value>
         /* <example>false</example> */
         [JsonPropertyName("stageRevision")]
-        public bool? StageRevision { get { return this.StageRevisionOption; } set { this.StageRevisionOption = new Option<bool?>(value); } }
+        public bool? StageRevision { get { return this.StageRevisionOption.Value; } set { this.StageRevisionOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -1398,27 +1398,27 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize StartTime
         /// </summary>
-        public static string StartTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EndTime
         /// </summary>
-        public static string EndTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string EndTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize LastActivity
         /// </summary>
-        public static string LastActivityFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string LastActivityFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Updated
         /// </summary>
-        public static string UpdatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string UpdatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Campaign" />

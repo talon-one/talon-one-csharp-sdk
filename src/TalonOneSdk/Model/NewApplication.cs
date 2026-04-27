@@ -394,7 +394,7 @@ namespace TalonOneSdk.Model
         /// <value>A longer description of the application.</value>
         /* <example>A test Application</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -408,7 +408,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of Limits
@@ -422,7 +422,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Default limits for campaigns created in this application.</value>
         [JsonPropertyName("limits")]
-        public List<LimitConfig> Limits { get { return this.LimitsOption; } set { this.LimitsOption = new Option<List<LimitConfig>>(value); } }
+        public List<LimitConfig> Limits { get { return this.LimitsOption.Value; } set { this.LimitsOption = new Option<List<LimitConfig>>(value); } }
 
         /// <summary>
         /// Used to track the state of EnableCascadingDiscounts
@@ -436,7 +436,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Indicates if discounts should cascade for this Application.</value>
         [JsonPropertyName("enableCascadingDiscounts")]
-        public bool? EnableCascadingDiscounts { get { return this.EnableCascadingDiscountsOption; } set { this.EnableCascadingDiscountsOption = new Option<bool?>(value); } }
+        public bool? EnableCascadingDiscounts { get { return this.EnableCascadingDiscountsOption.Value; } set { this.EnableCascadingDiscountsOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of EnableFlattenedCartItems
@@ -450,7 +450,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Indicates if cart items of quantity larger than one should be separated into different items of quantity one. </value>
         [JsonPropertyName("enableFlattenedCartItems")]
-        public bool? EnableFlattenedCartItems { get { return this.EnableFlattenedCartItemsOption; } set { this.EnableFlattenedCartItemsOption = new Option<bool?>(value); } }
+        public bool? EnableFlattenedCartItems { get { return this.EnableFlattenedCartItemsOption.Value; } set { this.EnableFlattenedCartItemsOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of AttributesSettings
@@ -463,7 +463,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets AttributesSettings
         /// </summary>
         [JsonPropertyName("attributesSettings")]
-        public AttributesSettings AttributesSettings { get { return this.AttributesSettingsOption; } set { this.AttributesSettingsOption = new Option<AttributesSettings>(value); } }
+        public AttributesSettings AttributesSettings { get { return this.AttributesSettingsOption.Value; } set { this.AttributesSettingsOption = new Option<AttributesSettings>(value); } }
 
         /// <summary>
         /// Used to track the state of Sandbox
@@ -477,7 +477,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Indicates if this is a live or sandbox Application.</value>
         [JsonPropertyName("sandbox")]
-        public bool? Sandbox { get { return this.SandboxOption; } set { this.SandboxOption = new Option<bool?>(value); } }
+        public bool? Sandbox { get { return this.SandboxOption.Value; } set { this.SandboxOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of EnablePartialDiscounts
@@ -492,7 +492,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates if this Application supports partial discounts.</value>
         /* <example>false</example> */
         [JsonPropertyName("enablePartialDiscounts")]
-        public bool? EnablePartialDiscounts { get { return this.EnablePartialDiscountsOption; } set { this.EnablePartialDiscountsOption = new Option<bool?>(value); } }
+        public bool? EnablePartialDiscounts { get { return this.EnablePartialDiscountsOption.Value; } set { this.EnablePartialDiscountsOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of Key
@@ -506,7 +506,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Hex key for HMAC-signing API calls as coming from this application (16 hex digits).</value>
         [JsonPropertyName("key")]
-        public string Key { get { return this.KeyOption; } set { this.KeyOption = new Option<string>(value); } }
+        public string Key { get { return this.KeyOption.Value; } set { this.KeyOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of EnableCampaignStateManagement
@@ -521,7 +521,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates whether the campaign staging and revisions feature is enabled for the Application.  **Important:** After this feature is enabled, it cannot be disabled. </value>
         /* <example>false</example> */
         [JsonPropertyName("enableCampaignStateManagement")]
-        public bool? EnableCampaignStateManagement { get { return this.EnableCampaignStateManagementOption; } set { this.EnableCampaignStateManagementOption = new Option<bool?>(value); } }
+        public bool? EnableCampaignStateManagement { get { return this.EnableCampaignStateManagementOption.Value; } set { this.EnableCampaignStateManagementOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

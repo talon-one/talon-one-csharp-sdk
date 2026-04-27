@@ -103,7 +103,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Single Sign-Out URL.</value>
         [JsonPropertyName("signOutURL")]
-        public string SignOutURL { get { return this.SignOutURLOption; } set { this.SignOutURLOption = new Option<string>(value); } }
+        public string SignOutURL { get { return this.SignOutURLOption.Value; } set { this.SignOutURLOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of MetadataURL
@@ -117,7 +117,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Metadata URL.</value>
         [JsonPropertyName("metadataURL")]
-        public string MetadataURL { get { return this.MetadataURLOption; } set { this.MetadataURLOption = new Option<string>(value); } }
+        public string MetadataURL { get { return this.MetadataURLOption.Value; } set { this.MetadataURLOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of AudienceURI
@@ -131,7 +131,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The application-defined unique identifier that is the intended audience of the SAML assertion. This is most often the SP Entity ID of your application. When not specified, the ACS URL will be used. </value>
         [JsonPropertyName("audienceURI")]
-        public string AudienceURI { get { return this.AudienceURIOption; } set { this.AudienceURIOption = new Option<string>(value); } }
+        public string AudienceURI { get { return this.AudienceURIOption.Value; } set { this.AudienceURIOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

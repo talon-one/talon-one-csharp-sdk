@@ -117,7 +117,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>List of all events that have happened such as additions, subtractions and expiries.</value>
         [JsonPropertyName("transactions")]
-        public List<LoyaltyLedgerEntry> Transactions { get { return this.TransactionsOption; } set { this.TransactionsOption = new Option<List<LoyaltyLedgerEntry>>(value); } }
+        public List<LoyaltyLedgerEntry> Transactions { get { return this.TransactionsOption.Value; } set { this.TransactionsOption = new Option<List<LoyaltyLedgerEntry>>(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiringPoints
@@ -131,7 +131,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>List of all points that will expire.</value>
         [JsonPropertyName("expiringPoints")]
-        public List<LoyaltyLedgerEntry> ExpiringPoints { get { return this.ExpiringPointsOption; } set { this.ExpiringPointsOption = new Option<List<LoyaltyLedgerEntry>>(value); } }
+        public List<LoyaltyLedgerEntry> ExpiringPoints { get { return this.ExpiringPointsOption.Value; } set { this.ExpiringPointsOption = new Option<List<LoyaltyLedgerEntry>>(value); } }
 
         /// <summary>
         /// Used to track the state of ActivePoints
@@ -145,7 +145,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>List of all currently active points.</value>
         [JsonPropertyName("activePoints")]
-        public List<LoyaltyLedgerEntry> ActivePoints { get { return this.ActivePointsOption; } set { this.ActivePointsOption = new Option<List<LoyaltyLedgerEntry>>(value); } }
+        public List<LoyaltyLedgerEntry> ActivePoints { get { return this.ActivePointsOption.Value; } set { this.ActivePointsOption = new Option<List<LoyaltyLedgerEntry>>(value); } }
 
         /// <summary>
         /// Used to track the state of PendingPoints
@@ -159,7 +159,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>List of all points pending activation.</value>
         [JsonPropertyName("pendingPoints")]
-        public List<LoyaltyLedgerEntry> PendingPoints { get { return this.PendingPointsOption; } set { this.PendingPointsOption = new Option<List<LoyaltyLedgerEntry>>(value); } }
+        public List<LoyaltyLedgerEntry> PendingPoints { get { return this.PendingPointsOption.Value; } set { this.PendingPointsOption = new Option<List<LoyaltyLedgerEntry>>(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiredPoints
@@ -173,7 +173,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>List of expired points.</value>
         [JsonPropertyName("expiredPoints")]
-        public List<LoyaltyLedgerEntry> ExpiredPoints { get { return this.ExpiredPointsOption; } set { this.ExpiredPointsOption = new Option<List<LoyaltyLedgerEntry>>(value); } }
+        public List<LoyaltyLedgerEntry> ExpiredPoints { get { return this.ExpiredPointsOption.Value; } set { this.ExpiredPointsOption = new Option<List<LoyaltyLedgerEntry>>(value); } }
 
         /// <summary>
         /// Used to track the state of CurrentTier
@@ -187,7 +187,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Tier for which the ledger is eligible.</value>
         [JsonPropertyName("currentTier")]
-        public Tier CurrentTier { get { return this.CurrentTierOption; } set { this.CurrentTierOption = new Option<Tier>(value); } }
+        public Tier CurrentTier { get { return this.CurrentTierOption.Value; } set { this.CurrentTierOption = new Option<Tier>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

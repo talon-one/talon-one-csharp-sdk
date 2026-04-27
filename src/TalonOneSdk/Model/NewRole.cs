@@ -84,7 +84,7 @@ namespace TalonOneSdk.Model
         /// <value>Description of the role.</value>
         /* <example>Manages the campaigns</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

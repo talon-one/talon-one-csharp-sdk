@@ -186,7 +186,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </value>
         /* <example>URNGV8294NV</example> */
         [JsonPropertyName("profileId")]
-        public string ProfileId { get { return this.ProfileIdOption; } set { this.ProfileIdOption = new Option<string>(value); } }
+        public string ProfileId { get { return this.ProfileIdOption.Value; } set { this.ProfileIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of StoreIntegrationId
@@ -201,7 +201,7 @@ namespace TalonOneSdk.Model
         /// <value>The integration ID of the store. You choose this ID when you create a store.</value>
         /* <example>STORE-001</example> */
         [JsonPropertyName("storeIntegrationId")]
-        public string StoreIntegrationId { get { return this.StoreIntegrationIdOption; } set { this.StoreIntegrationIdOption = new Option<string>(value); } }
+        public string StoreIntegrationId { get { return this.StoreIntegrationIdOption.Value; } set { this.StoreIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of EvaluableCampaignIds
@@ -216,7 +216,7 @@ namespace TalonOneSdk.Model
         /// <value>When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them. </value>
         /* <example>[10, 12]</example> */
         [JsonPropertyName("evaluableCampaignIds")]
-        public List<long> EvaluableCampaignIds { get { return this.EvaluableCampaignIdsOption; } set { this.EvaluableCampaignIdsOption = new Option<List<long>>(value); } }
+        public List<long> EvaluableCampaignIds { get { return this.EvaluableCampaignIdsOption.Value; } set { this.EvaluableCampaignIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponCodes
@@ -231,7 +231,7 @@ namespace TalonOneSdk.Model
         /// <value>Any coupon codes entered.  **Important - for requests only**:  - If you [create a coupon budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign, ensure the session contains a coupon code by the time you close it. - In requests where &#x60;dry&#x3D;false&#x60;, providing an empty array discards any previous coupons. To avoid this, omit the parameter entirely. </value>
         /* <example>[XMAS-20-2021]</example> */
         [JsonPropertyName("couponCodes")]
-        public List<string> CouponCodes { get { return this.CouponCodesOption; } set { this.CouponCodesOption = new Option<List<string>>(value); } }
+        public List<string> CouponCodes { get { return this.CouponCodesOption.Value; } set { this.CouponCodesOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of ReferralCode
@@ -246,7 +246,7 @@ namespace TalonOneSdk.Model
         /// <value>Any referral code entered.  **Important - for requests only**:  - If you [create a referral budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign, ensure the session contains a referral code by the time you close it. - In requests where &#x60;dry&#x3D;false&#x60;, providing an empty value discards the previous referral code. To avoid this, omit the parameter entirely. </value>
         /* <example>NT2K54D9</example> */
         [JsonPropertyName("referralCode")]
-        public string ReferralCode { get { return this.ReferralCodeOption; } set { this.ReferralCodeOption = new Option<string>(value); } }
+        public string ReferralCode { get { return this.ReferralCodeOption.Value; } set { this.ReferralCodeOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of LoyaltyCards
@@ -261,7 +261,7 @@ namespace TalonOneSdk.Model
         /// <value>Identifier of a loyalty card.</value>
         /* <example>[loyalty-card-1]</example> */
         [JsonPropertyName("loyaltyCards")]
-        public List<string> LoyaltyCards { get { return this.LoyaltyCardsOption; } set { this.LoyaltyCardsOption = new Option<List<string>>(value); } }
+        public List<string> LoyaltyCards { get { return this.LoyaltyCardsOption.Value; } set { this.LoyaltyCardsOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of CartItems
@@ -275,7 +275,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The items to add to this session. **Do not exceed 1000 items** and ensure the sum of all cart item&#39;s &#x60;quantity&#x60; **does not exceed 10.000** per request. </value>
         [JsonPropertyName("cartItems")]
-        public List<CartItem> CartItems { get { return this.CartItemsOption; } set { this.CartItemsOption = new Option<List<CartItem>>(value); } }
+        public List<CartItem> CartItems { get { return this.CartItemsOption.Value; } set { this.CartItemsOption = new Option<List<CartItem>>(value); } }
 
         /// <summary>
         /// Used to track the state of ExperimentVariantAllocations
@@ -289,7 +289,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The experiment variant allocations to add to this session. </value>
         [JsonPropertyName("experimentVariantAllocations")]
-        public List<ExperimentVariantAllocation> ExperimentVariantAllocations { get { return this.ExperimentVariantAllocationsOption; } set { this.ExperimentVariantAllocationsOption = new Option<List<ExperimentVariantAllocation>>(value); } }
+        public List<ExperimentVariantAllocation> ExperimentVariantAllocations { get { return this.ExperimentVariantAllocationsOption.Value; } set { this.ExperimentVariantAllocationsOption = new Option<List<ExperimentVariantAllocation>>(value); } }
 
         /// <summary>
         /// Used to track the state of AdditionalCosts
@@ -304,7 +304,7 @@ namespace TalonOneSdk.Model
         /// <value>Use this property to set a value for the additional costs of this session, such as a shipping cost.  They must be created in the Campaign Manager before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs). </value>
         /* <example>{shipping&#x3D;{price&#x3D;9}}</example> */
         [JsonPropertyName("additionalCosts")]
-        public Dictionary<string, AdditionalCost> AdditionalCosts { get { return this.AdditionalCostsOption; } set { this.AdditionalCostsOption = new Option<Dictionary<string, AdditionalCost>>(value); } }
+        public Dictionary<string, AdditionalCost> AdditionalCosts { get { return this.AdditionalCostsOption.Value; } set { this.AdditionalCostsOption = new Option<Dictionary<string, AdditionalCost>>(value); } }
 
         /// <summary>
         /// Used to track the state of Identifiers
@@ -319,7 +319,7 @@ namespace TalonOneSdk.Model
         /// <value>Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts. See the [tutorial](https://docs.talon.one/docs/dev/tutorials/using-identifiers).  **Important**: Ensure the session contains an identifier by the time you close it if: - You [create a unique identifier budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign. - Your campaign has [coupons](https://docs.talon.one/docs/product/campaigns/coupons/coupon-page-overview). - We recommend passing an anonymized (hashed) version of the identifier value. </value>
         /* <example>[d41306257915f83fe01e54092ae470f631161ea16fcf4415842eed41470386ea]</example> */
         [JsonPropertyName("identifiers")]
-        public List<string> Identifiers { get { return this.IdentifiersOption; } set { this.IdentifiersOption = new Option<List<string>>(value); } }
+        public List<string> Identifiers { get { return this.IdentifiersOption.Value; } set { this.IdentifiersOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -334,7 +334,7 @@ namespace TalonOneSdk.Model
         /// <value>Use this property to set a value for the attributes of your choice. Attributes represent any information to attach to your session, like the shipping city.  You can use [built-in attributes](https://docs.talon.one/docs/dev/concepts/attributes#built-in-attributes) or [custom ones](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes). Custom attributes must be created in the Campaign Manager before you set them with this property. </value>
         /* <example>{ShippingCity&#x3D;Berlin}</example> */
         [JsonPropertyName("attributes")]
-        public Dictionary<string, Object> Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Dictionary<string, Object>>(value); } }
+        public Dictionary<string, Object> Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Dictionary<string, Object>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

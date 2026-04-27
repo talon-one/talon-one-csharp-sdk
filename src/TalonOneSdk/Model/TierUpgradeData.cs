@@ -128,7 +128,7 @@ namespace TalonOneSdk.Model
         /// <value>The name of the customer&#39;s previous tier.</value>
         /* <example>Bronze</example> */
         [JsonPropertyName("OldTier")]
-        public string OldTier { get { return this.OldTierOption; } set { this.OldTierOption = new Option<string>(value); } }
+        public string OldTier { get { return this.OldTierOption.Value; } set { this.OldTierOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of PointsRequiredToTheNextTier
@@ -143,7 +143,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of points needed for a customer to reach the next tier.</value>
         /* <example>23.51</example> */
         [JsonPropertyName("PointsRequiredToTheNextTier")]
-        public decimal? PointsRequiredToTheNextTier { get { return this.PointsRequiredToTheNextTierOption; } set { this.PointsRequiredToTheNextTierOption = new Option<decimal?>(value); } }
+        public decimal? PointsRequiredToTheNextTier { get { return this.PointsRequiredToTheNextTierOption.Value; } set { this.PointsRequiredToTheNextTierOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of NextTier
@@ -158,7 +158,7 @@ namespace TalonOneSdk.Model
         /// <value>The name of the customer&#39;s next tier.</value>
         /* <example>Gold</example> */
         [JsonPropertyName("NextTier")]
-        public string NextTier { get { return this.NextTierOption; } set { this.NextTierOption = new Option<string>(value); } }
+        public string NextTier { get { return this.NextTierOption.Value; } set { this.NextTierOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -207,12 +207,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize TierExpirationDate
         /// </summary>
-        public static string TierExpirationDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string TierExpirationDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize TimestampOfTierChange
         /// </summary>
-        public static string TimestampOfTierChangeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string TimestampOfTierChangeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="TierUpgradeData" />

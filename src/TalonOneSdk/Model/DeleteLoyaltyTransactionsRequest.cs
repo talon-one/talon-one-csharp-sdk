@@ -131,7 +131,7 @@ namespace TalonOneSdk.Model
         /// <value>The IDs of the ledgers from which to delete the customer&#39;s transactions. This parameter is required if the &#x60;scope&#x60; is set to &#x60;SelectedSubledgers&#x60;.  To specify the main ledger, provide an empty string (\&quot;\&quot;). </value>
         /* <example>[subledger1, subledger2]</example> */
         [JsonPropertyName("subledgerIds")]
-        public List<string> SubledgerIds { get { return this.SubledgerIdsOption; } set { this.SubledgerIdsOption = new Option<List<string>>(value); } }
+        public List<string> SubledgerIds { get { return this.SubledgerIdsOption.Value; } set { this.SubledgerIdsOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

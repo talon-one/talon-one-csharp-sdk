@@ -78,7 +78,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply. </value>
         /* <example>100</example> */
         [JsonPropertyName("usageLimit")]
-        public long? UsageLimit { get { return this.UsageLimitOption; } set { this.UsageLimitOption = new Option<long?>(value); } }
+        public long? UsageLimit { get { return this.UsageLimitOption.Value; } set { this.UsageLimitOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of DiscountLimit
@@ -93,7 +93,7 @@ namespace TalonOneSdk.Model
         /// <value>The total discount value that the code can give. Typically used to represent a gift card value. </value>
         /* <example>30</example> */
         [JsonPropertyName("discountLimit")]
-        public decimal? DiscountLimit { get { return this.DiscountLimitOption; } set { this.DiscountLimitOption = new Option<decimal?>(value); } }
+        public decimal? DiscountLimit { get { return this.DiscountLimitOption.Value; } set { this.DiscountLimitOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of ReservationLimit
@@ -108,7 +108,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of reservations that can be made with this coupon code. </value>
         /* <example>45</example> */
         [JsonPropertyName("reservationLimit")]
-        public long? ReservationLimit { get { return this.ReservationLimitOption; } set { this.ReservationLimitOption = new Option<long?>(value); } }
+        public long? ReservationLimit { get { return this.ReservationLimitOption.Value; } set { this.ReservationLimitOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of StartDate
@@ -123,7 +123,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp at which point the coupon becomes valid.</value>
         /* <example>2020-01-24T14:15:22Z</example> */
         [JsonPropertyName("startDate")]
-        public DateTime? StartDate { get { return this.StartDateOption; } set { this.StartDateOption = new Option<DateTime?>(value); } }
+        public DateTime? StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiryDate
@@ -138,7 +138,7 @@ namespace TalonOneSdk.Model
         /// <value>Expiration date of the coupon. Coupon never expires if this is omitted.</value>
         /* <example>2023-08-24T14:15:22Z</example> */
         [JsonPropertyName("expiryDate")]
-        public DateTime? ExpiryDate { get { return this.ExpiryDateOption; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
+        public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -153,7 +153,7 @@ namespace TalonOneSdk.Model
         /// <value>Arbitrary properties associated with this item.</value>
         /* <example>{venueId&#x3D;12}</example> */
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of ValidCharacters
@@ -168,7 +168,7 @@ namespace TalonOneSdk.Model
         /// <value>List of characters used to generate the random parts of a code. By default, the list of characters is equivalent to the &#x60;[A-Z, 0-9]&#x60; regular expression. </value>
         /* <example>[A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z]</example> */
         [JsonPropertyName("validCharacters")]
-        public List<string> ValidCharacters { get { return this.ValidCharactersOption; } set { this.ValidCharactersOption = new Option<List<string>>(value); } }
+        public List<string> ValidCharacters { get { return this.ValidCharactersOption.Value; } set { this.ValidCharactersOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponPattern
@@ -183,7 +183,7 @@ namespace TalonOneSdk.Model
         /// <value>The pattern used to generate coupon codes. The character &#x60;#&#x60; is a placeholder and is replaced by a random character from the &#x60;validCharacters&#x60; set. </value>
         /* <example>SUMMER-#####</example> */
         [JsonPropertyName("couponPattern")]
-        public string CouponPattern { get { return this.CouponPatternOption; } set { this.CouponPatternOption = new Option<string>(value); } }
+        public string CouponPattern { get { return this.CouponPatternOption.Value; } set { this.CouponPatternOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -273,12 +273,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="NewCouponsForMultipleRecipients" />

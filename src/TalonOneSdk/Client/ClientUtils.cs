@@ -264,6 +264,10 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.CampaignDeletedNotification.NotificationTypeEnumToJsonValue(campaignDeletedNotificationNotificationTypeEnum);
             if (obj is TalonOneSdk.Model.CampaignEditedNotification.NotificationTypeEnum campaignEditedNotificationNotificationTypeEnum)
                 return TalonOneSdk.Model.CampaignEditedNotification.NotificationTypeEnumToJsonValue(campaignEditedNotificationNotificationTypeEnum);
+            if (obj is TalonOneSdk.Model.CampaignEligibility.FeaturesEnum campaignEligibilityFeaturesEnum)
+                return TalonOneSdk.Model.CampaignEligibility.FeaturesEnumToJsonValue(campaignEligibilityFeaturesEnum);
+            if (obj is TalonOneSdk.Model.CampaignEligibility.StateEnum campaignEligibilityStateEnum)
+                return TalonOneSdk.Model.CampaignEligibility.StateEnumToJsonValue(campaignEligibilityStateEnum);
             if (obj is TalonOneSdk.Model.CampaignEvaluationGroup.EvaluationModeEnum campaignEvaluationGroupEvaluationModeEnum)
                 return TalonOneSdk.Model.CampaignEvaluationGroup.EvaluationModeEnumToJsonValue(campaignEvaluationGroupEvaluationModeEnum);
             if (obj is TalonOneSdk.Model.CampaignEvaluationGroup.EvaluationScopeEnum campaignEvaluationGroupEvaluationScopeEnum)
@@ -590,6 +594,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.UpdateLoyaltyProgram.ReturnPolicyEnumToJsonValue(updateLoyaltyProgramReturnPolicyEnum);
             if (obj is TalonOneSdk.Model.UpdatePicklist.TypeEnum updatePicklistTypeEnum)
                 return TalonOneSdk.Model.UpdatePicklist.TypeEnumToJsonValue(updatePicklistTypeEnum);
+            if (obj is TalonOneSdk.Model.UpdateReward.StatusEnum updateRewardStatusEnum)
+                return TalonOneSdk.Model.UpdateReward.StatusEnumToJsonValue(updateRewardStatusEnum);
             if (obj is TalonOneSdk.Model.UpdateUser.StateEnum updateUserStateEnum)
                 return TalonOneSdk.Model.UpdateUser.StateEnumToJsonValue(updateUserStateEnum);
             if (obj is TalonOneSdk.Model.User.StateEnum userStateEnum)

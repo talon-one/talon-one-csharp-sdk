@@ -136,7 +136,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the customer session set by your integration layer.</value>
         /* <example>1</example> */
         [JsonPropertyName("sessionID")]
-        public string SessionID { get { return this.SessionIDOption; } set { this.SessionIDOption = new Option<string>(value); } }
+        public string SessionID { get { return this.SessionIDOption.Value; } set { this.SessionIDOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ProfileID
@@ -151,7 +151,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the customer profile set by your integration layer.</value>
         /* <example>a48f10dddb5c9493aad194e49bb9c1dac</example> */
         [JsonPropertyName("profileID")]
-        public string ProfileID { get { return this.ProfileIDOption; } set { this.ProfileIDOption = new Option<string>(value); } }
+        public string ProfileID { get { return this.ProfileIDOption.Value; } set { this.ProfileIDOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -194,12 +194,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize UpdatedAt
         /// </summary>
-        public static string UpdatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string UpdatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CouponFailureSummary" />

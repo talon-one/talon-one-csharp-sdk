@@ -53,7 +53,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The configuration of the embedded Insights dashboard for campaigns.</value>
         [JsonPropertyName("campaignInsights")]
-        public EmbeddedDashboardConfiguration CampaignInsights { get { return this.CampaignInsightsOption; } set { this.CampaignInsightsOption = new Option<EmbeddedDashboardConfiguration>(value); } }
+        public EmbeddedDashboardConfiguration CampaignInsights { get { return this.CampaignInsightsOption.Value; } set { this.CampaignInsightsOption = new Option<EmbeddedDashboardConfiguration>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

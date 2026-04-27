@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// <value>Arbitrary properties associated with this item.</value>
         /* <example>{Language&#x3D;english, ShippingCountry&#x3D;DE}</example> */
         [JsonPropertyName("attributes")]
-        public Dictionary<string, Object> Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Dictionary<string, Object>>(value); } }
+        public Dictionary<string, Object> Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Dictionary<string, Object>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

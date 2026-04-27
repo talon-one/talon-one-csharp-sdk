@@ -98,7 +98,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>For cart items with &#x60;quantity&#x60; &gt; 1, the sub position indicates which item the discount applies to. </value>
         [JsonPropertyName("subPosition")]
-        public decimal? SubPosition { get { return this.SubPositionOption; } set { this.SubPositionOption = new Option<decimal?>(value); } }
+        public decimal? SubPosition { get { return this.SubPositionOption.Value; } set { this.SubPositionOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of DesiredValue
@@ -112,7 +112,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The original value of the discount.</value>
         [JsonPropertyName("desiredValue")]
-        public decimal? DesiredValue { get { return this.DesiredValueOption; } set { this.DesiredValueOption = new Option<decimal?>(value); } }
+        public decimal? DesiredValue { get { return this.DesiredValueOption.Value; } set { this.DesiredValueOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of Scope
@@ -126,7 +126,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The scope of the discount: - &#x60;additionalCosts&#x60;: The discount applies to all the additional costs of the item. - &#x60;itemTotal&#x60;: The discount applies to the price of the item + the additional costs of the item. - &#x60;price&#x60;: The discount applies to the price of the item. </value>
         [JsonPropertyName("scope")]
-        public string Scope { get { return this.ScopeOption; } set { this.ScopeOption = new Option<string>(value); } }
+        public string Scope { get { return this.ScopeOption.Value; } set { this.ScopeOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of TotalDiscount
@@ -140,7 +140,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The total discount given if this effect is a result of a prorated discount.</value>
         [JsonPropertyName("totalDiscount")]
-        public decimal? TotalDiscount { get { return this.TotalDiscountOption; } set { this.TotalDiscountOption = new Option<decimal?>(value); } }
+        public decimal? TotalDiscount { get { return this.TotalDiscountOption.Value; } set { this.TotalDiscountOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of DesiredTotalDiscount
@@ -154,7 +154,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The original total discount to give if this effect is a result of a prorated discount.</value>
         [JsonPropertyName("desiredTotalDiscount")]
-        public decimal? DesiredTotalDiscount { get { return this.DesiredTotalDiscountOption; } set { this.DesiredTotalDiscountOption = new Option<decimal?>(value); } }
+        public decimal? DesiredTotalDiscount { get { return this.DesiredTotalDiscountOption.Value; } set { this.DesiredTotalDiscountOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of BundleIndex
@@ -168,7 +168,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The position of the bundle in a list of item bundles created from the same bundle definition.</value>
         [JsonPropertyName("bundleIndex")]
-        public long? BundleIndex { get { return this.BundleIndexOption; } set { this.BundleIndexOption = new Option<long?>(value); } }
+        public long? BundleIndex { get { return this.BundleIndexOption.Value; } set { this.BundleIndexOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of BundleName
@@ -182,7 +182,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The name of the bundle definition.</value>
         [JsonPropertyName("bundleName")]
-        public string BundleName { get { return this.BundleNameOption; } set { this.BundleNameOption = new Option<string>(value); } }
+        public string BundleName { get { return this.BundleNameOption.Value; } set { this.BundleNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of TargetedItemPosition
@@ -196,7 +196,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The index of the targeted bundle item on which the applied discount is based.</value>
         [JsonPropertyName("targetedItemPosition")]
-        public decimal? TargetedItemPosition { get { return this.TargetedItemPositionOption; } set { this.TargetedItemPositionOption = new Option<decimal?>(value); } }
+        public decimal? TargetedItemPosition { get { return this.TargetedItemPositionOption.Value; } set { this.TargetedItemPositionOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of TargetedItemSubPosition
@@ -210,7 +210,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The sub-position of the targeted bundle item on which the applied discount is based. </value>
         [JsonPropertyName("targetedItemSubPosition")]
-        public decimal? TargetedItemSubPosition { get { return this.TargetedItemSubPositionOption; } set { this.TargetedItemSubPositionOption = new Option<decimal?>(value); } }
+        public decimal? TargetedItemSubPosition { get { return this.TargetedItemSubPositionOption.Value; } set { this.TargetedItemSubPositionOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of ExcludedFromPriceHistory
@@ -224,7 +224,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history.</value>
         [JsonPropertyName("excludedFromPriceHistory")]
-        public bool? ExcludedFromPriceHistory { get { return this.ExcludedFromPriceHistoryOption; } set { this.ExcludedFromPriceHistoryOption = new Option<bool?>(value); } }
+        public bool? ExcludedFromPriceHistory { get { return this.ExcludedFromPriceHistoryOption.Value; } set { this.ExcludedFromPriceHistoryOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

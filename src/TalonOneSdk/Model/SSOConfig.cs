@@ -64,7 +64,7 @@ namespace TalonOneSdk.Model
         /// <value>Assertion Consumer Service (ACS) URL for setting up a new SAML connection with an identity provider like Okta or Microsoft Entra ID. </value>
         /* <example>https://yourdeployment.talon.one/v1/saml_connections/5/saml_callback</example> */
         [JsonPropertyName("newAcsUrl")]
-        public string NewAcsUrl { get { return this.NewAcsUrlOption; } set { this.NewAcsUrlOption = new Option<string>(value); } }
+        public string NewAcsUrl { get { return this.NewAcsUrlOption.Value; } set { this.NewAcsUrlOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

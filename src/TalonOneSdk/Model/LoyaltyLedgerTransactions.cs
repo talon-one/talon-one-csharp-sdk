@@ -56,7 +56,7 @@ namespace TalonOneSdk.Model
         /// <value>If &#x60;true&#x60;, it means that there is more data to request in the source collection.</value>
         /* <example>true</example> */
         [JsonPropertyName("hasMore")]
-        public bool? HasMore { get { return this.HasMoreOption; } set { this.HasMoreOption = new Option<bool?>(value); } }
+        public bool? HasMore { get { return this.HasMoreOption.Value; } set { this.HasMoreOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of Data
@@ -70,7 +70,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>List of transaction entries from a loyalty ledger.</value>
         [JsonPropertyName("data")]
-        public List<LoyaltyLedgerEntry> Data { get { return this.DataOption; } set { this.DataOption = new Option<List<LoyaltyLedgerEntry>>(value); } }
+        public List<LoyaltyLedgerEntry> Data { get { return this.DataOption.Value; } set { this.DataOption = new Option<List<LoyaltyLedgerEntry>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

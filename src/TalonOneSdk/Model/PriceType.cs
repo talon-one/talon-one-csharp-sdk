@@ -126,7 +126,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the account that owns this price type.</value>
         /* <example>1</example> */
         [JsonPropertyName("accountId")]
-        public long? AccountId { get { return this.AccountIdOption; } set { this.AccountIdOption = new Option<long?>(value); } }
+        public long? AccountId { get { return this.AccountIdOption.Value; } set { this.AccountIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -141,7 +141,7 @@ namespace TalonOneSdk.Model
         /// <value>A description of the price type.</value>
         /* <example>The price available exclusively to members.</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -193,12 +193,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
-        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="PriceType" />

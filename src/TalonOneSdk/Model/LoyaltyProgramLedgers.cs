@@ -95,7 +95,7 @@ namespace TalonOneSdk.Model
         /// <value>The date on which the customer joined the loyalty program in RFC3339.  **Note**: This is in the loyalty program&#39;s time zone. </value>
         /* <example>2024-04-30T15:04:05Z07:00</example> */
         [JsonPropertyName("joinDate")]
-        public DateTime? JoinDate { get { return this.JoinDateOption; } set { this.JoinDateOption = new Option<DateTime?>(value); } }
+        public DateTime? JoinDate { get { return this.JoinDateOption.Value; } set { this.JoinDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of SubLedgers
@@ -109,7 +109,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A map containing information about each loyalty subledger.</value>
         [JsonPropertyName("subLedgers")]
-        public Dictionary<string, LedgerInfo> SubLedgers { get { return this.SubLedgersOption; } set { this.SubLedgersOption = new Option<Dictionary<string, LedgerInfo>>(value); } }
+        public Dictionary<string, LedgerInfo> SubLedgers { get { return this.SubLedgersOption.Value; } set { this.SubLedgersOption = new Option<Dictionary<string, LedgerInfo>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,7 +148,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize JoinDate
         /// </summary>
-        public static string JoinDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string JoinDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyProgramLedgers" />

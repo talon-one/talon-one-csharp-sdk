@@ -72,7 +72,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The original quantity in case a partial reward was applied.</value>
         [JsonPropertyName("desiredQuantity")]
-        public long? DesiredQuantity { get { return this.DesiredQuantityOption; } set { this.DesiredQuantityOption = new Option<long?>(value); } }
+        public long? DesiredQuantity { get { return this.DesiredQuantityOption.Value; } set { this.DesiredQuantityOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

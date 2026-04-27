@@ -70,7 +70,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ExcludedFromPriceHistory
         /// </summary>
         [JsonPropertyName("excludedFromPriceHistory")]
-        public bool? ExcludedFromPriceHistory { get { return this.ExcludedFromPriceHistoryOption; } set { this.ExcludedFromPriceHistoryOption = new Option<bool?>(value); } }
+        public bool? ExcludedFromPriceHistory { get { return this.ExcludedFromPriceHistoryOption.Value; } set { this.ExcludedFromPriceHistoryOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -100,7 +100,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of application associated with change.</value>
         /* <example>359</example> */
         [JsonPropertyName("applicationId")]
-        public long? ApplicationId { get { return this.ApplicationIdOption; } set { this.ApplicationIdOption = new Option<long?>(value); } }
+        public long? ApplicationId { get { return this.ApplicationIdOption.Value; } set { this.ApplicationIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Old
@@ -115,7 +115,7 @@ namespace TalonOneSdk.Model
         /// <value>Resource before the change occurred.</value>
         /* <example>{}</example> */
         [JsonPropertyName("old")]
-        public Object Old { get { return this.OldOption; } set { this.OldOption = new Option<Object>(value); } }
+        public Object Old { get { return this.OldOption.Value; } set { this.OldOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of New
@@ -130,7 +130,7 @@ namespace TalonOneSdk.Model
         /// <value>Resource after the change occurred.</value>
         /* <example>{applicationId&quot;&#x3D;359, attributes&quot;&#x3D;{}, campaignGroups&quot;&#x3D;[], created&quot;&#x3D;2022-07-08T13:04:02.972762328Z, description&quot;&#x3D;, features&quot;&#x3D;[referrals, loyalty], id&#x3D;6727}</example> */
         [JsonPropertyName("new")]
-        public Object New { get { return this.NewOption; } set { this.NewOption = new Option<Object>(value); } }
+        public Object New { get { return this.NewOption.Value; } set { this.NewOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of ManagementKeyId
@@ -145,7 +145,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of management key used to perform changes.</value>
         /* <example>3</example> */
         [JsonPropertyName("managementKeyId")]
-        public long? ManagementKeyId { get { return this.ManagementKeyIdOption; } set { this.ManagementKeyIdOption = new Option<long?>(value); } }
+        public long? ManagementKeyId { get { return this.ManagementKeyIdOption.Value; } set { this.ManagementKeyIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -186,7 +186,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Change" />

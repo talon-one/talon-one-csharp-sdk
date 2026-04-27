@@ -60,7 +60,7 @@ namespace TalonOneSdk.Model
         /// <value>A map of the link between the Application, campaign, or draft campaign-related permission set and the Application ID the permissions apply to.</value>
         /* <example>{1&#x3D;{application&#x3D;Application permission set}, 3&#x3D;{campaign&#x3D;Campaign manager permission set}, 4&#x3D;{draftCampaign&#x3D;Campaign read-only permission set}, 5&#x3D;{tools&#x3D;Tools permission set}}</example> */
         [JsonPropertyName("applications")]
-        public Dictionary<string, RoleV2ApplicationDetails> Applications { get { return this.ApplicationsOption; } set { this.ApplicationsOption = new Option<Dictionary<string, RoleV2ApplicationDetails>>(value); } }
+        public Dictionary<string, RoleV2ApplicationDetails> Applications { get { return this.ApplicationsOption.Value; } set { this.ApplicationsOption = new Option<Dictionary<string, RoleV2ApplicationDetails>>(value); } }
 
         /// <summary>
         /// Used to track the state of LoyaltyPrograms
@@ -75,7 +75,7 @@ namespace TalonOneSdk.Model
         /// <value>A map of the link between the loyalty program-related permission set and the Application ID the permissions apply to.</value>
         /* <example>{10&#x3D;Loyalty program manager permission set}</example> */
         [JsonPropertyName("loyaltyPrograms")]
-        public Dictionary<string, string> LoyaltyPrograms { get { return this.LoyaltyProgramsOption; } set { this.LoyaltyProgramsOption = new Option<Dictionary<string, string>>(value); } }
+        public Dictionary<string, string> LoyaltyPrograms { get { return this.LoyaltyProgramsOption.Value; } set { this.LoyaltyProgramsOption = new Option<Dictionary<string, string>>(value); } }
 
         /// <summary>
         /// Used to track the state of CampaignAccessGroups
@@ -90,7 +90,7 @@ namespace TalonOneSdk.Model
         /// <value>A map of the link between the campaign access group-related permission set and the Application ID the permissions apply to.</value>
         /* <example>{5&#x3D;Campaign access group manager permission set}</example> */
         [JsonPropertyName("campaignAccessGroups")]
-        public Dictionary<string, string> CampaignAccessGroups { get { return this.CampaignAccessGroupsOption; } set { this.CampaignAccessGroupsOption = new Option<Dictionary<string, string>>(value); } }
+        public Dictionary<string, string> CampaignAccessGroups { get { return this.CampaignAccessGroupsOption.Value; } set { this.CampaignAccessGroupsOption = new Option<Dictionary<string, string>>(value); } }
 
         /// <summary>
         /// Used to track the state of Account
@@ -104,7 +104,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Name of the account-level permission set</value>
         [JsonPropertyName("account")]
-        public string Account { get { return this.AccountOption; } set { this.AccountOption = new Option<string>(value); } }
+        public string Account { get { return this.AccountOption.Value; } set { this.AccountOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

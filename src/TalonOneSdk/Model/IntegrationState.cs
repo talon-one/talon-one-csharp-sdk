@@ -78,7 +78,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Loyalty
         /// </summary>
         [JsonPropertyName("loyalty")]
-        public Loyalty Loyalty { get { return this.LoyaltyOption; } set { this.LoyaltyOption = new Option<Loyalty>(value); } }
+        public Loyalty Loyalty { get { return this.LoyaltyOption.Value; } set { this.LoyaltyOption = new Option<Loyalty>(value); } }
 
         /// <summary>
         /// Used to track the state of Coupon
@@ -91,7 +91,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Coupon
         /// </summary>
         [JsonPropertyName("coupon")]
-        public Coupon Coupon { get { return this.CouponOption; } set { this.CouponOption = new Option<Coupon>(value); } }
+        public Coupon Coupon { get { return this.CouponOption.Value; } set { this.CouponOption = new Option<Coupon>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

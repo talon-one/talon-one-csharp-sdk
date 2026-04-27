@@ -53,7 +53,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>List of notifications.</value>
         [JsonPropertyName("data")]
-        public List<BaseNotification> Data { get { return this.DataOption; } set { this.DataOption = new Option<List<BaseNotification>>(value); } }
+        public List<BaseNotification> Data { get { return this.DataOption.Value; } set { this.DataOption = new Option<List<BaseNotification>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

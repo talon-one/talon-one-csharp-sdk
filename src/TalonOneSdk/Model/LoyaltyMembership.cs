@@ -64,7 +64,7 @@ namespace TalonOneSdk.Model
         /// <value>The moment in which the loyalty program was joined.</value>
         /* <example>2012-03-20T14:15:22Z</example> */
         [JsonPropertyName("joined")]
-        public DateTime? Joined { get { return this.JoinedOption; } set { this.JoinedOption = new Option<DateTime?>(value); } }
+        public DateTime? Joined { get { return this.JoinedOption.Value; } set { this.JoinedOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -99,7 +99,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Joined
         /// </summary>
-        public static string JoinedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string JoinedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyMembership" />

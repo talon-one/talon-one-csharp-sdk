@@ -79,7 +79,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The index of the item in the cart items for which the discount was rolled back.</value>
         [JsonPropertyName("cartItemPosition")]
-        public decimal? CartItemPosition { get { return this.CartItemPositionOption; } set { this.CartItemPositionOption = new Option<decimal?>(value); } }
+        public decimal? CartItemPosition { get { return this.CartItemPositionOption.Value; } set { this.CartItemPositionOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of CartItemSubPosition
@@ -93,7 +93,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>For cart items with &#x60;quantity&#x60; &gt; 1, the subposition returns the index of the item unit in its line item. </value>
         [JsonPropertyName("cartItemSubPosition")]
-        public decimal? CartItemSubPosition { get { return this.CartItemSubPositionOption; } set { this.CartItemSubPositionOption = new Option<decimal?>(value); } }
+        public decimal? CartItemSubPosition { get { return this.CartItemSubPositionOption.Value; } set { this.CartItemSubPositionOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of AdditionalCostId
@@ -107,7 +107,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The ID of the additional cost that was rolled back.</value>
         [JsonPropertyName("additionalCostId")]
-        public long? AdditionalCostId { get { return this.AdditionalCostIdOption; } set { this.AdditionalCostIdOption = new Option<long?>(value); } }
+        public long? AdditionalCostId { get { return this.AdditionalCostIdOption.Value; } set { this.AdditionalCostIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of AdditionalCost
@@ -121,7 +121,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The name of the additional cost that was rolled back.</value>
         [JsonPropertyName("additionalCost")]
-        public string AdditionalCost { get { return this.AdditionalCostOption; } set { this.AdditionalCostOption = new Option<string>(value); } }
+        public string AdditionalCost { get { return this.AdditionalCostOption.Value; } set { this.AdditionalCostOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Scope
@@ -135,7 +135,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The scope of the rolled back discount - For a discount per session, it can be one of &#x60;cartItems&#x60;, &#x60;additionalCosts&#x60; or &#x60;sessionTotal&#x60; - For a discount per item, it can be one of &#x60;price&#x60;, &#x60;additionalCosts&#x60; or &#x60;itemTotal&#x60; </value>
         [JsonPropertyName("scope")]
-        public string Scope { get { return this.ScopeOption; } set { this.ScopeOption = new Option<string>(value); } }
+        public string Scope { get { return this.ScopeOption.Value; } set { this.ScopeOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

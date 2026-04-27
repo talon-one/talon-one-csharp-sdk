@@ -125,7 +125,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A list of campaign notification data.</value>
         [JsonPropertyName("Data")]
-        public List<CampaignRulesetChangedNotificationItem> Data { get { return this.DataOption; } set { this.DataOption = new Option<List<CampaignRulesetChangedNotificationItem>>(value); } }
+        public List<CampaignRulesetChangedNotificationItem> Data { get { return this.DataOption.Value; } set { this.DataOption = new Option<List<CampaignRulesetChangedNotificationItem>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

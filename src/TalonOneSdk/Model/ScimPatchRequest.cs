@@ -61,7 +61,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>SCIM schema for the given resource.</value>
         [JsonPropertyName("schemas")]
-        public List<string> Schemas { get { return this.SchemasOption; } set { this.SchemasOption = new Option<List<string>>(value); } }
+        public List<string> Schemas { get { return this.SchemasOption.Value; } set { this.SchemasOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

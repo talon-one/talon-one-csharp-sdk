@@ -116,7 +116,7 @@ namespace TalonOneSdk.Model
         /// <value>The name of the customer&#39;s next tier.</value>
         /* <example>Bronze</example> */
         [JsonPropertyName("NextTier")]
-        public string NextTier { get { return this.NextTierOption; } set { this.NextTierOption = new Option<string>(value); } }
+        public string NextTier { get { return this.NextTierOption.Value; } set { this.NextTierOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of TierExpirationDate
@@ -131,7 +131,7 @@ namespace TalonOneSdk.Model
         /// <value>The date and time the tier expires.</value>
         /* <example>2023-12-01T12:23:00+02:00</example> */
         [JsonPropertyName("TierExpirationDate")]
-        public DateTime? TierExpirationDate { get { return this.TierExpirationDateOption; } set { this.TierExpirationDateOption = new Option<DateTime?>(value); } }
+        public DateTime? TierExpirationDate { get { return this.TierExpirationDateOption.Value; } set { this.TierExpirationDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -178,7 +178,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize TierExpirationDate
         /// </summary>
-        public static string TierExpirationDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string TierExpirationDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="TierWillDowngradeData" />

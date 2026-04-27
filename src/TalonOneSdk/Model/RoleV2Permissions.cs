@@ -56,7 +56,7 @@ namespace TalonOneSdk.Model
         /// <value>List of grouped logical operations referenced by roles.</value>
         /* <example>[{name&#x3D;Application permission set, logicalOperations&#x3D;[getApplicationOperations, editApplicationOperations]}, {name&#x3D;Campaign manager permission set, logicalOperations&#x3D;[getCampaignOperations, createCampaignOperations, updateCampaignOperations]}, {name&#x3D;Campaign read-only permission set, logicalOperations&#x3D;[getCampaignOperations]}, {name&#x3D;Loyalty program read-only permission set, logicalOperations&#x3D;[getLoyaltyProgramOperations]}, {name&#x3D;Campaign access group manager permission set, logicalOperations&#x3D;[getCampaignAccessGroupOperations, updateCampaignAccessGroupOperations, deleteCampaignAccessGroupOperations]}]</example> */
         [JsonPropertyName("permissionSets")]
-        public List<RoleV2PermissionSet> PermissionSets { get { return this.PermissionSetsOption; } set { this.PermissionSetsOption = new Option<List<RoleV2PermissionSet>>(value); } }
+        public List<RoleV2PermissionSet> PermissionSets { get { return this.PermissionSetsOption.Value; } set { this.PermissionSetsOption = new Option<List<RoleV2PermissionSet>>(value); } }
 
         /// <summary>
         /// Used to track the state of Roles
@@ -69,7 +69,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Roles
         /// </summary>
         [JsonPropertyName("roles")]
-        public RoleV2RolesGroup Roles { get { return this.RolesOption; } set { this.RolesOption = new Option<RoleV2RolesGroup>(value); } }
+        public RoleV2RolesGroup Roles { get { return this.RolesOption.Value; } set { this.RolesOption = new Option<RoleV2RolesGroup>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

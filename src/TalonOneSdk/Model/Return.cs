@@ -137,7 +137,7 @@ namespace TalonOneSdk.Model
         /// <value>The internal ID of the profile this return was requested on.</value>
         /* <example>123</example> */
         [JsonPropertyName("profileId")]
-        public long? ProfileId { get { return this.ProfileIdOption; } set { this.ProfileIdOption = new Option<long?>(value); } }
+        public long? ProfileId { get { return this.ProfileIdOption.Value; } set { this.ProfileIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ProfileIntegrationId
@@ -152,7 +152,7 @@ namespace TalonOneSdk.Model
         /// <value>The integration ID of the profile this return was requested on.</value>
         /* <example>0c0e0207-eb30-4e06-a56c-2b7c8a64953c</example> */
         [JsonPropertyName("profileIntegrationId")]
-        public string ProfileIntegrationId { get { return this.ProfileIntegrationIdOption; } set { this.ProfileIntegrationIdOption = new Option<string>(value); } }
+        public string ProfileIntegrationId { get { return this.ProfileIntegrationIdOption.Value; } set { this.ProfileIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedBy
@@ -167,7 +167,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the user who requested this return.</value>
         /* <example>123</example> */
         [JsonPropertyName("createdBy")]
-        public long? CreatedBy { get { return this.CreatedByOption; } set { this.CreatedByOption = new Option<long?>(value); } }
+        public long? CreatedBy { get { return this.CreatedByOption.Value; } set { this.CreatedByOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -223,7 +223,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Return" />

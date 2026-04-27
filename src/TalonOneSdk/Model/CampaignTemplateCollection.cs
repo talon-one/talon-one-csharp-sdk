@@ -64,7 +64,7 @@ namespace TalonOneSdk.Model
         /// <value>A short description of the purpose of this collection.</value>
         /* <example>My collection of SKUs</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

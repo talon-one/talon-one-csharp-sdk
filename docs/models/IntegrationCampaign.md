@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApplicationId** | **long** | The ID of the Application that owns this entity. | 
 **Id** | **long** | Unique ID of Campaign. | 
-**Name** | **string** | A user-facing name for this campaign. | 
+**Name** | **string** | The name of the campaign. | 
 **Tags** | **List&lt;string&gt;** | A list of tags for the campaign. | 
 **Features** | **List&lt;IntegrationCampaign.FeaturesEnum&gt;** | The features enabled in this campaign. | 
 **Description** | **string** | A detailed description of the campaign. | [optional] 
@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **EndTime** | **DateTime** | Timestamp when the campaign will become inactive. | [optional] 
 **Attributes** | **Object** | Arbitrary properties associated with this campaign. | [optional] 
 **State** | **string** | The state of the campaign.  | [default to StateEnum.Enabled]
+**Rules** | [**List&lt;RuleMetadata&gt;**](RuleMetadata.md) | A list of rules containing customer-facing details of the rewards defined in the campaign. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 
