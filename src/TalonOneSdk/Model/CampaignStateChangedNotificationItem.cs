@@ -94,7 +94,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The current ruleset.</value>
         [JsonPropertyName("ruleset")]
-        public Ruleset Ruleset { get { return this.RulesetOption; } set { this.RulesetOption = new Option<Ruleset>(value); } }
+        public Ruleset Ruleset { get { return this.RulesetOption.Value; } set { this.RulesetOption = new Option<Ruleset>(value); } }
 
         /// <summary>
         /// Used to track the state of Placeholders
@@ -108,7 +108,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The current details of the [placeholders](https://docs.talon.one/docs/product/campaigns/templates/create-templates#use-placeholders) in the campaign.</value>
         [JsonPropertyName("placeholders")]
-        public List<PlaceholderDetails> Placeholders { get { return this.PlaceholdersOption; } set { this.PlaceholdersOption = new Option<List<PlaceholderDetails>>(value); } }
+        public List<PlaceholderDetails> Placeholders { get { return this.PlaceholdersOption.Value; } set { this.PlaceholdersOption = new Option<List<PlaceholderDetails>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

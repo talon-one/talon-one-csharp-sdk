@@ -53,7 +53,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The list of filters used to select the items to patch, joined by &#x60;AND&#x60;.  **Note:** Every item in the catalog will be removed if there are no filters. </value>
         [JsonPropertyName("filters")]
-        public List<CatalogActionFilter> Filters { get { return this.FiltersOption; } set { this.FiltersOption = new Option<List<CatalogActionFilter>>(value); } }
+        public List<CatalogActionFilter> Filters { get { return this.FiltersOption.Value; } set { this.FiltersOption = new Option<List<CatalogActionFilter>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

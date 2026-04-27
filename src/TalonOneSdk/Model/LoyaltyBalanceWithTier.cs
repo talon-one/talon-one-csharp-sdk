@@ -70,7 +70,7 @@ namespace TalonOneSdk.Model
         /// <value>Total amount of points awarded to this customer and available to spend.</value>
         /* <example>286</example> */
         [JsonPropertyName("activePoints")]
-        public decimal? ActivePoints { get { return this.ActivePointsOption; } set { this.ActivePointsOption = new Option<decimal?>(value); } }
+        public decimal? ActivePoints { get { return this.ActivePointsOption.Value; } set { this.ActivePointsOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of PendingPoints
@@ -85,7 +85,7 @@ namespace TalonOneSdk.Model
         /// <value>Total amount of points awarded to this customer but not available until their start date.</value>
         /* <example>50</example> */
         [JsonPropertyName("pendingPoints")]
-        public decimal? PendingPoints { get { return this.PendingPointsOption; } set { this.PendingPointsOption = new Option<decimal?>(value); } }
+        public decimal? PendingPoints { get { return this.PendingPointsOption.Value; } set { this.PendingPointsOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of SpentPoints
@@ -100,7 +100,7 @@ namespace TalonOneSdk.Model
         /// <value>Total amount of points already spent by this customer.</value>
         /* <example>150</example> */
         [JsonPropertyName("spentPoints")]
-        public decimal? SpentPoints { get { return this.SpentPointsOption; } set { this.SpentPointsOption = new Option<decimal?>(value); } }
+        public decimal? SpentPoints { get { return this.SpentPointsOption.Value; } set { this.SpentPointsOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiredPoints
@@ -115,7 +115,7 @@ namespace TalonOneSdk.Model
         /// <value>Total amount of points awarded but never redeemed. They cannot be used anymore.</value>
         /* <example>286</example> */
         [JsonPropertyName("expiredPoints")]
-        public decimal? ExpiredPoints { get { return this.ExpiredPointsOption; } set { this.ExpiredPointsOption = new Option<decimal?>(value); } }
+        public decimal? ExpiredPoints { get { return this.ExpiredPointsOption.Value; } set { this.ExpiredPointsOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of NegativePoints
@@ -130,7 +130,7 @@ namespace TalonOneSdk.Model
         /// <value>Total amount of negative points. This implies that &#x60;activePoints&#x60; is &#x60;0&#x60;.</value>
         /* <example>286</example> */
         [JsonPropertyName("negativePoints")]
-        public decimal? NegativePoints { get { return this.NegativePointsOption; } set { this.NegativePointsOption = new Option<decimal?>(value); } }
+        public decimal? NegativePoints { get { return this.NegativePointsOption.Value; } set { this.NegativePointsOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of CurrentTier
@@ -144,7 +144,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Customer&#39;s current tier.</value>
         [JsonPropertyName("currentTier")]
-        public Tier CurrentTier { get { return this.CurrentTierOption; } set { this.CurrentTierOption = new Option<Tier>(value); } }
+        public Tier CurrentTier { get { return this.CurrentTierOption.Value; } set { this.CurrentTierOption = new Option<Tier>(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectedTier
@@ -157,7 +157,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ProjectedTier
         /// </summary>
         [JsonPropertyName("projectedTier")]
-        public ProjectedTier ProjectedTier { get { return this.ProjectedTierOption; } set { this.ProjectedTierOption = new Option<ProjectedTier>(value); } }
+        public ProjectedTier ProjectedTier { get { return this.ProjectedTierOption.Value; } set { this.ProjectedTierOption = new Option<ProjectedTier>(value); } }
 
         /// <summary>
         /// Used to track the state of PointsToNextTier
@@ -172,7 +172,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of points required to move up a tier.</value>
         /* <example>20</example> */
         [JsonPropertyName("pointsToNextTier")]
-        public decimal? PointsToNextTier { get { return this.PointsToNextTierOption; } set { this.PointsToNextTierOption = new Option<decimal?>(value); } }
+        public decimal? PointsToNextTier { get { return this.PointsToNextTierOption.Value; } set { this.PointsToNextTierOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of NextTierName
@@ -187,7 +187,7 @@ namespace TalonOneSdk.Model
         /// <value>The name of the next higher tier level in the loyalty program.  **Note**: - Returns &#x60;null&#x60; if the customer has reached the highest available tier. - Returns the lowest level tier name if the customer is not currently assigned to any tier. </value>
         /* <example>Silver</example> */
         [JsonPropertyName("nextTierName")]
-        public string NextTierName { get { return this.NextTierNameOption; } set { this.NextTierNameOption = new Option<string>(value); } }
+        public string NextTierName { get { return this.NextTierNameOption.Value; } set { this.NextTierNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

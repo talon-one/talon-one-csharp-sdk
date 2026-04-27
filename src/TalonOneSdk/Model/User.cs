@@ -239,7 +239,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates whether the user is an &#x60;admin&#x60;.</value>
         /* <example>false</example> */
         [JsonPropertyName("isAdmin")]
-        public bool? IsAdmin { get { return this.IsAdminOption; } set { this.IsAdminOption = new Option<bool?>(value); } }
+        public bool? IsAdmin { get { return this.IsAdminOption.Value; } set { this.IsAdminOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of Roles
@@ -254,7 +254,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of the IDs of the roles assigned to the user.</value>
         /* <example>[71]</example> */
         [JsonPropertyName("roles")]
-        public List<long> Roles { get { return this.RolesOption; } set { this.RolesOption = new Option<List<long>>(value); } }
+        public List<long> Roles { get { return this.RolesOption.Value; } set { this.RolesOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of AuthMethod
@@ -269,7 +269,7 @@ namespace TalonOneSdk.Model
         /// <value>Authentication method for this user.</value>
         /* <example>basic_auth</example> */
         [JsonPropertyName("authMethod")]
-        public string AuthMethod { get { return this.AuthMethodOption; } set { this.AuthMethodOption = new Option<string>(value); } }
+        public string AuthMethod { get { return this.AuthMethodOption.Value; } set { this.AuthMethodOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ApplicationNotificationSubscriptions
@@ -284,7 +284,7 @@ namespace TalonOneSdk.Model
         /// <value>Application notifications that the user is subscribed to.</value>
         /* <example>{}</example> */
         [JsonPropertyName("applicationNotificationSubscriptions")]
-        public Object ApplicationNotificationSubscriptions { get { return this.ApplicationNotificationSubscriptionsOption; } set { this.ApplicationNotificationSubscriptionsOption = new Option<Object>(value); } }
+        public Object ApplicationNotificationSubscriptions { get { return this.ApplicationNotificationSubscriptionsOption.Value; } set { this.ApplicationNotificationSubscriptionsOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of LastSignedIn
@@ -299,7 +299,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp when the user last signed in to Talon.One.</value>
         /* <example>2021-09-12T10:12:42Z</example> */
         [JsonPropertyName("lastSignedIn")]
-        public DateTime? LastSignedIn { get { return this.LastSignedInOption; } set { this.LastSignedInOption = new Option<DateTime?>(value); } }
+        public DateTime? LastSignedIn { get { return this.LastSignedInOption.Value; } set { this.LastSignedInOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of LastAccessed
@@ -314,7 +314,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp of the user&#39;s last activity after signing in to Talon.One.</value>
         /* <example>2021-09-12T10:14:42Z</example> */
         [JsonPropertyName("lastAccessed")]
-        public DateTime? LastAccessed { get { return this.LastAccessedOption; } set { this.LastAccessedOption = new Option<DateTime?>(value); } }
+        public DateTime? LastAccessed { get { return this.LastAccessedOption.Value; } set { this.LastAccessedOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of LatestFeedTimestamp
@@ -329,7 +329,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp when the user was notified for feed.</value>
         /* <example>2020-06-01T00:00:00Z</example> */
         [JsonPropertyName("latestFeedTimestamp")]
-        public DateTime? LatestFeedTimestamp { get { return this.LatestFeedTimestampOption; } set { this.LatestFeedTimestampOption = new Option<DateTime?>(value); } }
+        public DateTime? LatestFeedTimestamp { get { return this.LatestFeedTimestampOption.Value; } set { this.LatestFeedTimestampOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of AdditionalAttributes
@@ -344,7 +344,7 @@ namespace TalonOneSdk.Model
         /// <value>Additional user attributes, created and used by external identity providers.</value>
         /* <example>{}</example> */
         [JsonPropertyName("additionalAttributes")]
-        public Object AdditionalAttributes { get { return this.AdditionalAttributesOption; } set { this.AdditionalAttributesOption = new Option<Object>(value); } }
+        public Object AdditionalAttributes { get { return this.AdditionalAttributesOption.Value; } set { this.AdditionalAttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -394,27 +394,27 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
-        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize LastSignedIn
         /// </summary>
-        public static string LastSignedInFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string LastSignedInFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize LastAccessed
         /// </summary>
-        public static string LastAccessedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string LastAccessedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize LatestFeedTimestamp
         /// </summary>
-        public static string LatestFeedTimestampFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string LatestFeedTimestampFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="User" />

@@ -110,7 +110,7 @@ namespace TalonOneSdk.Model
         /// <value>Name of item.</value>
         /* <example>Air Glide</example> */
         [JsonPropertyName("name")]
-        public string Name { get { return this.NameOption; } set { this.NameOption = new Option<string>(value); } }
+        public string Name { get { return this.NameOption.Value; } set { this.NameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ReturnedQuantity
@@ -125,7 +125,7 @@ namespace TalonOneSdk.Model
         /// <value>Number of returned items, calculated internally based on returns of this item.</value>
         /* <example>1</example> */
         [JsonPropertyName("returnedQuantity")]
-        public long? ReturnedQuantity { get { return this.ReturnedQuantityOption; } }
+        public long? ReturnedQuantity { get { return this.ReturnedQuantityOption.Value; } }
 
         /// <summary>
         /// Used to track the state of RemainingQuantity
@@ -140,7 +140,7 @@ namespace TalonOneSdk.Model
         /// <value>Remaining quantity of the item, calculated internally based on returns of this item.</value>
         /* <example>1</example> */
         [JsonPropertyName("remainingQuantity")]
-        public long? RemainingQuantity { get { return this.RemainingQuantityOption; } }
+        public long? RemainingQuantity { get { return this.RemainingQuantityOption.Value; } }
 
         /// <summary>
         /// Used to track the state of Price
@@ -155,7 +155,7 @@ namespace TalonOneSdk.Model
         /// <value>Price of the item in the currency defined by your Application. This field is required if this item is not part of a [catalog](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs). If it is part of a catalog, setting a price here overrides the price from the catalog. </value>
         /* <example>99.99</example> */
         [JsonPropertyName("price")]
-        public decimal? Price { get { return this.PriceOption; } set { this.PriceOption = new Option<decimal?>(value); } }
+        public decimal? Price { get { return this.PriceOption.Value; } set { this.PriceOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of Category
@@ -170,7 +170,7 @@ namespace TalonOneSdk.Model
         /// <value>Type, group or model of the item.</value>
         /* <example>shoes</example> */
         [JsonPropertyName("category")]
-        public string Category { get { return this.CategoryOption; } set { this.CategoryOption = new Option<string>(value); } }
+        public string Category { get { return this.CategoryOption.Value; } set { this.CategoryOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Product
@@ -183,7 +183,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Product
         /// </summary>
         [JsonPropertyName("product")]
-        public Product Product { get { return this.ProductOption; } set { this.ProductOption = new Option<Product>(value); } }
+        public Product Product { get { return this.ProductOption.Value; } set { this.ProductOption = new Option<Product>(value); } }
 
         /// <summary>
         /// Used to track the state of Weight
@@ -198,7 +198,7 @@ namespace TalonOneSdk.Model
         /// <value>Weight of item in grams.</value>
         /* <example>1130</example> */
         [JsonPropertyName("weight")]
-        public decimal? Weight { get { return this.WeightOption; } set { this.WeightOption = new Option<decimal?>(value); } }
+        public decimal? Weight { get { return this.WeightOption.Value; } set { this.WeightOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of Height
@@ -212,7 +212,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Height of item in mm.</value>
         [JsonPropertyName("height")]
-        public decimal? Height { get { return this.HeightOption; } set { this.HeightOption = new Option<decimal?>(value); } }
+        public decimal? Height { get { return this.HeightOption.Value; } set { this.HeightOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of Width
@@ -226,7 +226,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Width of item in mm.</value>
         [JsonPropertyName("width")]
-        public decimal? Width { get { return this.WidthOption; } set { this.WidthOption = new Option<decimal?>(value); } }
+        public decimal? Width { get { return this.WidthOption.Value; } set { this.WidthOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of Length
@@ -240,7 +240,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Length of item in mm.</value>
         [JsonPropertyName("length")]
-        public decimal? Length { get { return this.LengthOption; } set { this.LengthOption = new Option<decimal?>(value); } }
+        public decimal? Length { get { return this.LengthOption.Value; } set { this.LengthOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of Position
@@ -254,7 +254,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Position of the Cart Item in the Cart (calculated internally).</value>
         [JsonPropertyName("position")]
-        public decimal? Position { get { return this.PositionOption; } }
+        public decimal? Position { get { return this.PositionOption.Value; } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -269,7 +269,7 @@ namespace TalonOneSdk.Model
         /// <value>Use this property to set a value for the attributes of your choice. [Attributes](https://docs.talon.one/docs/dev/concepts/attributes) represent any information to attach to this cart item.  Custom _cart item_ attributes must be created in the Campaign Manager before you set them with this property.  **Note:** Any previously defined attributes that you do not include in the array will be removed. </value>
         /* <example>{image&#x3D;11.jpeg, material&#x3D;leather}</example> */
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of AdditionalCosts
@@ -284,7 +284,7 @@ namespace TalonOneSdk.Model
         /// <value>Use this property to set a value for the additional costs of this item, such as a shipping cost. They must be created in the Campaign Manager before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs). </value>
         /* <example>{shipping&#x3D;{price&#x3D;9}}</example> */
         [JsonPropertyName("additionalCosts")]
-        public Dictionary<string, AdditionalCost> AdditionalCosts { get { return this.AdditionalCostsOption; } set { this.AdditionalCostsOption = new Option<Dictionary<string, AdditionalCost>>(value); } }
+        public Dictionary<string, AdditionalCost> AdditionalCosts { get { return this.AdditionalCostsOption.Value; } set { this.AdditionalCostsOption = new Option<Dictionary<string, AdditionalCost>>(value); } }
 
         /// <summary>
         /// Used to track the state of CatalogItemID
@@ -298,7 +298,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The catalog item ID.</value>
         [JsonPropertyName("catalogItemID")]
-        public long? CatalogItemID { get { return this.CatalogItemIDOption; } }
+        public long? CatalogItemID { get { return this.CatalogItemIDOption.Value; } }
 
         /// <summary>
         /// Used to track the state of SelectedPriceType
@@ -313,7 +313,7 @@ namespace TalonOneSdk.Model
         /// <value>The selected price type for this cart item (e.g. the price for members only).</value>
         /* <example>member</example> */
         [JsonPropertyName("selectedPriceType")]
-        public string SelectedPriceType { get { return this.SelectedPriceTypeOption; } }
+        public string SelectedPriceType { get { return this.SelectedPriceTypeOption.Value; } }
 
         /// <summary>
         /// Used to track the state of AdjustmentReferenceId
@@ -328,7 +328,7 @@ namespace TalonOneSdk.Model
         /// <value>The reference ID of the selected price adjustment for this cart item. Only returned if the selected price resulted from a price adjustment.</value>
         /* <example>68851723-e6fa-488f-ace9-112581e6c19b</example> */
         [JsonPropertyName("adjustmentReferenceId")]
-        public Guid? AdjustmentReferenceId { get { return this.AdjustmentReferenceIdOption; } }
+        public Guid? AdjustmentReferenceId { get { return this.AdjustmentReferenceIdOption.Value; } }
 
         /// <summary>
         /// Used to track the state of AdjustmentEffectiveFrom
@@ -343,7 +343,7 @@ namespace TalonOneSdk.Model
         /// <value>The date and time from which the price adjustment is effective. Only returned if the selected price resulted from a price adjustment that contains this field.</value>
         /* <example>2021-09-12T10:12:42Z</example> */
         [JsonPropertyName("adjustmentEffectiveFrom")]
-        public DateTime? AdjustmentEffectiveFrom { get { return this.AdjustmentEffectiveFromOption; } }
+        public DateTime? AdjustmentEffectiveFrom { get { return this.AdjustmentEffectiveFromOption.Value; } }
 
         /// <summary>
         /// Used to track the state of AdjustmentEffectiveUntil
@@ -358,7 +358,7 @@ namespace TalonOneSdk.Model
         /// <value>The date and time until which the price adjustment is effective. Only returned if the selected price resulted from a price adjustment that contains this field.</value>
         /* <example>2021-09-12T10:12:42Z</example> */
         [JsonPropertyName("adjustmentEffectiveUntil")]
-        public DateTime? AdjustmentEffectiveUntil { get { return this.AdjustmentEffectiveUntilOption; } }
+        public DateTime? AdjustmentEffectiveUntil { get { return this.AdjustmentEffectiveUntilOption.Value; } }
 
         /// <summary>
         /// Used to track the state of Prices
@@ -373,7 +373,7 @@ namespace TalonOneSdk.Model
         /// <value>A map of keys and values representing the price types and related price adjustment details for this cart item. The keys correspond to the &#x60;priceType&#x60; names. </value>
         /* <example>{member&#x3D;{price&#x3D;90, adjustmentReferenceId&#x3D;68851723-e6fa-488f-ace9-112581e6c19b, effectiveFrom&#x3D;2025-05-25T00:00:00Z, effectiveUntil&#x3D;2025-05-30T00:00:00Z}, base&#x3D;{price&#x3D;100}}</example> */
         [JsonPropertyName("prices")]
-        public Dictionary<string, PriceDetail> Prices { get { return this.PricesOption; } }
+        public Dictionary<string, PriceDetail> Prices { get { return this.PricesOption.Value; } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -439,12 +439,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize AdjustmentEffectiveFrom
         /// </summary>
-        public static string AdjustmentEffectiveFromFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string AdjustmentEffectiveFromFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize AdjustmentEffectiveUntil
         /// </summary>
-        public static string AdjustmentEffectiveUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string AdjustmentEffectiveUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CartItem" />

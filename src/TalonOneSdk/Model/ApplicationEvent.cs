@@ -119,7 +119,7 @@ namespace TalonOneSdk.Model
         /// <value>The globally unique Talon.One ID of the customer that created this entity.</value>
         /* <example>138</example> */
         [JsonPropertyName("profileId")]
-        public long? ProfileId { get { return this.ProfileIdOption; } set { this.ProfileIdOption = new Option<long?>(value); } }
+        public long? ProfileId { get { return this.ProfileIdOption.Value; } set { this.ProfileIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of StoreId
@@ -133,7 +133,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The ID of the store.</value>
         [JsonPropertyName("storeId")]
-        public long? StoreId { get { return this.StoreIdOption; } set { this.StoreIdOption = new Option<long?>(value); } }
+        public long? StoreId { get { return this.StoreIdOption.Value; } set { this.StoreIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of StoreIntegrationId
@@ -148,7 +148,7 @@ namespace TalonOneSdk.Model
         /// <value>The integration ID of the store. You choose this ID when you create a store.</value>
         /* <example>STORE-001</example> */
         [JsonPropertyName("storeIntegrationId")]
-        public string StoreIntegrationId { get { return this.StoreIntegrationIdOption; } set { this.StoreIntegrationIdOption = new Option<string>(value); } }
+        public string StoreIntegrationId { get { return this.StoreIntegrationIdOption.Value; } set { this.StoreIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of SessionId
@@ -162,7 +162,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The globally unique Talon.One ID of the session that contains this event.</value>
         [JsonPropertyName("sessionId")]
-        public long? SessionId { get { return this.SessionIdOption; } set { this.SessionIdOption = new Option<long?>(value); } }
+        public long? SessionId { get { return this.SessionIdOption.Value; } set { this.SessionIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of RuleFailureReasons
@@ -176,7 +176,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>An array containing the rule failure reasons which happened during this event.</value>
         [JsonPropertyName("ruleFailureReasons")]
-        public List<RuleFailureReason> RuleFailureReasons { get { return this.RuleFailureReasonsOption; } set { this.RuleFailureReasonsOption = new Option<List<RuleFailureReason>>(value); } }
+        public List<RuleFailureReason> RuleFailureReasons { get { return this.RuleFailureReasonsOption.Value; } set { this.RuleFailureReasonsOption = new Option<List<RuleFailureReason>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -232,7 +232,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApplicationEvent" />

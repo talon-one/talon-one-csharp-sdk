@@ -95,7 +95,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /* <example>10</example> */
         [JsonPropertyName("experimentId")]
-        public long? ExperimentId { get { return this.ExperimentIdOption; } set { this.ExperimentIdOption = new Option<long?>(value); } }
+        public long? ExperimentId { get { return this.ExperimentIdOption.Value; } set { this.ExperimentIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Ruleset
@@ -108,7 +108,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Ruleset
         /// </summary>
         [JsonPropertyName("ruleset")]
-        public Ruleset Ruleset { get { return this.RulesetOption; } set { this.RulesetOption = new Option<Ruleset>(value); } }
+        public Ruleset Ruleset { get { return this.RulesetOption.Value; } set { this.RulesetOption = new Option<Ruleset>(value); } }
 
         /// <summary>
         /// Used to track the state of Weight
@@ -122,7 +122,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /* <example>12</example> */
         [JsonPropertyName("weight")]
-        public long? Weight { get { return this.WeightOption; } set { this.WeightOption = new Option<long?>(value); } }
+        public long? Weight { get { return this.WeightOption.Value; } set { this.WeightOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -162,7 +162,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ExperimentVariant" />

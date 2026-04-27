@@ -146,7 +146,7 @@ namespace TalonOneSdk.Model
         /// <value>Name of the user.</value>
         /* <example>John Doe</example> */
         [JsonPropertyName("name")]
-        public string Name { get { return this.NameOption; } set { this.NameOption = new Option<string>(value); } }
+        public string Name { get { return this.NameOption.Value; } set { this.NameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of IsAdmin
@@ -161,7 +161,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates whether the user is an &#x60;admin&#x60;.</value>
         /* <example>false</example> */
         [JsonPropertyName("isAdmin")]
-        public bool? IsAdmin { get { return this.IsAdminOption; } set { this.IsAdminOption = new Option<bool?>(value); } }
+        public bool? IsAdmin { get { return this.IsAdminOption.Value; } set { this.IsAdminOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of Policy
@@ -176,7 +176,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates the access level of the user.</value>
         /* <example>{Role&#x3D;127}</example> */
         [JsonPropertyName("policy")]
-        public string Policy { get { return this.PolicyOption; } set { this.PolicyOption = new Option<string>(value); } }
+        public string Policy { get { return this.PolicyOption.Value; } set { this.PolicyOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Roles
@@ -191,7 +191,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of the IDs of the roles assigned to the user.  **Note**: To find the ID of a role, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint. </value>
         /* <example>[1, 3]</example> */
         [JsonPropertyName("roles")]
-        public List<long> Roles { get { return this.RolesOption; } set { this.RolesOption = new Option<List<long>>(value); } }
+        public List<long> Roles { get { return this.RolesOption.Value; } set { this.RolesOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of ApplicationNotificationSubscriptions
@@ -205,7 +205,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Application notifications that the user is subscribed to.</value>
         [JsonPropertyName("applicationNotificationSubscriptions")]
-        public Object ApplicationNotificationSubscriptions { get { return this.ApplicationNotificationSubscriptionsOption; } set { this.ApplicationNotificationSubscriptionsOption = new Option<Object>(value); } }
+        public Object ApplicationNotificationSubscriptions { get { return this.ApplicationNotificationSubscriptionsOption.Value; } set { this.ApplicationNotificationSubscriptionsOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

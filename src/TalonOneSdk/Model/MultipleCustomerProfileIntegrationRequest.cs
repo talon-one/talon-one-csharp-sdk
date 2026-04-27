@@ -52,7 +52,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets CustomerProfiles
         /// </summary>
         [JsonPropertyName("customerProfiles")]
-        public List<MultipleCustomerProfileIntegrationRequestItem> CustomerProfiles { get { return this.CustomerProfilesOption; } set { this.CustomerProfilesOption = new Option<List<MultipleCustomerProfileIntegrationRequestItem>>(value); } }
+        public List<MultipleCustomerProfileIntegrationRequestItem> CustomerProfiles { get { return this.CustomerProfilesOption.Value; } set { this.CustomerProfilesOption = new Option<List<MultipleCustomerProfileIntegrationRequestItem>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

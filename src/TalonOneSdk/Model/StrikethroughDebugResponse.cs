@@ -55,7 +55,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The campaign IDs that got fetched for the evaluation process.</value>
         [JsonPropertyName("campaignsIDs")]
-        public List<long> CampaignsIDs { get { return this.CampaignsIDsOption; } set { this.CampaignsIDsOption = new Option<List<long>>(value); } }
+        public List<long> CampaignsIDs { get { return this.CampaignsIDsOption.Value; } set { this.CampaignsIDsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of Effects
@@ -69,7 +69,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The strikethrough effects that are returned from the evaluation process.</value>
         [JsonPropertyName("effects")]
-        public List<StrikethroughEffect> Effects { get { return this.EffectsOption; } set { this.EffectsOption = new Option<List<StrikethroughEffect>>(value); } }
+        public List<StrikethroughEffect> Effects { get { return this.EffectsOption.Value; } set { this.EffectsOption = new Option<List<StrikethroughEffect>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

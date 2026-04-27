@@ -92,7 +92,7 @@ namespace TalonOneSdk.Model
         /// <value>The language of the summary.</value>
         /* <example>en</example> */
         [JsonPropertyName("language")]
-        public string Language { get { return this.LanguageOption; } set { this.LanguageOption = new Option<string>(value); } }
+        public string Language { get { return this.LanguageOption.Value; } set { this.LanguageOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -52,7 +52,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ActivateAt
         /// </summary>
         [JsonPropertyName("activateAt")]
-        public DateTime? ActivateAt { get { return this.ActivateAtOption; } set { this.ActivateAtOption = new Option<DateTime?>(value); } }
+        public DateTime? ActivateAt { get { return this.ActivateAtOption.Value; } set { this.ActivateAtOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -86,7 +86,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize ActivateAt
         /// </summary>
-        public static string ActivateAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ActivateAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="RevisionActivation" />

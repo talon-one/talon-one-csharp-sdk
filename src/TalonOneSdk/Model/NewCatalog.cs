@@ -74,7 +74,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of the IDs of the applications that are subscribed to this catalog.</value>
         /* <example>[1, 2, 3]</example> */
         [JsonPropertyName("subscribedApplicationsIds")]
-        public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
+        public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption.Value; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

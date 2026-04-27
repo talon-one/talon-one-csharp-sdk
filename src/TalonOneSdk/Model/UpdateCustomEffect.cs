@@ -102,7 +102,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Indicates if this effect is per item or not.</value>
         [JsonPropertyName("isPerItem")]
-        public bool? IsPerItem { get { return this.IsPerItemOption; } set { this.IsPerItemOption = new Option<bool?>(value); } }
+        public bool? IsPerItem { get { return this.IsPerItemOption.Value; } set { this.IsPerItemOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -116,7 +116,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The description of this effect.</value>
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Params
@@ -130,7 +130,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Array of template argument definitions.</value>
         [JsonPropertyName("params")]
-        public List<TemplateArgDef> Params { get { return this.ParamsOption; } set { this.ParamsOption = new Option<List<TemplateArgDef>>(value); } }
+        public List<TemplateArgDef> Params { get { return this.ParamsOption.Value; } set { this.ParamsOption = new Option<List<TemplateArgDef>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -200,7 +200,7 @@ namespace TalonOneSdk.Model
         /// <value>A user-facing name for this campaign.</value>
         /* <example>Summer promotions</example> */
         [JsonPropertyName("name")]
-        public string Name { get { return this.NameOption; } set { this.NameOption = new Option<string>(value); } }
+        public string Name { get { return this.NameOption.Value; } set { this.NameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of StartTime
@@ -215,7 +215,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp when the campaign will become active.</value>
         /* <example>2021-07-20T22:00:00Z</example> */
         [JsonPropertyName("startTime")]
-        public DateTime? StartTime { get { return this.StartTimeOption; } set { this.StartTimeOption = new Option<DateTime?>(value); } }
+        public DateTime? StartTime { get { return this.StartTimeOption.Value; } set { this.StartTimeOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of EndTime
@@ -230,7 +230,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp when the campaign will become inactive.</value>
         /* <example>2021-09-22T22:00:00Z</example> */
         [JsonPropertyName("endTime")]
-        public DateTime? EndTime { get { return this.EndTimeOption; } set { this.EndTimeOption = new Option<DateTime?>(value); } }
+        public DateTime? EndTime { get { return this.EndTimeOption.Value; } set { this.EndTimeOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -244,7 +244,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -259,7 +259,7 @@ namespace TalonOneSdk.Model
         /// <value>A detailed description of the campaign.</value>
         /* <example>Campaign for all summer 2021 promotions</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ActiveRulesetId
@@ -274,7 +274,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the ruleset this campaign will use.</value>
         /* <example>5</example> */
         [JsonPropertyName("activeRulesetId")]
-        public int? ActiveRulesetId { get { return this.ActiveRulesetIdOption; } set { this.ActiveRulesetIdOption = new Option<int?>(value); } }
+        public int? ActiveRulesetId { get { return this.ActiveRulesetIdOption.Value; } set { this.ActiveRulesetIdOption = new Option<int?>(value); } }
 
         /// <summary>
         /// Used to track the state of Tags
@@ -288,7 +288,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A list of tags for the campaign.</value>
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponSettings
@@ -301,7 +301,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets CouponSettings
         /// </summary>
         [JsonPropertyName("couponSettings")]
-        public CodeGeneratorSettings CouponSettings { get { return this.CouponSettingsOption; } set { this.CouponSettingsOption = new Option<CodeGeneratorSettings>(value); } }
+        public CodeGeneratorSettings CouponSettings { get { return this.CouponSettingsOption.Value; } set { this.CouponSettingsOption = new Option<CodeGeneratorSettings>(value); } }
 
         /// <summary>
         /// Used to track the state of ReferralSettings
@@ -314,7 +314,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ReferralSettings
         /// </summary>
         [JsonPropertyName("referralSettings")]
-        public CodeGeneratorSettings ReferralSettings { get { return this.ReferralSettingsOption; } set { this.ReferralSettingsOption = new Option<CodeGeneratorSettings>(value); } }
+        public CodeGeneratorSettings ReferralSettings { get { return this.ReferralSettingsOption.Value; } set { this.ReferralSettingsOption = new Option<CodeGeneratorSettings>(value); } }
 
         /// <summary>
         /// Used to track the state of Limits
@@ -328,7 +328,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The set of limits that will operate for this campaign version.</value>
         [JsonPropertyName("limits")]
-        public List<LimitConfig> Limits { get { return this.LimitsOption; } set { this.LimitsOption = new Option<List<LimitConfig>>(value); } }
+        public List<LimitConfig> Limits { get { return this.LimitsOption.Value; } set { this.LimitsOption = new Option<List<LimitConfig>>(value); } }
 
         /// <summary>
         /// Used to track the state of ReevaluateOnReturn
@@ -343,7 +343,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates whether this campaign should be reevaluated when a customer returns an item.</value>
         /* <example>true</example> */
         [JsonPropertyName("reevaluateOnReturn")]
-        public bool? ReevaluateOnReturn { get { return this.ReevaluateOnReturnOption; } set { this.ReevaluateOnReturnOption = new Option<bool?>(value); } }
+        public bool? ReevaluateOnReturn { get { return this.ReevaluateOnReturnOption.Value; } set { this.ReevaluateOnReturnOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of Features
@@ -357,7 +357,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A list of features for the campaign.</value>
         [JsonPropertyName("features")]
-        public List<NewRevisionVersion.FeaturesEnum> Features { get { return this.FeaturesOption; } set { this.FeaturesOption = new Option<List<NewRevisionVersion.FeaturesEnum>>(value); } }
+        public List<NewRevisionVersion.FeaturesEnum> Features { get { return this.FeaturesOption.Value; } set { this.FeaturesOption = new Option<List<NewRevisionVersion.FeaturesEnum>>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponAttributes
@@ -371,7 +371,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Arbitrary properties associated with coupons in this campaign.</value>
         [JsonPropertyName("couponAttributes")]
-        public Object CouponAttributes { get { return this.CouponAttributesOption; } set { this.CouponAttributesOption = new Option<Object>(value); } }
+        public Object CouponAttributes { get { return this.CouponAttributesOption.Value; } set { this.CouponAttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -423,12 +423,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize StartTime
         /// </summary>
-        public static string StartTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EndTime
         /// </summary>
-        public static string EndTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string EndTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="NewRevisionVersion" />

@@ -74,7 +74,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the variant.</value>
         /* <example>1</example> */
         [JsonPropertyName("variantId")]
-        public long? VariantId { get { return this.VariantIdOption; } set { this.VariantIdOption = new Option<long?>(value); } }
+        public long? VariantId { get { return this.VariantIdOption.Value; } set { this.VariantIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of VariantName
@@ -89,7 +89,7 @@ namespace TalonOneSdk.Model
         /// <value>The name of the variant.</value>
         /* <example>Variant A</example> */
         [JsonPropertyName("variantName")]
-        public string VariantName { get { return this.VariantNameOption; } set { this.VariantNameOption = new Option<string>(value); } }
+        public string VariantName { get { return this.VariantNameOption.Value; } set { this.VariantNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of VariantWeight
@@ -104,7 +104,7 @@ namespace TalonOneSdk.Model
         /// <value>The weight of the variant.</value>
         /* <example>50</example> */
         [JsonPropertyName("variantWeight")]
-        public long? VariantWeight { get { return this.VariantWeightOption; } set { this.VariantWeightOption = new Option<long?>(value); } }
+        public long? VariantWeight { get { return this.VariantWeightOption.Value; } set { this.VariantWeightOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of IsWinner
@@ -119,7 +119,7 @@ namespace TalonOneSdk.Model
         /// <value>Calculated flag if the variant is the winner.</value>
         /* <example>true</example> */
         [JsonPropertyName("isWinner")]
-        public bool? IsWinner { get { return this.IsWinnerOption; } set { this.IsWinnerOption = new Option<bool?>(value); } }
+        public bool? IsWinner { get { return this.IsWinnerOption.Value; } set { this.IsWinnerOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of TotalRevenue
@@ -134,7 +134,7 @@ namespace TalonOneSdk.Model
         /// <value>The total, pre-discount value of all items purchased in a customer session.</value>
         /* <example>100</example> */
         [JsonPropertyName("totalRevenue")]
-        public decimal? TotalRevenue { get { return this.TotalRevenueOption; } set { this.TotalRevenueOption = new Option<decimal?>(value); } }
+        public decimal? TotalRevenue { get { return this.TotalRevenueOption.Value; } set { this.TotalRevenueOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of SessionsCount
@@ -149,7 +149,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of all closed sessions.</value>
         /* <example>100</example> */
         [JsonPropertyName("sessionsCount")]
-        public decimal? SessionsCount { get { return this.SessionsCountOption; } set { this.SessionsCountOption = new Option<decimal?>(value); } }
+        public decimal? SessionsCount { get { return this.SessionsCountOption.Value; } set { this.SessionsCountOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of AvgItemsPerSession
@@ -164,7 +164,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of items from sessions divided by the number of sessions.</value>
         /* <example>100</example> */
         [JsonPropertyName("avgItemsPerSession")]
-        public decimal? AvgItemsPerSession { get { return this.AvgItemsPerSessionOption; } set { this.AvgItemsPerSessionOption = new Option<decimal?>(value); } }
+        public decimal? AvgItemsPerSession { get { return this.AvgItemsPerSessionOption.Value; } set { this.AvgItemsPerSessionOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of AvgSessionValue
@@ -179,7 +179,7 @@ namespace TalonOneSdk.Model
         /// <value>The average customer session value, calculated by dividing the revenue value by the number of sessions.</value>
         /* <example>100</example> */
         [JsonPropertyName("avgSessionValue")]
-        public decimal? AvgSessionValue { get { return this.AvgSessionValueOption; } set { this.AvgSessionValueOption = new Option<decimal?>(value); } }
+        public decimal? AvgSessionValue { get { return this.AvgSessionValueOption.Value; } set { this.AvgSessionValueOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of AvgDiscountedSessionValue
@@ -194,7 +194,7 @@ namespace TalonOneSdk.Model
         /// <value>The average customer session value, calculated by dividing the revenue value by the number of sessions.</value>
         /* <example>100</example> */
         [JsonPropertyName("avgDiscountedSessionValue")]
-        public decimal? AvgDiscountedSessionValue { get { return this.AvgDiscountedSessionValueOption; } set { this.AvgDiscountedSessionValueOption = new Option<decimal?>(value); } }
+        public decimal? AvgDiscountedSessionValue { get { return this.AvgDiscountedSessionValueOption.Value; } set { this.AvgDiscountedSessionValueOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of TotalDiscounts
@@ -209,7 +209,7 @@ namespace TalonOneSdk.Model
         /// <value>The total value of discounts given for cart items in sessions.</value>
         /* <example>10</example> */
         [JsonPropertyName("totalDiscounts")]
-        public decimal? TotalDiscounts { get { return this.TotalDiscountsOption; } set { this.TotalDiscountsOption = new Option<decimal?>(value); } }
+        public decimal? TotalDiscounts { get { return this.TotalDiscountsOption.Value; } set { this.TotalDiscountsOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponsCount
@@ -224,7 +224,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of times a coupon was successfully redeemed in sessions.</value>
         /* <example>12</example> */
         [JsonPropertyName("couponsCount")]
-        public decimal? CouponsCount { get { return this.CouponsCountOption; } set { this.CouponsCountOption = new Option<decimal?>(value); } }
+        public decimal? CouponsCount { get { return this.CouponsCountOption.Value; } set { this.CouponsCountOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

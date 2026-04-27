@@ -63,7 +63,7 @@ namespace TalonOneSdk.Model
         /// <value>The next value in the database.  **Note:** If this value is not present, it means that there are no more values in the database for this combination of request parameters. </value>
         /* <example>SmJlNERRMHdyNWFsTmRDZDVYU0c&#x3D;</example> */
         [JsonPropertyName("nextCursor")]
-        public byte[] NextCursor { get { return this.NextCursorOption; } set { this.NextCursorOption = new Option<byte[]>(value); } }
+        public byte[] NextCursor { get { return this.NextCursorOption.Value; } set { this.NextCursorOption = new Option<byte[]>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

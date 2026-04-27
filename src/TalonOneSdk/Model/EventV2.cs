@@ -70,7 +70,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </value>
         /* <example>URNGV8294NV</example> */
         [JsonPropertyName("profileId")]
-        public string ProfileId { get { return this.ProfileIdOption; } set { this.ProfileIdOption = new Option<string>(value); } }
+        public string ProfileId { get { return this.ProfileIdOption.Value; } set { this.ProfileIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of StoreIntegrationId
@@ -85,7 +85,7 @@ namespace TalonOneSdk.Model
         /// <value>The integration ID of the store. You choose this ID when you create a store.</value>
         /* <example>STORE-001</example> */
         [JsonPropertyName("storeIntegrationId")]
-        public string StoreIntegrationId { get { return this.StoreIntegrationIdOption; } set { this.StoreIntegrationIdOption = new Option<string>(value); } }
+        public string StoreIntegrationId { get { return this.StoreIntegrationIdOption.Value; } set { this.StoreIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of EvaluableCampaignIds
@@ -100,7 +100,7 @@ namespace TalonOneSdk.Model
         /// <value>When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them. </value>
         /* <example>[10, 12]</example> */
         [JsonPropertyName("evaluableCampaignIds")]
-        public List<long> EvaluableCampaignIds { get { return this.EvaluableCampaignIdsOption; } set { this.EvaluableCampaignIdsOption = new Option<List<long>>(value); } }
+        public List<long> EvaluableCampaignIds { get { return this.EvaluableCampaignIdsOption.Value; } set { this.EvaluableCampaignIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -115,7 +115,7 @@ namespace TalonOneSdk.Model
         /// <value>Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute).</value>
         /* <example>{myAttribute&#x3D;myValue}</example> */
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

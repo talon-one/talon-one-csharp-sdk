@@ -173,7 +173,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp at which the customer started the achievement.</value>
         /* <example>2024-01-01T15:04:05Z07:00</example> */
         [JsonPropertyName("startDate")]
-        public DateTime? StartDate { get { return this.StartDateOption; } set { this.StartDateOption = new Option<DateTime?>(value); } }
+        public DateTime? StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of CompletionDate
@@ -188,7 +188,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp at which point the customer completed the achievement.</value>
         /* <example>2024-01-15T15:04:05Z07:00</example> */
         [JsonPropertyName("completionDate")]
-        public DateTime? CompletionDate { get { return this.CompletionDateOption; } set { this.CompletionDateOption = new Option<DateTime?>(value); } }
+        public DateTime? CompletionDate { get { return this.CompletionDateOption.Value; } set { this.CompletionDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of EndDate
@@ -203,7 +203,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp at which point the achievement ends and resets for the customer.</value>
         /* <example>2024-02-01T15:04:05Z07:00</example> */
         [JsonPropertyName("endDate")]
-        public DateTime? EndDate { get { return this.EndDateOption; } set { this.EndDateOption = new Option<DateTime?>(value); } }
+        public DateTime? EndDate { get { return this.EndDateOption.Value; } set { this.EndDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -241,17 +241,17 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize CompletionDate
         /// </summary>
-        public static string CompletionDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CompletionDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EndDate
         /// </summary>
-        public static string EndDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string EndDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AchievementProgress" />

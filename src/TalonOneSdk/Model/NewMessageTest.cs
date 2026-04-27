@@ -191,7 +191,7 @@ namespace TalonOneSdk.Model
         /// <value>List of API HTTP headers for the given message.</value>
         /* <example>{&quot;content-type&quot;:&quot;application/json&quot;}</example> */
         [JsonPropertyName("headers")]
-        public Dictionary<string, string> Headers { get { return this.HeadersOption; } set { this.HeadersOption = new Option<Dictionary<string, string>>(value); } }
+        public Dictionary<string, string> Headers { get { return this.HeadersOption.Value; } set { this.HeadersOption = new Option<Dictionary<string, string>>(value); } }
 
         /// <summary>
         /// Used to track the state of Payload
@@ -208,7 +208,7 @@ namespace TalonOneSdk.Model
 	&quot;integrationId&quot;: &quot;${$Profile.IntegrationId}&quot;
 }</example> */
         [JsonPropertyName("payload")]
-        public string Payload { get { return this.PayloadOption; } set { this.PayloadOption = new Option<string>(value); } }
+        public string Payload { get { return this.PayloadOption.Value; } set { this.PayloadOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Params
@@ -223,7 +223,7 @@ namespace TalonOneSdk.Model
         /// <value>Array of template argument definitions.</value>
         /* <example>[]</example> */
         [JsonPropertyName("params")]
-        public List<TemplateArgDef> Params { get { return this.ParamsOption; } set { this.ParamsOption = new Option<List<TemplateArgDef>>(value); } }
+        public List<TemplateArgDef> Params { get { return this.ParamsOption.Value; } set { this.ParamsOption = new Option<List<TemplateArgDef>>(value); } }
 
         /// <summary>
         /// Used to track the state of ApplicationIds
@@ -237,7 +237,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The IDs of the Applications in which this webhook is available. An empty array means the webhook is available in &#x60;All Applications&#x60;. </value>
         [JsonPropertyName("applicationIds")]
-        public List<long> ApplicationIds { get { return this.ApplicationIdsOption; } set { this.ApplicationIdsOption = new Option<List<long>>(value); } }
+        public List<long> ApplicationIds { get { return this.ApplicationIdsOption.Value; } set { this.ApplicationIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of AuthenticationId
@@ -252,7 +252,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the credential that this webhook is using.</value>
         /* <example>1</example> */
         [JsonPropertyName("authenticationId")]
-        public long? AuthenticationId { get { return this.AuthenticationIdOption; } set { this.AuthenticationIdOption = new Option<long?>(value); } }
+        public long? AuthenticationId { get { return this.AuthenticationIdOption.Value; } set { this.AuthenticationIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

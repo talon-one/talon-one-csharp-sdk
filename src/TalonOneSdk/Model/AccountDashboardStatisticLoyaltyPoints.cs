@@ -90,7 +90,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Datetime
         /// </summary>
-        public static string DatetimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string DatetimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AccountDashboardStatisticLoyaltyPoints" />

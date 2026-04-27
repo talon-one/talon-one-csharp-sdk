@@ -53,7 +53,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Indicates whether the service provider supports password changes via the SCIM API.</value>
         [JsonPropertyName("supported")]
-        public bool? Supported { get { return this.SupportedOption; } set { this.SupportedOption = new Option<bool?>(value); } }
+        public bool? Supported { get { return this.SupportedOption.Value; } set { this.SupportedOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

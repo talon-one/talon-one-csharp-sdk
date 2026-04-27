@@ -70,7 +70,7 @@ namespace TalonOneSdk.Model
         /// <value>Price of the item.</value>
         /* <example>99.99</example> */
         [JsonPropertyName("price")]
-        public decimal? Price { get { return this.PriceOption; } set { this.PriceOption = new Option<decimal?>(value); } }
+        public decimal? Price { get { return this.PriceOption.Value; } set { this.PriceOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -85,7 +85,7 @@ namespace TalonOneSdk.Model
         /// <value>The attributes of the item to add.</value>
         /* <example>{&quot;origin&quot;:&quot;germany&quot;,&quot;color&quot;:&quot;blue&quot;}</example> */
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of Product
@@ -98,7 +98,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Product
         /// </summary>
         [JsonPropertyName("product")]
-        public Product Product { get { return this.ProductOption; } set { this.ProductOption = new Option<Product>(value); } }
+        public Product Product { get { return this.ProductOption.Value; } set { this.ProductOption = new Option<Product>(value); } }
 
         /// <summary>
         /// Used to track the state of ReplaceIfExists
@@ -113,7 +113,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates whether to replace the attributes of the item if the same SKU exists.  **Note**: When set to &#x60;true&#x60;:   - If you do not provide a new &#x60;price&#x60; value, the existing &#x60;price&#x60; value is retained.   - If you do not provide a new &#x60;product&#x60; value, the &#x60;product&#x60; value is set to &#x60;null&#x60;. </value>
         /* <example>false</example> */
         [JsonPropertyName("replaceIfExists")]
-        public bool? ReplaceIfExists { get { return this.ReplaceIfExistsOption; } set { this.ReplaceIfExistsOption = new Option<bool?>(value); } }
+        public bool? ReplaceIfExists { get { return this.ReplaceIfExistsOption.Value; } set { this.ReplaceIfExistsOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

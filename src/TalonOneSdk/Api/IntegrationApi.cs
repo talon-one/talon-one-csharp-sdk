@@ -1830,13 +1830,19 @@ namespace TalonOneSdk.Api
     /// <summary>
     /// The <see cref="ITrackEventV2ApiResponse"/>
     /// </summary>
-    public interface ITrackEventV2ApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.IntegrationEventV2Response>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, IConflict<TalonOneSdk.Model.UpdateCustomerProfileV2409Response>
+    public interface ITrackEventV2ApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.IntegrationEventV2Response>, INoContent<string>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, IConflict<TalonOneSdk.Model.UpdateCustomerProfileV2409Response>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
         /// </summary>
         /// <returns></returns>
         bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 204 NoContent
+        /// </summary>
+        /// <returns></returns>
+        bool IsNoContent { get; }
 
         /// <summary>
         /// Returns true if the response is 400 BadRequest
@@ -1998,13 +2004,19 @@ namespace TalonOneSdk.Api
     /// <summary>
     /// The <see cref="IUpdateCustomerProfilesV2ApiResponse"/>
     /// </summary>
-    public interface IUpdateCustomerProfilesV2ApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.MultipleCustomerProfileIntegrationResponseV2>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>
+    public interface IUpdateCustomerProfilesV2ApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.MultipleCustomerProfileIntegrationResponseV2>, INoContent<string>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
         /// </summary>
         /// <returns></returns>
         bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 204 NoContent
+        /// </summary>
+        /// <returns></returns>
+        bool IsNoContent { get; }
 
         /// <summary>
         /// Returns true if the response is 400 BadRequest
@@ -13678,6 +13690,44 @@ namespace TalonOneSdk.Api
             }
 
             /// <summary>
+            /// Returns true if the response is 204 NoContent
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNoContent => 204 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 204 NoContent
+            /// </summary>
+            /// <returns></returns>
+            public string NoContent()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsNoContent
+                    ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 204 NoContent and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryNoContent(out string result)
+            {
+                result = null;
+
+                try
+                {
+                    result = NoContent();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)204);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
             /// Returns true if the response is 400 BadRequest
             /// </summary>
             /// <returns></returns>
@@ -15870,6 +15920,44 @@ namespace TalonOneSdk.Api
                 } catch (Exception e)
                 {
                     OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 204 NoContent
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNoContent => 204 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 204 NoContent
+            /// </summary>
+            /// <returns></returns>
+            public string NoContent()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsNoContent
+                    ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 204 NoContent and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryNoContent(out string result)
+            {
+                result = null;
+
+                try
+                {
+                    result = NoContent();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)204);
                 }
 
                 return result != null;

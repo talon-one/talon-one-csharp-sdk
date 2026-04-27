@@ -84,7 +84,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp at which point the referral code becomes valid.</value>
         /* <example>2020-11-10T23:00:00Z</example> */
         [JsonPropertyName("startDate")]
-        public DateTime? StartDate { get { return this.StartDateOption; } set { this.StartDateOption = new Option<DateTime?>(value); } }
+        public DateTime? StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiryDate
@@ -99,7 +99,7 @@ namespace TalonOneSdk.Model
         /// <value>Expiration date of the referral code. Referral never expires if this is omitted.</value>
         /* <example>2021-11-10T23:00:00Z</example> */
         [JsonPropertyName("expiryDate")]
-        public DateTime? ExpiryDate { get { return this.ExpiryDateOption; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
+        public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of UsageLimit
@@ -114,7 +114,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of times a referral code can be used. &#x60;0&#x60; means no limit but any campaign usage limits will still apply. </value>
         /* <example>1</example> */
         [JsonPropertyName("usageLimit")]
-        public long? UsageLimit { get { return this.UsageLimitOption; } set { this.UsageLimitOption = new Option<long?>(value); } }
+        public long? UsageLimit { get { return this.UsageLimitOption.Value; } set { this.UsageLimitOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -129,7 +129,7 @@ namespace TalonOneSdk.Model
         /// <value>Arbitrary properties associated with this referral code.</value>
         /* <example>{channel&#x3D;web}</example> */
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of ValidCharacters
@@ -144,7 +144,7 @@ namespace TalonOneSdk.Model
         /// <value>List of characters used to generate the random parts of a code. By default, the list of characters is equivalent to the &#x60;[A-Z, 0-9]&#x60; regular expression. </value>
         /* <example>[A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z]</example> */
         [JsonPropertyName("validCharacters")]
-        public List<string> ValidCharacters { get { return this.ValidCharactersOption; } set { this.ValidCharactersOption = new Option<List<string>>(value); } }
+        public List<string> ValidCharacters { get { return this.ValidCharactersOption.Value; } set { this.ValidCharactersOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of ReferralPattern
@@ -159,7 +159,7 @@ namespace TalonOneSdk.Model
         /// <value>The pattern used to generate referrals. The character &#x60;#&#x60; is a placeholder and is replaced by a random character from the &#x60;validCharacters&#x60; set. </value>
         /* <example>REF-###-###</example> */
         [JsonPropertyName("referralPattern")]
-        public string ReferralPattern { get { return this.ReferralPatternOption; } set { this.ReferralPatternOption = new Option<string>(value); } }
+        public string ReferralPattern { get { return this.ReferralPatternOption.Value; } set { this.ReferralPatternOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -224,12 +224,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="NewReferralsForMultipleAdvocates" />

@@ -128,7 +128,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /* <example>URNGV8294NV</example> */
         [JsonPropertyName("customerProfileID")]
-        public string CustomerProfileID { get { return this.CustomerProfileIDOption; } set { this.CustomerProfileIDOption = new Option<string>(value); } }
+        public string CustomerProfileID { get { return this.CustomerProfileIDOption.Value; } set { this.CustomerProfileIDOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of CardID
@@ -142,7 +142,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /* <example>241</example> */
         [JsonPropertyName("cardID")]
-        public long? CardID { get { return this.CardIDOption; } set { this.CardIDOption = new Option<long?>(value); } }
+        public long? CardID { get { return this.CardIDOption.Value; } set { this.CardIDOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CustomerSessionID
@@ -156,7 +156,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /* <example>t2gy5s-47274</example> */
         [JsonPropertyName("customerSessionID")]
-        public string CustomerSessionID { get { return this.CustomerSessionIDOption; } set { this.CustomerSessionIDOption = new Option<string>(value); } }
+        public string CustomerSessionID { get { return this.CustomerSessionIDOption.Value; } set { this.CustomerSessionIDOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of EventID
@@ -170,7 +170,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /* <example>5</example> */
         [JsonPropertyName("eventID")]
-        public long? EventID { get { return this.EventIDOption; } set { this.EventIDOption = new Option<long?>(value); } }
+        public long? EventID { get { return this.EventIDOption.Value; } set { this.EventIDOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of StartDate
@@ -184,7 +184,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /* <example>2021-07-20T22:00:00Z</example> */
         [JsonPropertyName("startDate")]
-        public DateTime? StartDate { get { return this.StartDateOption; } set { this.StartDateOption = new Option<DateTime?>(value); } }
+        public DateTime? StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiryDate
@@ -198,7 +198,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /* <example>2022-07-20T22:00:00Z</example> */
         [JsonPropertyName("expiryDate")]
-        public DateTime? ExpiryDate { get { return this.ExpiryDateOption; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
+        public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of UserID
@@ -213,7 +213,7 @@ namespace TalonOneSdk.Model
         /// <value>This is the ID of the user who created this entry, if the addition or subtraction was done manually.</value>
         /* <example>499</example> */
         [JsonPropertyName("userID")]
-        public long? UserID { get { return this.UserIDOption; } set { this.UserIDOption = new Option<long?>(value); } }
+        public long? UserID { get { return this.UserIDOption.Value; } set { this.UserIDOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Archived
@@ -228,7 +228,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates if the entry belongs to the archived session.</value>
         /* <example>false</example> */
         [JsonPropertyName("archived")]
-        public bool? Archived { get { return this.ArchivedOption; } set { this.ArchivedOption = new Option<bool?>(value); } }
+        public bool? Archived { get { return this.ArchivedOption.Value; } set { this.ArchivedOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of Flags
@@ -242,7 +242,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>A map of flags providing additional details about the entry.</value>
         [JsonPropertyName("flags")]
-        public LoyaltyLedgerEntryFlags Flags { get { return this.FlagsOption; } set { this.FlagsOption = new Option<LoyaltyLedgerEntryFlags>(value); } }
+        public LoyaltyLedgerEntryFlags Flags { get { return this.FlagsOption.Value; } set { this.FlagsOption = new Option<LoyaltyLedgerEntryFlags>(value); } }
 
         /// <summary>
         /// Used to track the state of ValidityDuration
@@ -257,7 +257,7 @@ namespace TalonOneSdk.Model
         /// <value>The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. </value>
         /* <example>30D</example> */
         [JsonPropertyName("validityDuration")]
-        public string ValidityDuration { get { return this.ValidityDurationOption; } set { this.ValidityDurationOption = new Option<string>(value); } }
+        public string ValidityDuration { get { return this.ValidityDurationOption.Value; } set { this.ValidityDurationOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -306,17 +306,17 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyLedgerEntry" />

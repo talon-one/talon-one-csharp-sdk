@@ -74,7 +74,7 @@ namespace TalonOneSdk.Model
         /// <value>A description of the webhook.</value>
         /* <example>A webhook to send a coupon to the user.</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

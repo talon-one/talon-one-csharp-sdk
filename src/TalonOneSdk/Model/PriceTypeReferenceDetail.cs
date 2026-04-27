@@ -164,7 +164,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the Application that contains the entity that references the price type.</value>
         /* <example>322</example> */
         [JsonPropertyName("applicationId")]
-        public long? ApplicationId { get { return this.ApplicationIdOption; } set { this.ApplicationIdOption = new Option<long?>(value); } }
+        public long? ApplicationId { get { return this.ApplicationIdOption.Value; } set { this.ApplicationIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

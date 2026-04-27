@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// <value>The integration ID of the store. You choose this ID when you create a store.</value>
         /* <example>STORE-001</example> */
         [JsonPropertyName("storeIntegrationId")]
-        public string StoreIntegrationId { get { return this.StoreIntegrationIdOption; } set { this.StoreIntegrationIdOption = new Option<string>(value); } }
+        public string StoreIntegrationId { get { return this.StoreIntegrationIdOption.Value; } set { this.StoreIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

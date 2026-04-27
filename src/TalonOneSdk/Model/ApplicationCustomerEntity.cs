@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// <value>The globally unique Talon.One ID of the customer that created this entity.</value>
         /* <example>138</example> */
         [JsonPropertyName("profileId")]
-        public long? ProfileId { get { return this.ProfileIdOption; } set { this.ProfileIdOption = new Option<long?>(value); } }
+        public long? ProfileId { get { return this.ProfileIdOption.Value; } set { this.ProfileIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

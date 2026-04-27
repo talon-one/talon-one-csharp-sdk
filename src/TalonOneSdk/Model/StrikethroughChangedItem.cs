@@ -116,7 +116,7 @@ namespace TalonOneSdk.Model
         /// <value>A map of keys and values representing the price types and related price adjustment details for this cart item.       The keys correspond to the &#x60;priceType&#x60; names. </value>
         /* <example>{member&#x3D;{price&#x3D;90, adjustmentReferenceId&#x3D;68851723-e6fa-488f-ace9-112581e6c19b, adjustmentEffectiveFrom&#x3D;2025-05-25T00:00:00Z, adjustmentEffectiveUntil&#x3D;2025-05-30T00:00:00Z}, base&#x3D;{price&#x3D;100}}</example> */
         [JsonPropertyName("prices")]
-        public Dictionary<string, PriceDetail> Prices { get { return this.PricesOption; } set { this.PricesOption = new Option<Dictionary<string, PriceDetail>>(value); } }
+        public Dictionary<string, PriceDetail> Prices { get { return this.PricesOption.Value; } set { this.PricesOption = new Option<Dictionary<string, PriceDetail>>(value); } }
 
         /// <summary>
         /// Used to track the state of Effects
@@ -129,7 +129,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Effects
         /// </summary>
         [JsonPropertyName("effects")]
-        public List<StrikethroughEffect> Effects { get { return this.EffectsOption; } set { this.EffectsOption = new Option<List<StrikethroughEffect>>(value); } }
+        public List<StrikethroughEffect> Effects { get { return this.EffectsOption.Value; } set { this.EffectsOption = new Option<List<StrikethroughEffect>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -176,7 +176,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize EvaluatedAt
         /// </summary>
-        public static string EvaluatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string EvaluatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="StrikethroughChangedItem" />

@@ -72,7 +72,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of application the flow is registered for.</value>
         /* <example>54</example> */
         [JsonPropertyName("ApplicationID")]
-        public long? ApplicationID { get { return this.ApplicationIDOption; } set { this.ApplicationIDOption = new Option<long?>(value); } }
+        public long? ApplicationID { get { return this.ApplicationIDOption.Value; } set { this.ApplicationIDOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

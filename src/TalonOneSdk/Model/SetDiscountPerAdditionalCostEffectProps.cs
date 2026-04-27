@@ -89,7 +89,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The original value of the discount.</value>
         [JsonPropertyName("desiredValue")]
-        public decimal? DesiredValue { get { return this.DesiredValueOption; } set { this.DesiredValueOption = new Option<decimal?>(value); } }
+        public decimal? DesiredValue { get { return this.DesiredValueOption.Value; } set { this.DesiredValueOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

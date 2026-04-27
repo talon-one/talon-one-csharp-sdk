@@ -33,7 +33,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="applicationId">The ID of the Application that owns this entity.</param>
         /// <param name="id">Unique ID of Campaign.</param>
-        /// <param name="name">A user-facing name for this campaign.</param>
+        /// <param name="name">The name of the campaign.</param>
         /// <param name="tags">A list of tags for the campaign.</param>
         /// <param name="features">The features enabled in this campaign.</param>
         /// <param name="description">A detailed description of the campaign.</param>
@@ -41,8 +41,9 @@ namespace TalonOneSdk.Model
         /// <param name="endTime">Timestamp when the campaign will become inactive.</param>
         /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
         /// <param name="state">The state of the campaign.  (default to StateEnum.Enabled)</param>
+        /// <param name="rules">A list of rules containing customer-facing details of the rewards defined in the campaign.</param>
         [JsonConstructor]
-        public IntegrationCampaign(long applicationId, long id, string name, List<string> tags, List<IntegrationCampaign.FeaturesEnum> features, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, StateEnum state = StateEnum.Enabled)
+        public IntegrationCampaign(long applicationId, long id, string name, List<string> tags, List<IntegrationCampaign.FeaturesEnum> features, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, StateEnum state = StateEnum.Enabled, Option<List<RuleMetadata>> rules = default)
         {
             ApplicationId = applicationId;
             Id = id;
@@ -54,6 +55,7 @@ namespace TalonOneSdk.Model
             EndTimeOption = endTime;
             AttributesOption = attributes;
             State = state;
+            RulesOption = rules;
             OnCreated();
         }
 
@@ -259,9 +261,9 @@ namespace TalonOneSdk.Model
         public long Id { get; set; }
 
         /// <summary>
-        /// A user-facing name for this campaign.
+        /// The name of the campaign.
         /// </summary>
-        /// <value>A user-facing name for this campaign.</value>
+        /// <value>The name of the campaign.</value>
         /* <example>Summer promotions</example> */
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -295,7 +297,7 @@ namespace TalonOneSdk.Model
         /// <value>A detailed description of the campaign.</value>
         /* <example>Campaign for all summer 2021 promotions</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of StartTime
@@ -310,7 +312,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp when the campaign will become active.</value>
         /* <example>2021-07-20T22:00:00Z</example> */
         [JsonPropertyName("startTime")]
-        public DateTime? StartTime { get { return this.StartTimeOption; } set { this.StartTimeOption = new Option<DateTime?>(value); } }
+        public DateTime? StartTime { get { return this.StartTimeOption.Value; } set { this.StartTimeOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of EndTime
@@ -325,7 +327,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp when the campaign will become inactive.</value>
         /* <example>2021-09-22T22:00:00Z</example> */
         [JsonPropertyName("endTime")]
-        public DateTime? EndTime { get { return this.EndTimeOption; } set { this.EndTimeOption = new Option<DateTime?>(value); } }
+        public DateTime? EndTime { get { return this.EndTimeOption.Value; } set { this.EndTimeOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -339,7 +341,21 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Rules
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<RuleMetadata>> RulesOption { get; private set; }
+
+        /// <summary>
+        /// A list of rules containing customer-facing details of the rewards defined in the campaign.
+        /// </summary>
+        /// <value>A list of rules containing customer-facing details of the rewards defined in the campaign.</value>
+        [JsonPropertyName("rules")]
+        public List<RuleMetadata> Rules { get { return this.RulesOption.Value; } set { this.RulesOption = new Option<List<RuleMetadata>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -359,6 +375,7 @@ namespace TalonOneSdk.Model
             sb.Append("  EndTime: ").Append(EndTime).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
+            sb.Append("  Rules: ").Append(Rules).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -388,12 +405,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize StartTime
         /// </summary>
-        public static string StartTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EndTime
         /// </summary>
-        public static string EndTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string EndTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationCampaign" />
@@ -422,6 +439,7 @@ namespace TalonOneSdk.Model
             Option<DateTime?> endTime = default;
             Option<Object> attributes = default;
             Option<IntegrationCampaign.StateEnum?> state = default;
+            Option<List<RuleMetadata>> rules = default;
 
             while (utf8JsonReader.Read())
             {
@@ -491,6 +509,9 @@ namespace TalonOneSdk.Model
                             if (stateRawValue != null)
                                 state = new Option<IntegrationCampaign.StateEnum?>(IntegrationCampaign.StateEnumFromStringOrDefault(stateRawValue));
                             break;
+                        case "rules":
+                            rules = new Option<List<RuleMetadata>>(JsonSerializer.Deserialize<List<RuleMetadata>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
@@ -533,7 +554,7 @@ namespace TalonOneSdk.Model
             if (state.IsSet && state.Value == null)
                 throw new ArgumentNullException(nameof(state), "Property is not nullable for class IntegrationCampaign.");
 
-            return new IntegrationCampaign(applicationId.Value.Value, id.Value.Value, name.Value, tags.Value, features.Value, description, startTime, endTime, attributes, state.Value.Value);
+            return new IntegrationCampaign(applicationId.Value.Value, id.Value.Value, name.Value, tags.Value, features.Value, description, startTime, endTime, attributes, state.Value.Value, rules);
         }
 
         /// <summary>
@@ -600,6 +621,11 @@ namespace TalonOneSdk.Model
             }
             var stateRawValue = IntegrationCampaign.StateEnumToJsonValue(integrationCampaign.State);
             writer.WriteString("state", stateRawValue);
+            if (integrationCampaign.RulesOption.IsSet)
+            {
+                writer.WritePropertyName("rules");
+                JsonSerializer.Serialize(writer, integrationCampaign.Rules, jsonSerializerOptions);
+            }
         }
     }
 }

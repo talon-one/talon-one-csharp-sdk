@@ -89,7 +89,7 @@ namespace TalonOneSdk.Model
         /// <value>The index of the item in the cart item list to which the custom effect is applied.</value>
         /* <example>1</example> */
         [JsonPropertyName("cartItemPosition")]
-        public decimal? CartItemPosition { get { return this.CartItemPositionOption; } set { this.CartItemPositionOption = new Option<decimal?>(value); } }
+        public decimal? CartItemPosition { get { return this.CartItemPositionOption.Value; } set { this.CartItemPositionOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of CartItemSubPosition
@@ -104,7 +104,7 @@ namespace TalonOneSdk.Model
         /// <value>For cart items with quantity &gt; 1, the sub position indicates to which item unit the custom effect is applied. </value>
         /* <example>2</example> */
         [JsonPropertyName("cartItemSubPosition")]
-        public decimal? CartItemSubPosition { get { return this.CartItemSubPositionOption; } set { this.CartItemSubPositionOption = new Option<decimal?>(value); } }
+        public decimal? CartItemSubPosition { get { return this.CartItemSubPositionOption.Value; } set { this.CartItemSubPositionOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of BundleIndex
@@ -119,7 +119,7 @@ namespace TalonOneSdk.Model
         /// <value>The position of the bundle in a list of item bundles created from the same bundle definition.</value>
         /* <example>1</example> */
         [JsonPropertyName("bundleIndex")]
-        public long? BundleIndex { get { return this.BundleIndexOption; } set { this.BundleIndexOption = new Option<long?>(value); } }
+        public long? BundleIndex { get { return this.BundleIndexOption.Value; } set { this.BundleIndexOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of BundleName
@@ -134,7 +134,7 @@ namespace TalonOneSdk.Model
         /// <value>The name of the bundle definition.</value>
         /* <example>my_bundle</example> */
         [JsonPropertyName("bundleName")]
-        public string BundleName { get { return this.BundleNameOption; } set { this.BundleNameOption = new Option<string>(value); } }
+        public string BundleName { get { return this.BundleNameOption.Value; } set { this.BundleNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

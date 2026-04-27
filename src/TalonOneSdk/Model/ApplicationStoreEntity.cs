@@ -53,7 +53,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The ID of the store.</value>
         [JsonPropertyName("storeId")]
-        public long? StoreId { get { return this.StoreIdOption; } set { this.StoreIdOption = new Option<long?>(value); } }
+        public long? StoreId { get { return this.StoreIdOption.Value; } set { this.StoreIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Title
         /// </summary>
         [JsonPropertyName("title")]
-        public string Title { get { return this.TitleOption; } set { this.TitleOption = new Option<string>(value); } }
+        public string Title { get { return this.TitleOption.Value; } set { this.TitleOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of PubDate
@@ -67,7 +67,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets PubDate
         /// </summary>
         [JsonPropertyName("pubDate")]
-        public string PubDate { get { return this.PubDateOption; } set { this.PubDateOption = new Option<string>(value); } }
+        public string PubDate { get { return this.PubDateOption.Value; } set { this.PubDateOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

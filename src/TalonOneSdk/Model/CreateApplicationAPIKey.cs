@@ -340,7 +340,7 @@ namespace TalonOneSdk.Model
         /// <value>A time offset in nanoseconds associated with the API key. When making a request using the API key, rule evaluation is based on a date that is calculated by adding the offset to the current date. </value>
         /* <example>100000</example> */
         [JsonPropertyName("timeOffset")]
-        public long? TimeOffset { get { return this.TimeOffsetOption; } set { this.TimeOffsetOption = new Option<long?>(value); } }
+        public long? TimeOffset { get { return this.TimeOffsetOption.Value; } set { this.TimeOffsetOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -378,7 +378,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Expires
         /// </summary>
-        public static string ExpiresFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpiresFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CreateApplicationAPIKey" />

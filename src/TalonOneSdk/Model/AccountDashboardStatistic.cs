@@ -67,7 +67,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Aggregated statistic for account revenue.</value>
         [JsonPropertyName("revenue")]
-        public List<AccountDashboardStatisticRevenue> Revenue { get { return this.RevenueOption; } set { this.RevenueOption = new Option<List<AccountDashboardStatisticRevenue>>(value); } }
+        public List<AccountDashboardStatisticRevenue> Revenue { get { return this.RevenueOption.Value; } set { this.RevenueOption = new Option<List<AccountDashboardStatisticRevenue>>(value); } }
 
         /// <summary>
         /// Used to track the state of Discounts
@@ -81,7 +81,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Aggregated statistic for account discount.</value>
         [JsonPropertyName("discounts")]
-        public List<AccountDashboardStatisticDiscount> Discounts { get { return this.DiscountsOption; } set { this.DiscountsOption = new Option<List<AccountDashboardStatisticDiscount>>(value); } }
+        public List<AccountDashboardStatisticDiscount> Discounts { get { return this.DiscountsOption.Value; } set { this.DiscountsOption = new Option<List<AccountDashboardStatisticDiscount>>(value); } }
 
         /// <summary>
         /// Used to track the state of LoyaltyPoints
@@ -95,7 +95,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Aggregated statistic for account loyalty points.</value>
         [JsonPropertyName("loyaltyPoints")]
-        public List<AccountDashboardStatisticLoyaltyPoints> LoyaltyPoints { get { return this.LoyaltyPointsOption; } set { this.LoyaltyPointsOption = new Option<List<AccountDashboardStatisticLoyaltyPoints>>(value); } }
+        public List<AccountDashboardStatisticLoyaltyPoints> LoyaltyPoints { get { return this.LoyaltyPointsOption.Value; } set { this.LoyaltyPointsOption = new Option<List<AccountDashboardStatisticLoyaltyPoints>>(value); } }
 
         /// <summary>
         /// Used to track the state of Referrals
@@ -109,7 +109,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Aggregated statistic for account referrals.</value>
         [JsonPropertyName("referrals")]
-        public List<AccountDashboardStatisticReferrals> Referrals { get { return this.ReferralsOption; } set { this.ReferralsOption = new Option<List<AccountDashboardStatisticReferrals>>(value); } }
+        public List<AccountDashboardStatisticReferrals> Referrals { get { return this.ReferralsOption.Value; } set { this.ReferralsOption = new Option<List<AccountDashboardStatisticReferrals>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

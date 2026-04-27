@@ -37,12 +37,13 @@ namespace TalonOneSdk.Model
         /// <param name="name">The human-friendly display name for this audience.</param>
         /// <param name="sandbox">Indicates if this is a live or sandbox Application.</param>
         /// <param name="description">A description of the audience.</param>
+        /// <param name="subscribedApplicationsIds">A list of the IDs of the Applications that are connected to this audience.</param>
         /// <param name="integration">The Talon.One-supported [3rd-party platform](https://docs.talon.one/docs/dev/technology-partners/overview) that this audience was created in.  For example, &#x60;mParticle&#x60;, &#x60;Segment&#x60;, &#x60;Shopify&#x60;, &#x60;Braze&#x60;, or &#x60;Iterable&#x60;.  **Note:** If you do not integrate with any of these platforms, do not use this property. </param>
         /// <param name="integrationId">The ID of this audience in the third-party integration.  **Note:** To create an audience that doesn&#39;t come from a 3rd party platform, do not use this property. </param>
         /// <param name="createdIn3rdParty">Determines if this audience is a 3rd party audience or not.</param>
         /// <param name="lastUpdate">The last time that the audience memberships changed.</param>
         [JsonConstructor]
-        public Audience(long accountId, long id, DateTime created, string name, Option<bool?> sandbox = default, Option<string> description = default, Option<string> integration = default, Option<string> integrationId = default, Option<bool?> createdIn3rdParty = default, Option<DateTime?> lastUpdate = default)
+        public Audience(long accountId, long id, DateTime created, string name, Option<bool?> sandbox = default, Option<string> description = default, Option<List<long>> subscribedApplicationsIds = default, Option<string> integration = default, Option<string> integrationId = default, Option<bool?> createdIn3rdParty = default, Option<DateTime?> lastUpdate = default)
         {
             AccountId = accountId;
             Id = id;
@@ -50,6 +51,7 @@ namespace TalonOneSdk.Model
             Name = name;
             SandboxOption = sandbox;
             DescriptionOption = description;
+            SubscribedApplicationsIdsOption = subscribedApplicationsIds;
             IntegrationOption = integration;
             IntegrationIdOption = integrationId;
             CreatedIn3rdPartyOption = createdIn3rdParty;
@@ -104,7 +106,7 @@ namespace TalonOneSdk.Model
         /// <value>Indicates if this is a live or sandbox Application.</value>
         /* <example>true</example> */
         [JsonPropertyName("sandbox")]
-        public bool? Sandbox { get { return this.SandboxOption; } set { this.SandboxOption = new Option<bool?>(value); } }
+        public bool? Sandbox { get { return this.SandboxOption.Value; } set { this.SandboxOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -119,7 +121,22 @@ namespace TalonOneSdk.Model
         /// <value>A description of the audience.</value>
         /* <example>Travel audience 18-27</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
+
+        /// <summary>
+        /// Used to track the state of SubscribedApplicationsIds
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<long>> SubscribedApplicationsIdsOption { get; private set; }
+
+        /// <summary>
+        /// A list of the IDs of the Applications that are connected to this audience.
+        /// </summary>
+        /// <value>A list of the IDs of the Applications that are connected to this audience.</value>
+        /* <example>[3, 13]</example> */
+        [JsonPropertyName("subscribedApplicationsIds")]
+        public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption.Value; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of Integration
@@ -134,7 +151,7 @@ namespace TalonOneSdk.Model
         /// <value>The Talon.One-supported [3rd-party platform](https://docs.talon.one/docs/dev/technology-partners/overview) that this audience was created in.  For example, &#x60;mParticle&#x60;, &#x60;Segment&#x60;, &#x60;Shopify&#x60;, &#x60;Braze&#x60;, or &#x60;Iterable&#x60;.  **Note:** If you do not integrate with any of these platforms, do not use this property. </value>
         /* <example>mparticle</example> */
         [JsonPropertyName("integration")]
-        public string Integration { get { return this.IntegrationOption; } set { this.IntegrationOption = new Option<string>(value); } }
+        public string Integration { get { return this.IntegrationOption.Value; } set { this.IntegrationOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of IntegrationId
@@ -149,7 +166,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of this audience in the third-party integration.  **Note:** To create an audience that doesn&#39;t come from a 3rd party platform, do not use this property. </value>
         /* <example>382370BKDB946</example> */
         [JsonPropertyName("integrationId")]
-        public string IntegrationId { get { return this.IntegrationIdOption; } set { this.IntegrationIdOption = new Option<string>(value); } }
+        public string IntegrationId { get { return this.IntegrationIdOption.Value; } set { this.IntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedIn3rdParty
@@ -164,7 +181,7 @@ namespace TalonOneSdk.Model
         /// <value>Determines if this audience is a 3rd party audience or not.</value>
         /* <example>false</example> */
         [JsonPropertyName("createdIn3rdParty")]
-        public bool? CreatedIn3rdParty { get { return this.CreatedIn3rdPartyOption; } set { this.CreatedIn3rdPartyOption = new Option<bool?>(value); } }
+        public bool? CreatedIn3rdParty { get { return this.CreatedIn3rdPartyOption.Value; } set { this.CreatedIn3rdPartyOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of LastUpdate
@@ -179,7 +196,7 @@ namespace TalonOneSdk.Model
         /// <value>The last time that the audience memberships changed.</value>
         /* <example>2022-04-26T11:02:38Z</example> */
         [JsonPropertyName("lastUpdate")]
-        public DateTime? LastUpdate { get { return this.LastUpdateOption; } set { this.LastUpdateOption = new Option<DateTime?>(value); } }
+        public DateTime? LastUpdate { get { return this.LastUpdateOption.Value; } set { this.LastUpdateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -195,6 +212,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Sandbox: ").Append(Sandbox).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  SubscribedApplicationsIds: ").Append(SubscribedApplicationsIds).Append("\n");
             sb.Append("  Integration: ").Append(Integration).Append("\n");
             sb.Append("  IntegrationId: ").Append(IntegrationId).Append("\n");
             sb.Append("  CreatedIn3rdParty: ").Append(CreatedIn3rdParty).Append("\n");
@@ -240,12 +258,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize LastUpdate
         /// </summary>
-        public static string LastUpdateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string LastUpdateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Audience" />
@@ -270,6 +288,7 @@ namespace TalonOneSdk.Model
             Option<string> name = default;
             Option<bool?> sandbox = default;
             Option<string> description = default;
+            Option<List<long>> subscribedApplicationsIds = default;
             Option<string> integration = default;
             Option<string> integrationId = default;
             Option<bool?> createdIn3rdParty = default;
@@ -307,6 +326,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "subscribedApplicationsIds":
+                            subscribedApplicationsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "integration":
                             integration = new Option<string>(utf8JsonReader.GetString());
@@ -350,7 +372,7 @@ namespace TalonOneSdk.Model
             if (name.IsSet && name.Value == null)
                 throw new ArgumentNullException(nameof(name), "Property is not nullable for class Audience.");
 
-            return new Audience(accountId.Value.Value, id.Value.Value, created.Value.Value, name.Value, sandbox, description, integration, integrationId, createdIn3rdParty, lastUpdate);
+            return new Audience(accountId.Value.Value, id.Value.Value, created.Value.Value, name.Value, sandbox, description, subscribedApplicationsIds, integration, integrationId, createdIn3rdParty, lastUpdate);
         }
 
         /// <summary>
@@ -394,6 +416,11 @@ namespace TalonOneSdk.Model
             if (audience.DescriptionOption.IsSet)
                 writer.WriteString("description", audience.Description);
 
+            if (audience.SubscribedApplicationsIdsOption.IsSet)
+            {
+                writer.WritePropertyName("subscribedApplicationsIds");
+                JsonSerializer.Serialize(writer, audience.SubscribedApplicationsIds, jsonSerializerOptions);
+            }
             if (audience.IntegrationOption.IsSet)
                 writer.WriteString("integration", audience.Integration);
 

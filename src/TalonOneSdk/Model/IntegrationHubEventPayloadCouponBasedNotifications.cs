@@ -147,7 +147,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets DiscountLimit
         /// </summary>
         [JsonPropertyName("DiscountLimit")]
-        public float? DiscountLimit { get { return this.DiscountLimitOption; } set { this.DiscountLimitOption = new Option<float?>(value); } }
+        public float? DiscountLimit { get { return this.DiscountLimitOption.Value; } set { this.DiscountLimitOption = new Option<float?>(value); } }
 
         /// <summary>
         /// Used to track the state of ReservationLimit
@@ -160,7 +160,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ReservationLimit
         /// </summary>
         [JsonPropertyName("ReservationLimit")]
-        public long? ReservationLimit { get { return this.ReservationLimitOption; } set { this.ReservationLimitOption = new Option<long?>(value); } }
+        public long? ReservationLimit { get { return this.ReservationLimitOption.Value; } set { this.ReservationLimitOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of StartDate
@@ -173,7 +173,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets StartDate
         /// </summary>
         [JsonPropertyName("StartDate")]
-        public DateTime? StartDate { get { return this.StartDateOption; } set { this.StartDateOption = new Option<DateTime?>(value); } }
+        public DateTime? StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiryDate
@@ -186,7 +186,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ExpiryDate
         /// </summary>
         [JsonPropertyName("ExpiryDate")]
-        public DateTime? ExpiryDate { get { return this.ExpiryDateOption; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
+        public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of DiscountCounter
@@ -199,7 +199,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets DiscountCounter
         /// </summary>
         [JsonPropertyName("DiscountCounter")]
-        public float? DiscountCounter { get { return this.DiscountCounterOption; } set { this.DiscountCounterOption = new Option<float?>(value); } }
+        public float? DiscountCounter { get { return this.DiscountCounterOption.Value; } set { this.DiscountCounterOption = new Option<float?>(value); } }
 
         /// <summary>
         /// Used to track the state of DiscountRemainder
@@ -212,7 +212,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets DiscountRemainder
         /// </summary>
         [JsonPropertyName("DiscountRemainder")]
-        public float? DiscountRemainder { get { return this.DiscountRemainderOption; } set { this.DiscountRemainderOption = new Option<float?>(value); } }
+        public float? DiscountRemainder { get { return this.DiscountRemainderOption.Value; } set { this.DiscountRemainderOption = new Option<float?>(value); } }
 
         /// <summary>
         /// Used to track the state of ReferralId
@@ -225,7 +225,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ReferralId
         /// </summary>
         [JsonPropertyName("ReferralId")]
-        public long? ReferralId { get { return this.ReferralIdOption; } set { this.ReferralIdOption = new Option<long?>(value); } }
+        public long? ReferralId { get { return this.ReferralIdOption.Value; } set { this.ReferralIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of RecipientIntegrationId
@@ -238,7 +238,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets RecipientIntegrationId
         /// </summary>
         [JsonPropertyName("RecipientIntegrationId")]
-        public string RecipientIntegrationId { get { return this.RecipientIntegrationIdOption; } set { this.RecipientIntegrationIdOption = new Option<string>(value); } }
+        public string RecipientIntegrationId { get { return this.RecipientIntegrationIdOption.Value; } set { this.RecipientIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ImportId
@@ -251,7 +251,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets ImportId
         /// </summary>
         [JsonPropertyName("ImportId")]
-        public long? ImportId { get { return this.ImportIdOption; } set { this.ImportIdOption = new Option<long?>(value); } }
+        public long? ImportId { get { return this.ImportIdOption.Value; } set { this.ImportIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of BatchId
@@ -264,7 +264,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets BatchId
         /// </summary>
         [JsonPropertyName("BatchId")]
-        public string BatchId { get { return this.BatchIdOption; } set { this.BatchIdOption = new Option<string>(value); } }
+        public string BatchId { get { return this.BatchIdOption.Value; } set { this.BatchIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -277,7 +277,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Attributes
         /// </summary>
         [JsonPropertyName("Attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of Limits
@@ -290,7 +290,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Limits
         /// </summary>
         [JsonPropertyName("Limits")]
-        public List<IntegrationHubEventPayloadCouponBasedNotificationsLimits> Limits { get { return this.LimitsOption; } set { this.LimitsOption = new Option<List<IntegrationHubEventPayloadCouponBasedNotificationsLimits>>(value); } }
+        public List<IntegrationHubEventPayloadCouponBasedNotificationsLimits> Limits { get { return this.LimitsOption.Value; } set { this.LimitsOption = new Option<List<IntegrationHubEventPayloadCouponBasedNotificationsLimits>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -344,22 +344,22 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize PublishedAt
         /// </summary>
-        public static string PublishedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string PublishedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventPayloadCouponBasedNotifications" />

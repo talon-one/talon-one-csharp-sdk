@@ -131,7 +131,7 @@ namespace TalonOneSdk.Model
         /// <value>The AudienceID of an audience. Must be used with \&quot;AUDIENCE\&quot; target type.</value>
         /* <example>4</example> */
         [JsonPropertyName("audienceID")]
-        public long? AudienceID { get { return this.AudienceIDOption; } set { this.AudienceIDOption = new Option<long?>(value); } }
+        public long? AudienceID { get { return this.AudienceIDOption.Value; } set { this.AudienceIDOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -81,7 +81,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>List of transactions affected by the expiry date update.</value>
         [JsonPropertyName("affectedTransactions")]
-        public List<LoyaltyLedgerEntryExpiryDateChange> AffectedTransactions { get { return this.AffectedTransactionsOption; } set { this.AffectedTransactionsOption = new Option<List<LoyaltyLedgerEntryExpiryDateChange>>(value); } }
+        public List<LoyaltyLedgerEntryExpiryDateChange> AffectedTransactions { get { return this.AffectedTransactionsOption.Value; } set { this.AffectedTransactionsOption = new Option<List<LoyaltyLedgerEntryExpiryDateChange>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

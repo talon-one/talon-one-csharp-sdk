@@ -88,7 +88,7 @@ namespace TalonOneSdk.Model
         /// <value>A detailed description of the campaign.</value>
         /* <example>This template is for discount campaigns.</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of CampaignAttributesOverrides
@@ -102,7 +102,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Custom Campaign Attributes. If the Campaign Template defines the same values, they will be overridden.</value>
         [JsonPropertyName("campaignAttributesOverrides")]
-        public Object CampaignAttributesOverrides { get { return this.CampaignAttributesOverridesOption; } set { this.CampaignAttributesOverridesOption = new Option<Object>(value); } }
+        public Object CampaignAttributesOverrides { get { return this.CampaignAttributesOverridesOption.Value; } set { this.CampaignAttributesOverridesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of TemplateParamValues
@@ -116,7 +116,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Actual values to replace the template placeholder values in the Ruleset bindings. Values for all Template Parameters must be provided.</value>
         [JsonPropertyName("templateParamValues")]
-        public List<Binding> TemplateParamValues { get { return this.TemplateParamValuesOption; } set { this.TemplateParamValuesOption = new Option<List<Binding>>(value); } }
+        public List<Binding> TemplateParamValues { get { return this.TemplateParamValuesOption.Value; } set { this.TemplateParamValuesOption = new Option<List<Binding>>(value); } }
 
         /// <summary>
         /// Used to track the state of LimitOverrides
@@ -130,7 +130,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Limits for this Campaign. If the Campaign Template or Application define default values for the same limits, they will be overridden.</value>
         [JsonPropertyName("limitOverrides")]
-        public List<LimitConfig> LimitOverrides { get { return this.LimitOverridesOption; } set { this.LimitOverridesOption = new Option<List<LimitConfig>>(value); } }
+        public List<LimitConfig> LimitOverrides { get { return this.LimitOverridesOption.Value; } set { this.LimitOverridesOption = new Option<List<LimitConfig>>(value); } }
 
         /// <summary>
         /// Used to track the state of CampaignGroups
@@ -145,7 +145,7 @@ namespace TalonOneSdk.Model
         /// <value>The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/account-settings/managing-campaign-groups) this campaign belongs to. </value>
         /* <example>[1, 3]</example> */
         [JsonPropertyName("campaignGroups")]
-        public List<long> CampaignGroups { get { return this.CampaignGroupsOption; } set { this.CampaignGroupsOption = new Option<List<long>>(value); } }
+        public List<long> CampaignGroups { get { return this.CampaignGroupsOption.Value; } set { this.CampaignGroupsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of Tags
@@ -160,7 +160,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of tags for the campaign. If the campaign template has tags, they will be overridden by this list.</value>
         /* <example>[summer]</example> */
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of EvaluationGroupId
@@ -175,7 +175,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the campaign evaluation group the campaign belongs to.</value>
         /* <example>2</example> */
         [JsonPropertyName("evaluationGroupId")]
-        public long? EvaluationGroupId { get { return this.EvaluationGroupIdOption; } set { this.EvaluationGroupIdOption = new Option<long?>(value); } }
+        public long? EvaluationGroupId { get { return this.EvaluationGroupIdOption.Value; } set { this.EvaluationGroupIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of LinkedStoreIds
@@ -190,7 +190,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of store IDs that are linked to the campaign.  **Note:** Campaigns with linked store IDs will only be evaluated when there is a [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) that references a linked store. </value>
         /* <example>[1, 2, 3]</example> */
         [JsonPropertyName("linkedStoreIds")]
-        public List<long> LinkedStoreIds { get { return this.LinkedStoreIdsOption; } set { this.LinkedStoreIdsOption = new Option<List<long>>(value); } }
+        public List<long> LinkedStoreIds { get { return this.LinkedStoreIdsOption.Value; } set { this.LinkedStoreIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the Import which created this referral.</value>
         /* <example>4</example> */
         [JsonPropertyName("importId")]
-        public long? ImportId { get { return this.ImportIdOption; } set { this.ImportIdOption = new Option<long?>(value); } }
+        public long? ImportId { get { return this.ImportIdOption.Value; } set { this.ImportIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

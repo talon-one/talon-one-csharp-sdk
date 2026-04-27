@@ -111,7 +111,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp at which point the coupon was created.</value>
         /* <example>2024-07-24T14:15:22Z</example> */
         [JsonPropertyName("CreatedDate")]
-        public DateTime? CreatedDate { get { return this.CreatedDateOption; } set { this.CreatedDateOption = new Option<DateTime?>(value); } }
+        public DateTime? CreatedDate { get { return this.CreatedDateOption.Value; } set { this.CreatedDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ValidFrom
@@ -126,7 +126,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp at which point the coupon becomes valid.</value>
         /* <example>2024-10-24T14:15:22Z</example> */
         [JsonPropertyName("ValidFrom")]
-        public DateTime? ValidFrom { get { return this.ValidFromOption; } set { this.ValidFromOption = new Option<DateTime?>(value); } }
+        public DateTime? ValidFrom { get { return this.ValidFromOption.Value; } set { this.ValidFromOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ValidUntil
@@ -141,7 +141,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp at which point the coupon expires. Coupon never expires if this is omitted, zero, or negative.</value>
         /* <example>2024-12-24T14:15:22Z</example> */
         [JsonPropertyName("ValidUntil")]
-        public DateTime? ValidUntil { get { return this.ValidUntilOption; } set { this.ValidUntilOption = new Option<DateTime?>(value); } }
+        public DateTime? ValidUntil { get { return this.ValidUntilOption.Value; } set { this.ValidUntilOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of CustomerProfileId
@@ -156,7 +156,7 @@ namespace TalonOneSdk.Model
         /// <value>The Integration ID of the customer that is allowed to redeem this coupon.</value>
         /* <example>URNGV8294NV</example> */
         [JsonPropertyName("CustomerProfileId")]
-        public string CustomerProfileId { get { return this.CustomerProfileIdOption; } set { this.CustomerProfileIdOption = new Option<string>(value); } }
+        public string CustomerProfileId { get { return this.CustomerProfileIdOption.Value; } set { this.CustomerProfileIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of BatchId
@@ -171,7 +171,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the batch the coupon belongs to.</value>
         /* <example>32535-43255</example> */
         [JsonPropertyName("BatchId")]
-        public string BatchId { get { return this.BatchIdOption; } set { this.BatchIdOption = new Option<string>(value); } }
+        public string BatchId { get { return this.BatchIdOption.Value; } set { this.BatchIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -232,17 +232,17 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize CreatedDate
         /// </summary>
-        public static string CreatedDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ValidFrom
         /// </summary>
-        public static string ValidFromFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ValidFromFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ValidUntil
         /// </summary>
-        public static string ValidUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ValidUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ExpiringCouponsData" />

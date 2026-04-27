@@ -98,7 +98,7 @@ namespace TalonOneSdk.Model
         /// <value>The date and time the loyalty points become active.</value>
         /* <example>2023-08-20T12:22:00+02:00</example> */
         [JsonPropertyName("ActiveOn")]
-        public DateTime? ActiveOn { get { return this.ActiveOnOption; } set { this.ActiveOnOption = new Option<DateTime?>(value); } }
+        public DateTime? ActiveOn { get { return this.ActiveOnOption.Value; } set { this.ActiveOnOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ExpireOn
@@ -113,7 +113,7 @@ namespace TalonOneSdk.Model
         /// <value>The date and time the loyalty points expire.</value>
         /* <example>2023-09-01T12:23:00+02:00</example> */
         [JsonPropertyName("ExpireOn")]
-        public DateTime? ExpireOn { get { return this.ExpireOnOption; } set { this.ExpireOnOption = new Option<DateTime?>(value); } }
+        public DateTime? ExpireOn { get { return this.ExpireOnOption.Value; } set { this.ExpireOnOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of SessionIntegrationID
@@ -128,7 +128,7 @@ namespace TalonOneSdk.Model
         /// <value>The integration ID of the session through which the points were earned.</value>
         /* <example>cc53e4fa-547f-4f5e-8333-76e05c381f67</example> */
         [JsonPropertyName("SessionIntegrationID")]
-        public string SessionIntegrationID { get { return this.SessionIntegrationIDOption; } set { this.SessionIntegrationIDOption = new Option<string>(value); } }
+        public string SessionIntegrationID { get { return this.SessionIntegrationIDOption.Value; } set { this.SessionIntegrationIDOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -174,12 +174,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize ActiveOn
         /// </summary>
-        public static string ActiveOnFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ActiveOnFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpireOn
         /// </summary>
-        public static string ExpireOnFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpireOnFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="PendingActivePointsData" />

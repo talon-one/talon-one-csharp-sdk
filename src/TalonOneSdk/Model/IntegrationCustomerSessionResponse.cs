@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets CustomerSession
         /// </summary>
         [JsonPropertyName("customerSession")]
-        public CustomerSessionV2 CustomerSession { get { return this.CustomerSessionOption; } set { this.CustomerSessionOption = new Option<CustomerSessionV2>(value); } }
+        public CustomerSessionV2 CustomerSession { get { return this.CustomerSessionOption.Value; } set { this.CustomerSessionOption = new Option<CustomerSessionV2>(value); } }
 
         /// <summary>
         /// Used to track the state of Effects
@@ -68,7 +68,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The returned effects.  **Note:** This endpoint returns only the effects that are valid after any rollback effects and their corresponding non-rollback effects are removed. </value>
         [JsonPropertyName("effects")]
-        public List<Effect> Effects { get { return this.EffectsOption; } set { this.EffectsOption = new Option<List<Effect>>(value); } }
+        public List<Effect> Effects { get { return this.EffectsOption.Value; } set { this.EffectsOption = new Option<List<Effect>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

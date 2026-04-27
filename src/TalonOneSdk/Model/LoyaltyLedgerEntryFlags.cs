@@ -53,7 +53,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Set to true if the entry creates negative balance.</value>
         [JsonPropertyName("createsNegativeBalance")]
-        public bool? CreatesNegativeBalance { get { return this.CreatesNegativeBalanceOption; } set { this.CreatesNegativeBalanceOption = new Option<bool?>(value); } }
+        public bool? CreatesNegativeBalance { get { return this.CreatesNegativeBalanceOption.Value; } set { this.CreatesNegativeBalanceOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

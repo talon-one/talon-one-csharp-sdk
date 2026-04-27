@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Balance
         /// </summary>
         [JsonPropertyName("balance")]
-        public LoyaltyBalanceWithTier Balance { get { return this.BalanceOption; } set { this.BalanceOption = new Option<LoyaltyBalanceWithTier>(value); } }
+        public LoyaltyBalanceWithTier Balance { get { return this.BalanceOption.Value; } set { this.BalanceOption = new Option<LoyaltyBalanceWithTier>(value); } }
 
         /// <summary>
         /// Used to track the state of SubledgerBalances
@@ -69,7 +69,7 @@ namespace TalonOneSdk.Model
         /// <value>Map of the loyalty balances of the subledgers of a ledger.</value>
         /* <example>{mysubledger&#x3D;{activePoints&#x3D;286, pendingPoints&#x3D;50, spentPoints&#x3D;150, expiredPoints&#x3D;25, negativePoints&#x3D;0}}</example> */
         [JsonPropertyName("subledgerBalances")]
-        public Dictionary<string, LoyaltyBalanceWithTier> SubledgerBalances { get { return this.SubledgerBalancesOption; } set { this.SubledgerBalancesOption = new Option<Dictionary<string, LoyaltyBalanceWithTier>>(value); } }
+        public Dictionary<string, LoyaltyBalanceWithTier> SubledgerBalances { get { return this.SubledgerBalancesOption.Value; } set { this.SubledgerBalancesOption = new Option<Dictionary<string, LoyaltyBalanceWithTier>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

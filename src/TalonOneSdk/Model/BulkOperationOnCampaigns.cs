@@ -154,7 +154,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp when the revisions are finalized after the &#x60;activate_revision&#x60; operation. The current time is used when left blank.  **Note:** It must be an RFC3339 timestamp string. </value>
         /* <example>2024-10-01T16:00:05Z07:00</example> */
         [JsonPropertyName("activateAt")]
-        public DateTime? ActivateAt { get { return this.ActivateAtOption; } set { this.ActivateAtOption = new Option<DateTime?>(value); } }
+        public DateTime? ActivateAt { get { return this.ActivateAtOption.Value; } set { this.ActivateAtOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -190,7 +190,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize ActivateAt
         /// </summary>
-        public static string ActivateAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ActivateAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="BulkOperationOnCampaigns" />

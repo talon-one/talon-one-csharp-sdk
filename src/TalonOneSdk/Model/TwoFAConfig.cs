@@ -64,7 +64,7 @@ namespace TalonOneSdk.Model
         /// <value>Can be &#x60;true&#x60; or &#x60;false&#x60;. - &#x60;true&#x60;: Two-factor authentication is required each time a user signs in to their Talon.One account. - &#x60;false&#x60;: Two-factor authentication is only required when a user signs in to their Talon.One account on a new device, and every 30 days after that. </value>
         /* <example>true</example> */
         [JsonPropertyName("requireEverySignIn")]
-        public bool? RequireEverySignIn { get { return this.RequireEverySignInOption; } set { this.RequireEverySignInOption = new Option<bool?>(value); } }
+        public bool? RequireEverySignIn { get { return this.RequireEverySignInOption.Value; } set { this.RequireEverySignInOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

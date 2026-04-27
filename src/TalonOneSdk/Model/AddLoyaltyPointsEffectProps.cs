@@ -126,7 +126,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The original amount of loyalty points to be awarded.</value>
         [JsonPropertyName("desiredValue")]
-        public decimal? DesiredValue { get { return this.DesiredValueOption; } set { this.DesiredValueOption = new Option<decimal?>(value); } }
+        public decimal? DesiredValue { get { return this.DesiredValueOption.Value; } set { this.DesiredValueOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of StartDate
@@ -140,7 +140,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Date after which points will be valid.</value>
         [JsonPropertyName("startDate")]
-        public DateTime? StartDate { get { return this.StartDateOption; } set { this.StartDateOption = new Option<DateTime?>(value); } }
+        public DateTime? StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiryDate
@@ -154,7 +154,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Date after which points will expire.</value>
         [JsonPropertyName("expiryDate")]
-        public DateTime? ExpiryDate { get { return this.ExpiryDateOption; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
+        public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of CartItemPosition
@@ -168,7 +168,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The index of the item in the cart items list on which the loyal points addition should be applied.</value>
         [JsonPropertyName("cartItemPosition")]
-        public decimal? CartItemPosition { get { return this.CartItemPositionOption; } set { this.CartItemPositionOption = new Option<decimal?>(value); } }
+        public decimal? CartItemPosition { get { return this.CartItemPositionOption.Value; } set { this.CartItemPositionOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of CartItemSubPosition
@@ -182,7 +182,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>For cart items with &#x60;quantity&#x60; &gt; 1, the sub position indicates to which item the loyalty points addition is applied. </value>
         [JsonPropertyName("cartItemSubPosition")]
-        public decimal? CartItemSubPosition { get { return this.CartItemSubPositionOption; } set { this.CartItemSubPositionOption = new Option<decimal?>(value); } }
+        public decimal? CartItemSubPosition { get { return this.CartItemSubPositionOption.Value; } set { this.CartItemSubPositionOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of CardIdentifier
@@ -197,7 +197,7 @@ namespace TalonOneSdk.Model
         /// <value>The card on which these points were added.</value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("cardIdentifier")]
-        public string CardIdentifier { get { return this.CardIdentifierOption; } set { this.CardIdentifierOption = new Option<string>(value); } }
+        public string CardIdentifier { get { return this.CardIdentifierOption.Value; } set { this.CardIdentifierOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of BundleIndex
@@ -211,7 +211,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The position of the bundle in a list of item bundles created from the same bundle definition.</value>
         [JsonPropertyName("bundleIndex")]
-        public long? BundleIndex { get { return this.BundleIndexOption; } set { this.BundleIndexOption = new Option<long?>(value); } }
+        public long? BundleIndex { get { return this.BundleIndexOption.Value; } set { this.BundleIndexOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of BundleName
@@ -225,7 +225,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The name of the bundle definition.</value>
         [JsonPropertyName("bundleName")]
-        public string BundleName { get { return this.BundleNameOption; } set { this.BundleNameOption = new Option<string>(value); } }
+        public string BundleName { get { return this.BundleNameOption.Value; } set { this.BundleNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of AwaitsActivation
@@ -239,7 +239,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>If &#x60;true&#x60;, the loyalty points remain pending until a specific action is complete. The &#x60;startDate&#x60; parameter automatically sets to &#x60;on_action&#x60;. </value>
         [JsonPropertyName("awaitsActivation")]
-        public bool? AwaitsActivation { get { return this.AwaitsActivationOption; } set { this.AwaitsActivationOption = new Option<bool?>(value); } }
+        public bool? AwaitsActivation { get { return this.AwaitsActivationOption.Value; } set { this.AwaitsActivationOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of ValidityDuration
@@ -253,7 +253,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The duration for which the points remain active, calculated relative to the  activation date.    **Note**: This value is returned only if &#x60;awaitsActivation&#x60; is &#x60;true&#x60;  and &#x60;expiryDate&#x60; is not set. </value>
         [JsonPropertyName("validityDuration")]
-        public string ValidityDuration { get { return this.ValidityDurationOption; } set { this.ValidityDurationOption = new Option<string>(value); } }
+        public string ValidityDuration { get { return this.ValidityDurationOption.Value; } set { this.ValidityDurationOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -330,12 +330,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AddLoyaltyPointsEffectProps" />

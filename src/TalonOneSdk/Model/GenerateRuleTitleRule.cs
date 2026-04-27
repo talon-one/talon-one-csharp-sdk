@@ -56,7 +56,7 @@ namespace TalonOneSdk.Model
         /// <value>An array of effectful Talang expressions in arrays that will be evaluated when a rule matches.</value>
         /* <example>[catch, [noop], [setDiscount, 10% off, [*, [., Session, Total], [/, 10, 100]]]]</example> */
         [JsonPropertyName("effects")]
-        public List<Object> Effects { get { return this.EffectsOption; } set { this.EffectsOption = new Option<List<Object>>(value); } }
+        public List<Object> Effects { get { return this.EffectsOption.Value; } set { this.EffectsOption = new Option<List<Object>>(value); } }
 
         /// <summary>
         /// Used to track the state of Condition
@@ -71,7 +71,7 @@ namespace TalonOneSdk.Model
         /// <value>A Talang expression that will be evaluated in the context of the given event.</value>
         /* <example>[and, [couponValid]]</example> */
         [JsonPropertyName("condition")]
-        public List<Object> Condition { get { return this.ConditionOption; } set { this.ConditionOption = new Option<List<Object>>(value); } }
+        public List<Object> Condition { get { return this.ConditionOption.Value; } set { this.ConditionOption = new Option<List<Object>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

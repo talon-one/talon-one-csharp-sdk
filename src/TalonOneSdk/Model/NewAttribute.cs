@@ -556,7 +556,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /* <example>pageViewed</example> */
         [JsonPropertyName("eventType")]
-        public string EventType { get { return this.EventTypeOption; } set { this.EventTypeOption = new Option<string>(value); } }
+        public string EventType { get { return this.EventTypeOption.Value; } set { this.EventTypeOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of HasAllowedList
@@ -571,7 +571,7 @@ namespace TalonOneSdk.Model
         /// <value>Whether or not this attribute has an allowed list of values associated with it.</value>
         /* <example>false</example> */
         [JsonPropertyName("hasAllowedList")]
-        public bool? HasAllowedList { get { return this.HasAllowedListOption; } set { this.HasAllowedListOption = new Option<bool?>(value); } }
+        public bool? HasAllowedList { get { return this.HasAllowedListOption.Value; } set { this.HasAllowedListOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of RestrictedBySuggestions
@@ -586,7 +586,7 @@ namespace TalonOneSdk.Model
         /// <value>Whether or not this attribute&#39;s value is restricted by suggestions (&#x60;suggestions&#x60; property) or by an allowed list of value (&#x60;hasAllowedList&#x60; property). </value>
         /* <example>false</example> */
         [JsonPropertyName("restrictedBySuggestions")]
-        public bool? RestrictedBySuggestions { get { return this.RestrictedBySuggestionsOption; } set { this.RestrictedBySuggestionsOption = new Option<bool?>(value); } }
+        public bool? RestrictedBySuggestions { get { return this.RestrictedBySuggestionsOption.Value; } set { this.RestrictedBySuggestionsOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of SubscribedApplicationsIds
@@ -601,7 +601,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of the IDs of the applications where this attribute is available.</value>
         /* <example>[1, 4, 9]</example> */
         [JsonPropertyName("subscribedApplicationsIds")]
-        public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
+        public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption.Value; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of SubscribedCatalogsIds
@@ -616,7 +616,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of the IDs of the catalogs where this attribute is available.</value>
         /* <example>[2, 5]</example> */
         [JsonPropertyName("subscribedCatalogsIds")]
-        public List<long> SubscribedCatalogsIds { get { return this.SubscribedCatalogsIdsOption; } set { this.SubscribedCatalogsIdsOption = new Option<List<long>>(value); } }
+        public List<long> SubscribedCatalogsIds { get { return this.SubscribedCatalogsIdsOption.Value; } set { this.SubscribedCatalogsIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of AllowedSubscriptions
@@ -631,7 +631,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of allowed subscription types for this attribute.  **Note:** This only applies to attributes associated with the &#x60;CartItem&#x60; entity. </value>
         /* <example>[application, catalog]</example> */
         [JsonPropertyName("allowedSubscriptions")]
-        public List<NewAttribute.AllowedSubscriptionsEnum> AllowedSubscriptions { get { return this.AllowedSubscriptionsOption; } set { this.AllowedSubscriptionsOption = new Option<List<NewAttribute.AllowedSubscriptionsEnum>>(value); } }
+        public List<NewAttribute.AllowedSubscriptionsEnum> AllowedSubscriptions { get { return this.AllowedSubscriptionsOption.Value; } set { this.AllowedSubscriptionsOption = new Option<List<NewAttribute.AllowedSubscriptionsEnum>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

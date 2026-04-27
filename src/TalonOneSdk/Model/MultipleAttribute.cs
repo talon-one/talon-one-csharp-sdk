@@ -52,7 +52,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Attributes
         /// </summary>
         [JsonPropertyName("attributes")]
-        public List<Attribute> Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<List<Attribute>>(value); } }
+        public List<Attribute> Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<List<Attribute>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

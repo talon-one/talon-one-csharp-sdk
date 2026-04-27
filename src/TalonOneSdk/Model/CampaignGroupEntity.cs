@@ -53,7 +53,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The IDs of the campaign groups that own this entity.</value>
         [JsonPropertyName("campaignGroups")]
-        public List<long> CampaignGroups { get { return this.CampaignGroupsOption; } set { this.CampaignGroupsOption = new Option<List<long>>(value); } }
+        public List<long> CampaignGroups { get { return this.CampaignGroupsOption.Value; } set { this.CampaignGroupsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -109,7 +109,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The internal ID of the achievement progress tracker.</value>
         [JsonPropertyName("progressTrackerId")]
-        public long? ProgressTrackerId { get { return this.ProgressTrackerIdOption; } set { this.ProgressTrackerIdOption = new Option<long?>(value); } }
+        public long? ProgressTrackerId { get { return this.ProgressTrackerIdOption.Value; } set { this.ProgressTrackerIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

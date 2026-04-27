@@ -139,7 +139,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Single Sign-Out URL.</value>
         [JsonPropertyName("signOutURL")]
-        public string SignOutURL { get { return this.SignOutURLOption; } set { this.SignOutURLOption = new Option<string>(value); } }
+        public string SignOutURL { get { return this.SignOutURLOption.Value; } set { this.SignOutURLOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of MetadataURL
@@ -153,7 +153,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Metadata URL.</value>
         [JsonPropertyName("metadataURL")]
-        public string MetadataURL { get { return this.MetadataURLOption; } set { this.MetadataURLOption = new Option<string>(value); } }
+        public string MetadataURL { get { return this.MetadataURLOption.Value; } set { this.MetadataURLOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -215,7 +215,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="SamlConnection" />

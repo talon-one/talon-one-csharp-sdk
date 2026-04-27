@@ -55,7 +55,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The maximum number of resources that can be returned in a single filtered query response.</value>
         [JsonPropertyName("maxResults")]
-        public long? MaxResults { get { return this.MaxResultsOption; } set { this.MaxResultsOption = new Option<long?>(value); } }
+        public long? MaxResults { get { return this.MaxResultsOption.Value; } set { this.MaxResultsOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Supported
@@ -69,7 +69,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Indicates whether the SCIM service provider supports filtering operations.</value>
         [JsonPropertyName("supported")]
-        public bool? Supported { get { return this.SupportedOption; } set { this.SupportedOption = new Option<bool?>(value); } }
+        public bool? Supported { get { return this.SupportedOption.Value; } set { this.SupportedOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

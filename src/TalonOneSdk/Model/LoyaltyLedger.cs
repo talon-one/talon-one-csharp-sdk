@@ -63,7 +63,7 @@ namespace TalonOneSdk.Model
         /// <value>A map containing a list of all loyalty subledger balances.</value>
         /* <example>{mysubledger&#x3D;{total&#x3D;0, totalActivePoints&#x3D;286, totalPendingPoints&#x3D;50, totalSpentPoints&#x3D;150, totalExpiredPoints&#x3D;25, totalNegativePoints&#x3D;0}}</example> */
         [JsonPropertyName("subLedgers")]
-        public Dictionary<string, LoyaltySubLedger> SubLedgers { get { return this.SubLedgersOption; } set { this.SubLedgersOption = new Option<Dictionary<string, LoyaltySubLedger>>(value); } }
+        public Dictionary<string, LoyaltySubLedger> SubLedgers { get { return this.SubLedgersOption.Value; } set { this.SubLedgersOption = new Option<Dictionary<string, LoyaltySubLedger>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

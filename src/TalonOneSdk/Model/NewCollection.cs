@@ -66,7 +66,7 @@ namespace TalonOneSdk.Model
         /// <value>A short description of the purpose of this collection.</value>
         /* <example>My collection of SKUs</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of SubscribedApplicationsIds
@@ -81,7 +81,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of the IDs of the Applications where this collection is enabled.</value>
         /* <example>[1, 2, 3]</example> */
         [JsonPropertyName("subscribedApplicationsIds")]
-        public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
+        public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption.Value; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

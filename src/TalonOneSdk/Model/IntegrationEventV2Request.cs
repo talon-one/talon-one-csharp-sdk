@@ -86,7 +86,12 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum RuleFailureReasons for value: ruleFailureReasons
             /// </summary>
-            RuleFailureReasons = 6
+            RuleFailureReasons = 6,
+
+            /// <summary>
+            /// Enum CampaignEligibility for value: campaignEligibility
+            /// </summary>
+            CampaignEligibility = 7
         }
 
         /// <summary>
@@ -115,6 +120,9 @@ namespace TalonOneSdk.Model
             if (value.Equals("ruleFailureReasons"))
                 return ResponseContentEnum.RuleFailureReasons;
 
+            if (value.Equals("campaignEligibility"))
+                return ResponseContentEnum.CampaignEligibility;
+
             throw new NotImplementedException($"Could not convert value to type ResponseContentEnum: '{value}'");
         }
 
@@ -142,6 +150,9 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("ruleFailureReasons"))
                 return ResponseContentEnum.RuleFailureReasons;
+
+            if (value.Equals("campaignEligibility"))
+                return ResponseContentEnum.CampaignEligibility;
 
             return null;
         }
@@ -172,6 +183,9 @@ namespace TalonOneSdk.Model
             if (value == ResponseContentEnum.RuleFailureReasons)
                 return "ruleFailureReasons";
 
+            if (value == ResponseContentEnum.CampaignEligibility)
+                return "campaignEligibility";
+
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
 
@@ -196,7 +210,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </value>
         /* <example>URNGV8294NV</example> */
         [JsonPropertyName("profileId")]
-        public string ProfileId { get { return this.ProfileIdOption; } set { this.ProfileIdOption = new Option<string>(value); } }
+        public string ProfileId { get { return this.ProfileIdOption.Value; } set { this.ProfileIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of StoreIntegrationId
@@ -211,7 +225,7 @@ namespace TalonOneSdk.Model
         /// <value>The integration ID of the store. You choose this ID when you create a store.</value>
         /* <example>STORE-001</example> */
         [JsonPropertyName("storeIntegrationId")]
-        public string StoreIntegrationId { get { return this.StoreIntegrationIdOption; } set { this.StoreIntegrationIdOption = new Option<string>(value); } }
+        public string StoreIntegrationId { get { return this.StoreIntegrationIdOption.Value; } set { this.StoreIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of EvaluableCampaignIds
@@ -226,7 +240,7 @@ namespace TalonOneSdk.Model
         /// <value>When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them. </value>
         /* <example>[10, 12]</example> */
         [JsonPropertyName("evaluableCampaignIds")]
-        public List<long> EvaluableCampaignIds { get { return this.EvaluableCampaignIdsOption; } set { this.EvaluableCampaignIdsOption = new Option<List<long>>(value); } }
+        public List<long> EvaluableCampaignIds { get { return this.EvaluableCampaignIdsOption.Value; } set { this.EvaluableCampaignIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -241,7 +255,7 @@ namespace TalonOneSdk.Model
         /// <value>Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute).</value>
         /* <example>{myAttribute&#x3D;myValue}</example> */
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of ResponseContent
@@ -256,7 +270,7 @@ namespace TalonOneSdk.Model
         /// <value>Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints. </value>
         /* <example>[triggeredCampaigns, customerProfile]</example> */
         [JsonPropertyName("responseContent")]
-        public List<IntegrationEventV2Request.ResponseContentEnum> ResponseContent { get { return this.ResponseContentOption; } set { this.ResponseContentOption = new Option<List<IntegrationEventV2Request.ResponseContentEnum>>(value); } }
+        public List<IntegrationEventV2Request.ResponseContentEnum> ResponseContent { get { return this.ResponseContentOption.Value; } set { this.ResponseContentOption = new Option<List<IntegrationEventV2Request.ResponseContentEnum>>(value); } }
 
         /// <summary>
         /// Used to track the state of LoyaltyCards
@@ -271,7 +285,7 @@ namespace TalonOneSdk.Model
         /// <value>Identifiers of the loyalty cards used during this event.</value>
         /* <example>[loyalty-card-1]</example> */
         [JsonPropertyName("loyaltyCards")]
-        public List<string> LoyaltyCards { get { return this.LoyaltyCardsOption; } set { this.LoyaltyCardsOption = new Option<List<string>>(value); } }
+        public List<string> LoyaltyCards { get { return this.LoyaltyCardsOption.Value; } set { this.LoyaltyCardsOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

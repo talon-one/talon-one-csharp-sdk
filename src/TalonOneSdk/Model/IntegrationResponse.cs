@@ -88,7 +88,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The customer profile associated with the event.</value>
         [JsonPropertyName("customerProfile")]
-        public CustomerProfile CustomerProfile { get { return this.CustomerProfileOption; } set { this.CustomerProfileOption = new Option<CustomerProfile>(value); } }
+        public CustomerProfile CustomerProfile { get { return this.CustomerProfileOption.Value; } set { this.CustomerProfileOption = new Option<CustomerProfile>(value); } }
 
         /// <summary>
         /// Used to track the state of Loyalty
@@ -102,7 +102,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The loyalty program status of the customer.</value>
         [JsonPropertyName("loyalty")]
-        public Loyalty Loyalty { get { return this.LoyaltyOption; } set { this.LoyaltyOption = new Option<Loyalty>(value); } }
+        public Loyalty Loyalty { get { return this.LoyaltyOption.Value; } set { this.LoyaltyOption = new Option<Loyalty>(value); } }
 
         /// <summary>
         /// Used to track the state of TriggeredCampaigns
@@ -116,7 +116,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The campaigns that were triggered as a result of processing the event.</value>
         [JsonPropertyName("triggeredCampaigns")]
-        public List<Campaign> TriggeredCampaigns { get { return this.TriggeredCampaignsOption; } set { this.TriggeredCampaignsOption = new Option<List<Campaign>>(value); } }
+        public List<Campaign> TriggeredCampaigns { get { return this.TriggeredCampaignsOption.Value; } set { this.TriggeredCampaignsOption = new Option<List<Campaign>>(value); } }
 
         /// <summary>
         /// Used to track the state of RuleFailureReasons
@@ -130,7 +130,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The reasons why certain rules were not triggered during the event processing. </value>
         [JsonPropertyName("ruleFailureReasons")]
-        public List<RuleFailureReason> RuleFailureReasons { get { return this.RuleFailureReasonsOption; } set { this.RuleFailureReasonsOption = new Option<List<RuleFailureReason>>(value); } }
+        public List<RuleFailureReason> RuleFailureReasons { get { return this.RuleFailureReasonsOption.Value; } set { this.RuleFailureReasonsOption = new Option<List<RuleFailureReason>>(value); } }
 
         /// <summary>
         /// Used to track the state of AwardedGiveaways
@@ -144,7 +144,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The giveaways that were awarded during the event processing.</value>
         [JsonPropertyName("awardedGiveaways")]
-        public List<Giveaway> AwardedGiveaways { get { return this.AwardedGiveawaysOption; } set { this.AwardedGiveawaysOption = new Option<List<Giveaway>>(value); } }
+        public List<Giveaway> AwardedGiveaways { get { return this.AwardedGiveawaysOption.Value; } set { this.AwardedGiveawaysOption = new Option<List<Giveaway>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

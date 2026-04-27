@@ -58,7 +58,7 @@ namespace TalonOneSdk.Model
         /// <value>Price of the item.</value>
         /* <example>99.99</example> */
         [JsonPropertyName("price")]
-        public decimal? Price { get { return this.PriceOption; } set { this.PriceOption = new Option<decimal?>(value); } }
+        public decimal? Price { get { return this.PriceOption.Value; } set { this.PriceOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of Filters
@@ -72,7 +72,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The list of filters used to select the items to patch, joined by &#x60;AND&#x60;.  **Note:** Every item in the catalog will be modified if there are no filters. </value>
         [JsonPropertyName("filters")]
-        public List<CatalogActionFilter> Filters { get { return this.FiltersOption; } set { this.FiltersOption = new Option<List<CatalogActionFilter>>(value); } }
+        public List<CatalogActionFilter> Filters { get { return this.FiltersOption.Value; } set { this.FiltersOption = new Option<List<CatalogActionFilter>>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -86,7 +86,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The attributes of the items to patch.</value>
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

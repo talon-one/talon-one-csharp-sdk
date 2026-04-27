@@ -138,7 +138,7 @@ namespace TalonOneSdk.Model
         /// <value>The profile ID for which this limit counter is used.</value>
         /* <example>335</example> */
         [JsonPropertyName("profileId")]
-        public long? ProfileId { get { return this.ProfileIdOption; } set { this.ProfileIdOption = new Option<long?>(value); } }
+        public long? ProfileId { get { return this.ProfileIdOption.Value; } set { this.ProfileIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ProfileIntegrationId
@@ -153,7 +153,7 @@ namespace TalonOneSdk.Model
         /// <value>The profile integration ID for which this limit counter is used.</value>
         /* <example>URNGV8294NV</example> */
         [JsonPropertyName("profileIntegrationId")]
-        public string ProfileIntegrationId { get { return this.ProfileIntegrationIdOption; } set { this.ProfileIntegrationIdOption = new Option<string>(value); } }
+        public string ProfileIntegrationId { get { return this.ProfileIntegrationIdOption.Value; } set { this.ProfileIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponId
@@ -168,7 +168,7 @@ namespace TalonOneSdk.Model
         /// <value>The internal coupon ID for which this limit counter is used.</value>
         /* <example>34</example> */
         [JsonPropertyName("couponId")]
-        public long? CouponId { get { return this.CouponIdOption; } set { this.CouponIdOption = new Option<long?>(value); } }
+        public long? CouponId { get { return this.CouponIdOption.Value; } set { this.CouponIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponValue
@@ -183,7 +183,7 @@ namespace TalonOneSdk.Model
         /// <value>The coupon value for which this limit counter is used.</value>
         /* <example>XMAS-20-2021</example> */
         [JsonPropertyName("couponValue")]
-        public string CouponValue { get { return this.CouponValueOption; } set { this.CouponValueOption = new Option<string>(value); } }
+        public string CouponValue { get { return this.CouponValueOption.Value; } set { this.CouponValueOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ReferralId
@@ -198,7 +198,7 @@ namespace TalonOneSdk.Model
         /// <value>The referral ID for which this limit counter is used.</value>
         /* <example>4</example> */
         [JsonPropertyName("referralId")]
-        public long? ReferralId { get { return this.ReferralIdOption; } set { this.ReferralIdOption = new Option<long?>(value); } }
+        public long? ReferralId { get { return this.ReferralIdOption.Value; } set { this.ReferralIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ReferralValue
@@ -212,7 +212,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The referral value for which this limit counter is used.</value>
         [JsonPropertyName("referralValue")]
-        public string ReferralValue { get { return this.ReferralValueOption; } set { this.ReferralValueOption = new Option<string>(value); } }
+        public string ReferralValue { get { return this.ReferralValueOption.Value; } set { this.ReferralValueOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Identifier
@@ -227,7 +227,7 @@ namespace TalonOneSdk.Model
         /// <value>The arbitrary identifier for which this limit counter is used.</value>
         /* <example>91.11.156.141</example> */
         [JsonPropertyName("identifier")]
-        public string Identifier { get { return this.IdentifierOption; } set { this.IdentifierOption = new Option<string>(value); } }
+        public string Identifier { get { return this.IdentifierOption.Value; } set { this.IdentifierOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Period
@@ -242,7 +242,7 @@ namespace TalonOneSdk.Model
         /// <value>The time period for which this limit counter is used.</value>
         /* <example>Y2021M8</example> */
         [JsonPropertyName("period")]
-        public string Period { get { return this.PeriodOption; } set { this.PeriodOption = new Option<string>(value); } }
+        public string Period { get { return this.PeriodOption.Value; } set { this.PeriodOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

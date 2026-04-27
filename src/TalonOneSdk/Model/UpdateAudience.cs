@@ -32,10 +32,12 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="UpdateAudience" /> class.
         /// </summary>
         /// <param name="name">The human-friendly display name for this audience.</param>
+        /// <param name="subscribedApplicationsIds">A list of the IDs of the Applications that are connected to this audience.</param>
         [JsonConstructor]
-        public UpdateAudience(string name)
+        public UpdateAudience(string name, Option<List<long>> subscribedApplicationsIds = default)
         {
             Name = name;
+            SubscribedApplicationsIdsOption = subscribedApplicationsIds;
             OnCreated();
         }
 
@@ -50,6 +52,21 @@ namespace TalonOneSdk.Model
         public string Name { get; set; }
 
         /// <summary>
+        /// Used to track the state of SubscribedApplicationsIds
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<long>> SubscribedApplicationsIdsOption { get; private set; }
+
+        /// <summary>
+        /// A list of the IDs of the Applications that are connected to this audience.
+        /// </summary>
+        /// <value>A list of the IDs of the Applications that are connected to this audience.</value>
+        /* <example>[3, 13]</example> */
+        [JsonPropertyName("subscribedApplicationsIds")]
+        public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption.Value; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -58,6 +75,7 @@ namespace TalonOneSdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateAudience {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  SubscribedApplicationsIds: ").Append(SubscribedApplicationsIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -102,6 +120,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string> name = default;
+            Option<List<long>> subscribedApplicationsIds = default;
 
             while (utf8JsonReader.Read())
             {
@@ -121,6 +140,9 @@ namespace TalonOneSdk.Model
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "subscribedApplicationsIds":
+                            subscribedApplicationsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
@@ -133,7 +155,7 @@ namespace TalonOneSdk.Model
             if (name.IsSet && name.Value == null)
                 throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateAudience.");
 
-            return new UpdateAudience(name.Value);
+            return new UpdateAudience(name.Value, subscribedApplicationsIds);
         }
 
         /// <summary>
@@ -164,6 +186,12 @@ namespace TalonOneSdk.Model
                 throw new ArgumentNullException(nameof(updateAudience.Name), "Property is required for class UpdateAudience.");
 
             writer.WriteString("name", updateAudience.Name);
+
+            if (updateAudience.SubscribedApplicationsIdsOption.IsSet)
+            {
+                writer.WritePropertyName("subscribedApplicationsIds");
+                JsonSerializer.Serialize(writer, updateAudience.SubscribedApplicationsIds, jsonSerializerOptions);
+            }
         }
     }
 }

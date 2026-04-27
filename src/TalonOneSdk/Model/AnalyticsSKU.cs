@@ -80,7 +80,7 @@ namespace TalonOneSdk.Model
         /// <value>Values in UTC for the date the SKU linked to the product was last updated.</value>
         /* <example>2024-02-01T00:00:00Z</example> */
         [JsonPropertyName("lastUpdated")]
-        public DateTime? LastUpdated { get { return this.LastUpdatedOption; } set { this.LastUpdatedOption = new Option<DateTime?>(value); } }
+        public DateTime? LastUpdated { get { return this.LastUpdatedOption.Value; } set { this.LastUpdatedOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of CatalogId
@@ -95,7 +95,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the catalog that contains the SKU.</value>
         /* <example>1</example> */
         [JsonPropertyName("catalogId")]
-        public long? CatalogId { get { return this.CatalogIdOption; } set { this.CatalogIdOption = new Option<long?>(value); } }
+        public long? CatalogId { get { return this.CatalogIdOption.Value; } set { this.CatalogIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ProductId
@@ -110,7 +110,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the product that the SKU belongs to.</value>
         /* <example>1</example> */
         [JsonPropertyName("productId")]
-        public long? ProductId { get { return this.ProductIdOption; } set { this.ProductIdOption = new Option<long?>(value); } }
+        public long? ProductId { get { return this.ProductIdOption.Value; } set { this.ProductIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of UnitsSold
@@ -124,7 +124,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The number of times the product or SKU was purchased.</value>
         [JsonPropertyName("unitsSold")]
-        public AnalyticsDataPointWithTrend UnitsSold { get { return this.UnitsSoldOption; } set { this.UnitsSoldOption = new Option<AnalyticsDataPointWithTrend>(value); } }
+        public AnalyticsDataPointWithTrend UnitsSold { get { return this.UnitsSoldOption.Value; } set { this.UnitsSoldOption = new Option<AnalyticsDataPointWithTrend>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -163,7 +163,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize LastUpdated
         /// </summary>
-        public static string LastUpdatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string LastUpdatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AnalyticsSKU" />

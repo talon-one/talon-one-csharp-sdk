@@ -75,7 +75,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The permissions that this role gives.</value>
         [JsonPropertyName("permissions")]
-        public RoleV2Permissions Permissions { get { return this.PermissionsOption; } set { this.PermissionsOption = new Option<RoleV2Permissions>(value); } }
+        public RoleV2Permissions Permissions { get { return this.PermissionsOption.Value; } set { this.PermissionsOption = new Option<RoleV2Permissions>(value); } }
 
         /// <summary>
         /// Used to track the state of Members
@@ -90,7 +90,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of user IDs the role is assigned to.</value>
         /* <example>[10, 12]</example> */
         [JsonPropertyName("members")]
-        public List<long> Members { get { return this.MembersOption; } set { this.MembersOption = new Option<List<long>>(value); } }
+        public List<long> Members { get { return this.MembersOption.Value; } set { this.MembersOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

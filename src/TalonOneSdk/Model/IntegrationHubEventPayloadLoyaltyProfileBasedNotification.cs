@@ -117,7 +117,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets EmployeeName
         /// </summary>
         [JsonPropertyName("EmployeeName")]
-        public string EmployeeName { get { return this.EmployeeNameOption; } set { this.EmployeeNameOption = new Option<string>(value); } }
+        public string EmployeeName { get { return this.EmployeeNameOption.Value; } set { this.EmployeeNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of UserID
@@ -130,7 +130,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets UserID
         /// </summary>
         [JsonPropertyName("UserID")]
-        public long? UserID { get { return this.UserIDOption; } set { this.UserIDOption = new Option<long?>(value); } }
+        public long? UserID { get { return this.UserIDOption.Value; } set { this.UserIDOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Actions
@@ -143,7 +143,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Actions
         /// </summary>
         [JsonPropertyName("Actions")]
-        public List<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction> Actions { get { return this.ActionsOption; } set { this.ActionsOption = new Option<List<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction>>(value); } }
+        public List<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction> Actions { get { return this.ActionsOption.Value; } set { this.ActionsOption = new Option<List<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction>>(value); } }
 
         /// <summary>
         /// Used to track the state of CurrentTier
@@ -156,7 +156,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets CurrentTier
         /// </summary>
         [JsonPropertyName("CurrentTier")]
-        public string CurrentTier { get { return this.CurrentTierOption; } set { this.CurrentTierOption = new Option<string>(value); } }
+        public string CurrentTier { get { return this.CurrentTierOption.Value; } set { this.CurrentTierOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of OldTier
@@ -169,7 +169,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets OldTier
         /// </summary>
         [JsonPropertyName("OldTier")]
-        public string OldTier { get { return this.OldTierOption; } set { this.OldTierOption = new Option<string>(value); } }
+        public string OldTier { get { return this.OldTierOption.Value; } set { this.OldTierOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of TierExpirationDate
@@ -182,7 +182,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets TierExpirationDate
         /// </summary>
         [JsonPropertyName("TierExpirationDate")]
-        public DateTime? TierExpirationDate { get { return this.TierExpirationDateOption; } set { this.TierExpirationDateOption = new Option<DateTime?>(value); } }
+        public DateTime? TierExpirationDate { get { return this.TierExpirationDateOption.Value; } set { this.TierExpirationDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of TimestampOfTierChange
@@ -195,7 +195,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets TimestampOfTierChange
         /// </summary>
         [JsonPropertyName("TimestampOfTierChange")]
-        public DateTime? TimestampOfTierChange { get { return this.TimestampOfTierChangeOption; } set { this.TimestampOfTierChangeOption = new Option<DateTime?>(value); } }
+        public DateTime? TimestampOfTierChange { get { return this.TimestampOfTierChangeOption.Value; } set { this.TimestampOfTierChangeOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of PointsRequiredToTheNextTier
@@ -208,7 +208,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets PointsRequiredToTheNextTier
         /// </summary>
         [JsonPropertyName("PointsRequiredToTheNextTier")]
-        public float? PointsRequiredToTheNextTier { get { return this.PointsRequiredToTheNextTierOption; } set { this.PointsRequiredToTheNextTierOption = new Option<float?>(value); } }
+        public float? PointsRequiredToTheNextTier { get { return this.PointsRequiredToTheNextTierOption.Value; } set { this.PointsRequiredToTheNextTierOption = new Option<float?>(value); } }
 
         /// <summary>
         /// Used to track the state of NextTier
@@ -221,7 +221,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets NextTier
         /// </summary>
         [JsonPropertyName("NextTier")]
-        public string NextTier { get { return this.NextTierOption; } set { this.NextTierOption = new Option<string>(value); } }
+        public string NextTier { get { return this.NextTierOption.Value; } set { this.NextTierOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -269,17 +269,17 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize PublishedAt
         /// </summary>
-        public static string PublishedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string PublishedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize TierExpirationDate
         /// </summary>
-        public static string TierExpirationDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string TierExpirationDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize TimestampOfTierChange
         /// </summary>
-        public static string TimestampOfTierChangeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string TimestampOfTierChangeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventPayloadLoyaltyProfileBasedNotification" />

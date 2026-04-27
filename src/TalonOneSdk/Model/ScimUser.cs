@@ -78,7 +78,7 @@ namespace TalonOneSdk.Model
         /// <value>Status of the user.</value>
         /* <example>true</example> */
         [JsonPropertyName("active")]
-        public bool? Active { get { return this.ActiveOption; } set { this.ActiveOption = new Option<bool?>(value); } }
+        public bool? Active { get { return this.ActiveOption.Value; } set { this.ActiveOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of DisplayName
@@ -93,7 +93,7 @@ namespace TalonOneSdk.Model
         /// <value>Display name of the user.</value>
         /* <example>John Doe</example> */
         [JsonPropertyName("displayName")]
-        public string DisplayName { get { return this.DisplayNameOption; } set { this.DisplayNameOption = new Option<string>(value); } }
+        public string DisplayName { get { return this.DisplayNameOption.Value; } set { this.DisplayNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -106,7 +106,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public ScimBaseUserName Name { get { return this.NameOption; } set { this.NameOption = new Option<ScimBaseUserName>(value); } }
+        public ScimBaseUserName Name { get { return this.NameOption.Value; } set { this.NameOption = new Option<ScimBaseUserName>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -83,7 +83,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The number of times the product or SKU was purchased.</value>
         [JsonPropertyName("unitsSold")]
-        public AnalyticsDataPointWithTrend UnitsSold { get { return this.UnitsSoldOption; } set { this.UnitsSoldOption = new Option<AnalyticsDataPointWithTrend>(value); } }
+        public AnalyticsDataPointWithTrend UnitsSold { get { return this.UnitsSoldOption.Value; } set { this.UnitsSoldOption = new Option<AnalyticsDataPointWithTrend>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

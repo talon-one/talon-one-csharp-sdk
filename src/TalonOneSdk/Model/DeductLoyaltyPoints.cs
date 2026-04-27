@@ -68,7 +68,7 @@ namespace TalonOneSdk.Model
         /// <value>Name / reason for the point deduction.</value>
         /* <example>Penalty</example> */
         [JsonPropertyName("name")]
-        public string Name { get { return this.NameOption; } set { this.NameOption = new Option<string>(value); } }
+        public string Name { get { return this.NameOption.Value; } set { this.NameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of SubledgerId
@@ -83,7 +83,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the subledger the points are deducted from.</value>
         /* <example>sub-123</example> */
         [JsonPropertyName("subledgerId")]
-        public string SubledgerId { get { return this.SubledgerIdOption; } set { this.SubledgerIdOption = new Option<string>(value); } }
+        public string SubledgerId { get { return this.SubledgerIdOption.Value; } set { this.SubledgerIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ApplicationId
@@ -98,7 +98,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the Application that is connected to the loyalty program.</value>
         /* <example>322</example> */
         [JsonPropertyName("applicationId")]
-        public long? ApplicationId { get { return this.ApplicationIdOption; } set { this.ApplicationIdOption = new Option<long?>(value); } }
+        public long? ApplicationId { get { return this.ApplicationIdOption.Value; } set { this.ApplicationIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

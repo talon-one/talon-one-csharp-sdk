@@ -82,7 +82,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Your name.</value>
         [JsonPropertyName("name")]
-        public string Name { get { return this.NameOption; } set { this.NameOption = new Option<string>(value); } }
+        public string Name { get { return this.NameOption.Value; } set { this.NameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

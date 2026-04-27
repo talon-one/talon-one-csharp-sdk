@@ -65,7 +65,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of this audience in the third-party integration.</value>
         /* <example>382370BKDB946</example> */
         [JsonPropertyName("integrationId")]
-        public string IntegrationId { get { return this.IntegrationIdOption; } set { this.IntegrationIdOption = new Option<string>(value); } }
+        public string IntegrationId { get { return this.IntegrationIdOption.Value; } set { this.IntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Integration
@@ -79,7 +79,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The third-party integration of the audience.</value>
         [JsonPropertyName("integration")]
-        public string Integration { get { return this.IntegrationOption; } set { this.IntegrationOption = new Option<string>(value); } }
+        public string Integration { get { return this.IntegrationOption.Value; } set { this.IntegrationOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

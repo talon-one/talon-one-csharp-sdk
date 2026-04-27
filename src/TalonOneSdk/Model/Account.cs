@@ -233,7 +233,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The name of your booked plan.</value>
         [JsonPropertyName("planName")]
-        public string PlanName { get { return this.PlanNameOption; } set { this.PlanNameOption = new Option<string>(value); } }
+        public string PlanName { get { return this.PlanNameOption.Value; } set { this.PlanNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of PlanExpires
@@ -247,7 +247,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The point in time at which your current plan expires.</value>
         [JsonPropertyName("planExpires")]
-        public DateTime? PlanExpires { get { return this.PlanExpiresOption; } set { this.PlanExpiresOption = new Option<DateTime?>(value); } }
+        public DateTime? PlanExpires { get { return this.PlanExpiresOption.Value; } set { this.PlanExpiresOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of ApplicationLimit
@@ -261,7 +261,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The maximum number of Applications covered by your plan.</value>
         [JsonPropertyName("applicationLimit")]
-        public long? ApplicationLimit { get { return this.ApplicationLimitOption; } set { this.ApplicationLimitOption = new Option<long?>(value); } }
+        public long? ApplicationLimit { get { return this.ApplicationLimitOption.Value; } set { this.ApplicationLimitOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of UserLimit
@@ -275,7 +275,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The maximum number of Campaign Manager Users covered by your plan.</value>
         [JsonPropertyName("userLimit")]
-        public long? UserLimit { get { return this.UserLimitOption; } set { this.UserLimitOption = new Option<long?>(value); } }
+        public long? UserLimit { get { return this.UserLimitOption.Value; } set { this.UserLimitOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of CampaignLimit
@@ -289,7 +289,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The maximum number of Campaigns covered by your plan.</value>
         [JsonPropertyName("campaignLimit")]
-        public long? CampaignLimit { get { return this.CampaignLimitOption; } set { this.CampaignLimitOption = new Option<long?>(value); } }
+        public long? CampaignLimit { get { return this.CampaignLimitOption.Value; } set { this.CampaignLimitOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of ApiLimit
@@ -303,7 +303,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The maximum number of Integration API calls covered by your plan per billing period.</value>
         [JsonPropertyName("apiLimit")]
-        public long? ApiLimit { get { return this.ApiLimitOption; } set { this.ApiLimitOption = new Option<long?>(value); } }
+        public long? ApiLimit { get { return this.ApiLimitOption.Value; } set { this.ApiLimitOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -317,7 +317,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption; } set { this.AttributesOption = new Option<Object>(value); } }
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -374,17 +374,17 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
-        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize PlanExpires
         /// </summary>
-        public static string PlanExpiresFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string PlanExpiresFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Account" />

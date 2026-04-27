@@ -83,7 +83,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The total, pre-discount value of all items purchased in a customer session.</value>
         [JsonPropertyName("totalRevenue")]
-        public AnalyticsDataPoint TotalRevenue { get { return this.TotalRevenueOption; } set { this.TotalRevenueOption = new Option<AnalyticsDataPoint>(value); } }
+        public AnalyticsDataPoint TotalRevenue { get { return this.TotalRevenueOption.Value; } set { this.TotalRevenueOption = new Option<AnalyticsDataPoint>(value); } }
 
         /// <summary>
         /// Used to track the state of SessionsCount
@@ -97,7 +97,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The number of all closed sessions. The &#x60;influenced&#x60; value includes only sessions with at least one applied effect.</value>
         [JsonPropertyName("sessionsCount")]
-        public AnalyticsDataPoint SessionsCount { get { return this.SessionsCountOption; } set { this.SessionsCountOption = new Option<AnalyticsDataPoint>(value); } }
+        public AnalyticsDataPoint SessionsCount { get { return this.SessionsCountOption.Value; } set { this.SessionsCountOption = new Option<AnalyticsDataPoint>(value); } }
 
         /// <summary>
         /// Used to track the state of AvgItemsPerSession
@@ -111,7 +111,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The number of items from sessions divided by the number of sessions. The &#x60;influenced&#x60; value includes only sessions with at least one applied effect.</value>
         [JsonPropertyName("avgItemsPerSession")]
-        public AnalyticsDataPoint AvgItemsPerSession { get { return this.AvgItemsPerSessionOption; } set { this.AvgItemsPerSessionOption = new Option<AnalyticsDataPoint>(value); } }
+        public AnalyticsDataPoint AvgItemsPerSession { get { return this.AvgItemsPerSessionOption.Value; } set { this.AvgItemsPerSessionOption = new Option<AnalyticsDataPoint>(value); } }
 
         /// <summary>
         /// Used to track the state of AvgSessionValue
@@ -125,7 +125,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The average customer session value, calculated by dividing the revenue value by the number of sessions. The &#x60;influenced&#x60; value includes only sessions with at least one applied effect.</value>
         [JsonPropertyName("avgSessionValue")]
-        public AnalyticsDataPoint AvgSessionValue { get { return this.AvgSessionValueOption; } set { this.AvgSessionValueOption = new Option<AnalyticsDataPoint>(value); } }
+        public AnalyticsDataPoint AvgSessionValue { get { return this.AvgSessionValueOption.Value; } set { this.AvgSessionValueOption = new Option<AnalyticsDataPoint>(value); } }
 
         /// <summary>
         /// Used to track the state of TotalDiscounts
@@ -140,7 +140,7 @@ namespace TalonOneSdk.Model
         /// <value>The total value of discounts given for cart items in influenced sessions.</value>
         /* <example>10</example> */
         [JsonPropertyName("totalDiscounts")]
-        public decimal? TotalDiscounts { get { return this.TotalDiscountsOption; } set { this.TotalDiscountsOption = new Option<decimal?>(value); } }
+        public decimal? TotalDiscounts { get { return this.TotalDiscountsOption.Value; } set { this.TotalDiscountsOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Used to track the state of CouponsCount
@@ -155,7 +155,7 @@ namespace TalonOneSdk.Model
         /// <value>The number of times a coupon was successfully redeemed in influenced sessions.</value>
         /* <example>12</example> */
         [JsonPropertyName("couponsCount")]
-        public decimal? CouponsCount { get { return this.CouponsCountOption; } set { this.CouponsCountOption = new Option<decimal?>(value); } }
+        public decimal? CouponsCount { get { return this.CouponsCountOption.Value; } set { this.CouponsCountOption = new Option<decimal?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -196,12 +196,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize StartTime
         /// </summary>
-        public static string StartTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EndTime
         /// </summary>
-        public static string EndTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string EndTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApplicationAnalyticsDataPoint" />

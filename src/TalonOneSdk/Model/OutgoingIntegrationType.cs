@@ -78,7 +78,7 @@ namespace TalonOneSdk.Model
         /// <value>Description of the outgoing integration.</value>
         /* <example>Braze is a customer data platform</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Category
@@ -93,7 +93,7 @@ namespace TalonOneSdk.Model
         /// <value>Category of the outgoing integration.</value>
         /* <example>customer engagement platform</example> */
         [JsonPropertyName("category")]
-        public string Category { get { return this.CategoryOption; } set { this.CategoryOption = new Option<string>(value); } }
+        public string Category { get { return this.CategoryOption.Value; } set { this.CategoryOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of DocumentationLink
@@ -108,7 +108,7 @@ namespace TalonOneSdk.Model
         /// <value>Http link to the outgoing integration&#39;s documentation.</value>
         /* <example>https://docs.talon.one/docs/dev/technology-partners/braze</example> */
         [JsonPropertyName("documentationLink")]
-        public string DocumentationLink { get { return this.DocumentationLinkOption; } set { this.DocumentationLinkOption = new Option<string>(value); } }
+        public string DocumentationLink { get { return this.DocumentationLinkOption.Value; } set { this.DocumentationLinkOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

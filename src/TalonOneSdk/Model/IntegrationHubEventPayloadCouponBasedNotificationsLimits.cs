@@ -76,7 +76,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Period
         /// </summary>
         [JsonPropertyName("Period")]
-        public string Period { get { return this.PeriodOption; } set { this.PeriodOption = new Option<string>(value); } }
+        public string Period { get { return this.PeriodOption.Value; } set { this.PeriodOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

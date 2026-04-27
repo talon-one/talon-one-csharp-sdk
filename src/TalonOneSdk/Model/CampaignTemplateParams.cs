@@ -221,7 +221,7 @@ namespace TalonOneSdk.Model
         /// <value>ID of the corresponding attribute.</value>
         /* <example>42</example> */
         [JsonPropertyName("attributeId")]
-        public long? AttributeId { get { return this.AttributeIdOption; } set { this.AttributeIdOption = new Option<long?>(value); } }
+        public long? AttributeId { get { return this.AttributeIdOption.Value; } set { this.AttributeIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

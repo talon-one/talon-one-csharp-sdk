@@ -35,13 +35,15 @@ namespace TalonOneSdk.Model
         /// <param name="displayName">A customer-facing name for the rule.</param>
         /// <param name="displayDescription">A customer-facing description that explains the details of the rule.   For example, this property can contain details about eligibility requirements, reward timelines, or terms and conditions. </param>
         /// <param name="relatedData">Any additional data associated with the rule, such as an image URL, vendor name, or a content management system (CMS) ID. </param>
+        /// <param name="eligibility">eligibility</param>
         [JsonConstructor]
-        public RuleMetadata(string title, Option<string> displayName = default, Option<string> displayDescription = default, Option<string> relatedData = default)
+        public RuleMetadata(string title, Option<string> displayName = default, Option<string> displayDescription = default, Option<string> relatedData = default, Option<List<Object>> eligibility = default)
         {
             Title = title;
             DisplayNameOption = displayName;
             DisplayDescriptionOption = displayDescription;
             RelatedDataOption = relatedData;
+            EligibilityOption = eligibility;
             OnCreated();
         }
 
@@ -68,7 +70,7 @@ namespace TalonOneSdk.Model
         /// <value>A customer-facing name for the rule.</value>
         /* <example>20% off all shoes!</example> */
         [JsonPropertyName("displayName")]
-        public string DisplayName { get { return this.DisplayNameOption; } set { this.DisplayNameOption = new Option<string>(value); } }
+        public string DisplayName { get { return this.DisplayNameOption.Value; } set { this.DisplayNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of DisplayDescription
@@ -83,7 +85,7 @@ namespace TalonOneSdk.Model
         /// <value>A customer-facing description that explains the details of the rule.   For example, this property can contain details about eligibility requirements, reward timelines, or terms and conditions. </value>
         /* <example>Get a 20% discount on all shoes during Thanksgiving! Offer valid till Dec 5 only.</example> */
         [JsonPropertyName("displayDescription")]
-        public string DisplayDescription { get { return this.DisplayDescriptionOption; } set { this.DisplayDescriptionOption = new Option<string>(value); } }
+        public string DisplayDescription { get { return this.DisplayDescriptionOption.Value; } set { this.DisplayDescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of RelatedData
@@ -98,7 +100,20 @@ namespace TalonOneSdk.Model
         /// <value>Any additional data associated with the rule, such as an image URL, vendor name, or a content management system (CMS) ID. </value>
         /* <example>https://example.com/discounts/20-off-shoes.png</example> */
         [JsonPropertyName("relatedData")]
-        public string RelatedData { get { return this.RelatedDataOption; } set { this.RelatedDataOption = new Option<string>(value); } }
+        public string RelatedData { get { return this.RelatedDataOption.Value; } set { this.RelatedDataOption = new Option<string>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Eligibility
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<Object>> EligibilityOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Eligibility
+        /// </summary>
+        [JsonPropertyName("eligibility")]
+        public List<Object> Eligibility { get { return this.EligibilityOption.Value; } set { this.EligibilityOption = new Option<List<Object>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -112,6 +127,7 @@ namespace TalonOneSdk.Model
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  DisplayDescription: ").Append(DisplayDescription).Append("\n");
             sb.Append("  RelatedData: ").Append(RelatedData).Append("\n");
+            sb.Append("  Eligibility: ").Append(Eligibility).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -153,6 +169,7 @@ namespace TalonOneSdk.Model
             Option<string> displayName = default;
             Option<string> displayDescription = default;
             Option<string> relatedData = default;
+            Option<List<Object>> eligibility = default;
 
             while (utf8JsonReader.Read())
             {
@@ -181,6 +198,9 @@ namespace TalonOneSdk.Model
                         case "relatedData":
                             relatedData = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "eligibility":
+                            eligibility = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
@@ -193,7 +213,7 @@ namespace TalonOneSdk.Model
             if (title.IsSet && title.Value == null)
                 throw new ArgumentNullException(nameof(title), "Property is not nullable for class RuleMetadata.");
 
-            return new RuleMetadata(title.Value, displayName, displayDescription, relatedData);
+            return new RuleMetadata(title.Value, displayName, displayDescription, relatedData, eligibility);
         }
 
         /// <summary>
@@ -233,6 +253,12 @@ namespace TalonOneSdk.Model
 
             if (ruleMetadata.RelatedDataOption.IsSet)
                 writer.WriteString("relatedData", ruleMetadata.RelatedData);
+
+            if (ruleMetadata.EligibilityOption.IsSet)
+            {
+                writer.WritePropertyName("eligibility");
+                JsonSerializer.Serialize(writer, ruleMetadata.Eligibility, jsonSerializerOptions);
+            }
         }
     }
 }

@@ -53,7 +53,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>List of outgoing integrations.</value>
         [JsonPropertyName("data")]
-        public List<OutgoingIntegrationType> Data { get { return this.DataOption; } set { this.DataOption = new Option<List<OutgoingIntegrationType>>(value); } }
+        public List<OutgoingIntegrationType> Data { get { return this.DataOption.Value; } set { this.DataOption = new Option<List<OutgoingIntegrationType>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -106,7 +106,7 @@ namespace TalonOneSdk.Model
         /// <value>The integration name of the loyalty program that owns this entity.</value>
         /* <example>Loyalty_program</example> */
         [JsonPropertyName("programName")]
-        public string ProgramName { get { return this.ProgramNameOption; } set { this.ProgramNameOption = new Option<string>(value); } }
+        public string ProgramName { get { return this.ProgramNameOption.Value; } set { this.ProgramNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ProgramTitle
@@ -121,7 +121,7 @@ namespace TalonOneSdk.Model
         /// <value>The Campaign Manager-displayed name of the loyalty program that owns this entity.</value>
         /* <example>Loyalty program</example> */
         [JsonPropertyName("programTitle")]
-        public string ProgramTitle { get { return this.ProgramTitleOption; } set { this.ProgramTitleOption = new Option<string>(value); } }
+        public string ProgramTitle { get { return this.ProgramTitleOption.Value; } set { this.ProgramTitleOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -173,7 +173,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyTier" />

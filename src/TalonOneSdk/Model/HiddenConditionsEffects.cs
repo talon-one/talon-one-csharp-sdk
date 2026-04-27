@@ -60,7 +60,7 @@ namespace TalonOneSdk.Model
         /// <value>List of hidden built-in effects.</value>
         /* <example>[&quot;addFreeItem&quot;,&quot;createNotification&quot;]</example> */
         [JsonPropertyName("builtInEffects")]
-        public List<string> BuiltInEffects { get { return this.BuiltInEffectsOption; } set { this.BuiltInEffectsOption = new Option<List<string>>(value); } }
+        public List<string> BuiltInEffects { get { return this.BuiltInEffectsOption.Value; } set { this.BuiltInEffectsOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of Conditions
@@ -75,7 +75,7 @@ namespace TalonOneSdk.Model
         /// <value>List of hidden conditions.</value>
         /* <example>[&quot;checkAttributeValue&quot;,&quot;couponCodeIsValid&quot;]</example> */
         [JsonPropertyName("conditions")]
-        public List<string> Conditions { get { return this.ConditionsOption; } set { this.ConditionsOption = new Option<List<string>>(value); } }
+        public List<string> Conditions { get { return this.ConditionsOption.Value; } set { this.ConditionsOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of CustomEffects
@@ -90,7 +90,7 @@ namespace TalonOneSdk.Model
         /// <value>List of the IDs of hidden custom effects.</value>
         /* <example>[1,2]</example> */
         [JsonPropertyName("customEffects")]
-        public List<long> CustomEffects { get { return this.CustomEffectsOption; } set { this.CustomEffectsOption = new Option<List<long>>(value); } }
+        public List<long> CustomEffects { get { return this.CustomEffectsOption.Value; } set { this.CustomEffectsOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Used to track the state of Webhooks
@@ -105,7 +105,7 @@ namespace TalonOneSdk.Model
         /// <value>List of the IDs of hidden webhooks.</value>
         /* <example>[3,4]</example> */
         [JsonPropertyName("webhooks")]
-        public List<long> Webhooks { get { return this.WebhooksOption; } set { this.WebhooksOption = new Option<List<long>>(value); } }
+        public List<long> Webhooks { get { return this.WebhooksOption.Value; } set { this.WebhooksOption = new Option<List<long>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

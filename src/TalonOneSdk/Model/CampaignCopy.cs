@@ -74,7 +74,7 @@ namespace TalonOneSdk.Model
         /// <value>Name of the copied campaign (Defaults to \&quot;Copy of original campaign name\&quot;).</value>
         /* <example>Copy of Summer promotions</example> */
         [JsonPropertyName("name")]
-        public string Name { get { return this.NameOption; } set { this.NameOption = new Option<string>(value); } }
+        public string Name { get { return this.NameOption.Value; } set { this.NameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -89,7 +89,7 @@ namespace TalonOneSdk.Model
         /// <value>A detailed description of the campaign.</value>
         /* <example>Campaign for all summer 2021 promotions</example> */
         [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new Option<string>(value); } }
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of StartTime
@@ -104,7 +104,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp when the campaign will become active.</value>
         /* <example>2021-06-01T09:00:27.993483Z</example> */
         [JsonPropertyName("startTime")]
-        public DateTime? StartTime { get { return this.StartTimeOption; } set { this.StartTimeOption = new Option<DateTime?>(value); } }
+        public DateTime? StartTime { get { return this.StartTimeOption.Value; } set { this.StartTimeOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of EndTime
@@ -119,7 +119,7 @@ namespace TalonOneSdk.Model
         /// <value>Timestamp when the campaign will become inactive.</value>
         /* <example>2021-09-10T01:00:00.993483Z</example> */
         [JsonPropertyName("endTime")]
-        public DateTime? EndTime { get { return this.EndTimeOption; } set { this.EndTimeOption = new Option<DateTime?>(value); } }
+        public DateTime? EndTime { get { return this.EndTimeOption.Value; } set { this.EndTimeOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Used to track the state of Tags
@@ -134,7 +134,7 @@ namespace TalonOneSdk.Model
         /// <value>A list of tags for the campaign.</value>
         /* <example>[Summer, Shoes]</example> */
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
 
         /// <summary>
         /// Used to track the state of EvaluationGroupId
@@ -149,7 +149,7 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the campaign evaluation group the campaign belongs to.</value>
         /* <example>2</example> */
         [JsonPropertyName("evaluationGroupId")]
-        public long? EvaluationGroupId { get { return this.EvaluationGroupIdOption; } set { this.EvaluationGroupIdOption = new Option<long?>(value); } }
+        public long? EvaluationGroupId { get { return this.EvaluationGroupIdOption.Value; } set { this.EvaluationGroupIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -189,12 +189,12 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// The format to use to serialize StartTime
         /// </summary>
-        public static string StartTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string StartTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EndTime
         /// </summary>
-        public static string EndTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public static string EndTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CampaignCopy" />
