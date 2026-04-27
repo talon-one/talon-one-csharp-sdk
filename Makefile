@@ -1,5 +1,5 @@
 BUILD_DIR:=src/TalonOneSdk
-VERSION:=$(shell sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p' $(PWD)/$(BUILD_DIR)/TalonOneSdk.csproj)
+VERSION:=$(shell sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p' $(PWD)/$(BUILD_DIR)/TalonOneSdk.csproj | awk -F. 'BEGIN{OFS="."} {for(i=1;i<=NF;i++) $$i=int($$i); print}')
 
 default: testenv
 

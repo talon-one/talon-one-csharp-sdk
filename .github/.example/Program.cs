@@ -200,6 +200,80 @@ namespace _example
                 throw new Exception("Invalid store scenario returned a bad request without a readable error message.");
 
             Console.WriteLine(badRequest.Message);
+
+            //
+            // Management API setup for coupon tests (Issue #25)
+            //
+
+            var mgmtServices = new ServiceCollection();
+            var mgmtHostConfiguration = new HostConfiguration(mgmtServices)
+                .AddApiHttpClients(client => client.BaseAddress = new System.Uri("http://localhost:9000"))
+                .AddTokens(new ApiKeyToken(
+                    System.Environment.GetEnvironmentVariable("TALON_USER_TOKEN"),
+                    ClientUtils.ApiKeyHeader.Authorization,
+                    "Bearer "
+                ))
+                .UseProvider<RateLimitProvider<ApiKeyToken>, ApiKeyToken>();
+
+            var mgmtServiceProvider = mgmtServices.BuildServiceProvider();
+            var mgmtApiFactory = mgmtServiceProvider.GetRequiredService<IApiFactory>();
+            var managementApi = mgmtApiFactory.Create<IManagementApi>();
+
+            int applicationId = int.Parse(System.Environment.GetEnvironmentVariable("TALON_APPLICATION_ID"));
+            int campaignId = int.Parse(System.Environment.GetEnvironmentVariable("TALON_CAMPAIGN_ID"));
+
+            //
+            // Test Issue #25 Problem 1: CreateCoupons with UTC expiry date
+            //
+
+            Console.WriteLine("Testing CreateCoupons with UTC expiry date");
+
+            var newCouponsWithExpiry = new NewCoupons(
+                numberOfCoupons: 1,
+                usageLimit: 0
+            )
+            {
+                ExpiryDate = DateTime.UtcNow.AddYears(1)
+            };
+
+            ICreateCouponsApiResponse createCouponsResponse1 =
+                await managementApi.CreateCouponsAsync(applicationId, campaignId, newCouponsWithExpiry, silent: "no");
+
+            if (!createCouponsResponse1.IsOk)
+            {
+                throw new Exception($"CreateCoupons with UTC expiry failed with status {(int)createCouponsResponse1.StatusCode} ({createCouponsResponse1.ReasonPhrase}).{Environment.NewLine}{createCouponsResponse1.RawContent}");
+            }
+
+            Console.WriteLine("CreateCoupons with UTC expiry date succeeded");
+            Console.WriteLine(createCouponsResponse1.Ok());
+
+            //
+            // Test Issue #25 Problem 2: CreateCoupons with Dictionary<string, object> attributes
+            //
+
+            Console.WriteLine("Testing CreateCoupons with Dictionary<string, object> attributes");
+
+            var newCouponsWithAttrs = new NewCoupons(
+                numberOfCoupons: 1,
+                usageLimit: 0
+            )
+            {
+                Attributes = new Dictionary<string, object>
+                {
+                    ["couponIsActive"] = true
+                }
+            };
+
+            ICreateCouponsApiResponse createCouponsResponse2 =
+                await managementApi.CreateCouponsAsync(applicationId, campaignId, newCouponsWithAttrs, silent: "no");
+
+            if (!createCouponsResponse2.IsOk)
+            {
+                throw new Exception($"CreateCoupons with Dictionary attributes failed with status {(int)createCouponsResponse2.StatusCode} ({createCouponsResponse2.ReasonPhrase}).{Environment.NewLine}{createCouponsResponse2.RawContent}");
+            }
+
+            Console.WriteLine("CreateCoupons with Dictionary<string, object> attributes succeeded");
+            Console.WriteLine(createCouponsResponse2.Ok());
         }
     }
 }
