@@ -268,6 +268,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.CampaignEligibility.FeaturesEnumToJsonValue(campaignEligibilityFeaturesEnum);
             if (obj is TalonOneSdk.Model.CampaignEligibility.StateEnum campaignEligibilityStateEnum)
                 return TalonOneSdk.Model.CampaignEligibility.StateEnumToJsonValue(campaignEligibilityStateEnum);
+            if (obj is TalonOneSdk.Model.CampaignEligibilityFailureDetails.FailureCodeEnum campaignEligibilityFailureDetailsFailureCodeEnum)
+                return TalonOneSdk.Model.CampaignEligibilityFailureDetails.FailureCodeEnumToJsonValue(campaignEligibilityFailureDetailsFailureCodeEnum);
             if (obj is TalonOneSdk.Model.CampaignEvaluationGroup.EvaluationModeEnum campaignEvaluationGroupEvaluationModeEnum)
                 return TalonOneSdk.Model.CampaignEvaluationGroup.EvaluationModeEnumToJsonValue(campaignEvaluationGroupEvaluationModeEnum);
             if (obj is TalonOneSdk.Model.CampaignEvaluationGroup.EvaluationScopeEnum campaignEvaluationGroupEvaluationScopeEnum)
@@ -516,6 +518,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.RevisionVersion.FeaturesEnumToJsonValue(revisionVersionFeaturesEnum);
             if (obj is TalonOneSdk.Model.Reward.StatusEnum rewardStatusEnum)
                 return TalonOneSdk.Model.Reward.StatusEnumToJsonValue(rewardStatusEnum);
+            if (obj is TalonOneSdk.Model.RuleEligibilityFailureDetails.FailureCodeEnum ruleEligibilityFailureDetailsFailureCodeEnum)
+                return TalonOneSdk.Model.RuleEligibilityFailureDetails.FailureCodeEnumToJsonValue(ruleEligibilityFailureDetailsFailureCodeEnum);
             if (obj is TalonOneSdk.Model.ScimPatchOperation.OpEnum scimPatchOperationOpEnum)
                 return TalonOneSdk.Model.ScimPatchOperation.OpEnumToJsonValue(scimPatchOperationOpEnum);
             if (obj is TalonOneSdk.Model.SecondaryDeployment.StatusEnum secondaryDeploymentStatusEnum)

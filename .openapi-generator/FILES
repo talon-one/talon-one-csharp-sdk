@@ -127,6 +127,8 @@ docs/models/CampaignDetail.md
 docs/models/CampaignEditedNotification.md
 docs/models/CampaignEditedNotificationItem.md
 docs/models/CampaignEligibility.md
+docs/models/CampaignEligibilityDetails.md
+docs/models/CampaignEligibilityFailureDetails.md
 docs/models/CampaignEntity.md
 docs/models/CampaignEvaluationGroup.md
 docs/models/CampaignEvaluationPosition.md
@@ -594,6 +596,8 @@ docs/models/RollbackDiscountEffectProps.md
 docs/models/RollbackIncreasedAchievementProgressEffectProps.md
 docs/models/RollbackReferralEffectProps.md
 docs/models/Rule.md
+docs/models/RuleEligibility.md
+docs/models/RuleEligibilityFailureDetails.md
 docs/models/RuleFailureReason.md
 docs/models/RuleMetadata.md
 docs/models/Ruleset.md
@@ -830,6 +834,8 @@ src/TalonOneSdk.Test/Model/CampaignDeletedNotificationTests.cs
 src/TalonOneSdk.Test/Model/CampaignDetailTests.cs
 src/TalonOneSdk.Test/Model/CampaignEditedNotificationItemTests.cs
 src/TalonOneSdk.Test/Model/CampaignEditedNotificationTests.cs
+src/TalonOneSdk.Test/Model/CampaignEligibilityDetailsTests.cs
+src/TalonOneSdk.Test/Model/CampaignEligibilityFailureDetailsTests.cs
 src/TalonOneSdk.Test/Model/CampaignEligibilityTests.cs
 src/TalonOneSdk.Test/Model/CampaignEntityTests.cs
 src/TalonOneSdk.Test/Model/CampaignEvaluationGroupTests.cs
@@ -1298,6 +1304,8 @@ src/TalonOneSdk.Test/Model/RollbackDeductedLoyaltyPointsEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RollbackDiscountEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RollbackIncreasedAchievementProgressEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RollbackReferralEffectPropsTests.cs
+src/TalonOneSdk.Test/Model/RuleEligibilityFailureDetailsTests.cs
+src/TalonOneSdk.Test/Model/RuleEligibilityTests.cs
 src/TalonOneSdk.Test/Model/RuleFailureReasonTests.cs
 src/TalonOneSdk.Test/Model/RuleMetadataTests.cs
 src/TalonOneSdk.Test/Model/RuleTests.cs
@@ -1557,6 +1565,8 @@ src/TalonOneSdk/Model/CampaignDetail.cs
 src/TalonOneSdk/Model/CampaignEditedNotification.cs
 src/TalonOneSdk/Model/CampaignEditedNotificationItem.cs
 src/TalonOneSdk/Model/CampaignEligibility.cs
+src/TalonOneSdk/Model/CampaignEligibilityDetails.cs
+src/TalonOneSdk/Model/CampaignEligibilityFailureDetails.cs
 src/TalonOneSdk/Model/CampaignEntity.cs
 src/TalonOneSdk/Model/CampaignEvaluationGroup.cs
 src/TalonOneSdk/Model/CampaignEvaluationPosition.cs
@@ -2024,6 +2034,8 @@ src/TalonOneSdk/Model/RollbackDiscountEffectProps.cs
 src/TalonOneSdk/Model/RollbackIncreasedAchievementProgressEffectProps.cs
 src/TalonOneSdk/Model/RollbackReferralEffectProps.cs
 src/TalonOneSdk/Model/Rule.cs
+src/TalonOneSdk/Model/RuleEligibility.cs
+src/TalonOneSdk/Model/RuleEligibilityFailureDetails.cs
 src/TalonOneSdk/Model/RuleFailureReason.cs
 src/TalonOneSdk/Model/RuleMetadata.cs
 src/TalonOneSdk/Model/Ruleset.cs

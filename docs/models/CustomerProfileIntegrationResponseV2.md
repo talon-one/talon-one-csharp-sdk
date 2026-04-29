@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Loyalty** | [**Loyalty**](Loyalty.md) |  | [optional] 
 **TriggeredCampaigns** | [**List&lt;Campaign&gt;**](Campaign.md) |  | [optional] 
 **RuleFailureReasons** | [**List&lt;RuleFailureReason&gt;**](RuleFailureReason.md) |  | [optional] 
+**CampaignEligibility** | [**List&lt;CampaignEligibility&gt;**](CampaignEligibility.md) |  | [optional] 
 **AwardedGiveaways** | [**List&lt;Giveaway&gt;**](Giveaway.md) |  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)

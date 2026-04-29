@@ -37,7 +37,7 @@ namespace TalonOneSdk.Model
         /// <param name="relatedData">Any additional data associated with the rule, such as an image URL, vendor name, or a content management system (CMS) ID. </param>
         /// <param name="eligibility">eligibility</param>
         [JsonConstructor]
-        public RuleMetadata(string title, Option<string> displayName = default, Option<string> displayDescription = default, Option<string> relatedData = default, Option<List<Object>> eligibility = default)
+        public RuleMetadata(string title, Option<string> displayName = default, Option<string> displayDescription = default, Option<string> relatedData = default, Option<List<RuleEligibility>> eligibility = default)
         {
             Title = title;
             DisplayNameOption = displayName;
@@ -107,13 +107,13 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Object>> EligibilityOption { get; private set; }
+        public Option<List<RuleEligibility>> EligibilityOption { get; private set; }
 
         /// <summary>
         /// Gets or Sets Eligibility
         /// </summary>
         [JsonPropertyName("eligibility")]
-        public List<Object> Eligibility { get { return this.EligibilityOption.Value; } set { this.EligibilityOption = new Option<List<Object>>(value); } }
+        public List<RuleEligibility> Eligibility { get { return this.EligibilityOption.Value; } set { this.EligibilityOption = new Option<List<RuleEligibility>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -169,7 +169,7 @@ namespace TalonOneSdk.Model
             Option<string> displayName = default;
             Option<string> displayDescription = default;
             Option<string> relatedData = default;
-            Option<List<Object>> eligibility = default;
+            Option<List<RuleEligibility>> eligibility = default;
 
             while (utf8JsonReader.Read())
             {
@@ -199,7 +199,7 @@ namespace TalonOneSdk.Model
                             relatedData = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "eligibility":
-                            eligibility = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            eligibility = new Option<List<RuleEligibility>>(JsonSerializer.Deserialize<List<RuleEligibility>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

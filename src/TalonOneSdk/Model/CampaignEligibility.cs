@@ -36,6 +36,7 @@ namespace TalonOneSdk.Model
         /// <param name="name">The name of the campaign.</param>
         /// <param name="tags">A list of tags for the campaign.</param>
         /// <param name="features">The features enabled in this campaign.</param>
+        /// <param name="eligibility">The customer&#39;s eligibility for each campaign in the current customer session.</param>
         /// <param name="description">A detailed description of the campaign.</param>
         /// <param name="startTime">Timestamp when the campaign will become active.</param>
         /// <param name="endTime">Timestamp when the campaign will become inactive.</param>
@@ -43,13 +44,14 @@ namespace TalonOneSdk.Model
         /// <param name="state">The state of the campaign.  (default to StateEnum.Enabled)</param>
         /// <param name="rules">A list of rules containing customer-facing details of the rewards defined in the campaign.</param>
         [JsonConstructor]
-        public CampaignEligibility(long id, long applicationId, string name, List<string> tags, List<CampaignEligibility.FeaturesEnum> features, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, StateEnum state = StateEnum.Enabled, Option<List<RuleMetadata>> rules = default)
+        public CampaignEligibility(long id, long applicationId, string name, List<string> tags, List<CampaignEligibility.FeaturesEnum> features, List<CampaignEligibilityDetails> eligibility, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, StateEnum state = StateEnum.Enabled, Option<List<RuleMetadata>> rules = default)
         {
             Id = id;
             ApplicationId = applicationId;
             Name = name;
             Tags = tags;
             Features = features;
+            Eligibility = eligibility;
             DescriptionOption = description;
             StartTimeOption = startTime;
             EndTimeOption = endTime;
@@ -285,6 +287,13 @@ namespace TalonOneSdk.Model
         public List<CampaignEligibility.FeaturesEnum> Features { get; set; }
 
         /// <summary>
+        /// The customer&#39;s eligibility for each campaign in the current customer session.
+        /// </summary>
+        /// <value>The customer&#39;s eligibility for each campaign in the current customer session.</value>
+        [JsonPropertyName("eligibility")]
+        public List<CampaignEligibilityDetails> Eligibility { get; set; }
+
+        /// <summary>
         /// Used to track the state of Description
         /// </summary>
         [JsonIgnore]
@@ -370,6 +379,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  Features: ").Append(Features).Append("\n");
+            sb.Append("  Eligibility: ").Append(Eligibility).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  StartTime: ").Append(StartTime).Append("\n");
             sb.Append("  EndTime: ").Append(EndTime).Append("\n");
@@ -434,6 +444,7 @@ namespace TalonOneSdk.Model
             Option<string> name = default;
             Option<List<string>> tags = default;
             Option<List<CampaignEligibility.FeaturesEnum>> features = default;
+            Option<List<CampaignEligibilityDetails>> eligibility = default;
             Option<string> description = default;
             Option<DateTime?> startTime = default;
             Option<DateTime?> endTime = default;
@@ -492,6 +503,9 @@ namespace TalonOneSdk.Model
                             else
                                 throw new JsonException();
                             break;
+                        case "eligibility":
+                            eligibility = new Option<List<CampaignEligibilityDetails>>(JsonSerializer.Deserialize<List<CampaignEligibilityDetails>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -533,6 +547,9 @@ namespace TalonOneSdk.Model
             if (!features.IsSet)
                 throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(features));
 
+            if (!eligibility.IsSet)
+                throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(eligibility));
+
             if (!state.IsSet)
                 throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(state));
 
@@ -551,10 +568,13 @@ namespace TalonOneSdk.Model
             if (features.IsSet && features.Value == null)
                 throw new ArgumentNullException(nameof(features), "Property is not nullable for class CampaignEligibility.");
 
+            if (eligibility.IsSet && eligibility.Value == null)
+                throw new ArgumentNullException(nameof(eligibility), "Property is not nullable for class CampaignEligibility.");
+
             if (state.IsSet && state.Value == null)
                 throw new ArgumentNullException(nameof(state), "Property is not nullable for class CampaignEligibility.");
 
-            return new CampaignEligibility(id.Value.Value, applicationId.Value.Value, name.Value, tags.Value, features.Value, description, startTime, endTime, attributes, state.Value.Value, rules);
+            return new CampaignEligibility(id.Value.Value, applicationId.Value.Value, name.Value, tags.Value, features.Value, eligibility.Value, description, startTime, endTime, attributes, state.Value.Value, rules);
         }
 
         /// <summary>
@@ -590,6 +610,9 @@ namespace TalonOneSdk.Model
             if (campaignEligibility.Features == null)
                 throw new ArgumentNullException(nameof(campaignEligibility.Features), "Property is required for class CampaignEligibility.");
 
+            if (campaignEligibility.Eligibility == null)
+                throw new ArgumentNullException(nameof(campaignEligibility.Eligibility), "Property is required for class CampaignEligibility.");
+
             writer.WriteNumber("id", campaignEligibility.Id);
 
             writer.WriteNumber("applicationId", campaignEligibility.ApplicationId);
@@ -605,6 +628,8 @@ namespace TalonOneSdk.Model
                 writer.WriteStringValue(CampaignEligibility.FeaturesEnumToJsonValue(featuresItem));
             }
             writer.WriteEndArray();
+            writer.WritePropertyName("eligibility");
+            JsonSerializer.Serialize(writer, campaignEligibility.Eligibility, jsonSerializerOptions);
             if (campaignEligibility.DescriptionOption.IsSet)
                 writer.WriteString("description", campaignEligibility.Description);
 
