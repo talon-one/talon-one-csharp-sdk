@@ -2941,7 +2941,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/loyalty_programs/{loyaltyProgramId}/activate_points"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/activate_points");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/loyalty_programs/{loyaltyProgramId}/activate_points");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
 
                     httpRequestMessageLocalVar.Content = (activateLoyaltyPoints as object) is System.IO.Stream stream
@@ -3318,7 +3318,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/best_prior_price"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/best_prior_price");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/best_prior_price");
 
                     httpRequestMessageLocalVar.Content = (bestPriorPriceRequest as object) is System.IO.Stream stream
                         ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
@@ -3580,7 +3580,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v2/audiences"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/audiences");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/audiences");
 
                     httpRequestMessageLocalVar.Content = (newAudience as object) is System.IO.Stream stream
                         ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
@@ -3966,7 +3966,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/coupon_reservations/{couponValue}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/coupon_reservations/{couponValue}");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/coupon_reservations/{couponValue}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcouponValue%7D", Uri.EscapeDataString(couponValue.ToString()));
 
                     httpRequestMessageLocalVar.Content = (couponReservations as object) is System.IO.Stream stream
@@ -4343,7 +4343,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/referrals"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/referrals");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/referrals");
 
                     httpRequestMessageLocalVar.Content = (newReferral as object) is System.IO.Stream stream
                         ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
@@ -4691,7 +4691,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/referrals_for_multiple_advocates"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/referrals_for_multiple_advocates");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/referrals_for_multiple_advocates");
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
@@ -5029,7 +5029,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v2/audiences/{audienceId}/memberships"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/audiences/{audienceId}/memberships");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/audiences/{audienceId}/memberships");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BaudienceId%7D", Uri.EscapeDataString(audienceId.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -5310,7 +5310,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v2/audiences/{audienceId}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/audiences/{audienceId}");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/audiences/{audienceId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BaudienceId%7D", Uri.EscapeDataString(audienceId.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -5652,7 +5652,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/coupon_reservations/{couponValue}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/coupon_reservations/{couponValue}");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/coupon_reservations/{couponValue}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcouponValue%7D", Uri.EscapeDataString(couponValue.ToString()));
 
                     httpRequestMessageLocalVar.Content = (couponReservations as object) is System.IO.Stream stream
@@ -5997,7 +5997,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/customer_data/{integrationId}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/customer_data/{integrationId}");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/customer_data/{integrationId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -6307,7 +6307,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/delete_transactions"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/delete_transactions");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/delete_transactions");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
@@ -6659,7 +6659,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/loyalty_programs/{loyaltyProgramId}/cards"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/cards");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/loyalty_programs/{loyaltyProgramId}/cards");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
 
                     httpRequestMessageLocalVar.Content = (generateLoyaltyCard as object) is System.IO.Stream stream
@@ -7038,7 +7038,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/customer_profiles/{integrationId}/achievements/{achievementId}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/customer_profiles/{integrationId}/achievements/{achievementId}");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/customer_profiles/{integrationId}/achievements/{achievementId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BachievementId%7D", Uri.EscapeDataString(achievementId.ToString()));
 
@@ -7474,7 +7474,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/customer_profiles/{integrationId}/achievements"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/customer_profiles/{integrationId}/achievements");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/customer_profiles/{integrationId}/achievements");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
@@ -7896,7 +7896,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/customer_profiles/{integrationId}/inventory"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/customer_profiles/{integrationId}/inventory");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/customer_profiles/{integrationId}/inventory");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
@@ -8244,7 +8244,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v2/customer_sessions/{customerSessionId}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/customer_sessions/{customerSessionId}");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/customer_sessions/{customerSessionId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcustomerSessionId%7D", Uri.EscapeDataString(customerSessionId.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -8604,7 +8604,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/balances"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/balances");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/balances");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
@@ -9007,7 +9007,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/balances"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/balances");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/balances");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyCardId%7D", Uri.EscapeDataString(loyaltyCardId.ToString()));
 
@@ -9450,7 +9450,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/points"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/points");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/points");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyCardId%7D", Uri.EscapeDataString(loyaltyCardId.ToString()));
 
@@ -9916,7 +9916,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transactions"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transactions");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transactions");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyCardId%7D", Uri.EscapeDataString(loyaltyCardId.ToString()));
 
@@ -10380,7 +10380,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/points"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/points");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/points");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
@@ -10846,7 +10846,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
@@ -11242,7 +11242,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/coupon_reservations/customerprofiles/{couponValue}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/coupon_reservations/customerprofiles/{couponValue}");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/coupon_reservations/customerprofiles/{couponValue}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcouponValue%7D", Uri.EscapeDataString(couponValue.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -11642,7 +11642,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/integration/campaigns"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/integration/campaigns");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/integration/campaigns");
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
@@ -12046,7 +12046,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyCardId%7D", Uri.EscapeDataString(loyaltyCardId.ToString()));
 
@@ -12424,7 +12424,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v2/customer_sessions/{customerSessionId}/reopen"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/customer_sessions/{customerSessionId}/reopen");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/customer_sessions/{customerSessionId}/reopen");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcustomerSessionId%7D", Uri.EscapeDataString(customerSessionId.ToString()));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -12772,7 +12772,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v2/customer_sessions/{customerSessionId}/returns"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/customer_sessions/{customerSessionId}/returns");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/customer_sessions/{customerSessionId}/returns");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcustomerSessionId%7D", Uri.EscapeDataString(customerSessionId.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
@@ -13127,7 +13127,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v1/catalogs/{catalogId}/sync"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v1/catalogs/{catalogId}/sync");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/catalogs/{catalogId}/sync");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcatalogId%7D", Uri.EscapeDataString(catalogId.ToString()));
 
                     httpRequestMessageLocalVar.Content = (catalogSyncRequest as object) is System.IO.Stream stream
@@ -13526,7 +13526,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v2/events"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/events");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/events");
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
@@ -13969,7 +13969,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/unlink_profile"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/unlink_profile");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/unlink_profile");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyCardId%7D", Uri.EscapeDataString(loyaltyCardId.ToString()));
 
@@ -14353,7 +14353,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v2/audience_customers/{audienceId}/attributes"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/audience_customers/{audienceId}/attributes");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/audience_customers/{audienceId}/attributes");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BaudienceId%7D", Uri.EscapeDataString(audienceId.ToString()));
 
                     httpRequestMessageLocalVar.Content = (body as object) is System.IO.Stream stream
@@ -14666,7 +14666,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v2/audiences/{audienceId}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/audiences/{audienceId}");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/audiences/{audienceId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BaudienceId%7D", Uri.EscapeDataString(audienceId.ToString()));
 
                     httpRequestMessageLocalVar.Content = (updateAudience as object) is System.IO.Stream stream
@@ -15005,7 +15005,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v2/customer_audiences"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/customer_audiences");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/customer_audiences");
 
                     httpRequestMessageLocalVar.Content = (customerProfileAudienceRequest as object) is System.IO.Stream stream
                         ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
@@ -15371,7 +15371,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v2/customer_profiles/{integrationId}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/customer_profiles/{integrationId}");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/customer_profiles/{integrationId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
@@ -15768,7 +15768,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v2/customer_profiles"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/customer_profiles");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/customer_profiles");
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
@@ -16173,7 +16173,7 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/v2/customer_sessions/{customerSessionId}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/v2/customer_sessions/{customerSessionId}");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/customer_sessions/{customerSessionId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcustomerSessionId%7D", Uri.EscapeDataString(customerSessionId.ToString()));
 
                     System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);

@@ -37,10 +37,11 @@ namespace TalonOneSdk.Model
         /// <param name="customerProfile">The customer profile associated with the event.</param>
         /// <param name="loyalty">The loyalty program status of the customer.</param>
         /// <param name="triggeredCampaigns">The campaigns that were triggered as a result of processing the event.</param>
+        /// <param name="campaignEligibility">A list of campaigns and their evaluation status for the current customer session.  **Note**:  - This response can **only** be included if the &#x60;dry&#x60; parameter in the query is set to &#x60;true&#x60;.  - Do not include &#x60;triggeredCampaigns&#x60; or &#x60;ruleFailureReasons&#x60; in &#x60;responseContent&#x60; to avoid duplicate results. </param>
         /// <param name="ruleFailureReasons">The reasons why certain rules were not triggered during the event processing. </param>
         /// <param name="awardedGiveaways">The giveaways that were awarded during the event processing.</param>
         [JsonConstructor]
-        public IntegrationResponse(List<Effect> effects, List<Coupon> createdCoupons, List<Referral> createdReferrals, Option<CustomerProfile> customerProfile = default, Option<Loyalty> loyalty = default, Option<List<Campaign>> triggeredCampaigns = default, Option<List<RuleFailureReason>> ruleFailureReasons = default, Option<List<Giveaway>> awardedGiveaways = default)
+        public IntegrationResponse(List<Effect> effects, List<Coupon> createdCoupons, List<Referral> createdReferrals, Option<CustomerProfile> customerProfile = default, Option<Loyalty> loyalty = default, Option<List<Campaign>> triggeredCampaigns = default, Option<List<CampaignEligibility>> campaignEligibility = default, Option<List<RuleFailureReason>> ruleFailureReasons = default, Option<List<Giveaway>> awardedGiveaways = default)
         {
             Effects = effects;
             CreatedCoupons = createdCoupons;
@@ -48,6 +49,7 @@ namespace TalonOneSdk.Model
             CustomerProfileOption = customerProfile;
             LoyaltyOption = loyalty;
             TriggeredCampaignsOption = triggeredCampaigns;
+            CampaignEligibilityOption = campaignEligibility;
             RuleFailureReasonsOption = ruleFailureReasons;
             AwardedGiveawaysOption = awardedGiveaways;
             OnCreated();
@@ -119,6 +121,20 @@ namespace TalonOneSdk.Model
         public List<Campaign> TriggeredCampaigns { get { return this.TriggeredCampaignsOption.Value; } set { this.TriggeredCampaignsOption = new Option<List<Campaign>>(value); } }
 
         /// <summary>
+        /// Used to track the state of CampaignEligibility
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<CampaignEligibility>> CampaignEligibilityOption { get; private set; }
+
+        /// <summary>
+        /// A list of campaigns and their evaluation status for the current customer session.  **Note**:  - This response can **only** be included if the &#x60;dry&#x60; parameter in the query is set to &#x60;true&#x60;.  - Do not include &#x60;triggeredCampaigns&#x60; or &#x60;ruleFailureReasons&#x60; in &#x60;responseContent&#x60; to avoid duplicate results. 
+        /// </summary>
+        /// <value>A list of campaigns and their evaluation status for the current customer session.  **Note**:  - This response can **only** be included if the &#x60;dry&#x60; parameter in the query is set to &#x60;true&#x60;.  - Do not include &#x60;triggeredCampaigns&#x60; or &#x60;ruleFailureReasons&#x60; in &#x60;responseContent&#x60; to avoid duplicate results. </value>
+        [JsonPropertyName("campaignEligibility")]
+        public List<CampaignEligibility> CampaignEligibility { get { return this.CampaignEligibilityOption.Value; } set { this.CampaignEligibilityOption = new Option<List<CampaignEligibility>>(value); } }
+
+        /// <summary>
         /// Used to track the state of RuleFailureReasons
         /// </summary>
         [JsonIgnore]
@@ -160,6 +176,7 @@ namespace TalonOneSdk.Model
             sb.Append("  CustomerProfile: ").Append(CustomerProfile).Append("\n");
             sb.Append("  Loyalty: ").Append(Loyalty).Append("\n");
             sb.Append("  TriggeredCampaigns: ").Append(TriggeredCampaigns).Append("\n");
+            sb.Append("  CampaignEligibility: ").Append(CampaignEligibility).Append("\n");
             sb.Append("  RuleFailureReasons: ").Append(RuleFailureReasons).Append("\n");
             sb.Append("  AwardedGiveaways: ").Append(AwardedGiveaways).Append("\n");
             sb.Append("}\n");
@@ -205,6 +222,7 @@ namespace TalonOneSdk.Model
             Option<CustomerProfile> customerProfile = default;
             Option<Loyalty> loyalty = default;
             Option<List<Campaign>> triggeredCampaigns = default;
+            Option<List<CampaignEligibility>> campaignEligibility = default;
             Option<List<RuleFailureReason>> ruleFailureReasons = default;
             Option<List<Giveaway>> awardedGiveaways = default;
 
@@ -241,6 +259,9 @@ namespace TalonOneSdk.Model
                         case "triggeredCampaigns":
                             triggeredCampaigns = new Option<List<Campaign>>(JsonSerializer.Deserialize<List<Campaign>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "campaignEligibility":
+                            campaignEligibility = new Option<List<CampaignEligibility>>(JsonSerializer.Deserialize<List<CampaignEligibility>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "ruleFailureReasons":
                             ruleFailureReasons = new Option<List<RuleFailureReason>>(JsonSerializer.Deserialize<List<RuleFailureReason>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -271,7 +292,7 @@ namespace TalonOneSdk.Model
             if (createdReferrals.IsSet && createdReferrals.Value == null)
                 throw new ArgumentNullException(nameof(createdReferrals), "Property is not nullable for class IntegrationResponse.");
 
-            return new IntegrationResponse(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, loyalty, triggeredCampaigns, ruleFailureReasons, awardedGiveaways);
+            return new IntegrationResponse(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, loyalty, triggeredCampaigns, campaignEligibility, ruleFailureReasons, awardedGiveaways);
         }
 
         /// <summary>
@@ -327,6 +348,11 @@ namespace TalonOneSdk.Model
             {
                 writer.WritePropertyName("triggeredCampaigns");
                 JsonSerializer.Serialize(writer, integrationResponse.TriggeredCampaigns, jsonSerializerOptions);
+            }
+            if (integrationResponse.CampaignEligibilityOption.IsSet)
+            {
+                writer.WritePropertyName("campaignEligibility");
+                JsonSerializer.Serialize(writer, integrationResponse.CampaignEligibility, jsonSerializerOptions);
             }
             if (integrationResponse.RuleFailureReasonsOption.IsSet)
             {

@@ -151,6 +151,8 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new CampaignEditedNotificationJsonConverter());
             _jsonOptions.Converters.Add(new CampaignEditedNotificationItemJsonConverter());
             _jsonOptions.Converters.Add(new CampaignEligibilityJsonConverter());
+            _jsonOptions.Converters.Add(new CampaignEligibilityDetailsJsonConverter());
+            _jsonOptions.Converters.Add(new CampaignEligibilityFailureDetailsJsonConverter());
             _jsonOptions.Converters.Add(new CampaignEntityJsonConverter());
             _jsonOptions.Converters.Add(new CampaignEvaluationGroupJsonConverter());
             _jsonOptions.Converters.Add(new CampaignEvaluationPositionJsonConverter());
@@ -618,6 +620,8 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new RollbackIncreasedAchievementProgressEffectPropsJsonConverter());
             _jsonOptions.Converters.Add(new RollbackReferralEffectPropsJsonConverter());
             _jsonOptions.Converters.Add(new RuleJsonConverter());
+            _jsonOptions.Converters.Add(new RuleEligibilityJsonConverter());
+            _jsonOptions.Converters.Add(new RuleEligibilityFailureDetailsJsonConverter());
             _jsonOptions.Converters.Add(new RuleFailureReasonJsonConverter());
             _jsonOptions.Converters.Add(new RuleMetadataJsonConverter());
             _jsonOptions.Converters.Add(new RulesetJsonConverter());

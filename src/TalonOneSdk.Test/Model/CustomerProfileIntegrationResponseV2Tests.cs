@@ -126,6 +126,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CampaignEligibility'
+        /// </summary>
+        [Fact]
+        public void CampaignEligibilityTest()
+        {
+            // TODO unit test for the property 'CampaignEligibility'
+        }
+
+        /// <summary>
         /// Test the property 'AwardedGiveaways'
         /// </summary>
         [Fact]

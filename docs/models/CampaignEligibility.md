@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Name** | **string** | The name of the campaign. | 
 **Tags** | **List&lt;string&gt;** | A list of tags for the campaign. | 
 **Features** | **List&lt;CampaignEligibility.FeaturesEnum&gt;** | The features enabled in this campaign. | 
+**Eligibility** | [**List&lt;CampaignEligibilityDetails&gt;**](CampaignEligibilityDetails.md) | The customer&#39;s eligibility for each campaign in the current customer session. | 
 **Description** | **string** | A detailed description of the campaign. | [optional] 
 **StartTime** | **DateTime** | Timestamp when the campaign will become active. | [optional] 
 **EndTime** | **DateTime** | Timestamp when the campaign will become inactive. | [optional] 
