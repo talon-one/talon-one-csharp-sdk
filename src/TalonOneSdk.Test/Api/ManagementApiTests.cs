@@ -1900,7 +1900,7 @@ namespace TalonOneSdk.Test.Api
         public async Task ImportAccountCollectionAsyncTest()
         {
             long collectionId = default;
-            Client.Option<string> upFile = default;
+            Client.Option<System.IO.Stream> upFile = default;
             var response = await _instance.ImportAccountCollectionAsync(collectionId, upFile);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.Import>(model);
@@ -1913,7 +1913,7 @@ namespace TalonOneSdk.Test.Api
         public async Task ImportAllowedListAsyncTest()
         {
             long attributeId = default;
-            Client.Option<string> upFile = default;
+            Client.Option<System.IO.Stream> upFile = default;
             var response = await _instance.ImportAllowedListAsync(attributeId, upFile);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.Import>(model);
@@ -1926,7 +1926,7 @@ namespace TalonOneSdk.Test.Api
         public async Task ImportAudiencesMembershipsAsyncTest()
         {
             long audienceId = default;
-            Client.Option<string> upFile = default;
+            Client.Option<System.IO.Stream> upFile = default;
             var response = await _instance.ImportAudiencesMembershipsAsync(audienceId, upFile);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.Import>(model);
@@ -1942,7 +1942,7 @@ namespace TalonOneSdk.Test.Api
             long campaignId = default;
             Client.Option<string> action = default;
             Client.Option<string> period = default;
-            Client.Option<string> upFile = default;
+            Client.Option<System.IO.Stream> upFile = default;
             var response = await _instance.ImportCampaignStoreBudgetAsync(applicationId, campaignId, action, period, upFile);
             var model = response.Created();
             Assert.IsType<TalonOneSdk.Model.Import>(model);
@@ -1956,7 +1956,7 @@ namespace TalonOneSdk.Test.Api
         {
             long applicationId = default;
             long campaignId = default;
-            Client.Option<string> upFile = default;
+            Client.Option<System.IO.Stream> upFile = default;
             var response = await _instance.ImportCampaignStoresAsync(applicationId, campaignId, upFile);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.Import>(model);
@@ -1971,7 +1971,7 @@ namespace TalonOneSdk.Test.Api
             long applicationId = default;
             long campaignId = default;
             long collectionId = default;
-            Client.Option<string> upFile = default;
+            Client.Option<System.IO.Stream> upFile = default;
             var response = await _instance.ImportCollectionAsync(applicationId, campaignId, collectionId, upFile);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.Import>(model);
@@ -1986,7 +1986,7 @@ namespace TalonOneSdk.Test.Api
             long applicationId = default;
             long campaignId = default;
             Client.Option<bool> skipDuplicates = default;
-            Client.Option<string> upFile = default;
+            Client.Option<System.IO.Stream> upFile = default;
             var response = await _instance.ImportCouponsAsync(applicationId, campaignId, skipDuplicates, upFile);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.Import>(model);
@@ -1999,7 +1999,7 @@ namespace TalonOneSdk.Test.Api
         public async Task ImportLoyaltyCardsAsyncTest()
         {
             long loyaltyProgramId = default;
-            Client.Option<string> upFile = default;
+            Client.Option<System.IO.Stream> upFile = default;
             var response = await _instance.ImportLoyaltyCardsAsync(loyaltyProgramId, upFile);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.Import>(model);
@@ -2012,7 +2012,7 @@ namespace TalonOneSdk.Test.Api
         public async Task ImportLoyaltyCustomersTiersAsyncTest()
         {
             long loyaltyProgramId = default;
-            Client.Option<string> upFile = default;
+            Client.Option<System.IO.Stream> upFile = default;
             var response = await _instance.ImportLoyaltyCustomersTiersAsync(loyaltyProgramId, upFile);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.Import>(model);
@@ -2026,7 +2026,7 @@ namespace TalonOneSdk.Test.Api
         {
             long loyaltyProgramId = default;
             Client.Option<bool> notificationsEnabled = default;
-            Client.Option<string> upFile = default;
+            Client.Option<System.IO.Stream> upFile = default;
             var response = await _instance.ImportLoyaltyPointsAsync(loyaltyProgramId, notificationsEnabled, upFile);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.Import>(model);
@@ -2039,7 +2039,7 @@ namespace TalonOneSdk.Test.Api
         public async Task ImportPoolGiveawaysAsyncTest()
         {
             long poolId = default;
-            Client.Option<string> upFile = default;
+            Client.Option<System.IO.Stream> upFile = default;
             var response = await _instance.ImportPoolGiveawaysAsync(poolId, upFile);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.Import>(model);
@@ -2053,7 +2053,7 @@ namespace TalonOneSdk.Test.Api
         {
             long applicationId = default;
             long campaignId = default;
-            Client.Option<string> upFile = default;
+            Client.Option<System.IO.Stream> upFile = default;
             var response = await _instance.ImportReferralsAsync(applicationId, campaignId, upFile);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.Import>(model);

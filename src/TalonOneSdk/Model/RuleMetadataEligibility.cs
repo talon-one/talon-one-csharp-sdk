@@ -24,21 +24,23 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// RuleMetadata
+    /// RuleMetadataEligibility
     /// </summary>
-    public partial class RuleMetadata : IValidatableObject
+    public partial class RuleMetadataEligibility : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RuleMetadata" /> class.
+        /// Initializes a new instance of the <see cref="RuleMetadataEligibility" /> class.
         /// </summary>
         /// <param name="title">A short description of the rule.</param>
+        /// <param name="eligibility">eligibility</param>
         /// <param name="displayName">A customer-facing name for the rule.</param>
         /// <param name="displayDescription">A customer-facing description that explains the details of the rule.   For example, this property can contain details about eligibility requirements, reward timelines, or terms and conditions. </param>
         /// <param name="relatedData">Any additional data associated with the rule, such as an image URL, vendor name, or a content management system (CMS) ID. </param>
         [JsonConstructor]
-        public RuleMetadata(string title, Option<string> displayName = default, Option<string> displayDescription = default, Option<string> relatedData = default)
+        public RuleMetadataEligibility(string title, List<RuleEligibility> eligibility, Option<string> displayName = default, Option<string> displayDescription = default, Option<string> relatedData = default)
         {
             Title = title;
+            Eligibility = eligibility;
             DisplayNameOption = displayName;
             DisplayDescriptionOption = displayDescription;
             RelatedDataOption = relatedData;
@@ -54,6 +56,12 @@ namespace TalonOneSdk.Model
         /* <example>Give discount via coupon</example> */
         [JsonPropertyName("title")]
         public string Title { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Eligibility
+        /// </summary>
+        [JsonPropertyName("eligibility")]
+        public List<RuleEligibility> Eligibility { get; set; }
 
         /// <summary>
         /// Used to track the state of DisplayName
@@ -107,8 +115,9 @@ namespace TalonOneSdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RuleMetadata {\n");
+            sb.Append("class RuleMetadataEligibility {\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
+            sb.Append("  Eligibility: ").Append(Eligibility).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  DisplayDescription: ").Append(DisplayDescription).Append("\n");
             sb.Append("  RelatedData: ").Append(RelatedData).Append("\n");
@@ -128,19 +137,19 @@ namespace TalonOneSdk.Model
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="RuleMetadata" />
+    /// A Json converter for type <see cref="RuleMetadataEligibility" />
     /// </summary>
-    public class RuleMetadataJsonConverter : JsonConverter<RuleMetadata>
+    public class RuleMetadataEligibilityJsonConverter : JsonConverter<RuleMetadataEligibility>
     {
         /// <summary>
-        /// Deserializes json to <see cref="RuleMetadata" />
+        /// Deserializes json to <see cref="RuleMetadataEligibility" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override RuleMetadata Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override RuleMetadataEligibility Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -150,6 +159,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string> title = default;
+            Option<List<RuleEligibility>> eligibility = default;
             Option<string> displayName = default;
             Option<string> displayDescription = default;
             Option<string> relatedData = default;
@@ -172,6 +182,9 @@ namespace TalonOneSdk.Model
                         case "title":
                             title = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "eligibility":
+                            eligibility = new Option<List<RuleEligibility>>(JsonSerializer.Deserialize<List<RuleEligibility>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "displayName":
                             displayName = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -188,51 +201,62 @@ namespace TalonOneSdk.Model
             }
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class RuleMetadata.", nameof(title));
+                throw new ArgumentException("Property is required for class RuleMetadataEligibility.", nameof(title));
+
+            if (!eligibility.IsSet)
+                throw new ArgumentException("Property is required for class RuleMetadataEligibility.", nameof(eligibility));
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class RuleMetadata.");
+                throw new ArgumentNullException(nameof(title), "Property is not nullable for class RuleMetadataEligibility.");
 
-            return new RuleMetadata(title.Value, displayName, displayDescription, relatedData);
+            if (eligibility.IsSet && eligibility.Value == null)
+                throw new ArgumentNullException(nameof(eligibility), "Property is not nullable for class RuleMetadataEligibility.");
+
+            return new RuleMetadataEligibility(title.Value, eligibility.Value, displayName, displayDescription, relatedData);
         }
 
         /// <summary>
-        /// Serializes a <see cref="RuleMetadata" />
+        /// Serializes a <see cref="RuleMetadataEligibility" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="ruleMetadata"></param>
+        /// <param name="ruleMetadataEligibility"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, RuleMetadata ruleMetadata, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, RuleMetadataEligibility ruleMetadataEligibility, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, ruleMetadata, jsonSerializerOptions);
+            WriteProperties(writer, ruleMetadataEligibility, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="RuleMetadata" />
+        /// Serializes the properties of <see cref="RuleMetadataEligibility" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="ruleMetadata"></param>
+        /// <param name="ruleMetadataEligibility"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, RuleMetadata ruleMetadata, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, RuleMetadataEligibility ruleMetadataEligibility, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (ruleMetadata.Title == null)
-                throw new ArgumentNullException(nameof(ruleMetadata.Title), "Property is required for class RuleMetadata.");
+            if (ruleMetadataEligibility.Title == null)
+                throw new ArgumentNullException(nameof(ruleMetadataEligibility.Title), "Property is required for class RuleMetadataEligibility.");
 
-            writer.WriteString("title", ruleMetadata.Title);
+            if (ruleMetadataEligibility.Eligibility == null)
+                throw new ArgumentNullException(nameof(ruleMetadataEligibility.Eligibility), "Property is required for class RuleMetadataEligibility.");
 
-            if (ruleMetadata.DisplayNameOption.IsSet)
-                writer.WriteString("displayName", ruleMetadata.DisplayName);
+            writer.WriteString("title", ruleMetadataEligibility.Title);
 
-            if (ruleMetadata.DisplayDescriptionOption.IsSet)
-                writer.WriteString("displayDescription", ruleMetadata.DisplayDescription);
+            writer.WritePropertyName("eligibility");
+            JsonSerializer.Serialize(writer, ruleMetadataEligibility.Eligibility, jsonSerializerOptions);
+            if (ruleMetadataEligibility.DisplayNameOption.IsSet)
+                writer.WriteString("displayName", ruleMetadataEligibility.DisplayName);
 
-            if (ruleMetadata.RelatedDataOption.IsSet)
-                writer.WriteString("relatedData", ruleMetadata.RelatedData);
+            if (ruleMetadataEligibility.DisplayDescriptionOption.IsSet)
+                writer.WriteString("displayDescription", ruleMetadataEligibility.DisplayDescription);
+
+            if (ruleMetadataEligibility.RelatedDataOption.IsSet)
+                writer.WriteString("relatedData", ruleMetadataEligibility.RelatedData);
         }
     }
 }

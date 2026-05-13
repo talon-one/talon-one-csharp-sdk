@@ -34,28 +34,134 @@ namespace TalonOneSdk.Model
         /// <param name="id">The internal ID of this entity.</param>
         /// <param name="created">The time this entity was created.</param>
         /// <param name="applicationId">The ID of the Application that owns this entity.</param>
+        /// <param name="goalType">The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to &#x60;other&#x60;, multiple metrics are used. </param>
         /// <param name="isVariantAssignmentExternal">The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. </param>
         /// <param name="campaign">campaign</param>
         /// <param name="activated">The date and time the experiment was activated. </param>
         /// <param name="state">A disabled experiment is not evaluated for rules or coupons.  (default to StateEnum.Disabled)</param>
         /// <param name="variants">variants</param>
+        /// <param name="goalDescription">A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal. </param>
         /// <param name="deletedat">The date and time the experiment was deleted. </param>
         [JsonConstructor]
-        public Experiment(long id, DateTime created, long applicationId, Option<bool?> isVariantAssignmentExternal = default, Option<Campaign> campaign = default, Option<DateTime?> activated = default, StateEnum state = StateEnum.Disabled, Option<List<ExperimentVariant>> variants = default, Option<DateTime?> deletedat = default)
+        public Experiment(long id, DateTime created, long applicationId, GoalTypeEnum goalType, Option<bool?> isVariantAssignmentExternal = default, Option<Campaign> campaign = default, Option<DateTime?> activated = default, StateEnum state = StateEnum.Disabled, Option<List<ExperimentVariant>> variants = default, Option<string> goalDescription = default, Option<DateTime?> deletedat = default)
         {
             Id = id;
             Created = created;
             ApplicationId = applicationId;
+            GoalType = goalType;
             IsVariantAssignmentExternalOption = isVariantAssignmentExternal;
             CampaignOption = campaign;
             ActivatedOption = activated;
             State = state;
             VariantsOption = variants;
+            GoalDescriptionOption = goalDescription;
             DeletedatOption = deletedat;
             OnCreated();
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to &#x60;other&#x60;, multiple metrics are used. 
+        /// </summary>
+        /// <value>The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to &#x60;other&#x60;, multiple metrics are used. </value>
+        public enum GoalTypeEnum
+        {
+            /// <summary>
+            /// Enum Other for value: other
+            /// </summary>
+            Other = 1,
+
+            /// <summary>
+            /// Enum MaximizeRevenue for value: maximize_revenue
+            /// </summary>
+            MaximizeRevenue = 2,
+
+            /// <summary>
+            /// Enum OptimizeDiscountEfficiency for value: optimize_discount_efficiency
+            /// </summary>
+            OptimizeDiscountEfficiency = 3,
+
+            /// <summary>
+            /// Enum MaximizeItemsSold for value: maximize_items_sold
+            /// </summary>
+            MaximizeItemsSold = 4
+        }
+
+        /// <summary>
+        /// Returns a <see cref="GoalTypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static GoalTypeEnum GoalTypeEnumFromString(string value)
+        {
+            if (value.Equals("other"))
+                return GoalTypeEnum.Other;
+
+            if (value.Equals("maximize_revenue"))
+                return GoalTypeEnum.MaximizeRevenue;
+
+            if (value.Equals("optimize_discount_efficiency"))
+                return GoalTypeEnum.OptimizeDiscountEfficiency;
+
+            if (value.Equals("maximize_items_sold"))
+                return GoalTypeEnum.MaximizeItemsSold;
+
+            throw new NotImplementedException($"Could not convert value to type GoalTypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="GoalTypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static GoalTypeEnum? GoalTypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("other"))
+                return GoalTypeEnum.Other;
+
+            if (value.Equals("maximize_revenue"))
+                return GoalTypeEnum.MaximizeRevenue;
+
+            if (value.Equals("optimize_discount_efficiency"))
+                return GoalTypeEnum.OptimizeDiscountEfficiency;
+
+            if (value.Equals("maximize_items_sold"))
+                return GoalTypeEnum.MaximizeItemsSold;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="GoalTypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string GoalTypeEnumToJsonValue(GoalTypeEnum value)
+        {
+            if (value == GoalTypeEnum.Other)
+                return "other";
+
+            if (value == GoalTypeEnum.MaximizeRevenue)
+                return "maximize_revenue";
+
+            if (value == GoalTypeEnum.OptimizeDiscountEfficiency)
+                return "optimize_discount_efficiency";
+
+            if (value == GoalTypeEnum.MaximizeItemsSold)
+                return "maximize_items_sold";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to &#x60;other&#x60;, multiple metrics are used. 
+        /// </summary>
+        /// <value>The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to &#x60;other&#x60;, multiple metrics are used. </value>
+        [JsonPropertyName("goalType")]
+        public GoalTypeEnum GoalType { get; set; }
 
         /// <summary>
         /// A disabled experiment is not evaluated for rules or coupons. 
@@ -225,6 +331,21 @@ namespace TalonOneSdk.Model
         public List<ExperimentVariant> Variants { get { return this.VariantsOption.Value; } set { this.VariantsOption = new Option<List<ExperimentVariant>>(value); } }
 
         /// <summary>
+        /// Used to track the state of GoalDescription
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> GoalDescriptionOption { get; private set; }
+
+        /// <summary>
+        /// A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal. 
+        /// </summary>
+        /// <value>A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal. </value>
+        /* <example>Offering free shipping will increase average order revenue more than a 10% discount</example> */
+        [JsonPropertyName("goalDescription")]
+        public string GoalDescription { get { return this.GoalDescriptionOption.Value; } set { this.GoalDescriptionOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Used to track the state of Deletedat
         /// </summary>
         [JsonIgnore]
@@ -249,11 +370,13 @@ namespace TalonOneSdk.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
+            sb.Append("  GoalType: ").Append(GoalType).Append("\n");
             sb.Append("  IsVariantAssignmentExternal: ").Append(IsVariantAssignmentExternal).Append("\n");
             sb.Append("  Campaign: ").Append(Campaign).Append("\n");
             sb.Append("  Activated: ").Append(Activated).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Variants: ").Append(Variants).Append("\n");
+            sb.Append("  GoalDescription: ").Append(GoalDescription).Append("\n");
             sb.Append("  Deletedat: ").Append(Deletedat).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -310,11 +433,13 @@ namespace TalonOneSdk.Model
             Option<long?> id = default;
             Option<DateTime?> created = default;
             Option<long?> applicationId = default;
+            Option<Experiment.GoalTypeEnum?> goalType = default;
             Option<bool?> isVariantAssignmentExternal = default;
             Option<Campaign> campaign = default;
             Option<DateTime?> activated = default;
             Option<Experiment.StateEnum?> state = default;
             Option<List<ExperimentVariant>> variants = default;
+            Option<string> goalDescription = default;
             Option<DateTime?> deletedat = default;
 
             while (utf8JsonReader.Read())
@@ -341,6 +466,11 @@ namespace TalonOneSdk.Model
                         case "applicationId":
                             applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
+                        case "goalType":
+                            string goalTypeRawValue = utf8JsonReader.GetString();
+                            if (goalTypeRawValue != null)
+                                goalType = new Option<Experiment.GoalTypeEnum?>(Experiment.GoalTypeEnumFromStringOrDefault(goalTypeRawValue));
+                            break;
                         case "isVariantAssignmentExternal":
                             isVariantAssignmentExternal = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
@@ -357,6 +487,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "variants":
                             variants = new Option<List<ExperimentVariant>>(JsonSerializer.Deserialize<List<ExperimentVariant>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "goalDescription":
+                            goalDescription = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "deletedat":
                             deletedat = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
@@ -376,6 +509,9 @@ namespace TalonOneSdk.Model
             if (!applicationId.IsSet)
                 throw new ArgumentException("Property is required for class Experiment.", nameof(applicationId));
 
+            if (!goalType.IsSet)
+                throw new ArgumentException("Property is required for class Experiment.", nameof(goalType));
+
             if (!state.IsSet)
                 throw new ArgumentException("Property is required for class Experiment.", nameof(state));
 
@@ -388,10 +524,13 @@ namespace TalonOneSdk.Model
             if (applicationId.IsSet && applicationId.Value == null)
                 throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class Experiment.");
 
+            if (goalType.IsSet && goalType.Value == null)
+                throw new ArgumentNullException(nameof(goalType), "Property is not nullable for class Experiment.");
+
             if (state.IsSet && state.Value == null)
                 throw new ArgumentNullException(nameof(state), "Property is not nullable for class Experiment.");
 
-            return new Experiment(id.Value.Value, created.Value.Value, applicationId.Value.Value, isVariantAssignmentExternal, campaign, activated, state.Value.Value, variants, deletedat);
+            return new Experiment(id.Value.Value, created.Value.Value, applicationId.Value.Value, goalType.Value.Value, isVariantAssignmentExternal, campaign, activated, state.Value.Value, variants, goalDescription, deletedat);
         }
 
         /// <summary>
@@ -424,6 +563,8 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("applicationId", experiment.ApplicationId);
 
+            var goalTypeRawValue = Experiment.GoalTypeEnumToJsonValue(experiment.GoalType);
+            writer.WriteString("goalType", goalTypeRawValue);
             if (experiment.IsVariantAssignmentExternalOption.IsSet)
                 writer.WriteBoolean("isVariantAssignmentExternal", experiment.IsVariantAssignmentExternalOption.Value.Value);
 
@@ -442,6 +583,9 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("variants");
                 JsonSerializer.Serialize(writer, experiment.Variants, jsonSerializerOptions);
             }
+            if (experiment.GoalDescriptionOption.IsSet)
+                writer.WriteString("goalDescription", experiment.GoalDescription);
+
             if (experiment.DeletedatOption.IsSet)
                 writer.WriteString("deletedat", experiment.DeletedatOption.Value.Value.ToString(DeletedatFormat));
         }

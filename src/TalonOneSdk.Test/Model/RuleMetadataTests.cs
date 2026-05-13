@@ -88,14 +88,5 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'RelatedData'
         }
-
-        /// <summary>
-        /// Test the property 'Eligibility'
-        /// </summary>
-        [Fact]
-        public void EligibilityTest()
-        {
-            // TODO unit test for the property 'Eligibility'
-        }
     }
 }

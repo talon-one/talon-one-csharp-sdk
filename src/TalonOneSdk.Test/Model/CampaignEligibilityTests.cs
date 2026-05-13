@@ -54,21 +54,21 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Id'
-        /// </summary>
-        [Fact]
-        public void IdTest()
-        {
-            // TODO unit test for the property 'Id'
-        }
-
-        /// <summary>
         /// Test the property 'ApplicationId'
         /// </summary>
         [Fact]
         public void ApplicationIdTest()
         {
             // TODO unit test for the property 'ApplicationId'
+        }
+
+        /// <summary>
+        /// Test the property 'Id'
+        /// </summary>
+        [Fact]
+        public void IdTest()
+        {
+            // TODO unit test for the property 'Id'
         }
 
         /// <summary>
@@ -105,6 +105,15 @@ namespace TalonOneSdk.Test.Model
         public void EligibilityTest()
         {
             // TODO unit test for the property 'Eligibility'
+        }
+
+        /// <summary>
+        /// Test the property 'Rules'
+        /// </summary>
+        [Fact]
+        public void RulesTest()
+        {
+            // TODO unit test for the property 'Rules'
         }
 
         /// <summary>
@@ -150,15 +159,6 @@ namespace TalonOneSdk.Test.Model
         public void StateTest()
         {
             // TODO unit test for the property 'State'
-        }
-
-        /// <summary>
-        /// Test the property 'Rules'
-        /// </summary>
-        [Fact]
-        public void RulesTest()
-        {
-            // TODO unit test for the property 'Rules'
         }
     }
 }

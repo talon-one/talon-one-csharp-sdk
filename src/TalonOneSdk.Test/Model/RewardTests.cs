@@ -135,6 +135,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'VisibilityConditions'
+        /// </summary>
+        [Fact]
+        public void VisibilityConditionsTest()
+        {
+            // TODO unit test for the property 'VisibilityConditions'
+        }
+
+        /// <summary>
         /// Test the property 'Rule'
         /// </summary>
         [Fact]
@@ -150,6 +159,15 @@ namespace TalonOneSdk.Test.Model
         public void BindingsTest()
         {
             // TODO unit test for the property 'Bindings'
+        }
+
+        /// <summary>
+        /// Test the property 'Modified'
+        /// </summary>
+        [Fact]
+        public void ModifiedTest()
+        {
+            // TODO unit test for the property 'Modified'
         }
     }
 }

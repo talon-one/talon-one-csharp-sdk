@@ -40,10 +40,12 @@ namespace TalonOneSdk.Model
         /// <param name="sandbox">Indicates if this is a live or sandbox reward. Rewards of a given type can only be connected to Applications of the same type.</param>
         /// <param name="status">The status of the reward.</param>
         /// <param name="description">A description of the reward.</param>
-        /// <param name="rule">Rule to apply.</param>
+        /// <param name="visibilityConditions">An optional rule that manages who can see this reward. If not specified, the reward is visible to all customers.  **Note:** Only the &#x60;condition&#x60; field is evaluated within this rule. The &#x60;effects&#x60; field must be an empty array, and &#x60;bindings&#x60; are not supported. </param>
+        /// <param name="rule">Rule to apply.  **Note**: The &#x60;bindings&#x60; field inside the rule must not be used in this endpoint. All bindings should be defined at the reward level via the top-level &#x60;bindings&#x60; field. </param>
         /// <param name="bindings">A list of named variables created before the reward&#39;s rules are evaluated.  Each binding pairs a name with a talang expression. The expression is evaluated once  and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.</param>
+        /// <param name="modified">The timestamp when the reward was last updated in RFC3339 format.</param>
         [JsonConstructor]
-        public Reward(long id, DateTime created, long accountId, string name, string apiName, List<long> applicationIds, bool sandbox, StatusEnum status, Option<string> description = default, Option<List<Rule>> rule = default, Option<List<Binding>> bindings = default)
+        public Reward(long id, DateTime created, long accountId, string name, string apiName, List<long> applicationIds, bool sandbox, StatusEnum status, Option<string> description = default, Option<Rule> visibilityConditions = default, Option<Rule> rule = default, Option<List<Binding>> bindings = default, Option<DateTime?> modified = default)
         {
             Id = id;
             Created = created;
@@ -54,8 +56,10 @@ namespace TalonOneSdk.Model
             Sandbox = sandbox;
             Status = status;
             DescriptionOption = description;
+            VisibilityConditionsOption = visibilityConditions;
             RuleOption = rule;
             BindingsOption = bindings;
+            ModifiedOption = modified;
             OnCreated();
         }
 
@@ -208,18 +212,32 @@ namespace TalonOneSdk.Model
         public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of VisibilityConditions
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Rule> VisibilityConditionsOption { get; private set; }
+
+        /// <summary>
+        /// An optional rule that manages who can see this reward. If not specified, the reward is visible to all customers.  **Note:** Only the &#x60;condition&#x60; field is evaluated within this rule. The &#x60;effects&#x60; field must be an empty array, and &#x60;bindings&#x60; are not supported. 
+        /// </summary>
+        /// <value>An optional rule that manages who can see this reward. If not specified, the reward is visible to all customers.  **Note:** Only the &#x60;condition&#x60; field is evaluated within this rule. The &#x60;effects&#x60; field must be an empty array, and &#x60;bindings&#x60; are not supported. </value>
+        [JsonPropertyName("visibilityConditions")]
+        public Rule VisibilityConditions { get { return this.VisibilityConditionsOption.Value; } set { this.VisibilityConditionsOption = new Option<Rule>(value); } }
+
+        /// <summary>
         /// Used to track the state of Rule
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Rule>> RuleOption { get; private set; }
+        public Option<Rule> RuleOption { get; private set; }
 
         /// <summary>
-        /// Rule to apply.
+        /// Rule to apply.  **Note**: The &#x60;bindings&#x60; field inside the rule must not be used in this endpoint. All bindings should be defined at the reward level via the top-level &#x60;bindings&#x60; field. 
         /// </summary>
-        /// <value>Rule to apply.</value>
+        /// <value>Rule to apply.  **Note**: The &#x60;bindings&#x60; field inside the rule must not be used in this endpoint. All bindings should be defined at the reward level via the top-level &#x60;bindings&#x60; field. </value>
         [JsonPropertyName("rule")]
-        public List<Rule> Rule { get { return this.RuleOption.Value; } set { this.RuleOption = new Option<List<Rule>>(value); } }
+        public Rule Rule { get { return this.RuleOption.Value; } set { this.RuleOption = new Option<Rule>(value); } }
 
         /// <summary>
         /// Used to track the state of Bindings
@@ -235,6 +253,20 @@ namespace TalonOneSdk.Model
         /* <example>[]</example> */
         [JsonPropertyName("bindings")]
         public List<Binding> Bindings { get { return this.BindingsOption.Value; } set { this.BindingsOption = new Option<List<Binding>>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Modified
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTime?> ModifiedOption { get; private set; }
+
+        /// <summary>
+        /// The timestamp when the reward was last updated in RFC3339 format.
+        /// </summary>
+        /// <value>The timestamp when the reward was last updated in RFC3339 format.</value>
+        [JsonPropertyName("modified")]
+        public DateTime? Modified { get { return this.ModifiedOption.Value; } set { this.ModifiedOption = new Option<DateTime?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -253,8 +285,10 @@ namespace TalonOneSdk.Model
             sb.Append("  Sandbox: ").Append(Sandbox).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  VisibilityConditions: ").Append(VisibilityConditions).Append("\n");
             sb.Append("  Rule: ").Append(Rule).Append("\n");
             sb.Append("  Bindings: ").Append(Bindings).Append("\n");
+            sb.Append("  Modified: ").Append(Modified).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -293,6 +327,11 @@ namespace TalonOneSdk.Model
         public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
+        /// The format to use to serialize Modified
+        /// </summary>
+        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+
+        /// <summary>
         /// Deserializes json to <see cref="Reward" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
@@ -318,8 +357,10 @@ namespace TalonOneSdk.Model
             Option<bool?> sandbox = default;
             Option<Reward.StatusEnum?> status = default;
             Option<string> description = default;
-            Option<List<Rule>> rule = default;
+            Option<Rule> visibilityConditions = default;
+            Option<Rule> rule = default;
             Option<List<Binding>> bindings = default;
+            Option<DateTime?> modified = default;
 
             while (utf8JsonReader.Read())
             {
@@ -365,11 +406,17 @@ namespace TalonOneSdk.Model
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "visibilityConditions":
+                            visibilityConditions = new Option<Rule>(JsonSerializer.Deserialize<Rule>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "rule":
-                            rule = new Option<List<Rule>>(JsonSerializer.Deserialize<List<Rule>>(ref utf8JsonReader, jsonSerializerOptions));
+                            rule = new Option<Rule>(JsonSerializer.Deserialize<Rule>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "bindings":
                             bindings = new Option<List<Binding>>(JsonSerializer.Deserialize<List<Binding>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "modified":
+                            modified = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -425,7 +472,7 @@ namespace TalonOneSdk.Model
             if (status.IsSet && status.Value == null)
                 throw new ArgumentNullException(nameof(status), "Property is not nullable for class Reward.");
 
-            return new Reward(id.Value.Value, created.Value.Value, accountId.Value.Value, name.Value, apiName.Value, applicationIds.Value, sandbox.Value.Value, status.Value.Value, description, rule, bindings);
+            return new Reward(id.Value.Value, created.Value.Value, accountId.Value.Value, name.Value, apiName.Value, applicationIds.Value, sandbox.Value.Value, status.Value.Value, description, visibilityConditions, rule, bindings, modified);
         }
 
         /// <summary>
@@ -480,6 +527,11 @@ namespace TalonOneSdk.Model
             if (reward.DescriptionOption.IsSet)
                 writer.WriteString("description", reward.Description);
 
+            if (reward.VisibilityConditionsOption.IsSet)
+            {
+                writer.WritePropertyName("visibilityConditions");
+                JsonSerializer.Serialize(writer, reward.VisibilityConditions, jsonSerializerOptions);
+            }
             if (reward.RuleOption.IsSet)
             {
                 writer.WritePropertyName("rule");
@@ -490,6 +542,8 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("bindings");
                 JsonSerializer.Serialize(writer, reward.Bindings, jsonSerializerOptions);
             }
+            if (reward.ModifiedOption.IsSet)
+                writer.WriteString("modified", reward.ModifiedOption.Value.Value.ToString(ModifiedFormat));
         }
     }
 }

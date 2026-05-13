@@ -36,26 +36,26 @@ namespace TalonOneSdk.Model
         /// <param name="name">The name of the campaign.</param>
         /// <param name="tags">A list of tags for the campaign.</param>
         /// <param name="features">The features enabled in this campaign.</param>
+        /// <param name="rules">A list of rules containing customer-facing details of the rewards defined in the campaign.</param>
         /// <param name="description">A detailed description of the campaign.</param>
         /// <param name="startTime">Timestamp when the campaign will become active.</param>
         /// <param name="endTime">Timestamp when the campaign will become inactive.</param>
         /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
         /// <param name="state">The state of the campaign.  (default to StateEnum.Enabled)</param>
-        /// <param name="rules">A list of rules containing customer-facing details of the rewards defined in the campaign.</param>
         [JsonConstructor]
-        public IntegrationCampaign(long applicationId, long id, string name, List<string> tags, List<IntegrationCampaign.FeaturesEnum> features, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, StateEnum state = StateEnum.Enabled, Option<List<RuleMetadata>> rules = default)
+        public IntegrationCampaign(long applicationId, long id, string name, List<string> tags, List<IntegrationCampaign.FeaturesEnum> features, List<RuleMetadata> rules, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, StateEnum state = StateEnum.Enabled)
         {
             ApplicationId = applicationId;
             Id = id;
             Name = name;
             Tags = tags;
             Features = features;
+            Rules = rules;
             DescriptionOption = description;
             StartTimeOption = startTime;
             EndTimeOption = endTime;
             AttributesOption = attributes;
             State = state;
-            RulesOption = rules;
             OnCreated();
         }
 
@@ -285,6 +285,13 @@ namespace TalonOneSdk.Model
         public List<IntegrationCampaign.FeaturesEnum> Features { get; set; }
 
         /// <summary>
+        /// A list of rules containing customer-facing details of the rewards defined in the campaign.
+        /// </summary>
+        /// <value>A list of rules containing customer-facing details of the rewards defined in the campaign.</value>
+        [JsonPropertyName("rules")]
+        public List<RuleMetadata> Rules { get; set; }
+
+        /// <summary>
         /// Used to track the state of Description
         /// </summary>
         [JsonIgnore]
@@ -344,20 +351,6 @@ namespace TalonOneSdk.Model
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
-        /// Used to track the state of Rules
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<RuleMetadata>> RulesOption { get; private set; }
-
-        /// <summary>
-        /// A list of rules containing customer-facing details of the rewards defined in the campaign.
-        /// </summary>
-        /// <value>A list of rules containing customer-facing details of the rewards defined in the campaign.</value>
-        [JsonPropertyName("rules")]
-        public List<RuleMetadata> Rules { get { return this.RulesOption.Value; } set { this.RulesOption = new Option<List<RuleMetadata>>(value); } }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -370,12 +363,12 @@ namespace TalonOneSdk.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  Features: ").Append(Features).Append("\n");
+            sb.Append("  Rules: ").Append(Rules).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  StartTime: ").Append(StartTime).Append("\n");
             sb.Append("  EndTime: ").Append(EndTime).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  Rules: ").Append(Rules).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -434,12 +427,12 @@ namespace TalonOneSdk.Model
             Option<string> name = default;
             Option<List<string>> tags = default;
             Option<List<IntegrationCampaign.FeaturesEnum>> features = default;
+            Option<List<RuleMetadata>> rules = default;
             Option<string> description = default;
             Option<DateTime?> startTime = default;
             Option<DateTime?> endTime = default;
             Option<Object> attributes = default;
             Option<IntegrationCampaign.StateEnum?> state = default;
-            Option<List<RuleMetadata>> rules = default;
 
             while (utf8JsonReader.Read())
             {
@@ -492,6 +485,9 @@ namespace TalonOneSdk.Model
                             else
                                 throw new JsonException();
                             break;
+                        case "rules":
+                            rules = new Option<List<RuleMetadata>>(JsonSerializer.Deserialize<List<RuleMetadata>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -508,9 +504,6 @@ namespace TalonOneSdk.Model
                             string stateRawValue = utf8JsonReader.GetString();
                             if (stateRawValue != null)
                                 state = new Option<IntegrationCampaign.StateEnum?>(IntegrationCampaign.StateEnumFromStringOrDefault(stateRawValue));
-                            break;
-                        case "rules":
-                            rules = new Option<List<RuleMetadata>>(JsonSerializer.Deserialize<List<RuleMetadata>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -533,6 +526,9 @@ namespace TalonOneSdk.Model
             if (!features.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationCampaign.", nameof(features));
 
+            if (!rules.IsSet)
+                throw new ArgumentException("Property is required for class IntegrationCampaign.", nameof(rules));
+
             if (!state.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationCampaign.", nameof(state));
 
@@ -551,10 +547,13 @@ namespace TalonOneSdk.Model
             if (features.IsSet && features.Value == null)
                 throw new ArgumentNullException(nameof(features), "Property is not nullable for class IntegrationCampaign.");
 
+            if (rules.IsSet && rules.Value == null)
+                throw new ArgumentNullException(nameof(rules), "Property is not nullable for class IntegrationCampaign.");
+
             if (state.IsSet && state.Value == null)
                 throw new ArgumentNullException(nameof(state), "Property is not nullable for class IntegrationCampaign.");
 
-            return new IntegrationCampaign(applicationId.Value.Value, id.Value.Value, name.Value, tags.Value, features.Value, description, startTime, endTime, attributes, state.Value.Value, rules);
+            return new IntegrationCampaign(applicationId.Value.Value, id.Value.Value, name.Value, tags.Value, features.Value, rules.Value, description, startTime, endTime, attributes, state.Value.Value);
         }
 
         /// <summary>
@@ -590,6 +589,9 @@ namespace TalonOneSdk.Model
             if (integrationCampaign.Features == null)
                 throw new ArgumentNullException(nameof(integrationCampaign.Features), "Property is required for class IntegrationCampaign.");
 
+            if (integrationCampaign.Rules == null)
+                throw new ArgumentNullException(nameof(integrationCampaign.Rules), "Property is required for class IntegrationCampaign.");
+
             writer.WriteNumber("applicationId", integrationCampaign.ApplicationId);
 
             writer.WriteNumber("id", integrationCampaign.Id);
@@ -605,6 +607,8 @@ namespace TalonOneSdk.Model
                 writer.WriteStringValue(IntegrationCampaign.FeaturesEnumToJsonValue(featuresItem));
             }
             writer.WriteEndArray();
+            writer.WritePropertyName("rules");
+            JsonSerializer.Serialize(writer, integrationCampaign.Rules, jsonSerializerOptions);
             if (integrationCampaign.DescriptionOption.IsSet)
                 writer.WriteString("description", integrationCampaign.Description);
 
@@ -621,11 +625,6 @@ namespace TalonOneSdk.Model
             }
             var stateRawValue = IntegrationCampaign.StateEnumToJsonValue(integrationCampaign.State);
             writer.WriteString("state", stateRawValue);
-            if (integrationCampaign.RulesOption.IsSet)
-            {
-                writer.WritePropertyName("rules");
-                JsonSerializer.Serialize(writer, integrationCampaign.Rules, jsonSerializerOptions);
-            }
         }
     }
 }

@@ -110,12 +110,12 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**GetExperiment**](ManagementApi.md#getexperiment) | **GET** /v1/applications/{applicationId}/experiments/{experimentId} | Get experiment in Application |
 | [**GetExports**](ManagementApi.md#getexports) | **GET** /v1/exports | Get exports |
 | [**GetLoyaltyCard**](ManagementApi.md#getloyaltycard) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Get loyalty card |
-| [**GetLoyaltyCardTransactionLogs**](ManagementApi.md#getloyaltycardtransactionlogs) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/logs | List card&#39;s transactions |
+| [**GetLoyaltyCardTransactionLogs**](ManagementApi.md#getloyaltycardtransactionlogs) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/logs | List card&#39;s transactions (Management API) |
 | [**GetLoyaltyCards**](ManagementApi.md#getloyaltycards) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards | List loyalty cards |
-| [**GetLoyaltyLedgerBalances**](ManagementApi.md#getloyaltyledgerbalances) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_balances | Get customer&#39;s loyalty balances |
+| [**GetLoyaltyLedgerBalances**](ManagementApi.md#getloyaltyledgerbalances) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_balances | Get customer&#39;s loyalty balances (Management API) |
 | [**GetLoyaltyPoints**](ManagementApi.md#getloyaltypoints) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId} | Get customer&#39;s full loyalty ledger |
 | [**GetLoyaltyProgram**](ManagementApi.md#getloyaltyprogram) | **GET** /v1/loyalty_programs/{loyaltyProgramId} | Get loyalty program |
-| [**GetLoyaltyProgramProfileLedgerTransactions**](ManagementApi.md#getloyaltyprogramprofileledgertransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_transactions | List customer&#39;s loyalty transactions |
+| [**GetLoyaltyProgramProfileLedgerTransactions**](ManagementApi.md#getloyaltyprogramprofileledgertransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_transactions | List customer&#39;s loyalty transactions (Management API) |
 | [**GetLoyaltyProgramTransactions**](ManagementApi.md#getloyaltyprogramtransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/transactions | List loyalty program transactions |
 | [**GetLoyaltyPrograms**](ManagementApi.md#getloyaltyprograms) | **GET** /v1/loyalty_programs | List loyalty programs |
 | [**GetLoyaltyStatistics**](ManagementApi.md#getloyaltystatistics) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/statistics | Get loyalty program statistics |
@@ -4391,9 +4391,9 @@ Get the given loyalty card.
 # **GetLoyaltyCardTransactionLogs**
 > GetLoyaltyCardTransactionLogs200Response GetLoyaltyCardTransactionLogs (long loyaltyProgramId, string loyaltyCardId, DateTime startDate = null, DateTime endDate = null, long pageSize = null, long skip = null, string subledgerId = null, List<string> customerSessionIDs = null, List<string> transactionUUIDs = null)
 
-List card's transactions
+List card's transactions (Management API)
 
-Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied. If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
+Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied.  > [!note] For most use cases, especially real-time integrations, use the Integration API endpoint: > [List card's transactions](https://docs.talon.one/integration-api#tag/Loyalty-cards/operation/getLoyaltyCardTransactions).  If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
 
 
 ### Parameters
@@ -4481,9 +4481,9 @@ For the given card-based loyalty program, list the loyalty cards that match your
 # **GetLoyaltyLedgerBalances**
 > LoyaltyBalancesWithTiers GetLoyaltyLedgerBalances (long loyaltyProgramId, string integrationId, DateTime endDate = null, string subledgerId = null, bool includeTiers = null, bool includeProjectedTier = null)
 
-Get customer's loyalty balances
+Get customer's loyalty balances (Management API)
 
-Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.  You can filter balances by date and subledger ID, and include tier-related information in the response.  > [!note] If no filtering options are applied, you retrieve all loyalty > balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see:  - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)  - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
+Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.  You can filter balances by date and subledger ID, and include tier-related information in the response.  > [!note] **Note** > - For most use cases, especially real-time integrations, use the Integration API endpoint:     [Get customer's loyalty balances](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyBalances). > - If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see:  - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)  - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
 
 
 ### Parameters
@@ -4598,9 +4598,9 @@ Get the specified [loyalty program](https://docs.talon.one/docs/product/loyalty-
 # **GetLoyaltyProgramProfileLedgerTransactions**
 > GetLoyaltyProgramProfileTransactions200Response GetLoyaltyProgramProfileLedgerTransactions (long loyaltyProgramId, string integrationId, List<string> customerSessionIDs = null, List<string> transactionUUIDs = null, string subledgerId = null, string loyaltyTransactionType = null, DateTime startDate = null, DateTime endDate = null, long pageSize = null, long skip = null, bool awaitsActivation = null)
 
-List customer's loyalty transactions
+List customer's loyalty transactions (Management API)
 
-Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  > [!note] To retrieve all loyalty program transaction logs in a given > loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) > endpoint. 
+Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  > [!note] **Note** > - For most use cases, especially real-time integrations, use the Integration API endpoint: >   [List customer's loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). > - To retrieve all loyalty program transaction logs in a given loyalty program, use the >   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
 
 
 ### Parameters
@@ -5161,7 +5161,7 @@ List all webhooks.
 
 <a id="importaccountcollection"></a>
 # **ImportAccountCollection**
-> Import ImportAccountCollection (long collectionId, string upFile = null)
+> Import ImportAccountCollection (long collectionId, System.IO.Stream upFile = null)
 
 Import data into existing account-level collection
 
@@ -5173,7 +5173,7 @@ Upload a CSV file containing the collection of string values that should be atta
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **collectionId** | **long** | The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint. |  |
-| **upFile** | **string** | The file containing the data that is being imported. | [optional]  |
+| **upFile** | **System.IO.Stream****System.IO.Stream** | The CSV file containing the data that is being imported. | [optional]  |
 
 ### Return type
 
@@ -5200,7 +5200,7 @@ Upload a CSV file containing the collection of string values that should be atta
 
 <a id="importallowedlist"></a>
 # **ImportAllowedList**
-> Import ImportAllowedList (long attributeId, string upFile = null)
+> Import ImportAllowedList (long attributeId, System.IO.Stream upFile = null)
 
 Import allowed values for attribute
 
@@ -5212,7 +5212,7 @@ Upload a CSV file containing a list of [picklist values](https://docs.talon.one/
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **attributeId** | **long** | The ID of the attribute. You can find the ID in the Campaign Manager&#39;s URL when you display the details of an attribute in **Account** &gt; **Tools** &gt; **Attributes**. |  |
-| **upFile** | **string** | The file containing the data that is being imported. | [optional]  |
+| **upFile** | **System.IO.Stream****System.IO.Stream** | The CSV file containing the data that is being imported. | [optional]  |
 
 ### Return type
 
@@ -5240,7 +5240,7 @@ Upload a CSV file containing a list of [picklist values](https://docs.talon.one/
 
 <a id="importaudiencesmemberships"></a>
 # **ImportAudiencesMemberships**
-> Import ImportAudiencesMemberships (long audienceId, string upFile = null)
+> Import ImportAudiencesMemberships (long audienceId, System.IO.Stream upFile = null)
 
 Import audience members
 
@@ -5252,7 +5252,7 @@ Upload a CSV file containing the integration IDs of the members you want to add 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **audienceId** | **long** | The ID of the audience. |  |
-| **upFile** | **string** | The file containing the data that is being imported. | [optional]  |
+| **upFile** | **System.IO.Stream****System.IO.Stream** | The CSV file containing the data that is being imported. | [optional]  |
 
 ### Return type
 
@@ -5280,7 +5280,7 @@ Upload a CSV file containing the integration IDs of the members you want to add 
 
 <a id="importcampaignstorebudget"></a>
 # **ImportCampaignStoreBudget**
-> Import ImportCampaignStoreBudget (long applicationId, long campaignId, string action = null, string period = null, string upFile = null)
+> Import ImportCampaignStoreBudget (long applicationId, long campaignId, string action = null, string period = null, System.IO.Stream upFile = null)
 
 Import campaign store budgets
 
@@ -5295,7 +5295,7 @@ Upload a CSV file containing store budgets for a given campaign.  Send the file 
 | **campaignId** | **long** | The ID of the campaign. It is displayed in your Talon.One deployment URL. |  |
 | **action** | **string** | The action that this budget is limiting. | [optional]  |
 | **period** | **string** | The period to which the limit applies.  **Note**: For budgets with no period, set this to &#x60;overall&#x60;.  | [optional]  |
-| **upFile** | **string** | The file containing the data that is being imported. | [optional]  |
+| **upFile** | **System.IO.Stream****System.IO.Stream** | The CSV file containing the data that is being imported. | [optional]  |
 
 ### Return type
 
@@ -5321,7 +5321,7 @@ Upload a CSV file containing store budgets for a given campaign.  Send the file 
 
 <a id="importcampaignstores"></a>
 # **ImportCampaignStores**
-> Import ImportCampaignStores (long applicationId, long campaignId, string upFile = null)
+> Import ImportCampaignStores (long applicationId, long campaignId, System.IO.Stream upFile = null)
 
 Import stores
 
@@ -5334,7 +5334,7 @@ Upload a CSV file containing the stores you want to link to a specific campaign.
 |------|------|-------------|-------|
 | **applicationId** | **long** | The ID of the Application. It is displayed in your Talon.One deployment URL. |  |
 | **campaignId** | **long** | The ID of the campaign. It is displayed in your Talon.One deployment URL. |  |
-| **upFile** | **string** | The file containing the data that is being imported. | [optional]  |
+| **upFile** | **System.IO.Stream****System.IO.Stream** | The CSV file containing the data that is being imported. | [optional]  |
 
 ### Return type
 
@@ -5362,7 +5362,7 @@ Upload a CSV file containing the stores you want to link to a specific campaign.
 
 <a id="importcollection"></a>
 # **ImportCollection**
-> Import ImportCollection (long applicationId, long campaignId, long collectionId, string upFile = null)
+> Import ImportCollection (long applicationId, long campaignId, long collectionId, System.IO.Stream upFile = null)
 
 Import data into existing campaign-level collection
 
@@ -5376,7 +5376,7 @@ Upload a CSV file containing the collection of string values that should be atta
 | **applicationId** | **long** | The ID of the Application. It is displayed in your Talon.One deployment URL. |  |
 | **campaignId** | **long** | The ID of the campaign. It is displayed in your Talon.One deployment URL. |  |
 | **collectionId** | **long** | The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint. |  |
-| **upFile** | **string** | The file containing the data that is being imported. | [optional]  |
+| **upFile** | **System.IO.Stream****System.IO.Stream** | The CSV file containing the data that is being imported. | [optional]  |
 
 ### Return type
 
@@ -5402,7 +5402,7 @@ Upload a CSV file containing the collection of string values that should be atta
 
 <a id="importcoupons"></a>
 # **ImportCoupons**
-> Import ImportCoupons (long applicationId, long campaignId, bool skipDuplicates = null, string upFile = null)
+> Import ImportCoupons (long applicationId, long campaignId, bool skipDuplicates = null, System.IO.Stream upFile = null)
 
 Import coupons
 
@@ -5416,7 +5416,7 @@ Upload a CSV file containing the coupons that should be created. The file should
 | **applicationId** | **long** | The ID of the Application. It is displayed in your Talon.One deployment URL. |  |
 | **campaignId** | **long** | The ID of the campaign. It is displayed in your Talon.One deployment URL. |  |
 | **skipDuplicates** | **bool** | An indicator of whether to skip duplicate coupon values instead of causing an error. Duplicate values are ignored when &#x60;skipDuplicates&#x3D;true&#x60;.  | [optional]  |
-| **upFile** | **string** | The file containing the data that is being imported. | [optional]  |
+| **upFile** | **System.IO.Stream****System.IO.Stream** | The CSV file containing the data that is being imported. | [optional]  |
 
 ### Return type
 
@@ -5441,7 +5441,7 @@ Upload a CSV file containing the coupons that should be created. The file should
 
 <a id="importloyaltycards"></a>
 # **ImportLoyaltyCards**
-> Import ImportLoyaltyCards (long loyaltyProgramId, string upFile = null)
+> Import ImportLoyaltyCards (long loyaltyProgramId, System.IO.Stream upFile = null)
 
 Import loyalty cards
 
@@ -5453,7 +5453,7 @@ Upload a CSV file containing the loyalty cards that you want to use in your card
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **loyaltyProgramId** | **long** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  |  |
-| **upFile** | **string** | The file containing the data that is being imported. | [optional]  |
+| **upFile** | **System.IO.Stream****System.IO.Stream** | The CSV file containing the data that is being imported. | [optional]  |
 
 ### Return type
 
@@ -5480,7 +5480,7 @@ Upload a CSV file containing the loyalty cards that you want to use in your card
 
 <a id="importloyaltycustomerstiers"></a>
 # **ImportLoyaltyCustomersTiers**
-> Import ImportLoyaltyCustomersTiers (long loyaltyProgramId, string upFile = null)
+> Import ImportLoyaltyCustomersTiers (long loyaltyProgramId, System.IO.Stream upFile = null)
 
 Import customers into loyalty tiers
 
@@ -5492,7 +5492,7 @@ Upload a CSV file containing existing customers to be assigned to existing tiers
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **loyaltyProgramId** | **long** | Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  |  |
-| **upFile** | **string** | The file containing the data that is being imported. | [optional]  |
+| **upFile** | **System.IO.Stream****System.IO.Stream** | The CSV file containing the data that is being imported. | [optional]  |
 
 ### Return type
 
@@ -5520,7 +5520,7 @@ Upload a CSV file containing existing customers to be assigned to existing tiers
 
 <a id="importloyaltypoints"></a>
 # **ImportLoyaltyPoints**
-> Import ImportLoyaltyPoints (long loyaltyProgramId, bool notificationsEnabled = null, string upFile = null)
+> Import ImportLoyaltyPoints (long loyaltyProgramId, bool notificationsEnabled = null, System.IO.Stream upFile = null)
 
 Import loyalty points
 
@@ -5533,7 +5533,7 @@ Upload a CSV file containing the loyalty points you want to import into a given 
 |------|------|-------------|-------|
 | **loyaltyProgramId** | **long** | Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  |  |
 | **notificationsEnabled** | **bool** | Indicates whether the points import triggers notifications about its effects. For example, a notification is sent if the import upgrades a customer&#39;s tier or offsets their negative points balance.  This parameter is optional and defaults to &#x60;true&#x60;.  | [optional]  |
-| **upFile** | **string** | The file containing the data that is being imported. | [optional]  |
+| **upFile** | **System.IO.Stream****System.IO.Stream** | The CSV file containing the data that is being imported. | [optional]  |
 
 ### Return type
 
@@ -5558,7 +5558,7 @@ Upload a CSV file containing the loyalty points you want to import into a given 
 
 <a id="importpoolgiveaways"></a>
 # **ImportPoolGiveaways**
-> Import ImportPoolGiveaways (long poolId, string upFile = null)
+> Import ImportPoolGiveaways (long poolId, System.IO.Stream upFile = null)
 
 Import giveaway codes into a giveaway pool
 
@@ -5570,7 +5570,7 @@ Upload a CSV file containing the giveaway codes that should be created. Send the
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **poolId** | **long** | The ID of the pool. You can find it in the Campaign Manager, in the **Giveaways** section. |  |
-| **upFile** | **string** | The file containing the data that is being imported. | [optional]  |
+| **upFile** | **System.IO.Stream****System.IO.Stream** | The CSV file containing the data that is being imported. | [optional]  |
 
 ### Return type
 
@@ -5595,7 +5595,7 @@ Upload a CSV file containing the giveaway codes that should be created. Send the
 
 <a id="importreferrals"></a>
 # **ImportReferrals**
-> Import ImportReferrals (long applicationId, long campaignId, string upFile = null)
+> Import ImportReferrals (long applicationId, long campaignId, System.IO.Stream upFile = null)
 
 Import referrals
 
@@ -5608,7 +5608,7 @@ Upload a CSV file containing the referrals that should be created.  The file sho
 |------|------|-------------|-------|
 | **applicationId** | **long** | The ID of the Application. It is displayed in your Talon.One deployment URL. |  |
 | **campaignId** | **long** | The ID of the campaign. It is displayed in your Talon.One deployment URL. |  |
-| **upFile** | **string** | The file containing the data that is being imported. | [optional]  |
+| **upFile** | **System.IO.Stream****System.IO.Stream** | The CSV file containing the data that is being imported. | [optional]  |
 
 ### Return type
 

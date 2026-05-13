@@ -3087,10 +3087,10 @@ namespace TalonOneSdk.Api
         Task<IGetLoyaltyCardApiResponse> GetLoyaltyCardOrDefaultAsync(long loyaltyProgramId, string loyaltyCardId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// List card&#39;s transactions
+        /// List card&#39;s transactions (Management API)
         /// </summary>
         /// <remarks>
-        /// Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied. If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
+        /// Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied.  &gt; [!note] For most use cases, especially real-time integrations, use the Integration API endpoint: &gt; [List card&#39;s transactions](https://docs.talon.one/integration-api#tag/Loyalty-cards/operation/getLoyaltyCardTransactions).  If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -3107,10 +3107,10 @@ namespace TalonOneSdk.Api
         Task<IGetLoyaltyCardTransactionLogsApiResponse> GetLoyaltyCardTransactionLogsAsync(long loyaltyProgramId, string loyaltyCardId, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// List card&#39;s transactions
+        /// List card&#39;s transactions (Management API)
         /// </summary>
         /// <remarks>
-        /// Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied. If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
+        /// Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied.  &gt; [!note] For most use cases, especially real-time integrations, use the Integration API endpoint: &gt; [List card&#39;s transactions](https://docs.talon.one/integration-api#tag/Loyalty-cards/operation/getLoyaltyCardTransactions).  If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
         /// </remarks>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="loyaltyCardId">Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;. </param>
@@ -3161,10 +3161,10 @@ namespace TalonOneSdk.Api
         Task<IGetLoyaltyCardsApiResponse> GetLoyaltyCardsOrDefaultAsync(long loyaltyProgramId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> identifier = default, Option<long> profileId = default, Option<string> batchId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get customer&#39;s loyalty balances
+        /// Get customer&#39;s loyalty balances (Management API)
         /// </summary>
         /// <remarks>
-        /// Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.  You can filter balances by date and subledger ID, and include tier-related information in the response.  &gt; [!note] If no filtering options are applied, you retrieve all loyalty &gt; balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see:  - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)  - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
+        /// Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.  You can filter balances by date and subledger ID, and include tier-related information in the response.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint:     [Get customer&#39;s loyalty balances](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyBalances). &gt; - If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see:  - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)  - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -3178,10 +3178,10 @@ namespace TalonOneSdk.Api
         Task<IGetLoyaltyLedgerBalancesApiResponse> GetLoyaltyLedgerBalancesAsync(long loyaltyProgramId, string integrationId, Option<DateTime> endDate = default, Option<string> subledgerId = default, Option<bool> includeTiers = default, Option<bool> includeProjectedTier = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get customer&#39;s loyalty balances
+        /// Get customer&#39;s loyalty balances (Management API)
         /// </summary>
         /// <remarks>
-        /// Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.  You can filter balances by date and subledger ID, and include tier-related information in the response.  &gt; [!note] If no filtering options are applied, you retrieve all loyalty &gt; balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see:  - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)  - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
+        /// Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.  You can filter balances by date and subledger ID, and include tier-related information in the response.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint:     [Get customer&#39;s loyalty balances](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyBalances). &gt; - If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see:  - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)  - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
         /// </remarks>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
@@ -3244,10 +3244,10 @@ namespace TalonOneSdk.Api
         Task<IGetLoyaltyProgramApiResponse> GetLoyaltyProgramOrDefaultAsync(long loyaltyProgramId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// List customer&#39;s loyalty transactions
+        /// List customer&#39;s loyalty transactions (Management API)
         /// </summary>
         /// <remarks>
-        /// Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] To retrieve all loyalty program transaction logs in a given &gt; loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) &gt; endpoint. 
+        /// Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint: &gt;   [List customer&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). &gt; - To retrieve all loyalty program transaction logs in a given loyalty program, use the &gt;   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -3266,10 +3266,10 @@ namespace TalonOneSdk.Api
         Task<IGetLoyaltyProgramProfileLedgerTransactionsApiResponse> GetLoyaltyProgramProfileLedgerTransactionsAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// List customer&#39;s loyalty transactions
+        /// List customer&#39;s loyalty transactions (Management API)
         /// </summary>
         /// <remarks>
-        /// Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] To retrieve all loyalty program transaction logs in a given &gt; loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) &gt; endpoint. 
+        /// Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint: &gt;   [List customer&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). &gt; - To retrieve all loyalty program transaction logs in a given loyalty program, use the &gt;   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
         /// </remarks>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
@@ -3689,10 +3689,10 @@ namespace TalonOneSdk.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="collectionId">The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportAccountCollectionApiResponse"/>&gt;</returns>
-        Task<IImportAccountCollectionApiResponse> ImportAccountCollectionAsync(long collectionId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportAccountCollectionApiResponse> ImportAccountCollectionAsync(long collectionId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import data into existing account-level collection
@@ -3701,10 +3701,10 @@ namespace TalonOneSdk.Api
         /// Upload a CSV file containing the collection of string values that should be attached as payload for collection.  The file should be sent as multipart data.  The import **replaces** the initial content of the collection.  The CSV file **must** only contain the following column:  - &#x60;item&#x60;: the values in your collection.  A collection is limited to 500,000 items.  ## Example  &#x60;&#x60;&#x60; item Adidas Nike Asics &#x60;&#x60;&#x60;  &gt; [!note] Before sending a request to this endpoint, ensure the data in the &gt; CSV to import is different from the data currently stored in the collection. 
         /// </remarks>
         /// <param name="collectionId">The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportAccountCollectionApiResponse"/>&gt;</returns>
-        Task<IImportAccountCollectionApiResponse> ImportAccountCollectionOrDefaultAsync(long collectionId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportAccountCollectionApiResponse> ImportAccountCollectionOrDefaultAsync(long collectionId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import allowed values for attribute
@@ -3714,10 +3714,10 @@ namespace TalonOneSdk.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="attributeId">The ID of the attribute. You can find the ID in the Campaign Manager&#39;s URL when you display the details of an attribute in **Account** &gt; **Tools** &gt; **Attributes**.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportAllowedListApiResponse"/>&gt;</returns>
-        Task<IImportAllowedListApiResponse> ImportAllowedListAsync(long attributeId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportAllowedListApiResponse> ImportAllowedListAsync(long attributeId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import allowed values for attribute
@@ -3726,10 +3726,10 @@ namespace TalonOneSdk.Api
         /// Upload a CSV file containing a list of [picklist values](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#picklist-values) for the specified attribute.  The file should be sent as multipart data.  The import **replaces** the previous list of allowed values for this attribute, if any.  The CSV file **must** only contain the following column:  - &#x60;item&#x60;: The values in your allowed list, for example a list of SKUs.  An allowed list is limited to 500,000 items.  ## Example  &#x60;&#x60;&#x60;text item CS-VG-04032021-UP-50D-10 CS-DV-04042021-UP-49D-12 CS-DG-02082021-UP-50G-07 &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <param name="attributeId">The ID of the attribute. You can find the ID in the Campaign Manager&#39;s URL when you display the details of an attribute in **Account** &gt; **Tools** &gt; **Attributes**.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportAllowedListApiResponse"/>&gt;</returns>
-        Task<IImportAllowedListApiResponse> ImportAllowedListOrDefaultAsync(long attributeId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportAllowedListApiResponse> ImportAllowedListOrDefaultAsync(long attributeId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import audience members
@@ -3739,10 +3739,10 @@ namespace TalonOneSdk.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId">The ID of the audience.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportAudiencesMembershipsApiResponse"/>&gt;</returns>
-        Task<IImportAudiencesMembershipsApiResponse> ImportAudiencesMembershipsAsync(long audienceId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportAudiencesMembershipsApiResponse> ImportAudiencesMembershipsAsync(long audienceId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import audience members
@@ -3751,10 +3751,10 @@ namespace TalonOneSdk.Api
         /// Upload a CSV file containing the integration IDs of the members you want to add to an audience.  The file should be sent as multipart data and should contain only the following column (required):  - &#x60;profileintegrationid&#x60;: The integration ID of the customer profile.  The import **replaces** the previous list of audience members.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;text profileintegrationid charles alexa &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <param name="audienceId">The ID of the audience.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportAudiencesMembershipsApiResponse"/>&gt;</returns>
-        Task<IImportAudiencesMembershipsApiResponse> ImportAudiencesMembershipsOrDefaultAsync(long audienceId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportAudiencesMembershipsApiResponse> ImportAudiencesMembershipsOrDefaultAsync(long audienceId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import campaign store budgets
@@ -3767,10 +3767,10 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="action">The action that this budget is limiting. (optional)</param>
         /// <param name="period">The period to which the limit applies.  **Note**: For budgets with no period, set this to &#x60;overall&#x60;.  (optional)</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportCampaignStoreBudgetApiResponse"/>&gt;</returns>
-        Task<IImportCampaignStoreBudgetApiResponse> ImportCampaignStoreBudgetAsync(long applicationId, long campaignId, Option<string> action = default, Option<string> period = default, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportCampaignStoreBudgetApiResponse> ImportCampaignStoreBudgetAsync(long applicationId, long campaignId, Option<string> action = default, Option<string> period = default, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import campaign store budgets
@@ -3782,10 +3782,10 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="action">The action that this budget is limiting. (optional)</param>
         /// <param name="period">The period to which the limit applies.  **Note**: For budgets with no period, set this to &#x60;overall&#x60;.  (optional)</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportCampaignStoreBudgetApiResponse"/>&gt;</returns>
-        Task<IImportCampaignStoreBudgetApiResponse> ImportCampaignStoreBudgetOrDefaultAsync(long applicationId, long campaignId, Option<string> action = default, Option<string> period = default, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportCampaignStoreBudgetApiResponse> ImportCampaignStoreBudgetOrDefaultAsync(long applicationId, long campaignId, Option<string> action = default, Option<string> period = default, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import stores
@@ -3796,10 +3796,10 @@ namespace TalonOneSdk.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportCampaignStoresApiResponse"/>&gt;</returns>
-        Task<IImportCampaignStoresApiResponse> ImportCampaignStoresAsync(long applicationId, long campaignId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportCampaignStoresApiResponse> ImportCampaignStoresAsync(long applicationId, long campaignId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import stores
@@ -3809,10 +3809,10 @@ namespace TalonOneSdk.Api
         /// </remarks>
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportCampaignStoresApiResponse"/>&gt;</returns>
-        Task<IImportCampaignStoresApiResponse> ImportCampaignStoresOrDefaultAsync(long applicationId, long campaignId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportCampaignStoresApiResponse> ImportCampaignStoresOrDefaultAsync(long applicationId, long campaignId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import data into existing campaign-level collection
@@ -3824,10 +3824,10 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="collectionId">The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportCollectionApiResponse"/>&gt;</returns>
-        Task<IImportCollectionApiResponse> ImportCollectionAsync(long applicationId, long campaignId, long collectionId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportCollectionApiResponse> ImportCollectionAsync(long applicationId, long campaignId, long collectionId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import data into existing campaign-level collection
@@ -3838,10 +3838,10 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="collectionId">The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportCollectionApiResponse"/>&gt;</returns>
-        Task<IImportCollectionApiResponse> ImportCollectionOrDefaultAsync(long applicationId, long campaignId, long collectionId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportCollectionApiResponse> ImportCollectionOrDefaultAsync(long applicationId, long campaignId, long collectionId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import coupons
@@ -3853,10 +3853,10 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="skipDuplicates">An indicator of whether to skip duplicate coupon values instead of causing an error. Duplicate values are ignored when &#x60;skipDuplicates&#x3D;true&#x60;.  (optional)</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportCouponsApiResponse"/>&gt;</returns>
-        Task<IImportCouponsApiResponse> ImportCouponsAsync(long applicationId, long campaignId, Option<bool> skipDuplicates = default, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportCouponsApiResponse> ImportCouponsAsync(long applicationId, long campaignId, Option<bool> skipDuplicates = default, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import coupons
@@ -3867,10 +3867,10 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="skipDuplicates">An indicator of whether to skip duplicate coupon values instead of causing an error. Duplicate values are ignored when &#x60;skipDuplicates&#x3D;true&#x60;.  (optional)</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportCouponsApiResponse"/>&gt;</returns>
-        Task<IImportCouponsApiResponse> ImportCouponsOrDefaultAsync(long applicationId, long campaignId, Option<bool> skipDuplicates = default, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportCouponsApiResponse> ImportCouponsOrDefaultAsync(long applicationId, long campaignId, Option<bool> skipDuplicates = default, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import loyalty cards
@@ -3880,10 +3880,10 @@ namespace TalonOneSdk.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportLoyaltyCardsApiResponse"/>&gt;</returns>
-        Task<IImportLoyaltyCardsApiResponse> ImportLoyaltyCardsAsync(long loyaltyProgramId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportLoyaltyCardsApiResponse> ImportLoyaltyCardsAsync(long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import loyalty cards
@@ -3892,10 +3892,10 @@ namespace TalonOneSdk.Api
         /// Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program.  Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  &gt; [!note] We recommend limiting your file size to 500MB.  ## Example  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportLoyaltyCardsApiResponse"/>&gt;</returns>
-        Task<IImportLoyaltyCardsApiResponse> ImportLoyaltyCardsOrDefaultAsync(long loyaltyProgramId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportLoyaltyCardsApiResponse> ImportLoyaltyCardsOrDefaultAsync(long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import customers into loyalty tiers
@@ -3905,10 +3905,10 @@ namespace TalonOneSdk.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportLoyaltyCustomersTiersApiResponse"/>&gt;</returns>
-        Task<IImportLoyaltyCustomersTiersApiResponse> ImportLoyaltyCustomersTiersAsync(long loyaltyProgramId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportLoyaltyCustomersTiersApiResponse> ImportLoyaltyCustomersTiersAsync(long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import customers into loyalty tiers
@@ -3917,10 +3917,10 @@ namespace TalonOneSdk.Api
         /// Upload a CSV file containing existing customers to be assigned to existing tiers.  Send the file as multipart data.  &gt; [!important] This endpoint only works with loyalty programs with advanced &gt; tiers (with expiration and downgrade policy) feature enabled.  The CSV file should contain the following columns:  - &#x60;subledgerid&#x60; (optional): The ID of the subledger. If this field is empty, the main ledger will be used. - &#x60;customerprofileid&#x60;: The integration ID of the customer profile to whom the tier should be assigned. - &#x60;tiername&#x60;: The name of an existing tier to assign to the customer. - &#x60;expirydate&#x60;: The expiration date of the tier when the tier is reevaluated. It should be a future date.  About customer assignment to a tier:  - If the customer isn&#39;t already in a tier, the customer is assigned to the specified tier during the tier import. - If the customer is already in the tier that&#39;s specified in the CSV file, only the expiration date is updated.  &gt; [!note] We recommend not using this endpoint to update the tier of a customer.  To update a customer&#39;s tier, you can [add](/management-api#tag/Loyalty/operation/addLoyaltyPoints) or [deduct](/management-api#tag/Loyalty/operation/removeLoyaltyPoints) their loyalty points.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv subledgerid,customerprofileid,tiername,expirydate SUB1,alexa,Gold,2024-03-21T07:32:14Z ,george,Silver,2025-04-16T21:12:37Z SUB2,avocado,Bronze,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <param name="loyaltyProgramId">Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportLoyaltyCustomersTiersApiResponse"/>&gt;</returns>
-        Task<IImportLoyaltyCustomersTiersApiResponse> ImportLoyaltyCustomersTiersOrDefaultAsync(long loyaltyProgramId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportLoyaltyCustomersTiersApiResponse> ImportLoyaltyCustomersTiersOrDefaultAsync(long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import loyalty points
@@ -3931,10 +3931,10 @@ namespace TalonOneSdk.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="notificationsEnabled">Indicates whether the points import triggers notifications about its effects. For example, a notification is sent if the import upgrades a customer&#39;s tier or offsets their negative points balance.  This parameter is optional and defaults to &#x60;true&#x60;.  (optional)</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportLoyaltyPointsApiResponse"/>&gt;</returns>
-        Task<IImportLoyaltyPointsApiResponse> ImportLoyaltyPointsAsync(long loyaltyProgramId, Option<bool> notificationsEnabled = default, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportLoyaltyPointsApiResponse> ImportLoyaltyPointsAsync(long loyaltyProgramId, Option<bool> notificationsEnabled = default, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import loyalty points
@@ -3944,10 +3944,10 @@ namespace TalonOneSdk.Api
         /// </remarks>
         /// <param name="loyaltyProgramId">Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="notificationsEnabled">Indicates whether the points import triggers notifications about its effects. For example, a notification is sent if the import upgrades a customer&#39;s tier or offsets their negative points balance.  This parameter is optional and defaults to &#x60;true&#x60;.  (optional)</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportLoyaltyPointsApiResponse"/>&gt;</returns>
-        Task<IImportLoyaltyPointsApiResponse> ImportLoyaltyPointsOrDefaultAsync(long loyaltyProgramId, Option<bool> notificationsEnabled = default, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportLoyaltyPointsApiResponse> ImportLoyaltyPointsOrDefaultAsync(long loyaltyProgramId, Option<bool> notificationsEnabled = default, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import giveaway codes into a giveaway pool
@@ -3957,10 +3957,10 @@ namespace TalonOneSdk.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="poolId">The ID of the pool. You can find it in the Campaign Manager, in the **Giveaways** section.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportPoolGiveawaysApiResponse"/>&gt;</returns>
-        Task<IImportPoolGiveawaysApiResponse> ImportPoolGiveawaysAsync(long poolId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportPoolGiveawaysApiResponse> ImportPoolGiveawaysAsync(long poolId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import giveaway codes into a giveaway pool
@@ -3969,10 +3969,10 @@ namespace TalonOneSdk.Api
         /// Upload a CSV file containing the giveaway codes that should be created. Send the file as multipart data.  The CSV file contains the following columns:  - &#x60;code&#x60; (required): The code of your giveaway, for instance, a gift card redemption code. - &#x60;startdate&#x60;:  The start date in RFC3339 of the code redemption period. - &#x60;enddate&#x60;: The last date in RFC3339 of the code redemption period. - &#x60;attributes&#x60;: A JSON object describing _custom_ giveaway attribute names and their values, enclosed with double quotation marks.&lt;br /&gt;   For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called &#x60;provider&#x60; associated with the giveaway entity, the object in the CSV file, when opened in a text editor, must be: &#x60;\&quot;{\&quot;provider\&quot;: \&quot;myPartnerCompany\&quot;}\&quot;&#x60;.  The &#x60;startdate&#x60; and &#x60;enddate&#x60; have nothing to do with the _validity_ of the codes. They are only used by the Rule Engine to award the codes or not.  You can use the time zone setting of your choice. The values are converted to UTC internally by Talon.One.  &gt; [!note] **Note** &gt; - We recommend limiting your file size to 500MB. &gt; - You can import the same code multiple times. Duplicate codes are treated and distributed to customers as unique codes.  ## Example  &#x60;&#x60;&#x60;text code,startdate,enddate,attributes GIVEAWAY1,2020-11-10T23:00:00Z,2022-11-11T23:00:00Z,\&quot;{\&quot;\&quot;provider\&quot;\&quot;: \&quot;\&quot;Amazon\&quot;\&quot;}\&quot; GIVEAWAY2,2020-11-10T23:00:00Z,2022-11-11T23:00:00Z,\&quot;{\&quot;\&quot;provider\&quot;\&quot;: \&quot;\&quot;Amazon\&quot;\&quot;}\&quot; GIVEAWAY3,2021-01-10T23:00:00Z,2022-11-11T23:00:00Z,\&quot;{\&quot;\&quot;provider\&quot;\&quot;: \&quot;\&quot;Aliexpress\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <param name="poolId">The ID of the pool. You can find it in the Campaign Manager, in the **Giveaways** section.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportPoolGiveawaysApiResponse"/>&gt;</returns>
-        Task<IImportPoolGiveawaysApiResponse> ImportPoolGiveawaysOrDefaultAsync(long poolId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportPoolGiveawaysApiResponse> ImportPoolGiveawaysOrDefaultAsync(long poolId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import referrals
@@ -3983,10 +3983,10 @@ namespace TalonOneSdk.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportReferralsApiResponse"/>&gt;</returns>
-        Task<IImportReferralsApiResponse> ImportReferralsAsync(long applicationId, long campaignId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportReferralsApiResponse> ImportReferralsAsync(long applicationId, long campaignId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import referrals
@@ -3996,10 +3996,10 @@ namespace TalonOneSdk.Api
         /// </remarks>
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportReferralsApiResponse"/>&gt;</returns>
-        Task<IImportReferralsApiResponse> ImportReferralsOrDefaultAsync(long applicationId, long campaignId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IImportReferralsApiResponse> ImportReferralsOrDefaultAsync(long applicationId, long campaignId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Invite user from identity provider
@@ -43884,7 +43884,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorGetLoyaltyCardTransactionLogs(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string loyaltyCardId, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs);
 
         /// <summary>
-        /// List card&#39;s transactions Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied. If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
+        /// List card&#39;s transactions (Management API) Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied.  &gt; [!note] For most use cases, especially real-time integrations, use the Integration API endpoint: &gt; [List card&#39;s transactions](https://docs.talon.one/integration-api#tag/Loyalty-cards/operation/getLoyaltyCardTransactions).  If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
         /// </summary>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="loyaltyCardId">Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;. </param>
@@ -43910,7 +43910,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// List card&#39;s transactions Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied. If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
+        /// List card&#39;s transactions (Management API) Retrieve the transaction logs for the given [loyalty card](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) within the specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types) with filtering options applied.  &gt; [!note] For most use cases, especially real-time integrations, use the Integration API endpoint: &gt; [List card&#39;s transactions](https://docs.talon.one/integration-api#tag/Loyalty-cards/operation/getLoyaltyCardTransactions).  If no filtering options are applied, the last 50 loyalty transactions for the given loyalty card are returned. 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -44668,7 +44668,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorGetLoyaltyLedgerBalances(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<DateTime> endDate, Option<string> subledgerId, Option<bool> includeTiers, Option<bool> includeProjectedTier);
 
         /// <summary>
-        /// Get customer&#39;s loyalty balances Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.  You can filter balances by date and subledger ID, and include tier-related information in the response.  &gt; [!note] If no filtering options are applied, you retrieve all loyalty &gt; balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see:  - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)  - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
+        /// Get customer&#39;s loyalty balances (Management API) Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.  You can filter balances by date and subledger ID, and include tier-related information in the response.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint:     [Get customer&#39;s loyalty balances](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyBalances). &gt; - If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see:  - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)  - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
         /// </summary>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
@@ -44691,7 +44691,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Get customer&#39;s loyalty balances Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.  You can filter balances by date and subledger ID, and include tier-related information in the response.  &gt; [!note] If no filtering options are applied, you retrieve all loyalty &gt; balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see:  - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)  - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
+        /// Get customer&#39;s loyalty balances (Management API) Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.  You can filter balances by date and subledger ID, and include tier-related information in the response.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint:     [Get customer&#39;s loyalty balances](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyBalances). &gt; - If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see:  - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)  - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -45613,7 +45613,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorGetLoyaltyProgramProfileLedgerTransactions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation);
 
         /// <summary>
-        /// List customer&#39;s loyalty transactions Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] To retrieve all loyalty program transaction logs in a given &gt; loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) &gt; endpoint. 
+        /// List customer&#39;s loyalty transactions (Management API) Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint: &gt;   [List customer&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). &gt; - To retrieve all loyalty program transaction logs in a given loyalty program, use the &gt;   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
         /// </summary>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
@@ -45641,7 +45641,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// List customer&#39;s loyalty transactions Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] To retrieve all loyalty program transaction logs in a given &gt; loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) &gt; endpoint. 
+        /// List customer&#39;s loyalty transactions (Management API) Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint: &gt;   [List customer&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). &gt; - To retrieve all loyalty program transaction logs in a given loyalty program, use the &gt;   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -49801,14 +49801,14 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatImportAccountCollection(ref long collectionId, ref Option<string> upFile);
+        partial void FormatImportAccountCollection(ref long collectionId, ref Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="upFile"></param>
         /// <returns></returns>
-        private void ValidateImportAccountCollection(Option<string> upFile)
+        private void ValidateImportAccountCollection(Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             if (upFile.IsSet && upFile.Value == null)
                 throw new ArgumentNullException(nameof(upFile));
@@ -49820,7 +49820,7 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="collectionId"></param>
         /// <param name="upFile"></param>
-        private void AfterImportAccountCollectionDefaultImplementation(IImportAccountCollectionApiResponse apiResponseLocalVar, long collectionId, Option<string> upFile)
+        private void AfterImportAccountCollectionDefaultImplementation(IImportAccountCollectionApiResponse apiResponseLocalVar, long collectionId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLog = false;
             AfterImportAccountCollection(ref suppressDefaultLog, apiResponseLocalVar, collectionId, upFile);
@@ -49835,7 +49835,7 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="collectionId"></param>
         /// <param name="upFile"></param>
-        partial void AfterImportAccountCollection(ref bool suppressDefaultLog, IImportAccountCollectionApiResponse apiResponseLocalVar, long collectionId, Option<string> upFile);
+        partial void AfterImportAccountCollection(ref bool suppressDefaultLog, IImportAccountCollectionApiResponse apiResponseLocalVar, long collectionId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -49845,7 +49845,7 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="collectionId"></param>
         /// <param name="upFile"></param>
-        private void OnErrorImportAccountCollectionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long collectionId, Option<string> upFile)
+        private void OnErrorImportAccountCollectionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long collectionId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorImportAccountCollection(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, collectionId, upFile);
@@ -49862,16 +49862,16 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="collectionId"></param>
         /// <param name="upFile"></param>
-        partial void OnErrorImportAccountCollection(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long collectionId, Option<string> upFile);
+        partial void OnErrorImportAccountCollection(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long collectionId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Import data into existing account-level collection Upload a CSV file containing the collection of string values that should be attached as payload for collection.  The file should be sent as multipart data.  The import **replaces** the initial content of the collection.  The CSV file **must** only contain the following column:  - &#x60;item&#x60;: the values in your collection.  A collection is limited to 500,000 items.  ## Example  &#x60;&#x60;&#x60; item Adidas Nike Asics &#x60;&#x60;&#x60;  &gt; [!note] Before sending a request to this endpoint, ensure the data in the &gt; CSV to import is different from the data currently stored in the collection. 
         /// </summary>
         /// <param name="collectionId">The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportAccountCollectionApiResponse"/>&gt;</returns>
-        public async Task<IImportAccountCollectionApiResponse> ImportAccountCollectionOrDefaultAsync(long collectionId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportAccountCollectionApiResponse> ImportAccountCollectionOrDefaultAsync(long collectionId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -49888,10 +49888,10 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="collectionId">The ID of the collection. You can get it with the [List collections in account](#tag/Collections/operation/listAccountCollections) endpoint.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportAccountCollectionApiResponse"/>&gt;</returns>
-        public async Task<IImportAccountCollectionApiResponse> ImportAccountCollectionAsync(long collectionId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportAccountCollectionApiResponse> ImportAccountCollectionAsync(long collectionId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -49918,7 +49918,11 @@ namespace TalonOneSdk.Api
                     List<KeyValuePair<string, string>> formParameterLocalVars = new List<KeyValuePair<string, string>>();
 
                     if (upFile.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string>("upFile", ClientUtils.ParameterToString(upFile.Value)));
+                    {
+                        var streamContentLocalVar = new StreamContent(upFile.Value.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(upFile.Value.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "upFile", upFile.Value.FileName ?? "upFile");
+                    }
 
                     foreach (var formParamLocalVar in formParameterLocalVars)
                         multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
@@ -50149,14 +50153,14 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatImportAllowedList(ref long attributeId, ref Option<string> upFile);
+        partial void FormatImportAllowedList(ref long attributeId, ref Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="upFile"></param>
         /// <returns></returns>
-        private void ValidateImportAllowedList(Option<string> upFile)
+        private void ValidateImportAllowedList(Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             if (upFile.IsSet && upFile.Value == null)
                 throw new ArgumentNullException(nameof(upFile));
@@ -50168,7 +50172,7 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="attributeId"></param>
         /// <param name="upFile"></param>
-        private void AfterImportAllowedListDefaultImplementation(IImportAllowedListApiResponse apiResponseLocalVar, long attributeId, Option<string> upFile)
+        private void AfterImportAllowedListDefaultImplementation(IImportAllowedListApiResponse apiResponseLocalVar, long attributeId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLog = false;
             AfterImportAllowedList(ref suppressDefaultLog, apiResponseLocalVar, attributeId, upFile);
@@ -50183,7 +50187,7 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="attributeId"></param>
         /// <param name="upFile"></param>
-        partial void AfterImportAllowedList(ref bool suppressDefaultLog, IImportAllowedListApiResponse apiResponseLocalVar, long attributeId, Option<string> upFile);
+        partial void AfterImportAllowedList(ref bool suppressDefaultLog, IImportAllowedListApiResponse apiResponseLocalVar, long attributeId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -50193,7 +50197,7 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="attributeId"></param>
         /// <param name="upFile"></param>
-        private void OnErrorImportAllowedListDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long attributeId, Option<string> upFile)
+        private void OnErrorImportAllowedListDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long attributeId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorImportAllowedList(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, attributeId, upFile);
@@ -50210,16 +50214,16 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="attributeId"></param>
         /// <param name="upFile"></param>
-        partial void OnErrorImportAllowedList(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long attributeId, Option<string> upFile);
+        partial void OnErrorImportAllowedList(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long attributeId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Import allowed values for attribute Upload a CSV file containing a list of [picklist values](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#picklist-values) for the specified attribute.  The file should be sent as multipart data.  The import **replaces** the previous list of allowed values for this attribute, if any.  The CSV file **must** only contain the following column:  - &#x60;item&#x60;: The values in your allowed list, for example a list of SKUs.  An allowed list is limited to 500,000 items.  ## Example  &#x60;&#x60;&#x60;text item CS-VG-04032021-UP-50D-10 CS-DV-04042021-UP-49D-12 CS-DG-02082021-UP-50G-07 &#x60;&#x60;&#x60; 
         /// </summary>
         /// <param name="attributeId">The ID of the attribute. You can find the ID in the Campaign Manager&#39;s URL when you display the details of an attribute in **Account** &gt; **Tools** &gt; **Attributes**.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportAllowedListApiResponse"/>&gt;</returns>
-        public async Task<IImportAllowedListApiResponse> ImportAllowedListOrDefaultAsync(long attributeId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportAllowedListApiResponse> ImportAllowedListOrDefaultAsync(long attributeId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -50236,10 +50240,10 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="attributeId">The ID of the attribute. You can find the ID in the Campaign Manager&#39;s URL when you display the details of an attribute in **Account** &gt; **Tools** &gt; **Attributes**.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportAllowedListApiResponse"/>&gt;</returns>
-        public async Task<IImportAllowedListApiResponse> ImportAllowedListAsync(long attributeId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportAllowedListApiResponse> ImportAllowedListAsync(long attributeId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -50266,7 +50270,11 @@ namespace TalonOneSdk.Api
                     List<KeyValuePair<string, string>> formParameterLocalVars = new List<KeyValuePair<string, string>>();
 
                     if (upFile.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string>("upFile", ClientUtils.ParameterToString(upFile.Value)));
+                    {
+                        var streamContentLocalVar = new StreamContent(upFile.Value.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(upFile.Value.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "upFile", upFile.Value.FileName ?? "upFile");
+                    }
 
                     foreach (var formParamLocalVar in formParameterLocalVars)
                         multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
@@ -50535,14 +50543,14 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatImportAudiencesMemberships(ref long audienceId, ref Option<string> upFile);
+        partial void FormatImportAudiencesMemberships(ref long audienceId, ref Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="upFile"></param>
         /// <returns></returns>
-        private void ValidateImportAudiencesMemberships(Option<string> upFile)
+        private void ValidateImportAudiencesMemberships(Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             if (upFile.IsSet && upFile.Value == null)
                 throw new ArgumentNullException(nameof(upFile));
@@ -50554,7 +50562,7 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="audienceId"></param>
         /// <param name="upFile"></param>
-        private void AfterImportAudiencesMembershipsDefaultImplementation(IImportAudiencesMembershipsApiResponse apiResponseLocalVar, long audienceId, Option<string> upFile)
+        private void AfterImportAudiencesMembershipsDefaultImplementation(IImportAudiencesMembershipsApiResponse apiResponseLocalVar, long audienceId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLog = false;
             AfterImportAudiencesMemberships(ref suppressDefaultLog, apiResponseLocalVar, audienceId, upFile);
@@ -50569,7 +50577,7 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="audienceId"></param>
         /// <param name="upFile"></param>
-        partial void AfterImportAudiencesMemberships(ref bool suppressDefaultLog, IImportAudiencesMembershipsApiResponse apiResponseLocalVar, long audienceId, Option<string> upFile);
+        partial void AfterImportAudiencesMemberships(ref bool suppressDefaultLog, IImportAudiencesMembershipsApiResponse apiResponseLocalVar, long audienceId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -50579,7 +50587,7 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="audienceId"></param>
         /// <param name="upFile"></param>
-        private void OnErrorImportAudiencesMembershipsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long audienceId, Option<string> upFile)
+        private void OnErrorImportAudiencesMembershipsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long audienceId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorImportAudiencesMemberships(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, audienceId, upFile);
@@ -50596,16 +50604,16 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="audienceId"></param>
         /// <param name="upFile"></param>
-        partial void OnErrorImportAudiencesMemberships(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long audienceId, Option<string> upFile);
+        partial void OnErrorImportAudiencesMemberships(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long audienceId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Import audience members Upload a CSV file containing the integration IDs of the members you want to add to an audience.  The file should be sent as multipart data and should contain only the following column (required):  - &#x60;profileintegrationid&#x60;: The integration ID of the customer profile.  The import **replaces** the previous list of audience members.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;text profileintegrationid charles alexa &#x60;&#x60;&#x60; 
         /// </summary>
         /// <param name="audienceId">The ID of the audience.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportAudiencesMembershipsApiResponse"/>&gt;</returns>
-        public async Task<IImportAudiencesMembershipsApiResponse> ImportAudiencesMembershipsOrDefaultAsync(long audienceId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportAudiencesMembershipsApiResponse> ImportAudiencesMembershipsOrDefaultAsync(long audienceId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -50622,10 +50630,10 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId">The ID of the audience.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportAudiencesMembershipsApiResponse"/>&gt;</returns>
-        public async Task<IImportAudiencesMembershipsApiResponse> ImportAudiencesMembershipsAsync(long audienceId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportAudiencesMembershipsApiResponse> ImportAudiencesMembershipsAsync(long audienceId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -50652,7 +50660,11 @@ namespace TalonOneSdk.Api
                     List<KeyValuePair<string, string>> formParameterLocalVars = new List<KeyValuePair<string, string>>();
 
                     if (upFile.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string>("upFile", ClientUtils.ParameterToString(upFile.Value)));
+                    {
+                        var streamContentLocalVar = new StreamContent(upFile.Value.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(upFile.Value.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "upFile", upFile.Value.FileName ?? "upFile");
+                    }
 
                     foreach (var formParamLocalVar in formParameterLocalVars)
                         multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
@@ -50921,7 +50933,7 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatImportCampaignStoreBudget(ref long applicationId, ref long campaignId, ref Option<string> action, ref Option<string> period, ref Option<string> upFile);
+        partial void FormatImportCampaignStoreBudget(ref long applicationId, ref long campaignId, ref Option<string> action, ref Option<string> period, ref Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Validates the request parameters
@@ -50930,7 +50942,7 @@ namespace TalonOneSdk.Api
         /// <param name="period"></param>
         /// <param name="upFile"></param>
         /// <returns></returns>
-        private void ValidateImportCampaignStoreBudget(Option<string> action, Option<string> period, Option<string> upFile)
+        private void ValidateImportCampaignStoreBudget(Option<string> action, Option<string> period, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             if (action.IsSet && action.Value == null)
                 throw new ArgumentNullException(nameof(action));
@@ -50951,7 +50963,7 @@ namespace TalonOneSdk.Api
         /// <param name="action"></param>
         /// <param name="period"></param>
         /// <param name="upFile"></param>
-        private void AfterImportCampaignStoreBudgetDefaultImplementation(IImportCampaignStoreBudgetApiResponse apiResponseLocalVar, long applicationId, long campaignId, Option<string> action, Option<string> period, Option<string> upFile)
+        private void AfterImportCampaignStoreBudgetDefaultImplementation(IImportCampaignStoreBudgetApiResponse apiResponseLocalVar, long applicationId, long campaignId, Option<string> action, Option<string> period, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLog = false;
             AfterImportCampaignStoreBudget(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, action, period, upFile);
@@ -50969,7 +50981,7 @@ namespace TalonOneSdk.Api
         /// <param name="action"></param>
         /// <param name="period"></param>
         /// <param name="upFile"></param>
-        partial void AfterImportCampaignStoreBudget(ref bool suppressDefaultLog, IImportCampaignStoreBudgetApiResponse apiResponseLocalVar, long applicationId, long campaignId, Option<string> action, Option<string> period, Option<string> upFile);
+        partial void AfterImportCampaignStoreBudget(ref bool suppressDefaultLog, IImportCampaignStoreBudgetApiResponse apiResponseLocalVar, long applicationId, long campaignId, Option<string> action, Option<string> period, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -50982,7 +50994,7 @@ namespace TalonOneSdk.Api
         /// <param name="action"></param>
         /// <param name="period"></param>
         /// <param name="upFile"></param>
-        private void OnErrorImportCampaignStoreBudgetDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, Option<string> action, Option<string> period, Option<string> upFile)
+        private void OnErrorImportCampaignStoreBudgetDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, Option<string> action, Option<string> period, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorImportCampaignStoreBudget(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, campaignId, action, period, upFile);
@@ -51002,7 +51014,7 @@ namespace TalonOneSdk.Api
         /// <param name="action"></param>
         /// <param name="period"></param>
         /// <param name="upFile"></param>
-        partial void OnErrorImportCampaignStoreBudget(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, Option<string> action, Option<string> period, Option<string> upFile);
+        partial void OnErrorImportCampaignStoreBudget(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, Option<string> action, Option<string> period, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Import campaign store budgets Upload a CSV file containing store budgets for a given campaign.  Send the file as multipart data.  The CSV file **must** only contain the following columns: - &#x60;store_integration_id&#x60;: The identifier of the store. - &#x60;limit&#x60;: The budget limit for the store.  The import **replaces** the previous list of store budgets. 
@@ -51011,10 +51023,10 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="action">The action that this budget is limiting. (optional)</param>
         /// <param name="period">The period to which the limit applies.  **Note**: For budgets with no period, set this to &#x60;overall&#x60;.  (optional)</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportCampaignStoreBudgetApiResponse"/>&gt;</returns>
-        public async Task<IImportCampaignStoreBudgetApiResponse> ImportCampaignStoreBudgetOrDefaultAsync(long applicationId, long campaignId, Option<string> action = default, Option<string> period = default, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportCampaignStoreBudgetApiResponse> ImportCampaignStoreBudgetOrDefaultAsync(long applicationId, long campaignId, Option<string> action = default, Option<string> period = default, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -51034,10 +51046,10 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="action">The action that this budget is limiting. (optional)</param>
         /// <param name="period">The period to which the limit applies.  **Note**: For budgets with no period, set this to &#x60;overall&#x60;.  (optional)</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportCampaignStoreBudgetApiResponse"/>&gt;</returns>
-        public async Task<IImportCampaignStoreBudgetApiResponse> ImportCampaignStoreBudgetAsync(long applicationId, long campaignId, Option<string> action = default, Option<string> period = default, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportCampaignStoreBudgetApiResponse> ImportCampaignStoreBudgetAsync(long applicationId, long campaignId, Option<string> action = default, Option<string> period = default, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -51075,7 +51087,11 @@ namespace TalonOneSdk.Api
                     List<KeyValuePair<string, string>> formParameterLocalVars = new List<KeyValuePair<string, string>>();
 
                     if (upFile.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string>("upFile", ClientUtils.ParameterToString(upFile.Value)));
+                    {
+                        var streamContentLocalVar = new StreamContent(upFile.Value.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(upFile.Value.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "upFile", upFile.Value.FileName ?? "upFile");
+                    }
 
                     foreach (var formParamLocalVar in formParameterLocalVars)
                         multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
@@ -51268,14 +51284,14 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatImportCampaignStores(ref long applicationId, ref long campaignId, ref Option<string> upFile);
+        partial void FormatImportCampaignStores(ref long applicationId, ref long campaignId, ref Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="upFile"></param>
         /// <returns></returns>
-        private void ValidateImportCampaignStores(Option<string> upFile)
+        private void ValidateImportCampaignStores(Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             if (upFile.IsSet && upFile.Value == null)
                 throw new ArgumentNullException(nameof(upFile));
@@ -51288,7 +51304,7 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="campaignId"></param>
         /// <param name="upFile"></param>
-        private void AfterImportCampaignStoresDefaultImplementation(IImportCampaignStoresApiResponse apiResponseLocalVar, long applicationId, long campaignId, Option<string> upFile)
+        private void AfterImportCampaignStoresDefaultImplementation(IImportCampaignStoresApiResponse apiResponseLocalVar, long applicationId, long campaignId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLog = false;
             AfterImportCampaignStores(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, upFile);
@@ -51304,7 +51320,7 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="campaignId"></param>
         /// <param name="upFile"></param>
-        partial void AfterImportCampaignStores(ref bool suppressDefaultLog, IImportCampaignStoresApiResponse apiResponseLocalVar, long applicationId, long campaignId, Option<string> upFile);
+        partial void AfterImportCampaignStores(ref bool suppressDefaultLog, IImportCampaignStoresApiResponse apiResponseLocalVar, long applicationId, long campaignId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -51315,7 +51331,7 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="campaignId"></param>
         /// <param name="upFile"></param>
-        private void OnErrorImportCampaignStoresDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, Option<string> upFile)
+        private void OnErrorImportCampaignStoresDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorImportCampaignStores(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, campaignId, upFile);
@@ -51333,17 +51349,17 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="campaignId"></param>
         /// <param name="upFile"></param>
-        partial void OnErrorImportCampaignStores(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, Option<string> upFile);
+        partial void OnErrorImportCampaignStores(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Import stores Upload a CSV file containing the stores you want to link to a specific campaign.  Send the file as multipart data.  The CSV file **must** only contain the following column: - &#x60;store_integration_id&#x60;: The identifier of the store.  The import **replaces** the previous list of stores linked to the campaign. 
         /// </summary>
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportCampaignStoresApiResponse"/>&gt;</returns>
-        public async Task<IImportCampaignStoresApiResponse> ImportCampaignStoresOrDefaultAsync(long applicationId, long campaignId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportCampaignStoresApiResponse> ImportCampaignStoresOrDefaultAsync(long applicationId, long campaignId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -51361,10 +51377,10 @@ namespace TalonOneSdk.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportCampaignStoresApiResponse"/>&gt;</returns>
-        public async Task<IImportCampaignStoresApiResponse> ImportCampaignStoresAsync(long applicationId, long campaignId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportCampaignStoresApiResponse> ImportCampaignStoresAsync(long applicationId, long campaignId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -51392,7 +51408,11 @@ namespace TalonOneSdk.Api
                     List<KeyValuePair<string, string>> formParameterLocalVars = new List<KeyValuePair<string, string>>();
 
                     if (upFile.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string>("upFile", ClientUtils.ParameterToString(upFile.Value)));
+                    {
+                        var streamContentLocalVar = new StreamContent(upFile.Value.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(upFile.Value.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "upFile", upFile.Value.FileName ?? "upFile");
+                    }
 
                     foreach (var formParamLocalVar in formParameterLocalVars)
                         multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
@@ -51661,14 +51681,14 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatImportCollection(ref long applicationId, ref long campaignId, ref long collectionId, ref Option<string> upFile);
+        partial void FormatImportCollection(ref long applicationId, ref long campaignId, ref long collectionId, ref Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="upFile"></param>
         /// <returns></returns>
-        private void ValidateImportCollection(Option<string> upFile)
+        private void ValidateImportCollection(Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             if (upFile.IsSet && upFile.Value == null)
                 throw new ArgumentNullException(nameof(upFile));
@@ -51682,7 +51702,7 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId"></param>
         /// <param name="collectionId"></param>
         /// <param name="upFile"></param>
-        private void AfterImportCollectionDefaultImplementation(IImportCollectionApiResponse apiResponseLocalVar, long applicationId, long campaignId, long collectionId, Option<string> upFile)
+        private void AfterImportCollectionDefaultImplementation(IImportCollectionApiResponse apiResponseLocalVar, long applicationId, long campaignId, long collectionId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLog = false;
             AfterImportCollection(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, collectionId, upFile);
@@ -51699,7 +51719,7 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId"></param>
         /// <param name="collectionId"></param>
         /// <param name="upFile"></param>
-        partial void AfterImportCollection(ref bool suppressDefaultLog, IImportCollectionApiResponse apiResponseLocalVar, long applicationId, long campaignId, long collectionId, Option<string> upFile);
+        partial void AfterImportCollection(ref bool suppressDefaultLog, IImportCollectionApiResponse apiResponseLocalVar, long applicationId, long campaignId, long collectionId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -51711,7 +51731,7 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId"></param>
         /// <param name="collectionId"></param>
         /// <param name="upFile"></param>
-        private void OnErrorImportCollectionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, long collectionId, Option<string> upFile)
+        private void OnErrorImportCollectionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, long collectionId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorImportCollection(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, campaignId, collectionId, upFile);
@@ -51730,7 +51750,7 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId"></param>
         /// <param name="collectionId"></param>
         /// <param name="upFile"></param>
-        partial void OnErrorImportCollection(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, long collectionId, Option<string> upFile);
+        partial void OnErrorImportCollection(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, long collectionId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Import data into existing campaign-level collection Upload a CSV file containing the collection of string values that should be attached as payload for collection.  The file should be sent as multipart data.  The import **replaces** the initial content of the collection.  The CSV file **must** only contain the following column:  - &#x60;item&#x60;: the values in your collection.  A collection is limited to 500,000 items.  ## Example  &#x60;&#x60;&#x60; item Adidas Nike Asics &#x60;&#x60;&#x60;  &gt; [!note] Before sending a request to this endpoint, ensure the data in the &gt; CSV to import is different from the data currently stored in the collection. 
@@ -51738,10 +51758,10 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="collectionId">The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportCollectionApiResponse"/>&gt;</returns>
-        public async Task<IImportCollectionApiResponse> ImportCollectionOrDefaultAsync(long applicationId, long campaignId, long collectionId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportCollectionApiResponse> ImportCollectionOrDefaultAsync(long applicationId, long campaignId, long collectionId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -51760,10 +51780,10 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="collectionId">The ID of the collection. You can get it with the [List collections in Application](#tag/Collections/operation/listCollectionsInApplication) endpoint.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportCollectionApiResponse"/>&gt;</returns>
-        public async Task<IImportCollectionApiResponse> ImportCollectionAsync(long applicationId, long campaignId, long collectionId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportCollectionApiResponse> ImportCollectionAsync(long applicationId, long campaignId, long collectionId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -51792,7 +51812,11 @@ namespace TalonOneSdk.Api
                     List<KeyValuePair<string, string>> formParameterLocalVars = new List<KeyValuePair<string, string>>();
 
                     if (upFile.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string>("upFile", ClientUtils.ParameterToString(upFile.Value)));
+                    {
+                        var streamContentLocalVar = new StreamContent(upFile.Value.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(upFile.Value.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "upFile", upFile.Value.FileName ?? "upFile");
+                    }
 
                     foreach (var formParamLocalVar in formParameterLocalVars)
                         multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
@@ -51985,14 +52009,14 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatImportCoupons(ref long applicationId, ref long campaignId, ref Option<bool> skipDuplicates, ref Option<string> upFile);
+        partial void FormatImportCoupons(ref long applicationId, ref long campaignId, ref Option<bool> skipDuplicates, ref Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="upFile"></param>
         /// <returns></returns>
-        private void ValidateImportCoupons(Option<string> upFile)
+        private void ValidateImportCoupons(Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             if (upFile.IsSet && upFile.Value == null)
                 throw new ArgumentNullException(nameof(upFile));
@@ -52006,7 +52030,7 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId"></param>
         /// <param name="skipDuplicates"></param>
         /// <param name="upFile"></param>
-        private void AfterImportCouponsDefaultImplementation(IImportCouponsApiResponse apiResponseLocalVar, long applicationId, long campaignId, Option<bool> skipDuplicates, Option<string> upFile)
+        private void AfterImportCouponsDefaultImplementation(IImportCouponsApiResponse apiResponseLocalVar, long applicationId, long campaignId, Option<bool> skipDuplicates, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLog = false;
             AfterImportCoupons(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, skipDuplicates, upFile);
@@ -52023,7 +52047,7 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId"></param>
         /// <param name="skipDuplicates"></param>
         /// <param name="upFile"></param>
-        partial void AfterImportCoupons(ref bool suppressDefaultLog, IImportCouponsApiResponse apiResponseLocalVar, long applicationId, long campaignId, Option<bool> skipDuplicates, Option<string> upFile);
+        partial void AfterImportCoupons(ref bool suppressDefaultLog, IImportCouponsApiResponse apiResponseLocalVar, long applicationId, long campaignId, Option<bool> skipDuplicates, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -52035,7 +52059,7 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId"></param>
         /// <param name="skipDuplicates"></param>
         /// <param name="upFile"></param>
-        private void OnErrorImportCouponsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, Option<bool> skipDuplicates, Option<string> upFile)
+        private void OnErrorImportCouponsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, Option<bool> skipDuplicates, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorImportCoupons(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, campaignId, skipDuplicates, upFile);
@@ -52054,7 +52078,7 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId"></param>
         /// <param name="skipDuplicates"></param>
         /// <param name="upFile"></param>
-        partial void OnErrorImportCoupons(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, Option<bool> skipDuplicates, Option<string> upFile);
+        partial void OnErrorImportCoupons(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, Option<bool> skipDuplicates, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Import coupons Upload a CSV file containing the coupons that should be created. The file should be sent as multipart data.  The CSV file contains the following columns:  - &#x60;value&#x60; (required): The coupon code. Must be at least 3 characters long. We recommend using alphanumeric characters.   There is no maximum length but limiting the code to 30 characters   ensures it is fully readable in the Campaign Manager.   The code should be unique unless you set &#x60;skipDuplicates&#x60; to &#x60;true&#x60;. - &#x60;expirydate&#x60;: The end date in RFC3339 of the code redemption period. - &#x60;startdate&#x60;: The start date in RFC3339 of the code redemption period. - &#x60;recipientintegrationid&#x60;: The integration ID of the recipient of the coupon.   Only the customer with this integration ID can redeem this code. Available only for personal codes. - &#x60;limitval&#x60;: The maximum number of redemptions of this code. For unlimited redemptions, use &#x60;0&#x60;. Defaults to &#x60;1&#x60; when not provided. - &#x60;discountlimit&#x60;: The total discount value that the code can give. This is typically used to represent a gift card value. - &#x60;attributes&#x60;: A JSON object describing _custom_ coupon attribute names and their values, enclosed with double quotation marks.&lt;br /&gt;   For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called &#x60;category&#x60; associated with the coupon entity, the object in the CSV file, when opened in a text editor, must be: &#x60;\&quot;{\&quot;category\&quot;: \&quot;10_off\&quot;}\&quot;&#x60;.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;text \&quot;value\&quot;,\&quot;expirydate\&quot;,\&quot;startdate\&quot;,\&quot;recipientintegrationid\&quot;,\&quot;limitval\&quot;,\&quot;attributes\&quot;,\&quot;discountlimit\&quot; COUP1,2018-07-01T04:00:00Z,2018-05-01T04:00:00Z,cust123,1,\&quot;{\&quot;\&quot;Category\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot;,2.4 &#x60;&#x60;&#x60;  Once imported, you can find the &#x60;batchId&#x60; in the Campaign Manager or by using [List coupons](#tag/Coupons/operation/getCouponsWithoutTotalCount). 
@@ -52062,10 +52086,10 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="skipDuplicates">An indicator of whether to skip duplicate coupon values instead of causing an error. Duplicate values are ignored when &#x60;skipDuplicates&#x3D;true&#x60;.  (optional)</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportCouponsApiResponse"/>&gt;</returns>
-        public async Task<IImportCouponsApiResponse> ImportCouponsOrDefaultAsync(long applicationId, long campaignId, Option<bool> skipDuplicates = default, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportCouponsApiResponse> ImportCouponsOrDefaultAsync(long applicationId, long campaignId, Option<bool> skipDuplicates = default, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -52084,10 +52108,10 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="skipDuplicates">An indicator of whether to skip duplicate coupon values instead of causing an error. Duplicate values are ignored when &#x60;skipDuplicates&#x3D;true&#x60;.  (optional)</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportCouponsApiResponse"/>&gt;</returns>
-        public async Task<IImportCouponsApiResponse> ImportCouponsAsync(long applicationId, long campaignId, Option<bool> skipDuplicates = default, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportCouponsApiResponse> ImportCouponsAsync(long applicationId, long campaignId, Option<bool> skipDuplicates = default, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -52122,7 +52146,11 @@ namespace TalonOneSdk.Api
                     List<KeyValuePair<string, string>> formParameterLocalVars = new List<KeyValuePair<string, string>>();
 
                     if (upFile.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string>("upFile", ClientUtils.ParameterToString(upFile.Value)));
+                    {
+                        var streamContentLocalVar = new StreamContent(upFile.Value.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(upFile.Value.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "upFile", upFile.Value.FileName ?? "upFile");
+                    }
 
                     foreach (var formParamLocalVar in formParameterLocalVars)
                         multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
@@ -52277,14 +52305,14 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatImportLoyaltyCards(ref long loyaltyProgramId, ref Option<string> upFile);
+        partial void FormatImportLoyaltyCards(ref long loyaltyProgramId, ref Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="upFile"></param>
         /// <returns></returns>
-        private void ValidateImportLoyaltyCards(Option<string> upFile)
+        private void ValidateImportLoyaltyCards(Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             if (upFile.IsSet && upFile.Value == null)
                 throw new ArgumentNullException(nameof(upFile));
@@ -52296,7 +52324,7 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="upFile"></param>
-        private void AfterImportLoyaltyCardsDefaultImplementation(IImportLoyaltyCardsApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<string> upFile)
+        private void AfterImportLoyaltyCardsDefaultImplementation(IImportLoyaltyCardsApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLog = false;
             AfterImportLoyaltyCards(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, upFile);
@@ -52311,7 +52339,7 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="upFile"></param>
-        partial void AfterImportLoyaltyCards(ref bool suppressDefaultLog, IImportLoyaltyCardsApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<string> upFile);
+        partial void AfterImportLoyaltyCards(ref bool suppressDefaultLog, IImportLoyaltyCardsApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -52321,7 +52349,7 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="upFile"></param>
-        private void OnErrorImportLoyaltyCardsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<string> upFile)
+        private void OnErrorImportLoyaltyCardsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorImportLoyaltyCards(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, upFile);
@@ -52338,16 +52366,16 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="upFile"></param>
-        partial void OnErrorImportLoyaltyCards(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<string> upFile);
+        partial void OnErrorImportLoyaltyCards(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Import loyalty cards Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program.  Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  &gt; [!note] We recommend limiting your file size to 500MB.  ## Example  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA &#x60;&#x60;&#x60; 
         /// </summary>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportLoyaltyCardsApiResponse"/>&gt;</returns>
-        public async Task<IImportLoyaltyCardsApiResponse> ImportLoyaltyCardsOrDefaultAsync(long loyaltyProgramId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportLoyaltyCardsApiResponse> ImportLoyaltyCardsOrDefaultAsync(long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -52364,10 +52392,10 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportLoyaltyCardsApiResponse"/>&gt;</returns>
-        public async Task<IImportLoyaltyCardsApiResponse> ImportLoyaltyCardsAsync(long loyaltyProgramId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportLoyaltyCardsApiResponse> ImportLoyaltyCardsAsync(long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -52394,7 +52422,11 @@ namespace TalonOneSdk.Api
                     List<KeyValuePair<string, string>> formParameterLocalVars = new List<KeyValuePair<string, string>>();
 
                     if (upFile.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string>("upFile", ClientUtils.ParameterToString(upFile.Value)));
+                    {
+                        var streamContentLocalVar = new StreamContent(upFile.Value.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(upFile.Value.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "upFile", upFile.Value.FileName ?? "upFile");
+                    }
 
                     foreach (var formParamLocalVar in formParameterLocalVars)
                         multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
@@ -52625,14 +52657,14 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatImportLoyaltyCustomersTiers(ref long loyaltyProgramId, ref Option<string> upFile);
+        partial void FormatImportLoyaltyCustomersTiers(ref long loyaltyProgramId, ref Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="upFile"></param>
         /// <returns></returns>
-        private void ValidateImportLoyaltyCustomersTiers(Option<string> upFile)
+        private void ValidateImportLoyaltyCustomersTiers(Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             if (upFile.IsSet && upFile.Value == null)
                 throw new ArgumentNullException(nameof(upFile));
@@ -52644,7 +52676,7 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="upFile"></param>
-        private void AfterImportLoyaltyCustomersTiersDefaultImplementation(IImportLoyaltyCustomersTiersApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<string> upFile)
+        private void AfterImportLoyaltyCustomersTiersDefaultImplementation(IImportLoyaltyCustomersTiersApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLog = false;
             AfterImportLoyaltyCustomersTiers(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, upFile);
@@ -52659,7 +52691,7 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="upFile"></param>
-        partial void AfterImportLoyaltyCustomersTiers(ref bool suppressDefaultLog, IImportLoyaltyCustomersTiersApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<string> upFile);
+        partial void AfterImportLoyaltyCustomersTiers(ref bool suppressDefaultLog, IImportLoyaltyCustomersTiersApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -52669,7 +52701,7 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="upFile"></param>
-        private void OnErrorImportLoyaltyCustomersTiersDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<string> upFile)
+        private void OnErrorImportLoyaltyCustomersTiersDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorImportLoyaltyCustomersTiers(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, upFile);
@@ -52686,16 +52718,16 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="upFile"></param>
-        partial void OnErrorImportLoyaltyCustomersTiers(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<string> upFile);
+        partial void OnErrorImportLoyaltyCustomersTiers(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Import customers into loyalty tiers Upload a CSV file containing existing customers to be assigned to existing tiers.  Send the file as multipart data.  &gt; [!important] This endpoint only works with loyalty programs with advanced &gt; tiers (with expiration and downgrade policy) feature enabled.  The CSV file should contain the following columns:  - &#x60;subledgerid&#x60; (optional): The ID of the subledger. If this field is empty, the main ledger will be used. - &#x60;customerprofileid&#x60;: The integration ID of the customer profile to whom the tier should be assigned. - &#x60;tiername&#x60;: The name of an existing tier to assign to the customer. - &#x60;expirydate&#x60;: The expiration date of the tier when the tier is reevaluated. It should be a future date.  About customer assignment to a tier:  - If the customer isn&#39;t already in a tier, the customer is assigned to the specified tier during the tier import. - If the customer is already in the tier that&#39;s specified in the CSV file, only the expiration date is updated.  &gt; [!note] We recommend not using this endpoint to update the tier of a customer.  To update a customer&#39;s tier, you can [add](/management-api#tag/Loyalty/operation/addLoyaltyPoints) or [deduct](/management-api#tag/Loyalty/operation/removeLoyaltyPoints) their loyalty points.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv subledgerid,customerprofileid,tiername,expirydate SUB1,alexa,Gold,2024-03-21T07:32:14Z ,george,Silver,2025-04-16T21:12:37Z SUB2,avocado,Bronze,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
         /// </summary>
         /// <param name="loyaltyProgramId">Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportLoyaltyCustomersTiersApiResponse"/>&gt;</returns>
-        public async Task<IImportLoyaltyCustomersTiersApiResponse> ImportLoyaltyCustomersTiersOrDefaultAsync(long loyaltyProgramId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportLoyaltyCustomersTiersApiResponse> ImportLoyaltyCustomersTiersOrDefaultAsync(long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -52712,10 +52744,10 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportLoyaltyCustomersTiersApiResponse"/>&gt;</returns>
-        public async Task<IImportLoyaltyCustomersTiersApiResponse> ImportLoyaltyCustomersTiersAsync(long loyaltyProgramId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportLoyaltyCustomersTiersApiResponse> ImportLoyaltyCustomersTiersAsync(long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -52742,7 +52774,11 @@ namespace TalonOneSdk.Api
                     List<KeyValuePair<string, string>> formParameterLocalVars = new List<KeyValuePair<string, string>>();
 
                     if (upFile.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string>("upFile", ClientUtils.ParameterToString(upFile.Value)));
+                    {
+                        var streamContentLocalVar = new StreamContent(upFile.Value.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(upFile.Value.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "upFile", upFile.Value.FileName ?? "upFile");
+                    }
 
                     foreach (var formParamLocalVar in formParameterLocalVars)
                         multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
@@ -53011,14 +53047,14 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatImportLoyaltyPoints(ref long loyaltyProgramId, ref Option<bool> notificationsEnabled, ref Option<string> upFile);
+        partial void FormatImportLoyaltyPoints(ref long loyaltyProgramId, ref Option<bool> notificationsEnabled, ref Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="upFile"></param>
         /// <returns></returns>
-        private void ValidateImportLoyaltyPoints(Option<string> upFile)
+        private void ValidateImportLoyaltyPoints(Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             if (upFile.IsSet && upFile.Value == null)
                 throw new ArgumentNullException(nameof(upFile));
@@ -53031,7 +53067,7 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId"></param>
         /// <param name="notificationsEnabled"></param>
         /// <param name="upFile"></param>
-        private void AfterImportLoyaltyPointsDefaultImplementation(IImportLoyaltyPointsApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<bool> notificationsEnabled, Option<string> upFile)
+        private void AfterImportLoyaltyPointsDefaultImplementation(IImportLoyaltyPointsApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<bool> notificationsEnabled, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLog = false;
             AfterImportLoyaltyPoints(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, notificationsEnabled, upFile);
@@ -53047,7 +53083,7 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId"></param>
         /// <param name="notificationsEnabled"></param>
         /// <param name="upFile"></param>
-        partial void AfterImportLoyaltyPoints(ref bool suppressDefaultLog, IImportLoyaltyPointsApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<bool> notificationsEnabled, Option<string> upFile);
+        partial void AfterImportLoyaltyPoints(ref bool suppressDefaultLog, IImportLoyaltyPointsApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<bool> notificationsEnabled, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -53058,7 +53094,7 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId"></param>
         /// <param name="notificationsEnabled"></param>
         /// <param name="upFile"></param>
-        private void OnErrorImportLoyaltyPointsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<bool> notificationsEnabled, Option<string> upFile)
+        private void OnErrorImportLoyaltyPointsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<bool> notificationsEnabled, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorImportLoyaltyPoints(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, notificationsEnabled, upFile);
@@ -53076,17 +53112,17 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId"></param>
         /// <param name="notificationsEnabled"></param>
         /// <param name="upFile"></param>
-        partial void OnErrorImportLoyaltyPoints(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<bool> notificationsEnabled, Option<string> upFile);
+        partial void OnErrorImportLoyaltyPoints(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<bool> notificationsEnabled, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Import loyalty points Upload a CSV file containing the loyalty points you want to import into a given loyalty program.  Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - &#x60;customerprofileid&#x60; (optional): For profile-based loyalty programs, the   integration ID of the customer profile where the loyalty points are   imported.   **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - &#x60;identifier&#x60; (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - &#x60;amount&#x60;: The amount of points to award to the customer profile. - &#x60;startdate&#x60; (optional): The earliest date when the points can be redeemed. The points are &#x60;active&#x60; from this date until the expiration date.   This parameter accepts one of the following values:     - A timestamp string in RFC3339 format.     - &#x60;immediate&#x60;     - &#x60;on_action&#x60;   **Note**: Empty or missing values default to &#x60;immediate&#x60;. - &#x60;expirydate&#x60; (optional): The latest date when the points can be redeemed.   The points are &#x60;expired&#x60; after this date.   **Note**: It must be an RFC3339 timestamp string or string &#x60;unlimited&#x60;. Empty or missing values are considered &#x60;unlimited&#x60;.   If passed, &#x60;validityDuration&#x60; should be omitted. - &#x60;validityDuration&#x60; (optional): The duration for which the points remain active, relative to the   activation date. The time format is an **integer** followed by one letter indicating the time unit.&lt;br /&gt;   Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.    Available units:    - &#x60;s&#x60;: seconds   - &#x60;m&#x60;: minutes   - &#x60;h&#x60;: hours   - &#x60;D&#x60;: days   - &#x60;W&#x60;: weeks   - &#x60;M&#x60;: months   - &#x60;Y&#x60;: years    You can round certain units up or down:    - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day.   - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of   the day, week, month or year.    If passed, &#x60;expirydate&#x60; should be omitted. - &#x60;subledgerid&#x60; (optional): The ID of the subledger that should received the points. - &#x60;reason&#x60; (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  &gt; [!note] For existing customer profiles and loyalty cards, the imported &gt; points are added to any previous active or pending points, depending on the &gt; value provided for &#x60;startdate&#x60;. If &#x60;startdate&#x60; matches the current date, the &gt; imported points are _active_. If it is later, the points are _pending_ until &gt; the date provided for &#x60;startdate&#x60; is reached.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example for profile-based programs  &#x60;&#x60;&#x60;text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60;  ## Example for card-based programs  &#x60;&#x60;&#x60;text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement &#x60;&#x60;&#x60; 
         /// </summary>
         /// <param name="loyaltyProgramId">Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="notificationsEnabled">Indicates whether the points import triggers notifications about its effects. For example, a notification is sent if the import upgrades a customer&#39;s tier or offsets their negative points balance.  This parameter is optional and defaults to &#x60;true&#x60;.  (optional)</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportLoyaltyPointsApiResponse"/>&gt;</returns>
-        public async Task<IImportLoyaltyPointsApiResponse> ImportLoyaltyPointsOrDefaultAsync(long loyaltyProgramId, Option<bool> notificationsEnabled = default, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportLoyaltyPointsApiResponse> ImportLoyaltyPointsOrDefaultAsync(long loyaltyProgramId, Option<bool> notificationsEnabled = default, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -53104,10 +53140,10 @@ namespace TalonOneSdk.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="notificationsEnabled">Indicates whether the points import triggers notifications about its effects. For example, a notification is sent if the import upgrades a customer&#39;s tier or offsets their negative points balance.  This parameter is optional and defaults to &#x60;true&#x60;.  (optional)</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportLoyaltyPointsApiResponse"/>&gt;</returns>
-        public async Task<IImportLoyaltyPointsApiResponse> ImportLoyaltyPointsAsync(long loyaltyProgramId, Option<bool> notificationsEnabled = default, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportLoyaltyPointsApiResponse> ImportLoyaltyPointsAsync(long loyaltyProgramId, Option<bool> notificationsEnabled = default, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -53141,7 +53177,11 @@ namespace TalonOneSdk.Api
                     List<KeyValuePair<string, string>> formParameterLocalVars = new List<KeyValuePair<string, string>>();
 
                     if (upFile.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string>("upFile", ClientUtils.ParameterToString(upFile.Value)));
+                    {
+                        var streamContentLocalVar = new StreamContent(upFile.Value.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(upFile.Value.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "upFile", upFile.Value.FileName ?? "upFile");
+                    }
 
                     foreach (var formParamLocalVar in formParameterLocalVars)
                         multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
@@ -53296,14 +53336,14 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatImportPoolGiveaways(ref long poolId, ref Option<string> upFile);
+        partial void FormatImportPoolGiveaways(ref long poolId, ref Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="upFile"></param>
         /// <returns></returns>
-        private void ValidateImportPoolGiveaways(Option<string> upFile)
+        private void ValidateImportPoolGiveaways(Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             if (upFile.IsSet && upFile.Value == null)
                 throw new ArgumentNullException(nameof(upFile));
@@ -53315,7 +53355,7 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="poolId"></param>
         /// <param name="upFile"></param>
-        private void AfterImportPoolGiveawaysDefaultImplementation(IImportPoolGiveawaysApiResponse apiResponseLocalVar, long poolId, Option<string> upFile)
+        private void AfterImportPoolGiveawaysDefaultImplementation(IImportPoolGiveawaysApiResponse apiResponseLocalVar, long poolId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLog = false;
             AfterImportPoolGiveaways(ref suppressDefaultLog, apiResponseLocalVar, poolId, upFile);
@@ -53330,7 +53370,7 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="poolId"></param>
         /// <param name="upFile"></param>
-        partial void AfterImportPoolGiveaways(ref bool suppressDefaultLog, IImportPoolGiveawaysApiResponse apiResponseLocalVar, long poolId, Option<string> upFile);
+        partial void AfterImportPoolGiveaways(ref bool suppressDefaultLog, IImportPoolGiveawaysApiResponse apiResponseLocalVar, long poolId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -53340,7 +53380,7 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="poolId"></param>
         /// <param name="upFile"></param>
-        private void OnErrorImportPoolGiveawaysDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long poolId, Option<string> upFile)
+        private void OnErrorImportPoolGiveawaysDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long poolId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorImportPoolGiveaways(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, poolId, upFile);
@@ -53357,16 +53397,16 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="poolId"></param>
         /// <param name="upFile"></param>
-        partial void OnErrorImportPoolGiveaways(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long poolId, Option<string> upFile);
+        partial void OnErrorImportPoolGiveaways(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long poolId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Import giveaway codes into a giveaway pool Upload a CSV file containing the giveaway codes that should be created. Send the file as multipart data.  The CSV file contains the following columns:  - &#x60;code&#x60; (required): The code of your giveaway, for instance, a gift card redemption code. - &#x60;startdate&#x60;:  The start date in RFC3339 of the code redemption period. - &#x60;enddate&#x60;: The last date in RFC3339 of the code redemption period. - &#x60;attributes&#x60;: A JSON object describing _custom_ giveaway attribute names and their values, enclosed with double quotation marks.&lt;br /&gt;   For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called &#x60;provider&#x60; associated with the giveaway entity, the object in the CSV file, when opened in a text editor, must be: &#x60;\&quot;{\&quot;provider\&quot;: \&quot;myPartnerCompany\&quot;}\&quot;&#x60;.  The &#x60;startdate&#x60; and &#x60;enddate&#x60; have nothing to do with the _validity_ of the codes. They are only used by the Rule Engine to award the codes or not.  You can use the time zone setting of your choice. The values are converted to UTC internally by Talon.One.  &gt; [!note] **Note** &gt; - We recommend limiting your file size to 500MB. &gt; - You can import the same code multiple times. Duplicate codes are treated and distributed to customers as unique codes.  ## Example  &#x60;&#x60;&#x60;text code,startdate,enddate,attributes GIVEAWAY1,2020-11-10T23:00:00Z,2022-11-11T23:00:00Z,\&quot;{\&quot;\&quot;provider\&quot;\&quot;: \&quot;\&quot;Amazon\&quot;\&quot;}\&quot; GIVEAWAY2,2020-11-10T23:00:00Z,2022-11-11T23:00:00Z,\&quot;{\&quot;\&quot;provider\&quot;\&quot;: \&quot;\&quot;Amazon\&quot;\&quot;}\&quot; GIVEAWAY3,2021-01-10T23:00:00Z,2022-11-11T23:00:00Z,\&quot;{\&quot;\&quot;provider\&quot;\&quot;: \&quot;\&quot;Aliexpress\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
         /// </summary>
         /// <param name="poolId">The ID of the pool. You can find it in the Campaign Manager, in the **Giveaways** section.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportPoolGiveawaysApiResponse"/>&gt;</returns>
-        public async Task<IImportPoolGiveawaysApiResponse> ImportPoolGiveawaysOrDefaultAsync(long poolId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportPoolGiveawaysApiResponse> ImportPoolGiveawaysOrDefaultAsync(long poolId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -53383,10 +53423,10 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="poolId">The ID of the pool. You can find it in the Campaign Manager, in the **Giveaways** section.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportPoolGiveawaysApiResponse"/>&gt;</returns>
-        public async Task<IImportPoolGiveawaysApiResponse> ImportPoolGiveawaysAsync(long poolId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportPoolGiveawaysApiResponse> ImportPoolGiveawaysAsync(long poolId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -53413,7 +53453,11 @@ namespace TalonOneSdk.Api
                     List<KeyValuePair<string, string>> formParameterLocalVars = new List<KeyValuePair<string, string>>();
 
                     if (upFile.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string>("upFile", ClientUtils.ParameterToString(upFile.Value)));
+                    {
+                        var streamContentLocalVar = new StreamContent(upFile.Value.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(upFile.Value.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "upFile", upFile.Value.FileName ?? "upFile");
+                    }
 
                     foreach (var formParamLocalVar in formParameterLocalVars)
                         multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
@@ -53568,14 +53612,14 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatImportReferrals(ref long applicationId, ref long campaignId, ref Option<string> upFile);
+        partial void FormatImportReferrals(ref long applicationId, ref long campaignId, ref Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="upFile"></param>
         /// <returns></returns>
-        private void ValidateImportReferrals(Option<string> upFile)
+        private void ValidateImportReferrals(Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             if (upFile.IsSet && upFile.Value == null)
                 throw new ArgumentNullException(nameof(upFile));
@@ -53588,7 +53632,7 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="campaignId"></param>
         /// <param name="upFile"></param>
-        private void AfterImportReferralsDefaultImplementation(IImportReferralsApiResponse apiResponseLocalVar, long applicationId, long campaignId, Option<string> upFile)
+        private void AfterImportReferralsDefaultImplementation(IImportReferralsApiResponse apiResponseLocalVar, long applicationId, long campaignId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLog = false;
             AfterImportReferrals(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, upFile);
@@ -53604,7 +53648,7 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="campaignId"></param>
         /// <param name="upFile"></param>
-        partial void AfterImportReferrals(ref bool suppressDefaultLog, IImportReferralsApiResponse apiResponseLocalVar, long applicationId, long campaignId, Option<string> upFile);
+        partial void AfterImportReferrals(ref bool suppressDefaultLog, IImportReferralsApiResponse apiResponseLocalVar, long applicationId, long campaignId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -53615,7 +53659,7 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="campaignId"></param>
         /// <param name="upFile"></param>
-        private void OnErrorImportReferralsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, Option<string> upFile)
+        private void OnErrorImportReferralsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, Option<TalonOneSdk.Client.FileParameter> upFile)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorImportReferrals(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, campaignId, upFile);
@@ -53633,17 +53677,17 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="campaignId"></param>
         /// <param name="upFile"></param>
-        partial void OnErrorImportReferrals(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, Option<string> upFile);
+        partial void OnErrorImportReferrals(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
         /// Import referrals Upload a CSV file containing the referrals that should be created.  The file should be sent as multipart data.  The CSV file contains the following columns:  - &#x60;code&#x60; (required): The referral code. - &#x60;advocateprofileintegrationid&#x60; (required): The profile ID of the advocate. - &#x60;startdate&#x60;: The start date in RFC3339 of the code redemption period. - &#x60;expirydate&#x60;: The end date in RFC3339 of the code redemption period. - &#x60;limitval&#x60;: The maximum number of redemptions of this code. Defaults to &#x60;1&#x60; when left blank. - &#x60;attributes&#x60;: A JSON object describing _custom_ referral attribute names and their values, enclosed with double quotation marks.&lt;br /&gt;   For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called &#x60;category&#x60; associated with the referral entity, the object in the CSV file, when opened in a text editor, must be: &#x60;\&quot;{\&quot;category\&quot;: \&quot;10_off\&quot;}\&quot;&#x60;.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  &gt; [!important] When you import a CSV file with referrals, &gt; a [customer profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) &gt; is **not** automatically created for each &#x60;advocateprofileintegrationid&#x60; &gt; column value. Use the [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2) &gt; endpoint or the [Update multiple customer profiles](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfilesV2) &gt; endpoint to create the customer profiles.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;text code,startdate,expirydate,advocateprofileintegrationid,limitval,attributes REFERRAL_CODE1,2020-11-10T23:00:00Z,2021-11-11T23:00:00Z,integid_4,1,\&quot;{\&quot;\&quot;my_attribute\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot; REFERRAL_CODE2,2020-11-10T23:00:00Z,2021-11-11T23:00:00Z,integid1,1,\&quot;{\&quot;\&quot;my_attribute\&quot;\&quot;: \&quot;\&quot;20_off\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
         /// </summary>
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportReferralsApiResponse"/>&gt;</returns>
-        public async Task<IImportReferralsApiResponse> ImportReferralsOrDefaultAsync(long applicationId, long campaignId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportReferralsApiResponse> ImportReferralsOrDefaultAsync(long applicationId, long campaignId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -53661,10 +53705,10 @@ namespace TalonOneSdk.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
-        /// <param name="upFile">The file containing the data that is being imported. (optional)</param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportReferralsApiResponse"/>&gt;</returns>
-        public async Task<IImportReferralsApiResponse> ImportReferralsAsync(long applicationId, long campaignId, Option<string> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IImportReferralsApiResponse> ImportReferralsAsync(long applicationId, long campaignId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -53692,7 +53736,11 @@ namespace TalonOneSdk.Api
                     List<KeyValuePair<string, string>> formParameterLocalVars = new List<KeyValuePair<string, string>>();
 
                     if (upFile.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string>("upFile", ClientUtils.ParameterToString(upFile.Value)));
+                    {
+                        var streamContentLocalVar = new StreamContent(upFile.Value.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(upFile.Value.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "upFile", upFile.Value.FileName ?? "upFile");
+                    }
 
                     foreach (var formParamLocalVar in formParameterLocalVars)
                         multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);

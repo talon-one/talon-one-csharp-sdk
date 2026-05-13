@@ -24,17 +24,17 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// setDiscountPerItem member effect in strikethrough pricing payload.
+    /// FeatureFlagUpdate
     /// </summary>
-    public partial class StrikethroughSetDiscountPerItemMemberEffectProps : IValidatableObject
+    public partial class FeatureFlagUpdate : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="StrikethroughSetDiscountPerItemMemberEffectProps" /> class.
+        /// Initializes a new instance of the <see cref="FeatureFlagUpdate" /> class.
         /// </summary>
-        /// <param name="name">The effect name.</param>
-        /// <param name="value">value</param>
+        /// <param name="name">The name of the feature flag.</param>
+        /// <param name="value">The value of the feature flag.</param>
         [JsonConstructor]
-        public StrikethroughSetDiscountPerItemMemberEffectProps(string name, Object value = default)
+        public FeatureFlagUpdate(string name, string value)
         {
             Name = name;
             Value = value;
@@ -44,18 +44,20 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The effect name.
+        /// The name of the feature flag.
         /// </summary>
-        /// <value>The effect name.</value>
-        /* <example>10% off members only</example> */
+        /// <value>The name of the feature flag.</value>
+        /* <example>canCreateCampaignFromTemplate</example> */
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Value
+        /// The value of the feature flag.
         /// </summary>
+        /// <value>The value of the feature flag.</value>
+        /* <example>true</example> */
         [JsonPropertyName("value")]
-        public Object Value { get; set; }
+        public string Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -64,7 +66,7 @@ namespace TalonOneSdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class StrikethroughSetDiscountPerItemMemberEffectProps {\n");
+            sb.Append("class FeatureFlagUpdate {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
@@ -83,19 +85,19 @@ namespace TalonOneSdk.Model
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="StrikethroughSetDiscountPerItemMemberEffectProps" />
+    /// A Json converter for type <see cref="FeatureFlagUpdate" />
     /// </summary>
-    public class StrikethroughSetDiscountPerItemMemberEffectPropsJsonConverter : JsonConverter<StrikethroughSetDiscountPerItemMemberEffectProps>
+    public class FeatureFlagUpdateJsonConverter : JsonConverter<FeatureFlagUpdate>
     {
         /// <summary>
-        /// Deserializes json to <see cref="StrikethroughSetDiscountPerItemMemberEffectProps" />
+        /// Deserializes json to <see cref="FeatureFlagUpdate" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override StrikethroughSetDiscountPerItemMemberEffectProps Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override FeatureFlagUpdate Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -105,7 +107,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string> name = default;
-            Option<Object> value = default;
+            Option<string> value = default;
 
             while (utf8JsonReader.Read())
             {
@@ -126,7 +128,7 @@ namespace TalonOneSdk.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "value":
-                            value = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            value = new Option<string>(utf8JsonReader.GetString());
                             break;
                         default:
                             break;
@@ -135,53 +137,53 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughSetDiscountPerItemMemberEffectProps.", nameof(name));
+                throw new ArgumentException("Property is required for class FeatureFlagUpdate.", nameof(name));
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughSetDiscountPerItemMemberEffectProps.", nameof(value));
+                throw new ArgumentException("Property is required for class FeatureFlagUpdate.", nameof(value));
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class StrikethroughSetDiscountPerItemMemberEffectProps.");
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class FeatureFlagUpdate.");
 
-            return new StrikethroughSetDiscountPerItemMemberEffectProps(name.Value, value.Value);
+            if (value.IsSet && value.Value == null)
+                throw new ArgumentNullException(nameof(value), "Property is not nullable for class FeatureFlagUpdate.");
+
+            return new FeatureFlagUpdate(name.Value, value.Value);
         }
 
         /// <summary>
-        /// Serializes a <see cref="StrikethroughSetDiscountPerItemMemberEffectProps" />
+        /// Serializes a <see cref="FeatureFlagUpdate" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="strikethroughSetDiscountPerItemMemberEffectProps"></param>
+        /// <param name="featureFlagUpdate"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, StrikethroughSetDiscountPerItemMemberEffectProps strikethroughSetDiscountPerItemMemberEffectProps, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, FeatureFlagUpdate featureFlagUpdate, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, strikethroughSetDiscountPerItemMemberEffectProps, jsonSerializerOptions);
+            WriteProperties(writer, featureFlagUpdate, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="StrikethroughSetDiscountPerItemMemberEffectProps" />
+        /// Serializes the properties of <see cref="FeatureFlagUpdate" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="strikethroughSetDiscountPerItemMemberEffectProps"></param>
+        /// <param name="featureFlagUpdate"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, StrikethroughSetDiscountPerItemMemberEffectProps strikethroughSetDiscountPerItemMemberEffectProps, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, FeatureFlagUpdate featureFlagUpdate, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (strikethroughSetDiscountPerItemMemberEffectProps.Name == null)
-                throw new ArgumentNullException(nameof(strikethroughSetDiscountPerItemMemberEffectProps.Name), "Property is required for class StrikethroughSetDiscountPerItemMemberEffectProps.");
+            if (featureFlagUpdate.Name == null)
+                throw new ArgumentNullException(nameof(featureFlagUpdate.Name), "Property is required for class FeatureFlagUpdate.");
 
-            writer.WriteString("name", strikethroughSetDiscountPerItemMemberEffectProps.Name);
+            if (featureFlagUpdate.Value == null)
+                throw new ArgumentNullException(nameof(featureFlagUpdate.Value), "Property is required for class FeatureFlagUpdate.");
 
-            if (strikethroughSetDiscountPerItemMemberEffectProps.Value != null)
-            {
-                writer.WritePropertyName("value");
-                JsonSerializer.Serialize(writer, strikethroughSetDiscountPerItemMemberEffectProps.Value, jsonSerializerOptions);
-            }
-            else
-                writer.WriteNull("value");
+            writer.WriteString("name", featureFlagUpdate.Name);
+
+            writer.WriteString("value", featureFlagUpdate.Value);
         }
     }
 }

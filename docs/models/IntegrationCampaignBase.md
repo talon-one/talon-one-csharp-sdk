@@ -1,4 +1,4 @@
-# TalonOneSdk.Model.IntegrationCampaign
+# TalonOneSdk.Model.IntegrationCampaignBase
 
 ## Properties
 
@@ -8,8 +8,7 @@ Name | Type | Description | Notes
 **Id** | **long** | Unique ID of Campaign. | 
 **Name** | **string** | The name of the campaign. | 
 **Tags** | **List&lt;string&gt;** | A list of tags for the campaign. | 
-**Features** | **List&lt;IntegrationCampaign.FeaturesEnum&gt;** | The features enabled in this campaign. | 
-**Rules** | [**List&lt;RuleMetadata&gt;**](RuleMetadata.md) | A list of rules containing customer-facing details of the rewards defined in the campaign. | 
+**Features** | **List&lt;IntegrationCampaignBase.FeaturesEnum&gt;** | The features enabled in this campaign. | 
 **Description** | **string** | A detailed description of the campaign. | [optional] 
 **StartTime** | **DateTime** | Timestamp when the campaign will become active. | [optional] 
 **EndTime** | **DateTime** | Timestamp when the campaign will become inactive. | [optional] 
