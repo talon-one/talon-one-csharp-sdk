@@ -366,6 +366,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.DeleteCouponsData.NotificationTypeEnumToJsonValue(deleteCouponsDataNotificationTypeEnum);
             if (obj is TalonOneSdk.Model.DeleteLoyaltyTransactionsRequest.ScopeEnum deleteLoyaltyTransactionsRequestScopeEnum)
                 return TalonOneSdk.Model.DeleteLoyaltyTransactionsRequest.ScopeEnumToJsonValue(deleteLoyaltyTransactionsRequestScopeEnum);
+            if (obj is TalonOneSdk.Model.Experiment.GoalTypeEnum experimentGoalTypeEnum)
+                return TalonOneSdk.Model.Experiment.GoalTypeEnumToJsonValue(experimentGoalTypeEnum);
             if (obj is TalonOneSdk.Model.Experiment.StateEnum experimentStateEnum)
                 return TalonOneSdk.Model.Experiment.StateEnumToJsonValue(experimentStateEnum);
             if (obj is TalonOneSdk.Model.ExperimentSegmentInsight.DimensionEnum experimentSegmentInsightDimensionEnum)
@@ -396,6 +398,10 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.IntegrationCampaign.FeaturesEnumToJsonValue(integrationCampaignFeaturesEnum);
             if (obj is TalonOneSdk.Model.IntegrationCampaign.StateEnum integrationCampaignStateEnum)
                 return TalonOneSdk.Model.IntegrationCampaign.StateEnumToJsonValue(integrationCampaignStateEnum);
+            if (obj is TalonOneSdk.Model.IntegrationCampaignBase.FeaturesEnum integrationCampaignBaseFeaturesEnum)
+                return TalonOneSdk.Model.IntegrationCampaignBase.FeaturesEnumToJsonValue(integrationCampaignBaseFeaturesEnum);
+            if (obj is TalonOneSdk.Model.IntegrationCampaignBase.StateEnum integrationCampaignBaseStateEnum)
+                return TalonOneSdk.Model.IntegrationCampaignBase.StateEnumToJsonValue(integrationCampaignBaseStateEnum);
             if (obj is TalonOneSdk.Model.IntegrationCustomerProfileAudienceRequestItem.ActionEnum integrationCustomerProfileAudienceRequestItemActionEnum)
                 return TalonOneSdk.Model.IntegrationCustomerProfileAudienceRequestItem.ActionEnumToJsonValue(integrationCustomerProfileAudienceRequestItemActionEnum);
             if (obj is TalonOneSdk.Model.IntegrationEventV2Request.ResponseContentEnum integrationEventV2RequestResponseContentEnum)
@@ -482,6 +488,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.NewCustomerSession.StateEnumToJsonValue(newCustomerSessionStateEnum);
             if (obj is TalonOneSdk.Model.NewCustomerSessionV2.StateEnum newCustomerSessionV2StateEnum)
                 return TalonOneSdk.Model.NewCustomerSessionV2.StateEnumToJsonValue(newCustomerSessionV2StateEnum);
+            if (obj is TalonOneSdk.Model.NewExperiment.GoalTypeEnum newExperimentGoalTypeEnum)
+                return TalonOneSdk.Model.NewExperiment.GoalTypeEnumToJsonValue(newExperimentGoalTypeEnum);
             if (obj is TalonOneSdk.Model.NewLoyaltyProgram.ProgramJoinPolicyEnum newLoyaltyProgramProgramJoinPolicyEnum)
                 return TalonOneSdk.Model.NewLoyaltyProgram.ProgramJoinPolicyEnumToJsonValue(newLoyaltyProgramProgramJoinPolicyEnum);
             if (obj is TalonOneSdk.Model.NewLoyaltyProgram.TiersExpirationPolicyEnum newLoyaltyProgramTiersExpirationPolicyEnum)
@@ -496,6 +504,12 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.NewPicklist.TypeEnumToJsonValue(newPicklistTypeEnum);
             if (obj is TalonOneSdk.Model.NewRevisionVersion.FeaturesEnum newRevisionVersionFeaturesEnum)
                 return TalonOneSdk.Model.NewRevisionVersion.FeaturesEnumToJsonValue(newRevisionVersionFeaturesEnum);
+            if (obj is TalonOneSdk.Model.NewRiskNotification.EntityEnum newRiskNotificationEntityEnum)
+                return TalonOneSdk.Model.NewRiskNotification.EntityEnumToJsonValue(newRiskNotificationEntityEnum);
+            if (obj is TalonOneSdk.Model.NewRiskNotification.ActivityEnum newRiskNotificationActivityEnum)
+                return TalonOneSdk.Model.NewRiskNotification.ActivityEnumToJsonValue(newRiskNotificationActivityEnum);
+            if (obj is TalonOneSdk.Model.NewRiskNotification.TimeFrameEnum newRiskNotificationTimeFrameEnum)
+                return TalonOneSdk.Model.NewRiskNotification.TimeFrameEnumToJsonValue(newRiskNotificationTimeFrameEnum);
             if (obj is TalonOneSdk.Model.NewWebhook.VerbEnum newWebhookVerbEnum)
                 return TalonOneSdk.Model.NewWebhook.VerbEnumToJsonValue(newWebhookVerbEnum);
             if (obj is TalonOneSdk.Model.OutgoingIntegrationTemplate.MethodEnum outgoingIntegrationTemplateMethodEnum)
@@ -518,6 +532,12 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.RevisionVersion.FeaturesEnumToJsonValue(revisionVersionFeaturesEnum);
             if (obj is TalonOneSdk.Model.Reward.StatusEnum rewardStatusEnum)
                 return TalonOneSdk.Model.Reward.StatusEnumToJsonValue(rewardStatusEnum);
+            if (obj is TalonOneSdk.Model.RiskNotification.EntityEnum riskNotificationEntityEnum)
+                return TalonOneSdk.Model.RiskNotification.EntityEnumToJsonValue(riskNotificationEntityEnum);
+            if (obj is TalonOneSdk.Model.RiskNotification.ActivityEnum riskNotificationActivityEnum)
+                return TalonOneSdk.Model.RiskNotification.ActivityEnumToJsonValue(riskNotificationActivityEnum);
+            if (obj is TalonOneSdk.Model.RiskNotification.TimeFrameEnum riskNotificationTimeFrameEnum)
+                return TalonOneSdk.Model.RiskNotification.TimeFrameEnumToJsonValue(riskNotificationTimeFrameEnum);
             if (obj is TalonOneSdk.Model.RuleEligibilityFailureDetails.FailureCodeEnum ruleEligibilityFailureDetailsFailureCodeEnum)
                 return TalonOneSdk.Model.RuleEligibilityFailureDetails.FailureCodeEnumToJsonValue(ruleEligibilityFailureDetailsFailureCodeEnum);
             if (obj is TalonOneSdk.Model.ScimPatchOperation.OpEnum scimPatchOperationOpEnum)
@@ -588,6 +608,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.UpdateCampaignTemplate.CampaignTypeEnumToJsonValue(updateCampaignTemplateCampaignTypeEnum);
             if (obj is TalonOneSdk.Model.UpdateCouponsData.NotificationTypeEnum updateCouponsDataNotificationTypeEnum)
                 return TalonOneSdk.Model.UpdateCouponsData.NotificationTypeEnumToJsonValue(updateCouponsDataNotificationTypeEnum);
+            if (obj is TalonOneSdk.Model.UpdateExperiment.GoalTypeEnum updateExperimentGoalTypeEnum)
+                return TalonOneSdk.Model.UpdateExperiment.GoalTypeEnumToJsonValue(updateExperimentGoalTypeEnum);
             if (obj is TalonOneSdk.Model.UpdateLoyaltyProgram.ProgramJoinPolicyEnum updateLoyaltyProgramProgramJoinPolicyEnum)
                 return TalonOneSdk.Model.UpdateLoyaltyProgram.ProgramJoinPolicyEnumToJsonValue(updateLoyaltyProgramProgramJoinPolicyEnum);
             if (obj is TalonOneSdk.Model.UpdateLoyaltyProgram.TiersExpirationPolicyEnum updateLoyaltyProgramTiersExpirationPolicyEnum)

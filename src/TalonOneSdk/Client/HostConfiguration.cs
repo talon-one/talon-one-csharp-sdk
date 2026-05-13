@@ -303,6 +303,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new ExtendLoyaltyPointsExpiryDateEffectPropsJsonConverter());
             _jsonOptions.Converters.Add(new ExtendedCouponJsonConverter());
             _jsonOptions.Converters.Add(new FeatureFlagJsonConverter());
+            _jsonOptions.Converters.Add(new FeatureFlagUpdateJsonConverter());
             _jsonOptions.Converters.Add(new FeaturesFeedJsonConverter());
             _jsonOptions.Converters.Add(new FuncArgDefJsonConverter());
             _jsonOptions.Converters.Add(new FunctionDefJsonConverter());
@@ -373,6 +374,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new IncreaseAchievementProgressEffectPropsJsonConverter());
             _jsonOptions.Converters.Add(new InfluencingCampaignDetailsJsonConverter());
             _jsonOptions.Converters.Add(new IntegrationCampaignJsonConverter());
+            _jsonOptions.Converters.Add(new IntegrationCampaignBaseJsonConverter());
             _jsonOptions.Converters.Add(new IntegrationCouponJsonConverter());
             _jsonOptions.Converters.Add(new IntegrationCustomerProfileAudienceRequestJsonConverter());
             _jsonOptions.Converters.Add(new IntegrationCustomerProfileAudienceRequestItemJsonConverter());
@@ -533,6 +535,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new NewReturnJsonConverter());
             _jsonOptions.Converters.Add(new NewRevisionVersionJsonConverter());
             _jsonOptions.Converters.Add(new NewRewardJsonConverter());
+            _jsonOptions.Converters.Add(new NewRiskNotificationJsonConverter());
             _jsonOptions.Converters.Add(new NewRoleJsonConverter());
             _jsonOptions.Converters.Add(new NewRoleV2JsonConverter());
             _jsonOptions.Converters.Add(new NewRulesetJsonConverter());
@@ -602,6 +605,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new RevisionActivationRequestJsonConverter());
             _jsonOptions.Converters.Add(new RevisionVersionJsonConverter());
             _jsonOptions.Converters.Add(new RewardJsonConverter());
+            _jsonOptions.Converters.Add(new RiskNotificationJsonConverter());
             _jsonOptions.Converters.Add(new RoleJsonConverter());
             _jsonOptions.Converters.Add(new RoleAssignJsonConverter());
             _jsonOptions.Converters.Add(new RoleMembershipJsonConverter());
@@ -624,6 +628,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new RuleEligibilityFailureDetailsJsonConverter());
             _jsonOptions.Converters.Add(new RuleFailureReasonJsonConverter());
             _jsonOptions.Converters.Add(new RuleMetadataJsonConverter());
+            _jsonOptions.Converters.Add(new RuleMetadataEligibilityJsonConverter());
             _jsonOptions.Converters.Add(new RulesetJsonConverter());
             _jsonOptions.Converters.Add(new SSOConfigJsonConverter());
             _jsonOptions.Converters.Add(new SamlConnectionJsonConverter());

@@ -24,35 +24,31 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// CampaignEligibility
+    /// IntegrationCampaignBase
     /// </summary>
-    public partial class CampaignEligibility : IValidatableObject
+    public partial class IntegrationCampaignBase : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CampaignEligibility" /> class.
+        /// Initializes a new instance of the <see cref="IntegrationCampaignBase" /> class.
         /// </summary>
         /// <param name="applicationId">The ID of the Application that owns this entity.</param>
         /// <param name="id">Unique ID of Campaign.</param>
         /// <param name="name">The name of the campaign.</param>
         /// <param name="tags">A list of tags for the campaign.</param>
         /// <param name="features">The features enabled in this campaign.</param>
-        /// <param name="eligibility">The customer&#39;s eligibility for each campaign in the current customer session.</param>
-        /// <param name="rules">A list of rules containing customer-facing details of the rewards defined in the campaign.</param>
         /// <param name="description">A detailed description of the campaign.</param>
         /// <param name="startTime">Timestamp when the campaign will become active.</param>
         /// <param name="endTime">Timestamp when the campaign will become inactive.</param>
         /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
         /// <param name="state">The state of the campaign.  (default to StateEnum.Enabled)</param>
         [JsonConstructor]
-        public CampaignEligibility(long applicationId, long id, string name, List<string> tags, List<CampaignEligibility.FeaturesEnum> features, List<CampaignEligibilityDetails> eligibility, List<RuleMetadataEligibility> rules, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, StateEnum state = StateEnum.Enabled)
+        public IntegrationCampaignBase(long applicationId, long id, string name, List<string> tags, List<IntegrationCampaignBase.FeaturesEnum> features, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, StateEnum state = StateEnum.Enabled)
         {
             ApplicationId = applicationId;
             Id = id;
             Name = name;
             Tags = tags;
             Features = features;
-            Eligibility = eligibility;
-            Rules = rules;
             DescriptionOption = description;
             StartTimeOption = startTime;
             EndTimeOption = endTime;
@@ -284,21 +280,7 @@ namespace TalonOneSdk.Model
         /// <value>The features enabled in this campaign.</value>
         /* <example>[coupons, referrals]</example> */
         [JsonPropertyName("features")]
-        public List<CampaignEligibility.FeaturesEnum> Features { get; set; }
-
-        /// <summary>
-        /// The customer&#39;s eligibility for each campaign in the current customer session.
-        /// </summary>
-        /// <value>The customer&#39;s eligibility for each campaign in the current customer session.</value>
-        [JsonPropertyName("eligibility")]
-        public List<CampaignEligibilityDetails> Eligibility { get; set; }
-
-        /// <summary>
-        /// A list of rules containing customer-facing details of the rewards defined in the campaign.
-        /// </summary>
-        /// <value>A list of rules containing customer-facing details of the rewards defined in the campaign.</value>
-        [JsonPropertyName("rules")]
-        public List<RuleMetadataEligibility> Rules { get; set; }
+        public List<IntegrationCampaignBase.FeaturesEnum> Features { get; set; }
 
         /// <summary>
         /// Used to track the state of Description
@@ -366,14 +348,12 @@ namespace TalonOneSdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CampaignEligibility {\n");
+            sb.Append("class IntegrationCampaignBase {\n");
             sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  Features: ").Append(Features).Append("\n");
-            sb.Append("  Eligibility: ").Append(Eligibility).Append("\n");
-            sb.Append("  Rules: ").Append(Rules).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  StartTime: ").Append(StartTime).Append("\n");
             sb.Append("  EndTime: ").Append(EndTime).Append("\n");
@@ -401,9 +381,9 @@ namespace TalonOneSdk.Model
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="CampaignEligibility" />
+    /// A Json converter for type <see cref="IntegrationCampaignBase" />
     /// </summary>
-    public class CampaignEligibilityJsonConverter : JsonConverter<CampaignEligibility>
+    public class IntegrationCampaignBaseJsonConverter : JsonConverter<IntegrationCampaignBase>
     {
         /// <summary>
         /// The format to use to serialize StartTime
@@ -416,14 +396,14 @@ namespace TalonOneSdk.Model
         public static string EndTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
-        /// Deserializes json to <see cref="CampaignEligibility" />
+        /// Deserializes json to <see cref="IntegrationCampaignBase" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override CampaignEligibility Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override IntegrationCampaignBase Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -436,14 +416,12 @@ namespace TalonOneSdk.Model
             Option<long?> id = default;
             Option<string> name = default;
             Option<List<string>> tags = default;
-            Option<List<CampaignEligibility.FeaturesEnum>> features = default;
-            Option<List<CampaignEligibilityDetails>> eligibility = default;
-            Option<List<RuleMetadataEligibility>> rules = default;
+            Option<List<IntegrationCampaignBase.FeaturesEnum>> features = default;
             Option<string> description = default;
             Option<DateTime?> startTime = default;
             Option<DateTime?> endTime = default;
             Option<Object> attributes = default;
-            Option<CampaignEligibility.StateEnum?> state = default;
+            Option<IntegrationCampaignBase.StateEnum?> state = default;
 
             while (utf8JsonReader.Read())
             {
@@ -475,11 +453,11 @@ namespace TalonOneSdk.Model
                         case "features":
                             if (utf8JsonReader.TokenType == JsonTokenType.Null)
                             {
-                                features = new Option<List<CampaignEligibility.FeaturesEnum>>((List<CampaignEligibility.FeaturesEnum>)null);
+                                features = new Option<List<IntegrationCampaignBase.FeaturesEnum>>((List<IntegrationCampaignBase.FeaturesEnum>)null);
                             }
                             else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
                             {
-                                var featuresItems = new List<CampaignEligibility.FeaturesEnum>();
+                                var featuresItems = new List<IntegrationCampaignBase.FeaturesEnum>();
                                 while (utf8JsonReader.Read())
                                 {
                                     if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
@@ -489,18 +467,12 @@ namespace TalonOneSdk.Model
                                     if (featuresItemRawValue == null)
                                         throw new JsonException();
 
-                                    featuresItems.Add(CampaignEligibility.FeaturesEnumFromString(featuresItemRawValue));
+                                    featuresItems.Add(IntegrationCampaignBase.FeaturesEnumFromString(featuresItemRawValue));
                                 }
-                                features = new Option<List<CampaignEligibility.FeaturesEnum>>(featuresItems);
+                                features = new Option<List<IntegrationCampaignBase.FeaturesEnum>>(featuresItems);
                             }
                             else
                                 throw new JsonException();
-                            break;
-                        case "eligibility":
-                            eligibility = new Option<List<CampaignEligibilityDetails>>(JsonSerializer.Deserialize<List<CampaignEligibilityDetails>>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "rules":
-                            rules = new Option<List<RuleMetadataEligibility>>(JsonSerializer.Deserialize<List<RuleMetadataEligibility>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());
@@ -517,7 +489,7 @@ namespace TalonOneSdk.Model
                         case "state":
                             string stateRawValue = utf8JsonReader.GetString();
                             if (stateRawValue != null)
-                                state = new Option<CampaignEligibility.StateEnum?>(CampaignEligibility.StateEnumFromStringOrDefault(stateRawValue));
+                                state = new Option<IntegrationCampaignBase.StateEnum?>(IntegrationCampaignBase.StateEnumFromStringOrDefault(stateRawValue));
                             break;
                         default:
                             break;
@@ -526,129 +498,107 @@ namespace TalonOneSdk.Model
             }
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(applicationId));
+                throw new ArgumentException("Property is required for class IntegrationCampaignBase.", nameof(applicationId));
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(id));
+                throw new ArgumentException("Property is required for class IntegrationCampaignBase.", nameof(id));
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(name));
+                throw new ArgumentException("Property is required for class IntegrationCampaignBase.", nameof(name));
 
             if (!tags.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(tags));
+                throw new ArgumentException("Property is required for class IntegrationCampaignBase.", nameof(tags));
 
             if (!features.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(features));
-
-            if (!eligibility.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(eligibility));
-
-            if (!rules.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(rules));
+                throw new ArgumentException("Property is required for class IntegrationCampaignBase.", nameof(features));
 
             if (!state.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(state));
+                throw new ArgumentException("Property is required for class IntegrationCampaignBase.", nameof(state));
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CampaignEligibility.");
+                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class IntegrationCampaignBase.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignEligibility.");
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class IntegrationCampaignBase.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignEligibility.");
+                throw new ArgumentNullException(nameof(name), "Property is not nullable for class IntegrationCampaignBase.");
 
             if (tags.IsSet && tags.Value == null)
-                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class CampaignEligibility.");
+                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class IntegrationCampaignBase.");
 
             if (features.IsSet && features.Value == null)
-                throw new ArgumentNullException(nameof(features), "Property is not nullable for class CampaignEligibility.");
-
-            if (eligibility.IsSet && eligibility.Value == null)
-                throw new ArgumentNullException(nameof(eligibility), "Property is not nullable for class CampaignEligibility.");
-
-            if (rules.IsSet && rules.Value == null)
-                throw new ArgumentNullException(nameof(rules), "Property is not nullable for class CampaignEligibility.");
+                throw new ArgumentNullException(nameof(features), "Property is not nullable for class IntegrationCampaignBase.");
 
             if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class CampaignEligibility.");
+                throw new ArgumentNullException(nameof(state), "Property is not nullable for class IntegrationCampaignBase.");
 
-            return new CampaignEligibility(applicationId.Value.Value, id.Value.Value, name.Value, tags.Value, features.Value, eligibility.Value, rules.Value, description, startTime, endTime, attributes, state.Value.Value);
+            return new IntegrationCampaignBase(applicationId.Value.Value, id.Value.Value, name.Value, tags.Value, features.Value, description, startTime, endTime, attributes, state.Value.Value);
         }
 
         /// <summary>
-        /// Serializes a <see cref="CampaignEligibility" />
+        /// Serializes a <see cref="IntegrationCampaignBase" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="campaignEligibility"></param>
+        /// <param name="integrationCampaignBase"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, CampaignEligibility campaignEligibility, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, IntegrationCampaignBase integrationCampaignBase, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, campaignEligibility, jsonSerializerOptions);
+            WriteProperties(writer, integrationCampaignBase, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="CampaignEligibility" />
+        /// Serializes the properties of <see cref="IntegrationCampaignBase" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="campaignEligibility"></param>
+        /// <param name="integrationCampaignBase"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, CampaignEligibility campaignEligibility, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, IntegrationCampaignBase integrationCampaignBase, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (campaignEligibility.Name == null)
-                throw new ArgumentNullException(nameof(campaignEligibility.Name), "Property is required for class CampaignEligibility.");
+            if (integrationCampaignBase.Name == null)
+                throw new ArgumentNullException(nameof(integrationCampaignBase.Name), "Property is required for class IntegrationCampaignBase.");
 
-            if (campaignEligibility.Tags == null)
-                throw new ArgumentNullException(nameof(campaignEligibility.Tags), "Property is required for class CampaignEligibility.");
+            if (integrationCampaignBase.Tags == null)
+                throw new ArgumentNullException(nameof(integrationCampaignBase.Tags), "Property is required for class IntegrationCampaignBase.");
 
-            if (campaignEligibility.Features == null)
-                throw new ArgumentNullException(nameof(campaignEligibility.Features), "Property is required for class CampaignEligibility.");
+            if (integrationCampaignBase.Features == null)
+                throw new ArgumentNullException(nameof(integrationCampaignBase.Features), "Property is required for class IntegrationCampaignBase.");
 
-            if (campaignEligibility.Eligibility == null)
-                throw new ArgumentNullException(nameof(campaignEligibility.Eligibility), "Property is required for class CampaignEligibility.");
+            writer.WriteNumber("applicationId", integrationCampaignBase.ApplicationId);
 
-            if (campaignEligibility.Rules == null)
-                throw new ArgumentNullException(nameof(campaignEligibility.Rules), "Property is required for class CampaignEligibility.");
+            writer.WriteNumber("id", integrationCampaignBase.Id);
 
-            writer.WriteNumber("applicationId", campaignEligibility.ApplicationId);
-
-            writer.WriteNumber("id", campaignEligibility.Id);
-
-            writer.WriteString("name", campaignEligibility.Name);
+            writer.WriteString("name", integrationCampaignBase.Name);
 
             writer.WritePropertyName("tags");
-            JsonSerializer.Serialize(writer, campaignEligibility.Tags, jsonSerializerOptions);
+            JsonSerializer.Serialize(writer, integrationCampaignBase.Tags, jsonSerializerOptions);
             writer.WritePropertyName("features");
             writer.WriteStartArray();
-            foreach (var featuresItem in campaignEligibility.Features)
+            foreach (var featuresItem in integrationCampaignBase.Features)
             {
-                writer.WriteStringValue(CampaignEligibility.FeaturesEnumToJsonValue(featuresItem));
+                writer.WriteStringValue(IntegrationCampaignBase.FeaturesEnumToJsonValue(featuresItem));
             }
             writer.WriteEndArray();
-            writer.WritePropertyName("eligibility");
-            JsonSerializer.Serialize(writer, campaignEligibility.Eligibility, jsonSerializerOptions);
-            writer.WritePropertyName("rules");
-            JsonSerializer.Serialize(writer, campaignEligibility.Rules, jsonSerializerOptions);
-            if (campaignEligibility.DescriptionOption.IsSet)
-                writer.WriteString("description", campaignEligibility.Description);
+            if (integrationCampaignBase.DescriptionOption.IsSet)
+                writer.WriteString("description", integrationCampaignBase.Description);
 
-            if (campaignEligibility.StartTimeOption.IsSet)
-                writer.WriteString("startTime", campaignEligibility.StartTimeOption.Value.Value.ToString(StartTimeFormat));
+            if (integrationCampaignBase.StartTimeOption.IsSet)
+                writer.WriteString("startTime", integrationCampaignBase.StartTimeOption.Value.Value.ToString(StartTimeFormat));
 
-            if (campaignEligibility.EndTimeOption.IsSet)
-                writer.WriteString("endTime", campaignEligibility.EndTimeOption.Value.Value.ToString(EndTimeFormat));
+            if (integrationCampaignBase.EndTimeOption.IsSet)
+                writer.WriteString("endTime", integrationCampaignBase.EndTimeOption.Value.Value.ToString(EndTimeFormat));
 
-            if (campaignEligibility.AttributesOption.IsSet)
+            if (integrationCampaignBase.AttributesOption.IsSet)
             {
                 writer.WritePropertyName("attributes");
-                JsonSerializer.Serialize(writer, campaignEligibility.Attributes, jsonSerializerOptions);
+                JsonSerializer.Serialize(writer, integrationCampaignBase.Attributes, jsonSerializerOptions);
             }
-            var stateRawValue = CampaignEligibility.StateEnumToJsonValue(campaignEligibility.State);
+            var stateRawValue = IntegrationCampaignBase.StateEnumToJsonValue(integrationCampaignBase.State);
             writer.WriteString("state", stateRawValue);
         }
     }

@@ -38,7 +38,7 @@ namespace TalonOneSdk.Model
         /// <param name="changedItems">changedItems</param>
         /// <param name="notificationType">The type of notification.</param>
         /// <param name="sentAt">Timestamp at which the notification was sent.</param>
-        /// <param name="varVersion">The version of the strikethrough pricing notification.</param>
+        /// <param name="varVersion">The version of the strikethrough pricing notification. Set for **scheduled** strikethrough pricing updates only. </param>
         /// <param name="validFrom">Timestamp at which the strikethrough pricing update becomes valid. Set for **scheduled** strikethrough pricing updates (version: v2) only. </param>
         [JsonConstructor]
         public StrikethroughLabelingNotification(long applicationId, long currentBatch, long totalBatches, StrikethroughTrigger trigger, List<StrikethroughChangedItem> changedItems, NotificationTypeEnum notificationType, DateTime sentAt, Option<VarVersionEnum?> varVersion = default, Option<DateTime?> validFrom = default)
@@ -118,9 +118,9 @@ namespace TalonOneSdk.Model
         public NotificationTypeEnum NotificationType { get; set; }
 
         /// <summary>
-        /// The version of the strikethrough pricing notification.
+        /// The version of the strikethrough pricing notification. Set for **scheduled** strikethrough pricing updates only. 
         /// </summary>
-        /// <value>The version of the strikethrough pricing notification.</value>
+        /// <value>The version of the strikethrough pricing notification. Set for **scheduled** strikethrough pricing updates only. </value>
         public enum VarVersionEnum
         {
             /// <summary>
@@ -178,9 +178,9 @@ namespace TalonOneSdk.Model
         public Option<VarVersionEnum?> VarVersionOption { get; private set; }
 
         /// <summary>
-        /// The version of the strikethrough pricing notification.
+        /// The version of the strikethrough pricing notification. Set for **scheduled** strikethrough pricing updates only. 
         /// </summary>
-        /// <value>The version of the strikethrough pricing notification.</value>
+        /// <value>The version of the strikethrough pricing notification. Set for **scheduled** strikethrough pricing updates only. </value>
         [JsonPropertyName("version")]
         public VarVersionEnum? VarVersion { get { return this.VarVersionOption.Value; } set { this.VarVersionOption = new Option<VarVersionEnum?>(value); } }
 

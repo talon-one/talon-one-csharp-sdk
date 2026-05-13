@@ -31,9 +31,9 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="StrikethroughSetDiscountPerItemEffectProps" /> class.
         /// </summary>
-        /// <param name="name">effect name.</param>
+        /// <param name="name">The effect name.</param>
         /// <param name="value">value</param>
-        /// <param name="excludedFromPriceHistory">excludedFromPriceHistory</param>
+        /// <param name="excludedFromPriceHistory">When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history.</param>
         [JsonConstructor]
         public StrikethroughSetDiscountPerItemEffectProps(string name, Object value = default, Option<bool?> excludedFromPriceHistory = default)
         {
@@ -46,9 +46,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// effect name.
+        /// The effect name.
         /// </summary>
-        /// <value>effect name.</value>
+        /// <value>The effect name.</value>
         /* <example>1EuroOff</example> */
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -67,8 +67,9 @@ namespace TalonOneSdk.Model
         public Option<bool?> ExcludedFromPriceHistoryOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ExcludedFromPriceHistory
+        /// When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history.
         /// </summary>
+        /// <value>When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history.</value>
         [JsonPropertyName("excludedFromPriceHistory")]
         public bool? ExcludedFromPriceHistory { get { return this.ExcludedFromPriceHistoryOption.Value; } set { this.ExcludedFromPriceHistoryOption = new Option<bool?>(value); } }
 

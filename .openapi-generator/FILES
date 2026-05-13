@@ -279,6 +279,7 @@ docs/models/Export.md
 docs/models/ExtendLoyaltyPointsExpiryDateEffectProps.md
 docs/models/ExtendedCoupon.md
 docs/models/FeatureFlag.md
+docs/models/FeatureFlagUpdate.md
 docs/models/FeaturesFeed.md
 docs/models/FuncArgDef.md
 docs/models/FunctionDef.md
@@ -349,6 +350,7 @@ docs/models/ImportEntity.md
 docs/models/IncreaseAchievementProgressEffectProps.md
 docs/models/InfluencingCampaignDetails.md
 docs/models/IntegrationCampaign.md
+docs/models/IntegrationCampaignBase.md
 docs/models/IntegrationCoupon.md
 docs/models/IntegrationCustomerProfileAudienceRequest.md
 docs/models/IntegrationCustomerProfileAudienceRequestItem.md
@@ -509,6 +511,7 @@ docs/models/NewReferralsForMultipleAdvocates.md
 docs/models/NewReturn.md
 docs/models/NewRevisionVersion.md
 docs/models/NewReward.md
+docs/models/NewRiskNotification.md
 docs/models/NewRole.md
 docs/models/NewRoleV2.md
 docs/models/NewRuleset.md
@@ -578,6 +581,7 @@ docs/models/RevisionActivation.md
 docs/models/RevisionActivationRequest.md
 docs/models/RevisionVersion.md
 docs/models/Reward.md
+docs/models/RiskNotification.md
 docs/models/Role.md
 docs/models/RoleAssign.md
 docs/models/RoleMembership.md
@@ -600,6 +604,7 @@ docs/models/RuleEligibility.md
 docs/models/RuleEligibilityFailureDetails.md
 docs/models/RuleFailureReason.md
 docs/models/RuleMetadata.md
+docs/models/RuleMetadataEligibility.md
 docs/models/Ruleset.md
 docs/models/SSOConfig.md
 docs/models/SamlConnection.md
@@ -988,6 +993,7 @@ src/TalonOneSdk.Test/Model/ExportTests.cs
 src/TalonOneSdk.Test/Model/ExtendLoyaltyPointsExpiryDateEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/ExtendedCouponTests.cs
 src/TalonOneSdk.Test/Model/FeatureFlagTests.cs
+src/TalonOneSdk.Test/Model/FeatureFlagUpdateTests.cs
 src/TalonOneSdk.Test/Model/FeaturesFeedTests.cs
 src/TalonOneSdk.Test/Model/FuncArgDefTests.cs
 src/TalonOneSdk.Test/Model/FunctionDefTests.cs
@@ -1057,6 +1063,7 @@ src/TalonOneSdk.Test/Model/ImportEntityTests.cs
 src/TalonOneSdk.Test/Model/ImportTests.cs
 src/TalonOneSdk.Test/Model/IncreaseAchievementProgressEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/InfluencingCampaignDetailsTests.cs
+src/TalonOneSdk.Test/Model/IntegrationCampaignBaseTests.cs
 src/TalonOneSdk.Test/Model/IntegrationCampaignTests.cs
 src/TalonOneSdk.Test/Model/IntegrationCouponTests.cs
 src/TalonOneSdk.Test/Model/IntegrationCustomerProfileAudienceRequestItemTests.cs
@@ -1218,6 +1225,7 @@ src/TalonOneSdk.Test/Model/NewReferralsForMultipleAdvocatesTests.cs
 src/TalonOneSdk.Test/Model/NewReturnTests.cs
 src/TalonOneSdk.Test/Model/NewRevisionVersionTests.cs
 src/TalonOneSdk.Test/Model/NewRewardTests.cs
+src/TalonOneSdk.Test/Model/NewRiskNotificationTests.cs
 src/TalonOneSdk.Test/Model/NewRoleTests.cs
 src/TalonOneSdk.Test/Model/NewRoleV2Tests.cs
 src/TalonOneSdk.Test/Model/NewRulesetTests.cs
@@ -1287,6 +1295,7 @@ src/TalonOneSdk.Test/Model/RevisionActivationTests.cs
 src/TalonOneSdk.Test/Model/RevisionTests.cs
 src/TalonOneSdk.Test/Model/RevisionVersionTests.cs
 src/TalonOneSdk.Test/Model/RewardTests.cs
+src/TalonOneSdk.Test/Model/RiskNotificationTests.cs
 src/TalonOneSdk.Test/Model/RoleAssignTests.cs
 src/TalonOneSdk.Test/Model/RoleMembershipTests.cs
 src/TalonOneSdk.Test/Model/RoleTests.cs
@@ -1307,6 +1316,7 @@ src/TalonOneSdk.Test/Model/RollbackReferralEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RuleEligibilityFailureDetailsTests.cs
 src/TalonOneSdk.Test/Model/RuleEligibilityTests.cs
 src/TalonOneSdk.Test/Model/RuleFailureReasonTests.cs
+src/TalonOneSdk.Test/Model/RuleMetadataEligibilityTests.cs
 src/TalonOneSdk.Test/Model/RuleMetadataTests.cs
 src/TalonOneSdk.Test/Model/RuleTests.cs
 src/TalonOneSdk.Test/Model/RulesetTests.cs
@@ -1717,6 +1727,7 @@ src/TalonOneSdk/Model/Export.cs
 src/TalonOneSdk/Model/ExtendLoyaltyPointsExpiryDateEffectProps.cs
 src/TalonOneSdk/Model/ExtendedCoupon.cs
 src/TalonOneSdk/Model/FeatureFlag.cs
+src/TalonOneSdk/Model/FeatureFlagUpdate.cs
 src/TalonOneSdk/Model/FeaturesFeed.cs
 src/TalonOneSdk/Model/FuncArgDef.cs
 src/TalonOneSdk/Model/FunctionDef.cs
@@ -1787,6 +1798,7 @@ src/TalonOneSdk/Model/ImportEntity.cs
 src/TalonOneSdk/Model/IncreaseAchievementProgressEffectProps.cs
 src/TalonOneSdk/Model/InfluencingCampaignDetails.cs
 src/TalonOneSdk/Model/IntegrationCampaign.cs
+src/TalonOneSdk/Model/IntegrationCampaignBase.cs
 src/TalonOneSdk/Model/IntegrationCoupon.cs
 src/TalonOneSdk/Model/IntegrationCustomerProfileAudienceRequest.cs
 src/TalonOneSdk/Model/IntegrationCustomerProfileAudienceRequestItem.cs
@@ -1947,6 +1959,7 @@ src/TalonOneSdk/Model/NewReferralsForMultipleAdvocates.cs
 src/TalonOneSdk/Model/NewReturn.cs
 src/TalonOneSdk/Model/NewRevisionVersion.cs
 src/TalonOneSdk/Model/NewReward.cs
+src/TalonOneSdk/Model/NewRiskNotification.cs
 src/TalonOneSdk/Model/NewRole.cs
 src/TalonOneSdk/Model/NewRoleV2.cs
 src/TalonOneSdk/Model/NewRuleset.cs
@@ -2016,6 +2029,7 @@ src/TalonOneSdk/Model/RevisionActivation.cs
 src/TalonOneSdk/Model/RevisionActivationRequest.cs
 src/TalonOneSdk/Model/RevisionVersion.cs
 src/TalonOneSdk/Model/Reward.cs
+src/TalonOneSdk/Model/RiskNotification.cs
 src/TalonOneSdk/Model/Role.cs
 src/TalonOneSdk/Model/RoleAssign.cs
 src/TalonOneSdk/Model/RoleMembership.cs
@@ -2038,6 +2052,7 @@ src/TalonOneSdk/Model/RuleEligibility.cs
 src/TalonOneSdk/Model/RuleEligibilityFailureDetails.cs
 src/TalonOneSdk/Model/RuleFailureReason.cs
 src/TalonOneSdk/Model/RuleMetadata.cs
+src/TalonOneSdk/Model/RuleMetadataEligibility.cs
 src/TalonOneSdk/Model/Ruleset.cs
 src/TalonOneSdk/Model/SSOConfig.cs
 src/TalonOneSdk/Model/SamlConnection.cs

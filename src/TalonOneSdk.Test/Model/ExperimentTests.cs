@@ -81,6 +81,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'GoalType'
+        /// </summary>
+        [Fact]
+        public void GoalTypeTest()
+        {
+            // TODO unit test for the property 'GoalType'
+        }
+
+        /// <summary>
         /// Test the property 'IsVariantAssignmentExternal'
         /// </summary>
         [Fact]
@@ -123,6 +132,15 @@ namespace TalonOneSdk.Test.Model
         public void VariantsTest()
         {
             // TODO unit test for the property 'Variants'
+        }
+
+        /// <summary>
+        /// Test the property 'GoalDescription'
+        /// </summary>
+        [Fact]
+        public void GoalDescriptionTest()
+        {
+            // TODO unit test for the property 'GoalDescription'
         }
 
         /// <summary>
