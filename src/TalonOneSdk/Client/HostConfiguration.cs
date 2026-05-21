@@ -825,6 +825,24 @@ namespace TalonOneSdk.Client
         }
 
         /// <summary>
+        /// Adds a token to your IServiceCollection for a specific per-API key provider.
+        /// Use this instead of <see cref="AddTokens{TTokenBase}(TTokenBase)"/> when you need
+        /// separate tokens for <c>IntegrationApiKeyProvider</c> and <c>ManagementApiKeyProvider</c>
+        /// within the same service collection.
+        /// </summary>
+        /// <typeparam name="TApiKeyProvider">The per-API provider type, e.g. <c>IntegrationApiKeyProvider</c>.</typeparam>
+        /// <param name="token">The <see cref="ApiKeyToken"/> to use exclusively for this API.</param>
+        /// <returns></returns>
+        public HostConfiguration AddTokens<TApiKeyProvider>(ApiKeyToken token) where TApiKeyProvider : TokenProvider<ApiKeyToken>
+        {
+            TokenContainer<ApiKeyToken> container = new TokenContainer<ApiKeyToken>(new ApiKeyToken[]{ token });
+            _services.AddSingleton(typeof(TApiKeyProvider),
+                serviceProvider => global::System.Activator.CreateInstance(typeof(TApiKeyProvider), container)!);
+
+            return this;
+        }
+
+        /// <summary>
         /// Adds a token provider to your IServiceCollection
         /// </summary>
         /// <typeparam name="TTokenProvider"></typeparam>
