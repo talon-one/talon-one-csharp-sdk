@@ -12041,14 +12041,14 @@ namespace TalonOneSdk.Api
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>
         /// </summary>
-        public ManagementApiApiKeyProvider ApiKeyProvider { get; }
+        public ManagementApiKeyProvider ApiKeyProvider { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ManagementApi"/> class.
         /// </summary>
         /// <returns></returns>
         public ManagementApi(ILogger<ManagementApi> logger, ILoggerFactory loggerFactory, HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ManagementApiEvents managementApiEvents,
-            ManagementApiApiKeyProvider apiKeyProvider)
+            ManagementApiKeyProvider apiKeyProvider)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
@@ -67577,14 +67577,14 @@ namespace TalonOneSdk.Api
     /// Register an instance of this type to assign a distinct token to this API
     /// without affecting other APIs that share the same <see cref="ApiKeyToken"/> type.
     /// </summary>
-    public sealed class ManagementApiApiKeyProvider : TokenProvider<ApiKeyToken>
+    public sealed class ManagementApiKeyProvider : TokenProvider<ApiKeyToken>
     {
         private readonly RateLimitProvider<ApiKeyToken> _inner;
 
         /// <summary>
-        /// Instantiates a new <see cref="ManagementApiApiKeyProvider"/>
+        /// Instantiates a new <see cref="ManagementApiKeyProvider"/>
         /// </summary>
-        public ManagementApiApiKeyProvider(TokenContainer<ApiKeyToken> tokens)
+        public ManagementApiKeyProvider(TokenContainer<ApiKeyToken> tokens)
         {
             _inner = new RateLimitProvider<ApiKeyToken>(tokens);
         }
