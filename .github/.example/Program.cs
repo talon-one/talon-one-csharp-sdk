@@ -12,8 +12,8 @@ namespace _example
         static async System.Threading.Tasks.Task Main(string[] args)
         {
             // Configure services with separate tokens for Integration API and Management API.
-            // Both APIs use the Authorization header but with different key prefixes
-            // (ApiKey-v1 vs ManagementKey-v1), so each gets its own typed provider.
+            // Both APIs use the Authorization header but each gets its own typed provider,
+            // so their tokens are resolved independently by the DI container.
             var services = new ServiceCollection();
 
             var hostConfiguration = new HostConfiguration(services)
@@ -24,7 +24,7 @@ namespace _example
                     "ApiKey-v1 "
                 ))
                 .AddTokens<ManagementApiKeyProvider>(new ApiKeyToken(
-                    System.Environment.GetEnvironmentVariable("TALON_USER_TOKEN"),
+                    System.Environment.GetEnvironmentVariable("TALON_MGMT_KEY"),
                     ClientUtils.ApiKeyHeader.Authorization,
                     "ManagementKey-v1 "
                 ));
