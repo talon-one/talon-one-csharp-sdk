@@ -235,7 +235,17 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum Achievements for value: Achievements
             /// </summary>
-            Achievements = 20
+            Achievements = 20,
+
+            /// <summary>
+            /// Enum AdvancedEvent for value: AdvancedEvent
+            /// </summary>
+            AdvancedEvent = 21,
+
+            /// <summary>
+            /// Enum AdvancedEventConnectedSession for value: AdvancedEventConnectedSession
+            /// </summary>
+            AdvancedEventConnectedSession = 22
         }
 
         /// <summary>
@@ -305,6 +315,12 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("Achievements"))
                 return EntityEnum.Achievements;
+
+            if (value.Equals("AdvancedEvent"))
+                return EntityEnum.AdvancedEvent;
+
+            if (value.Equals("AdvancedEventConnectedSession"))
+                return EntityEnum.AdvancedEventConnectedSession;
 
             throw new NotImplementedException($"Could not convert value to type EntityEnum: '{value}'");
         }
@@ -376,6 +392,12 @@ namespace TalonOneSdk.Model
             if (value.Equals("Achievements"))
                 return EntityEnum.Achievements;
 
+            if (value.Equals("AdvancedEvent"))
+                return EntityEnum.AdvancedEvent;
+
+            if (value.Equals("AdvancedEventConnectedSession"))
+                return EntityEnum.AdvancedEventConnectedSession;
+
             return null;
         }
 
@@ -446,6 +468,12 @@ namespace TalonOneSdk.Model
 
             if (value == EntityEnum.Achievements)
                 return "Achievements";
+
+            if (value == EntityEnum.AdvancedEvent)
+                return "AdvancedEvent";
+
+            if (value == EntityEnum.AdvancedEventConnectedSession)
+                return "AdvancedEventConnectedSession";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }

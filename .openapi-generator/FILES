@@ -247,6 +247,9 @@ docs/models/EventAttributesEntity.md
 docs/models/EventType.md
 docs/models/EventV2.md
 docs/models/EventV3.md
+docs/models/EventV3Connections.md
+docs/models/EventV3Entity.md
+docs/models/EventV3RequestEntity.md
 docs/models/Experiment.md
 docs/models/ExperimentCampaignCopy.md
 docs/models/ExperimentCopy.md
@@ -371,6 +374,7 @@ docs/models/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificati
 docs/models/IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.md
 docs/models/IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.md
 docs/models/IntegrationHubEventRecord.md
+docs/models/IntegrationHubEventStatusUpdate.md
 docs/models/IntegrationHubFlow.md
 docs/models/IntegrationHubFlowConfig.md
 docs/models/IntegrationHubFlowConfigResponse.md
@@ -485,6 +489,7 @@ docs/models/NewCustomerSession.md
 docs/models/NewCustomerSessionV2.md
 docs/models/NewEvent.md
 docs/models/NewEventType.md
+docs/models/NewEventV3Entity.md
 docs/models/NewExperiment.md
 docs/models/NewExperimentVariant.md
 docs/models/NewExperimentVariantArray.md
@@ -581,6 +586,7 @@ docs/models/RevisionActivation.md
 docs/models/RevisionActivationRequest.md
 docs/models/RevisionVersion.md
 docs/models/Reward.md
+docs/models/RewardPointsRequired.md
 docs/models/RiskNotification.md
 docs/models/Role.md
 docs/models/RoleAssign.md
@@ -960,6 +966,9 @@ src/TalonOneSdk.Test/Model/EventAttributesEntityTests.cs
 src/TalonOneSdk.Test/Model/EventTests.cs
 src/TalonOneSdk.Test/Model/EventTypeTests.cs
 src/TalonOneSdk.Test/Model/EventV2Tests.cs
+src/TalonOneSdk.Test/Model/EventV3ConnectionsTests.cs
+src/TalonOneSdk.Test/Model/EventV3EntityTests.cs
+src/TalonOneSdk.Test/Model/EventV3RequestEntityTests.cs
 src/TalonOneSdk.Test/Model/EventV3Tests.cs
 src/TalonOneSdk.Test/Model/ExperimentCampaignCopyTests.cs
 src/TalonOneSdk.Test/Model/ExperimentCopyExperimentTests.cs
@@ -1085,6 +1094,7 @@ src/TalonOneSdk.Test/Model/IntegrationHubEventPayloadLoyaltyProfileBasedPointsCh
 src/TalonOneSdk.Test/Model/IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotificationTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotificationTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubEventRecordTests.cs
+src/TalonOneSdk.Test/Model/IntegrationHubEventStatusUpdateTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubFlowConfigResponseTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubFlowConfigTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubFlowResponseTests.cs
@@ -1199,6 +1209,7 @@ src/TalonOneSdk.Test/Model/NewCustomerSessionTests.cs
 src/TalonOneSdk.Test/Model/NewCustomerSessionV2Tests.cs
 src/TalonOneSdk.Test/Model/NewEventTests.cs
 src/TalonOneSdk.Test/Model/NewEventTypeTests.cs
+src/TalonOneSdk.Test/Model/NewEventV3EntityTests.cs
 src/TalonOneSdk.Test/Model/NewExperimentTests.cs
 src/TalonOneSdk.Test/Model/NewExperimentVariantArrayTests.cs
 src/TalonOneSdk.Test/Model/NewExperimentVariantTests.cs
@@ -1294,6 +1305,7 @@ src/TalonOneSdk.Test/Model/RevisionActivationRequestTests.cs
 src/TalonOneSdk.Test/Model/RevisionActivationTests.cs
 src/TalonOneSdk.Test/Model/RevisionTests.cs
 src/TalonOneSdk.Test/Model/RevisionVersionTests.cs
+src/TalonOneSdk.Test/Model/RewardPointsRequiredTests.cs
 src/TalonOneSdk.Test/Model/RewardTests.cs
 src/TalonOneSdk.Test/Model/RiskNotificationTests.cs
 src/TalonOneSdk.Test/Model/RoleAssignTests.cs
@@ -1695,6 +1707,9 @@ src/TalonOneSdk/Model/EventAttributesEntity.cs
 src/TalonOneSdk/Model/EventType.cs
 src/TalonOneSdk/Model/EventV2.cs
 src/TalonOneSdk/Model/EventV3.cs
+src/TalonOneSdk/Model/EventV3Connections.cs
+src/TalonOneSdk/Model/EventV3Entity.cs
+src/TalonOneSdk/Model/EventV3RequestEntity.cs
 src/TalonOneSdk/Model/Experiment.cs
 src/TalonOneSdk/Model/ExperimentCampaignCopy.cs
 src/TalonOneSdk/Model/ExperimentCopy.cs
@@ -1819,6 +1834,7 @@ src/TalonOneSdk/Model/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChanged
 src/TalonOneSdk/Model/IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.cs
 src/TalonOneSdk/Model/IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.cs
 src/TalonOneSdk/Model/IntegrationHubEventRecord.cs
+src/TalonOneSdk/Model/IntegrationHubEventStatusUpdate.cs
 src/TalonOneSdk/Model/IntegrationHubFlow.cs
 src/TalonOneSdk/Model/IntegrationHubFlowConfig.cs
 src/TalonOneSdk/Model/IntegrationHubFlowConfigResponse.cs
@@ -1933,6 +1949,7 @@ src/TalonOneSdk/Model/NewCustomerSession.cs
 src/TalonOneSdk/Model/NewCustomerSessionV2.cs
 src/TalonOneSdk/Model/NewEvent.cs
 src/TalonOneSdk/Model/NewEventType.cs
+src/TalonOneSdk/Model/NewEventV3Entity.cs
 src/TalonOneSdk/Model/NewExperiment.cs
 src/TalonOneSdk/Model/NewExperimentVariant.cs
 src/TalonOneSdk/Model/NewExperimentVariantArray.cs
@@ -2029,6 +2046,7 @@ src/TalonOneSdk/Model/RevisionActivation.cs
 src/TalonOneSdk/Model/RevisionActivationRequest.cs
 src/TalonOneSdk/Model/RevisionVersion.cs
 src/TalonOneSdk/Model/Reward.cs
+src/TalonOneSdk/Model/RewardPointsRequired.cs
 src/TalonOneSdk/Model/RiskNotification.cs
 src/TalonOneSdk/Model/Role.cs
 src/TalonOneSdk/Model/RoleAssign.cs

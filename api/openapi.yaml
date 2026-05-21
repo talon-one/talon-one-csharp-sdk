@@ -1435,21 +1435,15 @@ paths:
 
         To use this endpoint:
 
-        1. Define a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event)
+        1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event)
         in the Campaign Manager.
-        1. Update or create a rule to check for this event.
-        1. Trigger the event with this endpoint. After you have successfully sent an
-        event to Talon.One, you can list the received events in the **Events** view
-        in the Campaign Manager.
+        1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created.
+        1. Trigger the event with this endpoint.
 
-        Talon.One also offers a set of [built-in
-        events](https://docs.talon.one/docs/dev/concepts/entities/events). Ensure
-        you do not create a custom event when you can use a built-in event.
+        You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.
 
-        For example, use this endpoint to trigger an event when a customer shares a
-        link to a product.
-
-        See the [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).
+        For example, you can use this endpoint to trigger an event when a customer shares a
+        link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).
 
         > [!note] **Note**
         > - `profileId` is required even though the schema does not specify it.
@@ -16642,6 +16636,7 @@ components:
             - giveaways
             - strikethrough
             - achievements
+            - advancedEvents
             type: string
           type: array
         couponSettings:
@@ -17995,8 +17990,8 @@ components:
       - $ref: "#/components/schemas/IntegrationStoreEntity"
       - properties:
           type:
-            description: A string representing the event. Must not be a reserved event
-              name.
+            description: "The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events),\
+              \ not a built-in event."
             example: pageViewed
             minLength: 1
             title: Event Type
@@ -18006,6 +18001,14 @@ components:
         required:
         - attributes
         - type
+    EventV3Entity:
+      properties:
+        integrationId:
+          description: |
+            The unique ID of the event. Only one event with this ID can be registered.
+          example: 175KJPS947296
+          minLength: 1
+          type: string
     LedgerEntry:
       allOf:
       - $ref: "#/components/schemas/Entity"
@@ -18167,6 +18170,7 @@ components:
       - $ref: "#/components/schemas/Entity"
       - $ref: "#/components/schemas/ApplicationEntity"
       - $ref: "#/components/schemas/IntegrationEvent"
+      - $ref: "#/components/schemas/EventV3Entity"
       - properties:
           sessionId:
             description: The ID of the session that this event occurred in.
@@ -18230,56 +18234,38 @@ components:
           loyaltyProgramId: 323414846
           id: 6
           referenceId: 6
+        integrationId: 175KJPS947296
         attributes: "{myAttribute=myValue}"
         id: 6
         sessionId: 175KJPS947296
         applicationId: 322
         type: pageViewed
-    IntegrationProfileEntityV3:
+    EventV3Connections:
       properties:
-        profileId:
-          description: |
-            ID of the customer profile set by your integration layer.
-
-            **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
-          example: URNGV8294NV
+        connectedSessionId:
+          description: "The ID of the session to reference. The session must be in\
+            \ `closed` state. Otherwise, the API call will fail."
+          example: 175KJPS947296
+          minLength: 1
           type: string
-      required:
-      - profileId
     EventV3:
       allOf:
-      - $ref: "#/components/schemas/IntegrationProfileEntityV3"
-      - $ref: "#/components/schemas/IntegrationStoreEntity"
-      - $ref: "#/components/schemas/EvaluableCampaignIds"
+      - $ref: "#/components/schemas/EventV3Connections"
+      - $ref: "#/components/schemas/Entity"
+      - $ref: "#/components/schemas/ApplicationEntity"
+      - $ref: "#/components/schemas/IntegrationEvent"
+      - $ref: "#/components/schemas/EventV3Entity"
       - properties:
-          integrationId:
+          effects:
             description: |
-              The unique ID of the current event. Only one event with this ID could be activated, duplicated events are forbidden.
-            example: 175KJPS947296
-            minLength: 1
-            type: string
-          type:
-            description: |
-              A string representing the event name. Must not be a reserved event name. You create this value when you [create an attribute](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) of type `event` in the Campaign Manager.
-            example: pageViewed
-            minLength: 1
-            title: Event Type
-            type: string
-          attributes:
-            $ref: "#/components/schemas/EventV3_allOf_attributes"
-          connectedSessionID:
-            description: The ID of the session that happened in the past.
-            example: 175KJPS947296
-            minLength: 1
-            type: string
-          previousEventID:
-            description: The unique identifier of the event that happened in the past.
-            example: 175KJPS947296
-            minLength: 1
-            type: string
+              An array of effects generated by the rules of the enabled campaigns of the Application.
+
+              You decide how to apply them in your system. See the list of [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
+            items:
+              type: object
+            type: array
         required:
-        - integrationId
-        - type
+        - effects
     AccountEntity:
       properties:
         accountId:
@@ -19880,6 +19866,7 @@ components:
             loyaltyProgramId: 323414846
             id: 6
             referenceId: 6
+          integrationId: 175KJPS947296
           attributes: "{myAttribute=myValue}"
           id: 6
           sessionId: 175KJPS947296
@@ -20700,8 +20687,8 @@ components:
     EventAttributesEntity:
       properties:
         type:
-          description: |
-            A string representing the event name. Must not be a reserved event name. You create this value when you [create an attribute](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) of type `event` in the Campaign Manager.
+          description: "The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events),\
+            \ not a built-in event."
           example: pageViewed
           minLength: 1
           title: Event Type
@@ -23880,6 +23867,7 @@ components:
             - giveaways
             - strikethrough
             - achievements
+            - advancedEvents
             type: string
           type: array
         couponAttributes:
@@ -24339,6 +24327,7 @@ components:
             - giveaways
             - strikethrough
             - achievements
+            - advancedEvents
             type: string
           type: array
         couponSettings:
@@ -26978,6 +26967,7 @@ components:
             - giveaways
             - strikethrough
             - achievements
+            - advancedEvents
             type: string
           type: array
         couponSettings:
@@ -27282,6 +27272,7 @@ components:
             - giveaways
             - strikethrough
             - achievements
+            - advancedEvents
             type: string
           type: array
         couponSettings:
@@ -28116,13 +28107,14 @@ components:
         campaign:
           $ref: "#/components/schemas/NewCampaign"
         goalType:
+          default: other
           description: |
             The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to `other`, multiple metrics are used.
           enum:
           - other
           - maximize_revenue
-          - optimize_discount_efficiency
           - maximize_items_sold
+          - optimize_discount_efficiency
           type: string
         goalDescription:
           description: |
@@ -28254,16 +28246,16 @@ components:
             $ref: "#/components/schemas/UpdateCampaign"
           goalType:
             description: |
-              The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to `other`, multiple metrics are used.
+              The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to `other`, multiple metrics are used. If omitted, the current value is preserved.
             enum:
             - other
             - maximize_revenue
-            - optimize_discount_efficiency
             - maximize_items_sold
+            - optimize_discount_efficiency
             type: string
           goalDescription:
             description: |
-              A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal.
+              A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal. If omitted, the current value is preserved.
             example: Offering free shipping will increase average order revenue more
               than a 10% discount
             type: string
@@ -31314,6 +31306,7 @@ components:
       - $ref: "#/components/schemas/ApplicationCustomerEntity"
       - $ref: "#/components/schemas/ApplicationStoreEntity"
       - $ref: "#/components/schemas/IntegrationStoreEntity"
+      - $ref: "#/components/schemas/EventV3Entity"
       - properties:
           sessionId:
             description: The globally unique Talon.One ID of the session that contains
@@ -31321,8 +31314,8 @@ components:
             format: int64
             type: integer
           type:
-            description: A string representing the event. Must not be a reserved event
-              name.
+            description: "The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events),\
+              \ not a built-in event."
             type: string
           attributes:
             $ref: "#/components/schemas/ApplicationEvent_allOf_attributes"
@@ -31381,6 +31374,7 @@ components:
         storeIntegrationId: STORE-001
         created: 2020-06-10T09:05:27.993483Z
         profileId: 138
+        integrationId: 175KJPS947296
         attributes: null
         id: 6
         sessionId: 6
@@ -32243,6 +32237,8 @@ components:
             - Session
             - Store
             - Achievements
+            - AdvancedEvent
+            - AdvancedEventConnectedSession
             type: string
           name:
             description: |
@@ -36599,6 +36595,26 @@ components:
       - ProcessAfter
       - PublishedAt
       - Retry
+    IntegrationHubEventStatusUpdate:
+      properties:
+        EventId:
+          description: The ID of the integration hub event.
+          example: 123
+          format: int64
+          type: integer
+        Status:
+          description: The delivery outcome for the event.
+          enum:
+          - delivered
+          - failed
+          type: string
+      required:
+      - EventId
+      - Status
+    IntegrationHubEventStatusUpdates:
+      items:
+        $ref: "#/components/schemas/IntegrationHubEventStatusUpdate"
+      type: array
     IntegrationHubConfig:
       description: Config used for accessing integrations in IntegrationHub
       properties:
@@ -36667,6 +36683,37 @@ components:
       - applicationIds
       - name
       - sandbox
+    RewardPointsRequired:
+      description: The loyalty points required to activate a reward.
+      properties:
+        id:
+          description: |
+            The ID of the `pointsRequired` entry. When updating a reward,
+            include this property to update an existing entry. Omit it to create a new one.
+          example: 1
+          format: int64
+          type: integer
+        amount:
+          description: The number of loyalty points required to activate the reward.
+          example: 500
+          minimum: 0
+          type: number
+        loyaltyProgramId:
+          description: The ID of the associated loyalty program.
+          example: 10
+          format: int64
+          type: integer
+        subledgerId:
+          description: |
+            The ID of the subledger within the loyalty program from which points are deducted when activating the reward.
+
+            To specify the main ledger, provide an empty string ("").
+          example: mysubledger
+          type: string
+      required:
+      - amount
+      - loyaltyProgramId
+      - subledgerId
     Reward:
       allOf:
       - $ref: "#/components/schemas/Entity"
@@ -36713,6 +36760,11 @@ components:
             - inactive
             example: active
             type: string
+          pointsRequired:
+            description: The loyalty points required to activate a reward.
+            items:
+              $ref: "#/components/schemas/RewardPointsRequired"
+            type: array
         required:
         - status
     UpdateReward:
@@ -36761,12 +36813,53 @@ components:
           items:
             $ref: "#/components/schemas/Binding"
           type: array
+        pointsRequired:
+          description: |
+            The loyalty points required to activate the reward. Each object defines the specific
+            loyalty program and subledger from which points are deducted when activating the reward.
+
+            **Note:**
+            - Objects with an `id` are updated.
+            - Objects without an `id` are created.
+            - Existing objects omitted from the payload are deleted.
+          items:
+            $ref: "#/components/schemas/RewardPointsRequired"
+          type: array
       required:
       - name
       - status
+    IntegrationProfileEntityV3:
+      properties:
+        profileId:
+          description: |
+            ID of the customer profile set by your integration layer.
+
+            **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
+          example: URNGV8294NV
+          type: string
+      required:
+      - profileId
+    NewEventV3Entity:
+      properties:
+        integrationId:
+          description: |
+            The unique ID of the event. Only one event with this ID can be registered.
+          example: 175KJPS947296
+          minLength: 1
+          type: string
+      required:
+      - integrationId
+    EventV3RequestEntity:
+      allOf:
+      - $ref: "#/components/schemas/IntegrationProfileEntityV3"
+      - $ref: "#/components/schemas/IntegrationStoreEntity"
+      - $ref: "#/components/schemas/EvaluableCampaignIds"
+      - $ref: "#/components/schemas/EventAttributesEntity"
+      - $ref: "#/components/schemas/NewEventV3Entity"
+      - $ref: "#/components/schemas/EventV3Connections"
     IntegrationEventV3Request:
       allOf:
-      - $ref: "#/components/schemas/EventV3"
+      - $ref: "#/components/schemas/EventV3RequestEntity"
       - properties:
           loyaltyCards:
             description: Identifiers of the loyalty cards used during this event.
@@ -42639,6 +42732,7 @@ components:
           storeIntegrationId: STORE-001
           created: 2020-06-10T09:05:27.993483Z
           profileId: 138
+          integrationId: 175KJPS947296
           attributes: null
           id: 6
           sessionId: 6
@@ -42712,6 +42806,7 @@ components:
           storeIntegrationId: STORE-001
           created: 2020-06-10T09:05:27.993483Z
           profileId: 138
+          integrationId: 175KJPS947296
           attributes: null
           id: 6
           sessionId: 6
@@ -43608,12 +43703,6 @@ components:
       type: object
     IntegrationEvent_allOf_attributes:
       description: Arbitrary additional JSON data associated with the event.
-      example: "{myAttribute=myValue}"
-      type: object
-    EventV3_allOf_attributes:
-      description: "Arbitrary additional JSON properties associated with the event.\
-        \ They must be created in the Campaign Manager before setting them with this\
-        \ property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute)."
       example: "{myAttribute=myValue}"
       type: object
     NewCustomerSession_allOf_attributes:

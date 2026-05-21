@@ -54,21 +54,30 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'ProfileId'
+        /// Test the property 'Id'
         /// </summary>
         [Fact]
-        public void ProfileIdTest()
+        public void IdTest()
         {
-            // TODO unit test for the property 'ProfileId'
+            // TODO unit test for the property 'Id'
         }
 
         /// <summary>
-        /// Test the property 'IntegrationId'
+        /// Test the property 'Created'
         /// </summary>
         [Fact]
-        public void IntegrationIdTest()
+        public void CreatedTest()
         {
-            // TODO unit test for the property 'IntegrationId'
+            // TODO unit test for the property 'Created'
+        }
+
+        /// <summary>
+        /// Test the property 'ApplicationId'
+        /// </summary>
+        [Fact]
+        public void ApplicationIdTest()
+        {
+            // TODO unit test for the property 'ApplicationId'
         }
 
         /// <summary>
@@ -81,24 +90,6 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'StoreIntegrationId'
-        /// </summary>
-        [Fact]
-        public void StoreIntegrationIdTest()
-        {
-            // TODO unit test for the property 'StoreIntegrationId'
-        }
-
-        /// <summary>
-        /// Test the property 'EvaluableCampaignIds'
-        /// </summary>
-        [Fact]
-        public void EvaluableCampaignIdsTest()
-        {
-            // TODO unit test for the property 'EvaluableCampaignIds'
-        }
-
-        /// <summary>
         /// Test the property 'Attributes'
         /// </summary>
         [Fact]
@@ -108,21 +99,48 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'ConnectedSessionID'
+        /// Test the property 'Effects'
         /// </summary>
         [Fact]
-        public void ConnectedSessionIDTest()
+        public void EffectsTest()
         {
-            // TODO unit test for the property 'ConnectedSessionID'
+            // TODO unit test for the property 'Effects'
         }
 
         /// <summary>
-        /// Test the property 'PreviousEventID'
+        /// Test the property 'ConnectedSessionId'
         /// </summary>
         [Fact]
-        public void PreviousEventIDTest()
+        public void ConnectedSessionIdTest()
         {
-            // TODO unit test for the property 'PreviousEventID'
+            // TODO unit test for the property 'ConnectedSessionId'
+        }
+
+        /// <summary>
+        /// Test the property 'ProfileId'
+        /// </summary>
+        [Fact]
+        public void ProfileIdTest()
+        {
+            // TODO unit test for the property 'ProfileId'
+        }
+
+        /// <summary>
+        /// Test the property 'StoreIntegrationId'
+        /// </summary>
+        [Fact]
+        public void StoreIntegrationIdTest()
+        {
+            // TODO unit test for the property 'StoreIntegrationId'
+        }
+
+        /// <summary>
+        /// Test the property 'IntegrationId'
+        /// </summary>
+        [Fact]
+        public void IntegrationIdTest()
+        {
+            // TODO unit test for the property 'IntegrationId'
         }
     }
 }

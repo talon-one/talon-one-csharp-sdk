@@ -33,10 +33,10 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="isVariantAssignmentExternal">The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. </param>
         /// <param name="campaign">campaign</param>
-        /// <param name="goalType">The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to &#x60;other&#x60;, multiple metrics are used. </param>
+        /// <param name="goalType">The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to &#x60;other&#x60;, multiple metrics are used.  (default to GoalTypeEnum.Other)</param>
         /// <param name="goalDescription">A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal. </param>
         [JsonConstructor]
-        public NewExperiment(bool isVariantAssignmentExternal, NewCampaign campaign, GoalTypeEnum goalType, Option<string> goalDescription = default)
+        public NewExperiment(bool isVariantAssignmentExternal, NewCampaign campaign, GoalTypeEnum goalType = GoalTypeEnum.Other, Option<string> goalDescription = default)
         {
             IsVariantAssignmentExternal = isVariantAssignmentExternal;
             Campaign = campaign;
@@ -64,14 +64,14 @@ namespace TalonOneSdk.Model
             MaximizeRevenue = 2,
 
             /// <summary>
-            /// Enum OptimizeDiscountEfficiency for value: optimize_discount_efficiency
-            /// </summary>
-            OptimizeDiscountEfficiency = 3,
-
-            /// <summary>
             /// Enum MaximizeItemsSold for value: maximize_items_sold
             /// </summary>
-            MaximizeItemsSold = 4
+            MaximizeItemsSold = 3,
+
+            /// <summary>
+            /// Enum OptimizeDiscountEfficiency for value: optimize_discount_efficiency
+            /// </summary>
+            OptimizeDiscountEfficiency = 4
         }
 
         /// <summary>
@@ -88,11 +88,11 @@ namespace TalonOneSdk.Model
             if (value.Equals("maximize_revenue"))
                 return GoalTypeEnum.MaximizeRevenue;
 
-            if (value.Equals("optimize_discount_efficiency"))
-                return GoalTypeEnum.OptimizeDiscountEfficiency;
-
             if (value.Equals("maximize_items_sold"))
                 return GoalTypeEnum.MaximizeItemsSold;
+
+            if (value.Equals("optimize_discount_efficiency"))
+                return GoalTypeEnum.OptimizeDiscountEfficiency;
 
             throw new NotImplementedException($"Could not convert value to type GoalTypeEnum: '{value}'");
         }
@@ -110,11 +110,11 @@ namespace TalonOneSdk.Model
             if (value.Equals("maximize_revenue"))
                 return GoalTypeEnum.MaximizeRevenue;
 
-            if (value.Equals("optimize_discount_efficiency"))
-                return GoalTypeEnum.OptimizeDiscountEfficiency;
-
             if (value.Equals("maximize_items_sold"))
                 return GoalTypeEnum.MaximizeItemsSold;
+
+            if (value.Equals("optimize_discount_efficiency"))
+                return GoalTypeEnum.OptimizeDiscountEfficiency;
 
             return null;
         }
@@ -133,11 +133,11 @@ namespace TalonOneSdk.Model
             if (value == GoalTypeEnum.MaximizeRevenue)
                 return "maximize_revenue";
 
-            if (value == GoalTypeEnum.OptimizeDiscountEfficiency)
-                return "optimize_discount_efficiency";
-
             if (value == GoalTypeEnum.MaximizeItemsSold)
                 return "maximize_items_sold";
+
+            if (value == GoalTypeEnum.OptimizeDiscountEfficiency)
+                return "optimize_discount_efficiency";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }

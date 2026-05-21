@@ -1,4 +1,4 @@
-# TalonOneSdk.Model.IntegrationEventV3Request
+# TalonOneSdk.Model.EventV3RequestEntity
 
 ## Properties
 
@@ -11,8 +11,6 @@ Name | Type | Description | Notes
 **EvaluableCampaignIds** | **List&lt;long&gt;** | When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.  | [optional] 
 **Attributes** | **Object** | Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute). | [optional] 
 **ConnectedSessionId** | **string** | The ID of the session to reference. The session must be in &#x60;closed&#x60; state. Otherwise, the API call will fail. | [optional] 
-**LoyaltyCards** | **List&lt;string&gt;** | Identifiers of the loyalty cards used during this event. | [optional] 
-**ResponseContent** | **List&lt;IntegrationEventV3Request.ResponseContentEnum&gt;** | Optional list of requested information to be present on the response related to the tracking custom event.  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

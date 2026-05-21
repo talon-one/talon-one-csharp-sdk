@@ -271,6 +271,9 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new EventTypeJsonConverter());
             _jsonOptions.Converters.Add(new EventV2JsonConverter());
             _jsonOptions.Converters.Add(new EventV3JsonConverter());
+            _jsonOptions.Converters.Add(new EventV3ConnectionsJsonConverter());
+            _jsonOptions.Converters.Add(new EventV3EntityJsonConverter());
+            _jsonOptions.Converters.Add(new EventV3RequestEntityJsonConverter());
             _jsonOptions.Converters.Add(new ExperimentJsonConverter());
             _jsonOptions.Converters.Add(new ExperimentCampaignCopyJsonConverter());
             _jsonOptions.Converters.Add(new ExperimentCopyJsonConverter());
@@ -395,6 +398,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotificationJsonConverter());
             _jsonOptions.Converters.Add(new IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotificationJsonConverter());
             _jsonOptions.Converters.Add(new IntegrationHubEventRecordJsonConverter());
+            _jsonOptions.Converters.Add(new IntegrationHubEventStatusUpdateJsonConverter());
             _jsonOptions.Converters.Add(new IntegrationHubFlowJsonConverter());
             _jsonOptions.Converters.Add(new IntegrationHubFlowConfigJsonConverter());
             _jsonOptions.Converters.Add(new IntegrationHubFlowConfigResponseJsonConverter());
@@ -509,6 +513,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new NewCustomerSessionV2JsonConverter());
             _jsonOptions.Converters.Add(new NewEventJsonConverter());
             _jsonOptions.Converters.Add(new NewEventTypeJsonConverter());
+            _jsonOptions.Converters.Add(new NewEventV3EntityJsonConverter());
             _jsonOptions.Converters.Add(new NewExperimentJsonConverter());
             _jsonOptions.Converters.Add(new NewExperimentVariantJsonConverter());
             _jsonOptions.Converters.Add(new NewExperimentVariantArrayJsonConverter());
@@ -605,6 +610,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new RevisionActivationRequestJsonConverter());
             _jsonOptions.Converters.Add(new RevisionVersionJsonConverter());
             _jsonOptions.Converters.Add(new RewardJsonConverter());
+            _jsonOptions.Converters.Add(new RewardPointsRequiredJsonConverter());
             _jsonOptions.Converters.Add(new RiskNotificationJsonConverter());
             _jsonOptions.Converters.Add(new RoleJsonConverter());
             _jsonOptions.Converters.Add(new RoleAssignJsonConverter());

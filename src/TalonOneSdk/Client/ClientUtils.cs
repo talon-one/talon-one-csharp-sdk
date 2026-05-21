@@ -410,6 +410,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.IntegrationEventV3Request.ResponseContentEnumToJsonValue(integrationEventV3RequestResponseContentEnum);
             if (obj is TalonOneSdk.Model.IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnum integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum)
                 return TalonOneSdk.Model.IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnumToJsonValue(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum);
+            if (obj is TalonOneSdk.Model.IntegrationHubEventStatusUpdate.StatusEnum integrationHubEventStatusUpdateStatusEnum)
+                return TalonOneSdk.Model.IntegrationHubEventStatusUpdate.StatusEnumToJsonValue(integrationHubEventStatusUpdateStatusEnum);
             if (obj is TalonOneSdk.Model.IntegrationHubPaginatedEventPayload.EventTypeEnum integrationHubPaginatedEventPayloadEventTypeEnum)
                 return TalonOneSdk.Model.IntegrationHubPaginatedEventPayload.EventTypeEnumToJsonValue(integrationHubPaginatedEventPayloadEventTypeEnum);
             if (obj is TalonOneSdk.Model.IntegrationRequest.ResponseContentEnum integrationRequestResponseContentEnum)

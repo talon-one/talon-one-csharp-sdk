@@ -34,16 +34,17 @@ namespace TalonOneSdk.Model
         /// <param name="id">The internal ID of this entity.</param>
         /// <param name="created">The time this entity was created.</param>
         /// <param name="applicationId">The ID of the Application that owns this entity.</param>
-        /// <param name="type">A string representing the event. Must not be a reserved event name.</param>
+        /// <param name="type">The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.</param>
         /// <param name="attributes">Additional JSON serialized data associated with the event.</param>
         /// <param name="effects">An array containing the effects that were applied as a result of this event.</param>
         /// <param name="profileId">The globally unique Talon.One ID of the customer that created this entity.</param>
         /// <param name="storeId">The ID of the store.</param>
         /// <param name="storeIntegrationId">The integration ID of the store. You choose this ID when you create a store.</param>
+        /// <param name="integrationId">The unique ID of the event. Only one event with this ID can be registered. </param>
         /// <param name="sessionId">The globally unique Talon.One ID of the session that contains this event.</param>
         /// <param name="ruleFailureReasons">An array containing the rule failure reasons which happened during this event.</param>
         [JsonConstructor]
-        public ApplicationEvent(long id, DateTime created, long applicationId, string type, Object attributes, List<Effect> effects, Option<long?> profileId = default, Option<long?> storeId = default, Option<string> storeIntegrationId = default, Option<long?> sessionId = default, Option<List<RuleFailureReason>> ruleFailureReasons = default)
+        public ApplicationEvent(long id, DateTime created, long applicationId, string type, Object attributes, List<Effect> effects, Option<long?> profileId = default, Option<long?> storeId = default, Option<string> storeIntegrationId = default, Option<string> integrationId = default, Option<long?> sessionId = default, Option<List<RuleFailureReason>> ruleFailureReasons = default)
         {
             Id = id;
             Created = created;
@@ -54,6 +55,7 @@ namespace TalonOneSdk.Model
             ProfileIdOption = profileId;
             StoreIdOption = storeId;
             StoreIntegrationIdOption = storeIntegrationId;
+            IntegrationIdOption = integrationId;
             SessionIdOption = sessionId;
             RuleFailureReasonsOption = ruleFailureReasons;
             OnCreated();
@@ -86,9 +88,9 @@ namespace TalonOneSdk.Model
         public long ApplicationId { get; set; }
 
         /// <summary>
-        /// A string representing the event. Must not be a reserved event name.
+        /// The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.
         /// </summary>
-        /// <value>A string representing the event. Must not be a reserved event name.</value>
+        /// <value>The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.</value>
         [JsonPropertyName("type")]
         public string Type { get; set; }
 
@@ -151,6 +153,21 @@ namespace TalonOneSdk.Model
         public string StoreIntegrationId { get { return this.StoreIntegrationIdOption.Value; } set { this.StoreIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of IntegrationId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IntegrationIdOption { get; private set; }
+
+        /// <summary>
+        /// The unique ID of the event. Only one event with this ID can be registered. 
+        /// </summary>
+        /// <value>The unique ID of the event. Only one event with this ID can be registered. </value>
+        /* <example>175KJPS947296</example> */
+        [JsonPropertyName("integrationId")]
+        public string IntegrationId { get { return this.IntegrationIdOption.Value; } set { this.IntegrationIdOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Used to track the state of SessionId
         /// </summary>
         [JsonIgnore]
@@ -195,6 +212,7 @@ namespace TalonOneSdk.Model
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  StoreId: ").Append(StoreId).Append("\n");
             sb.Append("  StoreIntegrationId: ").Append(StoreIntegrationId).Append("\n");
+            sb.Append("  IntegrationId: ").Append(IntegrationId).Append("\n");
             sb.Append("  SessionId: ").Append(SessionId).Append("\n");
             sb.Append("  RuleFailureReasons: ").Append(RuleFailureReasons).Append("\n");
             sb.Append("}\n");
@@ -218,6 +236,12 @@ namespace TalonOneSdk.Model
             if (this.StoreIntegrationId != null && this.StoreIntegrationId.Length < 1)
             {
                 yield return new ValidationResult("Invalid value for StoreIntegrationId, length must be greater than 1.", new [] { "StoreIntegrationId" });
+            }
+
+            // IntegrationId (string) minLength
+            if (this.IntegrationId != null && this.IntegrationId.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for IntegrationId, length must be greater than 1.", new [] { "IntegrationId" });
             }
 
             yield break;
@@ -260,6 +284,7 @@ namespace TalonOneSdk.Model
             Option<long?> profileId = default;
             Option<long?> storeId = default;
             Option<string> storeIntegrationId = default;
+            Option<string> integrationId = default;
             Option<long?> sessionId = default;
             Option<List<RuleFailureReason>> ruleFailureReasons = default;
 
@@ -304,6 +329,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "storeIntegrationId":
                             storeIntegrationId = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "integrationId":
+                            integrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "sessionId":
                             sessionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
@@ -353,7 +381,7 @@ namespace TalonOneSdk.Model
             if (effects.IsSet && effects.Value == null)
                 throw new ArgumentNullException(nameof(effects), "Property is not nullable for class ApplicationEvent.");
 
-            return new ApplicationEvent(id.Value.Value, created.Value.Value, applicationId.Value.Value, type.Value, attributes.Value, effects.Value, profileId, storeId, storeIntegrationId, sessionId, ruleFailureReasons);
+            return new ApplicationEvent(id.Value.Value, created.Value.Value, applicationId.Value.Value, type.Value, attributes.Value, effects.Value, profileId, storeId, storeIntegrationId, integrationId, sessionId, ruleFailureReasons);
         }
 
         /// <summary>
@@ -409,6 +437,9 @@ namespace TalonOneSdk.Model
 
             if (applicationEvent.StoreIntegrationIdOption.IsSet)
                 writer.WriteString("storeIntegrationId", applicationEvent.StoreIntegrationId);
+
+            if (applicationEvent.IntegrationIdOption.IsSet)
+                writer.WriteString("integrationId", applicationEvent.IntegrationId);
 
             if (applicationEvent.SessionIdOption.IsSet)
                 writer.WriteNumber("sessionId", applicationEvent.SessionIdOption.Value.Value);
