@@ -837,7 +837,7 @@ namespace TalonOneSdk.Client
         {
             TokenContainer<ApiKeyToken> container = new TokenContainer<ApiKeyToken>(new ApiKeyToken[]{ token });
             _services.AddSingleton(typeof(TApiKeyProvider),
-                serviceProvider => global::System.Activator.CreateInstance(typeof(TApiKeyProvider), container)!);
+                serviceProvider => global::System.Activator.CreateInstance(typeof(TApiKeyProvider), container));
 
             return this;
         }
