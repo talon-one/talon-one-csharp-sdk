@@ -134,7 +134,9 @@ jobs:
             --data-raw '{
                 "name": "test-mgmt-key",
                 "expiryDate": "2099-01-01T00:00:00Z",
-                "endpoints": [{"path": "/*"}]
+                "endpoints": [
+                    {"path": "/v1/applications/{applicationId}/campaigns/{campaignId}/coupons"}
+                ]
             }');
           echo "Management key response: $MGMT_KEY_RESPONSE";
           export TALON_MGMT_KEY=$(echo $MGMT_KEY_RESPONSE | jq ".key" | tr -d '"');
