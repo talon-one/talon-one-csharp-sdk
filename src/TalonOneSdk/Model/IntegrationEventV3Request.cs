@@ -32,26 +32,24 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="IntegrationEventV3Request" /> class.
         /// </summary>
         /// <param name="profileId">ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </param>
-        /// <param name="integrationId">The unique ID of the current event. Only one event with this ID could be activated, duplicated events are forbidden. </param>
-        /// <param name="type">A string representing the event name. Must not be a reserved event name. You create this value when you [create an attribute](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) of type &#x60;event&#x60; in the Campaign Manager. </param>
+        /// <param name="type">The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.</param>
+        /// <param name="integrationId">The unique ID of the event. Only one event with this ID can be registered. </param>
         /// <param name="storeIntegrationId">The integration ID of the store. You choose this ID when you create a store.</param>
         /// <param name="evaluableCampaignIds">When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them. </param>
         /// <param name="attributes">Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute).</param>
-        /// <param name="connectedSessionID">The ID of the session that happened in the past.</param>
-        /// <param name="previousEventID">The unique identifier of the event that happened in the past.</param>
+        /// <param name="connectedSessionId">The ID of the session to reference. The session must be in &#x60;closed&#x60; state. Otherwise, the API call will fail.</param>
         /// <param name="loyaltyCards">Identifiers of the loyalty cards used during this event.</param>
         /// <param name="responseContent">Optional list of requested information to be present on the response related to the tracking custom event. </param>
         [JsonConstructor]
-        public IntegrationEventV3Request(string profileId, string integrationId, string type, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<Object> attributes = default, Option<string> connectedSessionID = default, Option<string> previousEventID = default, Option<List<string>> loyaltyCards = default, Option<List<IntegrationEventV3Request.ResponseContentEnum>> responseContent = default)
+        public IntegrationEventV3Request(string profileId, string type, string integrationId, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<Object> attributes = default, Option<string> connectedSessionId = default, Option<List<string>> loyaltyCards = default, Option<List<IntegrationEventV3Request.ResponseContentEnum>> responseContent = default)
         {
             ProfileId = profileId;
-            IntegrationId = integrationId;
             Type = type;
+            IntegrationId = integrationId;
             StoreIntegrationIdOption = storeIntegrationId;
             EvaluableCampaignIdsOption = evaluableCampaignIds;
             AttributesOption = attributes;
-            ConnectedSessionIDOption = connectedSessionID;
-            PreviousEventIDOption = previousEventID;
+            ConnectedSessionIdOption = connectedSessionId;
             LoyaltyCardsOption = loyaltyCards;
             ResponseContentOption = responseContent;
             OnCreated();
@@ -190,20 +188,20 @@ namespace TalonOneSdk.Model
         public string ProfileId { get; set; }
 
         /// <summary>
-        /// The unique ID of the current event. Only one event with this ID could be activated, duplicated events are forbidden. 
+        /// The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.
         /// </summary>
-        /// <value>The unique ID of the current event. Only one event with this ID could be activated, duplicated events are forbidden. </value>
-        /* <example>175KJPS947296</example> */
-        [JsonPropertyName("integrationId")]
-        public string IntegrationId { get; set; }
-
-        /// <summary>
-        /// A string representing the event name. Must not be a reserved event name. You create this value when you [create an attribute](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) of type &#x60;event&#x60; in the Campaign Manager. 
-        /// </summary>
-        /// <value>A string representing the event name. Must not be a reserved event name. You create this value when you [create an attribute](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) of type &#x60;event&#x60; in the Campaign Manager. </value>
+        /// <value>The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.</value>
         /* <example>pageViewed</example> */
         [JsonPropertyName("type")]
         public string Type { get; set; }
+
+        /// <summary>
+        /// The unique ID of the event. Only one event with this ID can be registered. 
+        /// </summary>
+        /// <value>The unique ID of the event. Only one event with this ID can be registered. </value>
+        /* <example>175KJPS947296</example> */
+        [JsonPropertyName("integrationId")]
+        public string IntegrationId { get; set; }
 
         /// <summary>
         /// Used to track the state of StoreIntegrationId
@@ -251,34 +249,19 @@ namespace TalonOneSdk.Model
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
-        /// Used to track the state of ConnectedSessionID
+        /// Used to track the state of ConnectedSessionId
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> ConnectedSessionIDOption { get; private set; }
+        public Option<string> ConnectedSessionIdOption { get; private set; }
 
         /// <summary>
-        /// The ID of the session that happened in the past.
+        /// The ID of the session to reference. The session must be in &#x60;closed&#x60; state. Otherwise, the API call will fail.
         /// </summary>
-        /// <value>The ID of the session that happened in the past.</value>
+        /// <value>The ID of the session to reference. The session must be in &#x60;closed&#x60; state. Otherwise, the API call will fail.</value>
         /* <example>175KJPS947296</example> */
-        [JsonPropertyName("connectedSessionID")]
-        public string ConnectedSessionID { get { return this.ConnectedSessionIDOption.Value; } set { this.ConnectedSessionIDOption = new Option<string>(value); } }
-
-        /// <summary>
-        /// Used to track the state of PreviousEventID
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> PreviousEventIDOption { get; private set; }
-
-        /// <summary>
-        /// The unique identifier of the event that happened in the past.
-        /// </summary>
-        /// <value>The unique identifier of the event that happened in the past.</value>
-        /* <example>175KJPS947296</example> */
-        [JsonPropertyName("previousEventID")]
-        public string PreviousEventID { get { return this.PreviousEventIDOption.Value; } set { this.PreviousEventIDOption = new Option<string>(value); } }
+        [JsonPropertyName("connectedSessionId")]
+        public string ConnectedSessionId { get { return this.ConnectedSessionIdOption.Value; } set { this.ConnectedSessionIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of LoyaltyCards
@@ -319,13 +302,12 @@ namespace TalonOneSdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class IntegrationEventV3Request {\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
-            sb.Append("  IntegrationId: ").Append(IntegrationId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  IntegrationId: ").Append(IntegrationId).Append("\n");
             sb.Append("  StoreIntegrationId: ").Append(StoreIntegrationId).Append("\n");
             sb.Append("  EvaluableCampaignIds: ").Append(EvaluableCampaignIds).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
-            sb.Append("  ConnectedSessionID: ").Append(ConnectedSessionID).Append("\n");
-            sb.Append("  PreviousEventID: ").Append(PreviousEventID).Append("\n");
+            sb.Append("  ConnectedSessionId: ").Append(ConnectedSessionId).Append("\n");
             sb.Append("  LoyaltyCards: ").Append(LoyaltyCards).Append("\n");
             sb.Append("  ResponseContent: ").Append(ResponseContent).Append("\n");
             sb.Append("}\n");
@@ -339,16 +321,16 @@ namespace TalonOneSdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // IntegrationId (string) minLength
-            if (this.IntegrationId != null && this.IntegrationId.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for IntegrationId, length must be greater than 1.", new [] { "IntegrationId" });
-            }
-
             // Type (string) minLength
             if (this.Type != null && this.Type.Length < 1)
             {
                 yield return new ValidationResult("Invalid value for Type, length must be greater than 1.", new [] { "Type" });
+            }
+
+            // IntegrationId (string) minLength
+            if (this.IntegrationId != null && this.IntegrationId.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for IntegrationId, length must be greater than 1.", new [] { "IntegrationId" });
             }
 
             // StoreIntegrationId (string) maxLength
@@ -363,16 +345,10 @@ namespace TalonOneSdk.Model
                 yield return new ValidationResult("Invalid value for StoreIntegrationId, length must be greater than 1.", new [] { "StoreIntegrationId" });
             }
 
-            // ConnectedSessionID (string) minLength
-            if (this.ConnectedSessionID != null && this.ConnectedSessionID.Length < 1)
+            // ConnectedSessionId (string) minLength
+            if (this.ConnectedSessionId != null && this.ConnectedSessionId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for ConnectedSessionID, length must be greater than 1.", new [] { "ConnectedSessionID" });
-            }
-
-            // PreviousEventID (string) minLength
-            if (this.PreviousEventID != null && this.PreviousEventID.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for PreviousEventID, length must be greater than 1.", new [] { "PreviousEventID" });
+                yield return new ValidationResult("Invalid value for ConnectedSessionId, length must be greater than 1.", new [] { "ConnectedSessionId" });
             }
 
             yield break;
@@ -402,13 +378,12 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string> profileId = default;
-            Option<string> integrationId = default;
             Option<string> type = default;
+            Option<string> integrationId = default;
             Option<string> storeIntegrationId = default;
             Option<List<long>> evaluableCampaignIds = default;
             Option<Object> attributes = default;
-            Option<string> connectedSessionID = default;
-            Option<string> previousEventID = default;
+            Option<string> connectedSessionId = default;
             Option<List<string>> loyaltyCards = default;
             Option<List<IntegrationEventV3Request.ResponseContentEnum>> responseContent = default;
 
@@ -430,11 +405,11 @@ namespace TalonOneSdk.Model
                         case "profileId":
                             profileId = new Option<string>(utf8JsonReader.GetString());
                             break;
-                        case "integrationId":
-                            integrationId = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "integrationId":
+                            integrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "storeIntegrationId":
                             storeIntegrationId = new Option<string>(utf8JsonReader.GetString());
@@ -445,11 +420,8 @@ namespace TalonOneSdk.Model
                         case "attributes":
                             attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "connectedSessionID":
-                            connectedSessionID = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "previousEventID":
-                            previousEventID = new Option<string>(utf8JsonReader.GetString());
+                        case "connectedSessionId":
+                            connectedSessionId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "loyaltyCards":
                             loyaltyCards = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -487,22 +459,22 @@ namespace TalonOneSdk.Model
             if (!profileId.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationEventV3Request.", nameof(profileId));
 
-            if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationEventV3Request.", nameof(integrationId));
-
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationEventV3Request.", nameof(type));
+
+            if (!integrationId.IsSet)
+                throw new ArgumentException("Property is required for class IntegrationEventV3Request.", nameof(integrationId));
 
             if (profileId.IsSet && profileId.Value == null)
                 throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class IntegrationEventV3Request.");
 
-            if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class IntegrationEventV3Request.");
-
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class IntegrationEventV3Request.");
 
-            return new IntegrationEventV3Request(profileId.Value, integrationId.Value, type.Value, storeIntegrationId, evaluableCampaignIds, attributes, connectedSessionID, previousEventID, loyaltyCards, responseContent);
+            if (integrationId.IsSet && integrationId.Value == null)
+                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class IntegrationEventV3Request.");
+
+            return new IntegrationEventV3Request(profileId.Value, type.Value, integrationId.Value, storeIntegrationId, evaluableCampaignIds, attributes, connectedSessionId, loyaltyCards, responseContent);
         }
 
         /// <summary>
@@ -532,17 +504,17 @@ namespace TalonOneSdk.Model
             if (integrationEventV3Request.ProfileId == null)
                 throw new ArgumentNullException(nameof(integrationEventV3Request.ProfileId), "Property is required for class IntegrationEventV3Request.");
 
-            if (integrationEventV3Request.IntegrationId == null)
-                throw new ArgumentNullException(nameof(integrationEventV3Request.IntegrationId), "Property is required for class IntegrationEventV3Request.");
-
             if (integrationEventV3Request.Type == null)
                 throw new ArgumentNullException(nameof(integrationEventV3Request.Type), "Property is required for class IntegrationEventV3Request.");
 
+            if (integrationEventV3Request.IntegrationId == null)
+                throw new ArgumentNullException(nameof(integrationEventV3Request.IntegrationId), "Property is required for class IntegrationEventV3Request.");
+
             writer.WriteString("profileId", integrationEventV3Request.ProfileId);
 
-            writer.WriteString("integrationId", integrationEventV3Request.IntegrationId);
-
             writer.WriteString("type", integrationEventV3Request.Type);
+
+            writer.WriteString("integrationId", integrationEventV3Request.IntegrationId);
 
             if (integrationEventV3Request.StoreIntegrationIdOption.IsSet)
                 writer.WriteString("storeIntegrationId", integrationEventV3Request.StoreIntegrationId);
@@ -557,11 +529,8 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("attributes");
                 JsonSerializer.Serialize(writer, integrationEventV3Request.Attributes, jsonSerializerOptions);
             }
-            if (integrationEventV3Request.ConnectedSessionIDOption.IsSet)
-                writer.WriteString("connectedSessionID", integrationEventV3Request.ConnectedSessionID);
-
-            if (integrationEventV3Request.PreviousEventIDOption.IsSet)
-                writer.WriteString("previousEventID", integrationEventV3Request.PreviousEventID);
+            if (integrationEventV3Request.ConnectedSessionIdOption.IsSet)
+                writer.WriteString("connectedSessionId", integrationEventV3Request.ConnectedSessionId);
 
             if (integrationEventV3Request.LoyaltyCardsOption.IsSet)
             {

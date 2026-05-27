@@ -41,11 +41,9 @@ namespace TalonOneSdk.Model
         /// <param name="fixedStartDate">The achievement&#39;s start date when &#x60;activationPolicy&#x60; is set to &#x60;fixed_schedule&#x60;.  **Note:** It must be an RFC3339 timestamp string. </param>
         /// <param name="endDate">The achievement&#39;s end date. If defined, customers cannot participate in the achievement after this date.  **Note:** It must be an RFC3339 timestamp string. </param>
         /// <param name="allowRollbackAfterCompletion">When &#x60;true&#x60;, customer progress can be rolled back in completed achievements.</param>
-        /// <param name="sandbox">Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.</param>
         /// <param name="subscribedApplications">A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement.</param>
-        /// <param name="timezone">A string containing an IANA timezone descriptor.</param>
         [JsonConstructor]
-        public AchievementBaseV2(Option<string> name = default, Option<string> title = default, Option<string> description = default, Option<decimal?> target = default, Option<string> period = default, Option<RecurrencePolicyEnum?> recurrencePolicy = default, Option<ActivationPolicyEnum?> activationPolicy = default, Option<DateTime?> fixedStartDate = default, Option<DateTime?> endDate = default, Option<bool?> allowRollbackAfterCompletion = default, Option<bool?> sandbox = default, Option<List<long>> subscribedApplications = default, Option<string> timezone = default)
+        public AchievementBaseV2(Option<string> name = default, Option<string> title = default, Option<string> description = default, Option<decimal?> target = default, Option<string> period = default, Option<RecurrencePolicyEnum?> recurrencePolicy = default, Option<ActivationPolicyEnum?> activationPolicy = default, Option<DateTime?> fixedStartDate = default, Option<DateTime?> endDate = default, Option<bool?> allowRollbackAfterCompletion = default, Option<List<long>> subscribedApplications = default)
         {
             NameOption = name;
             TitleOption = title;
@@ -57,9 +55,7 @@ namespace TalonOneSdk.Model
             FixedStartDateOption = fixedStartDate;
             EndDateOption = endDate;
             AllowRollbackAfterCompletionOption = allowRollbackAfterCompletion;
-            SandboxOption = sandbox;
             SubscribedApplicationsOption = subscribedApplications;
-            TimezoneOption = timezone;
             OnCreated();
         }
 
@@ -364,21 +360,6 @@ namespace TalonOneSdk.Model
         public bool? AllowRollbackAfterCompletion { get { return this.AllowRollbackAfterCompletionOption.Value; } set { this.AllowRollbackAfterCompletionOption = new Option<bool?>(value); } }
 
         /// <summary>
-        /// Used to track the state of Sandbox
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<bool?> SandboxOption { get; private set; }
-
-        /// <summary>
-        /// Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.
-        /// </summary>
-        /// <value>Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.</value>
-        /* <example>true</example> */
-        [JsonPropertyName("sandbox")]
-        public bool? Sandbox { get { return this.SandboxOption.Value; } set { this.SandboxOption = new Option<bool?>(value); } }
-
-        /// <summary>
         /// Used to track the state of SubscribedApplications
         /// </summary>
         [JsonIgnore]
@@ -392,21 +373,6 @@ namespace TalonOneSdk.Model
         /* <example>[132, 97]</example> */
         [JsonPropertyName("subscribedApplications")]
         public List<long> SubscribedApplications { get { return this.SubscribedApplicationsOption.Value; } set { this.SubscribedApplicationsOption = new Option<List<long>>(value); } }
-
-        /// <summary>
-        /// Used to track the state of Timezone
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> TimezoneOption { get; private set; }
-
-        /// <summary>
-        /// A string containing an IANA timezone descriptor.
-        /// </summary>
-        /// <value>A string containing an IANA timezone descriptor.</value>
-        /* <example>Europe/Berlin</example> */
-        [JsonPropertyName("timezone")]
-        public string Timezone { get { return this.TimezoneOption.Value; } set { this.TimezoneOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -426,9 +392,7 @@ namespace TalonOneSdk.Model
             sb.Append("  FixedStartDate: ").Append(FixedStartDate).Append("\n");
             sb.Append("  EndDate: ").Append(EndDate).Append("\n");
             sb.Append("  AllowRollbackAfterCompletion: ").Append(AllowRollbackAfterCompletion).Append("\n");
-            sb.Append("  Sandbox: ").Append(Sandbox).Append("\n");
             sb.Append("  SubscribedApplications: ").Append(SubscribedApplications).Append("\n");
-            sb.Append("  Timezone: ").Append(Timezone).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -460,12 +424,6 @@ namespace TalonOneSdk.Model
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, must match a pattern of " + regexName, new [] { "Name" });
                 }
-            }
-
-            // Timezone (string) minLength
-            if (this.Timezone != null && this.Timezone.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for Timezone, length must be greater than 1.", new [] { "Timezone" });
             }
 
             yield break;
@@ -514,9 +472,7 @@ namespace TalonOneSdk.Model
             Option<DateTime?> fixedStartDate = default;
             Option<DateTime?> endDate = default;
             Option<bool?> allowRollbackAfterCompletion = default;
-            Option<bool?> sandbox = default;
             Option<List<long>> subscribedApplications = default;
-            Option<string> timezone = default;
 
             while (utf8JsonReader.Read())
             {
@@ -567,14 +523,8 @@ namespace TalonOneSdk.Model
                         case "allowRollbackAfterCompletion":
                             allowRollbackAfterCompletion = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
-                        case "sandbox":
-                            sandbox = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
-                            break;
                         case "subscribedApplications":
                             subscribedApplications = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "timezone":
-                            timezone = new Option<string>(utf8JsonReader.GetString());
                             break;
                         default:
                             break;
@@ -582,7 +532,7 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            return new AchievementBaseV2(name, title, description, target, period, recurrencePolicy, activationPolicy, fixedStartDate, endDate, allowRollbackAfterCompletion, sandbox, subscribedApplications, timezone);
+            return new AchievementBaseV2(name, title, description, target, period, recurrencePolicy, activationPolicy, fixedStartDate, endDate, allowRollbackAfterCompletion, subscribedApplications);
         }
 
         /// <summary>
@@ -643,16 +593,11 @@ namespace TalonOneSdk.Model
             if (achievementBaseV2.AllowRollbackAfterCompletionOption.IsSet)
                 writer.WriteBoolean("allowRollbackAfterCompletion", achievementBaseV2.AllowRollbackAfterCompletionOption.Value.Value);
 
-            if (achievementBaseV2.SandboxOption.IsSet)
-                writer.WriteBoolean("sandbox", achievementBaseV2.SandboxOption.Value.Value);
-
             if (achievementBaseV2.SubscribedApplicationsOption.IsSet)
             {
                 writer.WritePropertyName("subscribedApplications");
                 JsonSerializer.Serialize(writer, achievementBaseV2.SubscribedApplications, jsonSerializerOptions);
             }
-            if (achievementBaseV2.TimezoneOption.IsSet)
-                writer.WriteString("timezone", achievementBaseV2.Timezone);
         }
     }
 }

@@ -81,12 +81,12 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'ContextId'
+        /// Test the property 'ContextIds'
         /// </summary>
         [Fact]
-        public void ContextIdTest()
+        public void ContextIdsTest()
         {
-            // TODO unit test for the property 'ContextId'
+            // TODO unit test for the property 'ContextIds'
         }
 
         /// <summary>
@@ -114,6 +114,15 @@ namespace TalonOneSdk.Test.Model
         public void TargetTest()
         {
             // TODO unit test for the property 'Target'
+        }
+
+        /// <summary>
+        /// Test the property 'ContextId'
+        /// </summary>
+        [Fact]
+        public void ContextIdTest()
+        {
+            // TODO unit test for the property 'ContextId'
         }
     }
 }

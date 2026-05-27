@@ -62,6 +62,9 @@ namespace TalonOneSdk.Client
                 if (DateTime.TryParseExact(value, format, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal, out DateTime result))
                     return result;
 
+            if (DateTime.TryParse(value, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out DateTime fallbackResult))
+                return fallbackResult;
+
             throw new NotSupportedException();
         }
 

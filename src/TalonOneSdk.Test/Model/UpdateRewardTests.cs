@@ -106,5 +106,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'Bindings'
         }
+
+        /// <summary>
+        /// Test the property 'PointsRequired'
+        /// </summary>
+        [Fact]
+        public void PointsRequiredTest()
+        {
+            // TODO unit test for the property 'PointsRequired'
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NewEvent" /> class.
         /// </summary>
-        /// <param name="type">A string representing the event. Must not be a reserved event name.</param>
+        /// <param name="type">The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.</param>
         /// <param name="attributes">Arbitrary additional JSON data associated with the event.</param>
         /// <param name="sessionId">The ID of the session that this event occurred in.</param>
         /// <param name="profileId">ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </param>
@@ -50,9 +50,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// A string representing the event. Must not be a reserved event name.
+        /// The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.
         /// </summary>
-        /// <value>A string representing the event. Must not be a reserved event name.</value>
+        /// <value>The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.</value>
         /* <example>pageViewed</example> */
         [JsonPropertyName("type")]
         public string Type { get; set; }

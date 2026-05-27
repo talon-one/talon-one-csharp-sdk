@@ -39,8 +39,9 @@ namespace TalonOneSdk.Model
         /// <param name="retry">retry</param>
         /// <param name="eventData">eventData</param>
         /// <param name="processedAt">processedAt</param>
+        /// <param name="deliveredAt">deliveredAt</param>
         [JsonConstructor]
-        public IntegrationHubEventRecord(long id, long flowId, string eventType, DateTime publishedAt, DateTime processAfter, long retry, Object eventData = default, Option<DateTime?> processedAt = default)
+        public IntegrationHubEventRecord(long id, long flowId, string eventType, DateTime publishedAt, DateTime processAfter, long retry, Object eventData = default, Option<DateTime?> processedAt = default, Option<DateTime?> deliveredAt = default)
         {
             Id = id;
             FlowId = flowId;
@@ -50,6 +51,7 @@ namespace TalonOneSdk.Model
             Retry = retry;
             EventData = eventData;
             ProcessedAtOption = processedAt;
+            DeliveredAtOption = deliveredAt;
             OnCreated();
         }
 
@@ -111,6 +113,19 @@ namespace TalonOneSdk.Model
         public DateTime? ProcessedAt { get { return this.ProcessedAtOption.Value; } set { this.ProcessedAtOption = new Option<DateTime?>(value); } }
 
         /// <summary>
+        /// Used to track the state of DeliveredAt
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTime?> DeliveredAtOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets DeliveredAt
+        /// </summary>
+        [JsonPropertyName("DeliveredAt")]
+        public DateTime? DeliveredAt { get { return this.DeliveredAtOption.Value; } set { this.DeliveredAtOption = new Option<DateTime?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -126,6 +141,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Retry: ").Append(Retry).Append("\n");
             sb.Append("  EventData: ").Append(EventData).Append("\n");
             sb.Append("  ProcessedAt: ").Append(ProcessedAt).Append("\n");
+            sb.Append("  DeliveredAt: ").Append(DeliveredAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -162,6 +178,11 @@ namespace TalonOneSdk.Model
         public static string ProcessedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
+        /// The format to use to serialize DeliveredAt
+        /// </summary>
+        public static string DeliveredAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+
+        /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventRecord" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
@@ -186,6 +207,7 @@ namespace TalonOneSdk.Model
             Option<long?> retry = default;
             Option<Object> eventData = default;
             Option<DateTime?> processedAt = default;
+            Option<DateTime?> deliveredAt = default;
 
             while (utf8JsonReader.Read())
             {
@@ -225,6 +247,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "ProcessedAt":
                             processedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "DeliveredAt":
+                            deliveredAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -271,7 +296,7 @@ namespace TalonOneSdk.Model
             if (retry.IsSet && retry.Value == null)
                 throw new ArgumentNullException(nameof(retry), "Property is not nullable for class IntegrationHubEventRecord.");
 
-            return new IntegrationHubEventRecord(id.Value.Value, flowId.Value.Value, eventType.Value, publishedAt.Value.Value, processAfter.Value.Value, retry.Value.Value, eventData.Value, processedAt);
+            return new IntegrationHubEventRecord(id.Value.Value, flowId.Value.Value, eventType.Value, publishedAt.Value.Value, processAfter.Value.Value, retry.Value.Value, eventData.Value, processedAt, deliveredAt);
         }
 
         /// <summary>
@@ -322,6 +347,9 @@ namespace TalonOneSdk.Model
                 writer.WriteNull("EventData");
             if (integrationHubEventRecord.ProcessedAtOption.IsSet)
                 writer.WriteString("ProcessedAt", integrationHubEventRecord.ProcessedAtOption.Value.Value.ToString(ProcessedAtFormat));
+
+            if (integrationHubEventRecord.DeliveredAtOption.IsSet)
+                writer.WriteString("DeliveredAt", integrationHubEventRecord.DeliveredAtOption.Value.Value.ToString(DeliveredAtFormat));
         }
     }
 }

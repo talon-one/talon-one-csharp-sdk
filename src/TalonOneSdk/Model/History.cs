@@ -33,19 +33,21 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="id">The ID of the historical price.</param>
         /// <param name="observedAt">The date and time when the price was observed.</param>
-        /// <param name="contextId">Identifier of the relevant context at the time the price was observed (e.g. summer sale). </param>
+        /// <param name="contextIds">The identifiers of the relevant context at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. </param>
         /// <param name="price">Price of the item.</param>
         /// <param name="metadata">metadata</param>
         /// <param name="target">target</param>
+        /// <param name="contextId">This property is **deprecated**. Use &#x60;contextIds&#x60; instead. Defaults to an empty string.  (default to &quot;&quot;)</param>
         [JsonConstructor]
-        public History(long id, DateTime observedAt, string contextId, decimal price, BestPriorPriceMetadata metadata, Object target)
+        public History(long id, DateTime observedAt, List<string> contextIds, decimal price, BestPriorPriceMetadata metadata, Object target, Option<string> contextId = default)
         {
             Id = id;
             ObservedAt = observedAt;
-            ContextId = contextId;
+            ContextIds = contextIds;
             Price = price;
             Metadata = metadata;
             Target = target;
+            ContextIdOption = contextId;
             OnCreated();
         }
 
@@ -63,17 +65,17 @@ namespace TalonOneSdk.Model
         /// The date and time when the price was observed.
         /// </summary>
         /// <value>The date and time when the price was observed.</value>
-        /* <example>2020-11-10T23:00:00Z</example> */
+        /* <example>2025-11-10T23:00:00Z</example> */
         [JsonPropertyName("observedAt")]
         public DateTime ObservedAt { get; set; }
 
         /// <summary>
-        /// Identifier of the relevant context at the time the price was observed (e.g. summer sale). 
+        /// The identifiers of the relevant context at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. 
         /// </summary>
-        /// <value>Identifier of the relevant context at the time the price was observed (e.g. summer sale). </value>
-        /* <example>Summer Sale 2025</example> */
-        [JsonPropertyName("contextId")]
-        public string ContextId { get; set; }
+        /// <value>The identifiers of the relevant context at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. </value>
+        /* <example>[SpringSale, SummerSale2025]</example> */
+        [JsonPropertyName("contextIds")]
+        public List<string> ContextIds { get; set; }
 
         /// <summary>
         /// Price of the item.
@@ -96,6 +98,20 @@ namespace TalonOneSdk.Model
         public Object Target { get; set; }
 
         /// <summary>
+        /// Used to track the state of ContextId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ContextIdOption { get; private set; }
+
+        /// <summary>
+        /// This property is **deprecated**. Use &#x60;contextIds&#x60; instead. Defaults to an empty string. 
+        /// </summary>
+        /// <value>This property is **deprecated**. Use &#x60;contextIds&#x60; instead. Defaults to an empty string. </value>
+        [JsonPropertyName("contextId")]
+        public string ContextId { get { return this.ContextIdOption.Value; } set { this.ContextIdOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -105,10 +121,11 @@ namespace TalonOneSdk.Model
             sb.Append("class History {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  ObservedAt: ").Append(ObservedAt).Append("\n");
-            sb.Append("  ContextId: ").Append(ContextId).Append("\n");
+            sb.Append("  ContextIds: ").Append(ContextIds).Append("\n");
             sb.Append("  Price: ").Append(Price).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  Target: ").Append(Target).Append("\n");
+            sb.Append("  ContextId: ").Append(ContextId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -153,10 +170,11 @@ namespace TalonOneSdk.Model
 
             Option<long?> id = default;
             Option<DateTime?> observedAt = default;
-            Option<string> contextId = default;
+            Option<List<string>> contextIds = default;
             Option<decimal?> price = default;
             Option<BestPriorPriceMetadata> metadata = default;
             Option<Object> target = default;
+            Option<string> contextId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -179,8 +197,8 @@ namespace TalonOneSdk.Model
                         case "observedAt":
                             observedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "contextId":
-                            contextId = new Option<string>(utf8JsonReader.GetString());
+                        case "contextIds":
+                            contextIds = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "price":
                             price = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
@@ -190,6 +208,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "target":
                             target = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "contextId":
+                            contextId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         default:
                             break;
@@ -203,8 +224,8 @@ namespace TalonOneSdk.Model
             if (!observedAt.IsSet)
                 throw new ArgumentException("Property is required for class History.", nameof(observedAt));
 
-            if (!contextId.IsSet)
-                throw new ArgumentException("Property is required for class History.", nameof(contextId));
+            if (!contextIds.IsSet)
+                throw new ArgumentException("Property is required for class History.", nameof(contextIds));
 
             if (!price.IsSet)
                 throw new ArgumentException("Property is required for class History.", nameof(price));
@@ -221,8 +242,8 @@ namespace TalonOneSdk.Model
             if (observedAt.IsSet && observedAt.Value == null)
                 throw new ArgumentNullException(nameof(observedAt), "Property is not nullable for class History.");
 
-            if (contextId.IsSet && contextId.Value == null)
-                throw new ArgumentNullException(nameof(contextId), "Property is not nullable for class History.");
+            if (contextIds.IsSet && contextIds.Value == null)
+                throw new ArgumentNullException(nameof(contextIds), "Property is not nullable for class History.");
 
             if (price.IsSet && price.Value == null)
                 throw new ArgumentNullException(nameof(price), "Property is not nullable for class History.");
@@ -233,7 +254,7 @@ namespace TalonOneSdk.Model
             if (target.IsSet && target.Value == null)
                 throw new ArgumentNullException(nameof(target), "Property is not nullable for class History.");
 
-            return new History(id.Value.Value, observedAt.Value.Value, contextId.Value, price.Value.Value, metadata.Value, target.Value);
+            return new History(id.Value.Value, observedAt.Value.Value, contextIds.Value, price.Value.Value, metadata.Value, target.Value, contextId);
         }
 
         /// <summary>
@@ -260,8 +281,8 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, History history, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (history.ContextId == null)
-                throw new ArgumentNullException(nameof(history.ContextId), "Property is required for class History.");
+            if (history.ContextIds == null)
+                throw new ArgumentNullException(nameof(history.ContextIds), "Property is required for class History.");
 
             if (history.Metadata == null)
                 throw new ArgumentNullException(nameof(history.Metadata), "Property is required for class History.");
@@ -273,14 +294,16 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("observedAt", history.ObservedAt.ToString(ObservedAtFormat));
 
-            writer.WriteString("contextId", history.ContextId);
-
+            writer.WritePropertyName("contextIds");
+            JsonSerializer.Serialize(writer, history.ContextIds, jsonSerializerOptions);
             writer.WriteNumber("price", history.Price);
 
             writer.WritePropertyName("metadata");
             JsonSerializer.Serialize(writer, history.Metadata, jsonSerializerOptions);
             writer.WritePropertyName("target");
             JsonSerializer.Serialize(writer, history.Target, jsonSerializerOptions);
+            if (history.ContextIdOption.IsSet)
+                writer.WriteString("contextId", history.ContextId);
         }
     }
 }

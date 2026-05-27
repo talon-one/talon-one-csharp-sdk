@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TalonOneSdk.Api;
 using TalonOneSdk.Client;
 using TalonOneSdk.Model;
@@ -11,17 +12,23 @@ namespace _example
     {
         static async System.Threading.Tasks.Task Main(string[] args)
         {
-            // Configure services and API key authorization
+            // Configure services with separate tokens for Integration API and Management API.
+            // Both APIs use the Authorization header but each gets its own typed provider,
+            // so their tokens are resolved independently by the DI container.
             var services = new ServiceCollection();
 
             var hostConfiguration = new HostConfiguration(services)
                 .AddApiHttpClients(client => client.BaseAddress = new System.Uri("http://localhost:9000"))
-                .AddTokens(new ApiKeyToken(
+                .AddTokens<IntegrationApiKeyProvider>(new ApiKeyToken(
                     System.Environment.GetEnvironmentVariable("TALON_API_KEY"),
                     ClientUtils.ApiKeyHeader.Authorization,
                     "ApiKey-v1 "
                 ))
-                .UseProvider<RateLimitProvider<ApiKeyToken>, ApiKeyToken>();
+                .AddTokens<ManagementApiKeyProvider>(new ApiKeyToken(
+                    System.Environment.GetEnvironmentVariable("TALON_MGMT_KEY"),
+                    ClientUtils.ApiKeyHeader.Authorization,
+                    "ManagementKey-v1 "
+                ));
 
             var serviceProvider = services.BuildServiceProvider();
             var apiFactory = serviceProvider.GetRequiredService<IApiFactory>();
@@ -202,22 +209,10 @@ namespace _example
             Console.WriteLine(badRequest.Message);
 
             //
-            // Management API setup for coupon tests (Issue #25)
+            // Management API — resolved from the same service provider (Issue #25)
             //
 
-            var mgmtServices = new ServiceCollection();
-            var mgmtHostConfiguration = new HostConfiguration(mgmtServices)
-                .AddApiHttpClients(client => client.BaseAddress = new System.Uri("http://localhost:9000"))
-                .AddTokens(new ApiKeyToken(
-                    System.Environment.GetEnvironmentVariable("TALON_USER_TOKEN"),
-                    ClientUtils.ApiKeyHeader.Authorization,
-                    "Bearer "
-                ))
-                .UseProvider<RateLimitProvider<ApiKeyToken>, ApiKeyToken>();
-
-            var mgmtServiceProvider = mgmtServices.BuildServiceProvider();
-            var mgmtApiFactory = mgmtServiceProvider.GetRequiredService<IApiFactory>();
-            var managementApi = mgmtApiFactory.Create<IManagementApi>();
+            var managementApi = apiFactory.Create<IManagementApi>();
 
             int applicationId = int.Parse(System.Environment.GetEnvironmentVariable("TALON_APPLICATION_ID"));
             int campaignId = int.Parse(System.Environment.GetEnvironmentVariable("TALON_CAMPAIGN_ID"));
@@ -274,6 +269,20 @@ namespace _example
 
             Console.WriteLine("CreateCoupons with Dictionary<string, object> attributes succeeded");
             Console.WriteLine(createCouponsResponse2.Ok());
+
+            //
+            // Test Issue sc-71616: DateTime deserialization of coupon timestamps
+            // The API can return timestamps with 9 fractional digit seconds (nanoseconds).
+            // DateTimeJsonConverter previously threw NotSupportedException for these, as it
+            // only handled up to 7 fractional digits via TryParseExact format strings.
+            //
+
+            Console.WriteLine("Testing DateTime deserialization from coupon Created timestamp");
+
+            var createdCoupon = createCouponsResponse1.Ok().Data.First();
+
+            Console.WriteLine($"Coupon Created timestamp parsed successfully: {createdCoupon.Created:O}");
+            Console.WriteLine("DateTime deserialization from API response succeeded");
         }
     }
 }

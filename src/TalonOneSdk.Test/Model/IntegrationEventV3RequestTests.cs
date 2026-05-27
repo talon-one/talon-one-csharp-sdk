@@ -63,21 +63,21 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'IntegrationId'
-        /// </summary>
-        [Fact]
-        public void IntegrationIdTest()
-        {
-            // TODO unit test for the property 'IntegrationId'
-        }
-
-        /// <summary>
         /// Test the property 'Type'
         /// </summary>
         [Fact]
         public void TypeTest()
         {
             // TODO unit test for the property 'Type'
+        }
+
+        /// <summary>
+        /// Test the property 'IntegrationId'
+        /// </summary>
+        [Fact]
+        public void IntegrationIdTest()
+        {
+            // TODO unit test for the property 'IntegrationId'
         }
 
         /// <summary>
@@ -108,21 +108,12 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'ConnectedSessionID'
+        /// Test the property 'ConnectedSessionId'
         /// </summary>
         [Fact]
-        public void ConnectedSessionIDTest()
+        public void ConnectedSessionIdTest()
         {
-            // TODO unit test for the property 'ConnectedSessionID'
-        }
-
-        /// <summary>
-        /// Test the property 'PreviousEventID'
-        /// </summary>
-        [Fact]
-        public void PreviousEventIDTest()
-        {
-            // TODO unit test for the property 'PreviousEventID'
+            // TODO unit test for the property 'ConnectedSessionId'
         }
 
         /// <summary>

@@ -193,6 +193,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new CartItemJsonConverter());
             _jsonOptions.Converters.Add(new CartItemFilterTemplateJsonConverter());
             _jsonOptions.Converters.Add(new CatalogJsonConverter());
+            _jsonOptions.Converters.Add(new CatalogActionJsonConverter());
             _jsonOptions.Converters.Add(new CatalogActionFilterJsonConverter());
             _jsonOptions.Converters.Add(new CatalogItemJsonConverter());
             _jsonOptions.Converters.Add(new CatalogRuleJsonConverter());
@@ -271,6 +272,9 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new EventTypeJsonConverter());
             _jsonOptions.Converters.Add(new EventV2JsonConverter());
             _jsonOptions.Converters.Add(new EventV3JsonConverter());
+            _jsonOptions.Converters.Add(new EventV3ConnectionsJsonConverter());
+            _jsonOptions.Converters.Add(new EventV3EntityJsonConverter());
+            _jsonOptions.Converters.Add(new EventV3RequestEntityJsonConverter());
             _jsonOptions.Converters.Add(new ExperimentJsonConverter());
             _jsonOptions.Converters.Add(new ExperimentCampaignCopyJsonConverter());
             _jsonOptions.Converters.Add(new ExperimentCopyJsonConverter());
@@ -395,6 +399,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotificationJsonConverter());
             _jsonOptions.Converters.Add(new IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotificationJsonConverter());
             _jsonOptions.Converters.Add(new IntegrationHubEventRecordJsonConverter());
+            _jsonOptions.Converters.Add(new IntegrationHubEventStatusUpdateJsonConverter());
             _jsonOptions.Converters.Add(new IntegrationHubFlowJsonConverter());
             _jsonOptions.Converters.Add(new IntegrationHubFlowConfigJsonConverter());
             _jsonOptions.Converters.Add(new IntegrationHubFlowConfigResponseJsonConverter());
@@ -509,6 +514,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new NewCustomerSessionV2JsonConverter());
             _jsonOptions.Converters.Add(new NewEventJsonConverter());
             _jsonOptions.Converters.Add(new NewEventTypeJsonConverter());
+            _jsonOptions.Converters.Add(new NewEventV3EntityJsonConverter());
             _jsonOptions.Converters.Add(new NewExperimentJsonConverter());
             _jsonOptions.Converters.Add(new NewExperimentVariantJsonConverter());
             _jsonOptions.Converters.Add(new NewExperimentVariantArrayJsonConverter());
@@ -605,6 +611,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new RevisionActivationRequestJsonConverter());
             _jsonOptions.Converters.Add(new RevisionVersionJsonConverter());
             _jsonOptions.Converters.Add(new RewardJsonConverter());
+            _jsonOptions.Converters.Add(new RewardPointsRequiredJsonConverter());
             _jsonOptions.Converters.Add(new RiskNotificationJsonConverter());
             _jsonOptions.Converters.Add(new RoleJsonConverter());
             _jsonOptions.Converters.Add(new RoleAssignJsonConverter());
@@ -679,6 +686,8 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new StrikethroughTriggerJsonConverter());
             _jsonOptions.Converters.Add(new SummarizeCampaignStoreBudget200ResponseJsonConverter());
             _jsonOptions.Converters.Add(new SummaryCampaignStoreBudgetJsonConverter());
+            _jsonOptions.Converters.Add(new SupportRequestJsonConverter());
+            _jsonOptions.Converters.Add(new SupportRequestInputJsonConverter());
             _jsonOptions.Converters.Add(new TalangAttributeJsonConverter());
             _jsonOptions.Converters.Add(new TalangAttributeVisibilityJsonConverter());
             _jsonOptions.Converters.Add(new TemplateArgDefJsonConverter());
@@ -736,6 +745,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new UpdateRewardJsonConverter());
             _jsonOptions.Converters.Add(new UpdateRoleJsonConverter());
             _jsonOptions.Converters.Add(new UpdateStoreJsonConverter());
+            _jsonOptions.Converters.Add(new UpdateSupportRequestJsonConverter());
             _jsonOptions.Converters.Add(new UpdateUserJsonConverter());
             _jsonOptions.Converters.Add(new UserJsonConverter());
             _jsonOptions.Converters.Add(new UserEntityJsonConverter());
@@ -814,6 +824,24 @@ namespace TalonOneSdk.Client
         {
             TokenContainer<TTokenBase> container = new TokenContainer<TTokenBase>(tokens);
             _services.AddSingleton(services => container);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a token to your IServiceCollection for a specific per-API key provider.
+        /// Use this instead of <see cref="AddTokens{TTokenBase}(TTokenBase)"/> when you need
+        /// separate tokens for <c>IntegrationApiKeyProvider</c> and <c>ManagementApiKeyProvider</c>
+        /// within the same service collection.
+        /// </summary>
+        /// <typeparam name="TApiKeyProvider">The per-API provider type, e.g. <c>IntegrationApiKeyProvider</c>.</typeparam>
+        /// <param name="token">The <see cref="ApiKeyToken"/> to use exclusively for this API.</param>
+        /// <returns></returns>
+        public HostConfiguration AddTokens<TApiKeyProvider>(ApiKeyToken token) where TApiKeyProvider : TokenProvider<ApiKeyToken>
+        {
+            TokenContainer<ApiKeyToken> container = new TokenContainer<ApiKeyToken>(new ApiKeyToken[]{ token });
+            _services.AddSingleton(typeof(TApiKeyProvider),
+                serviceProvider => global::System.Activator.CreateInstance(typeof(TApiKeyProvider), container));
 
             return this;
         }
