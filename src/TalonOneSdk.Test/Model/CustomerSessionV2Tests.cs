@@ -135,6 +135,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CartItemAdditionalCostTotal'
+        /// </summary>
+        [Fact]
+        public void CartItemAdditionalCostTotalTest()
+        {
+            // TODO unit test for the property 'CartItemAdditionalCostTotal'
+        }
+
+        /// <summary>
         /// Test the property 'Updated'
         /// </summary>
         [Fact]

@@ -128,4 +128,21 @@ jobs:
             exit 1;
           fi
           echo "Coupon attribute with ID $TALON_COUPON_ATTR_ID was created"
+          MGMT_KEY_RESPONSE=$(curl -s --location "http://localhost:9000/v1/management_keys" \
+            --header "Content-Type: application/json" \
+            --header "Authorization: Bearer $TALON_USER_TOKEN" \
+            --data-raw '{
+                "name": "test-mgmt-key",
+                "expiryDate": "2099-01-01T00:00:00Z",
+                "endpoints": [
+                    {"path": "/v1/applications/{applicationId}/campaigns/{campaignId}/coupons"}
+                ]
+            }');
+          echo "Management key response: $MGMT_KEY_RESPONSE";
+          export TALON_MGMT_KEY=$(echo $MGMT_KEY_RESPONSE | jq ".key" | tr -d '"');
+          if [ "$TALON_MGMT_KEY" = "null" ] || [ -z "$TALON_MGMT_KEY" ]; then
+            echo "Failed to create management key";
+            exit 1;
+          fi
+          echo "Management key created"
           dotnet run

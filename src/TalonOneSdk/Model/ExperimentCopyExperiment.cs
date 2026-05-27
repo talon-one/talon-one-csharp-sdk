@@ -33,15 +33,128 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="isVariantAssignmentExternal">The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. </param>
         /// <param name="campaign">campaign</param>
+        /// <param name="goalType">The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to &#x60;other&#x60;, multiple metrics are used. If omitted, the value from the source experiment is used. </param>
+        /// <param name="goalDescription">A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal. If omitted, the value from the source experiment is used. </param>
         [JsonConstructor]
-        public ExperimentCopyExperiment(bool isVariantAssignmentExternal, ExperimentCampaignCopy campaign)
+        public ExperimentCopyExperiment(bool isVariantAssignmentExternal, ExperimentCampaignCopy campaign, Option<GoalTypeEnum?> goalType = default, Option<string> goalDescription = default)
         {
             IsVariantAssignmentExternal = isVariantAssignmentExternal;
             Campaign = campaign;
+            GoalTypeOption = goalType;
+            GoalDescriptionOption = goalDescription;
             OnCreated();
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to &#x60;other&#x60;, multiple metrics are used. If omitted, the value from the source experiment is used. 
+        /// </summary>
+        /// <value>The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to &#x60;other&#x60;, multiple metrics are used. If omitted, the value from the source experiment is used. </value>
+        public enum GoalTypeEnum
+        {
+            /// <summary>
+            /// Enum Other for value: other
+            /// </summary>
+            Other = 1,
+
+            /// <summary>
+            /// Enum MaximizeRevenue for value: maximize_revenue
+            /// </summary>
+            MaximizeRevenue = 2,
+
+            /// <summary>
+            /// Enum MaximizeItemsSold for value: maximize_items_sold
+            /// </summary>
+            MaximizeItemsSold = 3,
+
+            /// <summary>
+            /// Enum OptimizeDiscountEfficiency for value: optimize_discount_efficiency
+            /// </summary>
+            OptimizeDiscountEfficiency = 4
+        }
+
+        /// <summary>
+        /// Returns a <see cref="GoalTypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static GoalTypeEnum GoalTypeEnumFromString(string value)
+        {
+            if (value.Equals("other"))
+                return GoalTypeEnum.Other;
+
+            if (value.Equals("maximize_revenue"))
+                return GoalTypeEnum.MaximizeRevenue;
+
+            if (value.Equals("maximize_items_sold"))
+                return GoalTypeEnum.MaximizeItemsSold;
+
+            if (value.Equals("optimize_discount_efficiency"))
+                return GoalTypeEnum.OptimizeDiscountEfficiency;
+
+            throw new NotImplementedException($"Could not convert value to type GoalTypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="GoalTypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static GoalTypeEnum? GoalTypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("other"))
+                return GoalTypeEnum.Other;
+
+            if (value.Equals("maximize_revenue"))
+                return GoalTypeEnum.MaximizeRevenue;
+
+            if (value.Equals("maximize_items_sold"))
+                return GoalTypeEnum.MaximizeItemsSold;
+
+            if (value.Equals("optimize_discount_efficiency"))
+                return GoalTypeEnum.OptimizeDiscountEfficiency;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="GoalTypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string GoalTypeEnumToJsonValue(GoalTypeEnum? value)
+        {
+            if (value == GoalTypeEnum.Other)
+                return "other";
+
+            if (value == GoalTypeEnum.MaximizeRevenue)
+                return "maximize_revenue";
+
+            if (value == GoalTypeEnum.MaximizeItemsSold)
+                return "maximize_items_sold";
+
+            if (value == GoalTypeEnum.OptimizeDiscountEfficiency)
+                return "optimize_discount_efficiency";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// Used to track the state of GoalType
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<GoalTypeEnum?> GoalTypeOption { get; private set; }
+
+        /// <summary>
+        /// The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to &#x60;other&#x60;, multiple metrics are used. If omitted, the value from the source experiment is used. 
+        /// </summary>
+        /// <value>The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to &#x60;other&#x60;, multiple metrics are used. If omitted, the value from the source experiment is used. </value>
+        [JsonPropertyName("goalType")]
+        public GoalTypeEnum? GoalType { get { return this.GoalTypeOption.Value; } set { this.GoalTypeOption = new Option<GoalTypeEnum?>(value); } }
 
         /// <summary>
         /// The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. 
@@ -57,6 +170,20 @@ namespace TalonOneSdk.Model
         public ExperimentCampaignCopy Campaign { get; set; }
 
         /// <summary>
+        /// Used to track the state of GoalDescription
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> GoalDescriptionOption { get; private set; }
+
+        /// <summary>
+        /// A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal. If omitted, the value from the source experiment is used. 
+        /// </summary>
+        /// <value>A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal. If omitted, the value from the source experiment is used. </value>
+        [JsonPropertyName("goalDescription")]
+        public string GoalDescription { get { return this.GoalDescriptionOption.Value; } set { this.GoalDescriptionOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -66,6 +193,8 @@ namespace TalonOneSdk.Model
             sb.Append("class ExperimentCopyExperiment {\n");
             sb.Append("  IsVariantAssignmentExternal: ").Append(IsVariantAssignmentExternal).Append("\n");
             sb.Append("  Campaign: ").Append(Campaign).Append("\n");
+            sb.Append("  GoalType: ").Append(GoalType).Append("\n");
+            sb.Append("  GoalDescription: ").Append(GoalDescription).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -105,6 +234,8 @@ namespace TalonOneSdk.Model
 
             Option<bool?> isVariantAssignmentExternal = default;
             Option<ExperimentCampaignCopy> campaign = default;
+            Option<ExperimentCopyExperiment.GoalTypeEnum?> goalType = default;
+            Option<string> goalDescription = default;
 
             while (utf8JsonReader.Read())
             {
@@ -127,6 +258,14 @@ namespace TalonOneSdk.Model
                         case "campaign":
                             campaign = new Option<ExperimentCampaignCopy>(JsonSerializer.Deserialize<ExperimentCampaignCopy>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "goalType":
+                            string goalTypeRawValue = utf8JsonReader.GetString();
+                            if (goalTypeRawValue != null)
+                                goalType = new Option<ExperimentCopyExperiment.GoalTypeEnum?>(ExperimentCopyExperiment.GoalTypeEnumFromStringOrDefault(goalTypeRawValue));
+                            break;
+                        case "goalDescription":
+                            goalDescription = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
@@ -145,7 +284,7 @@ namespace TalonOneSdk.Model
             if (campaign.IsSet && campaign.Value == null)
                 throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class ExperimentCopyExperiment.");
 
-            return new ExperimentCopyExperiment(isVariantAssignmentExternal.Value.Value, campaign.Value);
+            return new ExperimentCopyExperiment(isVariantAssignmentExternal.Value.Value, campaign.Value, goalType, goalDescription);
         }
 
         /// <summary>
@@ -179,6 +318,13 @@ namespace TalonOneSdk.Model
 
             writer.WritePropertyName("campaign");
             JsonSerializer.Serialize(writer, experimentCopyExperiment.Campaign, jsonSerializerOptions);
+            if (experimentCopyExperiment.GoalTypeOption.IsSet)
+            {
+                var goalTypeRawValue = ExperimentCopyExperiment.GoalTypeEnumToJsonValue(experimentCopyExperiment.GoalTypeOption.Value);
+                writer.WriteString("goalType", goalTypeRawValue);
+            }
+            if (experimentCopyExperiment.GoalDescriptionOption.IsSet)
+                writer.WriteString("goalDescription", experimentCopyExperiment.GoalDescription);
         }
     }
 }

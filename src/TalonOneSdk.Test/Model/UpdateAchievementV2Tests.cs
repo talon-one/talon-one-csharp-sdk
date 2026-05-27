@@ -90,6 +90,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'SubscribedApplications'
+        /// </summary>
+        [Fact]
+        public void SubscribedApplicationsTest()
+        {
+            // TODO unit test for the property 'SubscribedApplications'
+        }
+
+        /// <summary>
         /// Test the property 'Period'
         /// </summary>
         [Fact]
@@ -141,33 +150,6 @@ namespace TalonOneSdk.Test.Model
         public void AllowRollbackAfterCompletionTest()
         {
             // TODO unit test for the property 'AllowRollbackAfterCompletion'
-        }
-
-        /// <summary>
-        /// Test the property 'Sandbox'
-        /// </summary>
-        [Fact]
-        public void SandboxTest()
-        {
-            // TODO unit test for the property 'Sandbox'
-        }
-
-        /// <summary>
-        /// Test the property 'SubscribedApplications'
-        /// </summary>
-        [Fact]
-        public void SubscribedApplicationsTest()
-        {
-            // TODO unit test for the property 'SubscribedApplications'
-        }
-
-        /// <summary>
-        /// Test the property 'Timezone'
-        /// </summary>
-        [Fact]
-        public void TimezoneTest()
-        {
-            // TODO unit test for the property 'Timezone'
         }
     }
 }

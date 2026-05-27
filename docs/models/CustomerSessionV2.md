@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Total** | **decimal** | The total value of cart items and additional costs in the session, before any discounts are applied. | 
 **CartItemTotal** | **decimal** | The total value of cart items, before any discounts are applied. | 
 **AdditionalCostTotal** | **decimal** | The total value of additional costs, before any discounts are applied. | 
+**CartItemAdditionalCostTotal** | **decimal** | The total value of additional costs applied to individual items, before any discounts are applied. | [readonly] 
 **Updated** | **DateTime** | Timestamp of the most recent event received on this session. | 
 **ProfileId** | **string** | ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;.  | [optional] 
 **StoreIntegrationId** | **string** | The integration ID of the store. You choose this ID when you create a store. | [optional] 

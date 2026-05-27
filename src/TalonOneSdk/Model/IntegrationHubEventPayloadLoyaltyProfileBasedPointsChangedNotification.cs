@@ -33,20 +33,24 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="profileIntegrationID">profileIntegrationID</param>
         /// <param name="loyaltyProgramID">loyaltyProgramID</param>
+        /// <param name="loyaltyProgramName">The name of the loyalty program.</param>
         /// <param name="subledgerID">subledgerID</param>
         /// <param name="sourceOfEvent">sourceOfEvent</param>
+        /// <param name="currentTier">The name of the customer&#39;s current tier.</param>
         /// <param name="currentPoints">currentPoints</param>
         /// <param name="publishedAt">Timestamp when the event was published.</param>
         /// <param name="employeeName">employeeName</param>
         /// <param name="userID">userID</param>
         /// <param name="actions">actions</param>
         [JsonConstructor]
-        public IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(string profileIntegrationID, long loyaltyProgramID, string subledgerID, string sourceOfEvent, float currentPoints, DateTime publishedAt, Option<string> employeeName = default, Option<long?> userID = default, Option<List<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction>> actions = default)
+        public IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(string profileIntegrationID, long loyaltyProgramID, string loyaltyProgramName, string subledgerID, string sourceOfEvent, string currentTier, float currentPoints, DateTime publishedAt, Option<string> employeeName = default, Option<long?> userID = default, Option<List<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction>> actions = default)
         {
             ProfileIntegrationID = profileIntegrationID;
             LoyaltyProgramID = loyaltyProgramID;
+            LoyaltyProgramName = loyaltyProgramName;
             SubledgerID = subledgerID;
             SourceOfEvent = sourceOfEvent;
+            CurrentTier = currentTier;
             CurrentPoints = currentPoints;
             PublishedAt = publishedAt;
             EmployeeNameOption = employeeName;
@@ -70,6 +74,13 @@ namespace TalonOneSdk.Model
         public long LoyaltyProgramID { get; set; }
 
         /// <summary>
+        /// The name of the loyalty program.
+        /// </summary>
+        /// <value>The name of the loyalty program.</value>
+        [JsonPropertyName("LoyaltyProgramName")]
+        public string LoyaltyProgramName { get; set; }
+
+        /// <summary>
         /// Gets or Sets SubledgerID
         /// </summary>
         [JsonPropertyName("SubledgerID")]
@@ -80,6 +91,13 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonPropertyName("SourceOfEvent")]
         public string SourceOfEvent { get; set; }
+
+        /// <summary>
+        /// The name of the customer&#39;s current tier.
+        /// </summary>
+        /// <value>The name of the customer&#39;s current tier.</value>
+        [JsonPropertyName("CurrentTier")]
+        public string CurrentTier { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrentPoints
@@ -143,8 +161,10 @@ namespace TalonOneSdk.Model
             sb.Append("class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification {\n");
             sb.Append("  ProfileIntegrationID: ").Append(ProfileIntegrationID).Append("\n");
             sb.Append("  LoyaltyProgramID: ").Append(LoyaltyProgramID).Append("\n");
+            sb.Append("  LoyaltyProgramName: ").Append(LoyaltyProgramName).Append("\n");
             sb.Append("  SubledgerID: ").Append(SubledgerID).Append("\n");
             sb.Append("  SourceOfEvent: ").Append(SourceOfEvent).Append("\n");
+            sb.Append("  CurrentTier: ").Append(CurrentTier).Append("\n");
             sb.Append("  CurrentPoints: ").Append(CurrentPoints).Append("\n");
             sb.Append("  PublishedAt: ").Append(PublishedAt).Append("\n");
             sb.Append("  EmployeeName: ").Append(EmployeeName).Append("\n");
@@ -194,8 +214,10 @@ namespace TalonOneSdk.Model
 
             Option<string> profileIntegrationID = default;
             Option<long?> loyaltyProgramID = default;
+            Option<string> loyaltyProgramName = default;
             Option<string> subledgerID = default;
             Option<string> sourceOfEvent = default;
+            Option<string> currentTier = default;
             Option<float?> currentPoints = default;
             Option<DateTime?> publishedAt = default;
             Option<string> employeeName = default;
@@ -223,11 +245,17 @@ namespace TalonOneSdk.Model
                         case "LoyaltyProgramID":
                             loyaltyProgramID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
+                        case "LoyaltyProgramName":
+                            loyaltyProgramName = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         case "SubledgerID":
                             subledgerID = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "SourceOfEvent":
                             sourceOfEvent = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "CurrentTier":
+                            currentTier = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "CurrentPoints":
                             currentPoints = new Option<float?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (float?)null : (float)utf8JsonReader.GetDouble());
@@ -256,11 +284,17 @@ namespace TalonOneSdk.Model
             if (!loyaltyProgramID.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(loyaltyProgramID));
 
+            if (!loyaltyProgramName.IsSet)
+                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(loyaltyProgramName));
+
             if (!subledgerID.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(subledgerID));
 
             if (!sourceOfEvent.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(sourceOfEvent));
+
+            if (!currentTier.IsSet)
+                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(currentTier));
 
             if (!currentPoints.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(currentPoints));
@@ -274,11 +308,17 @@ namespace TalonOneSdk.Model
             if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
                 throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
 
+            if (loyaltyProgramName.IsSet && loyaltyProgramName.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyProgramName), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+
             if (subledgerID.IsSet && subledgerID.Value == null)
                 throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
 
             if (sourceOfEvent.IsSet && sourceOfEvent.Value == null)
                 throw new ArgumentNullException(nameof(sourceOfEvent), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+
+            if (currentTier.IsSet && currentTier.Value == null)
+                throw new ArgumentNullException(nameof(currentTier), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
 
             if (currentPoints.IsSet && currentPoints.Value == null)
                 throw new ArgumentNullException(nameof(currentPoints), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
@@ -286,7 +326,7 @@ namespace TalonOneSdk.Model
             if (publishedAt.IsSet && publishedAt.Value == null)
                 throw new ArgumentNullException(nameof(publishedAt), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
 
-            return new IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(profileIntegrationID.Value, loyaltyProgramID.Value.Value, subledgerID.Value, sourceOfEvent.Value, currentPoints.Value.Value, publishedAt.Value.Value, employeeName, userID, actions);
+            return new IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(profileIntegrationID.Value, loyaltyProgramID.Value.Value, loyaltyProgramName.Value, subledgerID.Value, sourceOfEvent.Value, currentTier.Value, currentPoints.Value.Value, publishedAt.Value.Value, employeeName, userID, actions);
         }
 
         /// <summary>
@@ -316,19 +356,29 @@ namespace TalonOneSdk.Model
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.ProfileIntegrationID == null)
                 throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.ProfileIntegrationID), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
 
+            if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.LoyaltyProgramName == null)
+                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.LoyaltyProgramName), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SubledgerID == null)
                 throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SubledgerID), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
 
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SourceOfEvent == null)
                 throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SourceOfEvent), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
 
+            if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.CurrentTier == null)
+                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.CurrentTier), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+
             writer.WriteString("ProfileIntegrationID", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.ProfileIntegrationID);
 
             writer.WriteNumber("LoyaltyProgramID", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.LoyaltyProgramID);
 
+            writer.WriteString("LoyaltyProgramName", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.LoyaltyProgramName);
+
             writer.WriteString("SubledgerID", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SubledgerID);
 
             writer.WriteString("SourceOfEvent", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SourceOfEvent);
+
+            writer.WriteString("CurrentTier", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.CurrentTier);
 
             writer.WriteNumber("CurrentPoints", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.CurrentPoints);
 

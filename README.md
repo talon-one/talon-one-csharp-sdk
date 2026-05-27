@@ -75,12 +75,11 @@ namespace Example
 
             var hostConfiguration = new HostConfiguration(services)
                 .AddApiHttpClients(client => client.BaseAddress = new System.Uri("https://yourbaseurl.talon.one"))
-                .AddTokens(new ApiKeyToken(
+                .AddTokens<IntegrationApiKeyProvider>(new ApiKeyToken(
                     "e18149e88f42205432281c9d3d0e711111302722577ad60dcebc86c43aabfe70",
                     ClientUtils.ApiKeyHeader.Authorization,
                     "ApiKey-v1 "
-                ))
-                .UseProvider<RateLimitProvider<ApiKeyToken>, ApiKeyToken>();
+                ));
 
             var serviceProvider = services.BuildServiceProvider();
             var apiFactory = serviceProvider.GetRequiredService<IApiFactory>();
@@ -184,12 +183,11 @@ namespace Example
 
             var hostConfiguration = new HostConfiguration(services)
                 .AddApiHttpClients(client => client.BaseAddress = new System.Uri("https://yourbaseurl.talon.one"))
-                .AddTokens(new ApiKeyToken(
+                .AddTokens<ManagementApiKeyProvider>(new ApiKeyToken(
                     "2f0dce055da01ae595005d7d79154bae7448d319d5fc7c5b2951fadd6ba1ea07",
                     ClientUtils.ApiKeyHeader.Authorization,
                     "ManagementKey-v1 "
-                ))
-                .UseProvider<RateLimitProvider<ApiKeyToken>, ApiKeyToken>();
+                ));
 
             var serviceProvider = services.BuildServiceProvider();
             var apiFactory = serviceProvider.GetRequiredService<IApiFactory>();
@@ -593,6 +591,7 @@ Class | Method | HTTP request | Description
 - [Model.CartItem](docs/models/CartItem.md)
 - [Model.CartItemFilterTemplate](docs/models/CartItemFilterTemplate.md)
 - [Model.Catalog](docs/models/Catalog.md)
+- [Model.CatalogAction](docs/models/CatalogAction.md)
 - [Model.CatalogActionFilter](docs/models/CatalogActionFilter.md)
 - [Model.CatalogItem](docs/models/CatalogItem.md)
 - [Model.CatalogRule](docs/models/CatalogRule.md)
@@ -671,6 +670,9 @@ Class | Method | HTTP request | Description
 - [Model.EventType](docs/models/EventType.md)
 - [Model.EventV2](docs/models/EventV2.md)
 - [Model.EventV3](docs/models/EventV3.md)
+- [Model.EventV3Connections](docs/models/EventV3Connections.md)
+- [Model.EventV3Entity](docs/models/EventV3Entity.md)
+- [Model.EventV3RequestEntity](docs/models/EventV3RequestEntity.md)
 - [Model.Experiment](docs/models/Experiment.md)
 - [Model.ExperimentCampaignCopy](docs/models/ExperimentCampaignCopy.md)
 - [Model.ExperimentCopy](docs/models/ExperimentCopy.md)
@@ -795,6 +797,7 @@ Class | Method | HTTP request | Description
 - [Model.IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification](docs/models/IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.md)
 - [Model.IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification](docs/models/IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.md)
 - [Model.IntegrationHubEventRecord](docs/models/IntegrationHubEventRecord.md)
+- [Model.IntegrationHubEventStatusUpdate](docs/models/IntegrationHubEventStatusUpdate.md)
 - [Model.IntegrationHubFlow](docs/models/IntegrationHubFlow.md)
 - [Model.IntegrationHubFlowConfig](docs/models/IntegrationHubFlowConfig.md)
 - [Model.IntegrationHubFlowConfigResponse](docs/models/IntegrationHubFlowConfigResponse.md)
@@ -909,6 +912,7 @@ Class | Method | HTTP request | Description
 - [Model.NewCustomerSessionV2](docs/models/NewCustomerSessionV2.md)
 - [Model.NewEvent](docs/models/NewEvent.md)
 - [Model.NewEventType](docs/models/NewEventType.md)
+- [Model.NewEventV3Entity](docs/models/NewEventV3Entity.md)
 - [Model.NewExperiment](docs/models/NewExperiment.md)
 - [Model.NewExperimentVariant](docs/models/NewExperimentVariant.md)
 - [Model.NewExperimentVariantArray](docs/models/NewExperimentVariantArray.md)
@@ -1005,6 +1009,7 @@ Class | Method | HTTP request | Description
 - [Model.RevisionActivationRequest](docs/models/RevisionActivationRequest.md)
 - [Model.RevisionVersion](docs/models/RevisionVersion.md)
 - [Model.Reward](docs/models/Reward.md)
+- [Model.RewardPointsRequired](docs/models/RewardPointsRequired.md)
 - [Model.RiskNotification](docs/models/RiskNotification.md)
 - [Model.Role](docs/models/Role.md)
 - [Model.RoleAssign](docs/models/RoleAssign.md)
@@ -1079,6 +1084,8 @@ Class | Method | HTTP request | Description
 - [Model.StrikethroughTrigger](docs/models/StrikethroughTrigger.md)
 - [Model.SummarizeCampaignStoreBudget200Response](docs/models/SummarizeCampaignStoreBudget200Response.md)
 - [Model.SummaryCampaignStoreBudget](docs/models/SummaryCampaignStoreBudget.md)
+- [Model.SupportRequest](docs/models/SupportRequest.md)
+- [Model.SupportRequestInput](docs/models/SupportRequestInput.md)
 - [Model.TalangAttribute](docs/models/TalangAttribute.md)
 - [Model.TalangAttributeVisibility](docs/models/TalangAttributeVisibility.md)
 - [Model.TemplateArgDef](docs/models/TemplateArgDef.md)
@@ -1136,6 +1143,7 @@ Class | Method | HTTP request | Description
 - [Model.UpdateReward](docs/models/UpdateReward.md)
 - [Model.UpdateRole](docs/models/UpdateRole.md)
 - [Model.UpdateStore](docs/models/UpdateStore.md)
+- [Model.UpdateSupportRequest](docs/models/UpdateSupportRequest.md)
 - [Model.UpdateUser](docs/models/UpdateUser.md)
 - [Model.User](docs/models/User.md)
 - [Model.UserEntity](docs/models/UserEntity.md)

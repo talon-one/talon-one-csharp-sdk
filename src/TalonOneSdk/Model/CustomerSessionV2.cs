@@ -40,6 +40,7 @@ namespace TalonOneSdk.Model
         /// <param name="total">The total value of cart items and additional costs in the session, before any discounts are applied.</param>
         /// <param name="cartItemTotal">The total value of cart items, before any discounts are applied.</param>
         /// <param name="additionalCostTotal">The total value of additional costs, before any discounts are applied.</param>
+        /// <param name="cartItemAdditionalCostTotal">The total value of additional costs applied to individual items, before any discounts are applied.</param>
         /// <param name="updated">Timestamp of the most recent event received on this session.</param>
         /// <param name="profileId">ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </param>
         /// <param name="storeIntegrationId">The integration ID of the store. You choose this ID when you create a store.</param>
@@ -54,7 +55,7 @@ namespace TalonOneSdk.Model
         /// <param name="identifiers">Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts. See the [tutorial](https://docs.talon.one/docs/dev/tutorials/using-identifiers).  **Important**: Ensure the session contains an identifier by the time you close it if: - You [create a unique identifier budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign. - Your campaign has [coupons](https://docs.talon.one/docs/product/campaigns/coupons/coupon-page-overview). - We recommend passing an anonymized (hashed) version of the identifier value. </param>
         /// <param name="attributes">Use this property to set a value for the attributes of your choice. Attributes represent any information to attach to your session, like the shipping city.  You can use [built-in attributes](https://docs.talon.one/docs/dev/concepts/attributes#built-in-attributes) or [custom ones](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes). Custom attributes must be created in the Campaign Manager before you set them with this property. </param>
         [JsonConstructor]
-        public CustomerSessionV2(long id, DateTime created, string integrationId, long applicationId, bool firstSession, long updateCount, decimal total, decimal cartItemTotal, decimal additionalCostTotal, DateTime updated, Option<string> profileId = default, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<List<string>> couponCodes = default, Option<string> referralCode = default, Option<List<string>> loyaltyCards = default, Option<StateEnum?> state = default, Option<List<CartItem>> cartItems = default, Option<List<ExperimentVariantAllocation>> experimentVariantAllocations = default, Option<Dictionary<string, AdditionalCost>> additionalCosts = default, Option<List<string>> identifiers = default, Option<Dictionary<string, Object>> attributes = default)
+        public CustomerSessionV2(long id, DateTime created, string integrationId, long applicationId, bool firstSession, long updateCount, decimal total, decimal cartItemTotal, decimal additionalCostTotal, decimal cartItemAdditionalCostTotal, DateTime updated, Option<string> profileId = default, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<List<string>> couponCodes = default, Option<string> referralCode = default, Option<List<string>> loyaltyCards = default, Option<StateEnum?> state = default, Option<List<CartItem>> cartItems = default, Option<List<ExperimentVariantAllocation>> experimentVariantAllocations = default, Option<Dictionary<string, AdditionalCost>> additionalCosts = default, Option<List<string>> identifiers = default, Option<Dictionary<string, Object>> attributes = default)
         {
             Id = id;
             Created = created;
@@ -65,6 +66,7 @@ namespace TalonOneSdk.Model
             Total = total;
             CartItemTotal = cartItemTotal;
             AdditionalCostTotal = additionalCostTotal;
+            CartItemAdditionalCostTotal = cartItemAdditionalCostTotal;
             Updated = updated;
             ProfileIdOption = profileId;
             StoreIntegrationIdOption = storeIntegrationId;
@@ -245,7 +247,7 @@ namespace TalonOneSdk.Model
         /// The total value of cart items and additional costs in the session, before any discounts are applied.
         /// </summary>
         /// <value>The total value of cart items and additional costs in the session, before any discounts are applied.</value>
-        /* <example>119.99</example> */
+        /* <example>134.99</example> */
         [JsonPropertyName("total")]
         public decimal Total { get; set; }
 
@@ -264,6 +266,14 @@ namespace TalonOneSdk.Model
         /* <example>20</example> */
         [JsonPropertyName("additionalCostTotal")]
         public decimal AdditionalCostTotal { get; set; }
+
+        /// <summary>
+        /// The total value of additional costs applied to individual items, before any discounts are applied.
+        /// </summary>
+        /// <value>The total value of additional costs applied to individual items, before any discounts are applied.</value>
+        /* <example>15</example> */
+        [JsonPropertyName("cartItemAdditionalCostTotal")]
+        public decimal CartItemAdditionalCostTotal { get; }
 
         /// <summary>
         /// Timestamp of the most recent event received on this session.
@@ -453,6 +463,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Total: ").Append(Total).Append("\n");
             sb.Append("  CartItemTotal: ").Append(CartItemTotal).Append("\n");
             sb.Append("  AdditionalCostTotal: ").Append(AdditionalCostTotal).Append("\n");
+            sb.Append("  CartItemAdditionalCostTotal: ").Append(CartItemAdditionalCostTotal).Append("\n");
             sb.Append("  Updated: ").Append(Updated).Append("\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  StoreIntegrationId: ").Append(StoreIntegrationId).Append("\n");
@@ -546,6 +557,7 @@ namespace TalonOneSdk.Model
             Option<decimal?> total = default;
             Option<decimal?> cartItemTotal = default;
             Option<decimal?> additionalCostTotal = default;
+            Option<decimal?> cartItemAdditionalCostTotal = default;
             Option<DateTime?> updated = default;
             Option<string> profileId = default;
             Option<string> storeIntegrationId = default;
@@ -601,6 +613,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "additionalCostTotal":
                             additionalCostTotal = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "cartItemAdditionalCostTotal":
+                            cartItemAdditionalCostTotal = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "updated":
                             updated = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
@@ -676,6 +691,9 @@ namespace TalonOneSdk.Model
             if (!additionalCostTotal.IsSet)
                 throw new ArgumentException("Property is required for class CustomerSessionV2.", nameof(additionalCostTotal));
 
+            if (!cartItemAdditionalCostTotal.IsSet)
+                throw new ArgumentException("Property is required for class CustomerSessionV2.", nameof(cartItemAdditionalCostTotal));
+
             if (!updated.IsSet)
                 throw new ArgumentException("Property is required for class CustomerSessionV2.", nameof(updated));
 
@@ -706,10 +724,13 @@ namespace TalonOneSdk.Model
             if (additionalCostTotal.IsSet && additionalCostTotal.Value == null)
                 throw new ArgumentNullException(nameof(additionalCostTotal), "Property is not nullable for class CustomerSessionV2.");
 
+            if (cartItemAdditionalCostTotal.IsSet && cartItemAdditionalCostTotal.Value == null)
+                throw new ArgumentNullException(nameof(cartItemAdditionalCostTotal), "Property is not nullable for class CustomerSessionV2.");
+
             if (updated.IsSet && updated.Value == null)
                 throw new ArgumentNullException(nameof(updated), "Property is not nullable for class CustomerSessionV2.");
 
-            return new CustomerSessionV2(id.Value.Value, created.Value.Value, integrationId.Value, applicationId.Value.Value, firstSession.Value.Value, updateCount.Value.Value, total.Value.Value, cartItemTotal.Value.Value, additionalCostTotal.Value.Value, updated.Value.Value, profileId, storeIntegrationId, evaluableCampaignIds, couponCodes, referralCode, loyaltyCards, state, cartItems, experimentVariantAllocations, additionalCosts, identifiers, attributes);
+            return new CustomerSessionV2(id.Value.Value, created.Value.Value, integrationId.Value, applicationId.Value.Value, firstSession.Value.Value, updateCount.Value.Value, total.Value.Value, cartItemTotal.Value.Value, additionalCostTotal.Value.Value, cartItemAdditionalCostTotal.Value.Value, updated.Value.Value, profileId, storeIntegrationId, evaluableCampaignIds, couponCodes, referralCode, loyaltyCards, state, cartItems, experimentVariantAllocations, additionalCosts, identifiers, attributes);
         }
 
         /// <summary>
@@ -756,6 +777,8 @@ namespace TalonOneSdk.Model
             writer.WriteNumber("cartItemTotal", customerSessionV2.CartItemTotal);
 
             writer.WriteNumber("additionalCostTotal", customerSessionV2.AdditionalCostTotal);
+
+            writer.WriteNumber("cartItemAdditionalCostTotal", customerSessionV2.CartItemAdditionalCostTotal);
 
             writer.WriteString("updated", customerSessionV2.Updated.ToString(UpdatedFormat));
 

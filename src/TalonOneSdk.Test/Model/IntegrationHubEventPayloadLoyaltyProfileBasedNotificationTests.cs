@@ -72,6 +72,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'LoyaltyProgramName'
+        /// </summary>
+        [Fact]
+        public void LoyaltyProgramNameTest()
+        {
+            // TODO unit test for the property 'LoyaltyProgramName'
+        }
+
+        /// <summary>
         /// Test the property 'SubledgerID'
         /// </summary>
         [Fact]
@@ -87,6 +96,15 @@ namespace TalonOneSdk.Test.Model
         public void SourceOfEventTest()
         {
             // TODO unit test for the property 'SourceOfEvent'
+        }
+
+        /// <summary>
+        /// Test the property 'CurrentTier'
+        /// </summary>
+        [Fact]
+        public void CurrentTierTest()
+        {
+            // TODO unit test for the property 'CurrentTier'
         }
 
         /// <summary>
@@ -132,15 +150,6 @@ namespace TalonOneSdk.Test.Model
         public void ActionsTest()
         {
             // TODO unit test for the property 'Actions'
-        }
-
-        /// <summary>
-        /// Test the property 'CurrentTier'
-        /// </summary>
-        [Fact]
-        public void CurrentTierTest()
-        {
-            // TODO unit test for the property 'CurrentTier'
         }
 
         /// <summary>

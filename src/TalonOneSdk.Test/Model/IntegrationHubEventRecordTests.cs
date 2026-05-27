@@ -124,5 +124,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'ProcessedAt'
         }
+
+        /// <summary>
+        /// Test the property 'DeliveredAt'
+        /// </summary>
+        [Fact]
+        public void DeliveredAtTest()
+        {
+            // TODO unit test for the property 'DeliveredAt'
+        }
     }
 }

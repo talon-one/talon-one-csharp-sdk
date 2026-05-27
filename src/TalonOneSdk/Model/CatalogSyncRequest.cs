@@ -34,7 +34,7 @@ namespace TalonOneSdk.Model
         /// <param name="actions">actions</param>
         /// <param name="varVersion">The version number of the catalog to apply the actions on.</param>
         [JsonConstructor]
-        public CatalogSyncRequest(List<Object> actions, Option<long?> varVersion = default)
+        public CatalogSyncRequest(List<CatalogAction> actions, Option<long?> varVersion = default)
         {
             Actions = actions;
             VarVersionOption = varVersion;
@@ -47,7 +47,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Actions
         /// </summary>
         [JsonPropertyName("actions")]
-        public List<Object> Actions { get; set; }
+        public List<CatalogAction> Actions { get; set; }
 
         /// <summary>
         /// Used to track the state of VarVersion
@@ -117,7 +117,7 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<List<Object>> actions = default;
+            Option<List<CatalogAction>> actions = default;
             Option<long?> varVersion = default;
 
             while (utf8JsonReader.Read())
@@ -136,7 +136,7 @@ namespace TalonOneSdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "actions":
-                            actions = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            actions = new Option<List<CatalogAction>>(JsonSerializer.Deserialize<List<CatalogAction>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "version":
                             varVersion = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());

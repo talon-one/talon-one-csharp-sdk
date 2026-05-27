@@ -198,7 +198,12 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum Achievements for value: achievements
             /// </summary>
-            Achievements = 6
+            Achievements = 6,
+
+            /// <summary>
+            /// Enum AdvancedEvents for value: advancedEvents
+            /// </summary>
+            AdvancedEvents = 7
         }
 
         /// <summary>
@@ -226,6 +231,9 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("achievements"))
                 return FeaturesEnum.Achievements;
+
+            if (value.Equals("advancedEvents"))
+                return FeaturesEnum.AdvancedEvents;
 
             throw new NotImplementedException($"Could not convert value to type FeaturesEnum: '{value}'");
         }
@@ -255,6 +263,9 @@ namespace TalonOneSdk.Model
             if (value.Equals("achievements"))
                 return FeaturesEnum.Achievements;
 
+            if (value.Equals("advancedEvents"))
+                return FeaturesEnum.AdvancedEvents;
+
             return null;
         }
 
@@ -283,6 +294,9 @@ namespace TalonOneSdk.Model
 
             if (value == FeaturesEnum.Achievements)
                 return "achievements";
+
+            if (value == FeaturesEnum.AdvancedEvents)
+                return "advancedEvents";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }

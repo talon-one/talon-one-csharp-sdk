@@ -6,14 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProfileIntegrationID** | **string** |  | 
 **LoyaltyProgramID** | **long** |  | 
+**LoyaltyProgramName** | **string** | The name of the loyalty program. | 
 **SubledgerID** | **string** |  | 
 **SourceOfEvent** | **string** |  | 
+**CurrentTier** | **string** | The name of the customer&#39;s current tier. | 
 **CurrentPoints** | **float** |  | 
 **PublishedAt** | **DateTime** | Timestamp when the event was published. | 
 **EmployeeName** | **string** |  | [optional] 
 **UserID** | **long** |  | [optional] 
 **Actions** | [**List&lt;IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction&gt;**](IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.md) |  | [optional] 
-**CurrentTier** | **string** |  | [optional] 
 **OldTier** | **string** |  | [optional] 
 **TierExpirationDate** | **DateTime** |  | [optional] 
 **TimestampOfTierChange** | **DateTime** |  | [optional] 

@@ -330,6 +330,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.CardLedgerTransactionLogEntry.TypeEnumToJsonValue(cardLedgerTransactionLogEntryTypeEnum);
             if (obj is TalonOneSdk.Model.CardLedgerTransactionLogEntryIntegrationAPI.TypeEnum cardLedgerTransactionLogEntryIntegrationAPITypeEnum)
                 return TalonOneSdk.Model.CardLedgerTransactionLogEntryIntegrationAPI.TypeEnumToJsonValue(cardLedgerTransactionLogEntryIntegrationAPITypeEnum);
+            if (obj is TalonOneSdk.Model.CatalogAction.TypeEnum catalogActionTypeEnum)
+                return TalonOneSdk.Model.CatalogAction.TypeEnumToJsonValue(catalogActionTypeEnum);
             if (obj is TalonOneSdk.Model.CatalogActionFilter.OpEnum catalogActionFilterOpEnum)
                 return TalonOneSdk.Model.CatalogActionFilter.OpEnumToJsonValue(catalogActionFilterOpEnum);
             if (obj is TalonOneSdk.Model.CouponDeletionFilters.ValidEnum couponDeletionFiltersValidEnum)
@@ -370,6 +372,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.Experiment.GoalTypeEnumToJsonValue(experimentGoalTypeEnum);
             if (obj is TalonOneSdk.Model.Experiment.StateEnum experimentStateEnum)
                 return TalonOneSdk.Model.Experiment.StateEnumToJsonValue(experimentStateEnum);
+            if (obj is TalonOneSdk.Model.ExperimentCopyExperiment.GoalTypeEnum experimentCopyExperimentGoalTypeEnum)
+                return TalonOneSdk.Model.ExperimentCopyExperiment.GoalTypeEnumToJsonValue(experimentCopyExperimentGoalTypeEnum);
             if (obj is TalonOneSdk.Model.ExperimentSegmentInsight.DimensionEnum experimentSegmentInsightDimensionEnum)
                 return TalonOneSdk.Model.ExperimentSegmentInsight.DimensionEnumToJsonValue(experimentSegmentInsightDimensionEnum);
             if (obj is TalonOneSdk.Model.ExperimentSegmentInsight.BucketEnum experimentSegmentInsightBucketEnum)
@@ -410,6 +414,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.IntegrationEventV3Request.ResponseContentEnumToJsonValue(integrationEventV3RequestResponseContentEnum);
             if (obj is TalonOneSdk.Model.IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnum integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum)
                 return TalonOneSdk.Model.IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnumToJsonValue(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum);
+            if (obj is TalonOneSdk.Model.IntegrationHubEventStatusUpdate.StatusEnum integrationHubEventStatusUpdateStatusEnum)
+                return TalonOneSdk.Model.IntegrationHubEventStatusUpdate.StatusEnumToJsonValue(integrationHubEventStatusUpdateStatusEnum);
             if (obj is TalonOneSdk.Model.IntegrationHubPaginatedEventPayload.EventTypeEnum integrationHubPaginatedEventPayloadEventTypeEnum)
                 return TalonOneSdk.Model.IntegrationHubPaginatedEventPayload.EventTypeEnumToJsonValue(integrationHubPaginatedEventPayloadEventTypeEnum);
             if (obj is TalonOneSdk.Model.IntegrationRequest.ResponseContentEnum integrationRequestResponseContentEnum)
@@ -552,6 +558,12 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.SummaryCampaignStoreBudget.ActionEnumToJsonValue(summaryCampaignStoreBudgetActionEnum);
             if (obj is TalonOneSdk.Model.SummaryCampaignStoreBudget.PeriodEnum summaryCampaignStoreBudgetPeriodEnum)
                 return TalonOneSdk.Model.SummaryCampaignStoreBudget.PeriodEnumToJsonValue(summaryCampaignStoreBudgetPeriodEnum);
+            if (obj is TalonOneSdk.Model.SupportRequest.RequestTypeEnum supportRequestRequestTypeEnum)
+                return TalonOneSdk.Model.SupportRequest.RequestTypeEnumToJsonValue(supportRequestRequestTypeEnum);
+            if (obj is TalonOneSdk.Model.SupportRequest.RequestStatusEnum supportRequestRequestStatusEnum)
+                return TalonOneSdk.Model.SupportRequest.RequestStatusEnumToJsonValue(supportRequestRequestStatusEnum);
+            if (obj is TalonOneSdk.Model.SupportRequestInput.RequestTypeEnum supportRequestInputRequestTypeEnum)
+                return TalonOneSdk.Model.SupportRequestInput.RequestTypeEnumToJsonValue(supportRequestInputRequestTypeEnum);
             if (obj is TalonOneSdk.Model.TalangAttribute.KindEnum talangAttributeKindEnum)
                 return TalonOneSdk.Model.TalangAttribute.KindEnumToJsonValue(talangAttributeKindEnum);
             if (obj is TalonOneSdk.Model.TalangAttribute.EntityEnum talangAttributeEntityEnum)
@@ -622,6 +634,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.UpdatePicklist.TypeEnumToJsonValue(updatePicklistTypeEnum);
             if (obj is TalonOneSdk.Model.UpdateReward.StatusEnum updateRewardStatusEnum)
                 return TalonOneSdk.Model.UpdateReward.StatusEnumToJsonValue(updateRewardStatusEnum);
+            if (obj is TalonOneSdk.Model.UpdateSupportRequest.RequestStatusEnum updateSupportRequestRequestStatusEnum)
+                return TalonOneSdk.Model.UpdateSupportRequest.RequestStatusEnumToJsonValue(updateSupportRequestRequestStatusEnum);
             if (obj is TalonOneSdk.Model.UpdateUser.StateEnum updateUserStateEnum)
                 return TalonOneSdk.Model.UpdateUser.StateEnumToJsonValue(updateUserStateEnum);
             if (obj is TalonOneSdk.Model.User.StateEnum userStateEnum)
