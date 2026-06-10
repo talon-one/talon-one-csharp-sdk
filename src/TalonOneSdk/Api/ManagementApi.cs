@@ -1266,12 +1266,14 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="createdBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)</param>
         /// <param name="createdAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)</param>
+        /// <param name="updatedBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)</param>
+        /// <param name="updatedAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)</param>
         /// <param name="profileIntegrationId">Only return sessions for the customer that matches this customer integration ID. (optional)</param>
         /// <param name="dateFormat">Determines the format of dates in the export document. (optional)</param>
         /// <param name="customerSessionState">Filter results by state. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportCustomerSessionsApiResponse"/>&gt;</returns>
-        Task<IExportCustomerSessionsApiResponse> ExportCustomerSessionsAsync(long applicationId, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> profileIntegrationId = default, Option<string> dateFormat = default, Option<string> customerSessionState = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IExportCustomerSessionsApiResponse> ExportCustomerSessionsAsync(long applicationId, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<DateTime> updatedBefore = default, Option<DateTime> updatedAfter = default, Option<string> profileIntegrationId = default, Option<string> dateFormat = default, Option<string> customerSessionState = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Export customer sessions
@@ -1282,12 +1284,14 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="createdBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)</param>
         /// <param name="createdAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)</param>
+        /// <param name="updatedBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)</param>
+        /// <param name="updatedAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)</param>
         /// <param name="profileIntegrationId">Only return sessions for the customer that matches this customer integration ID. (optional)</param>
         /// <param name="dateFormat">Determines the format of dates in the export document. (optional)</param>
         /// <param name="customerSessionState">Filter results by state. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportCustomerSessionsApiResponse"/>&gt;</returns>
-        Task<IExportCustomerSessionsApiResponse> ExportCustomerSessionsOrDefaultAsync(long applicationId, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> profileIntegrationId = default, Option<string> dateFormat = default, Option<string> customerSessionState = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IExportCustomerSessionsApiResponse> ExportCustomerSessionsOrDefaultAsync(long applicationId, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<DateTime> updatedBefore = default, Option<DateTime> updatedAfter = default, Option<string> profileIntegrationId = default, Option<string> dateFormat = default, Option<string> customerSessionState = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Export customers&#39; tier data
@@ -1465,7 +1469,7 @@ namespace TalonOneSdk.Api
         /// Export loyalty cards
         /// </summary>
         /// <remarks>
-        /// Download a CSV file containing the loyalty cards from a specified loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following columns:  - &#x60;identifier&#x60;: The unique identifier of the loyalty card. - &#x60;created&#x60;: The date and time the loyalty card was created. - &#x60;status&#x60;: The status of the loyalty card. - &#x60;userpercardlimit&#x60;: The maximum number of customer profiles that can be linked to the card. - &#x60;customerprofileids&#x60;: Integration IDs of the customer profiles linked to the card. - &#x60;blockreason&#x60;: The reason for transferring and blocking the loyalty card. - &#x60;generated&#x60;: An indicator of whether the loyalty card was generated. - &#x60;batchid&#x60;: The ID of the batch the loyalty card is in. - &#x60;attributes&#x60;: The custom attributes of this loyalty card. Currently, this feature is only available upon request. 
+        /// Download a CSV file containing the loyalty cards from a specified loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following columns:  - &#x60;identifier&#x60;: The unique identifier of the loyalty card. - &#x60;created&#x60;: The date and time the loyalty card was created. - &#x60;status&#x60;: The status of the loyalty card. - &#x60;userpercardlimit&#x60;: The maximum number of customer profiles that can be linked to the card. - &#x60;customerprofileids&#x60;: Integration IDs of the customer profiles linked to the card. - &#x60;blockreason&#x60;: The reason for transferring and blocking the loyalty card. - &#x60;generated&#x60;: An indicator of whether the loyalty card was generated. - &#x60;batchid&#x60;: The ID of the batch the loyalty card is in. - &#x60;attributes&#x60;: The custom attributes of this loyalty card. 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -1481,7 +1485,7 @@ namespace TalonOneSdk.Api
         /// Export loyalty cards
         /// </summary>
         /// <remarks>
-        /// Download a CSV file containing the loyalty cards from a specified loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following columns:  - &#x60;identifier&#x60;: The unique identifier of the loyalty card. - &#x60;created&#x60;: The date and time the loyalty card was created. - &#x60;status&#x60;: The status of the loyalty card. - &#x60;userpercardlimit&#x60;: The maximum number of customer profiles that can be linked to the card. - &#x60;customerprofileids&#x60;: Integration IDs of the customer profiles linked to the card. - &#x60;blockreason&#x60;: The reason for transferring and blocking the loyalty card. - &#x60;generated&#x60;: An indicator of whether the loyalty card was generated. - &#x60;batchid&#x60;: The ID of the batch the loyalty card is in. - &#x60;attributes&#x60;: The custom attributes of this loyalty card. Currently, this feature is only available upon request. 
+        /// Download a CSV file containing the loyalty cards from a specified loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following columns:  - &#x60;identifier&#x60;: The unique identifier of the loyalty card. - &#x60;created&#x60;: The date and time the loyalty card was created. - &#x60;status&#x60;: The status of the loyalty card. - &#x60;userpercardlimit&#x60;: The maximum number of customer profiles that can be linked to the card. - &#x60;customerprofileids&#x60;: Integration IDs of the customer profiles linked to the card. - &#x60;blockreason&#x60;: The reason for transferring and blocking the loyalty card. - &#x60;generated&#x60;: An indicator of whether the loyalty card was generated. - &#x60;batchid&#x60;: The ID of the batch the loyalty card is in. - &#x60;attributes&#x60;: The custom attributes of this loyalty card. 
         /// </remarks>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="batchId">Filter results by loyalty card batch ID. (optional)</param>
@@ -2325,7 +2329,7 @@ namespace TalonOneSdk.Api
         /// Get a list of audience IDs and their member count. 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceIds">The IDs of one or more audiences, separated by commas, by which to filter results.</param>
+        /// <param name="audienceIds">The IDs of one or more audiences, separated by commas, by which to filter results. Do not provide more than 1000 audience IDs.</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetAudiencesAnalyticsApiResponse"/>&gt;</returns>
@@ -2337,7 +2341,7 @@ namespace TalonOneSdk.Api
         /// <remarks>
         /// Get a list of audience IDs and their member count. 
         /// </remarks>
-        /// <param name="audienceIds">The IDs of one or more audiences, separated by commas, by which to filter results.</param>
+        /// <param name="audienceIds">The IDs of one or more audiences, separated by commas, by which to filter results. Do not provide more than 1000 audience IDs.</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetAudiencesAnalyticsApiResponse"/>&gt;</returns>
@@ -3876,7 +3880,7 @@ namespace TalonOneSdk.Api
         /// Import loyalty cards
         /// </summary>
         /// <remarks>
-        /// Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program.  Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  &gt; [!note] Your CSV file must contain less than 500,000 rows. Requests time out after 30 seconds.  ## Example  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA &#x60;&#x60;&#x60; 
+        /// Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program.  Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;). - &#x60;attributes&#x60; (optional): A JSON object that contains the loyalty card&#39;s custom attributes and their values. These attributes must be created and connected to this loyalty program before they can be assigned to the cards through this endpoint.  &gt; [!note] Your CSV file must contain less than 500,000 rows. Requests time out after 30 seconds.  ## Example  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids,attributes 123-456-789AT,active,Alexa001;UserA,&#39;{\&quot;\&quot;my_attributes\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -3889,7 +3893,7 @@ namespace TalonOneSdk.Api
         /// Import loyalty cards
         /// </summary>
         /// <remarks>
-        /// Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program.  Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  &gt; [!note] Your CSV file must contain less than 500,000 rows. Requests time out after 30 seconds.  ## Example  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA &#x60;&#x60;&#x60; 
+        /// Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program.  Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;). - &#x60;attributes&#x60; (optional): A JSON object that contains the loyalty card&#39;s custom attributes and their values. These attributes must be created and connected to this loyalty program before they can be assigned to the cards through this endpoint.  &gt; [!note] Your CSV file must contain less than 500,000 rows. Requests time out after 30 seconds.  ## Example  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids,attributes 123-456-789AT,active,Alexa001;UserA,&#39;{\&quot;\&quot;my_attributes\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
@@ -3921,6 +3925,31 @@ namespace TalonOneSdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IImportLoyaltyCustomersTiersApiResponse"/>&gt;</returns>
         Task<IImportLoyaltyCustomersTiersApiResponse> ImportLoyaltyCustomersTiersOrDefaultAsync(long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Import join dates for a loyalty program
+        /// </summary>
+        /// <remarks>
+        /// Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;newjoindate&#x60;: The new join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IImportLoyaltyJoinDatesApiResponse"/>&gt;</returns>
+        Task<IImportLoyaltyJoinDatesApiResponse> ImportLoyaltyJoinDatesAsync(long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Import join dates for a loyalty program
+        /// </summary>
+        /// <remarks>
+        /// Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;newjoindate&#x60;: The new join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IImportLoyaltyJoinDatesApiResponse"/>&gt;</returns>
+        Task<IImportLoyaltyJoinDatesApiResponse> ImportLoyaltyJoinDatesOrDefaultAsync(long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Import loyalty points
@@ -4117,10 +4146,10 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="title">Filter by the display name of the Application cart item filter in the Application.  **Note**: If no &#x60;title&#x60; is provided, all the Application cart item filters in the Application are returned.  (optional)</param>
+        /// <param name="name">Filter by the display name of the Application cart item filter in the Application.  **Note**: If no &#x60;name&#x60; is provided, all the Application cart item filters in the Application are returned.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListApplicationCartItemFiltersApiResponse"/>&gt;</returns>
-        Task<IListApplicationCartItemFiltersApiResponse> ListApplicationCartItemFiltersAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> title = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListApplicationCartItemFiltersApiResponse> ListApplicationCartItemFiltersAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> name = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List Application cart item filters
@@ -4131,10 +4160,10 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="title">Filter by the display name of the Application cart item filter in the Application.  **Note**: If no &#x60;title&#x60; is provided, all the Application cart item filters in the Application are returned.  (optional)</param>
+        /// <param name="name">Filter by the display name of the Application cart item filter in the Application.  **Note**: If no &#x60;name&#x60; is provided, all the Application cart item filters in the Application are returned.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListApplicationCartItemFiltersApiResponse"/>&gt;</returns>
-        Task<IListApplicationCartItemFiltersApiResponse> ListApplicationCartItemFiltersOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> title = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListApplicationCartItemFiltersApiResponse> ListApplicationCartItemFiltersOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> name = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List campaign store budget limits
@@ -7525,6 +7554,36 @@ namespace TalonOneSdk.Api
     /// The <see cref="IImportLoyaltyCustomersTiersApiResponse"/>
     /// </summary>
     public interface IImportLoyaltyCustomersTiersApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.Import>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IImportLoyaltyJoinDatesApiResponse"/>
+    /// </summary>
+    public interface IImportLoyaltyJoinDatesApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.Import>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -11013,6 +11072,26 @@ namespace TalonOneSdk.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnImportLoyaltyJoinDates;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorImportLoyaltyJoinDates;
+
+        internal void ExecuteOnImportLoyaltyJoinDates(ManagementApi.ImportLoyaltyJoinDatesApiResponse apiResponse)
+        {
+            OnImportLoyaltyJoinDates?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorImportLoyaltyJoinDates(Exception exception)
+        {
+            OnErrorImportLoyaltyJoinDates?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
         public event EventHandler<ApiResponseEventArgs> OnImportLoyaltyPoints;
 
         /// <summary>
@@ -12161,8 +12240,8 @@ namespace TalonOneSdk.Api
                         ? "/v1/users/activate"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/users/activate");
 
-                    httpRequestMessageLocalVar.Content = (activateUserRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (activateUserRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(activateUserRequest, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -12401,8 +12480,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyCardId%7D", Uri.EscapeDataString(loyaltyCardId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (addLoyaltyPoints as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (addLoyaltyPoints as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(addLoyaltyPoints, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -12767,8 +12846,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (addLoyaltyPoints as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (addLoyaltyPoints as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(addLoyaltyPoints, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -13125,8 +13204,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcampaignId%7D", Uri.EscapeDataString(campaignId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (campaignCopy as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (campaignCopy as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(campaignCopy, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -13387,8 +13466,8 @@ namespace TalonOneSdk.Api
                         ? "/v1/collections"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/collections");
 
-                    httpRequestMessageLocalVar.Content = (newCollection as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newCollection as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newCollection, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -13777,8 +13856,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcampaignId%7D", Uri.EscapeDataString(campaignId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (createAchievement as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (createAchievement as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(createAchievement, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -14121,8 +14200,8 @@ namespace TalonOneSdk.Api
                         ? "/v1/additional_costs"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/additional_costs");
 
-                    httpRequestMessageLocalVar.Content = (newAdditionalCost as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newAdditionalCost as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newAdditionalCost, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -14383,8 +14462,8 @@ namespace TalonOneSdk.Api
                         ? "/v1/attributes"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/attributes");
 
-                    httpRequestMessageLocalVar.Content = (newAttribute as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newAttribute as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newAttribute, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -14652,8 +14731,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/loyalty_programs/{loyaltyProgramId}/cards/batch");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (loyaltyCardBatch as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (loyaltyCardBatch as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(loyaltyCardBatch, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -15035,8 +15114,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/applications/{applicationId}/create_campaign_from_template");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (createTemplateCampaign as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (createTemplateCampaign as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(createTemplateCampaign, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -15311,8 +15390,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcampaignId%7D", Uri.EscapeDataString(campaignId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (newCampaignStoreBudget as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newCampaignStoreBudget as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newCampaignStoreBudget, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -15631,8 +15710,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcampaignId%7D", Uri.EscapeDataString(campaignId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (newCampaignCollection as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newCampaignCollection as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newCampaignCollection, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -15924,8 +16003,8 @@ namespace TalonOneSdk.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    httpRequestMessageLocalVar.Content = (newCoupons as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newCoupons as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newCoupons, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -16206,8 +16285,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcampaignId%7D", Uri.EscapeDataString(campaignId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (newCouponCreationJob as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newCouponCreationJob as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newCouponCreationJob, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -16482,8 +16561,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcampaignId%7D", Uri.EscapeDataString(campaignId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (newCouponDeletionJob as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newCouponDeletionJob as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newCouponDeletionJob, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -16775,8 +16854,8 @@ namespace TalonOneSdk.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    httpRequestMessageLocalVar.Content = (newCouponsForMultipleRecipients as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newCouponsForMultipleRecipients as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newCouponsForMultipleRecipients, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -17043,8 +17122,8 @@ namespace TalonOneSdk.Api
                         ? "/v1/invite_emails"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/invite_emails");
 
-                    httpRequestMessageLocalVar.Content = (newInviteEmail as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newInviteEmail as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newInviteEmail, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -17305,8 +17384,8 @@ namespace TalonOneSdk.Api
                         ? "/v2/invites"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/invites");
 
-                    httpRequestMessageLocalVar.Content = (newInvitation as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newInvitation as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newInvitation, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -17567,8 +17646,8 @@ namespace TalonOneSdk.Api
                         ? "/v1/password_recovery_emails"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/password_recovery_emails");
 
-                    httpRequestMessageLocalVar.Content = (newPasswordEmail as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newPasswordEmail as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newPasswordEmail, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -17829,8 +17908,8 @@ namespace TalonOneSdk.Api
                         ? "/v1/sessions"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/sessions");
 
-                    httpRequestMessageLocalVar.Content = (loginParams as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (loginParams as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(loginParams, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -18098,8 +18177,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/applications/{applicationId}/stores");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (newStore as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newStore as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newStore, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -18436,8 +18515,8 @@ namespace TalonOneSdk.Api
                         ? "/v1/users/deactivate"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/users/deactivate");
 
-                    httpRequestMessageLocalVar.Content = (deactivateUserRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (deactivateUserRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(deactivateUserRequest, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -18676,8 +18755,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyCardId%7D", Uri.EscapeDataString(loyaltyCardId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (deductLoyaltyPoints as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (deductLoyaltyPoints as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(deductLoyaltyPoints, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -21866,8 +21945,8 @@ namespace TalonOneSdk.Api
                         ? "/v1/users/delete"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/users/delete");
 
-                    httpRequestMessageLocalVar.Content = (deleteUserRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (deleteUserRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(deleteUserRequest, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -25659,7 +25738,7 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatExportCustomerSessions(ref long applicationId, ref Option<DateTime> createdBefore, ref Option<DateTime> createdAfter, ref Option<string> profileIntegrationId, ref Option<string> dateFormat, ref Option<string> customerSessionState);
+        partial void FormatExportCustomerSessions(ref long applicationId, ref Option<DateTime> createdBefore, ref Option<DateTime> createdAfter, ref Option<DateTime> updatedBefore, ref Option<DateTime> updatedAfter, ref Option<string> profileIntegrationId, ref Option<string> dateFormat, ref Option<string> customerSessionState);
 
         /// <summary>
         /// Validates the request parameters
@@ -25687,13 +25766,15 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="createdBefore"></param>
         /// <param name="createdAfter"></param>
+        /// <param name="updatedBefore"></param>
+        /// <param name="updatedAfter"></param>
         /// <param name="profileIntegrationId"></param>
         /// <param name="dateFormat"></param>
         /// <param name="customerSessionState"></param>
-        private void AfterExportCustomerSessionsDefaultImplementation(IExportCustomerSessionsApiResponse apiResponseLocalVar, long applicationId, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> profileIntegrationId, Option<string> dateFormat, Option<string> customerSessionState)
+        private void AfterExportCustomerSessionsDefaultImplementation(IExportCustomerSessionsApiResponse apiResponseLocalVar, long applicationId, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<DateTime> updatedBefore, Option<DateTime> updatedAfter, Option<string> profileIntegrationId, Option<string> dateFormat, Option<string> customerSessionState)
         {
             bool suppressDefaultLog = false;
-            AfterExportCustomerSessions(ref suppressDefaultLog, apiResponseLocalVar, applicationId, createdBefore, createdAfter, profileIntegrationId, dateFormat, customerSessionState);
+            AfterExportCustomerSessions(ref suppressDefaultLog, apiResponseLocalVar, applicationId, createdBefore, createdAfter, updatedBefore, updatedAfter, profileIntegrationId, dateFormat, customerSessionState);
             if (!suppressDefaultLog)
                 Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -25706,10 +25787,12 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="createdBefore"></param>
         /// <param name="createdAfter"></param>
+        /// <param name="updatedBefore"></param>
+        /// <param name="updatedAfter"></param>
         /// <param name="profileIntegrationId"></param>
         /// <param name="dateFormat"></param>
         /// <param name="customerSessionState"></param>
-        partial void AfterExportCustomerSessions(ref bool suppressDefaultLog, IExportCustomerSessionsApiResponse apiResponseLocalVar, long applicationId, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> profileIntegrationId, Option<string> dateFormat, Option<string> customerSessionState);
+        partial void AfterExportCustomerSessions(ref bool suppressDefaultLog, IExportCustomerSessionsApiResponse apiResponseLocalVar, long applicationId, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<DateTime> updatedBefore, Option<DateTime> updatedAfter, Option<string> profileIntegrationId, Option<string> dateFormat, Option<string> customerSessionState);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -25720,13 +25803,15 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="createdBefore"></param>
         /// <param name="createdAfter"></param>
+        /// <param name="updatedBefore"></param>
+        /// <param name="updatedAfter"></param>
         /// <param name="profileIntegrationId"></param>
         /// <param name="dateFormat"></param>
         /// <param name="customerSessionState"></param>
-        private void OnErrorExportCustomerSessionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> profileIntegrationId, Option<string> dateFormat, Option<string> customerSessionState)
+        private void OnErrorExportCustomerSessionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<DateTime> updatedBefore, Option<DateTime> updatedAfter, Option<string> profileIntegrationId, Option<string> dateFormat, Option<string> customerSessionState)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorExportCustomerSessions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, createdBefore, createdAfter, profileIntegrationId, dateFormat, customerSessionState);
+            OnErrorExportCustomerSessions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, createdBefore, createdAfter, updatedBefore, updatedAfter, profileIntegrationId, dateFormat, customerSessionState);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -25741,10 +25826,12 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="createdBefore"></param>
         /// <param name="createdAfter"></param>
+        /// <param name="updatedBefore"></param>
+        /// <param name="updatedAfter"></param>
         /// <param name="profileIntegrationId"></param>
         /// <param name="dateFormat"></param>
         /// <param name="customerSessionState"></param>
-        partial void OnErrorExportCustomerSessions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> profileIntegrationId, Option<string> dateFormat, Option<string> customerSessionState);
+        partial void OnErrorExportCustomerSessions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<DateTime> updatedBefore, Option<DateTime> updatedAfter, Option<string> profileIntegrationId, Option<string> dateFormat, Option<string> customerSessionState);
 
         /// <summary>
         /// Export customer sessions Download a CSV file containing the customer sessions that match the request.  &gt; [!important] Archived sessions cannot be exported. See the [retention &gt; policy](https://docs.talon.one/docs/dev/server-infrastructure-and-data-retention).  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  - &#x60;id&#x60;: The internal ID of the session. - &#x60;firstsession&#x60;: Whether this is a first session. - &#x60;integrationid&#x60;: The integration ID of the session. - &#x60;applicationid&#x60;: The ID of the Application. - &#x60;profileid&#x60;: The internal ID of the customer profile. - &#x60;profileintegrationid&#x60;: The integration ID of the customer profile. - &#x60;created&#x60;: The timestamp when the session was created. - &#x60;state&#x60;: The [state](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states)    of the session. - &#x60;cartitems&#x60;: The cart items in the session. - &#x60;discounts&#x60;: The discounts in the session. - &#x60;total&#x60;: The total value of cart items and additional costs in the session, before any discounts are applied. - &#x60;attributes&#x60;: The attributes set in the session. - &#x60;closedat&#x60;: Timestamp when the session was closed. - &#x60;cancelledat&#x60;: Timestamp when the session was cancelled. - &#x60;referral&#x60;: The referral code in the session. - &#x60;identifiers&#x60;: The identifiers in the session. - &#x60;additional_costs&#x60;: The [additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs)    in the session. - &#x60;updated&#x60;: Timestamp of the last session update. - &#x60;store_integration_id&#x60;: The integration ID of the store. - &#x60;coupons&#x60;: Coupon codes in the session. 
@@ -25752,16 +25839,18 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="createdBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)</param>
         /// <param name="createdAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)</param>
+        /// <param name="updatedBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)</param>
+        /// <param name="updatedAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)</param>
         /// <param name="profileIntegrationId">Only return sessions for the customer that matches this customer integration ID. (optional)</param>
         /// <param name="dateFormat">Determines the format of dates in the export document. (optional)</param>
         /// <param name="customerSessionState">Filter results by state. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportCustomerSessionsApiResponse"/>&gt;</returns>
-        public async Task<IExportCustomerSessionsApiResponse> ExportCustomerSessionsOrDefaultAsync(long applicationId, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> profileIntegrationId = default, Option<string> dateFormat = default, Option<string> customerSessionState = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IExportCustomerSessionsApiResponse> ExportCustomerSessionsOrDefaultAsync(long applicationId, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<DateTime> updatedBefore = default, Option<DateTime> updatedAfter = default, Option<string> profileIntegrationId = default, Option<string> dateFormat = default, Option<string> customerSessionState = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ExportCustomerSessionsAsync(applicationId, createdBefore, createdAfter, profileIntegrationId, dateFormat, customerSessionState, cancellationToken).ConfigureAwait(false);
+                return await ExportCustomerSessionsAsync(applicationId, createdBefore, createdAfter, updatedBefore, updatedAfter, profileIntegrationId, dateFormat, customerSessionState, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -25776,12 +25865,14 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="createdBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)</param>
         /// <param name="createdAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)</param>
+        /// <param name="updatedBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)</param>
+        /// <param name="updatedAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. (optional)</param>
         /// <param name="profileIntegrationId">Only return sessions for the customer that matches this customer integration ID. (optional)</param>
         /// <param name="dateFormat">Determines the format of dates in the export document. (optional)</param>
         /// <param name="customerSessionState">Filter results by state. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportCustomerSessionsApiResponse"/>&gt;</returns>
-        public async Task<IExportCustomerSessionsApiResponse> ExportCustomerSessionsAsync(long applicationId, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> profileIntegrationId = default, Option<string> dateFormat = default, Option<string> customerSessionState = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IExportCustomerSessionsApiResponse> ExportCustomerSessionsAsync(long applicationId, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<DateTime> updatedBefore = default, Option<DateTime> updatedAfter = default, Option<string> profileIntegrationId = default, Option<string> dateFormat = default, Option<string> customerSessionState = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -25789,7 +25880,7 @@ namespace TalonOneSdk.Api
             {
                 ValidateExportCustomerSessions(profileIntegrationId, dateFormat, customerSessionState);
 
-                FormatExportCustomerSessions(ref applicationId, ref createdBefore, ref createdAfter, ref profileIntegrationId, ref dateFormat, ref customerSessionState);
+                FormatExportCustomerSessions(ref applicationId, ref createdBefore, ref createdAfter, ref updatedBefore, ref updatedAfter, ref profileIntegrationId, ref dateFormat, ref customerSessionState);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -25808,6 +25899,12 @@ namespace TalonOneSdk.Api
 
                     if (createdAfter.IsSet)
                         parseQueryStringLocalVar["createdAfter"] = ClientUtils.ParameterToString(createdAfter.Value);
+
+                    if (updatedBefore.IsSet)
+                        parseQueryStringLocalVar["updatedBefore"] = ClientUtils.ParameterToString(updatedBefore.Value);
+
+                    if (updatedAfter.IsSet)
+                        parseQueryStringLocalVar["updatedAfter"] = ClientUtils.ParameterToString(updatedAfter.Value);
 
                     if (profileIntegrationId.IsSet)
                         parseQueryStringLocalVar["profileIntegrationId"] = ClientUtils.ParameterToString(profileIntegrationId.Value);
@@ -25853,7 +25950,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterExportCustomerSessionsDefaultImplementation(apiResponseLocalVar, applicationId, createdBefore, createdAfter, profileIntegrationId, dateFormat, customerSessionState);
+                        AfterExportCustomerSessionsDefaultImplementation(apiResponseLocalVar, applicationId, createdBefore, createdAfter, updatedBefore, updatedAfter, profileIntegrationId, dateFormat, customerSessionState);
 
                         Events.ExecuteOnExportCustomerSessions(apiResponseLocalVar);
 
@@ -25867,7 +25964,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorExportCustomerSessionsDefaultImplementation(e, "/v1/applications/{applicationId}/export_customer_sessions", uriBuilderLocalVar.Path, applicationId, createdBefore, createdAfter, profileIntegrationId, dateFormat, customerSessionState);
+                OnErrorExportCustomerSessionsDefaultImplementation(e, "/v1/applications/{applicationId}/export_customer_sessions", uriBuilderLocalVar.Path, applicationId, createdBefore, createdAfter, updatedBefore, updatedAfter, profileIntegrationId, dateFormat, customerSessionState);
                 Events.ExecuteOnErrorExportCustomerSessions(e);
                 throw;
             }
@@ -28033,7 +28130,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorExportLoyaltyCards(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<string> batchId, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> dateFormat);
 
         /// <summary>
-        /// Export loyalty cards Download a CSV file containing the loyalty cards from a specified loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following columns:  - &#x60;identifier&#x60;: The unique identifier of the loyalty card. - &#x60;created&#x60;: The date and time the loyalty card was created. - &#x60;status&#x60;: The status of the loyalty card. - &#x60;userpercardlimit&#x60;: The maximum number of customer profiles that can be linked to the card. - &#x60;customerprofileids&#x60;: Integration IDs of the customer profiles linked to the card. - &#x60;blockreason&#x60;: The reason for transferring and blocking the loyalty card. - &#x60;generated&#x60;: An indicator of whether the loyalty card was generated. - &#x60;batchid&#x60;: The ID of the batch the loyalty card is in. - &#x60;attributes&#x60;: The custom attributes of this loyalty card. Currently, this feature is only available upon request. 
+        /// Export loyalty cards Download a CSV file containing the loyalty cards from a specified loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following columns:  - &#x60;identifier&#x60;: The unique identifier of the loyalty card. - &#x60;created&#x60;: The date and time the loyalty card was created. - &#x60;status&#x60;: The status of the loyalty card. - &#x60;userpercardlimit&#x60;: The maximum number of customer profiles that can be linked to the card. - &#x60;customerprofileids&#x60;: Integration IDs of the customer profiles linked to the card. - &#x60;blockreason&#x60;: The reason for transferring and blocking the loyalty card. - &#x60;generated&#x60;: An indicator of whether the loyalty card was generated. - &#x60;batchid&#x60;: The ID of the batch the loyalty card is in. - &#x60;attributes&#x60;: The custom attributes of this loyalty card. 
         /// </summary>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="batchId">Filter results by loyalty card batch ID. (optional)</param>
@@ -28055,7 +28152,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Export loyalty cards Download a CSV file containing the loyalty cards from a specified loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following columns:  - &#x60;identifier&#x60;: The unique identifier of the loyalty card. - &#x60;created&#x60;: The date and time the loyalty card was created. - &#x60;status&#x60;: The status of the loyalty card. - &#x60;userpercardlimit&#x60;: The maximum number of customer profiles that can be linked to the card. - &#x60;customerprofileids&#x60;: Integration IDs of the customer profiles linked to the card. - &#x60;blockreason&#x60;: The reason for transferring and blocking the loyalty card. - &#x60;generated&#x60;: An indicator of whether the loyalty card was generated. - &#x60;batchid&#x60;: The ID of the batch the loyalty card is in. - &#x60;attributes&#x60;: The custom attributes of this loyalty card. Currently, this feature is only available upon request. 
+        /// Export loyalty cards Download a CSV file containing the loyalty cards from a specified loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file contains the following columns:  - &#x60;identifier&#x60;: The unique identifier of the loyalty card. - &#x60;created&#x60;: The date and time the loyalty card was created. - &#x60;status&#x60;: The status of the loyalty card. - &#x60;userpercardlimit&#x60;: The maximum number of customer profiles that can be linked to the card. - &#x60;customerprofileids&#x60;: Integration IDs of the customer profiles linked to the card. - &#x60;blockreason&#x60;: The reason for transferring and blocking the loyalty card. - &#x60;generated&#x60;: An indicator of whether the loyalty card was generated. - &#x60;batchid&#x60;: The ID of the batch the loyalty card is in. - &#x60;attributes&#x60;: The custom attributes of this loyalty card. 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -33481,8 +33578,8 @@ namespace TalonOneSdk.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    httpRequestMessageLocalVar.Content = (customerProfileSearchQuery as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (customerProfileSearchQuery as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(customerProfileSearchQuery, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -36515,7 +36612,7 @@ namespace TalonOneSdk.Api
         /// <summary>
         /// List audience analytics Get a list of audience IDs and their member count. 
         /// </summary>
-        /// <param name="audienceIds">The IDs of one or more audiences, separated by commas, by which to filter results.</param>
+        /// <param name="audienceIds">The IDs of one or more audiences, separated by commas, by which to filter results. Do not provide more than 1000 audience IDs.</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetAudiencesAnalyticsApiResponse"/>&gt;</returns>
@@ -36535,7 +36632,7 @@ namespace TalonOneSdk.Api
         /// List audience analytics Get a list of audience IDs and their member count. 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceIds">The IDs of one or more audiences, separated by commas, by which to filter results.</param>
+        /// <param name="audienceIds">The IDs of one or more audiences, separated by commas, by which to filter results. Do not provide more than 1000 audience IDs.</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetAudiencesAnalyticsApiResponse"/>&gt;</returns>
@@ -37400,8 +37497,8 @@ namespace TalonOneSdk.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    httpRequestMessageLocalVar.Content = (campaignSearch as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (campaignSearch as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(campaignSearch, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -42140,8 +42237,8 @@ namespace TalonOneSdk.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    httpRequestMessageLocalVar.Content = (customerProfileSearchQuery as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (customerProfileSearchQuery as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(customerProfileSearchQuery, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -52369,7 +52466,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorImportLoyaltyCards(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
-        /// Import loyalty cards Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program.  Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  &gt; [!note] Your CSV file must contain less than 500,000 rows. Requests time out after 30 seconds.  ## Example  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA &#x60;&#x60;&#x60; 
+        /// Import loyalty cards Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program.  Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;). - &#x60;attributes&#x60; (optional): A JSON object that contains the loyalty card&#39;s custom attributes and their values. These attributes must be created and connected to this loyalty program before they can be assigned to the cards through this endpoint.  &gt; [!note] Your CSV file must contain less than 500,000 rows. Requests time out after 30 seconds.  ## Example  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids,attributes 123-456-789AT,active,Alexa001;UserA,&#39;{\&quot;\&quot;my_attributes\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
         /// </summary>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
@@ -52388,7 +52485,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Import loyalty cards Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program.  Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  &gt; [!note] Your CSV file must contain less than 500,000 rows. Requests time out after 30 seconds.  ## Example  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA &#x60;&#x60;&#x60; 
+        /// Import loyalty cards Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program.  Send the file as multipart data.  It contains the following columns for each card:  - &#x60;identifier&#x60; (required): The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. - &#x60;state&#x60; (required): The state of the loyalty card. It can be &#x60;active&#x60; or &#x60;inactive&#x60;. - &#x60;customerprofileids&#x60; (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;). - &#x60;attributes&#x60; (optional): A JSON object that contains the loyalty card&#39;s custom attributes and their values. These attributes must be created and connected to this loyalty program before they can be assigned to the cards through this endpoint.  &gt; [!note] Your CSV file must contain less than 500,000 rows. Requests time out after 30 seconds.  ## Example  &#x60;&#x60;&#x60;csv identifier,state,customerprofileids,attributes 123-456-789AT,active,Alexa001;UserA,&#39;{\&quot;\&quot;my_attributes\&quot;\&quot;: \&quot;\&quot;10_off\&quot;\&quot;}\&quot; &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -52877,6 +52974,396 @@ namespace TalonOneSdk.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public ImportLoyaltyCustomersTiersApiResponse(ILogger<ImportLoyaltyCustomersTiersApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.Import Ok()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Import>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out TalonOneSdk.Model.Import result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryUnauthorized(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsNotFound
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryNotFound(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = NotFound();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatImportLoyaltyJoinDates(ref long loyaltyProgramId, ref Option<TalonOneSdk.Client.FileParameter> upFile);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="upFile"></param>
+        /// <returns></returns>
+        private void ValidateImportLoyaltyJoinDates(Option<TalonOneSdk.Client.FileParameter> upFile)
+        {
+            if (upFile.IsSet && upFile.Value == null)
+                throw new ArgumentNullException(nameof(upFile));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="upFile"></param>
+        private void AfterImportLoyaltyJoinDatesDefaultImplementation(IImportLoyaltyJoinDatesApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile)
+        {
+            bool suppressDefaultLog = false;
+            AfterImportLoyaltyJoinDates(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, upFile);
+            if (!suppressDefaultLog)
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="upFile"></param>
+        partial void AfterImportLoyaltyJoinDates(ref bool suppressDefaultLog, IImportLoyaltyJoinDatesApiResponse apiResponseLocalVar, long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="upFile"></param>
+        private void OnErrorImportLoyaltyJoinDatesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorImportLoyaltyJoinDates(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, upFile);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="upFile"></param>
+        partial void OnErrorImportLoyaltyJoinDates(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile);
+
+        /// <summary>
+        /// Import join dates for a loyalty program Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;newjoindate&#x60;: The new join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IImportLoyaltyJoinDatesApiResponse"/>&gt;</returns>
+        public async Task<IImportLoyaltyJoinDatesApiResponse> ImportLoyaltyJoinDatesOrDefaultAsync(long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await ImportLoyaltyJoinDatesAsync(loyaltyProgramId, upFile, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Import join dates for a loyalty program Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;newjoindate&#x60;: The new join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IImportLoyaltyJoinDatesApiResponse"/>&gt;</returns>
+        public async Task<IImportLoyaltyJoinDatesApiResponse> ImportLoyaltyJoinDatesAsync(long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateImportLoyaltyJoinDates(upFile);
+
+                FormatImportLoyaltyJoinDates(ref loyaltyProgramId, ref upFile);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/loyalty_programs/{loyaltyProgramId}/import_join_dates"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/loyalty_programs/{loyaltyProgramId}/import_join_dates");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
+
+                    MultipartFormDataContent multipartContentLocalVar = new MultipartFormDataContent();
+
+                    httpRequestMessageLocalVar.Content = multipartContentLocalVar;
+
+                    List<KeyValuePair<string, string>> formParameterLocalVars = new List<KeyValuePair<string, string>>();
+
+                    if (upFile.IsSet)
+                    {
+                        var streamContentLocalVar = new StreamContent(upFile.Value.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(upFile.Value.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "upFile", upFile.Value.FileName ?? "upFile");
+                    }
+
+                    foreach (var formParamLocalVar in formParameterLocalVars)
+                        multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "multipart/form-data"
+                    };
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("POST");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<ImportLoyaltyJoinDatesApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<ImportLoyaltyJoinDatesApiResponse>();
+                        ImportLoyaltyJoinDatesApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new ImportLoyaltyJoinDatesApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/import_join_dates", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterImportLoyaltyJoinDatesDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, upFile);
+
+                        Events.ExecuteOnImportLoyaltyJoinDates(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorImportLoyaltyJoinDatesDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/import_join_dates", uriBuilderLocalVar.Path, loyaltyProgramId, upFile);
+                Events.ExecuteOnErrorImportLoyaltyJoinDates(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="ImportLoyaltyJoinDatesApiResponse"/>
+        /// </summary>
+        public partial class ImportLoyaltyJoinDatesApiResponse : TalonOneSdk.Client.ApiResponse, IImportLoyaltyJoinDatesApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ImportLoyaltyJoinDatesApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="ImportLoyaltyJoinDatesApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public ImportLoyaltyJoinDatesApiResponse(ILogger<ImportLoyaltyJoinDatesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="ImportLoyaltyJoinDatesApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public ImportLoyaltyJoinDatesApiResponse(ILogger<ImportLoyaltyJoinDatesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -53998,8 +54485,8 @@ namespace TalonOneSdk.Api
                         ? "/v1/users/invite"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/users/invite");
 
-                    httpRequestMessageLocalVar.Content = (newExternalInvitation as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newExternalInvitation as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newExternalInvitation, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -55041,17 +55528,17 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatListApplicationCartItemFilters(ref long applicationId, ref Option<long> pageSize, ref Option<long> skip, ref Option<string> title);
+        partial void FormatListApplicationCartItemFilters(ref long applicationId, ref Option<long> pageSize, ref Option<long> skip, ref Option<string> name);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="title"></param>
+        /// <param name="name"></param>
         /// <returns></returns>
-        private void ValidateListApplicationCartItemFilters(Option<string> title)
+        private void ValidateListApplicationCartItemFilters(Option<string> name)
         {
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title));
+            if (name.IsSet && name.Value == null)
+                throw new ArgumentNullException(nameof(name));
         }
 
         /// <summary>
@@ -55061,11 +55548,11 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        /// <param name="title"></param>
-        private void AfterListApplicationCartItemFiltersDefaultImplementation(IListApplicationCartItemFiltersApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> title)
+        /// <param name="name"></param>
+        private void AfterListApplicationCartItemFiltersDefaultImplementation(IListApplicationCartItemFiltersApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> name)
         {
             bool suppressDefaultLog = false;
-            AfterListApplicationCartItemFilters(ref suppressDefaultLog, apiResponseLocalVar, applicationId, pageSize, skip, title);
+            AfterListApplicationCartItemFilters(ref suppressDefaultLog, apiResponseLocalVar, applicationId, pageSize, skip, name);
             if (!suppressDefaultLog)
                 Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -55078,8 +55565,8 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        /// <param name="title"></param>
-        partial void AfterListApplicationCartItemFilters(ref bool suppressDefaultLog, IListApplicationCartItemFiltersApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> title);
+        /// <param name="name"></param>
+        partial void AfterListApplicationCartItemFilters(ref bool suppressDefaultLog, IListApplicationCartItemFiltersApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> name);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -55090,11 +55577,11 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        /// <param name="title"></param>
-        private void OnErrorListApplicationCartItemFiltersDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> title)
+        /// <param name="name"></param>
+        private void OnErrorListApplicationCartItemFiltersDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> name)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListApplicationCartItemFilters(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, pageSize, skip, title);
+            OnErrorListApplicationCartItemFilters(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, pageSize, skip, name);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -55109,8 +55596,8 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
-        /// <param name="title"></param>
-        partial void OnErrorListApplicationCartItemFilters(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> title);
+        /// <param name="name"></param>
+        partial void OnErrorListApplicationCartItemFilters(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> name);
 
         /// <summary>
         /// List Application cart item filters Return all the Application cart item filters for a specific Application.
@@ -55118,14 +55605,14 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="title">Filter by the display name of the Application cart item filter in the Application.  **Note**: If no &#x60;title&#x60; is provided, all the Application cart item filters in the Application are returned.  (optional)</param>
+        /// <param name="name">Filter by the display name of the Application cart item filter in the Application.  **Note**: If no &#x60;name&#x60; is provided, all the Application cart item filters in the Application are returned.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListApplicationCartItemFiltersApiResponse"/>&gt;</returns>
-        public async Task<IListApplicationCartItemFiltersApiResponse> ListApplicationCartItemFiltersOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> title = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListApplicationCartItemFiltersApiResponse> ListApplicationCartItemFiltersOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> name = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListApplicationCartItemFiltersAsync(applicationId, pageSize, skip, title, cancellationToken).ConfigureAwait(false);
+                return await ListApplicationCartItemFiltersAsync(applicationId, pageSize, skip, name, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -55140,18 +55627,18 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="title">Filter by the display name of the Application cart item filter in the Application.  **Note**: If no &#x60;title&#x60; is provided, all the Application cart item filters in the Application are returned.  (optional)</param>
+        /// <param name="name">Filter by the display name of the Application cart item filter in the Application.  **Note**: If no &#x60;name&#x60; is provided, all the Application cart item filters in the Application are returned.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListApplicationCartItemFiltersApiResponse"/>&gt;</returns>
-        public async Task<IListApplicationCartItemFiltersApiResponse> ListApplicationCartItemFiltersAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> title = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListApplicationCartItemFiltersApiResponse> ListApplicationCartItemFiltersAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> name = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateListApplicationCartItemFilters(title);
+                ValidateListApplicationCartItemFilters(name);
 
-                FormatListApplicationCartItemFilters(ref applicationId, ref pageSize, ref skip, ref title);
+                FormatListApplicationCartItemFilters(ref applicationId, ref pageSize, ref skip, ref name);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -55171,8 +55658,8 @@ namespace TalonOneSdk.Api
                     if (skip.IsSet)
                         parseQueryStringLocalVar["skip"] = ClientUtils.ParameterToString(skip.Value);
 
-                    if (title.IsSet)
-                        parseQueryStringLocalVar["title"] = ClientUtils.ParameterToString(title.Value);
+                    if (name.IsSet)
+                        parseQueryStringLocalVar["name"] = ClientUtils.ParameterToString(name.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -55209,7 +55696,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterListApplicationCartItemFiltersDefaultImplementation(apiResponseLocalVar, applicationId, pageSize, skip, title);
+                        AfterListApplicationCartItemFiltersDefaultImplementation(apiResponseLocalVar, applicationId, pageSize, skip, name);
 
                         Events.ExecuteOnListApplicationCartItemFilters(apiResponseLocalVar);
 
@@ -55223,7 +55710,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorListApplicationCartItemFiltersDefaultImplementation(e, "/v1/applications/{applicationId}/cart_item_filters", uriBuilderLocalVar.Path, applicationId, pageSize, skip, title);
+                OnErrorListApplicationCartItemFiltersDefaultImplementation(e, "/v1/applications/{applicationId}/cart_item_filters", uriBuilderLocalVar.Path, applicationId, pageSize, skip, name);
                 Events.ExecuteOnErrorListApplicationCartItemFilters(e);
                 throw;
             }
@@ -57625,8 +58112,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/applications/{applicationId}/price_history");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (priceHistoryRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (priceHistoryRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(priceHistoryRequest, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -57909,8 +58396,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (deductLoyaltyPoints as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (deductLoyaltyPoints as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(deductLoyaltyPoints, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -58253,8 +58740,8 @@ namespace TalonOneSdk.Api
                         ? "/v1/reset_password"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/reset_password");
 
-                    httpRequestMessageLocalVar.Content = (newPassword as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newPassword as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newPassword, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -58515,8 +59002,8 @@ namespace TalonOneSdk.Api
                         ? "/v1/provisioning/scim/Groups"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/provisioning/scim/Groups");
 
-                    httpRequestMessageLocalVar.Content = (scimBaseGroup as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (scimBaseGroup as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(scimBaseGroup, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -58777,8 +59264,8 @@ namespace TalonOneSdk.Api
                         ? "/v1/provisioning/scim/Users"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/provisioning/scim/Users");
 
-                    httpRequestMessageLocalVar.Content = (scimNewUser as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (scimNewUser as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(scimNewUser, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -61042,8 +61529,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/provisioning/scim/Groups/{groupId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BgroupId%7D", Uri.EscapeDataString(groupId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (scimPatchRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (scimPatchRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(scimPatchRequest, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -61311,8 +61798,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/provisioning/scim/Users/{userId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BuserId%7D", Uri.EscapeDataString(userId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (scimPatchRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (scimPatchRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(scimPatchRequest, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -61580,8 +62067,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/provisioning/scim/Groups/{groupId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BgroupId%7D", Uri.EscapeDataString(groupId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (scimBaseGroup as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (scimBaseGroup as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(scimBaseGroup, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -61849,8 +62336,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/provisioning/scim/Users/{userId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BuserId%7D", Uri.EscapeDataString(userId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (scimNewUser as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (scimNewUser as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(scimNewUser, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -62267,8 +62754,8 @@ namespace TalonOneSdk.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    httpRequestMessageLocalVar.Content = (body as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (body as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(body, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -62679,8 +63166,8 @@ namespace TalonOneSdk.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    httpRequestMessageLocalVar.Content = (body as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (body as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(body, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -63317,8 +63804,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyCardId%7D", Uri.EscapeDataString(loyaltyCardId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (transferLoyaltyCard as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (transferLoyaltyCard as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(transferLoyaltyCard, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -63668,8 +64155,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/collections/{collectionId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcollectionId%7D", Uri.EscapeDataString(collectionId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (updateCollection as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (updateCollection as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(updateCollection, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -64065,8 +64552,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcampaignId%7D", Uri.EscapeDataString(campaignId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BachievementId%7D", Uri.EscapeDataString(achievementId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (updateAchievement as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (updateAchievement as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(updateAchievement, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -64448,8 +64935,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/additional_costs/{additionalCostId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BadditionalCostId%7D", Uri.EscapeDataString(additionalCostId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (newAdditionalCost as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newAdditionalCost as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newAdditionalCost, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -64717,8 +65204,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/attributes/{attributeId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BattributeId%7D", Uri.EscapeDataString(attributeId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (newAttribute as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newAttribute as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newAttribute, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -64993,8 +65480,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcampaignId%7D", Uri.EscapeDataString(campaignId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (updateCampaign as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (updateCampaign as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(updateCampaign, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -65276,8 +65763,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcampaignId%7D", Uri.EscapeDataString(campaignId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcollectionId%7D", Uri.EscapeDataString(collectionId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (updateCampaignCollection as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (updateCampaignCollection as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(updateCampaignCollection, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -65601,8 +66088,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcampaignId%7D", Uri.EscapeDataString(campaignId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcouponId%7D", Uri.EscapeDataString(couponId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (updateCoupon as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (updateCoupon as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(updateCoupon, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -65877,8 +66364,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcampaignId%7D", Uri.EscapeDataString(campaignId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (updateCouponBatch as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (updateCouponBatch as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(updateCouponBatch, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -66117,8 +66604,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyCardId%7D", Uri.EscapeDataString(loyaltyCardId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (updateLoyaltyCardRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (updateLoyaltyCardRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(updateLoyaltyCardRequest, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -66518,8 +67005,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcampaignId%7D", Uri.EscapeDataString(campaignId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BreferralId%7D", Uri.EscapeDataString(referralId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (updateReferral as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (updateReferral as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(updateReferral, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -66787,8 +67274,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/roles/{roleId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BroleId%7D", Uri.EscapeDataString(roleId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (roleV2Base as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (roleV2Base as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(roleV2Base, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -67067,8 +67554,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BstoreId%7D", Uri.EscapeDataString(storeId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (newStore as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newStore as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newStore, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -67412,8 +67899,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/users/{userId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BuserId%7D", Uri.EscapeDataString(userId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (updateUser as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (updateUser as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(updateUser, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();

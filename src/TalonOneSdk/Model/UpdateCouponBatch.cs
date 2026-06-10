@@ -36,7 +36,7 @@ namespace TalonOneSdk.Model
         /// <param name="reservationLimit">The number of reservations that can be made with this coupon code. </param>
         /// <param name="startDate">Timestamp at which point the coupon becomes valid.</param>
         /// <param name="expiryDate">Expiration date of the coupon. Coupon never expires if this is omitted.</param>
-        /// <param name="attributes">Optional property to set the value of custom coupon attributes. They are defined in the Campaign Manager, see [Managing attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes).  Coupon attributes can also be set to _mandatory_ in your Application [settings](https://docs.talon.one/docs/product/applications/using-attributes#making-attributes-mandatory). If your Application uses mandatory attributes, you must use this property to set their value. </param>
+        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
         /// <param name="batchID">The ID of the batch the coupon(s) belong to.</param>
         [JsonConstructor]
         public UpdateCouponBatch(Option<long?> usageLimit = default, Option<decimal?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<Object> attributes = default, Option<string> batchID = default)
@@ -136,9 +136,9 @@ namespace TalonOneSdk.Model
         public Option<Object> AttributesOption { get; private set; }
 
         /// <summary>
-        /// Optional property to set the value of custom coupon attributes. They are defined in the Campaign Manager, see [Managing attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes).  Coupon attributes can also be set to _mandatory_ in your Application [settings](https://docs.talon.one/docs/product/applications/using-attributes#making-attributes-mandatory). If your Application uses mandatory attributes, you must use this property to set their value. 
+        /// Arbitrary properties associated with this campaign.
         /// </summary>
-        /// <value>Optional property to set the value of custom coupon attributes. They are defined in the Campaign Manager, see [Managing attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes).  Coupon attributes can also be set to _mandatory_ in your Application [settings](https://docs.talon.one/docs/product/applications/using-attributes#making-attributes-mandatory). If your Application uses mandatory attributes, you must use this property to set their value. </value>
+        /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("attributes")]
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 

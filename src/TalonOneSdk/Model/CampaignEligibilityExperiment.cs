@@ -24,36 +24,38 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// Configuration settings related to patch operations, which allow partial updates to SCIM resources.
+    /// The identifiers for the [experiment](https://docs.talon.one/management-api#tag/Experiments) and the variant assigned to the customer profile. Only returned when the customer profile has been assigned to a variant in an experiment campaign. 
     /// </summary>
-    public partial class ScimServiceProviderConfigResponsePatch : IValidatableObject
+    public partial class CampaignEligibilityExperiment : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ScimServiceProviderConfigResponsePatch" /> class.
+        /// Initializes a new instance of the <see cref="CampaignEligibilityExperiment" /> class.
         /// </summary>
-        /// <param name="supported">Indicates whether the service provider supports patch operations for modifying resources.</param>
+        /// <param name="id">The ID of the experiment.</param>
+        /// <param name="variantId">The ID of the variant assigned to the customer profile.</param>
         [JsonConstructor]
-        public ScimServiceProviderConfigResponsePatch(Option<bool?> supported = default)
+        public CampaignEligibilityExperiment(long id, long variantId)
         {
-            SupportedOption = supported;
+            Id = id;
+            VariantId = variantId;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Supported
+        /// The ID of the experiment.
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<bool?> SupportedOption { get; private set; }
+        /// <value>The ID of the experiment.</value>
+        [JsonPropertyName("id")]
+        public long Id { get; set; }
 
         /// <summary>
-        /// Indicates whether the service provider supports patch operations for modifying resources.
+        /// The ID of the variant assigned to the customer profile.
         /// </summary>
-        /// <value>Indicates whether the service provider supports patch operations for modifying resources.</value>
-        [JsonPropertyName("supported")]
-        public bool? Supported { get { return this.SupportedOption.Value; } set { this.SupportedOption = new Option<bool?>(value); } }
+        /// <value>The ID of the variant assigned to the customer profile.</value>
+        [JsonPropertyName("variantId")]
+        public long VariantId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -62,8 +64,9 @@ namespace TalonOneSdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ScimServiceProviderConfigResponsePatch {\n");
-            sb.Append("  Supported: ").Append(Supported).Append("\n");
+            sb.Append("class CampaignEligibilityExperiment {\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  VariantId: ").Append(VariantId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -80,19 +83,19 @@ namespace TalonOneSdk.Model
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="ScimServiceProviderConfigResponsePatch" />
+    /// A Json converter for type <see cref="CampaignEligibilityExperiment" />
     /// </summary>
-    public class ScimServiceProviderConfigResponsePatchJsonConverter : JsonConverter<ScimServiceProviderConfigResponsePatch>
+    public class CampaignEligibilityExperimentJsonConverter : JsonConverter<CampaignEligibilityExperiment>
     {
         /// <summary>
-        /// Deserializes json to <see cref="ScimServiceProviderConfigResponsePatch" />
+        /// Deserializes json to <see cref="CampaignEligibilityExperiment" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override ScimServiceProviderConfigResponsePatch Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override CampaignEligibilityExperiment Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -101,7 +104,8 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<bool?> supported = default;
+            Option<long?> id = default;
+            Option<long?> variantId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -118,8 +122,11 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "supported":
-                            supported = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                        case "id":
+                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "variantId":
+                            variantId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;
@@ -127,35 +134,48 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            return new ScimServiceProviderConfigResponsePatch(supported);
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class CampaignEligibilityExperiment.", nameof(id));
+
+            if (!variantId.IsSet)
+                throw new ArgumentException("Property is required for class CampaignEligibilityExperiment.", nameof(variantId));
+
+            if (id.IsSet && id.Value == null)
+                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignEligibilityExperiment.");
+
+            if (variantId.IsSet && variantId.Value == null)
+                throw new ArgumentNullException(nameof(variantId), "Property is not nullable for class CampaignEligibilityExperiment.");
+
+            return new CampaignEligibilityExperiment(id.Value.Value, variantId.Value.Value);
         }
 
         /// <summary>
-        /// Serializes a <see cref="ScimServiceProviderConfigResponsePatch" />
+        /// Serializes a <see cref="CampaignEligibilityExperiment" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="scimServiceProviderConfigResponsePatch"></param>
+        /// <param name="campaignEligibilityExperiment"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, ScimServiceProviderConfigResponsePatch scimServiceProviderConfigResponsePatch, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, CampaignEligibilityExperiment campaignEligibilityExperiment, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, scimServiceProviderConfigResponsePatch, jsonSerializerOptions);
+            WriteProperties(writer, campaignEligibilityExperiment, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="ScimServiceProviderConfigResponsePatch" />
+        /// Serializes the properties of <see cref="CampaignEligibilityExperiment" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="scimServiceProviderConfigResponsePatch"></param>
+        /// <param name="campaignEligibilityExperiment"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, ScimServiceProviderConfigResponsePatch scimServiceProviderConfigResponsePatch, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, CampaignEligibilityExperiment campaignEligibilityExperiment, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (scimServiceProviderConfigResponsePatch.SupportedOption.IsSet)
-                writer.WriteBoolean("supported", scimServiceProviderConfigResponsePatch.SupportedOption.Value.Value);
+            writer.WriteNumber("id", campaignEligibilityExperiment.Id);
+
+            writer.WriteNumber("variantId", campaignEligibilityExperiment.VariantId);
         }
     }
 }

@@ -24,36 +24,29 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// Configuration settings related to sorting SCIM resources in query responses.
+    /// ExperimentConfidenceTimeline
     /// </summary>
-    public partial class ScimServiceProviderConfigResponseSort : IValidatableObject
+    public partial class ExperimentConfidenceTimeline : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ScimServiceProviderConfigResponseSort" /> class.
+        /// Initializes a new instance of the <see cref="ExperimentConfidenceTimeline" /> class.
         /// </summary>
-        /// <param name="supported">Indicates whether the service provider supports sorting operations for ordered query results.</param>
+        /// <param name="data">Daily cumulative confidence values ordered chronologically from experiment start to end, or to today if the experiment is still running. Empty if the experiment has no data yet. </param>
         [JsonConstructor]
-        public ScimServiceProviderConfigResponseSort(Option<bool?> supported = default)
+        public ExperimentConfidenceTimeline(List<ExperimentConfidenceTimelineDataPoint> data)
         {
-            SupportedOption = supported;
+            Data = data;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Supported
+        /// Daily cumulative confidence values ordered chronologically from experiment start to end, or to today if the experiment is still running. Empty if the experiment has no data yet. 
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<bool?> SupportedOption { get; private set; }
-
-        /// <summary>
-        /// Indicates whether the service provider supports sorting operations for ordered query results.
-        /// </summary>
-        /// <value>Indicates whether the service provider supports sorting operations for ordered query results.</value>
-        [JsonPropertyName("supported")]
-        public bool? Supported { get { return this.SupportedOption.Value; } set { this.SupportedOption = new Option<bool?>(value); } }
+        /// <value>Daily cumulative confidence values ordered chronologically from experiment start to end, or to today if the experiment is still running. Empty if the experiment has no data yet. </value>
+        [JsonPropertyName("data")]
+        public List<ExperimentConfidenceTimelineDataPoint> Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -62,8 +55,8 @@ namespace TalonOneSdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ScimServiceProviderConfigResponseSort {\n");
-            sb.Append("  Supported: ").Append(Supported).Append("\n");
+            sb.Append("class ExperimentConfidenceTimeline {\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -80,19 +73,19 @@ namespace TalonOneSdk.Model
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="ScimServiceProviderConfigResponseSort" />
+    /// A Json converter for type <see cref="ExperimentConfidenceTimeline" />
     /// </summary>
-    public class ScimServiceProviderConfigResponseSortJsonConverter : JsonConverter<ScimServiceProviderConfigResponseSort>
+    public class ExperimentConfidenceTimelineJsonConverter : JsonConverter<ExperimentConfidenceTimeline>
     {
         /// <summary>
-        /// Deserializes json to <see cref="ScimServiceProviderConfigResponseSort" />
+        /// Deserializes json to <see cref="ExperimentConfidenceTimeline" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override ScimServiceProviderConfigResponseSort Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override ExperimentConfidenceTimeline Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -101,7 +94,7 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<bool?> supported = default;
+            Option<List<ExperimentConfidenceTimelineDataPoint>> data = default;
 
             while (utf8JsonReader.Read())
             {
@@ -118,8 +111,8 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "supported":
-                            supported = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                        case "data":
+                            data = new Option<List<ExperimentConfidenceTimelineDataPoint>>(JsonSerializer.Deserialize<List<ExperimentConfidenceTimelineDataPoint>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -127,35 +120,44 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            return new ScimServiceProviderConfigResponseSort(supported);
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class ExperimentConfidenceTimeline.", nameof(data));
+
+            if (data.IsSet && data.Value == null)
+                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ExperimentConfidenceTimeline.");
+
+            return new ExperimentConfidenceTimeline(data.Value);
         }
 
         /// <summary>
-        /// Serializes a <see cref="ScimServiceProviderConfigResponseSort" />
+        /// Serializes a <see cref="ExperimentConfidenceTimeline" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="scimServiceProviderConfigResponseSort"></param>
+        /// <param name="experimentConfidenceTimeline"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, ScimServiceProviderConfigResponseSort scimServiceProviderConfigResponseSort, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, ExperimentConfidenceTimeline experimentConfidenceTimeline, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, scimServiceProviderConfigResponseSort, jsonSerializerOptions);
+            WriteProperties(writer, experimentConfidenceTimeline, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="ScimServiceProviderConfigResponseSort" />
+        /// Serializes the properties of <see cref="ExperimentConfidenceTimeline" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="scimServiceProviderConfigResponseSort"></param>
+        /// <param name="experimentConfidenceTimeline"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, ScimServiceProviderConfigResponseSort scimServiceProviderConfigResponseSort, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, ExperimentConfidenceTimeline experimentConfidenceTimeline, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (scimServiceProviderConfigResponseSort.SupportedOption.IsSet)
-                writer.WriteBoolean("supported", scimServiceProviderConfigResponseSort.SupportedOption.Value.Value);
+            if (experimentConfidenceTimeline.Data == null)
+                throw new ArgumentNullException(nameof(experimentConfidenceTimeline.Data), "Property is required for class ExperimentConfidenceTimeline.");
+
+            writer.WritePropertyName("data");
+            JsonSerializer.Serialize(writer, experimentConfidenceTimeline.Data, jsonSerializerOptions);
         }
     }
 }

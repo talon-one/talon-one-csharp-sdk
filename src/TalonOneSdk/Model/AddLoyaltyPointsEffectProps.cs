@@ -24,29 +24,29 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;addLoyaltyPoints\&quot; effect. This gets triggered whenever a validated rule contained an \&quot;add loyalty\&quot; effect. These points are automatically stored and managed inside Talon.One. 
+    /// This effect indicates that a defined amount of loyalty points was successfully added to the customer&#39;s profile or to a loyalty card.  If you use the [Add loyalty points per item effect](https://docs.talon.one/docs/product/rules/effects/available-effects#reward-effects), use the &#x60;cartItemPosition&#x60; property to identify which item to add the loyalty points for.  Enabling [partial rewards](https://docs.talon.one/docs/product/applications/manage-general-settings#partial-rewards) allows a rule that would fail because of insufficient budget to pass. The rule still fails when the budget reaches 0. Use the &#x60;desiredValue&#x60; property to identify the original amount of loyalty points.  If you use **Add loyalty points per item** and if the session contains some cart items with _quantity &gt; 1_, use the &#x60;cartItemSubPosition&#x60; property to identify the item unit in its line item. See the example below for more information.  If your list of cart items is a [bundle definition](https://docs.talon.one/docs/product/rules/create-and-manage-bundles), use the &#x60;bundleIndex&#x60; and &#x60;bundleName&#x60; properties to identify the bundle containing the items for which loyalty points are added.  If you have set custom activation and expiration dates for the loyalty points, use the &#x60;startDate&#x60; and &#x60;expiryDate&#x60; properties to identify when the reward will be active and when will expire.  If the loyalty program is [profile-based](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types), use the &#x60;recipientIntegrationId&#x60; property to identify the user who receives the loyalty points. If the loyalty program is [card-based](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types), use the &#x60;cardIdentifier&#x60; property to identify the loyalty card on which these points are added.  The points only persist when the session is closed.
     /// </summary>
     public partial class AddLoyaltyPointsEffectProps : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AddLoyaltyPointsEffectProps" /> class.
         /// </summary>
-        /// <param name="name">The name / description of this loyalty point addition.</param>
+        /// <param name="name">The reason of this loyalty point addition.</param>
         /// <param name="programId">The ID of the loyalty program where these points were added.</param>
         /// <param name="subLedgerId">The ID of the subledger within the loyalty program where these points were added.</param>
         /// <param name="value">The amount of points that were added.</param>
         /// <param name="recipientIntegrationId">The user for whom these points were added.</param>
-        /// <param name="transactionUUID">The identifier of this addition in the loyalty ledger.</param>
-        /// <param name="desiredValue">The original amount of loyalty points to be awarded.</param>
-        /// <param name="startDate">Date after which points will be valid.</param>
-        /// <param name="expiryDate">Date after which points will expire.</param>
-        /// <param name="cartItemPosition">The index of the item in the cart items list on which the loyal points addition should be applied.</param>
-        /// <param name="cartItemSubPosition">For cart items with &#x60;quantity&#x60; &gt; 1, the sub position indicates to which item the loyalty points addition is applied. </param>
-        /// <param name="cardIdentifier">The card on which these points were added.</param>
-        /// <param name="bundleIndex">The position of the bundle in a list of item bundles created from the same bundle definition.</param>
-        /// <param name="bundleName">The name of the bundle definition.</param>
-        /// <param name="awaitsActivation">If &#x60;true&#x60;, the loyalty points remain pending until a specific action is complete. The &#x60;startDate&#x60; parameter automatically sets to &#x60;on_action&#x60;. </param>
-        /// <param name="validityDuration">The duration for which the points remain active, calculated relative to the  activation date.    **Note**: This value is returned only if &#x60;awaitsActivation&#x60; is &#x60;true&#x60;  and &#x60;expiryDate&#x60; is not set. </param>
+        /// <param name="transactionUUID">The identifier of this loyalty point transaction.</param>
+        /// <param name="desiredValue">(Partial rewards enabled only) The amount of loyalty points to be awarded without considering budget limitations.</param>
+        /// <param name="startDate">The date after which the added points will be valid.</param>
+        /// <param name="expiryDate">The date after which the added points will expire.</param>
+        /// <param name="cartItemPosition">(_Add points per cart item_ only.) The index of the item in the &#x60;cartItem&#x60; object for which these points were added.</param>
+        /// <param name="cartItemSubPosition">(_Add points per cart item_ ) The index of the item unit in its line item.</param>
+        /// <param name="cardIdentifier">The identifier of the card on which these points were added.</param>
+        /// <param name="bundleIndex">_(With bundles only)_ The position of the specific bundle in the list of bundles created from the same bundle definition.</param>
+        /// <param name="bundleName">_(With bundles only)_ The name of the bundle definition.</param>
+        /// <param name="awaitsActivation">Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.</param>
+        /// <param name="validityDuration">The duration for which the points remain active, calculated relative to their start date.</param>
         [JsonConstructor]
         public AddLoyaltyPointsEffectProps(string name, long programId, string subLedgerId, decimal value, string recipientIntegrationId, string transactionUUID, Option<decimal?> desiredValue = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<decimal?> cartItemPosition = default, Option<decimal?> cartItemSubPosition = default, Option<string> cardIdentifier = default, Option<long?> bundleIndex = default, Option<string> bundleName = default, Option<bool?> awaitsActivation = default, Option<string> validityDuration = default)
         {
@@ -72,9 +72,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The name / description of this loyalty point addition.
+        /// The reason of this loyalty point addition.
         /// </summary>
-        /// <value>The name / description of this loyalty point addition.</value>
+        /// <value>The reason of this loyalty point addition.</value>
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
@@ -108,9 +108,9 @@ namespace TalonOneSdk.Model
         public string RecipientIntegrationId { get; set; }
 
         /// <summary>
-        /// The identifier of this addition in the loyalty ledger.
+        /// The identifier of this loyalty point transaction.
         /// </summary>
-        /// <value>The identifier of this addition in the loyalty ledger.</value>
+        /// <value>The identifier of this loyalty point transaction.</value>
         [JsonPropertyName("transactionUUID")]
         public string TransactionUUID { get; set; }
 
@@ -122,9 +122,9 @@ namespace TalonOneSdk.Model
         public Option<decimal?> DesiredValueOption { get; private set; }
 
         /// <summary>
-        /// The original amount of loyalty points to be awarded.
+        /// (Partial rewards enabled only) The amount of loyalty points to be awarded without considering budget limitations.
         /// </summary>
-        /// <value>The original amount of loyalty points to be awarded.</value>
+        /// <value>(Partial rewards enabled only) The amount of loyalty points to be awarded without considering budget limitations.</value>
         [JsonPropertyName("desiredValue")]
         public decimal? DesiredValue { get { return this.DesiredValueOption.Value; } set { this.DesiredValueOption = new Option<decimal?>(value); } }
 
@@ -136,9 +136,9 @@ namespace TalonOneSdk.Model
         public Option<DateTime?> StartDateOption { get; private set; }
 
         /// <summary>
-        /// Date after which points will be valid.
+        /// The date after which the added points will be valid.
         /// </summary>
-        /// <value>Date after which points will be valid.</value>
+        /// <value>The date after which the added points will be valid.</value>
         [JsonPropertyName("startDate")]
         public DateTime? StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
@@ -150,9 +150,9 @@ namespace TalonOneSdk.Model
         public Option<DateTime?> ExpiryDateOption { get; private set; }
 
         /// <summary>
-        /// Date after which points will expire.
+        /// The date after which the added points will expire.
         /// </summary>
-        /// <value>Date after which points will expire.</value>
+        /// <value>The date after which the added points will expire.</value>
         [JsonPropertyName("expiryDate")]
         public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
@@ -164,9 +164,9 @@ namespace TalonOneSdk.Model
         public Option<decimal?> CartItemPositionOption { get; private set; }
 
         /// <summary>
-        /// The index of the item in the cart items list on which the loyal points addition should be applied.
+        /// (_Add points per cart item_ only.) The index of the item in the &#x60;cartItem&#x60; object for which these points were added.
         /// </summary>
-        /// <value>The index of the item in the cart items list on which the loyal points addition should be applied.</value>
+        /// <value>(_Add points per cart item_ only.) The index of the item in the &#x60;cartItem&#x60; object for which these points were added.</value>
         [JsonPropertyName("cartItemPosition")]
         public decimal? CartItemPosition { get { return this.CartItemPositionOption.Value; } set { this.CartItemPositionOption = new Option<decimal?>(value); } }
 
@@ -178,9 +178,9 @@ namespace TalonOneSdk.Model
         public Option<decimal?> CartItemSubPositionOption { get; private set; }
 
         /// <summary>
-        /// For cart items with &#x60;quantity&#x60; &gt; 1, the sub position indicates to which item the loyalty points addition is applied. 
+        /// (_Add points per cart item_ ) The index of the item unit in its line item.
         /// </summary>
-        /// <value>For cart items with &#x60;quantity&#x60; &gt; 1, the sub position indicates to which item the loyalty points addition is applied. </value>
+        /// <value>(_Add points per cart item_ ) The index of the item unit in its line item.</value>
         [JsonPropertyName("cartItemSubPosition")]
         public decimal? CartItemSubPosition { get { return this.CartItemSubPositionOption.Value; } set { this.CartItemSubPositionOption = new Option<decimal?>(value); } }
 
@@ -192,9 +192,9 @@ namespace TalonOneSdk.Model
         public Option<string> CardIdentifierOption { get; private set; }
 
         /// <summary>
-        /// The card on which these points were added.
+        /// The identifier of the card on which these points were added.
         /// </summary>
-        /// <value>The card on which these points were added.</value>
+        /// <value>The identifier of the card on which these points were added.</value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("cardIdentifier")]
         public string CardIdentifier { get { return this.CardIdentifierOption.Value; } set { this.CardIdentifierOption = new Option<string>(value); } }
@@ -207,9 +207,9 @@ namespace TalonOneSdk.Model
         public Option<long?> BundleIndexOption { get; private set; }
 
         /// <summary>
-        /// The position of the bundle in a list of item bundles created from the same bundle definition.
+        /// _(With bundles only)_ The position of the specific bundle in the list of bundles created from the same bundle definition.
         /// </summary>
-        /// <value>The position of the bundle in a list of item bundles created from the same bundle definition.</value>
+        /// <value>_(With bundles only)_ The position of the specific bundle in the list of bundles created from the same bundle definition.</value>
         [JsonPropertyName("bundleIndex")]
         public long? BundleIndex { get { return this.BundleIndexOption.Value; } set { this.BundleIndexOption = new Option<long?>(value); } }
 
@@ -221,9 +221,9 @@ namespace TalonOneSdk.Model
         public Option<string> BundleNameOption { get; private set; }
 
         /// <summary>
-        /// The name of the bundle definition.
+        /// _(With bundles only)_ The name of the bundle definition.
         /// </summary>
-        /// <value>The name of the bundle definition.</value>
+        /// <value>_(With bundles only)_ The name of the bundle definition.</value>
         [JsonPropertyName("bundleName")]
         public string BundleName { get { return this.BundleNameOption.Value; } set { this.BundleNameOption = new Option<string>(value); } }
 
@@ -235,9 +235,9 @@ namespace TalonOneSdk.Model
         public Option<bool?> AwaitsActivationOption { get; private set; }
 
         /// <summary>
-        /// If &#x60;true&#x60;, the loyalty points remain pending until a specific action is complete. The &#x60;startDate&#x60; parameter automatically sets to &#x60;on_action&#x60;. 
+        /// Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.
         /// </summary>
-        /// <value>If &#x60;true&#x60;, the loyalty points remain pending until a specific action is complete. The &#x60;startDate&#x60; parameter automatically sets to &#x60;on_action&#x60;. </value>
+        /// <value>Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.</value>
         [JsonPropertyName("awaitsActivation")]
         public bool? AwaitsActivation { get { return this.AwaitsActivationOption.Value; } set { this.AwaitsActivationOption = new Option<bool?>(value); } }
 
@@ -249,9 +249,9 @@ namespace TalonOneSdk.Model
         public Option<string> ValidityDurationOption { get; private set; }
 
         /// <summary>
-        /// The duration for which the points remain active, calculated relative to the  activation date.    **Note**: This value is returned only if &#x60;awaitsActivation&#x60; is &#x60;true&#x60;  and &#x60;expiryDate&#x60; is not set. 
+        /// The duration for which the points remain active, calculated relative to their start date.
         /// </summary>
-        /// <value>The duration for which the points remain active, calculated relative to the  activation date.    **Note**: This value is returned only if &#x60;awaitsActivation&#x60; is &#x60;true&#x60;  and &#x60;expiryDate&#x60; is not set. </value>
+        /// <value>The duration for which the points remain active, calculated relative to their start date.</value>
         [JsonPropertyName("validityDuration")]
         public string ValidityDuration { get { return this.ValidityDurationOption.Value; } set { this.ValidityDurationOption = new Option<string>(value); } }
 

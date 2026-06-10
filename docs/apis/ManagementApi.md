@@ -138,6 +138,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**ImportCoupons**](ManagementApi.md#importcoupons) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/import_coupons | Import coupons |
 | [**ImportLoyaltyCards**](ManagementApi.md#importloyaltycards) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/import_cards | Import loyalty cards |
 | [**ImportLoyaltyCustomersTiers**](ManagementApi.md#importloyaltycustomerstiers) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/import_customers_tiers | Import customers into loyalty tiers |
+| [**ImportLoyaltyJoinDates**](ManagementApi.md#importloyaltyjoindates) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/import_join_dates | Import join dates for a loyalty program |
 | [**ImportLoyaltyPoints**](ManagementApi.md#importloyaltypoints) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/import_points | Import loyalty points |
 | [**ImportPoolGiveaways**](ManagementApi.md#importpoolgiveaways) | **POST** /v1/giveaways/pools/{poolId}/import | Import giveaway codes into a giveaway pool |
 | [**ImportReferrals**](ManagementApi.md#importreferrals) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/import_referrals | Import referrals |
@@ -1980,7 +1981,7 @@ Download a CSV file containing the coupons that match the given properties.  > [
 
 <a id="exportcustomersessions"></a>
 # **ExportCustomerSessions**
-> string ExportCustomerSessions (long applicationId, DateTime createdBefore = null, DateTime createdAfter = null, string profileIntegrationId = null, string dateFormat = null, string customerSessionState = null)
+> string ExportCustomerSessions (long applicationId, DateTime createdBefore = null, DateTime createdAfter = null, DateTime updatedBefore = null, DateTime updatedAfter = null, string profileIntegrationId = null, string dateFormat = null, string customerSessionState = null)
 
 Export customer sessions
 
@@ -1994,6 +1995,8 @@ Download a CSV file containing the customer sessions that match the request.  > 
 | **applicationId** | **long** | The ID of the Application. It is displayed in your Talon.One deployment URL. |  |
 | **createdBefore** | **DateTime** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. | [optional]  |
 | **createdAfter** | **DateTime** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. | [optional]  |
+| **updatedBefore** | **DateTime** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. | [optional]  |
+| **updatedAfter** | **DateTime** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string. | [optional]  |
 | **profileIntegrationId** | **string** | Only return sessions for the customer that matches this customer integration ID. | [optional]  |
 | **dateFormat** | **string** | Determines the format of dates in the export document. | [optional]  |
 | **customerSessionState** | **string** | Filter results by state. | [optional]  |
@@ -2265,7 +2268,7 @@ Download a CSV file containing a loyalty card ledger log of the loyalty program.
 
 Export loyalty cards
 
-Download a CSV file containing the loyalty cards from a specified loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The CSV file contains the following columns:  - `identifier`: The unique identifier of the loyalty card. - `created`: The date and time the loyalty card was created. - `status`: The status of the loyalty card. - `userpercardlimit`: The maximum number of customer profiles that can be linked to the card. - `customerprofileids`: Integration IDs of the customer profiles linked to the card. - `blockreason`: The reason for transferring and blocking the loyalty card. - `generated`: An indicator of whether the loyalty card was generated. - `batchid`: The ID of the batch the loyalty card is in. - `attributes`: The custom attributes of this loyalty card. Currently, this feature is only available upon request. 
+Download a CSV file containing the loyalty cards from a specified loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The CSV file contains the following columns:  - `identifier`: The unique identifier of the loyalty card. - `created`: The date and time the loyalty card was created. - `status`: The status of the loyalty card. - `userpercardlimit`: The maximum number of customer profiles that can be linked to the card. - `customerprofileids`: Integration IDs of the customer profiles linked to the card. - `blockreason`: The reason for transferring and blocking the loyalty card. - `generated`: An indicator of whether the loyalty card was generated. - `batchid`: The ID of the batch the loyalty card is in. - `attributes`: The custom attributes of this loyalty card. 
 
 
 ### Parameters
@@ -3420,7 +3423,7 @@ Get a list of audience IDs and their member count.
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **audienceIds** | **string** | The IDs of one or more audiences, separated by commas, by which to filter results. |  |
+| **audienceIds** | **string** | The IDs of one or more audiences, separated by commas, by which to filter results. Do not provide more than 1000 audience IDs. |  |
 | **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [optional]  |
 
 ### Return type
@@ -5445,7 +5448,7 @@ Upload a CSV file containing the coupons that should be created. The file should
 
 Import loyalty cards
 
-Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program.  Send the file as multipart data.  It contains the following columns for each card:  - `identifier` (required): The identifier of the loyalty card, which must match the regular expression `^[A-Za-z0-9._%+@-]+$`. - `state` (required): The state of the loyalty card. It can be `active` or `inactive`. - `customerprofileids` (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;).  > [!note] Your CSV file must contain less than 500,000 rows. Requests time out after 30 seconds.  ## Example  ```csv identifier,state,customerprofileids 123-456-789AT,active,Alexa001;UserA ``` 
+Upload a CSV file containing the loyalty cards that you want to use in your card-based loyalty program.  Send the file as multipart data.  It contains the following columns for each card:  - `identifier` (required): The identifier of the loyalty card, which must match the regular expression `^[A-Za-z0-9._%+@-]+$`. - `state` (required): The state of the loyalty card. It can be `active` or `inactive`. - `customerprofileids` (optional): An array of strings representing the identifiers of the customer profiles linked to the loyalty card. The identifiers should be separated with a semicolon (;). - `attributes` (optional): A JSON object that contains the loyalty card's custom attributes and their values. These attributes must be created and connected to this loyalty program before they can be assigned to the cards through this endpoint.  > [!note] Your CSV file must contain less than 500,000 rows. Requests time out after 30 seconds.  ## Example  ```csv identifier,state,customerprofileids,attributes 123-456-789AT,active,Alexa001;UserA,'{\"\"my_attributes\"\": \"\"10_off\"\"}\" ``` 
 
 
 ### Parameters
@@ -5492,6 +5495,46 @@ Upload a CSV file containing existing customers to be assigned to existing tiers
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **loyaltyProgramId** | **long** | Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  |  |
+| **upFile** | **System.IO.Stream****System.IO.Stream** | The CSV file containing the data that is being imported. | [optional]  |
+
+### Return type
+
+[**Import**](Import.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+<a id="importloyaltyjoindates"></a>
+# **ImportLoyaltyJoinDates**
+> Import ImportLoyaltyJoinDates (long loyaltyProgramId, System.IO.Stream upFile = null)
+
+Import join dates for a loyalty program
+
+Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  > [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - `customerprofileid`: The integration ID of the customer profile whose join   date you want to update. - `newjoindate`: The new join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a `400` error. - If a join date already exists for a profile, the uploaded date replaces it.  > [!note] We recommend limiting your file size to 500 MB.  ## Example  ```csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z ``` 
+
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **loyaltyProgramId** | **long** | Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  |  |
 | **upFile** | **System.IO.Stream****System.IO.Stream** | The CSV file containing the data that is being imported. | [optional]  |
 
 ### Return type
@@ -5784,7 +5827,7 @@ This endpoint does not need any parameter.
 
 <a id="listapplicationcartitemfilters"></a>
 # **ListApplicationCartItemFilters**
-> ListApplicationCartItemFilters200Response ListApplicationCartItemFilters (long applicationId, long pageSize = null, long skip = null, string title = null)
+> ListApplicationCartItemFilters200Response ListApplicationCartItemFilters (long applicationId, long pageSize = null, long skip = null, string name = null)
 
 List Application cart item filters
 
@@ -5798,7 +5841,7 @@ Return all the Application cart item filters for a specific Application.
 | **applicationId** | **long** | The ID of the Application. It is displayed in your Talon.One deployment URL. |  |
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 50] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
-| **title** | **string** | Filter by the display name of the Application cart item filter in the Application.  **Note**: If no &#x60;title&#x60; is provided, all the Application cart item filters in the Application are returned.  | [optional]  |
+| **name** | **string** | Filter by the display name of the Application cart item filter in the Application.  **Note**: If no &#x60;name&#x60; is provided, all the Application cart item filters in the Application are returned.  | [optional]  |
 
 ### Return type
 

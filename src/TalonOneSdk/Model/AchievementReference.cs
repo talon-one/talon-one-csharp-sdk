@@ -35,13 +35,15 @@ namespace TalonOneSdk.Model
         /// <param name="applicationId">The ID of the Application associated with the campaign that references this achievement.</param>
         /// <param name="applicationName">The name of the Application associated with the campaign that references this achievement.</param>
         /// <param name="campaignId">The ID of the campaign that references this achievement.</param>
+        /// <param name="campaignName">The name of the campaign that references this achievement.</param>
         [JsonConstructor]
-        public AchievementReference(long achievementId, long applicationId, string applicationName, long campaignId)
+        public AchievementReference(long achievementId, long applicationId, string applicationName, long campaignId, string campaignName)
         {
             AchievementId = achievementId;
             ApplicationId = applicationId;
             ApplicationName = applicationName;
             CampaignId = campaignId;
+            CampaignName = campaignName;
             OnCreated();
         }
 
@@ -80,6 +82,14 @@ namespace TalonOneSdk.Model
         public long CampaignId { get; set; }
 
         /// <summary>
+        /// The name of the campaign that references this achievement.
+        /// </summary>
+        /// <value>The name of the campaign that references this achievement.</value>
+        /* <example>Summer promotions</example> */
+        [JsonPropertyName("campaignName")]
+        public string CampaignName { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -91,6 +101,7 @@ namespace TalonOneSdk.Model
             sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
             sb.Append("  ApplicationName: ").Append(ApplicationName).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
+            sb.Append("  CampaignName: ").Append(CampaignName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -132,6 +143,7 @@ namespace TalonOneSdk.Model
             Option<long?> applicationId = default;
             Option<string> applicationName = default;
             Option<long?> campaignId = default;
+            Option<string> campaignName = default;
 
             while (utf8JsonReader.Read())
             {
@@ -160,6 +172,9 @@ namespace TalonOneSdk.Model
                         case "campaignId":
                             campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
+                        case "campaignName":
+                            campaignName = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
@@ -178,6 +193,9 @@ namespace TalonOneSdk.Model
             if (!campaignId.IsSet)
                 throw new ArgumentException("Property is required for class AchievementReference.", nameof(campaignId));
 
+            if (!campaignName.IsSet)
+                throw new ArgumentException("Property is required for class AchievementReference.", nameof(campaignName));
+
             if (achievementId.IsSet && achievementId.Value == null)
                 throw new ArgumentNullException(nameof(achievementId), "Property is not nullable for class AchievementReference.");
 
@@ -190,7 +208,10 @@ namespace TalonOneSdk.Model
             if (campaignId.IsSet && campaignId.Value == null)
                 throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class AchievementReference.");
 
-            return new AchievementReference(achievementId.Value.Value, applicationId.Value.Value, applicationName.Value, campaignId.Value.Value);
+            if (campaignName.IsSet && campaignName.Value == null)
+                throw new ArgumentNullException(nameof(campaignName), "Property is not nullable for class AchievementReference.");
+
+            return new AchievementReference(achievementId.Value.Value, applicationId.Value.Value, applicationName.Value, campaignId.Value.Value, campaignName.Value);
         }
 
         /// <summary>
@@ -220,6 +241,9 @@ namespace TalonOneSdk.Model
             if (achievementReference.ApplicationName == null)
                 throw new ArgumentNullException(nameof(achievementReference.ApplicationName), "Property is required for class AchievementReference.");
 
+            if (achievementReference.CampaignName == null)
+                throw new ArgumentNullException(nameof(achievementReference.CampaignName), "Property is required for class AchievementReference.");
+
             writer.WriteNumber("achievementId", achievementReference.AchievementId);
 
             writer.WriteNumber("applicationId", achievementReference.ApplicationId);
@@ -227,6 +251,8 @@ namespace TalonOneSdk.Model
             writer.WriteString("applicationName", achievementReference.ApplicationName);
 
             writer.WriteNumber("campaignId", achievementReference.CampaignId);
+
+            writer.WriteString("campaignName", achievementReference.CampaignName);
         }
     }
 }

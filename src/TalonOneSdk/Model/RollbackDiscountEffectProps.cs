@@ -24,20 +24,20 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;rollbackDiscount\&quot; effect. This gets triggered whenever previously closed session is now cancelled or partially returned and a setDiscount effect was cancelled on our internal discount limit counters.
+    /// This effect indicates that a discounted session, cart item, or additional cost has been cancelled or partially returned. This effect can only happen when you set the status of a session to &#x60;cancel&#x60; or the status changes to &#x60;partially_returned&#x60;.  If the session contains some cart items with _quantity &gt; 1_, use the &#x60;cartItemSubPosition&#x60; property to identify the specific item unit in its line item. See the example below.
     /// </summary>
     public partial class RollbackDiscountEffectProps : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RollbackDiscountEffectProps" /> class.
         /// </summary>
-        /// <param name="name">The name of the \&quot;setDiscount\&quot; effect that was rolled back.</param>
-        /// <param name="value">The value of the discount that was rolled back.</param>
-        /// <param name="cartItemPosition">The index of the item in the cart items for which the discount was rolled back.</param>
-        /// <param name="cartItemSubPosition">For cart items with &#x60;quantity&#x60; &gt; 1, the subposition returns the index of the item unit in its line item. </param>
-        /// <param name="additionalCostId">The ID of the additional cost that was rolled back.</param>
-        /// <param name="additionalCost">The name of the additional cost that was rolled back.</param>
-        /// <param name="scope">The scope of the rolled back discount - For a discount per session, it can be one of &#x60;cartItems&#x60;, &#x60;additionalCosts&#x60; or &#x60;sessionTotal&#x60; - For a discount per item, it can be one of &#x60;price&#x60;, &#x60;additionalCosts&#x60; or &#x60;itemTotal&#x60; </param>
+        /// <param name="name">The name of the discount effect that was rolled back.</param>
+        /// <param name="value">The monetary value of the discount that was rolled back.</param>
+        /// <param name="cartItemPosition">The index of the item in the &#x60;cartItem&#x60; object whose discount was rolled back, or the unit containing the additional cost whose discount was rolled back.</param>
+        /// <param name="cartItemSubPosition">The index of the item unit in its line item for which the discount was rolled back.</param>
+        /// <param name="additionalCostId">_Only when rolling back [setDiscountPerAdditionalCost](https://docs.talon.one/docs/dev/integration-api/api-effects#setdiscountperadditionalcost) and [setDiscountPerAdditionalCostPerItem](https://docs.talon.one/docs/dev/integration-api/api-effects#setdiscountperadditionalcostperitem)_ The ID of the additional cost to be discounted.</param>
+        /// <param name="additionalCost">The API name of the additional cost whose discount was rolled back.</param>
+        /// <param name="scope">The scope of the rolled back discount.  - For a discount per session, it can be one of &#x60;cartItems&#x60;, &#x60;additionalCosts&#x60; or &#x60;sessionTotal&#x60; - For a discount per item, it can be one of &#x60;price&#x60;, &#x60;additionalCosts&#x60; or &#x60;itemTotal&#x60;</param>
         [JsonConstructor]
         public RollbackDiscountEffectProps(string name, decimal value, Option<decimal?> cartItemPosition = default, Option<decimal?> cartItemSubPosition = default, Option<long?> additionalCostId = default, Option<string> additionalCost = default, Option<string> scope = default)
         {
@@ -54,16 +54,16 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The name of the \&quot;setDiscount\&quot; effect that was rolled back.
+        /// The name of the discount effect that was rolled back.
         /// </summary>
-        /// <value>The name of the \&quot;setDiscount\&quot; effect that was rolled back.</value>
+        /// <value>The name of the discount effect that was rolled back.</value>
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// The value of the discount that was rolled back.
+        /// The monetary value of the discount that was rolled back.
         /// </summary>
-        /// <value>The value of the discount that was rolled back.</value>
+        /// <value>The monetary value of the discount that was rolled back.</value>
         [JsonPropertyName("value")]
         public decimal Value { get; set; }
 
@@ -75,9 +75,9 @@ namespace TalonOneSdk.Model
         public Option<decimal?> CartItemPositionOption { get; private set; }
 
         /// <summary>
-        /// The index of the item in the cart items for which the discount was rolled back.
+        /// The index of the item in the &#x60;cartItem&#x60; object whose discount was rolled back, or the unit containing the additional cost whose discount was rolled back.
         /// </summary>
-        /// <value>The index of the item in the cart items for which the discount was rolled back.</value>
+        /// <value>The index of the item in the &#x60;cartItem&#x60; object whose discount was rolled back, or the unit containing the additional cost whose discount was rolled back.</value>
         [JsonPropertyName("cartItemPosition")]
         public decimal? CartItemPosition { get { return this.CartItemPositionOption.Value; } set { this.CartItemPositionOption = new Option<decimal?>(value); } }
 
@@ -89,9 +89,9 @@ namespace TalonOneSdk.Model
         public Option<decimal?> CartItemSubPositionOption { get; private set; }
 
         /// <summary>
-        /// For cart items with &#x60;quantity&#x60; &gt; 1, the subposition returns the index of the item unit in its line item. 
+        /// The index of the item unit in its line item for which the discount was rolled back.
         /// </summary>
-        /// <value>For cart items with &#x60;quantity&#x60; &gt; 1, the subposition returns the index of the item unit in its line item. </value>
+        /// <value>The index of the item unit in its line item for which the discount was rolled back.</value>
         [JsonPropertyName("cartItemSubPosition")]
         public decimal? CartItemSubPosition { get { return this.CartItemSubPositionOption.Value; } set { this.CartItemSubPositionOption = new Option<decimal?>(value); } }
 
@@ -103,9 +103,9 @@ namespace TalonOneSdk.Model
         public Option<long?> AdditionalCostIdOption { get; private set; }
 
         /// <summary>
-        /// The ID of the additional cost that was rolled back.
+        /// _Only when rolling back [setDiscountPerAdditionalCost](https://docs.talon.one/docs/dev/integration-api/api-effects#setdiscountperadditionalcost) and [setDiscountPerAdditionalCostPerItem](https://docs.talon.one/docs/dev/integration-api/api-effects#setdiscountperadditionalcostperitem)_ The ID of the additional cost to be discounted.
         /// </summary>
-        /// <value>The ID of the additional cost that was rolled back.</value>
+        /// <value>_Only when rolling back [setDiscountPerAdditionalCost](https://docs.talon.one/docs/dev/integration-api/api-effects#setdiscountperadditionalcost) and [setDiscountPerAdditionalCostPerItem](https://docs.talon.one/docs/dev/integration-api/api-effects#setdiscountperadditionalcostperitem)_ The ID of the additional cost to be discounted.</value>
         [JsonPropertyName("additionalCostId")]
         public long? AdditionalCostId { get { return this.AdditionalCostIdOption.Value; } set { this.AdditionalCostIdOption = new Option<long?>(value); } }
 
@@ -117,9 +117,9 @@ namespace TalonOneSdk.Model
         public Option<string> AdditionalCostOption { get; private set; }
 
         /// <summary>
-        /// The name of the additional cost that was rolled back.
+        /// The API name of the additional cost whose discount was rolled back.
         /// </summary>
-        /// <value>The name of the additional cost that was rolled back.</value>
+        /// <value>The API name of the additional cost whose discount was rolled back.</value>
         [JsonPropertyName("additionalCost")]
         public string AdditionalCost { get { return this.AdditionalCostOption.Value; } set { this.AdditionalCostOption = new Option<string>(value); } }
 
@@ -131,9 +131,9 @@ namespace TalonOneSdk.Model
         public Option<string> ScopeOption { get; private set; }
 
         /// <summary>
-        /// The scope of the rolled back discount - For a discount per session, it can be one of &#x60;cartItems&#x60;, &#x60;additionalCosts&#x60; or &#x60;sessionTotal&#x60; - For a discount per item, it can be one of &#x60;price&#x60;, &#x60;additionalCosts&#x60; or &#x60;itemTotal&#x60; 
+        /// The scope of the rolled back discount.  - For a discount per session, it can be one of &#x60;cartItems&#x60;, &#x60;additionalCosts&#x60; or &#x60;sessionTotal&#x60; - For a discount per item, it can be one of &#x60;price&#x60;, &#x60;additionalCosts&#x60; or &#x60;itemTotal&#x60;
         /// </summary>
-        /// <value>The scope of the rolled back discount - For a discount per session, it can be one of &#x60;cartItems&#x60;, &#x60;additionalCosts&#x60; or &#x60;sessionTotal&#x60; - For a discount per item, it can be one of &#x60;price&#x60;, &#x60;additionalCosts&#x60; or &#x60;itemTotal&#x60; </value>
+        /// <value>The scope of the rolled back discount.  - For a discount per session, it can be one of &#x60;cartItems&#x60;, &#x60;additionalCosts&#x60; or &#x60;sessionTotal&#x60; - For a discount per item, it can be one of &#x60;price&#x60;, &#x60;additionalCosts&#x60; or &#x60;itemTotal&#x60;</value>
         [JsonPropertyName("scope")]
         public string Scope { get { return this.ScopeOption.Value; } set { this.ScopeOption = new Option<string>(value); } }
 

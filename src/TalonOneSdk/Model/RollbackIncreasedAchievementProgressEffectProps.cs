@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;rollbackIncreasedAchievementProgress\&quot; effect. This gets triggered whenever a closed session where the &#x60;increaseAchievementProgress&#x60; effect was triggered is cancelled. This is applicable only when the customer has not completed the achievement.
+    /// This effect indicates that the customer&#39;s progress in an achievement was rolled back.  The Rule Engine triggers this effect when you cancel or [reopen a customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/reopenCustomerSession) that previously validated the [Update customer progress](https://docs.talon.one/docs/product/rules/effects/use-effects#update-customer-progress) effect and triggered the [increaseAchievementProgress](https://docs.talon.one/docs/dev/integration-api/api-effects#increaseachievementprogress) API effect.  The effect is also triggered for completed achievements if the **Allow progress rollback for completed achievements** setting is enabled. You can enable this through the [Campaign Manager](https://docs.talon.one/docs/product/campaigns/achievements/manage-achievements) or the [Management API](https://docs.talon.one/management-api#tag/Achievements/operation/createAchievement) by setting the &#x60;achievementAllowRollbackAfterCompletion&#x60; property to &#x60;true&#x60;. This setting only applies to one-time and recurring on expiration achievements.
     /// </summary>
     public partial class RollbackIncreasedAchievementProgressEffectProps : IValidatableObject
     {
@@ -34,7 +34,7 @@ namespace TalonOneSdk.Model
         /// <param name="achievementId">The internal ID of the achievement.</param>
         /// <param name="achievementName">The name of the achievement.</param>
         /// <param name="progressTrackerId">The internal ID of the achievement progress tracker.</param>
-        /// <param name="decreaseProgressBy">The value by which the customer&#39;s current progress in the achievement is decreased.</param>
+        /// <param name="decreaseProgressBy">The value by which the customer&#39;s current progress in the achievement has decreased.</param>
         /// <param name="currentProgress">The current progress of the customer in the achievement.</param>
         /// <param name="target">The target value to complete the achievement.</param>
         [JsonConstructor]
@@ -75,9 +75,9 @@ namespace TalonOneSdk.Model
         public long ProgressTrackerId { get; set; }
 
         /// <summary>
-        /// The value by which the customer&#39;s current progress in the achievement is decreased.
+        /// The value by which the customer&#39;s current progress in the achievement has decreased.
         /// </summary>
-        /// <value>The value by which the customer&#39;s current progress in the achievement is decreased.</value>
+        /// <value>The value by which the customer&#39;s current progress in the achievement has decreased.</value>
         [JsonPropertyName("decreaseProgressBy")]
         public decimal DecreaseProgressBy { get; set; }
 

@@ -31,15 +31,32 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RolesV2Thresholds" /> class.
         /// </summary>
+        /// <param name="loyaltyProgramId">Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.</param>
         /// <param name="loyaltyPointsLimit">Maximum number of loyalty points a support user can award without approval.</param>
         [JsonConstructor]
-        public RolesV2Thresholds(Option<long?> loyaltyPointsLimit = default)
+        public RolesV2Thresholds(Option<long?> loyaltyProgramId = default, Option<long?> loyaltyPointsLimit = default)
         {
+            LoyaltyProgramIdOption = loyaltyProgramId;
             LoyaltyPointsLimitOption = loyaltyPointsLimit;
             OnCreated();
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// Used to track the state of LoyaltyProgramId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> LoyaltyProgramIdOption { get; private set; }
+
+        /// <summary>
+        /// Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+        /// </summary>
+        /// <value>Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.</value>
+        /* <example>8</example> */
+        [JsonPropertyName("loyaltyProgramId")]
+        public long? LoyaltyProgramId { get { return this.LoyaltyProgramIdOption.Value; } set { this.LoyaltyProgramIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of LoyaltyPointsLimit
@@ -64,6 +81,7 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class RolesV2Thresholds {\n");
+            sb.Append("  LoyaltyProgramId: ").Append(LoyaltyProgramId).Append("\n");
             sb.Append("  LoyaltyPointsLimit: ").Append(LoyaltyPointsLimit).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -102,6 +120,7 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<long?> loyaltyProgramId = default;
             Option<long?> loyaltyPointsLimit = default;
 
             while (utf8JsonReader.Read())
@@ -119,6 +138,9 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "loyaltyProgramId":
+                            loyaltyProgramId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
                         case "loyaltyPointsLimit":
                             loyaltyPointsLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
@@ -128,7 +150,7 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            return new RolesV2Thresholds(loyaltyPointsLimit);
+            return new RolesV2Thresholds(loyaltyProgramId, loyaltyPointsLimit);
         }
 
         /// <summary>
@@ -155,6 +177,9 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RolesV2Thresholds rolesV2Thresholds, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (rolesV2Thresholds.LoyaltyProgramIdOption.IsSet)
+                writer.WriteNumber("loyaltyProgramId", rolesV2Thresholds.LoyaltyProgramIdOption.Value.Value);
+
             if (rolesV2Thresholds.LoyaltyPointsLimitOption.IsSet)
                 writer.WriteNumber("loyaltyPointsLimit", rolesV2Thresholds.LoyaltyPointsLimitOption.Value.Value);
         }

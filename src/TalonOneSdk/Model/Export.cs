@@ -36,7 +36,7 @@ namespace TalonOneSdk.Model
         /// <param name="accountId">The ID of the account that owns this entity.</param>
         /// <param name="userId">The ID of the user associated with this entity.</param>
         /// <param name="entity">The name of the entity that was exported.</param>
-        /// <param name="filter">Map of keys and values that were used to filter the exported rows.</param>
+        /// <param name="filter">Arbitrary properties associated with this campaign.</param>
         [JsonConstructor]
         public Export(long id, DateTime created, long accountId, long userId, EntityEnum entity, Object filter)
         {
@@ -228,9 +228,9 @@ namespace TalonOneSdk.Model
         public long UserId { get; set; }
 
         /// <summary>
-        /// Map of keys and values that were used to filter the exported rows.
+        /// Arbitrary properties associated with this campaign.
         /// </summary>
-        /// <value>Map of keys and values that were used to filter the exported rows.</value>
+        /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("filter")]
         public Object Filter { get; set; }
 

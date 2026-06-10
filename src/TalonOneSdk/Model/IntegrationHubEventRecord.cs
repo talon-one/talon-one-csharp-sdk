@@ -31,25 +31,29 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="IntegrationHubEventRecord" /> class.
         /// </summary>
-        /// <param name="id">id</param>
-        /// <param name="flowId">flowId</param>
+        /// <param name="id">ID of the event record.</param>
+        /// <param name="flowId">ID of the integration hub flow.</param>
         /// <param name="eventType">eventType</param>
-        /// <param name="publishedAt">publishedAt</param>
-        /// <param name="processAfter">processAfter</param>
-        /// <param name="retry">retry</param>
-        /// <param name="eventData">eventData</param>
-        /// <param name="processedAt">processedAt</param>
-        /// <param name="deliveredAt">deliveredAt</param>
+        /// <param name="publishedAt">Timestamp when the event was published.</param>
+        /// <param name="scheduledTo">Timestamp after which the event is scheduled to be processed.</param>
+        /// <param name="retry">Number of delivery retries attempted.</param>
+        /// <param name="payload">The event payload as a formatted JSON string.</param>
+        /// <param name="integrationName">Name of the integration.</param>
+        /// <param name="instanceName">Name of the integration instance.</param>
+        /// <param name="processedAt">Timestamp when the event was processed.</param>
+        /// <param name="deliveredAt">Timestamp when the event was delivered.</param>
         [JsonConstructor]
-        public IntegrationHubEventRecord(long id, long flowId, string eventType, DateTime publishedAt, DateTime processAfter, long retry, Object eventData = default, Option<DateTime?> processedAt = default, Option<DateTime?> deliveredAt = default)
+        public IntegrationHubEventRecord(long id, long flowId, IntegrationHubEventType eventType, DateTime publishedAt, DateTime scheduledTo, long retry, string payload, Option<string> integrationName = default, Option<string> instanceName = default, Option<DateTime?> processedAt = default, Option<DateTime?> deliveredAt = default)
         {
             Id = id;
             FlowId = flowId;
             EventType = eventType;
             PublishedAt = publishedAt;
-            ProcessAfter = processAfter;
+            ScheduledTo = scheduledTo;
             Retry = retry;
-            EventData = eventData;
+            Payload = payload;
+            IntegrationNameOption = integrationName;
+            InstanceNameOption = instanceName;
             ProcessedAtOption = processedAt;
             DeliveredAtOption = deliveredAt;
             OnCreated();
@@ -58,46 +62,80 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Gets or Sets EventType
         /// </summary>
-        [JsonPropertyName("Id")]
+        [JsonPropertyName("eventType")]
+        public IntegrationHubEventType EventType { get; set; }
+
+        /// <summary>
+        /// ID of the event record.
+        /// </summary>
+        /// <value>ID of the event record.</value>
+        [JsonPropertyName("id")]
         public long Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets FlowId
+        /// ID of the integration hub flow.
         /// </summary>
-        [JsonPropertyName("FlowId")]
+        /// <value>ID of the integration hub flow.</value>
+        [JsonPropertyName("flowId")]
         public long FlowId { get; set; }
 
         /// <summary>
-        /// Gets or Sets EventType
+        /// Timestamp when the event was published.
         /// </summary>
-        [JsonPropertyName("EventType")]
-        public string EventType { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PublishedAt
-        /// </summary>
-        [JsonPropertyName("PublishedAt")]
+        /// <value>Timestamp when the event was published.</value>
+        [JsonPropertyName("publishedAt")]
         public DateTime PublishedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets ProcessAfter
+        /// Timestamp after which the event is scheduled to be processed.
         /// </summary>
-        [JsonPropertyName("ProcessAfter")]
-        public DateTime ProcessAfter { get; set; }
+        /// <value>Timestamp after which the event is scheduled to be processed.</value>
+        [JsonPropertyName("scheduledTo")]
+        public DateTime ScheduledTo { get; set; }
 
         /// <summary>
-        /// Gets or Sets Retry
+        /// Number of delivery retries attempted.
         /// </summary>
-        [JsonPropertyName("Retry")]
+        /// <value>Number of delivery retries attempted.</value>
+        [JsonPropertyName("retry")]
         public long Retry { get; set; }
 
         /// <summary>
-        /// Gets or Sets EventData
+        /// The event payload as a formatted JSON string.
         /// </summary>
-        [JsonPropertyName("EventData")]
-        public Object EventData { get; set; }
+        /// <value>The event payload as a formatted JSON string.</value>
+        [JsonPropertyName("payload")]
+        public string Payload { get; set; }
+
+        /// <summary>
+        /// Used to track the state of IntegrationName
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IntegrationNameOption { get; private set; }
+
+        /// <summary>
+        /// Name of the integration.
+        /// </summary>
+        /// <value>Name of the integration.</value>
+        [JsonPropertyName("integrationName")]
+        public string IntegrationName { get { return this.IntegrationNameOption.Value; } set { this.IntegrationNameOption = new Option<string>(value); } }
+
+        /// <summary>
+        /// Used to track the state of InstanceName
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> InstanceNameOption { get; private set; }
+
+        /// <summary>
+        /// Name of the integration instance.
+        /// </summary>
+        /// <value>Name of the integration instance.</value>
+        [JsonPropertyName("instanceName")]
+        public string InstanceName { get { return this.InstanceNameOption.Value; } set { this.InstanceNameOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of ProcessedAt
@@ -107,9 +145,10 @@ namespace TalonOneSdk.Model
         public Option<DateTime?> ProcessedAtOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ProcessedAt
+        /// Timestamp when the event was processed.
         /// </summary>
-        [JsonPropertyName("ProcessedAt")]
+        /// <value>Timestamp when the event was processed.</value>
+        [JsonPropertyName("processedAt")]
         public DateTime? ProcessedAt { get { return this.ProcessedAtOption.Value; } set { this.ProcessedAtOption = new Option<DateTime?>(value); } }
 
         /// <summary>
@@ -120,9 +159,10 @@ namespace TalonOneSdk.Model
         public Option<DateTime?> DeliveredAtOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets DeliveredAt
+        /// Timestamp when the event was delivered.
         /// </summary>
-        [JsonPropertyName("DeliveredAt")]
+        /// <value>Timestamp when the event was delivered.</value>
+        [JsonPropertyName("deliveredAt")]
         public DateTime? DeliveredAt { get { return this.DeliveredAtOption.Value; } set { this.DeliveredAtOption = new Option<DateTime?>(value); } }
 
         /// <summary>
@@ -137,9 +177,11 @@ namespace TalonOneSdk.Model
             sb.Append("  FlowId: ").Append(FlowId).Append("\n");
             sb.Append("  EventType: ").Append(EventType).Append("\n");
             sb.Append("  PublishedAt: ").Append(PublishedAt).Append("\n");
-            sb.Append("  ProcessAfter: ").Append(ProcessAfter).Append("\n");
+            sb.Append("  ScheduledTo: ").Append(ScheduledTo).Append("\n");
             sb.Append("  Retry: ").Append(Retry).Append("\n");
-            sb.Append("  EventData: ").Append(EventData).Append("\n");
+            sb.Append("  Payload: ").Append(Payload).Append("\n");
+            sb.Append("  IntegrationName: ").Append(IntegrationName).Append("\n");
+            sb.Append("  InstanceName: ").Append(InstanceName).Append("\n");
             sb.Append("  ProcessedAt: ").Append(ProcessedAt).Append("\n");
             sb.Append("  DeliveredAt: ").Append(DeliveredAt).Append("\n");
             sb.Append("}\n");
@@ -168,9 +210,9 @@ namespace TalonOneSdk.Model
         public static string PublishedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
-        /// The format to use to serialize ProcessAfter
+        /// The format to use to serialize ScheduledTo
         /// </summary>
-        public static string ProcessAfterFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public static string ScheduledToFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ProcessedAt
@@ -201,11 +243,13 @@ namespace TalonOneSdk.Model
 
             Option<long?> id = default;
             Option<long?> flowId = default;
-            Option<string> eventType = default;
+            Option<IntegrationHubEventType?> eventType = default;
             Option<DateTime?> publishedAt = default;
-            Option<DateTime?> processAfter = default;
+            Option<DateTime?> scheduledTo = default;
             Option<long?> retry = default;
-            Option<Object> eventData = default;
+            Option<string> payload = default;
+            Option<string> integrationName = default;
+            Option<string> instanceName = default;
             Option<DateTime?> processedAt = default;
             Option<DateTime?> deliveredAt = default;
 
@@ -224,31 +268,39 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "Id":
+                        case "id":
                             id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
-                        case "FlowId":
+                        case "flowId":
                             flowId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
-                        case "EventType":
-                            eventType = new Option<string>(utf8JsonReader.GetString());
+                        case "eventType":
+                            string eventTypeRawValue = utf8JsonReader.GetString();
+                            if (eventTypeRawValue != null)
+                                eventType = new Option<IntegrationHubEventType?>(IntegrationHubEventTypeValueConverter.FromStringOrDefault(eventTypeRawValue));
                             break;
-                        case "PublishedAt":
+                        case "publishedAt":
                             publishedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "ProcessAfter":
-                            processAfter = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                        case "scheduledTo":
+                            scheduledTo = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "Retry":
+                        case "retry":
                             retry = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
-                        case "EventData":
-                            eventData = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                        case "payload":
+                            payload = new Option<string>(utf8JsonReader.GetString());
                             break;
-                        case "ProcessedAt":
+                        case "integrationName":
+                            integrationName = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "instanceName":
+                            instanceName = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "processedAt":
                             processedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "DeliveredAt":
+                        case "deliveredAt":
                             deliveredAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
@@ -269,14 +321,14 @@ namespace TalonOneSdk.Model
             if (!publishedAt.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventRecord.", nameof(publishedAt));
 
-            if (!processAfter.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventRecord.", nameof(processAfter));
+            if (!scheduledTo.IsSet)
+                throw new ArgumentException("Property is required for class IntegrationHubEventRecord.", nameof(scheduledTo));
 
             if (!retry.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventRecord.", nameof(retry));
 
-            if (!eventData.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventRecord.", nameof(eventData));
+            if (!payload.IsSet)
+                throw new ArgumentException("Property is required for class IntegrationHubEventRecord.", nameof(payload));
 
             if (id.IsSet && id.Value == null)
                 throw new ArgumentNullException(nameof(id), "Property is not nullable for class IntegrationHubEventRecord.");
@@ -290,13 +342,16 @@ namespace TalonOneSdk.Model
             if (publishedAt.IsSet && publishedAt.Value == null)
                 throw new ArgumentNullException(nameof(publishedAt), "Property is not nullable for class IntegrationHubEventRecord.");
 
-            if (processAfter.IsSet && processAfter.Value == null)
-                throw new ArgumentNullException(nameof(processAfter), "Property is not nullable for class IntegrationHubEventRecord.");
+            if (scheduledTo.IsSet && scheduledTo.Value == null)
+                throw new ArgumentNullException(nameof(scheduledTo), "Property is not nullable for class IntegrationHubEventRecord.");
 
             if (retry.IsSet && retry.Value == null)
                 throw new ArgumentNullException(nameof(retry), "Property is not nullable for class IntegrationHubEventRecord.");
 
-            return new IntegrationHubEventRecord(id.Value.Value, flowId.Value.Value, eventType.Value, publishedAt.Value.Value, processAfter.Value.Value, retry.Value.Value, eventData.Value, processedAt, deliveredAt);
+            if (payload.IsSet && payload.Value == null)
+                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class IntegrationHubEventRecord.");
+
+            return new IntegrationHubEventRecord(id.Value.Value, flowId.Value.Value, eventType.Value.Value, publishedAt.Value.Value, scheduledTo.Value.Value, retry.Value.Value, payload.Value, integrationName, instanceName, processedAt, deliveredAt);
         }
 
         /// <summary>
@@ -323,33 +378,35 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubEventRecord integrationHubEventRecord, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (integrationHubEventRecord.EventType == null)
-                throw new ArgumentNullException(nameof(integrationHubEventRecord.EventType), "Property is required for class IntegrationHubEventRecord.");
+            if (integrationHubEventRecord.Payload == null)
+                throw new ArgumentNullException(nameof(integrationHubEventRecord.Payload), "Property is required for class IntegrationHubEventRecord.");
 
-            writer.WriteNumber("Id", integrationHubEventRecord.Id);
+            writer.WriteNumber("id", integrationHubEventRecord.Id);
 
-            writer.WriteNumber("FlowId", integrationHubEventRecord.FlowId);
+            writer.WriteNumber("flowId", integrationHubEventRecord.FlowId);
 
-            writer.WriteString("EventType", integrationHubEventRecord.EventType);
+            var eventTypeRawValue = IntegrationHubEventTypeValueConverter.ToJsonValue(integrationHubEventRecord.EventType);
+            writer.WriteString("eventType", eventTypeRawValue);
 
-            writer.WriteString("PublishedAt", integrationHubEventRecord.PublishedAt.ToString(PublishedAtFormat));
+            writer.WriteString("publishedAt", integrationHubEventRecord.PublishedAt.ToString(PublishedAtFormat));
 
-            writer.WriteString("ProcessAfter", integrationHubEventRecord.ProcessAfter.ToString(ProcessAfterFormat));
+            writer.WriteString("scheduledTo", integrationHubEventRecord.ScheduledTo.ToString(ScheduledToFormat));
 
-            writer.WriteNumber("Retry", integrationHubEventRecord.Retry);
+            writer.WriteNumber("retry", integrationHubEventRecord.Retry);
 
-            if (integrationHubEventRecord.EventData != null)
-            {
-                writer.WritePropertyName("EventData");
-                JsonSerializer.Serialize(writer, integrationHubEventRecord.EventData, jsonSerializerOptions);
-            }
-            else
-                writer.WriteNull("EventData");
+            writer.WriteString("payload", integrationHubEventRecord.Payload);
+
+            if (integrationHubEventRecord.IntegrationNameOption.IsSet)
+                writer.WriteString("integrationName", integrationHubEventRecord.IntegrationName);
+
+            if (integrationHubEventRecord.InstanceNameOption.IsSet)
+                writer.WriteString("instanceName", integrationHubEventRecord.InstanceName);
+
             if (integrationHubEventRecord.ProcessedAtOption.IsSet)
-                writer.WriteString("ProcessedAt", integrationHubEventRecord.ProcessedAtOption.Value.Value.ToString(ProcessedAtFormat));
+                writer.WriteString("processedAt", integrationHubEventRecord.ProcessedAtOption.Value.Value.ToString(ProcessedAtFormat));
 
             if (integrationHubEventRecord.DeliveredAtOption.IsSet)
-                writer.WriteString("DeliveredAt", integrationHubEventRecord.DeliveredAtOption.Value.Value.ToString(DeliveredAtFormat));
+                writer.WriteString("deliveredAt", integrationHubEventRecord.DeliveredAtOption.Value.Value.ToString(DeliveredAtFormat));
         }
     }
 }

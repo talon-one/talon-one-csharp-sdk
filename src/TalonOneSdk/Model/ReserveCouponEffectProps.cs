@@ -24,15 +24,15 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;reserveCoupon\&quot; effect. This gets triggered whenever a validated rule contained a \&quot;reserve coupon\&quot; effect. This reserves the coupon currently on scope to the profile on scope.
+    /// This effect indicates that the given coupon code was reserved for the given customer.  Talon.One provides soft and hard reservations. For more information, see [Reserve a coupon code](https://docs.talon.one/docs/product/rules/effects/use-effects#reserve-a-coupon-code).
     /// </summary>
     public partial class ReserveCouponEffectProps : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReserveCouponEffectProps" /> class.
         /// </summary>
-        /// <param name="couponValue">The value of the coupon currently on scope.</param>
-        /// <param name="profileIntegrationId">The ID of this customer profile in the third-party integration.</param>
+        /// <param name="couponValue">The coupon code that was created.</param>
+        /// <param name="profileIntegrationId">The integration identifier of the customer for whom this coupon was reserved.</param>
         /// <param name="isNewReservation">Indicates whether this is a new coupon reservation or not.</param>
         [JsonConstructor]
         public ReserveCouponEffectProps(string couponValue, string profileIntegrationId, bool isNewReservation)
@@ -46,16 +46,16 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The value of the coupon currently on scope.
+        /// The coupon code that was created.
         /// </summary>
-        /// <value>The value of the coupon currently on scope.</value>
+        /// <value>The coupon code that was created.</value>
         [JsonPropertyName("couponValue")]
         public string CouponValue { get; set; }
 
         /// <summary>
-        /// The ID of this customer profile in the third-party integration.
+        /// The integration identifier of the customer for whom this coupon was reserved.
         /// </summary>
-        /// <value>The ID of this customer profile in the third-party integration.</value>
+        /// <value>The integration identifier of the customer for whom this coupon was reserved.</value>
         [JsonPropertyName("profileIntegrationId")]
         public string ProfileIntegrationId { get; set; }
 

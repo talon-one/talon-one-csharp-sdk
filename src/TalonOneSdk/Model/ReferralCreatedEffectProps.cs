@@ -24,14 +24,14 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;referralCreated\&quot; effect. This gets triggered whenever a validated rule contained a \&quot;create referral\&quot; effect, and a referral code was created for a customer. See \&quot;createdReferrals\&quot; on the response for all details of this referral code.
+    /// The &#x60;referralCreated&#x60; effect behaves similarly to [couponCreated](https://docs.talon.one/docs/dev/integration-api/api-effects#couponcreated). If the &#x60;friendProfileIntegrationId&#x60; parameter is empty, the referral code can be redeemed by anyone.
     /// </summary>
     public partial class ReferralCreatedEffectProps : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferralCreatedEffectProps" /> class.
         /// </summary>
-        /// <param name="value">The referral code that was created.</param>
+        /// <param name="value">The referral code provided in the session.</param>
         [JsonConstructor]
         public ReferralCreatedEffectProps(string value)
         {
@@ -42,9 +42,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The referral code that was created.
+        /// The referral code provided in the session.
         /// </summary>
-        /// <value>The referral code that was created.</value>
+        /// <value>The referral code provided in the session.</value>
         [JsonPropertyName("value")]
         public string Value { get; set; }
 

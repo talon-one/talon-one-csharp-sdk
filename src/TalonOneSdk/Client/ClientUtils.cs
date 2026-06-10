@@ -416,8 +416,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.OperationEnumToJsonValue(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionOperationEnum);
             if (obj is TalonOneSdk.Model.IntegrationHubEventStatusUpdate.StatusEnum integrationHubEventStatusUpdateStatusEnum)
                 return TalonOneSdk.Model.IntegrationHubEventStatusUpdate.StatusEnumToJsonValue(integrationHubEventStatusUpdateStatusEnum);
-            if (obj is TalonOneSdk.Model.IntegrationHubPaginatedEventPayload.EventTypeEnum integrationHubPaginatedEventPayloadEventTypeEnum)
-                return TalonOneSdk.Model.IntegrationHubPaginatedEventPayload.EventTypeEnumToJsonValue(integrationHubPaginatedEventPayloadEventTypeEnum);
+            if (obj is TalonOneSdk.Model.IntegrationHubEventType integrationHubEventType)
+                return TalonOneSdk.Model.IntegrationHubEventTypeValueConverter.ToJsonValue(integrationHubEventType);
             if (obj is TalonOneSdk.Model.IntegrationRequest.ResponseContentEnum integrationRequestResponseContentEnum)
                 return TalonOneSdk.Model.IntegrationRequest.ResponseContentEnumToJsonValue(integrationRequestResponseContentEnum);
             if (obj is TalonOneSdk.Model.LabelTargetAudience.TypeEnum labelTargetAudienceTypeEnum)
@@ -634,6 +634,12 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.UpdatePicklist.TypeEnumToJsonValue(updatePicklistTypeEnum);
             if (obj is TalonOneSdk.Model.UpdateReward.StatusEnum updateRewardStatusEnum)
                 return TalonOneSdk.Model.UpdateReward.StatusEnumToJsonValue(updateRewardStatusEnum);
+            if (obj is TalonOneSdk.Model.UpdateRiskNotification.EntityEnum updateRiskNotificationEntityEnum)
+                return TalonOneSdk.Model.UpdateRiskNotification.EntityEnumToJsonValue(updateRiskNotificationEntityEnum);
+            if (obj is TalonOneSdk.Model.UpdateRiskNotification.ActivityEnum updateRiskNotificationActivityEnum)
+                return TalonOneSdk.Model.UpdateRiskNotification.ActivityEnumToJsonValue(updateRiskNotificationActivityEnum);
+            if (obj is TalonOneSdk.Model.UpdateRiskNotification.TimeFrameEnum updateRiskNotificationTimeFrameEnum)
+                return TalonOneSdk.Model.UpdateRiskNotification.TimeFrameEnumToJsonValue(updateRiskNotificationTimeFrameEnum);
             if (obj is TalonOneSdk.Model.UpdateSupportRequest.RequestStatusEnum updateSupportRequestRequestStatusEnum)
                 return TalonOneSdk.Model.UpdateSupportRequest.RequestStatusEnumToJsonValue(updateSupportRequestRequestStatusEnum);
             if (obj is TalonOneSdk.Model.UpdateUser.StateEnum updateUserStateEnum)

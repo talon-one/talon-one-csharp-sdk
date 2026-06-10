@@ -31,28 +31,29 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="IntegrationHubFlowWithConfig" /> class.
         /// </summary>
-        /// <param name="eventType">The event type we want to register a flow for.</param>
+        /// <param name="eventType">eventType</param>
         /// <param name="integrationHubFlowUrl">The URL of the integration hub flow that we want to trigger for the event.</param>
         /// <param name="config">config</param>
-        /// <param name="applicationID">ID of application the flow is registered for.</param>
+        /// <param name="applicationID">ID of the application the flow is registered for.</param>
+        /// <param name="loyaltyProgramID">ID of the loyalty program the flow is registered for.</param>
         [JsonConstructor]
-        public IntegrationHubFlowWithConfig(string eventType, string integrationHubFlowUrl, IntegrationHubFlowConfig config, Option<long?> applicationID = default)
+        public IntegrationHubFlowWithConfig(IntegrationHubEventType eventType, string integrationHubFlowUrl, IntegrationHubFlowConfig config, Option<long?> applicationID = default, Option<long?> loyaltyProgramID = default)
         {
             EventType = eventType;
             IntegrationHubFlowUrl = integrationHubFlowUrl;
             Config = config;
             ApplicationIDOption = applicationID;
+            LoyaltyProgramIDOption = loyaltyProgramID;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// The event type we want to register a flow for.
+        /// Gets or Sets EventType
         /// </summary>
-        /// <value>The event type we want to register a flow for.</value>
         [JsonPropertyName("EventType")]
-        public string EventType { get; set; }
+        public IntegrationHubEventType EventType { get; set; }
 
         /// <summary>
         /// The URL of the integration hub flow that we want to trigger for the event.
@@ -75,12 +76,27 @@ namespace TalonOneSdk.Model
         public Option<long?> ApplicationIDOption { get; private set; }
 
         /// <summary>
-        /// ID of application the flow is registered for.
+        /// ID of the application the flow is registered for.
         /// </summary>
-        /// <value>ID of application the flow is registered for.</value>
+        /// <value>ID of the application the flow is registered for.</value>
         /* <example>54</example> */
         [JsonPropertyName("ApplicationID")]
         public long? ApplicationID { get { return this.ApplicationIDOption.Value; } set { this.ApplicationIDOption = new Option<long?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of LoyaltyProgramID
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> LoyaltyProgramIDOption { get; private set; }
+
+        /// <summary>
+        /// ID of the loyalty program the flow is registered for.
+        /// </summary>
+        /// <value>ID of the loyalty program the flow is registered for.</value>
+        /* <example>12</example> */
+        [JsonPropertyName("LoyaltyProgramID")]
+        public long? LoyaltyProgramID { get { return this.LoyaltyProgramIDOption.Value; } set { this.LoyaltyProgramIDOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -94,6 +110,7 @@ namespace TalonOneSdk.Model
             sb.Append("  IntegrationHubFlowUrl: ").Append(IntegrationHubFlowUrl).Append("\n");
             sb.Append("  Config: ").Append(Config).Append("\n");
             sb.Append("  ApplicationID: ").Append(ApplicationID).Append("\n");
+            sb.Append("  LoyaltyProgramID: ").Append(LoyaltyProgramID).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -131,10 +148,11 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> eventType = default;
+            Option<IntegrationHubEventType?> eventType = default;
             Option<string> integrationHubFlowUrl = default;
             Option<IntegrationHubFlowConfig> config = default;
             Option<long?> applicationID = default;
+            Option<long?> loyaltyProgramID = default;
 
             while (utf8JsonReader.Read())
             {
@@ -152,7 +170,9 @@ namespace TalonOneSdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "EventType":
-                            eventType = new Option<string>(utf8JsonReader.GetString());
+                            string eventTypeRawValue = utf8JsonReader.GetString();
+                            if (eventTypeRawValue != null)
+                                eventType = new Option<IntegrationHubEventType?>(IntegrationHubEventTypeValueConverter.FromStringOrDefault(eventTypeRawValue));
                             break;
                         case "IntegrationHubFlowUrl":
                             integrationHubFlowUrl = new Option<string>(utf8JsonReader.GetString());
@@ -162,6 +182,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "ApplicationID":
                             applicationID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "LoyaltyProgramID":
+                            loyaltyProgramID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;
@@ -187,7 +210,7 @@ namespace TalonOneSdk.Model
             if (config.IsSet && config.Value == null)
                 throw new ArgumentNullException(nameof(config), "Property is not nullable for class IntegrationHubFlowWithConfig.");
 
-            return new IntegrationHubFlowWithConfig(eventType.Value, integrationHubFlowUrl.Value, config.Value, applicationID);
+            return new IntegrationHubFlowWithConfig(eventType.Value.Value, integrationHubFlowUrl.Value, config.Value, applicationID, loyaltyProgramID);
         }
 
         /// <summary>
@@ -214,16 +237,14 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubFlowWithConfig integrationHubFlowWithConfig, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (integrationHubFlowWithConfig.EventType == null)
-                throw new ArgumentNullException(nameof(integrationHubFlowWithConfig.EventType), "Property is required for class IntegrationHubFlowWithConfig.");
-
             if (integrationHubFlowWithConfig.IntegrationHubFlowUrl == null)
                 throw new ArgumentNullException(nameof(integrationHubFlowWithConfig.IntegrationHubFlowUrl), "Property is required for class IntegrationHubFlowWithConfig.");
 
             if (integrationHubFlowWithConfig.Config == null)
                 throw new ArgumentNullException(nameof(integrationHubFlowWithConfig.Config), "Property is required for class IntegrationHubFlowWithConfig.");
 
-            writer.WriteString("EventType", integrationHubFlowWithConfig.EventType);
+            var eventTypeRawValue = IntegrationHubEventTypeValueConverter.ToJsonValue(integrationHubFlowWithConfig.EventType);
+            writer.WriteString("EventType", eventTypeRawValue);
 
             writer.WriteString("IntegrationHubFlowUrl", integrationHubFlowWithConfig.IntegrationHubFlowUrl);
 
@@ -231,6 +252,9 @@ namespace TalonOneSdk.Model
             JsonSerializer.Serialize(writer, integrationHubFlowWithConfig.Config, jsonSerializerOptions);
             if (integrationHubFlowWithConfig.ApplicationIDOption.IsSet)
                 writer.WriteNumber("ApplicationID", integrationHubFlowWithConfig.ApplicationIDOption.Value.Value);
+
+            if (integrationHubFlowWithConfig.LoyaltyProgramIDOption.IsSet)
+                writer.WriteNumber("LoyaltyProgramID", integrationHubFlowWithConfig.LoyaltyProgramIDOption.Value.Value);
         }
     }
 }

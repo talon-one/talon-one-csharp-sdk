@@ -20,6 +20,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**GetCustomerAchievements**](IntegrationApi.md#getcustomerachievements) | **GET** /v1/customer_profiles/{integrationId}/achievements | List customer&#39;s available achievements |
 | [**GetCustomerInventory**](IntegrationApi.md#getcustomerinventory) | **GET** /v1/customer_profiles/{integrationId}/inventory | List customer data |
 | [**GetCustomerSession**](IntegrationApi.md#getcustomersession) | **GET** /v2/customer_sessions/{customerSessionId} | Get customer session |
+| [**GetEventV3**](IntegrationApi.md#geteventv3) | **GET** /v3/events/{integrationId} | Get advanced event |
 | [**GetLoyaltyBalances**](IntegrationApi.md#getloyaltybalances) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/balances | Get customer&#39;s loyalty balances |
 | [**GetLoyaltyCardBalances**](IntegrationApi.md#getloyaltycardbalances) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/balances | Get card&#39;s point balances |
 | [**GetLoyaltyCardPoints**](IntegrationApi.md#getloyaltycardpoints) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/points | List card&#39;s unused loyalty points |
@@ -33,6 +34,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**ReturnCartItems**](IntegrationApi.md#returncartitems) | **POST** /v2/customer_sessions/{customerSessionId}/returns | Return cart items |
 | [**SyncCatalog**](IntegrationApi.md#synccatalog) | **PUT** /v1/catalogs/{catalogId}/sync | Sync cart item catalog |
 | [**TrackEventV2**](IntegrationApi.md#trackeventv2) | **POST** /v2/events | Track event |
+| [**TrackEventV3**](IntegrationApi.md#trackeventv3) | **POST** /v3/events | Track advanced event |
 | [**UnlinkLoyaltyCardFromProfile**](IntegrationApi.md#unlinkloyaltycardfromprofile) | **POST** /v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/unlink_profile | Unlink customer profile from a loyalty card |
 | [**UpdateAudienceCustomersAttributes**](IntegrationApi.md#updateaudiencecustomersattributes) | **PUT** /v2/audience_customers/{audienceId}/attributes | Update profile attributes for all customers in audience |
 | [**UpdateAudienceV2**](IntegrationApi.md#updateaudiencev2) | **PUT** /v2/audiences/{audienceId} | Update audience name |
@@ -318,7 +320,7 @@ void (empty response body)
 
 Delete audience
 
-Delete an audience created by a third-party integration.  > [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  > [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
+Delete an audience.  > [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  > [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
 
 
 ### Parameters
@@ -681,6 +683,43 @@ Get the details of the given customer session.  You can get the same data via ot
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+<a id="geteventv3"></a>
+# **GetEventV3**
+> EventV3 GetEventV3 (string integrationId)
+
+Get advanced event
+
+Retrieve an advanced event by its identifier. 
+
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **integrationId** | **string** | The unique ID of the advanced event. |  |
+
+### Return type
+
+[**EventV3**](EventV3.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 <a id="getloyaltybalances"></a>
 # **GetLoyaltyBalances**
 > LoyaltyBalancesWithTiers GetLoyaltyBalances (long loyaltyProgramId, string integrationId, DateTime endDate = null, string subledgerId = null, bool includeTiers = null, bool includeProjectedTier = null)
@@ -865,7 +904,7 @@ Retrieve loyalty transaction logs for the given loyalty card in the specified lo
 
 <a id="getloyaltyprogramprofilepoints"></a>
 # **GetLoyaltyProgramProfilePoints**
-> GetLoyaltyProgramProfilePoints200Response GetLoyaltyProgramProfilePoints (long loyaltyProgramId, string integrationId, string status = null, string subledgerId = null, List<string> customerSessionIDs = null, List<string> transactionUUIDs = null, long pageSize = null, long skip = null, string sort = null)
+> GetLoyaltyProgramProfilePoints200Response GetLoyaltyProgramProfilePoints (long loyaltyProgramId, string integrationId, string status = null, List<string> subledgerId = null, List<string> customerSessionIDs = null, List<string> transactionUUIDs = null, long pageSize = null, long skip = null, string sort = null)
 
 List customer's unused loyalty points
 
@@ -879,7 +918,7 @@ Get paginated results of loyalty points for a given Integration ID in the specif
 | **loyaltyProgramId** | **long** | Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  |  |
 | **integrationId** | **string** | The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.  |  |
 | **status** | **string** | Filter points based on their status. | [optional] [default to active] |
-| **subledgerId** | **string** | The ID of the subledger by which we filter the data. | [optional]  |
+| **subledgerId** | [**List&lt;string&gt;**](string.md) | Filter the results by a list of subledger IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?subledgerId&#x3D;id1&amp;subledgerId&#x3D;id2&#x60;.  The response contains only data associated with the specified subledgers.  | [optional]  |
 | **customerSessionIDs** | [**List&lt;string&gt;**](string.md) | Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  | [optional]  |
 | **transactionUUIDs** | [**List&lt;string&gt;**](string.md) | Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  | [optional]  |
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 50] |
@@ -1209,7 +1248,7 @@ Perform the following actions for a given cart item catalog:  - Add an item to t
 
 Track event
 
-Triggers a custom event.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  > [!note] **Note** > - `profileId` is required even though the schema does not specify it. > - If the customer profile ID is new, a new profile is automatically created but the `customer_profile_created` [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. > - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
+Trigger a custom event.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  > [!note] **Note** > - `profileId` is required even though the schema does not specify it. > - If the customer profile ID is new, a new profile is automatically created but the `customer_profile_created` [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. > - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
 
 
 ### Parameters
@@ -1243,6 +1282,48 @@ Triggers a custom event.  To use this endpoint:  1. [Create a custom event](http
 | **400** | Bad request |  -  |
 | **401** | Unauthorized - Invalid API key |  -  |
 | **409** | Too many requests or limit reached - Avoid parallel requests. See the [docs](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one#managing-parallel-requests). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+<a id="trackeventv3"></a>
+# **TrackEventV3**
+> IntegrationEventV3Response TrackEventV3 (IntegrationEventV3Request integrationEventV3Request, string silent = null, bool dry = null, bool forceCompleteEvaluation = null)
+
+Track advanced event
+
+Trigger an advanced event.  Advanced events are idempotent, uniquely identifiable events. They can also reference a previously closed session to add more context for rule evaluation.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  > [!note] **Note** > - If the customer profile does not exist, it will be created. However, the `customer_profile_created` [built-in event](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. > - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). > - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
+
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **integrationEventV3Request** | [**IntegrationEventV3Request**](IntegrationEventV3Request.md) | body |  |
+| **silent** | **string** | Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  | [optional] [default to &quot;yes&quot;] |
+| **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  | [optional]  |
+| **forceCompleteEvaluation** | **bool** | Forces evaluation for all matching campaigns regardless of the [campaign evaluation mode](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation#setting-campaign-evaluation-mode). Requires &#x60;dry&#x3D;true&#x60;.  | [optional] [default to false] |
+
+### Return type
+
+[**IntegrationEventV3Response**](IntegrationEventV3Response.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized - Invalid API key |  -  |
+| **409** | An advanced event already exists, too many requests, or limit reached. Avoid parallel requests. See the [docs](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one#managing-parallel-requests). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

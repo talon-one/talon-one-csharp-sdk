@@ -24,18 +24,18 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;awardGiveaway\&quot; effect. This effect contains information on the giveaway item, and which profile it was awarded to.
+    /// This effect indicates the awarded giveaway item and to which profile the item was awarded. Learn more about [giveaways](https://docs.talon.one/docs/product/giveaways/overview).
     /// </summary>
     public partial class AwardGiveawayEffectProps : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AwardGiveawayEffectProps" /> class.
         /// </summary>
-        /// <param name="poolId">The ID of the giveaways pool the code was taken from.</param>
-        /// <param name="poolName">The name of the giveaways pool the code was taken from.</param>
-        /// <param name="recipientIntegrationId">The integration ID of the profile that was awarded the giveaway.</param>
-        /// <param name="giveawayId">The internal ID for the giveaway that was awarded.</param>
-        /// <param name="code">The giveaway code that was awarded.</param>
+        /// <param name="poolId">The internal ID of the giveaway pool.</param>
+        /// <param name="poolName">The name of the giveaway pool.</param>
+        /// <param name="recipientIntegrationId">The integration ID of the customer that receives the giveaway.</param>
+        /// <param name="giveawayId">The internal ID of the giveaway.</param>
+        /// <param name="code">The giveaway code to be rewarded.</param>
         [JsonConstructor]
         public AwardGiveawayEffectProps(long poolId, string poolName, string recipientIntegrationId, long giveawayId, string code)
         {
@@ -50,41 +50,41 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The ID of the giveaways pool the code was taken from.
+        /// The internal ID of the giveaway pool.
         /// </summary>
-        /// <value>The ID of the giveaways pool the code was taken from.</value>
+        /// <value>The internal ID of the giveaway pool.</value>
         /* <example>2</example> */
         [JsonPropertyName("poolId")]
         public long PoolId { get; set; }
 
         /// <summary>
-        /// The name of the giveaways pool the code was taken from.
+        /// The name of the giveaway pool.
         /// </summary>
-        /// <value>The name of the giveaways pool the code was taken from.</value>
+        /// <value>The name of the giveaway pool.</value>
         /* <example>My pool</example> */
         [JsonPropertyName("poolName")]
         public string PoolName { get; set; }
 
         /// <summary>
-        /// The integration ID of the profile that was awarded the giveaway.
+        /// The integration ID of the customer that receives the giveaway.
         /// </summary>
-        /// <value>The integration ID of the profile that was awarded the giveaway.</value>
+        /// <value>The integration ID of the customer that receives the giveaway.</value>
         /* <example>URNGV8294NV</example> */
         [JsonPropertyName("recipientIntegrationId")]
         public string RecipientIntegrationId { get; set; }
 
         /// <summary>
-        /// The internal ID for the giveaway that was awarded.
+        /// The internal ID of the giveaway.
         /// </summary>
-        /// <value>The internal ID for the giveaway that was awarded.</value>
+        /// <value>The internal ID of the giveaway.</value>
         /* <example>5</example> */
         [JsonPropertyName("giveawayId")]
         public long GiveawayId { get; set; }
 
         /// <summary>
-        /// The giveaway code that was awarded.
+        /// The giveaway code to be rewarded.
         /// </summary>
-        /// <value>The giveaway code that was awarded.</value>
+        /// <value>The giveaway code to be rewarded.</value>
         /* <example>57638t-67439hty</example> */
         [JsonPropertyName("code")]
         public string Code { get; set; }

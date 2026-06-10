@@ -24,14 +24,14 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;acceptReferral\&quot; effect. TThis gets triggered whenever the referral code is valid and all other conditions in the rules of its campaign are met.
+    /// This effect indicates that the referral code supplied is valid.  You should handle this effect by informing the user that the referral code is valid.  The code is automatically redeemed when you close the session.  Other effects will provide more information about the actual reward.
     /// </summary>
     public partial class AcceptReferralEffectProps : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AcceptReferralEffectProps" /> class.
         /// </summary>
-        /// <param name="value">The referral code that was accepted.</param>
+        /// <param name="value">The referral code provided in the session.</param>
         [JsonConstructor]
         public AcceptReferralEffectProps(string value)
         {
@@ -42,9 +42,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The referral code that was accepted.
+        /// The referral code provided in the session.
         /// </summary>
-        /// <value>The referral code that was accepted.</value>
+        /// <value>The referral code provided in the session.</value>
         [JsonPropertyName("value")]
         public string Value { get; set; }
 

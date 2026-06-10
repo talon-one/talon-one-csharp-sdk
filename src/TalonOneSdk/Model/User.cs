@@ -43,11 +43,11 @@ namespace TalonOneSdk.Model
         /// <param name="isAdmin">Indicates whether the user is an &#x60;admin&#x60;.</param>
         /// <param name="roles">A list of the IDs of the roles assigned to the user.</param>
         /// <param name="authMethod">Authentication method for this user.</param>
-        /// <param name="applicationNotificationSubscriptions">Application notifications that the user is subscribed to.</param>
+        /// <param name="applicationNotificationSubscriptions">Arbitrary properties associated with this campaign.</param>
         /// <param name="lastSignedIn">Timestamp when the user last signed in to Talon.One.</param>
         /// <param name="lastAccessed">Timestamp of the user&#39;s last activity after signing in to Talon.One.</param>
         /// <param name="latestFeedTimestamp">Timestamp when the user was notified for feed.</param>
-        /// <param name="additionalAttributes">Additional user attributes, created and used by external identity providers.</param>
+        /// <param name="additionalAttributes">Arbitrary properties associated with this campaign.</param>
         [JsonConstructor]
         public User(long id, DateTime created, DateTime modified, string email, long accountId, string name, StateEnum state, string inviteToken, Object policy, Option<bool?> isAdmin = default, Option<List<long>> roles = default, Option<string> authMethod = default, Option<Object> applicationNotificationSubscriptions = default, Option<DateTime?> lastSignedIn = default, Option<DateTime?> lastAccessed = default, Option<DateTime?> latestFeedTimestamp = default, Option<Object> additionalAttributes = default)
         {
@@ -279,10 +279,9 @@ namespace TalonOneSdk.Model
         public Option<Object> ApplicationNotificationSubscriptionsOption { get; private set; }
 
         /// <summary>
-        /// Application notifications that the user is subscribed to.
+        /// Arbitrary properties associated with this campaign.
         /// </summary>
-        /// <value>Application notifications that the user is subscribed to.</value>
-        /* <example>{}</example> */
+        /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("applicationNotificationSubscriptions")]
         public Object ApplicationNotificationSubscriptions { get { return this.ApplicationNotificationSubscriptionsOption.Value; } set { this.ApplicationNotificationSubscriptionsOption = new Option<Object>(value); } }
 
@@ -339,10 +338,9 @@ namespace TalonOneSdk.Model
         public Option<Object> AdditionalAttributesOption { get; private set; }
 
         /// <summary>
-        /// Additional user attributes, created and used by external identity providers.
+        /// Arbitrary properties associated with this campaign.
         /// </summary>
-        /// <value>Additional user attributes, created and used by external identity providers.</value>
-        /* <example>{}</example> */
+        /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("additionalAttributes")]
         public Object AdditionalAttributes { get { return this.AdditionalAttributesOption.Value; } set { this.AdditionalAttributesOption = new Option<Object>(value); } }
 

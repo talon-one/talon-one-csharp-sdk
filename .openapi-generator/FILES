@@ -128,6 +128,7 @@ docs/models/CampaignEditedNotification.md
 docs/models/CampaignEditedNotificationItem.md
 docs/models/CampaignEligibility.md
 docs/models/CampaignEligibilityDetails.md
+docs/models/CampaignEligibilityExperiment.md
 docs/models/CampaignEligibilityFailureDetails.md
 docs/models/CampaignEntity.md
 docs/models/CampaignEvaluationGroup.md
@@ -253,6 +254,8 @@ docs/models/EventV3Entity.md
 docs/models/EventV3RequestEntity.md
 docs/models/Experiment.md
 docs/models/ExperimentCampaignCopy.md
+docs/models/ExperimentConfidenceTimeline.md
+docs/models/ExperimentConfidenceTimelineDataPoint.md
 docs/models/ExperimentCopy.md
 docs/models/ExperimentCopyExperiment.md
 docs/models/ExperimentListResults.md
@@ -369,13 +372,13 @@ docs/models/IntegrationGetAllCampaigns200Response.md
 docs/models/IntegrationHubConfig.md
 docs/models/IntegrationHubEventPayloadCouponBasedNotifications.md
 docs/models/IntegrationHubEventPayloadCouponBasedNotificationsLimits.md
-docs/models/IntegrationHubEventPayloadLoyaltyProfileBasedNotification.md
 docs/models/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.md
 docs/models/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.md
 docs/models/IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.md
 docs/models/IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.md
 docs/models/IntegrationHubEventRecord.md
 docs/models/IntegrationHubEventStatusUpdate.md
+docs/models/IntegrationHubEventType.md
 docs/models/IntegrationHubFlow.md
 docs/models/IntegrationHubFlowConfig.md
 docs/models/IntegrationHubFlowConfigResponse.md
@@ -635,8 +638,6 @@ docs/models/ScimServiceProviderConfigResponse.md
 docs/models/ScimServiceProviderConfigResponseBulk.md
 docs/models/ScimServiceProviderConfigResponseChangePassword.md
 docs/models/ScimServiceProviderConfigResponseFilter.md
-docs/models/ScimServiceProviderConfigResponsePatch.md
-docs/models/ScimServiceProviderConfigResponseSort.md
 docs/models/ScimUser.md
 docs/models/ScimUsersListResponse.md
 docs/models/SecondaryDeployment.md
@@ -704,7 +705,6 @@ docs/models/UpdateCoupon.md
 docs/models/UpdateCouponBatch.md
 docs/models/UpdateCouponsData.md
 docs/models/UpdateCustomEffect.md
-docs/models/UpdateCustomerProfileV2409Response.md
 docs/models/UpdateCustomerSessionV2409Response.md
 docs/models/UpdateExperiment.md
 docs/models/UpdateExperimentVariant.md
@@ -719,6 +719,7 @@ docs/models/UpdatePriceType.md
 docs/models/UpdateReferral.md
 docs/models/UpdateReferralBatch.md
 docs/models/UpdateReward.md
+docs/models/UpdateRiskNotification.md
 docs/models/UpdateRole.md
 docs/models/UpdateStore.md
 docs/models/UpdateSupportRequest.md
@@ -850,6 +851,7 @@ src/TalonOneSdk.Test/Model/CampaignDetailTests.cs
 src/TalonOneSdk.Test/Model/CampaignEditedNotificationItemTests.cs
 src/TalonOneSdk.Test/Model/CampaignEditedNotificationTests.cs
 src/TalonOneSdk.Test/Model/CampaignEligibilityDetailsTests.cs
+src/TalonOneSdk.Test/Model/CampaignEligibilityExperimentTests.cs
 src/TalonOneSdk.Test/Model/CampaignEligibilityFailureDetailsTests.cs
 src/TalonOneSdk.Test/Model/CampaignEligibilityTests.cs
 src/TalonOneSdk.Test/Model/CampaignEntityTests.cs
@@ -976,6 +978,8 @@ src/TalonOneSdk.Test/Model/EventV3EntityTests.cs
 src/TalonOneSdk.Test/Model/EventV3RequestEntityTests.cs
 src/TalonOneSdk.Test/Model/EventV3Tests.cs
 src/TalonOneSdk.Test/Model/ExperimentCampaignCopyTests.cs
+src/TalonOneSdk.Test/Model/ExperimentConfidenceTimelineDataPointTests.cs
+src/TalonOneSdk.Test/Model/ExperimentConfidenceTimelineTests.cs
 src/TalonOneSdk.Test/Model/ExperimentCopyExperimentTests.cs
 src/TalonOneSdk.Test/Model/ExperimentCopyTests.cs
 src/TalonOneSdk.Test/Model/ExperimentListResultsRequestTests.cs
@@ -1093,13 +1097,13 @@ src/TalonOneSdk.Test/Model/IntegrationGetAllCampaigns200ResponseTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubConfigTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubEventPayloadCouponBasedNotificationsLimitsTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubEventPayloadCouponBasedNotificationsTests.cs
-src/TalonOneSdk.Test/Model/IntegrationHubEventPayloadLoyaltyProfileBasedNotificationTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationActionTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotificationTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotificationTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubEventRecordTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubEventStatusUpdateTests.cs
+src/TalonOneSdk.Test/Model/IntegrationHubEventTypeTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubFlowConfigResponseTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubFlowConfigTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubFlowResponseTests.cs
@@ -1358,8 +1362,6 @@ src/TalonOneSdk.Test/Model/ScimSchemasListResponseTests.cs
 src/TalonOneSdk.Test/Model/ScimServiceProviderConfigResponseBulkTests.cs
 src/TalonOneSdk.Test/Model/ScimServiceProviderConfigResponseChangePasswordTests.cs
 src/TalonOneSdk.Test/Model/ScimServiceProviderConfigResponseFilterTests.cs
-src/TalonOneSdk.Test/Model/ScimServiceProviderConfigResponsePatchTests.cs
-src/TalonOneSdk.Test/Model/ScimServiceProviderConfigResponseSortTests.cs
 src/TalonOneSdk.Test/Model/ScimServiceProviderConfigResponseTests.cs
 src/TalonOneSdk.Test/Model/ScimUserTests.cs
 src/TalonOneSdk.Test/Model/ScimUsersListResponseTests.cs
@@ -1428,7 +1430,6 @@ src/TalonOneSdk.Test/Model/UpdateCouponBatchTests.cs
 src/TalonOneSdk.Test/Model/UpdateCouponTests.cs
 src/TalonOneSdk.Test/Model/UpdateCouponsDataTests.cs
 src/TalonOneSdk.Test/Model/UpdateCustomEffectTests.cs
-src/TalonOneSdk.Test/Model/UpdateCustomerProfileV2409ResponseTests.cs
 src/TalonOneSdk.Test/Model/UpdateCustomerSessionV2409ResponseTests.cs
 src/TalonOneSdk.Test/Model/UpdateExperimentTests.cs
 src/TalonOneSdk.Test/Model/UpdateExperimentVariantArrayTests.cs
@@ -1443,6 +1444,7 @@ src/TalonOneSdk.Test/Model/UpdatePriceTypeTests.cs
 src/TalonOneSdk.Test/Model/UpdateReferralBatchTests.cs
 src/TalonOneSdk.Test/Model/UpdateReferralTests.cs
 src/TalonOneSdk.Test/Model/UpdateRewardTests.cs
+src/TalonOneSdk.Test/Model/UpdateRiskNotificationTests.cs
 src/TalonOneSdk.Test/Model/UpdateRoleTests.cs
 src/TalonOneSdk.Test/Model/UpdateStoreTests.cs
 src/TalonOneSdk.Test/Model/UpdateSupportRequestTests.cs
@@ -1596,6 +1598,7 @@ src/TalonOneSdk/Model/CampaignEditedNotification.cs
 src/TalonOneSdk/Model/CampaignEditedNotificationItem.cs
 src/TalonOneSdk/Model/CampaignEligibility.cs
 src/TalonOneSdk/Model/CampaignEligibilityDetails.cs
+src/TalonOneSdk/Model/CampaignEligibilityExperiment.cs
 src/TalonOneSdk/Model/CampaignEligibilityFailureDetails.cs
 src/TalonOneSdk/Model/CampaignEntity.cs
 src/TalonOneSdk/Model/CampaignEvaluationGroup.cs
@@ -1721,6 +1724,8 @@ src/TalonOneSdk/Model/EventV3Entity.cs
 src/TalonOneSdk/Model/EventV3RequestEntity.cs
 src/TalonOneSdk/Model/Experiment.cs
 src/TalonOneSdk/Model/ExperimentCampaignCopy.cs
+src/TalonOneSdk/Model/ExperimentConfidenceTimeline.cs
+src/TalonOneSdk/Model/ExperimentConfidenceTimelineDataPoint.cs
 src/TalonOneSdk/Model/ExperimentCopy.cs
 src/TalonOneSdk/Model/ExperimentCopyExperiment.cs
 src/TalonOneSdk/Model/ExperimentListResults.cs
@@ -1837,13 +1842,13 @@ src/TalonOneSdk/Model/IntegrationGetAllCampaigns200Response.cs
 src/TalonOneSdk/Model/IntegrationHubConfig.cs
 src/TalonOneSdk/Model/IntegrationHubEventPayloadCouponBasedNotifications.cs
 src/TalonOneSdk/Model/IntegrationHubEventPayloadCouponBasedNotificationsLimits.cs
-src/TalonOneSdk/Model/IntegrationHubEventPayloadLoyaltyProfileBasedNotification.cs
 src/TalonOneSdk/Model/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.cs
 src/TalonOneSdk/Model/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.cs
 src/TalonOneSdk/Model/IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.cs
 src/TalonOneSdk/Model/IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.cs
 src/TalonOneSdk/Model/IntegrationHubEventRecord.cs
 src/TalonOneSdk/Model/IntegrationHubEventStatusUpdate.cs
+src/TalonOneSdk/Model/IntegrationHubEventType.cs
 src/TalonOneSdk/Model/IntegrationHubFlow.cs
 src/TalonOneSdk/Model/IntegrationHubFlowConfig.cs
 src/TalonOneSdk/Model/IntegrationHubFlowConfigResponse.cs
@@ -2103,8 +2108,6 @@ src/TalonOneSdk/Model/ScimServiceProviderConfigResponse.cs
 src/TalonOneSdk/Model/ScimServiceProviderConfigResponseBulk.cs
 src/TalonOneSdk/Model/ScimServiceProviderConfigResponseChangePassword.cs
 src/TalonOneSdk/Model/ScimServiceProviderConfigResponseFilter.cs
-src/TalonOneSdk/Model/ScimServiceProviderConfigResponsePatch.cs
-src/TalonOneSdk/Model/ScimServiceProviderConfigResponseSort.cs
 src/TalonOneSdk/Model/ScimUser.cs
 src/TalonOneSdk/Model/ScimUsersListResponse.cs
 src/TalonOneSdk/Model/SecondaryDeployment.cs
@@ -2172,7 +2175,6 @@ src/TalonOneSdk/Model/UpdateCoupon.cs
 src/TalonOneSdk/Model/UpdateCouponBatch.cs
 src/TalonOneSdk/Model/UpdateCouponsData.cs
 src/TalonOneSdk/Model/UpdateCustomEffect.cs
-src/TalonOneSdk/Model/UpdateCustomerProfileV2409Response.cs
 src/TalonOneSdk/Model/UpdateCustomerSessionV2409Response.cs
 src/TalonOneSdk/Model/UpdateExperiment.cs
 src/TalonOneSdk/Model/UpdateExperimentVariant.cs
@@ -2187,6 +2189,7 @@ src/TalonOneSdk/Model/UpdatePriceType.cs
 src/TalonOneSdk/Model/UpdateReferral.cs
 src/TalonOneSdk/Model/UpdateReferralBatch.cs
 src/TalonOneSdk/Model/UpdateReward.cs
+src/TalonOneSdk/Model/UpdateRiskNotification.cs
 src/TalonOneSdk/Model/UpdateRole.cs
 src/TalonOneSdk/Model/UpdateStore.cs
 src/TalonOneSdk/Model/UpdateSupportRequest.cs

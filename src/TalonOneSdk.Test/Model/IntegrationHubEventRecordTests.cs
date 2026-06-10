@@ -90,12 +90,12 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'ProcessAfter'
+        /// Test the property 'ScheduledTo'
         /// </summary>
         [Fact]
-        public void ProcessAfterTest()
+        public void ScheduledToTest()
         {
-            // TODO unit test for the property 'ProcessAfter'
+            // TODO unit test for the property 'ScheduledTo'
         }
 
         /// <summary>
@@ -108,12 +108,30 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'EventData'
+        /// Test the property 'Payload'
         /// </summary>
         [Fact]
-        public void EventDataTest()
+        public void PayloadTest()
         {
-            // TODO unit test for the property 'EventData'
+            // TODO unit test for the property 'Payload'
+        }
+
+        /// <summary>
+        /// Test the property 'IntegrationName'
+        /// </summary>
+        [Fact]
+        public void IntegrationNameTest()
+        {
+            // TODO unit test for the property 'IntegrationName'
+        }
+
+        /// <summary>
+        /// Test the property 'InstanceName'
+        /// </summary>
+        [Fact]
+        public void InstanceNameTest()
+        {
+            // TODO unit test for the property 'InstanceName'
         }
 
         /// <summary>

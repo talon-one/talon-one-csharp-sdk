@@ -24,16 +24,16 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;showNotification\&quot; effect. This gets triggered whenever a validated rule contained a \&quot;show notification\&quot; effect.
+    /// You can use notifications to inform customers of certain events. There are four types of notification messages:  - &#x60;Info&#x60; - &#x60;Offer&#x60; - &#x60;Error&#x60; - &#x60;Misc&#x60;  It is up to you to use the Rule Builder to decide why and when to show notifications. Notifications can be used as both rule effects and failure effects.  A common use case is to display the notification at the top of the cart view in your web app. You can use the notification type to vary the styling of the notification message.
     /// </summary>
     public partial class ShowNotificationEffectProps : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ShowNotificationEffectProps" /> class.
         /// </summary>
-        /// <param name="notificationType">The type of notification that should be shown (e.g. error/warning/info).</param>
-        /// <param name="title">Title of the notification.</param>
-        /// <param name="body">Body of the notification.</param>
+        /// <param name="notificationType">The type of notification.</param>
+        /// <param name="title">The title of the notification.</param>
+        /// <param name="body">The body of the notification.</param>
         [JsonConstructor]
         public ShowNotificationEffectProps(string notificationType, string title, string body)
         {
@@ -46,23 +46,23 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The type of notification that should be shown (e.g. error/warning/info).
+        /// The type of notification.
         /// </summary>
-        /// <value>The type of notification that should be shown (e.g. error/warning/info).</value>
+        /// <value>The type of notification.</value>
         [JsonPropertyName("notificationType")]
         public string NotificationType { get; set; }
 
         /// <summary>
-        /// Title of the notification.
+        /// The title of the notification.
         /// </summary>
-        /// <value>Title of the notification.</value>
+        /// <value>The title of the notification.</value>
         [JsonPropertyName("title")]
         public string Title { get; set; }
 
         /// <summary>
-        /// Body of the notification.
+        /// The body of the notification.
         /// </summary>
-        /// <value>Body of the notification.</value>
+        /// <value>The body of the notification.</value>
         [JsonPropertyName("body")]
         public string Body { get; set; }
 

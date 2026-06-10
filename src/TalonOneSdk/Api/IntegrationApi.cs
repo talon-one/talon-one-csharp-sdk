@@ -205,7 +205,7 @@ namespace TalonOneSdk.Api
         /// Delete audience
         /// </summary>
         /// <remarks>
-        /// Delete an audience created by a third-party integration.  &gt; [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  &gt; [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
+        /// Delete an audience.  &gt; [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  &gt; [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId">The ID of the audience.</param>
@@ -217,7 +217,7 @@ namespace TalonOneSdk.Api
         /// Delete audience
         /// </summary>
         /// <remarks>
-        /// Delete an audience created by a third-party integration.  &gt; [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  &gt; [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
+        /// Delete an audience.  &gt; [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  &gt; [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
         /// </remarks>
         /// <param name="audienceId">The ID of the audience.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -453,6 +453,29 @@ namespace TalonOneSdk.Api
         Task<IGetCustomerSessionApiResponse> GetCustomerSessionOrDefaultAsync(string customerSessionId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Get advanced event
+        /// </summary>
+        /// <remarks>
+        /// Retrieve an advanced event by its identifier. 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="integrationId">The unique ID of the advanced event.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetEventV3ApiResponse"/>&gt;</returns>
+        Task<IGetEventV3ApiResponse> GetEventV3Async(string integrationId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get advanced event
+        /// </summary>
+        /// <remarks>
+        /// Retrieve an advanced event by its identifier. 
+        /// </remarks>
+        /// <param name="integrationId">The unique ID of the advanced event.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetEventV3ApiResponse"/>&gt;</returns>
+        Task<IGetEventV3ApiResponse> GetEventV3OrDefaultAsync(string integrationId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Get customer&#39;s loyalty balances
         /// </summary>
         /// <remarks>
@@ -606,7 +629,7 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
         /// <param name="status">Filter points based on their status. (optional, default to active)</param>
-        /// <param name="subledgerId">The ID of the subledger by which we filter the data. (optional)</param>
+        /// <param name="subledgerId">Filter the results by a list of subledger IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?subledgerId&#x3D;id1&amp;subledgerId&#x3D;id2&#x60;.  The response contains only data associated with the specified subledgers.  (optional)</param>
         /// <param name="customerSessionIDs">Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  (optional)</param>
         /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
@@ -614,7 +637,7 @@ namespace TalonOneSdk.Api
         /// <param name="sort">The field by which results should be sorted. You can enter one of the following values:  - &#x60;startDate&#x60;: Sorts the results by the start date of the points. - &#x60;expiryDate&#x60;: Sorts the results by the expiry date of the points.  By default, results are sorted in ascending order.  To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You can only sort by one field at a time.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfilePointsApiResponse"/>&gt;</returns>
-        Task<IGetLoyaltyProgramProfilePointsApiResponse> GetLoyaltyProgramProfilePointsAsync(long loyaltyProgramId, string integrationId, Option<string> status = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetLoyaltyProgramProfilePointsApiResponse> GetLoyaltyProgramProfilePointsAsync(long loyaltyProgramId, string integrationId, Option<string> status = default, Option<List<string>> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List customer&#39;s unused loyalty points
@@ -625,7 +648,7 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
         /// <param name="status">Filter points based on their status. (optional, default to active)</param>
-        /// <param name="subledgerId">The ID of the subledger by which we filter the data. (optional)</param>
+        /// <param name="subledgerId">Filter the results by a list of subledger IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?subledgerId&#x3D;id1&amp;subledgerId&#x3D;id2&#x60;.  The response contains only data associated with the specified subledgers.  (optional)</param>
         /// <param name="customerSessionIDs">Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  (optional)</param>
         /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
@@ -633,7 +656,7 @@ namespace TalonOneSdk.Api
         /// <param name="sort">The field by which results should be sorted. You can enter one of the following values:  - &#x60;startDate&#x60;: Sorts the results by the start date of the points. - &#x60;expiryDate&#x60;: Sorts the results by the expiry date of the points.  By default, results are sorted in ascending order.  To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You can only sort by one field at a time.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfilePointsApiResponse"/>&gt;</returns>
-        Task<IGetLoyaltyProgramProfilePointsApiResponse> GetLoyaltyProgramProfilePointsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<string> status = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetLoyaltyProgramProfilePointsApiResponse> GetLoyaltyProgramProfilePointsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<string> status = default, Option<List<string>> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List customer&#39;s loyalty transactions
@@ -844,7 +867,7 @@ namespace TalonOneSdk.Api
         /// Track event
         /// </summary>
         /// <remarks>
-        /// Triggers a custom event.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - &#x60;profileId&#x60; is required even though the schema does not specify it. &gt; - If the customer profile ID is new, a new profile is automatically created but the &#x60;customer_profile_created&#x60; [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
+        /// Trigger a custom event.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - &#x60;profileId&#x60; is required even though the schema does not specify it. &gt; - If the customer profile ID is new, a new profile is automatically created but the &#x60;customer_profile_created&#x60; [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="integrationEventV2Request">body</param>
@@ -859,7 +882,7 @@ namespace TalonOneSdk.Api
         /// Track event
         /// </summary>
         /// <remarks>
-        /// Triggers a custom event.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - &#x60;profileId&#x60; is required even though the schema does not specify it. &gt; - If the customer profile ID is new, a new profile is automatically created but the &#x60;customer_profile_created&#x60; [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
+        /// Trigger a custom event.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - &#x60;profileId&#x60; is required even though the schema does not specify it. &gt; - If the customer profile ID is new, a new profile is automatically created but the &#x60;customer_profile_created&#x60; [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
         /// </remarks>
         /// <param name="integrationEventV2Request">body</param>
         /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
@@ -868,6 +891,35 @@ namespace TalonOneSdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ITrackEventV2ApiResponse"/>&gt;</returns>
         Task<ITrackEventV2ApiResponse> TrackEventV2OrDefaultAsync(IntegrationEventV2Request integrationEventV2Request, Option<string> silent = default, Option<bool> dry = default, Option<bool> forceCompleteEvaluation = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Track advanced event
+        /// </summary>
+        /// <remarks>
+        /// Trigger an advanced event.  Advanced events are idempotent, uniquely identifiable events. They can also reference a previously closed session to add more context for rule evaluation.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - If the customer profile does not exist, it will be created. However, the &#x60;customer_profile_created&#x60; [built-in event](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="integrationEventV3Request">body</param>
+        /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
+        /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  (optional)</param>
+        /// <param name="forceCompleteEvaluation">Forces evaluation for all matching campaigns regardless of the [campaign evaluation mode](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation#setting-campaign-evaluation-mode). Requires &#x60;dry&#x3D;true&#x60;.  (optional, default to false)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="ITrackEventV3ApiResponse"/>&gt;</returns>
+        Task<ITrackEventV3ApiResponse> TrackEventV3Async(IntegrationEventV3Request integrationEventV3Request, Option<string> silent = default, Option<bool> dry = default, Option<bool> forceCompleteEvaluation = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Track advanced event
+        /// </summary>
+        /// <remarks>
+        /// Trigger an advanced event.  Advanced events are idempotent, uniquely identifiable events. They can also reference a previously closed session to add more context for rule evaluation.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - If the customer profile does not exist, it will be created. However, the &#x60;customer_profile_created&#x60; [built-in event](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
+        /// </remarks>
+        /// <param name="integrationEventV3Request">body</param>
+        /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
+        /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  (optional)</param>
+        /// <param name="forceCompleteEvaluation">Forces evaluation for all matching campaigns regardless of the [campaign evaluation mode](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation#setting-campaign-evaluation-mode). Requires &#x60;dry&#x3D;true&#x60;.  (optional, default to false)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="ITrackEventV3ApiResponse"/>&gt;</returns>
+        Task<ITrackEventV3ApiResponse> TrackEventV3OrDefaultAsync(IntegrationEventV3Request integrationEventV3Request, Option<string> silent = default, Option<bool> dry = default, Option<bool> forceCompleteEvaluation = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Unlink customer profile from a loyalty card
@@ -1480,6 +1532,24 @@ namespace TalonOneSdk.Api
     }
 
     /// <summary>
+    /// The <see cref="IGetEventV3ApiResponse"/>
+    /// </summary>
+    public interface IGetEventV3ApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.EventV3>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+    }
+
+    /// <summary>
     /// The <see cref="IGetLoyaltyBalancesApiResponse"/>
     /// </summary>
     public interface IGetLoyaltyBalancesApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.LoyaltyBalancesWithTiers>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
@@ -1830,7 +1900,7 @@ namespace TalonOneSdk.Api
     /// <summary>
     /// The <see cref="ITrackEventV2ApiResponse"/>
     /// </summary>
-    public interface ITrackEventV2ApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.IntegrationEventV2Response>, INoContent<string>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, IConflict<TalonOneSdk.Model.UpdateCustomerProfileV2409Response>
+    public interface ITrackEventV2ApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.IntegrationEventV2Response>, INoContent<string>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, IConflict<TalonOneSdk.Model.UpdateCustomerSessionV2409Response>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -1843,6 +1913,36 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <returns></returns>
         bool IsNoContent { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 409 Conflict
+        /// </summary>
+        /// <returns></returns>
+        bool IsConflict { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="ITrackEventV3ApiResponse"/>
+    /// </summary>
+    public interface ITrackEventV3ApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.IntegrationEventV3Response>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, IConflict<TalonOneSdk.Model.UpdateCustomerSessionV2409Response>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
 
         /// <summary>
         /// Returns true if the response is 400 BadRequest
@@ -1974,7 +2074,7 @@ namespace TalonOneSdk.Api
     /// <summary>
     /// The <see cref="IUpdateCustomerProfileV2ApiResponse"/>
     /// </summary>
-    public interface IUpdateCustomerProfileV2ApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.CustomerProfileIntegrationResponseV2>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, IConflict<TalonOneSdk.Model.UpdateCustomerProfileV2409Response>
+    public interface IUpdateCustomerProfileV2ApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.CustomerProfileIntegrationResponseV2>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, IConflict<TalonOneSdk.Model.UpdateCustomerSessionV2409Response>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -2389,6 +2489,26 @@ namespace TalonOneSdk.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnGetEventV3;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorGetEventV3;
+
+        internal void ExecuteOnGetEventV3(IntegrationApi.GetEventV3ApiResponse apiResponse)
+        {
+            OnGetEventV3?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorGetEventV3(Exception exception)
+        {
+            OnErrorGetEventV3?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
         public event EventHandler<ApiResponseEventArgs> OnGetLoyaltyBalances;
 
         /// <summary>
@@ -2644,6 +2764,26 @@ namespace TalonOneSdk.Api
         internal void ExecuteOnErrorTrackEventV2(Exception exception)
         {
             OnErrorTrackEventV2?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnTrackEventV3;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorTrackEventV3;
+
+        internal void ExecuteOnTrackEventV3(IntegrationApi.TrackEventV3ApiResponse apiResponse)
+        {
+            OnTrackEventV3?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorTrackEventV3(Exception exception)
+        {
+            OnErrorTrackEventV3?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -2944,8 +3084,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/loyalty_programs/{loyaltyProgramId}/activate_points");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (activateLoyaltyPoints as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (activateLoyaltyPoints as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(activateLoyaltyPoints, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -3320,8 +3460,8 @@ namespace TalonOneSdk.Api
                         ? "/v1/best_prior_price"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/best_prior_price");
 
-                    httpRequestMessageLocalVar.Content = (bestPriorPriceRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (bestPriorPriceRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(bestPriorPriceRequest, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -3582,8 +3722,8 @@ namespace TalonOneSdk.Api
                         ? "/v2/audiences"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/audiences");
 
-                    httpRequestMessageLocalVar.Content = (newAudience as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newAudience as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newAudience, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -3969,8 +4109,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/coupon_reservations/{couponValue}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcouponValue%7D", Uri.EscapeDataString(couponValue.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (couponReservations as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (couponReservations as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(couponReservations, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -4345,8 +4485,8 @@ namespace TalonOneSdk.Api
                         ? "/v1/referrals"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/referrals");
 
-                    httpRequestMessageLocalVar.Content = (newReferral as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newReferral as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newReferral, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -4700,8 +4840,8 @@ namespace TalonOneSdk.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    httpRequestMessageLocalVar.Content = (newReferralsForMultipleAdvocates as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (newReferralsForMultipleAdvocates as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newReferralsForMultipleAdvocates, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -5271,7 +5411,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorDeleteAudienceV2(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long audienceId);
 
         /// <summary>
-        /// Delete audience Delete an audience created by a third-party integration.  &gt; [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  &gt; [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
+        /// Delete audience Delete an audience.  &gt; [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  &gt; [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
         /// </summary>
         /// <param name="audienceId">The ID of the audience.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -5289,7 +5429,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Delete audience Delete an audience created by a third-party integration.  &gt; [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  &gt; [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
+        /// Delete audience Delete an audience.  &gt; [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  &gt; [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId">The ID of the audience.</param>
@@ -5655,8 +5795,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/coupon_reservations/{couponValue}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcouponValue%7D", Uri.EscapeDataString(couponValue.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (couponReservations as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (couponReservations as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(couponReservations, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -6311,8 +6451,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (deleteLoyaltyTransactionsRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (deleteLoyaltyTransactionsRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(deleteLoyaltyTransactionsRequest, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -6662,8 +6802,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/loyalty_programs/{loyaltyProgramId}/cards");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (generateLoyaltyCard as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (generateLoyaltyCard as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(generateLoyaltyCard, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -8469,6 +8609,294 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
+        partial void FormatGetEventV3(ref string integrationId);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="integrationId"></param>
+        /// <returns></returns>
+        private void ValidateGetEventV3(string integrationId)
+        {
+            if (integrationId == null)
+                throw new ArgumentNullException(nameof(integrationId));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="integrationId"></param>
+        private void AfterGetEventV3DefaultImplementation(IGetEventV3ApiResponse apiResponseLocalVar, string integrationId)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetEventV3(ref suppressDefaultLog, apiResponseLocalVar, integrationId);
+            if (!suppressDefaultLog)
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="integrationId"></param>
+        partial void AfterGetEventV3(ref bool suppressDefaultLog, IGetEventV3ApiResponse apiResponseLocalVar, string integrationId);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="integrationId"></param>
+        private void OnErrorGetEventV3DefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string integrationId)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetEventV3(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, integrationId);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="integrationId"></param>
+        partial void OnErrorGetEventV3(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string integrationId);
+
+        /// <summary>
+        /// Get advanced event Retrieve an advanced event by its identifier. 
+        /// </summary>
+        /// <param name="integrationId">The unique ID of the advanced event.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetEventV3ApiResponse"/>&gt;</returns>
+        public async Task<IGetEventV3ApiResponse> GetEventV3OrDefaultAsync(string integrationId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetEventV3Async(integrationId, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Get advanced event Retrieve an advanced event by its identifier. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="integrationId">The unique ID of the advanced event.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetEventV3ApiResponse"/>&gt;</returns>
+        public async Task<IGetEventV3ApiResponse> GetEventV3Async(string integrationId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateGetEventV3(integrationId);
+
+                FormatGetEventV3(ref integrationId);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v3/events/{integrationId}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v3/events/{integrationId}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("GET");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<GetEventV3ApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<GetEventV3ApiResponse>();
+                        GetEventV3ApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GetEventV3ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v3/events/{integrationId}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetEventV3DefaultImplementation(apiResponseLocalVar, integrationId);
+
+                        Events.ExecuteOnGetEventV3(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetEventV3DefaultImplementation(e, "/v3/events/{integrationId}", uriBuilderLocalVar.Path, integrationId);
+                Events.ExecuteOnErrorGetEventV3(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetEventV3ApiResponse"/>
+        /// </summary>
+        public partial class GetEventV3ApiResponse : TalonOneSdk.Client.ApiResponse, IGetEventV3ApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<GetEventV3ApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetEventV3ApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetEventV3ApiResponse(ILogger<GetEventV3ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetEventV3ApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetEventV3ApiResponse(ILogger<GetEventV3ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.EventV3 Ok()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.EventV3>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out TalonOneSdk.Model.EventV3 result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsNotFound
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryNotFound(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = NotFound();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
         partial void FormatGetLoyaltyBalances(ref long loyaltyProgramId, ref string integrationId, ref Option<DateTime> endDate, ref Option<string> subledgerId, ref Option<bool> includeTiers, ref Option<bool> includeProjectedTier);
 
         /// <summary>
@@ -10211,7 +10639,7 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetLoyaltyProgramProfilePoints(ref long loyaltyProgramId, ref string integrationId, ref Option<string> status, ref Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, ref Option<long> pageSize, ref Option<long> skip, ref Option<string> sort);
+        partial void FormatGetLoyaltyProgramProfilePoints(ref long loyaltyProgramId, ref string integrationId, ref Option<string> status, Option<List<string>> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, ref Option<long> pageSize, ref Option<long> skip, ref Option<string> sort);
 
         /// <summary>
         /// Validates the request parameters
@@ -10223,7 +10651,7 @@ namespace TalonOneSdk.Api
         /// <param name="transactionUUIDs"></param>
         /// <param name="sort"></param>
         /// <returns></returns>
-        private void ValidateGetLoyaltyProgramProfilePoints(string integrationId, Option<string> status, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> sort)
+        private void ValidateGetLoyaltyProgramProfilePoints(string integrationId, Option<string> status, Option<List<string>> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> sort)
         {
             if (integrationId == null)
                 throw new ArgumentNullException(nameof(integrationId));
@@ -10257,7 +10685,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="sort"></param>
-        private void AfterGetLoyaltyProgramProfilePointsDefaultImplementation(IGetLoyaltyProgramProfilePointsApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, Option<string> status, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<long> pageSize, Option<long> skip, Option<string> sort)
+        private void AfterGetLoyaltyProgramProfilePointsDefaultImplementation(IGetLoyaltyProgramProfilePointsApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, Option<string> status, Option<List<string>> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<long> pageSize, Option<long> skip, Option<string> sort)
         {
             bool suppressDefaultLog = false;
             AfterGetLoyaltyProgramProfilePoints(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, integrationId, status, subledgerId, customerSessionIDs, transactionUUIDs, pageSize, skip, sort);
@@ -10279,7 +10707,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="sort"></param>
-        partial void AfterGetLoyaltyProgramProfilePoints(ref bool suppressDefaultLog, IGetLoyaltyProgramProfilePointsApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, Option<string> status, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<long> pageSize, Option<long> skip, Option<string> sort);
+        partial void AfterGetLoyaltyProgramProfilePoints(ref bool suppressDefaultLog, IGetLoyaltyProgramProfilePointsApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, Option<string> status, Option<List<string>> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<long> pageSize, Option<long> skip, Option<string> sort);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -10296,7 +10724,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="sort"></param>
-        private void OnErrorGetLoyaltyProgramProfilePointsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<string> status, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<long> pageSize, Option<long> skip, Option<string> sort)
+        private void OnErrorGetLoyaltyProgramProfilePointsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<string> status, Option<List<string>> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<long> pageSize, Option<long> skip, Option<string> sort)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorGetLoyaltyProgramProfilePoints(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, integrationId, status, subledgerId, customerSessionIDs, transactionUUIDs, pageSize, skip, sort);
@@ -10320,7 +10748,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="sort"></param>
-        partial void OnErrorGetLoyaltyProgramProfilePoints(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<string> status, Option<string> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<long> pageSize, Option<long> skip, Option<string> sort);
+        partial void OnErrorGetLoyaltyProgramProfilePoints(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<string> status, Option<List<string>> subledgerId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<long> pageSize, Option<long> skip, Option<string> sort);
 
         /// <summary>
         /// List customer&#39;s unused loyalty points Get paginated results of loyalty points for a given Integration ID in the specified profile-based loyalty program. This endpoint returns only the balances of unused points linked to a customer profile.  You can filter points by status: - &#x60;active&#x60;: Points ready to be redeemed. - &#x60;pending&#x60;: Points with a start date in the future. - &#x60;expired&#x60;: Points with an expiration date in the past. 
@@ -10328,7 +10756,7 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
         /// <param name="status">Filter points based on their status. (optional, default to active)</param>
-        /// <param name="subledgerId">The ID of the subledger by which we filter the data. (optional)</param>
+        /// <param name="subledgerId">Filter the results by a list of subledger IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?subledgerId&#x3D;id1&amp;subledgerId&#x3D;id2&#x60;.  The response contains only data associated with the specified subledgers.  (optional)</param>
         /// <param name="customerSessionIDs">Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  (optional)</param>
         /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
@@ -10336,7 +10764,7 @@ namespace TalonOneSdk.Api
         /// <param name="sort">The field by which results should be sorted. You can enter one of the following values:  - &#x60;startDate&#x60;: Sorts the results by the start date of the points. - &#x60;expiryDate&#x60;: Sorts the results by the expiry date of the points.  By default, results are sorted in ascending order.  To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You can only sort by one field at a time.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfilePointsApiResponse"/>&gt;</returns>
-        public async Task<IGetLoyaltyProgramProfilePointsApiResponse> GetLoyaltyProgramProfilePointsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<string> status = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetLoyaltyProgramProfilePointsApiResponse> GetLoyaltyProgramProfilePointsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<string> status = default, Option<List<string>> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -10355,7 +10783,7 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
         /// <param name="status">Filter points based on their status. (optional, default to active)</param>
-        /// <param name="subledgerId">The ID of the subledger by which we filter the data. (optional)</param>
+        /// <param name="subledgerId">Filter the results by a list of subledger IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?subledgerId&#x3D;id1&amp;subledgerId&#x3D;id2&#x60;.  The response contains only data associated with the specified subledgers.  (optional)</param>
         /// <param name="customerSessionIDs">Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  (optional)</param>
         /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
@@ -10363,7 +10791,7 @@ namespace TalonOneSdk.Api
         /// <param name="sort">The field by which results should be sorted. You can enter one of the following values:  - &#x60;startDate&#x60;: Sorts the results by the start date of the points. - &#x60;expiryDate&#x60;: Sorts the results by the expiry date of the points.  By default, results are sorted in ascending order.  To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You can only sort by one field at a time.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfilePointsApiResponse"/>&gt;</returns>
-        public async Task<IGetLoyaltyProgramProfilePointsApiResponse> GetLoyaltyProgramProfilePointsAsync(long loyaltyProgramId, string integrationId, Option<string> status = default, Option<string> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetLoyaltyProgramProfilePointsApiResponse> GetLoyaltyProgramProfilePointsAsync(long loyaltyProgramId, string integrationId, Option<string> status = default, Option<List<string>> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -10371,7 +10799,7 @@ namespace TalonOneSdk.Api
             {
                 ValidateGetLoyaltyProgramProfilePoints(integrationId, status, subledgerId, customerSessionIDs, transactionUUIDs, sort);
 
-                FormatGetLoyaltyProgramProfilePoints(ref loyaltyProgramId, ref integrationId, ref status, ref subledgerId, customerSessionIDs, transactionUUIDs, ref pageSize, ref skip, ref sort);
+                FormatGetLoyaltyProgramProfilePoints(ref loyaltyProgramId, ref integrationId, ref status, subledgerId, customerSessionIDs, transactionUUIDs, ref pageSize, ref skip, ref sort);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -12050,8 +12478,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyCardId%7D", Uri.EscapeDataString(loyaltyCardId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (loyaltyCardRegistration as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (loyaltyCardRegistration as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(loyaltyCardRegistration, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -12785,8 +13213,8 @@ namespace TalonOneSdk.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    httpRequestMessageLocalVar.Content = (returnIntegrationRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (returnIntegrationRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(returnIntegrationRequest, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -13130,8 +13558,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/catalogs/{catalogId}/sync");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcatalogId%7D", Uri.EscapeDataString(catalogId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (catalogSyncRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (catalogSyncRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(catalogSyncRequest, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -13479,7 +13907,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorTrackEventV2(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, IntegrationEventV2Request integrationEventV2Request, Option<string> silent, Option<bool> dry, Option<bool> forceCompleteEvaluation);
 
         /// <summary>
-        /// Track event Triggers a custom event.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - &#x60;profileId&#x60; is required even though the schema does not specify it. &gt; - If the customer profile ID is new, a new profile is automatically created but the &#x60;customer_profile_created&#x60; [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
+        /// Track event Trigger a custom event.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - &#x60;profileId&#x60; is required even though the schema does not specify it. &gt; - If the customer profile ID is new, a new profile is automatically created but the &#x60;customer_profile_created&#x60; [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
         /// </summary>
         /// <param name="integrationEventV2Request">body</param>
         /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
@@ -13500,7 +13928,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Track event Triggers a custom event.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - &#x60;profileId&#x60; is required even though the schema does not specify it. &gt; - If the customer profile ID is new, a new profile is automatically created but the &#x60;customer_profile_created&#x60; [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
+        /// Track event Trigger a custom event.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - &#x60;profileId&#x60; is required even though the schema does not specify it. &gt; - If the customer profile ID is new, a new profile is automatically created but the &#x60;customer_profile_created&#x60; [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="integrationEventV2Request">body</param>
@@ -13541,8 +13969,8 @@ namespace TalonOneSdk.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    httpRequestMessageLocalVar.Content = (integrationEventV2Request as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (integrationEventV2Request as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(integrationEventV2Request, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -13813,11 +14241,11 @@ namespace TalonOneSdk.Api
             /// Deserializes the response if the response is 409 Conflict
             /// </summary>
             /// <returns></returns>
-            public TalonOneSdk.Model.UpdateCustomerProfileV2409Response Conflict()
+            public TalonOneSdk.Model.UpdateCustomerSessionV2409Response Conflict()
             {
                 // This logic may be modified with the AsModel.mustache template
                 return IsConflict
-                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.UpdateCustomerProfileV2409Response>(RawContent, _jsonSerializerOptions)
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.UpdateCustomerSessionV2409Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
 
@@ -13826,7 +14254,418 @@ namespace TalonOneSdk.Api
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryConflict(out TalonOneSdk.Model.UpdateCustomerProfileV2409Response result)
+            public bool TryConflict(out TalonOneSdk.Model.UpdateCustomerSessionV2409Response result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Conflict();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)409);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatTrackEventV3(IntegrationEventV3Request integrationEventV3Request, ref Option<string> silent, ref Option<bool> dry, ref Option<bool> forceCompleteEvaluation);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="integrationEventV3Request"></param>
+        /// <param name="silent"></param>
+        /// <returns></returns>
+        private void ValidateTrackEventV3(IntegrationEventV3Request integrationEventV3Request, Option<string> silent)
+        {
+            if (integrationEventV3Request == null)
+                throw new ArgumentNullException(nameof(integrationEventV3Request));
+
+            if (silent.IsSet && silent.Value == null)
+                throw new ArgumentNullException(nameof(silent));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="integrationEventV3Request"></param>
+        /// <param name="silent"></param>
+        /// <param name="dry"></param>
+        /// <param name="forceCompleteEvaluation"></param>
+        private void AfterTrackEventV3DefaultImplementation(ITrackEventV3ApiResponse apiResponseLocalVar, IntegrationEventV3Request integrationEventV3Request, Option<string> silent, Option<bool> dry, Option<bool> forceCompleteEvaluation)
+        {
+            bool suppressDefaultLog = false;
+            AfterTrackEventV3(ref suppressDefaultLog, apiResponseLocalVar, integrationEventV3Request, silent, dry, forceCompleteEvaluation);
+            if (!suppressDefaultLog)
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="integrationEventV3Request"></param>
+        /// <param name="silent"></param>
+        /// <param name="dry"></param>
+        /// <param name="forceCompleteEvaluation"></param>
+        partial void AfterTrackEventV3(ref bool suppressDefaultLog, ITrackEventV3ApiResponse apiResponseLocalVar, IntegrationEventV3Request integrationEventV3Request, Option<string> silent, Option<bool> dry, Option<bool> forceCompleteEvaluation);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="integrationEventV3Request"></param>
+        /// <param name="silent"></param>
+        /// <param name="dry"></param>
+        /// <param name="forceCompleteEvaluation"></param>
+        private void OnErrorTrackEventV3DefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, IntegrationEventV3Request integrationEventV3Request, Option<string> silent, Option<bool> dry, Option<bool> forceCompleteEvaluation)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorTrackEventV3(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, integrationEventV3Request, silent, dry, forceCompleteEvaluation);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="integrationEventV3Request"></param>
+        /// <param name="silent"></param>
+        /// <param name="dry"></param>
+        /// <param name="forceCompleteEvaluation"></param>
+        partial void OnErrorTrackEventV3(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, IntegrationEventV3Request integrationEventV3Request, Option<string> silent, Option<bool> dry, Option<bool> forceCompleteEvaluation);
+
+        /// <summary>
+        /// Track advanced event Trigger an advanced event.  Advanced events are idempotent, uniquely identifiable events. They can also reference a previously closed session to add more context for rule evaluation.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - If the customer profile does not exist, it will be created. However, the &#x60;customer_profile_created&#x60; [built-in event](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
+        /// </summary>
+        /// <param name="integrationEventV3Request">body</param>
+        /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
+        /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  (optional)</param>
+        /// <param name="forceCompleteEvaluation">Forces evaluation for all matching campaigns regardless of the [campaign evaluation mode](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation#setting-campaign-evaluation-mode). Requires &#x60;dry&#x3D;true&#x60;.  (optional, default to false)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="ITrackEventV3ApiResponse"/>&gt;</returns>
+        public async Task<ITrackEventV3ApiResponse> TrackEventV3OrDefaultAsync(IntegrationEventV3Request integrationEventV3Request, Option<string> silent = default, Option<bool> dry = default, Option<bool> forceCompleteEvaluation = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await TrackEventV3Async(integrationEventV3Request, silent, dry, forceCompleteEvaluation, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Track advanced event Trigger an advanced event.  Advanced events are idempotent, uniquely identifiable events. They can also reference a previously closed session to add more context for rule evaluation.  To use this endpoint:  1. [Create a custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - If the customer profile does not exist, it will be created. However, the &#x60;customer_profile_created&#x60; [built-in event](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="integrationEventV3Request">body</param>
+        /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
+        /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  (optional)</param>
+        /// <param name="forceCompleteEvaluation">Forces evaluation for all matching campaigns regardless of the [campaign evaluation mode](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation#setting-campaign-evaluation-mode). Requires &#x60;dry&#x3D;true&#x60;.  (optional, default to false)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="ITrackEventV3ApiResponse"/>&gt;</returns>
+        public async Task<ITrackEventV3ApiResponse> TrackEventV3Async(IntegrationEventV3Request integrationEventV3Request, Option<string> silent = default, Option<bool> dry = default, Option<bool> forceCompleteEvaluation = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateTrackEventV3(integrationEventV3Request, silent);
+
+                FormatTrackEventV3(integrationEventV3Request, ref silent, ref dry, ref forceCompleteEvaluation);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v3/events"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v3/events");
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (silent.IsSet)
+                        parseQueryStringLocalVar["silent"] = ClientUtils.ParameterToString(silent.Value);
+
+                    if (dry.IsSet)
+                        parseQueryStringLocalVar["dry"] = ClientUtils.ParameterToString(dry.Value);
+
+                    if (forceCompleteEvaluation.IsSet)
+                        parseQueryStringLocalVar["forceCompleteEvaluation"] = ClientUtils.ParameterToString(forceCompleteEvaluation.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    httpRequestMessageLocalVar.Content = (integrationEventV3Request as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(integrationEventV3Request, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("POST");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<TrackEventV3ApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<TrackEventV3ApiResponse>();
+                        TrackEventV3ApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new TrackEventV3ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v3/events", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterTrackEventV3DefaultImplementation(apiResponseLocalVar, integrationEventV3Request, silent, dry, forceCompleteEvaluation);
+
+                        Events.ExecuteOnTrackEventV3(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorTrackEventV3DefaultImplementation(e, "/v3/events", uriBuilderLocalVar.Path, integrationEventV3Request, silent, dry, forceCompleteEvaluation);
+                Events.ExecuteOnErrorTrackEventV3(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="TrackEventV3ApiResponse"/>
+        /// </summary>
+        public partial class TrackEventV3ApiResponse : TalonOneSdk.Client.ApiResponse, ITrackEventV3ApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<TrackEventV3ApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="TrackEventV3ApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public TrackEventV3ApiResponse(ILogger<TrackEventV3ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="TrackEventV3ApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public TrackEventV3ApiResponse(ILogger<TrackEventV3ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.IntegrationEventV3Response Ok()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.IntegrationEventV3Response>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out TalonOneSdk.Model.IntegrationEventV3Response result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryUnauthorized(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 409 Conflict
+            /// </summary>
+            /// <returns></returns>
+            public bool IsConflict => 409 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 409 Conflict
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.UpdateCustomerSessionV2409Response Conflict()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsConflict
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.UpdateCustomerSessionV2409Response>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 409 Conflict and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryConflict(out TalonOneSdk.Model.UpdateCustomerSessionV2409Response result)
             {
                 result = null;
 
@@ -13973,8 +14812,8 @@ namespace TalonOneSdk.Api
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyCardId%7D", Uri.EscapeDataString(loyaltyCardId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (loyaltyCardRegistration as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (loyaltyCardRegistration as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(loyaltyCardRegistration, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -14356,8 +15195,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/audience_customers/{audienceId}/attributes");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BaudienceId%7D", Uri.EscapeDataString(audienceId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (body as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (body as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(body, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -14669,8 +15508,8 @@ namespace TalonOneSdk.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/audiences/{audienceId}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BaudienceId%7D", Uri.EscapeDataString(audienceId.ToString()));
 
-                    httpRequestMessageLocalVar.Content = (updateAudience as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (updateAudience as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(updateAudience, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -15007,8 +15846,8 @@ namespace TalonOneSdk.Api
                         ? "/v2/customer_audiences"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/customer_audiences");
 
-                    httpRequestMessageLocalVar.Content = (customerProfileAudienceRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (customerProfileAudienceRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(customerProfileAudienceRequest, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -15384,8 +16223,8 @@ namespace TalonOneSdk.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    httpRequestMessageLocalVar.Content = (customerProfileIntegrationRequestV2 as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (customerProfileIntegrationRequestV2 as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(customerProfileIntegrationRequestV2, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -15618,11 +16457,11 @@ namespace TalonOneSdk.Api
             /// Deserializes the response if the response is 409 Conflict
             /// </summary>
             /// <returns></returns>
-            public TalonOneSdk.Model.UpdateCustomerProfileV2409Response Conflict()
+            public TalonOneSdk.Model.UpdateCustomerSessionV2409Response Conflict()
             {
                 // This logic may be modified with the AsModel.mustache template
                 return IsConflict
-                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.UpdateCustomerProfileV2409Response>(RawContent, _jsonSerializerOptions)
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.UpdateCustomerSessionV2409Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
 
@@ -15631,7 +16470,7 @@ namespace TalonOneSdk.Api
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryConflict(out TalonOneSdk.Model.UpdateCustomerProfileV2409Response result)
+            public bool TryConflict(out TalonOneSdk.Model.UpdateCustomerSessionV2409Response result)
             {
                 result = null;
 
@@ -15777,8 +16616,8 @@ namespace TalonOneSdk.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    httpRequestMessageLocalVar.Content = (multipleCustomerProfileIntegrationRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (multipleCustomerProfileIntegrationRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(multipleCustomerProfileIntegrationRequest, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -16186,8 +17025,8 @@ namespace TalonOneSdk.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    httpRequestMessageLocalVar.Content = (integrationRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                    httpRequestMessageLocalVar.Content = (integrationRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(integrationRequest, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();

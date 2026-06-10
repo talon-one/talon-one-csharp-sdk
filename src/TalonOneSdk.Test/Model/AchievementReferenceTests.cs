@@ -88,5 +88,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'CampaignId'
         }
+
+        /// <summary>
+        /// Test the property 'CampaignName'
+        /// </summary>
+        [Fact]
+        public void CampaignNameTest()
+        {
+            // TODO unit test for the property 'CampaignName'
+        }
     }
 }

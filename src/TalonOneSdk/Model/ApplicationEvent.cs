@@ -35,7 +35,7 @@ namespace TalonOneSdk.Model
         /// <param name="created">The time this entity was created.</param>
         /// <param name="applicationId">The ID of the Application that owns this entity.</param>
         /// <param name="type">The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.</param>
-        /// <param name="attributes">Additional JSON serialized data associated with the event.</param>
+        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
         /// <param name="effects">An array containing the effects that were applied as a result of this event.</param>
         /// <param name="profileId">The globally unique Talon.One ID of the customer that created this entity.</param>
         /// <param name="storeId">The ID of the store.</param>
@@ -95,9 +95,9 @@ namespace TalonOneSdk.Model
         public string Type { get; set; }
 
         /// <summary>
-        /// Additional JSON serialized data associated with the event.
+        /// Arbitrary properties associated with this campaign.
         /// </summary>
-        /// <value>Additional JSON serialized data associated with the event.</value>
+        /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("attributes")]
         public Object Attributes { get; set; }
 

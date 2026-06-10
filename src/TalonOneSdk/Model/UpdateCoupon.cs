@@ -38,7 +38,7 @@ namespace TalonOneSdk.Model
         /// <param name="expiryDate">Expiration date of the coupon. Coupon never expires if this is omitted.</param>
         /// <param name="limits">Limits configuration for a coupon. These limits will override the limits set from the campaign.  **Note:** Only usable when creating a single coupon which is not tied to a specific recipient. Only per-profile limits are allowed to be configured. </param>
         /// <param name="recipientIntegrationId">The integration ID for this coupon&#39;s beneficiary&#39;s profile.</param>
-        /// <param name="attributes">Arbitrary properties associated with this item.</param>
+        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
         /// <param name="isReservationMandatory">An indication of whether the code can be redeemed only if it has been reserved first. (default to false)</param>
         /// <param name="implicitlyReserved">An indication of whether the coupon is implicitly reserved for all customers.</param>
         [JsonConstructor]
@@ -171,9 +171,9 @@ namespace TalonOneSdk.Model
         public Option<Object> AttributesOption { get; private set; }
 
         /// <summary>
-        /// Arbitrary properties associated with this item.
+        /// Arbitrary properties associated with this campaign.
         /// </summary>
-        /// <value>Arbitrary properties associated with this item.</value>
+        /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("attributes")]
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 

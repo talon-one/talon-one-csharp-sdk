@@ -230,6 +230,7 @@ Class | Method | HTTP request | Description
 *IntegrationApi* | [**GetCustomerAchievements**](docs/apis/IntegrationApi.md#getcustomerachievements) | **GET** /v1/customer_profiles/{integrationId}/achievements | List customer's available achievements
 *IntegrationApi* | [**GetCustomerInventory**](docs/apis/IntegrationApi.md#getcustomerinventory) | **GET** /v1/customer_profiles/{integrationId}/inventory | List customer data
 *IntegrationApi* | [**GetCustomerSession**](docs/apis/IntegrationApi.md#getcustomersession) | **GET** /v2/customer_sessions/{customerSessionId} | Get customer session
+*IntegrationApi* | [**GetEventV3**](docs/apis/IntegrationApi.md#geteventv3) | **GET** /v3/events/{integrationId} | Get advanced event
 *IntegrationApi* | [**GetLoyaltyBalances**](docs/apis/IntegrationApi.md#getloyaltybalances) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/balances | Get customer's loyalty balances
 *IntegrationApi* | [**GetLoyaltyCardBalances**](docs/apis/IntegrationApi.md#getloyaltycardbalances) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/balances | Get card's point balances
 *IntegrationApi* | [**GetLoyaltyCardPoints**](docs/apis/IntegrationApi.md#getloyaltycardpoints) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/points | List card's unused loyalty points
@@ -243,6 +244,7 @@ Class | Method | HTTP request | Description
 *IntegrationApi* | [**ReturnCartItems**](docs/apis/IntegrationApi.md#returncartitems) | **POST** /v2/customer_sessions/{customerSessionId}/returns | Return cart items
 *IntegrationApi* | [**SyncCatalog**](docs/apis/IntegrationApi.md#synccatalog) | **PUT** /v1/catalogs/{catalogId}/sync | Sync cart item catalog
 *IntegrationApi* | [**TrackEventV2**](docs/apis/IntegrationApi.md#trackeventv2) | **POST** /v2/events | Track event
+*IntegrationApi* | [**TrackEventV3**](docs/apis/IntegrationApi.md#trackeventv3) | **POST** /v3/events | Track advanced event
 *IntegrationApi* | [**UnlinkLoyaltyCardFromProfile**](docs/apis/IntegrationApi.md#unlinkloyaltycardfromprofile) | **POST** /v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/unlink_profile | Unlink customer profile from a loyalty card
 *IntegrationApi* | [**UpdateAudienceCustomersAttributes**](docs/apis/IntegrationApi.md#updateaudiencecustomersattributes) | **PUT** /v2/audience_customers/{audienceId}/attributes | Update profile attributes for all customers in audience
 *IntegrationApi* | [**UpdateAudienceV2**](docs/apis/IntegrationApi.md#updateaudiencev2) | **PUT** /v2/audiences/{audienceId} | Update audience name
@@ -384,6 +386,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**ImportCoupons**](docs/apis/ManagementApi.md#importcoupons) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/import_coupons | Import coupons
 *ManagementApi* | [**ImportLoyaltyCards**](docs/apis/ManagementApi.md#importloyaltycards) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/import_cards | Import loyalty cards
 *ManagementApi* | [**ImportLoyaltyCustomersTiers**](docs/apis/ManagementApi.md#importloyaltycustomerstiers) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/import_customers_tiers | Import customers into loyalty tiers
+*ManagementApi* | [**ImportLoyaltyJoinDates**](docs/apis/ManagementApi.md#importloyaltyjoindates) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/import_join_dates | Import join dates for a loyalty program
 *ManagementApi* | [**ImportLoyaltyPoints**](docs/apis/ManagementApi.md#importloyaltypoints) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/import_points | Import loyalty points
 *ManagementApi* | [**ImportPoolGiveaways**](docs/apis/ManagementApi.md#importpoolgiveaways) | **POST** /v1/giveaways/pools/{poolId}/import | Import giveaway codes into a giveaway pool
 *ManagementApi* | [**ImportReferrals**](docs/apis/ManagementApi.md#importreferrals) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/import_referrals | Import referrals
@@ -550,6 +553,7 @@ Class | Method | HTTP request | Description
 - [Model.CampaignEditedNotificationItem](docs/models/CampaignEditedNotificationItem.md)
 - [Model.CampaignEligibility](docs/models/CampaignEligibility.md)
 - [Model.CampaignEligibilityDetails](docs/models/CampaignEligibilityDetails.md)
+- [Model.CampaignEligibilityExperiment](docs/models/CampaignEligibilityExperiment.md)
 - [Model.CampaignEligibilityFailureDetails](docs/models/CampaignEligibilityFailureDetails.md)
 - [Model.CampaignEntity](docs/models/CampaignEntity.md)
 - [Model.CampaignEvaluationGroup](docs/models/CampaignEvaluationGroup.md)
@@ -675,6 +679,8 @@ Class | Method | HTTP request | Description
 - [Model.EventV3RequestEntity](docs/models/EventV3RequestEntity.md)
 - [Model.Experiment](docs/models/Experiment.md)
 - [Model.ExperimentCampaignCopy](docs/models/ExperimentCampaignCopy.md)
+- [Model.ExperimentConfidenceTimeline](docs/models/ExperimentConfidenceTimeline.md)
+- [Model.ExperimentConfidenceTimelineDataPoint](docs/models/ExperimentConfidenceTimelineDataPoint.md)
 - [Model.ExperimentCopy](docs/models/ExperimentCopy.md)
 - [Model.ExperimentCopyExperiment](docs/models/ExperimentCopyExperiment.md)
 - [Model.ExperimentListResults](docs/models/ExperimentListResults.md)
@@ -791,13 +797,13 @@ Class | Method | HTTP request | Description
 - [Model.IntegrationHubConfig](docs/models/IntegrationHubConfig.md)
 - [Model.IntegrationHubEventPayloadCouponBasedNotifications](docs/models/IntegrationHubEventPayloadCouponBasedNotifications.md)
 - [Model.IntegrationHubEventPayloadCouponBasedNotificationsLimits](docs/models/IntegrationHubEventPayloadCouponBasedNotificationsLimits.md)
-- [Model.IntegrationHubEventPayloadLoyaltyProfileBasedNotification](docs/models/IntegrationHubEventPayloadLoyaltyProfileBasedNotification.md)
 - [Model.IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification](docs/models/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.md)
 - [Model.IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction](docs/models/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.md)
 - [Model.IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification](docs/models/IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.md)
 - [Model.IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification](docs/models/IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.md)
 - [Model.IntegrationHubEventRecord](docs/models/IntegrationHubEventRecord.md)
 - [Model.IntegrationHubEventStatusUpdate](docs/models/IntegrationHubEventStatusUpdate.md)
+- [Model.IntegrationHubEventType](docs/models/IntegrationHubEventType.md)
 - [Model.IntegrationHubFlow](docs/models/IntegrationHubFlow.md)
 - [Model.IntegrationHubFlowConfig](docs/models/IntegrationHubFlowConfig.md)
 - [Model.IntegrationHubFlowConfigResponse](docs/models/IntegrationHubFlowConfigResponse.md)
@@ -1057,8 +1063,6 @@ Class | Method | HTTP request | Description
 - [Model.ScimServiceProviderConfigResponseBulk](docs/models/ScimServiceProviderConfigResponseBulk.md)
 - [Model.ScimServiceProviderConfigResponseChangePassword](docs/models/ScimServiceProviderConfigResponseChangePassword.md)
 - [Model.ScimServiceProviderConfigResponseFilter](docs/models/ScimServiceProviderConfigResponseFilter.md)
-- [Model.ScimServiceProviderConfigResponsePatch](docs/models/ScimServiceProviderConfigResponsePatch.md)
-- [Model.ScimServiceProviderConfigResponseSort](docs/models/ScimServiceProviderConfigResponseSort.md)
 - [Model.ScimUser](docs/models/ScimUser.md)
 - [Model.ScimUsersListResponse](docs/models/ScimUsersListResponse.md)
 - [Model.SecondaryDeployment](docs/models/SecondaryDeployment.md)
@@ -1126,7 +1130,6 @@ Class | Method | HTTP request | Description
 - [Model.UpdateCouponBatch](docs/models/UpdateCouponBatch.md)
 - [Model.UpdateCouponsData](docs/models/UpdateCouponsData.md)
 - [Model.UpdateCustomEffect](docs/models/UpdateCustomEffect.md)
-- [Model.UpdateCustomerProfileV2409Response](docs/models/UpdateCustomerProfileV2409Response.md)
 - [Model.UpdateCustomerSessionV2409Response](docs/models/UpdateCustomerSessionV2409Response.md)
 - [Model.UpdateExperiment](docs/models/UpdateExperiment.md)
 - [Model.UpdateExperimentVariant](docs/models/UpdateExperimentVariant.md)
@@ -1141,6 +1144,7 @@ Class | Method | HTTP request | Description
 - [Model.UpdateReferral](docs/models/UpdateReferral.md)
 - [Model.UpdateReferralBatch](docs/models/UpdateReferralBatch.md)
 - [Model.UpdateReward](docs/models/UpdateReward.md)
+- [Model.UpdateRiskNotification](docs/models/UpdateRiskNotification.md)
 - [Model.UpdateRole](docs/models/UpdateRole.md)
 - [Model.UpdateStore](docs/models/UpdateStore.md)
 - [Model.UpdateSupportRequest](docs/models/UpdateSupportRequest.md)

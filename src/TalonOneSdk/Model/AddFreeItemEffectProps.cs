@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;addFreeItem\&quot; effect. This gets triggered whenever a validated rule contained an \&quot;add free item\&quot; effect.
+    /// This effect indicates that a free item should be added to the shopping cart in the current session. In this example, add the SKU to the shopping cart and set its price to &#x60;0&#x60;.  The effect of a successful referral can mean a free item for someone else, such as the referrer.
     /// </summary>
     public partial class AddFreeItemEffectProps : IValidatableObject
     {
@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="AddFreeItemEffectProps" /> class.
         /// </summary>
         /// <param name="sku">SKU of the item that needs to be added.</param>
-        /// <param name="name">The name / description of the effect</param>
+        /// <param name="name">Description of the effect.</param>
         /// <param name="desiredQuantity">The original quantity in case a partial reward was applied.</param>
         [JsonConstructor]
         public AddFreeItemEffectProps(string sku, string name, Option<long?> desiredQuantity = default)
@@ -54,9 +54,9 @@ namespace TalonOneSdk.Model
         public string Sku { get; set; }
 
         /// <summary>
-        /// The name / description of the effect
+        /// Description of the effect.
         /// </summary>
-        /// <value>The name / description of the effect</value>
+        /// <value>Description of the effect.</value>
         [JsonPropertyName("name")]
         public string Name { get; set; }
 

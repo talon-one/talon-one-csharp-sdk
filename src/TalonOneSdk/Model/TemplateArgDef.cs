@@ -33,7 +33,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="type">The type of value this argument expects.</param>
         /// <param name="title">A campaigner friendly name for the argument, this will be shown in the rule editor.</param>
-        /// <param name="ui">Arbitrary metadata that may be used to render an input for this argument.</param>
+        /// <param name="ui">Arbitrary properties associated with this campaign.</param>
         /// <param name="description">A campaigner-friendly description of the argument, this will also be shown in the rule editor.</param>
         /// <param name="key">The identifier for the associated value within the JSON object.</param>
         /// <param name="picklistID">ID of the picklist linked to a template.</param>
@@ -191,9 +191,9 @@ namespace TalonOneSdk.Model
         public string Title { get; set; }
 
         /// <summary>
-        /// Arbitrary metadata that may be used to render an input for this argument.
+        /// Arbitrary properties associated with this campaign.
         /// </summary>
-        /// <value>Arbitrary metadata that may be used to render an input for this argument.</value>
+        /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("ui")]
         public Object Ui { get; set; }
 
