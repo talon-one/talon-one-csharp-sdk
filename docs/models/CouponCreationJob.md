@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **AccountId** | **long** | The ID of the account that owns this entity. | 
 **UsageLimit** | **long** | The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply.  | 
 **NumberOfCoupons** | **long** | The number of new coupon codes to generate for the campaign. | 
-**Attributes** | **Object** | Arbitrary properties associated with coupons. | 
+**Attributes** | **Object** | Arbitrary properties associated with this campaign. | 
 **BatchId** | **string** | The batch ID coupons created by this job will bear. | 
 **Status** | **string** | The current status of this request. Possible values: - &#x60;pending verification&#x60; - &#x60;pending&#x60; - &#x60;completed&#x60; - &#x60;failed&#x60; - &#x60;coupon pattern full&#x60;  | 
 **CreatedAmount** | **long** | The number of coupon codes that were already created for this request. | 

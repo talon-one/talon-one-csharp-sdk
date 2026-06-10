@@ -258,6 +258,18 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test GetEventV3
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task GetEventV3AsyncTest()
+        {
+            string integrationId = default;
+            var response = await _instance.GetEventV3Async(integrationId);
+            var model = response.Ok();
+            Assert.IsType<TalonOneSdk.Model.EventV3>(model);
+        }
+
+        /// <summary>
         /// Test GetLoyaltyBalances
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -340,7 +352,7 @@ namespace TalonOneSdk.Test.Api
             long loyaltyProgramId = default;
             string integrationId = default;
             Client.Option<string> status = default;
-            Client.Option<string> subledgerId = default;
+            Client.Option<List<string>> subledgerId = default;
             Client.Option<List<string>> customerSessionIDs = default;
             Client.Option<List<string>> transactionUUIDs = default;
             Client.Option<long> pageSize = default;
@@ -470,6 +482,21 @@ namespace TalonOneSdk.Test.Api
             var response = await _instance.TrackEventV2Async(integrationEventV2Request, silent, dry, forceCompleteEvaluation);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.IntegrationEventV2Response>(model);
+        }
+
+        /// <summary>
+        /// Test TrackEventV3
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task TrackEventV3AsyncTest()
+        {
+            IntegrationEventV3Request integrationEventV3Request = default;
+            Client.Option<string> silent = default;
+            Client.Option<bool> dry = default;
+            Client.Option<bool> forceCompleteEvaluation = default;
+            var response = await _instance.TrackEventV3Async(integrationEventV3Request, silent, dry, forceCompleteEvaluation);
+            var model = response.Ok();
+            Assert.IsType<TalonOneSdk.Model.IntegrationEventV3Response>(model);
         }
 
         /// <summary>

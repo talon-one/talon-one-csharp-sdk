@@ -36,8 +36,8 @@ namespace TalonOneSdk.Model
         /// <param name="userId">The ID of the user associated with this entity.</param>
         /// <param name="entity">API endpoint on which the change was initiated.</param>
         /// <param name="applicationId">ID of application associated with change.</param>
-        /// <param name="old">Resource before the change occurred.</param>
-        /// <param name="new">Resource after the change occurred.</param>
+        /// <param name="old">Arbitrary properties associated with this campaign.</param>
+        /// <param name="new">Arbitrary properties associated with this campaign.</param>
         /// <param name="managementKeyId">ID of management key used to perform changes.</param>
         [JsonConstructor]
         public Change(long id, DateTime created, long userId, string entity, Option<long?> applicationId = default, Option<Object> old = default, Option<Object> @new = default, Option<long?> managementKeyId = default)
@@ -110,10 +110,9 @@ namespace TalonOneSdk.Model
         public Option<Object> OldOption { get; private set; }
 
         /// <summary>
-        /// Resource before the change occurred.
+        /// Arbitrary properties associated with this campaign.
         /// </summary>
-        /// <value>Resource before the change occurred.</value>
-        /* <example>{}</example> */
+        /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("old")]
         public Object Old { get { return this.OldOption.Value; } set { this.OldOption = new Option<Object>(value); } }
 
@@ -125,10 +124,9 @@ namespace TalonOneSdk.Model
         public Option<Object> NewOption { get; private set; }
 
         /// <summary>
-        /// Resource after the change occurred.
+        /// Arbitrary properties associated with this campaign.
         /// </summary>
-        /// <value>Resource after the change occurred.</value>
-        /* <example>{applicationId&quot;&#x3D;359, attributes&quot;&#x3D;{}, campaignGroups&quot;&#x3D;[], created&quot;&#x3D;2022-07-08T13:04:02.972762328Z, description&quot;&#x3D;, features&quot;&#x3D;[referrals, loyalty], id&#x3D;6727}</example> */
+        /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("new")]
         public Object New { get { return this.NewOption.Value; } set { this.NewOption = new Option<Object>(value); } }
 

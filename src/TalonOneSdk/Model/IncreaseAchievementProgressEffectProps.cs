@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;increaseAchievementProgress\&quot; effect. This gets triggered whenever a validated rule contained an \&quot;increase customer progress\&quot; effect.
+    /// This effect indicates that the customer&#39;s progress in an achievement was updated during the current session. It is triggered when a rule using the [Update customer progress](https://docs.talon.one/docs/product/rules/effects/use-effects#update-customer-progress) effect is successfully validated.  For [on-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/achievements-overview#recurring-on-completion-achievements), any customer progress exceeding the target automatically starts a new iteration. This generates a new &#x60;progressTrackerId&#x60; for each iteration, and there can be multiple progress updates for the same achievement from a single validation of this effect.
     /// </summary>
     public partial class IncreaseAchievementProgressEffectProps : IValidatableObject
     {
@@ -33,11 +33,11 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="achievementId">The internal ID of the achievement.</param>
         /// <param name="achievementName">The name of the achievement.</param>
-        /// <param name="delta">The value by which the customer&#39;s current progress in the achievement is increased.</param>
+        /// <param name="delta">The value by which the customer&#39;s current progress in the achievement has increased.</param>
         /// <param name="value">The current progress of the customer in the achievement.</param>
         /// <param name="target">The target value to complete the achievement.</param>
         /// <param name="isJustCompleted">Indicates if the customer has completed the achievement in the current session.</param>
-        /// <param name="progressTrackerId">The internal ID of the achievement progress tracker.</param>
+        /// <param name="progressTrackerId">The internal ID of the customer progress tracker. For [on-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/achievements-overview#recurring-on-completion-achievements), this effect generates a unique ID for each iteration.</param>
         [JsonConstructor]
         public IncreaseAchievementProgressEffectProps(long achievementId, string achievementName, decimal delta, decimal value, decimal target, bool isJustCompleted, Option<long?> progressTrackerId = default)
         {
@@ -70,9 +70,9 @@ namespace TalonOneSdk.Model
         public string AchievementName { get; set; }
 
         /// <summary>
-        /// The value by which the customer&#39;s current progress in the achievement is increased.
+        /// The value by which the customer&#39;s current progress in the achievement has increased.
         /// </summary>
-        /// <value>The value by which the customer&#39;s current progress in the achievement is increased.</value>
+        /// <value>The value by which the customer&#39;s current progress in the achievement has increased.</value>
         [JsonPropertyName("delta")]
         public decimal Delta { get; set; }
 
@@ -105,9 +105,9 @@ namespace TalonOneSdk.Model
         public Option<long?> ProgressTrackerIdOption { get; private set; }
 
         /// <summary>
-        /// The internal ID of the achievement progress tracker.
+        /// The internal ID of the customer progress tracker. For [on-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/achievements-overview#recurring-on-completion-achievements), this effect generates a unique ID for each iteration.
         /// </summary>
-        /// <value>The internal ID of the achievement progress tracker.</value>
+        /// <value>The internal ID of the customer progress tracker. For [on-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/achievements-overview#recurring-on-completion-achievements), this effect generates a unique ID for each iteration.</value>
         [JsonPropertyName("progressTrackerId")]
         public long? ProgressTrackerId { get { return this.ProgressTrackerIdOption.Value; } set { this.ProgressTrackerIdOption = new Option<long?>(value); } }
 

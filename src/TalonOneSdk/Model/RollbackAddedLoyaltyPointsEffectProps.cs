@@ -24,21 +24,21 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;rollbackAddedLoyaltyPoints\&quot; effect. This gets triggered whenever previously a closed session with an addLoyaltyPoints effect is cancelled.
+    /// This effect is triggered in the following cases:  - A session was cancelled in which loyalty points have been added. - A session was partially returned and loyalty point were added by the returned items. See [returning items](https://docs.talon.one/docs/dev/tutorials/partially-return-a-session).  If you use the [Add loyalty points per item effect](https://docs.talon.one/docs/product/rules/effects/available-effects#reward-effects), use the &#x60;cartItemPosition&#x60; property to identify which items the loyalty points were rolled back for.  If you use **Add loyalty points per item** and if the session contains some cart items with _quantity &gt; 1_, use the &#x60;cartItemSubPosition&#x60; property to identify the item unit in its line item.  If the loyalty program is [profile-based](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types), use the &#x60;recipientIntegrationId&#x60; property to identify the user for whom the loyalty points are rolled back. If the loyalty program is [card-based](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types), use the &#x60;cardIdentifier&#x60; property to identify the loyalty card where the points were originally added.
     /// </summary>
     public partial class RollbackAddedLoyaltyPointsEffectProps : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RollbackAddedLoyaltyPointsEffectProps" /> class.
         /// </summary>
-        /// <param name="programId">The ID of the loyalty program where the points were originally added.</param>
-        /// <param name="subLedgerId">The ID of the subledger within the loyalty program where these points were originally added.</param>
+        /// <param name="programId">The ID of the loyalty program where these points were rolled back.</param>
+        /// <param name="subLedgerId">The ID of the subledger within the loyalty program where these points were rolled back.</param>
         /// <param name="value">The amount of points that were rolled back.</param>
-        /// <param name="recipientIntegrationId">The user for whom these points were originally added.</param>
-        /// <param name="transactionUUID">The identifier of &#39;deduction&#39; entry added to the ledger as the &#x60;addLoyaltyPoints&#x60; effect is rolled back.</param>
-        /// <param name="cartItemPosition">The index of the item in the cart items for which the loyalty points were rolled back.</param>
-        /// <param name="cartItemSubPosition">For cart items with &#x60;quantity&#x60; &gt; 1, the sub-position indicates to which item the loyalty points were rolled back. </param>
-        /// <param name="cardIdentifier">The card on which these points were originally added.</param>
+        /// <param name="recipientIntegrationId">The user for whom these points were rolled back.</param>
+        /// <param name="transactionUUID">The identifier of this loyalty point transaction.</param>
+        /// <param name="cartItemPosition">(_Add points per cart item_ only.) The index of the item in the &#x60;cartItem&#x60; object for which these points were rolled back.</param>
+        /// <param name="cartItemSubPosition">(_Add points per cart item_ ) The index of the item unit in its line item.</param>
+        /// <param name="cardIdentifier">The identifier of the card on which these points were originally added.</param>
         [JsonConstructor]
         public RollbackAddedLoyaltyPointsEffectProps(long programId, string subLedgerId, decimal value, string recipientIntegrationId, string transactionUUID, Option<decimal?> cartItemPosition = default, Option<decimal?> cartItemSubPosition = default, Option<string> cardIdentifier = default)
         {
@@ -56,16 +56,16 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The ID of the loyalty program where the points were originally added.
+        /// The ID of the loyalty program where these points were rolled back.
         /// </summary>
-        /// <value>The ID of the loyalty program where the points were originally added.</value>
+        /// <value>The ID of the loyalty program where these points were rolled back.</value>
         [JsonPropertyName("programId")]
         public long ProgramId { get; set; }
 
         /// <summary>
-        /// The ID of the subledger within the loyalty program where these points were originally added.
+        /// The ID of the subledger within the loyalty program where these points were rolled back.
         /// </summary>
-        /// <value>The ID of the subledger within the loyalty program where these points were originally added.</value>
+        /// <value>The ID of the subledger within the loyalty program where these points were rolled back.</value>
         [JsonPropertyName("subLedgerId")]
         public string SubLedgerId { get; set; }
 
@@ -77,17 +77,17 @@ namespace TalonOneSdk.Model
         public decimal Value { get; set; }
 
         /// <summary>
-        /// The user for whom these points were originally added.
+        /// The user for whom these points were rolled back.
         /// </summary>
-        /// <value>The user for whom these points were originally added.</value>
+        /// <value>The user for whom these points were rolled back.</value>
         /* <example>URNGV8294NV</example> */
         [JsonPropertyName("recipientIntegrationId")]
         public string RecipientIntegrationId { get; set; }
 
         /// <summary>
-        /// The identifier of &#39;deduction&#39; entry added to the ledger as the &#x60;addLoyaltyPoints&#x60; effect is rolled back.
+        /// The identifier of this loyalty point transaction.
         /// </summary>
-        /// <value>The identifier of &#39;deduction&#39; entry added to the ledger as the &#x60;addLoyaltyPoints&#x60; effect is rolled back.</value>
+        /// <value>The identifier of this loyalty point transaction.</value>
         [JsonPropertyName("transactionUUID")]
         public string TransactionUUID { get; set; }
 
@@ -99,9 +99,9 @@ namespace TalonOneSdk.Model
         public Option<decimal?> CartItemPositionOption { get; private set; }
 
         /// <summary>
-        /// The index of the item in the cart items for which the loyalty points were rolled back.
+        /// (_Add points per cart item_ only.) The index of the item in the &#x60;cartItem&#x60; object for which these points were rolled back.
         /// </summary>
-        /// <value>The index of the item in the cart items for which the loyalty points were rolled back.</value>
+        /// <value>(_Add points per cart item_ only.) The index of the item in the &#x60;cartItem&#x60; object for which these points were rolled back.</value>
         [JsonPropertyName("cartItemPosition")]
         public decimal? CartItemPosition { get { return this.CartItemPositionOption.Value; } set { this.CartItemPositionOption = new Option<decimal?>(value); } }
 
@@ -113,9 +113,9 @@ namespace TalonOneSdk.Model
         public Option<decimal?> CartItemSubPositionOption { get; private set; }
 
         /// <summary>
-        /// For cart items with &#x60;quantity&#x60; &gt; 1, the sub-position indicates to which item the loyalty points were rolled back. 
+        /// (_Add points per cart item_ ) The index of the item unit in its line item.
         /// </summary>
-        /// <value>For cart items with &#x60;quantity&#x60; &gt; 1, the sub-position indicates to which item the loyalty points were rolled back. </value>
+        /// <value>(_Add points per cart item_ ) The index of the item unit in its line item.</value>
         [JsonPropertyName("cartItemSubPosition")]
         public decimal? CartItemSubPosition { get { return this.CartItemSubPositionOption.Value; } set { this.CartItemSubPositionOption = new Option<decimal?>(value); } }
 
@@ -127,9 +127,9 @@ namespace TalonOneSdk.Model
         public Option<string> CardIdentifierOption { get; private set; }
 
         /// <summary>
-        /// The card on which these points were originally added.
+        /// The identifier of the card on which these points were originally added.
         /// </summary>
-        /// <value>The card on which these points were originally added.</value>
+        /// <value>The identifier of the card on which these points were originally added.</value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("cardIdentifier")]
         public string CardIdentifier { get { return this.CardIdentifierOption.Value; } set { this.CardIdentifierOption = new Option<string>(value); } }

@@ -72,6 +72,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'PeriodEndOverride'
+        /// </summary>
+        [Fact]
+        public void PeriodEndOverrideTest()
+        {
+            // TODO unit test for the property 'PeriodEndOverride'
+        }
+
+        /// <summary>
         /// Test the property 'HasProgress'
         /// </summary>
         [Fact]

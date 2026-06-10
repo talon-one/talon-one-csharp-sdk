@@ -45,7 +45,7 @@ namespace TalonOneSdk.Model
         /// <param name="storeIntegrationId">The integration ID of the store. You choose this ID when you create a store.</param>
         /// <param name="profileId">The globally unique Talon.One ID of the customer that created this entity.</param>
         /// <param name="profileintegrationid">Integration ID of the customer for the session.</param>
-        /// <param name="attributes">Arbitrary properties associated with this item.</param>
+        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
         [JsonConstructor]
         public ApplicationSession(long id, DateTime created, string integrationId, long applicationId, string coupon, string referral, StateEnum state, List<CartItem> cartItems, Dictionary<string, decimal> discounts, decimal totalDiscounts, decimal total, Option<string> storeIntegrationId = default, Option<long?> profileId = default, Option<string> profileintegrationid = default, Option<Object> attributes = default)
         {
@@ -303,9 +303,9 @@ namespace TalonOneSdk.Model
         public Option<Object> AttributesOption { get; private set; }
 
         /// <summary>
-        /// Arbitrary properties associated with this item.
+        /// Arbitrary properties associated with this campaign.
         /// </summary>
-        /// <value>Arbitrary properties associated with this item.</value>
+        /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("attributes")]
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 

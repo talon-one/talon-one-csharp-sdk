@@ -35,15 +35,13 @@ namespace TalonOneSdk.Model
         /// <param name="campaign">Name of the campaign-related permission set for the given Application.</param>
         /// <param name="draftCampaign">Name of the draft campaign-related permission set for the given Application.</param>
         /// <param name="tools">Name of the tools-related permission set.</param>
-        /// <param name="thresholds">Support user limits for actions that require admin approval within the given application.</param>
         [JsonConstructor]
-        public RoleV2ApplicationDetails(Option<string> application = default, Option<string> campaign = default, Option<string> draftCampaign = default, Option<string> tools = default, Option<RolesV2Thresholds> thresholds = default)
+        public RoleV2ApplicationDetails(Option<string> application = default, Option<string> campaign = default, Option<string> draftCampaign = default, Option<string> tools = default)
         {
             ApplicationOption = application;
             CampaignOption = campaign;
             DraftCampaignOption = draftCampaign;
             ToolsOption = tools;
-            ThresholdsOption = thresholds;
             OnCreated();
         }
 
@@ -107,20 +105,6 @@ namespace TalonOneSdk.Model
         public string Tools { get { return this.ToolsOption.Value; } set { this.ToolsOption = new Option<string>(value); } }
 
         /// <summary>
-        /// Used to track the state of Thresholds
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<RolesV2Thresholds> ThresholdsOption { get; private set; }
-
-        /// <summary>
-        /// Support user limits for actions that require admin approval within the given application.
-        /// </summary>
-        /// <value>Support user limits for actions that require admin approval within the given application.</value>
-        [JsonPropertyName("thresholds")]
-        public RolesV2Thresholds Thresholds { get { return this.ThresholdsOption.Value; } set { this.ThresholdsOption = new Option<RolesV2Thresholds>(value); } }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -132,7 +116,6 @@ namespace TalonOneSdk.Model
             sb.Append("  Campaign: ").Append(Campaign).Append("\n");
             sb.Append("  DraftCampaign: ").Append(DraftCampaign).Append("\n");
             sb.Append("  Tools: ").Append(Tools).Append("\n");
-            sb.Append("  Thresholds: ").Append(Thresholds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -174,7 +157,6 @@ namespace TalonOneSdk.Model
             Option<string> campaign = default;
             Option<string> draftCampaign = default;
             Option<string> tools = default;
-            Option<RolesV2Thresholds> thresholds = default;
 
             while (utf8JsonReader.Read())
             {
@@ -203,16 +185,13 @@ namespace TalonOneSdk.Model
                         case "tools":
                             tools = new Option<string>(utf8JsonReader.GetString());
                             break;
-                        case "thresholds":
-                            thresholds = new Option<RolesV2Thresholds>(JsonSerializer.Deserialize<RolesV2Thresholds>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
                         default:
                             break;
                     }
                 }
             }
 
-            return new RoleV2ApplicationDetails(application, campaign, draftCampaign, tools, thresholds);
+            return new RoleV2ApplicationDetails(application, campaign, draftCampaign, tools);
         }
 
         /// <summary>
@@ -250,12 +229,6 @@ namespace TalonOneSdk.Model
 
             if (roleV2ApplicationDetails.ToolsOption.IsSet)
                 writer.WriteString("tools", roleV2ApplicationDetails.Tools);
-
-            if (roleV2ApplicationDetails.ThresholdsOption.IsSet)
-            {
-                writer.WritePropertyName("thresholds");
-                JsonSerializer.Serialize(writer, roleV2ApplicationDetails.Thresholds, jsonSerializerOptions);
-            }
         }
     }
 }

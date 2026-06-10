@@ -70,5 +70,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'Roles'
         }
+
+        /// <summary>
+        /// Test the property 'Thresholds'
+        /// </summary>
+        [Fact]
+        public void ThresholdsTest()
+        {
+            // TODO unit test for the property 'Thresholds'
+        }
     }
 }

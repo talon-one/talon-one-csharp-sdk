@@ -32,18 +32,28 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="IntegrationHubFlowResponse" /> class.
         /// </summary>
         /// <param name="id">ID of the integration hub flow.</param>
+        /// <param name="createdAt">Timestamp when the flow was created.</param>
         /// <param name="eventType">The event type we want to register a flow for.</param>
         /// <param name="integrationHubFlowUrl">The URL of the integration hub flow that we want to trigger for the event.</param>
         /// <param name="config">config</param>
-        /// <param name="applicationID">ID of application the flow is registered for.</param>
+        /// <param name="integrationName">Name of the integration.</param>
+        /// <param name="instanceName">Name of the integration instance.</param>
+        /// <param name="disabledUntil">Timestamp until which the flow is disabled. Null when the flow is active.</param>
+        /// <param name="applicationId">ID of the application the flow is registered for.</param>
+        /// <param name="loyaltyProgramId">ID of the loyalty program the flow is registered for.</param>
         [JsonConstructor]
-        public IntegrationHubFlowResponse(long id, string eventType, string integrationHubFlowUrl, IntegrationHubFlowConfigResponse config, Option<long?> applicationID = default)
+        public IntegrationHubFlowResponse(long id, DateTime createdAt, string eventType, string integrationHubFlowUrl, IntegrationHubFlowConfigResponse config, Option<string> integrationName = default, Option<string> instanceName = default, Option<DateTime?> disabledUntil = default, Option<long?> applicationId = default, Option<long?> loyaltyProgramId = default)
         {
             Id = id;
+            CreatedAt = createdAt;
             EventType = eventType;
             IntegrationHubFlowUrl = integrationHubFlowUrl;
             Config = config;
-            ApplicationIDOption = applicationID;
+            IntegrationNameOption = integrationName;
+            InstanceNameOption = instanceName;
+            DisabledUntilOption = disabledUntil;
+            ApplicationIdOption = applicationId;
+            LoyaltyProgramIdOption = loyaltyProgramId;
             OnCreated();
         }
 
@@ -53,43 +63,107 @@ namespace TalonOneSdk.Model
         /// ID of the integration hub flow.
         /// </summary>
         /// <value>ID of the integration hub flow.</value>
-        [JsonPropertyName("Id")]
+        [JsonPropertyName("id")]
         public long Id { get; set; }
+
+        /// <summary>
+        /// Timestamp when the flow was created.
+        /// </summary>
+        /// <value>Timestamp when the flow was created.</value>
+        [JsonPropertyName("createdAt")]
+        public DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// The event type we want to register a flow for.
         /// </summary>
         /// <value>The event type we want to register a flow for.</value>
-        [JsonPropertyName("EventType")]
+        [JsonPropertyName("eventType")]
         public string EventType { get; set; }
 
         /// <summary>
         /// The URL of the integration hub flow that we want to trigger for the event.
         /// </summary>
         /// <value>The URL of the integration hub flow that we want to trigger for the event.</value>
-        [JsonPropertyName("IntegrationHubFlowUrl")]
+        [JsonPropertyName("integrationHubFlowUrl")]
         public string IntegrationHubFlowUrl { get; set; }
 
         /// <summary>
         /// Gets or Sets Config
         /// </summary>
-        [JsonPropertyName("Config")]
+        [JsonPropertyName("config")]
         public IntegrationHubFlowConfigResponse Config { get; set; }
 
         /// <summary>
-        /// Used to track the state of ApplicationID
+        /// Used to track the state of IntegrationName
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> ApplicationIDOption { get; private set; }
+        public Option<string> IntegrationNameOption { get; private set; }
 
         /// <summary>
-        /// ID of application the flow is registered for.
+        /// Name of the integration.
         /// </summary>
-        /// <value>ID of application the flow is registered for.</value>
+        /// <value>Name of the integration.</value>
+        [JsonPropertyName("integrationName")]
+        public string IntegrationName { get { return this.IntegrationNameOption.Value; } set { this.IntegrationNameOption = new Option<string>(value); } }
+
+        /// <summary>
+        /// Used to track the state of InstanceName
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> InstanceNameOption { get; private set; }
+
+        /// <summary>
+        /// Name of the integration instance.
+        /// </summary>
+        /// <value>Name of the integration instance.</value>
+        [JsonPropertyName("instanceName")]
+        public string InstanceName { get { return this.InstanceNameOption.Value; } set { this.InstanceNameOption = new Option<string>(value); } }
+
+        /// <summary>
+        /// Used to track the state of DisabledUntil
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTime?> DisabledUntilOption { get; private set; }
+
+        /// <summary>
+        /// Timestamp until which the flow is disabled. Null when the flow is active.
+        /// </summary>
+        /// <value>Timestamp until which the flow is disabled. Null when the flow is active.</value>
+        [JsonPropertyName("disabledUntil")]
+        public DateTime? DisabledUntil { get { return this.DisabledUntilOption.Value; } set { this.DisabledUntilOption = new Option<DateTime?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of ApplicationId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> ApplicationIdOption { get; private set; }
+
+        /// <summary>
+        /// ID of the application the flow is registered for.
+        /// </summary>
+        /// <value>ID of the application the flow is registered for.</value>
         /* <example>54</example> */
-        [JsonPropertyName("ApplicationID")]
-        public long? ApplicationID { get { return this.ApplicationIDOption.Value; } set { this.ApplicationIDOption = new Option<long?>(value); } }
+        [JsonPropertyName("applicationId")]
+        public long? ApplicationId { get { return this.ApplicationIdOption.Value; } set { this.ApplicationIdOption = new Option<long?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of LoyaltyProgramId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> LoyaltyProgramIdOption { get; private set; }
+
+        /// <summary>
+        /// ID of the loyalty program the flow is registered for.
+        /// </summary>
+        /// <value>ID of the loyalty program the flow is registered for.</value>
+        /* <example>12</example> */
+        [JsonPropertyName("loyaltyProgramId")]
+        public long? LoyaltyProgramId { get { return this.LoyaltyProgramIdOption.Value; } set { this.LoyaltyProgramIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,10 +174,15 @@ namespace TalonOneSdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class IntegrationHubFlowResponse {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  EventType: ").Append(EventType).Append("\n");
             sb.Append("  IntegrationHubFlowUrl: ").Append(IntegrationHubFlowUrl).Append("\n");
             sb.Append("  Config: ").Append(Config).Append("\n");
-            sb.Append("  ApplicationID: ").Append(ApplicationID).Append("\n");
+            sb.Append("  IntegrationName: ").Append(IntegrationName).Append("\n");
+            sb.Append("  InstanceName: ").Append(InstanceName).Append("\n");
+            sb.Append("  DisabledUntil: ").Append(DisabledUntil).Append("\n");
+            sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
+            sb.Append("  LoyaltyProgramId: ").Append(LoyaltyProgramId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -125,6 +204,16 @@ namespace TalonOneSdk.Model
     public class IntegrationHubFlowResponseJsonConverter : JsonConverter<IntegrationHubFlowResponse>
     {
         /// <summary>
+        /// The format to use to serialize CreatedAt
+        /// </summary>
+        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+
+        /// <summary>
+        /// The format to use to serialize DisabledUntil
+        /// </summary>
+        public static string DisabledUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+
+        /// <summary>
         /// Deserializes json to <see cref="IntegrationHubFlowResponse" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
@@ -142,10 +231,15 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<long?> id = default;
+            Option<DateTime?> createdAt = default;
             Option<string> eventType = default;
             Option<string> integrationHubFlowUrl = default;
             Option<IntegrationHubFlowConfigResponse> config = default;
-            Option<long?> applicationID = default;
+            Option<string> integrationName = default;
+            Option<string> instanceName = default;
+            Option<DateTime?> disabledUntil = default;
+            Option<long?> applicationId = default;
+            Option<long?> loyaltyProgramId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -162,20 +256,35 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "Id":
+                        case "id":
                             id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
-                        case "EventType":
+                        case "createdAt":
+                            createdAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "eventType":
                             eventType = new Option<string>(utf8JsonReader.GetString());
                             break;
-                        case "IntegrationHubFlowUrl":
+                        case "integrationHubFlowUrl":
                             integrationHubFlowUrl = new Option<string>(utf8JsonReader.GetString());
                             break;
-                        case "Config":
+                        case "config":
                             config = new Option<IntegrationHubFlowConfigResponse>(JsonSerializer.Deserialize<IntegrationHubFlowConfigResponse>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "ApplicationID":
-                            applicationID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                        case "integrationName":
+                            integrationName = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "instanceName":
+                            instanceName = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "disabledUntil":
+                            disabledUntil = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "applicationId":
+                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "loyaltyProgramId":
+                            loyaltyProgramId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;
@@ -185,6 +294,9 @@ namespace TalonOneSdk.Model
 
             if (!id.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubFlowResponse.", nameof(id));
+
+            if (!createdAt.IsSet)
+                throw new ArgumentException("Property is required for class IntegrationHubFlowResponse.", nameof(createdAt));
 
             if (!eventType.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubFlowResponse.", nameof(eventType));
@@ -198,6 +310,9 @@ namespace TalonOneSdk.Model
             if (id.IsSet && id.Value == null)
                 throw new ArgumentNullException(nameof(id), "Property is not nullable for class IntegrationHubFlowResponse.");
 
+            if (createdAt.IsSet && createdAt.Value == null)
+                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class IntegrationHubFlowResponse.");
+
             if (eventType.IsSet && eventType.Value == null)
                 throw new ArgumentNullException(nameof(eventType), "Property is not nullable for class IntegrationHubFlowResponse.");
 
@@ -207,7 +322,7 @@ namespace TalonOneSdk.Model
             if (config.IsSet && config.Value == null)
                 throw new ArgumentNullException(nameof(config), "Property is not nullable for class IntegrationHubFlowResponse.");
 
-            return new IntegrationHubFlowResponse(id.Value.Value, eventType.Value, integrationHubFlowUrl.Value, config.Value, applicationID);
+            return new IntegrationHubFlowResponse(id.Value.Value, createdAt.Value.Value, eventType.Value, integrationHubFlowUrl.Value, config.Value, integrationName, instanceName, disabledUntil, applicationId, loyaltyProgramId);
         }
 
         /// <summary>
@@ -243,16 +358,33 @@ namespace TalonOneSdk.Model
             if (integrationHubFlowResponse.Config == null)
                 throw new ArgumentNullException(nameof(integrationHubFlowResponse.Config), "Property is required for class IntegrationHubFlowResponse.");
 
-            writer.WriteNumber("Id", integrationHubFlowResponse.Id);
+            writer.WriteNumber("id", integrationHubFlowResponse.Id);
 
-            writer.WriteString("EventType", integrationHubFlowResponse.EventType);
+            writer.WriteString("createdAt", integrationHubFlowResponse.CreatedAt.ToString(CreatedAtFormat));
 
-            writer.WriteString("IntegrationHubFlowUrl", integrationHubFlowResponse.IntegrationHubFlowUrl);
+            writer.WriteString("eventType", integrationHubFlowResponse.EventType);
 
-            writer.WritePropertyName("Config");
+            writer.WriteString("integrationHubFlowUrl", integrationHubFlowResponse.IntegrationHubFlowUrl);
+
+            writer.WritePropertyName("config");
             JsonSerializer.Serialize(writer, integrationHubFlowResponse.Config, jsonSerializerOptions);
-            if (integrationHubFlowResponse.ApplicationIDOption.IsSet)
-                writer.WriteNumber("ApplicationID", integrationHubFlowResponse.ApplicationIDOption.Value.Value);
+            if (integrationHubFlowResponse.IntegrationNameOption.IsSet)
+                writer.WriteString("integrationName", integrationHubFlowResponse.IntegrationName);
+
+            if (integrationHubFlowResponse.InstanceNameOption.IsSet)
+                writer.WriteString("instanceName", integrationHubFlowResponse.InstanceName);
+
+            if (integrationHubFlowResponse.DisabledUntilOption.IsSet)
+                if (integrationHubFlowResponse.DisabledUntilOption.Value != null)
+                    writer.WriteString("disabledUntil", integrationHubFlowResponse.DisabledUntilOption.Value.Value.ToString(DisabledUntilFormat));
+                else
+                    writer.WriteNull("disabledUntil");
+
+            if (integrationHubFlowResponse.ApplicationIdOption.IsSet)
+                writer.WriteNumber("applicationId", integrationHubFlowResponse.ApplicationIdOption.Value.Value);
+
+            if (integrationHubFlowResponse.LoyaltyProgramIdOption.IsSet)
+                writer.WriteNumber("loyaltyProgramId", integrationHubFlowResponse.LoyaltyProgramIdOption.Value.Value);
         }
     }
 }

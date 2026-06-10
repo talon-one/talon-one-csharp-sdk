@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **ExpiryDate** | **DateTime** | Expiration date of the referral code. Referral never expires if this is omitted. | [optional] 
 **UsageLimit** | **long** | The number of times a referral code can be used. &#x60;0&#x60; means no limit but any campaign usage limits will still apply.  | [optional] 
 **FriendProfileIntegrationId** | **string** | An optional Integration ID of the Friend&#39;s Profile. | [optional] 
-**Attributes** | **Object** | Arbitrary properties associated with this item. | [optional] 
+**Attributes** | **Object** | Arbitrary properties associated with this campaign. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

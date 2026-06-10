@@ -653,10 +653,12 @@ namespace TalonOneSdk.Test.Api
             long applicationId = default;
             Client.Option<DateTime> createdBefore = default;
             Client.Option<DateTime> createdAfter = default;
+            Client.Option<DateTime> updatedBefore = default;
+            Client.Option<DateTime> updatedAfter = default;
             Client.Option<string> profileIntegrationId = default;
             Client.Option<string> dateFormat = default;
             Client.Option<string> customerSessionState = default;
-            var response = await _instance.ExportCustomerSessionsAsync(applicationId, createdBefore, createdAfter, profileIntegrationId, dateFormat, customerSessionState);
+            var response = await _instance.ExportCustomerSessionsAsync(applicationId, createdBefore, createdAfter, updatedBefore, updatedAfter, profileIntegrationId, dateFormat, customerSessionState);
             var model = response.Ok();
             Assert.IsType<string>(model);
         }
@@ -2019,6 +2021,19 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test ImportLoyaltyJoinDates
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task ImportLoyaltyJoinDatesAsyncTest()
+        {
+            long loyaltyProgramId = default;
+            Client.Option<TalonOneSdk.Client.FileParameter> upFile = default;
+            var response = await _instance.ImportLoyaltyJoinDatesAsync(loyaltyProgramId, upFile);
+            var model = response.Ok();
+            Assert.IsType<TalonOneSdk.Model.Import>(model);
+        }
+
+        /// <summary>
         /// Test ImportLoyaltyPoints
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -2121,8 +2136,8 @@ namespace TalonOneSdk.Test.Api
             long applicationId = default;
             Client.Option<long> pageSize = default;
             Client.Option<long> skip = default;
-            Client.Option<string> title = default;
-            var response = await _instance.ListApplicationCartItemFiltersAsync(applicationId, pageSize, skip, title);
+            Client.Option<string> name = default;
+            var response = await _instance.ListApplicationCartItemFiltersAsync(applicationId, pageSize, skip, name);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.ListApplicationCartItemFilters200Response>(model);
         }

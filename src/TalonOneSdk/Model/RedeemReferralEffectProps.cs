@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// This effect is **deprecated**. The properties specific to the \&quot;redeemReferral\&quot; effect. This gets triggered whenever the referral code is valid, and a rule was triggered that contains a \&quot;redeem referral\&quot; effect. 
+    /// This effect is **deprecated**. It has been replaced by the &#x60;acceptReferral&#x60; effect. This effect indicates that the referral code is valid and has been redeemed. 
     /// </summary>
     public partial class RedeemReferralEffectProps : IValidatableObject
     {

@@ -33,13 +33,15 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="userId">The ID of the user that created this achievement.</param>
         /// <param name="createdBy">Name of the user that created the achievement.  **Note**: This is not available if the user has been deleted. </param>
+        /// <param name="periodEndOverride">periodEndOverride</param>
         /// <param name="hasProgress">Indicates if a customer has made progress in the achievement.</param>
-        /// <param name="status">The status of the achievement.</param>
+        /// <param name="status">The status of the achievement.                                                                                               - &#x60;active&#x60;: The achievement is available to customers. - &#x60;scheduled&#x60;: The achievement has a &#x60;fixedStartDate&#x60; set in the future. - &#x60;expired&#x60;: The achievement&#39;s &#x60;endDate&#x60; is in the past. </param>
         [JsonConstructor]
-        public AchievementAdditionalPropertiesV2(long userId, Option<string> createdBy = default, Option<bool?> hasProgress = default, Option<StatusEnum?> status = default)
+        public AchievementAdditionalPropertiesV2(long userId, Option<string> createdBy = default, Option<TimePoint> periodEndOverride = default, Option<bool?> hasProgress = default, Option<StatusEnum?> status = default)
         {
             UserId = userId;
             CreatedByOption = createdBy;
+            PeriodEndOverrideOption = periodEndOverride;
             HasProgressOption = hasProgress;
             StatusOption = status;
             OnCreated();
@@ -48,30 +50,25 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The status of the achievement.
+        /// The status of the achievement.                                                                                               - &#x60;active&#x60;: The achievement is available to customers. - &#x60;scheduled&#x60;: The achievement has a &#x60;fixedStartDate&#x60; set in the future. - &#x60;expired&#x60;: The achievement&#39;s &#x60;endDate&#x60; is in the past. 
         /// </summary>
-        /// <value>The status of the achievement.</value>
+        /// <value>The status of the achievement.                                                                                               - &#x60;active&#x60;: The achievement is available to customers. - &#x60;scheduled&#x60;: The achievement has a &#x60;fixedStartDate&#x60; set in the future. - &#x60;expired&#x60;: The achievement&#39;s &#x60;endDate&#x60; is in the past. </value>
         public enum StatusEnum
         {
             /// <summary>
-            /// Enum Inprogress for value: inprogress
+            /// Enum Active for value: active
             /// </summary>
-            Inprogress = 1,
+            Active = 1,
+
+            /// <summary>
+            /// Enum Scheduled for value: scheduled
+            /// </summary>
+            Scheduled = 2,
 
             /// <summary>
             /// Enum Expired for value: expired
             /// </summary>
-            Expired = 2,
-
-            /// <summary>
-            /// Enum NotStarted for value: not_started
-            /// </summary>
-            NotStarted = 3,
-
-            /// <summary>
-            /// Enum Completed for value: completed
-            /// </summary>
-            Completed = 4
+            Expired = 3
         }
 
         /// <summary>
@@ -82,17 +79,14 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public static StatusEnum StatusEnumFromString(string value)
         {
-            if (value.Equals("inprogress"))
-                return StatusEnum.Inprogress;
+            if (value.Equals("active"))
+                return StatusEnum.Active;
+
+            if (value.Equals("scheduled"))
+                return StatusEnum.Scheduled;
 
             if (value.Equals("expired"))
                 return StatusEnum.Expired;
-
-            if (value.Equals("not_started"))
-                return StatusEnum.NotStarted;
-
-            if (value.Equals("completed"))
-                return StatusEnum.Completed;
 
             throw new NotImplementedException($"Could not convert value to type StatusEnum: '{value}'");
         }
@@ -104,17 +98,14 @@ namespace TalonOneSdk.Model
         /// <returns></returns>
         public static StatusEnum? StatusEnumFromStringOrDefault(string value)
         {
-            if (value.Equals("inprogress"))
-                return StatusEnum.Inprogress;
+            if (value.Equals("active"))
+                return StatusEnum.Active;
+
+            if (value.Equals("scheduled"))
+                return StatusEnum.Scheduled;
 
             if (value.Equals("expired"))
                 return StatusEnum.Expired;
-
-            if (value.Equals("not_started"))
-                return StatusEnum.NotStarted;
-
-            if (value.Equals("completed"))
-                return StatusEnum.Completed;
 
             return null;
         }
@@ -127,17 +118,14 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public static string StatusEnumToJsonValue(StatusEnum? value)
         {
-            if (value == StatusEnum.Inprogress)
-                return "inprogress";
+            if (value == StatusEnum.Active)
+                return "active";
+
+            if (value == StatusEnum.Scheduled)
+                return "scheduled";
 
             if (value == StatusEnum.Expired)
                 return "expired";
-
-            if (value == StatusEnum.NotStarted)
-                return "not_started";
-
-            if (value == StatusEnum.Completed)
-                return "completed";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
@@ -150,10 +138,10 @@ namespace TalonOneSdk.Model
         public Option<StatusEnum?> StatusOption { get; private set; }
 
         /// <summary>
-        /// The status of the achievement.
+        /// The status of the achievement.                                                                                               - &#x60;active&#x60;: The achievement is available to customers. - &#x60;scheduled&#x60;: The achievement has a &#x60;fixedStartDate&#x60; set in the future. - &#x60;expired&#x60;: The achievement&#39;s &#x60;endDate&#x60; is in the past. 
         /// </summary>
-        /// <value>The status of the achievement.</value>
-        /* <example>inprogress</example> */
+        /// <value>The status of the achievement.                                                                                               - &#x60;active&#x60;: The achievement is available to customers. - &#x60;scheduled&#x60;: The achievement has a &#x60;fixedStartDate&#x60; set in the future. - &#x60;expired&#x60;: The achievement&#39;s &#x60;endDate&#x60; is in the past. </value>
+        /* <example>active</example> */
         [JsonPropertyName("status")]
         public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new Option<StatusEnum?>(value); } }
 
@@ -181,6 +169,20 @@ namespace TalonOneSdk.Model
         public string CreatedBy { get { return this.CreatedByOption.Value; } set { this.CreatedByOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of PeriodEndOverride
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<TimePoint> PeriodEndOverrideOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets PeriodEndOverride
+        /// </summary>
+        [JsonPropertyName("periodEndOverride")]
+        [Obsolete]
+        public TimePoint PeriodEndOverride { get { return this.PeriodEndOverrideOption.Value; } set { this.PeriodEndOverrideOption = new Option<TimePoint>(value); } }
+
+        /// <summary>
         /// Used to track the state of HasProgress
         /// </summary>
         [JsonIgnore]
@@ -204,6 +206,7 @@ namespace TalonOneSdk.Model
             sb.Append("class AchievementAdditionalPropertiesV2 {\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  CreatedBy: ").Append(CreatedBy).Append("\n");
+            sb.Append("  PeriodEndOverride: ").Append(PeriodEndOverride).Append("\n");
             sb.Append("  HasProgress: ").Append(HasProgress).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
@@ -245,6 +248,7 @@ namespace TalonOneSdk.Model
 
             Option<long?> userId = default;
             Option<string> createdBy = default;
+            Option<TimePoint> periodEndOverride = default;
             Option<bool?> hasProgress = default;
             Option<AchievementAdditionalPropertiesV2.StatusEnum?> status = default;
 
@@ -269,6 +273,9 @@ namespace TalonOneSdk.Model
                         case "createdBy":
                             createdBy = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "periodEndOverride":
+                            periodEndOverride = new Option<TimePoint>(JsonSerializer.Deserialize<TimePoint>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "hasProgress":
                             hasProgress = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
@@ -289,7 +296,7 @@ namespace TalonOneSdk.Model
             if (userId.IsSet && userId.Value == null)
                 throw new ArgumentNullException(nameof(userId), "Property is not nullable for class AchievementAdditionalPropertiesV2.");
 
-            return new AchievementAdditionalPropertiesV2(userId.Value.Value, createdBy, hasProgress, status);
+            return new AchievementAdditionalPropertiesV2(userId.Value.Value, createdBy, periodEndOverride, hasProgress, status);
         }
 
         /// <summary>
@@ -321,6 +328,11 @@ namespace TalonOneSdk.Model
             if (achievementAdditionalPropertiesV2.CreatedByOption.IsSet)
                 writer.WriteString("createdBy", achievementAdditionalPropertiesV2.CreatedBy);
 
+            if (achievementAdditionalPropertiesV2.PeriodEndOverrideOption.IsSet)
+            {
+                writer.WritePropertyName("periodEndOverride");
+                JsonSerializer.Serialize(writer, achievementAdditionalPropertiesV2.PeriodEndOverride, jsonSerializerOptions);
+            }
             if (achievementAdditionalPropertiesV2.HasProgressOption.IsSet)
                 writer.WriteBoolean("hasProgress", achievementAdditionalPropertiesV2.HasProgressOption.Value.Value);
 

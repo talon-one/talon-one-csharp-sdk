@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;changeLoyaltyTierLevel\&quot; effect. This is triggered whenever the user&#39;s loyalty tier is upgraded due to a validated rule that contained an \&quot;addLoyaltyPoints\&quot; effect. 
+    /// This effect indicates that a customer&#39;s loyalty tier has been upgraded.  This effect is generated only when the [Add loyalty points](https://docs.talon.one/docs/product/rules/effects/use-effects#add-loyalty-points) and the [Add loyalty points per cart item](https://docs.talon.one/docs/product/rules/effects/use-effects#add-loyalty-points-per-cart-item) effects are triggered for a particular customer, and, as a result, the customer&#39;s loyalty tier is upgraded.
     /// </summary>
     public partial class ChangeLoyaltyTierLevelEffectProps : IValidatableObject
     {
@@ -32,8 +32,8 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="ChangeLoyaltyTierLevelEffectProps" /> class.
         /// </summary>
         /// <param name="ruleTitle">The title of the rule that triggered the tier upgrade.</param>
-        /// <param name="programId">The ID of the loyalty program where these points were added.</param>
-        /// <param name="subLedgerId">The ID of the subledger within the loyalty program where these points were added.</param>
+        /// <param name="programId">The ID of the loyalty program where the points were added.</param>
+        /// <param name="subLedgerId">The ID of the subledger within the loyalty program where the points were added.</param>
         /// <param name="newTierName">The name of the tier to which the user has been upgraded.</param>
         /// <param name="previousTierName">The name of the tier from which the user was upgraded.</param>
         /// <param name="expiryDate">The expiration date of the new tier.</param>
@@ -59,16 +59,16 @@ namespace TalonOneSdk.Model
         public string RuleTitle { get; set; }
 
         /// <summary>
-        /// The ID of the loyalty program where these points were added.
+        /// The ID of the loyalty program where the points were added.
         /// </summary>
-        /// <value>The ID of the loyalty program where these points were added.</value>
+        /// <value>The ID of the loyalty program where the points were added.</value>
         [JsonPropertyName("programId")]
         public long ProgramId { get; set; }
 
         /// <summary>
-        /// The ID of the subledger within the loyalty program where these points were added.
+        /// The ID of the subledger within the loyalty program where the points were added.
         /// </summary>
-        /// <value>The ID of the subledger within the loyalty program where these points were added.</value>
+        /// <value>The ID of the subledger within the loyalty program where the points were added.</value>
         [JsonPropertyName("subLedgerId")]
         public string SubLedgerId { get; set; }
 

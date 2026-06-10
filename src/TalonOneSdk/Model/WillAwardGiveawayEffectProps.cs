@@ -24,16 +24,16 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;awardGiveaway\&quot; effect when the session is not closed yet. This effect replaces \&quot;awardGiveaway\&quot; only when updating a session with any state other than \&quot;closed\&quot;. This is to ensure no giveaway codes are leaked when they are still not guaranteed to be awarded.
+    /// The equivalent of the &#x60;awardGiveaway&#x60; effect but returned when updating a session with any state other than &#x60;closed&#x60;. This ensures no giveaway codes are leaked when they are still not guaranteed to be awarded.  For more information about session states, see [Manage the session&#39;s state](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#manage-the-sessions-state).
     /// </summary>
     public partial class WillAwardGiveawayEffectProps : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WillAwardGiveawayEffectProps" /> class.
         /// </summary>
-        /// <param name="poolId">The ID of the giveaways pool the code will be taken from.</param>
-        /// <param name="poolName">The name of the giveaways pool the code will be taken from.</param>
-        /// <param name="recipientIntegrationId">The integration ID of the profile that will be awarded the giveaway.</param>
+        /// <param name="poolId">The internal ID of the giveaway pool.</param>
+        /// <param name="poolName">The name of the giveaway pool.</param>
+        /// <param name="recipientIntegrationId">The integration ID of the customer that receives the giveaway.</param>
         [JsonConstructor]
         public WillAwardGiveawayEffectProps(long poolId, string poolName, string recipientIntegrationId)
         {
@@ -46,25 +46,25 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The ID of the giveaways pool the code will be taken from.
+        /// The internal ID of the giveaway pool.
         /// </summary>
-        /// <value>The ID of the giveaways pool the code will be taken from.</value>
+        /// <value>The internal ID of the giveaway pool.</value>
         /* <example>2</example> */
         [JsonPropertyName("poolId")]
         public long PoolId { get; set; }
 
         /// <summary>
-        /// The name of the giveaways pool the code will be taken from.
+        /// The name of the giveaway pool.
         /// </summary>
-        /// <value>The name of the giveaways pool the code will be taken from.</value>
+        /// <value>The name of the giveaway pool.</value>
         /* <example>My pool</example> */
         [JsonPropertyName("poolName")]
         public string PoolName { get; set; }
 
         /// <summary>
-        /// The integration ID of the profile that will be awarded the giveaway.
+        /// The integration ID of the customer that receives the giveaway.
         /// </summary>
-        /// <value>The integration ID of the profile that will be awarded the giveaway.</value>
+        /// <value>The integration ID of the customer that receives the giveaway.</value>
         /* <example>URNGV8294NV</example> */
         [JsonPropertyName("recipientIntegrationId")]
         public string RecipientIntegrationId { get; set; }

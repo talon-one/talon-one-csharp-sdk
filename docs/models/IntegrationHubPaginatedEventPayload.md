@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TotalResultSize** | **long** |  | 
-**EventType** | **string** |  | 
+**EventType** | **IntegrationHubEventType** |  | 
 **Data** | **List&lt;Object&gt;** |  | 
 **BatchedAt** | **DateTime** | Timestamp when the batch was created. | [optional] 
 

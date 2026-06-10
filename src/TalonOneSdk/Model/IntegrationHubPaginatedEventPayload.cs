@@ -36,7 +36,7 @@ namespace TalonOneSdk.Model
         /// <param name="data">data</param>
         /// <param name="batchedAt">Timestamp when the batch was created.</param>
         [JsonConstructor]
-        public IntegrationHubPaginatedEventPayload(long totalResultSize, EventTypeEnum eventType, List<Object> data, Option<DateTime?> batchedAt = default)
+        public IntegrationHubPaginatedEventPayload(long totalResultSize, IntegrationHubEventType eventType, List<Object> data, Option<DateTime?> batchedAt = default)
         {
             TotalResultSize = totalResultSize;
             EventType = eventType;
@@ -48,132 +48,10 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// Defines EventType
-        /// </summary>
-        public enum EventTypeEnum
-        {
-            /// <summary>
-            /// Enum LoyaltyPointsChanged for value: LoyaltyPointsChanged
-            /// </summary>
-            LoyaltyPointsChanged = 1,
-
-            /// <summary>
-            /// Enum LoyaltyTierDowngrade for value: LoyaltyTierDowngrade
-            /// </summary>
-            LoyaltyTierDowngrade = 2,
-
-            /// <summary>
-            /// Enum LoyaltyTierUpgrade for value: LoyaltyTierUpgrade
-            /// </summary>
-            LoyaltyTierUpgrade = 3,
-
-            /// <summary>
-            /// Enum CouponCreated for value: CouponCreated
-            /// </summary>
-            CouponCreated = 4,
-
-            /// <summary>
-            /// Enum CouponUpdated for value: CouponUpdated
-            /// </summary>
-            CouponUpdated = 5,
-
-            /// <summary>
-            /// Enum CouponDeleted for value: CouponDeleted
-            /// </summary>
-            CouponDeleted = 6
-        }
-
-        /// <summary>
-        /// Returns a <see cref="EventTypeEnum"/>
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static EventTypeEnum EventTypeEnumFromString(string value)
-        {
-            if (value.Equals("LoyaltyPointsChanged"))
-                return EventTypeEnum.LoyaltyPointsChanged;
-
-            if (value.Equals("LoyaltyTierDowngrade"))
-                return EventTypeEnum.LoyaltyTierDowngrade;
-
-            if (value.Equals("LoyaltyTierUpgrade"))
-                return EventTypeEnum.LoyaltyTierUpgrade;
-
-            if (value.Equals("CouponCreated"))
-                return EventTypeEnum.CouponCreated;
-
-            if (value.Equals("CouponUpdated"))
-                return EventTypeEnum.CouponUpdated;
-
-            if (value.Equals("CouponDeleted"))
-                return EventTypeEnum.CouponDeleted;
-
-            throw new NotImplementedException($"Could not convert value to type EventTypeEnum: '{value}'");
-        }
-
-        /// <summary>
-        /// Returns a <see cref="EventTypeEnum"/>
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static EventTypeEnum? EventTypeEnumFromStringOrDefault(string value)
-        {
-            if (value.Equals("LoyaltyPointsChanged"))
-                return EventTypeEnum.LoyaltyPointsChanged;
-
-            if (value.Equals("LoyaltyTierDowngrade"))
-                return EventTypeEnum.LoyaltyTierDowngrade;
-
-            if (value.Equals("LoyaltyTierUpgrade"))
-                return EventTypeEnum.LoyaltyTierUpgrade;
-
-            if (value.Equals("CouponCreated"))
-                return EventTypeEnum.CouponCreated;
-
-            if (value.Equals("CouponUpdated"))
-                return EventTypeEnum.CouponUpdated;
-
-            if (value.Equals("CouponDeleted"))
-                return EventTypeEnum.CouponDeleted;
-
-            return null;
-        }
-
-        /// <summary>
-        /// Converts the <see cref="EventTypeEnum"/> to the json value
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string EventTypeEnumToJsonValue(EventTypeEnum value)
-        {
-            if (value == EventTypeEnum.LoyaltyPointsChanged)
-                return "LoyaltyPointsChanged";
-
-            if (value == EventTypeEnum.LoyaltyTierDowngrade)
-                return "LoyaltyTierDowngrade";
-
-            if (value == EventTypeEnum.LoyaltyTierUpgrade)
-                return "LoyaltyTierUpgrade";
-
-            if (value == EventTypeEnum.CouponCreated)
-                return "CouponCreated";
-
-            if (value == EventTypeEnum.CouponUpdated)
-                return "CouponUpdated";
-
-            if (value == EventTypeEnum.CouponDeleted)
-                return "CouponDeleted";
-
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-
-        /// <summary>
         /// Gets or Sets EventType
         /// </summary>
         [JsonPropertyName("EventType")]
-        public EventTypeEnum EventType { get; set; }
+        public IntegrationHubEventType EventType { get; set; }
 
         /// <summary>
         /// Gets or Sets TotalResultSize
@@ -256,7 +134,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<long?> totalResultSize = default;
-            Option<IntegrationHubPaginatedEventPayload.EventTypeEnum?> eventType = default;
+            Option<IntegrationHubEventType?> eventType = default;
             Option<List<Object>> data = default;
             Option<DateTime?> batchedAt = default;
 
@@ -281,7 +159,7 @@ namespace TalonOneSdk.Model
                         case "EventType":
                             string eventTypeRawValue = utf8JsonReader.GetString();
                             if (eventTypeRawValue != null)
-                                eventType = new Option<IntegrationHubPaginatedEventPayload.EventTypeEnum?>(IntegrationHubPaginatedEventPayload.EventTypeEnumFromStringOrDefault(eventTypeRawValue));
+                                eventType = new Option<IntegrationHubEventType?>(IntegrationHubEventTypeValueConverter.FromStringOrDefault(eventTypeRawValue));
                             break;
                         case "Data":
                             data = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -345,8 +223,9 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("TotalResultSize", integrationHubPaginatedEventPayload.TotalResultSize);
 
-            var eventTypeRawValue = IntegrationHubPaginatedEventPayload.EventTypeEnumToJsonValue(integrationHubPaginatedEventPayload.EventType);
+            var eventTypeRawValue = IntegrationHubEventTypeValueConverter.ToJsonValue(integrationHubPaginatedEventPayload.EventType);
             writer.WriteString("EventType", eventTypeRawValue);
+
             writer.WritePropertyName("Data");
             JsonSerializer.Serialize(writer, integrationHubPaginatedEventPayload.Data, jsonSerializerOptions);
             if (integrationHubPaginatedEventPayload.BatchedAtOption.IsSet)

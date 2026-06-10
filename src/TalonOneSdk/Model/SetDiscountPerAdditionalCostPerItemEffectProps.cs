@@ -24,20 +24,20 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;setDiscountPerAdditionalCostPerItem\&quot; effect. This gets triggered whenever a validated rule contained a \&quot;set discount per additional cost per item\&quot; effect. This is a discount that should be applied on a specific additional cost in a specific item.
+    /// This effect indicates that a discount of a specific additional cost within a specific item should be applied. It gets triggered whenever a rule containing a **Discount additional cost per item** effect is validated.  Use this effect when **all** items in the cart have an additional cost. If one of more items do not have an additional cost, the rule will fail.
     /// </summary>
     public partial class SetDiscountPerAdditionalCostPerItemEffectProps : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SetDiscountPerAdditionalCostPerItemEffectProps" /> class.
         /// </summary>
-        /// <param name="name">The name / description of this discount</param>
-        /// <param name="additionalCostId">The ID of the additional cost.</param>
-        /// <param name="value">The total monetary value of the discount.</param>
-        /// <param name="position">The index of the item in the cart item list containing the additional cost to be discounted.</param>
-        /// <param name="additionalCost">The name of the additional cost.</param>
-        /// <param name="subPosition">For cart items with &#x60;quantity&#x60; &gt; 1, the sub position indicates which item the discount applies to. </param>
-        /// <param name="desiredValue">Only with [partial discounts enabled](https://docs.talon.one/docs/product/campaigns/campaign-evaluation/#partial-discounts). Represents the monetary value of the discount to be applied to additional discount without considering budget limitations. </param>
+        /// <param name="name">The description of this discount. &#x60;#number&#x60; is appended to the name. It is equal to the &#x60;position&#x60; property.</param>
+        /// <param name="additionalCostId">The identifier of the additional cost to be discounted.</param>
+        /// <param name="value">The monetary value of the effective discount applied to the item&#39;s additional cost.</param>
+        /// <param name="position">The index of the item in the &#x60;cartItem&#x60; object containing the additional cost that this discount applies to.</param>
+        /// <param name="additionalCost">The API name of the additional cost to be discounted.</param>
+        /// <param name="subPosition">The index of the item unit in its line item.</param>
+        /// <param name="desiredValue">_[(Partial discounts enabled only)](https://docs.talon.one/docs/product/applications/manage-general-settings#partial-discounts)_. The monetary value of the discount to be applied to the additional cost without considering budget limitations.</param>
         [JsonConstructor]
         public SetDiscountPerAdditionalCostPerItemEffectProps(string name, long additionalCostId, decimal value, decimal position, string additionalCost, Option<decimal?> subPosition = default, Option<decimal?> desiredValue = default)
         {
@@ -54,37 +54,37 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The name / description of this discount
+        /// The description of this discount. &#x60;#number&#x60; is appended to the name. It is equal to the &#x60;position&#x60; property.
         /// </summary>
-        /// <value>The name / description of this discount</value>
+        /// <value>The description of this discount. &#x60;#number&#x60; is appended to the name. It is equal to the &#x60;position&#x60; property.</value>
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// The ID of the additional cost.
+        /// The identifier of the additional cost to be discounted.
         /// </summary>
-        /// <value>The ID of the additional cost.</value>
+        /// <value>The identifier of the additional cost to be discounted.</value>
         [JsonPropertyName("additionalCostId")]
         public long AdditionalCostId { get; set; }
 
         /// <summary>
-        /// The total monetary value of the discount.
+        /// The monetary value of the effective discount applied to the item&#39;s additional cost.
         /// </summary>
-        /// <value>The total monetary value of the discount.</value>
+        /// <value>The monetary value of the effective discount applied to the item&#39;s additional cost.</value>
         [JsonPropertyName("value")]
         public decimal Value { get; set; }
 
         /// <summary>
-        /// The index of the item in the cart item list containing the additional cost to be discounted.
+        /// The index of the item in the &#x60;cartItem&#x60; object containing the additional cost that this discount applies to.
         /// </summary>
-        /// <value>The index of the item in the cart item list containing the additional cost to be discounted.</value>
+        /// <value>The index of the item in the &#x60;cartItem&#x60; object containing the additional cost that this discount applies to.</value>
         [JsonPropertyName("position")]
         public decimal Position { get; set; }
 
         /// <summary>
-        /// The name of the additional cost.
+        /// The API name of the additional cost to be discounted.
         /// </summary>
-        /// <value>The name of the additional cost.</value>
+        /// <value>The API name of the additional cost to be discounted.</value>
         [JsonPropertyName("additionalCost")]
         public string AdditionalCost { get; set; }
 
@@ -96,9 +96,9 @@ namespace TalonOneSdk.Model
         public Option<decimal?> SubPositionOption { get; private set; }
 
         /// <summary>
-        /// For cart items with &#x60;quantity&#x60; &gt; 1, the sub position indicates which item the discount applies to. 
+        /// The index of the item unit in its line item.
         /// </summary>
-        /// <value>For cart items with &#x60;quantity&#x60; &gt; 1, the sub position indicates which item the discount applies to. </value>
+        /// <value>The index of the item unit in its line item.</value>
         [JsonPropertyName("subPosition")]
         public decimal? SubPosition { get { return this.SubPositionOption.Value; } set { this.SubPositionOption = new Option<decimal?>(value); } }
 
@@ -110,9 +110,9 @@ namespace TalonOneSdk.Model
         public Option<decimal?> DesiredValueOption { get; private set; }
 
         /// <summary>
-        /// Only with [partial discounts enabled](https://docs.talon.one/docs/product/campaigns/campaign-evaluation/#partial-discounts). Represents the monetary value of the discount to be applied to additional discount without considering budget limitations. 
+        /// _[(Partial discounts enabled only)](https://docs.talon.one/docs/product/applications/manage-general-settings#partial-discounts)_. The monetary value of the discount to be applied to the additional cost without considering budget limitations.
         /// </summary>
-        /// <value>Only with [partial discounts enabled](https://docs.talon.one/docs/product/campaigns/campaign-evaluation/#partial-discounts). Represents the monetary value of the discount to be applied to additional discount without considering budget limitations. </value>
+        /// <value>_[(Partial discounts enabled only)](https://docs.talon.one/docs/product/applications/manage-general-settings#partial-discounts)_. The monetary value of the discount to be applied to the additional cost without considering budget limitations.</value>
         [JsonPropertyName("desiredValue")]
         public decimal? DesiredValue { get { return this.DesiredValueOption.Value; } set { this.DesiredValueOption = new Option<decimal?>(value); } }
 

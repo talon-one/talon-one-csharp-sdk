@@ -33,11 +33,13 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="permissionSets">List of grouped logical operations referenced by roles.</param>
         /// <param name="roles">roles</param>
+        /// <param name="thresholds">Support user limits for actions that require admin approval within the given application.</param>
         [JsonConstructor]
-        public RoleV2Permissions(Option<List<RoleV2PermissionSet>> permissionSets = default, Option<RoleV2RolesGroup> roles = default)
+        public RoleV2Permissions(Option<List<RoleV2PermissionSet>> permissionSets = default, Option<RoleV2RolesGroup> roles = default, Option<List<RolesV2Thresholds>> thresholds = default)
         {
             PermissionSetsOption = permissionSets;
             RolesOption = roles;
+            ThresholdsOption = thresholds;
             OnCreated();
         }
 
@@ -72,6 +74,20 @@ namespace TalonOneSdk.Model
         public RoleV2RolesGroup Roles { get { return this.RolesOption.Value; } set { this.RolesOption = new Option<RoleV2RolesGroup>(value); } }
 
         /// <summary>
+        /// Used to track the state of Thresholds
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<RolesV2Thresholds>> ThresholdsOption { get; private set; }
+
+        /// <summary>
+        /// Support user limits for actions that require admin approval within the given application.
+        /// </summary>
+        /// <value>Support user limits for actions that require admin approval within the given application.</value>
+        [JsonPropertyName("thresholds")]
+        public List<RolesV2Thresholds> Thresholds { get { return this.ThresholdsOption.Value; } set { this.ThresholdsOption = new Option<List<RolesV2Thresholds>>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -81,6 +97,7 @@ namespace TalonOneSdk.Model
             sb.Append("class RoleV2Permissions {\n");
             sb.Append("  PermissionSets: ").Append(PermissionSets).Append("\n");
             sb.Append("  Roles: ").Append(Roles).Append("\n");
+            sb.Append("  Thresholds: ").Append(Thresholds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -120,6 +137,7 @@ namespace TalonOneSdk.Model
 
             Option<List<RoleV2PermissionSet>> permissionSets = default;
             Option<RoleV2RolesGroup> roles = default;
+            Option<List<RolesV2Thresholds>> thresholds = default;
 
             while (utf8JsonReader.Read())
             {
@@ -142,13 +160,16 @@ namespace TalonOneSdk.Model
                         case "roles":
                             roles = new Option<RoleV2RolesGroup>(JsonSerializer.Deserialize<RoleV2RolesGroup>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "thresholds":
+                            thresholds = new Option<List<RolesV2Thresholds>>(JsonSerializer.Deserialize<List<RolesV2Thresholds>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
                 }
             }
 
-            return new RoleV2Permissions(permissionSets, roles);
+            return new RoleV2Permissions(permissionSets, roles, thresholds);
         }
 
         /// <summary>
@@ -184,6 +205,11 @@ namespace TalonOneSdk.Model
             {
                 writer.WritePropertyName("roles");
                 JsonSerializer.Serialize(writer, roleV2Permissions.Roles, jsonSerializerOptions);
+            }
+            if (roleV2Permissions.ThresholdsOption.IsSet)
+            {
+                writer.WritePropertyName("thresholds");
+                JsonSerializer.Serialize(writer, roleV2Permissions.Thresholds, jsonSerializerOptions);
             }
         }
     }

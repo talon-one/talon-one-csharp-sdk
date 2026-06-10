@@ -43,8 +43,9 @@ namespace TalonOneSdk.Model
         /// <param name="endTime">Timestamp when the campaign will become inactive.</param>
         /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
         /// <param name="state">The state of the campaign.  (default to StateEnum.Enabled)</param>
+        /// <param name="experiment">experiment</param>
         [JsonConstructor]
-        public CampaignEligibility(long applicationId, long id, string name, List<string> tags, List<CampaignEligibility.FeaturesEnum> features, List<CampaignEligibilityDetails> eligibility, List<RuleMetadataEligibility> rules, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, StateEnum state = StateEnum.Enabled)
+        public CampaignEligibility(long applicationId, long id, string name, List<string> tags, List<CampaignEligibility.FeaturesEnum> features, List<CampaignEligibilityDetails> eligibility, List<RuleMetadataEligibility> rules, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, StateEnum state = StateEnum.Enabled, Option<CampaignEligibilityExperiment> experiment = default)
         {
             ApplicationId = applicationId;
             Id = id;
@@ -58,6 +59,7 @@ namespace TalonOneSdk.Model
             EndTimeOption = endTime;
             AttributesOption = attributes;
             State = state;
+            ExperimentOption = experiment;
             OnCreated();
         }
 
@@ -360,6 +362,19 @@ namespace TalonOneSdk.Model
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
+        /// Used to track the state of Experiment
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<CampaignEligibilityExperiment> ExperimentOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Experiment
+        /// </summary>
+        [JsonPropertyName("experiment")]
+        public CampaignEligibilityExperiment Experiment { get { return this.ExperimentOption.Value; } set { this.ExperimentOption = new Option<CampaignEligibilityExperiment>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -379,6 +394,7 @@ namespace TalonOneSdk.Model
             sb.Append("  EndTime: ").Append(EndTime).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
+            sb.Append("  Experiment: ").Append(Experiment).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -444,6 +460,7 @@ namespace TalonOneSdk.Model
             Option<DateTime?> endTime = default;
             Option<Object> attributes = default;
             Option<CampaignEligibility.StateEnum?> state = default;
+            Option<CampaignEligibilityExperiment> experiment = default;
 
             while (utf8JsonReader.Read())
             {
@@ -519,6 +536,9 @@ namespace TalonOneSdk.Model
                             if (stateRawValue != null)
                                 state = new Option<CampaignEligibility.StateEnum?>(CampaignEligibility.StateEnumFromStringOrDefault(stateRawValue));
                             break;
+                        case "experiment":
+                            experiment = new Option<CampaignEligibilityExperiment>(JsonSerializer.Deserialize<CampaignEligibilityExperiment>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
@@ -573,7 +593,7 @@ namespace TalonOneSdk.Model
             if (state.IsSet && state.Value == null)
                 throw new ArgumentNullException(nameof(state), "Property is not nullable for class CampaignEligibility.");
 
-            return new CampaignEligibility(applicationId.Value.Value, id.Value.Value, name.Value, tags.Value, features.Value, eligibility.Value, rules.Value, description, startTime, endTime, attributes, state.Value.Value);
+            return new CampaignEligibility(applicationId.Value.Value, id.Value.Value, name.Value, tags.Value, features.Value, eligibility.Value, rules.Value, description, startTime, endTime, attributes, state.Value.Value, experiment);
         }
 
         /// <summary>
@@ -650,6 +670,11 @@ namespace TalonOneSdk.Model
             }
             var stateRawValue = CampaignEligibility.StateEnumToJsonValue(campaignEligibility.State);
             writer.WriteString("state", stateRawValue);
+            if (campaignEligibility.ExperimentOption.IsSet)
+            {
+                writer.WritePropertyName("experiment");
+                JsonSerializer.Serialize(writer, campaignEligibility.Experiment, jsonSerializerOptions);
+            }
         }
     }
 }

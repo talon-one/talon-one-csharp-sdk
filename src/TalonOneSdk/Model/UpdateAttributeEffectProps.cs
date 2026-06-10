@@ -24,14 +24,14 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;updateAttribute\&quot; effect. This gets triggered whenever a validated rule contained an \&quot;update an attribute\&quot; effect.
+    /// This effect indicates that a rule containing an [Update attribute value](https://docs.talon.one/docs/product/rules/effects/available-effects#update-effects) or [Update cart item attribute value](https://docs.talon.one/docs/product/rules/effects/available-effects#update-effects) was validated. You should update the value of the attribute in your system based on the content of the returned effect.
     /// </summary>
     public partial class UpdateAttributeEffectProps : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAttributeEffectProps" /> class.
         /// </summary>
-        /// <param name="path">The exact path of the attribute that was updated.</param>
+        /// <param name="path">The entity type and the attribute name.</param>
         /// <param name="value">value</param>
         [JsonConstructor]
         public UpdateAttributeEffectProps(string path, Object value = default)
@@ -44,9 +44,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The exact path of the attribute that was updated.
+        /// The entity type and the attribute name.
         /// </summary>
-        /// <value>The exact path of the attribute that was updated.</value>
+        /// <value>The entity type and the attribute name.</value>
         [JsonPropertyName("path")]
         public string Path { get; set; }
 

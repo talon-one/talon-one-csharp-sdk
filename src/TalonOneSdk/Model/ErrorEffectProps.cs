@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// Whenever an error occurred during evaluation, we return an error effect. This should never happen for rules created in the rule builder.
+    /// This effect is triggered whenever an error occurs during rule evaluation. This effect only provides information about what the error is.
     /// </summary>
     public partial class ErrorEffectProps : IValidatableObject
     {

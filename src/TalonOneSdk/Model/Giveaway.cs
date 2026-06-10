@@ -37,7 +37,7 @@ namespace TalonOneSdk.Model
         /// <param name="poolId">The ID of the pool to return giveaway codes from.</param>
         /// <param name="startDate">Timestamp at which point the giveaway becomes valid.</param>
         /// <param name="endDate">Timestamp at which point the giveaway becomes invalid.</param>
-        /// <param name="attributes">Arbitrary properties associated with this giveaway.</param>
+        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
         /// <param name="used">Indicates whether this giveaway code was given before.</param>
         /// <param name="importId">The ID of the Import which created this giveaway.</param>
         /// <param name="profileIntegrationId">The third-party integration ID of the customer profile that was awarded the giveaway, if the giveaway was awarded.</param>
@@ -131,9 +131,9 @@ namespace TalonOneSdk.Model
         public Option<Object> AttributesOption { get; private set; }
 
         /// <summary>
-        /// Arbitrary properties associated with this giveaway.
+        /// Arbitrary properties associated with this campaign.
         /// </summary>
-        /// <value>Arbitrary properties associated with this giveaway.</value>
+        /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("attributes")]
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 

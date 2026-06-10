@@ -50,7 +50,7 @@ namespace TalonOneSdk.Model
         /// <param name="recipientIntegrationId">recipientIntegrationId</param>
         /// <param name="importId">importId</param>
         /// <param name="batchId">batchId</param>
-        /// <param name="attributes">attributes</param>
+        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
         /// <param name="limits">limits</param>
         [JsonConstructor]
         public IntegrationHubEventPayloadCouponBasedNotifications(long id, DateTime created, long campaignId, string value, long usageLimit, long usageCounter, DateTime publishedAt, string sourceOfEvent, string employeeName, Option<float?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<float?> discountCounter = default, Option<float?> discountRemainder = default, Option<long?> referralId = default, Option<string> recipientIntegrationId = default, Option<long?> importId = default, Option<string> batchId = default, Option<Object> attributes = default, Option<List<IntegrationHubEventPayloadCouponBasedNotificationsLimits>> limits = default)
@@ -274,8 +274,9 @@ namespace TalonOneSdk.Model
         public Option<Object> AttributesOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Attributes
+        /// Arbitrary properties associated with this campaign.
         /// </summary>
+        /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("Attributes")]
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 

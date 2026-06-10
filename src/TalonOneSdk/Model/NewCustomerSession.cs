@@ -38,7 +38,7 @@ namespace TalonOneSdk.Model
         /// <param name="cartItems">Serialized JSON representation.</param>
         /// <param name="identifiers">Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts. See the [tutorial](https://docs.talon.one/docs/dev/tutorials/using-identifiers). </param>
         /// <param name="total">The total sum of the cart in one session.</param>
-        /// <param name="attributes">A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings. </param>
+        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
         [JsonConstructor]
         public NewCustomerSession(Option<string> profileId = default, Option<string> coupon = default, Option<string> referral = default, Option<StateEnum?> state = default, Option<List<CartItem>> cartItems = default, Option<List<string>> identifiers = default, Option<decimal?> total = default, Option<Object> attributes = default)
         {
@@ -261,9 +261,9 @@ namespace TalonOneSdk.Model
         public Option<Object> AttributesOption { get; private set; }
 
         /// <summary>
-        /// A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings. 
+        /// Arbitrary properties associated with this campaign.
         /// </summary>
-        /// <value>A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings. </value>
+        /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("attributes")]
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 

@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="NewCouponCreationJob" /> class.
         /// </summary>
         /// <param name="numberOfCoupons">The number of new coupon codes to generate for the campaign.</param>
-        /// <param name="attributes">Arbitrary properties associated with coupons.</param>
+        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
         /// <param name="usageLimit">The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply. </param>
         /// <param name="discountLimit">The total discount value that the code can give. Typically used to represent a gift card value. </param>
         /// <param name="reservationLimit">The number of reservations that can be made with this coupon code. </param>
@@ -66,9 +66,9 @@ namespace TalonOneSdk.Model
         public long NumberOfCoupons { get; set; }
 
         /// <summary>
-        /// Arbitrary properties associated with coupons.
+        /// Arbitrary properties associated with this campaign.
         /// </summary>
-        /// <value>Arbitrary properties associated with coupons.</value>
+        /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("attributes")]
         public Object Attributes { get; set; }
 

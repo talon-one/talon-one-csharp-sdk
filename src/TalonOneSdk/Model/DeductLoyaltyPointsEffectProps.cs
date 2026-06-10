@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;deductLoyaltyPoints\&quot; effect. This gets triggered whenever a validated rule contained a condition to only trigger when the given number of loyalty points could be deduced. These points are automatically stored and managed inside Talon.One.
+    /// This effect is triggered when a customer redeems loyalty points. The points are deducted from their active point balance.  If the loyalty program is card-based, use the &#x60;cardIdentifier&#x60; property to identify the loyalty card from which these points are deducted.  The Rule Engine deducts points in this order:  - Points with the earliest expiry date are deducted first, regardless of when they were added. - Points with an unlimited expiry date are deducted last. - For points with an unlimited expiry date, the points awarded first are deducted first.  The points only persist when the session is closed.
     /// </summary>
     public partial class DeductLoyaltyPointsEffectProps : IValidatableObject
     {
@@ -32,12 +32,12 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="DeductLoyaltyPointsEffectProps" /> class.
         /// </summary>
         /// <param name="ruleTitle">The title of the rule that contained triggered this points deduction.</param>
-        /// <param name="programId">The ID of the loyalty program where these points were added.</param>
-        /// <param name="subLedgerId">The ID of the subledger within the loyalty program where these points were added.</param>
+        /// <param name="programId">The ID of the loyalty program from which these points were deducted.</param>
+        /// <param name="subLedgerId">The ID of the subledger within the loyalty program from which these points were deducted.</param>
         /// <param name="value">The amount of points that were deducted.</param>
-        /// <param name="transactionUUID">The identifier of this deduction in the loyalty ledger.</param>
-        /// <param name="name">The name property gets one of the following two values. It can be the loyalty program name or it can represent a reason for the respective deduction of loyalty points. The latter is an optional value defined in a deduction rule. </param>
-        /// <param name="cardIdentifier">The card on which these points were added.</param>
+        /// <param name="transactionUUID">The identifier of this loyalty point transaction.</param>
+        /// <param name="name">The reason of this loyalty points deduction.</param>
+        /// <param name="cardIdentifier">The identifier of the card from which these points were deducted.</param>
         [JsonConstructor]
         public DeductLoyaltyPointsEffectProps(string ruleTitle, long programId, string subLedgerId, decimal value, string transactionUUID, string name, Option<string> cardIdentifier = default)
         {
@@ -61,16 +61,16 @@ namespace TalonOneSdk.Model
         public string RuleTitle { get; set; }
 
         /// <summary>
-        /// The ID of the loyalty program where these points were added.
+        /// The ID of the loyalty program from which these points were deducted.
         /// </summary>
-        /// <value>The ID of the loyalty program where these points were added.</value>
+        /// <value>The ID of the loyalty program from which these points were deducted.</value>
         [JsonPropertyName("programId")]
         public long ProgramId { get; set; }
 
         /// <summary>
-        /// The ID of the subledger within the loyalty program where these points were added.
+        /// The ID of the subledger within the loyalty program from which these points were deducted.
         /// </summary>
-        /// <value>The ID of the subledger within the loyalty program where these points were added.</value>
+        /// <value>The ID of the subledger within the loyalty program from which these points were deducted.</value>
         [JsonPropertyName("subLedgerId")]
         public string SubLedgerId { get; set; }
 
@@ -82,16 +82,16 @@ namespace TalonOneSdk.Model
         public decimal Value { get; set; }
 
         /// <summary>
-        /// The identifier of this deduction in the loyalty ledger.
+        /// The identifier of this loyalty point transaction.
         /// </summary>
-        /// <value>The identifier of this deduction in the loyalty ledger.</value>
+        /// <value>The identifier of this loyalty point transaction.</value>
         [JsonPropertyName("transactionUUID")]
         public string TransactionUUID { get; set; }
 
         /// <summary>
-        /// The name property gets one of the following two values. It can be the loyalty program name or it can represent a reason for the respective deduction of loyalty points. The latter is an optional value defined in a deduction rule. 
+        /// The reason of this loyalty points deduction.
         /// </summary>
-        /// <value>The name property gets one of the following two values. It can be the loyalty program name or it can represent a reason for the respective deduction of loyalty points. The latter is an optional value defined in a deduction rule. </value>
+        /// <value>The reason of this loyalty points deduction.</value>
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
@@ -103,9 +103,9 @@ namespace TalonOneSdk.Model
         public Option<string> CardIdentifierOption { get; private set; }
 
         /// <summary>
-        /// The card on which these points were added.
+        /// The identifier of the card from which these points were deducted.
         /// </summary>
-        /// <value>The card on which these points were added.</value>
+        /// <value>The identifier of the card from which these points were deducted.</value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("cardIdentifier")]
         public string CardIdentifier { get { return this.CardIdentifierOption.Value; } set { this.CardIdentifierOption = new Option<string>(value); } }

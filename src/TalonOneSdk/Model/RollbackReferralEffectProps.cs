@@ -24,14 +24,14 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;rollbackReferral\&quot; effect. This gets triggered whenever previously closed session is now cancelled and a referral redemption was cancelled on our internal usage limit counters.
+    /// This effect indicates that the redemption of the referral code has been rolled back. It triggers when a closed session that redeemed a referral is gets cancelled. The code becomes redeemable again.  For more information about session states, see [Managing states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states).
     /// </summary>
     public partial class RollbackReferralEffectProps : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RollbackReferralEffectProps" /> class.
         /// </summary>
-        /// <param name="value">The referral code whose usage has been rolled back.</param>
+        /// <param name="value">The referral code to be rolled back.</param>
         [JsonConstructor]
         public RollbackReferralEffectProps(string value)
         {
@@ -42,9 +42,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The referral code whose usage has been rolled back.
+        /// The referral code to be rolled back.
         /// </summary>
-        /// <value>The referral code whose usage has been rolled back.</value>
+        /// <value>The referral code to be rolled back.</value>
         [JsonPropertyName("value")]
         public string Value { get; set; }
 

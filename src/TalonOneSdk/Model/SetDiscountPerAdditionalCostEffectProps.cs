@@ -24,18 +24,18 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;setDiscountPerAdditionalCost\&quot; effect. This gets triggered whenever a validated rule contained a \&quot;set per additional cost discount\&quot; effect. This is a discount that should be applied on a specific additional cost.
+    /// This effect indicates that a discount that should be applied on a specific additional cost. It is triggered whenever a rule containing a **Discount additional cost** effect is validated.  Enabling [partial rewards](https://docs.talon.one/docs/product/applications/manage-general-settings#partial-rewards) allows a rule that would fail because of insufficient budget to pass. The rule still fails when the budget reaches 0. Use the &#x60;desiredValue&#x60; property to identify the original amount of loyalty points.
     /// </summary>
     public partial class SetDiscountPerAdditionalCostEffectProps : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SetDiscountPerAdditionalCostEffectProps" /> class.
         /// </summary>
-        /// <param name="name">The name / description of this discount</param>
-        /// <param name="additionalCostId">The ID of the additional cost.</param>
-        /// <param name="additionalCost">The name of the additional cost.</param>
-        /// <param name="value">The total monetary value of the discount.</param>
-        /// <param name="desiredValue">The original value of the discount.</param>
+        /// <param name="name">The name of the discount.</param>
+        /// <param name="additionalCostId">The identifier of the additional cost.</param>
+        /// <param name="additionalCost">The API name of the additional cost.</param>
+        /// <param name="value">The monetary value of the discount to apply.</param>
+        /// <param name="desiredValue">_(Partial discounts enabled only)_ The monetary value of the discount to be applied without considering budget limitations.</param>
         [JsonConstructor]
         public SetDiscountPerAdditionalCostEffectProps(string name, long additionalCostId, string additionalCost, decimal value, Option<decimal?> desiredValue = default)
         {
@@ -50,30 +50,30 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The name / description of this discount
+        /// The name of the discount.
         /// </summary>
-        /// <value>The name / description of this discount</value>
+        /// <value>The name of the discount.</value>
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// The ID of the additional cost.
+        /// The identifier of the additional cost.
         /// </summary>
-        /// <value>The ID of the additional cost.</value>
+        /// <value>The identifier of the additional cost.</value>
         [JsonPropertyName("additionalCostId")]
         public long AdditionalCostId { get; set; }
 
         /// <summary>
-        /// The name of the additional cost.
+        /// The API name of the additional cost.
         /// </summary>
-        /// <value>The name of the additional cost.</value>
+        /// <value>The API name of the additional cost.</value>
         [JsonPropertyName("additionalCost")]
         public string AdditionalCost { get; set; }
 
         /// <summary>
-        /// The total monetary value of the discount.
+        /// The monetary value of the discount to apply.
         /// </summary>
-        /// <value>The total monetary value of the discount.</value>
+        /// <value>The monetary value of the discount to apply.</value>
         [JsonPropertyName("value")]
         public decimal Value { get; set; }
 
@@ -85,9 +85,9 @@ namespace TalonOneSdk.Model
         public Option<decimal?> DesiredValueOption { get; private set; }
 
         /// <summary>
-        /// The original value of the discount.
+        /// _(Partial discounts enabled only)_ The monetary value of the discount to be applied without considering budget limitations.
         /// </summary>
-        /// <value>The original value of the discount.</value>
+        /// <value>_(Partial discounts enabled only)_ The monetary value of the discount to be applied without considering budget limitations.</value>
         [JsonPropertyName("desiredValue")]
         public decimal? DesiredValue { get { return this.DesiredValueOption.Value; } set { this.DesiredValueOption = new Option<decimal?>(value); } }
 

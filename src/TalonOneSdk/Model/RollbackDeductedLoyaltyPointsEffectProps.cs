@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;rollbackDeductedLoyaltyPoints\&quot; effect. This effect is triggered whenever a previously closed session is cancelled and a deductLoyaltyPoints effect was revoked.
+    /// This effect is triggered in the following cases:  - A session is _cancelled_ and this session deducted loyalty points. The rollback action returns the redeemed loyalty points to the customer. - A session is impacted by a _partial return_. Only added loyalty points that are still **pending** are rolled back. - A session in which loyalty points were spent is reopened.  See the [session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states).  If you set custom activation and expiration dates for the loyalty points, use the &#x60;startDate&#x60; and &#x60;expiryDate&#x60; properties to identify when the reward will be active and when will expire.  If the loyalty program is [profile-based](https://docs.talon.one/docs/product/loyalty-programs/profile-based/profile-based-overview), use the &#x60;recipientIntegrationId&#x60; property to identify the user who receives the loyalty points. If the loyalty program is [card-based](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types), use the &#x60;cardIdentifier&#x60; property to identify the loyalty card where the points are reimbursed.
     /// </summary>
     public partial class RollbackDeductedLoyaltyPointsEffectProps : IValidatableObject
     {
@@ -33,12 +33,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="programId">The ID of the loyalty program where these points were reimbursed.</param>
         /// <param name="subLedgerId">The ID of the subledger within the loyalty program where these points were reimbursed.</param>
-        /// <param name="value">The amount of reimbursed points that were added.</param>
+        /// <param name="value">The amount of points that were reimbursed.</param>
         /// <param name="recipientIntegrationId">The user for whom these points were reimbursed.</param>
-        /// <param name="transactionUUID">The identifier of &#39;addition&#39; entries added to the ledger as the &#x60;deductLoyaltyPoints&#x60; effect is rolled back.</param>
-        /// <param name="startDate">Date after which the reimbursed points will be valid.</param>
-        /// <param name="expiryDate">Date after which the reimbursed points will expire.</param>
-        /// <param name="cardIdentifier">The card on which these points were added.</param>
+        /// <param name="transactionUUID">The identifier of this loyalty point transaction.</param>
+        /// <param name="startDate">The date after which the reimbursed points will be valid.</param>
+        /// <param name="expiryDate">The date after which the reimbursed points will expire.</param>
+        /// <param name="cardIdentifier">The identifier of the card from which these points were originally deducted.</param>
         [JsonConstructor]
         public RollbackDeductedLoyaltyPointsEffectProps(long programId, string subLedgerId, decimal value, string recipientIntegrationId, string transactionUUID, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<string> cardIdentifier = default)
         {
@@ -70,9 +70,9 @@ namespace TalonOneSdk.Model
         public string SubLedgerId { get; set; }
 
         /// <summary>
-        /// The amount of reimbursed points that were added.
+        /// The amount of points that were reimbursed.
         /// </summary>
-        /// <value>The amount of reimbursed points that were added.</value>
+        /// <value>The amount of points that were reimbursed.</value>
         [JsonPropertyName("value")]
         public decimal Value { get; set; }
 
@@ -85,9 +85,9 @@ namespace TalonOneSdk.Model
         public string RecipientIntegrationId { get; set; }
 
         /// <summary>
-        /// The identifier of &#39;addition&#39; entries added to the ledger as the &#x60;deductLoyaltyPoints&#x60; effect is rolled back.
+        /// The identifier of this loyalty point transaction.
         /// </summary>
-        /// <value>The identifier of &#39;addition&#39; entries added to the ledger as the &#x60;deductLoyaltyPoints&#x60; effect is rolled back.</value>
+        /// <value>The identifier of this loyalty point transaction.</value>
         [JsonPropertyName("transactionUUID")]
         public string TransactionUUID { get; set; }
 
@@ -99,9 +99,9 @@ namespace TalonOneSdk.Model
         public Option<DateTime?> StartDateOption { get; private set; }
 
         /// <summary>
-        /// Date after which the reimbursed points will be valid.
+        /// The date after which the reimbursed points will be valid.
         /// </summary>
-        /// <value>Date after which the reimbursed points will be valid.</value>
+        /// <value>The date after which the reimbursed points will be valid.</value>
         [JsonPropertyName("startDate")]
         public DateTime? StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
@@ -113,9 +113,9 @@ namespace TalonOneSdk.Model
         public Option<DateTime?> ExpiryDateOption { get; private set; }
 
         /// <summary>
-        /// Date after which the reimbursed points will expire.
+        /// The date after which the reimbursed points will expire.
         /// </summary>
-        /// <value>Date after which the reimbursed points will expire.</value>
+        /// <value>The date after which the reimbursed points will expire.</value>
         [JsonPropertyName("expiryDate")]
         public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
@@ -127,9 +127,9 @@ namespace TalonOneSdk.Model
         public Option<string> CardIdentifierOption { get; private set; }
 
         /// <summary>
-        /// The card on which these points were added.
+        /// The identifier of the card from which these points were originally deducted.
         /// </summary>
-        /// <value>The card on which these points were added.</value>
+        /// <value>The identifier of the card from which these points were originally deducted.</value>
         /* <example>summer-loyalty-card-0543</example> */
         [JsonPropertyName("cardIdentifier")]
         public string CardIdentifier { get { return this.CardIdentifierOption.Value; } set { this.CardIdentifierOption = new Option<string>(value); } }

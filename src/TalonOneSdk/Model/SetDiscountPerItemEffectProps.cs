@@ -24,25 +24,25 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the &#x60;setDiscountPerItem&#x60; effect, triggered whenever a validated rule contained a \&quot;set per item discount\&quot; effect. This is a discount that will be applied either on a specific item, on a specific item + additional cost or on all additional costs per item. This depends on the chosen scope. 
+    /// This effect schema is returned when you use the **Discount individual items**, **Discount individual items pro rata**, or **Discount individual item in bundles** effect in a rule.  It indicates that a discount per item should be applied on the specific item specified in the effect.  The properties it contains depends on:  - Whether you used a pro rata effect or not. - Whether you used an effect with bundles or not. - Whether the partial discount feature is enabled.
     /// </summary>
     public partial class SetDiscountPerItemEffectProps : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SetDiscountPerItemEffectProps" /> class.
         /// </summary>
-        /// <param name="name">The name of the discount. Contains a hashtag character indicating the index of the position of the item the discount applies to. It is identical to the value of the &#x60;position&#x60; property. </param>
-        /// <param name="value">The total monetary value of the discount.</param>
-        /// <param name="position">The index of the item in the cart items list on which this discount should be applied.</param>
-        /// <param name="subPosition">For cart items with &#x60;quantity&#x60; &gt; 1, the sub position indicates which item the discount applies to. </param>
-        /// <param name="desiredValue">The original value of the discount.</param>
-        /// <param name="scope">The scope of the discount: - &#x60;additionalCosts&#x60;: The discount applies to all the additional costs of the item. - &#x60;itemTotal&#x60;: The discount applies to the price of the item + the additional costs of the item. - &#x60;price&#x60;: The discount applies to the price of the item. </param>
-        /// <param name="totalDiscount">The total discount given if this effect is a result of a prorated discount.</param>
-        /// <param name="desiredTotalDiscount">The original total discount to give if this effect is a result of a prorated discount.</param>
-        /// <param name="bundleIndex">The position of the bundle in a list of item bundles created from the same bundle definition.</param>
-        /// <param name="bundleName">The name of the bundle definition.</param>
-        /// <param name="targetedItemPosition">The index of the targeted bundle item on which the applied discount is based.</param>
-        /// <param name="targetedItemSubPosition">The sub-position of the targeted bundle item on which the applied discount is based. </param>
+        /// <param name="name">The description of this discount. &#x60;#number&#x60; is equal to the &#x60;position&#x60; property.</param>
+        /// <param name="value">The monetary value of the effective discount applied to the item.</param>
+        /// <param name="position">The index of the item in the &#x60;cartItem&#x60; object on which this discount should be applied.</param>
+        /// <param name="subPosition">The index of the item unit in its line item.</param>
+        /// <param name="desiredValue">_(Partial discounts enabled only)_ The monetary value of the discount to be applied to the item without considering budget limitations.</param>
+        /// <param name="scope">What the discount applies to. Possible values:  - &#x60;price&#x60;: discount on the price of the item. - &#x60;additionalCosts&#x60;: discount on the [additional cost](https://docs.talon.one/docs/product/account/dev-tools/manage-additional-costs) of the item. - &#x60;itemTotal&#x60;: discount on the sum of price + additional cost of the item.</param>
+        /// <param name="totalDiscount">_(Pro rata discounts only)_ The monetary value of the total effective discount</param>
+        /// <param name="desiredTotalDiscount">_(Pro rata discounts only)_ The monetary value of the total discount to be applied without considering budget limitations</param>
+        /// <param name="bundleIndex">_(Discounts with bundles only)_ The position of the specific item bundle in the list of bundles created from the same bundle definition.</param>
+        /// <param name="bundleName">_(Discounts with bundles only)_ The name of the bundle definition.</param>
+        /// <param name="targetedItemPosition">_(Discounting individual item in bundles only)_ The index of the targeted bundle item on which the applied discount is based.</param>
+        /// <param name="targetedItemSubPosition">_(Discounting individual item in bundles only)_ The sub-position of the targeted bundle item on which the applied discount is based.</param>
         /// <param name="excludedFromPriceHistory">When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history.</param>
         [JsonConstructor]
         public SetDiscountPerItemEffectProps(string name, decimal value, decimal position, Option<decimal?> subPosition = default, Option<decimal?> desiredValue = default, Option<string> scope = default, Option<decimal?> totalDiscount = default, Option<decimal?> desiredTotalDiscount = default, Option<long?> bundleIndex = default, Option<string> bundleName = default, Option<decimal?> targetedItemPosition = default, Option<decimal?> targetedItemSubPosition = default, Option<bool?> excludedFromPriceHistory = default)
@@ -66,23 +66,23 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The name of the discount. Contains a hashtag character indicating the index of the position of the item the discount applies to. It is identical to the value of the &#x60;position&#x60; property. 
+        /// The description of this discount. &#x60;#number&#x60; is equal to the &#x60;position&#x60; property.
         /// </summary>
-        /// <value>The name of the discount. Contains a hashtag character indicating the index of the position of the item the discount applies to. It is identical to the value of the &#x60;position&#x60; property. </value>
+        /// <value>The description of this discount. &#x60;#number&#x60; is equal to the &#x60;position&#x60; property.</value>
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// The total monetary value of the discount.
+        /// The monetary value of the effective discount applied to the item.
         /// </summary>
-        /// <value>The total monetary value of the discount.</value>
+        /// <value>The monetary value of the effective discount applied to the item.</value>
         [JsonPropertyName("value")]
         public decimal Value { get; set; }
 
         /// <summary>
-        /// The index of the item in the cart items list on which this discount should be applied.
+        /// The index of the item in the &#x60;cartItem&#x60; object on which this discount should be applied.
         /// </summary>
-        /// <value>The index of the item in the cart items list on which this discount should be applied.</value>
+        /// <value>The index of the item in the &#x60;cartItem&#x60; object on which this discount should be applied.</value>
         [JsonPropertyName("position")]
         public decimal Position { get; set; }
 
@@ -94,9 +94,9 @@ namespace TalonOneSdk.Model
         public Option<decimal?> SubPositionOption { get; private set; }
 
         /// <summary>
-        /// For cart items with &#x60;quantity&#x60; &gt; 1, the sub position indicates which item the discount applies to. 
+        /// The index of the item unit in its line item.
         /// </summary>
-        /// <value>For cart items with &#x60;quantity&#x60; &gt; 1, the sub position indicates which item the discount applies to. </value>
+        /// <value>The index of the item unit in its line item.</value>
         [JsonPropertyName("subPosition")]
         public decimal? SubPosition { get { return this.SubPositionOption.Value; } set { this.SubPositionOption = new Option<decimal?>(value); } }
 
@@ -108,9 +108,9 @@ namespace TalonOneSdk.Model
         public Option<decimal?> DesiredValueOption { get; private set; }
 
         /// <summary>
-        /// The original value of the discount.
+        /// _(Partial discounts enabled only)_ The monetary value of the discount to be applied to the item without considering budget limitations.
         /// </summary>
-        /// <value>The original value of the discount.</value>
+        /// <value>_(Partial discounts enabled only)_ The monetary value of the discount to be applied to the item without considering budget limitations.</value>
         [JsonPropertyName("desiredValue")]
         public decimal? DesiredValue { get { return this.DesiredValueOption.Value; } set { this.DesiredValueOption = new Option<decimal?>(value); } }
 
@@ -122,9 +122,9 @@ namespace TalonOneSdk.Model
         public Option<string> ScopeOption { get; private set; }
 
         /// <summary>
-        /// The scope of the discount: - &#x60;additionalCosts&#x60;: The discount applies to all the additional costs of the item. - &#x60;itemTotal&#x60;: The discount applies to the price of the item + the additional costs of the item. - &#x60;price&#x60;: The discount applies to the price of the item. 
+        /// What the discount applies to. Possible values:  - &#x60;price&#x60;: discount on the price of the item. - &#x60;additionalCosts&#x60;: discount on the [additional cost](https://docs.talon.one/docs/product/account/dev-tools/manage-additional-costs) of the item. - &#x60;itemTotal&#x60;: discount on the sum of price + additional cost of the item.
         /// </summary>
-        /// <value>The scope of the discount: - &#x60;additionalCosts&#x60;: The discount applies to all the additional costs of the item. - &#x60;itemTotal&#x60;: The discount applies to the price of the item + the additional costs of the item. - &#x60;price&#x60;: The discount applies to the price of the item. </value>
+        /// <value>What the discount applies to. Possible values:  - &#x60;price&#x60;: discount on the price of the item. - &#x60;additionalCosts&#x60;: discount on the [additional cost](https://docs.talon.one/docs/product/account/dev-tools/manage-additional-costs) of the item. - &#x60;itemTotal&#x60;: discount on the sum of price + additional cost of the item.</value>
         [JsonPropertyName("scope")]
         public string Scope { get { return this.ScopeOption.Value; } set { this.ScopeOption = new Option<string>(value); } }
 
@@ -136,9 +136,9 @@ namespace TalonOneSdk.Model
         public Option<decimal?> TotalDiscountOption { get; private set; }
 
         /// <summary>
-        /// The total discount given if this effect is a result of a prorated discount.
+        /// _(Pro rata discounts only)_ The monetary value of the total effective discount
         /// </summary>
-        /// <value>The total discount given if this effect is a result of a prorated discount.</value>
+        /// <value>_(Pro rata discounts only)_ The monetary value of the total effective discount</value>
         [JsonPropertyName("totalDiscount")]
         public decimal? TotalDiscount { get { return this.TotalDiscountOption.Value; } set { this.TotalDiscountOption = new Option<decimal?>(value); } }
 
@@ -150,9 +150,9 @@ namespace TalonOneSdk.Model
         public Option<decimal?> DesiredTotalDiscountOption { get; private set; }
 
         /// <summary>
-        /// The original total discount to give if this effect is a result of a prorated discount.
+        /// _(Pro rata discounts only)_ The monetary value of the total discount to be applied without considering budget limitations
         /// </summary>
-        /// <value>The original total discount to give if this effect is a result of a prorated discount.</value>
+        /// <value>_(Pro rata discounts only)_ The monetary value of the total discount to be applied without considering budget limitations</value>
         [JsonPropertyName("desiredTotalDiscount")]
         public decimal? DesiredTotalDiscount { get { return this.DesiredTotalDiscountOption.Value; } set { this.DesiredTotalDiscountOption = new Option<decimal?>(value); } }
 
@@ -164,9 +164,9 @@ namespace TalonOneSdk.Model
         public Option<long?> BundleIndexOption { get; private set; }
 
         /// <summary>
-        /// The position of the bundle in a list of item bundles created from the same bundle definition.
+        /// _(Discounts with bundles only)_ The position of the specific item bundle in the list of bundles created from the same bundle definition.
         /// </summary>
-        /// <value>The position of the bundle in a list of item bundles created from the same bundle definition.</value>
+        /// <value>_(Discounts with bundles only)_ The position of the specific item bundle in the list of bundles created from the same bundle definition.</value>
         [JsonPropertyName("bundleIndex")]
         public long? BundleIndex { get { return this.BundleIndexOption.Value; } set { this.BundleIndexOption = new Option<long?>(value); } }
 
@@ -178,9 +178,9 @@ namespace TalonOneSdk.Model
         public Option<string> BundleNameOption { get; private set; }
 
         /// <summary>
-        /// The name of the bundle definition.
+        /// _(Discounts with bundles only)_ The name of the bundle definition.
         /// </summary>
-        /// <value>The name of the bundle definition.</value>
+        /// <value>_(Discounts with bundles only)_ The name of the bundle definition.</value>
         [JsonPropertyName("bundleName")]
         public string BundleName { get { return this.BundleNameOption.Value; } set { this.BundleNameOption = new Option<string>(value); } }
 
@@ -192,9 +192,9 @@ namespace TalonOneSdk.Model
         public Option<decimal?> TargetedItemPositionOption { get; private set; }
 
         /// <summary>
-        /// The index of the targeted bundle item on which the applied discount is based.
+        /// _(Discounting individual item in bundles only)_ The index of the targeted bundle item on which the applied discount is based.
         /// </summary>
-        /// <value>The index of the targeted bundle item on which the applied discount is based.</value>
+        /// <value>_(Discounting individual item in bundles only)_ The index of the targeted bundle item on which the applied discount is based.</value>
         [JsonPropertyName("targetedItemPosition")]
         public decimal? TargetedItemPosition { get { return this.TargetedItemPositionOption.Value; } set { this.TargetedItemPositionOption = new Option<decimal?>(value); } }
 
@@ -206,9 +206,9 @@ namespace TalonOneSdk.Model
         public Option<decimal?> TargetedItemSubPositionOption { get; private set; }
 
         /// <summary>
-        /// The sub-position of the targeted bundle item on which the applied discount is based. 
+        /// _(Discounting individual item in bundles only)_ The sub-position of the targeted bundle item on which the applied discount is based.
         /// </summary>
-        /// <value>The sub-position of the targeted bundle item on which the applied discount is based. </value>
+        /// <value>_(Discounting individual item in bundles only)_ The sub-position of the targeted bundle item on which the applied discount is based.</value>
         [JsonPropertyName("targetedItemSubPosition")]
         public decimal? TargetedItemSubPosition { get { return this.TargetedItemSubPositionOption.Value; } set { this.TargetedItemSubPositionOption = new Option<decimal?>(value); } }
 

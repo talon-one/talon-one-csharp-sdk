@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **CartItems** | [**List&lt;CartItem&gt;**](CartItem.md) | Serialized JSON representation. | [optional] 
 **Identifiers** | **List&lt;string&gt;** | Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts. See the [tutorial](https://docs.talon.one/docs/dev/tutorials/using-identifiers).  | [optional] 
 **Total** | **decimal** | The total sum of the cart in one session. | [optional] 
-**Attributes** | **Object** | A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings.  | [optional] 
+**Attributes** | **Object** | Arbitrary properties associated with this campaign. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

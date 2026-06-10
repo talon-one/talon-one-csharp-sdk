@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The properties specific to the \&quot;setLoyaltyPointsExpiryDate\&quot; effect. This gets triggered when a validated rule contains the \&quot;set expiry date\&quot; effect. The current expiry date gets set to the date given in the effect. 
+    /// This effect updates the expiry date of all active, pending, and unlimited point transactions to a specific date. 
     /// </summary>
     public partial class SetLoyaltyPointsExpiryDateEffectProps : IValidatableObject
     {

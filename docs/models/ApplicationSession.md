@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **StoreIntegrationId** | **string** | The integration ID of the store. You choose this ID when you create a store. | [optional] 
 **ProfileId** | **long** | The globally unique Talon.One ID of the customer that created this entity. | [optional] 
 **Profileintegrationid** | **string** | Integration ID of the customer for the session. | [optional] 
-**Attributes** | **Object** | Arbitrary properties associated with this item. | [optional] 
+**Attributes** | **Object** | Arbitrary properties associated with this campaign. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 
