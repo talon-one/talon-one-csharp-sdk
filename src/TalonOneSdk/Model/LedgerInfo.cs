@@ -83,6 +83,7 @@ namespace TalonOneSdk.Model
         /// <value>**DEPRECATED** Value is shown as 0. </value>
         /* <example>0</example> */
         [JsonPropertyName("expiredBalance")]
+        [Obsolete]
         public decimal ExpiredBalance { get; set; }
 
         /// <summary>
@@ -91,6 +92,7 @@ namespace TalonOneSdk.Model
         /// <value>**DEPRECATED** Value is shown as 0. </value>
         /* <example>0</example> */
         [JsonPropertyName("spentBalance")]
+        [Obsolete]
         public decimal SpentBalance { get; set; }
 
         /// <summary>

@@ -239,6 +239,7 @@ Class | Method | HTTP request | Description
 *IntegrationApi* | [**GetLoyaltyProgramProfileTransactions**](docs/apis/IntegrationApi.md#getloyaltyprogramprofiletransactions) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions | List customer's loyalty transactions
 *IntegrationApi* | [**GetReservedCustomers**](docs/apis/IntegrationApi.md#getreservedcustomers) | **GET** /v1/coupon_reservations/customerprofiles/{couponValue} | List customers that have this coupon reserved
 *IntegrationApi* | [**IntegrationGetAllCampaigns**](docs/apis/IntegrationApi.md#integrationgetallcampaigns) | **GET** /v1/integration/campaigns | List all running campaigns
+*IntegrationApi* | [**JoinLoyaltyProgram**](docs/apis/IntegrationApi.md#joinloyaltyprogram) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/join | Join customer profile to loyalty program
 *IntegrationApi* | [**LinkLoyaltyCardToProfile**](docs/apis/IntegrationApi.md#linkloyaltycardtoprofile) | **POST** /v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile | Link customer profile to card
 *IntegrationApi* | [**ReopenCustomerSession**](docs/apis/IntegrationApi.md#reopencustomersession) | **PUT** /v2/customer_sessions/{customerSessionId}/reopen | Reopen customer session
 *IntegrationApi* | [**ReturnCartItems**](docs/apis/IntegrationApi.md#returncartitems) | **POST** /v2/customer_sessions/{customerSessionId}/returns | Return cart items
@@ -371,6 +372,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**GetReferralsWithoutTotalCount**](docs/apis/ManagementApi.md#getreferralswithouttotalcount) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/no_total | List referrals
 *ManagementApi* | [**GetRoleV2**](docs/apis/ManagementApi.md#getrolev2) | **GET** /v2/roles/{roleId} | Get role
 *ManagementApi* | [**GetRuleset**](docs/apis/ManagementApi.md#getruleset) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Get ruleset
+*ManagementApi* | [**GetRulesetV2**](docs/apis/ManagementApi.md#getrulesetv2) | **GET** /v2/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Get ruleset (V2)
 *ManagementApi* | [**GetRulesets**](docs/apis/ManagementApi.md#getrulesets) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets | List campaign rulesets
 *ManagementApi* | [**GetStore**](docs/apis/ManagementApi.md#getstore) | **GET** /v1/applications/{applicationId}/stores/{storeId} | Get store
 *ManagementApi* | [**GetUser**](docs/apis/ManagementApi.md#getuser) | **GET** /v1/users/{userId} | Get user
@@ -519,6 +521,7 @@ Class | Method | HTTP request | Description
 - [Model.AudienceMembership](docs/models/AudienceMembership.md)
 - [Model.AudienceReference](docs/models/AudienceReference.md)
 - [Model.AwardGiveawayEffectProps](docs/models/AwardGiveawayEffectProps.md)
+- [Model.BaseBlock](docs/models/BaseBlock.md)
 - [Model.BaseCampaign](docs/models/BaseCampaign.md)
 - [Model.BaseLoyaltyProgram](docs/models/BaseLoyaltyProgram.md)
 - [Model.BaseNotification](docs/models/BaseNotification.md)
@@ -636,6 +639,7 @@ Class | Method | HTTP request | Description
 - [Model.CreateTemplateCampaignResponse](docs/models/CreateTemplateCampaignResponse.md)
 - [Model.CustomEffect](docs/models/CustomEffect.md)
 - [Model.CustomEffectProps](docs/models/CustomEffectProps.md)
+- [Model.CustomerAchievement](docs/models/CustomerAchievement.md)
 - [Model.CustomerActivityReport](docs/models/CustomerActivityReport.md)
 - [Model.CustomerAnalytics](docs/models/CustomerAnalytics.md)
 - [Model.CustomerInventory](docs/models/CustomerInventory.md)
@@ -973,6 +977,7 @@ Class | Method | HTTP request | Description
 - [Model.OutgoingIntegrationTemplates](docs/models/OutgoingIntegrationTemplates.md)
 - [Model.OutgoingIntegrationType](docs/models/OutgoingIntegrationType.md)
 - [Model.OutgoingIntegrationTypes](docs/models/OutgoingIntegrationTypes.md)
+- [Model.PassthroughBlock](docs/models/PassthroughBlock.md)
 - [Model.PatchItemCatalogAction](docs/models/PatchItemCatalogAction.md)
 - [Model.PatchManyItemsCatalogAction](docs/models/PatchManyItemsCatalogAction.md)
 - [Model.PendingActivePointsData](docs/models/PendingActivePointsData.md)
@@ -994,6 +999,8 @@ Class | Method | HTTP request | Description
 - [Model.ProfileAudiencesChanges](docs/models/ProfileAudiencesChanges.md)
 - [Model.ProjectedTier](docs/models/ProjectedTier.md)
 - [Model.PromoteExperiment](docs/models/PromoteExperiment.md)
+- [Model.PromotionGroupBlock](docs/models/PromotionGroupBlock.md)
+- [Model.PromotionRuleV2](docs/models/PromotionRuleV2.md)
 - [Model.RedeemReferralEffectProps](docs/models/RedeemReferralEffectProps.md)
 - [Model.Referral](docs/models/Referral.md)
 - [Model.ReferralConstraints](docs/models/ReferralConstraints.md)
@@ -1016,6 +1023,9 @@ Class | Method | HTTP request | Description
 - [Model.RevisionVersion](docs/models/RevisionVersion.md)
 - [Model.Reward](docs/models/Reward.md)
 - [Model.RewardPointsRequired](docs/models/RewardPointsRequired.md)
+- [Model.Risk](docs/models/Risk.md)
+- [Model.RiskAffectedEntityItem](docs/models/RiskAffectedEntityItem.md)
+- [Model.RiskDetail](docs/models/RiskDetail.md)
 - [Model.RiskNotification](docs/models/RiskNotification.md)
 - [Model.Role](docs/models/Role.md)
 - [Model.RoleAssign](docs/models/RoleAssign.md)
@@ -1040,7 +1050,9 @@ Class | Method | HTTP request | Description
 - [Model.RuleFailureReason](docs/models/RuleFailureReason.md)
 - [Model.RuleMetadata](docs/models/RuleMetadata.md)
 - [Model.RuleMetadataEligibility](docs/models/RuleMetadataEligibility.md)
+- [Model.RuleV2](docs/models/RuleV2.md)
 - [Model.Ruleset](docs/models/Ruleset.md)
+- [Model.RulesetV2](docs/models/RulesetV2.md)
 - [Model.SSOConfig](docs/models/SSOConfig.md)
 - [Model.SamlConnection](docs/models/SamlConnection.md)
 - [Model.SamlConnectionInternal](docs/models/SamlConnectionInternal.md)
@@ -1082,7 +1094,9 @@ Class | Method | HTTP request | Description
 - [Model.StrikethroughCustomEffectPerItemProps](docs/models/StrikethroughCustomEffectPerItemProps.md)
 - [Model.StrikethroughDebugResponse](docs/models/StrikethroughDebugResponse.md)
 - [Model.StrikethroughEffect](docs/models/StrikethroughEffect.md)
+- [Model.StrikethroughGroupBlock](docs/models/StrikethroughGroupBlock.md)
 - [Model.StrikethroughLabelingNotification](docs/models/StrikethroughLabelingNotification.md)
+- [Model.StrikethroughRuleV2](docs/models/StrikethroughRuleV2.md)
 - [Model.StrikethroughSetDiscountPerItemEffectProps](docs/models/StrikethroughSetDiscountPerItemEffectProps.md)
 - [Model.StrikethroughSetDiscountPerItemMemberEffectProps](docs/models/StrikethroughSetDiscountPerItemMemberEffectProps.md)
 - [Model.StrikethroughTrigger](docs/models/StrikethroughTrigger.md)

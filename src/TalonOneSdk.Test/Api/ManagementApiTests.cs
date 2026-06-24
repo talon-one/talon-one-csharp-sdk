@@ -639,7 +639,9 @@ namespace TalonOneSdk.Test.Api
             Client.Option<string> dateFormat = default;
             Client.Option<string> campaignState = default;
             Client.Option<bool> valuesOnly = default;
-            var response = await _instance.ExportCouponsAsync(applicationId, campaignId, sort, value, createdBefore, createdAfter, valid, usable, referralId, recipientIntegrationId, batchId, exactMatch, dateFormat, campaignState, valuesOnly);
+            Client.Option<DateTime> deletedBefore = default;
+            Client.Option<DateTime> deletedAfter = default;
+            var response = await _instance.ExportCouponsAsync(applicationId, campaignId, sort, value, createdBefore, createdAfter, valid, usable, referralId, recipientIntegrationId, batchId, exactMatch, dateFormat, campaignState, valuesOnly, deletedBefore, deletedAfter);
             var model = response.Ok();
             Assert.IsType<string>(model);
         }
@@ -1155,10 +1157,11 @@ namespace TalonOneSdk.Test.Api
             Client.Option<string> sort = default;
             Client.Option<string> entity = default;
             Client.Option<string> applicationIds = default;
+            Client.Option<string> loyaltyProgramIds = default;
             Client.Option<string> type = default;
             Client.Option<string> kind = default;
             Client.Option<string> search = default;
-            var response = await _instance.GetAttributesAsync(pageSize, skip, sort, entity, applicationIds, type, kind, search);
+            var response = await _instance.GetAttributesAsync(pageSize, skip, sort, entity, applicationIds, loyaltyProgramIds, type, kind, search);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.GetAttributes200Response>(model);
         }
@@ -1807,6 +1810,20 @@ namespace TalonOneSdk.Test.Api
             var response = await _instance.GetRulesetAsync(applicationId, campaignId, rulesetId);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.Ruleset>(model);
+        }
+
+        /// <summary>
+        /// Test GetRulesetV2
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task GetRulesetV2AsyncTest()
+        {
+            long applicationId = default;
+            long campaignId = default;
+            long rulesetId = default;
+            var response = await _instance.GetRulesetV2Async(applicationId, campaignId, rulesetId);
+            var model = response.Ok();
+            Assert.IsType<TalonOneSdk.Model.RulesetV2>(model);
         }
 
         /// <summary>

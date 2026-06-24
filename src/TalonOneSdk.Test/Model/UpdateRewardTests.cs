@@ -81,12 +81,12 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'VisibilityConditions'
+        /// Test the property 'EligibilityConditions'
         /// </summary>
         [Fact]
-        public void VisibilityConditionsTest()
+        public void EligibilityConditionsTest()
         {
-            // TODO unit test for the property 'VisibilityConditions'
+            // TODO unit test for the property 'EligibilityConditions'
         }
 
         /// <summary>

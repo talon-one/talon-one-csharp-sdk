@@ -133,5 +133,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'AwardedGiveaways'
         }
+
+        /// <summary>
+        /// Test the property 'Achievements'
+        /// </summary>
+        [Fact]
+        public void AchievementsTest()
+        {
+            // TODO unit test for the property 'Achievements'
+        }
     }
 }

@@ -148,6 +148,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>**DEPRECATED. Always returns &#x60;null&#x60;.** A list of loyalty programs joined by the customer. </value>
         [JsonPropertyName("loyaltyMemberships")]
+        [Obsolete]
         public List<LoyaltyMembership> LoyaltyMemberships { get { return this.LoyaltyMembershipsOption.Value; } set { this.LoyaltyMembershipsOption = new Option<List<LoyaltyMembership>>(value); } }
 
         /// <summary>

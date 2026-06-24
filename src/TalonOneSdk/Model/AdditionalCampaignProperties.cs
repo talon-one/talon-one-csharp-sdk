@@ -255,6 +255,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Number of coupons redeemed in the campaign. </value>
         /* <example>163</example> */
         [JsonPropertyName("couponRedemptionCount")]
+        [Obsolete]
         public long? CouponRedemptionCount { get { return this.CouponRedemptionCountOption.Value; } set { this.CouponRedemptionCountOption = new Option<long?>(value); } }
 
         /// <summary>
@@ -270,6 +271,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Number of referral codes redeemed in the campaign. </value>
         /* <example>3</example> */
         [JsonPropertyName("referralRedemptionCount")]
+        [Obsolete]
         public long? ReferralRedemptionCount { get { return this.ReferralRedemptionCountOption.Value; } set { this.ReferralRedemptionCountOption = new Option<long?>(value); } }
 
         /// <summary>
@@ -285,6 +287,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total amount of discounts redeemed in the campaign. </value>
         /* <example>288</example> */
         [JsonPropertyName("discountCount")]
+        [Obsolete]
         public decimal? DiscountCount { get { return this.DiscountCountOption.Value; } set { this.DiscountCountOption = new Option<decimal?>(value); } }
 
         /// <summary>
@@ -300,6 +303,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of times discounts were redeemed in this campaign. </value>
         /* <example>343</example> */
         [JsonPropertyName("discountEffectCount")]
+        [Obsolete]
         public long? DiscountEffectCount { get { return this.DiscountEffectCountOption.Value; } set { this.DiscountEffectCountOption = new Option<long?>(value); } }
 
         /// <summary>
@@ -315,6 +319,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of coupons created by rules in this campaign. </value>
         /* <example>16</example> */
         [JsonPropertyName("couponCreationCount")]
+        [Obsolete]
         public long? CouponCreationCount { get { return this.CouponCreationCountOption.Value; } set { this.CouponCreationCountOption = new Option<long?>(value); } }
 
         /// <summary>
@@ -330,6 +335,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of custom effects triggered by rules in this campaign. </value>
         /* <example>0</example> */
         [JsonPropertyName("customEffectCount")]
+        [Obsolete]
         public long? CustomEffectCount { get { return this.CustomEffectCountOption.Value; } set { this.CustomEffectCountOption = new Option<long?>(value); } }
 
         /// <summary>
@@ -345,6 +351,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of referrals created by rules in this campaign. </value>
         /* <example>8</example> */
         [JsonPropertyName("referralCreationCount")]
+        [Obsolete]
         public long? ReferralCreationCount { get { return this.ReferralCreationCountOption.Value; } set { this.ReferralCreationCountOption = new Option<long?>(value); } }
 
         /// <summary>
@@ -360,6 +367,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of times the [add free item effect](https://docs.talon.one/docs/dev/integration-api/api-effects#addfreeitem) can be triggered in this campaign. </value>
         /* <example>0</example> */
         [JsonPropertyName("addFreeItemEffectCount")]
+        [Obsolete]
         public long? AddFreeItemEffectCount { get { return this.AddFreeItemEffectCountOption.Value; } set { this.AddFreeItemEffectCountOption = new Option<long?>(value); } }
 
         /// <summary>
@@ -375,6 +383,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of giveaways awarded by rules in this campaign. </value>
         /* <example>9</example> */
         [JsonPropertyName("awardedGiveawaysCount")]
+        [Obsolete]
         public long? AwardedGiveawaysCount { get { return this.AwardedGiveawaysCountOption.Value; } set { this.AwardedGiveawaysCountOption = new Option<long?>(value); } }
 
         /// <summary>
@@ -390,6 +399,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty points created by rules in this campaign. </value>
         /* <example>9</example> */
         [JsonPropertyName("createdLoyaltyPointsCount")]
+        [Obsolete]
         public decimal? CreatedLoyaltyPointsCount { get { return this.CreatedLoyaltyPointsCountOption.Value; } set { this.CreatedLoyaltyPointsCountOption = new Option<decimal?>(value); } }
 
         /// <summary>
@@ -405,6 +415,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty point creation effects triggered by rules in this campaign. </value>
         /* <example>2</example> */
         [JsonPropertyName("createdLoyaltyPointsEffectCount")]
+        [Obsolete]
         public long? CreatedLoyaltyPointsEffectCount { get { return this.CreatedLoyaltyPointsEffectCountOption.Value; } set { this.CreatedLoyaltyPointsEffectCountOption = new Option<long?>(value); } }
 
         /// <summary>
@@ -420,6 +431,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty points redeemed by rules in this campaign. </value>
         /* <example>8</example> */
         [JsonPropertyName("redeemedLoyaltyPointsCount")]
+        [Obsolete]
         public decimal? RedeemedLoyaltyPointsCount { get { return this.RedeemedLoyaltyPointsCountOption.Value; } set { this.RedeemedLoyaltyPointsCountOption = new Option<decimal?>(value); } }
 
         /// <summary>
@@ -435,6 +447,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty point redemption effects triggered by rules in this campaign. </value>
         /* <example>9</example> */
         [JsonPropertyName("redeemedLoyaltyPointsEffectCount")]
+        [Obsolete]
         public long? RedeemedLoyaltyPointsEffectCount { get { return this.RedeemedLoyaltyPointsEffectCountOption.Value; } set { this.RedeemedLoyaltyPointsEffectCountOption = new Option<long?>(value); } }
 
         /// <summary>
@@ -450,6 +463,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of webhooks triggered by rules in this campaign. </value>
         /* <example>0</example> */
         [JsonPropertyName("callApiEffectCount")]
+        [Obsolete]
         public long? CallApiEffectCount { get { return this.CallApiEffectCountOption.Value; } set { this.CallApiEffectCountOption = new Option<long?>(value); } }
 
         /// <summary>
@@ -465,6 +479,7 @@ namespace TalonOneSdk.Model
         /// <value>This property is **deprecated**. The count should be available under *budgets* property. Total number of reserve coupon effects triggered by rules in this campaign. </value>
         /* <example>9</example> */
         [JsonPropertyName("reservecouponEffectCount")]
+        [Obsolete]
         public long? ReservecouponEffectCount { get { return this.ReservecouponEffectCountOption.Value; } set { this.ReservecouponEffectCountOption = new Option<long?>(value); } }
 
         /// <summary>

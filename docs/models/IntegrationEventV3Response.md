@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **CampaignEligibility** | [**List&lt;CampaignEligibility&gt;**](CampaignEligibility.md) | A list of campaigns and their evaluation status for the current customer session.  **Note**:  - This response can **only** be included if the &#x60;dry&#x60; parameter in the query is set to &#x60;true&#x60;.  - Do not include &#x60;triggeredCampaigns&#x60; or &#x60;ruleFailureReasons&#x60; in &#x60;responseContent&#x60; to avoid duplicate results.  | [optional] 
 **RuleFailureReasons** | [**List&lt;RuleFailureReason&gt;**](RuleFailureReason.md) | The reasons why certain rules were not triggered during the event processing.  | [optional] 
 **AwardedGiveaways** | [**List&lt;Giveaway&gt;**](Giveaway.md) | The giveaways that were awarded during the event processing. | [optional] 
+**Achievements** | [**List&lt;CustomerAchievement&gt;**](CustomerAchievement.md) | The achievements progress of the customer. | [optional] 
 **AdvancedEvent** | [**EventV3**](EventV3.md) | The advanced event that was processed. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)

@@ -151,5 +151,23 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'State'
         }
+
+        /// <summary>
+        /// Test the property 'LinkedStoreIds'
+        /// </summary>
+        [Fact]
+        public void LinkedStoreIdsTest()
+        {
+            // TODO unit test for the property 'LinkedStoreIds'
+        }
+
+        /// <summary>
+        /// Test the property 'LinkedAudienceIds'
+        /// </summary>
+        [Fact]
+        public void LinkedAudienceIdsTest()
+        {
+            // TODO unit test for the property 'LinkedAudienceIds'
+        }
     }
 }

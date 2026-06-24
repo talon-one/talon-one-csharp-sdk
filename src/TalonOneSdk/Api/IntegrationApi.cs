@@ -436,7 +436,7 @@ namespace TalonOneSdk.Api
         /// Get the details of the given customer session.  You can get the same data via other endpoints that also apply changes, which can help you save requests and increase performance. See:  - [Update customer session](#tag/Customer-sessions/operation/updateCustomerSessionV2) - [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
+        /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. **Notes**: - There is no length limit for this ID. - It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCustomerSessionApiResponse"/>&gt;</returns>
         Task<IGetCustomerSessionApiResponse> GetCustomerSessionAsync(string customerSessionId, System.Threading.CancellationToken cancellationToken = default);
@@ -447,7 +447,7 @@ namespace TalonOneSdk.Api
         /// <remarks>
         /// Get the details of the given customer session.  You can get the same data via other endpoints that also apply changes, which can help you save requests and increase performance. See:  - [Update customer session](#tag/Customer-sessions/operation/updateCustomerSessionV2) - [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) 
         /// </remarks>
-        /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
+        /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. **Notes**: - There is no length limit for this ID. - It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCustomerSessionApiResponse"/>&gt;</returns>
         Task<IGetCustomerSessionApiResponse> GetCustomerSessionOrDefaultAsync(string customerSessionId, System.Threading.CancellationToken cancellationToken = default);
@@ -738,9 +738,11 @@ namespace TalonOneSdk.Api
         /// <param name="startBefore">Filter results to only include campaigns that start on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="endAfter">Filter results to only include campaigns that end on or after  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="endBefore">Filter results to only include campaigns that end on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="storeId">Filter results to campaigns linked to the specified store ID. (optional)</param>
+        /// <param name="audienceId">Filter results to campaigns linked to the specified audience ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationGetAllCampaignsApiResponse"/>&gt;</returns>
-        Task<IIntegrationGetAllCampaignsApiResponse> IntegrationGetAllCampaignsAsync(Option<long> pageSize = default, Option<long> skip = default, Option<List<string>> campaignIds = default, Option<DateTime> startAfter = default, Option<DateTime> startBefore = default, Option<DateTime> endAfter = default, Option<DateTime> endBefore = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IIntegrationGetAllCampaignsApiResponse> IntegrationGetAllCampaignsAsync(Option<long> pageSize = default, Option<long> skip = default, Option<List<string>> campaignIds = default, Option<DateTime> startAfter = default, Option<DateTime> startBefore = default, Option<DateTime> endAfter = default, Option<DateTime> endBefore = default, Option<long> storeId = default, Option<long> audienceId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List all running campaigns
@@ -755,9 +757,36 @@ namespace TalonOneSdk.Api
         /// <param name="startBefore">Filter results to only include campaigns that start on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="endAfter">Filter results to only include campaigns that end on or after  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="endBefore">Filter results to only include campaigns that end on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="storeId">Filter results to campaigns linked to the specified store ID. (optional)</param>
+        /// <param name="audienceId">Filter results to campaigns linked to the specified audience ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationGetAllCampaignsApiResponse"/>&gt;</returns>
-        Task<IIntegrationGetAllCampaignsApiResponse> IntegrationGetAllCampaignsOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<List<string>> campaignIds = default, Option<DateTime> startAfter = default, Option<DateTime> startBefore = default, Option<DateTime> endAfter = default, Option<DateTime> endBefore = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IIntegrationGetAllCampaignsApiResponse> IntegrationGetAllCampaignsOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<List<string>> campaignIds = default, Option<DateTime> startAfter = default, Option<DateTime> startBefore = default, Option<DateTime> endAfter = default, Option<DateTime> endBefore = default, Option<long> storeId = default, Option<long> audienceId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Join customer profile to loyalty program
+        /// </summary>
+        /// <remarks>
+        /// Join a customer profile to the specified loyalty program.  If the customer profile does not exist, it will be created first using the provided &#x60;integrationId&#x60;, then joined to the loyalty program.  &gt; [!note] This endpoint only works with profile-based loyalty programs.  **Behavior**: - If the loyalty program does not exist, the request fails. - If the customer profile is already joined to the loyalty program, the request fails. - If the customer profile does not exist, it is created and then joined to the loyalty program. 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="integrationId">The integration ID of the customer profile. You can get the &#x60;integrationId&#x60; of a profile using: - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application&#39;s customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint. </param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IJoinLoyaltyProgramApiResponse"/>&gt;</returns>
+        Task<IJoinLoyaltyProgramApiResponse> JoinLoyaltyProgramAsync(long loyaltyProgramId, string integrationId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Join customer profile to loyalty program
+        /// </summary>
+        /// <remarks>
+        /// Join a customer profile to the specified loyalty program.  If the customer profile does not exist, it will be created first using the provided &#x60;integrationId&#x60;, then joined to the loyalty program.  &gt; [!note] This endpoint only works with profile-based loyalty programs.  **Behavior**: - If the loyalty program does not exist, the request fails. - If the customer profile is already joined to the loyalty program, the request fails. - If the customer profile does not exist, it is created and then joined to the loyalty program. 
+        /// </remarks>
+        /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="integrationId">The integration ID of the customer profile. You can get the &#x60;integrationId&#x60; of a profile using: - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application&#39;s customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint. </param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IJoinLoyaltyProgramApiResponse"/>&gt;</returns>
+        Task<IJoinLoyaltyProgramApiResponse> JoinLoyaltyProgramOrDefaultAsync(long loyaltyProgramId, string integrationId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Link customer profile to card
@@ -1028,7 +1057,7 @@ namespace TalonOneSdk.Api
         /// Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of.  &gt; [!note] **Note** &gt; - Updating a customer profile returns a response with the requested integration state. &gt; - You can use the &#x60;responseContent&#x60; property to save yourself extra API calls. For example, you can get &gt;   the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. &gt;   See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when &#x60;runRuleEngine&#x60; is &#x60;true&#x60;. 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
+        /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. **Note**: It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="customerProfileIntegrationRequestV2">body</param>
         /// <param name="runRuleEngine">Indicates whether to run the Rule Engine.  If &#x60;true&#x60;, the response includes: - The effects generated by the triggered campaigns are returned in the &#x60;effects&#x60; property. - The created coupons and referral objects.  If &#x60;false&#x60;: - The rules are not executed and the &#x60;effects&#x60; property is always empty. - The response time improves. - You cannot use &#x60;responseContent&#x60; in the body.  (optional, default to false)</param>
         /// <param name="dry">(Only works when &#x60;runRuleEngine&#x3D;true&#x60;) Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;, you can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  (optional)</param>
@@ -1042,7 +1071,7 @@ namespace TalonOneSdk.Api
         /// <remarks>
         /// Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of.  &gt; [!note] **Note** &gt; - Updating a customer profile returns a response with the requested integration state. &gt; - You can use the &#x60;responseContent&#x60; property to save yourself extra API calls. For example, you can get &gt;   the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. &gt;   See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when &#x60;runRuleEngine&#x60; is &#x60;true&#x60;. 
         /// </remarks>
-        /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
+        /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. **Note**: It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="customerProfileIntegrationRequestV2">body</param>
         /// <param name="runRuleEngine">Indicates whether to run the Rule Engine.  If &#x60;true&#x60;, the response includes: - The effects generated by the triggered campaigns are returned in the &#x60;effects&#x60; property. - The created coupons and referral objects.  If &#x60;false&#x60;: - The rules are not executed and the &#x60;effects&#x60; property is always empty. - The response time improves. - You cannot use &#x60;responseContent&#x60; in the body.  (optional, default to false)</param>
         /// <param name="dry">(Only works when &#x60;runRuleEngine&#x3D;true&#x60;) Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;, you can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  (optional)</param>
@@ -1082,7 +1111,7 @@ namespace TalonOneSdk.Api
         /// Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.  For example, use this endpoint to share the contents of a customer&#39;s cart with Talon.One.  &gt; [!note] **Note** &gt; - The currency for the session and the cart items in it is the currency set for the Application linked to this session. &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the &#x60;state&#x60; parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the &#x60;profileId&#x60; parameter in the request body to a customer profile&#39;s &#x60;integrationId&#x60;.  - While you can create an anonymous session with &#x60;profileId&#x3D;\&quot;\&quot;&#x60;, we recommend you use a guest ID instead.  - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  &gt; [!note] **Note** &gt; - If the specified profile does not exist, an empty profile is **created automatically**. &gt;   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2). &gt; - Updating a customer session returns a response with the new integration state. Use the &#x60;responseContent&#x60; property to save yourself extra API calls. &gt;   For example, you can get the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).  For more information, see:  - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one). 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
+        /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. **Notes**: - There is no length limit for this ID. - It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="integrationRequest">body</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;: - The endpoint considers **only** the payload that you pass when **closing** the session.   When you do not use the &#x60;dry&#x60; parameter, the endpoint behaves as a typical PUT endpoint. Each update builds upon the previous ones. - You can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  [See the docs](https://docs.talon.one/docs/dev/integration-api/dry-requests).  (optional)</param>
         /// <param name="now">A timestamp value of a future date that acts as a current date when included in the query.  Use this parameter, for example, to test campaigns that would be evaluated for this customer session in the future (say, [scheduled campaigns](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-schedule)).  &gt; [!note] **Note** &gt; - It must be an RFC3339 timestamp string. &gt; - It can **only** be a date in the future. &gt; - It can **only** be used if the &#x60;dry&#x60; parameter in the query is set to &#x60;true&#x60;.  (optional)</param>
@@ -1096,7 +1125,7 @@ namespace TalonOneSdk.Api
         /// <remarks>
         /// Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.  For example, use this endpoint to share the contents of a customer&#39;s cart with Talon.One.  &gt; [!note] **Note** &gt; - The currency for the session and the cart items in it is the currency set for the Application linked to this session. &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the &#x60;state&#x60; parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the &#x60;profileId&#x60; parameter in the request body to a customer profile&#39;s &#x60;integrationId&#x60;.  - While you can create an anonymous session with &#x60;profileId&#x3D;\&quot;\&quot;&#x60;, we recommend you use a guest ID instead.  - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  &gt; [!note] **Note** &gt; - If the specified profile does not exist, an empty profile is **created automatically**. &gt;   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2). &gt; - Updating a customer session returns a response with the new integration state. Use the &#x60;responseContent&#x60; property to save yourself extra API calls. &gt;   For example, you can get the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).  For more information, see:  - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one). 
         /// </remarks>
-        /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
+        /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. **Notes**: - There is no length limit for this ID. - It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="integrationRequest">body</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;: - The endpoint considers **only** the payload that you pass when **closing** the session.   When you do not use the &#x60;dry&#x60; parameter, the endpoint behaves as a typical PUT endpoint. Each update builds upon the previous ones. - You can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  [See the docs](https://docs.talon.one/docs/dev/integration-api/dry-requests).  (optional)</param>
         /// <param name="now">A timestamp value of a future date that acts as a current date when included in the query.  Use this parameter, for example, to test campaigns that would be evaluated for this customer session in the future (say, [scheduled campaigns](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-schedule)).  &gt; [!note] **Note** &gt; - It must be an RFC3339 timestamp string. &gt; - It can **only** be a date in the future. &gt; - It can **only** be used if the &#x60;dry&#x60; parameter in the query is set to &#x60;true&#x60;.  (optional)</param>
@@ -1763,6 +1792,36 @@ namespace TalonOneSdk.Api
     /// The <see cref="IIntegrationGetAllCampaignsApiResponse"/>
     /// </summary>
     public interface IIntegrationGetAllCampaignsApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.IntegrationGetAllCampaigns200Response>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IJoinLoyaltyProgramApiResponse"/>
+    /// </summary>
+    public interface IJoinLoyaltyProgramApiResponse : TalonOneSdk.Client.IApiResponse, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -2664,6 +2723,26 @@ namespace TalonOneSdk.Api
         internal void ExecuteOnErrorIntegrationGetAllCampaigns(Exception exception)
         {
             OnErrorIntegrationGetAllCampaigns?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnJoinLoyaltyProgram;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorJoinLoyaltyProgram;
+
+        internal void ExecuteOnJoinLoyaltyProgram(IntegrationApi.JoinLoyaltyProgramApiResponse apiResponse)
+        {
+            OnJoinLoyaltyProgram?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorJoinLoyaltyProgram(Exception exception)
+        {
+            OnErrorJoinLoyaltyProgram?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -8345,7 +8424,7 @@ namespace TalonOneSdk.Api
         /// <summary>
         /// Get customer session Get the details of the given customer session.  You can get the same data via other endpoints that also apply changes, which can help you save requests and increase performance. See:  - [Update customer session](#tag/Customer-sessions/operation/updateCustomerSessionV2) - [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) 
         /// </summary>
-        /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
+        /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. **Notes**: - There is no length limit for this ID. - It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCustomerSessionApiResponse"/>&gt;</returns>
         public async Task<IGetCustomerSessionApiResponse> GetCustomerSessionOrDefaultAsync(string customerSessionId, System.Threading.CancellationToken cancellationToken = default)
@@ -8364,7 +8443,7 @@ namespace TalonOneSdk.Api
         /// Get customer session Get the details of the given customer session.  You can get the same data via other endpoints that also apply changes, which can help you save requests and increase performance. See:  - [Update customer session](#tag/Customer-sessions/operation/updateCustomerSessionV2) - [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
+        /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. **Notes**: - There is no length limit for this ID. - It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCustomerSessionApiResponse"/>&gt;</returns>
         public async Task<IGetCustomerSessionApiResponse> GetCustomerSessionAsync(string customerSessionId, System.Threading.CancellationToken cancellationToken = default)
@@ -11933,7 +12012,7 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatIntegrationGetAllCampaigns(ref Option<long> pageSize, ref Option<long> skip, Option<List<string>> campaignIds, ref Option<DateTime> startAfter, ref Option<DateTime> startBefore, ref Option<DateTime> endAfter, ref Option<DateTime> endBefore);
+        partial void FormatIntegrationGetAllCampaigns(ref Option<long> pageSize, ref Option<long> skip, Option<List<string>> campaignIds, ref Option<DateTime> startAfter, ref Option<DateTime> startBefore, ref Option<DateTime> endAfter, ref Option<DateTime> endBefore, ref Option<long> storeId, ref Option<long> audienceId);
 
         /// <summary>
         /// Validates the request parameters
@@ -11957,10 +12036,12 @@ namespace TalonOneSdk.Api
         /// <param name="startBefore"></param>
         /// <param name="endAfter"></param>
         /// <param name="endBefore"></param>
-        private void AfterIntegrationGetAllCampaignsDefaultImplementation(IIntegrationGetAllCampaignsApiResponse apiResponseLocalVar, Option<long> pageSize, Option<long> skip, Option<List<string>> campaignIds, Option<DateTime> startAfter, Option<DateTime> startBefore, Option<DateTime> endAfter, Option<DateTime> endBefore)
+        /// <param name="storeId"></param>
+        /// <param name="audienceId"></param>
+        private void AfterIntegrationGetAllCampaignsDefaultImplementation(IIntegrationGetAllCampaignsApiResponse apiResponseLocalVar, Option<long> pageSize, Option<long> skip, Option<List<string>> campaignIds, Option<DateTime> startAfter, Option<DateTime> startBefore, Option<DateTime> endAfter, Option<DateTime> endBefore, Option<long> storeId, Option<long> audienceId)
         {
             bool suppressDefaultLog = false;
-            AfterIntegrationGetAllCampaigns(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore);
+            AfterIntegrationGetAllCampaigns(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore, storeId, audienceId);
             if (!suppressDefaultLog)
                 Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -11977,7 +12058,9 @@ namespace TalonOneSdk.Api
         /// <param name="startBefore"></param>
         /// <param name="endAfter"></param>
         /// <param name="endBefore"></param>
-        partial void AfterIntegrationGetAllCampaigns(ref bool suppressDefaultLog, IIntegrationGetAllCampaignsApiResponse apiResponseLocalVar, Option<long> pageSize, Option<long> skip, Option<List<string>> campaignIds, Option<DateTime> startAfter, Option<DateTime> startBefore, Option<DateTime> endAfter, Option<DateTime> endBefore);
+        /// <param name="storeId"></param>
+        /// <param name="audienceId"></param>
+        partial void AfterIntegrationGetAllCampaigns(ref bool suppressDefaultLog, IIntegrationGetAllCampaignsApiResponse apiResponseLocalVar, Option<long> pageSize, Option<long> skip, Option<List<string>> campaignIds, Option<DateTime> startAfter, Option<DateTime> startBefore, Option<DateTime> endAfter, Option<DateTime> endBefore, Option<long> storeId, Option<long> audienceId);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -11992,10 +12075,12 @@ namespace TalonOneSdk.Api
         /// <param name="startBefore"></param>
         /// <param name="endAfter"></param>
         /// <param name="endBefore"></param>
-        private void OnErrorIntegrationGetAllCampaignsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<long> skip, Option<List<string>> campaignIds, Option<DateTime> startAfter, Option<DateTime> startBefore, Option<DateTime> endAfter, Option<DateTime> endBefore)
+        /// <param name="storeId"></param>
+        /// <param name="audienceId"></param>
+        private void OnErrorIntegrationGetAllCampaignsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<long> skip, Option<List<string>> campaignIds, Option<DateTime> startAfter, Option<DateTime> startBefore, Option<DateTime> endAfter, Option<DateTime> endBefore, Option<long> storeId, Option<long> audienceId)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorIntegrationGetAllCampaigns(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore);
+            OnErrorIntegrationGetAllCampaigns(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore, storeId, audienceId);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -12014,7 +12099,9 @@ namespace TalonOneSdk.Api
         /// <param name="startBefore"></param>
         /// <param name="endAfter"></param>
         /// <param name="endBefore"></param>
-        partial void OnErrorIntegrationGetAllCampaigns(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<long> skip, Option<List<string>> campaignIds, Option<DateTime> startAfter, Option<DateTime> startBefore, Option<DateTime> endAfter, Option<DateTime> endBefore);
+        /// <param name="storeId"></param>
+        /// <param name="audienceId"></param>
+        partial void OnErrorIntegrationGetAllCampaigns(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<long> skip, Option<List<string>> campaignIds, Option<DateTime> startAfter, Option<DateTime> startBefore, Option<DateTime> endAfter, Option<DateTime> endBefore, Option<long> storeId, Option<long> audienceId);
 
         /// <summary>
         /// List all running campaigns Retrieve all running campaigns for the specified Application. You can filter the results by providing specific campaign IDs or a range of  start and end dates. 
@@ -12026,13 +12113,15 @@ namespace TalonOneSdk.Api
         /// <param name="startBefore">Filter results to only include campaigns that start on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="endAfter">Filter results to only include campaigns that end on or after  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="endBefore">Filter results to only include campaigns that end on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="storeId">Filter results to campaigns linked to the specified store ID. (optional)</param>
+        /// <param name="audienceId">Filter results to campaigns linked to the specified audience ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationGetAllCampaignsApiResponse"/>&gt;</returns>
-        public async Task<IIntegrationGetAllCampaignsApiResponse> IntegrationGetAllCampaignsOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<List<string>> campaignIds = default, Option<DateTime> startAfter = default, Option<DateTime> startBefore = default, Option<DateTime> endAfter = default, Option<DateTime> endBefore = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IIntegrationGetAllCampaignsApiResponse> IntegrationGetAllCampaignsOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<List<string>> campaignIds = default, Option<DateTime> startAfter = default, Option<DateTime> startBefore = default, Option<DateTime> endAfter = default, Option<DateTime> endBefore = default, Option<long> storeId = default, Option<long> audienceId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await IntegrationGetAllCampaignsAsync(pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore, cancellationToken).ConfigureAwait(false);
+                return await IntegrationGetAllCampaignsAsync(pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore, storeId, audienceId, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -12051,9 +12140,11 @@ namespace TalonOneSdk.Api
         /// <param name="startBefore">Filter results to only include campaigns that start on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="endAfter">Filter results to only include campaigns that end on or after  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="endBefore">Filter results to only include campaigns that end on or before  the specified timestamp.  **Note:**  - It must be an RFC3339 timestamp string.  - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
+        /// <param name="storeId">Filter results to campaigns linked to the specified store ID. (optional)</param>
+        /// <param name="audienceId">Filter results to campaigns linked to the specified audience ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationGetAllCampaignsApiResponse"/>&gt;</returns>
-        public async Task<IIntegrationGetAllCampaignsApiResponse> IntegrationGetAllCampaignsAsync(Option<long> pageSize = default, Option<long> skip = default, Option<List<string>> campaignIds = default, Option<DateTime> startAfter = default, Option<DateTime> startBefore = default, Option<DateTime> endAfter = default, Option<DateTime> endBefore = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IIntegrationGetAllCampaignsApiResponse> IntegrationGetAllCampaignsAsync(Option<long> pageSize = default, Option<long> skip = default, Option<List<string>> campaignIds = default, Option<DateTime> startAfter = default, Option<DateTime> startBefore = default, Option<DateTime> endAfter = default, Option<DateTime> endBefore = default, Option<long> storeId = default, Option<long> audienceId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -12061,7 +12152,7 @@ namespace TalonOneSdk.Api
             {
                 ValidateIntegrationGetAllCampaigns(campaignIds);
 
-                FormatIntegrationGetAllCampaigns(ref pageSize, ref skip, campaignIds, ref startAfter, ref startBefore, ref endAfter, ref endBefore);
+                FormatIntegrationGetAllCampaigns(ref pageSize, ref skip, campaignIds, ref startAfter, ref startBefore, ref endAfter, ref endBefore, ref storeId, ref audienceId);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -12094,6 +12185,12 @@ namespace TalonOneSdk.Api
 
                     if (endBefore.IsSet)
                         parseQueryStringLocalVar["endBefore"] = ClientUtils.ParameterToString(endBefore.Value);
+
+                    if (storeId.IsSet)
+                        parseQueryStringLocalVar["storeId"] = ClientUtils.ParameterToString(storeId.Value);
+
+                    if (audienceId.IsSet)
+                        parseQueryStringLocalVar["audienceId"] = ClientUtils.ParameterToString(audienceId.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -12130,7 +12227,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterIntegrationGetAllCampaignsDefaultImplementation(apiResponseLocalVar, pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore);
+                        AfterIntegrationGetAllCampaignsDefaultImplementation(apiResponseLocalVar, pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore, storeId, audienceId);
 
                         Events.ExecuteOnIntegrationGetAllCampaigns(apiResponseLocalVar);
 
@@ -12144,7 +12241,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorIntegrationGetAllCampaignsDefaultImplementation(e, "/v1/integration/campaigns", uriBuilderLocalVar.Path, pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore);
+                OnErrorIntegrationGetAllCampaignsDefaultImplementation(e, "/v1/integration/campaigns", uriBuilderLocalVar.Path, pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore, storeId, audienceId);
                 Events.ExecuteOnErrorIntegrationGetAllCampaigns(e);
                 throw;
             }
@@ -12231,6 +12328,345 @@ namespace TalonOneSdk.Api
 
                 return result != null;
             }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryUnauthorized(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsNotFound
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryNotFound(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = NotFound();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatJoinLoyaltyProgram(ref long loyaltyProgramId, ref string integrationId);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="integrationId"></param>
+        /// <returns></returns>
+        private void ValidateJoinLoyaltyProgram(string integrationId)
+        {
+            if (integrationId == null)
+                throw new ArgumentNullException(nameof(integrationId));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="integrationId"></param>
+        private void AfterJoinLoyaltyProgramDefaultImplementation(IJoinLoyaltyProgramApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId)
+        {
+            bool suppressDefaultLog = false;
+            AfterJoinLoyaltyProgram(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, integrationId);
+            if (!suppressDefaultLog)
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="integrationId"></param>
+        partial void AfterJoinLoyaltyProgram(ref bool suppressDefaultLog, IJoinLoyaltyProgramApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="integrationId"></param>
+        private void OnErrorJoinLoyaltyProgramDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorJoinLoyaltyProgram(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, integrationId);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="integrationId"></param>
+        partial void OnErrorJoinLoyaltyProgram(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId);
+
+        /// <summary>
+        /// Join customer profile to loyalty program Join a customer profile to the specified loyalty program.  If the customer profile does not exist, it will be created first using the provided &#x60;integrationId&#x60;, then joined to the loyalty program.  &gt; [!note] This endpoint only works with profile-based loyalty programs.  **Behavior**: - If the loyalty program does not exist, the request fails. - If the customer profile is already joined to the loyalty program, the request fails. - If the customer profile does not exist, it is created and then joined to the loyalty program. 
+        /// </summary>
+        /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="integrationId">The integration ID of the customer profile. You can get the &#x60;integrationId&#x60; of a profile using: - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application&#39;s customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint. </param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IJoinLoyaltyProgramApiResponse"/>&gt;</returns>
+        public async Task<IJoinLoyaltyProgramApiResponse> JoinLoyaltyProgramOrDefaultAsync(long loyaltyProgramId, string integrationId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await JoinLoyaltyProgramAsync(loyaltyProgramId, integrationId, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Join customer profile to loyalty program Join a customer profile to the specified loyalty program.  If the customer profile does not exist, it will be created first using the provided &#x60;integrationId&#x60;, then joined to the loyalty program.  &gt; [!note] This endpoint only works with profile-based loyalty programs.  **Behavior**: - If the loyalty program does not exist, the request fails. - If the customer profile is already joined to the loyalty program, the request fails. - If the customer profile does not exist, it is created and then joined to the loyalty program. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="integrationId">The integration ID of the customer profile. You can get the &#x60;integrationId&#x60; of a profile using: - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application&#39;s customers](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationCustomers) endpoint. </param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IJoinLoyaltyProgramApiResponse"/>&gt;</returns>
+        public async Task<IJoinLoyaltyProgramApiResponse> JoinLoyaltyProgramAsync(long loyaltyProgramId, string integrationId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateJoinLoyaltyProgram(integrationId);
+
+                FormatJoinLoyaltyProgram(ref loyaltyProgramId, ref integrationId);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/join"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/join");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("POST");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<JoinLoyaltyProgramApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<JoinLoyaltyProgramApiResponse>();
+                        JoinLoyaltyProgramApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new JoinLoyaltyProgramApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/join", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterJoinLoyaltyProgramDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, integrationId);
+
+                        Events.ExecuteOnJoinLoyaltyProgram(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorJoinLoyaltyProgramDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/join", uriBuilderLocalVar.Path, loyaltyProgramId, integrationId);
+                Events.ExecuteOnErrorJoinLoyaltyProgram(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="JoinLoyaltyProgramApiResponse"/>
+        /// </summary>
+        public partial class JoinLoyaltyProgramApiResponse : TalonOneSdk.Client.ApiResponse, IJoinLoyaltyProgramApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<JoinLoyaltyProgramApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="JoinLoyaltyProgramApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public JoinLoyaltyProgramApiResponse(ILogger<JoinLoyaltyProgramApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="JoinLoyaltyProgramApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public JoinLoyaltyProgramApiResponse(ILogger<JoinLoyaltyProgramApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest
@@ -16165,7 +16601,7 @@ namespace TalonOneSdk.Api
         /// <summary>
         /// Update customer profile Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of.  &gt; [!note] **Note** &gt; - Updating a customer profile returns a response with the requested integration state. &gt; - You can use the &#x60;responseContent&#x60; property to save yourself extra API calls. For example, you can get &gt;   the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. &gt;   See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when &#x60;runRuleEngine&#x60; is &#x60;true&#x60;. 
         /// </summary>
-        /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
+        /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. **Note**: It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="customerProfileIntegrationRequestV2">body</param>
         /// <param name="runRuleEngine">Indicates whether to run the Rule Engine.  If &#x60;true&#x60;, the response includes: - The effects generated by the triggered campaigns are returned in the &#x60;effects&#x60; property. - The created coupons and referral objects.  If &#x60;false&#x60;: - The rules are not executed and the &#x60;effects&#x60; property is always empty. - The response time improves. - You cannot use &#x60;responseContent&#x60; in the body.  (optional, default to false)</param>
         /// <param name="dry">(Only works when &#x60;runRuleEngine&#x3D;true&#x60;) Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;, you can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  (optional)</param>
@@ -16187,7 +16623,7 @@ namespace TalonOneSdk.Api
         /// Update customer profile Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of.  &gt; [!note] **Note** &gt; - Updating a customer profile returns a response with the requested integration state. &gt; - You can use the &#x60;responseContent&#x60; property to save yourself extra API calls. For example, you can get &gt;   the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. &gt;   See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when &#x60;runRuleEngine&#x60; is &#x60;true&#x60;. 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
+        /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. **Note**: It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="customerProfileIntegrationRequestV2">body</param>
         /// <param name="runRuleEngine">Indicates whether to run the Rule Engine.  If &#x60;true&#x60;, the response includes: - The effects generated by the triggered campaigns are returned in the &#x60;effects&#x60; property. - The created coupons and referral objects.  If &#x60;false&#x60;: - The rules are not executed and the &#x60;effects&#x60; property is always empty. - The response time improves. - You cannot use &#x60;responseContent&#x60; in the body.  (optional, default to false)</param>
         /// <param name="dry">(Only works when &#x60;runRuleEngine&#x3D;true&#x60;) Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;, you can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  (optional)</param>
@@ -16967,7 +17403,7 @@ namespace TalonOneSdk.Api
         /// <summary>
         /// Update customer session Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.  For example, use this endpoint to share the contents of a customer&#39;s cart with Talon.One.  &gt; [!note] **Note** &gt; - The currency for the session and the cart items in it is the currency set for the Application linked to this session. &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the &#x60;state&#x60; parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the &#x60;profileId&#x60; parameter in the request body to a customer profile&#39;s &#x60;integrationId&#x60;.  - While you can create an anonymous session with &#x60;profileId&#x3D;\&quot;\&quot;&#x60;, we recommend you use a guest ID instead.  - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  &gt; [!note] **Note** &gt; - If the specified profile does not exist, an empty profile is **created automatically**. &gt;   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2). &gt; - Updating a customer session returns a response with the new integration state. Use the &#x60;responseContent&#x60; property to save yourself extra API calls. &gt;   For example, you can get the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).  For more information, see:  - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one). 
         /// </summary>
-        /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
+        /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. **Notes**: - There is no length limit for this ID. - It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="integrationRequest">body</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;: - The endpoint considers **only** the payload that you pass when **closing** the session.   When you do not use the &#x60;dry&#x60; parameter, the endpoint behaves as a typical PUT endpoint. Each update builds upon the previous ones. - You can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  [See the docs](https://docs.talon.one/docs/dev/integration-api/dry-requests).  (optional)</param>
         /// <param name="now">A timestamp value of a future date that acts as a current date when included in the query.  Use this parameter, for example, to test campaigns that would be evaluated for this customer session in the future (say, [scheduled campaigns](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-schedule)).  &gt; [!note] **Note** &gt; - It must be an RFC3339 timestamp string. &gt; - It can **only** be a date in the future. &gt; - It can **only** be used if the &#x60;dry&#x60; parameter in the query is set to &#x60;true&#x60;.  (optional)</param>
@@ -16989,7 +17425,7 @@ namespace TalonOneSdk.Api
         /// Update customer session Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.  For example, use this endpoint to share the contents of a customer&#39;s cart with Talon.One.  &gt; [!note] **Note** &gt; - The currency for the session and the cart items in it is the currency set for the Application linked to this session. &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the &#x60;state&#x60; parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the &#x60;profileId&#x60; parameter in the request body to a customer profile&#39;s &#x60;integrationId&#x60;.  - While you can create an anonymous session with &#x60;profileId&#x3D;\&quot;\&quot;&#x60;, we recommend you use a guest ID instead.  - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  &gt; [!note] **Note** &gt; - If the specified profile does not exist, an empty profile is **created automatically**. &gt;   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2). &gt; - Updating a customer session returns a response with the new integration state. Use the &#x60;responseContent&#x60; property to save yourself extra API calls. &gt;   For example, you can get the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).  For more information, see:  - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one). 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
+        /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. **Notes**: - There is no length limit for this ID. - It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="integrationRequest">body</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;: - The endpoint considers **only** the payload that you pass when **closing** the session.   When you do not use the &#x60;dry&#x60; parameter, the endpoint behaves as a typical PUT endpoint. Each update builds upon the previous ones. - You can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  [See the docs](https://docs.talon.one/docs/dev/integration-api/dry-requests).  (optional)</param>
         /// <param name="now">A timestamp value of a future date that acts as a current date when included in the query.  Use this parameter, for example, to test campaigns that would be evaluated for this customer session in the future (say, [scheduled campaigns](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-schedule)).  &gt; [!note] **Note** &gt; - It must be an RFC3339 timestamp string. &gt; - It can **only** be a date in the future. &gt; - It can **only** be used if the &#x60;dry&#x60; parameter in the query is set to &#x60;true&#x60;.  (optional)</param>

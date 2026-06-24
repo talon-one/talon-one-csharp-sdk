@@ -176,6 +176,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>**DEPRECATED** To create more than 20,000 coupons in one request, use [Create coupons asynchronously](https://docs.talon.one/management-api#tag/Coupons/operation/createCouponsAsync) endpoint. </value>
         [JsonPropertyName("uniquePrefix")]
+        [Obsolete]
         public string UniquePrefix { get { return this.UniquePrefixOption.Value; } set { this.UniquePrefixOption = new Option<string>(value); } }
 
         /// <summary>

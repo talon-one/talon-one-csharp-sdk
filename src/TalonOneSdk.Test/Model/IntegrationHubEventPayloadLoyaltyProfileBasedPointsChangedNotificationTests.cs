@@ -126,6 +126,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'SessionIntegrationID'
+        /// </summary>
+        [Fact]
+        public void SessionIntegrationIDTest()
+        {
+            // TODO unit test for the property 'SessionIntegrationID'
+        }
+
+        /// <summary>
         /// Test the property 'EmployeeName'
         /// </summary>
         [Fact]

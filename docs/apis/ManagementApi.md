@@ -123,6 +123,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**GetReferralsWithoutTotalCount**](ManagementApi.md#getreferralswithouttotalcount) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/no_total | List referrals |
 | [**GetRoleV2**](ManagementApi.md#getrolev2) | **GET** /v2/roles/{roleId} | Get role |
 | [**GetRuleset**](ManagementApi.md#getruleset) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Get ruleset |
+| [**GetRulesetV2**](ManagementApi.md#getrulesetv2) | **GET** /v2/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Get ruleset (V2) |
 | [**GetRulesets**](ManagementApi.md#getrulesets) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets | List campaign rulesets |
 | [**GetStore**](ManagementApi.md#getstore) | **GET** /v1/applications/{applicationId}/stores/{storeId} | Get store |
 | [**GetUser**](ManagementApi.md#getuser) | **GET** /v1/users/{userId} | Get user |
@@ -1931,7 +1932,7 @@ Download a CSV file containing items from a given campaign-level collection.  > 
 
 <a id="exportcoupons"></a>
 # **ExportCoupons**
-> string ExportCoupons (long applicationId, decimal campaignId = null, string sort = null, string value = null, DateTime createdBefore = null, DateTime createdAfter = null, string valid = null, string usable = null, long referralId = null, string recipientIntegrationId = null, string batchId = null, bool exactMatch = null, string dateFormat = null, string campaignState = null, bool valuesOnly = null)
+> string ExportCoupons (long applicationId, decimal campaignId = null, string sort = null, string value = null, DateTime createdBefore = null, DateTime createdAfter = null, string valid = null, string usable = null, long referralId = null, string recipientIntegrationId = null, string batchId = null, bool exactMatch = null, string dateFormat = null, string campaignState = null, bool valuesOnly = null, DateTime deletedBefore = null, DateTime deletedAfter = null)
 
 Export coupons
 
@@ -1957,6 +1958,8 @@ Download a CSV file containing the coupons that match the given properties.  > [
 | **dateFormat** | **string** | Determines the format of dates in the export document. | [optional]  |
 | **campaignState** | **string** | Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived.  | [optional]  |
 | **valuesOnly** | **bool** | Filter results to only return the coupon codes (&#x60;value&#x60; column) without the associated coupon data. | [optional] [default to false] |
+| **deletedBefore** | **DateTime** | Timestamp that filters the results to only contain coupons deleted before this date. Must be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.  **Note:** Only coupons deleted in the last 7 days will appear in the results. | [optional]  |
+| **deletedAfter** | **DateTime** | Timestamp that filters the results to only contain coupons deleted after this date. Must be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.  **Note:** Only coupons deleted in the last 7 days will appear in the results. | [optional]  |
 
 ### Return type
 
@@ -3289,7 +3292,7 @@ Retrieve the specified custom attribute.
 
 <a id="getattributes"></a>
 # **GetAttributes**
-> GetAttributes200Response GetAttributes (long pageSize = null, long skip = null, string sort = null, string entity = null, string applicationIds = null, string type = null, string kind = null, string search = null)
+> GetAttributes200Response GetAttributes (long pageSize = null, long skip = null, string sort = null, string entity = null, string applicationIds = null, string loyaltyProgramIds = null, string type = null, string kind = null, string search = null)
 
 List custom attributes
 
@@ -3305,6 +3308,7 @@ Return all the custom attributes for the account.
 | **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [optional]  |
 | **entity** | **string** | Returned attributes will be filtered by supplied entity. | [optional]  |
 | **applicationIds** | **string** | Returned attributes will be filtered by supplied application ids | [optional]  |
+| **loyaltyProgramIds** | **string** | Returned attributes will be filtered by the specified loyalty program ids, separated by commas. You can only use this parameter when &#x60;entity&#x60; is &#x60;LoyaltyCard&#x60;. | [optional]  |
 | **type** | **string** | Returned attributes will be filtered by supplied type | [optional]  |
 | **kind** | **string** | Returned attributes will be filtered by supplied kind (builtin or custom) | [optional]  |
 | **search** | **string** | Returned attributes will be filtered by searching case insensitive through Attribute name, description and type | [optional]  |
@@ -4913,6 +4917,44 @@ Retrieve the specified ruleset.
 ### Return type
 
 [**Ruleset**](Ruleset.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+<a id="getrulesetv2"></a>
+# **GetRulesetV2**
+> RulesetV2 GetRulesetV2 (long applicationId, long campaignId, long rulesetId)
+
+Get ruleset (V2)
+
+Retrieve the specified ruleset as a JSON object.
+
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **applicationId** | **long** | The ID of the Application. It is displayed in your Talon.One deployment URL. |  |
+| **campaignId** | **long** | The ID of the campaign. It is displayed in your Talon.One deployment URL. |  |
+| **rulesetId** | **long** | The ID of the ruleset. |  |
+
+### Return type
+
+[**RulesetV2**](RulesetV2.md)
 
 ### Authorization
 

@@ -47,7 +47,7 @@ namespace TalonOneSdk.Model
         /// The SKU of the item for which historical prices should be retrieved.
         /// </summary>
         /// <value>The SKU of the item for which historical prices should be retrieved.</value>
-        /* <example>[SKU1241028]</example> */
+        /* <example>SKU1241028</example> */
         [JsonPropertyName("sku")]
         public string Sku { get; set; }
 
