@@ -142,7 +142,7 @@ namespace TalonOneSdk.Model
         /// List of product SKUs to check when determining the best prior price.
         /// </summary>
         /// <value>List of product SKUs to check when determining the best prior price.</value>
-        /* <example>[comma, period]</example> */
+        /* <example>[SKU1241028, SKU7345278]</example> */
         [JsonPropertyName("skus")]
         public List<string> Skus { get; set; }
 

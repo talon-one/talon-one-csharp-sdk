@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **EndTime** | **DateTime** | Timestamp when the campaign will become inactive. | [optional] 
 **Attributes** | **Object** | Arbitrary properties associated with this campaign. | [optional] 
 **State** | **string** | The state of the campaign.  | [default to StateEnum.Enabled]
+**LinkedStoreIds** | **List&lt;long&gt;** | A list of store IDs linked to this campaign. | [optional] 
+**LinkedAudienceIds** | **List&lt;long&gt;** | A list of audience IDs linked to this campaign. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

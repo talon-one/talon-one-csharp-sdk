@@ -118,6 +118,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new AudienceMembershipJsonConverter());
             _jsonOptions.Converters.Add(new AudienceReferenceJsonConverter());
             _jsonOptions.Converters.Add(new AwardGiveawayEffectPropsJsonConverter());
+            _jsonOptions.Converters.Add(new BaseBlockJsonConverter());
             _jsonOptions.Converters.Add(new BaseCampaignJsonConverter());
             _jsonOptions.Converters.Add(new BaseLoyaltyProgramJsonConverter());
             _jsonOptions.Converters.Add(new BaseNotificationJsonConverter());
@@ -235,6 +236,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new CreateTemplateCampaignResponseJsonConverter());
             _jsonOptions.Converters.Add(new CustomEffectJsonConverter());
             _jsonOptions.Converters.Add(new CustomEffectPropsJsonConverter());
+            _jsonOptions.Converters.Add(new CustomerAchievementJsonConverter());
             _jsonOptions.Converters.Add(new CustomerActivityReportJsonConverter());
             _jsonOptions.Converters.Add(new CustomerAnalyticsJsonConverter());
             _jsonOptions.Converters.Add(new CustomerInventoryJsonConverter());
@@ -573,6 +575,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new OutgoingIntegrationTemplatesJsonConverter());
             _jsonOptions.Converters.Add(new OutgoingIntegrationTypeJsonConverter());
             _jsonOptions.Converters.Add(new OutgoingIntegrationTypesJsonConverter());
+            _jsonOptions.Converters.Add(new PassthroughBlockJsonConverter());
             _jsonOptions.Converters.Add(new PatchItemCatalogActionJsonConverter());
             _jsonOptions.Converters.Add(new PatchManyItemsCatalogActionJsonConverter());
             _jsonOptions.Converters.Add(new PendingActivePointsDataJsonConverter());
@@ -594,6 +597,8 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new ProfileAudiencesChangesJsonConverter());
             _jsonOptions.Converters.Add(new ProjectedTierJsonConverter());
             _jsonOptions.Converters.Add(new PromoteExperimentJsonConverter());
+            _jsonOptions.Converters.Add(new PromotionGroupBlockJsonConverter());
+            _jsonOptions.Converters.Add(new PromotionRuleV2JsonConverter());
             _jsonOptions.Converters.Add(new RedeemReferralEffectPropsJsonConverter());
             _jsonOptions.Converters.Add(new ReferralJsonConverter());
             _jsonOptions.Converters.Add(new ReferralConstraintsJsonConverter());
@@ -616,6 +621,9 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new RevisionVersionJsonConverter());
             _jsonOptions.Converters.Add(new RewardJsonConverter());
             _jsonOptions.Converters.Add(new RewardPointsRequiredJsonConverter());
+            _jsonOptions.Converters.Add(new RiskJsonConverter());
+            _jsonOptions.Converters.Add(new RiskAffectedEntityItemJsonConverter());
+            _jsonOptions.Converters.Add(new RiskDetailJsonConverter());
             _jsonOptions.Converters.Add(new RiskNotificationJsonConverter());
             _jsonOptions.Converters.Add(new RoleJsonConverter());
             _jsonOptions.Converters.Add(new RoleAssignJsonConverter());
@@ -640,7 +648,9 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new RuleFailureReasonJsonConverter());
             _jsonOptions.Converters.Add(new RuleMetadataJsonConverter());
             _jsonOptions.Converters.Add(new RuleMetadataEligibilityJsonConverter());
+            _jsonOptions.Converters.Add(new RuleV2JsonConverter());
             _jsonOptions.Converters.Add(new RulesetJsonConverter());
+            _jsonOptions.Converters.Add(new RulesetV2JsonConverter());
             _jsonOptions.Converters.Add(new SSOConfigJsonConverter());
             _jsonOptions.Converters.Add(new SamlConnectionJsonConverter());
             _jsonOptions.Converters.Add(new SamlConnectionInternalJsonConverter());
@@ -682,7 +692,9 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new StrikethroughCustomEffectPerItemPropsJsonConverter());
             _jsonOptions.Converters.Add(new StrikethroughDebugResponseJsonConverter());
             _jsonOptions.Converters.Add(new StrikethroughEffectJsonConverter());
+            _jsonOptions.Converters.Add(new StrikethroughGroupBlockJsonConverter());
             _jsonOptions.Converters.Add(new StrikethroughLabelingNotificationJsonConverter());
+            _jsonOptions.Converters.Add(new StrikethroughRuleV2JsonConverter());
             _jsonOptions.Converters.Add(new StrikethroughSetDiscountPerItemEffectPropsJsonConverter());
             _jsonOptions.Converters.Add(new StrikethroughSetDiscountPerItemMemberEffectPropsJsonConverter());
             _jsonOptions.Converters.Add(new StrikethroughTriggerJsonConverter());

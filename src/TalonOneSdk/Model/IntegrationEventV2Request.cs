@@ -91,7 +91,12 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum CampaignEligibility for value: campaignEligibility
             /// </summary>
-            CampaignEligibility = 7
+            CampaignEligibility = 7,
+
+            /// <summary>
+            /// Enum Achievements for value: achievements
+            /// </summary>
+            Achievements = 8
         }
 
         /// <summary>
@@ -122,6 +127,9 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("campaignEligibility"))
                 return ResponseContentEnum.CampaignEligibility;
+
+            if (value.Equals("achievements"))
+                return ResponseContentEnum.Achievements;
 
             throw new NotImplementedException($"Could not convert value to type ResponseContentEnum: '{value}'");
         }
@@ -154,6 +162,9 @@ namespace TalonOneSdk.Model
             if (value.Equals("campaignEligibility"))
                 return ResponseContentEnum.CampaignEligibility;
 
+            if (value.Equals("achievements"))
+                return ResponseContentEnum.Achievements;
+
             return null;
         }
 
@@ -185,6 +196,9 @@ namespace TalonOneSdk.Model
 
             if (value == ResponseContentEnum.CampaignEligibility)
                 return "campaignEligibility";
+
+            if (value == ResponseContentEnum.Achievements)
+                return "achievements";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }

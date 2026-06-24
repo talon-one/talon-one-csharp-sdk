@@ -1227,9 +1227,11 @@ namespace TalonOneSdk.Api
         /// <param name="dateFormat">Determines the format of dates in the export document. (optional)</param>
         /// <param name="campaignState">Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived.  (optional)</param>
         /// <param name="valuesOnly">Filter results to only return the coupon codes (&#x60;value&#x60; column) without the associated coupon data. (optional, default to false)</param>
+        /// <param name="deletedBefore">Timestamp that filters the results to only contain coupons deleted before this date. Must be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.  **Note:** Only coupons deleted in the last 7 days will appear in the results. (optional)</param>
+        /// <param name="deletedAfter">Timestamp that filters the results to only contain coupons deleted after this date. Must be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.  **Note:** Only coupons deleted in the last 7 days will appear in the results. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportCouponsApiResponse"/>&gt;</returns>
-        Task<IExportCouponsApiResponse> ExportCouponsAsync(long applicationId, Option<decimal> campaignId = default, Option<string> sort = default, Option<string> value = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> valid = default, Option<string> usable = default, Option<long> referralId = default, Option<string> recipientIntegrationId = default, Option<string> batchId = default, Option<bool> exactMatch = default, Option<string> dateFormat = default, Option<string> campaignState = default, Option<bool> valuesOnly = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IExportCouponsApiResponse> ExportCouponsAsync(long applicationId, Option<decimal> campaignId = default, Option<string> sort = default, Option<string> value = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> valid = default, Option<string> usable = default, Option<long> referralId = default, Option<string> recipientIntegrationId = default, Option<string> batchId = default, Option<bool> exactMatch = default, Option<string> dateFormat = default, Option<string> campaignState = default, Option<bool> valuesOnly = default, Option<DateTime> deletedBefore = default, Option<DateTime> deletedAfter = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Export coupons
@@ -1252,9 +1254,11 @@ namespace TalonOneSdk.Api
         /// <param name="dateFormat">Determines the format of dates in the export document. (optional)</param>
         /// <param name="campaignState">Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived.  (optional)</param>
         /// <param name="valuesOnly">Filter results to only return the coupon codes (&#x60;value&#x60; column) without the associated coupon data. (optional, default to false)</param>
+        /// <param name="deletedBefore">Timestamp that filters the results to only contain coupons deleted before this date. Must be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.  **Note:** Only coupons deleted in the last 7 days will appear in the results. (optional)</param>
+        /// <param name="deletedAfter">Timestamp that filters the results to only contain coupons deleted after this date. Must be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.  **Note:** Only coupons deleted in the last 7 days will appear in the results. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportCouponsApiResponse"/>&gt;</returns>
-        Task<IExportCouponsApiResponse> ExportCouponsOrDefaultAsync(long applicationId, Option<decimal> campaignId = default, Option<string> sort = default, Option<string> value = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> valid = default, Option<string> usable = default, Option<long> referralId = default, Option<string> recipientIntegrationId = default, Option<string> batchId = default, Option<bool> exactMatch = default, Option<string> dateFormat = default, Option<string> campaignState = default, Option<bool> valuesOnly = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IExportCouponsApiResponse> ExportCouponsOrDefaultAsync(long applicationId, Option<decimal> campaignId = default, Option<string> sort = default, Option<string> value = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> valid = default, Option<string> usable = default, Option<long> referralId = default, Option<string> recipientIntegrationId = default, Option<string> batchId = default, Option<bool> exactMatch = default, Option<string> dateFormat = default, Option<string> campaignState = default, Option<bool> valuesOnly = default, Option<DateTime> deletedBefore = default, Option<DateTime> deletedAfter = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Export customer sessions
@@ -2237,12 +2241,13 @@ namespace TalonOneSdk.Api
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
         /// <param name="entity">Returned attributes will be filtered by supplied entity. (optional)</param>
         /// <param name="applicationIds">Returned attributes will be filtered by supplied application ids (optional)</param>
+        /// <param name="loyaltyProgramIds">Returned attributes will be filtered by the specified loyalty program ids, separated by commas. You can only use this parameter when &#x60;entity&#x60; is &#x60;LoyaltyCard&#x60;. (optional)</param>
         /// <param name="type">Returned attributes will be filtered by supplied type (optional)</param>
         /// <param name="kind">Returned attributes will be filtered by supplied kind (builtin or custom) (optional)</param>
         /// <param name="search">Returned attributes will be filtered by searching case insensitive through Attribute name, description and type (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetAttributesApiResponse"/>&gt;</returns>
-        Task<IGetAttributesApiResponse> GetAttributesAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> entity = default, Option<string> applicationIds = default, Option<string> type = default, Option<string> kind = default, Option<string> search = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAttributesApiResponse> GetAttributesAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> entity = default, Option<string> applicationIds = default, Option<string> loyaltyProgramIds = default, Option<string> type = default, Option<string> kind = default, Option<string> search = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List custom attributes
@@ -2255,12 +2260,13 @@ namespace TalonOneSdk.Api
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
         /// <param name="entity">Returned attributes will be filtered by supplied entity. (optional)</param>
         /// <param name="applicationIds">Returned attributes will be filtered by supplied application ids (optional)</param>
+        /// <param name="loyaltyProgramIds">Returned attributes will be filtered by the specified loyalty program ids, separated by commas. You can only use this parameter when &#x60;entity&#x60; is &#x60;LoyaltyCard&#x60;. (optional)</param>
         /// <param name="type">Returned attributes will be filtered by supplied type (optional)</param>
         /// <param name="kind">Returned attributes will be filtered by supplied kind (builtin or custom) (optional)</param>
         /// <param name="search">Returned attributes will be filtered by searching case insensitive through Attribute name, description and type (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetAttributesApiResponse"/>&gt;</returns>
-        Task<IGetAttributesApiResponse> GetAttributesOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> entity = default, Option<string> applicationIds = default, Option<string> type = default, Option<string> kind = default, Option<string> search = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAttributesApiResponse> GetAttributesOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> entity = default, Option<string> applicationIds = default, Option<string> loyaltyProgramIds = default, Option<string> type = default, Option<string> kind = default, Option<string> search = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List audience members
@@ -3518,6 +3524,33 @@ namespace TalonOneSdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetRulesetApiResponse"/>&gt;</returns>
         Task<IGetRulesetApiResponse> GetRulesetOrDefaultAsync(long applicationId, long campaignId, long rulesetId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get ruleset (V2)
+        /// </summary>
+        /// <remarks>
+        /// Retrieve the specified ruleset as a JSON object.
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="rulesetId">The ID of the ruleset.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetRulesetV2ApiResponse"/>&gt;</returns>
+        Task<IGetRulesetV2ApiResponse> GetRulesetV2Async(long applicationId, long campaignId, long rulesetId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get ruleset (V2)
+        /// </summary>
+        /// <remarks>
+        /// Retrieve the specified ruleset as a JSON object.
+        /// </remarks>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="rulesetId">The ID of the ruleset.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetRulesetV2ApiResponse"/>&gt;</returns>
+        Task<IGetRulesetV2ApiResponse> GetRulesetV2OrDefaultAsync(long applicationId, long campaignId, long rulesetId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List campaign rulesets
@@ -7287,6 +7320,18 @@ namespace TalonOneSdk.Api
     }
 
     /// <summary>
+    /// The <see cref="IGetRulesetV2ApiResponse"/>
+    /// </summary>
+    public interface IGetRulesetV2ApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.RulesetV2>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+    }
+
+    /// <summary>
     /// The <see cref="IGetRulesetsApiResponse"/>
     /// </summary>
     public interface IGetRulesetsApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.GetRulesets200Response>
@@ -10767,6 +10812,26 @@ namespace TalonOneSdk.Api
         internal void ExecuteOnErrorGetRuleset(Exception exception)
         {
             OnErrorGetRuleset?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnGetRulesetV2;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorGetRulesetV2;
+
+        internal void ExecuteOnGetRulesetV2(ManagementApi.GetRulesetV2ApiResponse apiResponse)
+        {
+            OnGetRulesetV2?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorGetRulesetV2(Exception exception)
+        {
+            OnErrorGetRulesetV2?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -25330,7 +25395,7 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatExportCoupons(ref long applicationId, ref Option<decimal> campaignId, ref Option<string> sort, ref Option<string> value, ref Option<DateTime> createdBefore, ref Option<DateTime> createdAfter, ref Option<string> valid, ref Option<string> usable, ref Option<long> referralId, ref Option<string> recipientIntegrationId, ref Option<string> batchId, ref Option<bool> exactMatch, ref Option<string> dateFormat, ref Option<string> campaignState, ref Option<bool> valuesOnly);
+        partial void FormatExportCoupons(ref long applicationId, ref Option<decimal> campaignId, ref Option<string> sort, ref Option<string> value, ref Option<DateTime> createdBefore, ref Option<DateTime> createdAfter, ref Option<string> valid, ref Option<string> usable, ref Option<long> referralId, ref Option<string> recipientIntegrationId, ref Option<string> batchId, ref Option<bool> exactMatch, ref Option<string> dateFormat, ref Option<string> campaignState, ref Option<bool> valuesOnly, ref Option<DateTime> deletedBefore, ref Option<DateTime> deletedAfter);
 
         /// <summary>
         /// Validates the request parameters
@@ -25390,10 +25455,12 @@ namespace TalonOneSdk.Api
         /// <param name="dateFormat"></param>
         /// <param name="campaignState"></param>
         /// <param name="valuesOnly"></param>
-        private void AfterExportCouponsDefaultImplementation(IExportCouponsApiResponse apiResponseLocalVar, long applicationId, Option<decimal> campaignId, Option<string> sort, Option<string> value, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> valid, Option<string> usable, Option<long> referralId, Option<string> recipientIntegrationId, Option<string> batchId, Option<bool> exactMatch, Option<string> dateFormat, Option<string> campaignState, Option<bool> valuesOnly)
+        /// <param name="deletedBefore"></param>
+        /// <param name="deletedAfter"></param>
+        private void AfterExportCouponsDefaultImplementation(IExportCouponsApiResponse apiResponseLocalVar, long applicationId, Option<decimal> campaignId, Option<string> sort, Option<string> value, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> valid, Option<string> usable, Option<long> referralId, Option<string> recipientIntegrationId, Option<string> batchId, Option<bool> exactMatch, Option<string> dateFormat, Option<string> campaignState, Option<bool> valuesOnly, Option<DateTime> deletedBefore, Option<DateTime> deletedAfter)
         {
             bool suppressDefaultLog = false;
-            AfterExportCoupons(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, sort, value, createdBefore, createdAfter, valid, usable, referralId, recipientIntegrationId, batchId, exactMatch, dateFormat, campaignState, valuesOnly);
+            AfterExportCoupons(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, sort, value, createdBefore, createdAfter, valid, usable, referralId, recipientIntegrationId, batchId, exactMatch, dateFormat, campaignState, valuesOnly, deletedBefore, deletedAfter);
             if (!suppressDefaultLog)
                 Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -25418,7 +25485,9 @@ namespace TalonOneSdk.Api
         /// <param name="dateFormat"></param>
         /// <param name="campaignState"></param>
         /// <param name="valuesOnly"></param>
-        partial void AfterExportCoupons(ref bool suppressDefaultLog, IExportCouponsApiResponse apiResponseLocalVar, long applicationId, Option<decimal> campaignId, Option<string> sort, Option<string> value, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> valid, Option<string> usable, Option<long> referralId, Option<string> recipientIntegrationId, Option<string> batchId, Option<bool> exactMatch, Option<string> dateFormat, Option<string> campaignState, Option<bool> valuesOnly);
+        /// <param name="deletedBefore"></param>
+        /// <param name="deletedAfter"></param>
+        partial void AfterExportCoupons(ref bool suppressDefaultLog, IExportCouponsApiResponse apiResponseLocalVar, long applicationId, Option<decimal> campaignId, Option<string> sort, Option<string> value, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> valid, Option<string> usable, Option<long> referralId, Option<string> recipientIntegrationId, Option<string> batchId, Option<bool> exactMatch, Option<string> dateFormat, Option<string> campaignState, Option<bool> valuesOnly, Option<DateTime> deletedBefore, Option<DateTime> deletedAfter);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -25441,10 +25510,12 @@ namespace TalonOneSdk.Api
         /// <param name="dateFormat"></param>
         /// <param name="campaignState"></param>
         /// <param name="valuesOnly"></param>
-        private void OnErrorExportCouponsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<decimal> campaignId, Option<string> sort, Option<string> value, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> valid, Option<string> usable, Option<long> referralId, Option<string> recipientIntegrationId, Option<string> batchId, Option<bool> exactMatch, Option<string> dateFormat, Option<string> campaignState, Option<bool> valuesOnly)
+        /// <param name="deletedBefore"></param>
+        /// <param name="deletedAfter"></param>
+        private void OnErrorExportCouponsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<decimal> campaignId, Option<string> sort, Option<string> value, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> valid, Option<string> usable, Option<long> referralId, Option<string> recipientIntegrationId, Option<string> batchId, Option<bool> exactMatch, Option<string> dateFormat, Option<string> campaignState, Option<bool> valuesOnly, Option<DateTime> deletedBefore, Option<DateTime> deletedAfter)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorExportCoupons(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, campaignId, sort, value, createdBefore, createdAfter, valid, usable, referralId, recipientIntegrationId, batchId, exactMatch, dateFormat, campaignState, valuesOnly);
+            OnErrorExportCoupons(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, campaignId, sort, value, createdBefore, createdAfter, valid, usable, referralId, recipientIntegrationId, batchId, exactMatch, dateFormat, campaignState, valuesOnly, deletedBefore, deletedAfter);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -25471,7 +25542,9 @@ namespace TalonOneSdk.Api
         /// <param name="dateFormat"></param>
         /// <param name="campaignState"></param>
         /// <param name="valuesOnly"></param>
-        partial void OnErrorExportCoupons(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<decimal> campaignId, Option<string> sort, Option<string> value, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> valid, Option<string> usable, Option<long> referralId, Option<string> recipientIntegrationId, Option<string> batchId, Option<bool> exactMatch, Option<string> dateFormat, Option<string> campaignState, Option<bool> valuesOnly);
+        /// <param name="deletedBefore"></param>
+        /// <param name="deletedAfter"></param>
+        partial void OnErrorExportCoupons(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<decimal> campaignId, Option<string> sort, Option<string> value, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<string> valid, Option<string> usable, Option<long> referralId, Option<string> recipientIntegrationId, Option<string> batchId, Option<bool> exactMatch, Option<string> dateFormat, Option<string> campaignState, Option<bool> valuesOnly, Option<DateTime> deletedBefore, Option<DateTime> deletedAfter);
 
         /// <summary>
         /// Export coupons Download a CSV file containing the coupons that match the given properties.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The CSV file can contain the following columns:  - &#x60;accountid&#x60;: The ID of your deployment. - &#x60;applicationid&#x60;: The ID of the Application this coupon is related to. - &#x60;attributes&#x60;: A json object describing _custom_ referral attribute names and their values. - &#x60;batchid&#x60;: The ID of the batch this coupon is part of. - &#x60;campaignid&#x60;: The ID of the campaign this coupon is related to. - &#x60;counter&#x60;: The number of times this coupon has been redeemed. - &#x60;created&#x60;: The creation date in RFC3339 of the coupon code. - &#x60;deleted&#x60;: Whether the coupon code is deleted. - &#x60;deleted_changelogid&#x60;: The ID of the delete event in the logs. - &#x60;discount_counter&#x60;: The amount of discount given by this coupon. - &#x60;discount_limitval&#x60;: The maximum discount amount that can be given be this coupon. - &#x60;expirydate&#x60;: The end date in RFC3339 of the code redemption period. - &#x60;id&#x60;: The internal ID of the coupon code. - &#x60;importid&#x60;: The ID of the import job that created this coupon. - &#x60;is_reservation_mandatory&#x60;: Whether this coupon requires a reservation to be redeemed. - &#x60;limits&#x60;: The limits set on this coupon. - &#x60;limitval&#x60;: The maximum number of redemptions of this code. - &#x60;recipientintegrationid&#x60;: The integration ID of the recipient of the coupon.    Only the customer with this integration ID can redeem this code. Available only for personal codes. - &#x60;referralid&#x60;: The ID of the referral code that triggered the creation of this coupon (create coupon effect). - &#x60;reservation&#x60;: Whether the coupon can be reserved for multiple customers. - &#x60;reservation_counter&#x60;: How many times this coupon has been reserved. - &#x60;reservation_limitval&#x60;: The maximum of number of reservations this coupon can have. - &#x60;startdate&#x60;: The start date in RFC3339 of the code redemption period. - &#x60;value&#x60;: The coupon code. 
@@ -25491,13 +25564,15 @@ namespace TalonOneSdk.Api
         /// <param name="dateFormat">Determines the format of dates in the export document. (optional)</param>
         /// <param name="campaignState">Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived.  (optional)</param>
         /// <param name="valuesOnly">Filter results to only return the coupon codes (&#x60;value&#x60; column) without the associated coupon data. (optional, default to false)</param>
+        /// <param name="deletedBefore">Timestamp that filters the results to only contain coupons deleted before this date. Must be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.  **Note:** Only coupons deleted in the last 7 days will appear in the results. (optional)</param>
+        /// <param name="deletedAfter">Timestamp that filters the results to only contain coupons deleted after this date. Must be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.  **Note:** Only coupons deleted in the last 7 days will appear in the results. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportCouponsApiResponse"/>&gt;</returns>
-        public async Task<IExportCouponsApiResponse> ExportCouponsOrDefaultAsync(long applicationId, Option<decimal> campaignId = default, Option<string> sort = default, Option<string> value = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> valid = default, Option<string> usable = default, Option<long> referralId = default, Option<string> recipientIntegrationId = default, Option<string> batchId = default, Option<bool> exactMatch = default, Option<string> dateFormat = default, Option<string> campaignState = default, Option<bool> valuesOnly = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IExportCouponsApiResponse> ExportCouponsOrDefaultAsync(long applicationId, Option<decimal> campaignId = default, Option<string> sort = default, Option<string> value = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> valid = default, Option<string> usable = default, Option<long> referralId = default, Option<string> recipientIntegrationId = default, Option<string> batchId = default, Option<bool> exactMatch = default, Option<string> dateFormat = default, Option<string> campaignState = default, Option<bool> valuesOnly = default, Option<DateTime> deletedBefore = default, Option<DateTime> deletedAfter = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ExportCouponsAsync(applicationId, campaignId, sort, value, createdBefore, createdAfter, valid, usable, referralId, recipientIntegrationId, batchId, exactMatch, dateFormat, campaignState, valuesOnly, cancellationToken).ConfigureAwait(false);
+                return await ExportCouponsAsync(applicationId, campaignId, sort, value, createdBefore, createdAfter, valid, usable, referralId, recipientIntegrationId, batchId, exactMatch, dateFormat, campaignState, valuesOnly, deletedBefore, deletedAfter, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -25524,9 +25599,11 @@ namespace TalonOneSdk.Api
         /// <param name="dateFormat">Determines the format of dates in the export document. (optional)</param>
         /// <param name="campaignState">Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived.  (optional)</param>
         /// <param name="valuesOnly">Filter results to only return the coupon codes (&#x60;value&#x60; column) without the associated coupon data. (optional, default to false)</param>
+        /// <param name="deletedBefore">Timestamp that filters the results to only contain coupons deleted before this date. Must be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.  **Note:** Only coupons deleted in the last 7 days will appear in the results. (optional)</param>
+        /// <param name="deletedAfter">Timestamp that filters the results to only contain coupons deleted after this date. Must be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally.  **Note:** Only coupons deleted in the last 7 days will appear in the results. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportCouponsApiResponse"/>&gt;</returns>
-        public async Task<IExportCouponsApiResponse> ExportCouponsAsync(long applicationId, Option<decimal> campaignId = default, Option<string> sort = default, Option<string> value = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> valid = default, Option<string> usable = default, Option<long> referralId = default, Option<string> recipientIntegrationId = default, Option<string> batchId = default, Option<bool> exactMatch = default, Option<string> dateFormat = default, Option<string> campaignState = default, Option<bool> valuesOnly = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IExportCouponsApiResponse> ExportCouponsAsync(long applicationId, Option<decimal> campaignId = default, Option<string> sort = default, Option<string> value = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> valid = default, Option<string> usable = default, Option<long> referralId = default, Option<string> recipientIntegrationId = default, Option<string> batchId = default, Option<bool> exactMatch = default, Option<string> dateFormat = default, Option<string> campaignState = default, Option<bool> valuesOnly = default, Option<DateTime> deletedBefore = default, Option<DateTime> deletedAfter = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -25534,7 +25611,7 @@ namespace TalonOneSdk.Api
             {
                 ValidateExportCoupons(sort, value, valid, usable, recipientIntegrationId, batchId, dateFormat, campaignState);
 
-                FormatExportCoupons(ref applicationId, ref campaignId, ref sort, ref value, ref createdBefore, ref createdAfter, ref valid, ref usable, ref referralId, ref recipientIntegrationId, ref batchId, ref exactMatch, ref dateFormat, ref campaignState, ref valuesOnly);
+                FormatExportCoupons(ref applicationId, ref campaignId, ref sort, ref value, ref createdBefore, ref createdAfter, ref valid, ref usable, ref referralId, ref recipientIntegrationId, ref batchId, ref exactMatch, ref dateFormat, ref campaignState, ref valuesOnly, ref deletedBefore, ref deletedAfter);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -25590,6 +25667,12 @@ namespace TalonOneSdk.Api
                     if (valuesOnly.IsSet)
                         parseQueryStringLocalVar["valuesOnly"] = ClientUtils.ParameterToString(valuesOnly.Value);
 
+                    if (deletedBefore.IsSet)
+                        parseQueryStringLocalVar["deletedBefore"] = ClientUtils.ParameterToString(deletedBefore.Value);
+
+                    if (deletedAfter.IsSet)
+                        parseQueryStringLocalVar["deletedAfter"] = ClientUtils.ParameterToString(deletedAfter.Value);
+
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -25625,7 +25708,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterExportCouponsDefaultImplementation(apiResponseLocalVar, applicationId, campaignId, sort, value, createdBefore, createdAfter, valid, usable, referralId, recipientIntegrationId, batchId, exactMatch, dateFormat, campaignState, valuesOnly);
+                        AfterExportCouponsDefaultImplementation(apiResponseLocalVar, applicationId, campaignId, sort, value, createdBefore, createdAfter, valid, usable, referralId, recipientIntegrationId, batchId, exactMatch, dateFormat, campaignState, valuesOnly, deletedBefore, deletedAfter);
 
                         Events.ExecuteOnExportCoupons(apiResponseLocalVar);
 
@@ -25639,7 +25722,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorExportCouponsDefaultImplementation(e, "/v1/applications/{applicationId}/export_coupons", uriBuilderLocalVar.Path, applicationId, campaignId, sort, value, createdBefore, createdAfter, valid, usable, referralId, recipientIntegrationId, batchId, exactMatch, dateFormat, campaignState, valuesOnly);
+                OnErrorExportCouponsDefaultImplementation(e, "/v1/applications/{applicationId}/export_coupons", uriBuilderLocalVar.Path, applicationId, campaignId, sort, value, createdBefore, createdAfter, valid, usable, referralId, recipientIntegrationId, batchId, exactMatch, dateFormat, campaignState, valuesOnly, deletedBefore, deletedAfter);
                 Events.ExecuteOnErrorExportCoupons(e);
                 throw;
             }
@@ -35588,7 +35671,7 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetAttributes(ref Option<long> pageSize, ref Option<long> skip, ref Option<string> sort, ref Option<string> entity, ref Option<string> applicationIds, ref Option<string> type, ref Option<string> kind, ref Option<string> search);
+        partial void FormatGetAttributes(ref Option<long> pageSize, ref Option<long> skip, ref Option<string> sort, ref Option<string> entity, ref Option<string> applicationIds, ref Option<string> loyaltyProgramIds, ref Option<string> type, ref Option<string> kind, ref Option<string> search);
 
         /// <summary>
         /// Validates the request parameters
@@ -35596,11 +35679,12 @@ namespace TalonOneSdk.Api
         /// <param name="sort"></param>
         /// <param name="entity"></param>
         /// <param name="applicationIds"></param>
+        /// <param name="loyaltyProgramIds"></param>
         /// <param name="type"></param>
         /// <param name="kind"></param>
         /// <param name="search"></param>
         /// <returns></returns>
-        private void ValidateGetAttributes(Option<string> sort, Option<string> entity, Option<string> applicationIds, Option<string> type, Option<string> kind, Option<string> search)
+        private void ValidateGetAttributes(Option<string> sort, Option<string> entity, Option<string> applicationIds, Option<string> loyaltyProgramIds, Option<string> type, Option<string> kind, Option<string> search)
         {
             if (sort.IsSet && sort.Value == null)
                 throw new ArgumentNullException(nameof(sort));
@@ -35610,6 +35694,9 @@ namespace TalonOneSdk.Api
 
             if (applicationIds.IsSet && applicationIds.Value == null)
                 throw new ArgumentNullException(nameof(applicationIds));
+
+            if (loyaltyProgramIds.IsSet && loyaltyProgramIds.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyProgramIds));
 
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type));
@@ -35630,13 +35717,14 @@ namespace TalonOneSdk.Api
         /// <param name="sort"></param>
         /// <param name="entity"></param>
         /// <param name="applicationIds"></param>
+        /// <param name="loyaltyProgramIds"></param>
         /// <param name="type"></param>
         /// <param name="kind"></param>
         /// <param name="search"></param>
-        private void AfterGetAttributesDefaultImplementation(IGetAttributesApiResponse apiResponseLocalVar, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> entity, Option<string> applicationIds, Option<string> type, Option<string> kind, Option<string> search)
+        private void AfterGetAttributesDefaultImplementation(IGetAttributesApiResponse apiResponseLocalVar, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> entity, Option<string> applicationIds, Option<string> loyaltyProgramIds, Option<string> type, Option<string> kind, Option<string> search)
         {
             bool suppressDefaultLog = false;
-            AfterGetAttributes(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, sort, entity, applicationIds, type, kind, search);
+            AfterGetAttributes(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, sort, entity, applicationIds, loyaltyProgramIds, type, kind, search);
             if (!suppressDefaultLog)
                 Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -35651,10 +35739,11 @@ namespace TalonOneSdk.Api
         /// <param name="sort"></param>
         /// <param name="entity"></param>
         /// <param name="applicationIds"></param>
+        /// <param name="loyaltyProgramIds"></param>
         /// <param name="type"></param>
         /// <param name="kind"></param>
         /// <param name="search"></param>
-        partial void AfterGetAttributes(ref bool suppressDefaultLog, IGetAttributesApiResponse apiResponseLocalVar, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> entity, Option<string> applicationIds, Option<string> type, Option<string> kind, Option<string> search);
+        partial void AfterGetAttributes(ref bool suppressDefaultLog, IGetAttributesApiResponse apiResponseLocalVar, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> entity, Option<string> applicationIds, Option<string> loyaltyProgramIds, Option<string> type, Option<string> kind, Option<string> search);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -35667,13 +35756,14 @@ namespace TalonOneSdk.Api
         /// <param name="sort"></param>
         /// <param name="entity"></param>
         /// <param name="applicationIds"></param>
+        /// <param name="loyaltyProgramIds"></param>
         /// <param name="type"></param>
         /// <param name="kind"></param>
         /// <param name="search"></param>
-        private void OnErrorGetAttributesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> entity, Option<string> applicationIds, Option<string> type, Option<string> kind, Option<string> search)
+        private void OnErrorGetAttributesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> entity, Option<string> applicationIds, Option<string> loyaltyProgramIds, Option<string> type, Option<string> kind, Option<string> search)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetAttributes(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, pageSize, skip, sort, entity, applicationIds, type, kind, search);
+            OnErrorGetAttributes(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, pageSize, skip, sort, entity, applicationIds, loyaltyProgramIds, type, kind, search);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -35690,10 +35780,11 @@ namespace TalonOneSdk.Api
         /// <param name="sort"></param>
         /// <param name="entity"></param>
         /// <param name="applicationIds"></param>
+        /// <param name="loyaltyProgramIds"></param>
         /// <param name="type"></param>
         /// <param name="kind"></param>
         /// <param name="search"></param>
-        partial void OnErrorGetAttributes(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> entity, Option<string> applicationIds, Option<string> type, Option<string> kind, Option<string> search);
+        partial void OnErrorGetAttributes(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> entity, Option<string> applicationIds, Option<string> loyaltyProgramIds, Option<string> type, Option<string> kind, Option<string> search);
 
         /// <summary>
         /// List custom attributes Return all the custom attributes for the account. 
@@ -35703,16 +35794,17 @@ namespace TalonOneSdk.Api
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
         /// <param name="entity">Returned attributes will be filtered by supplied entity. (optional)</param>
         /// <param name="applicationIds">Returned attributes will be filtered by supplied application ids (optional)</param>
+        /// <param name="loyaltyProgramIds">Returned attributes will be filtered by the specified loyalty program ids, separated by commas. You can only use this parameter when &#x60;entity&#x60; is &#x60;LoyaltyCard&#x60;. (optional)</param>
         /// <param name="type">Returned attributes will be filtered by supplied type (optional)</param>
         /// <param name="kind">Returned attributes will be filtered by supplied kind (builtin or custom) (optional)</param>
         /// <param name="search">Returned attributes will be filtered by searching case insensitive through Attribute name, description and type (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetAttributesApiResponse"/>&gt;</returns>
-        public async Task<IGetAttributesApiResponse> GetAttributesOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> entity = default, Option<string> applicationIds = default, Option<string> type = default, Option<string> kind = default, Option<string> search = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetAttributesApiResponse> GetAttributesOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> entity = default, Option<string> applicationIds = default, Option<string> loyaltyProgramIds = default, Option<string> type = default, Option<string> kind = default, Option<string> search = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetAttributesAsync(pageSize, skip, sort, entity, applicationIds, type, kind, search, cancellationToken).ConfigureAwait(false);
+                return await GetAttributesAsync(pageSize, skip, sort, entity, applicationIds, loyaltyProgramIds, type, kind, search, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -35729,20 +35821,21 @@ namespace TalonOneSdk.Api
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
         /// <param name="entity">Returned attributes will be filtered by supplied entity. (optional)</param>
         /// <param name="applicationIds">Returned attributes will be filtered by supplied application ids (optional)</param>
+        /// <param name="loyaltyProgramIds">Returned attributes will be filtered by the specified loyalty program ids, separated by commas. You can only use this parameter when &#x60;entity&#x60; is &#x60;LoyaltyCard&#x60;. (optional)</param>
         /// <param name="type">Returned attributes will be filtered by supplied type (optional)</param>
         /// <param name="kind">Returned attributes will be filtered by supplied kind (builtin or custom) (optional)</param>
         /// <param name="search">Returned attributes will be filtered by searching case insensitive through Attribute name, description and type (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetAttributesApiResponse"/>&gt;</returns>
-        public async Task<IGetAttributesApiResponse> GetAttributesAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> entity = default, Option<string> applicationIds = default, Option<string> type = default, Option<string> kind = default, Option<string> search = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetAttributesApiResponse> GetAttributesAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> entity = default, Option<string> applicationIds = default, Option<string> loyaltyProgramIds = default, Option<string> type = default, Option<string> kind = default, Option<string> search = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateGetAttributes(sort, entity, applicationIds, type, kind, search);
+                ValidateGetAttributes(sort, entity, applicationIds, loyaltyProgramIds, type, kind, search);
 
-                FormatGetAttributes(ref pageSize, ref skip, ref sort, ref entity, ref applicationIds, ref type, ref kind, ref search);
+                FormatGetAttributes(ref pageSize, ref skip, ref sort, ref entity, ref applicationIds, ref loyaltyProgramIds, ref type, ref kind, ref search);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -35769,6 +35862,9 @@ namespace TalonOneSdk.Api
 
                     if (applicationIds.IsSet)
                         parseQueryStringLocalVar["applicationIds"] = ClientUtils.ParameterToString(applicationIds.Value);
+
+                    if (loyaltyProgramIds.IsSet)
+                        parseQueryStringLocalVar["loyaltyProgramIds"] = ClientUtils.ParameterToString(loyaltyProgramIds.Value);
 
                     if (type.IsSet)
                         parseQueryStringLocalVar["type"] = ClientUtils.ParameterToString(type.Value);
@@ -35814,7 +35910,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterGetAttributesDefaultImplementation(apiResponseLocalVar, pageSize, skip, sort, entity, applicationIds, type, kind, search);
+                        AfterGetAttributesDefaultImplementation(apiResponseLocalVar, pageSize, skip, sort, entity, applicationIds, loyaltyProgramIds, type, kind, search);
 
                         Events.ExecuteOnGetAttributes(apiResponseLocalVar);
 
@@ -35828,7 +35924,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorGetAttributesDefaultImplementation(e, "/v1/attributes", uriBuilderLocalVar.Path, pageSize, skip, sort, entity, applicationIds, type, kind, search);
+                OnErrorGetAttributesDefaultImplementation(e, "/v1/attributes", uriBuilderLocalVar.Path, pageSize, skip, sort, entity, applicationIds, loyaltyProgramIds, type, kind, search);
                 Events.ExecuteOnErrorGetAttributes(e);
                 throw;
             }
@@ -48207,6 +48303,257 @@ namespace TalonOneSdk.Api
             /// <param name="result"></param>
             /// <returns></returns>
             public bool TryOk(out TalonOneSdk.Model.Ruleset result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatGetRulesetV2(ref long applicationId, ref long campaignId, ref long rulesetId);
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="campaignId"></param>
+        /// <param name="rulesetId"></param>
+        private void AfterGetRulesetV2DefaultImplementation(IGetRulesetV2ApiResponse apiResponseLocalVar, long applicationId, long campaignId, long rulesetId)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetRulesetV2(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, rulesetId);
+            if (!suppressDefaultLog)
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="campaignId"></param>
+        /// <param name="rulesetId"></param>
+        partial void AfterGetRulesetV2(ref bool suppressDefaultLog, IGetRulesetV2ApiResponse apiResponseLocalVar, long applicationId, long campaignId, long rulesetId);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="campaignId"></param>
+        /// <param name="rulesetId"></param>
+        private void OnErrorGetRulesetV2DefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, long rulesetId)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetRulesetV2(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, campaignId, rulesetId);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="campaignId"></param>
+        /// <param name="rulesetId"></param>
+        partial void OnErrorGetRulesetV2(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, long rulesetId);
+
+        /// <summary>
+        /// Get ruleset (V2) Retrieve the specified ruleset as a JSON object.
+        /// </summary>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="rulesetId">The ID of the ruleset.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetRulesetV2ApiResponse"/>&gt;</returns>
+        public async Task<IGetRulesetV2ApiResponse> GetRulesetV2OrDefaultAsync(long applicationId, long campaignId, long rulesetId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetRulesetV2Async(applicationId, campaignId, rulesetId, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Get ruleset (V2) Retrieve the specified ruleset as a JSON object.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="rulesetId">The ID of the ruleset.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetRulesetV2ApiResponse"/>&gt;</returns>
+        public async Task<IGetRulesetV2ApiResponse> GetRulesetV2Async(long applicationId, long campaignId, long rulesetId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                FormatGetRulesetV2(ref applicationId, ref campaignId, ref rulesetId);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v2/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcampaignId%7D", Uri.EscapeDataString(campaignId.ToString()));
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BrulesetId%7D", Uri.EscapeDataString(rulesetId.ToString()));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("GET");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<GetRulesetV2ApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<GetRulesetV2ApiResponse>();
+                        GetRulesetV2ApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GetRulesetV2ApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetRulesetV2DefaultImplementation(apiResponseLocalVar, applicationId, campaignId, rulesetId);
+
+                        Events.ExecuteOnGetRulesetV2(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetRulesetV2DefaultImplementation(e, "/v2/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId}", uriBuilderLocalVar.Path, applicationId, campaignId, rulesetId);
+                Events.ExecuteOnErrorGetRulesetV2(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetRulesetV2ApiResponse"/>
+        /// </summary>
+        public partial class GetRulesetV2ApiResponse : TalonOneSdk.Client.ApiResponse, IGetRulesetV2ApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<GetRulesetV2ApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetRulesetV2ApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetRulesetV2ApiResponse(ILogger<GetRulesetV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetRulesetV2ApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetRulesetV2ApiResponse(ILogger<GetRulesetV2ApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.RulesetV2 Ok()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.RulesetV2>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out TalonOneSdk.Model.RulesetV2 result)
             {
                 result = null;
 

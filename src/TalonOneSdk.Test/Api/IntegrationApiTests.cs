@@ -410,9 +410,22 @@ namespace TalonOneSdk.Test.Api
             Client.Option<DateTime> startBefore = default;
             Client.Option<DateTime> endAfter = default;
             Client.Option<DateTime> endBefore = default;
-            var response = await _instance.IntegrationGetAllCampaignsAsync(pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore);
+            Client.Option<long> storeId = default;
+            Client.Option<long> audienceId = default;
+            var response = await _instance.IntegrationGetAllCampaignsAsync(pageSize, skip, campaignIds, startAfter, startBefore, endAfter, endBefore, storeId, audienceId);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.IntegrationGetAllCampaigns200Response>(model);
+        }
+
+        /// <summary>
+        /// Test JoinLoyaltyProgram
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task JoinLoyaltyProgramAsyncTest()
+        {
+            long loyaltyProgramId = default;
+            string integrationId = default;
+            await _instance.JoinLoyaltyProgramAsync(loyaltyProgramId, integrationId);
         }
 
         /// <summary>

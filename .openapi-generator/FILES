@@ -94,6 +94,7 @@ docs/models/AudienceIntegrationID.md
 docs/models/AudienceMembership.md
 docs/models/AudienceReference.md
 docs/models/AwardGiveawayEffectProps.md
+docs/models/BaseBlock.md
 docs/models/BaseCampaign.md
 docs/models/BaseLoyaltyProgram.md
 docs/models/BaseNotification.md
@@ -211,6 +212,7 @@ docs/models/CreateTemplateCampaign.md
 docs/models/CreateTemplateCampaignResponse.md
 docs/models/CustomEffect.md
 docs/models/CustomEffectProps.md
+docs/models/CustomerAchievement.md
 docs/models/CustomerActivityReport.md
 docs/models/CustomerAnalytics.md
 docs/models/CustomerInventory.md
@@ -548,6 +550,7 @@ docs/models/OutgoingIntegrationTemplateWithConfigurationDetails.md
 docs/models/OutgoingIntegrationTemplates.md
 docs/models/OutgoingIntegrationType.md
 docs/models/OutgoingIntegrationTypes.md
+docs/models/PassthroughBlock.md
 docs/models/PatchItemCatalogAction.md
 docs/models/PatchManyItemsCatalogAction.md
 docs/models/PendingActivePointsData.md
@@ -569,6 +572,8 @@ docs/models/ProductUnitAnalyticsTotals.md
 docs/models/ProfileAudiencesChanges.md
 docs/models/ProjectedTier.md
 docs/models/PromoteExperiment.md
+docs/models/PromotionGroupBlock.md
+docs/models/PromotionRuleV2.md
 docs/models/RedeemReferralEffectProps.md
 docs/models/Referral.md
 docs/models/ReferralConstraints.md
@@ -591,6 +596,9 @@ docs/models/RevisionActivationRequest.md
 docs/models/RevisionVersion.md
 docs/models/Reward.md
 docs/models/RewardPointsRequired.md
+docs/models/Risk.md
+docs/models/RiskAffectedEntityItem.md
+docs/models/RiskDetail.md
 docs/models/RiskNotification.md
 docs/models/Role.md
 docs/models/RoleAssign.md
@@ -615,7 +623,9 @@ docs/models/RuleEligibilityFailureDetails.md
 docs/models/RuleFailureReason.md
 docs/models/RuleMetadata.md
 docs/models/RuleMetadataEligibility.md
+docs/models/RuleV2.md
 docs/models/Ruleset.md
+docs/models/RulesetV2.md
 docs/models/SSOConfig.md
 docs/models/SamlConnection.md
 docs/models/SamlConnectionInternal.md
@@ -657,7 +667,9 @@ docs/models/StrikethroughChangedItem.md
 docs/models/StrikethroughCustomEffectPerItemProps.md
 docs/models/StrikethroughDebugResponse.md
 docs/models/StrikethroughEffect.md
+docs/models/StrikethroughGroupBlock.md
 docs/models/StrikethroughLabelingNotification.md
+docs/models/StrikethroughRuleV2.md
 docs/models/StrikethroughSetDiscountPerItemEffectProps.md
 docs/models/StrikethroughSetDiscountPerItemMemberEffectProps.md
 docs/models/StrikethroughTrigger.md
@@ -819,6 +831,7 @@ src/TalonOneSdk.Test/Model/AudienceMembershipTests.cs
 src/TalonOneSdk.Test/Model/AudienceReferenceTests.cs
 src/TalonOneSdk.Test/Model/AudienceTests.cs
 src/TalonOneSdk.Test/Model/AwardGiveawayEffectPropsTests.cs
+src/TalonOneSdk.Test/Model/BaseBlockTests.cs
 src/TalonOneSdk.Test/Model/BaseCampaignTests.cs
 src/TalonOneSdk.Test/Model/BaseLoyaltyProgramTests.cs
 src/TalonOneSdk.Test/Model/BaseNotificationEntityTests.cs
@@ -936,6 +949,7 @@ src/TalonOneSdk.Test/Model/CreateTemplateCampaignResponseTests.cs
 src/TalonOneSdk.Test/Model/CreateTemplateCampaignTests.cs
 src/TalonOneSdk.Test/Model/CustomEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/CustomEffectTests.cs
+src/TalonOneSdk.Test/Model/CustomerAchievementTests.cs
 src/TalonOneSdk.Test/Model/CustomerActivityReportTests.cs
 src/TalonOneSdk.Test/Model/CustomerAnalyticsTests.cs
 src/TalonOneSdk.Test/Model/CustomerInventoryTests.cs
@@ -1273,6 +1287,7 @@ src/TalonOneSdk.Test/Model/OutgoingIntegrationTemplateWithConfigurationDetailsTe
 src/TalonOneSdk.Test/Model/OutgoingIntegrationTemplatesTests.cs
 src/TalonOneSdk.Test/Model/OutgoingIntegrationTypeTests.cs
 src/TalonOneSdk.Test/Model/OutgoingIntegrationTypesTests.cs
+src/TalonOneSdk.Test/Model/PassthroughBlockTests.cs
 src/TalonOneSdk.Test/Model/PatchItemCatalogActionTests.cs
 src/TalonOneSdk.Test/Model/PatchManyItemsCatalogActionTests.cs
 src/TalonOneSdk.Test/Model/PendingActivePointsDataTests.cs
@@ -1294,6 +1309,8 @@ src/TalonOneSdk.Test/Model/ProductUnitAnalyticsTotalsTests.cs
 src/TalonOneSdk.Test/Model/ProfileAudiencesChangesTests.cs
 src/TalonOneSdk.Test/Model/ProjectedTierTests.cs
 src/TalonOneSdk.Test/Model/PromoteExperimentTests.cs
+src/TalonOneSdk.Test/Model/PromotionGroupBlockTests.cs
+src/TalonOneSdk.Test/Model/PromotionRuleV2Tests.cs
 src/TalonOneSdk.Test/Model/RedeemReferralEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/ReferralConstraintsTests.cs
 src/TalonOneSdk.Test/Model/ReferralCreatedEffectPropsTests.cs
@@ -1316,7 +1333,10 @@ src/TalonOneSdk.Test/Model/RevisionTests.cs
 src/TalonOneSdk.Test/Model/RevisionVersionTests.cs
 src/TalonOneSdk.Test/Model/RewardPointsRequiredTests.cs
 src/TalonOneSdk.Test/Model/RewardTests.cs
+src/TalonOneSdk.Test/Model/RiskAffectedEntityItemTests.cs
+src/TalonOneSdk.Test/Model/RiskDetailTests.cs
 src/TalonOneSdk.Test/Model/RiskNotificationTests.cs
+src/TalonOneSdk.Test/Model/RiskTests.cs
 src/TalonOneSdk.Test/Model/RoleAssignTests.cs
 src/TalonOneSdk.Test/Model/RoleMembershipTests.cs
 src/TalonOneSdk.Test/Model/RoleTests.cs
@@ -1340,7 +1360,9 @@ src/TalonOneSdk.Test/Model/RuleFailureReasonTests.cs
 src/TalonOneSdk.Test/Model/RuleMetadataEligibilityTests.cs
 src/TalonOneSdk.Test/Model/RuleMetadataTests.cs
 src/TalonOneSdk.Test/Model/RuleTests.cs
+src/TalonOneSdk.Test/Model/RuleV2Tests.cs
 src/TalonOneSdk.Test/Model/RulesetTests.cs
+src/TalonOneSdk.Test/Model/RulesetV2Tests.cs
 src/TalonOneSdk.Test/Model/SSOConfigTests.cs
 src/TalonOneSdk.Test/Model/SamlConnectionInternalTests.cs
 src/TalonOneSdk.Test/Model/SamlConnectionMetadataTests.cs
@@ -1382,7 +1404,9 @@ src/TalonOneSdk.Test/Model/StrikethroughChangedItemTests.cs
 src/TalonOneSdk.Test/Model/StrikethroughCustomEffectPerItemPropsTests.cs
 src/TalonOneSdk.Test/Model/StrikethroughDebugResponseTests.cs
 src/TalonOneSdk.Test/Model/StrikethroughEffectTests.cs
+src/TalonOneSdk.Test/Model/StrikethroughGroupBlockTests.cs
 src/TalonOneSdk.Test/Model/StrikethroughLabelingNotificationTests.cs
+src/TalonOneSdk.Test/Model/StrikethroughRuleV2Tests.cs
 src/TalonOneSdk.Test/Model/StrikethroughSetDiscountPerItemEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/StrikethroughSetDiscountPerItemMemberEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/StrikethroughTriggerTests.cs
@@ -1564,6 +1588,7 @@ src/TalonOneSdk/Model/AudienceIntegrationID.cs
 src/TalonOneSdk/Model/AudienceMembership.cs
 src/TalonOneSdk/Model/AudienceReference.cs
 src/TalonOneSdk/Model/AwardGiveawayEffectProps.cs
+src/TalonOneSdk/Model/BaseBlock.cs
 src/TalonOneSdk/Model/BaseCampaign.cs
 src/TalonOneSdk/Model/BaseLoyaltyProgram.cs
 src/TalonOneSdk/Model/BaseNotification.cs
@@ -1681,6 +1706,7 @@ src/TalonOneSdk/Model/CreateTemplateCampaign.cs
 src/TalonOneSdk/Model/CreateTemplateCampaignResponse.cs
 src/TalonOneSdk/Model/CustomEffect.cs
 src/TalonOneSdk/Model/CustomEffectProps.cs
+src/TalonOneSdk/Model/CustomerAchievement.cs
 src/TalonOneSdk/Model/CustomerActivityReport.cs
 src/TalonOneSdk/Model/CustomerAnalytics.cs
 src/TalonOneSdk/Model/CustomerInventory.cs
@@ -2018,6 +2044,7 @@ src/TalonOneSdk/Model/OutgoingIntegrationTemplateWithConfigurationDetails.cs
 src/TalonOneSdk/Model/OutgoingIntegrationTemplates.cs
 src/TalonOneSdk/Model/OutgoingIntegrationType.cs
 src/TalonOneSdk/Model/OutgoingIntegrationTypes.cs
+src/TalonOneSdk/Model/PassthroughBlock.cs
 src/TalonOneSdk/Model/PatchItemCatalogAction.cs
 src/TalonOneSdk/Model/PatchManyItemsCatalogAction.cs
 src/TalonOneSdk/Model/PendingActivePointsData.cs
@@ -2039,6 +2066,8 @@ src/TalonOneSdk/Model/ProductUnitAnalyticsTotals.cs
 src/TalonOneSdk/Model/ProfileAudiencesChanges.cs
 src/TalonOneSdk/Model/ProjectedTier.cs
 src/TalonOneSdk/Model/PromoteExperiment.cs
+src/TalonOneSdk/Model/PromotionGroupBlock.cs
+src/TalonOneSdk/Model/PromotionRuleV2.cs
 src/TalonOneSdk/Model/RedeemReferralEffectProps.cs
 src/TalonOneSdk/Model/Referral.cs
 src/TalonOneSdk/Model/ReferralConstraints.cs
@@ -2061,6 +2090,9 @@ src/TalonOneSdk/Model/RevisionActivationRequest.cs
 src/TalonOneSdk/Model/RevisionVersion.cs
 src/TalonOneSdk/Model/Reward.cs
 src/TalonOneSdk/Model/RewardPointsRequired.cs
+src/TalonOneSdk/Model/Risk.cs
+src/TalonOneSdk/Model/RiskAffectedEntityItem.cs
+src/TalonOneSdk/Model/RiskDetail.cs
 src/TalonOneSdk/Model/RiskNotification.cs
 src/TalonOneSdk/Model/Role.cs
 src/TalonOneSdk/Model/RoleAssign.cs
@@ -2085,7 +2117,9 @@ src/TalonOneSdk/Model/RuleEligibilityFailureDetails.cs
 src/TalonOneSdk/Model/RuleFailureReason.cs
 src/TalonOneSdk/Model/RuleMetadata.cs
 src/TalonOneSdk/Model/RuleMetadataEligibility.cs
+src/TalonOneSdk/Model/RuleV2.cs
 src/TalonOneSdk/Model/Ruleset.cs
+src/TalonOneSdk/Model/RulesetV2.cs
 src/TalonOneSdk/Model/SSOConfig.cs
 src/TalonOneSdk/Model/SamlConnection.cs
 src/TalonOneSdk/Model/SamlConnectionInternal.cs
@@ -2127,7 +2161,9 @@ src/TalonOneSdk/Model/StrikethroughChangedItem.cs
 src/TalonOneSdk/Model/StrikethroughCustomEffectPerItemProps.cs
 src/TalonOneSdk/Model/StrikethroughDebugResponse.cs
 src/TalonOneSdk/Model/StrikethroughEffect.cs
+src/TalonOneSdk/Model/StrikethroughGroupBlock.cs
 src/TalonOneSdk/Model/StrikethroughLabelingNotification.cs
+src/TalonOneSdk/Model/StrikethroughRuleV2.cs
 src/TalonOneSdk/Model/StrikethroughSetDiscountPerItemEffectProps.cs
 src/TalonOneSdk/Model/StrikethroughSetDiscountPerItemMemberEffectProps.cs
 src/TalonOneSdk/Model/StrikethroughTrigger.cs

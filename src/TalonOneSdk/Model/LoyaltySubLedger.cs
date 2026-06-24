@@ -68,6 +68,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>**DEPRECATED** Use &#x60;totalActivePoints&#x60; property instead. Total amount of currently active and available points in the customer&#39;s balance. </value>
         [JsonPropertyName("total")]
+        [Obsolete]
         public decimal Total { get; set; }
 
         /// <summary>

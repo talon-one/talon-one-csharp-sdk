@@ -40,13 +40,13 @@ namespace TalonOneSdk.Model
         /// <param name="sandbox">Indicates if this is a live or sandbox reward. Rewards of a given type can only be connected to Applications of the same type.</param>
         /// <param name="status">The status of the reward.</param>
         /// <param name="description">A description of the reward.</param>
-        /// <param name="visibilityConditions">An optional rule that manages who can see this reward. If not specified, the reward is visible to all customers.  **Note:** Only the &#x60;condition&#x60; field is evaluated within this rule. The &#x60;effects&#x60; field must be an empty array, and &#x60;bindings&#x60; are not supported. </param>
+        /// <param name="eligibilityConditions">An optional rule that manages who can see this reward. If not specified, the reward is visible to all customers.  **Note:** Only the &#x60;condition&#x60; field is evaluated within this rule. The &#x60;effects&#x60; field must be an empty array, and &#x60;bindings&#x60; are not supported. </param>
         /// <param name="rule">Rule to apply.  **Note**: The &#x60;bindings&#x60; field inside the rule must not be used in this endpoint. All bindings should be defined at the reward level via the top-level &#x60;bindings&#x60; field. </param>
         /// <param name="bindings">A list of named variables created before the reward&#39;s rules are evaluated.  Each binding pairs a name with a talang expression. The expression is evaluated once  and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.</param>
         /// <param name="modified">The timestamp when the reward was last updated in RFC3339 format.</param>
         /// <param name="pointsRequired">The loyalty points required to activate a reward.</param>
         [JsonConstructor]
-        public Reward(long id, DateTime created, long accountId, string name, string apiName, List<long> applicationIds, bool sandbox, StatusEnum status, Option<string> description = default, Option<Rule> visibilityConditions = default, Option<Rule> rule = default, Option<List<Binding>> bindings = default, Option<DateTime?> modified = default, Option<List<RewardPointsRequired>> pointsRequired = default)
+        public Reward(long id, DateTime created, long accountId, string name, string apiName, List<long> applicationIds, bool sandbox, StatusEnum status, Option<string> description = default, Option<Rule> eligibilityConditions = default, Option<Rule> rule = default, Option<List<Binding>> bindings = default, Option<DateTime?> modified = default, Option<List<RewardPointsRequired>> pointsRequired = default)
         {
             Id = id;
             Created = created;
@@ -57,7 +57,7 @@ namespace TalonOneSdk.Model
             Sandbox = sandbox;
             Status = status;
             DescriptionOption = description;
-            VisibilityConditionsOption = visibilityConditions;
+            EligibilityConditionsOption = eligibilityConditions;
             RuleOption = rule;
             BindingsOption = bindings;
             ModifiedOption = modified;
@@ -214,18 +214,18 @@ namespace TalonOneSdk.Model
         public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
-        /// Used to track the state of VisibilityConditions
+        /// Used to track the state of EligibilityConditions
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Rule> VisibilityConditionsOption { get; private set; }
+        public Option<Rule> EligibilityConditionsOption { get; private set; }
 
         /// <summary>
         /// An optional rule that manages who can see this reward. If not specified, the reward is visible to all customers.  **Note:** Only the &#x60;condition&#x60; field is evaluated within this rule. The &#x60;effects&#x60; field must be an empty array, and &#x60;bindings&#x60; are not supported. 
         /// </summary>
         /// <value>An optional rule that manages who can see this reward. If not specified, the reward is visible to all customers.  **Note:** Only the &#x60;condition&#x60; field is evaluated within this rule. The &#x60;effects&#x60; field must be an empty array, and &#x60;bindings&#x60; are not supported. </value>
-        [JsonPropertyName("visibilityConditions")]
-        public Rule VisibilityConditions { get { return this.VisibilityConditionsOption.Value; } set { this.VisibilityConditionsOption = new Option<Rule>(value); } }
+        [JsonPropertyName("eligibilityConditions")]
+        public Rule EligibilityConditions { get { return this.EligibilityConditionsOption.Value; } set { this.EligibilityConditionsOption = new Option<Rule>(value); } }
 
         /// <summary>
         /// Used to track the state of Rule
@@ -301,7 +301,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Sandbox: ").Append(Sandbox).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  VisibilityConditions: ").Append(VisibilityConditions).Append("\n");
+            sb.Append("  EligibilityConditions: ").Append(EligibilityConditions).Append("\n");
             sb.Append("  Rule: ").Append(Rule).Append("\n");
             sb.Append("  Bindings: ").Append(Bindings).Append("\n");
             sb.Append("  Modified: ").Append(Modified).Append("\n");
@@ -374,7 +374,7 @@ namespace TalonOneSdk.Model
             Option<bool?> sandbox = default;
             Option<Reward.StatusEnum?> status = default;
             Option<string> description = default;
-            Option<Rule> visibilityConditions = default;
+            Option<Rule> eligibilityConditions = default;
             Option<Rule> rule = default;
             Option<List<Binding>> bindings = default;
             Option<DateTime?> modified = default;
@@ -424,8 +424,8 @@ namespace TalonOneSdk.Model
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());
                             break;
-                        case "visibilityConditions":
-                            visibilityConditions = new Option<Rule>(JsonSerializer.Deserialize<Rule>(ref utf8JsonReader, jsonSerializerOptions));
+                        case "eligibilityConditions":
+                            eligibilityConditions = new Option<Rule>(JsonSerializer.Deserialize<Rule>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "rule":
                             rule = new Option<Rule>(JsonSerializer.Deserialize<Rule>(ref utf8JsonReader, jsonSerializerOptions));
@@ -493,7 +493,7 @@ namespace TalonOneSdk.Model
             if (status.IsSet && status.Value == null)
                 throw new ArgumentNullException(nameof(status), "Property is not nullable for class Reward.");
 
-            return new Reward(id.Value.Value, created.Value.Value, accountId.Value.Value, name.Value, apiName.Value, applicationIds.Value, sandbox.Value.Value, status.Value.Value, description, visibilityConditions, rule, bindings, modified, pointsRequired);
+            return new Reward(id.Value.Value, created.Value.Value, accountId.Value.Value, name.Value, apiName.Value, applicationIds.Value, sandbox.Value.Value, status.Value.Value, description, eligibilityConditions, rule, bindings, modified, pointsRequired);
         }
 
         /// <summary>
@@ -548,10 +548,10 @@ namespace TalonOneSdk.Model
             if (reward.DescriptionOption.IsSet)
                 writer.WriteString("description", reward.Description);
 
-            if (reward.VisibilityConditionsOption.IsSet)
+            if (reward.EligibilityConditionsOption.IsSet)
             {
-                writer.WritePropertyName("visibilityConditions");
-                JsonSerializer.Serialize(writer, reward.VisibilityConditions, jsonSerializerOptions);
+                writer.WritePropertyName("eligibilityConditions");
+                JsonSerializer.Serialize(writer, reward.EligibilityConditions, jsonSerializerOptions);
             }
             if (reward.RuleOption.IsSet)
             {

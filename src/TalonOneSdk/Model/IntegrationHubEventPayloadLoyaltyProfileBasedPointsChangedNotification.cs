@@ -39,11 +39,12 @@ namespace TalonOneSdk.Model
         /// <param name="currentTier">The name of the customer&#39;s current tier.</param>
         /// <param name="currentPoints">currentPoints</param>
         /// <param name="publishedAt">Timestamp when the event was published.</param>
+        /// <param name="sessionIntegrationID">The integration ID of the session through which the points were earned or lost. Only set when the change results from a rule engine execution; empty otherwise.</param>
         /// <param name="employeeName">employeeName</param>
         /// <param name="userID">userID</param>
         /// <param name="actions">actions</param>
         [JsonConstructor]
-        public IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(string profileIntegrationID, long loyaltyProgramID, string loyaltyProgramName, string subledgerID, string sourceOfEvent, string currentTier, float currentPoints, DateTime publishedAt, Option<string> employeeName = default, Option<long?> userID = default, Option<List<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction>> actions = default)
+        public IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(string profileIntegrationID, long loyaltyProgramID, string loyaltyProgramName, string subledgerID, string sourceOfEvent, string currentTier, float currentPoints, DateTime publishedAt, Option<string> sessionIntegrationID = default, Option<string> employeeName = default, Option<long?> userID = default, Option<List<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction>> actions = default)
         {
             ProfileIntegrationID = profileIntegrationID;
             LoyaltyProgramID = loyaltyProgramID;
@@ -53,6 +54,7 @@ namespace TalonOneSdk.Model
             CurrentTier = currentTier;
             CurrentPoints = currentPoints;
             PublishedAt = publishedAt;
+            SessionIntegrationIDOption = sessionIntegrationID;
             EmployeeNameOption = employeeName;
             UserIDOption = userID;
             ActionsOption = actions;
@@ -113,6 +115,20 @@ namespace TalonOneSdk.Model
         public DateTime PublishedAt { get; set; }
 
         /// <summary>
+        /// Used to track the state of SessionIntegrationID
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> SessionIntegrationIDOption { get; private set; }
+
+        /// <summary>
+        /// The integration ID of the session through which the points were earned or lost. Only set when the change results from a rule engine execution; empty otherwise.
+        /// </summary>
+        /// <value>The integration ID of the session through which the points were earned or lost. Only set when the change results from a rule engine execution; empty otherwise.</value>
+        [JsonPropertyName("SessionIntegrationID")]
+        public string SessionIntegrationID { get { return this.SessionIntegrationIDOption.Value; } set { this.SessionIntegrationIDOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Used to track the state of EmployeeName
         /// </summary>
         [JsonIgnore]
@@ -167,6 +183,7 @@ namespace TalonOneSdk.Model
             sb.Append("  CurrentTier: ").Append(CurrentTier).Append("\n");
             sb.Append("  CurrentPoints: ").Append(CurrentPoints).Append("\n");
             sb.Append("  PublishedAt: ").Append(PublishedAt).Append("\n");
+            sb.Append("  SessionIntegrationID: ").Append(SessionIntegrationID).Append("\n");
             sb.Append("  EmployeeName: ").Append(EmployeeName).Append("\n");
             sb.Append("  UserID: ").Append(UserID).Append("\n");
             sb.Append("  Actions: ").Append(Actions).Append("\n");
@@ -220,6 +237,7 @@ namespace TalonOneSdk.Model
             Option<string> currentTier = default;
             Option<float?> currentPoints = default;
             Option<DateTime?> publishedAt = default;
+            Option<string> sessionIntegrationID = default;
             Option<string> employeeName = default;
             Option<long?> userID = default;
             Option<List<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction>> actions = default;
@@ -262,6 +280,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "PublishedAt":
                             publishedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "SessionIntegrationID":
+                            sessionIntegrationID = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "EmployeeName":
                             employeeName = new Option<string>(utf8JsonReader.GetString());
@@ -326,7 +347,7 @@ namespace TalonOneSdk.Model
             if (publishedAt.IsSet && publishedAt.Value == null)
                 throw new ArgumentNullException(nameof(publishedAt), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
 
-            return new IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(profileIntegrationID.Value, loyaltyProgramID.Value.Value, loyaltyProgramName.Value, subledgerID.Value, sourceOfEvent.Value, currentTier.Value, currentPoints.Value.Value, publishedAt.Value.Value, employeeName, userID, actions);
+            return new IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(profileIntegrationID.Value, loyaltyProgramID.Value.Value, loyaltyProgramName.Value, subledgerID.Value, sourceOfEvent.Value, currentTier.Value, currentPoints.Value.Value, publishedAt.Value.Value, sessionIntegrationID, employeeName, userID, actions);
         }
 
         /// <summary>
@@ -383,6 +404,9 @@ namespace TalonOneSdk.Model
             writer.WriteNumber("CurrentPoints", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.CurrentPoints);
 
             writer.WriteString("PublishedAt", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.PublishedAt.ToString(PublishedAtFormat));
+
+            if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SessionIntegrationIDOption.IsSet)
+                writer.WriteString("SessionIntegrationID", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SessionIntegrationID);
 
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.EmployeeNameOption.IsSet)
                 writer.WriteString("EmployeeName", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.EmployeeName);

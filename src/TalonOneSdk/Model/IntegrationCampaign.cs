@@ -42,8 +42,10 @@ namespace TalonOneSdk.Model
         /// <param name="endTime">Timestamp when the campaign will become inactive.</param>
         /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
         /// <param name="state">The state of the campaign.  (default to StateEnum.Enabled)</param>
+        /// <param name="linkedStoreIds">A list of store IDs linked to this campaign.</param>
+        /// <param name="linkedAudienceIds">A list of audience IDs linked to this campaign.</param>
         [JsonConstructor]
-        public IntegrationCampaign(long applicationId, long id, string name, List<string> tags, List<IntegrationCampaign.FeaturesEnum> features, List<RuleMetadata> rules, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, StateEnum state = StateEnum.Enabled)
+        public IntegrationCampaign(long applicationId, long id, string name, List<string> tags, List<IntegrationCampaign.FeaturesEnum> features, List<RuleMetadata> rules, Option<string> description = default, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<Object> attributes = default, StateEnum state = StateEnum.Enabled, Option<List<long>> linkedStoreIds = default, Option<List<long>> linkedAudienceIds = default)
         {
             ApplicationId = applicationId;
             Id = id;
@@ -56,6 +58,8 @@ namespace TalonOneSdk.Model
             EndTimeOption = endTime;
             AttributesOption = attributes;
             State = state;
+            LinkedStoreIdsOption = linkedStoreIds;
+            LinkedAudienceIdsOption = linkedAudienceIds;
             OnCreated();
         }
 
@@ -351,6 +355,36 @@ namespace TalonOneSdk.Model
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
+        /// Used to track the state of LinkedStoreIds
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<long>> LinkedStoreIdsOption { get; private set; }
+
+        /// <summary>
+        /// A list of store IDs linked to this campaign.
+        /// </summary>
+        /// <value>A list of store IDs linked to this campaign.</value>
+        /* <example>[1, 2]</example> */
+        [JsonPropertyName("linkedStoreIds")]
+        public List<long> LinkedStoreIds { get { return this.LinkedStoreIdsOption.Value; } set { this.LinkedStoreIdsOption = new Option<List<long>>(value); } }
+
+        /// <summary>
+        /// Used to track the state of LinkedAudienceIds
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<long>> LinkedAudienceIdsOption { get; private set; }
+
+        /// <summary>
+        /// A list of audience IDs linked to this campaign.
+        /// </summary>
+        /// <value>A list of audience IDs linked to this campaign.</value>
+        /* <example>[3, 4]</example> */
+        [JsonPropertyName("linkedAudienceIds")]
+        public List<long> LinkedAudienceIds { get { return this.LinkedAudienceIdsOption.Value; } set { this.LinkedAudienceIdsOption = new Option<List<long>>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -369,6 +403,8 @@ namespace TalonOneSdk.Model
             sb.Append("  EndTime: ").Append(EndTime).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
+            sb.Append("  LinkedStoreIds: ").Append(LinkedStoreIds).Append("\n");
+            sb.Append("  LinkedAudienceIds: ").Append(LinkedAudienceIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -433,6 +469,8 @@ namespace TalonOneSdk.Model
             Option<DateTime?> endTime = default;
             Option<Object> attributes = default;
             Option<IntegrationCampaign.StateEnum?> state = default;
+            Option<List<long>> linkedStoreIds = default;
+            Option<List<long>> linkedAudienceIds = default;
 
             while (utf8JsonReader.Read())
             {
@@ -505,6 +543,12 @@ namespace TalonOneSdk.Model
                             if (stateRawValue != null)
                                 state = new Option<IntegrationCampaign.StateEnum?>(IntegrationCampaign.StateEnumFromStringOrDefault(stateRawValue));
                             break;
+                        case "linkedStoreIds":
+                            linkedStoreIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "linkedAudienceIds":
+                            linkedAudienceIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
@@ -553,7 +597,7 @@ namespace TalonOneSdk.Model
             if (state.IsSet && state.Value == null)
                 throw new ArgumentNullException(nameof(state), "Property is not nullable for class IntegrationCampaign.");
 
-            return new IntegrationCampaign(applicationId.Value.Value, id.Value.Value, name.Value, tags.Value, features.Value, rules.Value, description, startTime, endTime, attributes, state.Value.Value);
+            return new IntegrationCampaign(applicationId.Value.Value, id.Value.Value, name.Value, tags.Value, features.Value, rules.Value, description, startTime, endTime, attributes, state.Value.Value, linkedStoreIds, linkedAudienceIds);
         }
 
         /// <summary>
@@ -625,6 +669,16 @@ namespace TalonOneSdk.Model
             }
             var stateRawValue = IntegrationCampaign.StateEnumToJsonValue(integrationCampaign.State);
             writer.WriteString("state", stateRawValue);
+            if (integrationCampaign.LinkedStoreIdsOption.IsSet)
+            {
+                writer.WritePropertyName("linkedStoreIds");
+                JsonSerializer.Serialize(writer, integrationCampaign.LinkedStoreIds, jsonSerializerOptions);
+            }
+            if (integrationCampaign.LinkedAudienceIdsOption.IsSet)
+            {
+                writer.WritePropertyName("linkedAudienceIds");
+                JsonSerializer.Serialize(writer, integrationCampaign.LinkedAudienceIds, jsonSerializerOptions);
+            }
         }
     }
 }

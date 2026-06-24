@@ -67,7 +67,7 @@ namespace TalonOneSdk.Model
         /// sku
         /// </summary>
         /// <value>sku</value>
-        /* <example>NVR-GN-GV-UUP</example> */
+        /* <example>SKU7345278</example> */
         [JsonPropertyName("sku")]
         public string Sku { get; set; }
 
@@ -119,6 +119,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>This property is **deprecated**. Use &#x60;contextIds&#x60; instead. Defaults to an empty string. </value>
         [JsonPropertyName("contextId")]
+        [Obsolete]
         public string ContextId { get { return this.ContextIdOption.Value; } set { this.ContextIdOption = new Option<string>(value); } }
 
         /// <summary>
