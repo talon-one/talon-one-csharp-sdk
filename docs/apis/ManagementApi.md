@@ -81,6 +81,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**GetApplicationEventsWithoutTotalCount**](ManagementApi.md#getapplicationeventswithouttotalcount) | **GET** /v1/applications/{applicationId}/events/no_total | List Applications events |
 | [**GetApplicationSession**](ManagementApi.md#getapplicationsession) | **GET** /v1/applications/{applicationId}/sessions/{sessionId} | Get Application session |
 | [**GetApplicationSessions**](ManagementApi.md#getapplicationsessions) | **GET** /v1/applications/{applicationId}/sessions | List Application sessions |
+| [**GetApplicationSessionsByCustomerAttributes**](ManagementApi.md#getapplicationsessionsbycustomerattributes) | **POST** /v1/applications/{applicationId}/sessions_search | List Application sessions matching the given customer attributes |
 | [**GetApplications**](ManagementApi.md#getapplications) | **GET** /v1/applications | List Applications |
 | [**GetAttribute**](ManagementApi.md#getattribute) | **GET** /v1/attributes/{attributeId} | Get custom attribute |
 | [**GetAttributes**](ManagementApi.md#getattributes) | **GET** /v1/attributes | List custom attributes |
@@ -3216,6 +3217,46 @@ List all the sessions of the specified Application.
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+<a id="getapplicationsessionsbycustomerattributes"></a>
+# **GetApplicationSessionsByCustomerAttributes**
+> GetApplicationSessionsByCustomerAttributes200Response GetApplicationSessionsByCustomerAttributes (long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, long pageSize = null, long skip = null, bool withTotalResultSize = null)
+
+List Application sessions matching the given customer attributes
+
+Get a list of the Application sessions matching the provided customer profile attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request. 
+
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **applicationId** | **long** | The ID of the Application. It is displayed in your Talon.One deployment URL. |  |
+| **customerProfileSearchQuery** | [**CustomerProfileSearchQuery**](CustomerProfileSearchQuery.md) | body |  |
+| **pageSize** | **long** | The number of items in the response. | [optional] [default to 1000] |
+| **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
+| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets. - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | [optional]  |
+
+### Return type
+
+[**GetApplicationSessionsByCustomerAttributes200Response**](GetApplicationSessionsByCustomerAttributes200Response.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 <a id="getapplications"></a>
 # **GetApplications**
 > GetApplications200Response GetApplications (long pageSize = null, long skip = null, string sort = null)
@@ -3687,7 +3728,7 @@ Retrieve a list of campaign templates.
 
 <a id="getcampaigns"></a>
 # **GetCampaigns**
-> GetCampaigns200Response GetCampaigns (long applicationId, long pageSize = null, long skip = null, string sort = null, string campaignState = null, string name = null, string tags = null, DateTime createdBefore = null, DateTime createdAfter = null, DateTime startBefore = null, DateTime startAfter = null, DateTime endBefore = null, DateTime endAfter = null, long campaignGroupId = null, long templateId = null, long storeId = null)
+> GetCampaigns200Response GetCampaigns (long applicationId, long pageSize = null, long skip = null, string sort = null, string campaignState = null, string name = null, List<string> tags = null, DateTime createdBefore = null, DateTime createdAfter = null, DateTime startBefore = null, DateTime startAfter = null, DateTime endBefore = null, DateTime endAfter = null, long campaignGroupId = null, long templateId = null, long storeId = null)
 
 List campaigns
 
@@ -3704,7 +3745,7 @@ List the campaigns of the specified application that match your filter criteria.
 | **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [optional]  |
 | **campaignState** | **string** | Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived.  | [optional]  |
 | **name** | **string** | Filter results performing case-insensitive matching against the name of the campaign. | [optional]  |
-| **tags** | **string** | Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  | [optional]  |
+| **tags** | [**List&lt;string&gt;**](string.md) | Filter results performing case-insensitive matching against the tags of the campaign.  | [optional]  |
 | **createdBefore** | **DateTime** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | [optional]  |
 | **createdAfter** | **DateTime** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | [optional]  |
 | **startBefore** | **DateTime** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | [optional]  |

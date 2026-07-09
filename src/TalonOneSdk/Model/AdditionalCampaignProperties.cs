@@ -508,7 +508,7 @@ namespace TalonOneSdk.Model
         /// Timestamp of the most recent update to the campaign&#39;s property. Updates to external entities used in this campaign are **not** registered by this property, such as collection or coupon updates. 
         /// </summary>
         /// <value>Timestamp of the most recent update to the campaign&#39;s property. Updates to external entities used in this campaign are **not** registered by this property, such as collection or coupon updates. </value>
-        /* <example>2022-10-97T35:00:00Z</example> */
+        /* <example>2022-10-27T15:00:00Z</example> */
         [JsonPropertyName("updated")]
         public DateTime? Updated { get { return this.UpdatedOption.Value; } set { this.UpdatedOption = new Option<DateTime?>(value); } }
 

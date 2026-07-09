@@ -42,12 +42,13 @@ namespace TalonOneSdk.Model
         /// <param name="amount">Amount of loyalty points added or deducted in the transaction.</param>
         /// <param name="id">ID of the loyalty ledger transaction.</param>
         /// <param name="customerSessionId">ID of the customer session where the transaction occurred.</param>
+        /// <param name="storeIntegrationId">The integration ID of the store where the transaction occurred. Only set for transactions created by a customer session or event that referenced a store.</param>
         /// <param name="rulesetId">The ID of the ruleset containing the rule that triggered this effect.</param>
         /// <param name="ruleName">The name of the rule that triggered this effect.</param>
         /// <param name="flags">The flags of the transaction, when applicable. The &#x60;createsNegativeBalance&#x60;  flag indicates whether the transaction results in a negative balance.</param>
         /// <param name="validityDuration">The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. </param>
         [JsonConstructor]
-        public LedgerTransactionLogEntryIntegrationAPI(string transactionUUID, DateTime created, long programId, TypeEnum type, string name, string startDate, string expiryDate, string subledgerId, decimal amount, long id, Option<string> customerSessionId = default, Option<long?> rulesetId = default, Option<string> ruleName = default, Option<LoyaltyLedgerEntryFlags> flags = default, Option<string> validityDuration = default)
+        public LedgerTransactionLogEntryIntegrationAPI(string transactionUUID, DateTime created, long programId, TypeEnum type, string name, string startDate, string expiryDate, string subledgerId, decimal amount, long id, Option<string> customerSessionId = default, Option<string> storeIntegrationId = default, Option<long?> rulesetId = default, Option<string> ruleName = default, Option<LoyaltyLedgerEntryFlags> flags = default, Option<string> validityDuration = default)
         {
             TransactionUUID = transactionUUID;
             Created = created;
@@ -60,6 +61,7 @@ namespace TalonOneSdk.Model
             Amount = amount;
             Id = id;
             CustomerSessionIdOption = customerSessionId;
+            StoreIntegrationIdOption = storeIntegrationId;
             RulesetIdOption = rulesetId;
             RuleNameOption = ruleName;
             FlagsOption = flags;
@@ -232,6 +234,21 @@ namespace TalonOneSdk.Model
         public string CustomerSessionId { get { return this.CustomerSessionIdOption.Value; } set { this.CustomerSessionIdOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of StoreIntegrationId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> StoreIntegrationIdOption { get; private set; }
+
+        /// <summary>
+        /// The integration ID of the store where the transaction occurred. Only set for transactions created by a customer session or event that referenced a store.
+        /// </summary>
+        /// <value>The integration ID of the store where the transaction occurred. Only set for transactions created by a customer session or event that referenced a store.</value>
+        /* <example>STORE-001</example> */
+        [JsonPropertyName("storeIntegrationId")]
+        public string StoreIntegrationId { get { return this.StoreIntegrationIdOption.Value; } set { this.StoreIntegrationIdOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Used to track the state of RulesetId
         /// </summary>
         [JsonIgnore]
@@ -309,6 +326,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  CustomerSessionId: ").Append(CustomerSessionId).Append("\n");
+            sb.Append("  StoreIntegrationId: ").Append(StoreIntegrationId).Append("\n");
             sb.Append("  RulesetId: ").Append(RulesetId).Append("\n");
             sb.Append("  RuleName: ").Append(RuleName).Append("\n");
             sb.Append("  Flags: ").Append(Flags).Append("\n");
@@ -346,6 +364,18 @@ namespace TalonOneSdk.Model
             if (this.CustomerSessionId != null && this.CustomerSessionId.Length > 255)
             {
                 yield return new ValidationResult("Invalid value for CustomerSessionId, length must be less than 255.", new [] { "CustomerSessionId" });
+            }
+
+            // StoreIntegrationId (string) maxLength
+            if (this.StoreIntegrationId != null && this.StoreIntegrationId.Length > 1000)
+            {
+                yield return new ValidationResult("Invalid value for StoreIntegrationId, length must be less than 1000.", new [] { "StoreIntegrationId" });
+            }
+
+            // StoreIntegrationId (string) minLength
+            if (this.StoreIntegrationId != null && this.StoreIntegrationId.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for StoreIntegrationId, length must be greater than 1.", new [] { "StoreIntegrationId" });
             }
 
             yield break;
@@ -390,6 +420,7 @@ namespace TalonOneSdk.Model
             Option<decimal?> amount = default;
             Option<long?> id = default;
             Option<string> customerSessionId = default;
+            Option<string> storeIntegrationId = default;
             Option<long?> rulesetId = default;
             Option<string> ruleName = default;
             Option<LoyaltyLedgerEntryFlags> flags = default;
@@ -444,6 +475,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "customerSessionId":
                             customerSessionId = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "storeIntegrationId":
+                            storeIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "rulesetId":
                             rulesetId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
@@ -523,7 +557,7 @@ namespace TalonOneSdk.Model
             if (id.IsSet && id.Value == null)
                 throw new ArgumentNullException(nameof(id), "Property is not nullable for class LedgerTransactionLogEntryIntegrationAPI.");
 
-            return new LedgerTransactionLogEntryIntegrationAPI(transactionUUID.Value, created.Value.Value, programId.Value.Value, type.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, amount.Value.Value, id.Value.Value, customerSessionId, rulesetId, ruleName, flags, validityDuration);
+            return new LedgerTransactionLogEntryIntegrationAPI(transactionUUID.Value, created.Value.Value, programId.Value.Value, type.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, amount.Value.Value, id.Value.Value, customerSessionId, storeIntegrationId, rulesetId, ruleName, flags, validityDuration);
         }
 
         /// <summary>
@@ -587,6 +621,9 @@ namespace TalonOneSdk.Model
 
             if (ledgerTransactionLogEntryIntegrationAPI.CustomerSessionIdOption.IsSet)
                 writer.WriteString("customerSessionId", ledgerTransactionLogEntryIntegrationAPI.CustomerSessionId);
+
+            if (ledgerTransactionLogEntryIntegrationAPI.StoreIntegrationIdOption.IsSet)
+                writer.WriteString("storeIntegrationId", ledgerTransactionLogEntryIntegrationAPI.StoreIntegrationId);
 
             if (ledgerTransactionLogEntryIntegrationAPI.RulesetIdOption.IsSet)
                 writer.WriteNumber("rulesetId", ledgerTransactionLogEntryIntegrationAPI.RulesetIdOption.Value.Value);

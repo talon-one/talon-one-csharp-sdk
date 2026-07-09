@@ -230,19 +230,19 @@ namespace TalonOneSdk.Model
         public enum TimeFrameEnum
         {
             /// <summary>
-            /// Enum _1Day for value: 1_day
+            /// Enum _1D for value: 1D
             /// </summary>
-            _1Day = 1,
+            _1D = 1,
 
             /// <summary>
-            /// Enum _1Week for value: 1_week
+            /// Enum _7D for value: 7D
             /// </summary>
-            _1Week = 2,
+            _7D = 2,
 
             /// <summary>
-            /// Enum _1Month for value: 1_month
+            /// Enum _30D for value: 30D
             /// </summary>
-            _1Month = 3
+            _30D = 3
         }
 
         /// <summary>
@@ -253,14 +253,14 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public static TimeFrameEnum TimeFrameEnumFromString(string value)
         {
-            if (value.Equals("1_day"))
-                return TimeFrameEnum._1Day;
+            if (value.Equals("1D"))
+                return TimeFrameEnum._1D;
 
-            if (value.Equals("1_week"))
-                return TimeFrameEnum._1Week;
+            if (value.Equals("7D"))
+                return TimeFrameEnum._7D;
 
-            if (value.Equals("1_month"))
-                return TimeFrameEnum._1Month;
+            if (value.Equals("30D"))
+                return TimeFrameEnum._30D;
 
             throw new NotImplementedException($"Could not convert value to type TimeFrameEnum: '{value}'");
         }
@@ -272,14 +272,14 @@ namespace TalonOneSdk.Model
         /// <returns></returns>
         public static TimeFrameEnum? TimeFrameEnumFromStringOrDefault(string value)
         {
-            if (value.Equals("1_day"))
-                return TimeFrameEnum._1Day;
+            if (value.Equals("1D"))
+                return TimeFrameEnum._1D;
 
-            if (value.Equals("1_week"))
-                return TimeFrameEnum._1Week;
+            if (value.Equals("7D"))
+                return TimeFrameEnum._7D;
 
-            if (value.Equals("1_month"))
-                return TimeFrameEnum._1Month;
+            if (value.Equals("30D"))
+                return TimeFrameEnum._30D;
 
             return null;
         }
@@ -292,14 +292,14 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public static string TimeFrameEnumToJsonValue(TimeFrameEnum value)
         {
-            if (value == TimeFrameEnum._1Day)
-                return "1_day";
+            if (value == TimeFrameEnum._1D)
+                return "1D";
 
-            if (value == TimeFrameEnum._1Week)
-                return "1_week";
+            if (value == TimeFrameEnum._7D)
+                return "7D";
 
-            if (value == TimeFrameEnum._1Month)
-                return "1_month";
+            if (value == TimeFrameEnum._30D)
+                return "30D";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
@@ -308,7 +308,7 @@ namespace TalonOneSdk.Model
         /// The rolling time window for risk evaluation.
         /// </summary>
         /// <value>The rolling time window for risk evaluation.</value>
-        /* <example>1_week</example> */
+        /* <example>7D</example> */
         [JsonPropertyName("timeFrame")]
         public TimeFrameEnum TimeFrame { get; set; }
 

@@ -81,12 +81,12 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'RunDate'
+        /// Test the property 'FeatureDate'
         /// </summary>
         [Fact]
-        public void RunDateTest()
+        public void FeatureDateTest()
         {
-            // TODO unit test for the property 'RunDate'
+            // TODO unit test for the property 'FeatureDate'
         }
 
         /// <summary>

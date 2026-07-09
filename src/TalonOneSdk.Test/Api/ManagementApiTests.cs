@@ -1121,6 +1121,22 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test GetApplicationSessionsByCustomerAttributes
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task GetApplicationSessionsByCustomerAttributesAsyncTest()
+        {
+            long applicationId = default;
+            CustomerProfileSearchQuery customerProfileSearchQuery = default;
+            Client.Option<long> pageSize = default;
+            Client.Option<long> skip = default;
+            Client.Option<bool> withTotalResultSize = default;
+            var response = await _instance.GetApplicationSessionsByCustomerAttributesAsync(applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize);
+            var model = response.Ok();
+            Assert.IsType<TalonOneSdk.Model.GetApplicationSessionsByCustomerAttributes200Response>(model);
+        }
+
+        /// <summary>
         /// Test GetApplications
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -1312,7 +1328,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<string> sort = default;
             Client.Option<string> campaignState = default;
             Client.Option<string> name = default;
-            Client.Option<string> tags = default;
+            Client.Option<List<string>> tags = default;
             Client.Option<DateTime> createdBefore = default;
             Client.Option<DateTime> createdAfter = default;
             Client.Option<DateTime> startBefore = default;

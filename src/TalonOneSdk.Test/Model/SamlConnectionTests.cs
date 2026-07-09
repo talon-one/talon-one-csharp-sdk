@@ -151,5 +151,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'MetadataURL'
         }
+
+        /// <summary>
+        /// Test the property 'CertificateExpiry'
+        /// </summary>
+        [Fact]
+        public void CertificateExpiryTest()
+        {
+            // TODO unit test for the property 'CertificateExpiry'
+        }
     }
 }

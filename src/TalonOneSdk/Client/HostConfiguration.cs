@@ -117,7 +117,10 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new AudienceIntegrationIDJsonConverter());
             _jsonOptions.Converters.Add(new AudienceMembershipJsonConverter());
             _jsonOptions.Converters.Add(new AudienceReferenceJsonConverter());
+            _jsonOptions.Converters.Add(new AwardGiveawayBlockJsonConverter());
+            _jsonOptions.Converters.Add(new AwardGiveawayBlock1GiveawayPoolJsonConverter());
             _jsonOptions.Converters.Add(new AwardGiveawayEffectPropsJsonConverter());
+            _jsonOptions.Converters.Add(new AwardItemBlockJsonConverter());
             _jsonOptions.Converters.Add(new BaseBlockJsonConverter());
             _jsonOptions.Converters.Add(new BaseCampaignJsonConverter());
             _jsonOptions.Converters.Add(new BaseLoyaltyProgramJsonConverter());
@@ -129,7 +132,9 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new BestPriorPriceJsonConverter());
             _jsonOptions.Converters.Add(new BestPriorPriceMetadataJsonConverter());
             _jsonOptions.Converters.Add(new BestPriorPriceRequestJsonConverter());
+            _jsonOptions.Converters.Add(new BestPriorPriceSettingsJsonConverter());
             _jsonOptions.Converters.Add(new BestPriorTargetJsonConverter());
+            _jsonOptions.Converters.Add(new BetweenCheckAttributeBlockJsonConverter());
             _jsonOptions.Converters.Add(new BindingJsonConverter());
             _jsonOptions.Converters.Add(new BlueprintJsonConverter());
             _jsonOptions.Converters.Add(new BulkApplicationNotificationJsonConverter());
@@ -204,6 +209,11 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new ChangeJsonConverter());
             _jsonOptions.Converters.Add(new ChangeLoyaltyTierLevelEffectPropsJsonConverter());
             _jsonOptions.Converters.Add(new ChangeProfilePasswordJsonConverter());
+            _jsonOptions.Converters.Add(new CheckAttributeBlockJsonConverter());
+            _jsonOptions.Converters.Add(new CheckAudienceBlockJsonConverter());
+            _jsonOptions.Converters.Add(new CheckAudienceBlock1AudienceJsonConverter());
+            _jsonOptions.Converters.Add(new CheckCouponBlockJsonConverter());
+            _jsonOptions.Converters.Add(new CheckReferralBlockJsonConverter());
             _jsonOptions.Converters.Add(new CodeGeneratorSettingsJsonConverter());
             _jsonOptions.Converters.Add(new CollectionJsonConverter());
             _jsonOptions.Converters.Add(new CollectionItemJsonConverter());
@@ -336,6 +346,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new GetApplicationEventTypes200ResponseJsonConverter());
             _jsonOptions.Converters.Add(new GetApplicationEventsWithoutTotalCount200ResponseJsonConverter());
             _jsonOptions.Converters.Add(new GetApplicationSessions200ResponseJsonConverter());
+            _jsonOptions.Converters.Add(new GetApplicationSessionsByCustomerAttributes200ResponseJsonConverter());
             _jsonOptions.Converters.Add(new GetApplications200ResponseJsonConverter());
             _jsonOptions.Converters.Add(new GetAttributes200ResponseJsonConverter());
             _jsonOptions.Converters.Add(new GetAudienceMemberships200ResponseJsonConverter());
@@ -439,8 +450,10 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new ListCampaignStoreBudgetsJsonConverter());
             _jsonOptions.Converters.Add(new ListCampaignStoreBudgetsStoreJsonConverter());
             _jsonOptions.Converters.Add(new ListCatalogItems200ResponseJsonConverter());
+            _jsonOptions.Converters.Add(new ListCheckAttributeBlockJsonConverter());
             _jsonOptions.Converters.Add(new ListExperiments200ResponseJsonConverter());
             _jsonOptions.Converters.Add(new ListStores200ResponseJsonConverter());
+            _jsonOptions.Converters.Add(new ListWithCountCheckAttributeBlockJsonConverter());
             _jsonOptions.Converters.Add(new LoginParamsJsonConverter());
             _jsonOptions.Converters.Add(new LoyaltyJsonConverter());
             _jsonOptions.Converters.Add(new LoyaltyBalanceJsonConverter());
@@ -597,6 +610,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new ProfileAudiencesChangesJsonConverter());
             _jsonOptions.Converters.Add(new ProjectedTierJsonConverter());
             _jsonOptions.Converters.Add(new PromoteExperimentJsonConverter());
+            _jsonOptions.Converters.Add(new PromotionCheckAttributeBlockJsonConverter());
             _jsonOptions.Converters.Add(new PromotionGroupBlockJsonConverter());
             _jsonOptions.Converters.Add(new PromotionRuleV2JsonConverter());
             _jsonOptions.Converters.Add(new RedeemReferralEffectPropsJsonConverter());
@@ -656,6 +670,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new SamlConnectionInternalJsonConverter());
             _jsonOptions.Converters.Add(new SamlConnectionMetadataJsonConverter());
             _jsonOptions.Converters.Add(new SamlLoginEndpointJsonConverter());
+            _jsonOptions.Converters.Add(new ScalarCheckAttributeBlockJsonConverter());
             _jsonOptions.Converters.Add(new ScimBaseGroupJsonConverter());
             _jsonOptions.Converters.Add(new ScimBaseUserJsonConverter());
             _jsonOptions.Converters.Add(new ScimBaseUserNameJsonConverter());
@@ -683,12 +698,14 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new SetDiscountPerItemEffectPropsJsonConverter());
             _jsonOptions.Converters.Add(new SetLoyaltyPointsExpiryDateEffectPropsJsonConverter());
             _jsonOptions.Converters.Add(new ShowBundleMetadataEffectPropsJsonConverter());
+            _jsonOptions.Converters.Add(new ShowNotificationBlockJsonConverter());
             _jsonOptions.Converters.Add(new ShowNotificationEffectPropsJsonConverter());
             _jsonOptions.Converters.Add(new SkuUnitAnalyticsJsonConverter());
             _jsonOptions.Converters.Add(new SkuUnitAnalyticsDataPointJsonConverter());
             _jsonOptions.Converters.Add(new SlotDefJsonConverter());
             _jsonOptions.Converters.Add(new StoreJsonConverter());
             _jsonOptions.Converters.Add(new StrikethroughChangedItemJsonConverter());
+            _jsonOptions.Converters.Add(new StrikethroughCheckAttributeBlockJsonConverter());
             _jsonOptions.Converters.Add(new StrikethroughCustomEffectPerItemPropsJsonConverter());
             _jsonOptions.Converters.Add(new StrikethroughDebugResponseJsonConverter());
             _jsonOptions.Converters.Add(new StrikethroughEffectJsonConverter());
@@ -722,6 +739,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new TransferLoyaltyCardJsonConverter());
             _jsonOptions.Converters.Add(new TriggerWebhookEffectPropsJsonConverter());
             _jsonOptions.Converters.Add(new TwoFAConfigJsonConverter());
+            _jsonOptions.Converters.Add(new UnaryCheckAttributeBlockJsonConverter());
             _jsonOptions.Converters.Add(new UpdateAccountJsonConverter());
             _jsonOptions.Converters.Add(new UpdateAchievementJsonConverter());
             _jsonOptions.Converters.Add(new UpdateAchievementV2JsonConverter());

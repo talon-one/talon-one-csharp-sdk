@@ -153,6 +153,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'StoreIntegrationId'
+        /// </summary>
+        [Fact]
+        public void StoreIntegrationIdTest()
+        {
+            // TODO unit test for the property 'StoreIntegrationId'
+        }
+
+        /// <summary>
         /// Test the property 'RulesetId'
         /// </summary>
         [Fact]

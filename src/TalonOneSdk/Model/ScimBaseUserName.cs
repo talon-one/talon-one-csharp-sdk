@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The components of the user’s real name.
+    /// The components of the user&#39;s real name.
     /// </summary>
     public partial class ScimBaseUserName : IValidatableObject
     {

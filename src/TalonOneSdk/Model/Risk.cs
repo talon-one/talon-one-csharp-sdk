@@ -34,7 +34,7 @@ namespace TalonOneSdk.Model
         /// <param name="id">The internal ID of this entity.</param>
         /// <param name="created">The time this entity was created.</param>
         /// <param name="notificationId">The ID of the risk notification rule that flagged this risk.</param>
-        /// <param name="runDate">The date of the ML pipeline run that detected this risk.</param>
+        /// <param name="featureDate">The date of the activity data in which this risk was detected. The anomaly detection pipeline scores complete 24-hour cycles, so this is always the day before the risk was reported, not the reporting date itself. </param>
         /// <param name="groupKey">The Application group this risk was detected in. Contains the Application ID, or &#x60;__GLOBAL__&#x60; for metrics that are not grouped by Application. </param>
         /// <param name="status">The triage lifecycle status of this risk.</param>
         /// <param name="criticality">The critical classification bucket of this risk.</param>
@@ -47,12 +47,12 @@ namespace TalonOneSdk.Model
         /// <param name="applicationId">The ID of the Application this risk belongs to. Absent for global metrics.</param>
         /// <param name="description">Human-readable description of the detected anomaly.</param>
         [JsonConstructor]
-        public Risk(long id, DateTime created, long notificationId, DateTime runDate, string groupKey, StatusEnum status, CriticalityEnum criticality, EntityEnum entity, ActivityEnum activity, TimeFrameEnum timeFrame, DateTime reportedDate, long affectedEntityCount, DateTime modified, Option<long?> applicationId = default, Option<string> description = default)
+        public Risk(long id, DateTime created, long notificationId, DateTime featureDate, string groupKey, StatusEnum status, CriticalityEnum criticality, EntityEnum entity, ActivityEnum activity, TimeFrameEnum timeFrame, DateTime reportedDate, long affectedEntityCount, DateTime modified, Option<long?> applicationId = default, Option<string> description = default)
         {
             Id = id;
             Created = created;
             NotificationId = notificationId;
-            RunDate = runDate;
+            FeatureDate = featureDate;
             GroupKey = groupKey;
             Status = status;
             Criticality = criticality;
@@ -432,19 +432,19 @@ namespace TalonOneSdk.Model
         public enum TimeFrameEnum
         {
             /// <summary>
-            /// Enum _1Day for value: 1_day
+            /// Enum _1D for value: 1D
             /// </summary>
-            _1Day = 1,
+            _1D = 1,
 
             /// <summary>
-            /// Enum _1Week for value: 1_week
+            /// Enum _7D for value: 7D
             /// </summary>
-            _1Week = 2,
+            _7D = 2,
 
             /// <summary>
-            /// Enum _1Month for value: 1_month
+            /// Enum _30D for value: 30D
             /// </summary>
-            _1Month = 3
+            _30D = 3
         }
 
         /// <summary>
@@ -455,14 +455,14 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public static TimeFrameEnum TimeFrameEnumFromString(string value)
         {
-            if (value.Equals("1_day"))
-                return TimeFrameEnum._1Day;
+            if (value.Equals("1D"))
+                return TimeFrameEnum._1D;
 
-            if (value.Equals("1_week"))
-                return TimeFrameEnum._1Week;
+            if (value.Equals("7D"))
+                return TimeFrameEnum._7D;
 
-            if (value.Equals("1_month"))
-                return TimeFrameEnum._1Month;
+            if (value.Equals("30D"))
+                return TimeFrameEnum._30D;
 
             throw new NotImplementedException($"Could not convert value to type TimeFrameEnum: '{value}'");
         }
@@ -474,14 +474,14 @@ namespace TalonOneSdk.Model
         /// <returns></returns>
         public static TimeFrameEnum? TimeFrameEnumFromStringOrDefault(string value)
         {
-            if (value.Equals("1_day"))
-                return TimeFrameEnum._1Day;
+            if (value.Equals("1D"))
+                return TimeFrameEnum._1D;
 
-            if (value.Equals("1_week"))
-                return TimeFrameEnum._1Week;
+            if (value.Equals("7D"))
+                return TimeFrameEnum._7D;
 
-            if (value.Equals("1_month"))
-                return TimeFrameEnum._1Month;
+            if (value.Equals("30D"))
+                return TimeFrameEnum._30D;
 
             return null;
         }
@@ -494,14 +494,14 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public static string TimeFrameEnumToJsonValue(TimeFrameEnum value)
         {
-            if (value == TimeFrameEnum._1Day)
-                return "1_day";
+            if (value == TimeFrameEnum._1D)
+                return "1D";
 
-            if (value == TimeFrameEnum._1Week)
-                return "1_week";
+            if (value == TimeFrameEnum._7D)
+                return "7D";
 
-            if (value == TimeFrameEnum._1Month)
-                return "1_month";
+            if (value == TimeFrameEnum._30D)
+                return "30D";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
@@ -510,7 +510,7 @@ namespace TalonOneSdk.Model
         /// The rolling time window of the risk evaluation.
         /// </summary>
         /// <value>The rolling time window of the risk evaluation.</value>
-        /* <example>1_week</example> */
+        /* <example>7D</example> */
         [JsonPropertyName("timeFrame")]
         public TimeFrameEnum TimeFrame { get; set; }
 
@@ -539,12 +539,12 @@ namespace TalonOneSdk.Model
         public long NotificationId { get; set; }
 
         /// <summary>
-        /// The date of the ML pipeline run that detected this risk.
+        /// The date of the activity data in which this risk was detected. The anomaly detection pipeline scores complete 24-hour cycles, so this is always the day before the risk was reported, not the reporting date itself. 
         /// </summary>
-        /// <value>The date of the ML pipeline run that detected this risk.</value>
+        /// <value>The date of the activity data in which this risk was detected. The anomaly detection pipeline scores complete 24-hour cycles, so this is always the day before the risk was reported, not the reporting date itself. </value>
         /* <example>2026-06-05</example> */
-        [JsonPropertyName("runDate")]
-        public DateTime RunDate { get; set; }
+        [JsonPropertyName("featureDate")]
+        public DateTime FeatureDate { get; set; }
 
         /// <summary>
         /// The Application group this risk was detected in. Contains the Application ID, or &#x60;__GLOBAL__&#x60; for metrics that are not grouped by Application. 
@@ -619,7 +619,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  NotificationId: ").Append(NotificationId).Append("\n");
-            sb.Append("  RunDate: ").Append(RunDate).Append("\n");
+            sb.Append("  FeatureDate: ").Append(FeatureDate).Append("\n");
             sb.Append("  GroupKey: ").Append(GroupKey).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Criticality: ").Append(Criticality).Append("\n");
@@ -657,9 +657,9 @@ namespace TalonOneSdk.Model
         public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
-        /// The format to use to serialize RunDate
+        /// The format to use to serialize FeatureDate
         /// </summary>
-        public static string RunDateFormat { get; set; } = "yyyy'-'MM'-'dd";
+        public static string FeatureDateFormat { get; set; } = "yyyy'-'MM'-'dd";
 
         /// <summary>
         /// The format to use to serialize ReportedDate
@@ -691,7 +691,7 @@ namespace TalonOneSdk.Model
             Option<long?> id = default;
             Option<DateTime?> created = default;
             Option<long?> notificationId = default;
-            Option<DateTime?> runDate = default;
+            Option<DateTime?> featureDate = default;
             Option<string> groupKey = default;
             Option<Risk.StatusEnum?> status = default;
             Option<Risk.CriticalityEnum?> criticality = default;
@@ -728,8 +728,8 @@ namespace TalonOneSdk.Model
                         case "notificationId":
                             notificationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
-                        case "runDate":
-                            runDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                        case "featureDate":
+                            featureDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "groupKey":
                             groupKey = new Option<string>(utf8JsonReader.GetString());
@@ -789,8 +789,8 @@ namespace TalonOneSdk.Model
             if (!notificationId.IsSet)
                 throw new ArgumentException("Property is required for class Risk.", nameof(notificationId));
 
-            if (!runDate.IsSet)
-                throw new ArgumentException("Property is required for class Risk.", nameof(runDate));
+            if (!featureDate.IsSet)
+                throw new ArgumentException("Property is required for class Risk.", nameof(featureDate));
 
             if (!groupKey.IsSet)
                 throw new ArgumentException("Property is required for class Risk.", nameof(groupKey));
@@ -828,8 +828,8 @@ namespace TalonOneSdk.Model
             if (notificationId.IsSet && notificationId.Value == null)
                 throw new ArgumentNullException(nameof(notificationId), "Property is not nullable for class Risk.");
 
-            if (runDate.IsSet && runDate.Value == null)
-                throw new ArgumentNullException(nameof(runDate), "Property is not nullable for class Risk.");
+            if (featureDate.IsSet && featureDate.Value == null)
+                throw new ArgumentNullException(nameof(featureDate), "Property is not nullable for class Risk.");
 
             if (groupKey.IsSet && groupKey.Value == null)
                 throw new ArgumentNullException(nameof(groupKey), "Property is not nullable for class Risk.");
@@ -858,7 +858,7 @@ namespace TalonOneSdk.Model
             if (modified.IsSet && modified.Value == null)
                 throw new ArgumentNullException(nameof(modified), "Property is not nullable for class Risk.");
 
-            return new Risk(id.Value.Value, created.Value.Value, notificationId.Value.Value, runDate.Value.Value, groupKey.Value, status.Value.Value, criticality.Value.Value, entity.Value.Value, activity.Value.Value, timeFrame.Value.Value, reportedDate.Value.Value, affectedEntityCount.Value.Value, modified.Value.Value, applicationId, description);
+            return new Risk(id.Value.Value, created.Value.Value, notificationId.Value.Value, featureDate.Value.Value, groupKey.Value, status.Value.Value, criticality.Value.Value, entity.Value.Value, activity.Value.Value, timeFrame.Value.Value, reportedDate.Value.Value, affectedEntityCount.Value.Value, modified.Value.Value, applicationId, description);
         }
 
         /// <summary>
@@ -894,7 +894,7 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("notificationId", risk.NotificationId);
 
-            writer.WriteString("runDate", risk.RunDate.ToString(RunDateFormat));
+            writer.WriteString("featureDate", risk.FeatureDate.ToString(FeatureDateFormat));
 
             writer.WriteString("groupKey", risk.GroupKey);
 

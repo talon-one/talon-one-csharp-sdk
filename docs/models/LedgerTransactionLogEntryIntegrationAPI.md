@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **Amount** | **decimal** | Amount of loyalty points added or deducted in the transaction. | 
 **Id** | **long** | ID of the loyalty ledger transaction. | 
 **CustomerSessionId** | **string** | ID of the customer session where the transaction occurred. | [optional] 
+**StoreIntegrationId** | **string** | The integration ID of the store where the transaction occurred. Only set for transactions created by a customer session or event that referenced a store. | [optional] 
 **RulesetId** | **long** | The ID of the ruleset containing the rule that triggered this effect. | [optional] 
 **RuleName** | **string** | The name of the rule that triggered this effect. | [optional] 
 **Flags** | [**LoyaltyLedgerEntryFlags**](LoyaltyLedgerEntryFlags.md) | The flags of the transaction, when applicable. The &#x60;createsNegativeBalance&#x60;  flag indicates whether the transaction results in a negative balance. | [optional] 

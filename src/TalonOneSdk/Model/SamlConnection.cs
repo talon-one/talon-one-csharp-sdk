@@ -42,8 +42,9 @@ namespace TalonOneSdk.Model
         /// <param name="assertionConsumerServiceURL">The location where the SAML assertion is sent with a HTTP POST.</param>
         /// <param name="signOutURL">Single Sign-Out URL.</param>
         /// <param name="metadataURL">Metadata URL.</param>
+        /// <param name="certificateExpiry">The expiry date of the X.509 certificate.</param>
         [JsonConstructor]
-        public SamlConnection(long accountId, string name, bool enabled, string issuer, string signOnURL, string audienceURI, long id, DateTime created, string assertionConsumerServiceURL, Option<string> signOutURL = default, Option<string> metadataURL = default)
+        public SamlConnection(long accountId, string name, bool enabled, string issuer, string signOnURL, string audienceURI, long id, DateTime created, string assertionConsumerServiceURL, Option<string> signOutURL = default, Option<string> metadataURL = default, Option<DateTime?> certificateExpiry = default)
         {
             AccountId = accountId;
             Name = name;
@@ -56,6 +57,7 @@ namespace TalonOneSdk.Model
             AssertionConsumerServiceURL = assertionConsumerServiceURL;
             SignOutURLOption = signOutURL;
             MetadataURLOption = metadataURL;
+            CertificateExpiryOption = certificateExpiry;
             OnCreated();
         }
 
@@ -156,6 +158,21 @@ namespace TalonOneSdk.Model
         public string MetadataURL { get { return this.MetadataURLOption.Value; } set { this.MetadataURLOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of CertificateExpiry
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTime?> CertificateExpiryOption { get; private set; }
+
+        /// <summary>
+        /// The expiry date of the X.509 certificate.
+        /// </summary>
+        /// <value>The expiry date of the X.509 certificate.</value>
+        /* <example>2021-07-20T21:59:00Z</example> */
+        [JsonPropertyName("certificateExpiry")]
+        public DateTime? CertificateExpiry { get { return this.CertificateExpiryOption.Value; } set { this.CertificateExpiryOption = new Option<DateTime?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -174,6 +191,7 @@ namespace TalonOneSdk.Model
             sb.Append("  AssertionConsumerServiceURL: ").Append(AssertionConsumerServiceURL).Append("\n");
             sb.Append("  SignOutURL: ").Append(SignOutURL).Append("\n");
             sb.Append("  MetadataURL: ").Append(MetadataURL).Append("\n");
+            sb.Append("  CertificateExpiry: ").Append(CertificateExpiry).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -218,6 +236,11 @@ namespace TalonOneSdk.Model
         public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
+        /// The format to use to serialize CertificateExpiry
+        /// </summary>
+        public static string CertificateExpiryFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+
+        /// <summary>
         /// Deserializes json to <see cref="SamlConnection" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
@@ -245,6 +268,7 @@ namespace TalonOneSdk.Model
             Option<string> assertionConsumerServiceURL = default;
             Option<string> signOutURL = default;
             Option<string> metadataURL = default;
+            Option<DateTime?> certificateExpiry = default;
 
             while (utf8JsonReader.Read())
             {
@@ -293,6 +317,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "metadataURL":
                             metadataURL = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "certificateExpiry":
+                            certificateExpiry = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -354,7 +381,7 @@ namespace TalonOneSdk.Model
             if (assertionConsumerServiceURL.IsSet && assertionConsumerServiceURL.Value == null)
                 throw new ArgumentNullException(nameof(assertionConsumerServiceURL), "Property is not nullable for class SamlConnection.");
 
-            return new SamlConnection(accountId.Value.Value, name.Value, enabled.Value.Value, issuer.Value, signOnURL.Value, audienceURI.Value, id.Value.Value, created.Value.Value, assertionConsumerServiceURL.Value, signOutURL, metadataURL);
+            return new SamlConnection(accountId.Value.Value, name.Value, enabled.Value.Value, issuer.Value, signOnURL.Value, audienceURI.Value, id.Value.Value, created.Value.Value, assertionConsumerServiceURL.Value, signOutURL, metadataURL, certificateExpiry);
         }
 
         /// <summary>
@@ -419,6 +446,9 @@ namespace TalonOneSdk.Model
 
             if (samlConnection.MetadataURLOption.IsSet)
                 writer.WriteString("metadataURL", samlConnection.MetadataURL);
+
+            if (samlConnection.CertificateExpiryOption.IsSet)
+                writer.WriteString("certificateExpiry", samlConnection.CertificateExpiryOption.Value.Value.ToString(CertificateExpiryFormat));
         }
     }
 }

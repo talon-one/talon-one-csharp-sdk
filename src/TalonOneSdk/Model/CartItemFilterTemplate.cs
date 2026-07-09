@@ -55,7 +55,7 @@ namespace TalonOneSdk.Model
         /// The Talang expression for the cart item filter.
         /// </summary>
         /// <value>The Talang expression for the cart item filter.</value>
-        /* <example>[filter, [., Session, CartItems], [[Item], [catch, false, [&#x3D;, [., Item, Category], Kitchen]]]]</example> */
+        /* <example>[filter, [., Session, CartItems], [[Item], [catch, false, [contains, [., Item, Category], Kitchen]]]]</example> */
         [JsonPropertyName("expression")]
         public List<Object> Expression { get; set; }
 
