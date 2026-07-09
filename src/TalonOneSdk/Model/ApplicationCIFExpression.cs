@@ -116,7 +116,7 @@ namespace TalonOneSdk.Model
         /// Arbitrary additional JSON data associated with the Application cart item filter.
         /// </summary>
         /// <value>Arbitrary additional JSON data associated with the Application cart item filter.</value>
-        /* <example>{expr&#x3D;[filter, [., Session, CartItems], [[Item], [catch, false, [&#x3D;, [., Item, Category], Kitchen]]]]}</example> */
+        /* <example>{expr&#x3D;[filter, [., Session, CartItems], [[Item], [catch, false, [contains, [., Item, Category], Kitchen]]]]}</example> */
         [JsonPropertyName("expression")]
         public List<Object> Expression { get { return this.ExpressionOption.Value; } set { this.ExpressionOption = new Option<List<Object>>(value); } }
 

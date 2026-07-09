@@ -32,13 +32,13 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Binding" /> class.
         /// </summary>
         /// <param name="name">A descriptive name for the value to be bound.</param>
-        /// <param name="expression">A Talang expression that will be evaluated and its result attached to the name of the binding.</param>
+        /// <param name="expression">A Talang expression that is evaluated, and its result is bound to the name of the binding. The first element must be one of the functions or operators supported by Talang, followed by its arguments. The arguments can be strings, numbers, or nested expressions. For example: - &#x60;[\&quot;list\&quot;, \&quot;10014\&quot;, \&quot;10015\&quot;]&#x60; calls the &#x60;list&#x60; function to build a list of strings. - &#x60;[\&quot;+\&quot;, 2, 0]&#x60; uses the &#x60;+&#x60; operator to add two numbers. </param>
         /// <param name="type">The kind of binding. Possible values are: - &#x60;bundle&#x60; - &#x60;cartItemFilter&#x60; - &#x60;subledgerBalance&#x60; - &#x60;templateParameter&#x60; </param>
-        /// <param name="valueType">Can be one of the following: - &#x60;string&#x60; - &#x60;number&#x60; - &#x60;boolean&#x60; </param>
+        /// <param name="valueType">The data type of the value. One of the following: - &#x60;string&#x60; - &#x60;number&#x60; - &#x60;boolean&#x60; </param>
         /// <param name="minValue">The minimum value allowed for this placeholder.</param>
         /// <param name="maxValue">The maximum value allowed for this placeholder.</param>
-        /// <param name="attributeId">Id of the attribute attached to the placeholder.</param>
-        /// <param name="description">Describes the placeholder field and value in the template. This description can be used when creating campaigns from this template.</param>
+        /// <param name="attributeId">Identifier of the attribute attached to the placeholder.</param>
+        /// <param name="description">Description of the placeholder field and its value in the template. This text can be shown when creating campaigns from this template.</param>
         [JsonConstructor]
         public Binding(string name, List<Object> expression, Option<string> type = default, Option<string> valueType = default, Option<decimal?> minValue = default, Option<decimal?> maxValue = default, Option<long?> attributeId = default, Option<string> description = default)
         {
@@ -59,15 +59,15 @@ namespace TalonOneSdk.Model
         /// A descriptive name for the value to be bound.
         /// </summary>
         /// <value>A descriptive name for the value to be bound.</value>
-        /* <example>my property</example> */
+        /* <example>Discount percentage</example> */
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// A Talang expression that will be evaluated and its result attached to the name of the binding.
+        /// A Talang expression that is evaluated, and its result is bound to the name of the binding. The first element must be one of the functions or operators supported by Talang, followed by its arguments. The arguments can be strings, numbers, or nested expressions. For example: - &#x60;[\&quot;list\&quot;, \&quot;10014\&quot;, \&quot;10015\&quot;]&#x60; calls the &#x60;list&#x60; function to build a list of strings. - &#x60;[\&quot;+\&quot;, 2, 0]&#x60; uses the &#x60;+&#x60; operator to add two numbers. 
         /// </summary>
-        /// <value>A Talang expression that will be evaluated and its result attached to the name of the binding.</value>
-        /* <example>[string1, string2]</example> */
+        /// <value>A Talang expression that is evaluated, and its result is bound to the name of the binding. The first element must be one of the functions or operators supported by Talang, followed by its arguments. The arguments can be strings, numbers, or nested expressions. For example: - &#x60;[\&quot;list\&quot;, \&quot;10014\&quot;, \&quot;10015\&quot;]&#x60; calls the &#x60;list&#x60; function to build a list of strings. - &#x60;[\&quot;+\&quot;, 2, 0]&#x60; uses the &#x60;+&#x60; operator to add two numbers. </value>
+        /* <example>[identity, 10]</example> */
         [JsonPropertyName("expression")]
         public List<Object> Expression { get; set; }
 
@@ -94,10 +94,10 @@ namespace TalonOneSdk.Model
         public Option<string> ValueTypeOption { get; private set; }
 
         /// <summary>
-        /// Can be one of the following: - &#x60;string&#x60; - &#x60;number&#x60; - &#x60;boolean&#x60; 
+        /// The data type of the value. One of the following: - &#x60;string&#x60; - &#x60;number&#x60; - &#x60;boolean&#x60; 
         /// </summary>
-        /// <value>Can be one of the following: - &#x60;string&#x60; - &#x60;number&#x60; - &#x60;boolean&#x60; </value>
-        /* <example>string</example> */
+        /// <value>The data type of the value. One of the following: - &#x60;string&#x60; - &#x60;number&#x60; - &#x60;boolean&#x60; </value>
+        /* <example>number</example> */
         [JsonPropertyName("valueType")]
         public string ValueType { get { return this.ValueTypeOption.Value; } set { this.ValueTypeOption = new Option<string>(value); } }
 
@@ -139,9 +139,9 @@ namespace TalonOneSdk.Model
         public Option<long?> AttributeIdOption { get; private set; }
 
         /// <summary>
-        /// Id of the attribute attached to the placeholder.
+        /// Identifier of the attribute attached to the placeholder.
         /// </summary>
-        /// <value>Id of the attribute attached to the placeholder.</value>
+        /// <value>Identifier of the attribute attached to the placeholder.</value>
         /* <example>100</example> */
         [JsonPropertyName("attributeId")]
         public long? AttributeId { get { return this.AttributeIdOption.Value; } set { this.AttributeIdOption = new Option<long?>(value); } }
@@ -154,10 +154,10 @@ namespace TalonOneSdk.Model
         public Option<string> DescriptionOption { get; private set; }
 
         /// <summary>
-        /// Describes the placeholder field and value in the template. This description can be used when creating campaigns from this template.
+        /// Description of the placeholder field and its value in the template. This text can be shown when creating campaigns from this template.
         /// </summary>
-        /// <value>Describes the placeholder field and value in the template. This description can be used when creating campaigns from this template.</value>
-        /* <example>This is a template parameter of type &#x60;number&#x60;.</example> */
+        /// <value>Description of the placeholder field and its value in the template. This text can be shown when creating campaigns from this template.</value>
+        /* <example>The percentage discount applied to the cart total.</example> */
         [JsonPropertyName("description")]
         public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 

@@ -162,21 +162,21 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Modified'
-        /// </summary>
-        [Fact]
-        public void ModifiedTest()
-        {
-            // TODO unit test for the property 'Modified'
-        }
-
-        /// <summary>
         /// Test the property 'PointsRequired'
         /// </summary>
         [Fact]
         public void PointsRequiredTest()
         {
             // TODO unit test for the property 'PointsRequired'
+        }
+
+        /// <summary>
+        /// Test the property 'Modified'
+        /// </summary>
+        [Fact]
+        public void ModifiedTest()
+        {
+            // TODO unit test for the property 'Modified'
         }
     }
 }

@@ -35,13 +35,17 @@ namespace TalonOneSdk.Model
         /// <param name="workerCount">Number of IntegrationHub workers to run in parallel for this flow (maximum 500). (default to 10)</param>
         /// <param name="maxEventsPerMessage">Maximum number of events to send in a single message to IntegrationHub. (default to 1000)</param>
         /// <param name="maxRetries">Maximum number of retries for a IntegrationHub event before it is ignored. (default to 10)</param>
+        /// <param name="instanceName">Name of the Prismatic instance that registered this flow.</param>
+        /// <param name="integrationName">Name of the Prismatic integration that registered this flow.</param>
         [JsonConstructor]
-        public IntegrationHubFlowConfig(string apiKey, Option<long?> workerCount = default, Option<long?> maxEventsPerMessage = default, Option<long?> maxRetries = default)
+        public IntegrationHubFlowConfig(string apiKey, Option<long?> workerCount = default, Option<long?> maxEventsPerMessage = default, Option<long?> maxRetries = default, Option<string> instanceName = default, Option<string> integrationName = default)
         {
             ApiKey = apiKey;
             WorkerCountOption = workerCount;
             MaxEventsPerMessageOption = maxEventsPerMessage;
             MaxRetriesOption = maxRetries;
+            InstanceNameOption = instanceName;
+            IntegrationNameOption = integrationName;
             OnCreated();
         }
 
@@ -96,6 +100,34 @@ namespace TalonOneSdk.Model
         public long? MaxRetries { get { return this.MaxRetriesOption.Value; } set { this.MaxRetriesOption = new Option<long?>(value); } }
 
         /// <summary>
+        /// Used to track the state of InstanceName
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> InstanceNameOption { get; private set; }
+
+        /// <summary>
+        /// Name of the Prismatic instance that registered this flow.
+        /// </summary>
+        /// <value>Name of the Prismatic instance that registered this flow.</value>
+        [JsonPropertyName("InstanceName")]
+        public string InstanceName { get { return this.InstanceNameOption.Value; } set { this.InstanceNameOption = new Option<string>(value); } }
+
+        /// <summary>
+        /// Used to track the state of IntegrationName
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IntegrationNameOption { get; private set; }
+
+        /// <summary>
+        /// Name of the Prismatic integration that registered this flow.
+        /// </summary>
+        /// <value>Name of the Prismatic integration that registered this flow.</value>
+        [JsonPropertyName("IntegrationName")]
+        public string IntegrationName { get { return this.IntegrationNameOption.Value; } set { this.IntegrationNameOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -107,6 +139,8 @@ namespace TalonOneSdk.Model
             sb.Append("  WorkerCount: ").Append(WorkerCount).Append("\n");
             sb.Append("  MaxEventsPerMessage: ").Append(MaxEventsPerMessage).Append("\n");
             sb.Append("  MaxRetries: ").Append(MaxRetries).Append("\n");
+            sb.Append("  InstanceName: ").Append(InstanceName).Append("\n");
+            sb.Append("  IntegrationName: ").Append(IntegrationName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -172,6 +206,8 @@ namespace TalonOneSdk.Model
             Option<long?> workerCount = default;
             Option<long?> maxEventsPerMessage = default;
             Option<long?> maxRetries = default;
+            Option<string> instanceName = default;
+            Option<string> integrationName = default;
 
             while (utf8JsonReader.Read())
             {
@@ -200,6 +236,12 @@ namespace TalonOneSdk.Model
                         case "MaxRetries":
                             maxRetries = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
+                        case "InstanceName":
+                            instanceName = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "IntegrationName":
+                            integrationName = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
@@ -212,7 +254,7 @@ namespace TalonOneSdk.Model
             if (apiKey.IsSet && apiKey.Value == null)
                 throw new ArgumentNullException(nameof(apiKey), "Property is not nullable for class IntegrationHubFlowConfig.");
 
-            return new IntegrationHubFlowConfig(apiKey.Value, workerCount, maxEventsPerMessage, maxRetries);
+            return new IntegrationHubFlowConfig(apiKey.Value, workerCount, maxEventsPerMessage, maxRetries, instanceName, integrationName);
         }
 
         /// <summary>
@@ -252,6 +294,12 @@ namespace TalonOneSdk.Model
 
             if (integrationHubFlowConfig.MaxRetriesOption.IsSet)
                 writer.WriteNumber("MaxRetries", integrationHubFlowConfig.MaxRetriesOption.Value.Value);
+
+            if (integrationHubFlowConfig.InstanceNameOption.IsSet)
+                writer.WriteString("InstanceName", integrationHubFlowConfig.InstanceName);
+
+            if (integrationHubFlowConfig.IntegrationNameOption.IsSet)
+                writer.WriteString("IntegrationName", integrationHubFlowConfig.IntegrationName);
         }
     }
 }

@@ -93,7 +93,10 @@ docs/models/AudienceCustomer.md
 docs/models/AudienceIntegrationID.md
 docs/models/AudienceMembership.md
 docs/models/AudienceReference.md
+docs/models/AwardGiveawayBlock.md
+docs/models/AwardGiveawayBlock1GiveawayPool.md
 docs/models/AwardGiveawayEffectProps.md
+docs/models/AwardItemBlock.md
 docs/models/BaseBlock.md
 docs/models/BaseCampaign.md
 docs/models/BaseLoyaltyProgram.md
@@ -105,7 +108,9 @@ docs/models/BaseSamlConnection.md
 docs/models/BestPriorPrice.md
 docs/models/BestPriorPriceMetadata.md
 docs/models/BestPriorPriceRequest.md
+docs/models/BestPriorPriceSettings.md
 docs/models/BestPriorTarget.md
+docs/models/BetweenCheckAttributeBlock.md
 docs/models/Binding.md
 docs/models/Blueprint.md
 docs/models/BulkApplicationNotification.md
@@ -180,6 +185,11 @@ docs/models/CatalogsStrikethroughNotificationPolicy.md
 docs/models/Change.md
 docs/models/ChangeLoyaltyTierLevelEffectProps.md
 docs/models/ChangeProfilePassword.md
+docs/models/CheckAttributeBlock.md
+docs/models/CheckAudienceBlock.md
+docs/models/CheckAudienceBlock1Audience.md
+docs/models/CheckCouponBlock.md
+docs/models/CheckReferralBlock.md
 docs/models/CodeGeneratorSettings.md
 docs/models/Collection.md
 docs/models/CollectionItem.md
@@ -312,6 +322,7 @@ docs/models/GetApplicationCustomersByAttributes200Response.md
 docs/models/GetApplicationEventTypes200Response.md
 docs/models/GetApplicationEventsWithoutTotalCount200Response.md
 docs/models/GetApplicationSessions200Response.md
+docs/models/GetApplicationSessionsByCustomerAttributes200Response.md
 docs/models/GetApplications200Response.md
 docs/models/GetAttributes200Response.md
 docs/models/GetAudienceMemberships200Response.md
@@ -414,8 +425,10 @@ docs/models/ListCampaignStoreBudgetLimits200Response.md
 docs/models/ListCampaignStoreBudgets.md
 docs/models/ListCampaignStoreBudgetsStore.md
 docs/models/ListCatalogItems200Response.md
+docs/models/ListCheckAttributeBlock.md
 docs/models/ListExperiments200Response.md
 docs/models/ListStores200Response.md
+docs/models/ListWithCountCheckAttributeBlock.md
 docs/models/LoginParams.md
 docs/models/Loyalty.md
 docs/models/LoyaltyBalance.md
@@ -572,6 +585,7 @@ docs/models/ProductUnitAnalyticsTotals.md
 docs/models/ProfileAudiencesChanges.md
 docs/models/ProjectedTier.md
 docs/models/PromoteExperiment.md
+docs/models/PromotionCheckAttributeBlock.md
 docs/models/PromotionGroupBlock.md
 docs/models/PromotionRuleV2.md
 docs/models/RedeemReferralEffectProps.md
@@ -631,6 +645,7 @@ docs/models/SamlConnection.md
 docs/models/SamlConnectionInternal.md
 docs/models/SamlConnectionMetadata.md
 docs/models/SamlLoginEndpoint.md
+docs/models/ScalarCheckAttributeBlock.md
 docs/models/ScimBaseGroup.md
 docs/models/ScimBaseUser.md
 docs/models/ScimBaseUserName.md
@@ -658,12 +673,14 @@ docs/models/SetDiscountPerAdditionalCostPerItemEffectProps.md
 docs/models/SetDiscountPerItemEffectProps.md
 docs/models/SetLoyaltyPointsExpiryDateEffectProps.md
 docs/models/ShowBundleMetadataEffectProps.md
+docs/models/ShowNotificationBlock.md
 docs/models/ShowNotificationEffectProps.md
 docs/models/SkuUnitAnalytics.md
 docs/models/SkuUnitAnalyticsDataPoint.md
 docs/models/SlotDef.md
 docs/models/Store.md
 docs/models/StrikethroughChangedItem.md
+docs/models/StrikethroughCheckAttributeBlock.md
 docs/models/StrikethroughCustomEffectPerItemProps.md
 docs/models/StrikethroughDebugResponse.md
 docs/models/StrikethroughEffect.md
@@ -697,6 +714,7 @@ docs/models/TimePoint.md
 docs/models/TransferLoyaltyCard.md
 docs/models/TriggerWebhookEffectProps.md
 docs/models/TwoFAConfig.md
+docs/models/UnaryCheckAttributeBlock.md
 docs/models/UpdateAccount.md
 docs/models/UpdateAchievement.md
 docs/models/UpdateAchievementV2.md
@@ -830,7 +848,10 @@ src/TalonOneSdk.Test/Model/AudienceIntegrationIDTests.cs
 src/TalonOneSdk.Test/Model/AudienceMembershipTests.cs
 src/TalonOneSdk.Test/Model/AudienceReferenceTests.cs
 src/TalonOneSdk.Test/Model/AudienceTests.cs
+src/TalonOneSdk.Test/Model/AwardGiveawayBlock1GiveawayPoolTests.cs
+src/TalonOneSdk.Test/Model/AwardGiveawayBlockTests.cs
 src/TalonOneSdk.Test/Model/AwardGiveawayEffectPropsTests.cs
+src/TalonOneSdk.Test/Model/AwardItemBlockTests.cs
 src/TalonOneSdk.Test/Model/BaseBlockTests.cs
 src/TalonOneSdk.Test/Model/BaseCampaignTests.cs
 src/TalonOneSdk.Test/Model/BaseLoyaltyProgramTests.cs
@@ -841,8 +862,10 @@ src/TalonOneSdk.Test/Model/BaseNotificationsTests.cs
 src/TalonOneSdk.Test/Model/BaseSamlConnectionTests.cs
 src/TalonOneSdk.Test/Model/BestPriorPriceMetadataTests.cs
 src/TalonOneSdk.Test/Model/BestPriorPriceRequestTests.cs
+src/TalonOneSdk.Test/Model/BestPriorPriceSettingsTests.cs
 src/TalonOneSdk.Test/Model/BestPriorPriceTests.cs
 src/TalonOneSdk.Test/Model/BestPriorTargetTests.cs
+src/TalonOneSdk.Test/Model/BetweenCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/BindingTests.cs
 src/TalonOneSdk.Test/Model/BlueprintTests.cs
 src/TalonOneSdk.Test/Model/BulkApplicationNotificationTests.cs
@@ -917,6 +940,11 @@ src/TalonOneSdk.Test/Model/CatalogsStrikethroughNotificationPolicyTests.cs
 src/TalonOneSdk.Test/Model/ChangeLoyaltyTierLevelEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/ChangeProfilePasswordTests.cs
 src/TalonOneSdk.Test/Model/ChangeTests.cs
+src/TalonOneSdk.Test/Model/CheckAttributeBlockTests.cs
+src/TalonOneSdk.Test/Model/CheckAudienceBlock1AudienceTests.cs
+src/TalonOneSdk.Test/Model/CheckAudienceBlockTests.cs
+src/TalonOneSdk.Test/Model/CheckCouponBlockTests.cs
+src/TalonOneSdk.Test/Model/CheckReferralBlockTests.cs
 src/TalonOneSdk.Test/Model/CodeGeneratorSettingsTests.cs
 src/TalonOneSdk.Test/Model/CollectionItemTests.cs
 src/TalonOneSdk.Test/Model/CollectionTests.cs
@@ -1049,6 +1077,7 @@ src/TalonOneSdk.Test/Model/GetApplicationCustomersByAttributes200ResponseTests.c
 src/TalonOneSdk.Test/Model/GetApplicationEventTypes200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetApplicationEventsWithoutTotalCount200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetApplicationSessions200ResponseTests.cs
+src/TalonOneSdk.Test/Model/GetApplicationSessionsByCustomerAttributes200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetApplications200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetAttributes200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetAudienceMemberships200ResponseTests.cs
@@ -1151,8 +1180,10 @@ src/TalonOneSdk.Test/Model/ListCampaignStoreBudgetLimits200ResponseTests.cs
 src/TalonOneSdk.Test/Model/ListCampaignStoreBudgetsStoreTests.cs
 src/TalonOneSdk.Test/Model/ListCampaignStoreBudgetsTests.cs
 src/TalonOneSdk.Test/Model/ListCatalogItems200ResponseTests.cs
+src/TalonOneSdk.Test/Model/ListCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/ListExperiments200ResponseTests.cs
 src/TalonOneSdk.Test/Model/ListStores200ResponseTests.cs
+src/TalonOneSdk.Test/Model/ListWithCountCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/LoginParamsTests.cs
 src/TalonOneSdk.Test/Model/LoyaltyBalanceTests.cs
 src/TalonOneSdk.Test/Model/LoyaltyBalanceWithTierTests.cs
@@ -1309,6 +1340,7 @@ src/TalonOneSdk.Test/Model/ProductUnitAnalyticsTotalsTests.cs
 src/TalonOneSdk.Test/Model/ProfileAudiencesChangesTests.cs
 src/TalonOneSdk.Test/Model/ProjectedTierTests.cs
 src/TalonOneSdk.Test/Model/PromoteExperimentTests.cs
+src/TalonOneSdk.Test/Model/PromotionCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/PromotionGroupBlockTests.cs
 src/TalonOneSdk.Test/Model/PromotionRuleV2Tests.cs
 src/TalonOneSdk.Test/Model/RedeemReferralEffectPropsTests.cs
@@ -1368,6 +1400,7 @@ src/TalonOneSdk.Test/Model/SamlConnectionInternalTests.cs
 src/TalonOneSdk.Test/Model/SamlConnectionMetadataTests.cs
 src/TalonOneSdk.Test/Model/SamlConnectionTests.cs
 src/TalonOneSdk.Test/Model/SamlLoginEndpointTests.cs
+src/TalonOneSdk.Test/Model/ScalarCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/ScimBaseGroupTests.cs
 src/TalonOneSdk.Test/Model/ScimBaseUserNameTests.cs
 src/TalonOneSdk.Test/Model/ScimBaseUserTests.cs
@@ -1395,12 +1428,14 @@ src/TalonOneSdk.Test/Model/SetDiscountPerAdditionalCostPerItemEffectPropsTests.c
 src/TalonOneSdk.Test/Model/SetDiscountPerItemEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/SetLoyaltyPointsExpiryDateEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/ShowBundleMetadataEffectPropsTests.cs
+src/TalonOneSdk.Test/Model/ShowNotificationBlockTests.cs
 src/TalonOneSdk.Test/Model/ShowNotificationEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/SkuUnitAnalyticsDataPointTests.cs
 src/TalonOneSdk.Test/Model/SkuUnitAnalyticsTests.cs
 src/TalonOneSdk.Test/Model/SlotDefTests.cs
 src/TalonOneSdk.Test/Model/StoreTests.cs
 src/TalonOneSdk.Test/Model/StrikethroughChangedItemTests.cs
+src/TalonOneSdk.Test/Model/StrikethroughCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/StrikethroughCustomEffectPerItemPropsTests.cs
 src/TalonOneSdk.Test/Model/StrikethroughDebugResponseTests.cs
 src/TalonOneSdk.Test/Model/StrikethroughEffectTests.cs
@@ -1434,6 +1469,7 @@ src/TalonOneSdk.Test/Model/TimePointTests.cs
 src/TalonOneSdk.Test/Model/TransferLoyaltyCardTests.cs
 src/TalonOneSdk.Test/Model/TriggerWebhookEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/TwoFAConfigTests.cs
+src/TalonOneSdk.Test/Model/UnaryCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/UpdateAccountTests.cs
 src/TalonOneSdk.Test/Model/UpdateAchievementTests.cs
 src/TalonOneSdk.Test/Model/UpdateAchievementV2Tests.cs
@@ -1587,7 +1623,10 @@ src/TalonOneSdk/Model/AudienceCustomer.cs
 src/TalonOneSdk/Model/AudienceIntegrationID.cs
 src/TalonOneSdk/Model/AudienceMembership.cs
 src/TalonOneSdk/Model/AudienceReference.cs
+src/TalonOneSdk/Model/AwardGiveawayBlock.cs
+src/TalonOneSdk/Model/AwardGiveawayBlock1GiveawayPool.cs
 src/TalonOneSdk/Model/AwardGiveawayEffectProps.cs
+src/TalonOneSdk/Model/AwardItemBlock.cs
 src/TalonOneSdk/Model/BaseBlock.cs
 src/TalonOneSdk/Model/BaseCampaign.cs
 src/TalonOneSdk/Model/BaseLoyaltyProgram.cs
@@ -1599,7 +1638,9 @@ src/TalonOneSdk/Model/BaseSamlConnection.cs
 src/TalonOneSdk/Model/BestPriorPrice.cs
 src/TalonOneSdk/Model/BestPriorPriceMetadata.cs
 src/TalonOneSdk/Model/BestPriorPriceRequest.cs
+src/TalonOneSdk/Model/BestPriorPriceSettings.cs
 src/TalonOneSdk/Model/BestPriorTarget.cs
+src/TalonOneSdk/Model/BetweenCheckAttributeBlock.cs
 src/TalonOneSdk/Model/Binding.cs
 src/TalonOneSdk/Model/Blueprint.cs
 src/TalonOneSdk/Model/BulkApplicationNotification.cs
@@ -1674,6 +1715,11 @@ src/TalonOneSdk/Model/CatalogsStrikethroughNotificationPolicy.cs
 src/TalonOneSdk/Model/Change.cs
 src/TalonOneSdk/Model/ChangeLoyaltyTierLevelEffectProps.cs
 src/TalonOneSdk/Model/ChangeProfilePassword.cs
+src/TalonOneSdk/Model/CheckAttributeBlock.cs
+src/TalonOneSdk/Model/CheckAudienceBlock.cs
+src/TalonOneSdk/Model/CheckAudienceBlock1Audience.cs
+src/TalonOneSdk/Model/CheckCouponBlock.cs
+src/TalonOneSdk/Model/CheckReferralBlock.cs
 src/TalonOneSdk/Model/CodeGeneratorSettings.cs
 src/TalonOneSdk/Model/Collection.cs
 src/TalonOneSdk/Model/CollectionItem.cs
@@ -1806,6 +1852,7 @@ src/TalonOneSdk/Model/GetApplicationCustomersByAttributes200Response.cs
 src/TalonOneSdk/Model/GetApplicationEventTypes200Response.cs
 src/TalonOneSdk/Model/GetApplicationEventsWithoutTotalCount200Response.cs
 src/TalonOneSdk/Model/GetApplicationSessions200Response.cs
+src/TalonOneSdk/Model/GetApplicationSessionsByCustomerAttributes200Response.cs
 src/TalonOneSdk/Model/GetApplications200Response.cs
 src/TalonOneSdk/Model/GetAttributes200Response.cs
 src/TalonOneSdk/Model/GetAudienceMemberships200Response.cs
@@ -1908,8 +1955,10 @@ src/TalonOneSdk/Model/ListCampaignStoreBudgetLimits200Response.cs
 src/TalonOneSdk/Model/ListCampaignStoreBudgets.cs
 src/TalonOneSdk/Model/ListCampaignStoreBudgetsStore.cs
 src/TalonOneSdk/Model/ListCatalogItems200Response.cs
+src/TalonOneSdk/Model/ListCheckAttributeBlock.cs
 src/TalonOneSdk/Model/ListExperiments200Response.cs
 src/TalonOneSdk/Model/ListStores200Response.cs
+src/TalonOneSdk/Model/ListWithCountCheckAttributeBlock.cs
 src/TalonOneSdk/Model/LoginParams.cs
 src/TalonOneSdk/Model/Loyalty.cs
 src/TalonOneSdk/Model/LoyaltyBalance.cs
@@ -2066,6 +2115,7 @@ src/TalonOneSdk/Model/ProductUnitAnalyticsTotals.cs
 src/TalonOneSdk/Model/ProfileAudiencesChanges.cs
 src/TalonOneSdk/Model/ProjectedTier.cs
 src/TalonOneSdk/Model/PromoteExperiment.cs
+src/TalonOneSdk/Model/PromotionCheckAttributeBlock.cs
 src/TalonOneSdk/Model/PromotionGroupBlock.cs
 src/TalonOneSdk/Model/PromotionRuleV2.cs
 src/TalonOneSdk/Model/RedeemReferralEffectProps.cs
@@ -2125,6 +2175,7 @@ src/TalonOneSdk/Model/SamlConnection.cs
 src/TalonOneSdk/Model/SamlConnectionInternal.cs
 src/TalonOneSdk/Model/SamlConnectionMetadata.cs
 src/TalonOneSdk/Model/SamlLoginEndpoint.cs
+src/TalonOneSdk/Model/ScalarCheckAttributeBlock.cs
 src/TalonOneSdk/Model/ScimBaseGroup.cs
 src/TalonOneSdk/Model/ScimBaseUser.cs
 src/TalonOneSdk/Model/ScimBaseUserName.cs
@@ -2152,12 +2203,14 @@ src/TalonOneSdk/Model/SetDiscountPerAdditionalCostPerItemEffectProps.cs
 src/TalonOneSdk/Model/SetDiscountPerItemEffectProps.cs
 src/TalonOneSdk/Model/SetLoyaltyPointsExpiryDateEffectProps.cs
 src/TalonOneSdk/Model/ShowBundleMetadataEffectProps.cs
+src/TalonOneSdk/Model/ShowNotificationBlock.cs
 src/TalonOneSdk/Model/ShowNotificationEffectProps.cs
 src/TalonOneSdk/Model/SkuUnitAnalytics.cs
 src/TalonOneSdk/Model/SkuUnitAnalyticsDataPoint.cs
 src/TalonOneSdk/Model/SlotDef.cs
 src/TalonOneSdk/Model/Store.cs
 src/TalonOneSdk/Model/StrikethroughChangedItem.cs
+src/TalonOneSdk/Model/StrikethroughCheckAttributeBlock.cs
 src/TalonOneSdk/Model/StrikethroughCustomEffectPerItemProps.cs
 src/TalonOneSdk/Model/StrikethroughDebugResponse.cs
 src/TalonOneSdk/Model/StrikethroughEffect.cs
@@ -2191,6 +2244,7 @@ src/TalonOneSdk/Model/TimePoint.cs
 src/TalonOneSdk/Model/TransferLoyaltyCard.cs
 src/TalonOneSdk/Model/TriggerWebhookEffectProps.cs
 src/TalonOneSdk/Model/TwoFAConfig.cs
+src/TalonOneSdk/Model/UnaryCheckAttributeBlock.cs
 src/TalonOneSdk/Model/UpdateAccount.cs
 src/TalonOneSdk/Model/UpdateAchievement.cs
 src/TalonOneSdk/Model/UpdateAchievementV2.cs

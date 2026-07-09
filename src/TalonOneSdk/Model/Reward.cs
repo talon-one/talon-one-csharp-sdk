@@ -42,11 +42,11 @@ namespace TalonOneSdk.Model
         /// <param name="description">A description of the reward.</param>
         /// <param name="eligibilityConditions">An optional rule that manages who can see this reward. If not specified, the reward is visible to all customers.  **Note:** Only the &#x60;condition&#x60; field is evaluated within this rule. The &#x60;effects&#x60; field must be an empty array, and &#x60;bindings&#x60; are not supported. </param>
         /// <param name="rule">Rule to apply.  **Note**: The &#x60;bindings&#x60; field inside the rule must not be used in this endpoint. All bindings should be defined at the reward level via the top-level &#x60;bindings&#x60; field. </param>
-        /// <param name="bindings">A list of named variables created before the reward&#39;s rules are evaluated.  Each binding pairs a name with a talang expression. The expression is evaluated once  and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.</param>
+        /// <param name="bindings">A list of named variables created before the reward&#39;s rules are evaluated. Each binding pairs a name with a talang expression. The expression is evaluated once and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.</param>
+        /// <param name="pointsRequired">The loyalty points required to activate the reward. Each object defines the specific loyalty program and subledger from which points are deducted when activating the reward.  **Note:** When creating a reward, the &#x60;id&#x60; of each entry is ignored and a new entry is always created. </param>
         /// <param name="modified">The timestamp when the reward was last updated in RFC3339 format.</param>
-        /// <param name="pointsRequired">The loyalty points required to activate a reward.</param>
         [JsonConstructor]
-        public Reward(long id, DateTime created, long accountId, string name, string apiName, List<long> applicationIds, bool sandbox, StatusEnum status, Option<string> description = default, Option<Rule> eligibilityConditions = default, Option<Rule> rule = default, Option<List<Binding>> bindings = default, Option<DateTime?> modified = default, Option<List<RewardPointsRequired>> pointsRequired = default)
+        public Reward(long id, DateTime created, long accountId, string name, string apiName, List<long> applicationIds, bool sandbox, StatusEnum status, Option<string> description = default, Option<Rule> eligibilityConditions = default, Option<Rule> rule = default, Option<List<Binding>> bindings = default, Option<List<RewardPointsRequired>> pointsRequired = default, Option<DateTime?> modified = default)
         {
             Id = id;
             Created = created;
@@ -60,8 +60,8 @@ namespace TalonOneSdk.Model
             EligibilityConditionsOption = eligibilityConditions;
             RuleOption = rule;
             BindingsOption = bindings;
-            ModifiedOption = modified;
             PointsRequiredOption = pointsRequired;
+            ModifiedOption = modified;
             OnCreated();
         }
 
@@ -249,12 +249,26 @@ namespace TalonOneSdk.Model
         public Option<List<Binding>> BindingsOption { get; private set; }
 
         /// <summary>
-        /// A list of named variables created before the reward&#39;s rules are evaluated.  Each binding pairs a name with a talang expression. The expression is evaluated once  and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.
+        /// A list of named variables created before the reward&#39;s rules are evaluated. Each binding pairs a name with a talang expression. The expression is evaluated once and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.
         /// </summary>
-        /// <value>A list of named variables created before the reward&#39;s rules are evaluated.  Each binding pairs a name with a talang expression. The expression is evaluated once  and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.</value>
+        /// <value>A list of named variables created before the reward&#39;s rules are evaluated. Each binding pairs a name with a talang expression. The expression is evaluated once and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.</value>
         /* <example>[]</example> */
         [JsonPropertyName("bindings")]
         public List<Binding> Bindings { get { return this.BindingsOption.Value; } set { this.BindingsOption = new Option<List<Binding>>(value); } }
+
+        /// <summary>
+        /// Used to track the state of PointsRequired
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<RewardPointsRequired>> PointsRequiredOption { get; private set; }
+
+        /// <summary>
+        /// The loyalty points required to activate the reward. Each object defines the specific loyalty program and subledger from which points are deducted when activating the reward.  **Note:** When creating a reward, the &#x60;id&#x60; of each entry is ignored and a new entry is always created. 
+        /// </summary>
+        /// <value>The loyalty points required to activate the reward. Each object defines the specific loyalty program and subledger from which points are deducted when activating the reward.  **Note:** When creating a reward, the &#x60;id&#x60; of each entry is ignored and a new entry is always created. </value>
+        [JsonPropertyName("pointsRequired")]
+        public List<RewardPointsRequired> PointsRequired { get { return this.PointsRequiredOption.Value; } set { this.PointsRequiredOption = new Option<List<RewardPointsRequired>>(value); } }
 
         /// <summary>
         /// Used to track the state of Modified
@@ -269,20 +283,6 @@ namespace TalonOneSdk.Model
         /// <value>The timestamp when the reward was last updated in RFC3339 format.</value>
         [JsonPropertyName("modified")]
         public DateTime? Modified { get { return this.ModifiedOption.Value; } set { this.ModifiedOption = new Option<DateTime?>(value); } }
-
-        /// <summary>
-        /// Used to track the state of PointsRequired
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<RewardPointsRequired>> PointsRequiredOption { get; private set; }
-
-        /// <summary>
-        /// The loyalty points required to activate a reward.
-        /// </summary>
-        /// <value>The loyalty points required to activate a reward.</value>
-        [JsonPropertyName("pointsRequired")]
-        public List<RewardPointsRequired> PointsRequired { get { return this.PointsRequiredOption.Value; } set { this.PointsRequiredOption = new Option<List<RewardPointsRequired>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -304,8 +304,8 @@ namespace TalonOneSdk.Model
             sb.Append("  EligibilityConditions: ").Append(EligibilityConditions).Append("\n");
             sb.Append("  Rule: ").Append(Rule).Append("\n");
             sb.Append("  Bindings: ").Append(Bindings).Append("\n");
-            sb.Append("  Modified: ").Append(Modified).Append("\n");
             sb.Append("  PointsRequired: ").Append(PointsRequired).Append("\n");
+            sb.Append("  Modified: ").Append(Modified).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -377,8 +377,8 @@ namespace TalonOneSdk.Model
             Option<Rule> eligibilityConditions = default;
             Option<Rule> rule = default;
             Option<List<Binding>> bindings = default;
-            Option<DateTime?> modified = default;
             Option<List<RewardPointsRequired>> pointsRequired = default;
+            Option<DateTime?> modified = default;
 
             while (utf8JsonReader.Read())
             {
@@ -433,11 +433,11 @@ namespace TalonOneSdk.Model
                         case "bindings":
                             bindings = new Option<List<Binding>>(JsonSerializer.Deserialize<List<Binding>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "modified":
-                            modified = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
                         case "pointsRequired":
                             pointsRequired = new Option<List<RewardPointsRequired>>(JsonSerializer.Deserialize<List<RewardPointsRequired>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "modified":
+                            modified = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -493,7 +493,7 @@ namespace TalonOneSdk.Model
             if (status.IsSet && status.Value == null)
                 throw new ArgumentNullException(nameof(status), "Property is not nullable for class Reward.");
 
-            return new Reward(id.Value.Value, created.Value.Value, accountId.Value.Value, name.Value, apiName.Value, applicationIds.Value, sandbox.Value.Value, status.Value.Value, description, eligibilityConditions, rule, bindings, modified, pointsRequired);
+            return new Reward(id.Value.Value, created.Value.Value, accountId.Value.Value, name.Value, apiName.Value, applicationIds.Value, sandbox.Value.Value, status.Value.Value, description, eligibilityConditions, rule, bindings, pointsRequired, modified);
         }
 
         /// <summary>
@@ -563,14 +563,13 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("bindings");
                 JsonSerializer.Serialize(writer, reward.Bindings, jsonSerializerOptions);
             }
-            if (reward.ModifiedOption.IsSet)
-                writer.WriteString("modified", reward.ModifiedOption.Value.Value.ToString(ModifiedFormat));
-
             if (reward.PointsRequiredOption.IsSet)
             {
                 writer.WritePropertyName("pointsRequired");
                 JsonSerializer.Serialize(writer, reward.PointsRequired, jsonSerializerOptions);
             }
+            if (reward.ModifiedOption.IsSet)
+                writer.WriteString("modified", reward.ModifiedOption.Value.Value.ToString(ModifiedFormat));
         }
     }
 }

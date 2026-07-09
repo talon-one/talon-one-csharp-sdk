@@ -2180,6 +2180,37 @@ namespace TalonOneSdk.Api
         Task<IGetApplicationSessionsApiResponse> GetApplicationSessionsOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<bool> partialMatch = default, Option<string> profile = default, Option<string> state = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> coupon = default, Option<string> referral = default, Option<string> integrationId = default, Option<string> storeIntegrationId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// List Application sessions matching the given customer attributes
+        /// </summary>
+        /// <remarks>
+        /// Get a list of the Application sessions matching the provided customer profile attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request. 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="customerProfileSearchQuery">body</param>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets. - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationSessionsByCustomerAttributesApiResponse"/>&gt;</returns>
+        Task<IGetApplicationSessionsByCustomerAttributesApiResponse> GetApplicationSessionsByCustomerAttributesAsync(long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List Application sessions matching the given customer attributes
+        /// </summary>
+        /// <remarks>
+        /// Get a list of the Application sessions matching the provided customer profile attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request. 
+        /// </remarks>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="customerProfileSearchQuery">body</param>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets. - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationSessionsByCustomerAttributesApiResponse"/>&gt;</returns>
+        Task<IGetApplicationSessionsByCustomerAttributesApiResponse> GetApplicationSessionsByCustomerAttributesOrDefaultAsync(long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// List Applications
         /// </summary>
         /// <remarks>
@@ -2540,7 +2571,7 @@ namespace TalonOneSdk.Api
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
         /// <param name="campaignState">Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived.  (optional)</param>
         /// <param name="name">Filter results performing case-insensitive matching against the name of the campaign. (optional)</param>
-        /// <param name="tags">Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  (optional)</param>
+        /// <param name="tags">Filter results performing case-insensitive matching against the tags of the campaign.  (optional)</param>
         /// <param name="createdBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="createdAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="startBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
@@ -2552,7 +2583,7 @@ namespace TalonOneSdk.Api
         /// <param name="storeId">Filter results to campaigns linked to the specified store ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCampaignsApiResponse"/>&gt;</returns>
-        Task<IGetCampaignsApiResponse> GetCampaignsAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> campaignState = default, Option<string> name = default, Option<string> tags = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<DateTime> startBefore = default, Option<DateTime> startAfter = default, Option<DateTime> endBefore = default, Option<DateTime> endAfter = default, Option<long> campaignGroupId = default, Option<long> templateId = default, Option<long> storeId = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetCampaignsApiResponse> GetCampaignsAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> campaignState = default, Option<string> name = default, Option<List<string>> tags = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<DateTime> startBefore = default, Option<DateTime> startAfter = default, Option<DateTime> endBefore = default, Option<DateTime> endAfter = default, Option<long> campaignGroupId = default, Option<long> templateId = default, Option<long> storeId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List campaigns
@@ -2566,7 +2597,7 @@ namespace TalonOneSdk.Api
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
         /// <param name="campaignState">Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived.  (optional)</param>
         /// <param name="name">Filter results performing case-insensitive matching against the name of the campaign. (optional)</param>
-        /// <param name="tags">Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  (optional)</param>
+        /// <param name="tags">Filter results performing case-insensitive matching against the tags of the campaign.  (optional)</param>
         /// <param name="createdBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="createdAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="startBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
@@ -2578,7 +2609,7 @@ namespace TalonOneSdk.Api
         /// <param name="storeId">Filter results to campaigns linked to the specified store ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCampaignsApiResponse"/>&gt;</returns>
-        Task<IGetCampaignsApiResponse> GetCampaignsOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> campaignState = default, Option<string> name = default, Option<string> tags = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<DateTime> startBefore = default, Option<DateTime> startAfter = default, Option<DateTime> endBefore = default, Option<DateTime> endAfter = default, Option<long> campaignGroupId = default, Option<long> templateId = default, Option<long> storeId = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetCampaignsApiResponse> GetCampaignsOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> campaignState = default, Option<string> name = default, Option<List<string>> tags = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<DateTime> startBefore = default, Option<DateTime> startAfter = default, Option<DateTime> endBefore = default, Option<DateTime> endAfter = default, Option<long> campaignGroupId = default, Option<long> templateId = default, Option<long> storeId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get audit logs for an account
@@ -6684,6 +6715,18 @@ namespace TalonOneSdk.Api
     }
 
     /// <summary>
+    /// The <see cref="IGetApplicationSessionsByCustomerAttributesApiResponse"/>
+    /// </summary>
+    public interface IGetApplicationSessionsByCustomerAttributesApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.GetApplicationSessionsByCustomerAttributes200Response>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+    }
+
+    /// <summary>
     /// The <see cref="IGetApplicationsApiResponse"/>
     /// </summary>
     public interface IGetApplicationsApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.GetApplications200Response>
@@ -9972,6 +10015,26 @@ namespace TalonOneSdk.Api
         internal void ExecuteOnErrorGetApplicationSessions(Exception exception)
         {
             OnErrorGetApplicationSessions?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnGetApplicationSessionsByCustomerAttributes;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorGetApplicationSessionsByCustomerAttributes;
+
+        internal void ExecuteOnGetApplicationSessionsByCustomerAttributes(ManagementApi.GetApplicationSessionsByCustomerAttributesApiResponse apiResponse)
+        {
+            OnGetApplicationSessionsByCustomerAttributes?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorGetApplicationSessionsByCustomerAttributes(Exception exception)
+        {
+            OnErrorGetApplicationSessionsByCustomerAttributes?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -35160,6 +35223,306 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
+        partial void FormatGetApplicationSessionsByCustomerAttributes(ref long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, ref Option<long> pageSize, ref Option<long> skip, ref Option<bool> withTotalResultSize);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="customerProfileSearchQuery"></param>
+        /// <returns></returns>
+        private void ValidateGetApplicationSessionsByCustomerAttributes(CustomerProfileSearchQuery customerProfileSearchQuery)
+        {
+            if (customerProfileSearchQuery == null)
+                throw new ArgumentNullException(nameof(customerProfileSearchQuery));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="customerProfileSearchQuery"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="withTotalResultSize"></param>
+        private void AfterGetApplicationSessionsByCustomerAttributesDefaultImplementation(IGetApplicationSessionsByCustomerAttributesApiResponse apiResponseLocalVar, long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetApplicationSessionsByCustomerAttributes(ref suppressDefaultLog, apiResponseLocalVar, applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize);
+            if (!suppressDefaultLog)
+                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="customerProfileSearchQuery"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="withTotalResultSize"></param>
+        partial void AfterGetApplicationSessionsByCustomerAttributes(ref bool suppressDefaultLog, IGetApplicationSessionsByCustomerAttributesApiResponse apiResponseLocalVar, long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="customerProfileSearchQuery"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="withTotalResultSize"></param>
+        private void OnErrorGetApplicationSessionsByCustomerAttributesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetApplicationSessionsByCustomerAttributes(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="customerProfileSearchQuery"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="withTotalResultSize"></param>
+        partial void OnErrorGetApplicationSessionsByCustomerAttributes(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize);
+
+        /// <summary>
+        /// List Application sessions matching the given customer attributes Get a list of the Application sessions matching the provided customer profile attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request. 
+        /// </summary>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="customerProfileSearchQuery">body</param>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets. - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationSessionsByCustomerAttributesApiResponse"/>&gt;</returns>
+        public async Task<IGetApplicationSessionsByCustomerAttributesApiResponse> GetApplicationSessionsByCustomerAttributesOrDefaultAsync(long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetApplicationSessionsByCustomerAttributesAsync(applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// List Application sessions matching the given customer attributes Get a list of the Application sessions matching the provided customer profile attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="customerProfileSearchQuery">body</param>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets. - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationSessionsByCustomerAttributesApiResponse"/>&gt;</returns>
+        public async Task<IGetApplicationSessionsByCustomerAttributesApiResponse> GetApplicationSessionsByCustomerAttributesAsync(long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateGetApplicationSessionsByCustomerAttributes(customerProfileSearchQuery);
+
+                FormatGetApplicationSessionsByCustomerAttributes(ref applicationId, customerProfileSearchQuery, ref pageSize, ref skip, ref withTotalResultSize);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/applications/{applicationId}/sessions_search"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/applications/{applicationId}/sessions_search");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (pageSize.IsSet)
+                        parseQueryStringLocalVar["pageSize"] = ClientUtils.ParameterToString(pageSize.Value);
+
+                    if (skip.IsSet)
+                        parseQueryStringLocalVar["skip"] = ClientUtils.ParameterToString(skip.Value);
+
+                    if (withTotalResultSize.IsSet)
+                        parseQueryStringLocalVar["withTotalResultSize"] = ClientUtils.ParameterToString(withTotalResultSize.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    httpRequestMessageLocalVar.Content = (customerProfileSearchQuery as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(customerProfileSearchQuery, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("POST");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<GetApplicationSessionsByCustomerAttributesApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<GetApplicationSessionsByCustomerAttributesApiResponse>();
+                        GetApplicationSessionsByCustomerAttributesApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GetApplicationSessionsByCustomerAttributesApiResponse(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/applications/{applicationId}/sessions_search", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetApplicationSessionsByCustomerAttributesDefaultImplementation(apiResponseLocalVar, applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize);
+
+                        Events.ExecuteOnGetApplicationSessionsByCustomerAttributes(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetApplicationSessionsByCustomerAttributesDefaultImplementation(e, "/v1/applications/{applicationId}/sessions_search", uriBuilderLocalVar.Path, applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize);
+                Events.ExecuteOnErrorGetApplicationSessionsByCustomerAttributes(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetApplicationSessionsByCustomerAttributesApiResponse"/>
+        /// </summary>
+        public partial class GetApplicationSessionsByCustomerAttributesApiResponse : TalonOneSdk.Client.ApiResponse, IGetApplicationSessionsByCustomerAttributesApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<GetApplicationSessionsByCustomerAttributesApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetApplicationSessionsByCustomerAttributesApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetApplicationSessionsByCustomerAttributesApiResponse(ILogger<GetApplicationSessionsByCustomerAttributesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetApplicationSessionsByCustomerAttributesApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetApplicationSessionsByCustomerAttributesApiResponse(ILogger<GetApplicationSessionsByCustomerAttributesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.GetApplicationSessionsByCustomerAttributes200Response Ok()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetApplicationSessionsByCustomerAttributes200Response>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out TalonOneSdk.Model.GetApplicationSessionsByCustomerAttributes200Response result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
         partial void FormatGetApplications(ref Option<long> pageSize, ref Option<long> skip, ref Option<string> sort);
 
         /// <summary>
@@ -38585,7 +38948,7 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetCampaigns(ref long applicationId, ref Option<long> pageSize, ref Option<long> skip, ref Option<string> sort, ref Option<string> campaignState, ref Option<string> name, ref Option<string> tags, ref Option<DateTime> createdBefore, ref Option<DateTime> createdAfter, ref Option<DateTime> startBefore, ref Option<DateTime> startAfter, ref Option<DateTime> endBefore, ref Option<DateTime> endAfter, ref Option<long> campaignGroupId, ref Option<long> templateId, ref Option<long> storeId);
+        partial void FormatGetCampaigns(ref long applicationId, ref Option<long> pageSize, ref Option<long> skip, ref Option<string> sort, ref Option<string> campaignState, ref Option<string> name, Option<List<string>> tags, ref Option<DateTime> createdBefore, ref Option<DateTime> createdAfter, ref Option<DateTime> startBefore, ref Option<DateTime> startAfter, ref Option<DateTime> endBefore, ref Option<DateTime> endAfter, ref Option<long> campaignGroupId, ref Option<long> templateId, ref Option<long> storeId);
 
         /// <summary>
         /// Validates the request parameters
@@ -38595,7 +38958,7 @@ namespace TalonOneSdk.Api
         /// <param name="name"></param>
         /// <param name="tags"></param>
         /// <returns></returns>
-        private void ValidateGetCampaigns(Option<string> sort, Option<string> campaignState, Option<string> name, Option<string> tags)
+        private void ValidateGetCampaigns(Option<string> sort, Option<string> campaignState, Option<string> name, Option<List<string>> tags)
         {
             if (sort.IsSet && sort.Value == null)
                 throw new ArgumentNullException(nameof(sort));
@@ -38630,7 +38993,7 @@ namespace TalonOneSdk.Api
         /// <param name="campaignGroupId"></param>
         /// <param name="templateId"></param>
         /// <param name="storeId"></param>
-        private void AfterGetCampaignsDefaultImplementation(IGetCampaignsApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> campaignState, Option<string> name, Option<string> tags, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<DateTime> startBefore, Option<DateTime> startAfter, Option<DateTime> endBefore, Option<DateTime> endAfter, Option<long> campaignGroupId, Option<long> templateId, Option<long> storeId)
+        private void AfterGetCampaignsDefaultImplementation(IGetCampaignsApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> campaignState, Option<string> name, Option<List<string>> tags, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<DateTime> startBefore, Option<DateTime> startAfter, Option<DateTime> endBefore, Option<DateTime> endAfter, Option<long> campaignGroupId, Option<long> templateId, Option<long> storeId)
         {
             bool suppressDefaultLog = false;
             AfterGetCampaigns(ref suppressDefaultLog, apiResponseLocalVar, applicationId, pageSize, skip, sort, campaignState, name, tags, createdBefore, createdAfter, startBefore, startAfter, endBefore, endAfter, campaignGroupId, templateId, storeId);
@@ -38659,7 +39022,7 @@ namespace TalonOneSdk.Api
         /// <param name="campaignGroupId"></param>
         /// <param name="templateId"></param>
         /// <param name="storeId"></param>
-        partial void AfterGetCampaigns(ref bool suppressDefaultLog, IGetCampaignsApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> campaignState, Option<string> name, Option<string> tags, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<DateTime> startBefore, Option<DateTime> startAfter, Option<DateTime> endBefore, Option<DateTime> endAfter, Option<long> campaignGroupId, Option<long> templateId, Option<long> storeId);
+        partial void AfterGetCampaigns(ref bool suppressDefaultLog, IGetCampaignsApiResponse apiResponseLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> campaignState, Option<string> name, Option<List<string>> tags, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<DateTime> startBefore, Option<DateTime> startAfter, Option<DateTime> endBefore, Option<DateTime> endAfter, Option<long> campaignGroupId, Option<long> templateId, Option<long> storeId);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -38683,7 +39046,7 @@ namespace TalonOneSdk.Api
         /// <param name="campaignGroupId"></param>
         /// <param name="templateId"></param>
         /// <param name="storeId"></param>
-        private void OnErrorGetCampaignsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> campaignState, Option<string> name, Option<string> tags, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<DateTime> startBefore, Option<DateTime> startAfter, Option<DateTime> endBefore, Option<DateTime> endAfter, Option<long> campaignGroupId, Option<long> templateId, Option<long> storeId)
+        private void OnErrorGetCampaignsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> campaignState, Option<string> name, Option<List<string>> tags, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<DateTime> startBefore, Option<DateTime> startAfter, Option<DateTime> endBefore, Option<DateTime> endAfter, Option<long> campaignGroupId, Option<long> templateId, Option<long> storeId)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorGetCampaigns(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, pageSize, skip, sort, campaignState, name, tags, createdBefore, createdAfter, startBefore, startAfter, endBefore, endAfter, campaignGroupId, templateId, storeId);
@@ -38714,7 +39077,7 @@ namespace TalonOneSdk.Api
         /// <param name="campaignGroupId"></param>
         /// <param name="templateId"></param>
         /// <param name="storeId"></param>
-        partial void OnErrorGetCampaigns(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> campaignState, Option<string> name, Option<string> tags, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<DateTime> startBefore, Option<DateTime> startAfter, Option<DateTime> endBefore, Option<DateTime> endAfter, Option<long> campaignGroupId, Option<long> templateId, Option<long> storeId);
+        partial void OnErrorGetCampaigns(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> campaignState, Option<string> name, Option<List<string>> tags, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<DateTime> startBefore, Option<DateTime> startAfter, Option<DateTime> endBefore, Option<DateTime> endAfter, Option<long> campaignGroupId, Option<long> templateId, Option<long> storeId);
 
         /// <summary>
         /// List campaigns List the campaigns of the specified application that match your filter criteria. 
@@ -38725,7 +39088,7 @@ namespace TalonOneSdk.Api
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
         /// <param name="campaignState">Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived.  (optional)</param>
         /// <param name="name">Filter results performing case-insensitive matching against the name of the campaign. (optional)</param>
-        /// <param name="tags">Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  (optional)</param>
+        /// <param name="tags">Filter results performing case-insensitive matching against the tags of the campaign.  (optional)</param>
         /// <param name="createdBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="createdAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="startBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
@@ -38737,7 +39100,7 @@ namespace TalonOneSdk.Api
         /// <param name="storeId">Filter results to campaigns linked to the specified store ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCampaignsApiResponse"/>&gt;</returns>
-        public async Task<IGetCampaignsApiResponse> GetCampaignsOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> campaignState = default, Option<string> name = default, Option<string> tags = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<DateTime> startBefore = default, Option<DateTime> startAfter = default, Option<DateTime> endBefore = default, Option<DateTime> endAfter = default, Option<long> campaignGroupId = default, Option<long> templateId = default, Option<long> storeId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetCampaignsApiResponse> GetCampaignsOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> campaignState = default, Option<string> name = default, Option<List<string>> tags = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<DateTime> startBefore = default, Option<DateTime> startAfter = default, Option<DateTime> endBefore = default, Option<DateTime> endAfter = default, Option<long> campaignGroupId = default, Option<long> templateId = default, Option<long> storeId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -38759,7 +39122,7 @@ namespace TalonOneSdk.Api
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
         /// <param name="campaignState">Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived.  (optional)</param>
         /// <param name="name">Filter results performing case-insensitive matching against the name of the campaign. (optional)</param>
-        /// <param name="tags">Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  (optional)</param>
+        /// <param name="tags">Filter results performing case-insensitive matching against the tags of the campaign.  (optional)</param>
         /// <param name="createdBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="createdAfter">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
         /// <param name="startBefore">Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. (optional)</param>
@@ -38771,7 +39134,7 @@ namespace TalonOneSdk.Api
         /// <param name="storeId">Filter results to campaigns linked to the specified store ID. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCampaignsApiResponse"/>&gt;</returns>
-        public async Task<IGetCampaignsApiResponse> GetCampaignsAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> campaignState = default, Option<string> name = default, Option<string> tags = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<DateTime> startBefore = default, Option<DateTime> startAfter = default, Option<DateTime> endBefore = default, Option<DateTime> endAfter = default, Option<long> campaignGroupId = default, Option<long> templateId = default, Option<long> storeId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetCampaignsApiResponse> GetCampaignsAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> campaignState = default, Option<string> name = default, Option<List<string>> tags = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<DateTime> startBefore = default, Option<DateTime> startAfter = default, Option<DateTime> endBefore = default, Option<DateTime> endAfter = default, Option<long> campaignGroupId = default, Option<long> templateId = default, Option<long> storeId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -38779,7 +39142,7 @@ namespace TalonOneSdk.Api
             {
                 ValidateGetCampaigns(sort, campaignState, name, tags);
 
-                FormatGetCampaigns(ref applicationId, ref pageSize, ref skip, ref sort, ref campaignState, ref name, ref tags, ref createdBefore, ref createdAfter, ref startBefore, ref startAfter, ref endBefore, ref endAfter, ref campaignGroupId, ref templateId, ref storeId);
+                FormatGetCampaigns(ref applicationId, ref pageSize, ref skip, ref sort, ref campaignState, ref name, tags, ref createdBefore, ref createdAfter, ref startBefore, ref startAfter, ref endBefore, ref endAfter, ref campaignGroupId, ref templateId, ref storeId);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {

@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **AssertionConsumerServiceURL** | **string** | The location where the SAML assertion is sent with a HTTP POST. | 
 **SignOutURL** | **string** | Single Sign-Out URL. | [optional] 
 **MetadataURL** | **string** | Metadata URL. | [optional] 
+**CertificateExpiry** | **DateTime** | The expiry date of the X.509 certificate. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 
