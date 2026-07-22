@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **RecipientIntegrationId** | **string** |  | [optional] 
 **ImportId** | **long** |  | [optional] 
 **BatchId** | **string** |  | [optional] 
-**Attributes** | **Object** | Arbitrary properties associated with this campaign. | [optional] 
+**Attributes** | **Object** |  | [optional] 
 **Limits** | [**List&lt;IntegrationHubEventPayloadCouponBasedNotificationsLimits&gt;**](IntegrationHubEventPayloadCouponBasedNotificationsLimits.md) |  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)

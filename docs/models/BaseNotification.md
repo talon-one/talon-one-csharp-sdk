@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Policy** | **Object** | Indicates which notification properties to apply. | 
+**Policy** | [**BaseNotificationPolicy**](BaseNotificationPolicy.md) |  | 
 **Webhook** | [**BaseNotificationWebhook**](BaseNotificationWebhook.md) |  | 
 **Id** | **long** | Unique ID for this entity. | 
 **Type** | **string** | The notification type. | 

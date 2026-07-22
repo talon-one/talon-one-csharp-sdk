@@ -75,8 +75,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CouponSearch" />
     /// </summary>
-    public class CouponSearchJsonConverter : JsonConverter<CouponSearch>
+    public partial class CouponSearchJsonConverter : JsonConverter<CouponSearch>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CouponSearchJsonConverter" /> class.
+        /// </summary>
+        public CouponSearchJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CouponSearch" />
         /// </summary>

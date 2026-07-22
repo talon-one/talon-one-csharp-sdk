@@ -287,8 +287,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewMessageTest" />
     /// </summary>
-    public class NewMessageTestJsonConverter : JsonConverter<NewMessageTest>
+    public partial class NewMessageTestJsonConverter : JsonConverter<NewMessageTest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewMessageTestJsonConverter" /> class.
+        /// </summary>
+        public NewMessageTestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NewMessageTest" />
         /// </summary>

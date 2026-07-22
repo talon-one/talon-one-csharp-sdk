@@ -44,7 +44,7 @@ namespace TalonOneSdk.Model
         /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this cart item.</param>
         /// <param name="targets">A list of entities (e.g. audiences) targeted by this effect.</param>
         [JsonConstructor]
-        public StrikethroughEffect(long campaignId, long rulesetId, long ruleIndex, string ruleName, string type, Object props, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<string> adjustmentReferenceId = default, Option<List<Object>> targets = default)
+        public StrikethroughEffect(long campaignId, long rulesetId, long ruleIndex, string ruleName, string type, StrikethroughEffectProps props, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<string> adjustmentReferenceId = default, Option<List<LabelTarget>> targets = default)
         {
             CampaignId = campaignId;
             RulesetId = rulesetId;
@@ -108,7 +108,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Arbitrary properties associated with this effect type.</value>
         [JsonPropertyName("props")]
-        public Object Props { get; set; }
+        public StrikethroughEffectProps Props { get; set; }
 
         /// <summary>
         /// Used to track the state of StartTime
@@ -190,14 +190,14 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Object>> TargetsOption { get; private set; }
+        public Option<List<LabelTarget>> TargetsOption { get; private set; }
 
         /// <summary>
         /// A list of entities (e.g. audiences) targeted by this effect.
         /// </summary>
         /// <value>A list of entities (e.g. audiences) targeted by this effect.</value>
         [JsonPropertyName("targets")]
-        public List<Object> Targets { get { return this.TargetsOption.Value; } set { this.TargetsOption = new Option<List<Object>>(value); } }
+        public List<LabelTarget> Targets { get { return this.TargetsOption.Value; } set { this.TargetsOption = new Option<List<LabelTarget>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -237,17 +237,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="StrikethroughEffect" />
     /// </summary>
-    public class StrikethroughEffectJsonConverter : JsonConverter<StrikethroughEffect>
+    public partial class StrikethroughEffectJsonConverter : JsonConverter<StrikethroughEffect>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StrikethroughEffectJsonConverter" /> class.
+        /// </summary>
+        public StrikethroughEffectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize StartTime
         /// </summary>
-        public static string StartTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string StartTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EndTime
         /// </summary>
-        public static string EndTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string EndTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="StrikethroughEffect" />
@@ -271,13 +281,13 @@ namespace TalonOneSdk.Model
             Option<long?> ruleIndex = default;
             Option<string> ruleName = default;
             Option<string> type = default;
-            Option<Object> props = default;
+            Option<StrikethroughEffectProps> props = default;
             Option<DateTime?> startTime = default;
             Option<DateTime?> endTime = default;
             Option<string> selectedPriceType = default;
             Option<decimal?> selectedPrice = default;
             Option<string> adjustmentReferenceId = default;
-            Option<List<Object>> targets = default;
+            Option<List<LabelTarget>> targets = default;
 
             while (utf8JsonReader.Read())
             {
@@ -310,7 +320,7 @@ namespace TalonOneSdk.Model
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "props":
-                            props = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            props = new Option<StrikethroughEffectProps>(JsonSerializer.Deserialize<StrikethroughEffectProps>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "startTime":
                             startTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
@@ -328,7 +338,7 @@ namespace TalonOneSdk.Model
                             adjustmentReferenceId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "targets":
-                            targets = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            targets = new Option<List<LabelTarget>>(JsonSerializer.Deserialize<List<LabelTarget>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

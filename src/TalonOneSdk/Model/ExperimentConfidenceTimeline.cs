@@ -75,8 +75,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ExperimentConfidenceTimeline" />
     /// </summary>
-    public class ExperimentConfidenceTimelineJsonConverter : JsonConverter<ExperimentConfidenceTimeline>
+    public partial class ExperimentConfidenceTimelineJsonConverter : JsonConverter<ExperimentConfidenceTimeline>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExperimentConfidenceTimelineJsonConverter" /> class.
+        /// </summary>
+        public ExperimentConfidenceTimelineJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ExperimentConfidenceTimeline" />
         /// </summary>

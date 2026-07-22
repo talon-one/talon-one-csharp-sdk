@@ -85,8 +85,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RoleMembership" />
     /// </summary>
-    public class RoleMembershipJsonConverter : JsonConverter<RoleMembership>
+    public partial class RoleMembershipJsonConverter : JsonConverter<RoleMembership>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RoleMembershipJsonConverter" /> class.
+        /// </summary>
+        public RoleMembershipJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RoleMembership" />
         /// </summary>

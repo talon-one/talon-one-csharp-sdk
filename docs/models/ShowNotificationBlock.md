@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **Title** | **string** | The notification heading shown to the customer. | 
 **Tags** | **List&lt;string&gt;** | Semantic labels attached to this block. | [optional] 
 **Body** | **string** | The notification body text. Supports template placeholders (e.g. \&quot;{{$Session.Total}}\&quot;) evaluated at rule execution time. | [optional] 
-**OnFailure** | **List&lt;Object&gt;** | Blocks evaluated when this block fails or returns false. | [optional] 
-**OnError** | **Dictionary&lt;string, List&lt;Object&gt;&gt;** | Named error handlers evaluated when a specific error occurs. | [optional] 
+**OnFailure** | [**List&lt;PromotionBlock&gt;**](PromotionBlock.md) | Blocks evaluated when this block fails or returns false. | [optional] 
+**OnError** | **Dictionary&lt;string, List&lt;PromotionBlock&gt;&gt;** | Named error handlers evaluated when a specific error occurs. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

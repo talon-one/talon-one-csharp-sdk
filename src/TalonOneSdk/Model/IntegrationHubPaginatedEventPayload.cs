@@ -36,7 +36,7 @@ namespace TalonOneSdk.Model
         /// <param name="data">data</param>
         /// <param name="batchedAt">Timestamp when the batch was created.</param>
         [JsonConstructor]
-        public IntegrationHubPaginatedEventPayload(long totalResultSize, IntegrationHubEventType eventType, List<Object> data, Option<DateTime?> batchedAt = default)
+        public IntegrationHubPaginatedEventPayload(long totalResultSize, IntegrationHubEventType eventType, List<IntegrationHubPaginatedEventPayloadDataInner> data, Option<DateTime?> batchedAt = default)
         {
             TotalResultSize = totalResultSize;
             EventType = eventType;
@@ -63,7 +63,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("Data")]
-        public List<Object> Data { get; set; }
+        public List<IntegrationHubPaginatedEventPayloadDataInner> Data { get; set; }
 
         /// <summary>
         /// Used to track the state of BatchedAt
@@ -109,12 +109,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="IntegrationHubPaginatedEventPayload" />
     /// </summary>
-    public class IntegrationHubPaginatedEventPayloadJsonConverter : JsonConverter<IntegrationHubPaginatedEventPayload>
+    public partial class IntegrationHubPaginatedEventPayloadJsonConverter : JsonConverter<IntegrationHubPaginatedEventPayload>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegrationHubPaginatedEventPayloadJsonConverter" /> class.
+        /// </summary>
+        public IntegrationHubPaginatedEventPayloadJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize BatchedAt
         /// </summary>
-        public static string BatchedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string BatchedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubPaginatedEventPayload" />
@@ -135,7 +145,7 @@ namespace TalonOneSdk.Model
 
             Option<long?> totalResultSize = default;
             Option<IntegrationHubEventType?> eventType = default;
-            Option<List<Object>> data = default;
+            Option<List<IntegrationHubPaginatedEventPayloadDataInner>> data = default;
             Option<DateTime?> batchedAt = default;
 
             while (utf8JsonReader.Read())
@@ -157,12 +167,10 @@ namespace TalonOneSdk.Model
                             totalResultSize = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "EventType":
-                            string eventTypeRawValue = utf8JsonReader.GetString();
-                            if (eventTypeRawValue != null)
-                                eventType = new Option<IntegrationHubEventType?>(IntegrationHubEventTypeValueConverter.FromStringOrDefault(eventTypeRawValue));
+                            eventType = new Option<IntegrationHubEventType?>(JsonSerializer.Deserialize<IntegrationHubEventType?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "Data":
-                            data = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<List<IntegrationHubPaginatedEventPayloadDataInner>>(JsonSerializer.Deserialize<List<IntegrationHubPaginatedEventPayloadDataInner>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "BatchedAt":
                             batchedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));

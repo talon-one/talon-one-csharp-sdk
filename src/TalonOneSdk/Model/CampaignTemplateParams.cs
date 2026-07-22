@@ -259,8 +259,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CampaignTemplateParams" />
     /// </summary>
-    public class CampaignTemplateParamsJsonConverter : JsonConverter<CampaignTemplateParams>
+    public partial class CampaignTemplateParamsJsonConverter : JsonConverter<CampaignTemplateParams>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CampaignTemplateParamsJsonConverter" /> class.
+        /// </summary>
+        public CampaignTemplateParamsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CampaignTemplateParams" />
         /// </summary>

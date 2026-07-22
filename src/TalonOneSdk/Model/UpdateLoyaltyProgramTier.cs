@@ -124,8 +124,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateLoyaltyProgramTier" />
     /// </summary>
-    public class UpdateLoyaltyProgramTierJsonConverter : JsonConverter<UpdateLoyaltyProgramTier>
+    public partial class UpdateLoyaltyProgramTierJsonConverter : JsonConverter<UpdateLoyaltyProgramTier>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateLoyaltyProgramTierJsonConverter" /> class.
+        /// </summary>
+        public UpdateLoyaltyProgramTierJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateLoyaltyProgramTier" />
         /// </summary>

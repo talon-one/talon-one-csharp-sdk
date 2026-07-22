@@ -115,8 +115,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ErrorResponseWithStatus" />
     /// </summary>
-    public class ErrorResponseWithStatusJsonConverter : JsonConverter<ErrorResponseWithStatus>
+    public partial class ErrorResponseWithStatusJsonConverter : JsonConverter<ErrorResponseWithStatus>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ErrorResponseWithStatusJsonConverter" /> class.
+        /// </summary>
+        public ErrorResponseWithStatusJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ErrorResponseWithStatus" />
         /// </summary>

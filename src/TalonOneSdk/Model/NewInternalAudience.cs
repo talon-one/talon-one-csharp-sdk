@@ -136,8 +136,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewInternalAudience" />
     /// </summary>
-    public class NewInternalAudienceJsonConverter : JsonConverter<NewInternalAudience>
+    public partial class NewInternalAudienceJsonConverter : JsonConverter<NewInternalAudience>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewInternalAudienceJsonConverter" /> class.
+        /// </summary>
+        public NewInternalAudienceJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NewInternalAudience" />
         /// </summary>

@@ -596,22 +596,32 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AchievementV2" />
     /// </summary>
-    public class AchievementV2JsonConverter : JsonConverter<AchievementV2>
+    public partial class AchievementV2JsonConverter : JsonConverter<AchievementV2>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AchievementV2JsonConverter" /> class.
+        /// </summary>
+        public AchievementV2JsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize FixedStartDate
         /// </summary>
-        public static string FixedStartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string FixedStartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EndDate
         /// </summary>
-        public static string EndDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string EndDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AchievementV2" />

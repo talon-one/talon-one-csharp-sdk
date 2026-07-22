@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Policy** | **Object** | Indicates which notification properties to apply. | 
+**Policy** | [**BaseNotificationPolicy**](BaseNotificationPolicy.md) |  | 
 **Webhook** | [**NewNotificationWebhook**](NewNotificationWebhook.md) |  | 
 **Enabled** | **bool** | Indicates whether the notification is activated. | [optional] [default to true]
 

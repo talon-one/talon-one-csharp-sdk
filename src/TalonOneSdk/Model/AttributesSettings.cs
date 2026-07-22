@@ -81,8 +81,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AttributesSettings" />
     /// </summary>
-    public class AttributesSettingsJsonConverter : JsonConverter<AttributesSettings>
+    public partial class AttributesSettingsJsonConverter : JsonConverter<AttributesSettings>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AttributesSettingsJsonConverter" /> class.
+        /// </summary>
+        public AttributesSettingsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AttributesSettings" />
         /// </summary>

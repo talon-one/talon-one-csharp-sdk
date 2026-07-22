@@ -202,17 +202,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="TierUpgradeData" />
     /// </summary>
-    public class TierUpgradeDataJsonConverter : JsonConverter<TierUpgradeData>
+    public partial class TierUpgradeDataJsonConverter : JsonConverter<TierUpgradeData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TierUpgradeDataJsonConverter" /> class.
+        /// </summary>
+        public TierUpgradeDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize TierExpirationDate
         /// </summary>
-        public static string TierExpirationDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string TierExpirationDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize TimestampOfTierChange
         /// </summary>
-        public static string TimestampOfTierChangeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string TimestampOfTierChangeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="TierUpgradeData" />

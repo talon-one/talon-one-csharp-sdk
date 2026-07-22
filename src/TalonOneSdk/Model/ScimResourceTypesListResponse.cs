@@ -74,8 +74,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ScimResourceTypesListResponse" />
     /// </summary>
-    public class ScimResourceTypesListResponseJsonConverter : JsonConverter<ScimResourceTypesListResponse>
+    public partial class ScimResourceTypesListResponseJsonConverter : JsonConverter<ScimResourceTypesListResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScimResourceTypesListResponseJsonConverter" /> class.
+        /// </summary>
+        public ScimResourceTypesListResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ScimResourceTypesListResponse" />
         /// </summary>

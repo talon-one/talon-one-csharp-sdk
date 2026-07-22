@@ -75,8 +75,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RollbackReferralEffectProps" />
     /// </summary>
-    public class RollbackReferralEffectPropsJsonConverter : JsonConverter<RollbackReferralEffectProps>
+    public partial class RollbackReferralEffectPropsJsonConverter : JsonConverter<RollbackReferralEffectProps>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RollbackReferralEffectPropsJsonConverter" /> class.
+        /// </summary>
+        public RollbackReferralEffectPropsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RollbackReferralEffectProps" />
         /// </summary>

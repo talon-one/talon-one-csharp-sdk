@@ -109,8 +109,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OutgoingIntegrationMoEngagePolicy" />
     /// </summary>
-    public class OutgoingIntegrationMoEngagePolicyJsonConverter : JsonConverter<OutgoingIntegrationMoEngagePolicy>
+    public partial class OutgoingIntegrationMoEngagePolicyJsonConverter : JsonConverter<OutgoingIntegrationMoEngagePolicy>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OutgoingIntegrationMoEngagePolicyJsonConverter" /> class.
+        /// </summary>
+        public OutgoingIntegrationMoEngagePolicyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OutgoingIntegrationMoEngagePolicy" />
         /// </summary>

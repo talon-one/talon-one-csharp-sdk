@@ -39,7 +39,7 @@ namespace TalonOneSdk.Model
         /// <param name="onFailure">Strikethrough blocks evaluated when this block fails or returns false.</param>
         /// <param name="onError">Named error handlers evaluated when a specific error occurs.</param>
         [JsonConstructor]
-        public StrikethroughGroupBlock(string id, string type, OperatorEnum @operator, List<Object> blocks, Option<List<string>> tags = default, Option<List<Object>> onFailure = default, Option<Dictionary<string, List<Object>>> onError = default)
+        public StrikethroughGroupBlock(string id, string type, OperatorEnum @operator, List<StrikethroughBlock> blocks, Option<List<string>> tags = default, Option<List<StrikethroughBlock>> onFailure = default, Option<Dictionary<string, List<StrikethroughBlock>>> onError = default)
         {
             Id = id;
             Type = type;
@@ -161,7 +161,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Child blocks evaluated according to the operator.</value>
         [JsonPropertyName("blocks")]
-        public List<Object> Blocks { get; set; }
+        public List<StrikethroughBlock> Blocks { get; set; }
 
         /// <summary>
         /// Used to track the state of Tags
@@ -182,28 +182,28 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Object>> OnFailureOption { get; private set; }
+        public Option<List<StrikethroughBlock>> OnFailureOption { get; private set; }
 
         /// <summary>
         /// Strikethrough blocks evaluated when this block fails or returns false.
         /// </summary>
         /// <value>Strikethrough blocks evaluated when this block fails or returns false.</value>
         [JsonPropertyName("onFailure")]
-        public List<Object> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Object>>(value); } }
+        public List<StrikethroughBlock> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<StrikethroughBlock>>(value); } }
 
         /// <summary>
         /// Used to track the state of OnError
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Dictionary<string, List<Object>>> OnErrorOption { get; private set; }
+        public Option<Dictionary<string, List<StrikethroughBlock>>> OnErrorOption { get; private set; }
 
         /// <summary>
         /// Named error handlers evaluated when a specific error occurs.
         /// </summary>
         /// <value>Named error handlers evaluated when a specific error occurs.</value>
         [JsonPropertyName("onError")]
-        public Dictionary<string, List<Object>> OnError { get { return this.OnErrorOption.Value; } set { this.OnErrorOption = new Option<Dictionary<string, List<Object>>>(value); } }
+        public Dictionary<string, List<StrikethroughBlock>> OnError { get { return this.OnErrorOption.Value; } set { this.OnErrorOption = new Option<Dictionary<string, List<StrikethroughBlock>>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -238,8 +238,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="StrikethroughGroupBlock" />
     /// </summary>
-    public class StrikethroughGroupBlockJsonConverter : JsonConverter<StrikethroughGroupBlock>
+    public partial class StrikethroughGroupBlockJsonConverter : JsonConverter<StrikethroughGroupBlock>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StrikethroughGroupBlockJsonConverter" /> class.
+        /// </summary>
+        public StrikethroughGroupBlockJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="StrikethroughGroupBlock" />
         /// </summary>
@@ -260,10 +270,10 @@ namespace TalonOneSdk.Model
             Option<string> id = default;
             Option<string> type = default;
             Option<StrikethroughGroupBlock.OperatorEnum?> varOperator = default;
-            Option<List<Object>> blocks = default;
+            Option<List<StrikethroughBlock>> blocks = default;
             Option<List<string>> tags = default;
-            Option<List<Object>> onFailure = default;
-            Option<Dictionary<string, List<Object>>> onError = default;
+            Option<List<StrikethroughBlock>> onFailure = default;
+            Option<Dictionary<string, List<StrikethroughBlock>>> onError = default;
 
             while (utf8JsonReader.Read())
             {
@@ -292,16 +302,16 @@ namespace TalonOneSdk.Model
                                 varOperator = new Option<StrikethroughGroupBlock.OperatorEnum?>(StrikethroughGroupBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue));
                             break;
                         case "blocks":
-                            blocks = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            blocks = new Option<List<StrikethroughBlock>>(JsonSerializer.Deserialize<List<StrikethroughBlock>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "onFailure":
-                            onFailure = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            onFailure = new Option<List<StrikethroughBlock>>(JsonSerializer.Deserialize<List<StrikethroughBlock>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "onError":
-                            onError = new Option<Dictionary<string, List<Object>>>(JsonSerializer.Deserialize<Dictionary<string, List<Object>>>(ref utf8JsonReader, jsonSerializerOptions));
+                            onError = new Option<Dictionary<string, List<StrikethroughBlock>>>(JsonSerializer.Deserialize<Dictionary<string, List<StrikethroughBlock>>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -101,8 +101,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RolesV2Thresholds" />
     /// </summary>
-    public class RolesV2ThresholdsJsonConverter : JsonConverter<RolesV2Thresholds>
+    public partial class RolesV2ThresholdsJsonConverter : JsonConverter<RolesV2Thresholds>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RolesV2ThresholdsJsonConverter" /> class.
+        /// </summary>
+        public RolesV2ThresholdsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RolesV2Thresholds" />
         /// </summary>

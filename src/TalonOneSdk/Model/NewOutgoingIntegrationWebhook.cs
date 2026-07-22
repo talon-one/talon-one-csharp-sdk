@@ -105,8 +105,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewOutgoingIntegrationWebhook" />
     /// </summary>
-    public class NewOutgoingIntegrationWebhookJsonConverter : JsonConverter<NewOutgoingIntegrationWebhook>
+    public partial class NewOutgoingIntegrationWebhookJsonConverter : JsonConverter<NewOutgoingIntegrationWebhook>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewOutgoingIntegrationWebhookJsonConverter" /> class.
+        /// </summary>
+        public NewOutgoingIntegrationWebhookJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NewOutgoingIntegrationWebhook" />
         /// </summary>

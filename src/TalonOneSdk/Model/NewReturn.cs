@@ -75,8 +75,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewReturn" />
     /// </summary>
-    public class NewReturnJsonConverter : JsonConverter<NewReturn>
+    public partial class NewReturnJsonConverter : JsonConverter<NewReturn>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewReturnJsonConverter" /> class.
+        /// </summary>
+        public NewReturnJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NewReturn" />
         /// </summary>

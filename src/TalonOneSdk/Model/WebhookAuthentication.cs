@@ -41,7 +41,7 @@ namespace TalonOneSdk.Model
         /// <param name="type">type</param>
         /// <param name="data">data</param>
         [JsonConstructor]
-        public WebhookAuthentication(long id, DateTime created, DateTime modified, string createdBy, string modifiedBy, List<WebhookAuthenticationWebhookRef> webhooks, string name, TypeEnum type, Object data = default)
+        public WebhookAuthentication(long id, DateTime created, DateTime modified, string createdBy, string modifiedBy, List<WebhookAuthenticationWebhookRef> webhooks, string name, TypeEnum type, WebhookAuthenticationAllOfData data)
         {
             Id = id;
             Created = created;
@@ -185,7 +185,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
-        public Object Data { get; set; }
+        public WebhookAuthenticationAllOfData Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -222,17 +222,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="WebhookAuthentication" />
     /// </summary>
-    public class WebhookAuthenticationJsonConverter : JsonConverter<WebhookAuthentication>
+    public partial class WebhookAuthenticationJsonConverter : JsonConverter<WebhookAuthentication>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebhookAuthenticationJsonConverter" /> class.
+        /// </summary>
+        public WebhookAuthenticationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
-        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="WebhookAuthentication" />
@@ -259,7 +269,7 @@ namespace TalonOneSdk.Model
             Option<List<WebhookAuthenticationWebhookRef>> webhooks = default;
             Option<string> name = default;
             Option<WebhookAuthentication.TypeEnum?> type = default;
-            Option<Object> data = default;
+            Option<WebhookAuthenticationAllOfData> data = default;
 
             while (utf8JsonReader.Read())
             {
@@ -303,7 +313,7 @@ namespace TalonOneSdk.Model
                                 type = new Option<WebhookAuthentication.TypeEnum?>(WebhookAuthentication.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "data":
-                            data = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<WebhookAuthenticationAllOfData>(JsonSerializer.Deserialize<WebhookAuthenticationAllOfData>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -362,6 +372,9 @@ namespace TalonOneSdk.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class WebhookAuthentication.");
 
+            if (data.IsSet && data.Value == null)
+                throw new ArgumentNullException(nameof(data), "Property is not nullable for class WebhookAuthentication.");
+
             return new WebhookAuthentication(id.Value.Value, created.Value.Value, modified.Value.Value, createdBy.Value, modifiedBy.Value, webhooks.Value, name.Value, type.Value.Value, data.Value);
         }
 
@@ -401,6 +414,9 @@ namespace TalonOneSdk.Model
             if (webhookAuthentication.Name == null)
                 throw new ArgumentNullException(nameof(webhookAuthentication.Name), "Property is required for class WebhookAuthentication.");
 
+            if (webhookAuthentication.Data == null)
+                throw new ArgumentNullException(nameof(webhookAuthentication.Data), "Property is required for class WebhookAuthentication.");
+
             writer.WriteNumber("id", webhookAuthentication.Id);
 
             writer.WriteString("created", webhookAuthentication.Created.ToString(CreatedFormat));
@@ -417,13 +433,8 @@ namespace TalonOneSdk.Model
 
             var typeRawValue = WebhookAuthentication.TypeEnumToJsonValue(webhookAuthentication.Type);
             writer.WriteString("type", typeRawValue);
-            if (webhookAuthentication.Data != null)
-            {
-                writer.WritePropertyName("data");
-                JsonSerializer.Serialize(writer, webhookAuthentication.Data, jsonSerializerOptions);
-            }
-            else
-                writer.WriteNull("data");
+            writer.WritePropertyName("data");
+            JsonSerializer.Serialize(writer, webhookAuthentication.Data, jsonSerializerOptions);
         }
     }
 }

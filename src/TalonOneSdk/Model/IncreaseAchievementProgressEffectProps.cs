@@ -144,8 +144,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="IncreaseAchievementProgressEffectProps" />
     /// </summary>
-    public class IncreaseAchievementProgressEffectPropsJsonConverter : JsonConverter<IncreaseAchievementProgressEffectProps>
+    public partial class IncreaseAchievementProgressEffectPropsJsonConverter : JsonConverter<IncreaseAchievementProgressEffectProps>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IncreaseAchievementProgressEffectPropsJsonConverter" /> class.
+        /// </summary>
+        public IncreaseAchievementProgressEffectPropsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="IncreaseAchievementProgressEffectProps" />
         /// </summary>

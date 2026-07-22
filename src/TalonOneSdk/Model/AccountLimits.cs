@@ -205,8 +205,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AccountLimits" />
     /// </summary>
-    public class AccountLimitsJsonConverter : JsonConverter<AccountLimits>
+    public partial class AccountLimitsJsonConverter : JsonConverter<AccountLimits>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountLimitsJsonConverter" /> class.
+        /// </summary>
+        public AccountLimitsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AccountLimits" />
         /// </summary>

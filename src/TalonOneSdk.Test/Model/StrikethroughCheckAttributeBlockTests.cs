@@ -54,6 +54,96 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Id'
+        /// </summary>
+        [Fact]
+        public void IdTest()
+        {
+            // TODO unit test for the property 'Id'
+        }
+
+        /// <summary>
+        /// Test the property 'Type'
+        /// </summary>
+        [Fact]
+        public void TypeTest()
+        {
+            // TODO unit test for the property 'Type'
+        }
+
+        /// <summary>
+        /// Test the property 'Operator'
+        /// </summary>
+        [Fact]
+        public void OperatorTest()
+        {
+            // TODO unit test for the property 'Operator'
+        }
+
+        /// <summary>
+        /// Test the property 'Attribute'
+        /// </summary>
+        [Fact]
+        public void AttributeTest()
+        {
+            // TODO unit test for the property 'Attribute'
+        }
+
+        /// <summary>
+        /// Test the property 'Tags'
+        /// </summary>
+        [Fact]
+        public void TagsTest()
+        {
+            // TODO unit test for the property 'Tags'
+        }
+
+        /// <summary>
+        /// Test the property 'Value'
+        /// </summary>
+        [Fact]
+        public void ValueTest()
+        {
+            // TODO unit test for the property 'Value'
+        }
+
+        /// <summary>
+        /// Test the property 'Min'
+        /// </summary>
+        [Fact]
+        public void MinTest()
+        {
+            // TODO unit test for the property 'Min'
+        }
+
+        /// <summary>
+        /// Test the property 'Max'
+        /// </summary>
+        [Fact]
+        public void MaxTest()
+        {
+            // TODO unit test for the property 'Max'
+        }
+
+        /// <summary>
+        /// Test the property 'Values'
+        /// </summary>
+        [Fact]
+        public void ValuesTest()
+        {
+            // TODO unit test for the property 'Values'
+        }
+
+        /// <summary>
+        /// Test the property 'Count'
+        /// </summary>
+        [Fact]
+        public void CountTest()
+        {
+            // TODO unit test for the property 'Count'
+        }
+
+        /// <summary>
         /// Test the property 'OnFailure'
         /// </summary>
         [Fact]

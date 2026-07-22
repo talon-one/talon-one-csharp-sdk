@@ -74,8 +74,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ManagerConfig" />
     /// </summary>
-    public class ManagerConfigJsonConverter : JsonConverter<ManagerConfig>
+    public partial class ManagerConfigJsonConverter : JsonConverter<ManagerConfig>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ManagerConfigJsonConverter" /> class.
+        /// </summary>
+        public ManagerConfigJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ManagerConfig" />
         /// </summary>

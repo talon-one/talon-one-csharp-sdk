@@ -182,8 +182,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateCouponsData" />
     /// </summary>
-    public class UpdateCouponsDataJsonConverter : JsonConverter<UpdateCouponsData>
+    public partial class UpdateCouponsDataJsonConverter : JsonConverter<UpdateCouponsData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateCouponsDataJsonConverter" /> class.
+        /// </summary>
+        public UpdateCouponsDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateCouponsData" />
         /// </summary>

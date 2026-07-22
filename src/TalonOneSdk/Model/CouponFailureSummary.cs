@@ -189,17 +189,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CouponFailureSummary" />
     /// </summary>
-    public class CouponFailureSummaryJsonConverter : JsonConverter<CouponFailureSummary>
+    public partial class CouponFailureSummaryJsonConverter : JsonConverter<CouponFailureSummary>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CouponFailureSummaryJsonConverter" /> class.
+        /// </summary>
+        public CouponFailureSummaryJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize UpdatedAt
         /// </summary>
-        public static string UpdatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string UpdatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CouponFailureSummary" />

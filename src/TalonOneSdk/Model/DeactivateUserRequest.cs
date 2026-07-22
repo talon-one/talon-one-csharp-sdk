@@ -76,8 +76,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DeactivateUserRequest" />
     /// </summary>
-    public class DeactivateUserRequestJsonConverter : JsonConverter<DeactivateUserRequest>
+    public partial class DeactivateUserRequestJsonConverter : JsonConverter<DeactivateUserRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeactivateUserRequestJsonConverter" /> class.
+        /// </summary>
+        public DeactivateUserRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DeactivateUserRequest" />
         /// </summary>

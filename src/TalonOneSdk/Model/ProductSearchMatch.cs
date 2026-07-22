@@ -112,8 +112,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ProductSearchMatch" />
     /// </summary>
-    public class ProductSearchMatchJsonConverter : JsonConverter<ProductSearchMatch>
+    public partial class ProductSearchMatchJsonConverter : JsonConverter<ProductSearchMatch>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProductSearchMatchJsonConverter" /> class.
+        /// </summary>
+        public ProductSearchMatchJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProductSearchMatch" />
         /// </summary>

@@ -46,8 +46,9 @@ namespace TalonOneSdk.Model
         /// <param name="processedAt">Timestamp when the request was approved or rejected.</param>
         /// <param name="processingNote">Notes attached by the admin when rejecting or approving a request.</param>
         /// <param name="processedByUser">Email address of the admin who approved or rejected the support request.</param>
+        /// <param name="couponCode">Coupon code associated with the approved support request.</param>
         [JsonConstructor]
-        public SupportRequest(long id, long applicationId, string createdByUser, DateTime createdAt, string customerProfileId, RequestTypeEnum requestType, string requestNote, RequestStatusEnum requestStatus, Option<long?> campaignId = default, Option<long?> loyaltyProgramId = default, Option<long?> subledgerId = default, Option<float?> requestValue = default, Option<DateTime?> processedAt = default, Option<string> processingNote = default, Option<string> processedByUser = default)
+        public SupportRequest(long id, long applicationId, string createdByUser, DateTime createdAt, string customerProfileId, RequestTypeEnum requestType, string requestNote, RequestStatusEnum requestStatus, Option<long?> campaignId = default, Option<long?> loyaltyProgramId = default, Option<long?> subledgerId = default, Option<float?> requestValue = default, Option<DateTime?> processedAt = default, Option<string> processingNote = default, Option<string> processedByUser = default, Option<string> couponCode = default)
         {
             Id = id;
             ApplicationId = applicationId;
@@ -64,6 +65,7 @@ namespace TalonOneSdk.Model
             ProcessedAtOption = processedAt;
             ProcessingNoteOption = processingNote;
             ProcessedByUserOption = processedByUser;
+            CouponCodeOption = couponCode;
             OnCreated();
         }
 
@@ -191,7 +193,12 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum Rejected for value: rejected
             /// </summary>
-            Rejected = 3
+            Rejected = 3,
+
+            /// <summary>
+            /// Enum Expired for value: expired
+            /// </summary>
+            Expired = 4
         }
 
         /// <summary>
@@ -210,6 +217,9 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("rejected"))
                 return RequestStatusEnum.Rejected;
+
+            if (value.Equals("expired"))
+                return RequestStatusEnum.Expired;
 
             throw new NotImplementedException($"Could not convert value to type RequestStatusEnum: '{value}'");
         }
@@ -230,6 +240,9 @@ namespace TalonOneSdk.Model
             if (value.Equals("rejected"))
                 return RequestStatusEnum.Rejected;
 
+            if (value.Equals("expired"))
+                return RequestStatusEnum.Expired;
+
             return null;
         }
 
@@ -249,6 +262,9 @@ namespace TalonOneSdk.Model
 
             if (value == RequestStatusEnum.Rejected)
                 return "rejected";
+
+            if (value == RequestStatusEnum.Expired)
+                return "expired";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
@@ -415,6 +431,21 @@ namespace TalonOneSdk.Model
         public string ProcessedByUser { get { return this.ProcessedByUserOption.Value; } set { this.ProcessedByUserOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of CouponCode
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> CouponCodeOption { get; private set; }
+
+        /// <summary>
+        /// Coupon code associated with the approved support request.
+        /// </summary>
+        /// <value>Coupon code associated with the approved support request.</value>
+        /* <example>SUMMER-2025-XYZ</example> */
+        [JsonPropertyName("couponCode")]
+        public string CouponCode { get { return this.CouponCodeOption.Value; } set { this.CouponCodeOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -437,6 +468,7 @@ namespace TalonOneSdk.Model
             sb.Append("  ProcessedAt: ").Append(ProcessedAt).Append("\n");
             sb.Append("  ProcessingNote: ").Append(ProcessingNote).Append("\n");
             sb.Append("  ProcessedByUser: ").Append(ProcessedByUser).Append("\n");
+            sb.Append("  CouponCode: ").Append(CouponCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -461,17 +493,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SupportRequest" />
     /// </summary>
-    public class SupportRequestJsonConverter : JsonConverter<SupportRequest>
+    public partial class SupportRequestJsonConverter : JsonConverter<SupportRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SupportRequestJsonConverter" /> class.
+        /// </summary>
+        public SupportRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ProcessedAt
         /// </summary>
-        public static string ProcessedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ProcessedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="SupportRequest" />
@@ -505,6 +547,7 @@ namespace TalonOneSdk.Model
             Option<DateTime?> processedAt = default;
             Option<string> processingNote = default;
             Option<string> processedByUser = default;
+            Option<string> couponCode = default;
 
             while (utf8JsonReader.Read())
             {
@@ -570,6 +613,9 @@ namespace TalonOneSdk.Model
                         case "processedByUser":
                             processedByUser = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "couponCode":
+                            couponCode = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
@@ -624,7 +670,7 @@ namespace TalonOneSdk.Model
             if (requestStatus.IsSet && requestStatus.Value == null)
                 throw new ArgumentNullException(nameof(requestStatus), "Property is not nullable for class SupportRequest.");
 
-            return new SupportRequest(id.Value.Value, applicationId.Value.Value, createdByUser.Value, createdAt.Value.Value, customerProfileId.Value, requestType.Value.Value, requestNote.Value, requestStatus.Value.Value, campaignId, loyaltyProgramId, subledgerId, requestValue, processedAt, processingNote, processedByUser);
+            return new SupportRequest(id.Value.Value, applicationId.Value.Value, createdByUser.Value, createdAt.Value.Value, customerProfileId.Value, requestType.Value.Value, requestNote.Value, requestStatus.Value.Value, campaignId, loyaltyProgramId, subledgerId, requestValue, processedAt, processingNote, processedByUser, couponCode);
         }
 
         /// <summary>
@@ -696,6 +742,9 @@ namespace TalonOneSdk.Model
 
             if (supportRequest.ProcessedByUserOption.IsSet)
                 writer.WriteString("processedByUser", supportRequest.ProcessedByUser);
+
+            if (supportRequest.CouponCodeOption.IsSet)
+                writer.WriteString("couponCode", supportRequest.CouponCode);
         }
     }
 }

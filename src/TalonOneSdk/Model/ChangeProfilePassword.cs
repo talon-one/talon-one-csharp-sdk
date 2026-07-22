@@ -87,8 +87,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ChangeProfilePassword" />
     /// </summary>
-    public class ChangeProfilePasswordJsonConverter : JsonConverter<ChangeProfilePassword>
+    public partial class ChangeProfilePasswordJsonConverter : JsonConverter<ChangeProfilePassword>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChangeProfilePasswordJsonConverter" /> class.
+        /// </summary>
+        public ChangeProfilePasswordJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ChangeProfilePassword" />
         /// </summary>

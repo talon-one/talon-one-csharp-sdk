@@ -169,8 +169,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AsyncCouponsData" />
     /// </summary>
-    public class AsyncCouponsDataJsonConverter : JsonConverter<AsyncCouponsData>
+    public partial class AsyncCouponsDataJsonConverter : JsonConverter<AsyncCouponsData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AsyncCouponsDataJsonConverter" /> class.
+        /// </summary>
+        public AsyncCouponsDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AsyncCouponsData" />
         /// </summary>

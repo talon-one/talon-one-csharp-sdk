@@ -46,8 +46,12 @@ namespace TalonOneSdk.Model
         /// <param name="modified">Timestamp of the most recent update.</param>
         /// <param name="applicationId">The ID of the Application this risk belongs to. Absent for global metrics.</param>
         /// <param name="description">Human-readable description of the detected anomaly.</param>
+        /// <param name="discardReason">The reason this risk was discarded. Only present on discarded risks.</param>
+        /// <param name="statusComment">The free-text details of the latest reclassification action: the description for resolving confirmed risks, or the details for discarding risks. </param>
+        /// <param name="statusChangedBy">The ID of the user who performed the latest reclassification action.</param>
+        /// <param name="statusChangedAt">The time of the latest reclassification action.</param>
         [JsonConstructor]
-        public Risk(long id, DateTime created, long notificationId, DateTime featureDate, string groupKey, StatusEnum status, CriticalityEnum criticality, EntityEnum entity, ActivityEnum activity, TimeFrameEnum timeFrame, DateTime reportedDate, long affectedEntityCount, DateTime modified, Option<long?> applicationId = default, Option<string> description = default)
+        public Risk(long id, DateTime created, long notificationId, DateTime featureDate, string groupKey, StatusEnum status, CriticalityEnum criticality, EntityEnum entity, ActivityEnum activity, TimeFrameEnum timeFrame, DateTime reportedDate, long affectedEntityCount, DateTime modified, Option<long?> applicationId = default, Option<string> description = default, Option<DiscardReasonEnum?> discardReason = default, Option<string> statusComment = default, Option<long?> statusChangedBy = default, Option<DateTime?> statusChangedAt = default)
         {
             Id = id;
             Created = created;
@@ -64,6 +68,10 @@ namespace TalonOneSdk.Model
             Modified = modified;
             ApplicationIdOption = applicationId;
             DescriptionOption = description;
+            DiscardReasonOption = discardReason;
+            StatusCommentOption = statusComment;
+            StatusChangedByOption = statusChangedBy;
+            StatusChangedAtOption = statusChangedAt;
             OnCreated();
         }
 
@@ -515,6 +523,88 @@ namespace TalonOneSdk.Model
         public TimeFrameEnum TimeFrame { get; set; }
 
         /// <summary>
+        /// The reason this risk was discarded. Only present on discarded risks.
+        /// </summary>
+        /// <value>The reason this risk was discarded. Only present on discarded risks.</value>
+        public enum DiscardReasonEnum
+        {
+            /// <summary>
+            /// Enum ExpectedBehavior for value: expected_behavior
+            /// </summary>
+            ExpectedBehavior = 1,
+
+            /// <summary>
+            /// Enum Other for value: other
+            /// </summary>
+            Other = 2
+        }
+
+        /// <summary>
+        /// Returns a <see cref="DiscardReasonEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static DiscardReasonEnum DiscardReasonEnumFromString(string value)
+        {
+            if (value.Equals("expected_behavior"))
+                return DiscardReasonEnum.ExpectedBehavior;
+
+            if (value.Equals("other"))
+                return DiscardReasonEnum.Other;
+
+            throw new NotImplementedException($"Could not convert value to type DiscardReasonEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="DiscardReasonEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static DiscardReasonEnum? DiscardReasonEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("expected_behavior"))
+                return DiscardReasonEnum.ExpectedBehavior;
+
+            if (value.Equals("other"))
+                return DiscardReasonEnum.Other;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="DiscardReasonEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string DiscardReasonEnumToJsonValue(DiscardReasonEnum? value)
+        {
+            if (value == DiscardReasonEnum.ExpectedBehavior)
+                return "expected_behavior";
+
+            if (value == DiscardReasonEnum.Other)
+                return "other";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// Used to track the state of DiscardReason
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DiscardReasonEnum?> DiscardReasonOption { get; private set; }
+
+        /// <summary>
+        /// The reason this risk was discarded. Only present on discarded risks.
+        /// </summary>
+        /// <value>The reason this risk was discarded. Only present on discarded risks.</value>
+        /* <example>expected_behavior</example> */
+        [JsonPropertyName("discardReason")]
+        public DiscardReasonEnum? DiscardReason { get { return this.DiscardReasonOption.Value; } set { this.DiscardReasonOption = new Option<DiscardReasonEnum?>(value); } }
+
+        /// <summary>
         /// The internal ID of this entity.
         /// </summary>
         /// <value>The internal ID of this entity.</value>
@@ -609,6 +699,51 @@ namespace TalonOneSdk.Model
         public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of StatusComment
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> StatusCommentOption { get; private set; }
+
+        /// <summary>
+        /// The free-text details of the latest reclassification action: the description for resolving confirmed risks, or the details for discarding risks. 
+        /// </summary>
+        /// <value>The free-text details of the latest reclassification action: the description for resolving confirmed risks, or the details for discarding risks. </value>
+        /* <example>Investigated with the customer and fixed the loyalty rule.</example> */
+        [JsonPropertyName("statusComment")]
+        public string StatusComment { get { return this.StatusCommentOption.Value; } set { this.StatusCommentOption = new Option<string>(value); } }
+
+        /// <summary>
+        /// Used to track the state of StatusChangedBy
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> StatusChangedByOption { get; private set; }
+
+        /// <summary>
+        /// The ID of the user who performed the latest reclassification action.
+        /// </summary>
+        /// <value>The ID of the user who performed the latest reclassification action.</value>
+        /* <example>42</example> */
+        [JsonPropertyName("statusChangedBy")]
+        public long? StatusChangedBy { get { return this.StatusChangedByOption.Value; } set { this.StatusChangedByOption = new Option<long?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of StatusChangedAt
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTime?> StatusChangedAtOption { get; private set; }
+
+        /// <summary>
+        /// The time of the latest reclassification action.
+        /// </summary>
+        /// <value>The time of the latest reclassification action.</value>
+        /* <example>2026-06-06T09:12:45.000000Z</example> */
+        [JsonPropertyName("statusChangedAt")]
+        public DateTime? StatusChangedAt { get { return this.StatusChangedAtOption.Value; } set { this.StatusChangedAtOption = new Option<DateTime?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -631,6 +766,10 @@ namespace TalonOneSdk.Model
             sb.Append("  Modified: ").Append(Modified).Append("\n");
             sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  DiscardReason: ").Append(DiscardReason).Append("\n");
+            sb.Append("  StatusComment: ").Append(StatusComment).Append("\n");
+            sb.Append("  StatusChangedBy: ").Append(StatusChangedBy).Append("\n");
+            sb.Append("  StatusChangedAt: ").Append(StatusChangedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -649,27 +788,42 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Risk" />
     /// </summary>
-    public class RiskJsonConverter : JsonConverter<Risk>
+    public partial class RiskJsonConverter : JsonConverter<Risk>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RiskJsonConverter" /> class.
+        /// </summary>
+        public RiskJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize FeatureDate
         /// </summary>
-        public static string FeatureDateFormat { get; set; } = "yyyy'-'MM'-'dd";
+        public string FeatureDateFormat { get; private set; } = "yyyy'-'MM'-'dd";
 
         /// <summary>
         /// The format to use to serialize ReportedDate
         /// </summary>
-        public static string ReportedDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ReportedDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
-        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+
+        /// <summary>
+        /// The format to use to serialize StatusChangedAt
+        /// </summary>
+        public string StatusChangedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Risk" />
@@ -703,6 +857,10 @@ namespace TalonOneSdk.Model
             Option<DateTime?> modified = default;
             Option<long?> applicationId = default;
             Option<string> description = default;
+            Option<Risk.DiscardReasonEnum?> discardReason = default;
+            Option<string> statusComment = default;
+            Option<long?> statusChangedBy = default;
+            Option<DateTime?> statusChangedAt = default;
 
             while (utf8JsonReader.Read())
             {
@@ -773,6 +931,20 @@ namespace TalonOneSdk.Model
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "discardReason":
+                            string discardReasonRawValue = utf8JsonReader.GetString();
+                            if (discardReasonRawValue != null)
+                                discardReason = new Option<Risk.DiscardReasonEnum?>(Risk.DiscardReasonEnumFromStringOrDefault(discardReasonRawValue));
+                            break;
+                        case "statusComment":
+                            statusComment = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "statusChangedBy":
+                            statusChangedBy = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "statusChangedAt":
+                            statusChangedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -858,7 +1030,7 @@ namespace TalonOneSdk.Model
             if (modified.IsSet && modified.Value == null)
                 throw new ArgumentNullException(nameof(modified), "Property is not nullable for class Risk.");
 
-            return new Risk(id.Value.Value, created.Value.Value, notificationId.Value.Value, featureDate.Value.Value, groupKey.Value, status.Value.Value, criticality.Value.Value, entity.Value.Value, activity.Value.Value, timeFrame.Value.Value, reportedDate.Value.Value, affectedEntityCount.Value.Value, modified.Value.Value, applicationId, description);
+            return new Risk(id.Value.Value, created.Value.Value, notificationId.Value.Value, featureDate.Value.Value, groupKey.Value, status.Value.Value, criticality.Value.Value, entity.Value.Value, activity.Value.Value, timeFrame.Value.Value, reportedDate.Value.Value, affectedEntityCount.Value.Value, modified.Value.Value, applicationId, description, discardReason, statusComment, statusChangedBy, statusChangedAt);
         }
 
         /// <summary>
@@ -919,6 +1091,20 @@ namespace TalonOneSdk.Model
 
             if (risk.DescriptionOption.IsSet)
                 writer.WriteString("description", risk.Description);
+
+            if (risk.DiscardReasonOption.IsSet)
+            {
+                var discardReasonRawValue = Risk.DiscardReasonEnumToJsonValue(risk.DiscardReasonOption.Value);
+                writer.WriteString("discardReason", discardReasonRawValue);
+            }
+            if (risk.StatusCommentOption.IsSet)
+                writer.WriteString("statusComment", risk.StatusComment);
+
+            if (risk.StatusChangedByOption.IsSet)
+                writer.WriteNumber("statusChangedBy", risk.StatusChangedByOption.Value.Value);
+
+            if (risk.StatusChangedAtOption.IsSet)
+                writer.WriteString("statusChangedAt", risk.StatusChangedAtOption.Value.Value.ToString(StatusChangedAtFormat));
         }
     }
 }

@@ -195,22 +195,32 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ManagementKey" />
     /// </summary>
-    public class ManagementKeyJsonConverter : JsonConverter<ManagementKey>
+    public partial class ManagementKeyJsonConverter : JsonConverter<ManagementKey>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ManagementKeyJsonConverter" /> class.
+        /// </summary>
+        public ManagementKeyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize LastUsed
         /// </summary>
-        public static string LastUsedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string LastUsedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ManagementKey" />

@@ -169,17 +169,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PendingActivePointsData" />
     /// </summary>
-    public class PendingActivePointsDataJsonConverter : JsonConverter<PendingActivePointsData>
+    public partial class PendingActivePointsDataJsonConverter : JsonConverter<PendingActivePointsData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PendingActivePointsDataJsonConverter" /> class.
+        /// </summary>
+        public PendingActivePointsDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize ActiveOn
         /// </summary>
-        public static string ActiveOnFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ActiveOnFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpireOn
         /// </summary>
-        public static string ExpireOnFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ExpireOnFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="PendingActivePointsData" />

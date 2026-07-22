@@ -123,8 +123,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewGiveawaysPool" />
     /// </summary>
-    public class NewGiveawaysPoolJsonConverter : JsonConverter<NewGiveawaysPool>
+    public partial class NewGiveawaysPoolJsonConverter : JsonConverter<NewGiveawaysPool>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewGiveawaysPoolJsonConverter" /> class.
+        /// </summary>
+        public NewGiveawaysPoolJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NewGiveawaysPool" />
         /// </summary>

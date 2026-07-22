@@ -39,7 +39,7 @@ namespace TalonOneSdk.Model
         /// <param name="target">target</param>
         /// <param name="contextId">This property is **deprecated**. Use &#x60;contextIds&#x60; instead. Defaults to an empty string.  (default to &quot;&quot;)</param>
         [JsonConstructor]
-        public History(long id, DateTime observedAt, List<string> contextIds, decimal price, BestPriorPriceMetadata metadata, Object target, Option<string> contextId = default)
+        public History(long id, DateTime observedAt, List<string> contextIds, decimal price, BestPriorPriceMetadata metadata, LabelTarget target, Option<string> contextId = default)
         {
             Id = id;
             ObservedAt = observedAt;
@@ -95,7 +95,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Target
         /// </summary>
         [JsonPropertyName("target")]
-        public Object Target { get; set; }
+        public LabelTarget Target { get; set; }
 
         /// <summary>
         /// Used to track the state of ContextId
@@ -145,12 +145,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="History" />
     /// </summary>
-    public class HistoryJsonConverter : JsonConverter<History>
+    public partial class HistoryJsonConverter : JsonConverter<History>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HistoryJsonConverter" /> class.
+        /// </summary>
+        public HistoryJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize ObservedAt
         /// </summary>
-        public static string ObservedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ObservedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="History" />
@@ -174,7 +184,7 @@ namespace TalonOneSdk.Model
             Option<List<string>> contextIds = default;
             Option<decimal?> price = default;
             Option<BestPriorPriceMetadata> metadata = default;
-            Option<Object> target = default;
+            Option<LabelTarget> target = default;
             Option<string> contextId = default;
 
             while (utf8JsonReader.Read())
@@ -208,7 +218,7 @@ namespace TalonOneSdk.Model
                             metadata = new Option<BestPriorPriceMetadata>(JsonSerializer.Deserialize<BestPriorPriceMetadata>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "target":
-                            target = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            target = new Option<LabelTarget>(JsonSerializer.Deserialize<LabelTarget>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "contextId":
                             contextId = new Option<string>(utf8JsonReader.GetString());

@@ -284,12 +284,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AccountAnalytics" />
     /// </summary>
-    public class AccountAnalyticsJsonConverter : JsonConverter<AccountAnalytics>
+    public partial class AccountAnalyticsJsonConverter : JsonConverter<AccountAnalytics>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountAnalyticsJsonConverter" /> class.
+        /// </summary>
+        public AccountAnalyticsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize LastUpdatedAt
         /// </summary>
-        public static string LastUpdatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string LastUpdatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AccountAnalytics" />

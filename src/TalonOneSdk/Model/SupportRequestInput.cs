@@ -282,8 +282,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SupportRequestInput" />
     /// </summary>
-    public class SupportRequestInputJsonConverter : JsonConverter<SupportRequestInput>
+    public partial class SupportRequestInputJsonConverter : JsonConverter<SupportRequestInput>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SupportRequestInputJsonConverter" /> class.
+        /// </summary>
+        public SupportRequestInputJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SupportRequestInput" />
         /// </summary>

@@ -396,22 +396,32 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Experiment" />
     /// </summary>
-    public class ExperimentJsonConverter : JsonConverter<Experiment>
+    public partial class ExperimentJsonConverter : JsonConverter<Experiment>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExperimentJsonConverter" /> class.
+        /// </summary>
+        public ExperimentJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Activated
         /// </summary>
-        public static string ActivatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ActivatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Deletedat
         /// </summary>
-        public static string DeletedatFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string DeletedatFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Experiment" />

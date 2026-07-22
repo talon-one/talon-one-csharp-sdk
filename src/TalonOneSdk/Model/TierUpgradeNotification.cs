@@ -148,8 +148,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="TierUpgradeNotification" />
     /// </summary>
-    public class TierUpgradeNotificationJsonConverter : JsonConverter<TierUpgradeNotification>
+    public partial class TierUpgradeNotificationJsonConverter : JsonConverter<TierUpgradeNotification>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TierUpgradeNotificationJsonConverter" /> class.
+        /// </summary>
+        public TierUpgradeNotificationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="TierUpgradeNotification" />
         /// </summary>

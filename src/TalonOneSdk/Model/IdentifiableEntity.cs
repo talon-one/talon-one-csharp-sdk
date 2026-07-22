@@ -76,8 +76,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="IdentifiableEntity" />
     /// </summary>
-    public class IdentifiableEntityJsonConverter : JsonConverter<IdentifiableEntity>
+    public partial class IdentifiableEntityJsonConverter : JsonConverter<IdentifiableEntity>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IdentifiableEntityJsonConverter" /> class.
+        /// </summary>
+        public IdentifiableEntityJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="IdentifiableEntity" />
         /// </summary>

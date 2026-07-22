@@ -87,8 +87,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OutgoingIntegrationBrazePolicy" />
     /// </summary>
-    public class OutgoingIntegrationBrazePolicyJsonConverter : JsonConverter<OutgoingIntegrationBrazePolicy>
+    public partial class OutgoingIntegrationBrazePolicyJsonConverter : JsonConverter<OutgoingIntegrationBrazePolicy>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OutgoingIntegrationBrazePolicyJsonConverter" /> class.
+        /// </summary>
+        public OutgoingIntegrationBrazePolicyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OutgoingIntegrationBrazePolicy" />
         /// </summary>

@@ -99,8 +99,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="TalangAttributeVisibility" />
     /// </summary>
-    public class TalangAttributeVisibilityJsonConverter : JsonConverter<TalangAttributeVisibility>
+    public partial class TalangAttributeVisibilityJsonConverter : JsonConverter<TalangAttributeVisibility>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TalangAttributeVisibilityJsonConverter" /> class.
+        /// </summary>
+        public TalangAttributeVisibilityJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="TalangAttributeVisibility" />
         /// </summary>

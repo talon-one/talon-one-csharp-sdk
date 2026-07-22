@@ -286,8 +286,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CustomerProfileIntegrationRequestV2" />
     /// </summary>
-    public class CustomerProfileIntegrationRequestV2JsonConverter : JsonConverter<CustomerProfileIntegrationRequestV2>
+    public partial class CustomerProfileIntegrationRequestV2JsonConverter : JsonConverter<CustomerProfileIntegrationRequestV2>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomerProfileIntegrationRequestV2JsonConverter" /> class.
+        /// </summary>
+        public CustomerProfileIntegrationRequestV2JsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CustomerProfileIntegrationRequestV2" />
         /// </summary>

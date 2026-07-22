@@ -304,8 +304,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateCampaignEvaluationGroup" />
     /// </summary>
-    public class UpdateCampaignEvaluationGroupJsonConverter : JsonConverter<UpdateCampaignEvaluationGroup>
+    public partial class UpdateCampaignEvaluationGroupJsonConverter : JsonConverter<UpdateCampaignEvaluationGroup>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateCampaignEvaluationGroupJsonConverter" /> class.
+        /// </summary>
+        public UpdateCampaignEvaluationGroupJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateCampaignEvaluationGroup" />
         /// </summary>

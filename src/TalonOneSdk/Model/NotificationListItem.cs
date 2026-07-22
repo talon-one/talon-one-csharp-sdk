@@ -109,8 +109,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NotificationListItem" />
     /// </summary>
-    public class NotificationListItemJsonConverter : JsonConverter<NotificationListItem>
+    public partial class NotificationListItemJsonConverter : JsonConverter<NotificationListItem>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NotificationListItemJsonConverter" /> class.
+        /// </summary>
+        public NotificationListItemJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NotificationListItem" />
         /// </summary>

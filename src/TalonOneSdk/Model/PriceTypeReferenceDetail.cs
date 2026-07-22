@@ -196,8 +196,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PriceTypeReferenceDetail" />
     /// </summary>
-    public class PriceTypeReferenceDetailJsonConverter : JsonConverter<PriceTypeReferenceDetail>
+    public partial class PriceTypeReferenceDetailJsonConverter : JsonConverter<PriceTypeReferenceDetail>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PriceTypeReferenceDetailJsonConverter" /> class.
+        /// </summary>
+        public PriceTypeReferenceDetailJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PriceTypeReferenceDetail" />
         /// </summary>

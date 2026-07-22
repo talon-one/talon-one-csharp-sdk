@@ -299,8 +299,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="IntegrationRequest" />
     /// </summary>
-    public class IntegrationRequestJsonConverter : JsonConverter<IntegrationRequest>
+    public partial class IntegrationRequestJsonConverter : JsonConverter<IntegrationRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegrationRequestJsonConverter" /> class.
+        /// </summary>
+        public IntegrationRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="IntegrationRequest" />
         /// </summary>

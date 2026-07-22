@@ -37,7 +37,7 @@ namespace TalonOneSdk.Model
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public CheckReferralBlock(string id, string type, bool redeem, Option<List<string>> tags = default, Option<List<Object>> onFailure = default)
+        public CheckReferralBlock(string id, string type, bool redeem, Option<List<string>> tags = default, Option<List<PromotionBlock>> onFailure = default)
         {
             Id = id;
             Type = type;
@@ -91,14 +91,14 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Object>> OnFailureOption { get; private set; }
+        public Option<List<PromotionBlock>> OnFailureOption { get; private set; }
 
         /// <summary>
         /// Promotion blocks evaluated when this block fails or returns false.
         /// </summary>
         /// <value>Promotion blocks evaluated when this block fails or returns false.</value>
         [JsonPropertyName("onFailure")]
-        public List<Object> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Object>>(value); } }
+        public List<PromotionBlock> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<PromotionBlock>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -131,8 +131,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CheckReferralBlock" />
     /// </summary>
-    public class CheckReferralBlockJsonConverter : JsonConverter<CheckReferralBlock>
+    public partial class CheckReferralBlockJsonConverter : JsonConverter<CheckReferralBlock>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckReferralBlockJsonConverter" /> class.
+        /// </summary>
+        public CheckReferralBlockJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CheckReferralBlock" />
         /// </summary>
@@ -154,7 +164,7 @@ namespace TalonOneSdk.Model
             Option<string> type = default;
             Option<bool?> redeem = default;
             Option<List<string>> tags = default;
-            Option<List<Object>> onFailure = default;
+            Option<List<PromotionBlock>> onFailure = default;
 
             while (utf8JsonReader.Read())
             {
@@ -184,7 +194,7 @@ namespace TalonOneSdk.Model
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "onFailure":
-                            onFailure = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            onFailure = new Option<List<PromotionBlock>>(JsonSerializer.Deserialize<List<PromotionBlock>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Title** | **string** | A short description of the rule. | 
-**Blocks** | **List&lt;Object&gt;** | The condition and effect blocks that make up this promotion rule. | 
+**Blocks** | [**List&lt;PromotionBlock&gt;**](PromotionBlock.md) | The condition and effect blocks that make up this promotion rule. | 
 **Id** | **string** | Unique identifier of the rule. | [optional] 
 **ParentId** | **string** | ID of the parent rule, if any. | [optional] 
 **Description** | **string** | A longer description of the rule. | [optional] 

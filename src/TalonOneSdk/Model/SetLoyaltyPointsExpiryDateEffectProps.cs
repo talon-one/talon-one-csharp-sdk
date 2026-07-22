@@ -113,12 +113,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SetLoyaltyPointsExpiryDateEffectProps" />
     /// </summary>
-    public class SetLoyaltyPointsExpiryDateEffectPropsJsonConverter : JsonConverter<SetLoyaltyPointsExpiryDateEffectProps>
+    public partial class SetLoyaltyPointsExpiryDateEffectPropsJsonConverter : JsonConverter<SetLoyaltyPointsExpiryDateEffectProps>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SetLoyaltyPointsExpiryDateEffectPropsJsonConverter" /> class.
+        /// </summary>
+        public SetLoyaltyPointsExpiryDateEffectPropsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize NewExpiryDate
         /// </summary>
-        public static string NewExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string NewExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="SetLoyaltyPointsExpiryDateEffectProps" />

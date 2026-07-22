@@ -432,17 +432,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AchievementBase" />
     /// </summary>
-    public class AchievementBaseJsonConverter : JsonConverter<AchievementBase>
+    public partial class AchievementBaseJsonConverter : JsonConverter<AchievementBase>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AchievementBaseJsonConverter" /> class.
+        /// </summary>
+        public AchievementBaseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize FixedStartDate
         /// </summary>
-        public static string FixedStartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string FixedStartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EndDate
         /// </summary>
-        public static string EndDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string EndDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AchievementBase" />

@@ -95,8 +95,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ItemAttribute" />
     /// </summary>
-    public class ItemAttributeJsonConverter : JsonConverter<ItemAttribute>
+    public partial class ItemAttributeJsonConverter : JsonConverter<ItemAttribute>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ItemAttributeJsonConverter" /> class.
+        /// </summary>
+        public ItemAttributeJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ItemAttribute" />
         /// </summary>

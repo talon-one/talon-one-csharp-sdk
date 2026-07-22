@@ -38,7 +38,7 @@ namespace TalonOneSdk.Model
         /// <param name="accountId">The ID of the account that owns this entity.</param>
         /// <param name="usageLimit">The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply. </param>
         /// <param name="numberOfCoupons">The number of new coupon codes to generate for the campaign.</param>
-        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
+        /// <param name="attributes">Arbitrary properties associated with coupons.</param>
         /// <param name="batchId">The batch ID coupons created by this job will bear.</param>
         /// <param name="status">The current status of this request. Possible values: - &#x60;pending verification&#x60; - &#x60;pending&#x60; - &#x60;completed&#x60; - &#x60;failed&#x60; - &#x60;coupon pattern full&#x60; </param>
         /// <param name="createdAmount">The number of coupon codes that were already created for this request.</param>
@@ -142,9 +142,9 @@ namespace TalonOneSdk.Model
         public long NumberOfCoupons { get; set; }
 
         /// <summary>
-        /// Arbitrary properties associated with this campaign.
+        /// Arbitrary properties associated with coupons.
         /// </summary>
-        /// <value>Arbitrary properties associated with this campaign.</value>
+        /// <value>Arbitrary properties associated with coupons.</value>
         [JsonPropertyName("attributes")]
         public Object Attributes { get; set; }
 
@@ -412,22 +412,32 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CouponCreationJob" />
     /// </summary>
-    public class CouponCreationJobJsonConverter : JsonConverter<CouponCreationJob>
+    public partial class CouponCreationJobJsonConverter : JsonConverter<CouponCreationJob>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CouponCreationJobJsonConverter" /> class.
+        /// </summary>
+        public CouponCreationJobJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CouponCreationJob" />

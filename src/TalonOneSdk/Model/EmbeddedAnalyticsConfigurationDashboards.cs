@@ -82,8 +82,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EmbeddedAnalyticsConfigurationDashboards" />
     /// </summary>
-    public class EmbeddedAnalyticsConfigurationDashboardsJsonConverter : JsonConverter<EmbeddedAnalyticsConfigurationDashboards>
+    public partial class EmbeddedAnalyticsConfigurationDashboardsJsonConverter : JsonConverter<EmbeddedAnalyticsConfigurationDashboards>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EmbeddedAnalyticsConfigurationDashboardsJsonConverter" /> class.
+        /// </summary>
+        public EmbeddedAnalyticsConfigurationDashboardsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EmbeddedAnalyticsConfigurationDashboards" />
         /// </summary>

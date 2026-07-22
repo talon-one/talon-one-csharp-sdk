@@ -126,8 +126,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="LabelTargetNone" />
     /// </summary>
-    public class LabelTargetNoneJsonConverter : JsonConverter<LabelTargetNone>
+    public partial class LabelTargetNoneJsonConverter : JsonConverter<LabelTargetNone>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LabelTargetNoneJsonConverter" /> class.
+        /// </summary>
+        public LabelTargetNoneJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="LabelTargetNone" />
         /// </summary>

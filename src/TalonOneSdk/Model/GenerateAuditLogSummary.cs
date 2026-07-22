@@ -75,8 +75,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GenerateAuditLogSummary" />
     /// </summary>
-    public class GenerateAuditLogSummaryJsonConverter : JsonConverter<GenerateAuditLogSummary>
+    public partial class GenerateAuditLogSummaryJsonConverter : JsonConverter<GenerateAuditLogSummary>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateAuditLogSummaryJsonConverter" /> class.
+        /// </summary>
+        public GenerateAuditLogSummaryJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GenerateAuditLogSummary" />
         /// </summary>

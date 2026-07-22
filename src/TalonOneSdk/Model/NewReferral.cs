@@ -37,7 +37,7 @@ namespace TalonOneSdk.Model
         /// <param name="expiryDate">Expiration date of the referral code. Referral never expires if this is omitted.</param>
         /// <param name="usageLimit">The number of times a referral code can be used. &#x60;0&#x60; means no limit but any campaign usage limits will still apply. </param>
         /// <param name="friendProfileIntegrationId">An optional Integration ID of the Friend&#39;s Profile.</param>
-        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
+        /// <param name="attributes">Arbitrary properties associated with this item.</param>
         [JsonConstructor]
         public NewReferral(long campaignId, string advocateProfileIntegrationId, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<long?> usageLimit = default, Option<string> friendProfileIntegrationId = default, Option<Object> attributes = default)
         {
@@ -137,9 +137,10 @@ namespace TalonOneSdk.Model
         public Option<Object> AttributesOption { get; private set; }
 
         /// <summary>
-        /// Arbitrary properties associated with this campaign.
+        /// Arbitrary properties associated with this item.
         /// </summary>
-        /// <value>Arbitrary properties associated with this campaign.</value>
+        /// <value>Arbitrary properties associated with this item.</value>
+        /* <example>{channel&#x3D;web}</example> */
         [JsonPropertyName("attributes")]
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
@@ -194,17 +195,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewReferral" />
     /// </summary>
-    public class NewReferralJsonConverter : JsonConverter<NewReferral>
+    public partial class NewReferralJsonConverter : JsonConverter<NewReferral>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewReferralJsonConverter" /> class.
+        /// </summary>
+        public NewReferralJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="NewReferral" />

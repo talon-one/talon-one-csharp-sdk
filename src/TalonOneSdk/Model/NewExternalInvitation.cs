@@ -112,8 +112,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewExternalInvitation" />
     /// </summary>
-    public class NewExternalInvitationJsonConverter : JsonConverter<NewExternalInvitation>
+    public partial class NewExternalInvitationJsonConverter : JsonConverter<NewExternalInvitation>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewExternalInvitationJsonConverter" /> class.
+        /// </summary>
+        public NewExternalInvitationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NewExternalInvitation" />
         /// </summary>

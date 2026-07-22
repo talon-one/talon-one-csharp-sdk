@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** | The type of value this argument expects. | 
 **Title** | **string** | A campaigner friendly name for the argument, this will be shown in the rule editor. | 
-**Ui** | **Object** | Arbitrary properties associated with this campaign. | 
+**Ui** | **Object** | Arbitrary metadata that may be used to render an input for this argument. | 
 **Description** | **string** | A campaigner-friendly description of the argument, this will also be shown in the rule editor. | [optional] 
 **Key** | **string** | The identifier for the associated value within the JSON object. | [optional] 
 **PicklistID** | **long** | ID of the picklist linked to a template. | [optional] 

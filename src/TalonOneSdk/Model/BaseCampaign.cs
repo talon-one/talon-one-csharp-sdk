@@ -619,17 +619,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="BaseCampaign" />
     /// </summary>
-    public class BaseCampaignJsonConverter : JsonConverter<BaseCampaign>
+    public partial class BaseCampaignJsonConverter : JsonConverter<BaseCampaign>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseCampaignJsonConverter" /> class.
+        /// </summary>
+        public BaseCampaignJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize StartTime
         /// </summary>
-        public static string StartTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string StartTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EndTime
         /// </summary>
-        public static string EndTimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string EndTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="BaseCampaign" />

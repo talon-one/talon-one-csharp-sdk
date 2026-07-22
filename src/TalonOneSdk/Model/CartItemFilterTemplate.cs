@@ -87,8 +87,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CartItemFilterTemplate" />
     /// </summary>
-    public class CartItemFilterTemplateJsonConverter : JsonConverter<CartItemFilterTemplate>
+    public partial class CartItemFilterTemplateJsonConverter : JsonConverter<CartItemFilterTemplate>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CartItemFilterTemplateJsonConverter" /> class.
+        /// </summary>
+        public CartItemFilterTemplateJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CartItemFilterTemplate" />
         /// </summary>

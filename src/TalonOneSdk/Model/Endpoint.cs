@@ -76,8 +76,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Endpoint" />
     /// </summary>
-    public class EndpointJsonConverter : JsonConverter<Endpoint>
+    public partial class EndpointJsonConverter : JsonConverter<Endpoint>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EndpointJsonConverter" /> class.
+        /// </summary>
+        public EndpointJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="Endpoint" />
         /// </summary>

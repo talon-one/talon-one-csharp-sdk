@@ -227,22 +227,32 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ExpiringCouponsData" />
     /// </summary>
-    public class ExpiringCouponsDataJsonConverter : JsonConverter<ExpiringCouponsData>
+    public partial class ExpiringCouponsDataJsonConverter : JsonConverter<ExpiringCouponsData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExpiringCouponsDataJsonConverter" /> class.
+        /// </summary>
+        public ExpiringCouponsDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedDate
         /// </summary>
-        public static string CreatedDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ValidFrom
         /// </summary>
-        public static string ValidFromFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ValidFromFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ValidUntil
         /// </summary>
-        public static string ValidUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ValidUntilFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ExpiringCouponsData" />

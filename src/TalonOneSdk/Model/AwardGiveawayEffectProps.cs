@@ -126,8 +126,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AwardGiveawayEffectProps" />
     /// </summary>
-    public class AwardGiveawayEffectPropsJsonConverter : JsonConverter<AwardGiveawayEffectProps>
+    public partial class AwardGiveawayEffectPropsJsonConverter : JsonConverter<AwardGiveawayEffectProps>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AwardGiveawayEffectPropsJsonConverter" /> class.
+        /// </summary>
+        public AwardGiveawayEffectPropsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AwardGiveawayEffectProps" />
         /// </summary>

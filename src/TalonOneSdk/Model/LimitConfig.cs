@@ -339,8 +339,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="LimitConfig" />
     /// </summary>
-    public class LimitConfigJsonConverter : JsonConverter<LimitConfig>
+    public partial class LimitConfigJsonConverter : JsonConverter<LimitConfig>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LimitConfigJsonConverter" /> class.
+        /// </summary>
+        public LimitConfigJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="LimitConfig" />
         /// </summary>

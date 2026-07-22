@@ -85,8 +85,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="StrikethroughSetDiscountPerItemMemberEffectProps" />
     /// </summary>
-    public class StrikethroughSetDiscountPerItemMemberEffectPropsJsonConverter : JsonConverter<StrikethroughSetDiscountPerItemMemberEffectProps>
+    public partial class StrikethroughSetDiscountPerItemMemberEffectPropsJsonConverter : JsonConverter<StrikethroughSetDiscountPerItemMemberEffectProps>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StrikethroughSetDiscountPerItemMemberEffectPropsJsonConverter" /> class.
+        /// </summary>
+        public StrikethroughSetDiscountPerItemMemberEffectPropsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="StrikethroughSetDiscountPerItemMemberEffectProps" />
         /// </summary>

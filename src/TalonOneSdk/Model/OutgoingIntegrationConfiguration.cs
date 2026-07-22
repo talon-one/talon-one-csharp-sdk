@@ -34,9 +34,9 @@ namespace TalonOneSdk.Model
         /// <param name="id">Unique ID for this entity.</param>
         /// <param name="accountId">The ID of the account to which this configuration belongs.</param>
         /// <param name="typeId">The outgoing integration type ID.</param>
-        /// <param name="policy">The outgoing integration policy specific to each integration type.</param>
+        /// <param name="policy">policy</param>
         [JsonConstructor]
-        public OutgoingIntegrationConfiguration(long id, long accountId, long typeId, Object policy)
+        public OutgoingIntegrationConfiguration(long id, long accountId, long typeId, OutgoingIntegrationConfigurationPolicy policy)
         {
             Id = id;
             AccountId = accountId;
@@ -72,11 +72,10 @@ namespace TalonOneSdk.Model
         public long TypeId { get; set; }
 
         /// <summary>
-        /// The outgoing integration policy specific to each integration type.
+        /// Gets or Sets Policy
         /// </summary>
-        /// <value>The outgoing integration policy specific to each integration type.</value>
         [JsonPropertyName("policy")]
-        public Object Policy { get; set; }
+        public OutgoingIntegrationConfigurationPolicy Policy { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -108,8 +107,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OutgoingIntegrationConfiguration" />
     /// </summary>
-    public class OutgoingIntegrationConfigurationJsonConverter : JsonConverter<OutgoingIntegrationConfiguration>
+    public partial class OutgoingIntegrationConfigurationJsonConverter : JsonConverter<OutgoingIntegrationConfiguration>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OutgoingIntegrationConfigurationJsonConverter" /> class.
+        /// </summary>
+        public OutgoingIntegrationConfigurationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OutgoingIntegrationConfiguration" />
         /// </summary>
@@ -130,7 +139,7 @@ namespace TalonOneSdk.Model
             Option<long?> id = default;
             Option<long?> accountId = default;
             Option<long?> typeId = default;
-            Option<Object> policy = default;
+            Option<OutgoingIntegrationConfigurationPolicy> policy = default;
 
             while (utf8JsonReader.Read())
             {
@@ -157,7 +166,7 @@ namespace TalonOneSdk.Model
                             typeId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "policy":
-                            policy = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            policy = new Option<OutgoingIntegrationConfigurationPolicy>(JsonSerializer.Deserialize<OutgoingIntegrationConfigurationPolicy>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

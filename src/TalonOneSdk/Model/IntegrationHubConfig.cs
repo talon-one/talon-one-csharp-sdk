@@ -87,8 +87,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="IntegrationHubConfig" />
     /// </summary>
-    public class IntegrationHubConfigJsonConverter : JsonConverter<IntegrationHubConfig>
+    public partial class IntegrationHubConfigJsonConverter : JsonConverter<IntegrationHubConfig>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegrationHubConfigJsonConverter" /> class.
+        /// </summary>
+        public IntegrationHubConfigJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubConfig" />
         /// </summary>

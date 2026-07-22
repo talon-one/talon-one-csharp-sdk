@@ -25,7 +25,7 @@ namespace TalonOneSdk.Test.Api
     public class DependencyInjectionTest
     {
         private readonly IHost _hostUsingConfigureWithoutAClient =
-            Host.CreateDefaultBuilder(Array.Empty<string>()).ConfigureApi((context, services, options) =>
+            Host.CreateDefaultBuilder(Array.Empty<string>()).ConfigureApi((context, options) =>
             {
                 ApiKeyToken apiKeyToken1 = new ApiKeyToken("<token>", ClientUtils.ApiKeyHeader.Authorization, timeout: TimeSpan.FromSeconds(1));
                 options.AddTokens(apiKeyToken1);
@@ -33,7 +33,7 @@ namespace TalonOneSdk.Test.Api
             .Build();
 
         private readonly IHost _hostUsingConfigureWithAClient =
-            Host.CreateDefaultBuilder(Array.Empty<string>()).ConfigureApi((context, services, options) =>
+            Host.CreateDefaultBuilder(Array.Empty<string>()).ConfigureApi((context, options) =>
             {
                 ApiKeyToken apiKeyToken1 = new ApiKeyToken("<token>", ClientUtils.ApiKeyHeader.Authorization, timeout: TimeSpan.FromSeconds(1));
                 options.AddTokens(apiKeyToken1);

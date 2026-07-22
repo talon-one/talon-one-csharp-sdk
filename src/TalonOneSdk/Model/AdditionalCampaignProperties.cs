@@ -638,17 +638,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AdditionalCampaignProperties" />
     /// </summary>
-    public class AdditionalCampaignPropertiesJsonConverter : JsonConverter<AdditionalCampaignProperties>
+    public partial class AdditionalCampaignPropertiesJsonConverter : JsonConverter<AdditionalCampaignProperties>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdditionalCampaignPropertiesJsonConverter" /> class.
+        /// </summary>
+        public AdditionalCampaignPropertiesJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize LastActivity
         /// </summary>
-        public static string LastActivityFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string LastActivityFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Updated
         /// </summary>
-        public static string UpdatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string UpdatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AdditionalCampaignProperties" />

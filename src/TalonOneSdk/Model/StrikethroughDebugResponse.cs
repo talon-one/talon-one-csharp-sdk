@@ -99,8 +99,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="StrikethroughDebugResponse" />
     /// </summary>
-    public class StrikethroughDebugResponseJsonConverter : JsonConverter<StrikethroughDebugResponse>
+    public partial class StrikethroughDebugResponseJsonConverter : JsonConverter<StrikethroughDebugResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StrikethroughDebugResponseJsonConverter" /> class.
+        /// </summary>
+        public StrikethroughDebugResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="StrikethroughDebugResponse" />
         /// </summary>

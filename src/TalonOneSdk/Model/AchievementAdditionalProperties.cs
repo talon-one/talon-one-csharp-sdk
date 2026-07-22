@@ -235,8 +235,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AchievementAdditionalProperties" />
     /// </summary>
-    public class AchievementAdditionalPropertiesJsonConverter : JsonConverter<AchievementAdditionalProperties>
+    public partial class AchievementAdditionalPropertiesJsonConverter : JsonConverter<AchievementAdditionalProperties>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AchievementAdditionalPropertiesJsonConverter" /> class.
+        /// </summary>
+        public AchievementAdditionalPropertiesJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AchievementAdditionalProperties" />
         /// </summary>

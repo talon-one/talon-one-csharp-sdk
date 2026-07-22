@@ -125,8 +125,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApplicationCampaignStats" />
     /// </summary>
-    public class ApplicationCampaignStatsJsonConverter : JsonConverter<ApplicationCampaignStats>
+    public partial class ApplicationCampaignStatsJsonConverter : JsonConverter<ApplicationCampaignStats>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationCampaignStatsJsonConverter" /> class.
+        /// </summary>
+        public ApplicationCampaignStatsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ApplicationCampaignStats" />
         /// </summary>

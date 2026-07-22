@@ -239,8 +239,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateUser" />
     /// </summary>
-    public class UpdateUserJsonConverter : JsonConverter<UpdateUser>
+    public partial class UpdateUserJsonConverter : JsonConverter<UpdateUser>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateUserJsonConverter" /> class.
+        /// </summary>
+        public UpdateUserJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateUser" />
         /// </summary>

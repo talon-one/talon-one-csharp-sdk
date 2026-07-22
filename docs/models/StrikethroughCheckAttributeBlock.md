@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Max** | **Object** |  | [optional] 
 **Values** | **Object** |  | [optional] 
 **Count** | **Object** |  | [optional] 
-**OnFailure** | **List&lt;Object&gt;** | Strikethrough blocks evaluated when this block fails or returns false. | [optional] 
+**OnFailure** | [**List&lt;StrikethroughBlock&gt;**](StrikethroughBlock.md) | Strikethrough blocks evaluated when this block fails or returns false. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

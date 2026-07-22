@@ -209,12 +209,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateAccount" />
     /// </summary>
-    public class UpdateAccountJsonConverter : JsonConverter<UpdateAccount>
+    public partial class UpdateAccountJsonConverter : JsonConverter<UpdateAccount>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateAccountJsonConverter" /> class.
+        /// </summary>
+        public UpdateAccountJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize PlanExpires
         /// </summary>
-        public static string PlanExpiresFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string PlanExpiresFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="UpdateAccount" />

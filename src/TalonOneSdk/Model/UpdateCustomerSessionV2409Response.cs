@@ -115,8 +115,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateCustomerSessionV2409Response" />
     /// </summary>
-    public class UpdateCustomerSessionV2409ResponseJsonConverter : JsonConverter<UpdateCustomerSessionV2409Response>
+    public partial class UpdateCustomerSessionV2409ResponseJsonConverter : JsonConverter<UpdateCustomerSessionV2409Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateCustomerSessionV2409ResponseJsonConverter" /> class.
+        /// </summary>
+        public UpdateCustomerSessionV2409ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateCustomerSessionV2409Response" />
         /// </summary>

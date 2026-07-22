@@ -183,22 +183,32 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewPriceAdjustment" />
     /// </summary>
-    public class NewPriceAdjustmentJsonConverter : JsonConverter<NewPriceAdjustment>
+    public partial class NewPriceAdjustmentJsonConverter : JsonConverter<NewPriceAdjustment>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewPriceAdjustmentJsonConverter" /> class.
+        /// </summary>
+        public NewPriceAdjustmentJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CalculatedAt
         /// </summary>
-        public static string CalculatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CalculatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EffectiveFrom
         /// </summary>
-        public static string EffectiveFromFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string EffectiveFromFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EffectiveUntil
         /// </summary>
-        public static string EffectiveUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string EffectiveUntilFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="NewPriceAdjustment" />

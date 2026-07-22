@@ -83,8 +83,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="BestPriorPriceSettings" />
     /// </summary>
-    public class BestPriorPriceSettingsJsonConverter : JsonConverter<BestPriorPriceSettings>
+    public partial class BestPriorPriceSettingsJsonConverter : JsonConverter<BestPriorPriceSettings>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BestPriorPriceSettingsJsonConverter" /> class.
+        /// </summary>
+        public BestPriorPriceSettingsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="BestPriorPriceSettings" />
         /// </summary>

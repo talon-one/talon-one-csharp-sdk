@@ -322,12 +322,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CampaignAnalytics" />
     /// </summary>
-    public class CampaignAnalyticsJsonConverter : JsonConverter<CampaignAnalytics>
+    public partial class CampaignAnalyticsJsonConverter : JsonConverter<CampaignAnalytics>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CampaignAnalyticsJsonConverter" /> class.
+        /// </summary>
+        public CampaignAnalyticsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Date
         /// </summary>
-        public static string DateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string DateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CampaignAnalytics" />

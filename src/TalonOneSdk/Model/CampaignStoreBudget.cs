@@ -118,12 +118,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CampaignStoreBudget" />
     /// </summary>
-    public class CampaignStoreBudgetJsonConverter : JsonConverter<CampaignStoreBudget>
+    public partial class CampaignStoreBudgetJsonConverter : JsonConverter<CampaignStoreBudget>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CampaignStoreBudgetJsonConverter" /> class.
+        /// </summary>
+        public CampaignStoreBudgetJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CampaignStoreBudget" />

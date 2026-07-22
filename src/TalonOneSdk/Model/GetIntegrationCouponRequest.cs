@@ -98,8 +98,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetIntegrationCouponRequest" />
     /// </summary>
-    public class GetIntegrationCouponRequestJsonConverter : JsonConverter<GetIntegrationCouponRequest>
+    public partial class GetIntegrationCouponRequestJsonConverter : JsonConverter<GetIntegrationCouponRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetIntegrationCouponRequestJsonConverter" /> class.
+        /// </summary>
+        public GetIntegrationCouponRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetIntegrationCouponRequest" />
         /// </summary>

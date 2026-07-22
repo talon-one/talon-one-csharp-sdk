@@ -193,8 +193,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GiveawayPoolNotificationData" />
     /// </summary>
-    public class GiveawayPoolNotificationDataJsonConverter : JsonConverter<GiveawayPoolNotificationData>
+    public partial class GiveawayPoolNotificationDataJsonConverter : JsonConverter<GiveawayPoolNotificationData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GiveawayPoolNotificationDataJsonConverter" /> class.
+        /// </summary>
+        public GiveawayPoolNotificationDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GiveawayPoolNotificationData" />
         /// </summary>

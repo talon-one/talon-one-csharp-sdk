@@ -187,5 +187,41 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'Description'
         }
+
+        /// <summary>
+        /// Test the property 'DiscardReason'
+        /// </summary>
+        [Fact]
+        public void DiscardReasonTest()
+        {
+            // TODO unit test for the property 'DiscardReason'
+        }
+
+        /// <summary>
+        /// Test the property 'StatusComment'
+        /// </summary>
+        [Fact]
+        public void StatusCommentTest()
+        {
+            // TODO unit test for the property 'StatusComment'
+        }
+
+        /// <summary>
+        /// Test the property 'StatusChangedBy'
+        /// </summary>
+        [Fact]
+        public void StatusChangedByTest()
+        {
+            // TODO unit test for the property 'StatusChangedBy'
+        }
+
+        /// <summary>
+        /// Test the property 'StatusChangedAt'
+        /// </summary>
+        [Fact]
+        public void StatusChangedAtTest()
+        {
+            // TODO unit test for the property 'StatusChangedAt'
+        }
     }
 }

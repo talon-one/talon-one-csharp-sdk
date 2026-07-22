@@ -83,7 +83,7 @@ namespace TalonOneSdk.Model
         /// The attributes of the item to add.
         /// </summary>
         /// <value>The attributes of the item to add.</value>
-        /* <example>{&quot;origin&quot;:&quot;germany&quot;,&quot;color&quot;:&quot;blue&quot;}</example> */
+        /* <example>{origin&#x3D;germany, color&#x3D;blue}</example> */
         [JsonPropertyName("attributes")]
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
@@ -146,8 +146,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AddItemCatalogAction" />
     /// </summary>
-    public class AddItemCatalogActionJsonConverter : JsonConverter<AddItemCatalogAction>
+    public partial class AddItemCatalogActionJsonConverter : JsonConverter<AddItemCatalogAction>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddItemCatalogActionJsonConverter" /> class.
+        /// </summary>
+        public AddItemCatalogActionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AddItemCatalogAction" />
         /// </summary>

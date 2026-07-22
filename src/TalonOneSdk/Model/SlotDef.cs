@@ -139,8 +139,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SlotDef" />
     /// </summary>
-    public class SlotDefJsonConverter : JsonConverter<SlotDef>
+    public partial class SlotDefJsonConverter : JsonConverter<SlotDef>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SlotDefJsonConverter" /> class.
+        /// </summary>
+        public SlotDefJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SlotDef" />
         /// </summary>

@@ -176,12 +176,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CatalogItem" />
     /// </summary>
-    public class CatalogItemJsonConverter : JsonConverter<CatalogItem>
+    public partial class CatalogItemJsonConverter : JsonConverter<CatalogItem>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CatalogItemJsonConverter" /> class.
+        /// </summary>
+        public CatalogItemJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CatalogItem" />

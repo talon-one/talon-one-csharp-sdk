@@ -166,8 +166,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EventV2" />
     /// </summary>
-    public class EventV2JsonConverter : JsonConverter<EventV2>
+    public partial class EventV2JsonConverter : JsonConverter<EventV2>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventV2JsonConverter" /> class.
+        /// </summary>
+        public EventV2JsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EventV2" />
         /// </summary>

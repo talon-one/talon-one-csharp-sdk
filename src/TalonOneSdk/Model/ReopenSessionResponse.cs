@@ -75,8 +75,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ReopenSessionResponse" />
     /// </summary>
-    public class ReopenSessionResponseJsonConverter : JsonConverter<ReopenSessionResponse>
+    public partial class ReopenSessionResponseJsonConverter : JsonConverter<ReopenSessionResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReopenSessionResponseJsonConverter" /> class.
+        /// </summary>
+        public ReopenSessionResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ReopenSessionResponse" />
         /// </summary>

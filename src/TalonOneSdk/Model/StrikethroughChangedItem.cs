@@ -171,12 +171,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="StrikethroughChangedItem" />
     /// </summary>
-    public class StrikethroughChangedItemJsonConverter : JsonConverter<StrikethroughChangedItem>
+    public partial class StrikethroughChangedItemJsonConverter : JsonConverter<StrikethroughChangedItem>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StrikethroughChangedItemJsonConverter" /> class.
+        /// </summary>
+        public StrikethroughChangedItemJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize EvaluatedAt
         /// </summary>
-        public static string EvaluatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string EvaluatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="StrikethroughChangedItem" />

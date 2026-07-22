@@ -97,8 +97,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SamlConnectionInternal" />
     /// </summary>
-    public class SamlConnectionInternalJsonConverter : JsonConverter<SamlConnectionInternal>
+    public partial class SamlConnectionInternalJsonConverter : JsonConverter<SamlConnectionInternal>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SamlConnectionInternalJsonConverter" /> class.
+        /// </summary>
+        public SamlConnectionInternalJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SamlConnectionInternal" />
         /// </summary>

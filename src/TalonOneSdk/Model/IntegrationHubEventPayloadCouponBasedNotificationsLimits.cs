@@ -108,8 +108,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="IntegrationHubEventPayloadCouponBasedNotificationsLimits" />
     /// </summary>
-    public class IntegrationHubEventPayloadCouponBasedNotificationsLimitsJsonConverter : JsonConverter<IntegrationHubEventPayloadCouponBasedNotificationsLimits>
+    public partial class IntegrationHubEventPayloadCouponBasedNotificationsLimitsJsonConverter : JsonConverter<IntegrationHubEventPayloadCouponBasedNotificationsLimits>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegrationHubEventPayloadCouponBasedNotificationsLimitsJsonConverter" /> class.
+        /// </summary>
+        public IntegrationHubEventPayloadCouponBasedNotificationsLimitsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventPayloadCouponBasedNotificationsLimits" />
         /// </summary>

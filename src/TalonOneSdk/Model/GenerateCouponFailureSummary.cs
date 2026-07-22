@@ -93,8 +93,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GenerateCouponFailureSummary" />
     /// </summary>
-    public class GenerateCouponFailureSummaryJsonConverter : JsonConverter<GenerateCouponFailureSummary>
+    public partial class GenerateCouponFailureSummaryJsonConverter : JsonConverter<GenerateCouponFailureSummary>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateCouponFailureSummaryJsonConverter" /> class.
+        /// </summary>
+        public GenerateCouponFailureSummaryJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GenerateCouponFailureSummary" />
         /// </summary>

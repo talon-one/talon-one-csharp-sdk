@@ -33,7 +33,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">The type discriminator for this block.</param>
-        /// <param name="expression">The raw Talang expression as an array. The first element is the function name; subsequent elements are its arguments, which may themselves be nested expressions.</param>
+        /// <param name="expression">The raw Talang expression as an array. For a function call, the first element is the function name and subsequent elements are its arguments. For any other expression (for example a bare attribute path or a literal value), this is a single-element array containing that value.</param>
         [JsonConstructor]
         public PassthroughBlock(string id, TypeEnum type, List<Object> expression)
         {
@@ -114,9 +114,9 @@ namespace TalonOneSdk.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// The raw Talang expression as an array. The first element is the function name; subsequent elements are its arguments, which may themselves be nested expressions.
+        /// The raw Talang expression as an array. For a function call, the first element is the function name and subsequent elements are its arguments. For any other expression (for example a bare attribute path or a literal value), this is a single-element array containing that value.
         /// </summary>
-        /// <value>The raw Talang expression as an array. The first element is the function name; subsequent elements are its arguments, which may themselves be nested expressions.</value>
+        /// <value>The raw Talang expression as an array. For a function call, the first element is the function name and subsequent elements are its arguments. For any other expression (for example a bare attribute path or a literal value), this is a single-element array containing that value.</value>
         [JsonPropertyName("expression")]
         public List<Object> Expression { get; set; }
 
@@ -149,8 +149,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PassthroughBlock" />
     /// </summary>
-    public class PassthroughBlockJsonConverter : JsonConverter<PassthroughBlock>
+    public partial class PassthroughBlockJsonConverter : JsonConverter<PassthroughBlock>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PassthroughBlockJsonConverter" /> class.
+        /// </summary>
+        public PassthroughBlockJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PassthroughBlock" />
         /// </summary>

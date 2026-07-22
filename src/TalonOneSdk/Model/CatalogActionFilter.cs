@@ -217,8 +217,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CatalogActionFilter" />
     /// </summary>
-    public class CatalogActionFilterJsonConverter : JsonConverter<CatalogActionFilter>
+    public partial class CatalogActionFilterJsonConverter : JsonConverter<CatalogActionFilter>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CatalogActionFilterJsonConverter" /> class.
+        /// </summary>
+        public CatalogActionFilterJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CatalogActionFilter" />
         /// </summary>

@@ -39,7 +39,7 @@ namespace TalonOneSdk.Model
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public CheckAudienceBlock(string id, string type, OperatorEnum @operator, ProfileEnum profile, CheckAudienceBlock1Audience audience, Option<List<string>> tags = default, Option<List<Object>> onFailure = default)
+        public CheckAudienceBlock(string id, string type, OperatorEnum @operator, ProfileEnum profile, CheckAudienceBlock1Audience audience, Option<List<string>> tags = default, Option<List<PromotionBlock>> onFailure = default)
         {
             Id = id;
             Type = type;
@@ -271,14 +271,14 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Object>> OnFailureOption { get; private set; }
+        public Option<List<PromotionBlock>> OnFailureOption { get; private set; }
 
         /// <summary>
         /// Promotion blocks evaluated when this block fails or returns false.
         /// </summary>
         /// <value>Promotion blocks evaluated when this block fails or returns false.</value>
         [JsonPropertyName("onFailure")]
-        public List<Object> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Object>>(value); } }
+        public List<PromotionBlock> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<PromotionBlock>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -313,8 +313,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CheckAudienceBlock" />
     /// </summary>
-    public class CheckAudienceBlockJsonConverter : JsonConverter<CheckAudienceBlock>
+    public partial class CheckAudienceBlockJsonConverter : JsonConverter<CheckAudienceBlock>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckAudienceBlockJsonConverter" /> class.
+        /// </summary>
+        public CheckAudienceBlockJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CheckAudienceBlock" />
         /// </summary>
@@ -338,7 +348,7 @@ namespace TalonOneSdk.Model
             Option<CheckAudienceBlock.ProfileEnum?> profile = default;
             Option<CheckAudienceBlock1Audience> audience = default;
             Option<List<string>> tags = default;
-            Option<List<Object>> onFailure = default;
+            Option<List<PromotionBlock>> onFailure = default;
 
             while (utf8JsonReader.Read())
             {
@@ -378,7 +388,7 @@ namespace TalonOneSdk.Model
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "onFailure":
-                            onFailure = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            onFailure = new Option<List<PromotionBlock>>(JsonSerializer.Deserialize<List<PromotionBlock>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -105,8 +105,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewCatalog" />
     /// </summary>
-    public class NewCatalogJsonConverter : JsonConverter<NewCatalog>
+    public partial class NewCatalogJsonConverter : JsonConverter<NewCatalog>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewCatalogJsonConverter" /> class.
+        /// </summary>
+        public NewCatalogJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NewCatalog" />
         /// </summary>

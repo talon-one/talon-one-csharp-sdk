@@ -85,8 +85,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PriceHistoryResponse" />
     /// </summary>
-    public class PriceHistoryResponseJsonConverter : JsonConverter<PriceHistoryResponse>
+    public partial class PriceHistoryResponseJsonConverter : JsonConverter<PriceHistoryResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PriceHistoryResponseJsonConverter" /> class.
+        /// </summary>
+        public PriceHistoryResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PriceHistoryResponse" />
         /// </summary>

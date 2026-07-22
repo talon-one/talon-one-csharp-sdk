@@ -99,8 +99,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AttributesMandatory" />
     /// </summary>
-    public class AttributesMandatoryJsonConverter : JsonConverter<AttributesMandatory>
+    public partial class AttributesMandatoryJsonConverter : JsonConverter<AttributesMandatory>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AttributesMandatoryJsonConverter" /> class.
+        /// </summary>
+        public AttributesMandatoryJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AttributesMandatory" />
         /// </summary>

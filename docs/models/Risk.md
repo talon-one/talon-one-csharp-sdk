@@ -20,6 +20,10 @@ Name | Type | Description | Notes
 **Modified** | **DateTime** | Timestamp of the most recent update. | 
 **ApplicationId** | **long** | The ID of the Application this risk belongs to. Absent for global metrics. | [optional] 
 **Description** | **string** | Human-readable description of the detected anomaly. | [optional] 
+**DiscardReason** | **string** | The reason this risk was discarded. Only present on discarded risks. | [optional] 
+**StatusComment** | **string** | The free-text details of the latest reclassification action: the description for resolving confirmed risks, or the details for discarding risks.  | [optional] 
+**StatusChangedBy** | **long** | The ID of the user who performed the latest reclassification action. | [optional] 
+**StatusChangedAt** | **DateTime** | The time of the latest reclassification action. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

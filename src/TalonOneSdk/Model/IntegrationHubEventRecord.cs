@@ -202,27 +202,37 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="IntegrationHubEventRecord" />
     /// </summary>
-    public class IntegrationHubEventRecordJsonConverter : JsonConverter<IntegrationHubEventRecord>
+    public partial class IntegrationHubEventRecordJsonConverter : JsonConverter<IntegrationHubEventRecord>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegrationHubEventRecordJsonConverter" /> class.
+        /// </summary>
+        public IntegrationHubEventRecordJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize PublishedAt
         /// </summary>
-        public static string PublishedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string PublishedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ScheduledTo
         /// </summary>
-        public static string ScheduledToFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ScheduledToFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ProcessedAt
         /// </summary>
-        public static string ProcessedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ProcessedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize DeliveredAt
         /// </summary>
-        public static string DeliveredAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string DeliveredAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventRecord" />
@@ -275,9 +285,7 @@ namespace TalonOneSdk.Model
                             flowId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "eventType":
-                            string eventTypeRawValue = utf8JsonReader.GetString();
-                            if (eventTypeRawValue != null)
-                                eventType = new Option<IntegrationHubEventType?>(IntegrationHubEventTypeValueConverter.FromStringOrDefault(eventTypeRawValue));
+                            eventType = new Option<IntegrationHubEventType?>(JsonSerializer.Deserialize<IntegrationHubEventType?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "publishedAt":
                             publishedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));

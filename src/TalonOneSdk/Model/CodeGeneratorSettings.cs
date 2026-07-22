@@ -109,8 +109,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CodeGeneratorSettings" />
     /// </summary>
-    public class CodeGeneratorSettingsJsonConverter : JsonConverter<CodeGeneratorSettings>
+    public partial class CodeGeneratorSettingsJsonConverter : JsonConverter<CodeGeneratorSettings>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CodeGeneratorSettingsJsonConverter" /> class.
+        /// </summary>
+        public CodeGeneratorSettingsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CodeGeneratorSettings" />
         /// </summary>

@@ -74,8 +74,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OktaEventPayloadData" />
     /// </summary>
-    public class OktaEventPayloadDataJsonConverter : JsonConverter<OktaEventPayloadData>
+    public partial class OktaEventPayloadDataJsonConverter : JsonConverter<OktaEventPayloadData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OktaEventPayloadDataJsonConverter" /> class.
+        /// </summary>
+        public OktaEventPayloadDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OktaEventPayloadData" />
         /// </summary>

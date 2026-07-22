@@ -74,8 +74,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GenerateCouponRejections200Response" />
     /// </summary>
-    public class GenerateCouponRejections200ResponseJsonConverter : JsonConverter<GenerateCouponRejections200Response>
+    public partial class GenerateCouponRejections200ResponseJsonConverter : JsonConverter<GenerateCouponRejections200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateCouponRejections200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GenerateCouponRejections200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GenerateCouponRejections200Response" />
         /// </summary>

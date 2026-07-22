@@ -76,8 +76,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CampaignDeactivationRequest" />
     /// </summary>
-    public class CampaignDeactivationRequestJsonConverter : JsonConverter<CampaignDeactivationRequest>
+    public partial class CampaignDeactivationRequestJsonConverter : JsonConverter<CampaignDeactivationRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CampaignDeactivationRequestJsonConverter" /> class.
+        /// </summary>
+        public CampaignDeactivationRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CampaignDeactivationRequest" />
         /// </summary>

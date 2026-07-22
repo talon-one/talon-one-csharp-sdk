@@ -120,8 +120,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AchievementReference" />
     /// </summary>
-    public class AchievementReferenceJsonConverter : JsonConverter<AchievementReference>
+    public partial class AchievementReferenceJsonConverter : JsonConverter<AchievementReference>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AchievementReferenceJsonConverter" /> class.
+        /// </summary>
+        public AchievementReferenceJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AchievementReference" />
         /// </summary>

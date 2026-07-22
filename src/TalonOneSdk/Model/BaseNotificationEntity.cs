@@ -31,10 +31,10 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseNotificationEntity" /> class.
         /// </summary>
-        /// <param name="policy">Indicates which notification properties to apply.</param>
+        /// <param name="policy">policy</param>
         /// <param name="enabled">Indicates whether the notification is activated. (default to true)</param>
         [JsonConstructor]
-        public BaseNotificationEntity(Object policy, Option<bool?> enabled = default)
+        public BaseNotificationEntity(BaseNotificationPolicy policy, Option<bool?> enabled = default)
         {
             Policy = policy;
             EnabledOption = enabled;
@@ -44,11 +44,10 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// Indicates which notification properties to apply.
+        /// Gets or Sets Policy
         /// </summary>
-        /// <value>Indicates which notification properties to apply.</value>
         [JsonPropertyName("policy")]
-        public Object Policy { get; set; }
+        public BaseNotificationPolicy Policy { get; set; }
 
         /// <summary>
         /// Used to track the state of Enabled
@@ -92,8 +91,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="BaseNotificationEntity" />
     /// </summary>
-    public class BaseNotificationEntityJsonConverter : JsonConverter<BaseNotificationEntity>
+    public partial class BaseNotificationEntityJsonConverter : JsonConverter<BaseNotificationEntity>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseNotificationEntityJsonConverter" /> class.
+        /// </summary>
+        public BaseNotificationEntityJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="BaseNotificationEntity" />
         /// </summary>
@@ -111,7 +120,7 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<Object> policy = default;
+            Option<BaseNotificationPolicy> policy = default;
             Option<bool?> enabled = default;
 
             while (utf8JsonReader.Read())
@@ -130,7 +139,7 @@ namespace TalonOneSdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "policy":
-                            policy = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            policy = new Option<BaseNotificationPolicy>(JsonSerializer.Deserialize<BaseNotificationPolicy>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "enabled":
                             enabled = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());

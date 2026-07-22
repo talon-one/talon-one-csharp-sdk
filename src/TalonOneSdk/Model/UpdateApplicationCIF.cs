@@ -136,12 +136,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateApplicationCIF" />
     /// </summary>
-    public class UpdateApplicationCIFJsonConverter : JsonConverter<UpdateApplicationCIF>
+    public partial class UpdateApplicationCIFJsonConverter : JsonConverter<UpdateApplicationCIF>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateApplicationCIFJsonConverter" /> class.
+        /// </summary>
+        public UpdateApplicationCIFJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
-        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="UpdateApplicationCIF" />

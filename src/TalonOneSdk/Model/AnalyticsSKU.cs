@@ -158,12 +158,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AnalyticsSKU" />
     /// </summary>
-    public class AnalyticsSKUJsonConverter : JsonConverter<AnalyticsSKU>
+    public partial class AnalyticsSKUJsonConverter : JsonConverter<AnalyticsSKU>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AnalyticsSKUJsonConverter" /> class.
+        /// </summary>
+        public AnalyticsSKUJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize LastUpdated
         /// </summary>
-        public static string LastUpdatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string LastUpdatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AnalyticsSKU" />

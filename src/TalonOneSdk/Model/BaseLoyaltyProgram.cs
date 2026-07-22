@@ -659,12 +659,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="BaseLoyaltyProgram" />
     /// </summary>
-    public class BaseLoyaltyProgramJsonConverter : JsonConverter<BaseLoyaltyProgram>
+    public partial class BaseLoyaltyProgramJsonConverter : JsonConverter<BaseLoyaltyProgram>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseLoyaltyProgramJsonConverter" /> class.
+        /// </summary>
+        public BaseLoyaltyProgramJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize TierCycleStartDate
         /// </summary>
-        public static string TierCycleStartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string TierCycleStartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="BaseLoyaltyProgram" />

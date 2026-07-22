@@ -247,7 +247,7 @@ namespace TalonOneSdk.Model
         /// The identifier of the card to which the points were transferred.
         /// </summary>
         /// <value>The identifier of the card to which the points were transferred.</value>
-        /* <example>summer-loyalty-card-0543</example> */
+        /* <example>autumn-loyalty-card-5822</example> */
         [JsonPropertyName("newCardIdentifier")]
         public string NewCardIdentifier { get { return this.NewCardIdentifierOption.Value; } set { this.NewCardIdentifierOption = new Option<string>(value); } }
 
@@ -380,17 +380,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="LoyaltyCard" />
     /// </summary>
-    public class LoyaltyCardJsonConverter : JsonConverter<LoyaltyCard>
+    public partial class LoyaltyCardJsonConverter : JsonConverter<LoyaltyCard>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoyaltyCardJsonConverter" /> class.
+        /// </summary>
+        public LoyaltyCardJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
-        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyCard" />

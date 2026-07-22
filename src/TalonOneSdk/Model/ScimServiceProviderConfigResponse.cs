@@ -39,7 +39,7 @@ namespace TalonOneSdk.Model
         /// <param name="schemas">A list of SCIM schemas that define the structure and data types supported by the service provider.</param>
         /// <param name="sort">sort</param>
         [JsonConstructor]
-        public ScimServiceProviderConfigResponse(Option<ScimServiceProviderConfigResponseBulk> bulk = default, Option<ScimServiceProviderConfigResponseChangePassword> changePassword = default, Option<string> documentationUri = default, Option<ScimServiceProviderConfigResponseFilter> filter = default, Option<ScimServiceProviderConfigResponseChangePassword> patch = default, Option<List<string>> schemas = default, Option<ScimServiceProviderConfigResponseChangePassword> sort = default)
+        public ScimServiceProviderConfigResponse(Option<ScimServiceProviderConfigResponseBulk> bulk = default, Option<ScimServiceProviderConfigResponseChangePassword> changePassword = default, Option<string> documentationUri = default, Option<ScimServiceProviderConfigResponseFilter> filter = default, Option<ScimServiceProviderConfigResponsePatch> patch = default, Option<List<string>> schemas = default, Option<ScimServiceProviderConfigResponseSort> sort = default)
         {
             BulkOption = bulk;
             ChangePasswordOption = changePassword;
@@ -111,13 +111,13 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<ScimServiceProviderConfigResponseChangePassword> PatchOption { get; private set; }
+        public Option<ScimServiceProviderConfigResponsePatch> PatchOption { get; private set; }
 
         /// <summary>
         /// Gets or Sets Patch
         /// </summary>
         [JsonPropertyName("patch")]
-        public ScimServiceProviderConfigResponseChangePassword Patch { get { return this.PatchOption.Value; } set { this.PatchOption = new Option<ScimServiceProviderConfigResponseChangePassword>(value); } }
+        public ScimServiceProviderConfigResponsePatch Patch { get { return this.PatchOption.Value; } set { this.PatchOption = new Option<ScimServiceProviderConfigResponsePatch>(value); } }
 
         /// <summary>
         /// Used to track the state of Schemas
@@ -138,13 +138,13 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<ScimServiceProviderConfigResponseChangePassword> SortOption { get; private set; }
+        public Option<ScimServiceProviderConfigResponseSort> SortOption { get; private set; }
 
         /// <summary>
         /// Gets or Sets Sort
         /// </summary>
         [JsonPropertyName("sort")]
-        public ScimServiceProviderConfigResponseChangePassword Sort { get { return this.SortOption.Value; } set { this.SortOption = new Option<ScimServiceProviderConfigResponseChangePassword>(value); } }
+        public ScimServiceProviderConfigResponseSort Sort { get { return this.SortOption.Value; } set { this.SortOption = new Option<ScimServiceProviderConfigResponseSort>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -179,8 +179,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ScimServiceProviderConfigResponse" />
     /// </summary>
-    public class ScimServiceProviderConfigResponseJsonConverter : JsonConverter<ScimServiceProviderConfigResponse>
+    public partial class ScimServiceProviderConfigResponseJsonConverter : JsonConverter<ScimServiceProviderConfigResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScimServiceProviderConfigResponseJsonConverter" /> class.
+        /// </summary>
+        public ScimServiceProviderConfigResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ScimServiceProviderConfigResponse" />
         /// </summary>
@@ -202,9 +212,9 @@ namespace TalonOneSdk.Model
             Option<ScimServiceProviderConfigResponseChangePassword> changePassword = default;
             Option<string> documentationUri = default;
             Option<ScimServiceProviderConfigResponseFilter> filter = default;
-            Option<ScimServiceProviderConfigResponseChangePassword> patch = default;
+            Option<ScimServiceProviderConfigResponsePatch> patch = default;
             Option<List<string>> schemas = default;
-            Option<ScimServiceProviderConfigResponseChangePassword> sort = default;
+            Option<ScimServiceProviderConfigResponseSort> sort = default;
 
             while (utf8JsonReader.Read())
             {
@@ -234,13 +244,13 @@ namespace TalonOneSdk.Model
                             filter = new Option<ScimServiceProviderConfigResponseFilter>(JsonSerializer.Deserialize<ScimServiceProviderConfigResponseFilter>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "patch":
-                            patch = new Option<ScimServiceProviderConfigResponseChangePassword>(JsonSerializer.Deserialize<ScimServiceProviderConfigResponseChangePassword>(ref utf8JsonReader, jsonSerializerOptions));
+                            patch = new Option<ScimServiceProviderConfigResponsePatch>(JsonSerializer.Deserialize<ScimServiceProviderConfigResponsePatch>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "schemas":
                             schemas = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "sort":
-                            sort = new Option<ScimServiceProviderConfigResponseChangePassword>(JsonSerializer.Deserialize<ScimServiceProviderConfigResponseChangePassword>(ref utf8JsonReader, jsonSerializerOptions));
+                            sort = new Option<ScimServiceProviderConfigResponseSort>(JsonSerializer.Deserialize<ScimServiceProviderConfigResponseSort>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

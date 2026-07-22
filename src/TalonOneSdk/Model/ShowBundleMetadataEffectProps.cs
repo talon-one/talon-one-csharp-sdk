@@ -95,8 +95,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ShowBundleMetadataEffectProps" />
     /// </summary>
-    public class ShowBundleMetadataEffectPropsJsonConverter : JsonConverter<ShowBundleMetadataEffectProps>
+    public partial class ShowBundleMetadataEffectPropsJsonConverter : JsonConverter<ShowBundleMetadataEffectProps>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ShowBundleMetadataEffectPropsJsonConverter" /> class.
+        /// </summary>
+        public ShowBundleMetadataEffectPropsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ShowBundleMetadataEffectProps" />
         /// </summary>

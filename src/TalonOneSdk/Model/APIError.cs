@@ -101,8 +101,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="APIError" />
     /// </summary>
-    public class APIErrorJsonConverter : JsonConverter<APIError>
+    public partial class APIErrorJsonConverter : JsonConverter<APIError>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="APIErrorJsonConverter" /> class.
+        /// </summary>
+        public APIErrorJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="APIError" />
         /// </summary>

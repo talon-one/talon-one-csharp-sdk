@@ -143,6 +143,7 @@ namespace TalonOneSdk.Model
         /// Customer&#39;s current tier.
         /// </summary>
         /// <value>Customer&#39;s current tier.</value>
+        /* <example>bronze</example> */
         [JsonPropertyName("currentTier")]
         public Tier CurrentTier { get { return this.CurrentTierOption.Value; } set { this.CurrentTierOption = new Option<Tier>(value); } }
 
@@ -224,8 +225,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="LoyaltyBalanceWithTier" />
     /// </summary>
-    public class LoyaltyBalanceWithTierJsonConverter : JsonConverter<LoyaltyBalanceWithTier>
+    public partial class LoyaltyBalanceWithTierJsonConverter : JsonConverter<LoyaltyBalanceWithTier>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoyaltyBalanceWithTierJsonConverter" /> class.
+        /// </summary>
+        public LoyaltyBalanceWithTierJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyBalanceWithTier" />
         /// </summary>

@@ -85,8 +85,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="WebhookAuthenticationDataBasic" />
     /// </summary>
-    public class WebhookAuthenticationDataBasicJsonConverter : JsonConverter<WebhookAuthenticationDataBasic>
+    public partial class WebhookAuthenticationDataBasicJsonConverter : JsonConverter<WebhookAuthenticationDataBasic>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebhookAuthenticationDataBasicJsonConverter" /> class.
+        /// </summary>
+        public WebhookAuthenticationDataBasicJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="WebhookAuthenticationDataBasic" />
         /// </summary>

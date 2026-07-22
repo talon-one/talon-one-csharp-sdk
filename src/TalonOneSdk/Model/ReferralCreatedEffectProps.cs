@@ -75,8 +75,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ReferralCreatedEffectProps" />
     /// </summary>
-    public class ReferralCreatedEffectPropsJsonConverter : JsonConverter<ReferralCreatedEffectProps>
+    public partial class ReferralCreatedEffectPropsJsonConverter : JsonConverter<ReferralCreatedEffectProps>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReferralCreatedEffectPropsJsonConverter" /> class.
+        /// </summary>
+        public ReferralCreatedEffectPropsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ReferralCreatedEffectProps" />
         /// </summary>

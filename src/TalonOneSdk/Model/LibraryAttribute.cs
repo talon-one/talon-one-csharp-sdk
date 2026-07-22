@@ -367,8 +367,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="LibraryAttribute" />
     /// </summary>
-    public class LibraryAttributeJsonConverter : JsonConverter<LibraryAttribute>
+    public partial class LibraryAttributeJsonConverter : JsonConverter<LibraryAttribute>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LibraryAttributeJsonConverter" /> class.
+        /// </summary>
+        public LibraryAttributeJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="LibraryAttribute" />
         /// </summary>

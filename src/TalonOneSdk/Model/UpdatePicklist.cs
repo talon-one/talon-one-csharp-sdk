@@ -182,8 +182,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdatePicklist" />
     /// </summary>
-    public class UpdatePicklistJsonConverter : JsonConverter<UpdatePicklist>
+    public partial class UpdatePicklistJsonConverter : JsonConverter<UpdatePicklist>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdatePicklistJsonConverter" /> class.
+        /// </summary>
+        public UpdatePicklistJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdatePicklist" />
         /// </summary>

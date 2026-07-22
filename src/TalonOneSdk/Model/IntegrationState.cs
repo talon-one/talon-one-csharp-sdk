@@ -124,8 +124,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="IntegrationState" />
     /// </summary>
-    public class IntegrationStateJsonConverter : JsonConverter<IntegrationState>
+    public partial class IntegrationStateJsonConverter : JsonConverter<IntegrationState>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegrationStateJsonConverter" /> class.
+        /// </summary>
+        public IntegrationStateJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="IntegrationState" />
         /// </summary>

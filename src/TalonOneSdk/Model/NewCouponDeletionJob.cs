@@ -74,8 +74,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewCouponDeletionJob" />
     /// </summary>
-    public class NewCouponDeletionJobJsonConverter : JsonConverter<NewCouponDeletionJob>
+    public partial class NewCouponDeletionJobJsonConverter : JsonConverter<NewCouponDeletionJob>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewCouponDeletionJobJsonConverter" /> class.
+        /// </summary>
+        public NewCouponDeletionJobJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NewCouponDeletionJob" />
         /// </summary>

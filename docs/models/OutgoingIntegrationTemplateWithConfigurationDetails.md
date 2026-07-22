@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Method** | **string** | API method for this webhook. | 
 **RelativeUrl** | **string** | The relative URL corresponding to each integration template. | 
 **Headers** | **List&lt;string&gt;** | The list of HTTP headers for this integration template. | 
-**Policy** | **Object** | The outgoing integration policy specific to each integration type. | 
+**Policy** | [**OutgoingIntegrationConfigurationPolicy**](OutgoingIntegrationConfigurationPolicy.md) |  | 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

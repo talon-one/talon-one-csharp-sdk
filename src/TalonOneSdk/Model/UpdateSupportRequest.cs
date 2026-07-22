@@ -57,7 +57,12 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum Rejected for value: rejected
             /// </summary>
-            Rejected = 2
+            Rejected = 2,
+
+            /// <summary>
+            /// Enum Expired for value: expired
+            /// </summary>
+            Expired = 3
         }
 
         /// <summary>
@@ -73,6 +78,9 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("rejected"))
                 return RequestStatusEnum.Rejected;
+
+            if (value.Equals("expired"))
+                return RequestStatusEnum.Expired;
 
             throw new NotImplementedException($"Could not convert value to type RequestStatusEnum: '{value}'");
         }
@@ -90,6 +98,9 @@ namespace TalonOneSdk.Model
             if (value.Equals("rejected"))
                 return RequestStatusEnum.Rejected;
 
+            if (value.Equals("expired"))
+                return RequestStatusEnum.Expired;
+
             return null;
         }
 
@@ -106,6 +117,9 @@ namespace TalonOneSdk.Model
 
             if (value == RequestStatusEnum.Rejected)
                 return "rejected";
+
+            if (value == RequestStatusEnum.Expired)
+                return "expired";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
@@ -161,8 +175,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateSupportRequest" />
     /// </summary>
-    public class UpdateSupportRequestJsonConverter : JsonConverter<UpdateSupportRequest>
+    public partial class UpdateSupportRequestJsonConverter : JsonConverter<UpdateSupportRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateSupportRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateSupportRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateSupportRequest" />
         /// </summary>

@@ -120,8 +120,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="IntegrationHubFlow" />
     /// </summary>
-    public class IntegrationHubFlowJsonConverter : JsonConverter<IntegrationHubFlow>
+    public partial class IntegrationHubFlowJsonConverter : JsonConverter<IntegrationHubFlow>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegrationHubFlowJsonConverter" /> class.
+        /// </summary>
+        public IntegrationHubFlowJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubFlow" />
         /// </summary>
@@ -160,9 +170,7 @@ namespace TalonOneSdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "EventType":
-                            string eventTypeRawValue = utf8JsonReader.GetString();
-                            if (eventTypeRawValue != null)
-                                eventType = new Option<IntegrationHubEventType?>(IntegrationHubEventTypeValueConverter.FromStringOrDefault(eventTypeRawValue));
+                            eventType = new Option<IntegrationHubEventType?>(JsonSerializer.Deserialize<IntegrationHubEventType?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "IntegrationHubFlowUrl":
                             integrationHubFlowUrl = new Option<string>(utf8JsonReader.GetString());

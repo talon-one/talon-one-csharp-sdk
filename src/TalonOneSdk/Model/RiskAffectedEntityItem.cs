@@ -187,8 +187,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RiskAffectedEntityItem" />
     /// </summary>
-    public class RiskAffectedEntityItemJsonConverter : JsonConverter<RiskAffectedEntityItem>
+    public partial class RiskAffectedEntityItemJsonConverter : JsonConverter<RiskAffectedEntityItem>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RiskAffectedEntityItemJsonConverter" /> class.
+        /// </summary>
+        public RiskAffectedEntityItemJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RiskAffectedEntityItem" />
         /// </summary>

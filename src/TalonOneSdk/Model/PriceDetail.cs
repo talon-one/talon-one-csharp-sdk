@@ -155,17 +155,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PriceDetail" />
     /// </summary>
-    public class PriceDetailJsonConverter : JsonConverter<PriceDetail>
+    public partial class PriceDetailJsonConverter : JsonConverter<PriceDetail>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PriceDetailJsonConverter" /> class.
+        /// </summary>
+        public PriceDetailJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize AdjustmentEffectiveFrom
         /// </summary>
-        public static string AdjustmentEffectiveFromFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string AdjustmentEffectiveFromFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize AdjustmentEffectiveUntil
         /// </summary>
-        public static string AdjustmentEffectiveUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string AdjustmentEffectiveUntilFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="PriceDetail" />

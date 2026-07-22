@@ -83,8 +83,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="IntegrationProfileEntity" />
     /// </summary>
-    public class IntegrationProfileEntityJsonConverter : JsonConverter<IntegrationProfileEntity>
+    public partial class IntegrationProfileEntityJsonConverter : JsonConverter<IntegrationProfileEntity>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegrationProfileEntityJsonConverter" /> class.
+        /// </summary>
+        public IntegrationProfileEntityJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="IntegrationProfileEntity" />
         /// </summary>

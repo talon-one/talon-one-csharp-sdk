@@ -157,12 +157,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ExperimentVariant" />
     /// </summary>
-    public class ExperimentVariantJsonConverter : JsonConverter<ExperimentVariant>
+    public partial class ExperimentVariantJsonConverter : JsonConverter<ExperimentVariant>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExperimentVariantJsonConverter" /> class.
+        /// </summary>
+        public ExperimentVariantJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ExperimentVariant" />

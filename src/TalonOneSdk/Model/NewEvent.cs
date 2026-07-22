@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="NewEvent" /> class.
         /// </summary>
         /// <param name="type">The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.</param>
-        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
+        /// <param name="attributes">Arbitrary additional JSON data associated with the event.</param>
         /// <param name="sessionId">The ID of the session that this event occurred in.</param>
         /// <param name="profileId">ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </param>
         /// <param name="storeIntegrationId">The integration ID of the store. You choose this ID when you create a store.</param>
@@ -58,9 +58,10 @@ namespace TalonOneSdk.Model
         public string Type { get; set; }
 
         /// <summary>
-        /// Arbitrary properties associated with this campaign.
+        /// Arbitrary additional JSON data associated with the event.
         /// </summary>
-        /// <value>Arbitrary properties associated with this campaign.</value>
+        /// <value>Arbitrary additional JSON data associated with the event.</value>
+        /* <example>{myAttribute&#x3D;myValue}</example> */
         [JsonPropertyName("attributes")]
         public Object Attributes { get; set; }
 
@@ -157,8 +158,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewEvent" />
     /// </summary>
-    public class NewEventJsonConverter : JsonConverter<NewEvent>
+    public partial class NewEventJsonConverter : JsonConverter<NewEvent>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewEventJsonConverter" /> class.
+        /// </summary>
+        public NewEventJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NewEvent" />
         /// </summary>

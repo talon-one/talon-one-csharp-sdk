@@ -95,12 +95,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AccountDashboardStatisticRevenue" />
     /// </summary>
-    public class AccountDashboardStatisticRevenueJsonConverter : JsonConverter<AccountDashboardStatisticRevenue>
+    public partial class AccountDashboardStatisticRevenueJsonConverter : JsonConverter<AccountDashboardStatisticRevenue>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountDashboardStatisticRevenueJsonConverter" /> class.
+        /// </summary>
+        public AccountDashboardStatisticRevenueJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Datetime
         /// </summary>
-        public static string DatetimeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string DatetimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AccountDashboardStatisticRevenue" />

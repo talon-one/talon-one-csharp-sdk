@@ -85,8 +85,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GenerateUserSessionSummary" />
     /// </summary>
-    public class GenerateUserSessionSummaryJsonConverter : JsonConverter<GenerateUserSessionSummary>
+    public partial class GenerateUserSessionSummaryJsonConverter : JsonConverter<GenerateUserSessionSummary>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateUserSessionSummaryJsonConverter" /> class.
+        /// </summary>
+        public GenerateUserSessionSummaryJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GenerateUserSessionSummary" />
         /// </summary>

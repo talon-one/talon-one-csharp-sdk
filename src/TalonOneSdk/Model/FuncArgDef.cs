@@ -215,8 +215,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="FuncArgDef" />
     /// </summary>
-    public class FuncArgDefJsonConverter : JsonConverter<FuncArgDef>
+    public partial class FuncArgDefJsonConverter : JsonConverter<FuncArgDef>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FuncArgDefJsonConverter" /> class.
+        /// </summary>
+        public FuncArgDefJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FuncArgDef" />
         /// </summary>

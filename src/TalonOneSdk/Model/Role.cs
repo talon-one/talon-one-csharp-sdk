@@ -185,17 +185,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Role" />
     /// </summary>
-    public class RoleJsonConverter : JsonConverter<Role>
+    public partial class RoleJsonConverter : JsonConverter<Role>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RoleJsonConverter" /> class.
+        /// </summary>
+        public RoleJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
-        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Role" />

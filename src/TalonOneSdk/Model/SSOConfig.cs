@@ -94,8 +94,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SSOConfig" />
     /// </summary>
-    public class SSOConfigJsonConverter : JsonConverter<SSOConfig>
+    public partial class SSOConfigJsonConverter : JsonConverter<SSOConfig>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SSOConfigJsonConverter" /> class.
+        /// </summary>
+        public SSOConfigJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SSOConfig" />
         /// </summary>

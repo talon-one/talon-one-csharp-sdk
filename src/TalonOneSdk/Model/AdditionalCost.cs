@@ -75,8 +75,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AdditionalCost" />
     /// </summary>
-    public class AdditionalCostJsonConverter : JsonConverter<AdditionalCost>
+    public partial class AdditionalCostJsonConverter : JsonConverter<AdditionalCost>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdditionalCostJsonConverter" /> class.
+        /// </summary>
+        public AdditionalCostJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AdditionalCost" />
         /// </summary>

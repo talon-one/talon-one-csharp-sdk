@@ -137,8 +137,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AddToAudienceEffectProps" />
     /// </summary>
-    public class AddToAudienceEffectPropsJsonConverter : JsonConverter<AddToAudienceEffectProps>
+    public partial class AddToAudienceEffectPropsJsonConverter : JsonConverter<AddToAudienceEffectProps>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddToAudienceEffectPropsJsonConverter" /> class.
+        /// </summary>
+        public AddToAudienceEffectPropsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AddToAudienceEffectProps" />
         /// </summary>

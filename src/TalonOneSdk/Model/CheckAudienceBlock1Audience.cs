@@ -123,8 +123,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CheckAudienceBlock1Audience" />
     /// </summary>
-    public class CheckAudienceBlock1AudienceJsonConverter : JsonConverter<CheckAudienceBlock1Audience>
+    public partial class CheckAudienceBlock1AudienceJsonConverter : JsonConverter<CheckAudienceBlock1Audience>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckAudienceBlock1AudienceJsonConverter" /> class.
+        /// </summary>
+        public CheckAudienceBlock1AudienceJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CheckAudienceBlock1Audience" />
         /// </summary>

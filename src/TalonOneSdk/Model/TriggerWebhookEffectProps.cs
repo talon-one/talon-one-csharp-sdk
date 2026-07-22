@@ -85,8 +85,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="TriggerWebhookEffectProps" />
     /// </summary>
-    public class TriggerWebhookEffectPropsJsonConverter : JsonConverter<TriggerWebhookEffectProps>
+    public partial class TriggerWebhookEffectPropsJsonConverter : JsonConverter<TriggerWebhookEffectProps>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TriggerWebhookEffectPropsJsonConverter" /> class.
+        /// </summary>
+        public TriggerWebhookEffectPropsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="TriggerWebhookEffectProps" />
         /// </summary>
