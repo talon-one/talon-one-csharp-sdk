@@ -99,8 +99,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ScimServiceProviderConfigResponseFilter" />
     /// </summary>
-    public class ScimServiceProviderConfigResponseFilterJsonConverter : JsonConverter<ScimServiceProviderConfigResponseFilter>
+    public partial class ScimServiceProviderConfigResponseFilterJsonConverter : JsonConverter<ScimServiceProviderConfigResponseFilter>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScimServiceProviderConfigResponseFilterJsonConverter" /> class.
+        /// </summary>
+        public ScimServiceProviderConfigResponseFilterJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ScimServiceProviderConfigResponseFilter" />
         /// </summary>

@@ -45,7 +45,7 @@ namespace TalonOneSdk.Model
         /// <param name="storeIntegrationId">The integration ID of the store. You choose this ID when you create a store.</param>
         /// <param name="profileId">The globally unique Talon.One ID of the customer that created this entity.</param>
         /// <param name="profileintegrationid">Integration ID of the customer for the session.</param>
-        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
+        /// <param name="attributes">Arbitrary properties associated with this item.</param>
         [JsonConstructor]
         public ApplicationSession(long id, DateTime created, string integrationId, long applicationId, string coupon, string referral, StateEnum state, List<CartItem> cartItems, Dictionary<string, decimal> discounts, decimal totalDiscounts, decimal total, Option<string> storeIntegrationId = default, Option<long?> profileId = default, Option<string> profileintegrationid = default, Option<Object> attributes = default)
         {
@@ -303,9 +303,9 @@ namespace TalonOneSdk.Model
         public Option<Object> AttributesOption { get; private set; }
 
         /// <summary>
-        /// Arbitrary properties associated with this campaign.
+        /// Arbitrary properties associated with this item.
         /// </summary>
-        /// <value>Arbitrary properties associated with this campaign.</value>
+        /// <value>Arbitrary properties associated with this item.</value>
         [JsonPropertyName("attributes")]
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
@@ -374,12 +374,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApplicationSession" />
     /// </summary>
-    public class ApplicationSessionJsonConverter : JsonConverter<ApplicationSession>
+    public partial class ApplicationSessionJsonConverter : JsonConverter<ApplicationSession>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationSessionJsonConverter" /> class.
+        /// </summary>
+        public ApplicationSessionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApplicationSession" />

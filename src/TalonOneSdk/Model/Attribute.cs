@@ -742,12 +742,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Attribute" />
     /// </summary>
-    public class AttributeJsonConverter : JsonConverter<Attribute>
+    public partial class AttributeJsonConverter : JsonConverter<Attribute>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AttributeJsonConverter" /> class.
+        /// </summary>
+        public AttributeJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Attribute" />

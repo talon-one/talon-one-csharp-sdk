@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Title** | **string** | A short description of the rule. | 
-**Blocks** | **List&lt;Object&gt;** | The condition and effect blocks that make up this strikethrough rule. | 
+**Blocks** | [**List&lt;StrikethroughBlock&gt;**](StrikethroughBlock.md) | The condition and effect blocks that make up this strikethrough rule. | 
 **Id** | **string** | Unique identifier of the rule. | [optional] 
 **ParentId** | **string** | ID of the parent rule, if any. | [optional] 
 **Description** | **string** | A longer description of the rule. | [optional] 

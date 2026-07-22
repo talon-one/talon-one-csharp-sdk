@@ -45,7 +45,7 @@ namespace TalonOneSdk.Model
         /// <param name="cartItems">Serialized JSON representation.</param>
         /// <param name="identifiers">Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts. See the [tutorial](https://docs.talon.one/docs/dev/tutorials/using-identifiers). </param>
         /// <param name="total">The total sum of the cart in one session.</param>
-        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
+        /// <param name="attributes">A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings. </param>
         [JsonConstructor]
         public CustomerSession(string integrationId, DateTime created, long applicationId, bool firstSession, long updateCount, Dictionary<string, decimal> discounts, DateTime updated, Option<string> profileId = default, Option<string> coupon = default, Option<string> referral = default, Option<StateEnum?> state = default, Option<List<CartItem>> cartItems = default, Option<List<string>> identifiers = default, Option<decimal?> total = default, Option<Object> attributes = default)
         {
@@ -328,9 +328,9 @@ namespace TalonOneSdk.Model
         public Option<Object> AttributesOption { get; private set; }
 
         /// <summary>
-        /// Arbitrary properties associated with this campaign.
+        /// A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings. 
         /// </summary>
-        /// <value>Arbitrary properties associated with this campaign.</value>
+        /// <value>A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings. </value>
         [JsonPropertyName("attributes")]
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
@@ -393,17 +393,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CustomerSession" />
     /// </summary>
-    public class CustomerSessionJsonConverter : JsonConverter<CustomerSession>
+    public partial class CustomerSessionJsonConverter : JsonConverter<CustomerSession>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomerSessionJsonConverter" /> class.
+        /// </summary>
+        public CustomerSessionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Updated
         /// </summary>
-        public static string UpdatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string UpdatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CustomerSession" />

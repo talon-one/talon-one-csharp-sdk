@@ -135,8 +135,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CustomerAnalytics" />
     /// </summary>
-    public class CustomerAnalyticsJsonConverter : JsonConverter<CustomerAnalytics>
+    public partial class CustomerAnalyticsJsonConverter : JsonConverter<CustomerAnalytics>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomerAnalyticsJsonConverter" /> class.
+        /// </summary>
+        public CustomerAnalyticsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CustomerAnalytics" />
         /// </summary>

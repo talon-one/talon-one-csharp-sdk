@@ -228,8 +228,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="LoyaltySubLedger" />
     /// </summary>
-    public class LoyaltySubLedgerJsonConverter : JsonConverter<LoyaltySubLedger>
+    public partial class LoyaltySubLedgerJsonConverter : JsonConverter<LoyaltySubLedger>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoyaltySubLedgerJsonConverter" /> class.
+        /// </summary>
+        public LoyaltySubLedgerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="LoyaltySubLedger" />
         /// </summary>

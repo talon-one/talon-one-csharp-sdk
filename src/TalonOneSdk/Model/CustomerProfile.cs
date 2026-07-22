@@ -219,17 +219,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CustomerProfile" />
     /// </summary>
-    public class CustomerProfileJsonConverter : JsonConverter<CustomerProfile>
+    public partial class CustomerProfileJsonConverter : JsonConverter<CustomerProfile>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomerProfileJsonConverter" /> class.
+        /// </summary>
+        public CustomerProfileJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize LastActivity
         /// </summary>
-        public static string LastActivityFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string LastActivityFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CustomerProfile" />

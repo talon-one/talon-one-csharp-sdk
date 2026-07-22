@@ -84,8 +84,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetCustomerProfileAchievementProgress200Response" />
     /// </summary>
-    public class GetCustomerProfileAchievementProgress200ResponseJsonConverter : JsonConverter<GetCustomerProfileAchievementProgress200Response>
+    public partial class GetCustomerProfileAchievementProgress200ResponseJsonConverter : JsonConverter<GetCustomerProfileAchievementProgress200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetCustomerProfileAchievementProgress200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetCustomerProfileAchievementProgress200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetCustomerProfileAchievementProgress200Response" />
         /// </summary>

@@ -161,8 +161,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DeleteLoyaltyTransactionsRequest" />
     /// </summary>
-    public class DeleteLoyaltyTransactionsRequestJsonConverter : JsonConverter<DeleteLoyaltyTransactionsRequest>
+    public partial class DeleteLoyaltyTransactionsRequestJsonConverter : JsonConverter<DeleteLoyaltyTransactionsRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeleteLoyaltyTransactionsRequestJsonConverter" /> class.
+        /// </summary>
+        public DeleteLoyaltyTransactionsRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DeleteLoyaltyTransactionsRequest" />
         /// </summary>

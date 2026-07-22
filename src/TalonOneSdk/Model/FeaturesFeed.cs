@@ -97,8 +97,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="FeaturesFeed" />
     /// </summary>
-    public class FeaturesFeedJsonConverter : JsonConverter<FeaturesFeed>
+    public partial class FeaturesFeedJsonConverter : JsonConverter<FeaturesFeed>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FeaturesFeedJsonConverter" /> class.
+        /// </summary>
+        public FeaturesFeedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FeaturesFeed" />
         /// </summary>

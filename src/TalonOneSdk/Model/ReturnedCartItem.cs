@@ -125,8 +125,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ReturnedCartItem" />
     /// </summary>
-    public class ReturnedCartItemJsonConverter : JsonConverter<ReturnedCartItem>
+    public partial class ReturnedCartItemJsonConverter : JsonConverter<ReturnedCartItem>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReturnedCartItemJsonConverter" /> class.
+        /// </summary>
+        public ReturnedCartItemJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ReturnedCartItem" />
         /// </summary>

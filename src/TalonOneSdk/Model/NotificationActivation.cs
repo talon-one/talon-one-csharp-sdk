@@ -75,8 +75,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NotificationActivation" />
     /// </summary>
-    public class NotificationActivationJsonConverter : JsonConverter<NotificationActivation>
+    public partial class NotificationActivationJsonConverter : JsonConverter<NotificationActivation>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NotificationActivationJsonConverter" /> class.
+        /// </summary>
+        public NotificationActivationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NotificationActivation" />
         /// </summary>

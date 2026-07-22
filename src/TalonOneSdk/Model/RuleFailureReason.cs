@@ -271,8 +271,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RuleFailureReason" />
     /// </summary>
-    public class RuleFailureReasonJsonConverter : JsonConverter<RuleFailureReason>
+    public partial class RuleFailureReasonJsonConverter : JsonConverter<RuleFailureReason>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RuleFailureReasonJsonConverter" /> class.
+        /// </summary>
+        public RuleFailureReasonJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RuleFailureReason" />
         /// </summary>

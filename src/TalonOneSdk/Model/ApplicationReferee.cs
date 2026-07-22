@@ -138,12 +138,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApplicationReferee" />
     /// </summary>
-    public class ApplicationRefereeJsonConverter : JsonConverter<ApplicationReferee>
+    public partial class ApplicationRefereeJsonConverter : JsonConverter<ApplicationReferee>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationRefereeJsonConverter" /> class.
+        /// </summary>
+        public ApplicationRefereeJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApplicationReferee" />

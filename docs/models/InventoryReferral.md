@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **ExpiryDate** | **DateTime** | Expiration date of the referral code. Referral never expires if this is omitted. | [optional] 
 **UsageLimit** | **long** | The number of times a referral code can be used. &#x60;0&#x60; means no limit but any campaign usage limits will still apply.  | [optional] 
 **FriendProfileIntegrationId** | **string** | An optional Integration ID of the Friend&#39;s Profile. | [optional] 
-**Attributes** | **Object** | Arbitrary properties associated with this campaign. | [optional] 
+**Attributes** | **Object** | Arbitrary properties associated with this item. | [optional] 
 **ImportId** | **long** | The ID of the Import which created this referral. | [optional] 
 **BatchId** | **string** | The ID of the batch the referrals belong to. | [optional] 
 

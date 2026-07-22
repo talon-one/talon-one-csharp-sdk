@@ -219,17 +219,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CampaignCollectionWithoutPayload" />
     /// </summary>
-    public class CampaignCollectionWithoutPayloadJsonConverter : JsonConverter<CampaignCollectionWithoutPayload>
+    public partial class CampaignCollectionWithoutPayloadJsonConverter : JsonConverter<CampaignCollectionWithoutPayload>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CampaignCollectionWithoutPayloadJsonConverter" /> class.
+        /// </summary>
+        public CampaignCollectionWithoutPayloadJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
-        public static string ModifiedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CampaignCollectionWithoutPayload" />

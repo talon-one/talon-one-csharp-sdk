@@ -84,8 +84,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetReferralsWithoutTotalCount200Response" />
     /// </summary>
-    public class GetReferralsWithoutTotalCount200ResponseJsonConverter : JsonConverter<GetReferralsWithoutTotalCount200Response>
+    public partial class GetReferralsWithoutTotalCount200ResponseJsonConverter : JsonConverter<GetReferralsWithoutTotalCount200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetReferralsWithoutTotalCount200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetReferralsWithoutTotalCount200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetReferralsWithoutTotalCount200Response" />
         /// </summary>

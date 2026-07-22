@@ -138,8 +138,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CampaignSetLeafNode" />
     /// </summary>
-    public class CampaignSetLeafNodeJsonConverter : JsonConverter<CampaignSetLeafNode>
+    public partial class CampaignSetLeafNodeJsonConverter : JsonConverter<CampaignSetLeafNode>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CampaignSetLeafNodeJsonConverter" /> class.
+        /// </summary>
+        public CampaignSetLeafNodeJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CampaignSetLeafNode" />
         /// </summary>

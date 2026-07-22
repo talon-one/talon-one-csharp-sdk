@@ -95,8 +95,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AudienceIntegrationID" />
     /// </summary>
-    public class AudienceIntegrationIDJsonConverter : JsonConverter<AudienceIntegrationID>
+    public partial class AudienceIntegrationIDJsonConverter : JsonConverter<AudienceIntegrationID>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AudienceIntegrationIDJsonConverter" /> class.
+        /// </summary>
+        public AudienceIntegrationIDJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AudienceIntegrationID" />
         /// </summary>

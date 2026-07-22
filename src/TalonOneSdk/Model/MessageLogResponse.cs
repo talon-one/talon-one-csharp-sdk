@@ -119,12 +119,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageLogResponse" />
     /// </summary>
-    public class MessageLogResponseJsonConverter : JsonConverter<MessageLogResponse>
+    public partial class MessageLogResponseJsonConverter : JsonConverter<MessageLogResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageLogResponseJsonConverter" /> class.
+        /// </summary>
+        public MessageLogResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="MessageLogResponse" />

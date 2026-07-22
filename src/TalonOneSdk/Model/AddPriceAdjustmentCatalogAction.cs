@@ -86,8 +86,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AddPriceAdjustmentCatalogAction" />
     /// </summary>
-    public class AddPriceAdjustmentCatalogActionJsonConverter : JsonConverter<AddPriceAdjustmentCatalogAction>
+    public partial class AddPriceAdjustmentCatalogActionJsonConverter : JsonConverter<AddPriceAdjustmentCatalogAction>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddPriceAdjustmentCatalogActionJsonConverter" /> class.
+        /// </summary>
+        public AddPriceAdjustmentCatalogActionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AddPriceAdjustmentCatalogAction" />
         /// </summary>

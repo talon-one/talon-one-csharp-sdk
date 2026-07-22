@@ -87,8 +87,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RoleAssign" />
     /// </summary>
-    public class RoleAssignJsonConverter : JsonConverter<RoleAssign>
+    public partial class RoleAssignJsonConverter : JsonConverter<RoleAssign>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RoleAssignJsonConverter" /> class.
+        /// </summary>
+        public RoleAssignJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RoleAssign" />
         /// </summary>

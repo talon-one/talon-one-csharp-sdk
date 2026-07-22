@@ -187,8 +187,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="TimePoint" />
     /// </summary>
-    public class TimePointJsonConverter : JsonConverter<TimePoint>
+    public partial class TimePointJsonConverter : JsonConverter<TimePoint>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TimePointJsonConverter" /> class.
+        /// </summary>
+        public TimePointJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="TimePoint" />
         /// </summary>

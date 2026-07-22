@@ -169,8 +169,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CustomEffectProps" />
     /// </summary>
-    public class CustomEffectPropsJsonConverter : JsonConverter<CustomEffectProps>
+    public partial class CustomEffectPropsJsonConverter : JsonConverter<CustomEffectProps>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomEffectPropsJsonConverter" /> class.
+        /// </summary>
+        public CustomEffectPropsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CustomEffectProps" />
         /// </summary>

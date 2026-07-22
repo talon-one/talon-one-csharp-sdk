@@ -153,8 +153,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="IntegrationHubEventStatusUpdate" />
     /// </summary>
-    public class IntegrationHubEventStatusUpdateJsonConverter : JsonConverter<IntegrationHubEventStatusUpdate>
+    public partial class IntegrationHubEventStatusUpdateJsonConverter : JsonConverter<IntegrationHubEventStatusUpdate>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegrationHubEventStatusUpdateJsonConverter" /> class.
+        /// </summary>
+        public IntegrationHubEventStatusUpdateJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventStatusUpdate" />
         /// </summary>

@@ -195,12 +195,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApplicationApiHealth" />
     /// </summary>
-    public class ApplicationApiHealthJsonConverter : JsonConverter<ApplicationApiHealth>
+    public partial class ApplicationApiHealthJsonConverter : JsonConverter<ApplicationApiHealth>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationApiHealthJsonConverter" /> class.
+        /// </summary>
+        public ApplicationApiHealthJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize LastUsed
         /// </summary>
-        public static string LastUsedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string LastUsedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApplicationApiHealth" />

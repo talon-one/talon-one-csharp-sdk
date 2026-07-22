@@ -125,12 +125,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ExpiringPointsData" />
     /// </summary>
-    public class ExpiringPointsDataJsonConverter : JsonConverter<ExpiringPointsData>
+    public partial class ExpiringPointsDataJsonConverter : JsonConverter<ExpiringPointsData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExpiringPointsDataJsonConverter" /> class.
+        /// </summary>
+        public ExpiringPointsDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd";
+        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd";
 
         /// <summary>
         /// Deserializes json to <see cref="ExpiringPointsData" />

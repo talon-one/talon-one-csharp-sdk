@@ -253,17 +253,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Audience" />
     /// </summary>
-    public class AudienceJsonConverter : JsonConverter<Audience>
+    public partial class AudienceJsonConverter : JsonConverter<Audience>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AudienceJsonConverter" /> class.
+        /// </summary>
+        public AudienceJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize LastUpdate
         /// </summary>
-        public static string LastUpdateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string LastUpdateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Audience" />

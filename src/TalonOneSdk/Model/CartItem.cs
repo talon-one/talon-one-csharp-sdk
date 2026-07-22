@@ -434,17 +434,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CartItem" />
     /// </summary>
-    public class CartItemJsonConverter : JsonConverter<CartItem>
+    public partial class CartItemJsonConverter : JsonConverter<CartItem>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CartItemJsonConverter" /> class.
+        /// </summary>
+        public CartItemJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize AdjustmentEffectiveFrom
         /// </summary>
-        public static string AdjustmentEffectiveFromFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string AdjustmentEffectiveFromFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize AdjustmentEffectiveUntil
         /// </summary>
-        public static string AdjustmentEffectiveUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string AdjustmentEffectiveUntilFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CartItem" />

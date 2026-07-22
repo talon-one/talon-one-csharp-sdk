@@ -109,8 +109,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ExperimentSegmentInsightVariant" />
     /// </summary>
-    public class ExperimentSegmentInsightVariantJsonConverter : JsonConverter<ExperimentSegmentInsightVariant>
+    public partial class ExperimentSegmentInsightVariantJsonConverter : JsonConverter<ExperimentSegmentInsightVariant>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExperimentSegmentInsightVariantJsonConverter" /> class.
+        /// </summary>
+        public ExperimentSegmentInsightVariantJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ExperimentSegmentInsightVariant" />
         /// </summary>

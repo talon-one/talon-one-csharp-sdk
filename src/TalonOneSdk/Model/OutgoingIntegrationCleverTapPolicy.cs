@@ -98,8 +98,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OutgoingIntegrationCleverTapPolicy" />
     /// </summary>
-    public class OutgoingIntegrationCleverTapPolicyJsonConverter : JsonConverter<OutgoingIntegrationCleverTapPolicy>
+    public partial class OutgoingIntegrationCleverTapPolicyJsonConverter : JsonConverter<OutgoingIntegrationCleverTapPolicy>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OutgoingIntegrationCleverTapPolicyJsonConverter" /> class.
+        /// </summary>
+        public OutgoingIntegrationCleverTapPolicyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OutgoingIntegrationCleverTapPolicy" />
         /// </summary>

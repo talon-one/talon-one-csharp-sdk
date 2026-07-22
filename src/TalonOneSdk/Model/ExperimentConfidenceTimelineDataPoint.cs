@@ -85,12 +85,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ExperimentConfidenceTimelineDataPoint" />
     /// </summary>
-    public class ExperimentConfidenceTimelineDataPointJsonConverter : JsonConverter<ExperimentConfidenceTimelineDataPoint>
+    public partial class ExperimentConfidenceTimelineDataPointJsonConverter : JsonConverter<ExperimentConfidenceTimelineDataPoint>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExperimentConfidenceTimelineDataPointJsonConverter" /> class.
+        /// </summary>
+        public ExperimentConfidenceTimelineDataPointJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Date
         /// </summary>
-        public static string DateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string DateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ExperimentConfidenceTimelineDataPoint" />

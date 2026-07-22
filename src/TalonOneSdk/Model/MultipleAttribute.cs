@@ -81,8 +81,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MultipleAttribute" />
     /// </summary>
-    public class MultipleAttributeJsonConverter : JsonConverter<MultipleAttribute>
+    public partial class MultipleAttributeJsonConverter : JsonConverter<MultipleAttribute>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultipleAttributeJsonConverter" /> class.
+        /// </summary>
+        public MultipleAttributeJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MultipleAttribute" />
         /// </summary>

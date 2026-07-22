@@ -84,8 +84,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetApplications200Response" />
     /// </summary>
-    public class GetApplications200ResponseJsonConverter : JsonConverter<GetApplications200Response>
+    public partial class GetApplications200ResponseJsonConverter : JsonConverter<GetApplications200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetApplications200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetApplications200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetApplications200Response" />
         /// </summary>

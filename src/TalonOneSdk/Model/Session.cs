@@ -98,12 +98,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Session" />
     /// </summary>
-    public class SessionJsonConverter : JsonConverter<Session>
+    public partial class SessionJsonConverter : JsonConverter<Session>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SessionJsonConverter" /> class.
+        /// </summary>
+        public SessionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Session" />

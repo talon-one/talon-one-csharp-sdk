@@ -112,8 +112,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ProjectedTier" />
     /// </summary>
-    public class ProjectedTierJsonConverter : JsonConverter<ProjectedTier>
+    public partial class ProjectedTierJsonConverter : JsonConverter<ProjectedTier>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectedTierJsonConverter" /> class.
+        /// </summary>
+        public ProjectedTierJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProjectedTier" />
         /// </summary>

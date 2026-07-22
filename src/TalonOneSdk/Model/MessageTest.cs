@@ -95,8 +95,18 @@ Content-Length: 256
     /// <summary>
     /// A Json converter for type <see cref="MessageTest" />
     /// </summary>
-    public class MessageTestJsonConverter : JsonConverter<MessageTest>
+    public partial class MessageTestJsonConverter : JsonConverter<MessageTest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageTestJsonConverter" /> class.
+        /// </summary>
+        public MessageTestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageTest" />
         /// </summary>

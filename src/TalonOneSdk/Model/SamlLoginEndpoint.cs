@@ -108,8 +108,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SamlLoginEndpoint" />
     /// </summary>
-    public class SamlLoginEndpointJsonConverter : JsonConverter<SamlLoginEndpoint>
+    public partial class SamlLoginEndpointJsonConverter : JsonConverter<SamlLoginEndpoint>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SamlLoginEndpointJsonConverter" /> class.
+        /// </summary>
+        public SamlLoginEndpointJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SamlLoginEndpoint" />
         /// </summary>

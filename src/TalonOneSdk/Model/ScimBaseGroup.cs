@@ -100,8 +100,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ScimBaseGroup" />
     /// </summary>
-    public class ScimBaseGroupJsonConverter : JsonConverter<ScimBaseGroup>
+    public partial class ScimBaseGroupJsonConverter : JsonConverter<ScimBaseGroup>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScimBaseGroupJsonConverter" /> class.
+        /// </summary>
+        public ScimBaseGroupJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ScimBaseGroup" />
         /// </summary>

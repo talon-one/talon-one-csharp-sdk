@@ -97,12 +97,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CampaignDeletedNotificationItem" />
     /// </summary>
-    public class CampaignDeletedNotificationItemJsonConverter : JsonConverter<CampaignDeletedNotificationItem>
+    public partial class CampaignDeletedNotificationItemJsonConverter : JsonConverter<CampaignDeletedNotificationItem>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CampaignDeletedNotificationItemJsonConverter" /> class.
+        /// </summary>
+        public CampaignDeletedNotificationItemJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize DeletedAt
         /// </summary>
-        public static string DeletedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string DeletedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CampaignDeletedNotificationItem" />

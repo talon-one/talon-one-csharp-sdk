@@ -100,8 +100,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApplicationCIFReferences" />
     /// </summary>
-    public class ApplicationCIFReferencesJsonConverter : JsonConverter<ApplicationCIFReferences>
+    public partial class ApplicationCIFReferencesJsonConverter : JsonConverter<ApplicationCIFReferences>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationCIFReferencesJsonConverter" /> class.
+        /// </summary>
+        public ApplicationCIFReferencesJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ApplicationCIFReferences" />
         /// </summary>

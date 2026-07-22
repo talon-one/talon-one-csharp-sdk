@@ -76,8 +76,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateApplicationAPIKey" />
     /// </summary>
-    public class UpdateApplicationAPIKeyJsonConverter : JsonConverter<UpdateApplicationAPIKey>
+    public partial class UpdateApplicationAPIKeyJsonConverter : JsonConverter<UpdateApplicationAPIKey>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateApplicationAPIKeyJsonConverter" /> class.
+        /// </summary>
+        public UpdateApplicationAPIKeyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateApplicationAPIKey" />
         /// </summary>

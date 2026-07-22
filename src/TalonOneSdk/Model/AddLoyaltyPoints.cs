@@ -214,17 +214,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AddLoyaltyPoints" />
     /// </summary>
-    public class AddLoyaltyPointsJsonConverter : JsonConverter<AddLoyaltyPoints>
+    public partial class AddLoyaltyPointsJsonConverter : JsonConverter<AddLoyaltyPoints>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddLoyaltyPointsJsonConverter" /> class.
+        /// </summary>
+        public AddLoyaltyPointsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize ValidUntil
         /// </summary>
-        public static string ValidUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ValidUntilFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize PendingUntil
         /// </summary>
-        public static string PendingUntilFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string PendingUntilFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AddLoyaltyPoints" />

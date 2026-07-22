@@ -143,8 +143,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PatchItemCatalogAction" />
     /// </summary>
-    public class PatchItemCatalogActionJsonConverter : JsonConverter<PatchItemCatalogAction>
+    public partial class PatchItemCatalogActionJsonConverter : JsonConverter<PatchItemCatalogAction>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PatchItemCatalogActionJsonConverter" /> class.
+        /// </summary>
+        public PatchItemCatalogActionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PatchItemCatalogAction" />
         /// </summary>

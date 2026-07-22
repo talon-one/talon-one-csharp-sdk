@@ -26,13 +26,14 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// StrikethroughCheckAttributeBlock
     /// </summary>
-    public partial class StrikethroughCheckAttributeBlock : CheckAttributeBlock, IValidatableObject
+    public partial class StrikethroughCheckAttributeBlock : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StrikethroughCheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
+        /// <param name="operator">The comparison operator applied to the attribute.</param>
         /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="value">value</param>
@@ -42,8 +43,18 @@ namespace TalonOneSdk.Model
         /// <param name="count">count</param>
         /// <param name="onFailure">Strikethrough blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public StrikethroughCheckAttributeBlock(string id, string type, string attribute, Option<List<string>> tags = default, Option<Object> value = default, Option<Object> min = default, Option<Object> max = default, Option<Object> values = default, Option<Object> count = default, Option<List<Object>> onFailure = default) : base(id, type, attribute, tags, value, min, max, values, count)
+        public StrikethroughCheckAttributeBlock(string id, string type, OperatorEnum @operator, string attribute, Option<List<string>> tags = default, Option<Object> value = default, Option<Object> min = default, Option<Object> max = default, Option<Object> values = default, Option<Object> count = default, Option<List<StrikethroughBlock>> onFailure = default)
         {
+            Id = id;
+            Type = type;
+            Operator = @operator;
+            Attribute = attribute;
+            TagsOption = tags;
+            ValueOption = value;
+            MinOption = min;
+            MaxOption = max;
+            ValuesOption = values;
+            CountOption = count;
             OnFailureOption = onFailure;
             OnCreated();
         }
@@ -51,18 +62,545 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
+        /// The comparison operator applied to the attribute.
+        /// </summary>
+        /// <value>The comparison operator applied to the attribute.</value>
+        public enum OperatorEnum
+        {
+            /// <summary>
+            /// Enum Equals for value: equals
+            /// </summary>
+            Equals = 1,
+
+            /// <summary>
+            /// Enum Notequals for value: not(equals)
+            /// </summary>
+            Notequals = 2,
+
+            /// <summary>
+            /// Enum LessThan for value: lessThan
+            /// </summary>
+            LessThan = 3,
+
+            /// <summary>
+            /// Enum LessThanOrEqual for value: lessThanOrEqual
+            /// </summary>
+            LessThanOrEqual = 4,
+
+            /// <summary>
+            /// Enum GreaterThan for value: greaterThan
+            /// </summary>
+            GreaterThan = 5,
+
+            /// <summary>
+            /// Enum GreaterThanOrEqual for value: greaterThanOrEqual
+            /// </summary>
+            GreaterThanOrEqual = 6,
+
+            /// <summary>
+            /// Enum Between for value: between
+            /// </summary>
+            Between = 7,
+
+            /// <summary>
+            /// Enum Contains for value: contains
+            /// </summary>
+            Contains = 8,
+
+            /// <summary>
+            /// Enum Notcontains for value: not(contains)
+            /// </summary>
+            Notcontains = 9,
+
+            /// <summary>
+            /// Enum MatchesRegexp for value: matchesRegexp
+            /// </summary>
+            MatchesRegexp = 10,
+
+            /// <summary>
+            /// Enum StartsWith for value: startsWith
+            /// </summary>
+            StartsWith = 11,
+
+            /// <summary>
+            /// Enum EndsWith for value: endsWith
+            /// </summary>
+            EndsWith = 12,
+
+            /// <summary>
+            /// Enum OneOf for value: oneOf
+            /// </summary>
+            OneOf = 13,
+
+            /// <summary>
+            /// Enum NotoneOf for value: not(oneOf)
+            /// </summary>
+            NotoneOf = 14,
+
+            /// <summary>
+            /// Enum InCollection for value: inCollection
+            /// </summary>
+            InCollection = 15,
+
+            /// <summary>
+            /// Enum NotinCollection for value: not(inCollection)
+            /// </summary>
+            NotinCollection = 16,
+
+            /// <summary>
+            /// Enum Empty for value: empty
+            /// </summary>
+            Empty = 17,
+
+            /// <summary>
+            /// Enum Notempty for value: not(empty)
+            /// </summary>
+            Notempty = 18,
+
+            /// <summary>
+            /// Enum Exists for value: exists
+            /// </summary>
+            Exists = 19,
+
+            /// <summary>
+            /// Enum Notexists for value: not(exists)
+            /// </summary>
+            Notexists = 20,
+
+            /// <summary>
+            /// Enum IsTrue for value: isTrue
+            /// </summary>
+            IsTrue = 21,
+
+            /// <summary>
+            /// Enum IsFalse for value: isFalse
+            /// </summary>
+            IsFalse = 22,
+
+            /// <summary>
+            /// Enum ContainsAtLeast for value: containsAtLeast
+            /// </summary>
+            ContainsAtLeast = 23,
+
+            /// <summary>
+            /// Enum ContainsExactly for value: containsExactly
+            /// </summary>
+            ContainsExactly = 24,
+
+            /// <summary>
+            /// Enum ContainsOneOf for value: containsOneOf
+            /// </summary>
+            ContainsOneOf = 25,
+
+            /// <summary>
+            /// Enum ContainsNoneOf for value: containsNoneOf
+            /// </summary>
+            ContainsNoneOf = 26,
+
+            /// <summary>
+            /// Enum ContainsAllOf for value: containsAllOf
+            /// </summary>
+            ContainsAllOf = 27
+        }
+
+        /// <summary>
+        /// Returns a <see cref="OperatorEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static OperatorEnum OperatorEnumFromString(string value)
+        {
+            if (value.Equals("equals"))
+                return OperatorEnum.Equals;
+
+            if (value.Equals("not(equals)"))
+                return OperatorEnum.Notequals;
+
+            if (value.Equals("lessThan"))
+                return OperatorEnum.LessThan;
+
+            if (value.Equals("lessThanOrEqual"))
+                return OperatorEnum.LessThanOrEqual;
+
+            if (value.Equals("greaterThan"))
+                return OperatorEnum.GreaterThan;
+
+            if (value.Equals("greaterThanOrEqual"))
+                return OperatorEnum.GreaterThanOrEqual;
+
+            if (value.Equals("between"))
+                return OperatorEnum.Between;
+
+            if (value.Equals("contains"))
+                return OperatorEnum.Contains;
+
+            if (value.Equals("not(contains)"))
+                return OperatorEnum.Notcontains;
+
+            if (value.Equals("matchesRegexp"))
+                return OperatorEnum.MatchesRegexp;
+
+            if (value.Equals("startsWith"))
+                return OperatorEnum.StartsWith;
+
+            if (value.Equals("endsWith"))
+                return OperatorEnum.EndsWith;
+
+            if (value.Equals("oneOf"))
+                return OperatorEnum.OneOf;
+
+            if (value.Equals("not(oneOf)"))
+                return OperatorEnum.NotoneOf;
+
+            if (value.Equals("inCollection"))
+                return OperatorEnum.InCollection;
+
+            if (value.Equals("not(inCollection)"))
+                return OperatorEnum.NotinCollection;
+
+            if (value.Equals("empty"))
+                return OperatorEnum.Empty;
+
+            if (value.Equals("not(empty)"))
+                return OperatorEnum.Notempty;
+
+            if (value.Equals("exists"))
+                return OperatorEnum.Exists;
+
+            if (value.Equals("not(exists)"))
+                return OperatorEnum.Notexists;
+
+            if (value.Equals("isTrue"))
+                return OperatorEnum.IsTrue;
+
+            if (value.Equals("isFalse"))
+                return OperatorEnum.IsFalse;
+
+            if (value.Equals("containsAtLeast"))
+                return OperatorEnum.ContainsAtLeast;
+
+            if (value.Equals("containsExactly"))
+                return OperatorEnum.ContainsExactly;
+
+            if (value.Equals("containsOneOf"))
+                return OperatorEnum.ContainsOneOf;
+
+            if (value.Equals("containsNoneOf"))
+                return OperatorEnum.ContainsNoneOf;
+
+            if (value.Equals("containsAllOf"))
+                return OperatorEnum.ContainsAllOf;
+
+            throw new NotImplementedException($"Could not convert value to type OperatorEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="OperatorEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static OperatorEnum? OperatorEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("equals"))
+                return OperatorEnum.Equals;
+
+            if (value.Equals("not(equals)"))
+                return OperatorEnum.Notequals;
+
+            if (value.Equals("lessThan"))
+                return OperatorEnum.LessThan;
+
+            if (value.Equals("lessThanOrEqual"))
+                return OperatorEnum.LessThanOrEqual;
+
+            if (value.Equals("greaterThan"))
+                return OperatorEnum.GreaterThan;
+
+            if (value.Equals("greaterThanOrEqual"))
+                return OperatorEnum.GreaterThanOrEqual;
+
+            if (value.Equals("between"))
+                return OperatorEnum.Between;
+
+            if (value.Equals("contains"))
+                return OperatorEnum.Contains;
+
+            if (value.Equals("not(contains)"))
+                return OperatorEnum.Notcontains;
+
+            if (value.Equals("matchesRegexp"))
+                return OperatorEnum.MatchesRegexp;
+
+            if (value.Equals("startsWith"))
+                return OperatorEnum.StartsWith;
+
+            if (value.Equals("endsWith"))
+                return OperatorEnum.EndsWith;
+
+            if (value.Equals("oneOf"))
+                return OperatorEnum.OneOf;
+
+            if (value.Equals("not(oneOf)"))
+                return OperatorEnum.NotoneOf;
+
+            if (value.Equals("inCollection"))
+                return OperatorEnum.InCollection;
+
+            if (value.Equals("not(inCollection)"))
+                return OperatorEnum.NotinCollection;
+
+            if (value.Equals("empty"))
+                return OperatorEnum.Empty;
+
+            if (value.Equals("not(empty)"))
+                return OperatorEnum.Notempty;
+
+            if (value.Equals("exists"))
+                return OperatorEnum.Exists;
+
+            if (value.Equals("not(exists)"))
+                return OperatorEnum.Notexists;
+
+            if (value.Equals("isTrue"))
+                return OperatorEnum.IsTrue;
+
+            if (value.Equals("isFalse"))
+                return OperatorEnum.IsFalse;
+
+            if (value.Equals("containsAtLeast"))
+                return OperatorEnum.ContainsAtLeast;
+
+            if (value.Equals("containsExactly"))
+                return OperatorEnum.ContainsExactly;
+
+            if (value.Equals("containsOneOf"))
+                return OperatorEnum.ContainsOneOf;
+
+            if (value.Equals("containsNoneOf"))
+                return OperatorEnum.ContainsNoneOf;
+
+            if (value.Equals("containsAllOf"))
+                return OperatorEnum.ContainsAllOf;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="OperatorEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string OperatorEnumToJsonValue(OperatorEnum value)
+        {
+            if (value == OperatorEnum.Equals)
+                return "equals";
+
+            if (value == OperatorEnum.Notequals)
+                return "not(equals)";
+
+            if (value == OperatorEnum.LessThan)
+                return "lessThan";
+
+            if (value == OperatorEnum.LessThanOrEqual)
+                return "lessThanOrEqual";
+
+            if (value == OperatorEnum.GreaterThan)
+                return "greaterThan";
+
+            if (value == OperatorEnum.GreaterThanOrEqual)
+                return "greaterThanOrEqual";
+
+            if (value == OperatorEnum.Between)
+                return "between";
+
+            if (value == OperatorEnum.Contains)
+                return "contains";
+
+            if (value == OperatorEnum.Notcontains)
+                return "not(contains)";
+
+            if (value == OperatorEnum.MatchesRegexp)
+                return "matchesRegexp";
+
+            if (value == OperatorEnum.StartsWith)
+                return "startsWith";
+
+            if (value == OperatorEnum.EndsWith)
+                return "endsWith";
+
+            if (value == OperatorEnum.OneOf)
+                return "oneOf";
+
+            if (value == OperatorEnum.NotoneOf)
+                return "not(oneOf)";
+
+            if (value == OperatorEnum.InCollection)
+                return "inCollection";
+
+            if (value == OperatorEnum.NotinCollection)
+                return "not(inCollection)";
+
+            if (value == OperatorEnum.Empty)
+                return "empty";
+
+            if (value == OperatorEnum.Notempty)
+                return "not(empty)";
+
+            if (value == OperatorEnum.Exists)
+                return "exists";
+
+            if (value == OperatorEnum.Notexists)
+                return "not(exists)";
+
+            if (value == OperatorEnum.IsTrue)
+                return "isTrue";
+
+            if (value == OperatorEnum.IsFalse)
+                return "isFalse";
+
+            if (value == OperatorEnum.ContainsAtLeast)
+                return "containsAtLeast";
+
+            if (value == OperatorEnum.ContainsExactly)
+                return "containsExactly";
+
+            if (value == OperatorEnum.ContainsOneOf)
+                return "containsOneOf";
+
+            if (value == OperatorEnum.ContainsNoneOf)
+                return "containsNoneOf";
+
+            if (value == OperatorEnum.ContainsAllOf)
+                return "containsAllOf";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// The comparison operator applied to the attribute.
+        /// </summary>
+        /// <value>The comparison operator applied to the attribute.</value>
+        /* <example>greaterThan</example> */
+        [JsonPropertyName("operator")]
+        public OperatorEnum Operator { get; set; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Identifies the block variant and determines which additional properties are present in it.
+        /// </summary>
+        /// <value>Identifies the block variant and determines which additional properties are present in it.</value>
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+
+        /// <summary>
+        /// The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).
+        /// </summary>
+        /// <value>The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</value>
+        /* <example>$Session.Total</example> */
+        [JsonPropertyName("attribute")]
+        public string Attribute { get; set; }
+
+        /// <summary>
+        /// Used to track the state of Tags
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>> TagsOption { get; private set; }
+
+        /// <summary>
+        /// Semantic labels attached to this block.
+        /// </summary>
+        /// <value>Semantic labels attached to this block.</value>
+        [JsonPropertyName("tags")]
+        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Value
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> ValueOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Value
+        /// </summary>
+        [JsonPropertyName("value")]
+        public Object Value { get { return this.ValueOption.Value; } set { this.ValueOption = new Option<Object>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Min
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> MinOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Min
+        /// </summary>
+        [JsonPropertyName("min")]
+        public Object Min { get { return this.MinOption.Value; } set { this.MinOption = new Option<Object>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Max
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> MaxOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Max
+        /// </summary>
+        [JsonPropertyName("max")]
+        public Object Max { get { return this.MaxOption.Value; } set { this.MaxOption = new Option<Object>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Values
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> ValuesOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Values
+        /// </summary>
+        [JsonPropertyName("values")]
+        public Object Values { get { return this.ValuesOption.Value; } set { this.ValuesOption = new Option<Object>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Count
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> CountOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Count
+        /// </summary>
+        [JsonPropertyName("count")]
+        public Object Count { get { return this.CountOption.Value; } set { this.CountOption = new Option<Object>(value); } }
+
+        /// <summary>
         /// Used to track the state of OnFailure
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Object>> OnFailureOption { get; private set; }
+        public Option<List<StrikethroughBlock>> OnFailureOption { get; private set; }
 
         /// <summary>
         /// Strikethrough blocks evaluated when this block fails or returns false.
         /// </summary>
         /// <value>Strikethrough blocks evaluated when this block fails or returns false.</value>
         [JsonPropertyName("onFailure")]
-        public List<Object> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Object>>(value); } }
+        public List<StrikethroughBlock> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<StrikethroughBlock>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -72,18 +610,47 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class StrikethroughCheckAttributeBlock {\n");
-            sb.Append("  ").Append(base.ToString()?.Replace("\n", "\n  ")).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Operator: ").Append(Operator).Append("\n");
+            sb.Append("  Attribute: ").Append(Attribute).Append("\n");
+            sb.Append("  Tags: ").Append(Tags).Append("\n");
+            sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("  Min: ").Append(Min).Append("\n");
+            sb.Append("  Max: ").Append(Max).Append("\n");
+            sb.Append("  Values: ").Append(Values).Append("\n");
+            sb.Append("  Count: ").Append(Count).Append("\n");
             sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
         }
     }
 
     /// <summary>
     /// A Json converter for type <see cref="StrikethroughCheckAttributeBlock" />
     /// </summary>
-    public class StrikethroughCheckAttributeBlockJsonConverter : JsonConverter<StrikethroughCheckAttributeBlock>
+    public partial class StrikethroughCheckAttributeBlockJsonConverter : JsonConverter<StrikethroughCheckAttributeBlock>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StrikethroughCheckAttributeBlockJsonConverter" /> class.
+        /// </summary>
+        public StrikethroughCheckAttributeBlockJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="StrikethroughCheckAttributeBlock" />
         /// </summary>
@@ -111,7 +678,7 @@ namespace TalonOneSdk.Model
             Option<Object> max = default;
             Option<Object> values = default;
             Option<Object> count = default;
-            Option<List<Object>> onFailure = default;
+            Option<List<StrikethroughBlock>> onFailure = default;
 
             while (utf8JsonReader.Read())
             {
@@ -161,7 +728,7 @@ namespace TalonOneSdk.Model
                             count = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "onFailure":
-                            onFailure = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            onFailure = new Option<List<StrikethroughBlock>>(JsonSerializer.Deserialize<List<StrikethroughBlock>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -193,7 +760,7 @@ namespace TalonOneSdk.Model
             if (attribute.IsSet && attribute.Value == null)
                 throw new ArgumentNullException(nameof(attribute), "Property is not nullable for class StrikethroughCheckAttributeBlock.");
 
-            return new StrikethroughCheckAttributeBlock(id.Value, type.Value, attribute.Value, tags, value, min, max, values, count, onFailure);
+            return new StrikethroughCheckAttributeBlock(id.Value, type.Value, varOperator.Value.Value, attribute.Value, tags, value, min, max, values, count, onFailure);
         }
 
         /// <summary>
@@ -233,8 +800,8 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("type", strikethroughCheckAttributeBlock.Type);
 
-            writer.WriteString("operator", StrikethroughCheckAttributeBlock.OperatorEnumToJsonValue(strikethroughCheckAttributeBlock.Operator));
-
+            var varOperatorRawValue = StrikethroughCheckAttributeBlock.OperatorEnumToJsonValue(strikethroughCheckAttributeBlock.Operator);
+            writer.WriteString("operator", varOperatorRawValue);
             writer.WriteString("attribute", strikethroughCheckAttributeBlock.Attribute);
 
             if (strikethroughCheckAttributeBlock.TagsOption.IsSet)

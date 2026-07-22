@@ -36,7 +36,7 @@ namespace TalonOneSdk.Model
         /// <param name="accountId">The ID of the account that owns this entity.</param>
         /// <param name="userId">The ID of the user associated with this entity.</param>
         /// <param name="entity">The name of the entity that was exported.</param>
-        /// <param name="filter">Arbitrary properties associated with this campaign.</param>
+        /// <param name="filter">Map of keys and values that were used to filter the exported rows.</param>
         [JsonConstructor]
         public Export(long id, DateTime created, long accountId, long userId, EntityEnum entity, Object filter)
         {
@@ -228,9 +228,9 @@ namespace TalonOneSdk.Model
         public long UserId { get; set; }
 
         /// <summary>
-        /// Arbitrary properties associated with this campaign.
+        /// Map of keys and values that were used to filter the exported rows.
         /// </summary>
-        /// <value>Arbitrary properties associated with this campaign.</value>
+        /// <value>Map of keys and values that were used to filter the exported rows.</value>
         [JsonPropertyName("filter")]
         public Object Filter { get; set; }
 
@@ -266,12 +266,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Export" />
     /// </summary>
-    public class ExportJsonConverter : JsonConverter<Export>
+    public partial class ExportJsonConverter : JsonConverter<Export>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExportJsonConverter" /> class.
+        /// </summary>
+        public ExportJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Export" />

@@ -82,8 +82,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewEventV3Entity" />
     /// </summary>
-    public class NewEventV3EntityJsonConverter : JsonConverter<NewEventV3Entity>
+    public partial class NewEventV3EntityJsonConverter : JsonConverter<NewEventV3Entity>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewEventV3EntityJsonConverter" /> class.
+        /// </summary>
+        public NewEventV3EntityJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NewEventV3Entity" />
         /// </summary>

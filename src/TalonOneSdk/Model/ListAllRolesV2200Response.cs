@@ -84,8 +84,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ListAllRolesV2200Response" />
     /// </summary>
-    public class ListAllRolesV2200ResponseJsonConverter : JsonConverter<ListAllRolesV2200Response>
+    public partial class ListAllRolesV2200ResponseJsonConverter : JsonConverter<ListAllRolesV2200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListAllRolesV2200ResponseJsonConverter" /> class.
+        /// </summary>
+        public ListAllRolesV2200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ListAllRolesV2200Response" />
         /// </summary>

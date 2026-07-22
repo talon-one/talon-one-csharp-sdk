@@ -133,8 +133,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ErrorSource" />
     /// </summary>
-    public class ErrorSourceJsonConverter : JsonConverter<ErrorSource>
+    public partial class ErrorSourceJsonConverter : JsonConverter<ErrorSource>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ErrorSourceJsonConverter" /> class.
+        /// </summary>
+        public ErrorSourceJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ErrorSource" />
         /// </summary>

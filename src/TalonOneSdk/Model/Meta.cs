@@ -148,8 +148,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Meta" />
     /// </summary>
-    public class MetaJsonConverter : JsonConverter<Meta>
+    public partial class MetaJsonConverter : JsonConverter<Meta>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MetaJsonConverter" /> class.
+        /// </summary>
+        public MetaJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="Meta" />
         /// </summary>

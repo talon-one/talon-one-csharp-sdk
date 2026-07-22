@@ -352,8 +352,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateRiskNotification" />
     /// </summary>
-    public class UpdateRiskNotificationJsonConverter : JsonConverter<UpdateRiskNotification>
+    public partial class UpdateRiskNotificationJsonConverter : JsonConverter<UpdateRiskNotification>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateRiskNotificationJsonConverter" /> class.
+        /// </summary>
+        public UpdateRiskNotificationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateRiskNotification" />
         /// </summary>

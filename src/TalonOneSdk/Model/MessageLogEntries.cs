@@ -93,8 +93,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageLogEntries" />
     /// </summary>
-    public class MessageLogEntriesJsonConverter : JsonConverter<MessageLogEntries>
+    public partial class MessageLogEntriesJsonConverter : JsonConverter<MessageLogEntries>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageLogEntriesJsonConverter" /> class.
+        /// </summary>
+        public MessageLogEntriesJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageLogEntries" />
         /// </summary>

@@ -37,7 +37,7 @@ namespace TalonOneSdk.Model
         /// <param name="reservationLimit">The number of reservations that can be made with this coupon code. </param>
         /// <param name="startDate">Timestamp at which point the coupon becomes valid.</param>
         /// <param name="expiryDate">Expiration date of the coupon. Coupon never expires if this is omitted.</param>
-        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
+        /// <param name="attributes">Arbitrary properties associated with this item.</param>
         /// <param name="validCharacters">List of characters used to generate the random parts of a code. By default, the list of characters is equivalent to the &#x60;[A-Z, 0-9]&#x60; regular expression. </param>
         /// <param name="couponPattern">The pattern used to generate coupon codes. The character &#x60;#&#x60; is a placeholder and is replaced by a random character from the &#x60;validCharacters&#x60; set. </param>
         [JsonConstructor]
@@ -148,9 +148,10 @@ namespace TalonOneSdk.Model
         public Option<Object> AttributesOption { get; private set; }
 
         /// <summary>
-        /// Arbitrary properties associated with this campaign.
+        /// Arbitrary properties associated with this item.
         /// </summary>
-        /// <value>Arbitrary properties associated with this campaign.</value>
+        /// <value>Arbitrary properties associated with this item.</value>
+        /* <example>{venueId&#x3D;12}</example> */
         [JsonPropertyName("attributes")]
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
@@ -267,17 +268,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewCouponsForMultipleRecipients" />
     /// </summary>
-    public class NewCouponsForMultipleRecipientsJsonConverter : JsonConverter<NewCouponsForMultipleRecipients>
+    public partial class NewCouponsForMultipleRecipientsJsonConverter : JsonConverter<NewCouponsForMultipleRecipients>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewCouponsForMultipleRecipientsJsonConverter" /> class.
+        /// </summary>
+        public NewCouponsForMultipleRecipientsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="NewCouponsForMultipleRecipients" />

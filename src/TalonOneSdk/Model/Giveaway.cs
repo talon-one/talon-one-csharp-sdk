@@ -37,7 +37,7 @@ namespace TalonOneSdk.Model
         /// <param name="poolId">The ID of the pool to return giveaway codes from.</param>
         /// <param name="startDate">Timestamp at which point the giveaway becomes valid.</param>
         /// <param name="endDate">Timestamp at which point the giveaway becomes invalid.</param>
-        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
+        /// <param name="attributes">Arbitrary properties associated with this giveaway.</param>
         /// <param name="used">Indicates whether this giveaway code was given before.</param>
         /// <param name="importId">The ID of the Import which created this giveaway.</param>
         /// <param name="profileIntegrationId">The third-party integration ID of the customer profile that was awarded the giveaway, if the giveaway was awarded.</param>
@@ -131,9 +131,9 @@ namespace TalonOneSdk.Model
         public Option<Object> AttributesOption { get; private set; }
 
         /// <summary>
-        /// Arbitrary properties associated with this campaign.
+        /// Arbitrary properties associated with this giveaway.
         /// </summary>
-        /// <value>Arbitrary properties associated with this campaign.</value>
+        /// <value>Arbitrary properties associated with this giveaway.</value>
         [JsonPropertyName("attributes")]
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
@@ -234,22 +234,32 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Giveaway" />
     /// </summary>
-    public class GiveawayJsonConverter : JsonConverter<Giveaway>
+    public partial class GiveawayJsonConverter : JsonConverter<Giveaway>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GiveawayJsonConverter" /> class.
+        /// </summary>
+        public GiveawayJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EndDate
         /// </summary>
-        public static string EndDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string EndDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Giveaway" />

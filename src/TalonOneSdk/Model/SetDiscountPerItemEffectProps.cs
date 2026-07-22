@@ -265,8 +265,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SetDiscountPerItemEffectProps" />
     /// </summary>
-    public class SetDiscountPerItemEffectPropsJsonConverter : JsonConverter<SetDiscountPerItemEffectProps>
+    public partial class SetDiscountPerItemEffectPropsJsonConverter : JsonConverter<SetDiscountPerItemEffectProps>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SetDiscountPerItemEffectPropsJsonConverter" /> class.
+        /// </summary>
+        public SetDiscountPerItemEffectPropsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SetDiscountPerItemEffectProps" />
         /// </summary>

@@ -239,8 +239,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewBlueprint" />
     /// </summary>
-    public class NewBlueprintJsonConverter : JsonConverter<NewBlueprint>
+    public partial class NewBlueprintJsonConverter : JsonConverter<NewBlueprint>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewBlueprintJsonConverter" /> class.
+        /// </summary>
+        public NewBlueprintJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NewBlueprint" />
         /// </summary>

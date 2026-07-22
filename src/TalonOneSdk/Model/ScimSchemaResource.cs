@@ -132,8 +132,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ScimSchemaResource" />
     /// </summary>
-    public class ScimSchemaResourceJsonConverter : JsonConverter<ScimSchemaResource>
+    public partial class ScimSchemaResourceJsonConverter : JsonConverter<ScimSchemaResource>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScimSchemaResourceJsonConverter" /> class.
+        /// </summary>
+        public ScimSchemaResourceJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ScimSchemaResource" />
         /// </summary>

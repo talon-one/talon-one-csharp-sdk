@@ -231,8 +231,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="IntegrationEventV2Response" />
     /// </summary>
-    public class IntegrationEventV2ResponseJsonConverter : JsonConverter<IntegrationEventV2Response>
+    public partial class IntegrationEventV2ResponseJsonConverter : JsonConverter<IntegrationEventV2Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegrationEventV2ResponseJsonConverter" /> class.
+        /// </summary>
+        public IntegrationEventV2ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="IntegrationEventV2Response" />
         /// </summary>

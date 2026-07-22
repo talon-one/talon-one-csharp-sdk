@@ -85,8 +85,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CouponCreatedEffectProps" />
     /// </summary>
-    public class CouponCreatedEffectPropsJsonConverter : JsonConverter<CouponCreatedEffectProps>
+    public partial class CouponCreatedEffectPropsJsonConverter : JsonConverter<CouponCreatedEffectProps>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CouponCreatedEffectPropsJsonConverter" /> class.
+        /// </summary>
+        public CouponCreatedEffectPropsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CouponCreatedEffectProps" />
         /// </summary>

@@ -82,8 +82,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="LoyaltyLedgerEntryFlags" />
     /// </summary>
-    public class LoyaltyLedgerEntryFlagsJsonConverter : JsonConverter<LoyaltyLedgerEntryFlags>
+    public partial class LoyaltyLedgerEntryFlagsJsonConverter : JsonConverter<LoyaltyLedgerEntryFlags>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoyaltyLedgerEntryFlagsJsonConverter" /> class.
+        /// </summary>
+        public LoyaltyLedgerEntryFlagsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyLedgerEntryFlags" />
         /// </summary>

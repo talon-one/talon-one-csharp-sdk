@@ -97,8 +97,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AdjustmentDetails" />
     /// </summary>
-    public class AdjustmentDetailsJsonConverter : JsonConverter<AdjustmentDetails>
+    public partial class AdjustmentDetailsJsonConverter : JsonConverter<AdjustmentDetails>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdjustmentDetailsJsonConverter" /> class.
+        /// </summary>
+        public AdjustmentDetailsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AdjustmentDetails" />
         /// </summary>

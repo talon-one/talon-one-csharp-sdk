@@ -130,8 +130,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CampaignEditedNotificationItem" />
     /// </summary>
-    public class CampaignEditedNotificationItemJsonConverter : JsonConverter<CampaignEditedNotificationItem>
+    public partial class CampaignEditedNotificationItemJsonConverter : JsonConverter<CampaignEditedNotificationItem>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CampaignEditedNotificationItemJsonConverter" /> class.
+        /// </summary>
+        public CampaignEditedNotificationItemJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CampaignEditedNotificationItem" />
         /// </summary>

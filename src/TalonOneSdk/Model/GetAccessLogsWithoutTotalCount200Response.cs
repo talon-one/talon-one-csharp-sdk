@@ -83,8 +83,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetAccessLogsWithoutTotalCount200Response" />
     /// </summary>
-    public class GetAccessLogsWithoutTotalCount200ResponseJsonConverter : JsonConverter<GetAccessLogsWithoutTotalCount200Response>
+    public partial class GetAccessLogsWithoutTotalCount200ResponseJsonConverter : JsonConverter<GetAccessLogsWithoutTotalCount200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetAccessLogsWithoutTotalCount200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetAccessLogsWithoutTotalCount200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetAccessLogsWithoutTotalCount200Response" />
         /// </summary>

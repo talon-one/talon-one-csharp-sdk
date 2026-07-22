@@ -76,7 +76,6 @@ docs/models/ApplicationCustomer.md
 docs/models/ApplicationCustomerEntity.md
 docs/models/ApplicationEntity.md
 docs/models/ApplicationEvent.md
-docs/models/ApplicationNotification.md
 docs/models/ApplicationReferee.md
 docs/models/ApplicationSession.md
 docs/models/ApplicationSessionEntity.md
@@ -102,6 +101,7 @@ docs/models/BaseCampaign.md
 docs/models/BaseLoyaltyProgram.md
 docs/models/BaseNotification.md
 docs/models/BaseNotificationEntity.md
+docs/models/BaseNotificationPolicy.md
 docs/models/BaseNotificationWebhook.md
 docs/models/BaseNotifications.md
 docs/models/BaseSamlConnection.md
@@ -110,7 +110,6 @@ docs/models/BestPriorPriceMetadata.md
 docs/models/BestPriorPriceRequest.md
 docs/models/BestPriorPriceSettings.md
 docs/models/BestPriorTarget.md
-docs/models/BetweenCheckAttributeBlock.md
 docs/models/Binding.md
 docs/models/Blueprint.md
 docs/models/BulkApplicationNotification.md
@@ -178,6 +177,12 @@ docs/models/CartItemFilterTemplate.md
 docs/models/Catalog.md
 docs/models/CatalogAction.md
 docs/models/CatalogActionFilter.md
+docs/models/CatalogActionOneOf.md
+docs/models/CatalogActionOneOf1.md
+docs/models/CatalogActionOneOf2.md
+docs/models/CatalogActionOneOf3.md
+docs/models/CatalogActionOneOf4.md
+docs/models/CatalogActionOneOf5.md
 docs/models/CatalogItem.md
 docs/models/CatalogRule.md
 docs/models/CatalogSyncRequest.md
@@ -185,7 +190,7 @@ docs/models/CatalogsStrikethroughNotificationPolicy.md
 docs/models/Change.md
 docs/models/ChangeLoyaltyTierLevelEffectProps.md
 docs/models/ChangeProfilePassword.md
-docs/models/CheckAttributeBlock.md
+docs/models/CheckAttributeBlockBase.md
 docs/models/CheckAudienceBlock.md
 docs/models/CheckAudienceBlock1Audience.md
 docs/models/CheckCouponBlock.md
@@ -194,6 +199,7 @@ docs/models/CodeGeneratorSettings.md
 docs/models/Collection.md
 docs/models/CollectionItem.md
 docs/models/CollectionWithoutPayload.md
+docs/models/ConfirmRisksRequest.md
 docs/models/Coupon.md
 docs/models/CouponConstraints.md
 docs/models/CouponCreatedEffectProps.md
@@ -232,6 +238,7 @@ docs/models/CustomerProfileAudienceRequestItem.md
 docs/models/CustomerProfileEntity.md
 docs/models/CustomerProfileIntegrationRequestV2.md
 docs/models/CustomerProfileIntegrationResponseV2.md
+docs/models/CustomerProfileReward.md
 docs/models/CustomerProfileSearchQuery.md
 docs/models/CustomerProfileUpdateV2Response.md
 docs/models/CustomerSession.md
@@ -242,8 +249,12 @@ docs/models/DeductLoyaltyPointsEffectProps.md
 docs/models/DeleteCouponsData.md
 docs/models/DeleteLoyaltyTransactionsRequest.md
 docs/models/DeleteUserRequest.md
+docs/models/DigitalPass.md
+docs/models/DiscardRisksRequest.md
 docs/models/Effect.md
+docs/models/EffectAllOfProps.md
 docs/models/EffectEntity.md
+docs/models/EffectProps.md
 docs/models/EmailEntity.md
 docs/models/EmbeddedAnalyticsConfiguration.md
 docs/models/EmbeddedAnalyticsConfigurationDashboards.md
@@ -398,6 +409,7 @@ docs/models/IntegrationHubFlowConfigResponse.md
 docs/models/IntegrationHubFlowResponse.md
 docs/models/IntegrationHubFlowWithConfig.md
 docs/models/IntegrationHubPaginatedEventPayload.md
+docs/models/IntegrationHubPaginatedEventPayloadDataInner.md
 docs/models/IntegrationProfileEntity.md
 docs/models/IntegrationProfileEntityV3.md
 docs/models/IntegrationRequest.md
@@ -408,6 +420,7 @@ docs/models/IntegrationStoreEntity.md
 docs/models/InventoryCoupon.md
 docs/models/InventoryReferral.md
 docs/models/ItemAttribute.md
+docs/models/LabelTarget.md
 docs/models/LabelTargetAudience.md
 docs/models/LabelTargetNone.md
 docs/models/LedgerEntry.md
@@ -425,10 +438,8 @@ docs/models/ListCampaignStoreBudgetLimits200Response.md
 docs/models/ListCampaignStoreBudgets.md
 docs/models/ListCampaignStoreBudgetsStore.md
 docs/models/ListCatalogItems200Response.md
-docs/models/ListCheckAttributeBlock.md
 docs/models/ListExperiments200Response.md
 docs/models/ListStores200Response.md
-docs/models/ListWithCountCheckAttributeBlock.md
 docs/models/LoginParams.md
 docs/models/Loyalty.md
 docs/models/LoyaltyBalance.md
@@ -457,6 +468,8 @@ docs/models/LoyaltyProgramTransaction.md
 docs/models/LoyaltySubLedger.md
 docs/models/LoyaltyTier.md
 docs/models/MCPKey.md
+docs/models/MCPOAuthProtectedResource.md
+docs/models/MCPOAuthServerMetadata.md
 docs/models/ManagementKey.md
 docs/models/ManagerConfig.md
 docs/models/MessageLogEntries.md
@@ -506,6 +519,7 @@ docs/models/NewCustomEffect.md
 docs/models/NewCustomerProfile.md
 docs/models/NewCustomerSession.md
 docs/models/NewCustomerSessionV2.md
+docs/models/NewDigitalPass.md
 docs/models/NewEvent.md
 docs/models/NewEventType.md
 docs/models/NewEventV3Entity.md
@@ -556,6 +570,7 @@ docs/models/OneTimeCode.md
 docs/models/OutgoingIntegrationBrazePolicy.md
 docs/models/OutgoingIntegrationCleverTapPolicy.md
 docs/models/OutgoingIntegrationConfiguration.md
+docs/models/OutgoingIntegrationConfigurationPolicy.md
 docs/models/OutgoingIntegrationIterablePolicy.md
 docs/models/OutgoingIntegrationMoEngagePolicy.md
 docs/models/OutgoingIntegrationTemplate.md
@@ -585,6 +600,7 @@ docs/models/ProductUnitAnalyticsTotals.md
 docs/models/ProfileAudiencesChanges.md
 docs/models/ProjectedTier.md
 docs/models/PromoteExperiment.md
+docs/models/PromotionBlock.md
 docs/models/PromotionCheckAttributeBlock.md
 docs/models/PromotionGroupBlock.md
 docs/models/PromotionRuleV2.md
@@ -604,6 +620,7 @@ docs/models/ResponseContentObject.md
 docs/models/Return.md
 docs/models/ReturnIntegrationRequest.md
 docs/models/ReturnedCartItem.md
+docs/models/ReviewRisksRequest.md
 docs/models/Revision.md
 docs/models/RevisionActivation.md
 docs/models/RevisionActivationRequest.md
@@ -612,6 +629,7 @@ docs/models/Reward.md
 docs/models/RewardPointsRequired.md
 docs/models/Risk.md
 docs/models/RiskAffectedEntityItem.md
+docs/models/RiskCriticalityUpdate.md
 docs/models/RiskDetail.md
 docs/models/RiskNotification.md
 docs/models/Role.md
@@ -645,7 +663,6 @@ docs/models/SamlConnection.md
 docs/models/SamlConnectionInternal.md
 docs/models/SamlConnectionMetadata.md
 docs/models/SamlLoginEndpoint.md
-docs/models/ScalarCheckAttributeBlock.md
 docs/models/ScimBaseGroup.md
 docs/models/ScimBaseUser.md
 docs/models/ScimBaseUserName.md
@@ -663,6 +680,8 @@ docs/models/ScimServiceProviderConfigResponse.md
 docs/models/ScimServiceProviderConfigResponseBulk.md
 docs/models/ScimServiceProviderConfigResponseChangePassword.md
 docs/models/ScimServiceProviderConfigResponseFilter.md
+docs/models/ScimServiceProviderConfigResponsePatch.md
+docs/models/ScimServiceProviderConfigResponseSort.md
 docs/models/ScimUser.md
 docs/models/ScimUsersListResponse.md
 docs/models/SecondaryDeployment.md
@@ -679,11 +698,13 @@ docs/models/SkuUnitAnalytics.md
 docs/models/SkuUnitAnalyticsDataPoint.md
 docs/models/SlotDef.md
 docs/models/Store.md
+docs/models/StrikethroughBlock.md
 docs/models/StrikethroughChangedItem.md
 docs/models/StrikethroughCheckAttributeBlock.md
 docs/models/StrikethroughCustomEffectPerItemProps.md
 docs/models/StrikethroughDebugResponse.md
 docs/models/StrikethroughEffect.md
+docs/models/StrikethroughEffectProps.md
 docs/models/StrikethroughGroupBlock.md
 docs/models/StrikethroughLabelingNotification.md
 docs/models/StrikethroughRuleV2.md
@@ -714,15 +735,21 @@ docs/models/TimePoint.md
 docs/models/TransferLoyaltyCard.md
 docs/models/TriggerWebhookEffectProps.md
 docs/models/TwoFAConfig.md
-docs/models/UnaryCheckAttributeBlock.md
 docs/models/UpdateAccount.md
 docs/models/UpdateAchievement.md
+docs/models/UpdateAchievementProgressBlock.md
+docs/models/UpdateAchievementProgressBlock1Achievement.md
 docs/models/UpdateAchievementV2.md
 docs/models/UpdateApplication.md
 docs/models/UpdateApplicationAPIKey.md
 docs/models/UpdateApplicationCIF.md
 docs/models/UpdateAttributeEffectProps.md
+docs/models/UpdateAttributeValueBlock.md
+docs/models/UpdateAttributeValueBlock1Attribute.md
+docs/models/UpdateAttributeValueBlock1Target.md
 docs/models/UpdateAudience.md
+docs/models/UpdateAudienceMembershipBlock.md
+docs/models/UpdateAudienceMembershipBlock1Audience.md
 docs/models/UpdateBlueprint.md
 docs/models/UpdateCampaign.md
 docs/models/UpdateCampaignCollection.md
@@ -735,6 +762,7 @@ docs/models/UpdateCoupon.md
 docs/models/UpdateCouponBatch.md
 docs/models/UpdateCouponsData.md
 docs/models/UpdateCustomEffect.md
+docs/models/UpdateCustomerProfileV2409Response.md
 docs/models/UpdateCustomerSessionV2409Response.md
 docs/models/UpdateExperiment.md
 docs/models/UpdateExperimentVariant.md
@@ -759,6 +787,10 @@ docs/models/UserEntity.md
 docs/models/ValueMap.md
 docs/models/Webhook.md
 docs/models/WebhookAuthentication.md
+docs/models/WebhookAuthenticationAllOfData.md
+docs/models/WebhookAuthenticationBase.md
+docs/models/WebhookAuthenticationBaseOneOf.md
+docs/models/WebhookAuthenticationBaseOneOf1.md
 docs/models/WebhookAuthenticationDataBasic.md
 docs/models/WebhookAuthenticationDataCustom.md
 docs/models/WebhookAuthenticationWebhookRef.md
@@ -830,7 +862,6 @@ src/TalonOneSdk.Test/Model/ApplicationCustomerEntityTests.cs
 src/TalonOneSdk.Test/Model/ApplicationCustomerTests.cs
 src/TalonOneSdk.Test/Model/ApplicationEntityTests.cs
 src/TalonOneSdk.Test/Model/ApplicationEventTests.cs
-src/TalonOneSdk.Test/Model/ApplicationNotificationTests.cs
 src/TalonOneSdk.Test/Model/ApplicationRefereeTests.cs
 src/TalonOneSdk.Test/Model/ApplicationSessionEntityTests.cs
 src/TalonOneSdk.Test/Model/ApplicationSessionTests.cs
@@ -856,6 +887,7 @@ src/TalonOneSdk.Test/Model/BaseBlockTests.cs
 src/TalonOneSdk.Test/Model/BaseCampaignTests.cs
 src/TalonOneSdk.Test/Model/BaseLoyaltyProgramTests.cs
 src/TalonOneSdk.Test/Model/BaseNotificationEntityTests.cs
+src/TalonOneSdk.Test/Model/BaseNotificationPolicyTests.cs
 src/TalonOneSdk.Test/Model/BaseNotificationTests.cs
 src/TalonOneSdk.Test/Model/BaseNotificationWebhookTests.cs
 src/TalonOneSdk.Test/Model/BaseNotificationsTests.cs
@@ -865,7 +897,6 @@ src/TalonOneSdk.Test/Model/BestPriorPriceRequestTests.cs
 src/TalonOneSdk.Test/Model/BestPriorPriceSettingsTests.cs
 src/TalonOneSdk.Test/Model/BestPriorPriceTests.cs
 src/TalonOneSdk.Test/Model/BestPriorTargetTests.cs
-src/TalonOneSdk.Test/Model/BetweenCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/BindingTests.cs
 src/TalonOneSdk.Test/Model/BlueprintTests.cs
 src/TalonOneSdk.Test/Model/BulkApplicationNotificationTests.cs
@@ -931,6 +962,12 @@ src/TalonOneSdk.Test/Model/CardLedgerTransactionLogEntryTests.cs
 src/TalonOneSdk.Test/Model/CartItemFilterTemplateTests.cs
 src/TalonOneSdk.Test/Model/CartItemTests.cs
 src/TalonOneSdk.Test/Model/CatalogActionFilterTests.cs
+src/TalonOneSdk.Test/Model/CatalogActionOneOf1Tests.cs
+src/TalonOneSdk.Test/Model/CatalogActionOneOf2Tests.cs
+src/TalonOneSdk.Test/Model/CatalogActionOneOf3Tests.cs
+src/TalonOneSdk.Test/Model/CatalogActionOneOf4Tests.cs
+src/TalonOneSdk.Test/Model/CatalogActionOneOf5Tests.cs
+src/TalonOneSdk.Test/Model/CatalogActionOneOfTests.cs
 src/TalonOneSdk.Test/Model/CatalogActionTests.cs
 src/TalonOneSdk.Test/Model/CatalogItemTests.cs
 src/TalonOneSdk.Test/Model/CatalogRuleTests.cs
@@ -940,7 +977,7 @@ src/TalonOneSdk.Test/Model/CatalogsStrikethroughNotificationPolicyTests.cs
 src/TalonOneSdk.Test/Model/ChangeLoyaltyTierLevelEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/ChangeProfilePasswordTests.cs
 src/TalonOneSdk.Test/Model/ChangeTests.cs
-src/TalonOneSdk.Test/Model/CheckAttributeBlockTests.cs
+src/TalonOneSdk.Test/Model/CheckAttributeBlockBaseTests.cs
 src/TalonOneSdk.Test/Model/CheckAudienceBlock1AudienceTests.cs
 src/TalonOneSdk.Test/Model/CheckAudienceBlockTests.cs
 src/TalonOneSdk.Test/Model/CheckCouponBlockTests.cs
@@ -949,6 +986,7 @@ src/TalonOneSdk.Test/Model/CodeGeneratorSettingsTests.cs
 src/TalonOneSdk.Test/Model/CollectionItemTests.cs
 src/TalonOneSdk.Test/Model/CollectionTests.cs
 src/TalonOneSdk.Test/Model/CollectionWithoutPayloadTests.cs
+src/TalonOneSdk.Test/Model/ConfirmRisksRequestTests.cs
 src/TalonOneSdk.Test/Model/CouponConstraintsTests.cs
 src/TalonOneSdk.Test/Model/CouponCreatedEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/CouponCreationJobTests.cs
@@ -986,6 +1024,7 @@ src/TalonOneSdk.Test/Model/CustomerProfileAudienceRequestTests.cs
 src/TalonOneSdk.Test/Model/CustomerProfileEntityTests.cs
 src/TalonOneSdk.Test/Model/CustomerProfileIntegrationRequestV2Tests.cs
 src/TalonOneSdk.Test/Model/CustomerProfileIntegrationResponseV2Tests.cs
+src/TalonOneSdk.Test/Model/CustomerProfileRewardTests.cs
 src/TalonOneSdk.Test/Model/CustomerProfileSearchQueryTests.cs
 src/TalonOneSdk.Test/Model/CustomerProfileTests.cs
 src/TalonOneSdk.Test/Model/CustomerProfileUpdateV2ResponseTests.cs
@@ -997,7 +1036,11 @@ src/TalonOneSdk.Test/Model/DeductLoyaltyPointsTests.cs
 src/TalonOneSdk.Test/Model/DeleteCouponsDataTests.cs
 src/TalonOneSdk.Test/Model/DeleteLoyaltyTransactionsRequestTests.cs
 src/TalonOneSdk.Test/Model/DeleteUserRequestTests.cs
+src/TalonOneSdk.Test/Model/DigitalPassTests.cs
+src/TalonOneSdk.Test/Model/DiscardRisksRequestTests.cs
+src/TalonOneSdk.Test/Model/EffectAllOfPropsTests.cs
 src/TalonOneSdk.Test/Model/EffectEntityTests.cs
+src/TalonOneSdk.Test/Model/EffectPropsTests.cs
 src/TalonOneSdk.Test/Model/EffectTests.cs
 src/TalonOneSdk.Test/Model/EmailEntityTests.cs
 src/TalonOneSdk.Test/Model/EmbeddedAnalyticsConfigurationDashboardsTests.cs
@@ -1152,6 +1195,7 @@ src/TalonOneSdk.Test/Model/IntegrationHubFlowConfigTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubFlowResponseTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubFlowTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubFlowWithConfigTests.cs
+src/TalonOneSdk.Test/Model/IntegrationHubPaginatedEventPayloadDataInnerTests.cs
 src/TalonOneSdk.Test/Model/IntegrationHubPaginatedEventPayloadTests.cs
 src/TalonOneSdk.Test/Model/IntegrationProfileEntityTests.cs
 src/TalonOneSdk.Test/Model/IntegrationProfileEntityV3Tests.cs
@@ -1165,6 +1209,7 @@ src/TalonOneSdk.Test/Model/InventoryReferralTests.cs
 src/TalonOneSdk.Test/Model/ItemAttributeTests.cs
 src/TalonOneSdk.Test/Model/LabelTargetAudienceTests.cs
 src/TalonOneSdk.Test/Model/LabelTargetNoneTests.cs
+src/TalonOneSdk.Test/Model/LabelTargetTests.cs
 src/TalonOneSdk.Test/Model/LedgerEntryTests.cs
 src/TalonOneSdk.Test/Model/LedgerInfoTests.cs
 src/TalonOneSdk.Test/Model/LedgerPointsEntryIntegrationAPITests.cs
@@ -1180,10 +1225,8 @@ src/TalonOneSdk.Test/Model/ListCampaignStoreBudgetLimits200ResponseTests.cs
 src/TalonOneSdk.Test/Model/ListCampaignStoreBudgetsStoreTests.cs
 src/TalonOneSdk.Test/Model/ListCampaignStoreBudgetsTests.cs
 src/TalonOneSdk.Test/Model/ListCatalogItems200ResponseTests.cs
-src/TalonOneSdk.Test/Model/ListCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/ListExperiments200ResponseTests.cs
 src/TalonOneSdk.Test/Model/ListStores200ResponseTests.cs
-src/TalonOneSdk.Test/Model/ListWithCountCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/LoginParamsTests.cs
 src/TalonOneSdk.Test/Model/LoyaltyBalanceTests.cs
 src/TalonOneSdk.Test/Model/LoyaltyBalanceWithTierTests.cs
@@ -1212,6 +1255,8 @@ src/TalonOneSdk.Test/Model/LoyaltySubLedgerTests.cs
 src/TalonOneSdk.Test/Model/LoyaltyTests.cs
 src/TalonOneSdk.Test/Model/LoyaltyTierTests.cs
 src/TalonOneSdk.Test/Model/MCPKeyTests.cs
+src/TalonOneSdk.Test/Model/MCPOAuthProtectedResourceTests.cs
+src/TalonOneSdk.Test/Model/MCPOAuthServerMetadataTests.cs
 src/TalonOneSdk.Test/Model/ManagementKeyTests.cs
 src/TalonOneSdk.Test/Model/ManagerConfigTests.cs
 src/TalonOneSdk.Test/Model/MessageLogEntriesTests.cs
@@ -1261,6 +1306,7 @@ src/TalonOneSdk.Test/Model/NewCustomEffectTests.cs
 src/TalonOneSdk.Test/Model/NewCustomerProfileTests.cs
 src/TalonOneSdk.Test/Model/NewCustomerSessionTests.cs
 src/TalonOneSdk.Test/Model/NewCustomerSessionV2Tests.cs
+src/TalonOneSdk.Test/Model/NewDigitalPassTests.cs
 src/TalonOneSdk.Test/Model/NewEventTests.cs
 src/TalonOneSdk.Test/Model/NewEventTypeTests.cs
 src/TalonOneSdk.Test/Model/NewEventV3EntityTests.cs
@@ -1310,6 +1356,7 @@ src/TalonOneSdk.Test/Model/OktaEventTests.cs
 src/TalonOneSdk.Test/Model/OneTimeCodeTests.cs
 src/TalonOneSdk.Test/Model/OutgoingIntegrationBrazePolicyTests.cs
 src/TalonOneSdk.Test/Model/OutgoingIntegrationCleverTapPolicyTests.cs
+src/TalonOneSdk.Test/Model/OutgoingIntegrationConfigurationPolicyTests.cs
 src/TalonOneSdk.Test/Model/OutgoingIntegrationConfigurationTests.cs
 src/TalonOneSdk.Test/Model/OutgoingIntegrationIterablePolicyTests.cs
 src/TalonOneSdk.Test/Model/OutgoingIntegrationMoEngagePolicyTests.cs
@@ -1340,6 +1387,7 @@ src/TalonOneSdk.Test/Model/ProductUnitAnalyticsTotalsTests.cs
 src/TalonOneSdk.Test/Model/ProfileAudiencesChangesTests.cs
 src/TalonOneSdk.Test/Model/ProjectedTierTests.cs
 src/TalonOneSdk.Test/Model/PromoteExperimentTests.cs
+src/TalonOneSdk.Test/Model/PromotionBlockTests.cs
 src/TalonOneSdk.Test/Model/PromotionCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/PromotionGroupBlockTests.cs
 src/TalonOneSdk.Test/Model/PromotionRuleV2Tests.cs
@@ -1359,6 +1407,7 @@ src/TalonOneSdk.Test/Model/ResponseContentObjectTests.cs
 src/TalonOneSdk.Test/Model/ReturnIntegrationRequestTests.cs
 src/TalonOneSdk.Test/Model/ReturnTests.cs
 src/TalonOneSdk.Test/Model/ReturnedCartItemTests.cs
+src/TalonOneSdk.Test/Model/ReviewRisksRequestTests.cs
 src/TalonOneSdk.Test/Model/RevisionActivationRequestTests.cs
 src/TalonOneSdk.Test/Model/RevisionActivationTests.cs
 src/TalonOneSdk.Test/Model/RevisionTests.cs
@@ -1366,6 +1415,7 @@ src/TalonOneSdk.Test/Model/RevisionVersionTests.cs
 src/TalonOneSdk.Test/Model/RewardPointsRequiredTests.cs
 src/TalonOneSdk.Test/Model/RewardTests.cs
 src/TalonOneSdk.Test/Model/RiskAffectedEntityItemTests.cs
+src/TalonOneSdk.Test/Model/RiskCriticalityUpdateTests.cs
 src/TalonOneSdk.Test/Model/RiskDetailTests.cs
 src/TalonOneSdk.Test/Model/RiskNotificationTests.cs
 src/TalonOneSdk.Test/Model/RiskTests.cs
@@ -1400,7 +1450,6 @@ src/TalonOneSdk.Test/Model/SamlConnectionInternalTests.cs
 src/TalonOneSdk.Test/Model/SamlConnectionMetadataTests.cs
 src/TalonOneSdk.Test/Model/SamlConnectionTests.cs
 src/TalonOneSdk.Test/Model/SamlLoginEndpointTests.cs
-src/TalonOneSdk.Test/Model/ScalarCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/ScimBaseGroupTests.cs
 src/TalonOneSdk.Test/Model/ScimBaseUserNameTests.cs
 src/TalonOneSdk.Test/Model/ScimBaseUserTests.cs
@@ -1417,6 +1466,8 @@ src/TalonOneSdk.Test/Model/ScimSchemasListResponseTests.cs
 src/TalonOneSdk.Test/Model/ScimServiceProviderConfigResponseBulkTests.cs
 src/TalonOneSdk.Test/Model/ScimServiceProviderConfigResponseChangePasswordTests.cs
 src/TalonOneSdk.Test/Model/ScimServiceProviderConfigResponseFilterTests.cs
+src/TalonOneSdk.Test/Model/ScimServiceProviderConfigResponsePatchTests.cs
+src/TalonOneSdk.Test/Model/ScimServiceProviderConfigResponseSortTests.cs
 src/TalonOneSdk.Test/Model/ScimServiceProviderConfigResponseTests.cs
 src/TalonOneSdk.Test/Model/ScimUserTests.cs
 src/TalonOneSdk.Test/Model/ScimUsersListResponseTests.cs
@@ -1434,10 +1485,12 @@ src/TalonOneSdk.Test/Model/SkuUnitAnalyticsDataPointTests.cs
 src/TalonOneSdk.Test/Model/SkuUnitAnalyticsTests.cs
 src/TalonOneSdk.Test/Model/SlotDefTests.cs
 src/TalonOneSdk.Test/Model/StoreTests.cs
+src/TalonOneSdk.Test/Model/StrikethroughBlockTests.cs
 src/TalonOneSdk.Test/Model/StrikethroughChangedItemTests.cs
 src/TalonOneSdk.Test/Model/StrikethroughCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/StrikethroughCustomEffectPerItemPropsTests.cs
 src/TalonOneSdk.Test/Model/StrikethroughDebugResponseTests.cs
+src/TalonOneSdk.Test/Model/StrikethroughEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/StrikethroughEffectTests.cs
 src/TalonOneSdk.Test/Model/StrikethroughGroupBlockTests.cs
 src/TalonOneSdk.Test/Model/StrikethroughLabelingNotificationTests.cs
@@ -1469,14 +1522,20 @@ src/TalonOneSdk.Test/Model/TimePointTests.cs
 src/TalonOneSdk.Test/Model/TransferLoyaltyCardTests.cs
 src/TalonOneSdk.Test/Model/TriggerWebhookEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/TwoFAConfigTests.cs
-src/TalonOneSdk.Test/Model/UnaryCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/UpdateAccountTests.cs
+src/TalonOneSdk.Test/Model/UpdateAchievementProgressBlock1AchievementTests.cs
+src/TalonOneSdk.Test/Model/UpdateAchievementProgressBlockTests.cs
 src/TalonOneSdk.Test/Model/UpdateAchievementTests.cs
 src/TalonOneSdk.Test/Model/UpdateAchievementV2Tests.cs
 src/TalonOneSdk.Test/Model/UpdateApplicationAPIKeyTests.cs
 src/TalonOneSdk.Test/Model/UpdateApplicationCIFTests.cs
 src/TalonOneSdk.Test/Model/UpdateApplicationTests.cs
 src/TalonOneSdk.Test/Model/UpdateAttributeEffectPropsTests.cs
+src/TalonOneSdk.Test/Model/UpdateAttributeValueBlock1AttributeTests.cs
+src/TalonOneSdk.Test/Model/UpdateAttributeValueBlock1TargetTests.cs
+src/TalonOneSdk.Test/Model/UpdateAttributeValueBlockTests.cs
+src/TalonOneSdk.Test/Model/UpdateAudienceMembershipBlock1AudienceTests.cs
+src/TalonOneSdk.Test/Model/UpdateAudienceMembershipBlockTests.cs
 src/TalonOneSdk.Test/Model/UpdateAudienceTests.cs
 src/TalonOneSdk.Test/Model/UpdateBlueprintTests.cs
 src/TalonOneSdk.Test/Model/UpdateCampaignCollectionTests.cs
@@ -1490,6 +1549,7 @@ src/TalonOneSdk.Test/Model/UpdateCouponBatchTests.cs
 src/TalonOneSdk.Test/Model/UpdateCouponTests.cs
 src/TalonOneSdk.Test/Model/UpdateCouponsDataTests.cs
 src/TalonOneSdk.Test/Model/UpdateCustomEffectTests.cs
+src/TalonOneSdk.Test/Model/UpdateCustomerProfileV2409ResponseTests.cs
 src/TalonOneSdk.Test/Model/UpdateCustomerSessionV2409ResponseTests.cs
 src/TalonOneSdk.Test/Model/UpdateExperimentTests.cs
 src/TalonOneSdk.Test/Model/UpdateExperimentVariantArrayTests.cs
@@ -1512,6 +1572,10 @@ src/TalonOneSdk.Test/Model/UpdateUserTests.cs
 src/TalonOneSdk.Test/Model/UserEntityTests.cs
 src/TalonOneSdk.Test/Model/UserTests.cs
 src/TalonOneSdk.Test/Model/ValueMapTests.cs
+src/TalonOneSdk.Test/Model/WebhookAuthenticationAllOfDataTests.cs
+src/TalonOneSdk.Test/Model/WebhookAuthenticationBaseOneOf1Tests.cs
+src/TalonOneSdk.Test/Model/WebhookAuthenticationBaseOneOfTests.cs
+src/TalonOneSdk.Test/Model/WebhookAuthenticationBaseTests.cs
 src/TalonOneSdk.Test/Model/WebhookAuthenticationDataBasicTests.cs
 src/TalonOneSdk.Test/Model/WebhookAuthenticationDataCustomTests.cs
 src/TalonOneSdk.Test/Model/WebhookAuthenticationTests.cs
@@ -1545,6 +1609,7 @@ src/TalonOneSdk/Client/TokenProvider`1.cs
 src/TalonOneSdk/Extensions/IHostBuilderExtensions.cs
 src/TalonOneSdk/Extensions/IHttpClientBuilderExtensions.cs
 src/TalonOneSdk/Extensions/IServiceCollectionExtensions.cs
+src/TalonOneSdk/Logging/RestLogEvents.cs
 src/TalonOneSdk/Model/APIError.cs
 src/TalonOneSdk/Model/AcceptCouponEffectProps.cs
 src/TalonOneSdk/Model/AcceptReferralEffectProps.cs
@@ -1606,7 +1671,6 @@ src/TalonOneSdk/Model/ApplicationCustomer.cs
 src/TalonOneSdk/Model/ApplicationCustomerEntity.cs
 src/TalonOneSdk/Model/ApplicationEntity.cs
 src/TalonOneSdk/Model/ApplicationEvent.cs
-src/TalonOneSdk/Model/ApplicationNotification.cs
 src/TalonOneSdk/Model/ApplicationReferee.cs
 src/TalonOneSdk/Model/ApplicationSession.cs
 src/TalonOneSdk/Model/ApplicationSessionEntity.cs
@@ -1632,6 +1696,7 @@ src/TalonOneSdk/Model/BaseCampaign.cs
 src/TalonOneSdk/Model/BaseLoyaltyProgram.cs
 src/TalonOneSdk/Model/BaseNotification.cs
 src/TalonOneSdk/Model/BaseNotificationEntity.cs
+src/TalonOneSdk/Model/BaseNotificationPolicy.cs
 src/TalonOneSdk/Model/BaseNotificationWebhook.cs
 src/TalonOneSdk/Model/BaseNotifications.cs
 src/TalonOneSdk/Model/BaseSamlConnection.cs
@@ -1640,7 +1705,6 @@ src/TalonOneSdk/Model/BestPriorPriceMetadata.cs
 src/TalonOneSdk/Model/BestPriorPriceRequest.cs
 src/TalonOneSdk/Model/BestPriorPriceSettings.cs
 src/TalonOneSdk/Model/BestPriorTarget.cs
-src/TalonOneSdk/Model/BetweenCheckAttributeBlock.cs
 src/TalonOneSdk/Model/Binding.cs
 src/TalonOneSdk/Model/Blueprint.cs
 src/TalonOneSdk/Model/BulkApplicationNotification.cs
@@ -1708,6 +1772,12 @@ src/TalonOneSdk/Model/CartItemFilterTemplate.cs
 src/TalonOneSdk/Model/Catalog.cs
 src/TalonOneSdk/Model/CatalogAction.cs
 src/TalonOneSdk/Model/CatalogActionFilter.cs
+src/TalonOneSdk/Model/CatalogActionOneOf.cs
+src/TalonOneSdk/Model/CatalogActionOneOf1.cs
+src/TalonOneSdk/Model/CatalogActionOneOf2.cs
+src/TalonOneSdk/Model/CatalogActionOneOf3.cs
+src/TalonOneSdk/Model/CatalogActionOneOf4.cs
+src/TalonOneSdk/Model/CatalogActionOneOf5.cs
 src/TalonOneSdk/Model/CatalogItem.cs
 src/TalonOneSdk/Model/CatalogRule.cs
 src/TalonOneSdk/Model/CatalogSyncRequest.cs
@@ -1715,7 +1785,7 @@ src/TalonOneSdk/Model/CatalogsStrikethroughNotificationPolicy.cs
 src/TalonOneSdk/Model/Change.cs
 src/TalonOneSdk/Model/ChangeLoyaltyTierLevelEffectProps.cs
 src/TalonOneSdk/Model/ChangeProfilePassword.cs
-src/TalonOneSdk/Model/CheckAttributeBlock.cs
+src/TalonOneSdk/Model/CheckAttributeBlockBase.cs
 src/TalonOneSdk/Model/CheckAudienceBlock.cs
 src/TalonOneSdk/Model/CheckAudienceBlock1Audience.cs
 src/TalonOneSdk/Model/CheckCouponBlock.cs
@@ -1724,6 +1794,7 @@ src/TalonOneSdk/Model/CodeGeneratorSettings.cs
 src/TalonOneSdk/Model/Collection.cs
 src/TalonOneSdk/Model/CollectionItem.cs
 src/TalonOneSdk/Model/CollectionWithoutPayload.cs
+src/TalonOneSdk/Model/ConfirmRisksRequest.cs
 src/TalonOneSdk/Model/Coupon.cs
 src/TalonOneSdk/Model/CouponConstraints.cs
 src/TalonOneSdk/Model/CouponCreatedEffectProps.cs
@@ -1762,6 +1833,7 @@ src/TalonOneSdk/Model/CustomerProfileAudienceRequestItem.cs
 src/TalonOneSdk/Model/CustomerProfileEntity.cs
 src/TalonOneSdk/Model/CustomerProfileIntegrationRequestV2.cs
 src/TalonOneSdk/Model/CustomerProfileIntegrationResponseV2.cs
+src/TalonOneSdk/Model/CustomerProfileReward.cs
 src/TalonOneSdk/Model/CustomerProfileSearchQuery.cs
 src/TalonOneSdk/Model/CustomerProfileUpdateV2Response.cs
 src/TalonOneSdk/Model/CustomerSession.cs
@@ -1772,8 +1844,12 @@ src/TalonOneSdk/Model/DeductLoyaltyPointsEffectProps.cs
 src/TalonOneSdk/Model/DeleteCouponsData.cs
 src/TalonOneSdk/Model/DeleteLoyaltyTransactionsRequest.cs
 src/TalonOneSdk/Model/DeleteUserRequest.cs
+src/TalonOneSdk/Model/DigitalPass.cs
+src/TalonOneSdk/Model/DiscardRisksRequest.cs
 src/TalonOneSdk/Model/Effect.cs
+src/TalonOneSdk/Model/EffectAllOfProps.cs
 src/TalonOneSdk/Model/EffectEntity.cs
+src/TalonOneSdk/Model/EffectProps.cs
 src/TalonOneSdk/Model/EmailEntity.cs
 src/TalonOneSdk/Model/EmbeddedAnalyticsConfiguration.cs
 src/TalonOneSdk/Model/EmbeddedAnalyticsConfigurationDashboards.cs
@@ -1928,6 +2004,7 @@ src/TalonOneSdk/Model/IntegrationHubFlowConfigResponse.cs
 src/TalonOneSdk/Model/IntegrationHubFlowResponse.cs
 src/TalonOneSdk/Model/IntegrationHubFlowWithConfig.cs
 src/TalonOneSdk/Model/IntegrationHubPaginatedEventPayload.cs
+src/TalonOneSdk/Model/IntegrationHubPaginatedEventPayloadDataInner.cs
 src/TalonOneSdk/Model/IntegrationProfileEntity.cs
 src/TalonOneSdk/Model/IntegrationProfileEntityV3.cs
 src/TalonOneSdk/Model/IntegrationRequest.cs
@@ -1938,6 +2015,7 @@ src/TalonOneSdk/Model/IntegrationStoreEntity.cs
 src/TalonOneSdk/Model/InventoryCoupon.cs
 src/TalonOneSdk/Model/InventoryReferral.cs
 src/TalonOneSdk/Model/ItemAttribute.cs
+src/TalonOneSdk/Model/LabelTarget.cs
 src/TalonOneSdk/Model/LabelTargetAudience.cs
 src/TalonOneSdk/Model/LabelTargetNone.cs
 src/TalonOneSdk/Model/LedgerEntry.cs
@@ -1955,10 +2033,8 @@ src/TalonOneSdk/Model/ListCampaignStoreBudgetLimits200Response.cs
 src/TalonOneSdk/Model/ListCampaignStoreBudgets.cs
 src/TalonOneSdk/Model/ListCampaignStoreBudgetsStore.cs
 src/TalonOneSdk/Model/ListCatalogItems200Response.cs
-src/TalonOneSdk/Model/ListCheckAttributeBlock.cs
 src/TalonOneSdk/Model/ListExperiments200Response.cs
 src/TalonOneSdk/Model/ListStores200Response.cs
-src/TalonOneSdk/Model/ListWithCountCheckAttributeBlock.cs
 src/TalonOneSdk/Model/LoginParams.cs
 src/TalonOneSdk/Model/Loyalty.cs
 src/TalonOneSdk/Model/LoyaltyBalance.cs
@@ -1987,6 +2063,8 @@ src/TalonOneSdk/Model/LoyaltyProgramTransaction.cs
 src/TalonOneSdk/Model/LoyaltySubLedger.cs
 src/TalonOneSdk/Model/LoyaltyTier.cs
 src/TalonOneSdk/Model/MCPKey.cs
+src/TalonOneSdk/Model/MCPOAuthProtectedResource.cs
+src/TalonOneSdk/Model/MCPOAuthServerMetadata.cs
 src/TalonOneSdk/Model/ManagementKey.cs
 src/TalonOneSdk/Model/ManagerConfig.cs
 src/TalonOneSdk/Model/MessageLogEntries.cs
@@ -2036,6 +2114,7 @@ src/TalonOneSdk/Model/NewCustomEffect.cs
 src/TalonOneSdk/Model/NewCustomerProfile.cs
 src/TalonOneSdk/Model/NewCustomerSession.cs
 src/TalonOneSdk/Model/NewCustomerSessionV2.cs
+src/TalonOneSdk/Model/NewDigitalPass.cs
 src/TalonOneSdk/Model/NewEvent.cs
 src/TalonOneSdk/Model/NewEventType.cs
 src/TalonOneSdk/Model/NewEventV3Entity.cs
@@ -2086,6 +2165,7 @@ src/TalonOneSdk/Model/OneTimeCode.cs
 src/TalonOneSdk/Model/OutgoingIntegrationBrazePolicy.cs
 src/TalonOneSdk/Model/OutgoingIntegrationCleverTapPolicy.cs
 src/TalonOneSdk/Model/OutgoingIntegrationConfiguration.cs
+src/TalonOneSdk/Model/OutgoingIntegrationConfigurationPolicy.cs
 src/TalonOneSdk/Model/OutgoingIntegrationIterablePolicy.cs
 src/TalonOneSdk/Model/OutgoingIntegrationMoEngagePolicy.cs
 src/TalonOneSdk/Model/OutgoingIntegrationTemplate.cs
@@ -2115,6 +2195,7 @@ src/TalonOneSdk/Model/ProductUnitAnalyticsTotals.cs
 src/TalonOneSdk/Model/ProfileAudiencesChanges.cs
 src/TalonOneSdk/Model/ProjectedTier.cs
 src/TalonOneSdk/Model/PromoteExperiment.cs
+src/TalonOneSdk/Model/PromotionBlock.cs
 src/TalonOneSdk/Model/PromotionCheckAttributeBlock.cs
 src/TalonOneSdk/Model/PromotionGroupBlock.cs
 src/TalonOneSdk/Model/PromotionRuleV2.cs
@@ -2134,6 +2215,7 @@ src/TalonOneSdk/Model/ResponseContentObject.cs
 src/TalonOneSdk/Model/Return.cs
 src/TalonOneSdk/Model/ReturnIntegrationRequest.cs
 src/TalonOneSdk/Model/ReturnedCartItem.cs
+src/TalonOneSdk/Model/ReviewRisksRequest.cs
 src/TalonOneSdk/Model/Revision.cs
 src/TalonOneSdk/Model/RevisionActivation.cs
 src/TalonOneSdk/Model/RevisionActivationRequest.cs
@@ -2142,6 +2224,7 @@ src/TalonOneSdk/Model/Reward.cs
 src/TalonOneSdk/Model/RewardPointsRequired.cs
 src/TalonOneSdk/Model/Risk.cs
 src/TalonOneSdk/Model/RiskAffectedEntityItem.cs
+src/TalonOneSdk/Model/RiskCriticalityUpdate.cs
 src/TalonOneSdk/Model/RiskDetail.cs
 src/TalonOneSdk/Model/RiskNotification.cs
 src/TalonOneSdk/Model/Role.cs
@@ -2175,7 +2258,6 @@ src/TalonOneSdk/Model/SamlConnection.cs
 src/TalonOneSdk/Model/SamlConnectionInternal.cs
 src/TalonOneSdk/Model/SamlConnectionMetadata.cs
 src/TalonOneSdk/Model/SamlLoginEndpoint.cs
-src/TalonOneSdk/Model/ScalarCheckAttributeBlock.cs
 src/TalonOneSdk/Model/ScimBaseGroup.cs
 src/TalonOneSdk/Model/ScimBaseUser.cs
 src/TalonOneSdk/Model/ScimBaseUserName.cs
@@ -2193,6 +2275,8 @@ src/TalonOneSdk/Model/ScimServiceProviderConfigResponse.cs
 src/TalonOneSdk/Model/ScimServiceProviderConfigResponseBulk.cs
 src/TalonOneSdk/Model/ScimServiceProviderConfigResponseChangePassword.cs
 src/TalonOneSdk/Model/ScimServiceProviderConfigResponseFilter.cs
+src/TalonOneSdk/Model/ScimServiceProviderConfigResponsePatch.cs
+src/TalonOneSdk/Model/ScimServiceProviderConfigResponseSort.cs
 src/TalonOneSdk/Model/ScimUser.cs
 src/TalonOneSdk/Model/ScimUsersListResponse.cs
 src/TalonOneSdk/Model/SecondaryDeployment.cs
@@ -2209,11 +2293,13 @@ src/TalonOneSdk/Model/SkuUnitAnalytics.cs
 src/TalonOneSdk/Model/SkuUnitAnalyticsDataPoint.cs
 src/TalonOneSdk/Model/SlotDef.cs
 src/TalonOneSdk/Model/Store.cs
+src/TalonOneSdk/Model/StrikethroughBlock.cs
 src/TalonOneSdk/Model/StrikethroughChangedItem.cs
 src/TalonOneSdk/Model/StrikethroughCheckAttributeBlock.cs
 src/TalonOneSdk/Model/StrikethroughCustomEffectPerItemProps.cs
 src/TalonOneSdk/Model/StrikethroughDebugResponse.cs
 src/TalonOneSdk/Model/StrikethroughEffect.cs
+src/TalonOneSdk/Model/StrikethroughEffectProps.cs
 src/TalonOneSdk/Model/StrikethroughGroupBlock.cs
 src/TalonOneSdk/Model/StrikethroughLabelingNotification.cs
 src/TalonOneSdk/Model/StrikethroughRuleV2.cs
@@ -2244,15 +2330,21 @@ src/TalonOneSdk/Model/TimePoint.cs
 src/TalonOneSdk/Model/TransferLoyaltyCard.cs
 src/TalonOneSdk/Model/TriggerWebhookEffectProps.cs
 src/TalonOneSdk/Model/TwoFAConfig.cs
-src/TalonOneSdk/Model/UnaryCheckAttributeBlock.cs
 src/TalonOneSdk/Model/UpdateAccount.cs
 src/TalonOneSdk/Model/UpdateAchievement.cs
+src/TalonOneSdk/Model/UpdateAchievementProgressBlock.cs
+src/TalonOneSdk/Model/UpdateAchievementProgressBlock1Achievement.cs
 src/TalonOneSdk/Model/UpdateAchievementV2.cs
 src/TalonOneSdk/Model/UpdateApplication.cs
 src/TalonOneSdk/Model/UpdateApplicationAPIKey.cs
 src/TalonOneSdk/Model/UpdateApplicationCIF.cs
 src/TalonOneSdk/Model/UpdateAttributeEffectProps.cs
+src/TalonOneSdk/Model/UpdateAttributeValueBlock.cs
+src/TalonOneSdk/Model/UpdateAttributeValueBlock1Attribute.cs
+src/TalonOneSdk/Model/UpdateAttributeValueBlock1Target.cs
 src/TalonOneSdk/Model/UpdateAudience.cs
+src/TalonOneSdk/Model/UpdateAudienceMembershipBlock.cs
+src/TalonOneSdk/Model/UpdateAudienceMembershipBlock1Audience.cs
 src/TalonOneSdk/Model/UpdateBlueprint.cs
 src/TalonOneSdk/Model/UpdateCampaign.cs
 src/TalonOneSdk/Model/UpdateCampaignCollection.cs
@@ -2265,6 +2357,7 @@ src/TalonOneSdk/Model/UpdateCoupon.cs
 src/TalonOneSdk/Model/UpdateCouponBatch.cs
 src/TalonOneSdk/Model/UpdateCouponsData.cs
 src/TalonOneSdk/Model/UpdateCustomEffect.cs
+src/TalonOneSdk/Model/UpdateCustomerProfileV2409Response.cs
 src/TalonOneSdk/Model/UpdateCustomerSessionV2409Response.cs
 src/TalonOneSdk/Model/UpdateExperiment.cs
 src/TalonOneSdk/Model/UpdateExperimentVariant.cs
@@ -2289,6 +2382,10 @@ src/TalonOneSdk/Model/UserEntity.cs
 src/TalonOneSdk/Model/ValueMap.cs
 src/TalonOneSdk/Model/Webhook.cs
 src/TalonOneSdk/Model/WebhookAuthentication.cs
+src/TalonOneSdk/Model/WebhookAuthenticationAllOfData.cs
+src/TalonOneSdk/Model/WebhookAuthenticationBase.cs
+src/TalonOneSdk/Model/WebhookAuthenticationBaseOneOf.cs
+src/TalonOneSdk/Model/WebhookAuthenticationBaseOneOf1.cs
 src/TalonOneSdk/Model/WebhookAuthenticationDataBasic.cs
 src/TalonOneSdk/Model/WebhookAuthenticationDataCustom.cs
 src/TalonOneSdk/Model/WebhookAuthenticationWebhookRef.cs

@@ -75,8 +75,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateExperimentVariantArray" />
     /// </summary>
-    public class UpdateExperimentVariantArrayJsonConverter : JsonConverter<UpdateExperimentVariantArray>
+    public partial class UpdateExperimentVariantArrayJsonConverter : JsonConverter<UpdateExperimentVariantArray>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateExperimentVariantArrayJsonConverter" /> class.
+        /// </summary>
+        public UpdateExperimentVariantArrayJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateExperimentVariantArray" />
         /// </summary>

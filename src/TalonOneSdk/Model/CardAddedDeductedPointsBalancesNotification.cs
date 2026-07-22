@@ -334,8 +334,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CardAddedDeductedPointsBalancesNotification" />
     /// </summary>
-    public class CardAddedDeductedPointsBalancesNotificationJsonConverter : JsonConverter<CardAddedDeductedPointsBalancesNotification>
+    public partial class CardAddedDeductedPointsBalancesNotificationJsonConverter : JsonConverter<CardAddedDeductedPointsBalancesNotification>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CardAddedDeductedPointsBalancesNotificationJsonConverter" /> class.
+        /// </summary>
+        public CardAddedDeductedPointsBalancesNotificationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CardAddedDeductedPointsBalancesNotification" />
         /// </summary>

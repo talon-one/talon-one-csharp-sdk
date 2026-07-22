@@ -158,8 +158,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ExpiringPointsNotificationTrigger" />
     /// </summary>
-    public class ExpiringPointsNotificationTriggerJsonConverter : JsonConverter<ExpiringPointsNotificationTrigger>
+    public partial class ExpiringPointsNotificationTriggerJsonConverter : JsonConverter<ExpiringPointsNotificationTrigger>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExpiringPointsNotificationTriggerJsonConverter" /> class.
+        /// </summary>
+        public ExpiringPointsNotificationTriggerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ExpiringPointsNotificationTrigger" />
         /// </summary>

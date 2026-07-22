@@ -31,22 +31,34 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CampaignSetNode" /> class.
         /// </summary>
-        /// <param name="type">type</param>
-        [JsonConstructor]
-        public CampaignSetNode(string type)
+        /// <param name="campaignSetBranchNode"></param>
+        public CampaignSetNode(CampaignSetBranchNode campaignSetBranchNode)
         {
-            Type = type;
+            CampaignSetBranchNode = campaignSetBranchNode;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CampaignSetNode" /> class.
+        /// </summary>
+        /// <param name="campaignSetLeafNode"></param>
+        public CampaignSetNode(CampaignSetLeafNode campaignSetLeafNode)
+        {
+            CampaignSetLeafNode = campaignSetLeafNode;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Type
+        /// Gets or Sets CampaignSetBranchNode
         /// </summary>
-        /* <example>type</example> */
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public CampaignSetBranchNode CampaignSetBranchNode { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CampaignSetLeafNode
+        /// </summary>
+        public CampaignSetLeafNode CampaignSetLeafNode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -56,7 +68,6 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CampaignSetNode {\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -75,8 +86,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CampaignSetNode" />
     /// </summary>
-    public class CampaignSetNodeJsonConverter : JsonConverter<CampaignSetNode>
+    public partial class CampaignSetNodeJsonConverter : JsonConverter<CampaignSetNode>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CampaignSetNodeJsonConverter" /> class.
+        /// </summary>
+        public CampaignSetNodeJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CampaignSetNode" />
         /// </summary>
@@ -94,7 +115,27 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> type = default;
+            CampaignSetBranchNode campaignSetBranchNode = default;
+            CampaignSetLeafNode campaignSetLeafNode = default;
+
+            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
+            while (utf8JsonReaderOneOf.Read())
+            {
+                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                    break;
+
+                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                    break;
+
+                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
+                {
+                    Utf8JsonReader utf8JsonReaderCampaignSetBranchNode = utf8JsonReader;
+                    ClientUtils.TryDeserialize<CampaignSetBranchNode>(ref utf8JsonReaderCampaignSetBranchNode, jsonSerializerOptions, out campaignSetBranchNode);
+
+                    Utf8JsonReader utf8JsonReaderCampaignSetLeafNode = utf8JsonReader;
+                    ClientUtils.TryDeserialize<CampaignSetLeafNode>(ref utf8JsonReaderCampaignSetLeafNode, jsonSerializerOptions, out campaignSetLeafNode);
+                }
+            }
 
             while (utf8JsonReader.Read())
             {
@@ -111,22 +152,19 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "type":
-                            type = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         default:
                             break;
                     }
                 }
             }
 
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CampaignSetNode.", nameof(type));
+            if (campaignSetBranchNode != null)
+                return new CampaignSetNode(campaignSetBranchNode);
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CampaignSetNode.");
+            if (campaignSetLeafNode != null)
+                return new CampaignSetNode(campaignSetLeafNode);
 
-            return new CampaignSetNode(type.Value);
+            throw new JsonException();
         }
 
         /// <summary>
@@ -153,10 +191,7 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignSetNode campaignSetNode, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (campaignSetNode.Type == null)
-                throw new ArgumentNullException(nameof(campaignSetNode.Type), "Property is required for class CampaignSetNode.");
 
-            writer.WriteString("type", campaignSetNode.Type);
         }
     }
 }

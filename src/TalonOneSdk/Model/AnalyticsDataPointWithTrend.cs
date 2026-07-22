@@ -85,8 +85,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AnalyticsDataPointWithTrend" />
     /// </summary>
-    public class AnalyticsDataPointWithTrendJsonConverter : JsonConverter<AnalyticsDataPointWithTrend>
+    public partial class AnalyticsDataPointWithTrendJsonConverter : JsonConverter<AnalyticsDataPointWithTrend>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AnalyticsDataPointWithTrendJsonConverter" /> class.
+        /// </summary>
+        public AnalyticsDataPointWithTrendJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AnalyticsDataPointWithTrend" />
         /// </summary>

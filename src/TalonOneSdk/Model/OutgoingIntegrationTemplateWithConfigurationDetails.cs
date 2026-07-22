@@ -39,9 +39,9 @@ namespace TalonOneSdk.Model
         /// <param name="method">API method for this webhook.</param>
         /// <param name="relativeUrl">The relative URL corresponding to each integration template.</param>
         /// <param name="headers">The list of HTTP headers for this integration template.</param>
-        /// <param name="policy">The outgoing integration policy specific to each integration type.</param>
+        /// <param name="policy">policy</param>
         [JsonConstructor]
-        public OutgoingIntegrationTemplateWithConfigurationDetails(long id, long integrationType, string title, string description, string payload, MethodEnum method, string relativeUrl, List<string> headers, Object policy)
+        public OutgoingIntegrationTemplateWithConfigurationDetails(long id, long integrationType, string title, string description, string payload, MethodEnum method, string relativeUrl, List<string> headers, OutgoingIntegrationConfigurationPolicy policy)
         {
             Id = id;
             IntegrationType = integrationType;
@@ -233,11 +233,10 @@ namespace TalonOneSdk.Model
         public List<string> Headers { get; set; }
 
         /// <summary>
-        /// The outgoing integration policy specific to each integration type.
+        /// Gets or Sets Policy
         /// </summary>
-        /// <value>The outgoing integration policy specific to each integration type.</value>
         [JsonPropertyName("policy")]
-        public Object Policy { get; set; }
+        public OutgoingIntegrationConfigurationPolicy Policy { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -298,8 +297,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OutgoingIntegrationTemplateWithConfigurationDetails" />
     /// </summary>
-    public class OutgoingIntegrationTemplateWithConfigurationDetailsJsonConverter : JsonConverter<OutgoingIntegrationTemplateWithConfigurationDetails>
+    public partial class OutgoingIntegrationTemplateWithConfigurationDetailsJsonConverter : JsonConverter<OutgoingIntegrationTemplateWithConfigurationDetails>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OutgoingIntegrationTemplateWithConfigurationDetailsJsonConverter" /> class.
+        /// </summary>
+        public OutgoingIntegrationTemplateWithConfigurationDetailsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OutgoingIntegrationTemplateWithConfigurationDetails" />
         /// </summary>
@@ -325,7 +334,7 @@ namespace TalonOneSdk.Model
             Option<OutgoingIntegrationTemplateWithConfigurationDetails.MethodEnum?> method = default;
             Option<string> relativeUrl = default;
             Option<List<string>> headers = default;
-            Option<Object> policy = default;
+            Option<OutgoingIntegrationConfigurationPolicy> policy = default;
 
             while (utf8JsonReader.Read())
             {
@@ -369,7 +378,7 @@ namespace TalonOneSdk.Model
                             headers = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "policy":
-                            policy = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            policy = new Option<OutgoingIntegrationConfigurationPolicy>(JsonSerializer.Deserialize<OutgoingIntegrationConfigurationPolicy>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

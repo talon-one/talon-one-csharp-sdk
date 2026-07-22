@@ -195,22 +195,32 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification" />
     /// </summary>
-    public class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotificationJsonConverter : JsonConverter<IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification>
+    public partial class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotificationJsonConverter : JsonConverter<IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotificationJsonConverter" /> class.
+        /// </summary>
+        public IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotificationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize PublishedAt
         /// </summary>
-        public static string PublishedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string PublishedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize TierExpirationDate
         /// </summary>
-        public static string TierExpirationDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string TierExpirationDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize TimestampOfTierChange
         /// </summary>
-        public static string TimestampOfTierChangeFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string TimestampOfTierChangeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification" />

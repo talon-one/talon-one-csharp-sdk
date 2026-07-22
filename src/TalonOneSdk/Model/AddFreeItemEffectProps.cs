@@ -103,8 +103,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AddFreeItemEffectProps" />
     /// </summary>
-    public class AddFreeItemEffectPropsJsonConverter : JsonConverter<AddFreeItemEffectProps>
+    public partial class AddFreeItemEffectPropsJsonConverter : JsonConverter<AddFreeItemEffectProps>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddFreeItemEffectPropsJsonConverter" /> class.
+        /// </summary>
+        public AddFreeItemEffectPropsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AddFreeItemEffectProps" />
         /// </summary>

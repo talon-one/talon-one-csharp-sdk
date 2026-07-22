@@ -82,8 +82,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="BaseNotifications" />
     /// </summary>
-    public class BaseNotificationsJsonConverter : JsonConverter<BaseNotifications>
+    public partial class BaseNotificationsJsonConverter : JsonConverter<BaseNotifications>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseNotificationsJsonConverter" /> class.
+        /// </summary>
+        public BaseNotificationsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="BaseNotifications" />
         /// </summary>

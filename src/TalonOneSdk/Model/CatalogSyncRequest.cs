@@ -98,8 +98,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CatalogSyncRequest" />
     /// </summary>
-    public class CatalogSyncRequestJsonConverter : JsonConverter<CatalogSyncRequest>
+    public partial class CatalogSyncRequestJsonConverter : JsonConverter<CatalogSyncRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CatalogSyncRequestJsonConverter" /> class.
+        /// </summary>
+        public CatalogSyncRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CatalogSyncRequest" />
         /// </summary>

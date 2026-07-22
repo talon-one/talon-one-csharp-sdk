@@ -76,8 +76,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EmailEntity" />
     /// </summary>
-    public class EmailEntityJsonConverter : JsonConverter<EmailEntity>
+    public partial class EmailEntityJsonConverter : JsonConverter<EmailEntity>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EmailEntityJsonConverter" /> class.
+        /// </summary>
+        public EmailEntityJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EmailEntity" />
         /// </summary>

@@ -98,8 +98,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PlaceholderDetails" />
     /// </summary>
-    public class PlaceholderDetailsJsonConverter : JsonConverter<PlaceholderDetails>
+    public partial class PlaceholderDetailsJsonConverter : JsonConverter<PlaceholderDetails>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlaceholderDetailsJsonConverter" /> class.
+        /// </summary>
+        public PlaceholderDetailsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PlaceholderDetails" />
         /// </summary>

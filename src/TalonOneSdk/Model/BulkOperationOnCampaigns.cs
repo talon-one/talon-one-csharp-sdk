@@ -185,12 +185,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="BulkOperationOnCampaigns" />
     /// </summary>
-    public class BulkOperationOnCampaignsJsonConverter : JsonConverter<BulkOperationOnCampaigns>
+    public partial class BulkOperationOnCampaignsJsonConverter : JsonConverter<BulkOperationOnCampaigns>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BulkOperationOnCampaignsJsonConverter" /> class.
+        /// </summary>
+        public BulkOperationOnCampaignsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize ActivateAt
         /// </summary>
-        public static string ActivateAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ActivateAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="BulkOperationOnCampaigns" />

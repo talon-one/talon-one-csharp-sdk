@@ -120,12 +120,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="StrikethroughTrigger" />
     /// </summary>
-    public class StrikethroughTriggerJsonConverter : JsonConverter<StrikethroughTrigger>
+    public partial class StrikethroughTriggerJsonConverter : JsonConverter<StrikethroughTrigger>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StrikethroughTriggerJsonConverter" /> class.
+        /// </summary>
+        public StrikethroughTriggerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize TriggeredAt
         /// </summary>
-        public static string TriggeredAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string TriggeredAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="StrikethroughTrigger" />

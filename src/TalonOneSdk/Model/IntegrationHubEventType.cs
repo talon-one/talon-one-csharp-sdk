@@ -204,6 +204,9 @@ namespace TalonOneSdk.Model
         /// <returns></returns>
         public override IntegrationHubEventType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
+            if (reader.TokenType == JsonTokenType.Null)
+                return null;
+
             string rawValue = reader.GetString();
 
             IntegrationHubEventType? result = rawValue == null
@@ -224,7 +227,10 @@ namespace TalonOneSdk.Model
         /// <param name="options"></param>
         public override void Write(Utf8JsonWriter writer, IntegrationHubEventType? integrationHubEventType, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(integrationHubEventType.HasValue ? IntegrationHubEventTypeValueConverter.ToJsonValue(integrationHubEventType.Value).ToString() : "null");
+            if (integrationHubEventType.HasValue)
+                writer.WriteStringValue(IntegrationHubEventTypeValueConverter.ToJsonValue(integrationHubEventType.Value).ToString());
+            else
+                writer.WriteNullValue();
         }
     }
 }

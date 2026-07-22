@@ -116,8 +116,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OneTimeCode" />
     /// </summary>
-    public class OneTimeCodeJsonConverter : JsonConverter<OneTimeCode>
+    public partial class OneTimeCodeJsonConverter : JsonConverter<OneTimeCode>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OneTimeCodeJsonConverter" /> class.
+        /// </summary>
+        public OneTimeCodeJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OneTimeCode" />
         /// </summary>

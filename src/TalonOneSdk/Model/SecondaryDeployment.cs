@@ -285,27 +285,37 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SecondaryDeployment" />
     /// </summary>
-    public class SecondaryDeploymentJsonConverter : JsonConverter<SecondaryDeployment>
+    public partial class SecondaryDeploymentJsonConverter : JsonConverter<SecondaryDeployment>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SecondaryDeploymentJsonConverter" /> class.
+        /// </summary>
+        public SecondaryDeploymentJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ActiveAt
         /// </summary>
-        public static string ActiveAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ActiveAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize FailedAt
         /// </summary>
-        public static string FailedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string FailedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize DeletedAt
         /// </summary>
-        public static string DeletedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string DeletedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="SecondaryDeployment" />

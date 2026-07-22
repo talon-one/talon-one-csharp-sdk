@@ -31,154 +31,94 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CatalogAction" /> class.
         /// </summary>
-        /// <param name="type">The type of sync action.</param>
-        /// <param name="payload">payload</param>
-        [JsonConstructor]
-        public CatalogAction(TypeEnum type, Object payload)
+        /// <param name="catalogActionOneOf"></param>
+        public CatalogAction(CatalogActionOneOf catalogActionOneOf)
         {
-            Type = type;
-            Payload = payload;
+            CatalogActionOneOf = catalogActionOneOf;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CatalogAction" /> class.
+        /// </summary>
+        /// <param name="catalogActionOneOf1"></param>
+        public CatalogAction(CatalogActionOneOf1 catalogActionOneOf1)
+        {
+            CatalogActionOneOf1 = catalogActionOneOf1;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CatalogAction" /> class.
+        /// </summary>
+        /// <param name="catalogActionOneOf2"></param>
+        public CatalogAction(CatalogActionOneOf2 catalogActionOneOf2)
+        {
+            CatalogActionOneOf2 = catalogActionOneOf2;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CatalogAction" /> class.
+        /// </summary>
+        /// <param name="catalogActionOneOf3"></param>
+        public CatalogAction(CatalogActionOneOf3 catalogActionOneOf3)
+        {
+            CatalogActionOneOf3 = catalogActionOneOf3;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CatalogAction" /> class.
+        /// </summary>
+        /// <param name="catalogActionOneOf4"></param>
+        public CatalogAction(CatalogActionOneOf4 catalogActionOneOf4)
+        {
+            CatalogActionOneOf4 = catalogActionOneOf4;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CatalogAction" /> class.
+        /// </summary>
+        /// <param name="catalogActionOneOf5"></param>
+        public CatalogAction(CatalogActionOneOf5 catalogActionOneOf5)
+        {
+            CatalogActionOneOf5 = catalogActionOneOf5;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// The type of sync action.
+        /// Gets or Sets CatalogActionOneOf
         /// </summary>
-        /// <value>The type of sync action.</value>
-        public enum TypeEnum
-        {
-            /// <summary>
-            /// Enum ADD for value: ADD
-            /// </summary>
-            ADD = 1,
-
-            /// <summary>
-            /// Enum PATCH for value: PATCH
-            /// </summary>
-            PATCH = 2,
-
-            /// <summary>
-            /// Enum PATCHMANY for value: PATCH_MANY
-            /// </summary>
-            PATCHMANY = 3,
-
-            /// <summary>
-            /// Enum REMOVE for value: REMOVE
-            /// </summary>
-            REMOVE = 4,
-
-            /// <summary>
-            /// Enum REMOVEMANY for value: REMOVE_MANY
-            /// </summary>
-            REMOVEMANY = 5,
-
-            /// <summary>
-            /// Enum ADDPRICEADJUSTMENT for value: ADD_PRICE_ADJUSTMENT
-            /// </summary>
-            ADDPRICEADJUSTMENT = 6
-        }
+        public CatalogActionOneOf CatalogActionOneOf { get; set; }
 
         /// <summary>
-        /// Returns a <see cref="TypeEnum"/>
+        /// Gets or Sets CatalogActionOneOf1
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static TypeEnum TypeEnumFromString(string value)
-        {
-            if (value.Equals("ADD"))
-                return TypeEnum.ADD;
-
-            if (value.Equals("PATCH"))
-                return TypeEnum.PATCH;
-
-            if (value.Equals("PATCH_MANY"))
-                return TypeEnum.PATCHMANY;
-
-            if (value.Equals("REMOVE"))
-                return TypeEnum.REMOVE;
-
-            if (value.Equals("REMOVE_MANY"))
-                return TypeEnum.REMOVEMANY;
-
-            if (value.Equals("ADD_PRICE_ADJUSTMENT"))
-                return TypeEnum.ADDPRICEADJUSTMENT;
-
-            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
-        }
+        public CatalogActionOneOf1 CatalogActionOneOf1 { get; set; }
 
         /// <summary>
-        /// Returns a <see cref="TypeEnum"/>
+        /// Gets or Sets CatalogActionOneOf2
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
-        {
-            if (value.Equals("ADD"))
-                return TypeEnum.ADD;
-
-            if (value.Equals("PATCH"))
-                return TypeEnum.PATCH;
-
-            if (value.Equals("PATCH_MANY"))
-                return TypeEnum.PATCHMANY;
-
-            if (value.Equals("REMOVE"))
-                return TypeEnum.REMOVE;
-
-            if (value.Equals("REMOVE_MANY"))
-                return TypeEnum.REMOVEMANY;
-
-            if (value.Equals("ADD_PRICE_ADJUSTMENT"))
-                return TypeEnum.ADDPRICEADJUSTMENT;
-
-            return null;
-        }
+        public CatalogActionOneOf2 CatalogActionOneOf2 { get; set; }
 
         /// <summary>
-        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// Gets or Sets CatalogActionOneOf3
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string TypeEnumToJsonValue(TypeEnum value)
-        {
-            if (value == TypeEnum.ADD)
-                return "ADD";
-
-            if (value == TypeEnum.PATCH)
-                return "PATCH";
-
-            if (value == TypeEnum.PATCHMANY)
-                return "PATCH_MANY";
-
-            if (value == TypeEnum.REMOVE)
-                return "REMOVE";
-
-            if (value == TypeEnum.REMOVEMANY)
-                return "REMOVE_MANY";
-
-            if (value == TypeEnum.ADDPRICEADJUSTMENT)
-                return "ADD_PRICE_ADJUSTMENT";
-
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
+        public CatalogActionOneOf3 CatalogActionOneOf3 { get; set; }
 
         /// <summary>
-        /// The type of sync action.
+        /// Gets or Sets CatalogActionOneOf4
         /// </summary>
-        /// <value>The type of sync action.</value>
-        /* <example>ADD</example> */
-        [JsonPropertyName("type")]
-        public TypeEnum Type { get; set; }
+        public CatalogActionOneOf4 CatalogActionOneOf4 { get; set; }
 
         /// <summary>
-        /// Gets or Sets Payload
+        /// Gets or Sets CatalogActionOneOf5
         /// </summary>
-        [JsonPropertyName("payload")]
-        public Object Payload { get; set; }
+        public CatalogActionOneOf5 CatalogActionOneOf5 { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -188,8 +128,6 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CatalogAction {\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  Payload: ").Append(Payload).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -208,8 +146,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CatalogAction" />
     /// </summary>
-    public class CatalogActionJsonConverter : JsonConverter<CatalogAction>
+    public partial class CatalogActionJsonConverter : JsonConverter<CatalogAction>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CatalogActionJsonConverter" /> class.
+        /// </summary>
+        public CatalogActionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CatalogAction" />
         /// </summary>
@@ -227,8 +175,43 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<CatalogAction.TypeEnum?> type = default;
-            Option<Object> payload = default;
+            CatalogActionOneOf catalogActionOneOf = default;
+            CatalogActionOneOf1 catalogActionOneOf1 = default;
+            CatalogActionOneOf2 catalogActionOneOf2 = default;
+            CatalogActionOneOf3 catalogActionOneOf3 = default;
+            CatalogActionOneOf4 catalogActionOneOf4 = default;
+            CatalogActionOneOf5 catalogActionOneOf5 = default;
+
+            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
+            while (utf8JsonReaderOneOf.Read())
+            {
+                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                    break;
+
+                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                    break;
+
+                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
+                {
+                    Utf8JsonReader utf8JsonReaderCatalogActionOneOf = utf8JsonReader;
+                    ClientUtils.TryDeserialize<CatalogActionOneOf>(ref utf8JsonReaderCatalogActionOneOf, jsonSerializerOptions, out catalogActionOneOf);
+
+                    Utf8JsonReader utf8JsonReaderCatalogActionOneOf1 = utf8JsonReader;
+                    ClientUtils.TryDeserialize<CatalogActionOneOf1>(ref utf8JsonReaderCatalogActionOneOf1, jsonSerializerOptions, out catalogActionOneOf1);
+
+                    Utf8JsonReader utf8JsonReaderCatalogActionOneOf2 = utf8JsonReader;
+                    ClientUtils.TryDeserialize<CatalogActionOneOf2>(ref utf8JsonReaderCatalogActionOneOf2, jsonSerializerOptions, out catalogActionOneOf2);
+
+                    Utf8JsonReader utf8JsonReaderCatalogActionOneOf3 = utf8JsonReader;
+                    ClientUtils.TryDeserialize<CatalogActionOneOf3>(ref utf8JsonReaderCatalogActionOneOf3, jsonSerializerOptions, out catalogActionOneOf3);
+
+                    Utf8JsonReader utf8JsonReaderCatalogActionOneOf4 = utf8JsonReader;
+                    ClientUtils.TryDeserialize<CatalogActionOneOf4>(ref utf8JsonReaderCatalogActionOneOf4, jsonSerializerOptions, out catalogActionOneOf4);
+
+                    Utf8JsonReader utf8JsonReaderCatalogActionOneOf5 = utf8JsonReader;
+                    ClientUtils.TryDeserialize<CatalogActionOneOf5>(ref utf8JsonReaderCatalogActionOneOf5, jsonSerializerOptions, out catalogActionOneOf5);
+                }
+            }
 
             while (utf8JsonReader.Read())
             {
@@ -245,33 +228,31 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "type":
-                            string typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                                type = new Option<CatalogAction.TypeEnum?>(CatalogAction.TypeEnumFromStringOrDefault(typeRawValue));
-                            break;
-                        case "payload":
-                            payload = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
                         default:
                             break;
                     }
                 }
             }
 
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CatalogAction.", nameof(type));
+            if (catalogActionOneOf != null)
+                return new CatalogAction(catalogActionOneOf);
 
-            if (!payload.IsSet)
-                throw new ArgumentException("Property is required for class CatalogAction.", nameof(payload));
+            if (catalogActionOneOf1 != null)
+                return new CatalogAction(catalogActionOneOf1);
 
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CatalogAction.");
+            if (catalogActionOneOf2 != null)
+                return new CatalogAction(catalogActionOneOf2);
 
-            if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class CatalogAction.");
+            if (catalogActionOneOf3 != null)
+                return new CatalogAction(catalogActionOneOf3);
 
-            return new CatalogAction(type.Value.Value, payload.Value);
+            if (catalogActionOneOf4 != null)
+                return new CatalogAction(catalogActionOneOf4);
+
+            if (catalogActionOneOf5 != null)
+                return new CatalogAction(catalogActionOneOf5);
+
+            throw new JsonException();
         }
 
         /// <summary>
@@ -298,13 +279,7 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CatalogAction catalogAction, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (catalogAction.Payload == null)
-                throw new ArgumentNullException(nameof(catalogAction.Payload), "Property is required for class CatalogAction.");
 
-            var typeRawValue = CatalogAction.TypeEnumToJsonValue(catalogAction.Type);
-            writer.WriteString("type", typeRawValue);
-            writer.WritePropertyName("payload");
-            JsonSerializer.Serialize(writer, catalogAction.Payload, jsonSerializerOptions);
         }
     }
 }

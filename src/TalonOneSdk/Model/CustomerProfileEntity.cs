@@ -87,12 +87,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CustomerProfileEntity" />
     /// </summary>
-    public class CustomerProfileEntityJsonConverter : JsonConverter<CustomerProfileEntity>
+    public partial class CustomerProfileEntityJsonConverter : JsonConverter<CustomerProfileEntity>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomerProfileEntityJsonConverter" /> class.
+        /// </summary>
+        public CustomerProfileEntityJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CustomerProfileEntity" />

@@ -129,8 +129,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CatalogsStrikethroughNotificationPolicy" />
     /// </summary>
-    public class CatalogsStrikethroughNotificationPolicyJsonConverter : JsonConverter<CatalogsStrikethroughNotificationPolicy>
+    public partial class CatalogsStrikethroughNotificationPolicyJsonConverter : JsonConverter<CatalogsStrikethroughNotificationPolicy>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CatalogsStrikethroughNotificationPolicyJsonConverter" /> class.
+        /// </summary>
+        public CatalogsStrikethroughNotificationPolicyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CatalogsStrikethroughNotificationPolicy" />
         /// </summary>

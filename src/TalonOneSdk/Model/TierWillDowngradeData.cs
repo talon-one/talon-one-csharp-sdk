@@ -173,12 +173,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="TierWillDowngradeData" />
     /// </summary>
-    public class TierWillDowngradeDataJsonConverter : JsonConverter<TierWillDowngradeData>
+    public partial class TierWillDowngradeDataJsonConverter : JsonConverter<TierWillDowngradeData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TierWillDowngradeDataJsonConverter" /> class.
+        /// </summary>
+        public TierWillDowngradeDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize TierExpirationDate
         /// </summary>
-        public static string TierExpirationDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string TierExpirationDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="TierWillDowngradeData" />

@@ -87,12 +87,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EntityWithTalangVisibleID" />
     /// </summary>
-    public class EntityWithTalangVisibleIDJsonConverter : JsonConverter<EntityWithTalangVisibleID>
+    public partial class EntityWithTalangVisibleIDJsonConverter : JsonConverter<EntityWithTalangVisibleID>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EntityWithTalangVisibleIDJsonConverter" /> class.
+        /// </summary>
+        public EntityWithTalangVisibleIDJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="EntityWithTalangVisibleID" />

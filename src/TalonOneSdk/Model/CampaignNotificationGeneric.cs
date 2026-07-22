@@ -149,8 +149,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CampaignNotificationGeneric" />
     /// </summary>
-    public class CampaignNotificationGenericJsonConverter : JsonConverter<CampaignNotificationGeneric>
+    public partial class CampaignNotificationGenericJsonConverter : JsonConverter<CampaignNotificationGeneric>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CampaignNotificationGenericJsonConverter" /> class.
+        /// </summary>
+        public CampaignNotificationGenericJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CampaignNotificationGeneric" />
         /// </summary>

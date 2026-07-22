@@ -178,5 +178,23 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'ImplicitlyReserved'
         }
+
+        /// <summary>
+        /// Test the property 'SupportRequestId'
+        /// </summary>
+        [Fact]
+        public void SupportRequestIdTest()
+        {
+            // TODO unit test for the property 'SupportRequestId'
+        }
+
+        /// <summary>
+        /// Test the property 'SupportRequestNote'
+        /// </summary>
+        [Fact]
+        public void SupportRequestNoteTest()
+        {
+            // TODO unit test for the property 'SupportRequestNote'
+        }
     }
 }

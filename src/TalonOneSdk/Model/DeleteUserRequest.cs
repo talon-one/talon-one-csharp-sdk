@@ -76,8 +76,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DeleteUserRequest" />
     /// </summary>
-    public class DeleteUserRequestJsonConverter : JsonConverter<DeleteUserRequest>
+    public partial class DeleteUserRequestJsonConverter : JsonConverter<DeleteUserRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeleteUserRequestJsonConverter" /> class.
+        /// </summary>
+        public DeleteUserRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DeleteUserRequest" />
         /// </summary>

@@ -134,8 +134,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RoleV2ApplicationDetails" />
     /// </summary>
-    public class RoleV2ApplicationDetailsJsonConverter : JsonConverter<RoleV2ApplicationDetails>
+    public partial class RoleV2ApplicationDetailsJsonConverter : JsonConverter<RoleV2ApplicationDetails>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RoleV2ApplicationDetailsJsonConverter" /> class.
+        /// </summary>
+        public RoleV2ApplicationDetailsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RoleV2ApplicationDetails" />
         /// </summary>

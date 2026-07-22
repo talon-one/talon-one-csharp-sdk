@@ -94,8 +94,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="TwoFAConfig" />
     /// </summary>
-    public class TwoFAConfigJsonConverter : JsonConverter<TwoFAConfig>
+    public partial class TwoFAConfigJsonConverter : JsonConverter<TwoFAConfig>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TwoFAConfigJsonConverter" /> class.
+        /// </summary>
+        public TwoFAConfigJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="TwoFAConfig" />
         /// </summary>

@@ -84,8 +84,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateAttributeEffectProps" />
     /// </summary>
-    public class UpdateAttributeEffectPropsJsonConverter : JsonConverter<UpdateAttributeEffectProps>
+    public partial class UpdateAttributeEffectPropsJsonConverter : JsonConverter<UpdateAttributeEffectProps>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateAttributeEffectPropsJsonConverter" /> class.
+        /// </summary>
+        public UpdateAttributeEffectPropsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateAttributeEffectProps" />
         /// </summary>

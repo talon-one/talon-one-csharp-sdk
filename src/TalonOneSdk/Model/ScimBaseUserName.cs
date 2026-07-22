@@ -83,8 +83,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ScimBaseUserName" />
     /// </summary>
-    public class ScimBaseUserNameJsonConverter : JsonConverter<ScimBaseUserName>
+    public partial class ScimBaseUserNameJsonConverter : JsonConverter<ScimBaseUserName>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScimBaseUserNameJsonConverter" /> class.
+        /// </summary>
+        public ScimBaseUserNameJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ScimBaseUserName" />
         /// </summary>

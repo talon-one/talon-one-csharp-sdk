@@ -137,8 +137,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateRole" />
     /// </summary>
-    public class UpdateRoleJsonConverter : JsonConverter<UpdateRole>
+    public partial class UpdateRoleJsonConverter : JsonConverter<UpdateRole>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateRoleJsonConverter" /> class.
+        /// </summary>
+        public UpdateRoleJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateRole" />
         /// </summary>

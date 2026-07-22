@@ -98,8 +98,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OktaEventTarget" />
     /// </summary>
-    public class OktaEventTargetJsonConverter : JsonConverter<OktaEventTarget>
+    public partial class OktaEventTargetJsonConverter : JsonConverter<OktaEventTarget>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OktaEventTargetJsonConverter" /> class.
+        /// </summary>
+        public OktaEventTargetJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OktaEventTarget" />
         /// </summary>

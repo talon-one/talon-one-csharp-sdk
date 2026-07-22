@@ -37,7 +37,7 @@ namespace TalonOneSdk.Model
         /// <param name="parentId">ID of the parent rule, if any.</param>
         /// <param name="description">A longer description of the rule.</param>
         [JsonConstructor]
-        public PromotionRuleV2(string title, List<Object> blocks, Option<string> id = default, Option<string> parentId = default, Option<string> description = default)
+        public PromotionRuleV2(string title, List<PromotionBlock> blocks, Option<string> id = default, Option<string> parentId = default, Option<string> description = default)
         {
             Title = title;
             Blocks = blocks;
@@ -62,7 +62,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The condition and effect blocks that make up this promotion rule.</value>
         [JsonPropertyName("blocks")]
-        public List<Object> Blocks { get; set; }
+        public List<PromotionBlock> Blocks { get; set; }
 
         /// <summary>
         /// Used to track the state of Id
@@ -138,8 +138,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PromotionRuleV2" />
     /// </summary>
-    public class PromotionRuleV2JsonConverter : JsonConverter<PromotionRuleV2>
+    public partial class PromotionRuleV2JsonConverter : JsonConverter<PromotionRuleV2>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PromotionRuleV2JsonConverter" /> class.
+        /// </summary>
+        public PromotionRuleV2JsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PromotionRuleV2" />
         /// </summary>
@@ -158,7 +168,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string> title = default;
-            Option<List<Object>> blocks = default;
+            Option<List<PromotionBlock>> blocks = default;
             Option<string> id = default;
             Option<string> parentId = default;
             Option<string> description = default;
@@ -182,7 +192,7 @@ namespace TalonOneSdk.Model
                             title = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "blocks":
-                            blocks = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            blocks = new Option<List<PromotionBlock>>(JsonSerializer.Deserialize<List<PromotionBlock>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "id":
                             id = new Option<string>(utf8JsonReader.GetString());

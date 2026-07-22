@@ -291,12 +291,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ModelEnvironment" />
     /// </summary>
-    public class ModelEnvironmentJsonConverter : JsonConverter<ModelEnvironment>
+    public partial class ModelEnvironmentJsonConverter : JsonConverter<ModelEnvironment>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ModelEnvironmentJsonConverter" /> class.
+        /// </summary>
+        public ModelEnvironmentJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ModelEnvironment" />

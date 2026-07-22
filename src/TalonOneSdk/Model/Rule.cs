@@ -169,8 +169,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Rule" />
     /// </summary>
-    public class RuleJsonConverter : JsonConverter<Rule>
+    public partial class RuleJsonConverter : JsonConverter<Rule>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RuleJsonConverter" /> class.
+        /// </summary>
+        public RuleJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="Rule" />
         /// </summary>

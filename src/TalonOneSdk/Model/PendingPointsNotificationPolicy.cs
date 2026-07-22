@@ -118,8 +118,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PendingPointsNotificationPolicy" />
     /// </summary>
-    public class PendingPointsNotificationPolicyJsonConverter : JsonConverter<PendingPointsNotificationPolicy>
+    public partial class PendingPointsNotificationPolicyJsonConverter : JsonConverter<PendingPointsNotificationPolicy>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PendingPointsNotificationPolicyJsonConverter" /> class.
+        /// </summary>
+        public PendingPointsNotificationPolicyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PendingPointsNotificationPolicy" />
         /// </summary>

@@ -373,12 +373,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateApplicationAPIKey" />
     /// </summary>
-    public class CreateApplicationAPIKeyJsonConverter : JsonConverter<CreateApplicationAPIKey>
+    public partial class CreateApplicationAPIKeyJsonConverter : JsonConverter<CreateApplicationAPIKey>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateApplicationAPIKeyJsonConverter" /> class.
+        /// </summary>
+        public CreateApplicationAPIKeyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Expires
         /// </summary>
-        public static string ExpiresFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ExpiresFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CreateApplicationAPIKey" />

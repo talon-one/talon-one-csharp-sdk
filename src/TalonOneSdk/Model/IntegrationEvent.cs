@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="IntegrationEvent" /> class.
         /// </summary>
         /// <param name="type">The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event.</param>
-        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
+        /// <param name="attributes">Arbitrary additional JSON data associated with the event.</param>
         /// <param name="profileId">ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </param>
         /// <param name="storeIntegrationId">The integration ID of the store. You choose this ID when you create a store.</param>
         [JsonConstructor]
@@ -56,9 +56,10 @@ namespace TalonOneSdk.Model
         public string Type { get; set; }
 
         /// <summary>
-        /// Arbitrary properties associated with this campaign.
+        /// Arbitrary additional JSON data associated with the event.
         /// </summary>
-        /// <value>Arbitrary properties associated with this campaign.</value>
+        /// <value>Arbitrary additional JSON data associated with the event.</value>
+        /* <example>{myAttribute&#x3D;myValue}</example> */
         [JsonPropertyName("attributes")]
         public Object Attributes { get; set; }
 
@@ -140,8 +141,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="IntegrationEvent" />
     /// </summary>
-    public class IntegrationEventJsonConverter : JsonConverter<IntegrationEvent>
+    public partial class IntegrationEventJsonConverter : JsonConverter<IntegrationEvent>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegrationEventJsonConverter" /> class.
+        /// </summary>
+        public IntegrationEventJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="IntegrationEvent" />
         /// </summary>

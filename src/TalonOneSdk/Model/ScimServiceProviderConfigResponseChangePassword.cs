@@ -82,8 +82,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ScimServiceProviderConfigResponseChangePassword" />
     /// </summary>
-    public class ScimServiceProviderConfigResponseChangePasswordJsonConverter : JsonConverter<ScimServiceProviderConfigResponseChangePassword>
+    public partial class ScimServiceProviderConfigResponseChangePasswordJsonConverter : JsonConverter<ScimServiceProviderConfigResponseChangePassword>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScimServiceProviderConfigResponseChangePasswordJsonConverter" /> class.
+        /// </summary>
+        public ScimServiceProviderConfigResponseChangePasswordJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ScimServiceProviderConfigResponseChangePassword" />
         /// </summary>

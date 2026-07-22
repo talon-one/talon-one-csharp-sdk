@@ -277,17 +277,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="StrikethroughLabelingNotification" />
     /// </summary>
-    public class StrikethroughLabelingNotificationJsonConverter : JsonConverter<StrikethroughLabelingNotification>
+    public partial class StrikethroughLabelingNotificationJsonConverter : JsonConverter<StrikethroughLabelingNotification>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StrikethroughLabelingNotificationJsonConverter" /> class.
+        /// </summary>
+        public StrikethroughLabelingNotificationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize SentAt
         /// </summary>
-        public static string SentAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string SentAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ValidFrom
         /// </summary>
-        public static string ValidFromFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ValidFromFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="StrikethroughLabelingNotification" />

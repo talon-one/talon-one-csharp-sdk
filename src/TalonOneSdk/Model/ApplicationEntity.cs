@@ -76,8 +76,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApplicationEntity" />
     /// </summary>
-    public class ApplicationEntityJsonConverter : JsonConverter<ApplicationEntity>
+    public partial class ApplicationEntityJsonConverter : JsonConverter<ApplicationEntity>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationEntityJsonConverter" /> class.
+        /// </summary>
+        public ApplicationEntityJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ApplicationEntity" />
         /// </summary>

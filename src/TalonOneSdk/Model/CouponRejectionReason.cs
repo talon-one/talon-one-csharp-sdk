@@ -301,8 +301,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CouponRejectionReason" />
     /// </summary>
-    public class CouponRejectionReasonJsonConverter : JsonConverter<CouponRejectionReason>
+    public partial class CouponRejectionReasonJsonConverter : JsonConverter<CouponRejectionReason>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CouponRejectionReasonJsonConverter" /> class.
+        /// </summary>
+        public CouponRejectionReasonJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CouponRejectionReason" />
         /// </summary>

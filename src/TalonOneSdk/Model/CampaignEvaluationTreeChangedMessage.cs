@@ -35,7 +35,7 @@ namespace TalonOneSdk.Model
         /// <param name="totalResultSize">The total size of the result set.</param>
         /// <param name="data">The array of changes.</param>
         [JsonConstructor]
-        public CampaignEvaluationTreeChangedMessage(NotificationTypeEnum notificationType, long totalResultSize, Option<List<ApplicationNotification>> data = default)
+        public CampaignEvaluationTreeChangedMessage(NotificationTypeEnum notificationType, long totalResultSize, Option<List<CampaignEvaluationTreeChangedNotification>> data = default)
         {
             NotificationType = notificationType;
             TotalResultSize = totalResultSize;
@@ -118,14 +118,14 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<ApplicationNotification>> DataOption { get; private set; }
+        public Option<List<CampaignEvaluationTreeChangedNotification>> DataOption { get; private set; }
 
         /// <summary>
         /// The array of changes.
         /// </summary>
         /// <value>The array of changes.</value>
         [JsonPropertyName("Data")]
-        public List<ApplicationNotification> Data { get { return this.DataOption.Value; } set { this.DataOption = new Option<List<ApplicationNotification>>(value); } }
+        public List<CampaignEvaluationTreeChangedNotification> Data { get { return this.DataOption.Value; } set { this.DataOption = new Option<List<CampaignEvaluationTreeChangedNotification>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -156,8 +156,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CampaignEvaluationTreeChangedMessage" />
     /// </summary>
-    public class CampaignEvaluationTreeChangedMessageJsonConverter : JsonConverter<CampaignEvaluationTreeChangedMessage>
+    public partial class CampaignEvaluationTreeChangedMessageJsonConverter : JsonConverter<CampaignEvaluationTreeChangedMessage>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CampaignEvaluationTreeChangedMessageJsonConverter" /> class.
+        /// </summary>
+        public CampaignEvaluationTreeChangedMessageJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CampaignEvaluationTreeChangedMessage" />
         /// </summary>
@@ -177,7 +187,7 @@ namespace TalonOneSdk.Model
 
             Option<CampaignEvaluationTreeChangedMessage.NotificationTypeEnum?> notificationType = default;
             Option<long?> totalResultSize = default;
-            Option<List<ApplicationNotification>> data = default;
+            Option<List<CampaignEvaluationTreeChangedNotification>> data = default;
 
             while (utf8JsonReader.Read())
             {
@@ -203,7 +213,7 @@ namespace TalonOneSdk.Model
                             totalResultSize = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "Data":
-                            data = new Option<List<ApplicationNotification>>(JsonSerializer.Deserialize<List<ApplicationNotification>>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<List<CampaignEvaluationTreeChangedNotification>>(JsonSerializer.Deserialize<List<CampaignEvaluationTreeChangedNotification>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

@@ -50,7 +50,7 @@ namespace TalonOneSdk.Model
         /// <param name="recipientIntegrationId">recipientIntegrationId</param>
         /// <param name="importId">importId</param>
         /// <param name="batchId">batchId</param>
-        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
+        /// <param name="attributes">attributes</param>
         /// <param name="limits">limits</param>
         [JsonConstructor]
         public IntegrationHubEventPayloadCouponBasedNotifications(long id, DateTime created, long campaignId, string value, long usageLimit, long usageCounter, DateTime publishedAt, string sourceOfEvent, string employeeName, Option<float?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<float?> discountCounter = default, Option<float?> discountRemainder = default, Option<long?> referralId = default, Option<string> recipientIntegrationId = default, Option<long?> importId = default, Option<string> batchId = default, Option<Object> attributes = default, Option<List<IntegrationHubEventPayloadCouponBasedNotificationsLimits>> limits = default)
@@ -274,9 +274,8 @@ namespace TalonOneSdk.Model
         public Option<Object> AttributesOption { get; private set; }
 
         /// <summary>
-        /// Arbitrary properties associated with this campaign.
+        /// Gets or Sets Attributes
         /// </summary>
-        /// <value>Arbitrary properties associated with this campaign.</value>
         [JsonPropertyName("Attributes")]
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
@@ -340,27 +339,37 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="IntegrationHubEventPayloadCouponBasedNotifications" />
     /// </summary>
-    public class IntegrationHubEventPayloadCouponBasedNotificationsJsonConverter : JsonConverter<IntegrationHubEventPayloadCouponBasedNotifications>
+    public partial class IntegrationHubEventPayloadCouponBasedNotificationsJsonConverter : JsonConverter<IntegrationHubEventPayloadCouponBasedNotifications>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegrationHubEventPayloadCouponBasedNotificationsJsonConverter" /> class.
+        /// </summary>
+        public IntegrationHubEventPayloadCouponBasedNotificationsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize PublishedAt
         /// </summary>
-        public static string PublishedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string PublishedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventPayloadCouponBasedNotifications" />

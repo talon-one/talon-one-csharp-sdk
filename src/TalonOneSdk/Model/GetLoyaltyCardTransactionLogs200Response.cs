@@ -86,8 +86,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetLoyaltyCardTransactionLogs200Response" />
     /// </summary>
-    public class GetLoyaltyCardTransactionLogs200ResponseJsonConverter : JsonConverter<GetLoyaltyCardTransactionLogs200Response>
+    public partial class GetLoyaltyCardTransactionLogs200ResponseJsonConverter : JsonConverter<GetLoyaltyCardTransactionLogs200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetLoyaltyCardTransactionLogs200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetLoyaltyCardTransactionLogs200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetLoyaltyCardTransactionLogs200Response" />
         /// </summary>

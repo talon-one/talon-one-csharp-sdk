@@ -41,7 +41,7 @@ namespace TalonOneSdk.Model
         /// <param name="onFailure">Blocks evaluated when this block fails or returns false.</param>
         /// <param name="onError">Named error handlers evaluated when a specific error occurs.</param>
         [JsonConstructor]
-        public AwardItemBlock(string id, string type, string sku, string name, string quantity, Option<List<string>> tags = default, Option<bool?> partial = default, Option<List<Object>> onFailure = default, Option<Dictionary<string, List<Object>>> onError = default)
+        public AwardItemBlock(string id, string type, string sku, string name, string quantity, Option<List<string>> tags = default, Option<bool?> partial = default, Option<List<PromotionBlock>> onFailure = default, Option<Dictionary<string, List<PromotionBlock>>> onError = default)
         {
             Id = id;
             Type = type;
@@ -130,28 +130,28 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Object>> OnFailureOption { get; private set; }
+        public Option<List<PromotionBlock>> OnFailureOption { get; private set; }
 
         /// <summary>
         /// Blocks evaluated when this block fails or returns false.
         /// </summary>
         /// <value>Blocks evaluated when this block fails or returns false.</value>
         [JsonPropertyName("onFailure")]
-        public List<Object> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Object>>(value); } }
+        public List<PromotionBlock> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<PromotionBlock>>(value); } }
 
         /// <summary>
         /// Used to track the state of OnError
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Dictionary<string, List<Object>>> OnErrorOption { get; private set; }
+        public Option<Dictionary<string, List<PromotionBlock>>> OnErrorOption { get; private set; }
 
         /// <summary>
         /// Named error handlers evaluated when a specific error occurs.
         /// </summary>
         /// <value>Named error handlers evaluated when a specific error occurs.</value>
         [JsonPropertyName("onError")]
-        public Dictionary<string, List<Object>> OnError { get { return this.OnErrorOption.Value; } set { this.OnErrorOption = new Option<Dictionary<string, List<Object>>>(value); } }
+        public Dictionary<string, List<PromotionBlock>> OnError { get { return this.OnErrorOption.Value; } set { this.OnErrorOption = new Option<Dictionary<string, List<PromotionBlock>>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -188,8 +188,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AwardItemBlock" />
     /// </summary>
-    public class AwardItemBlockJsonConverter : JsonConverter<AwardItemBlock>
+    public partial class AwardItemBlockJsonConverter : JsonConverter<AwardItemBlock>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AwardItemBlockJsonConverter" /> class.
+        /// </summary>
+        public AwardItemBlockJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AwardItemBlock" />
         /// </summary>
@@ -214,8 +224,8 @@ namespace TalonOneSdk.Model
             Option<string> quantity = default;
             Option<List<string>> tags = default;
             Option<bool?> partial = default;
-            Option<List<Object>> onFailure = default;
-            Option<Dictionary<string, List<Object>>> onError = default;
+            Option<List<PromotionBlock>> onFailure = default;
+            Option<Dictionary<string, List<PromotionBlock>>> onError = default;
 
             while (utf8JsonReader.Read())
             {
@@ -254,10 +264,10 @@ namespace TalonOneSdk.Model
                             partial = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "onFailure":
-                            onFailure = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            onFailure = new Option<List<PromotionBlock>>(JsonSerializer.Deserialize<List<PromotionBlock>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "onError":
-                            onError = new Option<Dictionary<string, List<Object>>>(JsonSerializer.Deserialize<Dictionary<string, List<Object>>>(ref utf8JsonReader, jsonSerializerOptions));
+                            onError = new Option<Dictionary<string, List<PromotionBlock>>>(JsonSerializer.Deserialize<Dictionary<string, List<PromotionBlock>>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

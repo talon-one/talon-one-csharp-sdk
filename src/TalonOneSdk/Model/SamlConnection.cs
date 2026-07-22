@@ -228,17 +228,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SamlConnection" />
     /// </summary>
-    public class SamlConnectionJsonConverter : JsonConverter<SamlConnection>
+    public partial class SamlConnectionJsonConverter : JsonConverter<SamlConnection>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SamlConnectionJsonConverter" /> class.
+        /// </summary>
+        public SamlConnectionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Created
         /// </summary>
-        public static string CreatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize CertificateExpiry
         /// </summary>
-        public static string CertificateExpiryFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string CertificateExpiryFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="SamlConnection" />

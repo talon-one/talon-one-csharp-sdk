@@ -75,8 +75,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ErrorEffectProps" />
     /// </summary>
-    public class ErrorEffectPropsJsonConverter : JsonConverter<ErrorEffectProps>
+    public partial class ErrorEffectPropsJsonConverter : JsonConverter<ErrorEffectProps>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ErrorEffectPropsJsonConverter" /> class.
+        /// </summary>
+        public ErrorEffectPropsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ErrorEffectProps" />
         /// </summary>

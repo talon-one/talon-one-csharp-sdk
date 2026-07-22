@@ -195,8 +195,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Binding" />
     /// </summary>
-    public class BindingJsonConverter : JsonConverter<Binding>
+    public partial class BindingJsonConverter : JsonConverter<Binding>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BindingJsonConverter" /> class.
+        /// </summary>
+        public BindingJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="Binding" />
         /// </summary>

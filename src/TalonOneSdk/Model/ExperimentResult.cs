@@ -93,8 +93,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ExperimentResult" />
     /// </summary>
-    public class ExperimentResultJsonConverter : JsonConverter<ExperimentResult>
+    public partial class ExperimentResultJsonConverter : JsonConverter<ExperimentResult>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExperimentResultJsonConverter" /> class.
+        /// </summary>
+        public ExperimentResultJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ExperimentResult" />
         /// </summary>

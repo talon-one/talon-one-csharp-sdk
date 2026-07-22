@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **NumberOfCoupons** | **long** | The number of new coupon codes to generate for the campaign. | 
-**Attributes** | **Object** | Arbitrary properties associated with this campaign. | 
+**Attributes** | **Object** | Arbitrary properties associated with coupons. | 
 **UsageLimit** | **long** | The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply.  | [optional] 
 **DiscountLimit** | **decimal** | The total discount value that the code can give. Typically used to represent a gift card value.  | [optional] 
 **ReservationLimit** | **long** | The number of reservations that can be made with this coupon code.  | [optional] 

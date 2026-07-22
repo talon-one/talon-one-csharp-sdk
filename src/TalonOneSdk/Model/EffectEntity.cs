@@ -318,8 +318,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EffectEntity" />
     /// </summary>
-    public class EffectEntityJsonConverter : JsonConverter<EffectEntity>
+    public partial class EffectEntityJsonConverter : JsonConverter<EffectEntity>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EffectEntityJsonConverter" /> class.
+        /// </summary>
+        public EffectEntityJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EffectEntity" />
         /// </summary>

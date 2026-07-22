@@ -137,8 +137,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="HiddenConditionsEffects" />
     /// </summary>
-    public class HiddenConditionsEffectsJsonConverter : JsonConverter<HiddenConditionsEffects>
+    public partial class HiddenConditionsEffectsJsonConverter : JsonConverter<HiddenConditionsEffects>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HiddenConditionsEffectsJsonConverter" /> class.
+        /// </summary>
+        public HiddenConditionsEffectsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="HiddenConditionsEffects" />
         /// </summary>

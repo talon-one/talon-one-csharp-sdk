@@ -98,8 +98,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="IntegrationCustomerSessionResponse" />
     /// </summary>
-    public class IntegrationCustomerSessionResponseJsonConverter : JsonConverter<IntegrationCustomerSessionResponse>
+    public partial class IntegrationCustomerSessionResponseJsonConverter : JsonConverter<IntegrationCustomerSessionResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegrationCustomerSessionResponseJsonConverter" /> class.
+        /// </summary>
+        public IntegrationCustomerSessionResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="IntegrationCustomerSessionResponse" />
         /// </summary>

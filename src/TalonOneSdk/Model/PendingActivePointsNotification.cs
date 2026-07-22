@@ -148,8 +148,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PendingActivePointsNotification" />
     /// </summary>
-    public class PendingActivePointsNotificationJsonConverter : JsonConverter<PendingActivePointsNotification>
+    public partial class PendingActivePointsNotificationJsonConverter : JsonConverter<PendingActivePointsNotification>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PendingActivePointsNotificationJsonConverter" /> class.
+        /// </summary>
+        public PendingActivePointsNotificationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PendingActivePointsNotification" />
         /// </summary>

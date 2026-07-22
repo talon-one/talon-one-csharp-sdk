@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **ContextIds** | **List&lt;string&gt;** | The identifiers of the relevant context at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.  | 
 **Price** | **decimal** | Price of the item. | 
 **Metadata** | [**BestPriorPriceMetadata**](BestPriorPriceMetadata.md) |  | 
-**Target** | **Object** |  | 
+**Target** | [**LabelTarget**](LabelTarget.md) |  | 
 **ContextId** | **string** | This property is **deprecated**. Use &#x60;contextIds&#x60; instead. Defaults to an empty string.  | [optional] [default to ""]
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)

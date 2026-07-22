@@ -84,12 +84,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ExperimentVerdictResponse" />
     /// </summary>
-    public class ExperimentVerdictResponseJsonConverter : JsonConverter<ExperimentVerdictResponse>
+    public partial class ExperimentVerdictResponseJsonConverter : JsonConverter<ExperimentVerdictResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExperimentVerdictResponseJsonConverter" /> class.
+        /// </summary>
+        public ExperimentVerdictResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Generated
         /// </summary>
-        public static string GeneratedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string GeneratedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ExperimentVerdictResponse" />

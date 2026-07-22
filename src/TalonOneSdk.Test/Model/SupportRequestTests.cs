@@ -187,5 +187,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'ProcessedByUser'
         }
+
+        /// <summary>
+        /// Test the property 'CouponCode'
+        /// </summary>
+        [Fact]
+        public void CouponCodeTest()
+        {
+            // TODO unit test for the property 'CouponCode'
+        }
     }
 }

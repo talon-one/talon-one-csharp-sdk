@@ -39,14 +39,16 @@ namespace TalonOneSdk.Model
         /// <param name="expiryDate">Expiration date of the coupon. Coupon never expires if this is omitted.</param>
         /// <param name="limits">Limits configuration for a coupon. These limits will override the limits set from the campaign.  **Note:** Only usable when creating a single coupon which is not tied to a specific recipient. Only per-profile limits are allowed to be configured. </param>
         /// <param name="uniquePrefix">**DEPRECATED** To create more than 20,000 coupons in one request, use [Create coupons asynchronously](https://docs.talon.one/management-api#tag/Coupons/operation/createCouponsAsync) endpoint. </param>
-        /// <param name="attributes">Arbitrary properties associated with this campaign.</param>
+        /// <param name="attributes">Arbitrary properties associated with this item.</param>
         /// <param name="recipientIntegrationId">The integration ID for this coupon&#39;s beneficiary&#39;s profile.</param>
         /// <param name="validCharacters">List of characters used to generate the random parts of a code. By default, the list of characters is equivalent to the &#x60;[A-Z, 0-9]&#x60; regular expression. </param>
         /// <param name="couponPattern">The pattern used to generate coupon codes. The character &#x60;#&#x60; is a placeholder and is replaced by a random character from the &#x60;validCharacters&#x60; set. </param>
         /// <param name="isReservationMandatory">An indication of whether the code can be redeemed only if it has been reserved first. (default to false)</param>
         /// <param name="implicitlyReserved">An indication of whether the coupon is implicitly reserved for all customers.</param>
+        /// <param name="supportRequestId">The identifier of the support request to link to the coupon creation. The request must exist and not yet be processed.</param>
+        /// <param name="supportRequestNote">A note recorded when the linked support request is approved or rejected. Applied when &#x60;supportRequestId&#x60; is provided.</param>
         [JsonConstructor]
-        public NewCoupons(long numberOfCoupons, Option<long?> usageLimit = default, Option<decimal?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<List<LimitConfig>> limits = default, Option<string> uniquePrefix = default, Option<Object> attributes = default, Option<string> recipientIntegrationId = default, Option<List<string>> validCharacters = default, Option<string> couponPattern = default, Option<bool?> isReservationMandatory = default, Option<bool?> implicitlyReserved = default)
+        public NewCoupons(long numberOfCoupons, Option<long?> usageLimit = default, Option<decimal?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<List<LimitConfig>> limits = default, Option<string> uniquePrefix = default, Option<Object> attributes = default, Option<string> recipientIntegrationId = default, Option<List<string>> validCharacters = default, Option<string> couponPattern = default, Option<bool?> isReservationMandatory = default, Option<bool?> implicitlyReserved = default, Option<long?> supportRequestId = default, Option<string> supportRequestNote = default)
         {
             NumberOfCoupons = numberOfCoupons;
             UsageLimitOption = usageLimit;
@@ -62,6 +64,8 @@ namespace TalonOneSdk.Model
             CouponPatternOption = couponPattern;
             IsReservationMandatoryOption = isReservationMandatory;
             ImplicitlyReservedOption = implicitlyReserved;
+            SupportRequestIdOption = supportRequestId;
+            SupportRequestNoteOption = supportRequestNote;
             OnCreated();
         }
 
@@ -187,9 +191,10 @@ namespace TalonOneSdk.Model
         public Option<Object> AttributesOption { get; private set; }
 
         /// <summary>
-        /// Arbitrary properties associated with this campaign.
+        /// Arbitrary properties associated with this item.
         /// </summary>
-        /// <value>Arbitrary properties associated with this campaign.</value>
+        /// <value>Arbitrary properties associated with this item.</value>
+        /* <example>{venueId&#x3D;12}</example> */
         [JsonPropertyName("attributes")]
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
@@ -269,6 +274,36 @@ namespace TalonOneSdk.Model
         public bool? ImplicitlyReserved { get { return this.ImplicitlyReservedOption.Value; } set { this.ImplicitlyReservedOption = new Option<bool?>(value); } }
 
         /// <summary>
+        /// Used to track the state of SupportRequestId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> SupportRequestIdOption { get; private set; }
+
+        /// <summary>
+        /// The identifier of the support request to link to the coupon creation. The request must exist and not yet be processed.
+        /// </summary>
+        /// <value>The identifier of the support request to link to the coupon creation. The request must exist and not yet be processed.</value>
+        /* <example>42</example> */
+        [JsonPropertyName("supportRequestId")]
+        public long? SupportRequestId { get { return this.SupportRequestIdOption.Value; } set { this.SupportRequestIdOption = new Option<long?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of SupportRequestNote
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> SupportRequestNoteOption { get; private set; }
+
+        /// <summary>
+        /// A note recorded when the linked support request is approved or rejected. Applied when &#x60;supportRequestId&#x60; is provided.
+        /// </summary>
+        /// <value>A note recorded when the linked support request is approved or rejected. Applied when &#x60;supportRequestId&#x60; is provided.</value>
+        /* <example>Approved as compensation for the delayed order.</example> */
+        [JsonPropertyName("supportRequestNote")]
+        public string SupportRequestNote { get { return this.SupportRequestNoteOption.Value; } set { this.SupportRequestNoteOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -290,6 +325,8 @@ namespace TalonOneSdk.Model
             sb.Append("  CouponPattern: ").Append(CouponPattern).Append("\n");
             sb.Append("  IsReservationMandatory: ").Append(IsReservationMandatory).Append("\n");
             sb.Append("  ImplicitlyReserved: ").Append(ImplicitlyReserved).Append("\n");
+            sb.Append("  SupportRequestId: ").Append(SupportRequestId).Append("\n");
+            sb.Append("  SupportRequestNote: ").Append(SupportRequestNote).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -362,17 +399,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewCoupons" />
     /// </summary>
-    public class NewCouponsJsonConverter : JsonConverter<NewCoupons>
+    public partial class NewCouponsJsonConverter : JsonConverter<NewCoupons>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewCouponsJsonConverter" /> class.
+        /// </summary>
+        public NewCouponsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize ExpiryDate
         /// </summary>
-        public static string ExpiryDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="NewCoupons" />
@@ -405,6 +452,8 @@ namespace TalonOneSdk.Model
             Option<string> couponPattern = default;
             Option<bool?> isReservationMandatory = default;
             Option<bool?> implicitlyReserved = default;
+            Option<long?> supportRequestId = default;
+            Option<string> supportRequestNote = default;
 
             while (utf8JsonReader.Read())
             {
@@ -463,6 +512,12 @@ namespace TalonOneSdk.Model
                         case "implicitlyReserved":
                             implicitlyReserved = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
+                        case "supportRequestId":
+                            supportRequestId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "supportRequestNote":
+                            supportRequestNote = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
@@ -475,7 +530,7 @@ namespace TalonOneSdk.Model
             if (numberOfCoupons.IsSet && numberOfCoupons.Value == null)
                 throw new ArgumentNullException(nameof(numberOfCoupons), "Property is not nullable for class NewCoupons.");
 
-            return new NewCoupons(numberOfCoupons.Value.Value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, limits, uniquePrefix, attributes, recipientIntegrationId, validCharacters, couponPattern, isReservationMandatory, implicitlyReserved);
+            return new NewCoupons(numberOfCoupons.Value.Value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, limits, uniquePrefix, attributes, recipientIntegrationId, validCharacters, couponPattern, isReservationMandatory, implicitlyReserved, supportRequestId, supportRequestNote);
         }
 
         /// <summary>
@@ -548,6 +603,12 @@ namespace TalonOneSdk.Model
 
             if (newCoupons.ImplicitlyReservedOption.IsSet)
                 writer.WriteBoolean("implicitlyReserved", newCoupons.ImplicitlyReservedOption.Value.Value);
+
+            if (newCoupons.SupportRequestIdOption.IsSet)
+                writer.WriteNumber("supportRequestId", newCoupons.SupportRequestIdOption.Value.Value);
+
+            if (newCoupons.SupportRequestNoteOption.IsSet)
+                writer.WriteString("supportRequestNote", newCoupons.SupportRequestNote);
         }
     }
 }

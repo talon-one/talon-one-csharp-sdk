@@ -159,6 +159,7 @@ namespace TalonOneSdk.Model
         /// Tier for which the ledger is eligible.
         /// </summary>
         /// <value>Tier for which the ledger is eligible.</value>
+        /* <example>bronze</example> */
         [JsonPropertyName("currentTier")]
         public Tier CurrentTier { get { return this.CurrentTierOption.Value; } set { this.CurrentTierOption = new Option<Tier>(value); } }
 
@@ -229,8 +230,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="LedgerInfo" />
     /// </summary>
-    public class LedgerInfoJsonConverter : JsonConverter<LedgerInfo>
+    public partial class LedgerInfoJsonConverter : JsonConverter<LedgerInfo>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LedgerInfoJsonConverter" /> class.
+        /// </summary>
+        public LedgerInfoJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="LedgerInfo" />
         /// </summary>

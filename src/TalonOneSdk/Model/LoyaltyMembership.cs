@@ -94,12 +94,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="LoyaltyMembership" />
     /// </summary>
-    public class LoyaltyMembershipJsonConverter : JsonConverter<LoyaltyMembership>
+    public partial class LoyaltyMembershipJsonConverter : JsonConverter<LoyaltyMembership>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoyaltyMembershipJsonConverter" /> class.
+        /// </summary>
+        public LoyaltyMembershipJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Joined
         /// </summary>
-        public static string JoinedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string JoinedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyMembership" />

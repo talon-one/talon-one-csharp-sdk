@@ -206,12 +206,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="BestPriorPriceRequest" />
     /// </summary>
-    public class BestPriorPriceRequestJsonConverter : JsonConverter<BestPriorPriceRequest>
+    public partial class BestPriorPriceRequestJsonConverter : JsonConverter<BestPriorPriceRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BestPriorPriceRequestJsonConverter" /> class.
+        /// </summary>
+        public BestPriorPriceRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize TimeframeEndDate
         /// </summary>
-        public static string TimeframeEndDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string TimeframeEndDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="BestPriorPriceRequest" />

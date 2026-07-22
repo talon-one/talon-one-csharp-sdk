@@ -34,7 +34,7 @@ namespace TalonOneSdk.Model
         /// <param name="totalResultSize">totalResultSize</param>
         /// <param name="data">data</param>
         [JsonConstructor]
-        public BulkApplicationNotification(long totalResultSize, List<ApplicationNotification> data)
+        public BulkApplicationNotification(long totalResultSize, List<CampaignEvaluationTreeChangedNotification> data)
         {
             TotalResultSize = totalResultSize;
             Data = data;
@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
-        public List<ApplicationNotification> Data { get; set; }
+        public List<CampaignEvaluationTreeChangedNotification> Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="BulkApplicationNotification" />
     /// </summary>
-    public class BulkApplicationNotificationJsonConverter : JsonConverter<BulkApplicationNotification>
+    public partial class BulkApplicationNotificationJsonConverter : JsonConverter<BulkApplicationNotification>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BulkApplicationNotificationJsonConverter" /> class.
+        /// </summary>
+        public BulkApplicationNotificationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="BulkApplicationNotification" />
         /// </summary>
@@ -104,7 +114,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<long?> totalResultSize = default;
-            Option<List<ApplicationNotification>> data = default;
+            Option<List<CampaignEvaluationTreeChangedNotification>> data = default;
 
             while (utf8JsonReader.Read())
             {
@@ -125,7 +135,7 @@ namespace TalonOneSdk.Model
                             totalResultSize = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "data":
-                            data = new Option<List<ApplicationNotification>>(JsonSerializer.Deserialize<List<ApplicationNotification>>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<List<CampaignEvaluationTreeChangedNotification>>(JsonSerializer.Deserialize<List<CampaignEvaluationTreeChangedNotification>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

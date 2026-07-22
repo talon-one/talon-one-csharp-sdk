@@ -102,8 +102,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewAccountSignUp" />
     /// </summary>
-    public class NewAccountSignUpJsonConverter : JsonConverter<NewAccountSignUp>
+    public partial class NewAccountSignUpJsonConverter : JsonConverter<NewAccountSignUp>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewAccountSignUpJsonConverter" /> class.
+        /// </summary>
+        public NewAccountSignUpJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NewAccountSignUp" />
         /// </summary>

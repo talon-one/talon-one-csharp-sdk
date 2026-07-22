@@ -392,8 +392,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewCustomerSessionV2" />
     /// </summary>
-    public class NewCustomerSessionV2JsonConverter : JsonConverter<NewCustomerSessionV2>
+    public partial class NewCustomerSessionV2JsonConverter : JsonConverter<NewCustomerSessionV2>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewCustomerSessionV2JsonConverter" /> class.
+        /// </summary>
+        public NewCustomerSessionV2JsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NewCustomerSessionV2" />
         /// </summary>

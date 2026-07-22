@@ -122,8 +122,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AudienceReference" />
     /// </summary>
-    public class AudienceReferenceJsonConverter : JsonConverter<AudienceReference>
+    public partial class AudienceReferenceJsonConverter : JsonConverter<AudienceReference>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AudienceReferenceJsonConverter" /> class.
+        /// </summary>
+        public AudienceReferenceJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AudienceReference" />
         /// </summary>

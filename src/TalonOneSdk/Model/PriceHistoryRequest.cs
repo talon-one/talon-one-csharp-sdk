@@ -98,17 +98,27 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PriceHistoryRequest" />
     /// </summary>
-    public class PriceHistoryRequestJsonConverter : JsonConverter<PriceHistoryRequest>
+    public partial class PriceHistoryRequestJsonConverter : JsonConverter<PriceHistoryRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PriceHistoryRequestJsonConverter" /> class.
+        /// </summary>
+        public PriceHistoryRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// The format to use to serialize EndDate
         /// </summary>
-        public static string EndDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string EndDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="PriceHistoryRequest" />

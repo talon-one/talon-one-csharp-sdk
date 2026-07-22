@@ -205,12 +205,22 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification" />
     /// </summary>
-    public class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationJsonConverter : JsonConverter<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification>
+    public partial class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationJsonConverter : JsonConverter<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationJsonConverter" /> class.
+        /// </summary>
+        public IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize PublishedAt
         /// </summary>
-        public static string PublishedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        public string PublishedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification" />

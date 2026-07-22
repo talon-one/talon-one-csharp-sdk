@@ -75,8 +75,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RemoveItemCatalogAction" />
     /// </summary>
-    public class RemoveItemCatalogActionJsonConverter : JsonConverter<RemoveItemCatalogAction>
+    public partial class RemoveItemCatalogActionJsonConverter : JsonConverter<RemoveItemCatalogAction>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RemoveItemCatalogActionJsonConverter" /> class.
+        /// </summary>
+        public RemoveItemCatalogActionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RemoveItemCatalogAction" />
         /// </summary>

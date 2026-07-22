@@ -92,8 +92,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewSecondaryDeployment" />
     /// </summary>
-    public class NewSecondaryDeploymentJsonConverter : JsonConverter<NewSecondaryDeployment>
+    public partial class NewSecondaryDeploymentJsonConverter : JsonConverter<NewSecondaryDeployment>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewSecondaryDeploymentJsonConverter" /> class.
+        /// </summary>
+        public NewSecondaryDeploymentJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NewSecondaryDeployment" />
         /// </summary>

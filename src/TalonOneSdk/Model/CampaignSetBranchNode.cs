@@ -447,8 +447,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CampaignSetBranchNode" />
     /// </summary>
-    public class CampaignSetBranchNodeJsonConverter : JsonConverter<CampaignSetBranchNode>
+    public partial class CampaignSetBranchNodeJsonConverter : JsonConverter<CampaignSetBranchNode>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CampaignSetBranchNodeJsonConverter" /> class.
+        /// </summary>
+        public CampaignSetBranchNodeJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CampaignSetBranchNode" />
         /// </summary>

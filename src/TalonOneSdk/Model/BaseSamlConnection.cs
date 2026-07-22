@@ -185,8 +185,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="BaseSamlConnection" />
     /// </summary>
-    public class BaseSamlConnectionJsonConverter : JsonConverter<BaseSamlConnection>
+    public partial class BaseSamlConnectionJsonConverter : JsonConverter<BaseSamlConnection>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseSamlConnectionJsonConverter" /> class.
+        /// </summary>
+        public BaseSamlConnectionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="BaseSamlConnection" />
         /// </summary>

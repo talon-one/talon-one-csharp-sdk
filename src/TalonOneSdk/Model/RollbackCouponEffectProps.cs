@@ -75,8 +75,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RollbackCouponEffectProps" />
     /// </summary>
-    public class RollbackCouponEffectPropsJsonConverter : JsonConverter<RollbackCouponEffectProps>
+    public partial class RollbackCouponEffectPropsJsonConverter : JsonConverter<RollbackCouponEffectProps>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RollbackCouponEffectPropsJsonConverter" /> class.
+        /// </summary>
+        public RollbackCouponEffectPropsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RollbackCouponEffectProps" />
         /// </summary>

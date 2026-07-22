@@ -76,8 +76,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GenerateItemFilterDescription" />
     /// </summary>
-    public class GenerateItemFilterDescriptionJsonConverter : JsonConverter<GenerateItemFilterDescription>
+    public partial class GenerateItemFilterDescriptionJsonConverter : JsonConverter<GenerateItemFilterDescription>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateItemFilterDescriptionJsonConverter" /> class.
+        /// </summary>
+        public GenerateItemFilterDescriptionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GenerateItemFilterDescription" />
         /// </summary>

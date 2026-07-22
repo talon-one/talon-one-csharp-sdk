@@ -87,8 +87,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="FeatureFlagUpdate" />
     /// </summary>
-    public class FeatureFlagUpdateJsonConverter : JsonConverter<FeatureFlagUpdate>
+    public partial class FeatureFlagUpdateJsonConverter : JsonConverter<FeatureFlagUpdate>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FeatureFlagUpdateJsonConverter" /> class.
+        /// </summary>
+        public FeatureFlagUpdateJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FeatureFlagUpdate" />
         /// </summary>

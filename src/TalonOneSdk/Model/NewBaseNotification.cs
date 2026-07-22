@@ -31,11 +31,11 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NewBaseNotification" /> class.
         /// </summary>
-        /// <param name="policy">Indicates which notification properties to apply.</param>
+        /// <param name="policy">policy</param>
         /// <param name="webhook">webhook</param>
         /// <param name="enabled">Indicates whether the notification is activated. (default to true)</param>
         [JsonConstructor]
-        public NewBaseNotification(Object policy, NewNotificationWebhook webhook, Option<bool?> enabled = default)
+        public NewBaseNotification(BaseNotificationPolicy policy, NewNotificationWebhook webhook, Option<bool?> enabled = default)
         {
             Policy = policy;
             Webhook = webhook;
@@ -46,11 +46,10 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// Indicates which notification properties to apply.
+        /// Gets or Sets Policy
         /// </summary>
-        /// <value>Indicates which notification properties to apply.</value>
         [JsonPropertyName("policy")]
-        public Object Policy { get; set; }
+        public BaseNotificationPolicy Policy { get; set; }
 
         /// <summary>
         /// Gets or Sets Webhook
@@ -101,8 +100,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NewBaseNotification" />
     /// </summary>
-    public class NewBaseNotificationJsonConverter : JsonConverter<NewBaseNotification>
+    public partial class NewBaseNotificationJsonConverter : JsonConverter<NewBaseNotification>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewBaseNotificationJsonConverter" /> class.
+        /// </summary>
+        public NewBaseNotificationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NewBaseNotification" />
         /// </summary>
@@ -120,7 +129,7 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<Object> policy = default;
+            Option<BaseNotificationPolicy> policy = default;
             Option<NewNotificationWebhook> webhook = default;
             Option<bool?> enabled = default;
 
@@ -140,7 +149,7 @@ namespace TalonOneSdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "policy":
-                            policy = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            policy = new Option<BaseNotificationPolicy>(JsonSerializer.Deserialize<BaseNotificationPolicy>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "webhook":
                             webhook = new Option<NewNotificationWebhook>(JsonSerializer.Deserialize<NewNotificationWebhook>(ref utf8JsonReader, jsonSerializerOptions));

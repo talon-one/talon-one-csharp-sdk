@@ -83,8 +83,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SkuUnitAnalytics" />
     /// </summary>
-    public class SkuUnitAnalyticsJsonConverter : JsonConverter<SkuUnitAnalytics>
+    public partial class SkuUnitAnalyticsJsonConverter : JsonConverter<SkuUnitAnalytics>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SkuUnitAnalyticsJsonConverter" /> class.
+        /// </summary>
+        public SkuUnitAnalyticsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SkuUnitAnalytics" />
         /// </summary>

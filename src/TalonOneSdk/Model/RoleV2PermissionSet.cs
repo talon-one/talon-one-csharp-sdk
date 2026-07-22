@@ -87,8 +87,18 @@ namespace TalonOneSdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RoleV2PermissionSet" />
     /// </summary>
-    public class RoleV2PermissionSetJsonConverter : JsonConverter<RoleV2PermissionSet>
+    public partial class RoleV2PermissionSetJsonConverter : JsonConverter<RoleV2PermissionSet>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RoleV2PermissionSetJsonConverter" /> class.
+        /// </summary>
+        public RoleV2PermissionSetJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RoleV2PermissionSet" />
         /// </summary>
