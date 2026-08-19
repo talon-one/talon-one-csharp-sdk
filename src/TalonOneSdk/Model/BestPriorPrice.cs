@@ -38,9 +38,8 @@ namespace TalonOneSdk.Model
         /// <param name="price">Price of the item.</param>
         /// <param name="metadata">metadata</param>
         /// <param name="target">target</param>
-        /// <param name="contextId">This property is **deprecated**. Use &#x60;contextIds&#x60; instead. Defaults to an empty string.  (default to &quot;&quot;)</param>
         [JsonConstructor]
-        public BestPriorPrice(long id, string sku, DateTime observedAt, List<string> contextIds, decimal price, BestPriorPriceMetadata metadata, LabelTarget target, Option<string> contextId = default)
+        public BestPriorPrice(long id, string sku, DateTime observedAt, List<string> contextIds, decimal price, BestPriorPriceMetadata metadata, LabelTarget target)
         {
             Id = id;
             Sku = sku;
@@ -49,7 +48,6 @@ namespace TalonOneSdk.Model
             Price = price;
             Metadata = metadata;
             Target = target;
-            ContextIdOption = contextId;
             OnCreated();
         }
 
@@ -108,21 +106,6 @@ namespace TalonOneSdk.Model
         public LabelTarget Target { get; set; }
 
         /// <summary>
-        /// Used to track the state of ContextId
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> ContextIdOption { get; private set; }
-
-        /// <summary>
-        /// This property is **deprecated**. Use &#x60;contextIds&#x60; instead. Defaults to an empty string. 
-        /// </summary>
-        /// <value>This property is **deprecated**. Use &#x60;contextIds&#x60; instead. Defaults to an empty string. </value>
-        [JsonPropertyName("contextId")]
-        [Obsolete]
-        public string ContextId { get { return this.ContextIdOption.Value; } set { this.ContextIdOption = new Option<string>(value); } }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -137,7 +120,6 @@ namespace TalonOneSdk.Model
             sb.Append("  Price: ").Append(Price).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  Target: ").Append(Target).Append("\n");
-            sb.Append("  ContextId: ").Append(ContextId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -197,7 +179,6 @@ namespace TalonOneSdk.Model
             Option<decimal?> price = default;
             Option<BestPriorPriceMetadata> metadata = default;
             Option<LabelTarget> target = default;
-            Option<string> contextId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -234,9 +215,6 @@ namespace TalonOneSdk.Model
                             break;
                         case "target":
                             target = new Option<LabelTarget>(JsonSerializer.Deserialize<LabelTarget>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "contextId":
-                            contextId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         default:
                             break;
@@ -286,7 +264,7 @@ namespace TalonOneSdk.Model
             if (target.IsSet && target.Value == null)
                 throw new ArgumentNullException(nameof(target), "Property is not nullable for class BestPriorPrice.");
 
-            return new BestPriorPrice(id.Value.Value, sku.Value, observedAt.Value.Value, contextIds.Value, price.Value.Value, metadata.Value, target.Value, contextId);
+            return new BestPriorPrice(id.Value.Value, sku.Value, observedAt.Value.Value, contextIds.Value, price.Value.Value, metadata.Value, target.Value);
         }
 
         /// <summary>
@@ -339,8 +317,6 @@ namespace TalonOneSdk.Model
             JsonSerializer.Serialize(writer, bestPriorPrice.Metadata, jsonSerializerOptions);
             writer.WritePropertyName("target");
             JsonSerializer.Serialize(writer, bestPriorPrice.Target, jsonSerializerOptions);
-            if (bestPriorPrice.ContextIdOption.IsSet)
-                writer.WriteString("contextId", bestPriorPrice.ContextId);
         }
     }
 }

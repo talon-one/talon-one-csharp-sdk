@@ -31,6 +31,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="IntegrationHubEventPayloadCouponBasedNotifications" /> class.
         /// </summary>
+        /// <param name="eventId">The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed.</param>
         /// <param name="id">id</param>
         /// <param name="created">created</param>
         /// <param name="campaignId">campaignId</param>
@@ -53,8 +54,9 @@ namespace TalonOneSdk.Model
         /// <param name="attributes">attributes</param>
         /// <param name="limits">limits</param>
         [JsonConstructor]
-        public IntegrationHubEventPayloadCouponBasedNotifications(long id, DateTime created, long campaignId, string value, long usageLimit, long usageCounter, DateTime publishedAt, string sourceOfEvent, string employeeName, Option<float?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<float?> discountCounter = default, Option<float?> discountRemainder = default, Option<long?> referralId = default, Option<string> recipientIntegrationId = default, Option<long?> importId = default, Option<string> batchId = default, Option<Object> attributes = default, Option<List<IntegrationHubEventPayloadCouponBasedNotificationsLimits>> limits = default)
+        public IntegrationHubEventPayloadCouponBasedNotifications(long eventId, long id, DateTime created, long campaignId, string value, long usageLimit, long usageCounter, DateTime publishedAt, string sourceOfEvent, string employeeName, Option<float?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<float?> discountCounter = default, Option<float?> discountRemainder = default, Option<long?> referralId = default, Option<string> recipientIntegrationId = default, Option<long?> importId = default, Option<string> batchId = default, Option<Object> attributes = default, Option<List<IntegrationHubEventPayloadCouponBasedNotificationsLimits>> limits = default)
         {
+            EventId = eventId;
             Id = id;
             Created = created;
             CampaignId = campaignId;
@@ -80,6 +82,14 @@ namespace TalonOneSdk.Model
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed.
+        /// </summary>
+        /// <value>The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed.</value>
+        /* <example>123</example> */
+        [JsonPropertyName("EventId")]
+        public long EventId { get; set; }
 
         /// <summary>
         /// Gets or Sets Id
@@ -300,6 +310,7 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class IntegrationHubEventPayloadCouponBasedNotifications {\n");
+            sb.Append("  EventId: ").Append(EventId).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
@@ -388,6 +399,7 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<long?> eventId = default;
             Option<long?> id = default;
             Option<DateTime?> created = default;
             Option<long?> campaignId = default;
@@ -425,6 +437,9 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "EventId":
+                            eventId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
                         case "Id":
                             id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
@@ -494,6 +509,9 @@ namespace TalonOneSdk.Model
                 }
             }
 
+            if (!eventId.IsSet)
+                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.", nameof(eventId));
+
             if (!id.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.", nameof(id));
 
@@ -520,6 +538,9 @@ namespace TalonOneSdk.Model
 
             if (!employeeName.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.", nameof(employeeName));
+
+            if (eventId.IsSet && eventId.Value == null)
+                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
 
             if (id.IsSet && id.Value == null)
                 throw new ArgumentNullException(nameof(id), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
@@ -548,7 +569,7 @@ namespace TalonOneSdk.Model
             if (employeeName.IsSet && employeeName.Value == null)
                 throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
 
-            return new IntegrationHubEventPayloadCouponBasedNotifications(id.Value.Value, created.Value.Value, campaignId.Value.Value, value.Value, usageLimit.Value.Value, usageCounter.Value.Value, publishedAt.Value.Value, sourceOfEvent.Value, employeeName.Value, discountLimit, reservationLimit, startDate, expiryDate, discountCounter, discountRemainder, referralId, recipientIntegrationId, importId, batchId, attributes, limits);
+            return new IntegrationHubEventPayloadCouponBasedNotifications(eventId.Value.Value, id.Value.Value, created.Value.Value, campaignId.Value.Value, value.Value, usageLimit.Value.Value, usageCounter.Value.Value, publishedAt.Value.Value, sourceOfEvent.Value, employeeName.Value, discountLimit, reservationLimit, startDate, expiryDate, discountCounter, discountRemainder, referralId, recipientIntegrationId, importId, batchId, attributes, limits);
         }
 
         /// <summary>
@@ -583,6 +604,8 @@ namespace TalonOneSdk.Model
 
             if (integrationHubEventPayloadCouponBasedNotifications.EmployeeName == null)
                 throw new ArgumentNullException(nameof(integrationHubEventPayloadCouponBasedNotifications.EmployeeName), "Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.");
+
+            writer.WriteNumber("EventId", integrationHubEventPayloadCouponBasedNotifications.EventId);
 
             writer.WriteNumber("Id", integrationHubEventPayloadCouponBasedNotifications.Id);
 

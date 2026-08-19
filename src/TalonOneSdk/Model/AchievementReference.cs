@@ -36,18 +36,109 @@ namespace TalonOneSdk.Model
         /// <param name="applicationName">The name of the Application associated with the campaign that references this achievement.</param>
         /// <param name="campaignId">The ID of the campaign that references this achievement.</param>
         /// <param name="campaignName">The name of the campaign that references this achievement.</param>
+        /// <param name="campaignState">The state of the campaign that references this achievement.</param>
         [JsonConstructor]
-        public AchievementReference(long achievementId, long applicationId, string applicationName, long campaignId, string campaignName)
+        public AchievementReference(long achievementId, long applicationId, string applicationName, long campaignId, string campaignName, CampaignStateEnum campaignState)
         {
             AchievementId = achievementId;
             ApplicationId = applicationId;
             ApplicationName = applicationName;
             CampaignId = campaignId;
             CampaignName = campaignName;
+            CampaignState = campaignState;
             OnCreated();
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// The state of the campaign that references this achievement.
+        /// </summary>
+        /// <value>The state of the campaign that references this achievement.</value>
+        public enum CampaignStateEnum
+        {
+            /// <summary>
+            /// Enum Enabled for value: enabled
+            /// </summary>
+            Enabled = 1,
+
+            /// <summary>
+            /// Enum Disabled for value: disabled
+            /// </summary>
+            Disabled = 2,
+
+            /// <summary>
+            /// Enum Archived for value: archived
+            /// </summary>
+            Archived = 3
+        }
+
+        /// <summary>
+        /// Returns a <see cref="CampaignStateEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static CampaignStateEnum CampaignStateEnumFromString(string value)
+        {
+            if (value.Equals("enabled"))
+                return CampaignStateEnum.Enabled;
+
+            if (value.Equals("disabled"))
+                return CampaignStateEnum.Disabled;
+
+            if (value.Equals("archived"))
+                return CampaignStateEnum.Archived;
+
+            throw new NotImplementedException($"Could not convert value to type CampaignStateEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="CampaignStateEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static CampaignStateEnum? CampaignStateEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("enabled"))
+                return CampaignStateEnum.Enabled;
+
+            if (value.Equals("disabled"))
+                return CampaignStateEnum.Disabled;
+
+            if (value.Equals("archived"))
+                return CampaignStateEnum.Archived;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="CampaignStateEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string CampaignStateEnumToJsonValue(CampaignStateEnum value)
+        {
+            if (value == CampaignStateEnum.Enabled)
+                return "enabled";
+
+            if (value == CampaignStateEnum.Disabled)
+                return "disabled";
+
+            if (value == CampaignStateEnum.Archived)
+                return "archived";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// The state of the campaign that references this achievement.
+        /// </summary>
+        /// <value>The state of the campaign that references this achievement.</value>
+        /* <example>enabled</example> */
+        [JsonPropertyName("campaignState")]
+        public CampaignStateEnum CampaignState { get; set; }
 
         /// <summary>
         /// The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievementsV2) endpoint.
@@ -102,6 +193,7 @@ namespace TalonOneSdk.Model
             sb.Append("  ApplicationName: ").Append(ApplicationName).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
             sb.Append("  CampaignName: ").Append(CampaignName).Append("\n");
+            sb.Append("  CampaignState: ").Append(CampaignState).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -154,6 +246,7 @@ namespace TalonOneSdk.Model
             Option<string> applicationName = default;
             Option<long?> campaignId = default;
             Option<string> campaignName = default;
+            Option<AchievementReference.CampaignStateEnum?> campaignState = default;
 
             while (utf8JsonReader.Read())
             {
@@ -185,6 +278,11 @@ namespace TalonOneSdk.Model
                         case "campaignName":
                             campaignName = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "campaignState":
+                            string campaignStateRawValue = utf8JsonReader.GetString();
+                            if (campaignStateRawValue != null)
+                                campaignState = new Option<AchievementReference.CampaignStateEnum?>(AchievementReference.CampaignStateEnumFromStringOrDefault(campaignStateRawValue));
+                            break;
                         default:
                             break;
                     }
@@ -206,6 +304,9 @@ namespace TalonOneSdk.Model
             if (!campaignName.IsSet)
                 throw new ArgumentException("Property is required for class AchievementReference.", nameof(campaignName));
 
+            if (!campaignState.IsSet)
+                throw new ArgumentException("Property is required for class AchievementReference.", nameof(campaignState));
+
             if (achievementId.IsSet && achievementId.Value == null)
                 throw new ArgumentNullException(nameof(achievementId), "Property is not nullable for class AchievementReference.");
 
@@ -221,7 +322,10 @@ namespace TalonOneSdk.Model
             if (campaignName.IsSet && campaignName.Value == null)
                 throw new ArgumentNullException(nameof(campaignName), "Property is not nullable for class AchievementReference.");
 
-            return new AchievementReference(achievementId.Value.Value, applicationId.Value.Value, applicationName.Value, campaignId.Value.Value, campaignName.Value);
+            if (campaignState.IsSet && campaignState.Value == null)
+                throw new ArgumentNullException(nameof(campaignState), "Property is not nullable for class AchievementReference.");
+
+            return new AchievementReference(achievementId.Value.Value, applicationId.Value.Value, applicationName.Value, campaignId.Value.Value, campaignName.Value, campaignState.Value.Value);
         }
 
         /// <summary>
@@ -263,6 +367,9 @@ namespace TalonOneSdk.Model
             writer.WriteNumber("campaignId", achievementReference.CampaignId);
 
             writer.WriteString("campaignName", achievementReference.CampaignName);
+
+            var campaignStateRawValue = AchievementReference.CampaignStateEnumToJsonValue(achievementReference.CampaignState);
+            writer.WriteString("campaignState", campaignStateRawValue);
         }
     }
 }

@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **AwardedGiveaways** | [**List&lt;Giveaway&gt;**](Giveaway.md) | The giveaways that were awarded during the event processing. | [optional] 
 **Achievements** | [**List&lt;CustomerAchievement&gt;**](CustomerAchievement.md) | The achievements progress of the customer. | [optional] 
 **AdvancedEvent** | [**EventV3**](EventV3.md) | The advanced event that was processed. | [optional] 
+**Referral** | [**InventoryReferral**](InventoryReferral.md) | The referral that was processed. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

@@ -37,8 +37,9 @@ namespace TalonOneSdk.Model
         /// <param name="friendIntegrationId">Integration ID of the Friend&#39;s Profile.</param>
         /// <param name="code">Advocate&#39;s referral code.</param>
         /// <param name="created">Timestamp of the moment the customer redeemed the referral.</param>
+        /// <param name="advancedEventIntegrationId">The unique ID of the advanced event in which the customer redeemed the referral. Omitted when the referral was redeemed through a customer session rather than an advanced event.</param>
         [JsonConstructor]
-        public ApplicationReferee(long applicationId, string sessionId, string advocateIntegrationId, string friendIntegrationId, string code, DateTime created)
+        public ApplicationReferee(long applicationId, string sessionId, string advocateIntegrationId, string friendIntegrationId, string code, DateTime created, Option<string> advancedEventIntegrationId = default)
         {
             ApplicationId = applicationId;
             SessionId = sessionId;
@@ -46,6 +47,7 @@ namespace TalonOneSdk.Model
             FriendIntegrationId = friendIntegrationId;
             Code = code;
             Created = created;
+            AdvancedEventIntegrationIdOption = advancedEventIntegrationId;
             OnCreated();
         }
 
@@ -95,6 +97,21 @@ namespace TalonOneSdk.Model
         public DateTime Created { get; set; }
 
         /// <summary>
+        /// Used to track the state of AdvancedEventIntegrationId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> AdvancedEventIntegrationIdOption { get; private set; }
+
+        /// <summary>
+        /// The unique ID of the advanced event in which the customer redeemed the referral. Omitted when the referral was redeemed through a customer session rather than an advanced event.
+        /// </summary>
+        /// <value>The unique ID of the advanced event in which the customer redeemed the referral. Omitted when the referral was redeemed through a customer session rather than an advanced event.</value>
+        /* <example>advanced_event_1234</example> */
+        [JsonPropertyName("advancedEventIntegrationId")]
+        public string AdvancedEventIntegrationId { get { return this.AdvancedEventIntegrationIdOption.Value; } set { this.AdvancedEventIntegrationIdOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -108,6 +125,7 @@ namespace TalonOneSdk.Model
             sb.Append("  FriendIntegrationId: ").Append(FriendIntegrationId).Append("\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
+            sb.Append("  AdvancedEventIntegrationId: ").Append(AdvancedEventIntegrationId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -129,6 +147,12 @@ namespace TalonOneSdk.Model
             if (this.FriendIntegrationId != null && this.FriendIntegrationId.Length > 1000)
             {
                 yield return new ValidationResult("Invalid value for FriendIntegrationId, length must be less than 1000.", new [] { "FriendIntegrationId" });
+            }
+
+            // AdvancedEventIntegrationId (string) maxLength
+            if (this.AdvancedEventIntegrationId != null && this.AdvancedEventIntegrationId.Length > 1000)
+            {
+                yield return new ValidationResult("Invalid value for AdvancedEventIntegrationId, length must be less than 1000.", new [] { "AdvancedEventIntegrationId" });
             }
 
             yield break;
@@ -178,6 +202,7 @@ namespace TalonOneSdk.Model
             Option<string> friendIntegrationId = default;
             Option<string> code = default;
             Option<DateTime?> created = default;
+            Option<string> advancedEventIntegrationId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -211,6 +236,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "created":
                             created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "advancedEventIntegrationId":
+                            advancedEventIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         default:
                             break;
@@ -254,7 +282,7 @@ namespace TalonOneSdk.Model
             if (created.IsSet && created.Value == null)
                 throw new ArgumentNullException(nameof(created), "Property is not nullable for class ApplicationReferee.");
 
-            return new ApplicationReferee(applicationId.Value.Value, sessionId.Value, advocateIntegrationId.Value, friendIntegrationId.Value, code.Value, created.Value.Value);
+            return new ApplicationReferee(applicationId.Value.Value, sessionId.Value, advocateIntegrationId.Value, friendIntegrationId.Value, code.Value, created.Value.Value, advancedEventIntegrationId);
         }
 
         /// <summary>
@@ -304,6 +332,9 @@ namespace TalonOneSdk.Model
             writer.WriteString("code", applicationReferee.Code);
 
             writer.WriteString("created", applicationReferee.Created.ToString(CreatedFormat));
+
+            if (applicationReferee.AdvancedEventIntegrationIdOption.IsSet)
+                writer.WriteString("advancedEventIntegrationId", applicationReferee.AdvancedEventIntegrationId);
         }
     }
 }

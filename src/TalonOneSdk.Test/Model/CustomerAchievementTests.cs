@@ -126,6 +126,24 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CampaignIds'
+        /// </summary>
+        [Fact]
+        public void CampaignIdsTest()
+        {
+            // TODO unit test for the property 'CampaignIds'
+        }
+
+        /// <summary>
+        /// Test the property 'ReferencedByCampaigns'
+        /// </summary>
+        [Fact]
+        public void ReferencedByCampaignsTest()
+        {
+            // TODO unit test for the property 'ReferencedByCampaigns'
+        }
+
+        /// <summary>
         /// Test the property 'FixedStartDate'
         /// </summary>
         [Fact]
@@ -141,6 +159,15 @@ namespace TalonOneSdk.Test.Model
         public void EndDateTest()
         {
             // TODO unit test for the property 'EndDate'
+        }
+
+        /// <summary>
+        /// Test the property 'CampaignId'
+        /// </summary>
+        [Fact]
+        public void CampaignIdTest()
+        {
+            // TODO unit test for the property 'CampaignId'
         }
 
         /// <summary>

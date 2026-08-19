@@ -63,6 +63,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'IntegrationId'
+        /// </summary>
+        [Fact]
+        public void IntegrationIdTest()
+        {
+            // TODO unit test for the property 'IntegrationId'
+        }
+
+        /// <summary>
         /// Test the property 'RewardId'
         /// </summary>
         [Fact]
@@ -99,12 +108,12 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'UnlockedByIntegrationId'
+        /// Test the property 'UnlockedByProfileIntegrationId'
         /// </summary>
         [Fact]
-        public void UnlockedByIntegrationIdTest()
+        public void UnlockedByProfileIntegrationIdTest()
         {
-            // TODO unit test for the property 'UnlockedByIntegrationId'
+            // TODO unit test for the property 'UnlockedByProfileIntegrationId'
         }
 
         /// <summary>
@@ -117,12 +126,12 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'UsedByIntegrationId'
+        /// Test the property 'UsedByProfileIntegrationId'
         /// </summary>
         [Fact]
-        public void UsedByIntegrationIdTest()
+        public void UsedByProfileIntegrationIdTest()
         {
-            // TODO unit test for the property 'UsedByIntegrationId'
+            // TODO unit test for the property 'UsedByProfileIntegrationId'
         }
 
         /// <summary>

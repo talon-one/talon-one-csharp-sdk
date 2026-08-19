@@ -32,10 +32,12 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="UpdateAttributeValueBlock1Target" /> class.
         /// </summary>
         /// <param name="type">Identifies the target scope of the attribute update.</param>
+        /// <param name="name">Identifies the name of the target when its type is set to &#x60;selector&#x60; or &#x60;globalFilter&#x60;.</param>
         [JsonConstructor]
-        public UpdateAttributeValueBlock1Target(TypeEnum type)
+        public UpdateAttributeValueBlock1Target(TypeEnum type, Option<string> name = default)
         {
             Type = type;
+            NameOption = name;
             OnCreated();
         }
 
@@ -201,6 +203,21 @@ namespace TalonOneSdk.Model
         public TypeEnum Type { get; set; }
 
         /// <summary>
+        /// Used to track the state of Name
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> NameOption { get; private set; }
+
+        /// <summary>
+        /// Identifies the name of the target when its type is set to &#x60;selector&#x60; or &#x60;globalFilter&#x60;.
+        /// </summary>
+        /// <value>Identifies the name of the target when its type is set to &#x60;selector&#x60; or &#x60;globalFilter&#x60;.</value>
+        /* <example>Filter items by product</example> */
+        [JsonPropertyName("name")]
+        public string Name { get { return this.NameOption.Value; } set { this.NameOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -209,6 +226,7 @@ namespace TalonOneSdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateAttributeValueBlock1Target {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -257,6 +275,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<UpdateAttributeValueBlock1Target.TypeEnum?> type = default;
+            Option<string> name = default;
 
             while (utf8JsonReader.Read())
             {
@@ -278,6 +297,9 @@ namespace TalonOneSdk.Model
                             if (typeRawValue != null)
                                 type = new Option<UpdateAttributeValueBlock1Target.TypeEnum?>(UpdateAttributeValueBlock1Target.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
+                        case "name":
+                            name = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
@@ -290,7 +312,7 @@ namespace TalonOneSdk.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class UpdateAttributeValueBlock1Target.");
 
-            return new UpdateAttributeValueBlock1Target(type.Value.Value);
+            return new UpdateAttributeValueBlock1Target(type.Value.Value, name);
         }
 
         /// <summary>
@@ -319,6 +341,8 @@ namespace TalonOneSdk.Model
         {
             var typeRawValue = UpdateAttributeValueBlock1Target.TypeEnumToJsonValue(updateAttributeValueBlock1Target.Type);
             writer.WriteString("type", typeRawValue);
+            if (updateAttributeValueBlock1Target.NameOption.IsSet)
+                writer.WriteString("name", updateAttributeValueBlock1Target.Name);
         }
     }
 }

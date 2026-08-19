@@ -108,12 +108,21 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'ContextId'
+        /// Test the property 'ExcludedAt'
         /// </summary>
         [Fact]
-        public void ContextIdTest()
+        public void ExcludedAtTest()
         {
-            // TODO unit test for the property 'ContextId'
+            // TODO unit test for the property 'ExcludedAt'
+        }
+
+        /// <summary>
+        /// Test the property 'ExclusionReason'
+        /// </summary>
+        [Fact]
+        public void ExclusionReasonTest()
+        {
+            // TODO unit test for the property 'ExclusionReason'
         }
     }
 }

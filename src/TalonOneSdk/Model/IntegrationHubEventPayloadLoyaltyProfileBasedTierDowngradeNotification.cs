@@ -31,6 +31,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification" /> class.
         /// </summary>
+        /// <param name="eventId">The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed.</param>
         /// <param name="profileIntegrationID">profileIntegrationID</param>
         /// <param name="loyaltyProgramID">loyaltyProgramID</param>
         /// <param name="loyaltyProgramName">The name of the loyalty program.</param>
@@ -43,8 +44,9 @@ namespace TalonOneSdk.Model
         /// <param name="tierExpirationDate">tierExpirationDate</param>
         /// <param name="timestampOfTierChange">timestampOfTierChange</param>
         [JsonConstructor]
-        public IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification(string profileIntegrationID, long loyaltyProgramID, string loyaltyProgramName, string subledgerID, string sourceOfEvent, float currentPoints, DateTime publishedAt, Option<string> currentTier = default, Option<string> oldTier = default, Option<DateTime?> tierExpirationDate = default, Option<DateTime?> timestampOfTierChange = default)
+        public IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification(long eventId, string profileIntegrationID, long loyaltyProgramID, string loyaltyProgramName, string subledgerID, string sourceOfEvent, float currentPoints, DateTime publishedAt, Option<string> currentTier = default, Option<string> oldTier = default, Option<DateTime?> tierExpirationDate = default, Option<DateTime?> timestampOfTierChange = default)
         {
+            EventId = eventId;
             ProfileIntegrationID = profileIntegrationID;
             LoyaltyProgramID = loyaltyProgramID;
             LoyaltyProgramName = loyaltyProgramName;
@@ -60,6 +62,14 @@ namespace TalonOneSdk.Model
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed.
+        /// </summary>
+        /// <value>The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed.</value>
+        /* <example>123</example> */
+        [JsonPropertyName("EventId")]
+        public long EventId { get; set; }
 
         /// <summary>
         /// Gets or Sets ProfileIntegrationID
@@ -166,6 +176,7 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification {\n");
+            sb.Append("  EventId: ").Append(EventId).Append("\n");
             sb.Append("  ProfileIntegrationID: ").Append(ProfileIntegrationID).Append("\n");
             sb.Append("  LoyaltyProgramID: ").Append(LoyaltyProgramID).Append("\n");
             sb.Append("  LoyaltyProgramName: ").Append(LoyaltyProgramName).Append("\n");
@@ -239,6 +250,7 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<long?> eventId = default;
             Option<string> profileIntegrationID = default;
             Option<long?> loyaltyProgramID = default;
             Option<string> loyaltyProgramName = default;
@@ -266,6 +278,9 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "EventId":
+                            eventId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
                         case "ProfileIntegrationID":
                             profileIntegrationID = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -305,6 +320,9 @@ namespace TalonOneSdk.Model
                 }
             }
 
+            if (!eventId.IsSet)
+                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.", nameof(eventId));
+
             if (!profileIntegrationID.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.", nameof(profileIntegrationID));
 
@@ -325,6 +343,9 @@ namespace TalonOneSdk.Model
 
             if (!publishedAt.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.", nameof(publishedAt));
+
+            if (eventId.IsSet && eventId.Value == null)
+                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
 
             if (profileIntegrationID.IsSet && profileIntegrationID.Value == null)
                 throw new ArgumentNullException(nameof(profileIntegrationID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
@@ -347,7 +368,7 @@ namespace TalonOneSdk.Model
             if (publishedAt.IsSet && publishedAt.Value == null)
                 throw new ArgumentNullException(nameof(publishedAt), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
 
-            return new IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification(profileIntegrationID.Value, loyaltyProgramID.Value.Value, loyaltyProgramName.Value, subledgerID.Value, sourceOfEvent.Value, currentPoints.Value.Value, publishedAt.Value.Value, currentTier, oldTier, tierExpirationDate, timestampOfTierChange);
+            return new IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification(eventId.Value.Value, profileIntegrationID.Value, loyaltyProgramID.Value.Value, loyaltyProgramName.Value, subledgerID.Value, sourceOfEvent.Value, currentPoints.Value.Value, publishedAt.Value.Value, currentTier, oldTier, tierExpirationDate, timestampOfTierChange);
         }
 
         /// <summary>
@@ -385,6 +406,8 @@ namespace TalonOneSdk.Model
 
             if (integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.SourceOfEvent == null)
                 throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.SourceOfEvent), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+
+            writer.WriteNumber("EventId", integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.EventId);
 
             writer.WriteString("ProfileIntegrationID", integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.ProfileIntegrationID);
 

@@ -42,8 +42,9 @@ namespace TalonOneSdk.Model
         /// <param name="awardedGiveaways">The giveaways that were awarded during the event processing.</param>
         /// <param name="achievements">The achievements progress of the customer.</param>
         /// <param name="advancedEvent">The advanced event that was processed.</param>
+        /// <param name="referral">The referral that was processed.</param>
         [JsonConstructor]
-        public IntegrationEventV3Response(List<Effect> effects, List<Coupon> createdCoupons, List<Referral> createdReferrals, Option<CustomerProfile> customerProfile = default, Option<Loyalty> loyalty = default, Option<List<Campaign>> triggeredCampaigns = default, Option<List<CampaignEligibility>> campaignEligibility = default, Option<List<RuleFailureReason>> ruleFailureReasons = default, Option<List<Giveaway>> awardedGiveaways = default, Option<List<CustomerAchievement>> achievements = default, Option<EventV3> advancedEvent = default)
+        public IntegrationEventV3Response(List<Effect> effects, List<Coupon> createdCoupons, List<Referral> createdReferrals, Option<CustomerProfile> customerProfile = default, Option<Loyalty> loyalty = default, Option<List<Campaign>> triggeredCampaigns = default, Option<List<CampaignEligibility>> campaignEligibility = default, Option<List<RuleFailureReason>> ruleFailureReasons = default, Option<List<Giveaway>> awardedGiveaways = default, Option<List<CustomerAchievement>> achievements = default, Option<EventV3> advancedEvent = default, Option<InventoryReferral> referral = default)
         {
             Effects = effects;
             CreatedCoupons = createdCoupons;
@@ -56,6 +57,7 @@ namespace TalonOneSdk.Model
             AwardedGiveawaysOption = awardedGiveaways;
             AchievementsOption = achievements;
             AdvancedEventOption = advancedEvent;
+            ReferralOption = referral;
             OnCreated();
         }
 
@@ -195,6 +197,20 @@ namespace TalonOneSdk.Model
         public EventV3 AdvancedEvent { get { return this.AdvancedEventOption.Value; } set { this.AdvancedEventOption = new Option<EventV3>(value); } }
 
         /// <summary>
+        /// Used to track the state of Referral
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<InventoryReferral> ReferralOption { get; private set; }
+
+        /// <summary>
+        /// The referral that was processed.
+        /// </summary>
+        /// <value>The referral that was processed.</value>
+        [JsonPropertyName("referral")]
+        public InventoryReferral Referral { get { return this.ReferralOption.Value; } set { this.ReferralOption = new Option<InventoryReferral>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -213,6 +229,7 @@ namespace TalonOneSdk.Model
             sb.Append("  AwardedGiveaways: ").Append(AwardedGiveaways).Append("\n");
             sb.Append("  Achievements: ").Append(Achievements).Append("\n");
             sb.Append("  AdvancedEvent: ").Append(AdvancedEvent).Append("\n");
+            sb.Append("  Referral: ").Append(Referral).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -271,6 +288,7 @@ namespace TalonOneSdk.Model
             Option<List<Giveaway>> awardedGiveaways = default;
             Option<List<CustomerAchievement>> achievements = default;
             Option<EventV3> advancedEvent = default;
+            Option<InventoryReferral> referral = default;
 
             while (utf8JsonReader.Read())
             {
@@ -320,6 +338,9 @@ namespace TalonOneSdk.Model
                         case "advancedEvent":
                             advancedEvent = new Option<EventV3>(JsonSerializer.Deserialize<EventV3>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "referral":
+                            referral = new Option<InventoryReferral>(JsonSerializer.Deserialize<InventoryReferral>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
@@ -344,7 +365,7 @@ namespace TalonOneSdk.Model
             if (createdReferrals.IsSet && createdReferrals.Value == null)
                 throw new ArgumentNullException(nameof(createdReferrals), "Property is not nullable for class IntegrationEventV3Response.");
 
-            return new IntegrationEventV3Response(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, loyalty, triggeredCampaigns, campaignEligibility, ruleFailureReasons, awardedGiveaways, achievements, advancedEvent);
+            return new IntegrationEventV3Response(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, loyalty, triggeredCampaigns, campaignEligibility, ruleFailureReasons, awardedGiveaways, achievements, advancedEvent, referral);
         }
 
         /// <summary>
@@ -425,6 +446,11 @@ namespace TalonOneSdk.Model
             {
                 writer.WritePropertyName("advancedEvent");
                 JsonSerializer.Serialize(writer, integrationEventV3Response.AdvancedEvent, jsonSerializerOptions);
+            }
+            if (integrationEventV3Response.ReferralOption.IsSet)
+            {
+                writer.WritePropertyName("referral");
+                JsonSerializer.Serialize(writer, integrationEventV3Response.Referral, jsonSerializerOptions);
             }
         }
     }

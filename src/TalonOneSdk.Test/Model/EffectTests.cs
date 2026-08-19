@@ -99,15 +99,6 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Props'
-        /// </summary>
-        [Fact]
-        public void PropsTest()
-        {
-            // TODO unit test for the property 'Props'
-        }
-
-        /// <summary>
         /// Test the property 'ExperimentId'
         /// </summary>
         [Fact]
@@ -204,6 +195,15 @@ namespace TalonOneSdk.Test.Model
         public void AdjustmentReferenceIdTest()
         {
             // TODO unit test for the property 'AdjustmentReferenceId'
+        }
+
+        /// <summary>
+        /// Test the property 'Props'
+        /// </summary>
+        [Fact]
+        public void PropsTest()
+        {
+            // TODO unit test for the property 'Props'
         }
     }
 }

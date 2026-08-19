@@ -38,8 +38,9 @@ namespace TalonOneSdk.Model
         /// <param name="evaluableCampaignIds">When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them. </param>
         /// <param name="attributes">Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute).</param>
         /// <param name="connectedSessionId">The ID of the session to reference. The session must be in &#x60;closed&#x60; state. Otherwise, the API call will fail.</param>
+        /// <param name="referralCode">The referral code submitted with the event. The endpoint does not validate the code, and submitting a code does not redeem it. Use the \&quot;Referral code is valid\&quot; condition in the Rule Builder to validate and redeem the code, or \&quot;Referral code is valid (without redemption)\&quot; to validate without redeeming. </param>
         [JsonConstructor]
-        public EventV3RequestEntity(string profileId, string type, string integrationId, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<Object> attributes = default, Option<string> connectedSessionId = default)
+        public EventV3RequestEntity(string profileId, string type, string integrationId, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<Object> attributes = default, Option<string> connectedSessionId = default, Option<string> referralCode = default)
         {
             ProfileId = profileId;
             Type = type;
@@ -48,6 +49,7 @@ namespace TalonOneSdk.Model
             EvaluableCampaignIdsOption = evaluableCampaignIds;
             AttributesOption = attributes;
             ConnectedSessionIdOption = connectedSessionId;
+            ReferralCodeOption = referralCode;
             OnCreated();
         }
 
@@ -138,6 +140,21 @@ namespace TalonOneSdk.Model
         public string ConnectedSessionId { get { return this.ConnectedSessionIdOption.Value; } set { this.ConnectedSessionIdOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of ReferralCode
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ReferralCodeOption { get; private set; }
+
+        /// <summary>
+        /// The referral code submitted with the event. The endpoint does not validate the code, and submitting a code does not redeem it. Use the \&quot;Referral code is valid\&quot; condition in the Rule Builder to validate and redeem the code, or \&quot;Referral code is valid (without redemption)\&quot; to validate without redeeming. 
+        /// </summary>
+        /// <value>The referral code submitted with the event. The endpoint does not validate the code, and submitting a code does not redeem it. Use the \&quot;Referral code is valid\&quot; condition in the Rule Builder to validate and redeem the code, or \&quot;Referral code is valid (without redemption)\&quot; to validate without redeeming. </value>
+        /* <example>NT2K54D9</example> */
+        [JsonPropertyName("referralCode")]
+        public string ReferralCode { get { return this.ReferralCodeOption.Value; } set { this.ReferralCodeOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -152,6 +169,7 @@ namespace TalonOneSdk.Model
             sb.Append("  EvaluableCampaignIds: ").Append(EvaluableCampaignIds).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  ConnectedSessionId: ").Append(ConnectedSessionId).Append("\n");
+            sb.Append("  ReferralCode: ").Append(ReferralCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -191,6 +209,12 @@ namespace TalonOneSdk.Model
             if (this.ConnectedSessionId != null && this.ConnectedSessionId.Length < 1)
             {
                 yield return new ValidationResult("Invalid value for ConnectedSessionId, length must be greater than 1.", new [] { "ConnectedSessionId" });
+            }
+
+            // ReferralCode (string) maxLength
+            if (this.ReferralCode != null && this.ReferralCode.Length > 100)
+            {
+                yield return new ValidationResult("Invalid value for ReferralCode, length must be less than 100.", new [] { "ReferralCode" });
             }
 
             yield break;
@@ -236,6 +260,7 @@ namespace TalonOneSdk.Model
             Option<List<long>> evaluableCampaignIds = default;
             Option<Object> attributes = default;
             Option<string> connectedSessionId = default;
+            Option<string> referralCode = default;
 
             while (utf8JsonReader.Read())
             {
@@ -273,6 +298,9 @@ namespace TalonOneSdk.Model
                         case "connectedSessionId":
                             connectedSessionId = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "referralCode":
+                            referralCode = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
@@ -297,7 +325,7 @@ namespace TalonOneSdk.Model
             if (integrationId.IsSet && integrationId.Value == null)
                 throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class EventV3RequestEntity.");
 
-            return new EventV3RequestEntity(profileId.Value, type.Value, integrationId.Value, storeIntegrationId, evaluableCampaignIds, attributes, connectedSessionId);
+            return new EventV3RequestEntity(profileId.Value, type.Value, integrationId.Value, storeIntegrationId, evaluableCampaignIds, attributes, connectedSessionId, referralCode);
         }
 
         /// <summary>
@@ -354,6 +382,9 @@ namespace TalonOneSdk.Model
             }
             if (eventV3RequestEntity.ConnectedSessionIdOption.IsSet)
                 writer.WriteString("connectedSessionId", eventV3RequestEntity.ConnectedSessionId);
+
+            if (eventV3RequestEntity.ReferralCodeOption.IsSet)
+                writer.WriteString("referralCode", eventV3RequestEntity.ReferralCode);
         }
     }
 }

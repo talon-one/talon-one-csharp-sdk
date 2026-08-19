@@ -125,6 +125,18 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test CreateAchievementV2
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task CreateAchievementV2AsyncTest()
+        {
+            CreateAchievementV2 createAchievementV2 = default;
+            var response = await _instance.CreateAchievementV2Async(createAchievementV2);
+            var model = response.Created();
+            Assert.IsType<TalonOneSdk.Model.AchievementV2>(model);
+        }
+
+        /// <summary>
         /// Test CreateAdditionalCost
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -364,6 +376,16 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test DeleteAchievementV2
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task DeleteAchievementV2AsyncTest()
+        {
+            long achievementId = default;
+            await _instance.DeleteAchievementV2Async(achievementId);
+        }
+
+        /// <summary>
         /// Test DeleteCampaign
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -510,6 +532,17 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test ExcludePriceHistory
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task ExcludePriceHistoryAsyncTest()
+        {
+            long applicationId = default;
+            ExcludePriceObservationsRequest excludePriceObservationsRequest = default;
+            await _instance.ExcludePriceHistoryAsync(applicationId, excludePriceObservationsRequest);
+        }
+
+        /// <summary>
         /// Test ExportAccountCollectionItems
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -517,6 +550,18 @@ namespace TalonOneSdk.Test.Api
         {
             long collectionId = default;
             var response = await _instance.ExportAccountCollectionItemsAsync(collectionId);
+            var model = response.Ok();
+            Assert.IsType<string>(model);
+        }
+
+        /// <summary>
+        /// Test ExportAchievementV2
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task ExportAchievementV2AsyncTest()
+        {
+            long achievementId = default;
+            var response = await _instance.ExportAchievementV2Async(achievementId);
             var model = response.Ok();
             Assert.IsType<string>(model);
         }
@@ -913,6 +958,18 @@ namespace TalonOneSdk.Test.Api
             var response = await _instance.GetAchievementAsync(applicationId, campaignId, achievementId);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.Achievement>(model);
+        }
+
+        /// <summary>
+        /// Test GetAchievementV2
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task GetAchievementV2AsyncTest()
+        {
+            long achievementId = default;
+            var response = await _instance.GetAchievementV2Async(achievementId);
+            var model = response.Ok();
+            Assert.IsType<TalonOneSdk.Model.AchievementV2>(model);
         }
 
         /// <summary>
@@ -2150,6 +2207,22 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test ListAchievementsV2
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task ListAchievementsV2AsyncTest()
+        {
+            Client.Option<long> pageSize = default;
+            Client.Option<long> skip = default;
+            Client.Option<string> sort = default;
+            Client.Option<string> title = default;
+            Client.Option<long> applicationId = default;
+            var response = await _instance.ListAchievementsV2Async(pageSize, skip, sort, title, applicationId);
+            var model = response.Ok();
+            Assert.IsType<TalonOneSdk.Model.ListAchievementsV2200Response>(model);
+        }
+
+        /// <summary>
         /// Test ListAllRolesV2
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -2601,6 +2674,19 @@ namespace TalonOneSdk.Test.Api
             var response = await _instance.UpdateAchievementAsync(applicationId, campaignId, achievementId, updateAchievement);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.Achievement>(model);
+        }
+
+        /// <summary>
+        /// Test UpdateAchievementV2
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task UpdateAchievementV2AsyncTest()
+        {
+            long achievementId = default;
+            UpdateAchievementV2 updateAchievementV2 = default;
+            var response = await _instance.UpdateAchievementV2Async(achievementId, updateAchievementV2);
+            var model = response.Ok();
+            Assert.IsType<TalonOneSdk.Model.AchievementV2>(model);
         }
 
         /// <summary>

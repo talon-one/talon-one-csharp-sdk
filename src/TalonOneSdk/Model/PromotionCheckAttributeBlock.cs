@@ -34,25 +34,35 @@ namespace TalonOneSdk.Model
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="operator">The comparison operator applied to the attribute.</param>
-        /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
+        /// <param name="attribute">attribute</param>
         /// <param name="value">value</param>
         /// <param name="min">min</param>
         /// <param name="max">max</param>
+        /// <param name="start">start</param>
+        /// <param name="end">end</param>
+        /// <param name="startInclusive">When &#x60;true&#x60;, the &#x60;start&#x60; value is included in the range for the &#x60;within&#x60; operator.</param>
+        /// <param name="endInclusive">When &#x60;true&#x60;, the &#x60;end&#x60; value is included in the range for the &#x60;within&#x60; operator.</param>
+        /// <param name="timezoneInsensitive">Indicates whether the &#x60;within&#x60; operator ignores time zones and compares the wall-clock time only. When &#x60;false&#x60;, time zones are taken into account.</param>
         /// <param name="values">values</param>
         /// <param name="count">count</param>
         /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public PromotionCheckAttributeBlock(string id, string type, OperatorEnum @operator, string attribute, Option<List<string>> tags = default, Option<Object> value = default, Option<Object> min = default, Option<Object> max = default, Option<Object> values = default, Option<Object> count = default, Option<List<PromotionBlock>> onFailure = default)
+        public PromotionCheckAttributeBlock(string id, string type, OperatorEnum @operator, Option<List<string>> tags = default, Object attribute = default, Option<Object> value = default, Option<Object> min = default, Option<Object> max = default, Option<Object> start = default, Option<Object> end = default, Option<bool?> startInclusive = default, Option<bool?> endInclusive = default, Option<bool?> timezoneInsensitive = default, Option<Object> values = default, Option<Object> count = default, Option<List<PromotionBlock>> onFailure = default)
         {
             Id = id;
             Type = type;
             Operator = @operator;
-            Attribute = attribute;
             TagsOption = tags;
+            Attribute = attribute;
             ValueOption = value;
             MinOption = min;
             MaxOption = max;
+            StartOption = start;
+            EndOption = end;
+            StartInclusiveOption = startInclusive;
+            EndInclusiveOption = endInclusive;
+            TimezoneInsensitiveOption = timezoneInsensitive;
             ValuesOption = values;
             CountOption = count;
             OnFailureOption = onFailure;
@@ -200,7 +210,27 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum ContainsAllOf for value: containsAllOf
             /// </summary>
-            ContainsAllOf = 27
+            ContainsAllOf = 27,
+
+            /// <summary>
+            /// Enum After for value: after
+            /// </summary>
+            After = 28,
+
+            /// <summary>
+            /// Enum Before for value: before
+            /// </summary>
+            Before = 29,
+
+            /// <summary>
+            /// Enum Within for value: within
+            /// </summary>
+            Within = 30,
+
+            /// <summary>
+            /// Enum Notwithin for value: not(within)
+            /// </summary>
+            Notwithin = 31
         }
 
         /// <summary>
@@ -292,6 +322,18 @@ namespace TalonOneSdk.Model
             if (value.Equals("containsAllOf"))
                 return OperatorEnum.ContainsAllOf;
 
+            if (value.Equals("after"))
+                return OperatorEnum.After;
+
+            if (value.Equals("before"))
+                return OperatorEnum.Before;
+
+            if (value.Equals("within"))
+                return OperatorEnum.Within;
+
+            if (value.Equals("not(within)"))
+                return OperatorEnum.Notwithin;
+
             throw new NotImplementedException($"Could not convert value to type OperatorEnum: '{value}'");
         }
 
@@ -382,6 +424,18 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("containsAllOf"))
                 return OperatorEnum.ContainsAllOf;
+
+            if (value.Equals("after"))
+                return OperatorEnum.After;
+
+            if (value.Equals("before"))
+                return OperatorEnum.Before;
+
+            if (value.Equals("within"))
+                return OperatorEnum.Within;
+
+            if (value.Equals("not(within)"))
+                return OperatorEnum.Notwithin;
 
             return null;
         }
@@ -475,6 +529,18 @@ namespace TalonOneSdk.Model
             if (value == OperatorEnum.ContainsAllOf)
                 return "containsAllOf";
 
+            if (value == OperatorEnum.After)
+                return "after";
+
+            if (value == OperatorEnum.Before)
+                return "before";
+
+            if (value == OperatorEnum.Within)
+                return "within";
+
+            if (value == OperatorEnum.Notwithin)
+                return "not(within)";
+
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
 
@@ -502,14 +568,6 @@ namespace TalonOneSdk.Model
         public string Type { get; set; }
 
         /// <summary>
-        /// The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).
-        /// </summary>
-        /// <value>The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</value>
-        /* <example>$Session.Total</example> */
-        [JsonPropertyName("attribute")]
-        public string Attribute { get; set; }
-
-        /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
@@ -522,6 +580,12 @@ namespace TalonOneSdk.Model
         /// <value>Semantic labels attached to this block.</value>
         [JsonPropertyName("tags")]
         public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+
+        /// <summary>
+        /// Gets or Sets Attribute
+        /// </summary>
+        [JsonPropertyName("attribute")]
+        public Object Attribute { get; set; }
 
         /// <summary>
         /// Used to track the state of Value
@@ -561,6 +625,77 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonPropertyName("max")]
         public Object Max { get { return this.MaxOption.Value; } set { this.MaxOption = new Option<Object>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Start
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> StartOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Start
+        /// </summary>
+        [JsonPropertyName("start")]
+        public Object Start { get { return this.StartOption.Value; } set { this.StartOption = new Option<Object>(value); } }
+
+        /// <summary>
+        /// Used to track the state of End
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> EndOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets End
+        /// </summary>
+        [JsonPropertyName("end")]
+        public Object End { get { return this.EndOption.Value; } set { this.EndOption = new Option<Object>(value); } }
+
+        /// <summary>
+        /// Used to track the state of StartInclusive
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> StartInclusiveOption { get; private set; }
+
+        /// <summary>
+        /// When &#x60;true&#x60;, the &#x60;start&#x60; value is included in the range for the &#x60;within&#x60; operator.
+        /// </summary>
+        /// <value>When &#x60;true&#x60;, the &#x60;start&#x60; value is included in the range for the &#x60;within&#x60; operator.</value>
+        /* <example>true</example> */
+        [JsonPropertyName("startInclusive")]
+        public bool? StartInclusive { get { return this.StartInclusiveOption.Value; } set { this.StartInclusiveOption = new Option<bool?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of EndInclusive
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> EndInclusiveOption { get; private set; }
+
+        /// <summary>
+        /// When &#x60;true&#x60;, the &#x60;end&#x60; value is included in the range for the &#x60;within&#x60; operator.
+        /// </summary>
+        /// <value>When &#x60;true&#x60;, the &#x60;end&#x60; value is included in the range for the &#x60;within&#x60; operator.</value>
+        /* <example>true</example> */
+        [JsonPropertyName("endInclusive")]
+        public bool? EndInclusive { get { return this.EndInclusiveOption.Value; } set { this.EndInclusiveOption = new Option<bool?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of TimezoneInsensitive
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> TimezoneInsensitiveOption { get; private set; }
+
+        /// <summary>
+        /// Indicates whether the &#x60;within&#x60; operator ignores time zones and compares the wall-clock time only. When &#x60;false&#x60;, time zones are taken into account.
+        /// </summary>
+        /// <value>Indicates whether the &#x60;within&#x60; operator ignores time zones and compares the wall-clock time only. When &#x60;false&#x60;, time zones are taken into account.</value>
+        /* <example>false</example> */
+        [JsonPropertyName("timezoneInsensitive")]
+        public bool? TimezoneInsensitive { get { return this.TimezoneInsensitiveOption.Value; } set { this.TimezoneInsensitiveOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of Values
@@ -613,11 +748,16 @@ namespace TalonOneSdk.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Operator: ").Append(Operator).Append("\n");
-            sb.Append("  Attribute: ").Append(Attribute).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
+            sb.Append("  Attribute: ").Append(Attribute).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("  Min: ").Append(Min).Append("\n");
             sb.Append("  Max: ").Append(Max).Append("\n");
+            sb.Append("  Start: ").Append(Start).Append("\n");
+            sb.Append("  End: ").Append(End).Append("\n");
+            sb.Append("  StartInclusive: ").Append(StartInclusive).Append("\n");
+            sb.Append("  EndInclusive: ").Append(EndInclusive).Append("\n");
+            sb.Append("  TimezoneInsensitive: ").Append(TimezoneInsensitive).Append("\n");
             sb.Append("  Values: ").Append(Values).Append("\n");
             sb.Append("  Count: ").Append(Count).Append("\n");
             sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
@@ -671,11 +811,16 @@ namespace TalonOneSdk.Model
             Option<string> id = default;
             Option<string> type = default;
             Option<PromotionCheckAttributeBlock.OperatorEnum?> varOperator = default;
-            Option<string> attribute = default;
             Option<List<string>> tags = default;
+            Option<Object> attribute = default;
             Option<Object> value = default;
             Option<Object> min = default;
             Option<Object> max = default;
+            Option<Object> start = default;
+            Option<Object> end = default;
+            Option<bool?> startInclusive = default;
+            Option<bool?> endInclusive = default;
+            Option<bool?> timezoneInsensitive = default;
             Option<Object> values = default;
             Option<Object> count = default;
             Option<List<PromotionBlock>> onFailure = default;
@@ -706,11 +851,11 @@ namespace TalonOneSdk.Model
                             if (varOperatorRawValue != null)
                                 varOperator = new Option<PromotionCheckAttributeBlock.OperatorEnum?>(PromotionCheckAttributeBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue));
                             break;
-                        case "attribute":
-                            attribute = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "attribute":
+                            attribute = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "value":
                             value = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
@@ -720,6 +865,21 @@ namespace TalonOneSdk.Model
                             break;
                         case "max":
                             max = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "start":
+                            start = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "end":
+                            end = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "startInclusive":
+                            startInclusive = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "endInclusive":
+                            endInclusive = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "timezoneInsensitive":
+                            timezoneInsensitive = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "values":
                             values = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
@@ -757,10 +917,7 @@ namespace TalonOneSdk.Model
             if (varOperator.IsSet && varOperator.Value == null)
                 throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class PromotionCheckAttributeBlock.");
 
-            if (attribute.IsSet && attribute.Value == null)
-                throw new ArgumentNullException(nameof(attribute), "Property is not nullable for class PromotionCheckAttributeBlock.");
-
-            return new PromotionCheckAttributeBlock(id.Value, type.Value, varOperator.Value.Value, attribute.Value, tags, value, min, max, values, count, onFailure);
+            return new PromotionCheckAttributeBlock(id.Value, type.Value, varOperator.Value.Value, tags, attribute.Value, value, min, max, start, end, startInclusive, endInclusive, timezoneInsensitive, values, count, onFailure);
         }
 
         /// <summary>
@@ -793,22 +950,24 @@ namespace TalonOneSdk.Model
             if (promotionCheckAttributeBlock.Type == null)
                 throw new ArgumentNullException(nameof(promotionCheckAttributeBlock.Type), "Property is required for class PromotionCheckAttributeBlock.");
 
-            if (promotionCheckAttributeBlock.Attribute == null)
-                throw new ArgumentNullException(nameof(promotionCheckAttributeBlock.Attribute), "Property is required for class PromotionCheckAttributeBlock.");
-
             writer.WriteString("id", promotionCheckAttributeBlock.Id);
 
             writer.WriteString("type", promotionCheckAttributeBlock.Type);
 
             var varOperatorRawValue = PromotionCheckAttributeBlock.OperatorEnumToJsonValue(promotionCheckAttributeBlock.Operator);
             writer.WriteString("operator", varOperatorRawValue);
-            writer.WriteString("attribute", promotionCheckAttributeBlock.Attribute);
-
             if (promotionCheckAttributeBlock.TagsOption.IsSet)
             {
                 writer.WritePropertyName("tags");
                 JsonSerializer.Serialize(writer, promotionCheckAttributeBlock.Tags, jsonSerializerOptions);
             }
+            if (promotionCheckAttributeBlock.Attribute != null)
+            {
+                writer.WritePropertyName("attribute");
+                JsonSerializer.Serialize(writer, promotionCheckAttributeBlock.Attribute, jsonSerializerOptions);
+            }
+            else
+                writer.WriteNull("attribute");
             if (promotionCheckAttributeBlock.ValueOption.IsSet)
                 if (promotionCheckAttributeBlock.ValueOption.Value != null)
                 {
@@ -833,6 +992,31 @@ namespace TalonOneSdk.Model
                 }
                 else
                     writer.WriteNull("max");
+            if (promotionCheckAttributeBlock.StartOption.IsSet)
+                if (promotionCheckAttributeBlock.StartOption.Value != null)
+                {
+                    writer.WritePropertyName("start");
+                    JsonSerializer.Serialize(writer, promotionCheckAttributeBlock.Start, jsonSerializerOptions);
+                }
+                else
+                    writer.WriteNull("start");
+            if (promotionCheckAttributeBlock.EndOption.IsSet)
+                if (promotionCheckAttributeBlock.EndOption.Value != null)
+                {
+                    writer.WritePropertyName("end");
+                    JsonSerializer.Serialize(writer, promotionCheckAttributeBlock.End, jsonSerializerOptions);
+                }
+                else
+                    writer.WriteNull("end");
+            if (promotionCheckAttributeBlock.StartInclusiveOption.IsSet)
+                writer.WriteBoolean("startInclusive", promotionCheckAttributeBlock.StartInclusiveOption.Value.Value);
+
+            if (promotionCheckAttributeBlock.EndInclusiveOption.IsSet)
+                writer.WriteBoolean("endInclusive", promotionCheckAttributeBlock.EndInclusiveOption.Value.Value);
+
+            if (promotionCheckAttributeBlock.TimezoneInsensitiveOption.IsSet)
+                writer.WriteBoolean("timezoneInsensitive", promotionCheckAttributeBlock.TimezoneInsensitiveOption.Value.Value);
+
             if (promotionCheckAttributeBlock.ValuesOption.IsSet)
                 if (promotionCheckAttributeBlock.ValuesOption.Value != null)
                 {

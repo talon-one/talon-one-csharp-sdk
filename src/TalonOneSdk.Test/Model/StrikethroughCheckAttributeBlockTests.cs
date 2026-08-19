@@ -81,21 +81,21 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Attribute'
-        /// </summary>
-        [Fact]
-        public void AttributeTest()
-        {
-            // TODO unit test for the property 'Attribute'
-        }
-
-        /// <summary>
         /// Test the property 'Tags'
         /// </summary>
         [Fact]
         public void TagsTest()
         {
             // TODO unit test for the property 'Tags'
+        }
+
+        /// <summary>
+        /// Test the property 'Attribute'
+        /// </summary>
+        [Fact]
+        public void AttributeTest()
+        {
+            // TODO unit test for the property 'Attribute'
         }
 
         /// <summary>
@@ -123,6 +123,51 @@ namespace TalonOneSdk.Test.Model
         public void MaxTest()
         {
             // TODO unit test for the property 'Max'
+        }
+
+        /// <summary>
+        /// Test the property 'Start'
+        /// </summary>
+        [Fact]
+        public void StartTest()
+        {
+            // TODO unit test for the property 'Start'
+        }
+
+        /// <summary>
+        /// Test the property 'End'
+        /// </summary>
+        [Fact]
+        public void EndTest()
+        {
+            // TODO unit test for the property 'End'
+        }
+
+        /// <summary>
+        /// Test the property 'StartInclusive'
+        /// </summary>
+        [Fact]
+        public void StartInclusiveTest()
+        {
+            // TODO unit test for the property 'StartInclusive'
+        }
+
+        /// <summary>
+        /// Test the property 'EndInclusive'
+        /// </summary>
+        [Fact]
+        public void EndInclusiveTest()
+        {
+            // TODO unit test for the property 'EndInclusive'
+        }
+
+        /// <summary>
+        /// Test the property 'TimezoneInsensitive'
+        /// </summary>
+        [Fact]
+        public void TimezoneInsensitiveTest()
+        {
+            // TODO unit test for the property 'TimezoneInsensitive'
         }
 
         /// <summary>

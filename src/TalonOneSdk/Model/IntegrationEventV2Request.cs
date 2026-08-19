@@ -96,7 +96,12 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum Achievements for value: achievements
             /// </summary>
-            Achievements = 8
+            Achievements = 8,
+
+            /// <summary>
+            /// Enum UnlockedRewards for value: unlockedRewards
+            /// </summary>
+            UnlockedRewards = 9
         }
 
         /// <summary>
@@ -130,6 +135,9 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("achievements"))
                 return ResponseContentEnum.Achievements;
+
+            if (value.Equals("unlockedRewards"))
+                return ResponseContentEnum.UnlockedRewards;
 
             throw new NotImplementedException($"Could not convert value to type ResponseContentEnum: '{value}'");
         }
@@ -165,6 +173,9 @@ namespace TalonOneSdk.Model
             if (value.Equals("achievements"))
                 return ResponseContentEnum.Achievements;
 
+            if (value.Equals("unlockedRewards"))
+                return ResponseContentEnum.UnlockedRewards;
+
             return null;
         }
 
@@ -199,6 +210,9 @@ namespace TalonOneSdk.Model
 
             if (value == ResponseContentEnum.Achievements)
                 return "achievements";
+
+            if (value == ResponseContentEnum.UnlockedRewards)
+                return "unlockedRewards";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }

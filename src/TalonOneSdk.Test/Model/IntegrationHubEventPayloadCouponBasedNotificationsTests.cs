@@ -54,6 +54,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'EventId'
+        /// </summary>
+        [Fact]
+        public void EventIdTest()
+        {
+            // TODO unit test for the property 'EventId'
+        }
+
+        /// <summary>
         /// Test the property 'Id'
         /// </summary>
         [Fact]

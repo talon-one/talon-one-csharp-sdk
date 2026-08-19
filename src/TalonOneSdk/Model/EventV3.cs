@@ -41,8 +41,9 @@ namespace TalonOneSdk.Model
         /// <param name="profileId">ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </param>
         /// <param name="storeIntegrationId">The integration ID of the store. You choose this ID when you create a store.</param>
         /// <param name="integrationId">The unique ID of the event. Only one event with this ID can be registered. </param>
+        /// <param name="referralCode">The referral code submitted with the event. The endpoint does not validate the code, and submitting a code does not redeem it. Use the \&quot;Referral code is valid\&quot; condition in the Rule Builder to validate and redeem the code, or \&quot;Referral code is valid (without redemption)\&quot; to validate without redeeming. </param>
         [JsonConstructor]
-        public EventV3(long id, DateTime created, long applicationId, string type, Object attributes, List<Object> effects, Option<string> connectedSessionId = default, Option<string> profileId = default, Option<string> storeIntegrationId = default, Option<string> integrationId = default)
+        public EventV3(long id, DateTime created, long applicationId, string type, Object attributes, List<Object> effects, Option<string> connectedSessionId = default, Option<string> profileId = default, Option<string> storeIntegrationId = default, Option<string> integrationId = default, Option<string> referralCode = default)
         {
             Id = id;
             Created = created;
@@ -54,6 +55,7 @@ namespace TalonOneSdk.Model
             ProfileIdOption = profileId;
             StoreIntegrationIdOption = storeIntegrationId;
             IntegrationIdOption = integrationId;
+            ReferralCodeOption = referralCode;
             OnCreated();
         }
 
@@ -167,6 +169,21 @@ namespace TalonOneSdk.Model
         public string IntegrationId { get { return this.IntegrationIdOption.Value; } set { this.IntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of ReferralCode
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ReferralCodeOption { get; private set; }
+
+        /// <summary>
+        /// The referral code submitted with the event. The endpoint does not validate the code, and submitting a code does not redeem it. Use the \&quot;Referral code is valid\&quot; condition in the Rule Builder to validate and redeem the code, or \&quot;Referral code is valid (without redemption)\&quot; to validate without redeeming. 
+        /// </summary>
+        /// <value>The referral code submitted with the event. The endpoint does not validate the code, and submitting a code does not redeem it. Use the \&quot;Referral code is valid\&quot; condition in the Rule Builder to validate and redeem the code, or \&quot;Referral code is valid (without redemption)\&quot; to validate without redeeming. </value>
+        /* <example>NT2K54D9</example> */
+        [JsonPropertyName("referralCode")]
+        public string ReferralCode { get { return this.ReferralCodeOption.Value; } set { this.ReferralCodeOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -184,6 +201,7 @@ namespace TalonOneSdk.Model
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  StoreIntegrationId: ").Append(StoreIntegrationId).Append("\n");
             sb.Append("  IntegrationId: ").Append(IntegrationId).Append("\n");
+            sb.Append("  ReferralCode: ").Append(ReferralCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -223,6 +241,12 @@ namespace TalonOneSdk.Model
             if (this.IntegrationId != null && this.IntegrationId.Length < 1)
             {
                 yield return new ValidationResult("Invalid value for IntegrationId, length must be greater than 1.", new [] { "IntegrationId" });
+            }
+
+            // ReferralCode (string) maxLength
+            if (this.ReferralCode != null && this.ReferralCode.Length > 100)
+            {
+                yield return new ValidationResult("Invalid value for ReferralCode, length must be less than 100.", new [] { "ReferralCode" });
             }
 
             yield break;
@@ -276,6 +300,7 @@ namespace TalonOneSdk.Model
             Option<string> profileId = default;
             Option<string> storeIntegrationId = default;
             Option<string> integrationId = default;
+            Option<string> referralCode = default;
 
             while (utf8JsonReader.Read())
             {
@@ -322,6 +347,9 @@ namespace TalonOneSdk.Model
                         case "integrationId":
                             integrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "referralCode":
+                            referralCode = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
@@ -364,7 +392,7 @@ namespace TalonOneSdk.Model
             if (effects.IsSet && effects.Value == null)
                 throw new ArgumentNullException(nameof(effects), "Property is not nullable for class EventV3.");
 
-            return new EventV3(id.Value.Value, created.Value.Value, applicationId.Value.Value, type.Value, attributes.Value, effects.Value, connectedSessionId, profileId, storeIntegrationId, integrationId);
+            return new EventV3(id.Value.Value, created.Value.Value, applicationId.Value.Value, type.Value, attributes.Value, effects.Value, connectedSessionId, profileId, storeIntegrationId, integrationId, referralCode);
         }
 
         /// <summary>
@@ -423,6 +451,9 @@ namespace TalonOneSdk.Model
 
             if (eventV3.IntegrationIdOption.IsSet)
                 writer.WriteString("integrationId", eventV3.IntegrationId);
+
+            if (eventV3.ReferralCodeOption.IsSet)
+                writer.WriteString("referralCode", eventV3.ReferralCode);
         }
     }
 }

@@ -37,9 +37,10 @@ namespace TalonOneSdk.Model
         /// <param name="price">Price of the item.</param>
         /// <param name="metadata">metadata</param>
         /// <param name="target">target</param>
-        /// <param name="contextId">This property is **deprecated**. Use &#x60;contextIds&#x60; instead. Defaults to an empty string.  (default to &quot;&quot;)</param>
+        /// <param name="excludedAt">The date and time when the historical price ID was excluded.</param>
+        /// <param name="exclusionReason">The reason for excluding this historical price ID.</param>
         [JsonConstructor]
-        public History(long id, DateTime observedAt, List<string> contextIds, decimal price, BestPriorPriceMetadata metadata, LabelTarget target, Option<string> contextId = default)
+        public History(long id, DateTime observedAt, List<string> contextIds, decimal price, BestPriorPriceMetadata metadata, LabelTarget target, Option<DateTime?> excludedAt = default, Option<string> exclusionReason = default)
         {
             Id = id;
             ObservedAt = observedAt;
@@ -47,7 +48,8 @@ namespace TalonOneSdk.Model
             Price = price;
             Metadata = metadata;
             Target = target;
-            ContextIdOption = contextId;
+            ExcludedAtOption = excludedAt;
+            ExclusionReasonOption = exclusionReason;
             OnCreated();
         }
 
@@ -98,19 +100,34 @@ namespace TalonOneSdk.Model
         public LabelTarget Target { get; set; }
 
         /// <summary>
-        /// Used to track the state of ContextId
+        /// Used to track the state of ExcludedAt
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> ContextIdOption { get; private set; }
+        public Option<DateTime?> ExcludedAtOption { get; private set; }
 
         /// <summary>
-        /// This property is **deprecated**. Use &#x60;contextIds&#x60; instead. Defaults to an empty string. 
+        /// The date and time when the historical price ID was excluded.
         /// </summary>
-        /// <value>This property is **deprecated**. Use &#x60;contextIds&#x60; instead. Defaults to an empty string. </value>
-        [JsonPropertyName("contextId")]
-        [Obsolete]
-        public string ContextId { get { return this.ContextIdOption.Value; } set { this.ContextIdOption = new Option<string>(value); } }
+        /// <value>The date and time when the historical price ID was excluded.</value>
+        /* <example>2025-11-10T23:00:00Z</example> */
+        [JsonPropertyName("excludedAt")]
+        public DateTime? ExcludedAt { get { return this.ExcludedAtOption.Value; } set { this.ExcludedAtOption = new Option<DateTime?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of ExclusionReason
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ExclusionReasonOption { get; private set; }
+
+        /// <summary>
+        /// The reason for excluding this historical price ID.
+        /// </summary>
+        /// <value>The reason for excluding this historical price ID.</value>
+        /* <example>Incorrect contextID value</example> */
+        [JsonPropertyName("exclusionReason")]
+        public string ExclusionReason { get { return this.ExclusionReasonOption.Value; } set { this.ExclusionReasonOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -126,7 +143,8 @@ namespace TalonOneSdk.Model
             sb.Append("  Price: ").Append(Price).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  Target: ").Append(Target).Append("\n");
-            sb.Append("  ContextId: ").Append(ContextId).Append("\n");
+            sb.Append("  ExcludedAt: ").Append(ExcludedAt).Append("\n");
+            sb.Append("  ExclusionReason: ").Append(ExclusionReason).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -163,6 +181,11 @@ namespace TalonOneSdk.Model
         public string ObservedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
+        /// The format to use to serialize ExcludedAt
+        /// </summary>
+        public string ExcludedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+
+        /// <summary>
         /// Deserializes json to <see cref="History" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
@@ -185,7 +208,8 @@ namespace TalonOneSdk.Model
             Option<decimal?> price = default;
             Option<BestPriorPriceMetadata> metadata = default;
             Option<LabelTarget> target = default;
-            Option<string> contextId = default;
+            Option<DateTime?> excludedAt = default;
+            Option<string> exclusionReason = default;
 
             while (utf8JsonReader.Read())
             {
@@ -220,8 +244,11 @@ namespace TalonOneSdk.Model
                         case "target":
                             target = new Option<LabelTarget>(JsonSerializer.Deserialize<LabelTarget>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "contextId":
-                            contextId = new Option<string>(utf8JsonReader.GetString());
+                        case "excludedAt":
+                            excludedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "exclusionReason":
+                            exclusionReason = new Option<string>(utf8JsonReader.GetString());
                             break;
                         default:
                             break;
@@ -265,7 +292,7 @@ namespace TalonOneSdk.Model
             if (target.IsSet && target.Value == null)
                 throw new ArgumentNullException(nameof(target), "Property is not nullable for class History.");
 
-            return new History(id.Value.Value, observedAt.Value.Value, contextIds.Value, price.Value.Value, metadata.Value, target.Value, contextId);
+            return new History(id.Value.Value, observedAt.Value.Value, contextIds.Value, price.Value.Value, metadata.Value, target.Value, excludedAt, exclusionReason);
         }
 
         /// <summary>
@@ -313,8 +340,11 @@ namespace TalonOneSdk.Model
             JsonSerializer.Serialize(writer, history.Metadata, jsonSerializerOptions);
             writer.WritePropertyName("target");
             JsonSerializer.Serialize(writer, history.Target, jsonSerializerOptions);
-            if (history.ContextIdOption.IsSet)
-                writer.WriteString("contextId", history.ContextId);
+            if (history.ExcludedAtOption.IsSet)
+                writer.WriteString("excludedAt", history.ExcludedAtOption.Value.Value.ToString(ExcludedAtFormat));
+
+            if (history.ExclusionReasonOption.IsSet)
+                writer.WriteString("exclusionReason", history.ExclusionReason);
         }
     }
 }

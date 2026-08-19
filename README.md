@@ -259,6 +259,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**CopyCampaignToApplications**](docs/apis/ManagementApi.md#copycampaigntoapplications) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/copy | Copy the campaign into the specified Application
 *ManagementApi* | [**CreateAccountCollection**](docs/apis/ManagementApi.md#createaccountcollection) | **POST** /v1/collections | Create account-level collection
 *ManagementApi* | [**CreateAchievement**](docs/apis/ManagementApi.md#createachievement) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements | Create achievement
+*ManagementApi* | [**CreateAchievementV2**](docs/apis/ManagementApi.md#createachievementv2) | **POST** /v2/achievements | Create achievement
 *ManagementApi* | [**CreateAdditionalCost**](docs/apis/ManagementApi.md#createadditionalcost) | **POST** /v1/additional_costs | Create additional cost
 *ManagementApi* | [**CreateAttribute**](docs/apis/ManagementApi.md#createattribute) | **POST** /v1/attributes | Create custom attribute
 *ManagementApi* | [**CreateBatchLoyaltyCards**](docs/apis/ManagementApi.md#createbatchloyaltycards) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/cards/batch | Create loyalty cards
@@ -278,6 +279,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**DeductLoyaltyCardPoints**](docs/apis/ManagementApi.md#deductloyaltycardpoints) | **PUT** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/deduct_points | Deduct points from card
 *ManagementApi* | [**DeleteAccountCollection**](docs/apis/ManagementApi.md#deleteaccountcollection) | **DELETE** /v1/collections/{collectionId} | Delete account-level collection
 *ManagementApi* | [**DeleteAchievement**](docs/apis/ManagementApi.md#deleteachievement) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId} | Delete achievement
+*ManagementApi* | [**DeleteAchievementV2**](docs/apis/ManagementApi.md#deleteachievementv2) | **DELETE** /v2/achievements/{achievementId} | Delete achievement
 *ManagementApi* | [**DeleteCampaign**](docs/apis/ManagementApi.md#deletecampaign) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId} | Delete campaign
 *ManagementApi* | [**DeleteCampaignStoreBudgets**](docs/apis/ManagementApi.md#deletecampaignstorebudgets) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets | Delete campaign store budgets
 *ManagementApi* | [**DeleteCollection**](docs/apis/ManagementApi.md#deletecollection) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Delete campaign-level collection
@@ -290,7 +292,9 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**DeleteUserByEmail**](docs/apis/ManagementApi.md#deleteuserbyemail) | **POST** /v1/users/delete | Delete user by email address
 *ManagementApi* | [**DestroySession**](docs/apis/ManagementApi.md#destroysession) | **DELETE** /v1/sessions | Destroy session
 *ManagementApi* | [**DisconnectCampaignStores**](docs/apis/ManagementApi.md#disconnectcampaignstores) | **DELETE** /v1/applications/{applicationId}/campaigns/{campaignId}/stores | Disconnect stores
+*ManagementApi* | [**ExcludePriceHistory**](docs/apis/ManagementApi.md#excludepricehistory) | **POST** /v1/applications/{applicationId}/price_history/exclusions | Exclude price records from price history
 *ManagementApi* | [**ExportAccountCollectionItems**](docs/apis/ManagementApi.md#exportaccountcollectionitems) | **GET** /v1/collections/{collectionId}/export | Export account-level collection's items
+*ManagementApi* | [**ExportAchievementV2**](docs/apis/ManagementApi.md#exportachievementv2) | **GET** /v2/achievements/{achievementId}/export | Export achievement customer data
 *ManagementApi* | [**ExportAchievements**](docs/apis/ManagementApi.md#exportachievements) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId}/export | Export achievement customer data
 *ManagementApi* | [**ExportApplicationCampaignAnalytics**](docs/apis/ManagementApi.md#exportapplicationcampaignanalytics) | **GET** /v1/applications/{applicationId}/campaign_analytics/export | Export Application analytics aggregated by campaign
 *ManagementApi* | [**ExportAudiencesMemberships**](docs/apis/ManagementApi.md#exportaudiencesmemberships) | **GET** /v1/audiences/{audienceId}/memberships/export | Export audience members
@@ -317,6 +321,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**GetAccountAnalytics**](docs/apis/ManagementApi.md#getaccountanalytics) | **GET** /v1/accounts/{accountId}/analytics | Get account analytics
 *ManagementApi* | [**GetAccountCollection**](docs/apis/ManagementApi.md#getaccountcollection) | **GET** /v1/collections/{collectionId} | Get account-level collection
 *ManagementApi* | [**GetAchievement**](docs/apis/ManagementApi.md#getachievement) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId} | Get achievement
+*ManagementApi* | [**GetAchievementV2**](docs/apis/ManagementApi.md#getachievementv2) | **GET** /v2/achievements/{achievementId} | Get achievement
 *ManagementApi* | [**GetAdditionalCost**](docs/apis/ManagementApi.md#getadditionalcost) | **GET** /v1/additional_costs/{additionalCostId} | Get additional cost
 *ManagementApi* | [**GetAdditionalCosts**](docs/apis/ManagementApi.md#getadditionalcosts) | **GET** /v1/additional_costs | List additional costs
 *ManagementApi* | [**GetApplication**](docs/apis/ManagementApi.md#getapplication) | **GET** /v1/applications/{applicationId} | Get Application
@@ -396,6 +401,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**InviteUserExternal**](docs/apis/ManagementApi.md#inviteuserexternal) | **POST** /v1/users/invite | Invite user from identity provider
 *ManagementApi* | [**ListAccountCollections**](docs/apis/ManagementApi.md#listaccountcollections) | **GET** /v1/collections | List collections in account
 *ManagementApi* | [**ListAchievements**](docs/apis/ManagementApi.md#listachievements) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements | List achievements
+*ManagementApi* | [**ListAchievementsV2**](docs/apis/ManagementApi.md#listachievementsv2) | **GET** /v2/achievements | List achievements
 *ManagementApi* | [**ListAllRolesV2**](docs/apis/ManagementApi.md#listallrolesv2) | **GET** /v2/roles | List roles
 *ManagementApi* | [**ListApplicationCartItemFilters**](docs/apis/ManagementApi.md#listapplicationcartitemfilters) | **GET** /v1/applications/{applicationId}/cart_item_filters | List Application cart item filters
 *ManagementApi* | [**ListCampaignStoreBudgetLimits**](docs/apis/ManagementApi.md#listcampaignstorebudgetlimits) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets | List campaign store budget limits
@@ -429,6 +435,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**TransferLoyaltyCard**](docs/apis/ManagementApi.md#transferloyaltycard) | **PUT** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transfer | Transfer card data
 *ManagementApi* | [**UpdateAccountCollection**](docs/apis/ManagementApi.md#updateaccountcollection) | **PUT** /v1/collections/{collectionId} | Update account-level collection
 *ManagementApi* | [**UpdateAchievement**](docs/apis/ManagementApi.md#updateachievement) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId} | Update achievement
+*ManagementApi* | [**UpdateAchievementV2**](docs/apis/ManagementApi.md#updateachievementv2) | **PUT** /v2/achievements/{achievementId} | Update achievement
 *ManagementApi* | [**UpdateAdditionalCost**](docs/apis/ManagementApi.md#updateadditionalcost) | **PUT** /v1/additional_costs/{additionalCostId} | Update additional cost
 *ManagementApi* | [**UpdateAttribute**](docs/apis/ManagementApi.md#updateattribute) | **PUT** /v1/attributes/{attributeId} | Update custom attribute
 *ManagementApi* | [**UpdateCampaign**](docs/apis/ManagementApi.md#updatecampaign) | **PUT** /v1/applications/{applicationId}/campaigns/{campaignId} | Update campaign
@@ -475,6 +482,7 @@ Class | Method | HTTP request | Description
 - [Model.AddItemCatalogAction](docs/models/AddItemCatalogAction.md)
 - [Model.AddLoyaltyPoints](docs/models/AddLoyaltyPoints.md)
 - [Model.AddLoyaltyPointsEffectProps](docs/models/AddLoyaltyPointsEffectProps.md)
+- [Model.AddLoyaltyPointsSupport](docs/models/AddLoyaltyPointsSupport.md)
 - [Model.AddPriceAdjustmentCatalogAction](docs/models/AddPriceAdjustmentCatalogAction.md)
 - [Model.AddToAudienceEffectProps](docs/models/AddToAudienceEffectProps.md)
 - [Model.AddedDeductedPointsBalancesAction](docs/models/AddedDeductedPointsBalancesAction.md)
@@ -484,6 +492,7 @@ Class | Method | HTTP request | Description
 - [Model.AddedDeductedPointsNotificationPolicy](docs/models/AddedDeductedPointsNotificationPolicy.md)
 - [Model.AdditionalCampaignProperties](docs/models/AdditionalCampaignProperties.md)
 - [Model.AdditionalCost](docs/models/AdditionalCost.md)
+- [Model.AdditionalCostReference](docs/models/AdditionalCostReference.md)
 - [Model.AdjustmentDetails](docs/models/AdjustmentDetails.md)
 - [Model.AnalyticsDataPoint](docs/models/AnalyticsDataPoint.md)
 - [Model.AnalyticsDataPointWithTrend](docs/models/AnalyticsDataPointWithTrend.md)
@@ -504,6 +513,7 @@ Class | Method | HTTP request | Description
 - [Model.ApplicationCustomerEntity](docs/models/ApplicationCustomerEntity.md)
 - [Model.ApplicationEntity](docs/models/ApplicationEntity.md)
 - [Model.ApplicationEvent](docs/models/ApplicationEvent.md)
+- [Model.ApplicationMembership](docs/models/ApplicationMembership.md)
 - [Model.ApplicationReferee](docs/models/ApplicationReferee.md)
 - [Model.ApplicationSession](docs/models/ApplicationSession.md)
 - [Model.ApplicationSessionEntity](docs/models/ApplicationSessionEntity.md)
@@ -520,6 +530,19 @@ Class | Method | HTTP request | Description
 - [Model.AudienceIntegrationID](docs/models/AudienceIntegrationID.md)
 - [Model.AudienceMembership](docs/models/AudienceMembership.md)
 - [Model.AudienceReference](docs/models/AudienceReference.md)
+- [Model.AwardDiscountAdditionalCostTarget](docs/models/AwardDiscountAdditionalCostTarget.md)
+- [Model.AwardDiscountAdditionalCostTargetTarget](docs/models/AwardDiscountAdditionalCostTargetTarget.md)
+- [Model.AwardDiscountAllItemsTarget](docs/models/AwardDiscountAllItemsTarget.md)
+- [Model.AwardDiscountBlock](docs/models/AwardDiscountBlock.md)
+- [Model.AwardDiscountBlock1Value](docs/models/AwardDiscountBlock1Value.md)
+- [Model.AwardDiscountBundleItem](docs/models/AwardDiscountBundleItem.md)
+- [Model.AwardDiscountBundleItemByAttribute](docs/models/AwardDiscountBundleItemByAttribute.md)
+- [Model.AwardDiscountBundleItemByIndex](docs/models/AwardDiscountBundleItemByIndex.md)
+- [Model.AwardDiscountBundleTarget](docs/models/AwardDiscountBundleTarget.md)
+- [Model.AwardDiscountCartTarget](docs/models/AwardDiscountCartTarget.md)
+- [Model.AwardDiscountGlobalFilterTarget](docs/models/AwardDiscountGlobalFilterTarget.md)
+- [Model.AwardDiscountSelectorTarget](docs/models/AwardDiscountSelectorTarget.md)
+- [Model.AwardDiscountTarget](docs/models/AwardDiscountTarget.md)
 - [Model.AwardGiveawayBlock](docs/models/AwardGiveawayBlock.md)
 - [Model.AwardGiveawayBlock1GiveawayPool](docs/models/AwardGiveawayBlock1GiveawayPool.md)
 - [Model.AwardGiveawayEffectProps](docs/models/AwardGiveawayEffectProps.md)
@@ -538,10 +561,12 @@ Class | Method | HTTP request | Description
 - [Model.BestPriorPriceRequest](docs/models/BestPriorPriceRequest.md)
 - [Model.BestPriorPriceSettings](docs/models/BestPriorPriceSettings.md)
 - [Model.BestPriorTarget](docs/models/BestPriorTarget.md)
+- [Model.BetweenCheckAttributeBlock](docs/models/BetweenCheckAttributeBlock.md)
 - [Model.Binding](docs/models/Binding.md)
 - [Model.Blueprint](docs/models/Blueprint.md)
 - [Model.BulkApplicationNotification](docs/models/BulkApplicationNotification.md)
 - [Model.BulkOperationOnCampaigns](docs/models/BulkOperationOnCampaigns.md)
+- [Model.Bundle](docs/models/Bundle.md)
 - [Model.Campaign](docs/models/Campaign.md)
 - [Model.CampaignActivationRequest](docs/models/CampaignActivationRequest.md)
 - [Model.CampaignAnalytics](docs/models/CampaignAnalytics.md)
@@ -575,6 +600,7 @@ Class | Method | HTTP request | Description
 - [Model.CampaignNotificationGeneric](docs/models/CampaignNotificationGeneric.md)
 - [Model.CampaignNotificationItemBase](docs/models/CampaignNotificationItemBase.md)
 - [Model.CampaignNotificationPolicy](docs/models/CampaignNotificationPolicy.md)
+- [Model.CampaignReference](docs/models/CampaignReference.md)
 - [Model.CampaignRulesetChangedNotification](docs/models/CampaignRulesetChangedNotification.md)
 - [Model.CampaignRulesetChangedNotificationItem](docs/models/CampaignRulesetChangedNotificationItem.md)
 - [Model.CampaignSearch](docs/models/CampaignSearch.md)
@@ -604,13 +630,13 @@ Class | Method | HTTP request | Description
 - [Model.CartItemFilterTemplate](docs/models/CartItemFilterTemplate.md)
 - [Model.Catalog](docs/models/Catalog.md)
 - [Model.CatalogAction](docs/models/CatalogAction.md)
+- [Model.CatalogActionAdd](docs/models/CatalogActionAdd.md)
+- [Model.CatalogActionAddPriceAdjustment](docs/models/CatalogActionAddPriceAdjustment.md)
 - [Model.CatalogActionFilter](docs/models/CatalogActionFilter.md)
-- [Model.CatalogActionOneOf](docs/models/CatalogActionOneOf.md)
-- [Model.CatalogActionOneOf1](docs/models/CatalogActionOneOf1.md)
-- [Model.CatalogActionOneOf2](docs/models/CatalogActionOneOf2.md)
-- [Model.CatalogActionOneOf3](docs/models/CatalogActionOneOf3.md)
-- [Model.CatalogActionOneOf4](docs/models/CatalogActionOneOf4.md)
-- [Model.CatalogActionOneOf5](docs/models/CatalogActionOneOf5.md)
+- [Model.CatalogActionPatch](docs/models/CatalogActionPatch.md)
+- [Model.CatalogActionPatchMany](docs/models/CatalogActionPatchMany.md)
+- [Model.CatalogActionRemove](docs/models/CatalogActionRemove.md)
+- [Model.CatalogActionRemoveMany](docs/models/CatalogActionRemoveMany.md)
 - [Model.CatalogItem](docs/models/CatalogItem.md)
 - [Model.CatalogRule](docs/models/CatalogRule.md)
 - [Model.CatalogSyncRequest](docs/models/CatalogSyncRequest.md)
@@ -618,11 +644,21 @@ Class | Method | HTTP request | Description
 - [Model.Change](docs/models/Change.md)
 - [Model.ChangeLoyaltyTierLevelEffectProps](docs/models/ChangeLoyaltyTierLevelEffectProps.md)
 - [Model.ChangeProfilePassword](docs/models/ChangeProfilePassword.md)
+- [Model.CheckAchievementBlock](docs/models/CheckAchievementBlock.md)
+- [Model.CheckAchievementBlock1Achievement](docs/models/CheckAchievementBlock1Achievement.md)
+- [Model.CheckAttributeBlock](docs/models/CheckAttributeBlock.md)
 - [Model.CheckAttributeBlockBase](docs/models/CheckAttributeBlockBase.md)
 - [Model.CheckAudienceBlock](docs/models/CheckAudienceBlock.md)
 - [Model.CheckAudienceBlock1Audience](docs/models/CheckAudienceBlock1Audience.md)
+- [Model.CheckBudgetBlock](docs/models/CheckBudgetBlock.md)
 - [Model.CheckCouponBlock](docs/models/CheckCouponBlock.md)
+- [Model.CheckEventBlock](docs/models/CheckEventBlock.md)
+- [Model.CheckLoyaltyBalanceBlock](docs/models/CheckLoyaltyBalanceBlock.md)
+- [Model.CheckLoyaltyBalanceBlock1Program](docs/models/CheckLoyaltyBalanceBlock1Program.md)
+- [Model.CheckLoyaltyCardBlock](docs/models/CheckLoyaltyCardBlock.md)
 - [Model.CheckReferralBlock](docs/models/CheckReferralBlock.md)
+- [Model.CheckTierBlock](docs/models/CheckTierBlock.md)
+- [Model.CheckTierBlock1Tier](docs/models/CheckTierBlock1Tier.md)
 - [Model.CodeGeneratorSettings](docs/models/CodeGeneratorSettings.md)
 - [Model.Collection](docs/models/Collection.md)
 - [Model.CollectionItem](docs/models/CollectionItem.md)
@@ -647,10 +683,17 @@ Class | Method | HTTP request | Description
 - [Model.CreateAchievement](docs/models/CreateAchievement.md)
 - [Model.CreateAchievementV2](docs/models/CreateAchievementV2.md)
 - [Model.CreateApplicationAPIKey](docs/models/CreateApplicationAPIKey.md)
+- [Model.CreateCouponBlock](docs/models/CreateCouponBlock.md)
+- [Model.CreateCouponBlock1CampaignId](docs/models/CreateCouponBlock1CampaignId.md)
+- [Model.CreateCouponBlock1DiscountLimit](docs/models/CreateCouponBlock1DiscountLimit.md)
+- [Model.CreateCouponBlock1UsageLimit](docs/models/CreateCouponBlock1UsageLimit.md)
 - [Model.CreateCouponData](docs/models/CreateCouponData.md)
 - [Model.CreateCoupons200Response](docs/models/CreateCoupons200Response.md)
 - [Model.CreateMCPKey](docs/models/CreateMCPKey.md)
 - [Model.CreateManagementKey](docs/models/CreateManagementKey.md)
+- [Model.CreateReferralBlock](docs/models/CreateReferralBlock.md)
+- [Model.CreateReferralBlock1CampaignId](docs/models/CreateReferralBlock1CampaignId.md)
+- [Model.CreateReferralBlock1UsageLimit](docs/models/CreateReferralBlock1UsageLimit.md)
 - [Model.CreateReferralsForMultipleAdvocates201Response](docs/models/CreateReferralsForMultipleAdvocates201Response.md)
 - [Model.CreateTemplateCampaign](docs/models/CreateTemplateCampaign.md)
 - [Model.CreateTemplateCampaignResponse](docs/models/CreateTemplateCampaignResponse.md)
@@ -669,6 +712,7 @@ Class | Method | HTTP request | Description
 - [Model.CustomerProfileReward](docs/models/CustomerProfileReward.md)
 - [Model.CustomerProfileSearchQuery](docs/models/CustomerProfileSearchQuery.md)
 - [Model.CustomerProfileUpdateV2Response](docs/models/CustomerProfileUpdateV2Response.md)
+- [Model.CustomerReward](docs/models/CustomerReward.md)
 - [Model.CustomerSession](docs/models/CustomerSession.md)
 - [Model.CustomerSessionV2](docs/models/CustomerSessionV2.md)
 - [Model.DeactivateUserRequest](docs/models/DeactivateUserRequest.md)
@@ -680,9 +724,7 @@ Class | Method | HTTP request | Description
 - [Model.DigitalPass](docs/models/DigitalPass.md)
 - [Model.DiscardRisksRequest](docs/models/DiscardRisksRequest.md)
 - [Model.Effect](docs/models/Effect.md)
-- [Model.EffectAllOfProps](docs/models/EffectAllOfProps.md)
 - [Model.EffectEntity](docs/models/EffectEntity.md)
-- [Model.EffectProps](docs/models/EffectProps.md)
 - [Model.EmailEntity](docs/models/EmailEntity.md)
 - [Model.EmbeddedAnalyticsConfiguration](docs/models/EmbeddedAnalyticsConfiguration.md)
 - [Model.EmbeddedAnalyticsConfigurationDashboards](docs/models/EmbeddedAnalyticsConfigurationDashboards.md)
@@ -702,7 +744,9 @@ Class | Method | HTTP request | Description
 - [Model.EventV3](docs/models/EventV3.md)
 - [Model.EventV3Connections](docs/models/EventV3Connections.md)
 - [Model.EventV3Entity](docs/models/EventV3Entity.md)
+- [Model.EventV3ReferralEntity](docs/models/EventV3ReferralEntity.md)
 - [Model.EventV3RequestEntity](docs/models/EventV3RequestEntity.md)
+- [Model.ExcludePriceObservationsRequest](docs/models/ExcludePriceObservationsRequest.md)
 - [Model.Experiment](docs/models/Experiment.md)
 - [Model.ExperimentCampaignCopy](docs/models/ExperimentCampaignCopy.md)
 - [Model.ExperimentConfidenceTimeline](docs/models/ExperimentConfidenceTimeline.md)
@@ -739,6 +783,8 @@ Class | Method | HTTP request | Description
 - [Model.FeatureFlag](docs/models/FeatureFlag.md)
 - [Model.FeatureFlagUpdate](docs/models/FeatureFlagUpdate.md)
 - [Model.FeaturesFeed](docs/models/FeaturesFeed.md)
+- [Model.FilterAndMapValuesSelectorStep](docs/models/FilterAndMapValuesSelectorStep.md)
+- [Model.FilterSelectorStep](docs/models/FilterSelectorStep.md)
 - [Model.FuncArgDef](docs/models/FuncArgDef.md)
 - [Model.FunctionDef](docs/models/FunctionDef.md)
 - [Model.GenerateAuditLogSummary](docs/models/GenerateAuditLogSummary.md)
@@ -845,6 +891,7 @@ Class | Method | HTTP request | Description
 - [Model.IntegrationState](docs/models/IntegrationState.md)
 - [Model.IntegrationStateV2](docs/models/IntegrationStateV2.md)
 - [Model.IntegrationStoreEntity](docs/models/IntegrationStoreEntity.md)
+- [Model.IntegrationUnlockRewardRequest](docs/models/IntegrationUnlockRewardRequest.md)
 - [Model.InventoryCoupon](docs/models/InventoryCoupon.md)
 - [Model.InventoryReferral](docs/models/InventoryReferral.md)
 - [Model.ItemAttribute](docs/models/ItemAttribute.md)
@@ -860,14 +907,17 @@ Class | Method | HTTP request | Description
 - [Model.LimitCounter](docs/models/LimitCounter.md)
 - [Model.ListAccountCollections200Response](docs/models/ListAccountCollections200Response.md)
 - [Model.ListAchievements200Response](docs/models/ListAchievements200Response.md)
+- [Model.ListAchievementsV2200Response](docs/models/ListAchievementsV2200Response.md)
 - [Model.ListAllRolesV2200Response](docs/models/ListAllRolesV2200Response.md)
 - [Model.ListApplicationCartItemFilters200Response](docs/models/ListApplicationCartItemFilters200Response.md)
 - [Model.ListCampaignStoreBudgetLimits200Response](docs/models/ListCampaignStoreBudgetLimits200Response.md)
 - [Model.ListCampaignStoreBudgets](docs/models/ListCampaignStoreBudgets.md)
 - [Model.ListCampaignStoreBudgetsStore](docs/models/ListCampaignStoreBudgetsStore.md)
 - [Model.ListCatalogItems200Response](docs/models/ListCatalogItems200Response.md)
+- [Model.ListCheckAttributeBlock](docs/models/ListCheckAttributeBlock.md)
 - [Model.ListExperiments200Response](docs/models/ListExperiments200Response.md)
 - [Model.ListStores200Response](docs/models/ListStores200Response.md)
+- [Model.ListWithCountCheckAttributeBlock](docs/models/ListWithCountCheckAttributeBlock.md)
 - [Model.LoginParams](docs/models/LoginParams.md)
 - [Model.Loyalty](docs/models/Loyalty.md)
 - [Model.LoyaltyBalance](docs/models/LoyaltyBalance.md)
@@ -895,11 +945,19 @@ Class | Method | HTTP request | Description
 - [Model.LoyaltyProgramTransaction](docs/models/LoyaltyProgramTransaction.md)
 - [Model.LoyaltySubLedger](docs/models/LoyaltySubLedger.md)
 - [Model.LoyaltyTier](docs/models/LoyaltyTier.md)
+- [Model.MCPCompleteOAuthSession](docs/models/MCPCompleteOAuthSession.md)
 - [Model.MCPKey](docs/models/MCPKey.md)
+- [Model.MCPOAuthClient](docs/models/MCPOAuthClient.md)
+- [Model.MCPOAuthCompleteResult](docs/models/MCPOAuthCompleteResult.md)
 - [Model.MCPOAuthProtectedResource](docs/models/MCPOAuthProtectedResource.md)
 - [Model.MCPOAuthServerMetadata](docs/models/MCPOAuthServerMetadata.md)
+- [Model.MCPOAuthSessionInfo](docs/models/MCPOAuthSessionInfo.md)
+- [Model.MCPOAuthToken](docs/models/MCPOAuthToken.md)
+- [Model.MCPOAuthTokenError](docs/models/MCPOAuthTokenError.md)
+- [Model.MCPOAuthTokenRequest](docs/models/MCPOAuthTokenRequest.md)
 - [Model.ManagementKey](docs/models/ManagementKey.md)
 - [Model.ManagerConfig](docs/models/ManagerConfig.md)
+- [Model.MapSelectorStep](docs/models/MapSelectorStep.md)
 - [Model.MessageLogEntries](docs/models/MessageLogEntries.md)
 - [Model.MessageLogEntry](docs/models/MessageLogEntry.md)
 - [Model.MessageLogRequest](docs/models/MessageLogRequest.md)
@@ -962,6 +1020,7 @@ Class | Method | HTTP request | Description
 - [Model.NewLoyaltyProgram](docs/models/NewLoyaltyProgram.md)
 - [Model.NewLoyaltyTier](docs/models/NewLoyaltyTier.md)
 - [Model.NewMCPKey](docs/models/NewMCPKey.md)
+- [Model.NewMCPOAuthClient](docs/models/NewMCPOAuthClient.md)
 - [Model.NewManagementKey](docs/models/NewManagementKey.md)
 - [Model.NewMessageTest](docs/models/NewMessageTest.md)
 - [Model.NewMultipleAudiencesItem](docs/models/NewMultipleAudiencesItem.md)
@@ -1032,7 +1091,11 @@ Class | Method | HTTP request | Description
 - [Model.PromotionCheckAttributeBlock](docs/models/PromotionCheckAttributeBlock.md)
 - [Model.PromotionGroupBlock](docs/models/PromotionGroupBlock.md)
 - [Model.PromotionRuleV2](docs/models/PromotionRuleV2.md)
+- [Model.RedeemLoyaltyPointsBlock](docs/models/RedeemLoyaltyPointsBlock.md)
+- [Model.RedeemLoyaltyPointsBlock1Program](docs/models/RedeemLoyaltyPointsBlock1Program.md)
+- [Model.RedeemLoyaltyPointsBlock1Value](docs/models/RedeemLoyaltyPointsBlock1Value.md)
 - [Model.RedeemReferralEffectProps](docs/models/RedeemReferralEffectProps.md)
+- [Model.ReduceSelectorStep](docs/models/ReduceSelectorStep.md)
 - [Model.Referral](docs/models/Referral.md)
 - [Model.ReferralConstraints](docs/models/ReferralConstraints.md)
 - [Model.ReferralCreatedEffectProps](docs/models/ReferralCreatedEffectProps.md)
@@ -1043,17 +1106,22 @@ Class | Method | HTTP request | Description
 - [Model.RemoveItemCatalogAction](docs/models/RemoveItemCatalogAction.md)
 - [Model.RemoveManyItemsCatalogAction](docs/models/RemoveManyItemsCatalogAction.md)
 - [Model.ReopenSessionResponse](docs/models/ReopenSessionResponse.md)
+- [Model.ReserveCouponBlock](docs/models/ReserveCouponBlock.md)
 - [Model.ReserveCouponEffectProps](docs/models/ReserveCouponEffectProps.md)
 - [Model.ResponseContentObject](docs/models/ResponseContentObject.md)
 - [Model.Return](docs/models/Return.md)
 - [Model.ReturnIntegrationRequest](docs/models/ReturnIntegrationRequest.md)
 - [Model.ReturnedCartItem](docs/models/ReturnedCartItem.md)
+- [Model.ReverseSelectorStep](docs/models/ReverseSelectorStep.md)
 - [Model.ReviewRisksRequest](docs/models/ReviewRisksRequest.md)
 - [Model.Revision](docs/models/Revision.md)
 - [Model.RevisionActivation](docs/models/RevisionActivation.md)
 - [Model.RevisionActivationRequest](docs/models/RevisionActivationRequest.md)
 - [Model.RevisionVersion](docs/models/RevisionVersion.md)
 - [Model.Reward](docs/models/Reward.md)
+- [Model.RewardCatalogItem](docs/models/RewardCatalogItem.md)
+- [Model.RewardEligibility](docs/models/RewardEligibility.md)
+- [Model.RewardEligibilityFailureDetails](docs/models/RewardEligibilityFailureDetails.md)
 - [Model.RewardPointsRequired](docs/models/RewardPointsRequired.md)
 - [Model.Risk](docs/models/Risk.md)
 - [Model.RiskAffectedEntityItem](docs/models/RiskAffectedEntityItem.md)
@@ -1077,6 +1145,7 @@ Class | Method | HTTP request | Description
 - [Model.RollbackDiscountEffectProps](docs/models/RollbackDiscountEffectProps.md)
 - [Model.RollbackIncreasedAchievementProgressEffectProps](docs/models/RollbackIncreasedAchievementProgressEffectProps.md)
 - [Model.RollbackReferralEffectProps](docs/models/RollbackReferralEffectProps.md)
+- [Model.RollbackUseRewardEffectProps](docs/models/RollbackUseRewardEffectProps.md)
 - [Model.Rule](docs/models/Rule.md)
 - [Model.RuleEligibility](docs/models/RuleEligibility.md)
 - [Model.RuleEligibilityFailureDetails](docs/models/RuleEligibilityFailureDetails.md)
@@ -1091,6 +1160,7 @@ Class | Method | HTTP request | Description
 - [Model.SamlConnectionInternal](docs/models/SamlConnectionInternal.md)
 - [Model.SamlConnectionMetadata](docs/models/SamlConnectionMetadata.md)
 - [Model.SamlLoginEndpoint](docs/models/SamlLoginEndpoint.md)
+- [Model.ScalarCheckAttributeBlock](docs/models/ScalarCheckAttributeBlock.md)
 - [Model.ScimBaseGroup](docs/models/ScimBaseGroup.md)
 - [Model.ScimBaseUser](docs/models/ScimBaseUser.md)
 - [Model.ScimBaseUserName](docs/models/ScimBaseUserName.md)
@@ -1113,6 +1183,13 @@ Class | Method | HTTP request | Description
 - [Model.ScimUser](docs/models/ScimUser.md)
 - [Model.ScimUsersListResponse](docs/models/ScimUsersListResponse.md)
 - [Model.SecondaryDeployment](docs/models/SecondaryDeployment.md)
+- [Model.SelectSelectorStep](docs/models/SelectSelectorStep.md)
+- [Model.SelectSelectorStepFrom](docs/models/SelectSelectorStepFrom.md)
+- [Model.Selector](docs/models/Selector.md)
+- [Model.SelectorBlock](docs/models/SelectorBlock.md)
+- [Model.SelectorGroupBlock](docs/models/SelectorGroupBlock.md)
+- [Model.SelectorStep](docs/models/SelectorStep.md)
+- [Model.SelectorValueMapRef](docs/models/SelectorValueMapRef.md)
 - [Model.Session](docs/models/Session.md)
 - [Model.SetDiscountEffectProps](docs/models/SetDiscountEffectProps.md)
 - [Model.SetDiscountPerAdditionalCostEffectProps](docs/models/SetDiscountPerAdditionalCostEffectProps.md)
@@ -1125,6 +1202,9 @@ Class | Method | HTTP request | Description
 - [Model.SkuUnitAnalytics](docs/models/SkuUnitAnalytics.md)
 - [Model.SkuUnitAnalyticsDataPoint](docs/models/SkuUnitAnalyticsDataPoint.md)
 - [Model.SlotDef](docs/models/SlotDef.md)
+- [Model.SortSelectorStep](docs/models/SortSelectorStep.md)
+- [Model.SortSelectorStepField](docs/models/SortSelectorStepField.md)
+- [Model.StartAchievementProgressEffectProps](docs/models/StartAchievementProgressEffectProps.md)
 - [Model.Store](docs/models/Store.md)
 - [Model.StrikethroughBlock](docs/models/StrikethroughBlock.md)
 - [Model.StrikethroughChangedItem](docs/models/StrikethroughChangedItem.md)
@@ -1132,7 +1212,6 @@ Class | Method | HTTP request | Description
 - [Model.StrikethroughCustomEffectPerItemProps](docs/models/StrikethroughCustomEffectPerItemProps.md)
 - [Model.StrikethroughDebugResponse](docs/models/StrikethroughDebugResponse.md)
 - [Model.StrikethroughEffect](docs/models/StrikethroughEffect.md)
-- [Model.StrikethroughEffectProps](docs/models/StrikethroughEffectProps.md)
 - [Model.StrikethroughGroupBlock](docs/models/StrikethroughGroupBlock.md)
 - [Model.StrikethroughLabelingNotification](docs/models/StrikethroughLabelingNotification.md)
 - [Model.StrikethroughRuleV2](docs/models/StrikethroughRuleV2.md)
@@ -1141,6 +1220,7 @@ Class | Method | HTTP request | Description
 - [Model.StrikethroughTrigger](docs/models/StrikethroughTrigger.md)
 - [Model.SummarizeCampaignStoreBudget200Response](docs/models/SummarizeCampaignStoreBudget200Response.md)
 - [Model.SummaryCampaignStoreBudget](docs/models/SummaryCampaignStoreBudget.md)
+- [Model.SupportCustomerProfile](docs/models/SupportCustomerProfile.md)
 - [Model.SupportRequest](docs/models/SupportRequest.md)
 - [Model.SupportRequestInput](docs/models/SupportRequestInput.md)
 - [Model.TalangAttribute](docs/models/TalangAttribute.md)
@@ -1148,6 +1228,7 @@ Class | Method | HTTP request | Description
 - [Model.TemplateArgDef](docs/models/TemplateArgDef.md)
 - [Model.TemplateDef](docs/models/TemplateDef.md)
 - [Model.TemplateLimitConfig](docs/models/TemplateLimitConfig.md)
+- [Model.TemplateParameter](docs/models/TemplateParameter.md)
 - [Model.Tier](docs/models/Tier.md)
 - [Model.TierDowngradeData](docs/models/TierDowngradeData.md)
 - [Model.TierDowngradeNotification](docs/models/TierDowngradeNotification.md)
@@ -1161,8 +1242,15 @@ Class | Method | HTTP request | Description
 - [Model.TierWillDowngradeNotificationTrigger](docs/models/TierWillDowngradeNotificationTrigger.md)
 - [Model.TimePoint](docs/models/TimePoint.md)
 - [Model.TransferLoyaltyCard](docs/models/TransferLoyaltyCard.md)
+- [Model.TriggerCustomEffectBlock](docs/models/TriggerCustomEffectBlock.md)
+- [Model.TriggerCustomEffectBlock1CustomEffect](docs/models/TriggerCustomEffectBlock1CustomEffect.md)
+- [Model.TriggerCustomEffectBlock1Target](docs/models/TriggerCustomEffectBlock1Target.md)
+- [Model.TriggerWebhookBlock](docs/models/TriggerWebhookBlock.md)
+- [Model.TriggerWebhookBlock1Webhook](docs/models/TriggerWebhookBlock1Webhook.md)
 - [Model.TriggerWebhookEffectProps](docs/models/TriggerWebhookEffectProps.md)
 - [Model.TwoFAConfig](docs/models/TwoFAConfig.md)
+- [Model.UnaryCheckAttributeBlock](docs/models/UnaryCheckAttributeBlock.md)
+- [Model.UnlockRewardEffectProps](docs/models/UnlockRewardEffectProps.md)
 - [Model.UpdateAccount](docs/models/UpdateAccount.md)
 - [Model.UpdateAchievement](docs/models/UpdateAchievement.md)
 - [Model.UpdateAchievementProgressBlock](docs/models/UpdateAchievementProgressBlock.md)
@@ -1210,6 +1298,7 @@ Class | Method | HTTP request | Description
 - [Model.UpdateStore](docs/models/UpdateStore.md)
 - [Model.UpdateSupportRequest](docs/models/UpdateSupportRequest.md)
 - [Model.UpdateUser](docs/models/UpdateUser.md)
+- [Model.UseRewardEffectProps](docs/models/UseRewardEffectProps.md)
 - [Model.User](docs/models/User.md)
 - [Model.UserEntity](docs/models/UserEntity.md)
 - [Model.ValueMap](docs/models/ValueMap.md)
@@ -1224,6 +1313,7 @@ Class | Method | HTTP request | Description
 - [Model.WebhookAuthenticationWebhookRef](docs/models/WebhookAuthenticationWebhookRef.md)
 - [Model.WebhookWithOutgoingIntegrationDetails](docs/models/WebhookWithOutgoingIntegrationDetails.md)
 - [Model.WillAwardGiveawayEffectProps](docs/models/WillAwardGiveawayEffectProps.md)
+- [Model.WithinCheckAttributeBlock](docs/models/WithinCheckAttributeBlock.md)
 
 ## Authorization
 

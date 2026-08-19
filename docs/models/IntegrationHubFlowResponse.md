@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **Id** | **long** | ID of the integration hub flow. | 
 **CreatedAt** | **DateTime** | Timestamp when the flow was created. | 
 **EventType** | **string** | The event type we want to register a flow for. | 
-**IntegrationHubFlowUrl** | **string** | The URL of the integration hub flow that we want to trigger for the event. | 
 **Config** | [**IntegrationHubFlowConfigResponse**](IntegrationHubFlowConfigResponse.md) |  | 
 **IntegrationName** | **string** | Name of the integration. | [optional] 
 **InstanceName** | **string** | Name of the integration instance. | [optional] 
