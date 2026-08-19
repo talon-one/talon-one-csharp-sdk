@@ -81,15 +81,6 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'IntegrationHubFlowUrl'
-        /// </summary>
-        [Fact]
-        public void IntegrationHubFlowUrlTest()
-        {
-            // TODO unit test for the property 'IntegrationHubFlowUrl'
-        }
-
-        /// <summary>
         /// Test the property 'Config'
         /// </summary>
         [Fact]

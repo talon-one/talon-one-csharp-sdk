@@ -38,10 +38,11 @@ namespace TalonOneSdk.Model
         /// <param name="evaluableCampaignIds">When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them. </param>
         /// <param name="attributes">Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute).</param>
         /// <param name="connectedSessionId">The ID of the session to reference. The session must be in &#x60;closed&#x60; state. Otherwise, the API call will fail.</param>
+        /// <param name="referralCode">The referral code submitted with the event. The endpoint does not validate the code, and submitting a code does not redeem it. Use the \&quot;Referral code is valid\&quot; condition in the Rule Builder to validate and redeem the code, or \&quot;Referral code is valid (without redemption)\&quot; to validate without redeeming. </param>
         /// <param name="loyaltyCards">Identifiers of the loyalty cards used during this event.</param>
         /// <param name="responseContent">Optional list of requested information to be present on the response related to the tracking custom event. </param>
         [JsonConstructor]
-        public IntegrationEventV3Request(string profileId, string type, string integrationId, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<Object> attributes = default, Option<string> connectedSessionId = default, Option<List<string>> loyaltyCards = default, Option<List<IntegrationEventV3Request.ResponseContentEnum>> responseContent = default)
+        public IntegrationEventV3Request(string profileId, string type, string integrationId, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<Object> attributes = default, Option<string> connectedSessionId = default, Option<string> referralCode = default, Option<List<string>> loyaltyCards = default, Option<List<IntegrationEventV3Request.ResponseContentEnum>> responseContent = default)
         {
             ProfileId = profileId;
             Type = type;
@@ -50,6 +51,7 @@ namespace TalonOneSdk.Model
             EvaluableCampaignIdsOption = evaluableCampaignIds;
             AttributesOption = attributes;
             ConnectedSessionIdOption = connectedSessionId;
+            ReferralCodeOption = referralCode;
             LoyaltyCardsOption = loyaltyCards;
             ResponseContentOption = responseContent;
             OnCreated();
@@ -63,34 +65,39 @@ namespace TalonOneSdk.Model
         public enum ResponseContentEnum
         {
             /// <summary>
-            /// Enum CustomerProfile for value: customerProfile
-            /// </summary>
-            CustomerProfile = 1,
-
-            /// <summary>
-            /// Enum TriggeredCampaigns for value: triggeredCampaigns
-            /// </summary>
-            TriggeredCampaigns = 2,
-
-            /// <summary>
-            /// Enum Loyalty for value: loyalty
-            /// </summary>
-            Loyalty = 3,
-
-            /// <summary>
             /// Enum AdvancedEvent for value: advancedEvent
             /// </summary>
-            AdvancedEvent = 4,
+            AdvancedEvent = 1,
 
             /// <summary>
             /// Enum AwardedGiveaways for value: awardedGiveaways
             /// </summary>
-            AwardedGiveaways = 5,
+            AwardedGiveaways = 2,
+
+            /// <summary>
+            /// Enum CustomerProfile for value: customerProfile
+            /// </summary>
+            CustomerProfile = 3,
+
+            /// <summary>
+            /// Enum Loyalty for value: loyalty
+            /// </summary>
+            Loyalty = 4,
+
+            /// <summary>
+            /// Enum Referral for value: referral
+            /// </summary>
+            Referral = 5,
 
             /// <summary>
             /// Enum RuleFailureReasons for value: ruleFailureReasons
             /// </summary>
-            RuleFailureReasons = 6
+            RuleFailureReasons = 6,
+
+            /// <summary>
+            /// Enum TriggeredCampaigns for value: triggeredCampaigns
+            /// </summary>
+            TriggeredCampaigns = 7
         }
 
         /// <summary>
@@ -101,23 +108,26 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public static ResponseContentEnum ResponseContentEnumFromString(string value)
         {
-            if (value.Equals("customerProfile"))
-                return ResponseContentEnum.CustomerProfile;
-
-            if (value.Equals("triggeredCampaigns"))
-                return ResponseContentEnum.TriggeredCampaigns;
-
-            if (value.Equals("loyalty"))
-                return ResponseContentEnum.Loyalty;
-
             if (value.Equals("advancedEvent"))
                 return ResponseContentEnum.AdvancedEvent;
 
             if (value.Equals("awardedGiveaways"))
                 return ResponseContentEnum.AwardedGiveaways;
 
+            if (value.Equals("customerProfile"))
+                return ResponseContentEnum.CustomerProfile;
+
+            if (value.Equals("loyalty"))
+                return ResponseContentEnum.Loyalty;
+
+            if (value.Equals("referral"))
+                return ResponseContentEnum.Referral;
+
             if (value.Equals("ruleFailureReasons"))
                 return ResponseContentEnum.RuleFailureReasons;
+
+            if (value.Equals("triggeredCampaigns"))
+                return ResponseContentEnum.TriggeredCampaigns;
 
             throw new NotImplementedException($"Could not convert value to type ResponseContentEnum: '{value}'");
         }
@@ -129,23 +139,26 @@ namespace TalonOneSdk.Model
         /// <returns></returns>
         public static ResponseContentEnum? ResponseContentEnumFromStringOrDefault(string value)
         {
-            if (value.Equals("customerProfile"))
-                return ResponseContentEnum.CustomerProfile;
-
-            if (value.Equals("triggeredCampaigns"))
-                return ResponseContentEnum.TriggeredCampaigns;
-
-            if (value.Equals("loyalty"))
-                return ResponseContentEnum.Loyalty;
-
             if (value.Equals("advancedEvent"))
                 return ResponseContentEnum.AdvancedEvent;
 
             if (value.Equals("awardedGiveaways"))
                 return ResponseContentEnum.AwardedGiveaways;
 
+            if (value.Equals("customerProfile"))
+                return ResponseContentEnum.CustomerProfile;
+
+            if (value.Equals("loyalty"))
+                return ResponseContentEnum.Loyalty;
+
+            if (value.Equals("referral"))
+                return ResponseContentEnum.Referral;
+
             if (value.Equals("ruleFailureReasons"))
                 return ResponseContentEnum.RuleFailureReasons;
+
+            if (value.Equals("triggeredCampaigns"))
+                return ResponseContentEnum.TriggeredCampaigns;
 
             return null;
         }
@@ -158,23 +171,26 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public static string ResponseContentEnumToJsonValue(ResponseContentEnum value)
         {
-            if (value == ResponseContentEnum.CustomerProfile)
-                return "customerProfile";
-
-            if (value == ResponseContentEnum.TriggeredCampaigns)
-                return "triggeredCampaigns";
-
-            if (value == ResponseContentEnum.Loyalty)
-                return "loyalty";
-
             if (value == ResponseContentEnum.AdvancedEvent)
                 return "advancedEvent";
 
             if (value == ResponseContentEnum.AwardedGiveaways)
                 return "awardedGiveaways";
 
+            if (value == ResponseContentEnum.CustomerProfile)
+                return "customerProfile";
+
+            if (value == ResponseContentEnum.Loyalty)
+                return "loyalty";
+
+            if (value == ResponseContentEnum.Referral)
+                return "referral";
+
             if (value == ResponseContentEnum.RuleFailureReasons)
                 return "ruleFailureReasons";
+
+            if (value == ResponseContentEnum.TriggeredCampaigns)
+                return "triggeredCampaigns";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
@@ -264,6 +280,21 @@ namespace TalonOneSdk.Model
         public string ConnectedSessionId { get { return this.ConnectedSessionIdOption.Value; } set { this.ConnectedSessionIdOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of ReferralCode
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ReferralCodeOption { get; private set; }
+
+        /// <summary>
+        /// The referral code submitted with the event. The endpoint does not validate the code, and submitting a code does not redeem it. Use the \&quot;Referral code is valid\&quot; condition in the Rule Builder to validate and redeem the code, or \&quot;Referral code is valid (without redemption)\&quot; to validate without redeeming. 
+        /// </summary>
+        /// <value>The referral code submitted with the event. The endpoint does not validate the code, and submitting a code does not redeem it. Use the \&quot;Referral code is valid\&quot; condition in the Rule Builder to validate and redeem the code, or \&quot;Referral code is valid (without redemption)\&quot; to validate without redeeming. </value>
+        /* <example>NT2K54D9</example> */
+        [JsonPropertyName("referralCode")]
+        public string ReferralCode { get { return this.ReferralCodeOption.Value; } set { this.ReferralCodeOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Used to track the state of LoyaltyCards
         /// </summary>
         [JsonIgnore]
@@ -308,6 +339,7 @@ namespace TalonOneSdk.Model
             sb.Append("  EvaluableCampaignIds: ").Append(EvaluableCampaignIds).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  ConnectedSessionId: ").Append(ConnectedSessionId).Append("\n");
+            sb.Append("  ReferralCode: ").Append(ReferralCode).Append("\n");
             sb.Append("  LoyaltyCards: ").Append(LoyaltyCards).Append("\n");
             sb.Append("  ResponseContent: ").Append(ResponseContent).Append("\n");
             sb.Append("}\n");
@@ -349,6 +381,12 @@ namespace TalonOneSdk.Model
             if (this.ConnectedSessionId != null && this.ConnectedSessionId.Length < 1)
             {
                 yield return new ValidationResult("Invalid value for ConnectedSessionId, length must be greater than 1.", new [] { "ConnectedSessionId" });
+            }
+
+            // ReferralCode (string) maxLength
+            if (this.ReferralCode != null && this.ReferralCode.Length > 100)
+            {
+                yield return new ValidationResult("Invalid value for ReferralCode, length must be less than 100.", new [] { "ReferralCode" });
             }
 
             yield break;
@@ -394,6 +432,7 @@ namespace TalonOneSdk.Model
             Option<List<long>> evaluableCampaignIds = default;
             Option<Object> attributes = default;
             Option<string> connectedSessionId = default;
+            Option<string> referralCode = default;
             Option<List<string>> loyaltyCards = default;
             Option<List<IntegrationEventV3Request.ResponseContentEnum>> responseContent = default;
 
@@ -432,6 +471,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "connectedSessionId":
                             connectedSessionId = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "referralCode":
+                            referralCode = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "loyaltyCards":
                             loyaltyCards = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -484,7 +526,7 @@ namespace TalonOneSdk.Model
             if (integrationId.IsSet && integrationId.Value == null)
                 throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class IntegrationEventV3Request.");
 
-            return new IntegrationEventV3Request(profileId.Value, type.Value, integrationId.Value, storeIntegrationId, evaluableCampaignIds, attributes, connectedSessionId, loyaltyCards, responseContent);
+            return new IntegrationEventV3Request(profileId.Value, type.Value, integrationId.Value, storeIntegrationId, evaluableCampaignIds, attributes, connectedSessionId, referralCode, loyaltyCards, responseContent);
         }
 
         /// <summary>
@@ -541,6 +583,9 @@ namespace TalonOneSdk.Model
             }
             if (integrationEventV3Request.ConnectedSessionIdOption.IsSet)
                 writer.WriteString("connectedSessionId", integrationEventV3Request.ConnectedSessionId);
+
+            if (integrationEventV3Request.ReferralCodeOption.IsSet)
+                writer.WriteString("referralCode", integrationEventV3Request.ReferralCode);
 
             if (integrationEventV3Request.LoyaltyCardsOption.IsSet)
             {

@@ -37,6 +37,7 @@ namespace TalonOneSdk.Model
         /// <param name="title">The display name for the achievement in the Campaign Manager.</param>
         /// <param name="description">A description of the achievement.</param>
         /// <param name="target">The required number of actions or the transactional milestone to complete the achievement.</param>
+        /// <param name="campaignIds">The IDs of the campaigns that reference this achievement, in ascending order.</param>
         /// <param name="period">The relative duration after which the achievement ends and resets for a particular customer profile.  **Note**: The &#x60;period&#x60; does not start when the achievement is created.  The period is a **positive real number** followed by one letter indicating the time unit.  Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.  Available units:  - &#x60;s&#x60;: seconds - &#x60;m&#x60;: minutes - &#x60;h&#x60;: hours - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  You can also round certain units down to the beginning of period and up to the end of period.: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. Example: &#x60;30D_D&#x60; - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year. Example: &#x60;23W_U&#x60;  **Note**: You can either use the round down and round up option or set an absolute period. </param>
         /// <param name="periodEndOverride">periodEndOverride</param>
         /// <param name="recurrencePolicy">The policy that determines if and how the achievement recurs. - &#x60;no_recurrence&#x60;: The achievement can be completed only once. - &#x60;on_expiration&#x60;: The achievement resets after it expires and becomes available again. - &#x60;on_completion&#x60;: When the customer progress status reaches &#x60;completed&#x60;, the achievement resets and becomes available again. </param>
@@ -44,11 +45,11 @@ namespace TalonOneSdk.Model
         /// <param name="fixedStartDate">The achievement&#39;s start date when &#x60;activationPolicy&#x60; is set to &#x60;fixed_schedule&#x60;.  **Note:** It must be an RFC3339 timestamp string. </param>
         /// <param name="endDate">The achievement&#39;s end date. If defined, customers cannot participate in the achievement after this date.  **Note:** It must be an RFC3339 timestamp string. </param>
         /// <param name="allowRollbackAfterCompletion">When &#x60;true&#x60;, customer progress can be rolled back in completed achievements.</param>
-        /// <param name="campaignId">The ID of the campaign the achievement belongs to.</param>
+        /// <param name="campaignId">This property is **deprecated**. Use &#x60;campaignIds&#x60; instead. The first campaign ID in &#x60;campaignIds&#x60;. Only returned when &#x60;campaignIds&#x60; is not empty.</param>
         /// <param name="status">The status of the achievement.</param>
         /// <param name="currentProgress">currentProgress</param>
         [JsonConstructor]
-        public AchievementStatusEntry(long id, DateTime created, string name, string title, string description, decimal target, Option<string> period = default, Option<TimePoint> periodEndOverride = default, Option<RecurrencePolicyEnum?> recurrencePolicy = default, Option<ActivationPolicyEnum?> activationPolicy = default, Option<DateTime?> fixedStartDate = default, Option<DateTime?> endDate = default, Option<bool?> allowRollbackAfterCompletion = default, Option<long?> campaignId = default, Option<StatusEnum?> status = default, Option<AchievementProgress> currentProgress = default)
+        public AchievementStatusEntry(long id, DateTime created, string name, string title, string description, decimal target, List<long> campaignIds, Option<string> period = default, Option<TimePoint> periodEndOverride = default, Option<RecurrencePolicyEnum?> recurrencePolicy = default, Option<ActivationPolicyEnum?> activationPolicy = default, Option<DateTime?> fixedStartDate = default, Option<DateTime?> endDate = default, Option<bool?> allowRollbackAfterCompletion = default, Option<long?> campaignId = default, Option<StatusEnum?> status = default, Option<AchievementProgress> currentProgress = default)
         {
             Id = id;
             Created = created;
@@ -56,6 +57,7 @@ namespace TalonOneSdk.Model
             Title = title;
             Description = description;
             Target = target;
+            CampaignIds = campaignIds;
             PeriodOption = period;
             PeriodEndOverrideOption = periodEndOverride;
             RecurrencePolicyOption = recurrencePolicy;
@@ -380,6 +382,14 @@ namespace TalonOneSdk.Model
         public decimal Target { get; set; }
 
         /// <summary>
+        /// The IDs of the campaigns that reference this achievement, in ascending order.
+        /// </summary>
+        /// <value>The IDs of the campaigns that reference this achievement, in ascending order.</value>
+        /* <example>[1, 14, 27]</example> */
+        [JsonPropertyName("campaignIds")]
+        public List<long> CampaignIds { get; set; }
+
+        /// <summary>
         /// Used to track the state of Period
         /// </summary>
         [JsonIgnore]
@@ -461,11 +471,12 @@ namespace TalonOneSdk.Model
         public Option<long?> CampaignIdOption { get; private set; }
 
         /// <summary>
-        /// The ID of the campaign the achievement belongs to.
+        /// This property is **deprecated**. Use &#x60;campaignIds&#x60; instead. The first campaign ID in &#x60;campaignIds&#x60;. Only returned when &#x60;campaignIds&#x60; is not empty.
         /// </summary>
-        /// <value>The ID of the campaign the achievement belongs to.</value>
+        /// <value>This property is **deprecated**. Use &#x60;campaignIds&#x60; instead. The first campaign ID in &#x60;campaignIds&#x60;. Only returned when &#x60;campaignIds&#x60; is not empty.</value>
         /* <example>1</example> */
         [JsonPropertyName("campaignId")]
+        [Obsolete]
         public long? CampaignId { get { return this.CampaignIdOption.Value; } set { this.CampaignIdOption = new Option<long?>(value); } }
 
         /// <summary>
@@ -495,6 +506,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Target: ").Append(Target).Append("\n");
+            sb.Append("  CampaignIds: ").Append(CampaignIds).Append("\n");
             sb.Append("  Period: ").Append(Period).Append("\n");
             sb.Append("  PeriodEndOverride: ").Append(PeriodEndOverride).Append("\n");
             sb.Append("  RecurrencePolicy: ").Append(RecurrencePolicy).Append("\n");
@@ -595,6 +607,7 @@ namespace TalonOneSdk.Model
             Option<string> title = default;
             Option<string> description = default;
             Option<decimal?> target = default;
+            Option<List<long>> campaignIds = default;
             Option<string> period = default;
             Option<TimePoint> periodEndOverride = default;
             Option<AchievementStatusEntry.RecurrencePolicyEnum?> recurrencePolicy = default;
@@ -638,6 +651,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "target":
                             target = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "campaignIds":
+                            campaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "period":
                             period = new Option<string>(utf8JsonReader.GetString());
@@ -699,6 +715,9 @@ namespace TalonOneSdk.Model
             if (!target.IsSet)
                 throw new ArgumentException("Property is required for class AchievementStatusEntry.", nameof(target));
 
+            if (!campaignIds.IsSet)
+                throw new ArgumentException("Property is required for class AchievementStatusEntry.", nameof(campaignIds));
+
             if (id.IsSet && id.Value == null)
                 throw new ArgumentNullException(nameof(id), "Property is not nullable for class AchievementStatusEntry.");
 
@@ -717,7 +736,10 @@ namespace TalonOneSdk.Model
             if (target.IsSet && target.Value == null)
                 throw new ArgumentNullException(nameof(target), "Property is not nullable for class AchievementStatusEntry.");
 
-            return new AchievementStatusEntry(id.Value.Value, created.Value.Value, name.Value, title.Value, description.Value, target.Value.Value, period, periodEndOverride, recurrencePolicy, activationPolicy, fixedStartDate, endDate, allowRollbackAfterCompletion, campaignId, status, currentProgress);
+            if (campaignIds.IsSet && campaignIds.Value == null)
+                throw new ArgumentNullException(nameof(campaignIds), "Property is not nullable for class AchievementStatusEntry.");
+
+            return new AchievementStatusEntry(id.Value.Value, created.Value.Value, name.Value, title.Value, description.Value, target.Value.Value, campaignIds.Value, period, periodEndOverride, recurrencePolicy, activationPolicy, fixedStartDate, endDate, allowRollbackAfterCompletion, campaignId, status, currentProgress);
         }
 
         /// <summary>
@@ -753,6 +775,9 @@ namespace TalonOneSdk.Model
             if (achievementStatusEntry.Description == null)
                 throw new ArgumentNullException(nameof(achievementStatusEntry.Description), "Property is required for class AchievementStatusEntry.");
 
+            if (achievementStatusEntry.CampaignIds == null)
+                throw new ArgumentNullException(nameof(achievementStatusEntry.CampaignIds), "Property is required for class AchievementStatusEntry.");
+
             writer.WriteNumber("id", achievementStatusEntry.Id);
 
             writer.WriteString("created", achievementStatusEntry.Created.ToString(CreatedFormat));
@@ -765,6 +790,8 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("target", achievementStatusEntry.Target);
 
+            writer.WritePropertyName("campaignIds");
+            JsonSerializer.Serialize(writer, achievementStatusEntry.CampaignIds, jsonSerializerOptions);
             if (achievementStatusEntry.PeriodOption.IsSet)
                 writer.WriteString("period", achievementStatusEntry.Period);
 

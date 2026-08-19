@@ -41,6 +41,16 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="PromotionBlock" /> class.
         /// </summary>
+        /// <param name="awardDiscountBlock"></param>
+        public PromotionBlock(AwardDiscountBlock awardDiscountBlock)
+        {
+            AwardDiscountBlock = awardDiscountBlock;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PromotionBlock" /> class.
+        /// </summary>
         /// <param name="passthroughBlock"></param>
         public PromotionBlock(PassthroughBlock passthroughBlock)
         {
@@ -101,6 +111,16 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="PromotionBlock" /> class.
         /// </summary>
+        /// <param name="checkLoyaltyBalanceBlock"></param>
+        public PromotionBlock(CheckLoyaltyBalanceBlock checkLoyaltyBalanceBlock)
+        {
+            CheckLoyaltyBalanceBlock = checkLoyaltyBalanceBlock;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PromotionBlock" /> class.
+        /// </summary>
         /// <param name="checkCouponBlock"></param>
         public PromotionBlock(CheckCouponBlock checkCouponBlock)
         {
@@ -148,12 +168,127 @@ namespace TalonOneSdk.Model
             OnCreated();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PromotionBlock" /> class.
+        /// </summary>
+        /// <param name="triggerWebhookBlock"></param>
+        public PromotionBlock(TriggerWebhookBlock triggerWebhookBlock)
+        {
+            TriggerWebhookBlock = triggerWebhookBlock;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PromotionBlock" /> class.
+        /// </summary>
+        /// <param name="triggerCustomEffectBlock"></param>
+        public PromotionBlock(TriggerCustomEffectBlock triggerCustomEffectBlock)
+        {
+            TriggerCustomEffectBlock = triggerCustomEffectBlock;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PromotionBlock" /> class.
+        /// </summary>
+        /// <param name="checkEventBlock"></param>
+        public PromotionBlock(CheckEventBlock checkEventBlock)
+        {
+            CheckEventBlock = checkEventBlock;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PromotionBlock" /> class.
+        /// </summary>
+        /// <param name="checkAchievementBlock"></param>
+        public PromotionBlock(CheckAchievementBlock checkAchievementBlock)
+        {
+            CheckAchievementBlock = checkAchievementBlock;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PromotionBlock" /> class.
+        /// </summary>
+        /// <param name="checkBudgetBlock"></param>
+        public PromotionBlock(CheckBudgetBlock checkBudgetBlock)
+        {
+            CheckBudgetBlock = checkBudgetBlock;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PromotionBlock" /> class.
+        /// </summary>
+        /// <param name="createCouponBlock"></param>
+        public PromotionBlock(CreateCouponBlock createCouponBlock)
+        {
+            CreateCouponBlock = createCouponBlock;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PromotionBlock" /> class.
+        /// </summary>
+        /// <param name="createReferralBlock"></param>
+        public PromotionBlock(CreateReferralBlock createReferralBlock)
+        {
+            CreateReferralBlock = createReferralBlock;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PromotionBlock" /> class.
+        /// </summary>
+        /// <param name="reserveCouponBlock"></param>
+        public PromotionBlock(ReserveCouponBlock reserveCouponBlock)
+        {
+            ReserveCouponBlock = reserveCouponBlock;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PromotionBlock" /> class.
+        /// </summary>
+        /// <param name="checkLoyaltyCardBlock"></param>
+        public PromotionBlock(CheckLoyaltyCardBlock checkLoyaltyCardBlock)
+        {
+            CheckLoyaltyCardBlock = checkLoyaltyCardBlock;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PromotionBlock" /> class.
+        /// </summary>
+        /// <param name="checkTierBlock"></param>
+        public PromotionBlock(CheckTierBlock checkTierBlock)
+        {
+            CheckTierBlock = checkTierBlock;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PromotionBlock" /> class.
+        /// </summary>
+        /// <param name="redeemLoyaltyPointsBlock"></param>
+        public PromotionBlock(RedeemLoyaltyPointsBlock redeemLoyaltyPointsBlock)
+        {
+            RedeemLoyaltyPointsBlock = redeemLoyaltyPointsBlock;
+            OnCreated();
+        }
+
         partial void OnCreated();
 
         /// <summary>
         /// Gets or Sets PromotionGroupBlock
         /// </summary>
         public PromotionGroupBlock PromotionGroupBlock { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AwardDiscountBlock
+        /// </summary>
+        public AwardDiscountBlock AwardDiscountBlock { get; set; }
 
         /// <summary>
         /// Gets or Sets PassthroughBlock
@@ -186,6 +321,11 @@ namespace TalonOneSdk.Model
         public CheckAudienceBlock CheckAudienceBlock { get; set; }
 
         /// <summary>
+        /// Gets or Sets CheckLoyaltyBalanceBlock
+        /// </summary>
+        public CheckLoyaltyBalanceBlock CheckLoyaltyBalanceBlock { get; set; }
+
+        /// <summary>
         /// Gets or Sets CheckCouponBlock
         /// </summary>
         public CheckCouponBlock CheckCouponBlock { get; set; }
@@ -209,6 +349,61 @@ namespace TalonOneSdk.Model
         /// Gets or Sets UpdateAttributeValueBlock
         /// </summary>
         public UpdateAttributeValueBlock UpdateAttributeValueBlock { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TriggerWebhookBlock
+        /// </summary>
+        public TriggerWebhookBlock TriggerWebhookBlock { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TriggerCustomEffectBlock
+        /// </summary>
+        public TriggerCustomEffectBlock TriggerCustomEffectBlock { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CheckEventBlock
+        /// </summary>
+        public CheckEventBlock CheckEventBlock { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CheckAchievementBlock
+        /// </summary>
+        public CheckAchievementBlock CheckAchievementBlock { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CheckBudgetBlock
+        /// </summary>
+        public CheckBudgetBlock CheckBudgetBlock { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CreateCouponBlock
+        /// </summary>
+        public CreateCouponBlock CreateCouponBlock { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CreateReferralBlock
+        /// </summary>
+        public CreateReferralBlock CreateReferralBlock { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ReserveCouponBlock
+        /// </summary>
+        public ReserveCouponBlock ReserveCouponBlock { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CheckLoyaltyCardBlock
+        /// </summary>
+        public CheckLoyaltyCardBlock CheckLoyaltyCardBlock { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CheckTierBlock
+        /// </summary>
+        public CheckTierBlock CheckTierBlock { get; set; }
+
+        /// <summary>
+        /// Gets or Sets RedeemLoyaltyPointsBlock
+        /// </summary>
+        public RedeemLoyaltyPointsBlock RedeemLoyaltyPointsBlock { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -277,15 +472,28 @@ namespace TalonOneSdk.Model
 
             Option<string> type = default;
 
+            AwardDiscountBlock awardDiscountAwardDiscountBlock = null;
             AwardGiveawayBlock awardGiveawayAwardGiveawayBlock = null;
             AwardItemBlock awardItemAwardItemBlock = null;
+            CheckAchievementBlock checkAchievementCheckAchievementBlock = null;
             PromotionCheckAttributeBlock checkAttributePromotionCheckAttributeBlock = null;
             CheckAudienceBlock checkAudienceCheckAudienceBlock = null;
+            CheckBudgetBlock checkBudgetCheckBudgetBlock = null;
             CheckCouponBlock checkCouponCheckCouponBlock = null;
+            CheckEventBlock checkEventCheckEventBlock = null;
+            CheckLoyaltyBalanceBlock checkLoyaltyBalanceCheckLoyaltyBalanceBlock = null;
+            CheckLoyaltyCardBlock checkLoyaltyCardCheckLoyaltyCardBlock = null;
             CheckReferralBlock checkReferralCheckReferralBlock = null;
+            CheckTierBlock checkTierCheckTierBlock = null;
+            CreateCouponBlock createCouponCreateCouponBlock = null;
+            CreateReferralBlock createReferralCreateReferralBlock = null;
             PromotionGroupBlock groupPromotionGroupBlock = null;
             PassthroughBlock passthroughPassthroughBlock = null;
+            RedeemLoyaltyPointsBlock redeemLoyaltyPointsRedeemLoyaltyPointsBlock = null;
+            ReserveCouponBlock reserveCouponReserveCouponBlock = null;
             ShowNotificationBlock showNotificationShowNotificationBlock = null;
+            TriggerCustomEffectBlock triggerCustomEffectTriggerCustomEffectBlock = null;
+            TriggerWebhookBlock triggerWebhookTriggerWebhookBlock = null;
             UpdateAchievementProgressBlock updateAchievementProgressUpdateAchievementProgressBlock = null;
             UpdateAttributeValueBlock updateAttributeValueUpdateAttributeValueBlock = null;
             UpdateAudienceMembershipBlock updateAudienceMembershipUpdateAudienceMembershipBlock = null;
@@ -306,6 +514,11 @@ namespace TalonOneSdk.Model
                     if (localVarJsonPropertyName.Equals("type"))
                     {
                         string discriminator = utf8JsonReaderDiscriminator.GetString();
+                        if (discriminator.Equals("awardDiscount"))
+                        {
+                            Utf8JsonReader utf8JsonReaderAwardDiscountBlock = utf8JsonReader;
+                            awardDiscountAwardDiscountBlock = JsonSerializer.Deserialize<AwardDiscountBlock>(ref utf8JsonReaderAwardDiscountBlock, jsonSerializerOptions);
+                        }
                         if (discriminator.Equals("awardGiveaway"))
                         {
                             Utf8JsonReader utf8JsonReaderAwardGiveawayBlock = utf8JsonReader;
@@ -315,6 +528,11 @@ namespace TalonOneSdk.Model
                         {
                             Utf8JsonReader utf8JsonReaderAwardItemBlock = utf8JsonReader;
                             awardItemAwardItemBlock = JsonSerializer.Deserialize<AwardItemBlock>(ref utf8JsonReaderAwardItemBlock, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("checkAchievement"))
+                        {
+                            Utf8JsonReader utf8JsonReaderCheckAchievementBlock = utf8JsonReader;
+                            checkAchievementCheckAchievementBlock = JsonSerializer.Deserialize<CheckAchievementBlock>(ref utf8JsonReaderCheckAchievementBlock, jsonSerializerOptions);
                         }
                         if (discriminator.Equals("checkAttribute"))
                         {
@@ -326,15 +544,50 @@ namespace TalonOneSdk.Model
                             Utf8JsonReader utf8JsonReaderCheckAudienceBlock = utf8JsonReader;
                             checkAudienceCheckAudienceBlock = JsonSerializer.Deserialize<CheckAudienceBlock>(ref utf8JsonReaderCheckAudienceBlock, jsonSerializerOptions);
                         }
+                        if (discriminator.Equals("checkBudget"))
+                        {
+                            Utf8JsonReader utf8JsonReaderCheckBudgetBlock = utf8JsonReader;
+                            checkBudgetCheckBudgetBlock = JsonSerializer.Deserialize<CheckBudgetBlock>(ref utf8JsonReaderCheckBudgetBlock, jsonSerializerOptions);
+                        }
                         if (discriminator.Equals("checkCoupon"))
                         {
                             Utf8JsonReader utf8JsonReaderCheckCouponBlock = utf8JsonReader;
                             checkCouponCheckCouponBlock = JsonSerializer.Deserialize<CheckCouponBlock>(ref utf8JsonReaderCheckCouponBlock, jsonSerializerOptions);
                         }
+                        if (discriminator.Equals("checkEvent"))
+                        {
+                            Utf8JsonReader utf8JsonReaderCheckEventBlock = utf8JsonReader;
+                            checkEventCheckEventBlock = JsonSerializer.Deserialize<CheckEventBlock>(ref utf8JsonReaderCheckEventBlock, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("checkLoyaltyBalance"))
+                        {
+                            Utf8JsonReader utf8JsonReaderCheckLoyaltyBalanceBlock = utf8JsonReader;
+                            checkLoyaltyBalanceCheckLoyaltyBalanceBlock = JsonSerializer.Deserialize<CheckLoyaltyBalanceBlock>(ref utf8JsonReaderCheckLoyaltyBalanceBlock, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("checkLoyaltyCard"))
+                        {
+                            Utf8JsonReader utf8JsonReaderCheckLoyaltyCardBlock = utf8JsonReader;
+                            checkLoyaltyCardCheckLoyaltyCardBlock = JsonSerializer.Deserialize<CheckLoyaltyCardBlock>(ref utf8JsonReaderCheckLoyaltyCardBlock, jsonSerializerOptions);
+                        }
                         if (discriminator.Equals("checkReferral"))
                         {
                             Utf8JsonReader utf8JsonReaderCheckReferralBlock = utf8JsonReader;
                             checkReferralCheckReferralBlock = JsonSerializer.Deserialize<CheckReferralBlock>(ref utf8JsonReaderCheckReferralBlock, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("checkTier"))
+                        {
+                            Utf8JsonReader utf8JsonReaderCheckTierBlock = utf8JsonReader;
+                            checkTierCheckTierBlock = JsonSerializer.Deserialize<CheckTierBlock>(ref utf8JsonReaderCheckTierBlock, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("createCoupon"))
+                        {
+                            Utf8JsonReader utf8JsonReaderCreateCouponBlock = utf8JsonReader;
+                            createCouponCreateCouponBlock = JsonSerializer.Deserialize<CreateCouponBlock>(ref utf8JsonReaderCreateCouponBlock, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("createReferral"))
+                        {
+                            Utf8JsonReader utf8JsonReaderCreateReferralBlock = utf8JsonReader;
+                            createReferralCreateReferralBlock = JsonSerializer.Deserialize<CreateReferralBlock>(ref utf8JsonReaderCreateReferralBlock, jsonSerializerOptions);
                         }
                         if (discriminator.Equals("group"))
                         {
@@ -346,10 +599,30 @@ namespace TalonOneSdk.Model
                             Utf8JsonReader utf8JsonReaderPassthroughBlock = utf8JsonReader;
                             passthroughPassthroughBlock = JsonSerializer.Deserialize<PassthroughBlock>(ref utf8JsonReaderPassthroughBlock, jsonSerializerOptions);
                         }
+                        if (discriminator.Equals("redeemLoyaltyPoints"))
+                        {
+                            Utf8JsonReader utf8JsonReaderRedeemLoyaltyPointsBlock = utf8JsonReader;
+                            redeemLoyaltyPointsRedeemLoyaltyPointsBlock = JsonSerializer.Deserialize<RedeemLoyaltyPointsBlock>(ref utf8JsonReaderRedeemLoyaltyPointsBlock, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("reserveCoupon"))
+                        {
+                            Utf8JsonReader utf8JsonReaderReserveCouponBlock = utf8JsonReader;
+                            reserveCouponReserveCouponBlock = JsonSerializer.Deserialize<ReserveCouponBlock>(ref utf8JsonReaderReserveCouponBlock, jsonSerializerOptions);
+                        }
                         if (discriminator.Equals("showNotification"))
                         {
                             Utf8JsonReader utf8JsonReaderShowNotificationBlock = utf8JsonReader;
                             showNotificationShowNotificationBlock = JsonSerializer.Deserialize<ShowNotificationBlock>(ref utf8JsonReaderShowNotificationBlock, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("triggerCustomEffect"))
+                        {
+                            Utf8JsonReader utf8JsonReaderTriggerCustomEffectBlock = utf8JsonReader;
+                            triggerCustomEffectTriggerCustomEffectBlock = JsonSerializer.Deserialize<TriggerCustomEffectBlock>(ref utf8JsonReaderTriggerCustomEffectBlock, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("triggerWebhook"))
+                        {
+                            Utf8JsonReader utf8JsonReaderTriggerWebhookBlock = utf8JsonReader;
+                            triggerWebhookTriggerWebhookBlock = JsonSerializer.Deserialize<TriggerWebhookBlock>(ref utf8JsonReaderTriggerWebhookBlock, jsonSerializerOptions);
                         }
                         if (discriminator.Equals("updateAchievementProgress"))
                         {
@@ -400,11 +673,17 @@ namespace TalonOneSdk.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class PromotionBlock.");
 
+            if (awardDiscountAwardDiscountBlock != null)
+                return new PromotionBlock(awardDiscountAwardDiscountBlock);
+
             if (awardGiveawayAwardGiveawayBlock != null)
                 return new PromotionBlock(awardGiveawayAwardGiveawayBlock);
 
             if (awardItemAwardItemBlock != null)
                 return new PromotionBlock(awardItemAwardItemBlock);
+
+            if (checkAchievementCheckAchievementBlock != null)
+                return new PromotionBlock(checkAchievementCheckAchievementBlock);
 
             if (checkAttributePromotionCheckAttributeBlock != null)
                 return new PromotionBlock(checkAttributePromotionCheckAttributeBlock);
@@ -412,11 +691,32 @@ namespace TalonOneSdk.Model
             if (checkAudienceCheckAudienceBlock != null)
                 return new PromotionBlock(checkAudienceCheckAudienceBlock);
 
+            if (checkBudgetCheckBudgetBlock != null)
+                return new PromotionBlock(checkBudgetCheckBudgetBlock);
+
             if (checkCouponCheckCouponBlock != null)
                 return new PromotionBlock(checkCouponCheckCouponBlock);
 
+            if (checkEventCheckEventBlock != null)
+                return new PromotionBlock(checkEventCheckEventBlock);
+
+            if (checkLoyaltyBalanceCheckLoyaltyBalanceBlock != null)
+                return new PromotionBlock(checkLoyaltyBalanceCheckLoyaltyBalanceBlock);
+
+            if (checkLoyaltyCardCheckLoyaltyCardBlock != null)
+                return new PromotionBlock(checkLoyaltyCardCheckLoyaltyCardBlock);
+
             if (checkReferralCheckReferralBlock != null)
                 return new PromotionBlock(checkReferralCheckReferralBlock);
+
+            if (checkTierCheckTierBlock != null)
+                return new PromotionBlock(checkTierCheckTierBlock);
+
+            if (createCouponCreateCouponBlock != null)
+                return new PromotionBlock(createCouponCreateCouponBlock);
+
+            if (createReferralCreateReferralBlock != null)
+                return new PromotionBlock(createReferralCreateReferralBlock);
 
             if (groupPromotionGroupBlock != null)
                 return new PromotionBlock(groupPromotionGroupBlock);
@@ -424,8 +724,20 @@ namespace TalonOneSdk.Model
             if (passthroughPassthroughBlock != null)
                 return new PromotionBlock(passthroughPassthroughBlock);
 
+            if (redeemLoyaltyPointsRedeemLoyaltyPointsBlock != null)
+                return new PromotionBlock(redeemLoyaltyPointsRedeemLoyaltyPointsBlock);
+
+            if (reserveCouponReserveCouponBlock != null)
+                return new PromotionBlock(reserveCouponReserveCouponBlock);
+
             if (showNotificationShowNotificationBlock != null)
                 return new PromotionBlock(showNotificationShowNotificationBlock);
+
+            if (triggerCustomEffectTriggerCustomEffectBlock != null)
+                return new PromotionBlock(triggerCustomEffectTriggerCustomEffectBlock);
+
+            if (triggerWebhookTriggerWebhookBlock != null)
+                return new PromotionBlock(triggerWebhookTriggerWebhookBlock);
 
             if (updateAchievementProgressUpdateAchievementProgressBlock != null)
                 return new PromotionBlock(updateAchievementProgressUpdateAchievementProgressBlock);
@@ -454,6 +766,12 @@ namespace TalonOneSdk.Model
             {
                 PromotionGroupBlockJsonConverter promotionGroupBlockJsonConverter = (PromotionGroupBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(promotionBlock.PromotionGroupBlock.GetType()));
                 promotionGroupBlockJsonConverter.WriteProperties(writer, promotionBlock.PromotionGroupBlock, jsonSerializerOptions);
+            }
+
+            if (promotionBlock.AwardDiscountBlock != null)
+            {
+                AwardDiscountBlockJsonConverter awardDiscountBlockJsonConverter = (AwardDiscountBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(promotionBlock.AwardDiscountBlock.GetType()));
+                awardDiscountBlockJsonConverter.WriteProperties(writer, promotionBlock.AwardDiscountBlock, jsonSerializerOptions);
             }
 
             if (promotionBlock.PassthroughBlock != null)
@@ -492,6 +810,12 @@ namespace TalonOneSdk.Model
                 checkAudienceBlockJsonConverter.WriteProperties(writer, promotionBlock.CheckAudienceBlock, jsonSerializerOptions);
             }
 
+            if (promotionBlock.CheckLoyaltyBalanceBlock != null)
+            {
+                CheckLoyaltyBalanceBlockJsonConverter checkLoyaltyBalanceBlockJsonConverter = (CheckLoyaltyBalanceBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(promotionBlock.CheckLoyaltyBalanceBlock.GetType()));
+                checkLoyaltyBalanceBlockJsonConverter.WriteProperties(writer, promotionBlock.CheckLoyaltyBalanceBlock, jsonSerializerOptions);
+            }
+
             if (promotionBlock.CheckCouponBlock != null)
             {
                 CheckCouponBlockJsonConverter checkCouponBlockJsonConverter = (CheckCouponBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(promotionBlock.CheckCouponBlock.GetType()));
@@ -520,6 +844,72 @@ namespace TalonOneSdk.Model
             {
                 UpdateAttributeValueBlockJsonConverter updateAttributeValueBlockJsonConverter = (UpdateAttributeValueBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(promotionBlock.UpdateAttributeValueBlock.GetType()));
                 updateAttributeValueBlockJsonConverter.WriteProperties(writer, promotionBlock.UpdateAttributeValueBlock, jsonSerializerOptions);
+            }
+
+            if (promotionBlock.TriggerWebhookBlock != null)
+            {
+                TriggerWebhookBlockJsonConverter triggerWebhookBlockJsonConverter = (TriggerWebhookBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(promotionBlock.TriggerWebhookBlock.GetType()));
+                triggerWebhookBlockJsonConverter.WriteProperties(writer, promotionBlock.TriggerWebhookBlock, jsonSerializerOptions);
+            }
+
+            if (promotionBlock.TriggerCustomEffectBlock != null)
+            {
+                TriggerCustomEffectBlockJsonConverter triggerCustomEffectBlockJsonConverter = (TriggerCustomEffectBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(promotionBlock.TriggerCustomEffectBlock.GetType()));
+                triggerCustomEffectBlockJsonConverter.WriteProperties(writer, promotionBlock.TriggerCustomEffectBlock, jsonSerializerOptions);
+            }
+
+            if (promotionBlock.CheckEventBlock != null)
+            {
+                CheckEventBlockJsonConverter checkEventBlockJsonConverter = (CheckEventBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(promotionBlock.CheckEventBlock.GetType()));
+                checkEventBlockJsonConverter.WriteProperties(writer, promotionBlock.CheckEventBlock, jsonSerializerOptions);
+            }
+
+            if (promotionBlock.CheckAchievementBlock != null)
+            {
+                CheckAchievementBlockJsonConverter checkAchievementBlockJsonConverter = (CheckAchievementBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(promotionBlock.CheckAchievementBlock.GetType()));
+                checkAchievementBlockJsonConverter.WriteProperties(writer, promotionBlock.CheckAchievementBlock, jsonSerializerOptions);
+            }
+
+            if (promotionBlock.CheckBudgetBlock != null)
+            {
+                CheckBudgetBlockJsonConverter checkBudgetBlockJsonConverter = (CheckBudgetBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(promotionBlock.CheckBudgetBlock.GetType()));
+                checkBudgetBlockJsonConverter.WriteProperties(writer, promotionBlock.CheckBudgetBlock, jsonSerializerOptions);
+            }
+
+            if (promotionBlock.CreateCouponBlock != null)
+            {
+                CreateCouponBlockJsonConverter createCouponBlockJsonConverter = (CreateCouponBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(promotionBlock.CreateCouponBlock.GetType()));
+                createCouponBlockJsonConverter.WriteProperties(writer, promotionBlock.CreateCouponBlock, jsonSerializerOptions);
+            }
+
+            if (promotionBlock.CreateReferralBlock != null)
+            {
+                CreateReferralBlockJsonConverter createReferralBlockJsonConverter = (CreateReferralBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(promotionBlock.CreateReferralBlock.GetType()));
+                createReferralBlockJsonConverter.WriteProperties(writer, promotionBlock.CreateReferralBlock, jsonSerializerOptions);
+            }
+
+            if (promotionBlock.ReserveCouponBlock != null)
+            {
+                ReserveCouponBlockJsonConverter reserveCouponBlockJsonConverter = (ReserveCouponBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(promotionBlock.ReserveCouponBlock.GetType()));
+                reserveCouponBlockJsonConverter.WriteProperties(writer, promotionBlock.ReserveCouponBlock, jsonSerializerOptions);
+            }
+
+            if (promotionBlock.CheckLoyaltyCardBlock != null)
+            {
+                CheckLoyaltyCardBlockJsonConverter checkLoyaltyCardBlockJsonConverter = (CheckLoyaltyCardBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(promotionBlock.CheckLoyaltyCardBlock.GetType()));
+                checkLoyaltyCardBlockJsonConverter.WriteProperties(writer, promotionBlock.CheckLoyaltyCardBlock, jsonSerializerOptions);
+            }
+
+            if (promotionBlock.CheckTierBlock != null)
+            {
+                CheckTierBlockJsonConverter checkTierBlockJsonConverter = (CheckTierBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(promotionBlock.CheckTierBlock.GetType()));
+                checkTierBlockJsonConverter.WriteProperties(writer, promotionBlock.CheckTierBlock, jsonSerializerOptions);
+            }
+
+            if (promotionBlock.RedeemLoyaltyPointsBlock != null)
+            {
+                RedeemLoyaltyPointsBlockJsonConverter redeemLoyaltyPointsBlockJsonConverter = (RedeemLoyaltyPointsBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(promotionBlock.RedeemLoyaltyPointsBlock.GetType()));
+                redeemLoyaltyPointsBlockJsonConverter.WriteProperties(writer, promotionBlock.RedeemLoyaltyPointsBlock, jsonSerializerOptions);
             }
 
             WriteProperties(writer, promotionBlock, jsonSerializerOptions);

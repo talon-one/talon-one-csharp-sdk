@@ -43,7 +43,7 @@ namespace TalonOneSdk.Model
         /// <param name="bundles">Variable bindings of type bundle.</param>
         /// <param name="parameters">Variable bindings of type template parameter.</param>
         [JsonConstructor]
-        public RulesetV2(long id, DateTime created, long userId, List<PromotionRuleV2> promotionRules, List<StrikethroughRuleV2> strikethroughRules, Option<long?> campaignId = default, Option<long?> templateId = default, Option<DateTime?> activatedAt = default, Option<List<Dictionary<string, Object>>> selectors = default, Option<List<Dictionary<string, Object>>> bundles = default, Option<List<Dictionary<string, Object>>> parameters = default)
+        public RulesetV2(long id, DateTime created, long userId, List<PromotionRuleV2> promotionRules, List<StrikethroughRuleV2> strikethroughRules, Option<long?> campaignId = default, Option<long?> templateId = default, Option<DateTime?> activatedAt = default, Option<List<Selector>> selectors = default, Option<List<Bundle>> bundles = default, Option<List<TemplateParameter>> parameters = default)
         {
             Id = id;
             Created = created;
@@ -147,42 +147,42 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Dictionary<string, Object>>> SelectorsOption { get; private set; }
+        public Option<List<Selector>> SelectorsOption { get; private set; }
 
         /// <summary>
         /// Variable bindings of type selector.
         /// </summary>
         /// <value>Variable bindings of type selector.</value>
         [JsonPropertyName("selectors")]
-        public List<Dictionary<string, Object>> Selectors { get { return this.SelectorsOption.Value; } set { this.SelectorsOption = new Option<List<Dictionary<string, Object>>>(value); } }
+        public List<Selector> Selectors { get { return this.SelectorsOption.Value; } set { this.SelectorsOption = new Option<List<Selector>>(value); } }
 
         /// <summary>
         /// Used to track the state of Bundles
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Dictionary<string, Object>>> BundlesOption { get; private set; }
+        public Option<List<Bundle>> BundlesOption { get; private set; }
 
         /// <summary>
         /// Variable bindings of type bundle.
         /// </summary>
         /// <value>Variable bindings of type bundle.</value>
         [JsonPropertyName("bundles")]
-        public List<Dictionary<string, Object>> Bundles { get { return this.BundlesOption.Value; } set { this.BundlesOption = new Option<List<Dictionary<string, Object>>>(value); } }
+        public List<Bundle> Bundles { get { return this.BundlesOption.Value; } set { this.BundlesOption = new Option<List<Bundle>>(value); } }
 
         /// <summary>
         /// Used to track the state of Parameters
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Dictionary<string, Object>>> ParametersOption { get; private set; }
+        public Option<List<TemplateParameter>> ParametersOption { get; private set; }
 
         /// <summary>
         /// Variable bindings of type template parameter.
         /// </summary>
         /// <value>Variable bindings of type template parameter.</value>
         [JsonPropertyName("parameters")]
-        public List<Dictionary<string, Object>> Parameters { get { return this.ParametersOption.Value; } set { this.ParametersOption = new Option<List<Dictionary<string, Object>>>(value); } }
+        public List<TemplateParameter> Parameters { get { return this.ParametersOption.Value; } set { this.ParametersOption = new Option<List<TemplateParameter>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -268,9 +268,9 @@ namespace TalonOneSdk.Model
             Option<long?> campaignId = default;
             Option<long?> templateId = default;
             Option<DateTime?> activatedAt = default;
-            Option<List<Dictionary<string, Object>>> selectors = default;
-            Option<List<Dictionary<string, Object>>> bundles = default;
-            Option<List<Dictionary<string, Object>>> parameters = default;
+            Option<List<Selector>> selectors = default;
+            Option<List<Bundle>> bundles = default;
+            Option<List<TemplateParameter>> parameters = default;
 
             while (utf8JsonReader.Read())
             {
@@ -312,13 +312,13 @@ namespace TalonOneSdk.Model
                             activatedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "selectors":
-                            selectors = new Option<List<Dictionary<string, Object>>>(JsonSerializer.Deserialize<List<Dictionary<string, Object>>>(ref utf8JsonReader, jsonSerializerOptions));
+                            selectors = new Option<List<Selector>>(JsonSerializer.Deserialize<List<Selector>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "bundles":
-                            bundles = new Option<List<Dictionary<string, Object>>>(JsonSerializer.Deserialize<List<Dictionary<string, Object>>>(ref utf8JsonReader, jsonSerializerOptions));
+                            bundles = new Option<List<Bundle>>(JsonSerializer.Deserialize<List<Bundle>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "parameters":
-                            parameters = new Option<List<Dictionary<string, Object>>>(JsonSerializer.Deserialize<List<Dictionary<string, Object>>>(ref utf8JsonReader, jsonSerializerOptions));
+                            parameters = new Option<List<TemplateParameter>>(JsonSerializer.Deserialize<List<TemplateParameter>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

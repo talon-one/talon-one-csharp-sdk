@@ -46,7 +46,7 @@ namespace TalonOneSdk.Model
         /// <param name="rulesetId">The ID of the ruleset containing the rule that triggered this effect.</param>
         /// <param name="ruleName">The name of the rule that triggered this effect.</param>
         /// <param name="flags">The flags of the transaction, when applicable. The &#x60;createsNegativeBalance&#x60;  flag indicates whether the transaction results in a negative balance.</param>
-        /// <param name="validityDuration">The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. </param>
+        /// <param name="validityDuration">The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. </param>
         [JsonConstructor]
         public LedgerTransactionLogEntryIntegrationAPI(string transactionUUID, DateTime created, long programId, TypeEnum type, string name, string startDate, string expiryDate, string subledgerId, decimal amount, long id, Option<string> customerSessionId = default, Option<string> storeIntegrationId = default, Option<long?> rulesetId = default, Option<string> ruleName = default, Option<LoyaltyLedgerEntryFlags> flags = default, Option<string> validityDuration = default)
         {
@@ -300,9 +300,9 @@ namespace TalonOneSdk.Model
         public Option<string> ValidityDurationOption { get; private set; }
 
         /// <summary>
-        /// The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. 
+        /// The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. 
         /// </summary>
-        /// <value>The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. </value>
+        /// <value>The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. </value>
         /* <example>30D</example> */
         [JsonPropertyName("validityDuration")]
         public string ValidityDuration { get { return this.ValidityDurationOption.Value; } set { this.ValidityDurationOption = new Option<string>(value); } }

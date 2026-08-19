@@ -41,6 +41,16 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="StrikethroughBlock" /> class.
         /// </summary>
+        /// <param name="awardDiscountBlock"></param>
+        public StrikethroughBlock(AwardDiscountBlock awardDiscountBlock)
+        {
+            AwardDiscountBlock = awardDiscountBlock;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StrikethroughBlock" /> class.
+        /// </summary>
         /// <param name="passthroughBlock"></param>
         public StrikethroughBlock(PassthroughBlock passthroughBlock)
         {
@@ -64,6 +74,11 @@ namespace TalonOneSdk.Model
         /// Gets or Sets StrikethroughGroupBlock
         /// </summary>
         public StrikethroughGroupBlock StrikethroughGroupBlock { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AwardDiscountBlock
+        /// </summary>
+        public AwardDiscountBlock AwardDiscountBlock { get; set; }
 
         /// <summary>
         /// Gets or Sets PassthroughBlock
@@ -142,6 +157,7 @@ namespace TalonOneSdk.Model
 
             Option<string> type = default;
 
+            AwardDiscountBlock awardDiscountAwardDiscountBlock = null;
             StrikethroughCheckAttributeBlock checkAttributeStrikethroughCheckAttributeBlock = null;
             StrikethroughGroupBlock groupStrikethroughGroupBlock = null;
             PassthroughBlock passthroughPassthroughBlock = null;
@@ -162,6 +178,11 @@ namespace TalonOneSdk.Model
                     if (localVarJsonPropertyName.Equals("type"))
                     {
                         string discriminator = utf8JsonReaderDiscriminator.GetString();
+                        if (discriminator.Equals("awardDiscount"))
+                        {
+                            Utf8JsonReader utf8JsonReaderAwardDiscountBlock = utf8JsonReader;
+                            awardDiscountAwardDiscountBlock = JsonSerializer.Deserialize<AwardDiscountBlock>(ref utf8JsonReaderAwardDiscountBlock, jsonSerializerOptions);
+                        }
                         if (discriminator.Equals("checkAttribute"))
                         {
                             Utf8JsonReader utf8JsonReaderStrikethroughCheckAttributeBlock = utf8JsonReader;
@@ -211,6 +232,9 @@ namespace TalonOneSdk.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class StrikethroughBlock.");
 
+            if (awardDiscountAwardDiscountBlock != null)
+                return new StrikethroughBlock(awardDiscountAwardDiscountBlock);
+
             if (checkAttributeStrikethroughCheckAttributeBlock != null)
                 return new StrikethroughBlock(checkAttributeStrikethroughCheckAttributeBlock);
 
@@ -238,6 +262,12 @@ namespace TalonOneSdk.Model
             {
                 StrikethroughGroupBlockJsonConverter strikethroughGroupBlockJsonConverter = (StrikethroughGroupBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(strikethroughBlock.StrikethroughGroupBlock.GetType()));
                 strikethroughGroupBlockJsonConverter.WriteProperties(writer, strikethroughBlock.StrikethroughGroupBlock, jsonSerializerOptions);
+            }
+
+            if (strikethroughBlock.AwardDiscountBlock != null)
+            {
+                AwardDiscountBlockJsonConverter awardDiscountBlockJsonConverter = (AwardDiscountBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(strikethroughBlock.AwardDiscountBlock.GetType()));
+                awardDiscountBlockJsonConverter.WriteProperties(writer, strikethroughBlock.AwardDiscountBlock, jsonSerializerOptions);
             }
 
             if (strikethroughBlock.PassthroughBlock != null)

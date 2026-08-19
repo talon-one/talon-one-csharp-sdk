@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **FriendIntegrationId** | **string** | Integration ID of the Friend&#39;s Profile. | 
 **Code** | **string** | Advocate&#39;s referral code. | 
 **Created** | **DateTime** | Timestamp of the moment the customer redeemed the referral. | 
+**AdvancedEventIntegrationId** | **string** | The unique ID of the advanced event in which the customer redeemed the referral. Omitted when the referral was redeemed through a customer session rather than an advanced event. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

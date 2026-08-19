@@ -44,7 +44,7 @@ namespace TalonOneSdk.Model
         /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this cart item.</param>
         /// <param name="targets">A list of entities (e.g. audiences) targeted by this effect.</param>
         [JsonConstructor]
-        public StrikethroughEffect(long campaignId, long rulesetId, long ruleIndex, string ruleName, string type, StrikethroughEffectProps props, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<string> adjustmentReferenceId = default, Option<List<LabelTarget>> targets = default)
+        public StrikethroughEffect(long campaignId, long rulesetId, long ruleIndex, string ruleName, string type, Object props, Option<DateTime?> startTime = default, Option<DateTime?> endTime = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<string> adjustmentReferenceId = default, Option<List<LabelTarget>> targets = default)
         {
             CampaignId = campaignId;
             RulesetId = rulesetId;
@@ -108,7 +108,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>Arbitrary properties associated with this effect type.</value>
         [JsonPropertyName("props")]
-        public StrikethroughEffectProps Props { get; set; }
+        public Object Props { get; set; }
 
         /// <summary>
         /// Used to track the state of StartTime
@@ -281,7 +281,7 @@ namespace TalonOneSdk.Model
             Option<long?> ruleIndex = default;
             Option<string> ruleName = default;
             Option<string> type = default;
-            Option<StrikethroughEffectProps> props = default;
+            Option<Object> props = default;
             Option<DateTime?> startTime = default;
             Option<DateTime?> endTime = default;
             Option<string> selectedPriceType = default;
@@ -320,7 +320,7 @@ namespace TalonOneSdk.Model
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "props":
-                            props = new Option<StrikethroughEffectProps>(JsonSerializer.Deserialize<StrikethroughEffectProps>(ref utf8JsonReader, jsonSerializerOptions));
+                            props = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "startTime":
                             startTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));

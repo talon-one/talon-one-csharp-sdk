@@ -151,5 +151,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'AdvancedEvent'
         }
+
+        /// <summary>
+        /// Test the property 'Referral'
+        /// </summary>
+        [Fact]
+        public void ReferralTest()
+        {
+            // TODO unit test for the property 'Referral'
+        }
     }
 }

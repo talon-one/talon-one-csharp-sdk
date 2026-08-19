@@ -31,6 +31,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification" /> class.
         /// </summary>
+        /// <param name="eventId">The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed.</param>
         /// <param name="profileIntegrationID">profileIntegrationID</param>
         /// <param name="loyaltyProgramID">loyaltyProgramID</param>
         /// <param name="loyaltyProgramName">The name of the loyalty program.</param>
@@ -44,8 +45,9 @@ namespace TalonOneSdk.Model
         /// <param name="userID">userID</param>
         /// <param name="actions">actions</param>
         [JsonConstructor]
-        public IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(string profileIntegrationID, long loyaltyProgramID, string loyaltyProgramName, string subledgerID, string sourceOfEvent, string currentTier, float currentPoints, DateTime publishedAt, Option<string> sessionIntegrationID = default, Option<string> employeeName = default, Option<long?> userID = default, Option<List<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction>> actions = default)
+        public IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(long eventId, string profileIntegrationID, long loyaltyProgramID, string loyaltyProgramName, string subledgerID, string sourceOfEvent, string currentTier, float currentPoints, DateTime publishedAt, Option<string> sessionIntegrationID = default, Option<string> employeeName = default, Option<long?> userID = default, Option<List<IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction>> actions = default)
         {
+            EventId = eventId;
             ProfileIntegrationID = profileIntegrationID;
             LoyaltyProgramID = loyaltyProgramID;
             LoyaltyProgramName = loyaltyProgramName;
@@ -62,6 +64,14 @@ namespace TalonOneSdk.Model
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed.
+        /// </summary>
+        /// <value>The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed.</value>
+        /* <example>123</example> */
+        [JsonPropertyName("EventId")]
+        public long EventId { get; set; }
 
         /// <summary>
         /// Gets or Sets ProfileIntegrationID
@@ -175,6 +185,7 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification {\n");
+            sb.Append("  EventId: ").Append(EventId).Append("\n");
             sb.Append("  ProfileIntegrationID: ").Append(ProfileIntegrationID).Append("\n");
             sb.Append("  LoyaltyProgramID: ").Append(LoyaltyProgramID).Append("\n");
             sb.Append("  LoyaltyProgramName: ").Append(LoyaltyProgramName).Append("\n");
@@ -239,6 +250,7 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<long?> eventId = default;
             Option<string> profileIntegrationID = default;
             Option<long?> loyaltyProgramID = default;
             Option<string> loyaltyProgramName = default;
@@ -267,6 +279,9 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "EventId":
+                            eventId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
                         case "ProfileIntegrationID":
                             profileIntegrationID = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -309,6 +324,9 @@ namespace TalonOneSdk.Model
                 }
             }
 
+            if (!eventId.IsSet)
+                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(eventId));
+
             if (!profileIntegrationID.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(profileIntegrationID));
 
@@ -332,6 +350,9 @@ namespace TalonOneSdk.Model
 
             if (!publishedAt.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(publishedAt));
+
+            if (eventId.IsSet && eventId.Value == null)
+                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
 
             if (profileIntegrationID.IsSet && profileIntegrationID.Value == null)
                 throw new ArgumentNullException(nameof(profileIntegrationID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
@@ -357,7 +378,7 @@ namespace TalonOneSdk.Model
             if (publishedAt.IsSet && publishedAt.Value == null)
                 throw new ArgumentNullException(nameof(publishedAt), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
 
-            return new IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(profileIntegrationID.Value, loyaltyProgramID.Value.Value, loyaltyProgramName.Value, subledgerID.Value, sourceOfEvent.Value, currentTier.Value, currentPoints.Value.Value, publishedAt.Value.Value, sessionIntegrationID, employeeName, userID, actions);
+            return new IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(eventId.Value.Value, profileIntegrationID.Value, loyaltyProgramID.Value.Value, loyaltyProgramName.Value, subledgerID.Value, sourceOfEvent.Value, currentTier.Value, currentPoints.Value.Value, publishedAt.Value.Value, sessionIntegrationID, employeeName, userID, actions);
         }
 
         /// <summary>
@@ -398,6 +419,8 @@ namespace TalonOneSdk.Model
 
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.CurrentTier == null)
                 throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.CurrentTier), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+
+            writer.WriteNumber("EventId", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.EventId);
 
             writer.WriteString("ProfileIntegrationID", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.ProfileIntegrationID);
 

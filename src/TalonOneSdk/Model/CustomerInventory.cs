@@ -37,8 +37,9 @@ namespace TalonOneSdk.Model
         /// <param name="coupons">The coupons reserved by this profile. This array includes hard and soft reservations. </param>
         /// <param name="giveaways">giveaways</param>
         /// <param name="achievements">achievements</param>
+        /// <param name="rewards">The customer rewards that are &#x60;unlocked&#x60; and not yet &#x60;used&#x60;.</param>
         [JsonConstructor]
-        public CustomerInventory(Option<CustomerProfile> profile = default, Option<Loyalty> loyalty = default, Option<List<InventoryReferral>> referrals = default, Option<List<InventoryCoupon>> coupons = default, Option<List<Giveaway>> giveaways = default, Option<List<AchievementProgressWithDefinition>> achievements = default)
+        public CustomerInventory(Option<CustomerProfile> profile = default, Option<Loyalty> loyalty = default, Option<List<InventoryReferral>> referrals = default, Option<List<InventoryCoupon>> coupons = default, Option<List<Giveaway>> giveaways = default, Option<List<AchievementProgressWithDefinition>> achievements = default, Option<List<Object>> rewards = default)
         {
             ProfileOption = profile;
             LoyaltyOption = loyalty;
@@ -46,6 +47,7 @@ namespace TalonOneSdk.Model
             CouponsOption = coupons;
             GiveawaysOption = giveaways;
             AchievementsOption = achievements;
+            RewardsOption = rewards;
             OnCreated();
         }
 
@@ -131,6 +133,20 @@ namespace TalonOneSdk.Model
         public List<AchievementProgressWithDefinition> Achievements { get { return this.AchievementsOption.Value; } set { this.AchievementsOption = new Option<List<AchievementProgressWithDefinition>>(value); } }
 
         /// <summary>
+        /// Used to track the state of Rewards
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<Object>> RewardsOption { get; private set; }
+
+        /// <summary>
+        /// The customer rewards that are &#x60;unlocked&#x60; and not yet &#x60;used&#x60;.
+        /// </summary>
+        /// <value>The customer rewards that are &#x60;unlocked&#x60; and not yet &#x60;used&#x60;.</value>
+        [JsonPropertyName("rewards")]
+        public List<Object> Rewards { get { return this.RewardsOption.Value; } set { this.RewardsOption = new Option<List<Object>>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -144,6 +160,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Coupons: ").Append(Coupons).Append("\n");
             sb.Append("  Giveaways: ").Append(Giveaways).Append("\n");
             sb.Append("  Achievements: ").Append(Achievements).Append("\n");
+            sb.Append("  Rewards: ").Append(Rewards).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -197,6 +214,7 @@ namespace TalonOneSdk.Model
             Option<List<InventoryCoupon>> coupons = default;
             Option<List<Giveaway>> giveaways = default;
             Option<List<AchievementProgressWithDefinition>> achievements = default;
+            Option<List<Object>> rewards = default;
 
             while (utf8JsonReader.Read())
             {
@@ -231,13 +249,16 @@ namespace TalonOneSdk.Model
                         case "achievements":
                             achievements = new Option<List<AchievementProgressWithDefinition>>(JsonSerializer.Deserialize<List<AchievementProgressWithDefinition>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "rewards":
+                            rewards = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
                 }
             }
 
-            return new CustomerInventory(profile, loyalty, referrals, coupons, giveaways, achievements);
+            return new CustomerInventory(profile, loyalty, referrals, coupons, giveaways, achievements, rewards);
         }
 
         /// <summary>
@@ -293,6 +314,11 @@ namespace TalonOneSdk.Model
             {
                 writer.WritePropertyName("achievements");
                 JsonSerializer.Serialize(writer, customerInventory.Achievements, jsonSerializerOptions);
+            }
+            if (customerInventory.RewardsOption.IsSet)
+            {
+                writer.WritePropertyName("rewards");
+                JsonSerializer.Serialize(writer, customerInventory.Rewards, jsonSerializerOptions);
             }
         }
     }

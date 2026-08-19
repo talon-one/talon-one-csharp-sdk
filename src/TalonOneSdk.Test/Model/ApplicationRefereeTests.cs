@@ -106,5 +106,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'Created'
         }
+
+        /// <summary>
+        /// Test the property 'AdvancedEventIntegrationId'
+        /// </summary>
+        [Fact]
+        public void AdvancedEventIntegrationIdTest()
+        {
+            // TODO unit test for the property 'AdvancedEventIntegrationId'
+        }
     }
 }

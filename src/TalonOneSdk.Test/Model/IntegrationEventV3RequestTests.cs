@@ -117,6 +117,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ReferralCode'
+        /// </summary>
+        [Fact]
+        public void ReferralCodeTest()
+        {
+            // TODO unit test for the property 'ReferralCode'
+        }
+
+        /// <summary>
         /// Test the property 'LoyaltyCards'
         /// </summary>
         [Fact]

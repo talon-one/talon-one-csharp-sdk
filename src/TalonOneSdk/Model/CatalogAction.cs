@@ -24,101 +24,224 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// Definition of all the properties that are needed for a single catalog sync action.
+    /// Definition of all the properties that are needed for a single catalog sync action. The &#x60;type&#x60; field selects the concrete action variant.
     /// </summary>
     public partial class CatalogAction : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CatalogAction" /> class.
         /// </summary>
-        /// <param name="catalogActionOneOf"></param>
-        public CatalogAction(CatalogActionOneOf catalogActionOneOf)
+        /// <param name="catalogActionAdd"></param>
+        public CatalogAction(CatalogActionAdd catalogActionAdd)
         {
-            CatalogActionOneOf = catalogActionOneOf;
+            CatalogActionAdd = catalogActionAdd;
             OnCreated();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CatalogAction" /> class.
         /// </summary>
-        /// <param name="catalogActionOneOf1"></param>
-        public CatalogAction(CatalogActionOneOf1 catalogActionOneOf1)
+        /// <param name="catalogActionPatch"></param>
+        public CatalogAction(CatalogActionPatch catalogActionPatch)
         {
-            CatalogActionOneOf1 = catalogActionOneOf1;
+            CatalogActionPatch = catalogActionPatch;
             OnCreated();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CatalogAction" /> class.
         /// </summary>
-        /// <param name="catalogActionOneOf2"></param>
-        public CatalogAction(CatalogActionOneOf2 catalogActionOneOf2)
+        /// <param name="catalogActionPatchMany"></param>
+        public CatalogAction(CatalogActionPatchMany catalogActionPatchMany)
         {
-            CatalogActionOneOf2 = catalogActionOneOf2;
+            CatalogActionPatchMany = catalogActionPatchMany;
             OnCreated();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CatalogAction" /> class.
         /// </summary>
-        /// <param name="catalogActionOneOf3"></param>
-        public CatalogAction(CatalogActionOneOf3 catalogActionOneOf3)
+        /// <param name="catalogActionRemove"></param>
+        public CatalogAction(CatalogActionRemove catalogActionRemove)
         {
-            CatalogActionOneOf3 = catalogActionOneOf3;
+            CatalogActionRemove = catalogActionRemove;
             OnCreated();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CatalogAction" /> class.
         /// </summary>
-        /// <param name="catalogActionOneOf4"></param>
-        public CatalogAction(CatalogActionOneOf4 catalogActionOneOf4)
+        /// <param name="catalogActionRemoveMany"></param>
+        public CatalogAction(CatalogActionRemoveMany catalogActionRemoveMany)
         {
-            CatalogActionOneOf4 = catalogActionOneOf4;
+            CatalogActionRemoveMany = catalogActionRemoveMany;
             OnCreated();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CatalogAction" /> class.
         /// </summary>
-        /// <param name="catalogActionOneOf5"></param>
-        public CatalogAction(CatalogActionOneOf5 catalogActionOneOf5)
+        /// <param name="catalogActionAddPriceAdjustment"></param>
+        public CatalogAction(CatalogActionAddPriceAdjustment catalogActionAddPriceAdjustment)
         {
-            CatalogActionOneOf5 = catalogActionOneOf5;
+            CatalogActionAddPriceAdjustment = catalogActionAddPriceAdjustment;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets CatalogActionOneOf
+        /// A catalog sync action discriminator of type &#x60;ADD&#x60;.
         /// </summary>
-        public CatalogActionOneOf CatalogActionOneOf { get; set; }
+        /// <value>A catalog sync action discriminator of type &#x60;ADD&#x60;.</value>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum ADD for value: ADD
+            /// </summary>
+            ADD = 1,
+
+            /// <summary>
+            /// Enum PATCH for value: PATCH
+            /// </summary>
+            PATCH = 2,
+
+            /// <summary>
+            /// Enum PATCHMANY for value: PATCH_MANY
+            /// </summary>
+            PATCHMANY = 3,
+
+            /// <summary>
+            /// Enum REMOVE for value: REMOVE
+            /// </summary>
+            REMOVE = 4,
+
+            /// <summary>
+            /// Enum REMOVEMANY for value: REMOVE_MANY
+            /// </summary>
+            REMOVEMANY = 5,
+
+            /// <summary>
+            /// Enum ADDPRICEADJUSTMENT for value: ADD_PRICE_ADJUSTMENT
+            /// </summary>
+            ADDPRICEADJUSTMENT = 6
+        }
 
         /// <summary>
-        /// Gets or Sets CatalogActionOneOf1
+        /// Returns a <see cref="TypeEnum"/>
         /// </summary>
-        public CatalogActionOneOf1 CatalogActionOneOf1 { get; set; }
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("ADD"))
+                return TypeEnum.ADD;
+
+            if (value.Equals("PATCH"))
+                return TypeEnum.PATCH;
+
+            if (value.Equals("PATCH_MANY"))
+                return TypeEnum.PATCHMANY;
+
+            if (value.Equals("REMOVE"))
+                return TypeEnum.REMOVE;
+
+            if (value.Equals("REMOVE_MANY"))
+                return TypeEnum.REMOVEMANY;
+
+            if (value.Equals("ADD_PRICE_ADJUSTMENT"))
+                return TypeEnum.ADDPRICEADJUSTMENT;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
 
         /// <summary>
-        /// Gets or Sets CatalogActionOneOf2
+        /// Returns a <see cref="TypeEnum"/>
         /// </summary>
-        public CatalogActionOneOf2 CatalogActionOneOf2 { get; set; }
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("ADD"))
+                return TypeEnum.ADD;
+
+            if (value.Equals("PATCH"))
+                return TypeEnum.PATCH;
+
+            if (value.Equals("PATCH_MANY"))
+                return TypeEnum.PATCHMANY;
+
+            if (value.Equals("REMOVE"))
+                return TypeEnum.REMOVE;
+
+            if (value.Equals("REMOVE_MANY"))
+                return TypeEnum.REMOVEMANY;
+
+            if (value.Equals("ADD_PRICE_ADJUSTMENT"))
+                return TypeEnum.ADDPRICEADJUSTMENT;
+
+            return null;
+        }
 
         /// <summary>
-        /// Gets or Sets CatalogActionOneOf3
+        /// Converts the <see cref="TypeEnum"/> to the json value
         /// </summary>
-        public CatalogActionOneOf3 CatalogActionOneOf3 { get; set; }
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.ADD)
+                return "ADD";
+
+            if (value == TypeEnum.PATCH)
+                return "PATCH";
+
+            if (value == TypeEnum.PATCHMANY)
+                return "PATCH_MANY";
+
+            if (value == TypeEnum.REMOVE)
+                return "REMOVE";
+
+            if (value == TypeEnum.REMOVEMANY)
+                return "REMOVE_MANY";
+
+            if (value == TypeEnum.ADDPRICEADJUSTMENT)
+                return "ADD_PRICE_ADJUSTMENT";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
 
         /// <summary>
-        /// Gets or Sets CatalogActionOneOf4
+        /// Gets or Sets CatalogActionAdd
         /// </summary>
-        public CatalogActionOneOf4 CatalogActionOneOf4 { get; set; }
+        public CatalogActionAdd CatalogActionAdd { get; set; }
 
         /// <summary>
-        /// Gets or Sets CatalogActionOneOf5
+        /// Gets or Sets CatalogActionPatch
         /// </summary>
-        public CatalogActionOneOf5 CatalogActionOneOf5 { get; set; }
+        public CatalogActionPatch CatalogActionPatch { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CatalogActionPatchMany
+        /// </summary>
+        public CatalogActionPatchMany CatalogActionPatchMany { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CatalogActionRemove
+        /// </summary>
+        public CatalogActionRemove CatalogActionRemove { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CatalogActionRemoveMany
+        /// </summary>
+        public CatalogActionRemoveMany CatalogActionRemoveMany { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CatalogActionAddPriceAdjustment
+        /// </summary>
+        public CatalogActionAddPriceAdjustment CatalogActionAddPriceAdjustment { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -138,6 +261,16 @@ namespace TalonOneSdk.Model
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            return this.BaseValidate(validationContext);
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        protected IEnumerable<ValidationResult> BaseValidate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -175,41 +308,62 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            CatalogActionOneOf catalogActionOneOf = default;
-            CatalogActionOneOf1 catalogActionOneOf1 = default;
-            CatalogActionOneOf2 catalogActionOneOf2 = default;
-            CatalogActionOneOf3 catalogActionOneOf3 = default;
-            CatalogActionOneOf4 catalogActionOneOf4 = default;
-            CatalogActionOneOf5 catalogActionOneOf5 = default;
+            Option<CatalogAction.TypeEnum?> type = default;
 
-            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
-            while (utf8JsonReaderOneOf.Read())
+            CatalogActionAdd aDDCatalogActionAdd = null;
+            CatalogActionAddPriceAdjustment aDDPRICEADJUSTMENTCatalogActionAddPriceAdjustment = null;
+            CatalogActionPatch pATCHCatalogActionPatch = null;
+            CatalogActionPatchMany pATCHMANYCatalogActionPatchMany = null;
+            CatalogActionRemove rEMOVECatalogActionRemove = null;
+            CatalogActionRemoveMany rEMOVEMANYCatalogActionRemoveMany = null;
+
+            Utf8JsonReader utf8JsonReaderDiscriminator = utf8JsonReader;
+            while (utf8JsonReaderDiscriminator.Read())
             {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
+                if (utf8JsonReaderDiscriminator.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth - 1)
                 {
-                    Utf8JsonReader utf8JsonReaderCatalogActionOneOf = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CatalogActionOneOf>(ref utf8JsonReaderCatalogActionOneOf, jsonSerializerOptions, out catalogActionOneOf);
-
-                    Utf8JsonReader utf8JsonReaderCatalogActionOneOf1 = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CatalogActionOneOf1>(ref utf8JsonReaderCatalogActionOneOf1, jsonSerializerOptions, out catalogActionOneOf1);
-
-                    Utf8JsonReader utf8JsonReaderCatalogActionOneOf2 = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CatalogActionOneOf2>(ref utf8JsonReaderCatalogActionOneOf2, jsonSerializerOptions, out catalogActionOneOf2);
-
-                    Utf8JsonReader utf8JsonReaderCatalogActionOneOf3 = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CatalogActionOneOf3>(ref utf8JsonReaderCatalogActionOneOf3, jsonSerializerOptions, out catalogActionOneOf3);
-
-                    Utf8JsonReader utf8JsonReaderCatalogActionOneOf4 = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CatalogActionOneOf4>(ref utf8JsonReaderCatalogActionOneOf4, jsonSerializerOptions, out catalogActionOneOf4);
-
-                    Utf8JsonReader utf8JsonReaderCatalogActionOneOf5 = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CatalogActionOneOf5>(ref utf8JsonReaderCatalogActionOneOf5, jsonSerializerOptions, out catalogActionOneOf5);
+                    string localVarJsonPropertyName = utf8JsonReaderDiscriminator.GetString();
+                    utf8JsonReaderDiscriminator.Read();
+                    if (localVarJsonPropertyName.Equals("type"))
+                    {
+                        string discriminator = utf8JsonReaderDiscriminator.GetString();
+                        if (discriminator.Equals("ADD"))
+                        {
+                            Utf8JsonReader utf8JsonReaderCatalogActionAdd = utf8JsonReader;
+                            aDDCatalogActionAdd = JsonSerializer.Deserialize<CatalogActionAdd>(ref utf8JsonReaderCatalogActionAdd, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("ADD_PRICE_ADJUSTMENT"))
+                        {
+                            Utf8JsonReader utf8JsonReaderCatalogActionAddPriceAdjustment = utf8JsonReader;
+                            aDDPRICEADJUSTMENTCatalogActionAddPriceAdjustment = JsonSerializer.Deserialize<CatalogActionAddPriceAdjustment>(ref utf8JsonReaderCatalogActionAddPriceAdjustment, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("PATCH"))
+                        {
+                            Utf8JsonReader utf8JsonReaderCatalogActionPatch = utf8JsonReader;
+                            pATCHCatalogActionPatch = JsonSerializer.Deserialize<CatalogActionPatch>(ref utf8JsonReaderCatalogActionPatch, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("PATCH_MANY"))
+                        {
+                            Utf8JsonReader utf8JsonReaderCatalogActionPatchMany = utf8JsonReader;
+                            pATCHMANYCatalogActionPatchMany = JsonSerializer.Deserialize<CatalogActionPatchMany>(ref utf8JsonReaderCatalogActionPatchMany, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("REMOVE"))
+                        {
+                            Utf8JsonReader utf8JsonReaderCatalogActionRemove = utf8JsonReader;
+                            rEMOVECatalogActionRemove = JsonSerializer.Deserialize<CatalogActionRemove>(ref utf8JsonReaderCatalogActionRemove, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("REMOVE_MANY"))
+                        {
+                            Utf8JsonReader utf8JsonReaderCatalogActionRemoveMany = utf8JsonReader;
+                            rEMOVEMANYCatalogActionRemoveMany = JsonSerializer.Deserialize<CatalogActionRemoveMany>(ref utf8JsonReaderCatalogActionRemoveMany, jsonSerializerOptions);
+                        }
+                    }
                 }
             }
 
@@ -228,29 +382,40 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "type":
+                            string typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<CatalogAction.TypeEnum?>(CatalogAction.TypeEnumFromStringOrDefault(typeRawValue));
+                            break;
                         default:
                             break;
                     }
                 }
             }
 
-            if (catalogActionOneOf != null)
-                return new CatalogAction(catalogActionOneOf);
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class CatalogAction.", nameof(type));
 
-            if (catalogActionOneOf1 != null)
-                return new CatalogAction(catalogActionOneOf1);
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CatalogAction.");
 
-            if (catalogActionOneOf2 != null)
-                return new CatalogAction(catalogActionOneOf2);
+            if (aDDCatalogActionAdd != null)
+                return new CatalogAction(aDDCatalogActionAdd);
 
-            if (catalogActionOneOf3 != null)
-                return new CatalogAction(catalogActionOneOf3);
+            if (aDDPRICEADJUSTMENTCatalogActionAddPriceAdjustment != null)
+                return new CatalogAction(aDDPRICEADJUSTMENTCatalogActionAddPriceAdjustment);
 
-            if (catalogActionOneOf4 != null)
-                return new CatalogAction(catalogActionOneOf4);
+            if (pATCHCatalogActionPatch != null)
+                return new CatalogAction(pATCHCatalogActionPatch);
 
-            if (catalogActionOneOf5 != null)
-                return new CatalogAction(catalogActionOneOf5);
+            if (pATCHMANYCatalogActionPatchMany != null)
+                return new CatalogAction(pATCHMANYCatalogActionPatchMany);
+
+            if (rEMOVECatalogActionRemove != null)
+                return new CatalogAction(rEMOVECatalogActionRemove);
+
+            if (rEMOVEMANYCatalogActionRemoveMany != null)
+                return new CatalogAction(rEMOVEMANYCatalogActionRemoveMany);
 
             throw new JsonException();
         }
@@ -265,6 +430,42 @@ namespace TalonOneSdk.Model
         public override void Write(Utf8JsonWriter writer, CatalogAction catalogAction, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
+
+            if (catalogAction.CatalogActionAdd != null)
+            {
+                CatalogActionAddJsonConverter catalogActionAddJsonConverter = (CatalogActionAddJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(catalogAction.CatalogActionAdd.GetType()));
+                catalogActionAddJsonConverter.WriteProperties(writer, catalogAction.CatalogActionAdd, jsonSerializerOptions);
+            }
+
+            if (catalogAction.CatalogActionPatch != null)
+            {
+                CatalogActionPatchJsonConverter catalogActionPatchJsonConverter = (CatalogActionPatchJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(catalogAction.CatalogActionPatch.GetType()));
+                catalogActionPatchJsonConverter.WriteProperties(writer, catalogAction.CatalogActionPatch, jsonSerializerOptions);
+            }
+
+            if (catalogAction.CatalogActionPatchMany != null)
+            {
+                CatalogActionPatchManyJsonConverter catalogActionPatchManyJsonConverter = (CatalogActionPatchManyJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(catalogAction.CatalogActionPatchMany.GetType()));
+                catalogActionPatchManyJsonConverter.WriteProperties(writer, catalogAction.CatalogActionPatchMany, jsonSerializerOptions);
+            }
+
+            if (catalogAction.CatalogActionRemove != null)
+            {
+                CatalogActionRemoveJsonConverter catalogActionRemoveJsonConverter = (CatalogActionRemoveJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(catalogAction.CatalogActionRemove.GetType()));
+                catalogActionRemoveJsonConverter.WriteProperties(writer, catalogAction.CatalogActionRemove, jsonSerializerOptions);
+            }
+
+            if (catalogAction.CatalogActionRemoveMany != null)
+            {
+                CatalogActionRemoveManyJsonConverter catalogActionRemoveManyJsonConverter = (CatalogActionRemoveManyJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(catalogAction.CatalogActionRemoveMany.GetType()));
+                catalogActionRemoveManyJsonConverter.WriteProperties(writer, catalogAction.CatalogActionRemoveMany, jsonSerializerOptions);
+            }
+
+            if (catalogAction.CatalogActionAddPriceAdjustment != null)
+            {
+                CatalogActionAddPriceAdjustmentJsonConverter catalogActionAddPriceAdjustmentJsonConverter = (CatalogActionAddPriceAdjustmentJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(catalogAction.CatalogActionAddPriceAdjustment.GetType()));
+                catalogActionAddPriceAdjustmentJsonConverter.WriteProperties(writer, catalogAction.CatalogActionAddPriceAdjustment, jsonSerializerOptions);
+            }
 
             WriteProperties(writer, catalogAction, jsonSerializerOptions);
             writer.WriteEndObject();

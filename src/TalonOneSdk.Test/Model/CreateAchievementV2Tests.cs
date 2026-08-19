@@ -54,6 +54,24 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Sandbox'
+        /// </summary>
+        [Fact]
+        public void SandboxTest()
+        {
+            // TODO unit test for the property 'Sandbox'
+        }
+
+        /// <summary>
+        /// Test the property 'Timezone'
+        /// </summary>
+        [Fact]
+        public void TimezoneTest()
+        {
+            // TODO unit test for the property 'Timezone'
+        }
+
+        /// <summary>
         /// Test the property 'Name'
         /// </summary>
         [Fact]
@@ -87,24 +105,6 @@ namespace TalonOneSdk.Test.Model
         public void TargetTest()
         {
             // TODO unit test for the property 'Target'
-        }
-
-        /// <summary>
-        /// Test the property 'Sandbox'
-        /// </summary>
-        [Fact]
-        public void SandboxTest()
-        {
-            // TODO unit test for the property 'Sandbox'
-        }
-
-        /// <summary>
-        /// Test the property 'Timezone'
-        /// </summary>
-        [Fact]
-        public void TimezoneTest()
-        {
-            // TODO unit test for the property 'Timezone'
         }
 
         /// <summary>

@@ -37,7 +37,9 @@ namespace TalonOneSdk.Model
         /// <param name="name">The internal name of the achievement used in API requests. </param>
         /// <param name="title">The display name of the achievement in the Campaign Manager.</param>
         /// <param name="description">The description of the achievement in the Campaign Manager.</param>
-        /// <param name="campaignId">The ID of the campaign the achievement belongs to.</param>
+        /// <param name="campaignId">This property is **deprecated**. Use &#x60;campaignIds&#x60; (Integration API) or &#x60;referencedByCampaigns&#x60; (Management API) instead. The first campaign ID in &#x60;campaignIds&#x60;. Only returned when &#x60;campaignIds&#x60; is not empty.</param>
+        /// <param name="campaignIds">The IDs of the campaigns that reference this achievement, in ascending order.</param>
+        /// <param name="referencedByCampaigns">The campaigns that reference this achievement, in ascending order of their &#x60;id&#x60;.</param>
         /// <param name="achievementRecurrencePolicy">The policy that determines if and how the achievement recurs. - &#x60;no_recurrence&#x60;: The achievement can be completed only once. - &#x60;on_expiration&#x60;: The achievement resets after it expires and becomes available again. - &#x60;on_completion&#x60;: When the customer progress status reaches &#x60;completed&#x60;, the achievement resets and becomes available again. </param>
         /// <param name="achievementActivationPolicy">The policy that determines how the achievement starts, ends, or resets. - &#x60;user_action&#x60;: The achievement ends or resets relative to when the customer started the achievement. - &#x60;fixed_schedule&#x60;: The achievement starts, ends, or resets for all customers following a fixed schedule. </param>
         /// <param name="startDate">Timestamp at which the customer started the achievement.</param>
@@ -48,7 +50,7 @@ namespace TalonOneSdk.Model
         /// <param name="achievementEndDate">The achievement&#39;s end date. If defined, customers cannot participate in the achievement after this date.  **Note:** It is an RFC3339 timestamp string. </param>
         /// <param name="achievementAllowRollbackAfterCompletion">When &#x60;true&#x60;, customer progress can be rolled back in completed achievements.</param>
         [JsonConstructor]
-        public AchievementProgressWithDefinition(StatusEnum status, decimal progress, long achievementId, string name, string title, string description, long campaignId, AchievementRecurrencePolicyEnum achievementRecurrencePolicy, AchievementActivationPolicyEnum achievementActivationPolicy, Option<DateTime?> startDate = default, Option<DateTime?> completionDate = default, Option<DateTime?> endDate = default, Option<decimal?> target = default, Option<DateTime?> achievementFixedStartDate = default, Option<DateTime?> achievementEndDate = default, Option<bool?> achievementAllowRollbackAfterCompletion = default)
+        public AchievementProgressWithDefinition(StatusEnum status, decimal progress, long achievementId, string name, string title, string description, long campaignId, List<long> campaignIds, List<CampaignReference> referencedByCampaigns, AchievementRecurrencePolicyEnum achievementRecurrencePolicy, AchievementActivationPolicyEnum achievementActivationPolicy, Option<DateTime?> startDate = default, Option<DateTime?> completionDate = default, Option<DateTime?> endDate = default, Option<decimal?> target = default, Option<DateTime?> achievementFixedStartDate = default, Option<DateTime?> achievementEndDate = default, Option<bool?> achievementAllowRollbackAfterCompletion = default)
         {
             Status = status;
             Progress = progress;
@@ -57,6 +59,8 @@ namespace TalonOneSdk.Model
             Title = title;
             Description = description;
             CampaignId = campaignId;
+            CampaignIds = campaignIds;
+            ReferencedByCampaigns = referencedByCampaigns;
             AchievementRecurrencePolicy = achievementRecurrencePolicy;
             AchievementActivationPolicy = achievementActivationPolicy;
             StartDateOption = startDate;
@@ -379,12 +383,28 @@ namespace TalonOneSdk.Model
         public string Description { get; set; }
 
         /// <summary>
-        /// The ID of the campaign the achievement belongs to.
+        /// This property is **deprecated**. Use &#x60;campaignIds&#x60; (Integration API) or &#x60;referencedByCampaigns&#x60; (Management API) instead. The first campaign ID in &#x60;campaignIds&#x60;. Only returned when &#x60;campaignIds&#x60; is not empty.
         /// </summary>
-        /// <value>The ID of the campaign the achievement belongs to.</value>
+        /// <value>This property is **deprecated**. Use &#x60;campaignIds&#x60; (Integration API) or &#x60;referencedByCampaigns&#x60; (Management API) instead. The first campaign ID in &#x60;campaignIds&#x60;. Only returned when &#x60;campaignIds&#x60; is not empty.</value>
         /* <example>3</example> */
         [JsonPropertyName("campaignId")]
+        [Obsolete]
         public long CampaignId { get; set; }
+
+        /// <summary>
+        /// The IDs of the campaigns that reference this achievement, in ascending order.
+        /// </summary>
+        /// <value>The IDs of the campaigns that reference this achievement, in ascending order.</value>
+        /* <example>[1, 14, 27]</example> */
+        [JsonPropertyName("campaignIds")]
+        public List<long> CampaignIds { get; set; }
+
+        /// <summary>
+        /// The campaigns that reference this achievement, in ascending order of their &#x60;id&#x60;.
+        /// </summary>
+        /// <value>The campaigns that reference this achievement, in ascending order of their &#x60;id&#x60;.</value>
+        [JsonPropertyName("referencedByCampaigns")]
+        public List<CampaignReference> ReferencedByCampaigns { get; set; }
 
         /// <summary>
         /// Used to track the state of StartDate
@@ -506,6 +526,8 @@ namespace TalonOneSdk.Model
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
+            sb.Append("  CampaignIds: ").Append(CampaignIds).Append("\n");
+            sb.Append("  ReferencedByCampaigns: ").Append(ReferencedByCampaigns).Append("\n");
             sb.Append("  AchievementRecurrencePolicy: ").Append(AchievementRecurrencePolicy).Append("\n");
             sb.Append("  AchievementActivationPolicy: ").Append(AchievementActivationPolicy).Append("\n");
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
@@ -616,6 +638,8 @@ namespace TalonOneSdk.Model
             Option<string> title = default;
             Option<string> description = default;
             Option<long?> campaignId = default;
+            Option<List<long>> campaignIds = default;
+            Option<List<CampaignReference>> referencedByCampaigns = default;
             Option<AchievementProgressWithDefinition.AchievementRecurrencePolicyEnum?> achievementRecurrencePolicy = default;
             Option<AchievementProgressWithDefinition.AchievementActivationPolicyEnum?> achievementActivationPolicy = default;
             Option<DateTime?> startDate = default;
@@ -663,6 +687,12 @@ namespace TalonOneSdk.Model
                             break;
                         case "campaignId":
                             campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "campaignIds":
+                            campaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "referencedByCampaigns":
+                            referencedByCampaigns = new Option<List<CampaignReference>>(JsonSerializer.Deserialize<List<CampaignReference>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "achievementRecurrencePolicy":
                             string achievementRecurrencePolicyRawValue = utf8JsonReader.GetString();
@@ -722,6 +752,12 @@ namespace TalonOneSdk.Model
             if (!campaignId.IsSet)
                 throw new ArgumentException("Property is required for class AchievementProgressWithDefinition.", nameof(campaignId));
 
+            if (!campaignIds.IsSet)
+                throw new ArgumentException("Property is required for class AchievementProgressWithDefinition.", nameof(campaignIds));
+
+            if (!referencedByCampaigns.IsSet)
+                throw new ArgumentException("Property is required for class AchievementProgressWithDefinition.", nameof(referencedByCampaigns));
+
             if (!achievementRecurrencePolicy.IsSet)
                 throw new ArgumentException("Property is required for class AchievementProgressWithDefinition.", nameof(achievementRecurrencePolicy));
 
@@ -749,13 +785,19 @@ namespace TalonOneSdk.Model
             if (campaignId.IsSet && campaignId.Value == null)
                 throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class AchievementProgressWithDefinition.");
 
+            if (campaignIds.IsSet && campaignIds.Value == null)
+                throw new ArgumentNullException(nameof(campaignIds), "Property is not nullable for class AchievementProgressWithDefinition.");
+
+            if (referencedByCampaigns.IsSet && referencedByCampaigns.Value == null)
+                throw new ArgumentNullException(nameof(referencedByCampaigns), "Property is not nullable for class AchievementProgressWithDefinition.");
+
             if (achievementRecurrencePolicy.IsSet && achievementRecurrencePolicy.Value == null)
                 throw new ArgumentNullException(nameof(achievementRecurrencePolicy), "Property is not nullable for class AchievementProgressWithDefinition.");
 
             if (achievementActivationPolicy.IsSet && achievementActivationPolicy.Value == null)
                 throw new ArgumentNullException(nameof(achievementActivationPolicy), "Property is not nullable for class AchievementProgressWithDefinition.");
 
-            return new AchievementProgressWithDefinition(status.Value.Value, progress.Value.Value, achievementId.Value.Value, name.Value, title.Value, description.Value, campaignId.Value.Value, achievementRecurrencePolicy.Value.Value, achievementActivationPolicy.Value.Value, startDate, completionDate, endDate, target, achievementFixedStartDate, achievementEndDate, achievementAllowRollbackAfterCompletion);
+            return new AchievementProgressWithDefinition(status.Value.Value, progress.Value.Value, achievementId.Value.Value, name.Value, title.Value, description.Value, campaignId.Value.Value, campaignIds.Value, referencedByCampaigns.Value, achievementRecurrencePolicy.Value.Value, achievementActivationPolicy.Value.Value, startDate, completionDate, endDate, target, achievementFixedStartDate, achievementEndDate, achievementAllowRollbackAfterCompletion);
         }
 
         /// <summary>
@@ -791,6 +833,12 @@ namespace TalonOneSdk.Model
             if (achievementProgressWithDefinition.Description == null)
                 throw new ArgumentNullException(nameof(achievementProgressWithDefinition.Description), "Property is required for class AchievementProgressWithDefinition.");
 
+            if (achievementProgressWithDefinition.CampaignIds == null)
+                throw new ArgumentNullException(nameof(achievementProgressWithDefinition.CampaignIds), "Property is required for class AchievementProgressWithDefinition.");
+
+            if (achievementProgressWithDefinition.ReferencedByCampaigns == null)
+                throw new ArgumentNullException(nameof(achievementProgressWithDefinition.ReferencedByCampaigns), "Property is required for class AchievementProgressWithDefinition.");
+
             var statusRawValue = AchievementProgressWithDefinition.StatusEnumToJsonValue(achievementProgressWithDefinition.Status);
             writer.WriteString("status", statusRawValue);
             writer.WriteNumber("progress", achievementProgressWithDefinition.Progress);
@@ -805,6 +853,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("campaignId", achievementProgressWithDefinition.CampaignId);
 
+            writer.WritePropertyName("campaignIds");
+            JsonSerializer.Serialize(writer, achievementProgressWithDefinition.CampaignIds, jsonSerializerOptions);
+            writer.WritePropertyName("referencedByCampaigns");
+            JsonSerializer.Serialize(writer, achievementProgressWithDefinition.ReferencedByCampaigns, jsonSerializerOptions);
             var achievementRecurrencePolicyRawValue = AchievementProgressWithDefinition.AchievementRecurrencePolicyEnumToJsonValue(achievementProgressWithDefinition.AchievementRecurrencePolicy);
             writer.WriteString("achievementRecurrencePolicy", achievementRecurrencePolicyRawValue);
             var achievementActivationPolicyRawValue = AchievementProgressWithDefinition.AchievementActivationPolicyEnumToJsonValue(achievementProgressWithDefinition.AchievementActivationPolicy);

@@ -39,11 +39,14 @@ namespace TalonOneSdk.Model
         /// <param name="recurrencePolicy">The policy that determines if and how the achievement recurs. - &#x60;no_recurrence&#x60;: The achievement can be completed only once. - &#x60;on_expiration&#x60;: The achievement resets after it expires and becomes available again. - &#x60;on_completion&#x60;: When the customer progress status reaches &#x60;completed&#x60;, the achievement resets and becomes available again. </param>
         /// <param name="activationPolicy">The policy that determines how the achievement starts, ends, or resets. - &#x60;user_action&#x60;: The achievement ends or resets relative to when the customer started the achievement. - &#x60;fixed_schedule&#x60;: The achievement starts, ends, or resets for all customers following a fixed schedule. </param>
         /// <param name="allowRollbackAfterCompletion">When &#x60;true&#x60;, customer progress can be rolled back in completed achievements.</param>
+        /// <param name="campaignIds">The IDs of the campaigns that reference this achievement, in ascending order.</param>
+        /// <param name="referencedByCampaigns">The campaigns that reference this achievement. They are sorted in ascending order by their &#x60;id&#x60;.</param>
         /// <param name="fixedStartDate">The achievement&#39;s start date when &#x60;activationPolicy&#x60; is equal to &#x60;fixed_schedule&#x60;.  **Note:** It is an RFC3339 timestamp string. </param>
         /// <param name="endDate">The achievement&#39;s end date. If defined, customers cannot participate in the achievement after this date.  **Note:** It is an RFC3339 timestamp string. </param>
+        /// <param name="campaignId">This property is **deprecated**. Use &#x60;campaignIds&#x60; (Integration API) or &#x60;referencedByCampaigns&#x60; (Management API) instead. The first campaign ID in &#x60;campaignIds&#x60;. Only returned when &#x60;campaignIds&#x60; is not empty.</param>
         /// <param name="currentProgress">currentProgress</param>
         [JsonConstructor]
-        public CustomerAchievement(long id, string name, string title, string description, decimal target, RecurrencePolicyEnum recurrencePolicy, ActivationPolicyEnum activationPolicy, bool allowRollbackAfterCompletion, Option<DateTime?> fixedStartDate = default, Option<DateTime?> endDate = default, Option<AchievementProgress> currentProgress = default)
+        public CustomerAchievement(long id, string name, string title, string description, decimal target, RecurrencePolicyEnum recurrencePolicy, ActivationPolicyEnum activationPolicy, bool allowRollbackAfterCompletion, List<long> campaignIds, List<CampaignReference> referencedByCampaigns, Option<DateTime?> fixedStartDate = default, Option<DateTime?> endDate = default, Option<long?> campaignId = default, Option<AchievementProgress> currentProgress = default)
         {
             Id = id;
             Name = name;
@@ -53,8 +56,11 @@ namespace TalonOneSdk.Model
             RecurrencePolicy = recurrencePolicy;
             ActivationPolicy = activationPolicy;
             AllowRollbackAfterCompletion = allowRollbackAfterCompletion;
+            CampaignIds = campaignIds;
+            ReferencedByCampaigns = referencedByCampaigns;
             FixedStartDateOption = fixedStartDate;
             EndDateOption = endDate;
+            CampaignIdOption = campaignId;
             CurrentProgressOption = currentProgress;
             OnCreated();
         }
@@ -274,6 +280,21 @@ namespace TalonOneSdk.Model
         public bool AllowRollbackAfterCompletion { get; set; }
 
         /// <summary>
+        /// The IDs of the campaigns that reference this achievement, in ascending order.
+        /// </summary>
+        /// <value>The IDs of the campaigns that reference this achievement, in ascending order.</value>
+        /* <example>[1, 14, 27]</example> */
+        [JsonPropertyName("campaignIds")]
+        public List<long> CampaignIds { get; set; }
+
+        /// <summary>
+        /// The campaigns that reference this achievement. They are sorted in ascending order by their &#x60;id&#x60;.
+        /// </summary>
+        /// <value>The campaigns that reference this achievement. They are sorted in ascending order by their &#x60;id&#x60;.</value>
+        [JsonPropertyName("referencedByCampaigns")]
+        public List<CampaignReference> ReferencedByCampaigns { get; set; }
+
+        /// <summary>
         /// Used to track the state of FixedStartDate
         /// </summary>
         [JsonIgnore]
@@ -304,6 +325,22 @@ namespace TalonOneSdk.Model
         public DateTime? EndDate { get { return this.EndDateOption.Value; } set { this.EndDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
+        /// Used to track the state of CampaignId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> CampaignIdOption { get; private set; }
+
+        /// <summary>
+        /// This property is **deprecated**. Use &#x60;campaignIds&#x60; (Integration API) or &#x60;referencedByCampaigns&#x60; (Management API) instead. The first campaign ID in &#x60;campaignIds&#x60;. Only returned when &#x60;campaignIds&#x60; is not empty.
+        /// </summary>
+        /// <value>This property is **deprecated**. Use &#x60;campaignIds&#x60; (Integration API) or &#x60;referencedByCampaigns&#x60; (Management API) instead. The first campaign ID in &#x60;campaignIds&#x60;. Only returned when &#x60;campaignIds&#x60; is not empty.</value>
+        /* <example>3</example> */
+        [JsonPropertyName("campaignId")]
+        [Obsolete]
+        public long? CampaignId { get { return this.CampaignIdOption.Value; } set { this.CampaignIdOption = new Option<long?>(value); } }
+
+        /// <summary>
         /// Used to track the state of CurrentProgress
         /// </summary>
         [JsonIgnore]
@@ -332,8 +369,11 @@ namespace TalonOneSdk.Model
             sb.Append("  RecurrencePolicy: ").Append(RecurrencePolicy).Append("\n");
             sb.Append("  ActivationPolicy: ").Append(ActivationPolicy).Append("\n");
             sb.Append("  AllowRollbackAfterCompletion: ").Append(AllowRollbackAfterCompletion).Append("\n");
+            sb.Append("  CampaignIds: ").Append(CampaignIds).Append("\n");
+            sb.Append("  ReferencedByCampaigns: ").Append(ReferencedByCampaigns).Append("\n");
             sb.Append("  FixedStartDate: ").Append(FixedStartDate).Append("\n");
             sb.Append("  EndDate: ").Append(EndDate).Append("\n");
+            sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
             sb.Append("  CurrentProgress: ").Append(CurrentProgress).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -422,8 +462,11 @@ namespace TalonOneSdk.Model
             Option<CustomerAchievement.RecurrencePolicyEnum?> recurrencePolicy = default;
             Option<CustomerAchievement.ActivationPolicyEnum?> activationPolicy = default;
             Option<bool?> allowRollbackAfterCompletion = default;
+            Option<List<long>> campaignIds = default;
+            Option<List<CampaignReference>> referencedByCampaigns = default;
             Option<DateTime?> fixedStartDate = default;
             Option<DateTime?> endDate = default;
+            Option<long?> campaignId = default;
             Option<AchievementProgress> currentProgress = default;
 
             while (utf8JsonReader.Read())
@@ -469,11 +512,20 @@ namespace TalonOneSdk.Model
                         case "allowRollbackAfterCompletion":
                             allowRollbackAfterCompletion = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
+                        case "campaignIds":
+                            campaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "referencedByCampaigns":
+                            referencedByCampaigns = new Option<List<CampaignReference>>(JsonSerializer.Deserialize<List<CampaignReference>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "fixedStartDate":
                             fixedStartDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "endDate":
                             endDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "campaignId":
+                            campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "currentProgress":
                             currentProgress = new Option<AchievementProgress>(JsonSerializer.Deserialize<AchievementProgress>(ref utf8JsonReader, jsonSerializerOptions));
@@ -508,6 +560,12 @@ namespace TalonOneSdk.Model
             if (!allowRollbackAfterCompletion.IsSet)
                 throw new ArgumentException("Property is required for class CustomerAchievement.", nameof(allowRollbackAfterCompletion));
 
+            if (!campaignIds.IsSet)
+                throw new ArgumentException("Property is required for class CustomerAchievement.", nameof(campaignIds));
+
+            if (!referencedByCampaigns.IsSet)
+                throw new ArgumentException("Property is required for class CustomerAchievement.", nameof(referencedByCampaigns));
+
             if (id.IsSet && id.Value == null)
                 throw new ArgumentNullException(nameof(id), "Property is not nullable for class CustomerAchievement.");
 
@@ -532,7 +590,13 @@ namespace TalonOneSdk.Model
             if (allowRollbackAfterCompletion.IsSet && allowRollbackAfterCompletion.Value == null)
                 throw new ArgumentNullException(nameof(allowRollbackAfterCompletion), "Property is not nullable for class CustomerAchievement.");
 
-            return new CustomerAchievement(id.Value.Value, name.Value, title.Value, description.Value, target.Value.Value, recurrencePolicy.Value.Value, activationPolicy.Value.Value, allowRollbackAfterCompletion.Value.Value, fixedStartDate, endDate, currentProgress);
+            if (campaignIds.IsSet && campaignIds.Value == null)
+                throw new ArgumentNullException(nameof(campaignIds), "Property is not nullable for class CustomerAchievement.");
+
+            if (referencedByCampaigns.IsSet && referencedByCampaigns.Value == null)
+                throw new ArgumentNullException(nameof(referencedByCampaigns), "Property is not nullable for class CustomerAchievement.");
+
+            return new CustomerAchievement(id.Value.Value, name.Value, title.Value, description.Value, target.Value.Value, recurrencePolicy.Value.Value, activationPolicy.Value.Value, allowRollbackAfterCompletion.Value.Value, campaignIds.Value, referencedByCampaigns.Value, fixedStartDate, endDate, campaignId, currentProgress);
         }
 
         /// <summary>
@@ -568,6 +632,12 @@ namespace TalonOneSdk.Model
             if (customerAchievement.Description == null)
                 throw new ArgumentNullException(nameof(customerAchievement.Description), "Property is required for class CustomerAchievement.");
 
+            if (customerAchievement.CampaignIds == null)
+                throw new ArgumentNullException(nameof(customerAchievement.CampaignIds), "Property is required for class CustomerAchievement.");
+
+            if (customerAchievement.ReferencedByCampaigns == null)
+                throw new ArgumentNullException(nameof(customerAchievement.ReferencedByCampaigns), "Property is required for class CustomerAchievement.");
+
             writer.WriteNumber("id", customerAchievement.Id);
 
             writer.WriteString("name", customerAchievement.Name);
@@ -584,11 +654,18 @@ namespace TalonOneSdk.Model
             writer.WriteString("activationPolicy", activationPolicyRawValue);
             writer.WriteBoolean("allowRollbackAfterCompletion", customerAchievement.AllowRollbackAfterCompletion);
 
+            writer.WritePropertyName("campaignIds");
+            JsonSerializer.Serialize(writer, customerAchievement.CampaignIds, jsonSerializerOptions);
+            writer.WritePropertyName("referencedByCampaigns");
+            JsonSerializer.Serialize(writer, customerAchievement.ReferencedByCampaigns, jsonSerializerOptions);
             if (customerAchievement.FixedStartDateOption.IsSet)
                 writer.WriteString("fixedStartDate", customerAchievement.FixedStartDateOption.Value.Value.ToString(FixedStartDateFormat));
 
             if (customerAchievement.EndDateOption.IsSet)
                 writer.WriteString("endDate", customerAchievement.EndDateOption.Value.Value.ToString(EndDateFormat));
+
+            if (customerAchievement.CampaignIdOption.IsSet)
+                writer.WriteNumber("campaignId", customerAchievement.CampaignIdOption.Value.Value);
 
             if (customerAchievement.CurrentProgressOption.IsSet)
             {

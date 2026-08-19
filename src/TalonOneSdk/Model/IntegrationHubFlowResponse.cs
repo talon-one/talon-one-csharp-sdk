@@ -34,7 +34,6 @@ namespace TalonOneSdk.Model
         /// <param name="id">ID of the integration hub flow.</param>
         /// <param name="createdAt">Timestamp when the flow was created.</param>
         /// <param name="eventType">The event type we want to register a flow for.</param>
-        /// <param name="integrationHubFlowUrl">The URL of the integration hub flow that we want to trigger for the event.</param>
         /// <param name="config">config</param>
         /// <param name="integrationName">Name of the integration.</param>
         /// <param name="instanceName">Name of the integration instance.</param>
@@ -42,12 +41,11 @@ namespace TalonOneSdk.Model
         /// <param name="applicationId">ID of the application the flow is registered for.</param>
         /// <param name="loyaltyProgramId">ID of the loyalty program the flow is registered for.</param>
         [JsonConstructor]
-        public IntegrationHubFlowResponse(long id, DateTime createdAt, string eventType, string integrationHubFlowUrl, IntegrationHubFlowConfigResponse config, Option<string> integrationName = default, Option<string> instanceName = default, Option<DateTime?> disabledUntil = default, Option<long?> applicationId = default, Option<long?> loyaltyProgramId = default)
+        public IntegrationHubFlowResponse(long id, DateTime createdAt, string eventType, IntegrationHubFlowConfigResponse config, Option<string> integrationName = default, Option<string> instanceName = default, Option<DateTime?> disabledUntil = default, Option<long?> applicationId = default, Option<long?> loyaltyProgramId = default)
         {
             Id = id;
             CreatedAt = createdAt;
             EventType = eventType;
-            IntegrationHubFlowUrl = integrationHubFlowUrl;
             Config = config;
             IntegrationNameOption = integrationName;
             InstanceNameOption = instanceName;
@@ -79,13 +77,6 @@ namespace TalonOneSdk.Model
         /// <value>The event type we want to register a flow for.</value>
         [JsonPropertyName("eventType")]
         public string EventType { get; set; }
-
-        /// <summary>
-        /// The URL of the integration hub flow that we want to trigger for the event.
-        /// </summary>
-        /// <value>The URL of the integration hub flow that we want to trigger for the event.</value>
-        [JsonPropertyName("integrationHubFlowUrl")]
-        public string IntegrationHubFlowUrl { get; set; }
 
         /// <summary>
         /// Gets or Sets Config
@@ -176,7 +167,6 @@ namespace TalonOneSdk.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  EventType: ").Append(EventType).Append("\n");
-            sb.Append("  IntegrationHubFlowUrl: ").Append(IntegrationHubFlowUrl).Append("\n");
             sb.Append("  Config: ").Append(Config).Append("\n");
             sb.Append("  IntegrationName: ").Append(IntegrationName).Append("\n");
             sb.Append("  InstanceName: ").Append(InstanceName).Append("\n");
@@ -243,7 +233,6 @@ namespace TalonOneSdk.Model
             Option<long?> id = default;
             Option<DateTime?> createdAt = default;
             Option<string> eventType = default;
-            Option<string> integrationHubFlowUrl = default;
             Option<IntegrationHubFlowConfigResponse> config = default;
             Option<string> integrationName = default;
             Option<string> instanceName = default;
@@ -274,9 +263,6 @@ namespace TalonOneSdk.Model
                             break;
                         case "eventType":
                             eventType = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "integrationHubFlowUrl":
-                            integrationHubFlowUrl = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "config":
                             config = new Option<IntegrationHubFlowConfigResponse>(JsonSerializer.Deserialize<IntegrationHubFlowConfigResponse>(ref utf8JsonReader, jsonSerializerOptions));
@@ -311,9 +297,6 @@ namespace TalonOneSdk.Model
             if (!eventType.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubFlowResponse.", nameof(eventType));
 
-            if (!integrationHubFlowUrl.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubFlowResponse.", nameof(integrationHubFlowUrl));
-
             if (!config.IsSet)
                 throw new ArgumentException("Property is required for class IntegrationHubFlowResponse.", nameof(config));
 
@@ -326,13 +309,10 @@ namespace TalonOneSdk.Model
             if (eventType.IsSet && eventType.Value == null)
                 throw new ArgumentNullException(nameof(eventType), "Property is not nullable for class IntegrationHubFlowResponse.");
 
-            if (integrationHubFlowUrl.IsSet && integrationHubFlowUrl.Value == null)
-                throw new ArgumentNullException(nameof(integrationHubFlowUrl), "Property is not nullable for class IntegrationHubFlowResponse.");
-
             if (config.IsSet && config.Value == null)
                 throw new ArgumentNullException(nameof(config), "Property is not nullable for class IntegrationHubFlowResponse.");
 
-            return new IntegrationHubFlowResponse(id.Value.Value, createdAt.Value.Value, eventType.Value, integrationHubFlowUrl.Value, config.Value, integrationName, instanceName, disabledUntil, applicationId, loyaltyProgramId);
+            return new IntegrationHubFlowResponse(id.Value.Value, createdAt.Value.Value, eventType.Value, config.Value, integrationName, instanceName, disabledUntil, applicationId, loyaltyProgramId);
         }
 
         /// <summary>
@@ -362,9 +342,6 @@ namespace TalonOneSdk.Model
             if (integrationHubFlowResponse.EventType == null)
                 throw new ArgumentNullException(nameof(integrationHubFlowResponse.EventType), "Property is required for class IntegrationHubFlowResponse.");
 
-            if (integrationHubFlowResponse.IntegrationHubFlowUrl == null)
-                throw new ArgumentNullException(nameof(integrationHubFlowResponse.IntegrationHubFlowUrl), "Property is required for class IntegrationHubFlowResponse.");
-
             if (integrationHubFlowResponse.Config == null)
                 throw new ArgumentNullException(nameof(integrationHubFlowResponse.Config), "Property is required for class IntegrationHubFlowResponse.");
 
@@ -373,8 +350,6 @@ namespace TalonOneSdk.Model
             writer.WriteString("createdAt", integrationHubFlowResponse.CreatedAt.ToString(CreatedAtFormat));
 
             writer.WriteString("eventType", integrationHubFlowResponse.EventType);
-
-            writer.WriteString("integrationHubFlowUrl", integrationHubFlowResponse.IntegrationHubFlowUrl);
 
             writer.WritePropertyName("config");
             JsonSerializer.Serialize(writer, integrationHubFlowResponse.Config, jsonSerializerOptions);
