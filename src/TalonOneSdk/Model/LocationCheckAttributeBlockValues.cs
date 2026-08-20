@@ -24,43 +24,43 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The starting value of the selection. For the &#x60;many&#x60; operator this is the string &#x60;start&#x60; or &#x60;end&#x60;; for the &#x60;between&#x60; operator this is an integer start index. No discriminator is needed since the string and integer branches are distinguishable by JSON type alone.
+    /// The geometric areas to check the location against.
     /// </summary>
-    public partial class SelectSelectorStepFrom : IValidatableObject
+    public partial class LocationCheckAttributeBlockValues : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SelectSelectorStepFrom" /> class.
+        /// Initializes a new instance of the <see cref="LocationCheckAttributeBlockValues" /> class.
         /// </summary>
-        /// <param name="string"></param>
-        internal SelectSelectorStepFrom(string @string)
+        /// <param name="list"></param>
+        internal LocationCheckAttributeBlockValues(List<LocationCheckAttributeBlockValuesOneOfInner> list)
         {
-            String = @string;
+            List = list;
             OnCreated();
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SelectSelectorStepFrom" /> class.
+        /// Initializes a new instance of the <see cref="LocationCheckAttributeBlockValues" /> class.
         /// </summary>
-        /// <param name="int"></param>
-        internal SelectSelectorStepFrom(int @int)
+        /// <param name="string"></param>
+        internal LocationCheckAttributeBlockValues(string @string)
         {
-            Int = @int;
+            String = @string;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets String
+        /// Gets or Sets List
         /// </summary>
-        /* <example>start</example> */
-        public string String { get; set; }
+        public List<LocationCheckAttributeBlockValuesOneOfInner> List { get; set; }
 
         /// <summary>
-        /// Gets or Sets Int
+        /// A reference to a list attribute that contains locations.
         /// </summary>
-        /* <example>2</example> */
-        public int? Int { get; set; }
+        /// <value>A reference to a list attribute that contains locations.</value>
+        /* <example>{{$Session.AllowedZones}}</example> */
+        public string String { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,7 +69,7 @@ namespace TalonOneSdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SelectSelectorStepFrom {\n");
+            sb.Append("class LocationCheckAttributeBlockValues {\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -86,29 +86,29 @@ namespace TalonOneSdk.Model
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="SelectSelectorStepFrom" />
+    /// A Json converter for type <see cref="LocationCheckAttributeBlockValues" />
     /// </summary>
-    public partial class SelectSelectorStepFromJsonConverter : JsonConverter<SelectSelectorStepFrom>
+    public partial class LocationCheckAttributeBlockValuesJsonConverter : JsonConverter<LocationCheckAttributeBlockValues>
     {
         partial void OnCreated();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SelectSelectorStepFromJsonConverter" /> class.
+        /// Initializes a new instance of the <see cref="LocationCheckAttributeBlockValuesJsonConverter" /> class.
         /// </summary>
-        public SelectSelectorStepFromJsonConverter()
+        public LocationCheckAttributeBlockValuesJsonConverter()
         {
             OnCreated();
         }
 
         /// <summary>
-        /// Deserializes json to <see cref="SelectSelectorStepFrom" />
+        /// Deserializes json to <see cref="LocationCheckAttributeBlockValues" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override SelectSelectorStepFrom Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override LocationCheckAttributeBlockValues Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -117,8 +117,8 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            List<LocationCheckAttributeBlockValuesOneOfInner> list = default;
             string varString = default;
-            int? varInt = default;
 
             Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
             while (utf8JsonReaderOneOf.Read())
@@ -131,11 +131,11 @@ namespace TalonOneSdk.Model
 
                 if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
                 {
+                    Utf8JsonReader utf8JsonReaderList = utf8JsonReader;
+                    ClientUtils.TryDeserialize<List<LocationCheckAttributeBlockValuesOneOfInner>>(ref utf8JsonReaderList, jsonSerializerOptions, out list);
+
                     Utf8JsonReader utf8JsonReaderString = utf8JsonReader;
                     ClientUtils.TryDeserialize<string>(ref utf8JsonReaderString, jsonSerializerOptions, out varString);
-
-                    Utf8JsonReader utf8JsonReaderInt = utf8JsonReader;
-                    ClientUtils.TryDeserialize<int?>(ref utf8JsonReaderInt, jsonSerializerOptions, out varInt);
                 }
             }
 
@@ -160,38 +160,38 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (varString != null)
-                return new SelectSelectorStepFrom(varString);
+            if (list != null)
+                return new LocationCheckAttributeBlockValues(list);
 
-            if (varInt != null)
-                return new SelectSelectorStepFrom(varInt.Value);
+            if (varString != null)
+                return new LocationCheckAttributeBlockValues(varString);
 
             throw new JsonException();
         }
 
         /// <summary>
-        /// Serializes a <see cref="SelectSelectorStepFrom" />
+        /// Serializes a <see cref="LocationCheckAttributeBlockValues" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="selectSelectorStepFrom"></param>
+        /// <param name="locationCheckAttributeBlockValues"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, SelectSelectorStepFrom selectSelectorStepFrom, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, LocationCheckAttributeBlockValues locationCheckAttributeBlockValues, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, selectSelectorStepFrom, jsonSerializerOptions);
+            WriteProperties(writer, locationCheckAttributeBlockValues, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="SelectSelectorStepFrom" />
+        /// Serializes the properties of <see cref="LocationCheckAttributeBlockValues" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="selectSelectorStepFrom"></param>
+        /// <param name="locationCheckAttributeBlockValues"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, SelectSelectorStepFrom selectSelectorStepFrom, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, LocationCheckAttributeBlockValues locationCheckAttributeBlockValues, JsonSerializerOptions jsonSerializerOptions)
         {
 
         }

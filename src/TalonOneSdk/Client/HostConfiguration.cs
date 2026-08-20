@@ -388,6 +388,11 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new GenerateRuleTitleJsonConverter());
             _jsonOptions.Converters.Add(new GenerateRuleTitleRuleJsonConverter());
             _jsonOptions.Converters.Add(new GenerateUserSessionSummaryJsonConverter());
+            _jsonOptions.Converters.Add(new GeoJSONGeometryJsonConverter());
+            _jsonOptions.Converters.Add(new GeoJSONGeometryCollectionJsonConverter());
+            _jsonOptions.Converters.Add(new GeoJSONMultiPolygonJsonConverter());
+            _jsonOptions.Converters.Add(new GeoJSONPointJsonConverter());
+            _jsonOptions.Converters.Add(new GeoJSONPolygonJsonConverter());
             _jsonOptions.Converters.Add(new GetAccessLogsWithoutTotalCount200ResponseJsonConverter());
             _jsonOptions.Converters.Add(new GetAdditionalCosts200ResponseJsonConverter());
             _jsonOptions.Converters.Add(new GetApplicationCustomerFriends200ResponseJsonConverter());
@@ -508,6 +513,9 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new ListExperiments200ResponseJsonConverter());
             _jsonOptions.Converters.Add(new ListStores200ResponseJsonConverter());
             _jsonOptions.Converters.Add(new ListWithCountCheckAttributeBlockJsonConverter());
+            _jsonOptions.Converters.Add(new LocationCheckAttributeBlockJsonConverter());
+            _jsonOptions.Converters.Add(new LocationCheckAttributeBlockValuesJsonConverter());
+            _jsonOptions.Converters.Add(new LocationCheckAttributeBlockValuesOneOfInnerJsonConverter());
             _jsonOptions.Converters.Add(new LoginParamsJsonConverter());
             _jsonOptions.Converters.Add(new LoyaltyJsonConverter());
             _jsonOptions.Converters.Add(new LoyaltyBalanceJsonConverter());

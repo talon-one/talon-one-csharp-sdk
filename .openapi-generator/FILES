@@ -364,6 +364,11 @@ docs/models/GenerateLoyaltyCard.md
 docs/models/GenerateRuleTitle.md
 docs/models/GenerateRuleTitleRule.md
 docs/models/GenerateUserSessionSummary.md
+docs/models/GeoJSONGeometry.md
+docs/models/GeoJSONGeometryCollection.md
+docs/models/GeoJSONMultiPolygon.md
+docs/models/GeoJSONPoint.md
+docs/models/GeoJSONPolygon.md
 docs/models/GetAccessLogsWithoutTotalCount200Response.md
 docs/models/GetAdditionalCosts200Response.md
 docs/models/GetApplicationCustomerFriends200Response.md
@@ -483,6 +488,9 @@ docs/models/ListCheckAttributeBlock.md
 docs/models/ListExperiments200Response.md
 docs/models/ListStores200Response.md
 docs/models/ListWithCountCheckAttributeBlock.md
+docs/models/LocationCheckAttributeBlock.md
+docs/models/LocationCheckAttributeBlockValues.md
+docs/models/LocationCheckAttributeBlockValuesOneOfInner.md
 docs/models/LoginParams.md
 docs/models/Loyalty.md
 docs/models/LoyaltyBalance.md
@@ -1234,6 +1242,11 @@ src/TalonOneSdk.Test/Model/GenerateLoyaltyCardTests.cs
 src/TalonOneSdk.Test/Model/GenerateRuleTitleRuleTests.cs
 src/TalonOneSdk.Test/Model/GenerateRuleTitleTests.cs
 src/TalonOneSdk.Test/Model/GenerateUserSessionSummaryTests.cs
+src/TalonOneSdk.Test/Model/GeoJSONGeometryCollectionTests.cs
+src/TalonOneSdk.Test/Model/GeoJSONGeometryTests.cs
+src/TalonOneSdk.Test/Model/GeoJSONMultiPolygonTests.cs
+src/TalonOneSdk.Test/Model/GeoJSONPointTests.cs
+src/TalonOneSdk.Test/Model/GeoJSONPolygonTests.cs
 src/TalonOneSdk.Test/Model/GetAccessLogsWithoutTotalCount200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetAdditionalCosts200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetApplicationCustomerFriends200ResponseTests.cs
@@ -1353,6 +1366,9 @@ src/TalonOneSdk.Test/Model/ListCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/ListExperiments200ResponseTests.cs
 src/TalonOneSdk.Test/Model/ListStores200ResponseTests.cs
 src/TalonOneSdk.Test/Model/ListWithCountCheckAttributeBlockTests.cs
+src/TalonOneSdk.Test/Model/LocationCheckAttributeBlockTests.cs
+src/TalonOneSdk.Test/Model/LocationCheckAttributeBlockValuesOneOfInnerTests.cs
+src/TalonOneSdk.Test/Model/LocationCheckAttributeBlockValuesTests.cs
 src/TalonOneSdk.Test/Model/LoginParamsTests.cs
 src/TalonOneSdk.Test/Model/LoyaltyBalanceTests.cs
 src/TalonOneSdk.Test/Model/LoyaltyBalanceWithTierTests.cs
@@ -2125,6 +2141,11 @@ src/TalonOneSdk/Model/GenerateLoyaltyCard.cs
 src/TalonOneSdk/Model/GenerateRuleTitle.cs
 src/TalonOneSdk/Model/GenerateRuleTitleRule.cs
 src/TalonOneSdk/Model/GenerateUserSessionSummary.cs
+src/TalonOneSdk/Model/GeoJSONGeometry.cs
+src/TalonOneSdk/Model/GeoJSONGeometryCollection.cs
+src/TalonOneSdk/Model/GeoJSONMultiPolygon.cs
+src/TalonOneSdk/Model/GeoJSONPoint.cs
+src/TalonOneSdk/Model/GeoJSONPolygon.cs
 src/TalonOneSdk/Model/GetAccessLogsWithoutTotalCount200Response.cs
 src/TalonOneSdk/Model/GetAdditionalCosts200Response.cs
 src/TalonOneSdk/Model/GetApplicationCustomerFriends200Response.cs
@@ -2244,6 +2265,9 @@ src/TalonOneSdk/Model/ListCheckAttributeBlock.cs
 src/TalonOneSdk/Model/ListExperiments200Response.cs
 src/TalonOneSdk/Model/ListStores200Response.cs
 src/TalonOneSdk/Model/ListWithCountCheckAttributeBlock.cs
+src/TalonOneSdk/Model/LocationCheckAttributeBlock.cs
+src/TalonOneSdk/Model/LocationCheckAttributeBlockValues.cs
+src/TalonOneSdk/Model/LocationCheckAttributeBlockValuesOneOfInner.cs
 src/TalonOneSdk/Model/LoginParams.cs
 src/TalonOneSdk/Model/Loyalty.cs
 src/TalonOneSdk/Model/LoyaltyBalance.cs
