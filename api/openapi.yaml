@@ -28683,6 +28683,8 @@ components:
             - before
             - within
             - not(within)
+            - in
+            - not(in)
             example: greaterThan
             type: string
           attribute: {}
@@ -28717,7 +28719,8 @@ components:
       allOf:
       - $ref: "#/components/schemas/CheckAttributeBlockBase"
       - description: "A `CheckAttributeBlock` valid in a promotion rule, where each\
-          \ `onFailure` block must itself be a valid promotion block."
+          \ `onFailure` block must itself be a valid promotion block. For the full\
+          \ set of fields each `operator` requires, see `CheckAttributeBlock`."
         properties:
           onFailure:
             description: Promotion blocks evaluated when this block fails or returns
@@ -29376,7 +29379,8 @@ components:
       allOf:
       - $ref: "#/components/schemas/CheckAttributeBlockBase"
       - description: "A `CheckAttributeBlock` valid in a strikethrough rule, where\
-          \ each `onFailure` block must itself be a valid strikethrough block."
+          \ each `onFailure` block must itself be a valid strikethrough block. For\
+          \ the full set of fields each `operator` requires, see `CheckAttributeBlock`."
         properties:
           onFailure:
             description: Strikethrough blocks evaluated when this block fails or returns
@@ -29563,6 +29567,163 @@ components:
       - end
       - start
       title: WithinCheckAttributeBlock
+    GeoJSONPoint:
+      description: "A single point on a map, defined by its longitude and latitude\
+        \ coordinates, following the GeoJSON format."
+      properties:
+        type:
+          description: The geometry type discriminator.
+          enum:
+          - Point
+          type: string
+        coordinates:
+          description: "The longitude and latitude coordinates of the point, optionally\
+            \ followed by altitude."
+          example:
+          - 13.405
+          - 52.52
+          items:
+            type: number
+          maxItems: 3
+          minItems: 2
+          type: array
+          default: null
+      required:
+      - coordinates
+      - type
+      title: GeoJSONPoint
+    GeoJSONPolygon:
+      description: "A shape formed by one or more boundaries, following the GeoJSON\
+        \ format. The first boundary defines the outer edge of the shape; any additional\
+        \ boundaries define holes within the shape."
+      properties:
+        type:
+          description: The geometry type discriminator.
+          enum:
+          - Polygon
+          type: string
+        coordinates:
+          description: "The boundaries that make up the shape. Each boundary is a\
+            \ closed loop of longitude and latitude points, where the first and last\
+            \ point are the same."
+          example:
+          - - - 13
+              - 52.3
+            - - 13.8
+              - 52.3
+            - - 13.8
+              - 52.7
+            - - 13
+              - 52.7
+            - - 13
+              - 52.3
+          items:
+            items:
+              items:
+                type: number
+              maxItems: 3
+              minItems: 2
+              type: array
+              default: null
+            type: array
+            default: null
+          type: array
+          default: null
+      required:
+      - coordinates
+      - type
+      title: GeoJSONPolygon
+    GeoJSONMultiPolygon:
+      description: "One or more separate shapes grouped together as a single location,\
+        \ following the GeoJSON format."
+      properties:
+        type:
+          description: The geometry type discriminator.
+          enum:
+          - MultiPolygon
+          type: string
+        coordinates:
+          description: The shapes in this group. Each one follows the same boundary
+            structure as a polygon.
+          example:
+          - - - - 13
+                - 52.3
+              - - 13.8
+                - 52.3
+              - - 13.8
+                - 52.7
+              - - 13
+                - 52.7
+              - - 13
+                - 52.3
+          items:
+            items:
+              items:
+                items:
+                  type: number
+                maxItems: 3
+                minItems: 2
+                type: array
+                default: null
+              type: array
+              default: null
+            type: array
+            default: null
+          type: array
+          default: null
+      required:
+      - coordinates
+      - type
+      title: GeoJSONMultiPolygon
+    GeoJSONGeometry:
+      description: A shape used to represent a geographical location. The `type` field
+        determines the kind of shape.
+      discriminator:
+        mapping:
+          Point: "#/components/schemas/GeoJSONPoint"
+          Polygon: "#/components/schemas/GeoJSONPolygon"
+          MultiPolygon: "#/components/schemas/GeoJSONMultiPolygon"
+          GeometryCollection: "#/components/schemas/GeoJSONGeometryCollection"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/GeoJSONPoint"
+      - $ref: "#/components/schemas/GeoJSONPolygon"
+      - $ref: "#/components/schemas/GeoJSONMultiPolygon"
+      - $ref: "#/components/schemas/GeoJSONGeometryCollection"
+    GeoJSONGeometryCollection:
+      description: "A group of different shapes combined into a single location, following\
+        \ the GeoJSON format."
+      properties:
+        type:
+          description: The geometry type discriminator.
+          enum:
+          - GeometryCollection
+          type: string
+        geometries:
+          description: The shapes contained in this group.
+          items:
+            $ref: "#/components/schemas/GeoJSONGeometry"
+          type: array
+          default: null
+      required:
+      - geometries
+      - type
+      title: GeoJSONGeometryCollection
+    LocationCheckAttributeBlock:
+      description: A block variant of `CheckAttributeBlock` for operators that check
+        whether a geographical location is inside a set of geometric areas.
+      properties:
+        operator:
+          description: The location membership operator applied to the attribute.
+          enum:
+          - in
+          - not(in)
+          type: string
+        values:
+          $ref: "#/components/schemas/LocationCheckAttributeBlock_values"
+      required:
+      - values
+      title: LocationCheckAttributeBlock
     CheckAttributeBlock:
       allOf:
       - $ref: "#/components/schemas/CheckAttributeBlockBase"
@@ -29608,6 +29769,8 @@ components:
           before: "#/components/schemas/ScalarCheckAttributeBlock"
           within: "#/components/schemas/WithinCheckAttributeBlock"
           not(within): "#/components/schemas/WithinCheckAttributeBlock"
+          in: "#/components/schemas/LocationCheckAttributeBlock"
+          not(in): "#/components/schemas/LocationCheckAttributeBlock"
         propertyName: operator
       oneOf:
       - $ref: "#/components/schemas/ScalarCheckAttributeBlock"
@@ -29616,6 +29779,7 @@ components:
       - $ref: "#/components/schemas/ListWithCountCheckAttributeBlock"
       - $ref: "#/components/schemas/UnaryCheckAttributeBlock"
       - $ref: "#/components/schemas/WithinCheckAttributeBlock"
+      - $ref: "#/components/schemas/LocationCheckAttributeBlock"
     SelectorBlock:
       description: A predicate block valid inside a selector filter step. The `type`
         field determines the block variant.
@@ -50876,6 +51040,26 @@ components:
       - example: 50
         type: number
       - example: "{{$Session.CartTotal * 0.1}}"
+        type: string
+    LocationCheckAttributeBlock_values_oneOf_inner:
+      properties:
+        name:
+          description: A human-readable label for this location.
+          example: Berlin district
+          type: string
+        geometry:
+          $ref: "#/components/schemas/GeoJSONGeometry"
+      required:
+      - geometry
+    LocationCheckAttributeBlock_values:
+      description: The geometric areas to check the location against.
+      oneOf:
+      - items:
+          $ref: "#/components/schemas/LocationCheckAttributeBlock_values_oneOf_inner"
+        type: array
+        default: null
+      - description: A reference to a list attribute that contains locations.
+        example: "{{$Session.AllowedZones}}"
         type: string
     SelectSelectorStep_from:
       description: The starting value of the selection. For the `many` operator this

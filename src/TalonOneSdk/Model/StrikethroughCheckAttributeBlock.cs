@@ -230,7 +230,17 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum Notwithin for value: not(within)
             /// </summary>
-            Notwithin = 31
+            Notwithin = 31,
+
+            /// <summary>
+            /// Enum In for value: in
+            /// </summary>
+            In = 32,
+
+            /// <summary>
+            /// Enum Notin for value: not(in)
+            /// </summary>
+            Notin = 33
         }
 
         /// <summary>
@@ -333,6 +343,12 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("not(within)"))
                 return OperatorEnum.Notwithin;
+
+            if (value.Equals("in"))
+                return OperatorEnum.In;
+
+            if (value.Equals("not(in)"))
+                return OperatorEnum.Notin;
 
             throw new NotImplementedException($"Could not convert value to type OperatorEnum: '{value}'");
         }
@@ -437,6 +453,12 @@ namespace TalonOneSdk.Model
             if (value.Equals("not(within)"))
                 return OperatorEnum.Notwithin;
 
+            if (value.Equals("in"))
+                return OperatorEnum.In;
+
+            if (value.Equals("not(in)"))
+                return OperatorEnum.Notin;
+
             return null;
         }
 
@@ -540,6 +562,12 @@ namespace TalonOneSdk.Model
 
             if (value == OperatorEnum.Notwithin)
                 return "not(within)";
+
+            if (value == OperatorEnum.In)
+                return "in";
+
+            if (value == OperatorEnum.Notin)
+                return "not(in)";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }

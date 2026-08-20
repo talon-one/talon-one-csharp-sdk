@@ -32,6 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="SelectorBlock" /> class.
         /// </summary>
         /// <param name="checkAttributeBlock"></param>
+        /// <param name="values">values</param>
         /// <param name="value">value</param>
         /// <param name="min">min</param>
         /// <param name="max">max</param>
@@ -40,11 +41,11 @@ namespace TalonOneSdk.Model
         /// <param name="startInclusive">When &#x60;true&#x60;, the &#x60;start&#x60; value is included in the range for the &#x60;within&#x60; operator.</param>
         /// <param name="endInclusive">When &#x60;true&#x60;, the &#x60;end&#x60; value is included in the range for the &#x60;within&#x60; operator.</param>
         /// <param name="timezoneInsensitive">Indicates whether the &#x60;within&#x60; operator ignores time zones and compares the wall-clock time only. When &#x60;false&#x60;, time zones are taken into account.</param>
-        /// <param name="values">values</param>
         /// <param name="count">count</param>
-        public SelectorBlock(CheckAttributeBlock checkAttributeBlock, Object value = default, Object min = default, Object max = default, Object start = default, Object end = default, Option<bool?> startInclusive = default, Option<bool?> endInclusive = default, Option<bool?> timezoneInsensitive = default, Object values = default, Object count = default)
+        public SelectorBlock(CheckAttributeBlock checkAttributeBlock, LocationCheckAttributeBlockValues values, Object value = default, Object min = default, Object max = default, Object start = default, Object end = default, Option<bool?> startInclusive = default, Option<bool?> endInclusive = default, Option<bool?> timezoneInsensitive = default, Object count = default)
         {
             CheckAttributeBlock = checkAttributeBlock;
+            Values = values;
             Value = value;
             Min = min;
             Max = max;
@@ -53,7 +54,6 @@ namespace TalonOneSdk.Model
             StartInclusiveOption = startInclusive;
             EndInclusiveOption = endInclusive;
             TimezoneInsensitiveOption = timezoneInsensitive;
-            Values = values;
             Count = count;
             OnCreated();
         }
@@ -62,6 +62,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="SelectorBlock" /> class.
         /// </summary>
         /// <param name="selectorGroupBlock"></param>
+        /// <param name="values">values</param>
         /// <param name="value">value</param>
         /// <param name="min">min</param>
         /// <param name="max">max</param>
@@ -70,11 +71,11 @@ namespace TalonOneSdk.Model
         /// <param name="startInclusive">When &#x60;true&#x60;, the &#x60;start&#x60; value is included in the range for the &#x60;within&#x60; operator.</param>
         /// <param name="endInclusive">When &#x60;true&#x60;, the &#x60;end&#x60; value is included in the range for the &#x60;within&#x60; operator.</param>
         /// <param name="timezoneInsensitive">Indicates whether the &#x60;within&#x60; operator ignores time zones and compares the wall-clock time only. When &#x60;false&#x60;, time zones are taken into account.</param>
-        /// <param name="values">values</param>
         /// <param name="count">count</param>
-        public SelectorBlock(SelectorGroupBlock selectorGroupBlock, Object value = default, Object min = default, Object max = default, Object start = default, Object end = default, Option<bool?> startInclusive = default, Option<bool?> endInclusive = default, Option<bool?> timezoneInsensitive = default, Object values = default, Object count = default)
+        public SelectorBlock(SelectorGroupBlock selectorGroupBlock, LocationCheckAttributeBlockValues values, Object value = default, Object min = default, Object max = default, Object start = default, Object end = default, Option<bool?> startInclusive = default, Option<bool?> endInclusive = default, Option<bool?> timezoneInsensitive = default, Object count = default)
         {
             SelectorGroupBlock = selectorGroupBlock;
+            Values = values;
             Value = value;
             Min = min;
             Max = max;
@@ -83,7 +84,6 @@ namespace TalonOneSdk.Model
             StartInclusiveOption = startInclusive;
             EndInclusiveOption = endInclusive;
             TimezoneInsensitiveOption = timezoneInsensitive;
-            Values = values;
             Count = count;
             OnCreated();
         }
@@ -92,6 +92,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="SelectorBlock" /> class.
         /// </summary>
         /// <param name="passthroughBlock"></param>
+        /// <param name="values">values</param>
         /// <param name="value">value</param>
         /// <param name="min">min</param>
         /// <param name="max">max</param>
@@ -100,11 +101,11 @@ namespace TalonOneSdk.Model
         /// <param name="startInclusive">When &#x60;true&#x60;, the &#x60;start&#x60; value is included in the range for the &#x60;within&#x60; operator.</param>
         /// <param name="endInclusive">When &#x60;true&#x60;, the &#x60;end&#x60; value is included in the range for the &#x60;within&#x60; operator.</param>
         /// <param name="timezoneInsensitive">Indicates whether the &#x60;within&#x60; operator ignores time zones and compares the wall-clock time only. When &#x60;false&#x60;, time zones are taken into account.</param>
-        /// <param name="values">values</param>
         /// <param name="count">count</param>
-        public SelectorBlock(PassthroughBlock passthroughBlock, Object value = default, Object min = default, Object max = default, Object start = default, Object end = default, Option<bool?> startInclusive = default, Option<bool?> endInclusive = default, Option<bool?> timezoneInsensitive = default, Object values = default, Object count = default)
+        public SelectorBlock(PassthroughBlock passthroughBlock, LocationCheckAttributeBlockValues values, Object value = default, Object min = default, Object max = default, Object start = default, Object end = default, Option<bool?> startInclusive = default, Option<bool?> endInclusive = default, Option<bool?> timezoneInsensitive = default, Object count = default)
         {
             PassthroughBlock = passthroughBlock;
+            Values = values;
             Value = value;
             Min = min;
             Max = max;
@@ -113,7 +114,6 @@ namespace TalonOneSdk.Model
             StartInclusiveOption = startInclusive;
             EndInclusiveOption = endInclusive;
             TimezoneInsensitiveOption = timezoneInsensitive;
-            Values = values;
             Count = count;
             OnCreated();
         }
@@ -203,6 +203,12 @@ namespace TalonOneSdk.Model
         public PassthroughBlock PassthroughBlock { get; set; }
 
         /// <summary>
+        /// Gets or Sets Values
+        /// </summary>
+        [JsonPropertyName("values")]
+        public LocationCheckAttributeBlockValues Values { get; set; }
+
+        /// <summary>
         /// Gets or Sets Value
         /// </summary>
         [JsonPropertyName("value")]
@@ -278,12 +284,6 @@ namespace TalonOneSdk.Model
         public bool? TimezoneInsensitive { get { return this.TimezoneInsensitiveOption.Value; } set { this.TimezoneInsensitiveOption = new Option<bool?>(value); } }
 
         /// <summary>
-        /// Gets or Sets Values
-        /// </summary>
-        [JsonPropertyName("values")]
-        public Object Values { get; set; }
-
-        /// <summary>
         /// Gets or Sets Count
         /// </summary>
         [JsonPropertyName("count")]
@@ -355,6 +355,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<SelectorBlock.TypeEnum?> type = default;
+            Option<LocationCheckAttributeBlockValues> values = default;
             Option<Object> value = default;
             Option<Object> min = default;
             Option<Object> max = default;
@@ -363,7 +364,6 @@ namespace TalonOneSdk.Model
             Option<bool?> startInclusive = default;
             Option<bool?> endInclusive = default;
             Option<bool?> timezoneInsensitive = default;
-            Option<Object> values = default;
             Option<Object> count = default;
 
             CheckAttributeBlock checkAttributeCheckAttributeBlock = null;
@@ -425,6 +425,9 @@ namespace TalonOneSdk.Model
                             if (typeRawValue != null)
                                 type = new Option<SelectorBlock.TypeEnum?>(SelectorBlock.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
+                        case "values":
+                            values = new Option<LocationCheckAttributeBlockValues>(JsonSerializer.Deserialize<LocationCheckAttributeBlockValues>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "value":
                             value = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -449,9 +452,6 @@ namespace TalonOneSdk.Model
                         case "timezoneInsensitive":
                             timezoneInsensitive = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
-                        case "values":
-                            values = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
                         case "count":
                             count = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -463,6 +463,9 @@ namespace TalonOneSdk.Model
 
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class SelectorBlock.", nameof(type));
+
+            if (!values.IsSet)
+                throw new ArgumentException("Property is required for class SelectorBlock.", nameof(values));
 
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class SelectorBlock.", nameof(value));
@@ -479,23 +482,23 @@ namespace TalonOneSdk.Model
             if (!end.IsSet)
                 throw new ArgumentException("Property is required for class SelectorBlock.", nameof(end));
 
-            if (!values.IsSet)
-                throw new ArgumentException("Property is required for class SelectorBlock.", nameof(values));
-
             if (!count.IsSet)
                 throw new ArgumentException("Property is required for class SelectorBlock.", nameof(count));
 
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class SelectorBlock.");
 
+            if (values.IsSet && values.Value == null)
+                throw new ArgumentNullException(nameof(values), "Property is not nullable for class SelectorBlock.");
+
             if (checkAttributeCheckAttributeBlock != null)
-                return new SelectorBlock(checkAttributeCheckAttributeBlock, value.Value, min.Value, max.Value, start.Value, end.Value, startInclusive, endInclusive, timezoneInsensitive, values.Value, count.Value);
+                return new SelectorBlock(checkAttributeCheckAttributeBlock, values.Value, value.Value, min.Value, max.Value, start.Value, end.Value, startInclusive, endInclusive, timezoneInsensitive, count.Value);
 
             if (groupSelectorGroupBlock != null)
-                return new SelectorBlock(groupSelectorGroupBlock, value.Value, min.Value, max.Value, start.Value, end.Value, startInclusive, endInclusive, timezoneInsensitive, values.Value, count.Value);
+                return new SelectorBlock(groupSelectorGroupBlock, values.Value, value.Value, min.Value, max.Value, start.Value, end.Value, startInclusive, endInclusive, timezoneInsensitive, count.Value);
 
             if (passthroughPassthroughBlock != null)
-                return new SelectorBlock(passthroughPassthroughBlock, value.Value, min.Value, max.Value, start.Value, end.Value, startInclusive, endInclusive, timezoneInsensitive, values.Value, count.Value);
+                return new SelectorBlock(passthroughPassthroughBlock, values.Value, value.Value, min.Value, max.Value, start.Value, end.Value, startInclusive, endInclusive, timezoneInsensitive, count.Value);
 
             throw new JsonException();
         }
@@ -542,6 +545,11 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SelectorBlock selectorBlock, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (selectorBlock.Values == null)
+                throw new ArgumentNullException(nameof(selectorBlock.Values), "Property is required for class SelectorBlock.");
+
+            writer.WritePropertyName("values");
+            JsonSerializer.Serialize(writer, selectorBlock.Values, jsonSerializerOptions);
             if (selectorBlock.Value != null)
             {
                 writer.WritePropertyName("value");
@@ -586,13 +594,6 @@ namespace TalonOneSdk.Model
             if (selectorBlock.TimezoneInsensitiveOption.IsSet)
                 writer.WriteBoolean("timezoneInsensitive", selectorBlock.TimezoneInsensitiveOption.Value.Value);
 
-            if (selectorBlock.Values != null)
-            {
-                writer.WritePropertyName("values");
-                JsonSerializer.Serialize(writer, selectorBlock.Values, jsonSerializerOptions);
-            }
-            else
-                writer.WriteNull("values");
             if (selectorBlock.Count != null)
             {
                 writer.WritePropertyName("count");

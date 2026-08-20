@@ -136,6 +136,24 @@ namespace TalonOneSdk.Model
             OnCreated();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckAttributeBlock" /> class.
+        /// </summary>
+        /// <param name="locationCheckAttributeBlock"></param>
+        /// <param name="id">Unique identifier for this block.</param>
+        /// <param name="type">A block discriminator of type &#x60;checkAttribute&#x60;.</param>
+        /// <param name="tags">Semantic labels attached to this block.</param>
+        /// <param name="attribute">attribute</param>
+        public CheckAttributeBlock(LocationCheckAttributeBlock locationCheckAttributeBlock, string id, TypeEnum type, Option<List<string>> tags = default, Object attribute = default)
+        {
+            LocationCheckAttributeBlock = locationCheckAttributeBlock;
+            Id = id;
+            Type = type;
+            TagsOption = tags;
+            Attribute = attribute;
+            OnCreated();
+        }
+
         partial void OnCreated();
 
         /// <summary>
@@ -358,7 +376,17 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum Notwithin for value: not(within)
             /// </summary>
-            Notwithin = 31
+            Notwithin = 31,
+
+            /// <summary>
+            /// Enum In for value: in
+            /// </summary>
+            In = 32,
+
+            /// <summary>
+            /// Enum Notin for value: not(in)
+            /// </summary>
+            Notin = 33
         }
 
         /// <summary>
@@ -462,6 +490,12 @@ namespace TalonOneSdk.Model
             if (value.Equals("not(within)"))
                 return OperatorEnum.Notwithin;
 
+            if (value.Equals("in"))
+                return OperatorEnum.In;
+
+            if (value.Equals("not(in)"))
+                return OperatorEnum.Notin;
+
             throw new NotImplementedException($"Could not convert value to type OperatorEnum: '{value}'");
         }
 
@@ -564,6 +598,12 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("not(within)"))
                 return OperatorEnum.Notwithin;
+
+            if (value.Equals("in"))
+                return OperatorEnum.In;
+
+            if (value.Equals("not(in)"))
+                return OperatorEnum.Notin;
 
             return null;
         }
@@ -669,6 +709,12 @@ namespace TalonOneSdk.Model
             if (value == OperatorEnum.Notwithin)
                 return "not(within)";
 
+            if (value == OperatorEnum.In)
+                return "in";
+
+            if (value == OperatorEnum.Notin)
+                return "not(in)";
+
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
 
@@ -701,6 +747,11 @@ namespace TalonOneSdk.Model
         /// Gets or Sets WithinCheckAttributeBlock
         /// </summary>
         public WithinCheckAttributeBlock WithinCheckAttributeBlock { get; set; }
+
+        /// <summary>
+        /// Gets or Sets LocationCheckAttributeBlock
+        /// </summary>
+        public LocationCheckAttributeBlock LocationCheckAttributeBlock { get; set; }
 
         /// <summary>
         /// Unique identifier for this block.
@@ -820,6 +871,7 @@ namespace TalonOneSdk.Model
             UnaryCheckAttributeBlock existsUnaryCheckAttributeBlock = null;
             ScalarCheckAttributeBlock greaterThanScalarCheckAttributeBlock = null;
             ScalarCheckAttributeBlock greaterThanOrEqualScalarCheckAttributeBlock = null;
+            LocationCheckAttributeBlock inLocationCheckAttributeBlock = null;
             ScalarCheckAttributeBlock inCollectionScalarCheckAttributeBlock = null;
             UnaryCheckAttributeBlock isFalseUnaryCheckAttributeBlock = null;
             UnaryCheckAttributeBlock isTrueUnaryCheckAttributeBlock = null;
@@ -830,6 +882,7 @@ namespace TalonOneSdk.Model
             UnaryCheckAttributeBlock notEmptyUnaryCheckAttributeBlock = null;
             ScalarCheckAttributeBlock notEqualsScalarCheckAttributeBlock = null;
             UnaryCheckAttributeBlock notExistsUnaryCheckAttributeBlock = null;
+            LocationCheckAttributeBlock notInLocationCheckAttributeBlock = null;
             ScalarCheckAttributeBlock notInCollectionScalarCheckAttributeBlock = null;
             ScalarCheckAttributeBlock notOneOfScalarCheckAttributeBlock = null;
             WithinCheckAttributeBlock notWithinWithinCheckAttributeBlock = null;
@@ -928,6 +981,11 @@ namespace TalonOneSdk.Model
                             Utf8JsonReader utf8JsonReaderScalarCheckAttributeBlock = utf8JsonReader;
                             greaterThanOrEqualScalarCheckAttributeBlock = JsonSerializer.Deserialize<ScalarCheckAttributeBlock>(ref utf8JsonReaderScalarCheckAttributeBlock, jsonSerializerOptions);
                         }
+                        if (discriminator.Equals("in"))
+                        {
+                            Utf8JsonReader utf8JsonReaderLocationCheckAttributeBlock = utf8JsonReader;
+                            inLocationCheckAttributeBlock = JsonSerializer.Deserialize<LocationCheckAttributeBlock>(ref utf8JsonReaderLocationCheckAttributeBlock, jsonSerializerOptions);
+                        }
                         if (discriminator.Equals("inCollection"))
                         {
                             Utf8JsonReader utf8JsonReaderScalarCheckAttributeBlock = utf8JsonReader;
@@ -977,6 +1035,11 @@ namespace TalonOneSdk.Model
                         {
                             Utf8JsonReader utf8JsonReaderUnaryCheckAttributeBlock = utf8JsonReader;
                             notExistsUnaryCheckAttributeBlock = JsonSerializer.Deserialize<UnaryCheckAttributeBlock>(ref utf8JsonReaderUnaryCheckAttributeBlock, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("not(in)"))
+                        {
+                            Utf8JsonReader utf8JsonReaderLocationCheckAttributeBlock = utf8JsonReader;
+                            notInLocationCheckAttributeBlock = JsonSerializer.Deserialize<LocationCheckAttributeBlock>(ref utf8JsonReaderLocationCheckAttributeBlock, jsonSerializerOptions);
                         }
                         if (discriminator.Equals("not(inCollection)"))
                         {
@@ -1118,6 +1181,9 @@ namespace TalonOneSdk.Model
             if (greaterThanOrEqualScalarCheckAttributeBlock != null)
                 return new CheckAttributeBlock(greaterThanOrEqualScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
 
+            if (inLocationCheckAttributeBlock != null)
+                return new CheckAttributeBlock(inLocationCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+
             if (inCollectionScalarCheckAttributeBlock != null)
                 return new CheckAttributeBlock(inCollectionScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
 
@@ -1147,6 +1213,9 @@ namespace TalonOneSdk.Model
 
             if (notExistsUnaryCheckAttributeBlock != null)
                 return new CheckAttributeBlock(notExistsUnaryCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+
+            if (notInLocationCheckAttributeBlock != null)
+                return new CheckAttributeBlock(notInLocationCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
 
             if (notInCollectionScalarCheckAttributeBlock != null)
                 return new CheckAttributeBlock(notInCollectionScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
@@ -1214,6 +1283,12 @@ namespace TalonOneSdk.Model
             {
                 WithinCheckAttributeBlockJsonConverter withinCheckAttributeBlockJsonConverter = (WithinCheckAttributeBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(checkAttributeBlock.WithinCheckAttributeBlock.GetType()));
                 withinCheckAttributeBlockJsonConverter.WriteProperties(writer, checkAttributeBlock.WithinCheckAttributeBlock, jsonSerializerOptions);
+            }
+
+            if (checkAttributeBlock.LocationCheckAttributeBlock != null)
+            {
+                LocationCheckAttributeBlockJsonConverter locationCheckAttributeBlockJsonConverter = (LocationCheckAttributeBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(checkAttributeBlock.LocationCheckAttributeBlock.GetType()));
+                locationCheckAttributeBlockJsonConverter.WriteProperties(writer, checkAttributeBlock.LocationCheckAttributeBlock, jsonSerializerOptions);
             }
 
             WriteProperties(writer, checkAttributeBlock, jsonSerializerOptions);

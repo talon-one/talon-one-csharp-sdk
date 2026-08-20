@@ -478,6 +478,16 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.FuncArgDef.TypeEnumToJsonValue(funcArgDefTypeEnum);
             if (obj is TalonOneSdk.Model.GenerateLoyaltyCard.StatusEnum generateLoyaltyCardStatusEnum)
                 return TalonOneSdk.Model.GenerateLoyaltyCard.StatusEnumToJsonValue(generateLoyaltyCardStatusEnum);
+            if (obj is TalonOneSdk.Model.GeoJSONGeometry.TypeEnum geoJSONGeometryTypeEnum)
+                return TalonOneSdk.Model.GeoJSONGeometry.TypeEnumToJsonValue(geoJSONGeometryTypeEnum);
+            if (obj is TalonOneSdk.Model.GeoJSONGeometryCollection.TypeEnum geoJSONGeometryCollectionTypeEnum)
+                return TalonOneSdk.Model.GeoJSONGeometryCollection.TypeEnumToJsonValue(geoJSONGeometryCollectionTypeEnum);
+            if (obj is TalonOneSdk.Model.GeoJSONMultiPolygon.TypeEnum geoJSONMultiPolygonTypeEnum)
+                return TalonOneSdk.Model.GeoJSONMultiPolygon.TypeEnumToJsonValue(geoJSONMultiPolygonTypeEnum);
+            if (obj is TalonOneSdk.Model.GeoJSONPoint.TypeEnum geoJSONPointTypeEnum)
+                return TalonOneSdk.Model.GeoJSONPoint.TypeEnumToJsonValue(geoJSONPointTypeEnum);
+            if (obj is TalonOneSdk.Model.GeoJSONPolygon.TypeEnum geoJSONPolygonTypeEnum)
+                return TalonOneSdk.Model.GeoJSONPolygon.TypeEnumToJsonValue(geoJSONPolygonTypeEnum);
             if (obj is TalonOneSdk.Model.GiveawayPoolNotification.NotificationTypeEnum giveawayPoolNotificationNotificationTypeEnum)
                 return TalonOneSdk.Model.GiveawayPoolNotification.NotificationTypeEnumToJsonValue(giveawayPoolNotificationNotificationTypeEnum);
             if (obj is TalonOneSdk.Model.IntegrationCampaign.FeaturesEnum integrationCampaignFeaturesEnum)
@@ -520,6 +530,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.ListCheckAttributeBlock.OperatorEnumToJsonValue(listCheckAttributeBlockOperatorEnum);
             if (obj is TalonOneSdk.Model.ListWithCountCheckAttributeBlock.OperatorEnum listWithCountCheckAttributeBlockOperatorEnum)
                 return TalonOneSdk.Model.ListWithCountCheckAttributeBlock.OperatorEnumToJsonValue(listWithCountCheckAttributeBlockOperatorEnum);
+            if (obj is TalonOneSdk.Model.LocationCheckAttributeBlock.OperatorEnum locationCheckAttributeBlockOperatorEnum)
+                return TalonOneSdk.Model.LocationCheckAttributeBlock.OperatorEnumToJsonValue(locationCheckAttributeBlockOperatorEnum);
             if (obj is TalonOneSdk.Model.LoyaltyCardBatch.StatusEnum loyaltyCardBatchStatusEnum)
                 return TalonOneSdk.Model.LoyaltyCardBatch.StatusEnumToJsonValue(loyaltyCardBatchStatusEnum);
             if (obj is TalonOneSdk.Model.LoyaltyProgram.ProgramJoinPolicyEnum loyaltyProgramProgramJoinPolicyEnum)
