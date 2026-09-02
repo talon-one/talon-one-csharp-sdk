@@ -278,6 +278,26 @@ namespace TalonOneSdk.Client
     /// An interface for responses of type 
     /// </summary>
     /// <typeparam name="TType"></typeparam>
+    public interface IForbidden<TType> : IApiResponse
+    {
+        /// <summary>
+        /// Deserializes the response if the response is Forbidden
+        /// </summary>
+        /// <returns></returns>
+        TType Forbidden();
+
+        /// <summary>
+        /// Returns true if the response is Forbidden and the deserialized response is not null
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryForbidden(out TType result);
+    }
+
+    /// <summary>
+    /// An interface for responses of type 
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
     public interface IOk<TType> : IApiResponse
     {
         /// <summary>
@@ -292,6 +312,26 @@ namespace TalonOneSdk.Client
         /// <param name="result"></param>
         /// <returns></returns>
         bool TryOk(out TType result);
+    }
+
+    /// <summary>
+    /// An interface for responses of type 
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    public interface IUnprocessableContent<TType> : IApiResponse
+    {
+        /// <summary>
+        /// Deserializes the response if the response is UnprocessableContent
+        /// </summary>
+        /// <returns></returns>
+        TType UnprocessableContent();
+
+        /// <summary>
+        /// Returns true if the response is UnprocessableContent and the deserialized response is not null
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryUnprocessableContent(out TType result);
     }
 
     /// <summary>

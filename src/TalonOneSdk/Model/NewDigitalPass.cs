@@ -293,7 +293,12 @@ namespace TalonOneSdk.Model
                         case "platform":
                             string platformRawValue = utf8JsonReader.GetString();
                             if (platformRawValue != null)
-                                platform = new Option<NewDigitalPass.PlatformEnum?>(NewDigitalPass.PlatformEnumFromStringOrDefault(platformRawValue));
+                            {
+                                NewDigitalPass.PlatformEnum? platformValue = NewDigitalPass.PlatformEnumFromStringOrDefault(platformRawValue);
+                                if (platformValue == null)
+                                    throw new JsonException();
+                                platform = new Option<NewDigitalPass.PlatformEnum?>(platformValue);
+                            }
                             break;
                         case "loyaltyCardId":
                             loyaltyCardId = new Option<string>(utf8JsonReader.GetString());

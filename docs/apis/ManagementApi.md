@@ -24,6 +24,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**CreateInviteEmail**](ManagementApi.md#createinviteemail) | **POST** /v1/invite_emails | Resend invitation email |
 | [**CreateInviteV2**](ManagementApi.md#createinvitev2) | **POST** /v2/invites | Invite user |
 | [**CreatePasswordRecoveryEmail**](ManagementApi.md#createpasswordrecoveryemail) | **POST** /v1/password_recovery_emails | Request a password reset |
+| [**CreateRulesetV2**](ManagementApi.md#createrulesetv2) | **POST** /v2/applications/{applicationId}/campaigns/{campaignId}/rulesets | Create ruleset (V2) |
 | [**CreateSession**](ManagementApi.md#createsession) | **POST** /v1/sessions | Create session |
 | [**CreateStore**](ManagementApi.md#createstore) | **POST** /v1/applications/{applicationId}/stores | Create store |
 | [**DeactivateUserByEmail**](ManagementApi.md#deactivateuserbyemail) | **POST** /v1/users/deactivate | Disable user by email address |
@@ -962,6 +963,45 @@ Send an email with a password recovery link to the email address of an existing 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Created |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+<a id="createrulesetv2"></a>
+# **CreateRulesetV2**
+> RulesetV2 CreateRulesetV2 (long applicationId, long campaignId, RulesetV2 rulesetV2)
+
+Create ruleset (V2)
+
+Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only `group` and `passthrough` blocks are currently writable, with optional `onFailure` blocks. A payload containing any other block type is rejected. Each rule's `blocks` array may contain at most one block.
+
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **applicationId** | **long** | The ID of the Application. It is displayed in your Talon.One deployment URL. |  |
+| **campaignId** | **long** | The ID of the campaign. It is displayed in your Talon.One deployment URL. |  |
+| **rulesetV2** | [**RulesetV2**](RulesetV2.md) | body |  |
+
+### Return type
+
+[**RulesetV2**](RulesetV2.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Created |  -  |
+| **400** | Bad request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -5007,7 +5047,7 @@ Get loyalty program statistics
 
 <a id="getmessagelogs"></a>
 # **GetMessageLogs**
-> MessageLogEntries GetMessageLogs (string entityType, string messageID = null, string changeType = null, string notificationIDs = null, DateTime createdBefore = null, DateTime createdAfter = null, byte[] cursor = null, string period = null, bool isSuccessful = null, decimal applicationId = null, decimal campaignId = null, long loyaltyProgramId = null, long responseCode = null, string webhookIDs = null)
+> MessageLogEntries GetMessageLogs (string entityType, string messageID = null, string changeType = null, string notificationIDs = null, DateTime createdBefore = null, DateTime createdAfter = null, byte[] cursor = null, long pageSize = null, string period = null, bool isSuccessful = null, decimal applicationId = null, decimal campaignId = null, long loyaltyProgramId = null, long responseCode = null, string webhookIDs = null)
 
 List message log entries
 
@@ -5025,6 +5065,7 @@ Retrieve all message log entries.
 | **createdBefore** | **DateTime** | Filter results where request and response times to return entries before parameter value, expected to be an RFC3339 timestamp string. Use UTC time. | [optional]  |
 | **createdAfter** | **DateTime** | Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string. Use UTC time. | [optional]  |
 | **cursor** | **byte[]** | A specific unique value in the database. If this value is not given, the server fetches results starting with the first record.  | [optional]  |
+| **pageSize** | **long** | The maximum number of message log entries to return. | [optional] [default to 50] |
 | **period** | **string** | Filter results by time period. Choose between the available relative time frames.  | [optional]  |
 | **isSuccessful** | **bool** | Indicates whether to return log entries with either successful or unsuccessful HTTP response codes. When set to&#x60;true&#x60;, only log entries with &#x60;2xx&#x60; response codes are returned. When set to &#x60;false&#x60;, only log entries with &#x60;4xx&#x60; and &#x60;5xx&#x60; response codes are returned.  | [optional]  |
 | **applicationId** | **decimal** | Filter results by Application ID. | [optional]  |

@@ -721,7 +721,12 @@ namespace TalonOneSdk.Model
                         case "frontendState":
                             string frontendStateRawValue = utf8JsonReader.GetString();
                             if (frontendStateRawValue != null)
-                                frontendState = new Option<AdditionalCampaignProperties.FrontendStateEnum?>(AdditionalCampaignProperties.FrontendStateEnumFromStringOrDefault(frontendStateRawValue));
+                            {
+                                AdditionalCampaignProperties.FrontendStateEnum? frontendStateValue = AdditionalCampaignProperties.FrontendStateEnumFromStringOrDefault(frontendStateRawValue);
+                                if (frontendStateValue == null)
+                                    throw new JsonException();
+                                frontendState = new Option<AdditionalCampaignProperties.FrontendStateEnum?>(frontendStateValue);
+                            }
                             break;
                         case "storesImported":
                             storesImported = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());

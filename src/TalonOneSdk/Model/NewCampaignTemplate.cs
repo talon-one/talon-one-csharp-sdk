@@ -683,7 +683,12 @@ namespace TalonOneSdk.Model
                         case "state":
                             string stateRawValue = utf8JsonReader.GetString();
                             if (stateRawValue != null)
-                                state = new Option<NewCampaignTemplate.StateEnum?>(NewCampaignTemplate.StateEnumFromStringOrDefault(stateRawValue));
+                            {
+                                NewCampaignTemplate.StateEnum? stateValue = NewCampaignTemplate.StateEnumFromStringOrDefault(stateRawValue);
+                                if (stateValue == null)
+                                    throw new JsonException();
+                                state = new Option<NewCampaignTemplate.StateEnum?>(stateValue);
+                            }
                             break;
                         case "campaignAttributes":
                             campaignAttributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
@@ -745,7 +750,12 @@ namespace TalonOneSdk.Model
                         case "campaignType":
                             string campaignTypeRawValue = utf8JsonReader.GetString();
                             if (campaignTypeRawValue != null)
-                                campaignType = new Option<NewCampaignTemplate.CampaignTypeEnum?>(NewCampaignTemplate.CampaignTypeEnumFromStringOrDefault(campaignTypeRawValue));
+                            {
+                                NewCampaignTemplate.CampaignTypeEnum? campaignTypeValue = NewCampaignTemplate.CampaignTypeEnumFromStringOrDefault(campaignTypeRawValue);
+                                if (campaignTypeValue == null)
+                                    throw new JsonException();
+                                campaignType = new Option<NewCampaignTemplate.CampaignTypeEnum?>(campaignTypeValue);
+                            }
                             break;
                         default:
                             break;

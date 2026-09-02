@@ -701,7 +701,12 @@ namespace TalonOneSdk.Model
                         case "caseSensitivity":
                             string caseSensitivityRawValue = utf8JsonReader.GetString();
                             if (caseSensitivityRawValue != null)
-                                caseSensitivity = new Option<UpdateApplication.CaseSensitivityEnum?>(UpdateApplication.CaseSensitivityEnumFromStringOrDefault(caseSensitivityRawValue));
+                            {
+                                UpdateApplication.CaseSensitivityEnum? caseSensitivityValue = UpdateApplication.CaseSensitivityEnumFromStringOrDefault(caseSensitivityRawValue);
+                                if (caseSensitivityValue == null)
+                                    throw new JsonException();
+                                caseSensitivity = new Option<UpdateApplication.CaseSensitivityEnum?>(caseSensitivityValue);
+                            }
                             break;
                         case "attributes":
                             attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
@@ -712,7 +717,12 @@ namespace TalonOneSdk.Model
                         case "defaultDiscountScope":
                             string defaultDiscountScopeRawValue = utf8JsonReader.GetString();
                             if (defaultDiscountScopeRawValue != null)
-                                defaultDiscountScope = new Option<UpdateApplication.DefaultDiscountScopeEnum?>(UpdateApplication.DefaultDiscountScopeEnumFromStringOrDefault(defaultDiscountScopeRawValue));
+                            {
+                                UpdateApplication.DefaultDiscountScopeEnum? defaultDiscountScopeValue = UpdateApplication.DefaultDiscountScopeEnumFromStringOrDefault(defaultDiscountScopeRawValue);
+                                if (defaultDiscountScopeValue == null)
+                                    throw new JsonException();
+                                defaultDiscountScope = new Option<UpdateApplication.DefaultDiscountScopeEnum?>(defaultDiscountScopeValue);
+                            }
                             break;
                         case "enableCascadingDiscounts":
                             enableCascadingDiscounts = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
@@ -732,7 +742,12 @@ namespace TalonOneSdk.Model
                         case "defaultDiscountAdditionalCostPerItemScope":
                             string defaultDiscountAdditionalCostPerItemScopeRawValue = utf8JsonReader.GetString();
                             if (defaultDiscountAdditionalCostPerItemScopeRawValue != null)
-                                defaultDiscountAdditionalCostPerItemScope = new Option<UpdateApplication.DefaultDiscountAdditionalCostPerItemScopeEnum?>(UpdateApplication.DefaultDiscountAdditionalCostPerItemScopeEnumFromStringOrDefault(defaultDiscountAdditionalCostPerItemScopeRawValue));
+                            {
+                                UpdateApplication.DefaultDiscountAdditionalCostPerItemScopeEnum? defaultDiscountAdditionalCostPerItemScopeValue = UpdateApplication.DefaultDiscountAdditionalCostPerItemScopeEnumFromStringOrDefault(defaultDiscountAdditionalCostPerItemScopeRawValue);
+                                if (defaultDiscountAdditionalCostPerItemScopeValue == null)
+                                    throw new JsonException();
+                                defaultDiscountAdditionalCostPerItemScope = new Option<UpdateApplication.DefaultDiscountAdditionalCostPerItemScopeEnum?>(defaultDiscountAdditionalCostPerItemScopeValue);
+                            }
                             break;
                         case "defaultEvaluationGroupId":
                             defaultEvaluationGroupId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());

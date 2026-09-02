@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="RewardEligibilityFailureDetails" /> class.
         /// </summary>
         /// <param name="failureCode">A code identifying why the customer is not eligible for the reward.</param>
-        /// <param name="conditionIndex">The index of the eligibility condition that the customer did not meet.</param>
+        /// <param name="conditionIndex">The index of the eligibility condition that the customer did not meet. Only applicable when &#x60;failureCode&#x60; is &#x60;CONDITION_NOT_MET&#x60;.</param>
         [JsonConstructor]
         public RewardEligibilityFailureDetails(FailureCodeEnum failureCode, Option<long?> conditionIndex = default)
         {
@@ -52,7 +52,22 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum CONDITIONNOTMET for value: CONDITION_NOT_MET
             /// </summary>
-            CONDITIONNOTMET = 1
+            CONDITIONNOTMET = 1,
+
+            /// <summary>
+            /// Enum INSUFFICIENTBALANCE for value: INSUFFICIENT_BALANCE
+            /// </summary>
+            INSUFFICIENTBALANCE = 2,
+
+            /// <summary>
+            /// Enum CARDREQUIRED for value: CARD_REQUIRED
+            /// </summary>
+            CARDREQUIRED = 3,
+
+            /// <summary>
+            /// Enum PROFILEREQUIRED for value: PROFILE_REQUIRED
+            /// </summary>
+            PROFILEREQUIRED = 4
         }
 
         /// <summary>
@@ -65,6 +80,15 @@ namespace TalonOneSdk.Model
         {
             if (value.Equals("CONDITION_NOT_MET"))
                 return FailureCodeEnum.CONDITIONNOTMET;
+
+            if (value.Equals("INSUFFICIENT_BALANCE"))
+                return FailureCodeEnum.INSUFFICIENTBALANCE;
+
+            if (value.Equals("CARD_REQUIRED"))
+                return FailureCodeEnum.CARDREQUIRED;
+
+            if (value.Equals("PROFILE_REQUIRED"))
+                return FailureCodeEnum.PROFILEREQUIRED;
 
             throw new NotImplementedException($"Could not convert value to type FailureCodeEnum: '{value}'");
         }
@@ -79,6 +103,15 @@ namespace TalonOneSdk.Model
             if (value.Equals("CONDITION_NOT_MET"))
                 return FailureCodeEnum.CONDITIONNOTMET;
 
+            if (value.Equals("INSUFFICIENT_BALANCE"))
+                return FailureCodeEnum.INSUFFICIENTBALANCE;
+
+            if (value.Equals("CARD_REQUIRED"))
+                return FailureCodeEnum.CARDREQUIRED;
+
+            if (value.Equals("PROFILE_REQUIRED"))
+                return FailureCodeEnum.PROFILEREQUIRED;
+
             return null;
         }
 
@@ -92,6 +125,15 @@ namespace TalonOneSdk.Model
         {
             if (value == FailureCodeEnum.CONDITIONNOTMET)
                 return "CONDITION_NOT_MET";
+
+            if (value == FailureCodeEnum.INSUFFICIENTBALANCE)
+                return "INSUFFICIENT_BALANCE";
+
+            if (value == FailureCodeEnum.CARDREQUIRED)
+                return "CARD_REQUIRED";
+
+            if (value == FailureCodeEnum.PROFILEREQUIRED)
+                return "PROFILE_REQUIRED";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
@@ -112,9 +154,9 @@ namespace TalonOneSdk.Model
         public Option<long?> ConditionIndexOption { get; private set; }
 
         /// <summary>
-        /// The index of the eligibility condition that the customer did not meet.
+        /// The index of the eligibility condition that the customer did not meet. Only applicable when &#x60;failureCode&#x60; is &#x60;CONDITION_NOT_MET&#x60;.
         /// </summary>
-        /// <value>The index of the eligibility condition that the customer did not meet.</value>
+        /// <value>The index of the eligibility condition that the customer did not meet. Only applicable when &#x60;failureCode&#x60; is &#x60;CONDITION_NOT_MET&#x60;.</value>
         /* <example>0</example> */
         [JsonPropertyName("conditionIndex")]
         public long? ConditionIndex { get { return this.ConditionIndexOption.Value; } set { this.ConditionIndexOption = new Option<long?>(value); } }
@@ -197,7 +239,12 @@ namespace TalonOneSdk.Model
                         case "failureCode":
                             string failureCodeRawValue = utf8JsonReader.GetString();
                             if (failureCodeRawValue != null)
-                                failureCode = new Option<RewardEligibilityFailureDetails.FailureCodeEnum?>(RewardEligibilityFailureDetails.FailureCodeEnumFromStringOrDefault(failureCodeRawValue));
+                            {
+                                RewardEligibilityFailureDetails.FailureCodeEnum? failureCodeValue = RewardEligibilityFailureDetails.FailureCodeEnumFromStringOrDefault(failureCodeRawValue);
+                                if (failureCodeValue == null)
+                                    throw new JsonException();
+                                failureCode = new Option<RewardEligibilityFailureDetails.FailureCodeEnum?>(failureCodeValue);
+                            }
                             break;
                         case "conditionIndex":
                             conditionIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());

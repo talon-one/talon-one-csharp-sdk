@@ -435,7 +435,12 @@ namespace TalonOneSdk.Model
                         case "period":
                             string periodRawValue = utf8JsonReader.GetString();
                             if (periodRawValue != null)
-                                period = new Option<CampaignStoreBudgetLimitConfig.PeriodEnum?>(CampaignStoreBudgetLimitConfig.PeriodEnumFromStringOrDefault(periodRawValue));
+                            {
+                                CampaignStoreBudgetLimitConfig.PeriodEnum? periodValue = CampaignStoreBudgetLimitConfig.PeriodEnumFromStringOrDefault(periodRawValue);
+                                if (periodValue == null)
+                                    throw new JsonException();
+                                period = new Option<CampaignStoreBudgetLimitConfig.PeriodEnum?>(periodValue);
+                            }
                             break;
                         default:
                             break;

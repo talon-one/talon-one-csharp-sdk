@@ -220,7 +220,12 @@ namespace TalonOneSdk.Model
                         case "status":
                             string statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<DigitalPass.StatusEnum?>(DigitalPass.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                DigitalPass.StatusEnum? statusValue = DigitalPass.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<DigitalPass.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "passUrl":
                             passUrl = new Option<string>(utf8JsonReader.GetString());

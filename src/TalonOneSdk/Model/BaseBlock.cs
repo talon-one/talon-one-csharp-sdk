@@ -31,27 +31,19 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseBlock" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         [JsonConstructor]
-        public BaseBlock(string id, string type, Option<List<string>> tags = default)
+        public BaseBlock(string type, Option<string> id = default, Option<List<string>> tags = default)
         {
-            Id = id;
             Type = type;
+            IdOption = id;
             TagsOption = tags;
             OnCreated();
         }
 
         partial void OnCreated();
-
-        /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
 
         /// <summary>
         /// Identifies the block variant and determines which additional properties are present in it.
@@ -61,18 +53,33 @@ namespace TalonOneSdk.Model
         public string Type { get; set; }
 
         /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
+
+        /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> TagsOption { get; private set; }
+        public Option<List<string>> TagsOption { get; }
 
         /// <summary>
         /// Semantic labels attached to this block.
         /// </summary>
         /// <value>Semantic labels attached to this block.</value>
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -82,8 +89,8 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class BaseBlock {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -132,8 +139,8 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<string> type = default;
+            Option<string> id = default;
             Option<List<string>> tags = default;
 
             while (utf8JsonReader.Read())
@@ -151,11 +158,11 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -166,19 +173,13 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class BaseBlock.", nameof(id));
-
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class BaseBlock.", nameof(type));
-
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class BaseBlock.");
 
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class BaseBlock.");
 
-            return new BaseBlock(id.Value, type.Value, tags);
+            return new BaseBlock(type.Value, id, tags);
         }
 
         /// <summary>
@@ -205,15 +206,13 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BaseBlock baseBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (baseBlock.Id == null)
-                throw new ArgumentNullException(nameof(baseBlock.Id), "Property is required for class BaseBlock.");
-
             if (baseBlock.Type == null)
                 throw new ArgumentNullException(nameof(baseBlock.Type), "Property is required for class BaseBlock.");
 
-            writer.WriteString("id", baseBlock.Id);
-
             writer.WriteString("type", baseBlock.Type);
+
+            if (baseBlock.IdOption.IsSet)
+                writer.WriteString("id", baseBlock.Id);
 
             if (baseBlock.TagsOption.IsSet)
             {

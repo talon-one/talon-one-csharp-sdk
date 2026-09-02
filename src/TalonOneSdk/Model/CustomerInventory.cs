@@ -39,7 +39,7 @@ namespace TalonOneSdk.Model
         /// <param name="achievements">achievements</param>
         /// <param name="rewards">The customer rewards that are &#x60;unlocked&#x60; and not yet &#x60;used&#x60;.</param>
         [JsonConstructor]
-        public CustomerInventory(Option<CustomerProfile> profile = default, Option<Loyalty> loyalty = default, Option<List<InventoryReferral>> referrals = default, Option<List<InventoryCoupon>> coupons = default, Option<List<Giveaway>> giveaways = default, Option<List<AchievementProgressWithDefinition>> achievements = default, Option<List<Object>> rewards = default)
+        public CustomerInventory(Option<CustomerProfile> profile = default, Option<Loyalty> loyalty = default, Option<List<InventoryReferral>> referrals = default, Option<List<InventoryCoupon>> coupons = default, Option<List<Giveaway>> giveaways = default, Option<List<AchievementProgressWithDefinition>> achievements = default, Option<List<RewardWithUnlocks>> rewards = default)
         {
             ProfileOption = profile;
             LoyaltyOption = loyalty;
@@ -137,14 +137,14 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Object>> RewardsOption { get; private set; }
+        public Option<List<RewardWithUnlocks>> RewardsOption { get; private set; }
 
         /// <summary>
         /// The customer rewards that are &#x60;unlocked&#x60; and not yet &#x60;used&#x60;.
         /// </summary>
         /// <value>The customer rewards that are &#x60;unlocked&#x60; and not yet &#x60;used&#x60;.</value>
         [JsonPropertyName("rewards")]
-        public List<Object> Rewards { get { return this.RewardsOption.Value; } set { this.RewardsOption = new Option<List<Object>>(value); } }
+        public List<RewardWithUnlocks> Rewards { get { return this.RewardsOption.Value; } set { this.RewardsOption = new Option<List<RewardWithUnlocks>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -214,7 +214,7 @@ namespace TalonOneSdk.Model
             Option<List<InventoryCoupon>> coupons = default;
             Option<List<Giveaway>> giveaways = default;
             Option<List<AchievementProgressWithDefinition>> achievements = default;
-            Option<List<Object>> rewards = default;
+            Option<List<RewardWithUnlocks>> rewards = default;
 
             while (utf8JsonReader.Read())
             {
@@ -250,7 +250,7 @@ namespace TalonOneSdk.Model
                             achievements = new Option<List<AchievementProgressWithDefinition>>(JsonSerializer.Deserialize<List<AchievementProgressWithDefinition>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "rewards":
-                            rewards = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            rewards = new Option<List<RewardWithUnlocks>>(JsonSerializer.Deserialize<List<RewardWithUnlocks>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

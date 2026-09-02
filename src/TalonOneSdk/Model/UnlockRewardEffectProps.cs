@@ -36,14 +36,16 @@ namespace TalonOneSdk.Model
         /// <param name="applicationId">The internal ID of the application the reward belongs to.</param>
         /// <param name="profileIntegrationId">The integration ID of the customer profile that unlocked the reward.</param>
         /// <param name="unlockedAt">The time the reward was unlocked.</param>
+        /// <param name="cardIdentifier">The identifier of the loyalty card that unlocked the reward. Only returned when the reward was unlocked with a loyalty card, in which case the reward belongs to the card and is available to all customer profiles linked to it. </param>
         [JsonConstructor]
-        public UnlockRewardEffectProps(string integrationId, long rewardId, long applicationId, string profileIntegrationId, DateTime unlockedAt)
+        public UnlockRewardEffectProps(string integrationId, long rewardId, long applicationId, string profileIntegrationId, DateTime unlockedAt, Option<string> cardIdentifier = default)
         {
             IntegrationId = integrationId;
             RewardId = rewardId;
             ApplicationId = applicationId;
             ProfileIntegrationId = profileIntegrationId;
             UnlockedAt = unlockedAt;
+            CardIdentifierOption = cardIdentifier;
             OnCreated();
         }
 
@@ -90,6 +92,21 @@ namespace TalonOneSdk.Model
         public DateTime UnlockedAt { get; set; }
 
         /// <summary>
+        /// Used to track the state of CardIdentifier
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> CardIdentifierOption { get; private set; }
+
+        /// <summary>
+        /// The identifier of the loyalty card that unlocked the reward. Only returned when the reward was unlocked with a loyalty card, in which case the reward belongs to the card and is available to all customer profiles linked to it. 
+        /// </summary>
+        /// <value>The identifier of the loyalty card that unlocked the reward. Only returned when the reward was unlocked with a loyalty card, in which case the reward belongs to the card and is available to all customer profiles linked to it. </value>
+        /* <example>summer-loyalty-card-0543</example> */
+        [JsonPropertyName("cardIdentifier")]
+        public string CardIdentifier { get { return this.CardIdentifierOption.Value; } set { this.CardIdentifierOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -102,6 +119,7 @@ namespace TalonOneSdk.Model
             sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
             sb.Append("  ProfileIntegrationId: ").Append(ProfileIntegrationId).Append("\n");
             sb.Append("  UnlockedAt: ").Append(UnlockedAt).Append("\n");
+            sb.Append("  CardIdentifier: ").Append(CardIdentifier).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -113,6 +131,28 @@ namespace TalonOneSdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // CardIdentifier (string) maxLength
+            if (this.CardIdentifier != null && this.CardIdentifier.Length > 108)
+            {
+                yield return new ValidationResult("Invalid value for CardIdentifier, length must be less than 108.", new [] { "CardIdentifier" });
+            }
+
+            // CardIdentifier (string) minLength
+            if (this.CardIdentifier != null && this.CardIdentifier.Length < 4)
+            {
+                yield return new ValidationResult("Invalid value for CardIdentifier, length must be greater than 4.", new [] { "CardIdentifier" });
+            }
+
+            if (this.CardIdentifierOption.Value != null) {
+                // CardIdentifier (string) pattern
+                Regex regexCardIdentifier = new Regex(@"^[A-Za-z0-9._%+@-]+$", RegexOptions.CultureInvariant);
+
+                if (this.CardIdentifierOption.Value != null &&!regexCardIdentifier.Match(this.CardIdentifierOption.Value).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CardIdentifier, must match a pattern of " + regexCardIdentifier, new [] { "CardIdentifier" });
+                }
+            }
+
             yield break;
         }
     }
@@ -159,6 +199,7 @@ namespace TalonOneSdk.Model
             Option<long?> applicationId = default;
             Option<string> profileIntegrationId = default;
             Option<DateTime?> unlockedAt = default;
+            Option<string> cardIdentifier = default;
 
             while (utf8JsonReader.Read())
             {
@@ -189,6 +230,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "unlockedAt":
                             unlockedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "cardIdentifier":
+                            cardIdentifier = new Option<string>(utf8JsonReader.GetString());
                             break;
                         default:
                             break;
@@ -226,7 +270,7 @@ namespace TalonOneSdk.Model
             if (unlockedAt.IsSet && unlockedAt.Value == null)
                 throw new ArgumentNullException(nameof(unlockedAt), "Property is not nullable for class UnlockRewardEffectProps.");
 
-            return new UnlockRewardEffectProps(integrationId.Value, rewardId.Value.Value, applicationId.Value.Value, profileIntegrationId.Value, unlockedAt.Value.Value);
+            return new UnlockRewardEffectProps(integrationId.Value, rewardId.Value.Value, applicationId.Value.Value, profileIntegrationId.Value, unlockedAt.Value.Value, cardIdentifier);
         }
 
         /// <summary>
@@ -268,6 +312,9 @@ namespace TalonOneSdk.Model
             writer.WriteString("profileIntegrationId", unlockRewardEffectProps.ProfileIntegrationId);
 
             writer.WriteString("unlockedAt", unlockRewardEffectProps.UnlockedAt.ToString(UnlockedAtFormat));
+
+            if (unlockRewardEffectProps.CardIdentifierOption.IsSet)
+                writer.WriteString("cardIdentifier", unlockRewardEffectProps.CardIdentifier);
         }
     }
 }

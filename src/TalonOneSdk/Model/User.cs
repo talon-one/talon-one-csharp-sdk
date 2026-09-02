@@ -497,7 +497,12 @@ namespace TalonOneSdk.Model
                         case "state":
                             string stateRawValue = utf8JsonReader.GetString();
                             if (stateRawValue != null)
-                                state = new Option<User.StateEnum?>(User.StateEnumFromStringOrDefault(stateRawValue));
+                            {
+                                User.StateEnum? stateValue = User.StateEnumFromStringOrDefault(stateRawValue);
+                                if (stateValue == null)
+                                    throw new JsonException();
+                                state = new Option<User.StateEnum?>(stateValue);
+                            }
                             break;
                         case "inviteToken":
                             inviteToken = new Option<string>(utf8JsonReader.GetString());

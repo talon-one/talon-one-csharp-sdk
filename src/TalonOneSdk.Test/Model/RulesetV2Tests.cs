@@ -54,6 +54,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'PromotionRules'
+        /// </summary>
+        [Fact]
+        public void PromotionRulesTest()
+        {
+            // TODO unit test for the property 'PromotionRules'
+        }
+
+        /// <summary>
         /// Test the property 'Id'
         /// </summary>
         [Fact]
@@ -81,24 +90,6 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'PromotionRules'
-        /// </summary>
-        [Fact]
-        public void PromotionRulesTest()
-        {
-            // TODO unit test for the property 'PromotionRules'
-        }
-
-        /// <summary>
-        /// Test the property 'StrikethroughRules'
-        /// </summary>
-        [Fact]
-        public void StrikethroughRulesTest()
-        {
-            // TODO unit test for the property 'StrikethroughRules'
-        }
-
-        /// <summary>
         /// Test the property 'CampaignId'
         /// </summary>
         [Fact]
@@ -123,6 +114,15 @@ namespace TalonOneSdk.Test.Model
         public void ActivatedAtTest()
         {
             // TODO unit test for the property 'ActivatedAt'
+        }
+
+        /// <summary>
+        /// Test the property 'StrikethroughRules'
+        /// </summary>
+        [Fact]
+        public void StrikethroughRulesTest()
+        {
+            // TODO unit test for the property 'StrikethroughRules'
         }
 
         /// <summary>

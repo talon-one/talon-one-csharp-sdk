@@ -479,7 +479,12 @@ namespace TalonOneSdk.Model
                         case "goalType":
                             string goalTypeRawValue = utf8JsonReader.GetString();
                             if (goalTypeRawValue != null)
-                                goalType = new Option<Experiment.GoalTypeEnum?>(Experiment.GoalTypeEnumFromStringOrDefault(goalTypeRawValue));
+                            {
+                                Experiment.GoalTypeEnum? goalTypeValue = Experiment.GoalTypeEnumFromStringOrDefault(goalTypeRawValue);
+                                if (goalTypeValue == null)
+                                    throw new JsonException();
+                                goalType = new Option<Experiment.GoalTypeEnum?>(goalTypeValue);
+                            }
                             break;
                         case "isVariantAssignmentExternal":
                             isVariantAssignmentExternal = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
@@ -493,7 +498,12 @@ namespace TalonOneSdk.Model
                         case "state":
                             string stateRawValue = utf8JsonReader.GetString();
                             if (stateRawValue != null)
-                                state = new Option<Experiment.StateEnum?>(Experiment.StateEnumFromStringOrDefault(stateRawValue));
+                            {
+                                Experiment.StateEnum? stateValue = Experiment.StateEnumFromStringOrDefault(stateRawValue);
+                                if (stateValue == null)
+                                    throw new JsonException();
+                                state = new Option<Experiment.StateEnum?>(stateValue);
+                            }
                             break;
                         case "variants":
                             variants = new Option<List<ExperimentVariant>>(JsonSerializer.Deserialize<List<ExperimentVariant>>(ref utf8JsonReader, jsonSerializerOptions));

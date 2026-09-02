@@ -54,15 +54,6 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Id'
-        /// </summary>
-        [Fact]
-        public void IdTest()
-        {
-            // TODO unit test for the property 'Id'
-        }
-
-        /// <summary>
         /// Test the property 'Type'
         /// </summary>
         [Fact]
@@ -78,6 +69,15 @@ namespace TalonOneSdk.Test.Model
         public void OperatorTest()
         {
             // TODO unit test for the property 'Operator'
+        }
+
+        /// <summary>
+        /// Test the property 'Id'
+        /// </summary>
+        [Fact]
+        public void IdTest()
+        {
+            // TODO unit test for the property 'Id'
         }
 
         /// <summary>
@@ -186,6 +186,15 @@ namespace TalonOneSdk.Test.Model
         public void CountTest()
         {
             // TODO unit test for the property 'Count'
+        }
+
+        /// <summary>
+        /// Test the property 'OnFailure'
+        /// </summary>
+        [Fact]
+        public void OnFailureTest()
+        {
+            // TODO unit test for the property 'OnFailure'
         }
     }
 }

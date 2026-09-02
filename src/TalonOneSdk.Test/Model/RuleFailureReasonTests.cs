@@ -135,6 +135,24 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'RewardId'
+        /// </summary>
+        [Fact]
+        public void RewardIdTest()
+        {
+            // TODO unit test for the property 'RewardId'
+        }
+
+        /// <summary>
+        /// Test the property 'RewardIntegrationId'
+        /// </summary>
+        [Fact]
+        public void RewardIntegrationIdTest()
+        {
+            // TODO unit test for the property 'RewardIntegrationId'
+        }
+
+        /// <summary>
         /// Test the property 'ConditionIndex'
         /// </summary>
         [Fact]

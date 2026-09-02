@@ -32,25 +32,31 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CustomerProfileReward" /> class.
         /// </summary>
         /// <param name="id">The ID of the customer reward instance. A customer profile can have multiple instances of the same reward.</param>
-        /// <param name="integrationId">The integration ID of the reward.</param>
+        /// <param name="integrationId">The integration ID of the customer reward instance.</param>
         /// <param name="rewardId">The ID of the reward this instance belongs to.</param>
+        /// <param name="rewardIntegrationId">The integration ID of the reward this instance belongs to.</param>
         /// <param name="rewardName">The name of the reward.</param>
         /// <param name="status">The status of the customer reward: - &#x60;unlocked&#x60;: The reward is available for use. - &#x60;used&#x60;: The reward has been used. </param>
         /// <param name="unlockedAt">The date and time when the reward was unlocked.</param>
+        /// <param name="description">The customer-facing description of the reward.</param>
+        /// <param name="rule">Customer-facing rule metadata for the reward. Only returned when the reward defines a rule.</param>
         /// <param name="unlockedByProfileIntegrationId">The integration ID of the customer profile that unlocked the reward.   For rewards unlocked with a loyalty card, this can be any customer profile  linked to that loyalty card. </param>
         /// <param name="usedAt">The date and time when the reward was used.</param>
         /// <param name="usedByProfileIntegrationId">The integration ID of the customer profile that used the reward.   For rewards unlocked with a loyalty card, this can be any customer profile  linked to that loyalty card.   Only returned when the reward has been used. </param>
         /// <param name="loyaltyProgramId">The ID of the loyalty program that the loyalty card belongs to. Only returned for rewards unlocked with a loyalty card.</param>
         /// <param name="loyaltyCardIdentifier">The identifier of the loyalty card that the reward was unlocked with. Only returned for rewards unlocked with a loyalty card.</param>
         [JsonConstructor]
-        public CustomerProfileReward(long id, string integrationId, long rewardId, string rewardName, StatusEnum status, DateTime unlockedAt, Option<string> unlockedByProfileIntegrationId = default, Option<DateTime?> usedAt = default, Option<string> usedByProfileIntegrationId = default, Option<long?> loyaltyProgramId = default, Option<string> loyaltyCardIdentifier = default)
+        public CustomerProfileReward(long id, string integrationId, long rewardId, string rewardIntegrationId, string rewardName, StatusEnum status, DateTime unlockedAt, Option<string> description = default, Option<RuleMetadata> rule = default, Option<string> unlockedByProfileIntegrationId = default, Option<DateTime?> usedAt = default, Option<string> usedByProfileIntegrationId = default, Option<long?> loyaltyProgramId = default, Option<string> loyaltyCardIdentifier = default)
         {
             Id = id;
             IntegrationId = integrationId;
             RewardId = rewardId;
+            RewardIntegrationId = rewardIntegrationId;
             RewardName = rewardName;
             Status = status;
             UnlockedAt = unlockedAt;
+            DescriptionOption = description;
+            RuleOption = rule;
             UnlockedByProfileIntegrationIdOption = unlockedByProfileIntegrationId;
             UsedAtOption = usedAt;
             UsedByProfileIntegrationIdOption = usedByProfileIntegrationId;
@@ -145,9 +151,9 @@ namespace TalonOneSdk.Model
         public long Id { get; set; }
 
         /// <summary>
-        /// The integration ID of the reward.
+        /// The integration ID of the customer reward instance.
         /// </summary>
-        /// <value>The integration ID of the reward.</value>
+        /// <value>The integration ID of the customer reward instance.</value>
         /* <example>reward-unlock-123</example> */
         [JsonPropertyName("integrationId")]
         public string IntegrationId { get; set; }
@@ -159,6 +165,14 @@ namespace TalonOneSdk.Model
         /* <example>12</example> */
         [JsonPropertyName("rewardId")]
         public long RewardId { get; set; }
+
+        /// <summary>
+        /// The integration ID of the reward this instance belongs to.
+        /// </summary>
+        /// <value>The integration ID of the reward this instance belongs to.</value>
+        /* <example>free-coffee</example> */
+        [JsonPropertyName("rewardIntegrationId")]
+        public string RewardIntegrationId { get; set; }
 
         /// <summary>
         /// The name of the reward.
@@ -175,6 +189,35 @@ namespace TalonOneSdk.Model
         /* <example>2026-07-01T09:00:00Z</example> */
         [JsonPropertyName("unlockedAt")]
         public DateTime UnlockedAt { get; set; }
+
+        /// <summary>
+        /// Used to track the state of Description
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> DescriptionOption { get; private set; }
+
+        /// <summary>
+        /// The customer-facing description of the reward.
+        /// </summary>
+        /// <value>The customer-facing description of the reward.</value>
+        /* <example>One free coffee of any size</example> */
+        [JsonPropertyName("description")]
+        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Rule
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<RuleMetadata> RuleOption { get; private set; }
+
+        /// <summary>
+        /// Customer-facing rule metadata for the reward. Only returned when the reward defines a rule.
+        /// </summary>
+        /// <value>Customer-facing rule metadata for the reward. Only returned when the reward defines a rule.</value>
+        [JsonPropertyName("rule")]
+        public RuleMetadata Rule { get { return this.RuleOption.Value; } set { this.RuleOption = new Option<RuleMetadata>(value); } }
 
         /// <summary>
         /// Used to track the state of UnlockedByProfileIntegrationId
@@ -262,9 +305,12 @@ namespace TalonOneSdk.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  IntegrationId: ").Append(IntegrationId).Append("\n");
             sb.Append("  RewardId: ").Append(RewardId).Append("\n");
+            sb.Append("  RewardIntegrationId: ").Append(RewardIntegrationId).Append("\n");
             sb.Append("  RewardName: ").Append(RewardName).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  UnlockedAt: ").Append(UnlockedAt).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Rule: ").Append(Rule).Append("\n");
             sb.Append("  UnlockedByProfileIntegrationId: ").Append(UnlockedByProfileIntegrationId).Append("\n");
             sb.Append("  UsedAt: ").Append(UsedAt).Append("\n");
             sb.Append("  UsedByProfileIntegrationId: ").Append(UsedByProfileIntegrationId).Append("\n");
@@ -352,9 +398,12 @@ namespace TalonOneSdk.Model
             Option<long?> id = default;
             Option<string> integrationId = default;
             Option<long?> rewardId = default;
+            Option<string> rewardIntegrationId = default;
             Option<string> rewardName = default;
             Option<CustomerProfileReward.StatusEnum?> status = default;
             Option<DateTime?> unlockedAt = default;
+            Option<string> description = default;
+            Option<RuleMetadata> rule = default;
             Option<string> unlockedByProfileIntegrationId = default;
             Option<DateTime?> usedAt = default;
             Option<string> usedByProfileIntegrationId = default;
@@ -385,16 +434,30 @@ namespace TalonOneSdk.Model
                         case "rewardId":
                             rewardId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
+                        case "rewardIntegrationId":
+                            rewardIntegrationId = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         case "rewardName":
                             rewardName = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "status":
                             string statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<CustomerProfileReward.StatusEnum?>(CustomerProfileReward.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                CustomerProfileReward.StatusEnum? statusValue = CustomerProfileReward.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<CustomerProfileReward.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "unlockedAt":
                             unlockedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "description":
+                            description = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "rule":
+                            rule = new Option<RuleMetadata>(JsonSerializer.Deserialize<RuleMetadata>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "unlockedByProfileIntegrationId":
                             unlockedByProfileIntegrationId = new Option<string>(utf8JsonReader.GetString());
@@ -426,6 +489,9 @@ namespace TalonOneSdk.Model
             if (!rewardId.IsSet)
                 throw new ArgumentException("Property is required for class CustomerProfileReward.", nameof(rewardId));
 
+            if (!rewardIntegrationId.IsSet)
+                throw new ArgumentException("Property is required for class CustomerProfileReward.", nameof(rewardIntegrationId));
+
             if (!rewardName.IsSet)
                 throw new ArgumentException("Property is required for class CustomerProfileReward.", nameof(rewardName));
 
@@ -444,6 +510,9 @@ namespace TalonOneSdk.Model
             if (rewardId.IsSet && rewardId.Value == null)
                 throw new ArgumentNullException(nameof(rewardId), "Property is not nullable for class CustomerProfileReward.");
 
+            if (rewardIntegrationId.IsSet && rewardIntegrationId.Value == null)
+                throw new ArgumentNullException(nameof(rewardIntegrationId), "Property is not nullable for class CustomerProfileReward.");
+
             if (rewardName.IsSet && rewardName.Value == null)
                 throw new ArgumentNullException(nameof(rewardName), "Property is not nullable for class CustomerProfileReward.");
 
@@ -453,7 +522,7 @@ namespace TalonOneSdk.Model
             if (unlockedAt.IsSet && unlockedAt.Value == null)
                 throw new ArgumentNullException(nameof(unlockedAt), "Property is not nullable for class CustomerProfileReward.");
 
-            return new CustomerProfileReward(id.Value.Value, integrationId.Value, rewardId.Value.Value, rewardName.Value, status.Value.Value, unlockedAt.Value.Value, unlockedByProfileIntegrationId, usedAt, usedByProfileIntegrationId, loyaltyProgramId, loyaltyCardIdentifier);
+            return new CustomerProfileReward(id.Value.Value, integrationId.Value, rewardId.Value.Value, rewardIntegrationId.Value, rewardName.Value, status.Value.Value, unlockedAt.Value.Value, description, rule, unlockedByProfileIntegrationId, usedAt, usedByProfileIntegrationId, loyaltyProgramId, loyaltyCardIdentifier);
         }
 
         /// <summary>
@@ -483,6 +552,9 @@ namespace TalonOneSdk.Model
             if (customerProfileReward.IntegrationId == null)
                 throw new ArgumentNullException(nameof(customerProfileReward.IntegrationId), "Property is required for class CustomerProfileReward.");
 
+            if (customerProfileReward.RewardIntegrationId == null)
+                throw new ArgumentNullException(nameof(customerProfileReward.RewardIntegrationId), "Property is required for class CustomerProfileReward.");
+
             if (customerProfileReward.RewardName == null)
                 throw new ArgumentNullException(nameof(customerProfileReward.RewardName), "Property is required for class CustomerProfileReward.");
 
@@ -492,12 +564,22 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("rewardId", customerProfileReward.RewardId);
 
+            writer.WriteString("rewardIntegrationId", customerProfileReward.RewardIntegrationId);
+
             writer.WriteString("rewardName", customerProfileReward.RewardName);
 
             var statusRawValue = CustomerProfileReward.StatusEnumToJsonValue(customerProfileReward.Status);
             writer.WriteString("status", statusRawValue);
             writer.WriteString("unlockedAt", customerProfileReward.UnlockedAt.ToString(UnlockedAtFormat));
 
+            if (customerProfileReward.DescriptionOption.IsSet)
+                writer.WriteString("description", customerProfileReward.Description);
+
+            if (customerProfileReward.RuleOption.IsSet)
+            {
+                writer.WritePropertyName("rule");
+                JsonSerializer.Serialize(writer, customerProfileReward.Rule, jsonSerializerOptions);
+            }
             if (customerProfileReward.UnlockedByProfileIntegrationIdOption.IsSet)
                 writer.WriteString("unlockedByProfileIntegrationId", customerProfileReward.UnlockedByProfileIntegrationId);
 

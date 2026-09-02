@@ -441,7 +441,12 @@ namespace TalonOneSdk.Model
                         case "campaignState":
                             string campaignStateRawValue = utf8JsonReader.GetString();
                             if (campaignStateRawValue != null)
-                                campaignState = new Option<ApplicationCampaignAnalytics.CampaignStateEnum?>(ApplicationCampaignAnalytics.CampaignStateEnumFromStringOrDefault(campaignStateRawValue));
+                            {
+                                ApplicationCampaignAnalytics.CampaignStateEnum? campaignStateValue = ApplicationCampaignAnalytics.CampaignStateEnumFromStringOrDefault(campaignStateRawValue);
+                                if (campaignStateValue == null)
+                                    throw new JsonException();
+                                campaignState = new Option<ApplicationCampaignAnalytics.CampaignStateEnum?>(campaignStateValue);
+                            }
                             break;
                         case "totalRevenue":
                             totalRevenue = new Option<AnalyticsDataPointWithTrendAndInfluencedRate>(JsonSerializer.Deserialize<AnalyticsDataPointWithTrendAndInfluencedRate>(ref utf8JsonReader, jsonSerializerOptions));

@@ -222,7 +222,12 @@ namespace TalonOneSdk.Model
                         case "action":
                             string actionRawValue = utf8JsonReader.GetString();
                             if (actionRawValue != null)
-                                action = new Option<CustomerProfileAudienceRequestItem.ActionEnum?>(CustomerProfileAudienceRequestItem.ActionEnumFromStringOrDefault(actionRawValue));
+                            {
+                                CustomerProfileAudienceRequestItem.ActionEnum? actionValue = CustomerProfileAudienceRequestItem.ActionEnumFromStringOrDefault(actionRawValue);
+                                if (actionValue == null)
+                                    throw new JsonException();
+                                action = new Option<CustomerProfileAudienceRequestItem.ActionEnum?>(actionValue);
+                            }
                             break;
                         case "profileIntegrationId":
                             profileIntegrationId = new Option<string>(utf8JsonReader.GetString());

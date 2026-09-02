@@ -211,7 +211,12 @@ namespace TalonOneSdk.Model
                         case "period":
                             string periodRawValue = utf8JsonReader.GetString();
                             if (periodRawValue != null)
-                                period = new Option<ExpiringPointsNotificationTrigger.PeriodEnum?>(ExpiringPointsNotificationTrigger.PeriodEnumFromStringOrDefault(periodRawValue));
+                            {
+                                ExpiringPointsNotificationTrigger.PeriodEnum? periodValue = ExpiringPointsNotificationTrigger.PeriodEnumFromStringOrDefault(periodRawValue);
+                                if (periodValue == null)
+                                    throw new JsonException();
+                                period = new Option<ExpiringPointsNotificationTrigger.PeriodEnum?>(periodValue);
+                            }
                             break;
                         default:
                             break;

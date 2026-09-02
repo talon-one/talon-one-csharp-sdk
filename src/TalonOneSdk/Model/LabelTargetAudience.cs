@@ -185,7 +185,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<LabelTargetAudience.TypeEnum?>(LabelTargetAudience.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                LabelTargetAudience.TypeEnum? typeValue = LabelTargetAudience.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<LabelTargetAudience.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "audience":
                             audience = new Option<AudienceReference>(JsonSerializer.Deserialize<AudienceReference>(ref utf8JsonReader, jsonSerializerOptions));

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attr** | **string** | The name of the attribute to filter on. | 
 **Op** | **string** | The filtering operator. | 
-**Value** | **Object** |  | 
+**Value** | **Object** | The value to filter for. | 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

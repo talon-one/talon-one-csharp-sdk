@@ -31,17 +31,17 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckLoyaltyCardBlock" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="operator">An indicator of how the block compares its elements.</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public CheckLoyaltyCardBlock(string id, string type, OperatorEnum @operator, Option<List<string>> tags = default, Option<List<PromotionBlock>> onFailure = default)
+        public CheckLoyaltyCardBlock(string type, OperatorEnum @operator, Option<string> id = default, Option<List<string>> tags = default, Option<List<Block>> onFailure = default)
         {
-            Id = id;
             Type = type;
             Operator = @operator;
+            IdOption = id;
             TagsOption = tags;
             OnFailureOption = onFailure;
             OnCreated();
@@ -124,14 +124,6 @@ namespace TalonOneSdk.Model
         public OperatorEnum Operator { get; set; }
 
         /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        /// <summary>
         /// Identifies the block variant and determines which additional properties are present in it.
         /// </summary>
         /// <value>Identifies the block variant and determines which additional properties are present in it.</value>
@@ -139,32 +131,47 @@ namespace TalonOneSdk.Model
         public string Type { get; set; }
 
         /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
+
+        /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> TagsOption { get; private set; }
+        public Option<List<string>> TagsOption { get; }
 
         /// <summary>
         /// Semantic labels attached to this block.
         /// </summary>
         /// <value>Semantic labels attached to this block.</value>
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
         /// Used to track the state of OnFailure
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<PromotionBlock>> OnFailureOption { get; private set; }
+        public Option<List<Block>> OnFailureOption { get; private set; }
 
         /// <summary>
         /// Promotion blocks evaluated when this block fails or returns false.
         /// </summary>
         /// <value>Promotion blocks evaluated when this block fails or returns false.</value>
         [JsonPropertyName("onFailure")]
-        public List<PromotionBlock> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<PromotionBlock>>(value); } }
+        public List<Block> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Block>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -174,9 +181,9 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CheckLoyaltyCardBlock {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Operator: ").Append(Operator).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
             sb.Append("}\n");
@@ -226,11 +233,11 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<string> type = default;
             Option<CheckLoyaltyCardBlock.OperatorEnum?> varOperator = default;
+            Option<string> id = default;
             Option<List<string>> tags = default;
-            Option<List<PromotionBlock>> onFailure = default;
+            Option<List<Block>> onFailure = default;
 
             while (utf8JsonReader.Read())
             {
@@ -247,22 +254,27 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<CheckLoyaltyCardBlock.OperatorEnum?>(CheckLoyaltyCardBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                CheckLoyaltyCardBlock.OperatorEnum? varOperatorValue = CheckLoyaltyCardBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<CheckLoyaltyCardBlock.OperatorEnum?>(varOperatorValue);
+                            }
+                            break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "onFailure":
-                            onFailure = new Option<List<PromotionBlock>>(JsonSerializer.Deserialize<List<PromotionBlock>>(ref utf8JsonReader, jsonSerializerOptions));
+                            onFailure = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -270,17 +282,11 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CheckLoyaltyCardBlock.", nameof(id));
-
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class CheckLoyaltyCardBlock.", nameof(type));
 
             if (!varOperator.IsSet)
                 throw new ArgumentException("Property is required for class CheckLoyaltyCardBlock.", nameof(varOperator));
-
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CheckLoyaltyCardBlock.");
 
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class CheckLoyaltyCardBlock.");
@@ -288,7 +294,7 @@ namespace TalonOneSdk.Model
             if (varOperator.IsSet && varOperator.Value == null)
                 throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class CheckLoyaltyCardBlock.");
 
-            return new CheckLoyaltyCardBlock(id.Value, type.Value, varOperator.Value.Value, tags, onFailure);
+            return new CheckLoyaltyCardBlock(type.Value, varOperator.Value.Value, id, tags, onFailure);
         }
 
         /// <summary>
@@ -315,18 +321,16 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckLoyaltyCardBlock checkLoyaltyCardBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (checkLoyaltyCardBlock.Id == null)
-                throw new ArgumentNullException(nameof(checkLoyaltyCardBlock.Id), "Property is required for class CheckLoyaltyCardBlock.");
-
             if (checkLoyaltyCardBlock.Type == null)
                 throw new ArgumentNullException(nameof(checkLoyaltyCardBlock.Type), "Property is required for class CheckLoyaltyCardBlock.");
-
-            writer.WriteString("id", checkLoyaltyCardBlock.Id);
 
             writer.WriteString("type", checkLoyaltyCardBlock.Type);
 
             var varOperatorRawValue = CheckLoyaltyCardBlock.OperatorEnumToJsonValue(checkLoyaltyCardBlock.Operator);
             writer.WriteString("operator", varOperatorRawValue);
+            if (checkLoyaltyCardBlock.IdOption.IsSet)
+                writer.WriteString("id", checkLoyaltyCardBlock.Id);
+
             if (checkLoyaltyCardBlock.TagsOption.IsSet)
             {
                 writer.WritePropertyName("tags");

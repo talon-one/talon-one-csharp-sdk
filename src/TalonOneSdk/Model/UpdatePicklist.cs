@@ -232,7 +232,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<UpdatePicklist.TypeEnum?>(UpdatePicklist.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                UpdatePicklist.TypeEnum? typeValue = UpdatePicklist.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<UpdatePicklist.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "values":
                             values = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));

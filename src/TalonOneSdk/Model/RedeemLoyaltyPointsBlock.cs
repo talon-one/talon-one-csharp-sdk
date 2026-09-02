@@ -31,22 +31,22 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RedeemLoyaltyPointsBlock" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="program">program</param>
         /// <param name="subledger">The name of the subledger to deduct points from. Can be empty if this block deducts from the loyalty program&#39;s main ledger instead of a subledger.</param>
         /// <param name="value">value</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="name">A custom description recorded as the reason for the point deduction.</param>
         /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public RedeemLoyaltyPointsBlock(string id, string type, RedeemLoyaltyPointsBlock1Program program, string subledger, RedeemLoyaltyPointsBlock1Value value, Option<List<string>> tags = default, Option<string> name = default, Option<List<PromotionBlock>> onFailure = default)
+        public RedeemLoyaltyPointsBlock(string type, RedeemLoyaltyPointsBlock1Program program, string subledger, RedeemLoyaltyPointsBlock1Value value, Option<string> id = default, Option<List<string>> tags = default, Option<string> name = default, Option<List<Block>> onFailure = default)
         {
-            Id = id;
             Type = type;
             Program = program;
             Subledger = subledger;
             Value = value;
+            IdOption = id;
             TagsOption = tags;
             NameOption = name;
             OnFailureOption = onFailure;
@@ -54,14 +54,6 @@ namespace TalonOneSdk.Model
         }
 
         partial void OnCreated();
-
-        /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
 
         /// <summary>
         /// Identifies the block variant and determines which additional properties are present in it.
@@ -91,18 +83,33 @@ namespace TalonOneSdk.Model
         public RedeemLoyaltyPointsBlock1Value Value { get; set; }
 
         /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
+
+        /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> TagsOption { get; private set; }
+        public Option<List<string>> TagsOption { get; }
 
         /// <summary>
         /// Semantic labels attached to this block.
         /// </summary>
         /// <value>Semantic labels attached to this block.</value>
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -124,14 +131,14 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<PromotionBlock>> OnFailureOption { get; private set; }
+        public Option<List<Block>> OnFailureOption { get; private set; }
 
         /// <summary>
         /// Promotion blocks evaluated when this block fails or returns false.
         /// </summary>
         /// <value>Promotion blocks evaluated when this block fails or returns false.</value>
         [JsonPropertyName("onFailure")]
-        public List<PromotionBlock> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<PromotionBlock>>(value); } }
+        public List<Block> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Block>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -141,11 +148,11 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class RedeemLoyaltyPointsBlock {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Program: ").Append(Program).Append("\n");
             sb.Append("  Subledger: ").Append(Subledger).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
@@ -196,14 +203,14 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<string> type = default;
             Option<RedeemLoyaltyPointsBlock1Program> program = default;
             Option<string> subledger = default;
             Option<RedeemLoyaltyPointsBlock1Value> value = default;
+            Option<string> id = default;
             Option<List<string>> tags = default;
             Option<string> name = default;
-            Option<List<PromotionBlock>> onFailure = default;
+            Option<List<Block>> onFailure = default;
 
             while (utf8JsonReader.Read())
             {
@@ -220,9 +227,6 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -235,6 +239,9 @@ namespace TalonOneSdk.Model
                         case "value":
                             value = new Option<RedeemLoyaltyPointsBlock1Value>(JsonSerializer.Deserialize<RedeemLoyaltyPointsBlock1Value>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -242,16 +249,13 @@ namespace TalonOneSdk.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "onFailure":
-                            onFailure = new Option<List<PromotionBlock>>(JsonSerializer.Deserialize<List<PromotionBlock>>(ref utf8JsonReader, jsonSerializerOptions));
+                            onFailure = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class RedeemLoyaltyPointsBlock.", nameof(id));
 
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class RedeemLoyaltyPointsBlock.", nameof(type));
@@ -265,9 +269,6 @@ namespace TalonOneSdk.Model
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class RedeemLoyaltyPointsBlock.", nameof(value));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RedeemLoyaltyPointsBlock.");
-
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class RedeemLoyaltyPointsBlock.");
 
@@ -280,7 +281,7 @@ namespace TalonOneSdk.Model
             if (value.IsSet && value.Value == null)
                 throw new ArgumentNullException(nameof(value), "Property is not nullable for class RedeemLoyaltyPointsBlock.");
 
-            return new RedeemLoyaltyPointsBlock(id.Value, type.Value, program.Value, subledger.Value, value.Value, tags, name, onFailure);
+            return new RedeemLoyaltyPointsBlock(type.Value, program.Value, subledger.Value, value.Value, id, tags, name, onFailure);
         }
 
         /// <summary>
@@ -307,9 +308,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RedeemLoyaltyPointsBlock redeemLoyaltyPointsBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (redeemLoyaltyPointsBlock.Id == null)
-                throw new ArgumentNullException(nameof(redeemLoyaltyPointsBlock.Id), "Property is required for class RedeemLoyaltyPointsBlock.");
-
             if (redeemLoyaltyPointsBlock.Type == null)
                 throw new ArgumentNullException(nameof(redeemLoyaltyPointsBlock.Type), "Property is required for class RedeemLoyaltyPointsBlock.");
 
@@ -322,8 +320,6 @@ namespace TalonOneSdk.Model
             if (redeemLoyaltyPointsBlock.Value == null)
                 throw new ArgumentNullException(nameof(redeemLoyaltyPointsBlock.Value), "Property is required for class RedeemLoyaltyPointsBlock.");
 
-            writer.WriteString("id", redeemLoyaltyPointsBlock.Id);
-
             writer.WriteString("type", redeemLoyaltyPointsBlock.Type);
 
             writer.WritePropertyName("program");
@@ -332,6 +328,9 @@ namespace TalonOneSdk.Model
 
             writer.WritePropertyName("value");
             JsonSerializer.Serialize(writer, redeemLoyaltyPointsBlock.Value, jsonSerializerOptions);
+            if (redeemLoyaltyPointsBlock.IdOption.IsSet)
+                writer.WriteString("id", redeemLoyaltyPointsBlock.Id);
+
             if (redeemLoyaltyPointsBlock.TagsOption.IsSet)
             {
                 writer.WritePropertyName("tags");

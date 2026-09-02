@@ -190,7 +190,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<MapSelectorStep.TypeEnum?>(MapSelectorStep.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                MapSelectorStep.TypeEnum? typeValue = MapSelectorStep.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<MapSelectorStep.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "expression":
                             expression = new Option<string>(utf8JsonReader.GetString());

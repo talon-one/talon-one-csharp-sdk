@@ -52,7 +52,7 @@ namespace TalonOneSdk.Model
         /// <param name="periodEndOverride">periodEndOverride</param>
         /// <param name="hasProgress">Indicates if a customer has made progress in the achievement.</param>
         /// <param name="status">The status of the achievement.                                                                                               - &#x60;active&#x60;: The achievement is available to customers. - &#x60;scheduled&#x60;: The achievement has a &#x60;fixedStartDate&#x60; set in the future. - &#x60;expired&#x60;: The achievement&#39;s &#x60;endDate&#x60; is in the past. </param>
-        /// <param name="campaignId">This property is **deprecated**. Use &#x60;referencedByCampaigns&#x60; instead. The ID of the first campaign in &#x60;referencedByCampaigns&#x60;. Only returned when &#x60;referencedByCampaigns&#x60; is not empty.</param>
+        /// <param name="campaignId">This property is **deprecated**. Use &#x60;referencedByCampaigns&#x60; instead. This field contains the first campaign ID from the related &#x60;referencedByCampaigns&#x60;, and is omitted when &#x60;referencedByCampaigns&#x60; is empty.</param>
         [JsonConstructor]
         public AchievementV2(long id, DateTime created, long userId, bool sandbox, string timezone, List<CampaignReference> referencedByCampaigns, Option<string> name = default, Option<string> title = default, Option<string> description = default, Option<decimal?> target = default, Option<string> period = default, Option<RecurrencePolicyEnum?> recurrencePolicy = default, Option<ActivationPolicyEnum?> activationPolicy = default, Option<DateTime?> fixedStartDate = default, Option<DateTime?> endDate = default, Option<bool?> allowRollbackAfterCompletion = default, Option<List<long>> subscribedApplications = default, Option<string> createdBy = default, Option<TimePoint> periodEndOverride = default, Option<bool?> hasProgress = default, Option<StatusEnum?> status = default, Option<long?> campaignId = default)
         {
@@ -590,9 +590,9 @@ namespace TalonOneSdk.Model
         public Option<long?> CampaignIdOption { get; private set; }
 
         /// <summary>
-        /// This property is **deprecated**. Use &#x60;referencedByCampaigns&#x60; instead. The ID of the first campaign in &#x60;referencedByCampaigns&#x60;. Only returned when &#x60;referencedByCampaigns&#x60; is not empty.
+        /// This property is **deprecated**. Use &#x60;referencedByCampaigns&#x60; instead. This field contains the first campaign ID from the related &#x60;referencedByCampaigns&#x60;, and is omitted when &#x60;referencedByCampaigns&#x60; is empty.
         /// </summary>
-        /// <value>This property is **deprecated**. Use &#x60;referencedByCampaigns&#x60; instead. The ID of the first campaign in &#x60;referencedByCampaigns&#x60;. Only returned when &#x60;referencedByCampaigns&#x60; is not empty.</value>
+        /// <value>This property is **deprecated**. Use &#x60;referencedByCampaigns&#x60; instead. This field contains the first campaign ID from the related &#x60;referencedByCampaigns&#x60;, and is omitted when &#x60;referencedByCampaigns&#x60; is empty.</value>
         /* <example>3</example> */
         [JsonPropertyName("campaignId")]
         [Obsolete]
@@ -792,12 +792,22 @@ namespace TalonOneSdk.Model
                         case "recurrencePolicy":
                             string recurrencePolicyRawValue = utf8JsonReader.GetString();
                             if (recurrencePolicyRawValue != null)
-                                recurrencePolicy = new Option<AchievementV2.RecurrencePolicyEnum?>(AchievementV2.RecurrencePolicyEnumFromStringOrDefault(recurrencePolicyRawValue));
+                            {
+                                AchievementV2.RecurrencePolicyEnum? recurrencePolicyValue = AchievementV2.RecurrencePolicyEnumFromStringOrDefault(recurrencePolicyRawValue);
+                                if (recurrencePolicyValue == null)
+                                    throw new JsonException();
+                                recurrencePolicy = new Option<AchievementV2.RecurrencePolicyEnum?>(recurrencePolicyValue);
+                            }
                             break;
                         case "activationPolicy":
                             string activationPolicyRawValue = utf8JsonReader.GetString();
                             if (activationPolicyRawValue != null)
-                                activationPolicy = new Option<AchievementV2.ActivationPolicyEnum?>(AchievementV2.ActivationPolicyEnumFromStringOrDefault(activationPolicyRawValue));
+                            {
+                                AchievementV2.ActivationPolicyEnum? activationPolicyValue = AchievementV2.ActivationPolicyEnumFromStringOrDefault(activationPolicyRawValue);
+                                if (activationPolicyValue == null)
+                                    throw new JsonException();
+                                activationPolicy = new Option<AchievementV2.ActivationPolicyEnum?>(activationPolicyValue);
+                            }
                             break;
                         case "fixedStartDate":
                             fixedStartDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
@@ -823,7 +833,12 @@ namespace TalonOneSdk.Model
                         case "status":
                             string statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<AchievementV2.StatusEnum?>(AchievementV2.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                AchievementV2.StatusEnum? statusValue = AchievementV2.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<AchievementV2.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "campaignId":
                             campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());

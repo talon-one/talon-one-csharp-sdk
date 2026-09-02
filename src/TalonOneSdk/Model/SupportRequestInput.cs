@@ -344,7 +344,12 @@ namespace TalonOneSdk.Model
                         case "requestType":
                             string requestTypeRawValue = utf8JsonReader.GetString();
                             if (requestTypeRawValue != null)
-                                requestType = new Option<SupportRequestInput.RequestTypeEnum?>(SupportRequestInput.RequestTypeEnumFromStringOrDefault(requestTypeRawValue));
+                            {
+                                SupportRequestInput.RequestTypeEnum? requestTypeValue = SupportRequestInput.RequestTypeEnumFromStringOrDefault(requestTypeRawValue);
+                                if (requestTypeValue == null)
+                                    throw new JsonException();
+                                requestType = new Option<SupportRequestInput.RequestTypeEnum?>(requestTypeValue);
+                            }
                             break;
                         case "requestNote":
                             requestNote = new Option<string>(utf8JsonReader.GetString());

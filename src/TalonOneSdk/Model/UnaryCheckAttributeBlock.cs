@@ -254,7 +254,12 @@ namespace TalonOneSdk.Model
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<UnaryCheckAttributeBlock.OperatorEnum?>(UnaryCheckAttributeBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                UnaryCheckAttributeBlock.OperatorEnum? varOperatorValue = UnaryCheckAttributeBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<UnaryCheckAttributeBlock.OperatorEnum?>(varOperatorValue);
+                            }
                             break;
                         default:
                             break;

@@ -347,7 +347,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<TemplateArgDef.TypeEnum?>(TemplateArgDef.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                TemplateArgDef.TypeEnum? typeValue = TemplateArgDef.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<TemplateArgDef.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "title":
                             title = new Option<string>(utf8JsonReader.GetString());

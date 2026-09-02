@@ -421,7 +421,12 @@ namespace TalonOneSdk.Model
                         case "period":
                             string periodRawValue = utf8JsonReader.GetString();
                             if (periodRawValue != null)
-                                period = new Option<LimitConfig.PeriodEnum?>(LimitConfig.PeriodEnumFromStringOrDefault(periodRawValue));
+                            {
+                                LimitConfig.PeriodEnum? periodValue = LimitConfig.PeriodEnumFromStringOrDefault(periodRawValue);
+                                if (periodValue == null)
+                                    throw new JsonException();
+                                period = new Option<LimitConfig.PeriodEnum?>(periodValue);
+                            }
                             break;
                         default:
                             break;

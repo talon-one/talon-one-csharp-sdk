@@ -31,28 +31,28 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RulesetV2" /> class.
         /// </summary>
+        /// <param name="promotionRules">Set of promotion rules.</param>
         /// <param name="id">Internal ID of this entity.</param>
         /// <param name="created">The time this entity was created.</param>
         /// <param name="userId">The ID of the user that created this ruleset.</param>
-        /// <param name="promotionRules">Set of promotion rules.</param>
-        /// <param name="strikethroughRules">Set of strikethrough rules.</param>
         /// <param name="campaignId">The ID of the campaign that owns this entity.</param>
         /// <param name="templateId">The ID of the campaign template that owns this entity.</param>
         /// <param name="activatedAt">Timestamp indicating when this ruleset was activated.</param>
+        /// <param name="strikethroughRules">Set of strikethrough rules.</param>
         /// <param name="selectors">Variable bindings of type selector.</param>
         /// <param name="bundles">Variable bindings of type bundle.</param>
         /// <param name="parameters">Variable bindings of type template parameter.</param>
         [JsonConstructor]
-        public RulesetV2(long id, DateTime created, long userId, List<PromotionRuleV2> promotionRules, List<StrikethroughRuleV2> strikethroughRules, Option<long?> campaignId = default, Option<long?> templateId = default, Option<DateTime?> activatedAt = default, Option<List<Selector>> selectors = default, Option<List<Bundle>> bundles = default, Option<List<TemplateParameter>> parameters = default)
+        public RulesetV2(List<RuleV2> promotionRules, Option<long?> id = default, Option<DateTime?> created = default, Option<long?> userId = default, Option<long?> campaignId = default, Option<long?> templateId = default, Option<DateTime?> activatedAt = default, Option<List<RuleV2>> strikethroughRules = default, Option<List<Selector>> selectors = default, Option<List<Bundle>> bundles = default, Option<List<TemplateParameter>> parameters = default)
         {
-            Id = id;
-            Created = created;
-            UserId = userId;
             PromotionRules = promotionRules;
-            StrikethroughRules = strikethroughRules;
+            IdOption = id;
+            CreatedOption = created;
+            UserIdOption = userId;
             CampaignIdOption = campaignId;
             TemplateIdOption = templateId;
             ActivatedAtOption = activatedAt;
+            StrikethroughRulesOption = strikethroughRules;
             SelectorsOption = selectors;
             BundlesOption = bundles;
             ParametersOption = parameters;
@@ -62,19 +62,47 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
+        /// Set of promotion rules.
+        /// </summary>
+        /// <value>Set of promotion rules.</value>
+        [JsonPropertyName("promotionRules")]
+        public List<RuleV2> PromotionRules { get; set; }
+
+        /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> IdOption { get; }
+
+        /// <summary>
         /// Internal ID of this entity.
         /// </summary>
         /// <value>Internal ID of this entity.</value>
         /* <example>6</example> */
         [JsonPropertyName("id")]
-        public long Id { get; set; }
+        public long? Id { get { return this.IdOption.Value; } }
+
+        /// <summary>
+        /// Used to track the state of Created
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTime?> CreatedOption { get; }
 
         /// <summary>
         /// The time this entity was created.
         /// </summary>
         /// <value>The time this entity was created.</value>
         [JsonPropertyName("created")]
-        public DateTime Created { get; set; }
+        public DateTime? Created { get { return this.CreatedOption.Value; } }
+
+        /// <summary>
+        /// Used to track the state of UserId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> UserIdOption { get; }
 
         /// <summary>
         /// The ID of the user that created this ruleset.
@@ -82,28 +110,14 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the user that created this ruleset.</value>
         /* <example>385</example> */
         [JsonPropertyName("userId")]
-        public long UserId { get; set; }
-
-        /// <summary>
-        /// Set of promotion rules.
-        /// </summary>
-        /// <value>Set of promotion rules.</value>
-        [JsonPropertyName("promotionRules")]
-        public List<PromotionRuleV2> PromotionRules { get; set; }
-
-        /// <summary>
-        /// Set of strikethrough rules.
-        /// </summary>
-        /// <value>Set of strikethrough rules.</value>
-        [JsonPropertyName("strikethroughRules")]
-        public List<StrikethroughRuleV2> StrikethroughRules { get; set; }
+        public long? UserId { get { return this.UserIdOption.Value; } }
 
         /// <summary>
         /// Used to track the state of CampaignId
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> CampaignIdOption { get; private set; }
+        public Option<long?> CampaignIdOption { get; }
 
         /// <summary>
         /// The ID of the campaign that owns this entity.
@@ -111,14 +125,14 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the campaign that owns this entity.</value>
         /* <example>320</example> */
         [JsonPropertyName("campaignId")]
-        public long? CampaignId { get { return this.CampaignIdOption.Value; } set { this.CampaignIdOption = new Option<long?>(value); } }
+        public long? CampaignId { get { return this.CampaignIdOption.Value; } }
 
         /// <summary>
         /// Used to track the state of TemplateId
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> TemplateIdOption { get; private set; }
+        public Option<long?> TemplateIdOption { get; }
 
         /// <summary>
         /// The ID of the campaign template that owns this entity.
@@ -126,63 +140,77 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the campaign template that owns this entity.</value>
         /* <example>3</example> */
         [JsonPropertyName("templateId")]
-        public long? TemplateId { get { return this.TemplateIdOption.Value; } set { this.TemplateIdOption = new Option<long?>(value); } }
+        public long? TemplateId { get { return this.TemplateIdOption.Value; } }
 
         /// <summary>
         /// Used to track the state of ActivatedAt
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<DateTime?> ActivatedAtOption { get; private set; }
+        public Option<DateTime?> ActivatedAtOption { get; }
 
         /// <summary>
         /// Timestamp indicating when this ruleset was activated.
         /// </summary>
         /// <value>Timestamp indicating when this ruleset was activated.</value>
         [JsonPropertyName("activatedAt")]
-        public DateTime? ActivatedAt { get { return this.ActivatedAtOption.Value; } set { this.ActivatedAtOption = new Option<DateTime?>(value); } }
+        public DateTime? ActivatedAt { get { return this.ActivatedAtOption.Value; } }
+
+        /// <summary>
+        /// Used to track the state of StrikethroughRules
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<RuleV2>> StrikethroughRulesOption { get; private set; }
+
+        /// <summary>
+        /// Set of strikethrough rules.
+        /// </summary>
+        /// <value>Set of strikethrough rules.</value>
+        [JsonPropertyName("strikethroughRules")]
+        public List<RuleV2> StrikethroughRules { get { return this.StrikethroughRulesOption.Value; } set { this.StrikethroughRulesOption = new Option<List<RuleV2>>(value); } }
 
         /// <summary>
         /// Used to track the state of Selectors
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Selector>> SelectorsOption { get; private set; }
+        public Option<List<Selector>> SelectorsOption { get; }
 
         /// <summary>
         /// Variable bindings of type selector.
         /// </summary>
         /// <value>Variable bindings of type selector.</value>
         [JsonPropertyName("selectors")]
-        public List<Selector> Selectors { get { return this.SelectorsOption.Value; } set { this.SelectorsOption = new Option<List<Selector>>(value); } }
+        public List<Selector> Selectors { get { return this.SelectorsOption.Value; } }
 
         /// <summary>
         /// Used to track the state of Bundles
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Bundle>> BundlesOption { get; private set; }
+        public Option<List<Bundle>> BundlesOption { get; }
 
         /// <summary>
         /// Variable bindings of type bundle.
         /// </summary>
         /// <value>Variable bindings of type bundle.</value>
         [JsonPropertyName("bundles")]
-        public List<Bundle> Bundles { get { return this.BundlesOption.Value; } set { this.BundlesOption = new Option<List<Bundle>>(value); } }
+        public List<Bundle> Bundles { get { return this.BundlesOption.Value; } }
 
         /// <summary>
         /// Used to track the state of Parameters
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<TemplateParameter>> ParametersOption { get; private set; }
+        public Option<List<TemplateParameter>> ParametersOption { get; }
 
         /// <summary>
         /// Variable bindings of type template parameter.
         /// </summary>
         /// <value>Variable bindings of type template parameter.</value>
         [JsonPropertyName("parameters")]
-        public List<TemplateParameter> Parameters { get { return this.ParametersOption.Value; } set { this.ParametersOption = new Option<List<TemplateParameter>>(value); } }
+        public List<TemplateParameter> Parameters { get { return this.ParametersOption.Value; } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -192,14 +220,14 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class RulesetV2 {\n");
+            sb.Append("  PromotionRules: ").Append(PromotionRules).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
-            sb.Append("  PromotionRules: ").Append(PromotionRules).Append("\n");
-            sb.Append("  StrikethroughRules: ").Append(StrikethroughRules).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
             sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
             sb.Append("  ActivatedAt: ").Append(ActivatedAt).Append("\n");
+            sb.Append("  StrikethroughRules: ").Append(StrikethroughRules).Append("\n");
             sb.Append("  Selectors: ").Append(Selectors).Append("\n");
             sb.Append("  Bundles: ").Append(Bundles).Append("\n");
             sb.Append("  Parameters: ").Append(Parameters).Append("\n");
@@ -260,14 +288,14 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<List<RuleV2>> promotionRules = default;
             Option<long?> id = default;
             Option<DateTime?> created = default;
             Option<long?> userId = default;
-            Option<List<PromotionRuleV2>> promotionRules = default;
-            Option<List<StrikethroughRuleV2>> strikethroughRules = default;
             Option<long?> campaignId = default;
             Option<long?> templateId = default;
             Option<DateTime?> activatedAt = default;
+            Option<List<RuleV2>> strikethroughRules = default;
             Option<List<Selector>> selectors = default;
             Option<List<Bundle>> bundles = default;
             Option<List<TemplateParameter>> parameters = default;
@@ -287,6 +315,9 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "promotionRules":
+                            promotionRules = new Option<List<RuleV2>>(JsonSerializer.Deserialize<List<RuleV2>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "id":
                             id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
@@ -296,12 +327,6 @@ namespace TalonOneSdk.Model
                         case "userId":
                             userId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
-                        case "promotionRules":
-                            promotionRules = new Option<List<PromotionRuleV2>>(JsonSerializer.Deserialize<List<PromotionRuleV2>>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "strikethroughRules":
-                            strikethroughRules = new Option<List<StrikethroughRuleV2>>(JsonSerializer.Deserialize<List<StrikethroughRuleV2>>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
                         case "campaignId":
                             campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
@@ -310,6 +335,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "activatedAt":
                             activatedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "strikethroughRules":
+                            strikethroughRules = new Option<List<RuleV2>>(JsonSerializer.Deserialize<List<RuleV2>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "selectors":
                             selectors = new Option<List<Selector>>(JsonSerializer.Deserialize<List<Selector>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -326,37 +354,13 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class RulesetV2.", nameof(id));
-
-            if (!created.IsSet)
-                throw new ArgumentException("Property is required for class RulesetV2.", nameof(created));
-
-            if (!userId.IsSet)
-                throw new ArgumentException("Property is required for class RulesetV2.", nameof(userId));
-
             if (!promotionRules.IsSet)
                 throw new ArgumentException("Property is required for class RulesetV2.", nameof(promotionRules));
-
-            if (!strikethroughRules.IsSet)
-                throw new ArgumentException("Property is required for class RulesetV2.", nameof(strikethroughRules));
-
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RulesetV2.");
-
-            if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class RulesetV2.");
-
-            if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class RulesetV2.");
 
             if (promotionRules.IsSet && promotionRules.Value == null)
                 throw new ArgumentNullException(nameof(promotionRules), "Property is not nullable for class RulesetV2.");
 
-            if (strikethroughRules.IsSet && strikethroughRules.Value == null)
-                throw new ArgumentNullException(nameof(strikethroughRules), "Property is not nullable for class RulesetV2.");
-
-            return new RulesetV2(id.Value.Value, created.Value.Value, userId.Value.Value, promotionRules.Value, strikethroughRules.Value, campaignId, templateId, activatedAt, selectors, bundles, parameters);
+            return new RulesetV2(promotionRules.Value, id, created, userId, campaignId, templateId, activatedAt, strikethroughRules, selectors, bundles, parameters);
         }
 
         /// <summary>
@@ -386,19 +390,17 @@ namespace TalonOneSdk.Model
             if (rulesetV2.PromotionRules == null)
                 throw new ArgumentNullException(nameof(rulesetV2.PromotionRules), "Property is required for class RulesetV2.");
 
-            if (rulesetV2.StrikethroughRules == null)
-                throw new ArgumentNullException(nameof(rulesetV2.StrikethroughRules), "Property is required for class RulesetV2.");
-
-            writer.WriteNumber("id", rulesetV2.Id);
-
-            writer.WriteString("created", rulesetV2.Created.ToString(CreatedFormat));
-
-            writer.WriteNumber("userId", rulesetV2.UserId);
-
             writer.WritePropertyName("promotionRules");
             JsonSerializer.Serialize(writer, rulesetV2.PromotionRules, jsonSerializerOptions);
-            writer.WritePropertyName("strikethroughRules");
-            JsonSerializer.Serialize(writer, rulesetV2.StrikethroughRules, jsonSerializerOptions);
+            if (rulesetV2.IdOption.IsSet)
+                writer.WriteNumber("id", rulesetV2.IdOption.Value.Value);
+
+            if (rulesetV2.CreatedOption.IsSet)
+                writer.WriteString("created", rulesetV2.CreatedOption.Value.Value.ToString(CreatedFormat));
+
+            if (rulesetV2.UserIdOption.IsSet)
+                writer.WriteNumber("userId", rulesetV2.UserIdOption.Value.Value);
+
             if (rulesetV2.CampaignIdOption.IsSet)
                 writer.WriteNumber("campaignId", rulesetV2.CampaignIdOption.Value.Value);
 
@@ -408,6 +410,11 @@ namespace TalonOneSdk.Model
             if (rulesetV2.ActivatedAtOption.IsSet)
                 writer.WriteString("activatedAt", rulesetV2.ActivatedAtOption.Value.Value.ToString(ActivatedAtFormat));
 
+            if (rulesetV2.StrikethroughRulesOption.IsSet)
+            {
+                writer.WritePropertyName("strikethroughRules");
+                JsonSerializer.Serialize(writer, rulesetV2.StrikethroughRules, jsonSerializerOptions);
+            }
             if (rulesetV2.SelectorsOption.IsSet)
             {
                 writer.WritePropertyName("selectors");

@@ -31,20 +31,20 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AwardGiveawayBlock" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
-        /// <param name="giveawayPool">giveawayPool</param>
+        /// <param name="giveawayPool">The giveaway pool from which an item is awarded.</param>
         /// <param name="profile">The customer profile to award the giveaway to. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program.</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="onFailure">Blocks evaluated when this block fails or returns false.</param>
         /// <param name="onError">Named error handlers evaluated when a specific error occurs.</param>
         [JsonConstructor]
-        public AwardGiveawayBlock(string id, string type, AwardGiveawayBlock1GiveawayPool giveawayPool, ProfileEnum profile, Option<List<string>> tags = default, Option<List<PromotionBlock>> onFailure = default, Option<Dictionary<string, List<PromotionBlock>>> onError = default)
+        public AwardGiveawayBlock(string type, GiveawayPoolReference giveawayPool, ProfileEnum profile, Option<string> id = default, Option<List<string>> tags = default, Option<List<Block>> onFailure = default, Option<Dictionary<string, List<Block>>> onError = default)
         {
-            Id = id;
             Type = type;
             GiveawayPool = giveawayPool;
             Profile = profile;
+            IdOption = id;
             TagsOption = tags;
             OnFailureOption = onFailure;
             OnErrorOption = onError;
@@ -129,14 +129,6 @@ namespace TalonOneSdk.Model
         public ProfileEnum Profile { get; set; }
 
         /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        /// <summary>
         /// Identifies the block variant and determines which additional properties are present in it.
         /// </summary>
         /// <value>Identifies the block variant and determines which additional properties are present in it.</value>
@@ -144,52 +136,68 @@ namespace TalonOneSdk.Model
         public string Type { get; set; }
 
         /// <summary>
-        /// Gets or Sets GiveawayPool
+        /// The giveaway pool from which an item is awarded.
         /// </summary>
+        /// <value>The giveaway pool from which an item is awarded.</value>
         [JsonPropertyName("giveawayPool")]
-        public AwardGiveawayBlock1GiveawayPool GiveawayPool { get; set; }
+        public GiveawayPoolReference GiveawayPool { get; set; }
+
+        /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
 
         /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> TagsOption { get; private set; }
+        public Option<List<string>> TagsOption { get; }
 
         /// <summary>
         /// Semantic labels attached to this block.
         /// </summary>
         /// <value>Semantic labels attached to this block.</value>
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
         /// Used to track the state of OnFailure
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<PromotionBlock>> OnFailureOption { get; private set; }
+        public Option<List<Block>> OnFailureOption { get; private set; }
 
         /// <summary>
         /// Blocks evaluated when this block fails or returns false.
         /// </summary>
         /// <value>Blocks evaluated when this block fails or returns false.</value>
         [JsonPropertyName("onFailure")]
-        public List<PromotionBlock> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<PromotionBlock>>(value); } }
+        public List<Block> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Block>>(value); } }
 
         /// <summary>
         /// Used to track the state of OnError
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Dictionary<string, List<PromotionBlock>>> OnErrorOption { get; private set; }
+        public Option<Dictionary<string, List<Block>>> OnErrorOption { get; private set; }
 
         /// <summary>
         /// Named error handlers evaluated when a specific error occurs.
         /// </summary>
         /// <value>Named error handlers evaluated when a specific error occurs.</value>
         [JsonPropertyName("onError")]
-        public Dictionary<string, List<PromotionBlock>> OnError { get { return this.OnErrorOption.Value; } set { this.OnErrorOption = new Option<Dictionary<string, List<PromotionBlock>>>(value); } }
+        public Dictionary<string, List<Block>> OnError { get { return this.OnErrorOption.Value; } set { this.OnErrorOption = new Option<Dictionary<string, List<Block>>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -199,10 +207,10 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class AwardGiveawayBlock {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  GiveawayPool: ").Append(GiveawayPool).Append("\n");
             sb.Append("  Profile: ").Append(Profile).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
             sb.Append("  OnError: ").Append(OnError).Append("\n");
@@ -253,13 +261,13 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<string> type = default;
-            Option<AwardGiveawayBlock1GiveawayPool> giveawayPool = default;
+            Option<GiveawayPoolReference> giveawayPool = default;
             Option<AwardGiveawayBlock.ProfileEnum?> profile = default;
+            Option<string> id = default;
             Option<List<string>> tags = default;
-            Option<List<PromotionBlock>> onFailure = default;
-            Option<Dictionary<string, List<PromotionBlock>>> onError = default;
+            Option<List<Block>> onFailure = default;
+            Option<Dictionary<string, List<Block>>> onError = default;
 
             while (utf8JsonReader.Read())
             {
@@ -276,37 +284,39 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "giveawayPool":
-                            giveawayPool = new Option<AwardGiveawayBlock1GiveawayPool>(JsonSerializer.Deserialize<AwardGiveawayBlock1GiveawayPool>(ref utf8JsonReader, jsonSerializerOptions));
+                            giveawayPool = new Option<GiveawayPoolReference>(JsonSerializer.Deserialize<GiveawayPoolReference>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "profile":
                             string profileRawValue = utf8JsonReader.GetString();
                             if (profileRawValue != null)
-                                profile = new Option<AwardGiveawayBlock.ProfileEnum?>(AwardGiveawayBlock.ProfileEnumFromStringOrDefault(profileRawValue));
+                            {
+                                AwardGiveawayBlock.ProfileEnum? profileValue = AwardGiveawayBlock.ProfileEnumFromStringOrDefault(profileRawValue);
+                                if (profileValue == null)
+                                    throw new JsonException();
+                                profile = new Option<AwardGiveawayBlock.ProfileEnum?>(profileValue);
+                            }
+                            break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "onFailure":
-                            onFailure = new Option<List<PromotionBlock>>(JsonSerializer.Deserialize<List<PromotionBlock>>(ref utf8JsonReader, jsonSerializerOptions));
+                            onFailure = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "onError":
-                            onError = new Option<Dictionary<string, List<PromotionBlock>>>(JsonSerializer.Deserialize<Dictionary<string, List<PromotionBlock>>>(ref utf8JsonReader, jsonSerializerOptions));
+                            onError = new Option<Dictionary<string, List<Block>>>(JsonSerializer.Deserialize<Dictionary<string, List<Block>>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AwardGiveawayBlock.", nameof(id));
 
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class AwardGiveawayBlock.", nameof(type));
@@ -317,9 +327,6 @@ namespace TalonOneSdk.Model
             if (!profile.IsSet)
                 throw new ArgumentException("Property is required for class AwardGiveawayBlock.", nameof(profile));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AwardGiveawayBlock.");
-
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class AwardGiveawayBlock.");
 
@@ -329,7 +336,7 @@ namespace TalonOneSdk.Model
             if (profile.IsSet && profile.Value == null)
                 throw new ArgumentNullException(nameof(profile), "Property is not nullable for class AwardGiveawayBlock.");
 
-            return new AwardGiveawayBlock(id.Value, type.Value, giveawayPool.Value, profile.Value.Value, tags, onFailure, onError);
+            return new AwardGiveawayBlock(type.Value, giveawayPool.Value, profile.Value.Value, id, tags, onFailure, onError);
         }
 
         /// <summary>
@@ -356,16 +363,11 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AwardGiveawayBlock awardGiveawayBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (awardGiveawayBlock.Id == null)
-                throw new ArgumentNullException(nameof(awardGiveawayBlock.Id), "Property is required for class AwardGiveawayBlock.");
-
             if (awardGiveawayBlock.Type == null)
                 throw new ArgumentNullException(nameof(awardGiveawayBlock.Type), "Property is required for class AwardGiveawayBlock.");
 
             if (awardGiveawayBlock.GiveawayPool == null)
                 throw new ArgumentNullException(nameof(awardGiveawayBlock.GiveawayPool), "Property is required for class AwardGiveawayBlock.");
-
-            writer.WriteString("id", awardGiveawayBlock.Id);
 
             writer.WriteString("type", awardGiveawayBlock.Type);
 
@@ -373,6 +375,9 @@ namespace TalonOneSdk.Model
             JsonSerializer.Serialize(writer, awardGiveawayBlock.GiveawayPool, jsonSerializerOptions);
             var profileRawValue = AwardGiveawayBlock.ProfileEnumToJsonValue(awardGiveawayBlock.Profile);
             writer.WriteString("profile", profileRawValue);
+            if (awardGiveawayBlock.IdOption.IsSet)
+                writer.WriteString("id", awardGiveawayBlock.Id);
+
             if (awardGiveawayBlock.TagsOption.IsSet)
             {
                 writer.WritePropertyName("tags");

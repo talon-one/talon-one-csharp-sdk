@@ -32,8 +32,8 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="WithinCheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="operator">The range comparison operator. Must be &#x60;within&#x60; or &#x60;not(within)&#x60;.</param>
-        /// <param name="start">start</param>
-        /// <param name="end">end</param>
+        /// <param name="start">The start value for the &#x60;within&#x60; operator.</param>
+        /// <param name="end">The end value for the &#x60;within&#x60; operator.</param>
         /// <param name="startInclusive">When &#x60;true&#x60;, the &#x60;start&#x60; value is included in the range for the &#x60;within&#x60; operator.</param>
         /// <param name="endInclusive">When &#x60;true&#x60;, the &#x60;end&#x60; value is included in the range for the &#x60;within&#x60; operator.</param>
         /// <param name="timezoneInsensitive">Indicates whether the &#x60;within&#x60; operator ignores time zones and compares the wall-clock time only. When &#x60;false&#x60;, time zones are taken into account.</param>
@@ -133,14 +133,18 @@ namespace TalonOneSdk.Model
         public OperatorEnum? Operator { get { return this.OperatorOption.Value; } set { this.OperatorOption = new Option<OperatorEnum?>(value); } }
 
         /// <summary>
-        /// Gets or Sets Start
+        /// The start value for the &#x60;within&#x60; operator.
         /// </summary>
+        /// <value>The start value for the &#x60;within&#x60; operator.</value>
+        /* <example>2021-09-22T22:00:00Z</example> */
         [JsonPropertyName("start")]
         public Object Start { get; set; }
 
         /// <summary>
-        /// Gets or Sets End
+        /// The end value for the &#x60;within&#x60; operator.
         /// </summary>
+        /// <value>The end value for the &#x60;within&#x60; operator.</value>
+        /* <example>2021-09-22T22:00:00Z</example> */
         [JsonPropertyName("end")]
         public Object End { get; set; }
 
@@ -275,7 +279,12 @@ namespace TalonOneSdk.Model
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<WithinCheckAttributeBlock.OperatorEnum?>(WithinCheckAttributeBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                WithinCheckAttributeBlock.OperatorEnum? varOperatorValue = WithinCheckAttributeBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<WithinCheckAttributeBlock.OperatorEnum?>(varOperatorValue);
+                            }
                             break;
                         case "start":
                             start = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));

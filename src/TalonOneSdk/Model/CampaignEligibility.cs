@@ -98,7 +98,12 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum Achievements for value: achievements
             /// </summary>
-            Achievements = 6
+            Achievements = 6,
+
+            /// <summary>
+            /// Enum AdvancedEvents for value: advancedEvents
+            /// </summary>
+            AdvancedEvents = 7
         }
 
         /// <summary>
@@ -126,6 +131,9 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("achievements"))
                 return FeaturesEnum.Achievements;
+
+            if (value.Equals("advancedEvents"))
+                return FeaturesEnum.AdvancedEvents;
 
             throw new NotImplementedException($"Could not convert value to type FeaturesEnum: '{value}'");
         }
@@ -155,6 +163,9 @@ namespace TalonOneSdk.Model
             if (value.Equals("achievements"))
                 return FeaturesEnum.Achievements;
 
+            if (value.Equals("advancedEvents"))
+                return FeaturesEnum.AdvancedEvents;
+
             return null;
         }
 
@@ -183,6 +194,9 @@ namespace TalonOneSdk.Model
 
             if (value == FeaturesEnum.Achievements)
                 return "achievements";
+
+            if (value == FeaturesEnum.AdvancedEvents)
+                return "advancedEvents";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
@@ -544,7 +558,12 @@ namespace TalonOneSdk.Model
                         case "state":
                             string stateRawValue = utf8JsonReader.GetString();
                             if (stateRawValue != null)
-                                state = new Option<CampaignEligibility.StateEnum?>(CampaignEligibility.StateEnumFromStringOrDefault(stateRawValue));
+                            {
+                                CampaignEligibility.StateEnum? stateValue = CampaignEligibility.StateEnumFromStringOrDefault(stateRawValue);
+                                if (stateValue == null)
+                                    throw new JsonException();
+                                state = new Option<CampaignEligibility.StateEnum?>(stateValue);
+                            }
                             break;
                         case "experiment":
                             experiment = new Option<CampaignEligibilityExperiment>(JsonSerializer.Deserialize<CampaignEligibilityExperiment>(ref utf8JsonReader, jsonSerializerOptions));

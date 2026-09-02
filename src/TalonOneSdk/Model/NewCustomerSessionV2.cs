@@ -37,6 +37,7 @@ namespace TalonOneSdk.Model
         /// <param name="couponCodes">Any coupon codes entered.  **Important - for requests only**:  - If you [create a coupon budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign, ensure the session contains a coupon code by the time you close it. - In requests where &#x60;dry&#x3D;false&#x60;, providing an empty array discards any previous coupons. To avoid this, omit the parameter entirely. </param>
         /// <param name="referralCode">Any referral code entered.  **Important - for requests only**:  - If you [create a referral budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign, ensure the session contains a referral code by the time you close it. - In requests where &#x60;dry&#x3D;false&#x60;, providing an empty value discards the previous referral code. To avoid this, omit the parameter entirely. </param>
         /// <param name="loyaltyCards">Identifier of a loyalty card.</param>
+        /// <param name="rewardIntegrationIds">The integration IDs of the unlocked rewards that can be used in this session. </param>
         /// <param name="state">Indicates the current state of the session. Sessions can be created as &#x60;open&#x60; or &#x60;closed&#x60;. The state transitions are:  1. &#x60;open&#x60; -&gt; &#x60;closed&#x60; 2. &#x60;open&#x60; -&gt; &#x60;cancelled&#x60; 3. Either:    - &#x60;closed&#x60; -&gt; &#x60;cancelled&#x60; (**only** via [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2)) or    - &#x60;closed&#x60; -&gt; &#x60;partially_returned&#x60; (**only** via [Return cart items](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/returnCartItems))    - &#x60;closed&#x60; -&gt; &#x60;open&#x60; (**only** via [Reopen customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/reopenCustomerSession)) 4. &#x60;partially_returned&#x60; -&gt; &#x60;cancelled&#x60;  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  (default to StateEnum.Open)</param>
         /// <param name="cartItems">The items to add to this session. **Do not exceed 1000 items** and ensure the sum of all cart item&#39;s &#x60;quantity&#x60; **does not exceed 10.000** per request. </param>
         /// <param name="experimentVariantAllocations">The experiment variant allocations to add to this session. </param>
@@ -44,7 +45,7 @@ namespace TalonOneSdk.Model
         /// <param name="identifiers">Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts. See the [tutorial](https://docs.talon.one/docs/dev/tutorials/using-identifiers).  **Important**: Ensure the session contains an identifier by the time you close it if: - You [create a unique identifier budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign. - Your campaign has [coupons](https://docs.talon.one/docs/product/campaigns/coupons/coupon-page-overview). - We recommend passing an anonymized (hashed) version of the identifier value. </param>
         /// <param name="attributes">Use this property to set a value for the attributes of your choice. Attributes represent any information to attach to your session, like the shipping city.  You can use [built-in attributes](https://docs.talon.one/docs/dev/concepts/attributes#built-in-attributes) or [custom ones](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes). Custom attributes must be created in the Campaign Manager before you set them with this property. </param>
         [JsonConstructor]
-        public NewCustomerSessionV2(Option<string> profileId = default, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<List<string>> couponCodes = default, Option<string> referralCode = default, Option<List<string>> loyaltyCards = default, Option<StateEnum?> state = default, Option<List<CartItem>> cartItems = default, Option<List<ExperimentVariantAllocation>> experimentVariantAllocations = default, Option<Dictionary<string, AdditionalCost>> additionalCosts = default, Option<List<string>> identifiers = default, Option<Dictionary<string, Object>> attributes = default)
+        public NewCustomerSessionV2(Option<string> profileId = default, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<List<string>> couponCodes = default, Option<string> referralCode = default, Option<List<string>> loyaltyCards = default, Option<List<string>> rewardIntegrationIds = default, Option<StateEnum?> state = default, Option<List<CartItem>> cartItems = default, Option<List<ExperimentVariantAllocation>> experimentVariantAllocations = default, Option<Dictionary<string, AdditionalCost>> additionalCosts = default, Option<List<string>> identifiers = default, Option<Dictionary<string, Object>> attributes = default)
         {
             ProfileIdOption = profileId;
             StoreIntegrationIdOption = storeIntegrationId;
@@ -52,6 +53,7 @@ namespace TalonOneSdk.Model
             CouponCodesOption = couponCodes;
             ReferralCodeOption = referralCode;
             LoyaltyCardsOption = loyaltyCards;
+            RewardIntegrationIdsOption = rewardIntegrationIds;
             StateOption = state;
             CartItemsOption = cartItems;
             ExperimentVariantAllocationsOption = experimentVariantAllocations;
@@ -264,6 +266,21 @@ namespace TalonOneSdk.Model
         public List<string> LoyaltyCards { get { return this.LoyaltyCardsOption.Value; } set { this.LoyaltyCardsOption = new Option<List<string>>(value); } }
 
         /// <summary>
+        /// Used to track the state of RewardIntegrationIds
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>> RewardIntegrationIdsOption { get; private set; }
+
+        /// <summary>
+        /// The integration IDs of the unlocked rewards that can be used in this session. 
+        /// </summary>
+        /// <value>The integration IDs of the unlocked rewards that can be used in this session. </value>
+        /* <example>[5c0b5e6d-3f8a-4c2b-9f1e-2a7d6b4c8e90]</example> */
+        [JsonPropertyName("rewardIntegrationIds")]
+        public List<string> RewardIntegrationIds { get { return this.RewardIntegrationIdsOption.Value; } set { this.RewardIntegrationIdsOption = new Option<List<string>>(value); } }
+
+        /// <summary>
         /// Used to track the state of CartItems
         /// </summary>
         [JsonIgnore]
@@ -350,6 +367,7 @@ namespace TalonOneSdk.Model
             sb.Append("  CouponCodes: ").Append(CouponCodes).Append("\n");
             sb.Append("  ReferralCode: ").Append(ReferralCode).Append("\n");
             sb.Append("  LoyaltyCards: ").Append(LoyaltyCards).Append("\n");
+            sb.Append("  RewardIntegrationIds: ").Append(RewardIntegrationIds).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  CartItems: ").Append(CartItems).Append("\n");
             sb.Append("  ExperimentVariantAllocations: ").Append(ExperimentVariantAllocations).Append("\n");
@@ -427,6 +445,7 @@ namespace TalonOneSdk.Model
             Option<List<string>> couponCodes = default;
             Option<string> referralCode = default;
             Option<List<string>> loyaltyCards = default;
+            Option<List<string>> rewardIntegrationIds = default;
             Option<NewCustomerSessionV2.StateEnum?> state = default;
             Option<List<CartItem>> cartItems = default;
             Option<List<ExperimentVariantAllocation>> experimentVariantAllocations = default;
@@ -467,10 +486,18 @@ namespace TalonOneSdk.Model
                         case "loyaltyCards":
                             loyaltyCards = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "rewardIntegrationIds":
+                            rewardIntegrationIds = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "state":
                             string stateRawValue = utf8JsonReader.GetString();
                             if (stateRawValue != null)
-                                state = new Option<NewCustomerSessionV2.StateEnum?>(NewCustomerSessionV2.StateEnumFromStringOrDefault(stateRawValue));
+                            {
+                                NewCustomerSessionV2.StateEnum? stateValue = NewCustomerSessionV2.StateEnumFromStringOrDefault(stateRawValue);
+                                if (stateValue == null)
+                                    throw new JsonException();
+                                state = new Option<NewCustomerSessionV2.StateEnum?>(stateValue);
+                            }
                             break;
                         case "cartItems":
                             cartItems = new Option<List<CartItem>>(JsonSerializer.Deserialize<List<CartItem>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -493,7 +520,7 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            return new NewCustomerSessionV2(profileId, storeIntegrationId, evaluableCampaignIds, couponCodes, referralCode, loyaltyCards, state, cartItems, experimentVariantAllocations, additionalCosts, identifiers, attributes);
+            return new NewCustomerSessionV2(profileId, storeIntegrationId, evaluableCampaignIds, couponCodes, referralCode, loyaltyCards, rewardIntegrationIds, state, cartItems, experimentVariantAllocations, additionalCosts, identifiers, attributes);
         }
 
         /// <summary>
@@ -543,6 +570,11 @@ namespace TalonOneSdk.Model
             {
                 writer.WritePropertyName("loyaltyCards");
                 JsonSerializer.Serialize(writer, newCustomerSessionV2.LoyaltyCards, jsonSerializerOptions);
+            }
+            if (newCustomerSessionV2.RewardIntegrationIdsOption.IsSet)
+            {
+                writer.WritePropertyName("rewardIntegrationIds");
+                JsonSerializer.Serialize(writer, newCustomerSessionV2.RewardIntegrationIds, jsonSerializerOptions);
             }
             if (newCustomerSessionV2.StateOption.IsSet)
             {

@@ -178,7 +178,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<ReverseSelectorStep.TypeEnum?>(ReverseSelectorStep.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                ReverseSelectorStep.TypeEnum? typeValue = ReverseSelectorStep.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<ReverseSelectorStep.TypeEnum?>(typeValue);
+                            }
                             break;
                         default:
                             break;

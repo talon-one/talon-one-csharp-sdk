@@ -41,8 +41,9 @@ namespace TalonOneSdk.Model
         /// <param name="ruleFailureReasons">ruleFailureReasons</param>
         /// <param name="campaignEligibility">campaignEligibility</param>
         /// <param name="awardedGiveaways">awardedGiveaways</param>
+        /// <param name="rewards">The unlocked rewards for the customer profile.</param>
         [JsonConstructor]
-        public CustomerProfileIntegrationResponseV2(List<Effect> effects, List<Coupon> createdCoupons, List<Referral> createdReferrals, Option<CustomerProfile> customerProfile = default, Option<Event> @event = default, Option<Loyalty> loyalty = default, Option<List<Campaign>> triggeredCampaigns = default, Option<List<RuleFailureReason>> ruleFailureReasons = default, Option<List<CampaignEligibility>> campaignEligibility = default, Option<List<Giveaway>> awardedGiveaways = default)
+        public CustomerProfileIntegrationResponseV2(List<Effect> effects, List<Coupon> createdCoupons, List<Referral> createdReferrals, Option<CustomerProfile> customerProfile = default, Option<Event> @event = default, Option<Loyalty> loyalty = default, Option<List<Campaign>> triggeredCampaigns = default, Option<List<RuleFailureReason>> ruleFailureReasons = default, Option<List<CampaignEligibility>> campaignEligibility = default, Option<List<Giveaway>> awardedGiveaways = default, Option<List<RewardWithUnlocks>> rewards = default)
         {
             Effects = effects;
             CreatedCoupons = createdCoupons;
@@ -54,6 +55,7 @@ namespace TalonOneSdk.Model
             RuleFailureReasonsOption = ruleFailureReasons;
             CampaignEligibilityOption = campaignEligibility;
             AwardedGiveawaysOption = awardedGiveaways;
+            RewardsOption = rewards;
             OnCreated();
         }
 
@@ -170,6 +172,20 @@ namespace TalonOneSdk.Model
         public List<Giveaway> AwardedGiveaways { get { return this.AwardedGiveawaysOption.Value; } set { this.AwardedGiveawaysOption = new Option<List<Giveaway>>(value); } }
 
         /// <summary>
+        /// Used to track the state of Rewards
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<RewardWithUnlocks>> RewardsOption { get; private set; }
+
+        /// <summary>
+        /// The unlocked rewards for the customer profile.
+        /// </summary>
+        /// <value>The unlocked rewards for the customer profile.</value>
+        [JsonPropertyName("rewards")]
+        public List<RewardWithUnlocks> Rewards { get { return this.RewardsOption.Value; } set { this.RewardsOption = new Option<List<RewardWithUnlocks>>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -187,6 +203,7 @@ namespace TalonOneSdk.Model
             sb.Append("  RuleFailureReasons: ").Append(RuleFailureReasons).Append("\n");
             sb.Append("  CampaignEligibility: ").Append(CampaignEligibility).Append("\n");
             sb.Append("  AwardedGiveaways: ").Append(AwardedGiveaways).Append("\n");
+            sb.Append("  Rewards: ").Append(Rewards).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -244,6 +261,7 @@ namespace TalonOneSdk.Model
             Option<List<RuleFailureReason>> ruleFailureReasons = default;
             Option<List<CampaignEligibility>> campaignEligibility = default;
             Option<List<Giveaway>> awardedGiveaways = default;
+            Option<List<RewardWithUnlocks>> rewards = default;
 
             while (utf8JsonReader.Read())
             {
@@ -290,6 +308,9 @@ namespace TalonOneSdk.Model
                         case "awardedGiveaways":
                             awardedGiveaways = new Option<List<Giveaway>>(JsonSerializer.Deserialize<List<Giveaway>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "rewards":
+                            rewards = new Option<List<RewardWithUnlocks>>(JsonSerializer.Deserialize<List<RewardWithUnlocks>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
@@ -314,7 +335,7 @@ namespace TalonOneSdk.Model
             if (createdReferrals.IsSet && createdReferrals.Value == null)
                 throw new ArgumentNullException(nameof(createdReferrals), "Property is not nullable for class CustomerProfileIntegrationResponseV2.");
 
-            return new CustomerProfileIntegrationResponseV2(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, varEvent, loyalty, triggeredCampaigns, ruleFailureReasons, campaignEligibility, awardedGiveaways);
+            return new CustomerProfileIntegrationResponseV2(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, varEvent, loyalty, triggeredCampaigns, ruleFailureReasons, campaignEligibility, awardedGiveaways, rewards);
         }
 
         /// <summary>
@@ -390,6 +411,11 @@ namespace TalonOneSdk.Model
             {
                 writer.WritePropertyName("awardedGiveaways");
                 JsonSerializer.Serialize(writer, customerProfileIntegrationResponseV2.AwardedGiveaways, jsonSerializerOptions);
+            }
+            if (customerProfileIntegrationResponseV2.RewardsOption.IsSet)
+            {
+                writer.WritePropertyName("rewards");
+                JsonSerializer.Serialize(writer, customerProfileIntegrationResponseV2.Rewards, jsonSerializerOptions);
             }
         }
     }

@@ -6,11 +6,14 @@ A reward instance held by a customer profile.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **long** | The ID of the customer reward instance. A customer profile can have multiple instances of the same reward. | 
-**IntegrationId** | **string** | The integration ID of the reward. | 
+**IntegrationId** | **string** | The integration ID of the customer reward instance. | 
 **RewardId** | **long** | The ID of the reward this instance belongs to. | 
+**RewardIntegrationId** | **string** | The integration ID of the reward this instance belongs to. | 
 **RewardName** | **string** | The name of the reward. | 
 **Status** | **string** | The status of the customer reward: - &#x60;unlocked&#x60;: The reward is available for use. - &#x60;used&#x60;: The reward has been used.  | 
 **UnlockedAt** | **DateTime** | The date and time when the reward was unlocked. | 
+**Description** | **string** | The customer-facing description of the reward. | [optional] 
+**Rule** | [**RuleMetadata**](RuleMetadata.md) | Customer-facing rule metadata for the reward. Only returned when the reward defines a rule. | [optional] 
 **UnlockedByProfileIntegrationId** | **string** | The integration ID of the customer profile that unlocked the reward.   For rewards unlocked with a loyalty card, this can be any customer profile  linked to that loyalty card.  | [optional] 
 **UsedAt** | **DateTime** | The date and time when the reward was used. | [optional] 
 **UsedByProfileIntegrationId** | **string** | The integration ID of the customer profile that used the reward.   For rewards unlocked with a loyalty card, this can be any customer profile  linked to that loyalty card.   Only returned when the reward has been used.  | [optional] 

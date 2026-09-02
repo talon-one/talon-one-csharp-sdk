@@ -32,8 +32,8 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="BetweenCheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="operator">The range comparison operator. Must be &#x60;between&#x60;.</param>
-        /// <param name="min">min</param>
-        /// <param name="max">max</param>
+        /// <param name="min">The minimum value allowed for the &#x60;between&#x60; operator.</param>
+        /// <param name="max">The maximum value allowed for the &#x60;between&#x60; operator.</param>
         [JsonConstructor]
         public BetweenCheckAttributeBlock(Option<OperatorEnum?> @operator = default, Object min = default, Object max = default)
         {
@@ -113,14 +113,18 @@ namespace TalonOneSdk.Model
         public OperatorEnum? Operator { get { return this.OperatorOption.Value; } set { this.OperatorOption = new Option<OperatorEnum?>(value); } }
 
         /// <summary>
-        /// Gets or Sets Min
+        /// The minimum value allowed for the &#x60;between&#x60; operator.
         /// </summary>
+        /// <value>The minimum value allowed for the &#x60;between&#x60; operator.</value>
+        /* <example>10</example> */
         [JsonPropertyName("min")]
         public Object Min { get; set; }
 
         /// <summary>
-        /// Gets or Sets Max
+        /// The maximum value allowed for the &#x60;between&#x60; operator.
         /// </summary>
+        /// <value>The maximum value allowed for the &#x60;between&#x60; operator.</value>
+        /* <example>100</example> */
         [JsonPropertyName("max")]
         public Object Max { get; set; }
 
@@ -204,7 +208,12 @@ namespace TalonOneSdk.Model
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<BetweenCheckAttributeBlock.OperatorEnum?>(BetweenCheckAttributeBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                BetweenCheckAttributeBlock.OperatorEnum? varOperatorValue = BetweenCheckAttributeBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<BetweenCheckAttributeBlock.OperatorEnum?>(varOperatorValue);
+                            }
                             break;
                         case "min":
                             min = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));

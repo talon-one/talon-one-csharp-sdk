@@ -188,7 +188,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<FilterAndMapValuesSelectorStep.TypeEnum?>(FilterAndMapValuesSelectorStep.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                FilterAndMapValuesSelectorStep.TypeEnum? typeValue = FilterAndMapValuesSelectorStep.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<FilterAndMapValuesSelectorStep.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "valueMap":
                             valueMap = new Option<SelectorValueMapRef>(JsonSerializer.Deserialize<SelectorValueMapRef>(ref utf8JsonReader, jsonSerializerOptions));

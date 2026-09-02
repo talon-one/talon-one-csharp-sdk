@@ -34,7 +34,7 @@ namespace TalonOneSdk.Model
         /// <param name="type">A step discriminator of type &#x60;filter&#x60;.</param>
         /// <param name="predicate">predicate</param>
         [JsonConstructor]
-        public FilterSelectorStep(TypeEnum type, SelectorBlock predicate)
+        public FilterSelectorStep(TypeEnum type, Block predicate)
         {
             Type = type;
             Predicate = predicate;
@@ -108,7 +108,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Predicate
         /// </summary>
         [JsonPropertyName("predicate")]
-        public SelectorBlock Predicate { get; set; }
+        public Block Predicate { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -168,7 +168,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<FilterSelectorStep.TypeEnum?> type = default;
-            Option<SelectorBlock> predicate = default;
+            Option<Block> predicate = default;
 
             while (utf8JsonReader.Read())
             {
@@ -188,10 +188,15 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<FilterSelectorStep.TypeEnum?>(FilterSelectorStep.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                FilterSelectorStep.TypeEnum? typeValue = FilterSelectorStep.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<FilterSelectorStep.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "predicate":
-                            predicate = new Option<SelectorBlock>(JsonSerializer.Deserialize<SelectorBlock>(ref utf8JsonReader, jsonSerializerOptions));
+                            predicate = new Option<Block>(JsonSerializer.Deserialize<Block>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

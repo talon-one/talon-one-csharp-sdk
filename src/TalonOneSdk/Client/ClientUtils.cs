@@ -490,6 +490,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.GeoJSONPolygon.TypeEnumToJsonValue(geoJSONPolygonTypeEnum);
             if (obj is TalonOneSdk.Model.GiveawayPoolNotification.NotificationTypeEnum giveawayPoolNotificationNotificationTypeEnum)
                 return TalonOneSdk.Model.GiveawayPoolNotification.NotificationTypeEnumToJsonValue(giveawayPoolNotificationNotificationTypeEnum);
+            if (obj is TalonOneSdk.Model.GroupBlock.OperatorEnum groupBlockOperatorEnum)
+                return TalonOneSdk.Model.GroupBlock.OperatorEnumToJsonValue(groupBlockOperatorEnum);
             if (obj is TalonOneSdk.Model.IntegrationCampaign.FeaturesEnum integrationCampaignFeaturesEnum)
                 return TalonOneSdk.Model.IntegrationCampaign.FeaturesEnumToJsonValue(integrationCampaignFeaturesEnum);
             if (obj is TalonOneSdk.Model.IntegrationCampaign.StateEnum integrationCampaignStateEnum)
@@ -512,6 +514,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.IntegrationHubEventTypeValueConverter.ToJsonValue(integrationHubEventType);
             if (obj is TalonOneSdk.Model.IntegrationRequest.ResponseContentEnum integrationRequestResponseContentEnum)
                 return TalonOneSdk.Model.IntegrationRequest.ResponseContentEnumToJsonValue(integrationRequestResponseContentEnum);
+            if (obj is TalonOneSdk.Model.IntegrationUnlockRewardRequest.ResponseContentEnum integrationUnlockRewardRequestResponseContentEnum)
+                return TalonOneSdk.Model.IntegrationUnlockRewardRequest.ResponseContentEnumToJsonValue(integrationUnlockRewardRequestResponseContentEnum);
             if (obj is TalonOneSdk.Model.LabelTargetAudience.TypeEnum labelTargetAudienceTypeEnum)
                 return TalonOneSdk.Model.LabelTargetAudience.TypeEnumToJsonValue(labelTargetAudienceTypeEnum);
             if (obj is TalonOneSdk.Model.LabelTargetNone.TypeEnum labelTargetNoneTypeEnum)
@@ -638,10 +642,6 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.Picklist.TypeEnumToJsonValue(picklistTypeEnum);
             if (obj is TalonOneSdk.Model.PriceTypeReferenceDetail.ReferencingTypeEnum priceTypeReferenceDetailReferencingTypeEnum)
                 return TalonOneSdk.Model.PriceTypeReferenceDetail.ReferencingTypeEnumToJsonValue(priceTypeReferenceDetailReferencingTypeEnum);
-            if (obj is TalonOneSdk.Model.PromotionCheckAttributeBlock.OperatorEnum promotionCheckAttributeBlockOperatorEnum)
-                return TalonOneSdk.Model.PromotionCheckAttributeBlock.OperatorEnumToJsonValue(promotionCheckAttributeBlockOperatorEnum);
-            if (obj is TalonOneSdk.Model.PromotionGroupBlock.OperatorEnum promotionGroupBlockOperatorEnum)
-                return TalonOneSdk.Model.PromotionGroupBlock.OperatorEnumToJsonValue(promotionGroupBlockOperatorEnum);
             if (obj is TalonOneSdk.Model.ReduceSelectorStep.TypeEnum reduceSelectorStepTypeEnum)
                 return TalonOneSdk.Model.ReduceSelectorStep.TypeEnumToJsonValue(reduceSelectorStepTypeEnum);
             if (obj is TalonOneSdk.Model.ReduceSelectorStep.OperatorEnum reduceSelectorStepOperatorEnum)
@@ -708,22 +708,12 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.SelectSelectorStep.OperatorEnumToJsonValue(selectSelectorStepOperatorEnum);
             if (obj is TalonOneSdk.Model.Selector.TypeEnum selectorTypeEnum)
                 return TalonOneSdk.Model.Selector.TypeEnumToJsonValue(selectorTypeEnum);
-            if (obj is TalonOneSdk.Model.SelectorBlock.TypeEnum selectorBlockTypeEnum)
-                return TalonOneSdk.Model.SelectorBlock.TypeEnumToJsonValue(selectorBlockTypeEnum);
-            if (obj is TalonOneSdk.Model.SelectorGroupBlock.TypeEnum selectorGroupBlockTypeEnum)
-                return TalonOneSdk.Model.SelectorGroupBlock.TypeEnumToJsonValue(selectorGroupBlockTypeEnum);
-            if (obj is TalonOneSdk.Model.SelectorGroupBlock.OperatorEnum selectorGroupBlockOperatorEnum)
-                return TalonOneSdk.Model.SelectorGroupBlock.OperatorEnumToJsonValue(selectorGroupBlockOperatorEnum);
             if (obj is TalonOneSdk.Model.SelectorStep.TypeEnum selectorStepTypeEnum)
                 return TalonOneSdk.Model.SelectorStep.TypeEnumToJsonValue(selectorStepTypeEnum);
             if (obj is TalonOneSdk.Model.SortSelectorStep.TypeEnum sortSelectorStepTypeEnum)
                 return TalonOneSdk.Model.SortSelectorStep.TypeEnumToJsonValue(sortSelectorStepTypeEnum);
             if (obj is TalonOneSdk.Model.SortSelectorStepField.DirectionEnum sortSelectorStepFieldDirectionEnum)
                 return TalonOneSdk.Model.SortSelectorStepField.DirectionEnumToJsonValue(sortSelectorStepFieldDirectionEnum);
-            if (obj is TalonOneSdk.Model.StrikethroughCheckAttributeBlock.OperatorEnum strikethroughCheckAttributeBlockOperatorEnum)
-                return TalonOneSdk.Model.StrikethroughCheckAttributeBlock.OperatorEnumToJsonValue(strikethroughCheckAttributeBlockOperatorEnum);
-            if (obj is TalonOneSdk.Model.StrikethroughGroupBlock.OperatorEnum strikethroughGroupBlockOperatorEnum)
-                return TalonOneSdk.Model.StrikethroughGroupBlock.OperatorEnumToJsonValue(strikethroughGroupBlockOperatorEnum);
             if (obj is TalonOneSdk.Model.StrikethroughLabelingNotification.NotificationTypeEnum strikethroughLabelingNotificationNotificationTypeEnum)
                 return TalonOneSdk.Model.StrikethroughLabelingNotification.NotificationTypeEnumToJsonValue(strikethroughLabelingNotificationNotificationTypeEnum);
             if (obj is TalonOneSdk.Model.StrikethroughLabelingNotification.VarVersionEnum strikethroughLabelingNotificationVarVersionEnum)
@@ -838,6 +828,12 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.Webhook.VerbEnumToJsonValue(webhookVerbEnum);
             if (obj is TalonOneSdk.Model.WebhookAuthentication.TypeEnum webhookAuthenticationTypeEnum)
                 return TalonOneSdk.Model.WebhookAuthentication.TypeEnumToJsonValue(webhookAuthenticationTypeEnum);
+            if (obj is TalonOneSdk.Model.WebhookAuthenticationBase.TypeEnum webhookAuthenticationBaseTypeEnum)
+                return TalonOneSdk.Model.WebhookAuthenticationBase.TypeEnumToJsonValue(webhookAuthenticationBaseTypeEnum);
+            if (obj is TalonOneSdk.Model.WebhookAuthenticationBaseBasic.TypeEnum webhookAuthenticationBaseBasicTypeEnum)
+                return TalonOneSdk.Model.WebhookAuthenticationBaseBasic.TypeEnumToJsonValue(webhookAuthenticationBaseBasicTypeEnum);
+            if (obj is TalonOneSdk.Model.WebhookAuthenticationBaseCustom.TypeEnum webhookAuthenticationBaseCustomTypeEnum)
+                return TalonOneSdk.Model.WebhookAuthenticationBaseCustom.TypeEnumToJsonValue(webhookAuthenticationBaseCustomTypeEnum);
             if (obj is TalonOneSdk.Model.WebhookWithOutgoingIntegrationDetails.VerbEnum webhookWithOutgoingIntegrationDetailsVerbEnum)
                 return TalonOneSdk.Model.WebhookWithOutgoingIntegrationDetails.VerbEnumToJsonValue(webhookWithOutgoingIntegrationDetailsVerbEnum);
             if (obj is TalonOneSdk.Model.WithinCheckAttributeBlock.OperatorEnum withinCheckAttributeBlockOperatorEnum)

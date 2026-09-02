@@ -240,7 +240,8 @@ namespace TalonOneSdk.Test.Api
             Client.Option<bool> loyalty = default;
             Client.Option<bool> giveaways = default;
             Client.Option<bool> achievements = default;
-            var response = await _instance.GetCustomerInventoryAsync(integrationId, profile, referrals, coupons, loyalty, giveaways, achievements);
+            Client.Option<bool> unlockedRewards = default;
+            var response = await _instance.GetCustomerInventoryAsync(integrationId, profile, referrals, coupons, loyalty, giveaways, achievements, unlockedRewards);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.CustomerInventory>(model);
         }
@@ -373,7 +374,7 @@ namespace TalonOneSdk.Test.Api
             string integrationId = default;
             Client.Option<List<string>> customerSessionIDs = default;
             Client.Option<List<string>> transactionUUIDs = default;
-            Client.Option<string> subledgerId = default;
+            Client.Option<List<string>> subledgerId = default;
             Client.Option<string> loyaltyTransactionType = default;
             Client.Option<DateTime> startDate = default;
             Client.Option<DateTime> endDate = default;
@@ -418,6 +419,26 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test IntegrationRewardsCatalog
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task IntegrationRewardsCatalogAsyncTest()
+        {
+            Client.Option<long> pageSize = default;
+            Client.Option<long> skip = default;
+            Client.Option<decimal> pointsFrom = default;
+            Client.Option<decimal> pointsTo = default;
+            Client.Option<bool> includeFree = default;
+            Client.Option<long> loyaltyProgramId = default;
+            Client.Option<string> subledgerId = default;
+            Client.Option<string> profileIntegrationId = default;
+            Client.Option<string> loyaltyCardId = default;
+            var response = await _instance.IntegrationRewardsCatalogAsync(pageSize, skip, pointsFrom, pointsTo, includeFree, loyaltyProgramId, subledgerId, profileIntegrationId, loyaltyCardId);
+            var model = response.Ok();
+            Assert.IsType<TalonOneSdk.Model.IntegrationRewardsCatalog200Response>(model);
+        }
+
+        /// <summary>
         /// Test JoinLoyaltyProgram
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -449,7 +470,8 @@ namespace TalonOneSdk.Test.Api
         public async Task ReopenCustomerSessionAsyncTest()
         {
             string customerSessionId = default;
-            var response = await _instance.ReopenCustomerSessionAsync(customerSessionId);
+            Client.Option<string> idempotencyKey = default;
+            var response = await _instance.ReopenCustomerSessionAsync(customerSessionId, idempotencyKey);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.ReopenSessionResponse>(model);
         }
@@ -464,7 +486,8 @@ namespace TalonOneSdk.Test.Api
             ReturnIntegrationRequest returnIntegrationRequest = default;
             Client.Option<bool> dry = default;
             Client.Option<bool> runRuleEngine = default;
-            var response = await _instance.ReturnCartItemsAsync(customerSessionId, returnIntegrationRequest, dry, runRuleEngine);
+            Client.Option<string> idempotencyKey = default;
+            var response = await _instance.ReturnCartItemsAsync(customerSessionId, returnIntegrationRequest, dry, runRuleEngine, idempotencyKey);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.IntegrationStateV2>(model);
         }
@@ -492,7 +515,8 @@ namespace TalonOneSdk.Test.Api
             Client.Option<string> silent = default;
             Client.Option<bool> dry = default;
             Client.Option<bool> forceCompleteEvaluation = default;
-            var response = await _instance.TrackEventV2Async(integrationEventV2Request, silent, dry, forceCompleteEvaluation);
+            Client.Option<string> idempotencyKey = default;
+            var response = await _instance.TrackEventV2Async(integrationEventV2Request, silent, dry, forceCompleteEvaluation, idempotencyKey);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.IntegrationEventV2Response>(model);
         }
@@ -524,6 +548,20 @@ namespace TalonOneSdk.Test.Api
             var response = await _instance.UnlinkLoyaltyCardFromProfileAsync(loyaltyProgramId, loyaltyCardId, loyaltyCardRegistration);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.LoyaltyCard>(model);
+        }
+
+        /// <summary>
+        /// Test UnlockReward
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task UnlockRewardAsyncTest()
+        {
+            long rewardId = default;
+            IntegrationUnlockRewardRequest integrationUnlockRewardRequest = default;
+            Client.Option<bool> dry = default;
+            var response = await _instance.UnlockRewardAsync(rewardId, integrationUnlockRewardRequest, dry);
+            var model = response.Ok();
+            Assert.IsType<TalonOneSdk.Model.IntegrationStateV2>(model);
         }
 
         /// <summary>
@@ -570,7 +608,8 @@ namespace TalonOneSdk.Test.Api
             CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2 = default;
             Client.Option<bool> runRuleEngine = default;
             Client.Option<bool> dry = default;
-            var response = await _instance.UpdateCustomerProfileV2Async(integrationId, customerProfileIntegrationRequestV2, runRuleEngine, dry);
+            Client.Option<string> idempotencyKey = default;
+            var response = await _instance.UpdateCustomerProfileV2Async(integrationId, customerProfileIntegrationRequestV2, runRuleEngine, dry, idempotencyKey);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.CustomerProfileIntegrationResponseV2>(model);
         }
@@ -583,7 +622,8 @@ namespace TalonOneSdk.Test.Api
         {
             MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest = default;
             Client.Option<string> silent = default;
-            var response = await _instance.UpdateCustomerProfilesV2Async(multipleCustomerProfileIntegrationRequest, silent);
+            Client.Option<string> idempotencyKey = default;
+            var response = await _instance.UpdateCustomerProfilesV2Async(multipleCustomerProfileIntegrationRequest, silent, idempotencyKey);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.MultipleCustomerProfileIntegrationResponseV2>(model);
         }
@@ -598,7 +638,8 @@ namespace TalonOneSdk.Test.Api
             IntegrationRequest integrationRequest = default;
             Client.Option<bool> dry = default;
             Client.Option<DateTime> now = default;
-            var response = await _instance.UpdateCustomerSessionV2Async(customerSessionId, integrationRequest, dry, now);
+            Client.Option<string> idempotencyKey = default;
+            var response = await _instance.UpdateCustomerSessionV2Async(customerSessionId, integrationRequest, dry, now, idempotencyKey);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.IntegrationStateV2>(model);
         }

@@ -391,12 +391,22 @@ namespace TalonOneSdk.Model
                         case "evaluationMode":
                             string evaluationModeRawValue = utf8JsonReader.GetString();
                             if (evaluationModeRawValue != null)
-                                evaluationMode = new Option<CampaignEvaluationGroup.EvaluationModeEnum?>(CampaignEvaluationGroup.EvaluationModeEnumFromStringOrDefault(evaluationModeRawValue));
+                            {
+                                CampaignEvaluationGroup.EvaluationModeEnum? evaluationModeValue = CampaignEvaluationGroup.EvaluationModeEnumFromStringOrDefault(evaluationModeRawValue);
+                                if (evaluationModeValue == null)
+                                    throw new JsonException();
+                                evaluationMode = new Option<CampaignEvaluationGroup.EvaluationModeEnum?>(evaluationModeValue);
+                            }
                             break;
                         case "evaluationScope":
                             string evaluationScopeRawValue = utf8JsonReader.GetString();
                             if (evaluationScopeRawValue != null)
-                                evaluationScope = new Option<CampaignEvaluationGroup.EvaluationScopeEnum?>(CampaignEvaluationGroup.EvaluationScopeEnumFromStringOrDefault(evaluationScopeRawValue));
+                            {
+                                CampaignEvaluationGroup.EvaluationScopeEnum? evaluationScopeValue = CampaignEvaluationGroup.EvaluationScopeEnumFromStringOrDefault(evaluationScopeRawValue);
+                                if (evaluationScopeValue == null)
+                                    throw new JsonException();
+                                evaluationScope = new Option<CampaignEvaluationGroup.EvaluationScopeEnum?>(evaluationScopeValue);
+                            }
                             break;
                         case "locked":
                             locked = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());

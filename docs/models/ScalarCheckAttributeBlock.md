@@ -6,7 +6,7 @@ Variant of `CheckAttributeBlock` for operators that compare an attribute against
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Operator** | **string** | The comparison operator applied to the attribute. | [optional] 
-**Value** | **Object** |  | 
+**Value** | **Object** | The comparison value for this operator. | 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

@@ -356,7 +356,12 @@ namespace TalonOneSdk.Model
                         case "reason":
                             string reasonRawValue = utf8JsonReader.GetString();
                             if (reasonRawValue != null)
-                                reason = new Option<ReferralRejectionReason.ReasonEnum?>(ReferralRejectionReason.ReasonEnumFromStringOrDefault(reasonRawValue));
+                            {
+                                ReferralRejectionReason.ReasonEnum? reasonValue = ReferralRejectionReason.ReasonEnumFromStringOrDefault(reasonRawValue);
+                                if (reasonValue == null)
+                                    throw new JsonException();
+                                reason = new Option<ReferralRejectionReason.ReasonEnum?>(reasonValue);
+                            }
                             break;
                         default:
                             break;

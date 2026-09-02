@@ -239,7 +239,12 @@ namespace TalonOneSdk.Model
                         case "error":
                             string errorRawValue = utf8JsonReader.GetString();
                             if (errorRawValue != null)
-                                error = new Option<MCPOAuthTokenError.ErrorEnum?>(MCPOAuthTokenError.ErrorEnumFromStringOrDefault(errorRawValue));
+                            {
+                                MCPOAuthTokenError.ErrorEnum? errorValue = MCPOAuthTokenError.ErrorEnumFromStringOrDefault(errorRawValue);
+                                if (errorValue == null)
+                                    throw new JsonException();
+                                error = new Option<MCPOAuthTokenError.ErrorEnum?>(errorValue);
+                            }
                             break;
                         case "error_description":
                             errorDescription = new Option<string>(utf8JsonReader.GetString());

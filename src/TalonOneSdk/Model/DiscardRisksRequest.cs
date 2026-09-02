@@ -226,7 +226,12 @@ namespace TalonOneSdk.Model
                         case "reason":
                             string reasonRawValue = utf8JsonReader.GetString();
                             if (reasonRawValue != null)
-                                reason = new Option<DiscardRisksRequest.ReasonEnum?>(DiscardRisksRequest.ReasonEnumFromStringOrDefault(reasonRawValue));
+                            {
+                                DiscardRisksRequest.ReasonEnum? reasonValue = DiscardRisksRequest.ReasonEnumFromStringOrDefault(reasonRawValue);
+                                if (reasonValue == null)
+                                    throw new JsonException();
+                                reason = new Option<DiscardRisksRequest.ReasonEnum?>(reasonValue);
+                            }
                             break;
                         case "comment":
                             comment = new Option<string>(utf8JsonReader.GetString());

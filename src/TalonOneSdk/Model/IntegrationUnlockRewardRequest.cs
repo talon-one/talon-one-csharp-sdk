@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// The request body for unlocking a reward for a customer profile.
+    /// The request body for unlocking a reward for a customer profile, optionally using the balance of one of the customer&#39;s loyalty cards. 
     /// </summary>
     public partial class IntegrationUnlockRewardRequest : IValidatableObject
     {
@@ -33,14 +33,16 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="integrationId">The integration ID to assign to the created customer reward unlock.</param>
         /// <param name="profileIntegrationId">The integration ID of the customer profile unlocking the reward.</param>
+        /// <param name="cardIdentifier">The identifier of the loyalty card unlocking the reward. When provided, the required points are deducted from the card&#39;s balance and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. The customer profile given in &#x60;profileIntegrationId&#x60; must be linked to the card, and the card must be active.</param>
         /// <param name="loyaltyProgramId">The ID of the loyalty program from which points will be deducted. Required when the reward has &#x60;pointsRequired&#x60; configured.</param>
         /// <param name="subledgerId">The ID of the subledger from which points will be deducted. Required when the reward has &#x60;pointsRequired&#x60; configured.  To specify the main ledger, provide an empty string (\&quot;\&quot;). </param>
-        /// <param name="responseContent">Determines which data is included in the response. Add any of the following optional values to the array to get that data in the response: &#x60;customerProfile&#x60;, &#x60;effects&#x60;, &#x60;ruleFailureReasons&#x60;, &#x60;loyalty&#x60;.</param>
+        /// <param name="responseContent">Determines which data is included in the response. Add any of the following optional values to the array to get that data in the response: &#x60;customerProfile&#x60;, &#x60;ruleFailureReasons&#x60;, &#x60;loyalty&#x60;. &#x60;effects&#x60; is always returned regardless of whether it is included here.</param>
         [JsonConstructor]
-        public IntegrationUnlockRewardRequest(string integrationId, string profileIntegrationId, Option<long?> loyaltyProgramId = default, Option<string> subledgerId = default, Option<List<string>> responseContent = default)
+        public IntegrationUnlockRewardRequest(string integrationId, string profileIntegrationId, Option<string> cardIdentifier = default, Option<long?> loyaltyProgramId = default, Option<string> subledgerId = default, Option<List<IntegrationUnlockRewardRequest.ResponseContentEnum>> responseContent = default)
         {
             IntegrationId = integrationId;
             ProfileIntegrationId = profileIntegrationId;
+            CardIdentifierOption = cardIdentifier;
             LoyaltyProgramIdOption = loyaltyProgramId;
             SubledgerIdOption = subledgerId;
             ResponseContentOption = responseContent;
@@ -48,6 +50,100 @@ namespace TalonOneSdk.Model
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// Defines ResponseContent
+        /// </summary>
+        public enum ResponseContentEnum
+        {
+            /// <summary>
+            /// Enum CustomerProfile for value: customerProfile
+            /// </summary>
+            CustomerProfile = 1,
+
+            /// <summary>
+            /// Enum Effects for value: effects
+            /// </summary>
+            Effects = 2,
+
+            /// <summary>
+            /// Enum RuleFailureReasons for value: ruleFailureReasons
+            /// </summary>
+            RuleFailureReasons = 3,
+
+            /// <summary>
+            /// Enum Loyalty for value: loyalty
+            /// </summary>
+            Loyalty = 4
+        }
+
+        /// <summary>
+        /// Returns a <see cref="ResponseContentEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static ResponseContentEnum ResponseContentEnumFromString(string value)
+        {
+            if (value.Equals("customerProfile"))
+                return ResponseContentEnum.CustomerProfile;
+
+            if (value.Equals("effects"))
+                return ResponseContentEnum.Effects;
+
+            if (value.Equals("ruleFailureReasons"))
+                return ResponseContentEnum.RuleFailureReasons;
+
+            if (value.Equals("loyalty"))
+                return ResponseContentEnum.Loyalty;
+
+            throw new NotImplementedException($"Could not convert value to type ResponseContentEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="ResponseContentEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static ResponseContentEnum? ResponseContentEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("customerProfile"))
+                return ResponseContentEnum.CustomerProfile;
+
+            if (value.Equals("effects"))
+                return ResponseContentEnum.Effects;
+
+            if (value.Equals("ruleFailureReasons"))
+                return ResponseContentEnum.RuleFailureReasons;
+
+            if (value.Equals("loyalty"))
+                return ResponseContentEnum.Loyalty;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="ResponseContentEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string ResponseContentEnumToJsonValue(ResponseContentEnum value)
+        {
+            if (value == ResponseContentEnum.CustomerProfile)
+                return "customerProfile";
+
+            if (value == ResponseContentEnum.Effects)
+                return "effects";
+
+            if (value == ResponseContentEnum.RuleFailureReasons)
+                return "ruleFailureReasons";
+
+            if (value == ResponseContentEnum.Loyalty)
+                return "loyalty";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
 
         /// <summary>
         /// The integration ID to assign to the created customer reward unlock.
@@ -64,6 +160,21 @@ namespace TalonOneSdk.Model
         /* <example>customer1</example> */
         [JsonPropertyName("profileIntegrationId")]
         public string ProfileIntegrationId { get; set; }
+
+        /// <summary>
+        /// Used to track the state of CardIdentifier
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> CardIdentifierOption { get; private set; }
+
+        /// <summary>
+        /// The identifier of the loyalty card unlocking the reward. When provided, the required points are deducted from the card&#39;s balance and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. The customer profile given in &#x60;profileIntegrationId&#x60; must be linked to the card, and the card must be active.
+        /// </summary>
+        /// <value>The identifier of the loyalty card unlocking the reward. When provided, the required points are deducted from the card&#39;s balance and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. The customer profile given in &#x60;profileIntegrationId&#x60; must be linked to the card, and the card must be active.</value>
+        /* <example>summer-loyalty-card-0543</example> */
+        [JsonPropertyName("cardIdentifier")]
+        public string CardIdentifier { get { return this.CardIdentifierOption.Value; } set { this.CardIdentifierOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of LoyaltyProgramId
@@ -100,15 +211,15 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> ResponseContentOption { get; private set; }
+        public Option<List<IntegrationUnlockRewardRequest.ResponseContentEnum>> ResponseContentOption { get; private set; }
 
         /// <summary>
-        /// Determines which data is included in the response. Add any of the following optional values to the array to get that data in the response: &#x60;customerProfile&#x60;, &#x60;effects&#x60;, &#x60;ruleFailureReasons&#x60;, &#x60;loyalty&#x60;.
+        /// Determines which data is included in the response. Add any of the following optional values to the array to get that data in the response: &#x60;customerProfile&#x60;, &#x60;ruleFailureReasons&#x60;, &#x60;loyalty&#x60;. &#x60;effects&#x60; is always returned regardless of whether it is included here.
         /// </summary>
-        /// <value>Determines which data is included in the response. Add any of the following optional values to the array to get that data in the response: &#x60;customerProfile&#x60;, &#x60;effects&#x60;, &#x60;ruleFailureReasons&#x60;, &#x60;loyalty&#x60;.</value>
-        /* <example>[&quot;customerProfile&quot;,&quot;effects&quot;]</example> */
+        /// <value>Determines which data is included in the response. Add any of the following optional values to the array to get that data in the response: &#x60;customerProfile&#x60;, &#x60;ruleFailureReasons&#x60;, &#x60;loyalty&#x60;. &#x60;effects&#x60; is always returned regardless of whether it is included here.</value>
+        /* <example>[customerProfile, loyalty]</example> */
         [JsonPropertyName("responseContent")]
-        public List<string> ResponseContent { get { return this.ResponseContentOption.Value; } set { this.ResponseContentOption = new Option<List<string>>(value); } }
+        public List<IntegrationUnlockRewardRequest.ResponseContentEnum> ResponseContent { get { return this.ResponseContentOption.Value; } set { this.ResponseContentOption = new Option<List<IntegrationUnlockRewardRequest.ResponseContentEnum>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -120,6 +231,7 @@ namespace TalonOneSdk.Model
             sb.Append("class IntegrationUnlockRewardRequest {\n");
             sb.Append("  IntegrationId: ").Append(IntegrationId).Append("\n");
             sb.Append("  ProfileIntegrationId: ").Append(ProfileIntegrationId).Append("\n");
+            sb.Append("  CardIdentifier: ").Append(CardIdentifier).Append("\n");
             sb.Append("  LoyaltyProgramId: ").Append(LoyaltyProgramId).Append("\n");
             sb.Append("  SubledgerId: ").Append(SubledgerId).Append("\n");
             sb.Append("  ResponseContent: ").Append(ResponseContent).Append("\n");
@@ -134,6 +246,28 @@ namespace TalonOneSdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // CardIdentifier (string) maxLength
+            if (this.CardIdentifier != null && this.CardIdentifier.Length > 108)
+            {
+                yield return new ValidationResult("Invalid value for CardIdentifier, length must be less than 108.", new [] { "CardIdentifier" });
+            }
+
+            // CardIdentifier (string) minLength
+            if (this.CardIdentifier != null && this.CardIdentifier.Length < 4)
+            {
+                yield return new ValidationResult("Invalid value for CardIdentifier, length must be greater than 4.", new [] { "CardIdentifier" });
+            }
+
+            if (this.CardIdentifierOption.Value != null) {
+                // CardIdentifier (string) pattern
+                Regex regexCardIdentifier = new Regex(@"^[A-Za-z0-9._%+@-]+$", RegexOptions.CultureInvariant);
+
+                if (this.CardIdentifierOption.Value != null &&!regexCardIdentifier.Match(this.CardIdentifierOption.Value).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CardIdentifier, must match a pattern of " + regexCardIdentifier, new [] { "CardIdentifier" });
+                }
+            }
+
             yield break;
         }
     }
@@ -172,9 +306,10 @@ namespace TalonOneSdk.Model
 
             Option<string> integrationId = default;
             Option<string> profileIntegrationId = default;
+            Option<string> cardIdentifier = default;
             Option<long?> loyaltyProgramId = default;
             Option<string> subledgerId = default;
-            Option<List<string>> responseContent = default;
+            Option<List<IntegrationUnlockRewardRequest.ResponseContentEnum>> responseContent = default;
 
             while (utf8JsonReader.Read())
             {
@@ -197,6 +332,9 @@ namespace TalonOneSdk.Model
                         case "profileIntegrationId":
                             profileIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "cardIdentifier":
+                            cardIdentifier = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         case "loyaltyProgramId":
                             loyaltyProgramId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
@@ -204,7 +342,28 @@ namespace TalonOneSdk.Model
                             subledgerId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "responseContent":
-                            responseContent = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            if (utf8JsonReader.TokenType == JsonTokenType.Null)
+                            {
+                                responseContent = new Option<List<IntegrationUnlockRewardRequest.ResponseContentEnum>>((List<IntegrationUnlockRewardRequest.ResponseContentEnum>)null);
+                            }
+                            else if (utf8JsonReader.TokenType == JsonTokenType.StartArray)
+                            {
+                                var responseContentItems = new List<IntegrationUnlockRewardRequest.ResponseContentEnum>();
+                                while (utf8JsonReader.Read())
+                                {
+                                    if (utf8JsonReader.TokenType == JsonTokenType.EndArray)
+                                        break;
+
+                                    string responseContentItemRawValue = utf8JsonReader.GetString();
+                                    if (responseContentItemRawValue == null)
+                                        throw new JsonException();
+
+                                    responseContentItems.Add(IntegrationUnlockRewardRequest.ResponseContentEnumFromString(responseContentItemRawValue));
+                                }
+                                responseContent = new Option<List<IntegrationUnlockRewardRequest.ResponseContentEnum>>(responseContentItems);
+                            }
+                            else
+                                throw new JsonException();
                             break;
                         default:
                             break;
@@ -224,7 +383,7 @@ namespace TalonOneSdk.Model
             if (profileIntegrationId.IsSet && profileIntegrationId.Value == null)
                 throw new ArgumentNullException(nameof(profileIntegrationId), "Property is not nullable for class IntegrationUnlockRewardRequest.");
 
-            return new IntegrationUnlockRewardRequest(integrationId.Value, profileIntegrationId.Value, loyaltyProgramId, subledgerId, responseContent);
+            return new IntegrationUnlockRewardRequest(integrationId.Value, profileIntegrationId.Value, cardIdentifier, loyaltyProgramId, subledgerId, responseContent);
         }
 
         /// <summary>
@@ -261,6 +420,9 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("profileIntegrationId", integrationUnlockRewardRequest.ProfileIntegrationId);
 
+            if (integrationUnlockRewardRequest.CardIdentifierOption.IsSet)
+                writer.WriteString("cardIdentifier", integrationUnlockRewardRequest.CardIdentifier);
+
             if (integrationUnlockRewardRequest.LoyaltyProgramIdOption.IsSet)
                 writer.WriteNumber("loyaltyProgramId", integrationUnlockRewardRequest.LoyaltyProgramIdOption.Value.Value);
 
@@ -270,7 +432,12 @@ namespace TalonOneSdk.Model
             if (integrationUnlockRewardRequest.ResponseContentOption.IsSet)
             {
                 writer.WritePropertyName("responseContent");
-                JsonSerializer.Serialize(writer, integrationUnlockRewardRequest.ResponseContent, jsonSerializerOptions);
+                writer.WriteStartArray();
+                foreach (var responseContentItem in integrationUnlockRewardRequest.ResponseContent)
+                {
+                    writer.WriteStringValue(IntegrationUnlockRewardRequest.ResponseContentEnumToJsonValue(responseContentItem));
+                }
+                writer.WriteEndArray();
             }
         }
     }

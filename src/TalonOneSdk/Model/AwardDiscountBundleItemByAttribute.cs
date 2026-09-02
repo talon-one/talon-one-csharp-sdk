@@ -268,7 +268,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<AwardDiscountBundleItemByAttribute.TypeEnum?>(AwardDiscountBundleItemByAttribute.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                AwardDiscountBundleItemByAttribute.TypeEnum? typeValue = AwardDiscountBundleItemByAttribute.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<AwardDiscountBundleItemByAttribute.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "attribute":
                             attribute = new Option<string>(utf8JsonReader.GetString());
@@ -276,7 +281,12 @@ namespace TalonOneSdk.Model
                         case "direction":
                             string directionRawValue = utf8JsonReader.GetString();
                             if (directionRawValue != null)
-                                direction = new Option<AwardDiscountBundleItemByAttribute.DirectionEnum?>(AwardDiscountBundleItemByAttribute.DirectionEnumFromStringOrDefault(directionRawValue));
+                            {
+                                AwardDiscountBundleItemByAttribute.DirectionEnum? directionValue = AwardDiscountBundleItemByAttribute.DirectionEnumFromStringOrDefault(directionRawValue);
+                                if (directionValue == null)
+                                    throw new JsonException();
+                                direction = new Option<AwardDiscountBundleItemByAttribute.DirectionEnum?>(directionValue);
+                            }
                             break;
                         default:
                             break;

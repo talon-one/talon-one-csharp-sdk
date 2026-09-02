@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="StrikethroughSetDiscountPerItemMemberEffectProps" /> class.
         /// </summary>
         /// <param name="name">The effect name.</param>
-        /// <param name="value">value</param>
+        /// <param name="value">The discount value.</param>
         [JsonConstructor]
         public StrikethroughSetDiscountPerItemMemberEffectProps(string name, Object value = default)
         {
@@ -52,8 +52,10 @@ namespace TalonOneSdk.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Value
+        /// The discount value.
         /// </summary>
+        /// <value>The discount value.</value>
+        /* <example>9</example> */
         [JsonPropertyName("value")]
         public Object Value { get; set; }
 

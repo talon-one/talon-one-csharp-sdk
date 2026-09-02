@@ -188,7 +188,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<CampaignSetLeafNode.TypeEnum?>(CampaignSetLeafNode.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                CampaignSetLeafNode.TypeEnum? typeValue = CampaignSetLeafNode.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<CampaignSetLeafNode.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "campaignId":
                             campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());

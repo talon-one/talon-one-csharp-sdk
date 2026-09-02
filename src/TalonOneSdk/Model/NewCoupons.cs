@@ -38,6 +38,7 @@ namespace TalonOneSdk.Model
         /// <param name="startDate">Timestamp at which point the coupon becomes valid.</param>
         /// <param name="expiryDate">Expiration date of the coupon. Coupon never expires if this is omitted.</param>
         /// <param name="limits">Limits configuration for a coupon. These limits will override the limits set from the campaign.  **Note:** Only usable when creating a single coupon which is not tied to a specific recipient. Only per-profile limits are allowed to be configured. </param>
+        /// <param name="batchId">The batch ID that all coupons created by the request will bear. If omitted, a batch ID is generated automatically.</param>
         /// <param name="uniquePrefix">**DEPRECATED** To create more than 20,000 coupons in one request, use [Create coupons asynchronously](https://docs.talon.one/management-api#tag/Coupons/operation/createCouponsAsync) endpoint. </param>
         /// <param name="attributes">Arbitrary properties associated with this item.</param>
         /// <param name="recipientIntegrationId">The integration ID for this coupon&#39;s beneficiary&#39;s profile.</param>
@@ -48,7 +49,7 @@ namespace TalonOneSdk.Model
         /// <param name="supportRequestId">The identifier of the support request to link to the coupon creation. The request must exist and not yet be processed.</param>
         /// <param name="supportRequestNote">A note recorded when the linked support request is approved or rejected. Applied when &#x60;supportRequestId&#x60; is provided.</param>
         [JsonConstructor]
-        public NewCoupons(long numberOfCoupons, Option<long?> usageLimit = default, Option<decimal?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<List<LimitConfig>> limits = default, Option<string> uniquePrefix = default, Option<Object> attributes = default, Option<string> recipientIntegrationId = default, Option<List<string>> validCharacters = default, Option<string> couponPattern = default, Option<bool?> isReservationMandatory = default, Option<bool?> implicitlyReserved = default, Option<long?> supportRequestId = default, Option<string> supportRequestNote = default)
+        public NewCoupons(long numberOfCoupons, Option<long?> usageLimit = default, Option<decimal?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<List<LimitConfig>> limits = default, Option<string> batchId = default, Option<string> uniquePrefix = default, Option<Object> attributes = default, Option<string> recipientIntegrationId = default, Option<List<string>> validCharacters = default, Option<string> couponPattern = default, Option<bool?> isReservationMandatory = default, Option<bool?> implicitlyReserved = default, Option<long?> supportRequestId = default, Option<string> supportRequestNote = default)
         {
             NumberOfCoupons = numberOfCoupons;
             UsageLimitOption = usageLimit;
@@ -57,6 +58,7 @@ namespace TalonOneSdk.Model
             StartDateOption = startDate;
             ExpiryDateOption = expiryDate;
             LimitsOption = limits;
+            BatchIdOption = batchId;
             UniquePrefixOption = uniquePrefix;
             AttributesOption = attributes;
             RecipientIntegrationIdOption = recipientIntegrationId;
@@ -167,6 +169,21 @@ namespace TalonOneSdk.Model
         /// <value>Limits configuration for a coupon. These limits will override the limits set from the campaign.  **Note:** Only usable when creating a single coupon which is not tied to a specific recipient. Only per-profile limits are allowed to be configured. </value>
         [JsonPropertyName("limits")]
         public List<LimitConfig> Limits { get { return this.LimitsOption.Value; } set { this.LimitsOption = new Option<List<LimitConfig>>(value); } }
+
+        /// <summary>
+        /// Used to track the state of BatchId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> BatchIdOption { get; private set; }
+
+        /// <summary>
+        /// The batch ID that all coupons created by the request will bear. If omitted, a batch ID is generated automatically.
+        /// </summary>
+        /// <value>The batch ID that all coupons created by the request will bear. If omitted, a batch ID is generated automatically.</value>
+        /* <example>3rdparty_fjsieoaa</example> */
+        [JsonPropertyName("batchId")]
+        public string BatchId { get { return this.BatchIdOption.Value; } set { this.BatchIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of UniquePrefix
@@ -318,6 +335,7 @@ namespace TalonOneSdk.Model
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
             sb.Append("  Limits: ").Append(Limits).Append("\n");
+            sb.Append("  BatchId: ").Append(BatchId).Append("\n");
             sb.Append("  UniquePrefix: ").Append(UniquePrefix).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  RecipientIntegrationId: ").Append(RecipientIntegrationId).Append("\n");
@@ -445,6 +463,7 @@ namespace TalonOneSdk.Model
             Option<DateTime?> startDate = default;
             Option<DateTime?> expiryDate = default;
             Option<List<LimitConfig>> limits = default;
+            Option<string> batchId = default;
             Option<string> uniquePrefix = default;
             Option<Object> attributes = default;
             Option<string> recipientIntegrationId = default;
@@ -491,6 +510,9 @@ namespace TalonOneSdk.Model
                         case "limits":
                             limits = new Option<List<LimitConfig>>(JsonSerializer.Deserialize<List<LimitConfig>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "batchId":
+                            batchId = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         case "uniquePrefix":
                             uniquePrefix = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -530,7 +552,7 @@ namespace TalonOneSdk.Model
             if (numberOfCoupons.IsSet && numberOfCoupons.Value == null)
                 throw new ArgumentNullException(nameof(numberOfCoupons), "Property is not nullable for class NewCoupons.");
 
-            return new NewCoupons(numberOfCoupons.Value.Value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, limits, uniquePrefix, attributes, recipientIntegrationId, validCharacters, couponPattern, isReservationMandatory, implicitlyReserved, supportRequestId, supportRequestNote);
+            return new NewCoupons(numberOfCoupons.Value.Value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, limits, batchId, uniquePrefix, attributes, recipientIntegrationId, validCharacters, couponPattern, isReservationMandatory, implicitlyReserved, supportRequestId, supportRequestNote);
         }
 
         /// <summary>
@@ -579,6 +601,9 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("limits");
                 JsonSerializer.Serialize(writer, newCoupons.Limits, jsonSerializerOptions);
             }
+            if (newCoupons.BatchIdOption.IsSet)
+                writer.WriteString("batchId", newCoupons.BatchId);
+
             if (newCoupons.UniquePrefixOption.IsSet)
                 writer.WriteString("uniquePrefix", newCoupons.UniquePrefix);
 

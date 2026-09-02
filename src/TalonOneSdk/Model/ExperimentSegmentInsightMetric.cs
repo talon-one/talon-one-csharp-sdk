@@ -217,7 +217,12 @@ namespace TalonOneSdk.Model
                         case "metric":
                             string metricRawValue = utf8JsonReader.GetString();
                             if (metricRawValue != null)
-                                metric = new Option<ExperimentSegmentInsightMetric.MetricEnum?>(ExperimentSegmentInsightMetric.MetricEnumFromStringOrDefault(metricRawValue));
+                            {
+                                ExperimentSegmentInsightMetric.MetricEnum? metricValue = ExperimentSegmentInsightMetric.MetricEnumFromStringOrDefault(metricRawValue);
+                                if (metricValue == null)
+                                    throw new JsonException();
+                                metric = new Option<ExperimentSegmentInsightMetric.MetricEnum?>(metricValue);
+                            }
                             break;
                         case "segments":
                             segments = new Option<List<ExperimentSegmentInsight>>(JsonSerializer.Deserialize<List<ExperimentSegmentInsight>>(ref utf8JsonReader, jsonSerializerOptions));

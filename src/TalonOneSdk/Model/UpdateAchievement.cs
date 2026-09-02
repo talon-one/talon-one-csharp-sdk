@@ -519,12 +519,22 @@ namespace TalonOneSdk.Model
                         case "recurrencePolicy":
                             string recurrencePolicyRawValue = utf8JsonReader.GetString();
                             if (recurrencePolicyRawValue != null)
-                                recurrencePolicy = new Option<UpdateAchievement.RecurrencePolicyEnum?>(UpdateAchievement.RecurrencePolicyEnumFromStringOrDefault(recurrencePolicyRawValue));
+                            {
+                                UpdateAchievement.RecurrencePolicyEnum? recurrencePolicyValue = UpdateAchievement.RecurrencePolicyEnumFromStringOrDefault(recurrencePolicyRawValue);
+                                if (recurrencePolicyValue == null)
+                                    throw new JsonException();
+                                recurrencePolicy = new Option<UpdateAchievement.RecurrencePolicyEnum?>(recurrencePolicyValue);
+                            }
                             break;
                         case "activationPolicy":
                             string activationPolicyRawValue = utf8JsonReader.GetString();
                             if (activationPolicyRawValue != null)
-                                activationPolicy = new Option<UpdateAchievement.ActivationPolicyEnum?>(UpdateAchievement.ActivationPolicyEnumFromStringOrDefault(activationPolicyRawValue));
+                            {
+                                UpdateAchievement.ActivationPolicyEnum? activationPolicyValue = UpdateAchievement.ActivationPolicyEnumFromStringOrDefault(activationPolicyRawValue);
+                                if (activationPolicyValue == null)
+                                    throw new JsonException();
+                                activationPolicy = new Option<UpdateAchievement.ActivationPolicyEnum?>(activationPolicyValue);
+                            }
                             break;
                         case "fixedStartDate":
                             fixedStartDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));

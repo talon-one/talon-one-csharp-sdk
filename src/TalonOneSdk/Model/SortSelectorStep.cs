@@ -189,7 +189,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<SortSelectorStep.TypeEnum?>(SortSelectorStep.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                SortSelectorStep.TypeEnum? typeValue = SortSelectorStep.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<SortSelectorStep.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "fields":
                             fields = new Option<List<SortSelectorStepField>>(JsonSerializer.Deserialize<List<SortSelectorStepField>>(ref utf8JsonReader, jsonSerializerOptions));

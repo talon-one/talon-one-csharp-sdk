@@ -376,7 +376,12 @@ namespace TalonOneSdk.Model
                         case "NotificationType":
                             string notificationTypeRawValue = utf8JsonReader.GetString();
                             if (notificationTypeRawValue != null)
-                                notificationType = new Option<AddedDeductedPointsBalancesNotification.NotificationTypeEnum?>(AddedDeductedPointsBalancesNotification.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue));
+                            {
+                                AddedDeductedPointsBalancesNotification.NotificationTypeEnum? notificationTypeValue = AddedDeductedPointsBalancesNotification.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue);
+                                if (notificationTypeValue == null)
+                                    throw new JsonException();
+                                notificationType = new Option<AddedDeductedPointsBalancesNotification.NotificationTypeEnum?>(notificationTypeValue);
+                            }
                             break;
                         case "ProfileIntegrationID":
                             profileIntegrationID = new Option<string>(utf8JsonReader.GetString());
@@ -390,7 +395,12 @@ namespace TalonOneSdk.Model
                         case "TypeOfChange":
                             string typeOfChangeRawValue = utf8JsonReader.GetString();
                             if (typeOfChangeRawValue != null)
-                                typeOfChange = new Option<AddedDeductedPointsBalancesNotification.TypeOfChangeEnum?>(AddedDeductedPointsBalancesNotification.TypeOfChangeEnumFromStringOrDefault(typeOfChangeRawValue));
+                            {
+                                AddedDeductedPointsBalancesNotification.TypeOfChangeEnum? typeOfChangeValue = AddedDeductedPointsBalancesNotification.TypeOfChangeEnumFromStringOrDefault(typeOfChangeRawValue);
+                                if (typeOfChangeValue == null)
+                                    throw new JsonException();
+                                typeOfChange = new Option<AddedDeductedPointsBalancesNotification.TypeOfChangeEnum?>(typeOfChangeValue);
+                            }
                             break;
                         case "UserID":
                             userID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());

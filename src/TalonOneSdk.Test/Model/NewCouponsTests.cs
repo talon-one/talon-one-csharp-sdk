@@ -117,6 +117,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'BatchId'
+        /// </summary>
+        [Fact]
+        public void BatchIdTest()
+        {
+            // TODO unit test for the property 'BatchId'
+        }
+
+        /// <summary>
         /// Test the property 'UniquePrefix'
         /// </summary>
         [Fact]

@@ -276,7 +276,12 @@ namespace TalonOneSdk.Model
                         case "state":
                             string stateRawValue = utf8JsonReader.GetString();
                             if (stateRawValue != null)
-                                state = new Option<UpdateAccount.StateEnum?>(UpdateAccount.StateEnumFromStringOrDefault(stateRawValue));
+                            {
+                                UpdateAccount.StateEnum? stateValue = UpdateAccount.StateEnumFromStringOrDefault(stateRawValue);
+                                if (stateValue == null)
+                                    throw new JsonException();
+                                state = new Option<UpdateAccount.StateEnum?>(stateValue);
+                            }
                             break;
                         case "planExpires":
                             planExpires = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));

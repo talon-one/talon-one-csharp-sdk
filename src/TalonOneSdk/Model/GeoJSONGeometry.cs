@@ -315,7 +315,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<GeoJSONGeometry.TypeEnum?>(GeoJSONGeometry.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                GeoJSONGeometry.TypeEnum? typeValue = GeoJSONGeometry.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<GeoJSONGeometry.TypeEnum?>(typeValue);
+                            }
                             break;
                         default:
                             break;

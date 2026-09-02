@@ -281,7 +281,12 @@ namespace TalonOneSdk.Model
                         case "campaignState":
                             string campaignStateRawValue = utf8JsonReader.GetString();
                             if (campaignStateRawValue != null)
-                                campaignState = new Option<AchievementReference.CampaignStateEnum?>(AchievementReference.CampaignStateEnumFromStringOrDefault(campaignStateRawValue));
+                            {
+                                AchievementReference.CampaignStateEnum? campaignStateValue = AchievementReference.CampaignStateEnumFromStringOrDefault(campaignStateRawValue);
+                                if (campaignStateValue == null)
+                                    throw new JsonException();
+                                campaignState = new Option<AchievementReference.CampaignStateEnum?>(campaignStateValue);
+                            }
                             break;
                         default:
                             break;

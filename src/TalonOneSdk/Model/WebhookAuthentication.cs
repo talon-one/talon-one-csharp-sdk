@@ -310,7 +310,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<WebhookAuthentication.TypeEnum?>(WebhookAuthentication.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                WebhookAuthentication.TypeEnum? typeValue = WebhookAuthentication.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<WebhookAuthentication.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "data":
                             data = new Option<WebhookAuthenticationAllOfData>(JsonSerializer.Deserialize<WebhookAuthenticationAllOfData>(ref utf8JsonReader, jsonSerializerOptions));

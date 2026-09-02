@@ -31,20 +31,20 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAchievementProgressBlock" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="operator">operator</param>
         /// <param name="value">The value to update the progress by. Supports template placeholders (e.g. \&quot;{{$Session.Total / 2}}\&quot;) for dynamic quantities.</param>
         /// <param name="achievement">achievement</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         [JsonConstructor]
-        public UpdateAchievementProgressBlock(string id, string type, OperatorEnum @operator, string value, UpdateAchievementProgressBlock1Achievement achievement, Option<List<string>> tags = default)
+        public UpdateAchievementProgressBlock(string type, OperatorEnum @operator, string value, UpdateAchievementProgressBlock1Achievement achievement, Option<string> id = default, Option<List<string>> tags = default)
         {
-            Id = id;
             Type = type;
             Operator = @operator;
             Value = value;
             Achievement = achievement;
+            IdOption = id;
             TagsOption = tags;
             OnCreated();
         }
@@ -111,14 +111,6 @@ namespace TalonOneSdk.Model
         public OperatorEnum Operator { get; set; }
 
         /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        /// <summary>
         /// Identifies the block variant and determines which additional properties are present in it.
         /// </summary>
         /// <value>Identifies the block variant and determines which additional properties are present in it.</value>
@@ -140,18 +132,33 @@ namespace TalonOneSdk.Model
         public UpdateAchievementProgressBlock1Achievement Achievement { get; set; }
 
         /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
+
+        /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> TagsOption { get; private set; }
+        public Option<List<string>> TagsOption { get; }
 
         /// <summary>
         /// Semantic labels attached to this block.
         /// </summary>
         /// <value>Semantic labels attached to this block.</value>
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -161,11 +168,11 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateAchievementProgressBlock {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Operator: ").Append(Operator).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("  Achievement: ").Append(Achievement).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -214,11 +221,11 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<string> type = default;
             Option<UpdateAchievementProgressBlock.OperatorEnum?> varOperator = default;
             Option<string> value = default;
             Option<UpdateAchievementProgressBlock1Achievement> achievement = default;
+            Option<string> id = default;
             Option<List<string>> tags = default;
 
             while (utf8JsonReader.Read())
@@ -236,22 +243,27 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<UpdateAchievementProgressBlock.OperatorEnum?>(UpdateAchievementProgressBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                UpdateAchievementProgressBlock.OperatorEnum? varOperatorValue = UpdateAchievementProgressBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<UpdateAchievementProgressBlock.OperatorEnum?>(varOperatorValue);
+                            }
                             break;
                         case "value":
                             value = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "achievement":
                             achievement = new Option<UpdateAchievementProgressBlock1Achievement>(JsonSerializer.Deserialize<UpdateAchievementProgressBlock1Achievement>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -261,9 +273,6 @@ namespace TalonOneSdk.Model
                     }
                 }
             }
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAchievementProgressBlock.", nameof(id));
 
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class UpdateAchievementProgressBlock.", nameof(type));
@@ -277,9 +286,6 @@ namespace TalonOneSdk.Model
             if (!achievement.IsSet)
                 throw new ArgumentException("Property is required for class UpdateAchievementProgressBlock.", nameof(achievement));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class UpdateAchievementProgressBlock.");
-
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class UpdateAchievementProgressBlock.");
 
@@ -292,7 +298,7 @@ namespace TalonOneSdk.Model
             if (achievement.IsSet && achievement.Value == null)
                 throw new ArgumentNullException(nameof(achievement), "Property is not nullable for class UpdateAchievementProgressBlock.");
 
-            return new UpdateAchievementProgressBlock(id.Value, type.Value, varOperator.Value.Value, value.Value, achievement.Value, tags);
+            return new UpdateAchievementProgressBlock(type.Value, varOperator.Value.Value, value.Value, achievement.Value, id, tags);
         }
 
         /// <summary>
@@ -319,9 +325,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateAchievementProgressBlock updateAchievementProgressBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateAchievementProgressBlock.Id == null)
-                throw new ArgumentNullException(nameof(updateAchievementProgressBlock.Id), "Property is required for class UpdateAchievementProgressBlock.");
-
             if (updateAchievementProgressBlock.Type == null)
                 throw new ArgumentNullException(nameof(updateAchievementProgressBlock.Type), "Property is required for class UpdateAchievementProgressBlock.");
 
@@ -331,8 +334,6 @@ namespace TalonOneSdk.Model
             if (updateAchievementProgressBlock.Achievement == null)
                 throw new ArgumentNullException(nameof(updateAchievementProgressBlock.Achievement), "Property is required for class UpdateAchievementProgressBlock.");
 
-            writer.WriteString("id", updateAchievementProgressBlock.Id);
-
             writer.WriteString("type", updateAchievementProgressBlock.Type);
 
             var varOperatorRawValue = UpdateAchievementProgressBlock.OperatorEnumToJsonValue(updateAchievementProgressBlock.Operator);
@@ -341,6 +342,9 @@ namespace TalonOneSdk.Model
 
             writer.WritePropertyName("achievement");
             JsonSerializer.Serialize(writer, updateAchievementProgressBlock.Achievement, jsonSerializerOptions);
+            if (updateAchievementProgressBlock.IdOption.IsSet)
+                writer.WriteString("id", updateAchievementProgressBlock.Id);
+
             if (updateAchievementProgressBlock.TagsOption.IsSet)
             {
                 writer.WritePropertyName("tags");

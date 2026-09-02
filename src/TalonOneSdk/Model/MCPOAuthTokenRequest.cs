@@ -287,7 +287,12 @@ namespace TalonOneSdk.Model
                         case "grant_type":
                             string grantTypeRawValue = utf8JsonReader.GetString();
                             if (grantTypeRawValue != null)
-                                grantType = new Option<MCPOAuthTokenRequest.GrantTypeEnum?>(MCPOAuthTokenRequest.GrantTypeEnumFromStringOrDefault(grantTypeRawValue));
+                            {
+                                MCPOAuthTokenRequest.GrantTypeEnum? grantTypeValue = MCPOAuthTokenRequest.GrantTypeEnumFromStringOrDefault(grantTypeRawValue);
+                                if (grantTypeValue == null)
+                                    throw new JsonException();
+                                grantType = new Option<MCPOAuthTokenRequest.GrantTypeEnum?>(grantTypeValue);
+                            }
                             break;
                         case "code":
                             code = new Option<string>(utf8JsonReader.GetString());

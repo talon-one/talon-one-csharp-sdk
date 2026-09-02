@@ -546,6 +546,33 @@ namespace TalonOneSdk.Api
         Task<ICreatePasswordRecoveryEmailApiResponse> CreatePasswordRecoveryEmailOrDefaultAsync(NewPasswordEmail newPasswordEmail, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Create ruleset (V2)
+        /// </summary>
+        /// <remarks>
+        /// Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only &#x60;group&#x60; and &#x60;passthrough&#x60; blocks are currently writable, with optional &#x60;onFailure&#x60; blocks. A payload containing any other block type is rejected. Each rule&#39;s &#x60;blocks&#x60; array may contain at most one block.
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="rulesetV2">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="ICreateRulesetV2ApiResponse"/>&gt;</returns>
+        Task<ICreateRulesetV2ApiResponse> CreateRulesetV2Async(long applicationId, long campaignId, RulesetV2 rulesetV2, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create ruleset (V2)
+        /// </summary>
+        /// <remarks>
+        /// Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only &#x60;group&#x60; and &#x60;passthrough&#x60; blocks are currently writable, with optional &#x60;onFailure&#x60; blocks. A payload containing any other block type is rejected. Each rule&#39;s &#x60;blocks&#x60; array may contain at most one block.
+        /// </remarks>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="rulesetV2">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="ICreateRulesetV2ApiResponse"/>&gt;</returns>
+        Task<ICreateRulesetV2ApiResponse> CreateRulesetV2OrDefaultAsync(long applicationId, long campaignId, RulesetV2 rulesetV2, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Create session
         /// </summary>
         /// <remarks>
@@ -3554,6 +3581,7 @@ namespace TalonOneSdk.Api
         /// <param name="createdBefore">Filter results where request and response times to return entries before parameter value, expected to be an RFC3339 timestamp string. Use UTC time. (optional)</param>
         /// <param name="createdAfter">Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string. Use UTC time. (optional)</param>
         /// <param name="cursor">A specific unique value in the database. If this value is not given, the server fetches results starting with the first record.  (optional)</param>
+        /// <param name="pageSize">The maximum number of message log entries to return. (optional, default to 50)</param>
         /// <param name="period">Filter results by time period. Choose between the available relative time frames.  (optional)</param>
         /// <param name="isSuccessful">Indicates whether to return log entries with either successful or unsuccessful HTTP response codes. When set to&#x60;true&#x60;, only log entries with &#x60;2xx&#x60; response codes are returned. When set to &#x60;false&#x60;, only log entries with &#x60;4xx&#x60; and &#x60;5xx&#x60; response codes are returned.  (optional)</param>
         /// <param name="applicationId">Filter results by Application ID. (optional)</param>
@@ -3563,7 +3591,7 @@ namespace TalonOneSdk.Api
         /// <param name="webhookIDs">Filter results by webhook ID (include up to 30 values, separated by a comma). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMessageLogsApiResponse"/>&gt;</returns>
-        Task<IGetMessageLogsApiResponse> GetMessageLogsAsync(string entityType, Option<string> messageID = default, Option<string> changeType = default, Option<string> notificationIDs = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<byte[]> cursor = default, Option<string> period = default, Option<bool> isSuccessful = default, Option<decimal> applicationId = default, Option<decimal> campaignId = default, Option<long> loyaltyProgramId = default, Option<long> responseCode = default, Option<string> webhookIDs = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetMessageLogsApiResponse> GetMessageLogsAsync(string entityType, Option<string> messageID = default, Option<string> changeType = default, Option<string> notificationIDs = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<byte[]> cursor = default, Option<long> pageSize = default, Option<string> period = default, Option<bool> isSuccessful = default, Option<decimal> applicationId = default, Option<decimal> campaignId = default, Option<long> loyaltyProgramId = default, Option<long> responseCode = default, Option<string> webhookIDs = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List message log entries
@@ -3578,6 +3606,7 @@ namespace TalonOneSdk.Api
         /// <param name="createdBefore">Filter results where request and response times to return entries before parameter value, expected to be an RFC3339 timestamp string. Use UTC time. (optional)</param>
         /// <param name="createdAfter">Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string. Use UTC time. (optional)</param>
         /// <param name="cursor">A specific unique value in the database. If this value is not given, the server fetches results starting with the first record.  (optional)</param>
+        /// <param name="pageSize">The maximum number of message log entries to return. (optional, default to 50)</param>
         /// <param name="period">Filter results by time period. Choose between the available relative time frames.  (optional)</param>
         /// <param name="isSuccessful">Indicates whether to return log entries with either successful or unsuccessful HTTP response codes. When set to&#x60;true&#x60;, only log entries with &#x60;2xx&#x60; response codes are returned. When set to &#x60;false&#x60;, only log entries with &#x60;4xx&#x60; and &#x60;5xx&#x60; response codes are returned.  (optional)</param>
         /// <param name="applicationId">Filter results by Application ID. (optional)</param>
@@ -3587,7 +3616,7 @@ namespace TalonOneSdk.Api
         /// <param name="webhookIDs">Filter results by webhook ID (include up to 30 values, separated by a comma). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMessageLogsApiResponse"/>&gt;</returns>
-        Task<IGetMessageLogsApiResponse> GetMessageLogsOrDefaultAsync(string entityType, Option<string> messageID = default, Option<string> changeType = default, Option<string> notificationIDs = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<byte[]> cursor = default, Option<string> period = default, Option<bool> isSuccessful = default, Option<decimal> applicationId = default, Option<decimal> campaignId = default, Option<long> loyaltyProgramId = default, Option<long> responseCode = default, Option<string> webhookIDs = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetMessageLogsApiResponse> GetMessageLogsOrDefaultAsync(string entityType, Option<string> messageID = default, Option<string> changeType = default, Option<string> notificationIDs = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<byte[]> cursor = default, Option<long> pageSize = default, Option<string> period = default, Option<bool> isSuccessful = default, Option<decimal> applicationId = default, Option<decimal> campaignId = default, Option<long> loyaltyProgramId = default, Option<long> responseCode = default, Option<string> webhookIDs = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List referrals
@@ -5926,6 +5955,24 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <returns></returns>
         bool IsNoContent { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="ICreateRulesetV2ApiResponse"/>
+    /// </summary>
+    public interface ICreateRulesetV2ApiResponse : TalonOneSdk.Client.IApiResponse, ICreated<TalonOneSdk.Model.RulesetV2>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>
+    {
+        /// <summary>
+        /// Returns true if the response is 201 Created
+        /// </summary>
+        /// <returns></returns>
+        bool IsCreated { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
     }
 
     /// <summary>
@@ -9235,6 +9282,26 @@ namespace TalonOneSdk.Api
         internal void ExecuteOnErrorCreatePasswordRecoveryEmail(Exception exception)
         {
             OnErrorCreatePasswordRecoveryEmail?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnCreateRulesetV2;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorCreateRulesetV2;
+
+        internal void ExecuteOnCreateRulesetV2(ManagementApi.CreateRulesetV2ApiResponse apiResponse)
+        {
+            OnCreateRulesetV2?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorCreateRulesetV2(Exception exception)
+        {
+            OnErrorCreateRulesetV2?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -13228,11 +13295,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -13266,11 +13345,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -13304,11 +13395,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -13593,11 +13696,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -13631,11 +13746,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -13669,11 +13796,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -13944,11 +14083,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetCampaigns200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetCampaigns200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetCampaigns200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetCampaigns200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetCampaigns200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -14205,11 +14356,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public Collection Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Collection result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private Collection DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<Collection>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref Collection result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -14243,11 +14406,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -14281,11 +14456,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -14319,11 +14506,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Conflict()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnConflict(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultConflict();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultConflict()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsConflict
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnConflict(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 409 Conflict and the deserialized response is not null
@@ -14594,11 +14793,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Achievement Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Achievement result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Achievement DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Achievement>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.Achievement result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -14632,11 +14843,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -14670,11 +14893,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -14937,11 +15172,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.AchievementV2 Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.AchievementV2 result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.AchievementV2 DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.AchievementV2>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.AchievementV2 result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -14975,11 +15222,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -15013,11 +15272,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -15280,11 +15551,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.AccountAdditionalCost Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.AccountAdditionalCost result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.AccountAdditionalCost DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.AccountAdditionalCost>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.AccountAdditionalCost result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -15541,11 +15824,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Attribute Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Attribute result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Attribute DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Attribute>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.Attribute result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -15809,11 +16104,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.LoyaltyCardBatchResponse Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.LoyaltyCardBatchResponse result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.LoyaltyCardBatchResponse DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.LoyaltyCardBatchResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.LoyaltyCardBatchResponse result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -15847,11 +16154,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -15885,11 +16204,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -15923,11 +16254,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -16191,11 +16534,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.CreateTemplateCampaignResponse Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.CreateTemplateCampaignResponse result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.CreateTemplateCampaignResponse DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.CreateTemplateCampaignResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.CreateTemplateCampaignResponse result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -16472,11 +16827,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -16510,11 +16877,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse Conflict()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnConflict(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultConflict();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultConflict()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsConflict
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnConflict(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 409 Conflict and the deserialized response is not null
@@ -16785,11 +17164,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public Collection Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Collection result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private Collection DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<Collection>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref Collection result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -17077,11 +17468,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.CreateCoupons200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.CreateCoupons200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.CreateCoupons200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.CreateCoupons200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.CreateCoupons200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -17358,11 +17761,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.AsyncCouponCreationResponse Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.AsyncCouponCreationResponse result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.AsyncCouponCreationResponse DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.AsyncCouponCreationResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.AsyncCouponCreationResponse result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -17633,11 +18048,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.AsyncCouponDeletionJobResponse Accepted()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.AsyncCouponDeletionJobResponse result = default;
+                OnAccepted(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultAccepted();
+                return result;
+            }
+
+            private TalonOneSdk.Model.AsyncCouponDeletionJobResponse DefaultAccepted()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsAccepted
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.AsyncCouponDeletionJobResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnAccepted(ref bool suppressDefault, ref TalonOneSdk.Model.AsyncCouponDeletionJobResponse result);
 
             /// <summary>
             /// Returns true if the response is 202 Accepted and the deserialized response is not null
@@ -17925,11 +18352,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.CreateCoupons200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.CreateCoupons200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.CreateCoupons200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.CreateCoupons200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.CreateCoupons200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -18192,11 +18631,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.NewInviteEmail Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.NewInviteEmail result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.NewInviteEmail DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.NewInviteEmail>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.NewInviteEmail result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -18453,11 +18904,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.User Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.User result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.User DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.User>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.User result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -18714,11 +19177,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.NewPasswordEmail NoContent()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.NewPasswordEmail result = default;
+                OnNoContent(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNoContent();
+                return result;
+            }
+
+            private TalonOneSdk.Model.NewPasswordEmail DefaultNoContent()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNoContent
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.NewPasswordEmail>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNoContent(ref bool suppressDefault, ref TalonOneSdk.Model.NewPasswordEmail result);
 
             /// <summary>
             /// Returns true if the response is 204 NoContent and the deserialized response is not null
@@ -18735,6 +19210,343 @@ namespace TalonOneSdk.Api
                 } catch (Exception e)
                 {
                     OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)204);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatCreateRulesetV2(ref long applicationId, ref long campaignId, RulesetV2 rulesetV2);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="rulesetV2"></param>
+        /// <returns></returns>
+        private void ValidateCreateRulesetV2(RulesetV2 rulesetV2)
+        {
+            if (rulesetV2 == null)
+                throw new ArgumentNullException(nameof(rulesetV2));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="campaignId"></param>
+        /// <param name="rulesetV2"></param>
+        private void AfterCreateRulesetV2DefaultImplementation(ICreateRulesetV2ApiResponse apiResponseLocalVar, long applicationId, long campaignId, RulesetV2 rulesetV2)
+        {
+            bool suppressDefaultLog = false;
+            AfterCreateRulesetV2(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, rulesetV2);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="campaignId"></param>
+        /// <param name="rulesetV2"></param>
+        partial void AfterCreateRulesetV2(ref bool suppressDefaultLog, ICreateRulesetV2ApiResponse apiResponseLocalVar, long applicationId, long campaignId, RulesetV2 rulesetV2);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="campaignId"></param>
+        /// <param name="rulesetV2"></param>
+        private void OnErrorCreateRulesetV2DefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, RulesetV2 rulesetV2)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorCreateRulesetV2(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, campaignId, rulesetV2);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="campaignId"></param>
+        /// <param name="rulesetV2"></param>
+        partial void OnErrorCreateRulesetV2(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, RulesetV2 rulesetV2);
+
+        /// <summary>
+        /// Create ruleset (V2) Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only &#x60;group&#x60; and &#x60;passthrough&#x60; blocks are currently writable, with optional &#x60;onFailure&#x60; blocks. A payload containing any other block type is rejected. Each rule&#39;s &#x60;blocks&#x60; array may contain at most one block.
+        /// </summary>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="rulesetV2">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="ICreateRulesetV2ApiResponse"/>&gt;</returns>
+        public async Task<ICreateRulesetV2ApiResponse> CreateRulesetV2OrDefaultAsync(long applicationId, long campaignId, RulesetV2 rulesetV2, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await CreateRulesetV2Async(applicationId, campaignId, rulesetV2, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Create ruleset (V2) Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only &#x60;group&#x60; and &#x60;passthrough&#x60; blocks are currently writable, with optional &#x60;onFailure&#x60; blocks. A payload containing any other block type is rejected. Each rule&#39;s &#x60;blocks&#x60; array may contain at most one block.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="rulesetV2">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="ICreateRulesetV2ApiResponse"/>&gt;</returns>
+        public async Task<ICreateRulesetV2ApiResponse> CreateRulesetV2Async(long applicationId, long campaignId, RulesetV2 rulesetV2, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateCreateRulesetV2(rulesetV2);
+
+                FormatCreateRulesetV2(ref applicationId, ref campaignId, rulesetV2);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v2/applications/{applicationId}/campaigns/{campaignId}/rulesets"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/applications/{applicationId}/campaigns/{campaignId}/rulesets");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcampaignId%7D", Uri.EscapeDataString(campaignId.ToString()));
+
+                    httpRequestMessageLocalVar.Content = (rulesetV2 as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(rulesetV2, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("POST");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        CreateRulesetV2ApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new CreateRulesetV2ApiResponse(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v2/applications/{applicationId}/campaigns/{campaignId}/rulesets", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterCreateRulesetV2DefaultImplementation(apiResponseLocalVar, applicationId, campaignId, rulesetV2);
+
+                        Events.ExecuteOnCreateRulesetV2(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorCreateRulesetV2DefaultImplementation(e, "/v2/applications/{applicationId}/campaigns/{campaignId}/rulesets", uriBuilderLocalVar.Path, applicationId, campaignId, rulesetV2);
+                Events.ExecuteOnErrorCreateRulesetV2(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="CreateRulesetV2ApiResponse"/>
+        /// </summary>
+        public partial class CreateRulesetV2ApiResponse : TalonOneSdk.Client.ApiResponse, ICreateRulesetV2ApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ManagementApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="CreateRulesetV2ApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public CreateRulesetV2ApiResponse(ILogger<ManagementApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="CreateRulesetV2ApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public CreateRulesetV2ApiResponse(ILogger<ManagementApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public bool IsCreated => 201 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.RulesetV2 Created()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.RulesetV2 result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.RulesetV2 DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsCreated
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.RulesetV2>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.RulesetV2 result);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryCreated(out TalonOneSdk.Model.RulesetV2 result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Created();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)201);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
                 }
 
                 return result != null;
@@ -18975,11 +19787,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Session Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Session result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Session DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Session>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.Session result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -19243,11 +20067,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Store Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Store result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Store DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Store>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.Store result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -19281,11 +20117,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -19319,11 +20167,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Conflict()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnConflict(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultConflict();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultConflict()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsConflict
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnConflict(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 409 Conflict and the deserialized response is not null
@@ -19825,11 +20685,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -19863,11 +20735,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -19901,11 +20785,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -20143,11 +21039,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -20399,11 +21307,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -20437,11 +21357,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -20679,11 +21611,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -20717,11 +21661,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -21207,11 +22163,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -21463,11 +22431,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -22299,11 +23279,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -22337,11 +23329,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -22821,11 +23825,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -23670,11 +24686,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -23708,11 +24736,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -23746,11 +24786,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -24210,11 +25262,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -24248,11 +25312,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -24286,11 +25362,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -24522,11 +25610,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -24560,11 +25660,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -24598,11 +25710,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -24636,11 +25760,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -24886,11 +26022,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -24924,11 +26072,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -24962,11 +26122,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -25000,11 +26172,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -25277,11 +26461,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -25513,11 +26709,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -25551,11 +26759,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -25589,11 +26809,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -25627,11 +26859,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -25909,11 +27153,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -25947,11 +27203,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -25985,11 +27253,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -26023,11 +27303,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -26266,11 +27558,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -26304,11 +27608,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -26342,11 +27658,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -26380,11 +27708,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -26631,11 +27971,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -26669,11 +28021,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -26707,11 +28071,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -26745,11 +28121,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -26995,11 +28383,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -27033,11 +28433,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -27071,11 +28483,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -27496,11 +28920,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -27820,11 +29256,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -28099,11 +29547,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -28388,11 +29848,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -28663,11 +30135,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -28701,11 +30185,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -28739,11 +30235,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -29014,11 +30522,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -29052,11 +30572,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -29090,11 +30622,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -29361,11 +30905,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -29399,11 +30955,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -29437,11 +31005,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -29725,11 +31305,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -29763,11 +31355,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -29801,11 +31405,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -30094,11 +31710,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -30132,11 +31760,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -30170,11 +31810,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -30419,11 +32071,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -30457,11 +32121,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -30495,11 +32171,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -30787,11 +32475,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -31045,11 +32745,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -31083,11 +32795,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -31411,11 +33135,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -31700,11 +33436,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GenerateCouponRejections200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GenerateCouponRejections200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GenerateCouponRejections200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GenerateCouponRejections200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GenerateCouponRejections200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -32034,11 +33782,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetAccessLogsWithoutTotalCount200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetAccessLogsWithoutTotalCount200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetAccessLogsWithoutTotalCount200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetAccessLogsWithoutTotalCount200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetAccessLogsWithoutTotalCount200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -32270,11 +34030,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Account Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Account result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Account DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Account>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Account result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -32506,11 +34278,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.AccountAnalytics Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.AccountAnalytics result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.AccountAnalytics DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.AccountAnalytics>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.AccountAnalytics result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -32742,11 +34526,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public Collection Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Collection result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Collection DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Collection>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Collection result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -32780,11 +34576,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -33030,11 +34838,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Achievement Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Achievement result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Achievement DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Achievement>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Achievement result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -33068,11 +34888,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -33106,11 +34938,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -33342,11 +35186,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.AchievementV2 Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.AchievementV2 result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.AchievementV2 DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.AchievementV2>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.AchievementV2 result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -33380,11 +35236,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -33418,11 +35286,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -33654,11 +35534,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.AccountAdditionalCost Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.AccountAdditionalCost result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.AccountAdditionalCost DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.AccountAdditionalCost>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.AccountAdditionalCost result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -33927,11 +35819,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetAdditionalCosts200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetAdditionalCosts200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetAdditionalCosts200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetAdditionalCosts200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetAdditionalCosts200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -34163,11 +36067,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Application Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Application result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Application DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Application>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Application result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -34399,11 +36315,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ApplicationApiHealth Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ApplicationApiHealth result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ApplicationApiHealth DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ApplicationApiHealth>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ApplicationApiHealth result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -34649,11 +36577,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ApplicationCIFExpression Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ApplicationCIFExpression result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ApplicationCIFExpression DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ApplicationCIFExpression>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ApplicationCIFExpression result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -34892,11 +36832,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ApplicationCustomer Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ApplicationCustomer result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ApplicationCustomer DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ApplicationCustomer>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ApplicationCustomer result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -35192,11 +37144,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetApplicationCustomerFriends200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetApplicationCustomerFriends200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetApplicationCustomerFriends200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetApplicationCustomerFriends200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetApplicationCustomerFriends200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -35481,11 +37445,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetApplicationCustomers200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetApplicationCustomers200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetApplicationCustomers200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetApplicationCustomers200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetApplicationCustomers200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -35780,11 +37756,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetApplicationCustomersByAttributes200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetApplicationCustomersByAttributes200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetApplicationCustomersByAttributes200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetApplicationCustomersByAttributes200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetApplicationCustomersByAttributes200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -36060,11 +38048,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetApplicationEventTypes200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetApplicationEventTypes200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetApplicationEventTypes200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetApplicationEventTypes200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetApplicationEventTypes200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -36488,11 +38488,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetApplicationEventsWithoutTotalCount200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetApplicationEventsWithoutTotalCount200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetApplicationEventsWithoutTotalCount200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetApplicationEventsWithoutTotalCount200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetApplicationEventsWithoutTotalCount200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -36731,11 +38743,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ApplicationSession Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ApplicationSession result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ApplicationSession DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ApplicationSession>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ApplicationSession result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -37116,11 +39140,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetApplicationSessions200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetApplicationSessions200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetApplicationSessions200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetApplicationSessions200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetApplicationSessions200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -37415,11 +39451,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetApplicationSessionsByCustomerAttributes200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetApplicationSessionsByCustomerAttributes200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetApplicationSessionsByCustomerAttributes200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetApplicationSessionsByCustomerAttributes200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetApplicationSessionsByCustomerAttributes200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -37688,11 +39736,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetApplications200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetApplications200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetApplications200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetApplications200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetApplications200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -37924,11 +39984,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Attribute Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Attribute result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Attribute DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Attribute>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Attribute result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -38275,11 +40347,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetAttributes200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetAttributes200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetAttributes200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetAttributes200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetAttributes200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -38568,11 +40652,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetAudienceMemberships200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetAudienceMemberships200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetAudienceMemberships200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetAudienceMemberships200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetAudienceMemberships200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -38606,11 +40702,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -38888,11 +40996,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetAudiences200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetAudiences200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetAudiences200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetAudiences200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetAudiences200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -39155,11 +41275,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetAudiencesAnalytics200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetAudiencesAnalytics200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetAudiencesAnalytics200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetAudiencesAnalytics200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetAudiencesAnalytics200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -39398,11 +41530,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Campaign Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Campaign result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Campaign DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Campaign>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Campaign result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -39682,11 +41826,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetCampaignAnalytics200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetCampaignAnalytics200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetCampaignAnalytics200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetCampaignAnalytics200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetCampaignAnalytics200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -39998,11 +42154,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetCampaigns200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetCampaigns200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetCampaigns200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetCampaigns200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetCampaigns200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -40234,11 +42402,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.CampaignGroup Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.CampaignGroup result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.CampaignGroup DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.CampaignGroup>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.CampaignGroup result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -40507,11 +42687,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetCampaignGroups200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetCampaignGroups200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetCampaignGroups200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetCampaignGroups200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetCampaignGroups200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -40828,11 +43020,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetCampaignTemplates200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetCampaignTemplates200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetCampaignTemplates200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetCampaignTemplates200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetCampaignTemplates200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -41228,11 +43432,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetCampaigns200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetCampaigns200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetCampaigns200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetCampaigns200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetCampaigns200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -41266,11 +43482,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -41615,11 +43843,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetChanges200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetChanges200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetChanges200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetChanges200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetChanges200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -41865,11 +44105,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public Collection Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Collection result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Collection DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Collection>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Collection result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -41903,11 +44155,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -42161,11 +44425,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetCollectionItems200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetCollectionItems200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetCollectionItems200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetCollectionItems200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetCollectionItems200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -42199,11 +44475,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -42645,11 +44933,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -42925,11 +45225,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.CustomerActivityReport Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.CustomerActivityReport result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.CustomerActivityReport DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.CustomerActivityReport>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.CustomerActivityReport result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -43272,11 +45584,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetCustomerActivityReportsWithoutTotalCount200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetCustomerActivityReportsWithoutTotalCount200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetCustomerActivityReportsWithoutTotalCount200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetCustomerActivityReportsWithoutTotalCount200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetCustomerActivityReportsWithoutTotalCount200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -43559,11 +45883,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.CustomerAnalytics Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.CustomerAnalytics result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.CustomerAnalytics DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.CustomerAnalytics>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.CustomerAnalytics result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -43795,11 +46131,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.CustomerProfile Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.CustomerProfile result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.CustomerProfile DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.CustomerProfile>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.CustomerProfile result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -44095,11 +46443,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetCustomerProfileAchievementProgress200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetCustomerProfileAchievementProgress200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetCustomerProfileAchievementProgress200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetCustomerProfileAchievementProgress200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetCustomerProfileAchievementProgress200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -44133,11 +46493,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -44171,11 +46543,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -44431,11 +46815,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetCustomerProfiles200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetCustomerProfiles200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetCustomerProfiles200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetCustomerProfiles200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetCustomerProfiles200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -44723,11 +47119,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetCustomersByAttributes200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetCustomersByAttributes200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetCustomersByAttributes200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetCustomersByAttributes200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetCustomersByAttributes200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -45000,11 +47408,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetDashboardStatistics200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetDashboardStatistics200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetDashboardStatistics200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetDashboardStatistics200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetDashboardStatistics200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -45295,11 +47715,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetEventTypes200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetEventTypes200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetEventTypes200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetEventTypes200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetEventTypes200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -45538,11 +47970,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Experiment Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Experiment result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Experiment DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Experiment>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Experiment result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -45829,11 +48273,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetExports200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetExports200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetExports200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetExports200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetExports200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -46085,11 +48541,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.LoyaltyCard Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.LoyaltyCard result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.LoyaltyCard DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.LoyaltyCard>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.LoyaltyCard result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -46123,11 +48591,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -46161,11 +48641,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -46199,11 +48691,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -46534,11 +49038,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetLoyaltyCardTransactionLogs200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetLoyaltyCardTransactionLogs200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetLoyaltyCardTransactionLogs200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetLoyaltyCardTransactionLogs200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetLoyaltyCardTransactionLogs200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -46572,11 +49088,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -46610,11 +49138,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -46925,11 +49465,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetLoyaltyCards200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetLoyaltyCards200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetLoyaltyCards200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetLoyaltyCards200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetLoyaltyCards200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -46963,11 +49515,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -47001,11 +49565,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -47301,11 +49877,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.LoyaltyBalancesWithTiers Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.LoyaltyBalancesWithTiers result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.LoyaltyBalancesWithTiers DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.LoyaltyBalancesWithTiers>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.LoyaltyBalancesWithTiers result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -47339,11 +49927,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -47377,11 +49977,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -47415,11 +50027,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -47675,11 +50299,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.LoyaltyLedger Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.LoyaltyLedger result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.LoyaltyLedger DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.LoyaltyLedger>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.LoyaltyLedger result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -47911,11 +50547,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.LoyaltyProgram Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.LoyaltyProgram result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.LoyaltyProgram DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.LoyaltyProgram>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.LoyaltyProgram result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -48268,11 +50916,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -48306,11 +50966,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -48344,11 +51016,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -48382,11 +51066,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -48728,11 +51424,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetLoyaltyProgramTransactions200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetLoyaltyProgramTransactions200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetLoyaltyProgramTransactions200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetLoyaltyProgramTransactions200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetLoyaltyProgramTransactions200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -48766,11 +51474,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -48804,11 +51524,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -48842,11 +51574,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -49067,11 +51811,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetLoyaltyPrograms200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetLoyaltyPrograms200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetLoyaltyPrograms200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetLoyaltyPrograms200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetLoyaltyPrograms200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -49303,11 +52059,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.LoyaltyDashboardData Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.LoyaltyDashboardData result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.LoyaltyDashboardData DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.LoyaltyDashboardData>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.LoyaltyDashboardData result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -49340,7 +52108,7 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetMessageLogs(ref string entityType, ref Option<string> messageID, ref Option<string> changeType, ref Option<string> notificationIDs, ref Option<DateTime> createdBefore, ref Option<DateTime> createdAfter, ref Option<byte[]> cursor, ref Option<string> period, ref Option<bool> isSuccessful, ref Option<decimal> applicationId, ref Option<decimal> campaignId, ref Option<long> loyaltyProgramId, ref Option<long> responseCode, ref Option<string> webhookIDs);
+        partial void FormatGetMessageLogs(ref string entityType, ref Option<string> messageID, ref Option<string> changeType, ref Option<string> notificationIDs, ref Option<DateTime> createdBefore, ref Option<DateTime> createdAfter, ref Option<byte[]> cursor, ref Option<long> pageSize, ref Option<string> period, ref Option<bool> isSuccessful, ref Option<decimal> applicationId, ref Option<decimal> campaignId, ref Option<long> loyaltyProgramId, ref Option<long> responseCode, ref Option<string> webhookIDs);
 
         /// <summary>
         /// Validates the request parameters
@@ -49388,6 +52156,7 @@ namespace TalonOneSdk.Api
         /// <param name="createdBefore"></param>
         /// <param name="createdAfter"></param>
         /// <param name="cursor"></param>
+        /// <param name="pageSize"></param>
         /// <param name="period"></param>
         /// <param name="isSuccessful"></param>
         /// <param name="applicationId"></param>
@@ -49395,10 +52164,10 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId"></param>
         /// <param name="responseCode"></param>
         /// <param name="webhookIDs"></param>
-        private void AfterGetMessageLogsDefaultImplementation(IGetMessageLogsApiResponse apiResponseLocalVar, string entityType, Option<string> messageID, Option<string> changeType, Option<string> notificationIDs, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<byte[]> cursor, Option<string> period, Option<bool> isSuccessful, Option<decimal> applicationId, Option<decimal> campaignId, Option<long> loyaltyProgramId, Option<long> responseCode, Option<string> webhookIDs)
+        private void AfterGetMessageLogsDefaultImplementation(IGetMessageLogsApiResponse apiResponseLocalVar, string entityType, Option<string> messageID, Option<string> changeType, Option<string> notificationIDs, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<byte[]> cursor, Option<long> pageSize, Option<string> period, Option<bool> isSuccessful, Option<decimal> applicationId, Option<decimal> campaignId, Option<long> loyaltyProgramId, Option<long> responseCode, Option<string> webhookIDs)
         {
             bool suppressDefaultLog = false;
-            AfterGetMessageLogs(ref suppressDefaultLog, apiResponseLocalVar, entityType, messageID, changeType, notificationIDs, createdBefore, createdAfter, cursor, period, isSuccessful, applicationId, campaignId, loyaltyProgramId, responseCode, webhookIDs);
+            AfterGetMessageLogs(ref suppressDefaultLog, apiResponseLocalVar, entityType, messageID, changeType, notificationIDs, createdBefore, createdAfter, cursor, pageSize, period, isSuccessful, applicationId, campaignId, loyaltyProgramId, responseCode, webhookIDs);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -49415,6 +52184,7 @@ namespace TalonOneSdk.Api
         /// <param name="createdBefore"></param>
         /// <param name="createdAfter"></param>
         /// <param name="cursor"></param>
+        /// <param name="pageSize"></param>
         /// <param name="period"></param>
         /// <param name="isSuccessful"></param>
         /// <param name="applicationId"></param>
@@ -49422,7 +52192,7 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId"></param>
         /// <param name="responseCode"></param>
         /// <param name="webhookIDs"></param>
-        partial void AfterGetMessageLogs(ref bool suppressDefaultLog, IGetMessageLogsApiResponse apiResponseLocalVar, string entityType, Option<string> messageID, Option<string> changeType, Option<string> notificationIDs, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<byte[]> cursor, Option<string> period, Option<bool> isSuccessful, Option<decimal> applicationId, Option<decimal> campaignId, Option<long> loyaltyProgramId, Option<long> responseCode, Option<string> webhookIDs);
+        partial void AfterGetMessageLogs(ref bool suppressDefaultLog, IGetMessageLogsApiResponse apiResponseLocalVar, string entityType, Option<string> messageID, Option<string> changeType, Option<string> notificationIDs, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<byte[]> cursor, Option<long> pageSize, Option<string> period, Option<bool> isSuccessful, Option<decimal> applicationId, Option<decimal> campaignId, Option<long> loyaltyProgramId, Option<long> responseCode, Option<string> webhookIDs);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -49437,6 +52207,7 @@ namespace TalonOneSdk.Api
         /// <param name="createdBefore"></param>
         /// <param name="createdAfter"></param>
         /// <param name="cursor"></param>
+        /// <param name="pageSize"></param>
         /// <param name="period"></param>
         /// <param name="isSuccessful"></param>
         /// <param name="applicationId"></param>
@@ -49444,10 +52215,10 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId"></param>
         /// <param name="responseCode"></param>
         /// <param name="webhookIDs"></param>
-        private void OnErrorGetMessageLogsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string entityType, Option<string> messageID, Option<string> changeType, Option<string> notificationIDs, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<byte[]> cursor, Option<string> period, Option<bool> isSuccessful, Option<decimal> applicationId, Option<decimal> campaignId, Option<long> loyaltyProgramId, Option<long> responseCode, Option<string> webhookIDs)
+        private void OnErrorGetMessageLogsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string entityType, Option<string> messageID, Option<string> changeType, Option<string> notificationIDs, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<byte[]> cursor, Option<long> pageSize, Option<string> period, Option<bool> isSuccessful, Option<decimal> applicationId, Option<decimal> campaignId, Option<long> loyaltyProgramId, Option<long> responseCode, Option<string> webhookIDs)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetMessageLogs(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, entityType, messageID, changeType, notificationIDs, createdBefore, createdAfter, cursor, period, isSuccessful, applicationId, campaignId, loyaltyProgramId, responseCode, webhookIDs);
+            OnErrorGetMessageLogs(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, entityType, messageID, changeType, notificationIDs, createdBefore, createdAfter, cursor, pageSize, period, isSuccessful, applicationId, campaignId, loyaltyProgramId, responseCode, webhookIDs);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -49466,6 +52237,7 @@ namespace TalonOneSdk.Api
         /// <param name="createdBefore"></param>
         /// <param name="createdAfter"></param>
         /// <param name="cursor"></param>
+        /// <param name="pageSize"></param>
         /// <param name="period"></param>
         /// <param name="isSuccessful"></param>
         /// <param name="applicationId"></param>
@@ -49473,7 +52245,7 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId"></param>
         /// <param name="responseCode"></param>
         /// <param name="webhookIDs"></param>
-        partial void OnErrorGetMessageLogs(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string entityType, Option<string> messageID, Option<string> changeType, Option<string> notificationIDs, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<byte[]> cursor, Option<string> period, Option<bool> isSuccessful, Option<decimal> applicationId, Option<decimal> campaignId, Option<long> loyaltyProgramId, Option<long> responseCode, Option<string> webhookIDs);
+        partial void OnErrorGetMessageLogs(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string entityType, Option<string> messageID, Option<string> changeType, Option<string> notificationIDs, Option<DateTime> createdBefore, Option<DateTime> createdAfter, Option<byte[]> cursor, Option<long> pageSize, Option<string> period, Option<bool> isSuccessful, Option<decimal> applicationId, Option<decimal> campaignId, Option<long> loyaltyProgramId, Option<long> responseCode, Option<string> webhookIDs);
 
         /// <summary>
         /// List message log entries Retrieve all message log entries.
@@ -49485,6 +52257,7 @@ namespace TalonOneSdk.Api
         /// <param name="createdBefore">Filter results where request and response times to return entries before parameter value, expected to be an RFC3339 timestamp string. Use UTC time. (optional)</param>
         /// <param name="createdAfter">Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string. Use UTC time. (optional)</param>
         /// <param name="cursor">A specific unique value in the database. If this value is not given, the server fetches results starting with the first record.  (optional)</param>
+        /// <param name="pageSize">The maximum number of message log entries to return. (optional, default to 50)</param>
         /// <param name="period">Filter results by time period. Choose between the available relative time frames.  (optional)</param>
         /// <param name="isSuccessful">Indicates whether to return log entries with either successful or unsuccessful HTTP response codes. When set to&#x60;true&#x60;, only log entries with &#x60;2xx&#x60; response codes are returned. When set to &#x60;false&#x60;, only log entries with &#x60;4xx&#x60; and &#x60;5xx&#x60; response codes are returned.  (optional)</param>
         /// <param name="applicationId">Filter results by Application ID. (optional)</param>
@@ -49494,11 +52267,11 @@ namespace TalonOneSdk.Api
         /// <param name="webhookIDs">Filter results by webhook ID (include up to 30 values, separated by a comma). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMessageLogsApiResponse"/>&gt;</returns>
-        public async Task<IGetMessageLogsApiResponse> GetMessageLogsOrDefaultAsync(string entityType, Option<string> messageID = default, Option<string> changeType = default, Option<string> notificationIDs = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<byte[]> cursor = default, Option<string> period = default, Option<bool> isSuccessful = default, Option<decimal> applicationId = default, Option<decimal> campaignId = default, Option<long> loyaltyProgramId = default, Option<long> responseCode = default, Option<string> webhookIDs = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetMessageLogsApiResponse> GetMessageLogsOrDefaultAsync(string entityType, Option<string> messageID = default, Option<string> changeType = default, Option<string> notificationIDs = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<byte[]> cursor = default, Option<long> pageSize = default, Option<string> period = default, Option<bool> isSuccessful = default, Option<decimal> applicationId = default, Option<decimal> campaignId = default, Option<long> loyaltyProgramId = default, Option<long> responseCode = default, Option<string> webhookIDs = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetMessageLogsAsync(entityType, messageID, changeType, notificationIDs, createdBefore, createdAfter, cursor, period, isSuccessful, applicationId, campaignId, loyaltyProgramId, responseCode, webhookIDs, cancellationToken).ConfigureAwait(false);
+                return await GetMessageLogsAsync(entityType, messageID, changeType, notificationIDs, createdBefore, createdAfter, cursor, pageSize, period, isSuccessful, applicationId, campaignId, loyaltyProgramId, responseCode, webhookIDs, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -49517,6 +52290,7 @@ namespace TalonOneSdk.Api
         /// <param name="createdBefore">Filter results where request and response times to return entries before parameter value, expected to be an RFC3339 timestamp string. Use UTC time. (optional)</param>
         /// <param name="createdAfter">Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string. Use UTC time. (optional)</param>
         /// <param name="cursor">A specific unique value in the database. If this value is not given, the server fetches results starting with the first record.  (optional)</param>
+        /// <param name="pageSize">The maximum number of message log entries to return. (optional, default to 50)</param>
         /// <param name="period">Filter results by time period. Choose between the available relative time frames.  (optional)</param>
         /// <param name="isSuccessful">Indicates whether to return log entries with either successful or unsuccessful HTTP response codes. When set to&#x60;true&#x60;, only log entries with &#x60;2xx&#x60; response codes are returned. When set to &#x60;false&#x60;, only log entries with &#x60;4xx&#x60; and &#x60;5xx&#x60; response codes are returned.  (optional)</param>
         /// <param name="applicationId">Filter results by Application ID. (optional)</param>
@@ -49526,7 +52300,7 @@ namespace TalonOneSdk.Api
         /// <param name="webhookIDs">Filter results by webhook ID (include up to 30 values, separated by a comma). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMessageLogsApiResponse"/>&gt;</returns>
-        public async Task<IGetMessageLogsApiResponse> GetMessageLogsAsync(string entityType, Option<string> messageID = default, Option<string> changeType = default, Option<string> notificationIDs = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<byte[]> cursor = default, Option<string> period = default, Option<bool> isSuccessful = default, Option<decimal> applicationId = default, Option<decimal> campaignId = default, Option<long> loyaltyProgramId = default, Option<long> responseCode = default, Option<string> webhookIDs = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetMessageLogsApiResponse> GetMessageLogsAsync(string entityType, Option<string> messageID = default, Option<string> changeType = default, Option<string> notificationIDs = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<byte[]> cursor = default, Option<long> pageSize = default, Option<string> period = default, Option<bool> isSuccessful = default, Option<decimal> applicationId = default, Option<decimal> campaignId = default, Option<long> loyaltyProgramId = default, Option<long> responseCode = default, Option<string> webhookIDs = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -49534,7 +52308,7 @@ namespace TalonOneSdk.Api
             {
                 ValidateGetMessageLogs(entityType, messageID, changeType, notificationIDs, cursor, period, webhookIDs);
 
-                FormatGetMessageLogs(ref entityType, ref messageID, ref changeType, ref notificationIDs, ref createdBefore, ref createdAfter, ref cursor, ref period, ref isSuccessful, ref applicationId, ref campaignId, ref loyaltyProgramId, ref responseCode, ref webhookIDs);
+                FormatGetMessageLogs(ref entityType, ref messageID, ref changeType, ref notificationIDs, ref createdBefore, ref createdAfter, ref cursor, ref pageSize, ref period, ref isSuccessful, ref applicationId, ref campaignId, ref loyaltyProgramId, ref responseCode, ref webhookIDs);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -49566,6 +52340,9 @@ namespace TalonOneSdk.Api
 
                     if (cursor.IsSet)
                         parseQueryStringLocalVar["cursor"] = ClientUtils.ParameterToString(cursor.Value);
+
+                    if (pageSize.IsSet)
+                        parseQueryStringLocalVar["pageSize"] = ClientUtils.ParameterToString(pageSize.Value);
 
                     if (period.IsSet)
                         parseQueryStringLocalVar["period"] = ClientUtils.ParameterToString(period.Value);
@@ -49622,7 +52399,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterGetMessageLogsDefaultImplementation(apiResponseLocalVar, entityType, messageID, changeType, notificationIDs, createdBefore, createdAfter, cursor, period, isSuccessful, applicationId, campaignId, loyaltyProgramId, responseCode, webhookIDs);
+                        AfterGetMessageLogsDefaultImplementation(apiResponseLocalVar, entityType, messageID, changeType, notificationIDs, createdBefore, createdAfter, cursor, pageSize, period, isSuccessful, applicationId, campaignId, loyaltyProgramId, responseCode, webhookIDs);
 
                         Events.ExecuteOnGetMessageLogs(apiResponseLocalVar);
 
@@ -49636,7 +52413,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorGetMessageLogsDefaultImplementation(e, "/v1/message_logs", uriBuilderLocalVar.Path, entityType, messageID, changeType, notificationIDs, createdBefore, createdAfter, cursor, period, isSuccessful, applicationId, campaignId, loyaltyProgramId, responseCode, webhookIDs);
+                OnErrorGetMessageLogsDefaultImplementation(e, "/v1/message_logs", uriBuilderLocalVar.Path, entityType, messageID, changeType, notificationIDs, createdBefore, createdAfter, cursor, pageSize, period, isSuccessful, applicationId, campaignId, loyaltyProgramId, responseCode, webhookIDs);
                 Events.ExecuteOnErrorGetMessageLogs(e);
                 throw;
             }
@@ -49698,11 +52475,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.MessageLogEntries Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.MessageLogEntries result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.MessageLogEntries DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.MessageLogEntries>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.MessageLogEntries result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -50055,11 +52844,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetReferralsWithoutTotalCount200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetReferralsWithoutTotalCount200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetReferralsWithoutTotalCount200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetReferralsWithoutTotalCount200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetReferralsWithoutTotalCount200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -50291,11 +53092,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.RoleV2 Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.RoleV2 result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.RoleV2 DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.RoleV2>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.RoleV2 result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -50541,11 +53354,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Ruleset Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Ruleset result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Ruleset DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Ruleset>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Ruleset result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -50791,11 +53616,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.RulesetV2 Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.RulesetV2 result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.RulesetV2 DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.RulesetV2>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.RulesetV2 result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -51078,11 +53915,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetRulesets200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetRulesets200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetRulesets200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetRulesets200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetRulesets200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -51334,11 +54183,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Store Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Store result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Store DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Store>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Store result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -51372,11 +54233,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -51608,11 +54481,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.User Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.User result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.User DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.User>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.User result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -51881,11 +54766,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetUsers200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetUsers200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetUsers200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetUsers200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetUsers200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -52117,11 +55014,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Webhook Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Webhook result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Webhook DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Webhook>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Webhook result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -52451,11 +55360,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetWebhooks200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetWebhooks200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetWebhooks200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetWebhooks200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetWebhooks200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -52726,11 +55647,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Import Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Import result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Import DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Import>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Import result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -52764,11 +55697,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -52802,11 +55747,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -53077,11 +56034,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Import Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Import result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Import DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Import>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Import result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -53115,11 +56084,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -53153,11 +56134,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -53191,11 +56184,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -53466,11 +56471,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Import Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Import result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Import DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Import>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Import result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -53504,11 +56521,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -53542,11 +56571,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -53580,11 +56621,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -53892,11 +56945,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Import Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Import result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Import DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Import>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.Import result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -53930,11 +56995,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -54212,11 +57289,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Import Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Import result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Import DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Import>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Import result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -54250,11 +57339,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -54288,11 +57389,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -54326,11 +57439,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -54615,11 +57740,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Import Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Import result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Import DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Import>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Import result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -54653,11 +57790,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -54948,11 +58097,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Import Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Import result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Import DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Import>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Import result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -55223,11 +58384,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Import Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Import result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Import DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Import>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Import result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -55261,11 +58434,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -55299,11 +58484,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -55574,11 +58771,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Import Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Import result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Import DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Import>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Import result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -55612,11 +58821,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -55650,11 +58871,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -55688,11 +58921,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -55963,11 +59208,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Import Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Import result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Import DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Import>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Import result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -56001,11 +59258,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -56039,11 +59308,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -56077,11 +59358,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -56365,11 +59658,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Import Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Import result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Import DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Import>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Import result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -56640,11 +59945,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Import Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Import result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Import DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Import>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Import result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -56922,11 +60239,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Import Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Import result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Import DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Import>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Import result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -57438,11 +60767,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ListAccountCollections200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ListAccountCollections200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ListAccountCollections200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ListAccountCollections200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ListAccountCollections200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -57476,11 +60817,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -57514,11 +60867,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -57552,11 +60917,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -57839,11 +61216,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ListAchievements200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ListAchievements200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ListAchievements200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ListAchievements200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ListAchievements200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -58134,11 +61523,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ListAchievementsV2200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ListAchievementsV2200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ListAchievementsV2200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ListAchievementsV2200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ListAchievementsV2200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -58172,11 +61573,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -58210,11 +61623,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -58435,11 +61860,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ListAllRolesV2200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ListAllRolesV2200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ListAllRolesV2200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ListAllRolesV2200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ListAllRolesV2200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -58715,11 +62152,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ListApplicationCartItemFilters200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ListApplicationCartItemFilters200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ListApplicationCartItemFilters200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ListApplicationCartItemFilters200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ListApplicationCartItemFilters200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -58997,11 +62446,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ListCampaignStoreBudgetLimits200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ListCampaignStoreBudgetLimits200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ListCampaignStoreBudgetLimits200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ListCampaignStoreBudgetLimits200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ListCampaignStoreBudgetLimits200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -59035,11 +62496,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -59073,11 +62546,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -59111,11 +62596,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -59413,11 +62910,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ListCatalogItems200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ListCatalogItems200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ListCatalogItems200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ListCatalogItems200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ListCatalogItems200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -59722,11 +63231,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ListAccountCollections200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ListAccountCollections200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ListAccountCollections200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ListAccountCollections200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ListAccountCollections200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -59760,11 +63281,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -60062,11 +63595,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ListAccountCollections200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ListAccountCollections200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ListAccountCollections200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ListAccountCollections200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ListAccountCollections200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -60100,11 +63645,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -60380,11 +63937,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ListExperiments200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ListExperiments200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ListExperiments200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ListExperiments200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ListExperiments200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -60717,11 +64286,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ListStores200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ListStores200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ListStores200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ListStores200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ListStores200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -61169,11 +64750,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.PriceHistoryResponse Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.PriceHistoryResponse result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.PriceHistoryResponse DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.PriceHistoryResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.PriceHistoryResponse result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -61458,11 +65051,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -61496,11 +65101,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -61534,11 +65151,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -61795,11 +65424,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.NewPassword NoContent()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.NewPassword result = default;
+                OnNoContent(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNoContent();
+                return result;
+            }
+
+            private TalonOneSdk.Model.NewPassword DefaultNoContent()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNoContent
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.NewPassword>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNoContent(ref bool suppressDefault, ref TalonOneSdk.Model.NewPassword result);
 
             /// <summary>
             /// Returns true if the response is 204 NoContent and the deserialized response is not null
@@ -62056,11 +65697,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ScimGroup Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ScimGroup result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ScimGroup DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ScimGroup>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.ScimGroup result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -62317,11 +65970,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ScimUser Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ScimUser result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ScimUser DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ScimUser>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.ScimUser result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -62943,11 +66608,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ScimGroup Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ScimGroup result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ScimGroup DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ScimGroup>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ScimGroup result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -63168,11 +66845,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ScimGroupsListResponse Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ScimGroupsListResponse result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ScimGroupsListResponse DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ScimGroupsListResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ScimGroupsListResponse result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -63393,11 +67082,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ScimResourceTypesListResponse Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ScimResourceTypesListResponse result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ScimResourceTypesListResponse DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ScimResourceTypesListResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ScimResourceTypesListResponse result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -63618,11 +67319,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ScimSchemasListResponse Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ScimSchemasListResponse result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ScimSchemasListResponse DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ScimSchemasListResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ScimSchemasListResponse result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -63843,11 +67556,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ScimServiceProviderConfigResponse Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ScimServiceProviderConfigResponse result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ScimServiceProviderConfigResponse DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ScimServiceProviderConfigResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ScimServiceProviderConfigResponse result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -64079,11 +67804,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ScimUser Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ScimUser result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ScimUser DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ScimUser>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ScimUser result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -64304,11 +68041,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ScimUsersListResponse Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ScimUsersListResponse result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ScimUsersListResponse DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ScimUsersListResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ScimUsersListResponse result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -64572,11 +68321,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ScimGroup Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ScimGroup result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ScimGroup DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ScimGroup>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ScimGroup result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -64840,11 +68601,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ScimUser Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ScimUser result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ScimUser DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ScimUser>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ScimUser result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -65108,11 +68881,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ScimGroup Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ScimGroup result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ScimGroup DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ScimGroup>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ScimGroup result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -65376,11 +69161,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ScimUser Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ScimUser result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ScimUser DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ScimUser>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ScimUser result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -65793,11 +69590,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -66204,11 +70013,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -66447,11 +70268,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.SummarizeCampaignStoreBudget200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.SummarizeCampaignStoreBudget200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.SummarizeCampaignStoreBudget200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.SummarizeCampaignStoreBudget200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.SummarizeCampaignStoreBudget200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -66485,11 +70318,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -66523,11 +70368,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -66561,11 +70418,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -66846,11 +70715,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -66884,11 +70765,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -66922,11 +70815,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -67190,11 +71095,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public Collection Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Collection result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Collection DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Collection>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Collection result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -67228,11 +71145,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -67266,11 +71195,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -67304,11 +71245,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Conflict()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnConflict(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultConflict();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultConflict()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsConflict
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnConflict(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 409 Conflict and the deserialized response is not null
@@ -67586,11 +71539,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Achievement Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Achievement result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Achievement DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Achievement>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Achievement result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -67624,11 +71589,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -67662,11 +71639,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -67700,11 +71689,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -67968,11 +71969,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.AchievementV2 Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.AchievementV2 result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.AchievementV2 DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.AchievementV2>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.AchievementV2 result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -68006,11 +72019,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -68044,11 +72069,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -68082,11 +72119,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -68350,11 +72399,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.AccountAdditionalCost Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.AccountAdditionalCost result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.AccountAdditionalCost DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.AccountAdditionalCost>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.AccountAdditionalCost result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -68618,11 +72679,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Attribute Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Attribute result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Attribute DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Attribute>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Attribute result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -68893,11 +72966,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Campaign Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Campaign result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Campaign DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Campaign>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Campaign result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -69175,11 +73260,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public Collection Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Collection result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Collection DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Collection>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Collection result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -69213,11 +73310,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -69499,11 +73608,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Coupon Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Coupon result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Coupon DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Coupon>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Coupon result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -70013,11 +74134,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.LoyaltyCard Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.LoyaltyCard result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.LoyaltyCard DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.LoyaltyCard>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.LoyaltyCard result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -70051,11 +74184,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -70089,11 +74234,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -70127,11 +74284,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -70413,11 +74582,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Referral Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Referral result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Referral DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Referral>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Referral result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -70681,11 +74862,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.RoleV2 Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.RoleV2 result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.RoleV2 DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.RoleV2>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.RoleV2 result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -70960,11 +75153,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Store Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Store result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Store DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Store>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Store result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -70998,11 +75203,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -71036,11 +75253,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -71304,11 +75533,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.User Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.User result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.User DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.User>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.User result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null

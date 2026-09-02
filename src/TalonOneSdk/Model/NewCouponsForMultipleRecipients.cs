@@ -37,11 +37,12 @@ namespace TalonOneSdk.Model
         /// <param name="reservationLimit">The number of reservations that can be made with this coupon code. </param>
         /// <param name="startDate">Timestamp at which point the coupon becomes valid.</param>
         /// <param name="expiryDate">Expiration date of the coupon. Coupon never expires if this is omitted.</param>
+        /// <param name="batchId">The batch ID that all coupons created by the request will bear. If omitted, a batch ID is generated automatically.</param>
         /// <param name="attributes">Arbitrary properties associated with this item.</param>
         /// <param name="validCharacters">List of characters used to generate the random parts of a code. By default, the list of characters is equivalent to the &#x60;[A-Z, 0-9]&#x60; regular expression. </param>
         /// <param name="couponPattern">The pattern used to generate coupon codes. The character &#x60;#&#x60; is a placeholder and is replaced by a random character from the &#x60;validCharacters&#x60; set. </param>
         [JsonConstructor]
-        public NewCouponsForMultipleRecipients(List<string> recipientsIntegrationIds, Option<long?> usageLimit = default, Option<decimal?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<Object> attributes = default, Option<List<string>> validCharacters = default, Option<string> couponPattern = default)
+        public NewCouponsForMultipleRecipients(List<string> recipientsIntegrationIds, Option<long?> usageLimit = default, Option<decimal?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<string> batchId = default, Option<Object> attributes = default, Option<List<string>> validCharacters = default, Option<string> couponPattern = default)
         {
             RecipientsIntegrationIds = recipientsIntegrationIds;
             UsageLimitOption = usageLimit;
@@ -49,6 +50,7 @@ namespace TalonOneSdk.Model
             ReservationLimitOption = reservationLimit;
             StartDateOption = startDate;
             ExpiryDateOption = expiryDate;
+            BatchIdOption = batchId;
             AttributesOption = attributes;
             ValidCharactersOption = validCharacters;
             CouponPatternOption = couponPattern;
@@ -141,6 +143,21 @@ namespace TalonOneSdk.Model
         public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
+        /// Used to track the state of BatchId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> BatchIdOption { get; private set; }
+
+        /// <summary>
+        /// The batch ID that all coupons created by the request will bear. If omitted, a batch ID is generated automatically.
+        /// </summary>
+        /// <value>The batch ID that all coupons created by the request will bear. If omitted, a batch ID is generated automatically.</value>
+        /* <example>3rdparty_fjsieoaa</example> */
+        [JsonPropertyName("batchId")]
+        public string BatchId { get { return this.BatchIdOption.Value; } set { this.BatchIdOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Used to track the state of Attributes
         /// </summary>
         [JsonIgnore]
@@ -199,6 +216,7 @@ namespace TalonOneSdk.Model
             sb.Append("  ReservationLimit: ").Append(ReservationLimit).Append("\n");
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
+            sb.Append("  BatchId: ").Append(BatchId).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  ValidCharacters: ").Append(ValidCharacters).Append("\n");
             sb.Append("  CouponPattern: ").Append(CouponPattern).Append("\n");
@@ -313,6 +331,7 @@ namespace TalonOneSdk.Model
             Option<long?> reservationLimit = default;
             Option<DateTime?> startDate = default;
             Option<DateTime?> expiryDate = default;
+            Option<string> batchId = default;
             Option<Object> attributes = default;
             Option<List<string>> validCharacters = default;
             Option<string> couponPattern = default;
@@ -350,6 +369,9 @@ namespace TalonOneSdk.Model
                         case "expiryDate":
                             expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "batchId":
+                            batchId = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         case "attributes":
                             attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -371,7 +393,7 @@ namespace TalonOneSdk.Model
             if (recipientsIntegrationIds.IsSet && recipientsIntegrationIds.Value == null)
                 throw new ArgumentNullException(nameof(recipientsIntegrationIds), "Property is not nullable for class NewCouponsForMultipleRecipients.");
 
-            return new NewCouponsForMultipleRecipients(recipientsIntegrationIds.Value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, attributes, validCharacters, couponPattern);
+            return new NewCouponsForMultipleRecipients(recipientsIntegrationIds.Value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, batchId, attributes, validCharacters, couponPattern);
         }
 
         /// <summary>
@@ -417,6 +439,9 @@ namespace TalonOneSdk.Model
 
             if (newCouponsForMultipleRecipients.ExpiryDateOption.IsSet)
                 writer.WriteString("expiryDate", newCouponsForMultipleRecipients.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
+
+            if (newCouponsForMultipleRecipients.BatchIdOption.IsSet)
+                writer.WriteString("batchId", newCouponsForMultipleRecipients.BatchId);
 
             if (newCouponsForMultipleRecipients.AttributesOption.IsSet)
             {

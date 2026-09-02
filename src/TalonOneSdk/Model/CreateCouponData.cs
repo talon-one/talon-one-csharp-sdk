@@ -275,7 +275,12 @@ namespace TalonOneSdk.Model
                         case "NotificationType":
                             string notificationTypeRawValue = utf8JsonReader.GetString();
                             if (notificationTypeRawValue != null)
-                                notificationType = new Option<CreateCouponData.NotificationTypeEnum?>(CreateCouponData.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue));
+                            {
+                                CreateCouponData.NotificationTypeEnum? notificationTypeValue = CreateCouponData.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue);
+                                if (notificationTypeValue == null)
+                                    throw new JsonException();
+                                notificationType = new Option<CreateCouponData.NotificationTypeEnum?>(notificationTypeValue);
+                            }
                             break;
                         case "data":
                             data = new Option<List<ExtendedCoupon>>(JsonSerializer.Deserialize<List<ExtendedCoupon>>(ref utf8JsonReader, jsonSerializerOptions));

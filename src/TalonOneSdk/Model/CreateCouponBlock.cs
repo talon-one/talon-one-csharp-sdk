@@ -31,27 +31,27 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateCouponBlock" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="campaignId">campaignId</param>
         /// <param name="recipientId">The integration ID of the customer that is allowed to redeem this coupon.</param>
         /// <param name="storeInSession">When &#x60;true&#x60;, the coupon is stored in the session.</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="usageLimit">usageLimit</param>
         /// <param name="discountLimit">discountLimit</param>
-        /// <param name="startDate">startDate</param>
-        /// <param name="expiryDate">expiryDate</param>
-        /// <param name="attributes">attributes</param>
+        /// <param name="startDate">Timestamp at which point the coupon becomes valid.</param>
+        /// <param name="expiryDate">Expiration date of the coupon. Coupon never expires if this is omitted.</param>
+        /// <param name="attributes">Custom attributes associated with this coupon code.</param>
         /// <param name="validCharacters">Characters used to generate the random parts of a code.</param>
         /// <param name="pattern">The pattern used to generate codes, such as coupon codes, referral codes, and loyalty cards. The character &#x60;#&#x60; is a placeholder and is replaced by a random character from the &#x60;validCharacters&#x60; set. </param>
         [JsonConstructor]
-        public CreateCouponBlock(string id, string type, CreateCouponBlock1CampaignId campaignId, string recipientId, bool storeInSession, Option<List<string>> tags = default, Option<CreateCouponBlock1UsageLimit> usageLimit = default, Option<CreateCouponBlock1DiscountLimit> discountLimit = default, Option<Object> startDate = default, Option<Object> expiryDate = default, Option<Object> attributes = default, Option<string> validCharacters = default, Option<string> pattern = default)
+        public CreateCouponBlock(string type, CreateCouponBlock1CampaignId campaignId, string recipientId, bool storeInSession, Option<string> id = default, Option<List<string>> tags = default, Option<CreateCouponBlock1UsageLimit> usageLimit = default, Option<CreateCouponBlock1DiscountLimit> discountLimit = default, Option<Object> startDate = default, Option<Object> expiryDate = default, Option<Object> attributes = default, Option<string> validCharacters = default, Option<string> pattern = default)
         {
-            Id = id;
             Type = type;
             CampaignId = campaignId;
             RecipientId = recipientId;
             StoreInSession = storeInSession;
+            IdOption = id;
             TagsOption = tags;
             UsageLimitOption = usageLimit;
             DiscountLimitOption = discountLimit;
@@ -64,14 +64,6 @@ namespace TalonOneSdk.Model
         }
 
         partial void OnCreated();
-
-        /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
 
         /// <summary>
         /// Identifies the block variant and determines which additional properties are present in it.
@@ -103,18 +95,33 @@ namespace TalonOneSdk.Model
         public bool StoreInSession { get; set; }
 
         /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
+
+        /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> TagsOption { get; private set; }
+        public Option<List<string>> TagsOption { get; }
 
         /// <summary>
         /// Semantic labels attached to this block.
         /// </summary>
         /// <value>Semantic labels attached to this block.</value>
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
         /// Used to track the state of UsageLimit
@@ -150,8 +157,10 @@ namespace TalonOneSdk.Model
         public Option<Object> StartDateOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets StartDate
+        /// Timestamp at which point the coupon becomes valid.
         /// </summary>
+        /// <value>Timestamp at which point the coupon becomes valid.</value>
+        /* <example>2024-12-24T14:15:22Z</example> */
         [JsonPropertyName("startDate")]
         public Object StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<Object>(value); } }
 
@@ -163,8 +172,10 @@ namespace TalonOneSdk.Model
         public Option<Object> ExpiryDateOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ExpiryDate
+        /// Expiration date of the coupon. Coupon never expires if this is omitted.
         /// </summary>
+        /// <value>Expiration date of the coupon. Coupon never expires if this is omitted.</value>
+        /* <example>2024-12-24T14:15:22Z</example> */
         [JsonPropertyName("expiryDate")]
         public Object ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<Object>(value); } }
 
@@ -176,8 +187,9 @@ namespace TalonOneSdk.Model
         public Option<Object> AttributesOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Attributes
+        /// Custom attributes associated with this coupon code.
         /// </summary>
+        /// <value>Custom attributes associated with this coupon code.</value>
         [JsonPropertyName("attributes")]
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
@@ -219,11 +231,11 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateCouponBlock {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
             sb.Append("  RecipientId: ").Append(RecipientId).Append("\n");
             sb.Append("  StoreInSession: ").Append(StoreInSession).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  UsageLimit: ").Append(UsageLimit).Append("\n");
             sb.Append("  DiscountLimit: ").Append(DiscountLimit).Append("\n");
@@ -279,11 +291,11 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<string> type = default;
             Option<CreateCouponBlock1CampaignId> campaignId = default;
             Option<string> recipientId = default;
             Option<bool?> storeInSession = default;
+            Option<string> id = default;
             Option<List<string>> tags = default;
             Option<CreateCouponBlock1UsageLimit> usageLimit = default;
             Option<CreateCouponBlock1DiscountLimit> discountLimit = default;
@@ -308,9 +320,6 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -322,6 +331,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "storeInSession":
                             storeInSession = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -353,9 +365,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CreateCouponBlock.", nameof(id));
-
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class CreateCouponBlock.", nameof(type));
 
@@ -367,9 +376,6 @@ namespace TalonOneSdk.Model
 
             if (!storeInSession.IsSet)
                 throw new ArgumentException("Property is required for class CreateCouponBlock.", nameof(storeInSession));
-
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CreateCouponBlock.");
 
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class CreateCouponBlock.");
@@ -383,7 +389,7 @@ namespace TalonOneSdk.Model
             if (storeInSession.IsSet && storeInSession.Value == null)
                 throw new ArgumentNullException(nameof(storeInSession), "Property is not nullable for class CreateCouponBlock.");
 
-            return new CreateCouponBlock(id.Value, type.Value, campaignId.Value, recipientId.Value, storeInSession.Value.Value, tags, usageLimit, discountLimit, startDate, expiryDate, attributes, validCharacters, pattern);
+            return new CreateCouponBlock(type.Value, campaignId.Value, recipientId.Value, storeInSession.Value.Value, id, tags, usageLimit, discountLimit, startDate, expiryDate, attributes, validCharacters, pattern);
         }
 
         /// <summary>
@@ -410,9 +416,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateCouponBlock createCouponBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createCouponBlock.Id == null)
-                throw new ArgumentNullException(nameof(createCouponBlock.Id), "Property is required for class CreateCouponBlock.");
-
             if (createCouponBlock.Type == null)
                 throw new ArgumentNullException(nameof(createCouponBlock.Type), "Property is required for class CreateCouponBlock.");
 
@@ -422,8 +425,6 @@ namespace TalonOneSdk.Model
             if (createCouponBlock.RecipientId == null)
                 throw new ArgumentNullException(nameof(createCouponBlock.RecipientId), "Property is required for class CreateCouponBlock.");
 
-            writer.WriteString("id", createCouponBlock.Id);
-
             writer.WriteString("type", createCouponBlock.Type);
 
             writer.WritePropertyName("campaignId");
@@ -431,6 +432,9 @@ namespace TalonOneSdk.Model
             writer.WriteString("recipientId", createCouponBlock.RecipientId);
 
             writer.WriteBoolean("storeInSession", createCouponBlock.StoreInSession);
+
+            if (createCouponBlock.IdOption.IsSet)
+                writer.WriteString("id", createCouponBlock.Id);
 
             if (createCouponBlock.TagsOption.IsSet)
             {

@@ -41,9 +41,10 @@ namespace TalonOneSdk.Model
         /// <param name="ruleFailureReasons">The reasons why certain rules were not triggered during the event processing. </param>
         /// <param name="awardedGiveaways">The giveaways that were awarded during the event processing.</param>
         /// <param name="achievements">The achievements progress of the customer.</param>
+        /// <param name="rewards">The unlocked rewards for the customer profile.</param>
         /// <param name="event">The event that was processed.</param>
         [JsonConstructor]
-        public IntegrationEventV2Response(List<Effect> effects, List<Coupon> createdCoupons, List<Referral> createdReferrals, Option<CustomerProfile> customerProfile = default, Option<Loyalty> loyalty = default, Option<List<Campaign>> triggeredCampaigns = default, Option<List<CampaignEligibility>> campaignEligibility = default, Option<List<RuleFailureReason>> ruleFailureReasons = default, Option<List<Giveaway>> awardedGiveaways = default, Option<List<CustomerAchievement>> achievements = default, Option<Event> @event = default)
+        public IntegrationEventV2Response(List<Effect> effects, List<Coupon> createdCoupons, List<Referral> createdReferrals, Option<CustomerProfile> customerProfile = default, Option<Loyalty> loyalty = default, Option<List<Campaign>> triggeredCampaigns = default, Option<List<CampaignEligibility>> campaignEligibility = default, Option<List<RuleFailureReason>> ruleFailureReasons = default, Option<List<Giveaway>> awardedGiveaways = default, Option<List<CustomerAchievement>> achievements = default, Option<List<RewardWithUnlocks>> rewards = default, Option<Event> @event = default)
         {
             Effects = effects;
             CreatedCoupons = createdCoupons;
@@ -55,6 +56,7 @@ namespace TalonOneSdk.Model
             RuleFailureReasonsOption = ruleFailureReasons;
             AwardedGiveawaysOption = awardedGiveaways;
             AchievementsOption = achievements;
+            RewardsOption = rewards;
             EventOption = @event;
             OnCreated();
         }
@@ -181,6 +183,20 @@ namespace TalonOneSdk.Model
         public List<CustomerAchievement> Achievements { get { return this.AchievementsOption.Value; } set { this.AchievementsOption = new Option<List<CustomerAchievement>>(value); } }
 
         /// <summary>
+        /// Used to track the state of Rewards
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<RewardWithUnlocks>> RewardsOption { get; private set; }
+
+        /// <summary>
+        /// The unlocked rewards for the customer profile.
+        /// </summary>
+        /// <value>The unlocked rewards for the customer profile.</value>
+        [JsonPropertyName("rewards")]
+        public List<RewardWithUnlocks> Rewards { get { return this.RewardsOption.Value; } set { this.RewardsOption = new Option<List<RewardWithUnlocks>>(value); } }
+
+        /// <summary>
         /// Used to track the state of Event
         /// </summary>
         [JsonIgnore]
@@ -212,6 +228,7 @@ namespace TalonOneSdk.Model
             sb.Append("  RuleFailureReasons: ").Append(RuleFailureReasons).Append("\n");
             sb.Append("  AwardedGiveaways: ").Append(AwardedGiveaways).Append("\n");
             sb.Append("  Achievements: ").Append(Achievements).Append("\n");
+            sb.Append("  Rewards: ").Append(Rewards).Append("\n");
             sb.Append("  Event: ").Append(Event).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -270,6 +287,7 @@ namespace TalonOneSdk.Model
             Option<List<RuleFailureReason>> ruleFailureReasons = default;
             Option<List<Giveaway>> awardedGiveaways = default;
             Option<List<CustomerAchievement>> achievements = default;
+            Option<List<RewardWithUnlocks>> rewards = default;
             Option<Event> varEvent = default;
 
             while (utf8JsonReader.Read())
@@ -317,6 +335,9 @@ namespace TalonOneSdk.Model
                         case "achievements":
                             achievements = new Option<List<CustomerAchievement>>(JsonSerializer.Deserialize<List<CustomerAchievement>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "rewards":
+                            rewards = new Option<List<RewardWithUnlocks>>(JsonSerializer.Deserialize<List<RewardWithUnlocks>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "event":
                             varEvent = new Option<Event>(JsonSerializer.Deserialize<Event>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -344,7 +365,7 @@ namespace TalonOneSdk.Model
             if (createdReferrals.IsSet && createdReferrals.Value == null)
                 throw new ArgumentNullException(nameof(createdReferrals), "Property is not nullable for class IntegrationEventV2Response.");
 
-            return new IntegrationEventV2Response(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, loyalty, triggeredCampaigns, campaignEligibility, ruleFailureReasons, awardedGiveaways, achievements, varEvent);
+            return new IntegrationEventV2Response(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, loyalty, triggeredCampaigns, campaignEligibility, ruleFailureReasons, awardedGiveaways, achievements, rewards, varEvent);
         }
 
         /// <summary>
@@ -420,6 +441,11 @@ namespace TalonOneSdk.Model
             {
                 writer.WritePropertyName("achievements");
                 JsonSerializer.Serialize(writer, integrationEventV2Response.Achievements, jsonSerializerOptions);
+            }
+            if (integrationEventV2Response.RewardsOption.IsSet)
+            {
+                writer.WritePropertyName("rewards");
+                JsonSerializer.Serialize(writer, integrationEventV2Response.Rewards, jsonSerializerOptions);
             }
             if (integrationEventV2Response.EventOption.IsSet)
             {

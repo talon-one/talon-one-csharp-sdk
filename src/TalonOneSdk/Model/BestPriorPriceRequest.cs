@@ -273,7 +273,12 @@ namespace TalonOneSdk.Model
                         case "timeframeEndDateType":
                             string timeframeEndDateTypeRawValue = utf8JsonReader.GetString();
                             if (timeframeEndDateTypeRawValue != null)
-                                timeframeEndDateType = new Option<BestPriorPriceRequest.TimeframeEndDateTypeEnum?>(BestPriorPriceRequest.TimeframeEndDateTypeEnumFromStringOrDefault(timeframeEndDateTypeRawValue));
+                            {
+                                BestPriorPriceRequest.TimeframeEndDateTypeEnum? timeframeEndDateTypeValue = BestPriorPriceRequest.TimeframeEndDateTypeEnumFromStringOrDefault(timeframeEndDateTypeRawValue);
+                                if (timeframeEndDateTypeValue == null)
+                                    throw new JsonException();
+                                timeframeEndDateType = new Option<BestPriorPriceRequest.TimeframeEndDateTypeEnum?>(timeframeEndDateTypeValue);
+                            }
                             break;
                         case "target":
                             target = new Option<BestPriorTarget>(JsonSerializer.Deserialize<BestPriorTarget>(ref utf8JsonReader, jsonSerializerOptions));

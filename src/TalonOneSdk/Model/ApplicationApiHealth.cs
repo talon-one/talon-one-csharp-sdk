@@ -250,7 +250,12 @@ namespace TalonOneSdk.Model
                         case "summary":
                             string summaryRawValue = utf8JsonReader.GetString();
                             if (summaryRawValue != null)
-                                summary = new Option<ApplicationApiHealth.SummaryEnum?>(ApplicationApiHealth.SummaryEnumFromStringOrDefault(summaryRawValue));
+                            {
+                                ApplicationApiHealth.SummaryEnum? summaryValue = ApplicationApiHealth.SummaryEnumFromStringOrDefault(summaryRawValue);
+                                if (summaryValue == null)
+                                    throw new JsonException();
+                                summary = new Option<ApplicationApiHealth.SummaryEnum?>(summaryValue);
+                            }
                             break;
                         case "lastUsed":
                             lastUsed = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));

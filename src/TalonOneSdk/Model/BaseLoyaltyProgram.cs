@@ -751,12 +751,22 @@ namespace TalonOneSdk.Model
                         case "programJoinPolicy":
                             string programJoinPolicyRawValue = utf8JsonReader.GetString();
                             if (programJoinPolicyRawValue != null)
-                                programJoinPolicy = new Option<BaseLoyaltyProgram.ProgramJoinPolicyEnum?>(BaseLoyaltyProgram.ProgramJoinPolicyEnumFromStringOrDefault(programJoinPolicyRawValue));
+                            {
+                                BaseLoyaltyProgram.ProgramJoinPolicyEnum? programJoinPolicyValue = BaseLoyaltyProgram.ProgramJoinPolicyEnumFromStringOrDefault(programJoinPolicyRawValue);
+                                if (programJoinPolicyValue == null)
+                                    throw new JsonException();
+                                programJoinPolicy = new Option<BaseLoyaltyProgram.ProgramJoinPolicyEnum?>(programJoinPolicyValue);
+                            }
                             break;
                         case "tiersExpirationPolicy":
                             string tiersExpirationPolicyRawValue = utf8JsonReader.GetString();
                             if (tiersExpirationPolicyRawValue != null)
-                                tiersExpirationPolicy = new Option<BaseLoyaltyProgram.TiersExpirationPolicyEnum?>(BaseLoyaltyProgram.TiersExpirationPolicyEnumFromStringOrDefault(tiersExpirationPolicyRawValue));
+                            {
+                                BaseLoyaltyProgram.TiersExpirationPolicyEnum? tiersExpirationPolicyValue = BaseLoyaltyProgram.TiersExpirationPolicyEnumFromStringOrDefault(tiersExpirationPolicyRawValue);
+                                if (tiersExpirationPolicyValue == null)
+                                    throw new JsonException();
+                                tiersExpirationPolicy = new Option<BaseLoyaltyProgram.TiersExpirationPolicyEnum?>(tiersExpirationPolicyValue);
+                            }
                             break;
                         case "tierCycleStartDate":
                             tierCycleStartDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
@@ -767,7 +777,12 @@ namespace TalonOneSdk.Model
                         case "tiersDowngradePolicy":
                             string tiersDowngradePolicyRawValue = utf8JsonReader.GetString();
                             if (tiersDowngradePolicyRawValue != null)
-                                tiersDowngradePolicy = new Option<BaseLoyaltyProgram.TiersDowngradePolicyEnum?>(BaseLoyaltyProgram.TiersDowngradePolicyEnumFromStringOrDefault(tiersDowngradePolicyRawValue));
+                            {
+                                BaseLoyaltyProgram.TiersDowngradePolicyEnum? tiersDowngradePolicyValue = BaseLoyaltyProgram.TiersDowngradePolicyEnumFromStringOrDefault(tiersDowngradePolicyRawValue);
+                                if (tiersDowngradePolicyValue == null)
+                                    throw new JsonException();
+                                tiersDowngradePolicy = new Option<BaseLoyaltyProgram.TiersDowngradePolicyEnum?>(tiersDowngradePolicyValue);
+                            }
                             break;
                         case "cardCodeSettings":
                             cardCodeSettings = new Option<CodeGeneratorSettings>(JsonSerializer.Deserialize<CodeGeneratorSettings>(ref utf8JsonReader, jsonSerializerOptions));
@@ -775,7 +790,12 @@ namespace TalonOneSdk.Model
                         case "returnPolicy":
                             string returnPolicyRawValue = utf8JsonReader.GetString();
                             if (returnPolicyRawValue != null)
-                                returnPolicy = new Option<BaseLoyaltyProgram.ReturnPolicyEnum?>(BaseLoyaltyProgram.ReturnPolicyEnumFromStringOrDefault(returnPolicyRawValue));
+                            {
+                                BaseLoyaltyProgram.ReturnPolicyEnum? returnPolicyValue = BaseLoyaltyProgram.ReturnPolicyEnumFromStringOrDefault(returnPolicyRawValue);
+                                if (returnPolicyValue == null)
+                                    throw new JsonException();
+                                returnPolicy = new Option<BaseLoyaltyProgram.ReturnPolicyEnum?>(returnPolicyValue);
+                            }
                             break;
                         default:
                             break;

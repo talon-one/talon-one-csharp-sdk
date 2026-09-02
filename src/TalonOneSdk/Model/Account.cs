@@ -465,7 +465,12 @@ namespace TalonOneSdk.Model
                         case "state":
                             string stateRawValue = utf8JsonReader.GetString();
                             if (stateRawValue != null)
-                                state = new Option<Account.StateEnum?>(Account.StateEnumFromStringOrDefault(stateRawValue));
+                            {
+                                Account.StateEnum? stateValue = Account.StateEnumFromStringOrDefault(stateRawValue);
+                                if (stateValue == null)
+                                    throw new JsonException();
+                                state = new Option<Account.StateEnum?>(stateValue);
+                            }
                             break;
                         case "billingEmail":
                             billingEmail = new Option<string>(utf8JsonReader.GetString());

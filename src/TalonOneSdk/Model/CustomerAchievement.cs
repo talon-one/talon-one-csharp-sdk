@@ -43,7 +43,7 @@ namespace TalonOneSdk.Model
         /// <param name="referencedByCampaigns">The campaigns that reference this achievement. They are sorted in ascending order by their &#x60;id&#x60;.</param>
         /// <param name="fixedStartDate">The achievement&#39;s start date when &#x60;activationPolicy&#x60; is equal to &#x60;fixed_schedule&#x60;.  **Note:** It is an RFC3339 timestamp string. </param>
         /// <param name="endDate">The achievement&#39;s end date. If defined, customers cannot participate in the achievement after this date.  **Note:** It is an RFC3339 timestamp string. </param>
-        /// <param name="campaignId">This property is **deprecated**. Use &#x60;campaignIds&#x60; (Integration API) or &#x60;referencedByCampaigns&#x60; (Management API) instead. The first campaign ID in &#x60;campaignIds&#x60;. Only returned when &#x60;campaignIds&#x60; is not empty.</param>
+        /// <param name="campaignId">This property is **deprecated**. Use &#x60;referencedByCampaigns&#x60; instead. This field contains the first campaign ID from the related &#x60;referencedByCampaigns&#x60;, and is omitted when &#x60;referencedByCampaigns&#x60; is empty.</param>
         /// <param name="currentProgress">currentProgress</param>
         [JsonConstructor]
         public CustomerAchievement(long id, string name, string title, string description, decimal target, RecurrencePolicyEnum recurrencePolicy, ActivationPolicyEnum activationPolicy, bool allowRollbackAfterCompletion, List<long> campaignIds, List<CampaignReference> referencedByCampaigns, Option<DateTime?> fixedStartDate = default, Option<DateTime?> endDate = default, Option<long?> campaignId = default, Option<AchievementProgress> currentProgress = default)
@@ -332,9 +332,9 @@ namespace TalonOneSdk.Model
         public Option<long?> CampaignIdOption { get; private set; }
 
         /// <summary>
-        /// This property is **deprecated**. Use &#x60;campaignIds&#x60; (Integration API) or &#x60;referencedByCampaigns&#x60; (Management API) instead. The first campaign ID in &#x60;campaignIds&#x60;. Only returned when &#x60;campaignIds&#x60; is not empty.
+        /// This property is **deprecated**. Use &#x60;referencedByCampaigns&#x60; instead. This field contains the first campaign ID from the related &#x60;referencedByCampaigns&#x60;, and is omitted when &#x60;referencedByCampaigns&#x60; is empty.
         /// </summary>
-        /// <value>This property is **deprecated**. Use &#x60;campaignIds&#x60; (Integration API) or &#x60;referencedByCampaigns&#x60; (Management API) instead. The first campaign ID in &#x60;campaignIds&#x60;. Only returned when &#x60;campaignIds&#x60; is not empty.</value>
+        /// <value>This property is **deprecated**. Use &#x60;referencedByCampaigns&#x60; instead. This field contains the first campaign ID from the related &#x60;referencedByCampaigns&#x60;, and is omitted when &#x60;referencedByCampaigns&#x60; is empty.</value>
         /* <example>3</example> */
         [JsonPropertyName("campaignId")]
         [Obsolete]
@@ -502,12 +502,22 @@ namespace TalonOneSdk.Model
                         case "recurrencePolicy":
                             string recurrencePolicyRawValue = utf8JsonReader.GetString();
                             if (recurrencePolicyRawValue != null)
-                                recurrencePolicy = new Option<CustomerAchievement.RecurrencePolicyEnum?>(CustomerAchievement.RecurrencePolicyEnumFromStringOrDefault(recurrencePolicyRawValue));
+                            {
+                                CustomerAchievement.RecurrencePolicyEnum? recurrencePolicyValue = CustomerAchievement.RecurrencePolicyEnumFromStringOrDefault(recurrencePolicyRawValue);
+                                if (recurrencePolicyValue == null)
+                                    throw new JsonException();
+                                recurrencePolicy = new Option<CustomerAchievement.RecurrencePolicyEnum?>(recurrencePolicyValue);
+                            }
                             break;
                         case "activationPolicy":
                             string activationPolicyRawValue = utf8JsonReader.GetString();
                             if (activationPolicyRawValue != null)
-                                activationPolicy = new Option<CustomerAchievement.ActivationPolicyEnum?>(CustomerAchievement.ActivationPolicyEnumFromStringOrDefault(activationPolicyRawValue));
+                            {
+                                CustomerAchievement.ActivationPolicyEnum? activationPolicyValue = CustomerAchievement.ActivationPolicyEnumFromStringOrDefault(activationPolicyRawValue);
+                                if (activationPolicyValue == null)
+                                    throw new JsonException();
+                                activationPolicy = new Option<CustomerAchievement.ActivationPolicyEnum?>(activationPolicyValue);
+                            }
                             break;
                         case "allowRollbackAfterCompletion":
                             allowRollbackAfterCompletion = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());

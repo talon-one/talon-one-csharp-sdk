@@ -359,7 +359,12 @@ namespace TalonOneSdk.Model
                         case "method":
                             string methodRawValue = utf8JsonReader.GetString();
                             if (methodRawValue != null)
-                                method = new Option<OutgoingIntegrationTemplate.MethodEnum?>(OutgoingIntegrationTemplate.MethodEnumFromStringOrDefault(methodRawValue));
+                            {
+                                OutgoingIntegrationTemplate.MethodEnum? methodValue = OutgoingIntegrationTemplate.MethodEnumFromStringOrDefault(methodRawValue);
+                                if (methodValue == null)
+                                    throw new JsonException();
+                                method = new Option<OutgoingIntegrationTemplate.MethodEnum?>(methodValue);
+                            }
                             break;
                         case "relativeUrl":
                             relativeUrl = new Option<string>(utf8JsonReader.GetString());

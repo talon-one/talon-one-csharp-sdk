@@ -906,27 +906,52 @@ namespace TalonOneSdk.Model
                         case "status":
                             string statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<RiskDetail.StatusEnum?>(RiskDetail.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                RiskDetail.StatusEnum? statusValue = RiskDetail.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<RiskDetail.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "criticality":
                             string criticalityRawValue = utf8JsonReader.GetString();
                             if (criticalityRawValue != null)
-                                criticality = new Option<RiskDetail.CriticalityEnum?>(RiskDetail.CriticalityEnumFromStringOrDefault(criticalityRawValue));
+                            {
+                                RiskDetail.CriticalityEnum? criticalityValue = RiskDetail.CriticalityEnumFromStringOrDefault(criticalityRawValue);
+                                if (criticalityValue == null)
+                                    throw new JsonException();
+                                criticality = new Option<RiskDetail.CriticalityEnum?>(criticalityValue);
+                            }
                             break;
                         case "entity":
                             string entityRawValue = utf8JsonReader.GetString();
                             if (entityRawValue != null)
-                                entity = new Option<RiskDetail.EntityEnum?>(RiskDetail.EntityEnumFromStringOrDefault(entityRawValue));
+                            {
+                                RiskDetail.EntityEnum? entityValue = RiskDetail.EntityEnumFromStringOrDefault(entityRawValue);
+                                if (entityValue == null)
+                                    throw new JsonException();
+                                entity = new Option<RiskDetail.EntityEnum?>(entityValue);
+                            }
                             break;
                         case "activity":
                             string activityRawValue = utf8JsonReader.GetString();
                             if (activityRawValue != null)
-                                activity = new Option<RiskDetail.ActivityEnum?>(RiskDetail.ActivityEnumFromStringOrDefault(activityRawValue));
+                            {
+                                RiskDetail.ActivityEnum? activityValue = RiskDetail.ActivityEnumFromStringOrDefault(activityRawValue);
+                                if (activityValue == null)
+                                    throw new JsonException();
+                                activity = new Option<RiskDetail.ActivityEnum?>(activityValue);
+                            }
                             break;
                         case "timeFrame":
                             string timeFrameRawValue = utf8JsonReader.GetString();
                             if (timeFrameRawValue != null)
-                                timeFrame = new Option<RiskDetail.TimeFrameEnum?>(RiskDetail.TimeFrameEnumFromStringOrDefault(timeFrameRawValue));
+                            {
+                                RiskDetail.TimeFrameEnum? timeFrameValue = RiskDetail.TimeFrameEnumFromStringOrDefault(timeFrameRawValue);
+                                if (timeFrameValue == null)
+                                    throw new JsonException();
+                                timeFrame = new Option<RiskDetail.TimeFrameEnum?>(timeFrameValue);
+                            }
                             break;
                         case "reportedDate":
                             reportedDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
@@ -949,7 +974,12 @@ namespace TalonOneSdk.Model
                         case "discardReason":
                             string discardReasonRawValue = utf8JsonReader.GetString();
                             if (discardReasonRawValue != null)
-                                discardReason = new Option<RiskDetail.DiscardReasonEnum?>(RiskDetail.DiscardReasonEnumFromStringOrDefault(discardReasonRawValue));
+                            {
+                                RiskDetail.DiscardReasonEnum? discardReasonValue = RiskDetail.DiscardReasonEnumFromStringOrDefault(discardReasonRawValue);
+                                if (discardReasonValue == null)
+                                    throw new JsonException();
+                                discardReason = new Option<RiskDetail.DiscardReasonEnum?>(discardReasonValue);
+                            }
                             break;
                         case "statusComment":
                             statusComment = new Option<string>(utf8JsonReader.GetString());

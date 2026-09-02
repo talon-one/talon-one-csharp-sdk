@@ -34,7 +34,7 @@ namespace TalonOneSdk.Model
         /// <param name="name">The name of the template parameter.</param>
         /// <param name="valueType">The data type of the value, derived from the bound expression (for example &#x60;number&#x60;, &#x60;string&#x60;, &#x60;boolean&#x60;, &#x60;percent&#x60;, &#x60;time&#x60;, &#x60;(list string)&#x60;, or &#x60;(list number)&#x60;).</param>
         /// <param name="description">A human-readable description of the parameter shown when creating campaigns from the template.</param>
-        /// <param name="value">value</param>
+        /// <param name="value">The parameter&#39;s bound value. Its type depends on the &#x60;valueType&#x60;.</param>
         /// <param name="minValue">The minimum value allowed for this parameter.</param>
         /// <param name="maxValue">The maximum value allowed for this parameter.</param>
         /// <param name="attribute">The ID of the attribute linked to this parameter. Omitted when the parameter is not linked to an attribute.</param>
@@ -78,8 +78,10 @@ namespace TalonOneSdk.Model
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or Sets Value
+        /// The parameter&#39;s bound value. Its type depends on the &#x60;valueType&#x60;.
         /// </summary>
+        /// <value>The parameter&#39;s bound value. Its type depends on the &#x60;valueType&#x60;.</value>
+        /* <example>50</example> */
         [JsonPropertyName("value")]
         public Object Value { get; set; }
 

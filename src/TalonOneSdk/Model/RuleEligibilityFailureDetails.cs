@@ -311,7 +311,12 @@ namespace TalonOneSdk.Model
                         case "failureCode":
                             string failureCodeRawValue = utf8JsonReader.GetString();
                             if (failureCodeRawValue != null)
-                                failureCode = new Option<RuleEligibilityFailureDetails.FailureCodeEnum?>(RuleEligibilityFailureDetails.FailureCodeEnumFromStringOrDefault(failureCodeRawValue));
+                            {
+                                RuleEligibilityFailureDetails.FailureCodeEnum? failureCodeValue = RuleEligibilityFailureDetails.FailureCodeEnumFromStringOrDefault(failureCodeRawValue);
+                                if (failureCodeValue == null)
+                                    throw new JsonException();
+                                failureCode = new Option<RuleEligibilityFailureDetails.FailureCodeEnum?>(failureCodeValue);
+                            }
                             break;
                         case "details":
                             details = new Option<string>(utf8JsonReader.GetString());

@@ -267,7 +267,12 @@ namespace TalonOneSdk.Model
                         case "action":
                             string actionRawValue = utf8JsonReader.GetString();
                             if (actionRawValue != null)
-                                action = new Option<CampaignLogSummary.ActionEnum?>(CampaignLogSummary.ActionEnumFromStringOrDefault(actionRawValue));
+                            {
+                                CampaignLogSummary.ActionEnum? actionValue = CampaignLogSummary.ActionEnumFromStringOrDefault(actionRawValue);
+                                if (actionValue == null)
+                                    throw new JsonException();
+                                action = new Option<CampaignLogSummary.ActionEnum?>(actionValue);
+                            }
                             break;
                         case "summary":
                             summary = new Option<string>(utf8JsonReader.GetString());

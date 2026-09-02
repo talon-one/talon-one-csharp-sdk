@@ -282,7 +282,12 @@ namespace TalonOneSdk.Model
                         case "downgradePolicy":
                             string downgradePolicyRawValue = utf8JsonReader.GetString();
                             if (downgradePolicyRawValue != null)
-                                downgradePolicy = new Option<Tier.DowngradePolicyEnum?>(Tier.DowngradePolicyEnumFromStringOrDefault(downgradePolicyRawValue));
+                            {
+                                Tier.DowngradePolicyEnum? downgradePolicyValue = Tier.DowngradePolicyEnumFromStringOrDefault(downgradePolicyRawValue);
+                                if (downgradePolicyValue == null)
+                                    throw new JsonException();
+                                downgradePolicy = new Option<Tier.DowngradePolicyEnum?>(downgradePolicyValue);
+                            }
                             break;
                         default:
                             break;

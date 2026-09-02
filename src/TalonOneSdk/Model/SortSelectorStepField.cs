@@ -207,7 +207,12 @@ namespace TalonOneSdk.Model
                         case "direction":
                             string directionRawValue = utf8JsonReader.GetString();
                             if (directionRawValue != null)
-                                direction = new Option<SortSelectorStepField.DirectionEnum?>(SortSelectorStepField.DirectionEnumFromStringOrDefault(directionRawValue));
+                            {
+                                SortSelectorStepField.DirectionEnum? directionValue = SortSelectorStepField.DirectionEnumFromStringOrDefault(directionRawValue);
+                                if (directionValue == null)
+                                    throw new JsonException();
+                                direction = new Option<SortSelectorStepField.DirectionEnum?>(directionValue);
+                            }
                             break;
                         default:
                             break;

@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="ScalarCheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="operator">The comparison operator applied to the attribute.</param>
-        /// <param name="value">value</param>
+        /// <param name="value">The comparison value for this operator.</param>
         [JsonConstructor]
         public ScalarCheckAttributeBlock(Option<OperatorEnum?> @operator = default, Object value = default)
         {
@@ -335,8 +335,10 @@ namespace TalonOneSdk.Model
         public OperatorEnum? Operator { get { return this.OperatorOption.Value; } set { this.OperatorOption = new Option<OperatorEnum?>(value); } }
 
         /// <summary>
-        /// Gets or Sets Value
+        /// The comparison value for this operator.
         /// </summary>
+        /// <value>The comparison value for this operator.</value>
+        /* <example>100</example> */
         [JsonPropertyName("value")]
         public Object Value { get; set; }
 
@@ -418,7 +420,12 @@ namespace TalonOneSdk.Model
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<ScalarCheckAttributeBlock.OperatorEnum?>(ScalarCheckAttributeBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                ScalarCheckAttributeBlock.OperatorEnum? varOperatorValue = ScalarCheckAttributeBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<ScalarCheckAttributeBlock.OperatorEnum?>(varOperatorValue);
+                            }
                             break;
                         case "value":
                             value = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
