@@ -205,7 +205,12 @@ namespace TalonOneSdk.Model
                         case "failureCode":
                             string failureCodeRawValue = utf8JsonReader.GetString();
                             if (failureCodeRawValue != null)
-                                failureCode = new Option<CampaignEligibilityFailureDetails.FailureCodeEnum?>(CampaignEligibilityFailureDetails.FailureCodeEnumFromStringOrDefault(failureCodeRawValue));
+                            {
+                                CampaignEligibilityFailureDetails.FailureCodeEnum? failureCodeValue = CampaignEligibilityFailureDetails.FailureCodeEnumFromStringOrDefault(failureCodeRawValue);
+                                if (failureCodeValue == null)
+                                    throw new JsonException();
+                                failureCode = new Option<CampaignEligibilityFailureDetails.FailureCodeEnum?>(failureCodeValue);
+                            }
                             break;
                         default:
                             break;

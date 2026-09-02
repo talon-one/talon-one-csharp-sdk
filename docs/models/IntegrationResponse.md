@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **RuleFailureReasons** | [**List&lt;RuleFailureReason&gt;**](RuleFailureReason.md) | The reasons why certain rules were not triggered during the event processing.  | [optional] 
 **AwardedGiveaways** | [**List&lt;Giveaway&gt;**](Giveaway.md) | The giveaways that were awarded during the event processing. | [optional] 
 **Achievements** | [**List&lt;CustomerAchievement&gt;**](CustomerAchievement.md) | The achievements progress of the customer. | [optional] 
+**Rewards** | [**List&lt;RewardWithUnlocks&gt;**](RewardWithUnlocks.md) | The unlocked rewards for the customer profile. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

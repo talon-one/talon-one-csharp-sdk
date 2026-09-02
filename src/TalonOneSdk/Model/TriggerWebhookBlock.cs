@@ -31,18 +31,18 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TriggerWebhookBlock" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="webhook">webhook</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="params">The webhook&#39;s parameters, in configured order. Each property name is the parameter&#39;s title, lowercased with spaces replaced by underscores (for example, &#x60;Order ID&#x60; becomes &#x60;order_id&#x60;); falls back to &#x60;param_0&#x60;, &#x60;param_1&#x60;, and so on if a title is blank or collides with another.</param>
         /// <param name="onError">Named error handlers evaluated when a specific error occurs.</param>
         [JsonConstructor]
-        public TriggerWebhookBlock(string id, string type, TriggerWebhookBlock1Webhook webhook, Option<List<string>> tags = default, Option<Dictionary<string, Object>> @params = default, Option<Dictionary<string, List<PromotionBlock>>> onError = default)
+        public TriggerWebhookBlock(string type, TriggerWebhookBlock1Webhook webhook, Option<string> id = default, Option<List<string>> tags = default, Option<Dictionary<string, Object>> @params = default, Option<Dictionary<string, List<Block>>> onError = default)
         {
-            Id = id;
             Type = type;
             Webhook = webhook;
+            IdOption = id;
             TagsOption = tags;
             ParamsOption = @params;
             OnErrorOption = onError;
@@ -50,14 +50,6 @@ namespace TalonOneSdk.Model
         }
 
         partial void OnCreated();
-
-        /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
 
         /// <summary>
         /// Identifies the block variant and determines which additional properties are present in it.
@@ -73,18 +65,33 @@ namespace TalonOneSdk.Model
         public TriggerWebhookBlock1Webhook Webhook { get; set; }
 
         /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
+
+        /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> TagsOption { get; private set; }
+        public Option<List<string>> TagsOption { get; }
 
         /// <summary>
         /// Semantic labels attached to this block.
         /// </summary>
         /// <value>Semantic labels attached to this block.</value>
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
         /// Used to track the state of Params
@@ -106,14 +113,14 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Dictionary<string, List<PromotionBlock>>> OnErrorOption { get; private set; }
+        public Option<Dictionary<string, List<Block>>> OnErrorOption { get; private set; }
 
         /// <summary>
         /// Named error handlers evaluated when a specific error occurs.
         /// </summary>
         /// <value>Named error handlers evaluated when a specific error occurs.</value>
         [JsonPropertyName("onError")]
-        public Dictionary<string, List<PromotionBlock>> OnError { get { return this.OnErrorOption.Value; } set { this.OnErrorOption = new Option<Dictionary<string, List<PromotionBlock>>>(value); } }
+        public Dictionary<string, List<Block>> OnError { get { return this.OnErrorOption.Value; } set { this.OnErrorOption = new Option<Dictionary<string, List<Block>>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -123,9 +130,9 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class TriggerWebhookBlock {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Webhook: ").Append(Webhook).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  Params: ").Append(Params).Append("\n");
             sb.Append("  OnError: ").Append(OnError).Append("\n");
@@ -176,12 +183,12 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<string> type = default;
             Option<TriggerWebhookBlock1Webhook> webhook = default;
+            Option<string> id = default;
             Option<List<string>> tags = default;
             Option<Dictionary<string, Object>> varParams = default;
-            Option<Dictionary<string, List<PromotionBlock>>> onError = default;
+            Option<Dictionary<string, List<Block>>> onError = default;
 
             while (utf8JsonReader.Read())
             {
@@ -198,14 +205,14 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "webhook":
                             webhook = new Option<TriggerWebhookBlock1Webhook>(JsonSerializer.Deserialize<TriggerWebhookBlock1Webhook>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -214,7 +221,7 @@ namespace TalonOneSdk.Model
                             varParams = new Option<Dictionary<string, Object>>(JsonSerializer.Deserialize<Dictionary<string, Object>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "onError":
-                            onError = new Option<Dictionary<string, List<PromotionBlock>>>(JsonSerializer.Deserialize<Dictionary<string, List<PromotionBlock>>>(ref utf8JsonReader, jsonSerializerOptions));
+                            onError = new Option<Dictionary<string, List<Block>>>(JsonSerializer.Deserialize<Dictionary<string, List<Block>>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -222,17 +229,11 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class TriggerWebhookBlock.", nameof(id));
-
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class TriggerWebhookBlock.", nameof(type));
 
             if (!webhook.IsSet)
                 throw new ArgumentException("Property is required for class TriggerWebhookBlock.", nameof(webhook));
-
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class TriggerWebhookBlock.");
 
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class TriggerWebhookBlock.");
@@ -240,7 +241,7 @@ namespace TalonOneSdk.Model
             if (webhook.IsSet && webhook.Value == null)
                 throw new ArgumentNullException(nameof(webhook), "Property is not nullable for class TriggerWebhookBlock.");
 
-            return new TriggerWebhookBlock(id.Value, type.Value, webhook.Value, tags, varParams, onError);
+            return new TriggerWebhookBlock(type.Value, webhook.Value, id, tags, varParams, onError);
         }
 
         /// <summary>
@@ -267,21 +268,19 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TriggerWebhookBlock triggerWebhookBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (triggerWebhookBlock.Id == null)
-                throw new ArgumentNullException(nameof(triggerWebhookBlock.Id), "Property is required for class TriggerWebhookBlock.");
-
             if (triggerWebhookBlock.Type == null)
                 throw new ArgumentNullException(nameof(triggerWebhookBlock.Type), "Property is required for class TriggerWebhookBlock.");
 
             if (triggerWebhookBlock.Webhook == null)
                 throw new ArgumentNullException(nameof(triggerWebhookBlock.Webhook), "Property is required for class TriggerWebhookBlock.");
 
-            writer.WriteString("id", triggerWebhookBlock.Id);
-
             writer.WriteString("type", triggerWebhookBlock.Type);
 
             writer.WritePropertyName("webhook");
             JsonSerializer.Serialize(writer, triggerWebhookBlock.Webhook, jsonSerializerOptions);
+            if (triggerWebhookBlock.IdOption.IsSet)
+                writer.WriteString("id", triggerWebhookBlock.Id);
+
             if (triggerWebhookBlock.TagsOption.IsSet)
             {
                 writer.WritePropertyName("tags");

@@ -314,7 +314,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<CampaignTemplateParams.TypeEnum?>(CampaignTemplateParams.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                CampaignTemplateParams.TypeEnum? typeValue = CampaignTemplateParams.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<CampaignTemplateParams.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());

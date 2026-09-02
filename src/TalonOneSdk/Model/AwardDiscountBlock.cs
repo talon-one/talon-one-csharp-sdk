@@ -31,35 +31,27 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AwardDiscountBlock" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="name">The human-readable label attached to the discount.</param>
         /// <param name="value">value</param>
         /// <param name="partial">Whether to apply a partial discount when the requested value exceeds the configured budget.</param>
         /// <param name="target">target</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         [JsonConstructor]
-        public AwardDiscountBlock(string id, string type, string name, AwardDiscountBlock1Value value, bool partial, AwardDiscountTarget target, Option<List<string>> tags = default)
+        public AwardDiscountBlock(string type, string name, AwardDiscountBlock1Value value, bool partial, AwardDiscountTarget target, Option<string> id = default, Option<List<string>> tags = default)
         {
-            Id = id;
             Type = type;
             Name = name;
             Value = value;
             Partial = partial;
             Target = target;
+            IdOption = id;
             TagsOption = tags;
             OnCreated();
         }
 
         partial void OnCreated();
-
-        /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
 
         /// <summary>
         /// Identifies the block variant and determines which additional properties are present in it.
@@ -97,18 +89,33 @@ namespace TalonOneSdk.Model
         public AwardDiscountTarget Target { get; set; }
 
         /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
+
+        /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> TagsOption { get; private set; }
+        public Option<List<string>> TagsOption { get; }
 
         /// <summary>
         /// Semantic labels attached to this block.
         /// </summary>
         /// <value>Semantic labels attached to this block.</value>
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -118,12 +125,12 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class AwardDiscountBlock {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("  Partial: ").Append(Partial).Append("\n");
             sb.Append("  Target: ").Append(Target).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -172,12 +179,12 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<string> type = default;
             Option<string> name = default;
             Option<AwardDiscountBlock1Value> value = default;
             Option<bool?> partial = default;
             Option<AwardDiscountTarget> target = default;
+            Option<string> id = default;
             Option<List<string>> tags = default;
 
             while (utf8JsonReader.Read())
@@ -195,9 +202,6 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -213,6 +217,9 @@ namespace TalonOneSdk.Model
                         case "target":
                             target = new Option<AwardDiscountTarget>(JsonSerializer.Deserialize<AwardDiscountTarget>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -221,9 +228,6 @@ namespace TalonOneSdk.Model
                     }
                 }
             }
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountBlock.", nameof(id));
 
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class AwardDiscountBlock.", nameof(type));
@@ -240,9 +244,6 @@ namespace TalonOneSdk.Model
             if (!target.IsSet)
                 throw new ArgumentException("Property is required for class AwardDiscountBlock.", nameof(target));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AwardDiscountBlock.");
-
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class AwardDiscountBlock.");
 
@@ -258,7 +259,7 @@ namespace TalonOneSdk.Model
             if (target.IsSet && target.Value == null)
                 throw new ArgumentNullException(nameof(target), "Property is not nullable for class AwardDiscountBlock.");
 
-            return new AwardDiscountBlock(id.Value, type.Value, name.Value, value.Value, partial.Value.Value, target.Value, tags);
+            return new AwardDiscountBlock(type.Value, name.Value, value.Value, partial.Value.Value, target.Value, id, tags);
         }
 
         /// <summary>
@@ -285,9 +286,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AwardDiscountBlock awardDiscountBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (awardDiscountBlock.Id == null)
-                throw new ArgumentNullException(nameof(awardDiscountBlock.Id), "Property is required for class AwardDiscountBlock.");
-
             if (awardDiscountBlock.Type == null)
                 throw new ArgumentNullException(nameof(awardDiscountBlock.Type), "Property is required for class AwardDiscountBlock.");
 
@@ -300,8 +298,6 @@ namespace TalonOneSdk.Model
             if (awardDiscountBlock.Target == null)
                 throw new ArgumentNullException(nameof(awardDiscountBlock.Target), "Property is required for class AwardDiscountBlock.");
 
-            writer.WriteString("id", awardDiscountBlock.Id);
-
             writer.WriteString("type", awardDiscountBlock.Type);
 
             writer.WriteString("name", awardDiscountBlock.Name);
@@ -312,6 +308,9 @@ namespace TalonOneSdk.Model
 
             writer.WritePropertyName("target");
             JsonSerializer.Serialize(writer, awardDiscountBlock.Target, jsonSerializerOptions);
+            if (awardDiscountBlock.IdOption.IsSet)
+                writer.WriteString("id", awardDiscountBlock.Id);
+
             if (awardDiscountBlock.TagsOption.IsSet)
             {
                 writer.WritePropertyName("tags");

@@ -528,7 +528,12 @@ namespace TalonOneSdk.Model
                         case "NotificationType":
                             string notificationTypeRawValue = utf8JsonReader.GetString();
                             if (notificationTypeRawValue != null)
-                                notificationType = new Option<AddedDeductedPointsNotification.NotificationTypeEnum?>(AddedDeductedPointsNotification.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue));
+                            {
+                                AddedDeductedPointsNotification.NotificationTypeEnum? notificationTypeValue = AddedDeductedPointsNotification.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue);
+                                if (notificationTypeValue == null)
+                                    throw new JsonException();
+                                notificationType = new Option<AddedDeductedPointsNotification.NotificationTypeEnum?>(notificationTypeValue);
+                            }
                             break;
                         case "ProfileIntegrationID":
                             profileIntegrationID = new Option<string>(utf8JsonReader.GetString());
@@ -542,7 +547,12 @@ namespace TalonOneSdk.Model
                         case "TypeOfChange":
                             string typeOfChangeRawValue = utf8JsonReader.GetString();
                             if (typeOfChangeRawValue != null)
-                                typeOfChange = new Option<AddedDeductedPointsNotification.TypeOfChangeEnum?>(AddedDeductedPointsNotification.TypeOfChangeEnumFromStringOrDefault(typeOfChangeRawValue));
+                            {
+                                AddedDeductedPointsNotification.TypeOfChangeEnum? typeOfChangeValue = AddedDeductedPointsNotification.TypeOfChangeEnumFromStringOrDefault(typeOfChangeRawValue);
+                                if (typeOfChangeValue == null)
+                                    throw new JsonException();
+                                typeOfChange = new Option<AddedDeductedPointsNotification.TypeOfChangeEnum?>(typeOfChangeValue);
+                            }
                             break;
                         case "UserID":
                             userID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
@@ -553,7 +563,12 @@ namespace TalonOneSdk.Model
                         case "Operation":
                             string operationRawValue = utf8JsonReader.GetString();
                             if (operationRawValue != null)
-                                operation = new Option<AddedDeductedPointsNotification.OperationEnum?>(AddedDeductedPointsNotification.OperationEnumFromStringOrDefault(operationRawValue));
+                            {
+                                AddedDeductedPointsNotification.OperationEnum? operationValue = AddedDeductedPointsNotification.OperationEnumFromStringOrDefault(operationRawValue);
+                                if (operationValue == null)
+                                    throw new JsonException();
+                                operation = new Option<AddedDeductedPointsNotification.OperationEnum?>(operationValue);
+                            }
                             break;
                         case "Reason":
                             reason = new Option<string>(utf8JsonReader.GetString());

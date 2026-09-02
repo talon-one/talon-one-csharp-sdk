@@ -31,27 +31,28 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckAttributeBlockBase" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="operator">The comparison operator applied to the attribute.</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="attribute">attribute</param>
-        /// <param name="value">value</param>
-        /// <param name="min">min</param>
-        /// <param name="max">max</param>
-        /// <param name="start">start</param>
-        /// <param name="end">end</param>
+        /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
+        /// <param name="value">The comparison value for scalar operators.</param>
+        /// <param name="min">The minimum value allowed for the &#x60;between&#x60; operator.</param>
+        /// <param name="max">The maximum value allowed for the &#x60;between&#x60; operator.</param>
+        /// <param name="start">The start value for the &#x60;within&#x60; operator.</param>
+        /// <param name="end">The end value for the &#x60;within&#x60; operator.</param>
         /// <param name="startInclusive">When &#x60;true&#x60;, the &#x60;start&#x60; value is included in the range for the &#x60;within&#x60; operator.</param>
         /// <param name="endInclusive">When &#x60;true&#x60;, the &#x60;end&#x60; value is included in the range for the &#x60;within&#x60; operator.</param>
         /// <param name="timezoneInsensitive">Indicates whether the &#x60;within&#x60; operator ignores time zones and compares the wall-clock time only. When &#x60;false&#x60;, time zones are taken into account.</param>
-        /// <param name="values">values</param>
-        /// <param name="count">count</param>
+        /// <param name="values">The set of values to match against for list operators. For location operators (&#x60;in&#x60;, &#x60;not(in)&#x60;), an array of objects with a &#x60;geometry&#x60; (see &#x60;GeoJSONGeometry&#x60;) and an optional &#x60;name&#x60;, or a string reference to a list attribute.</param>
+        /// <param name="count">The count threshold for &#x60;containsAtLeast&#x60; and &#x60;containsExactly&#x60; operators.</param>
+        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public CheckAttributeBlockBase(string id, string type, OperatorEnum @operator, Option<List<string>> tags = default, Object attribute = default, Option<Object> value = default, Option<Object> min = default, Option<Object> max = default, Option<Object> start = default, Option<Object> end = default, Option<bool?> startInclusive = default, Option<bool?> endInclusive = default, Option<bool?> timezoneInsensitive = default, Option<Object> values = default, Option<Object> count = default)
+        public CheckAttributeBlockBase(string type, OperatorEnum @operator, Option<string> id = default, Option<List<string>> tags = default, Object attribute = default, Option<Object> value = default, Option<Object> min = default, Option<Object> max = default, Option<Object> start = default, Option<Object> end = default, Option<bool?> startInclusive = default, Option<bool?> endInclusive = default, Option<bool?> timezoneInsensitive = default, Option<Object> values = default, Option<Object> count = default, Option<List<Block>> onFailure = default)
         {
-            Id = id;
             Type = type;
             Operator = @operator;
+            IdOption = id;
             TagsOption = tags;
             Attribute = attribute;
             ValueOption = value;
@@ -64,6 +65,7 @@ namespace TalonOneSdk.Model
             TimezoneInsensitiveOption = timezoneInsensitive;
             ValuesOption = values;
             CountOption = count;
+            OnFailureOption = onFailure;
             OnCreated();
         }
 
@@ -579,14 +581,6 @@ namespace TalonOneSdk.Model
         public OperatorEnum Operator { get; set; }
 
         /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        /// <summary>
         /// Identifies the block variant and determines which additional properties are present in it.
         /// </summary>
         /// <value>Identifies the block variant and determines which additional properties are present in it.</value>
@@ -594,22 +588,39 @@ namespace TalonOneSdk.Model
         public string Type { get; set; }
 
         /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
+
+        /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> TagsOption { get; private set; }
+        public Option<List<string>> TagsOption { get; }
 
         /// <summary>
         /// Semantic labels attached to this block.
         /// </summary>
         /// <value>Semantic labels attached to this block.</value>
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
-        /// Gets or Sets Attribute
+        /// The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).
         /// </summary>
+        /// <value>The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</value>
+        /* <example>$Session.Total</example> */
         [JsonPropertyName("attribute")]
         public Object Attribute { get; set; }
 
@@ -621,8 +632,10 @@ namespace TalonOneSdk.Model
         public Option<Object> ValueOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Value
+        /// The comparison value for scalar operators.
         /// </summary>
+        /// <value>The comparison value for scalar operators.</value>
+        /* <example>100</example> */
         [JsonPropertyName("value")]
         public Object Value { get { return this.ValueOption.Value; } set { this.ValueOption = new Option<Object>(value); } }
 
@@ -634,8 +647,10 @@ namespace TalonOneSdk.Model
         public Option<Object> MinOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Min
+        /// The minimum value allowed for the &#x60;between&#x60; operator.
         /// </summary>
+        /// <value>The minimum value allowed for the &#x60;between&#x60; operator.</value>
+        /* <example>10</example> */
         [JsonPropertyName("min")]
         public Object Min { get { return this.MinOption.Value; } set { this.MinOption = new Option<Object>(value); } }
 
@@ -647,8 +662,10 @@ namespace TalonOneSdk.Model
         public Option<Object> MaxOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Max
+        /// The maximum value allowed for the &#x60;between&#x60; operator.
         /// </summary>
+        /// <value>The maximum value allowed for the &#x60;between&#x60; operator.</value>
+        /* <example>100</example> */
         [JsonPropertyName("max")]
         public Object Max { get { return this.MaxOption.Value; } set { this.MaxOption = new Option<Object>(value); } }
 
@@ -660,8 +677,10 @@ namespace TalonOneSdk.Model
         public Option<Object> StartOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Start
+        /// The start value for the &#x60;within&#x60; operator.
         /// </summary>
+        /// <value>The start value for the &#x60;within&#x60; operator.</value>
+        /* <example>2021-09-22T22:00:00Z</example> */
         [JsonPropertyName("start")]
         public Object Start { get { return this.StartOption.Value; } set { this.StartOption = new Option<Object>(value); } }
 
@@ -673,8 +692,10 @@ namespace TalonOneSdk.Model
         public Option<Object> EndOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets End
+        /// The end value for the &#x60;within&#x60; operator.
         /// </summary>
+        /// <value>The end value for the &#x60;within&#x60; operator.</value>
+        /* <example>2021-09-22T22:00:00Z</example> */
         [JsonPropertyName("end")]
         public Object End { get { return this.EndOption.Value; } set { this.EndOption = new Option<Object>(value); } }
 
@@ -731,8 +752,10 @@ namespace TalonOneSdk.Model
         public Option<Object> ValuesOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Values
+        /// The set of values to match against for list operators. For location operators (&#x60;in&#x60;, &#x60;not(in)&#x60;), an array of objects with a &#x60;geometry&#x60; (see &#x60;GeoJSONGeometry&#x60;) and an optional &#x60;name&#x60;, or a string reference to a list attribute.
         /// </summary>
+        /// <value>The set of values to match against for list operators. For location operators (&#x60;in&#x60;, &#x60;not(in)&#x60;), an array of objects with a &#x60;geometry&#x60; (see &#x60;GeoJSONGeometry&#x60;) and an optional &#x60;name&#x60;, or a string reference to a list attribute.</value>
+        /* <example>[{name&#x3D;Berlin district, geometry&#x3D;{type&#x3D;Point, coordinates&#x3D;[13.405, 52.52]}}]</example> */
         [JsonPropertyName("values")]
         public Object Values { get { return this.ValuesOption.Value; } set { this.ValuesOption = new Option<Object>(value); } }
 
@@ -744,10 +767,26 @@ namespace TalonOneSdk.Model
         public Option<Object> CountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Count
+        /// The count threshold for &#x60;containsAtLeast&#x60; and &#x60;containsExactly&#x60; operators.
         /// </summary>
+        /// <value>The count threshold for &#x60;containsAtLeast&#x60; and &#x60;containsExactly&#x60; operators.</value>
+        /* <example>2</example> */
         [JsonPropertyName("count")]
         public Object Count { get { return this.CountOption.Value; } set { this.CountOption = new Option<Object>(value); } }
+
+        /// <summary>
+        /// Used to track the state of OnFailure
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<Block>> OnFailureOption { get; private set; }
+
+        /// <summary>
+        /// Promotion blocks evaluated when this block fails or returns false.
+        /// </summary>
+        /// <value>Promotion blocks evaluated when this block fails or returns false.</value>
+        [JsonPropertyName("onFailure")]
+        public List<Block> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Block>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -757,9 +796,9 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CheckAttributeBlockBase {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Operator: ").Append(Operator).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  Attribute: ").Append(Attribute).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
@@ -772,6 +811,7 @@ namespace TalonOneSdk.Model
             sb.Append("  TimezoneInsensitive: ").Append(TimezoneInsensitive).Append("\n");
             sb.Append("  Values: ").Append(Values).Append("\n");
             sb.Append("  Count: ").Append(Count).Append("\n");
+            sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -819,9 +859,9 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<string> type = default;
             Option<CheckAttributeBlockBase.OperatorEnum?> varOperator = default;
+            Option<string> id = default;
             Option<List<string>> tags = default;
             Option<Object> attribute = default;
             Option<Object> value = default;
@@ -834,6 +874,7 @@ namespace TalonOneSdk.Model
             Option<bool?> timezoneInsensitive = default;
             Option<Object> values = default;
             Option<Object> count = default;
+            Option<List<Block>> onFailure = default;
 
             while (utf8JsonReader.Read())
             {
@@ -850,16 +891,21 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<CheckAttributeBlockBase.OperatorEnum?>(CheckAttributeBlockBase.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                CheckAttributeBlockBase.OperatorEnum? varOperatorValue = CheckAttributeBlockBase.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<CheckAttributeBlockBase.OperatorEnum?>(varOperatorValue);
+                            }
+                            break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -897,14 +943,14 @@ namespace TalonOneSdk.Model
                         case "count":
                             count = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "onFailure":
+                            onFailure = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CheckAttributeBlockBase.", nameof(id));
 
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class CheckAttributeBlockBase.", nameof(type));
@@ -915,16 +961,13 @@ namespace TalonOneSdk.Model
             if (!attribute.IsSet)
                 throw new ArgumentException("Property is required for class CheckAttributeBlockBase.", nameof(attribute));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CheckAttributeBlockBase.");
-
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class CheckAttributeBlockBase.");
 
             if (varOperator.IsSet && varOperator.Value == null)
                 throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class CheckAttributeBlockBase.");
 
-            return new CheckAttributeBlockBase(id.Value, type.Value, varOperator.Value.Value, tags, attribute.Value, value, min, max, start, end, startInclusive, endInclusive, timezoneInsensitive, values, count);
+            return new CheckAttributeBlockBase(type.Value, varOperator.Value.Value, id, tags, attribute.Value, value, min, max, start, end, startInclusive, endInclusive, timezoneInsensitive, values, count, onFailure);
         }
 
         /// <summary>
@@ -951,18 +994,16 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckAttributeBlockBase checkAttributeBlockBase, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (checkAttributeBlockBase.Id == null)
-                throw new ArgumentNullException(nameof(checkAttributeBlockBase.Id), "Property is required for class CheckAttributeBlockBase.");
-
             if (checkAttributeBlockBase.Type == null)
                 throw new ArgumentNullException(nameof(checkAttributeBlockBase.Type), "Property is required for class CheckAttributeBlockBase.");
-
-            writer.WriteString("id", checkAttributeBlockBase.Id);
 
             writer.WriteString("type", checkAttributeBlockBase.Type);
 
             var varOperatorRawValue = CheckAttributeBlockBase.OperatorEnumToJsonValue(checkAttributeBlockBase.Operator);
             writer.WriteString("operator", varOperatorRawValue);
+            if (checkAttributeBlockBase.IdOption.IsSet)
+                writer.WriteString("id", checkAttributeBlockBase.Id);
+
             if (checkAttributeBlockBase.TagsOption.IsSet)
             {
                 writer.WritePropertyName("tags");
@@ -1040,6 +1081,11 @@ namespace TalonOneSdk.Model
                 }
                 else
                     writer.WriteNull("count");
+            if (checkAttributeBlockBase.OnFailureOption.IsSet)
+            {
+                writer.WritePropertyName("onFailure");
+                JsonSerializer.Serialize(writer, checkAttributeBlockBase.OnFailure, jsonSerializerOptions);
+            }
         }
     }
 }

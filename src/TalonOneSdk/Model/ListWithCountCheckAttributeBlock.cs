@@ -32,8 +32,8 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="ListWithCountCheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="operator">The list membership operator with a count threshold applied to the attribute.</param>
-        /// <param name="values">values</param>
-        /// <param name="count">count</param>
+        /// <param name="values">The set of values to match against.</param>
+        /// <param name="count">The count threshold for this operator.</param>
         [JsonConstructor]
         public ListWithCountCheckAttributeBlock(Option<OperatorEnum?> @operator = default, Object values = default, Object count = default)
         {
@@ -127,14 +127,17 @@ namespace TalonOneSdk.Model
         public OperatorEnum? Operator { get { return this.OperatorOption.Value; } set { this.OperatorOption = new Option<OperatorEnum?>(value); } }
 
         /// <summary>
-        /// Gets or Sets Values
+        /// The set of values to match against.
         /// </summary>
+        /// <value>The set of values to match against.</value>
         [JsonPropertyName("values")]
         public Object Values { get; set; }
 
         /// <summary>
-        /// Gets or Sets Count
+        /// The count threshold for this operator.
         /// </summary>
+        /// <value>The count threshold for this operator.</value>
+        /* <example>2</example> */
         [JsonPropertyName("count")]
         public Object Count { get; set; }
 
@@ -218,7 +221,12 @@ namespace TalonOneSdk.Model
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<ListWithCountCheckAttributeBlock.OperatorEnum?>(ListWithCountCheckAttributeBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                ListWithCountCheckAttributeBlock.OperatorEnum? varOperatorValue = ListWithCountCheckAttributeBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<ListWithCountCheckAttributeBlock.OperatorEnum?>(varOperatorValue);
+                            }
                             break;
                         case "values":
                             values = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));

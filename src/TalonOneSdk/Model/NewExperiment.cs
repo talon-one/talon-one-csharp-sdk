@@ -265,7 +265,12 @@ namespace TalonOneSdk.Model
                         case "goalType":
                             string goalTypeRawValue = utf8JsonReader.GetString();
                             if (goalTypeRawValue != null)
-                                goalType = new Option<NewExperiment.GoalTypeEnum?>(NewExperiment.GoalTypeEnumFromStringOrDefault(goalTypeRawValue));
+                            {
+                                NewExperiment.GoalTypeEnum? goalTypeValue = NewExperiment.GoalTypeEnumFromStringOrDefault(goalTypeRawValue);
+                                if (goalTypeValue == null)
+                                    throw new JsonException();
+                                goalType = new Option<NewExperiment.GoalTypeEnum?>(goalTypeValue);
+                            }
                             break;
                         case "goalDescription":
                             goalDescription = new Option<string>(utf8JsonReader.GetString());

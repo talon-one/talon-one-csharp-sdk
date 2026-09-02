@@ -196,7 +196,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<AwardDiscountAllItemsTarget.TypeEnum?>(AwardDiscountAllItemsTarget.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                AwardDiscountAllItemsTarget.TypeEnum? typeValue = AwardDiscountAllItemsTarget.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<AwardDiscountAllItemsTarget.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "prorated":
                             prorated = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());

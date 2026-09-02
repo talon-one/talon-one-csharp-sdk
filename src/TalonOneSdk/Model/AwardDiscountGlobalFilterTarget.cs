@@ -208,7 +208,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<AwardDiscountGlobalFilterTarget.TypeEnum?>(AwardDiscountGlobalFilterTarget.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                AwardDiscountGlobalFilterTarget.TypeEnum? typeValue = AwardDiscountGlobalFilterTarget.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<AwardDiscountGlobalFilterTarget.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());

@@ -450,7 +450,12 @@ namespace TalonOneSdk.Model
                         case "verb":
                             string verbRawValue = utf8JsonReader.GetString();
                             if (verbRawValue != null)
-                                verb = new Option<Webhook.VerbEnum?>(Webhook.VerbEnumFromStringOrDefault(verbRawValue));
+                            {
+                                Webhook.VerbEnum? verbValue = Webhook.VerbEnumFromStringOrDefault(verbRawValue);
+                                if (verbValue == null)
+                                    throw new JsonException();
+                                verb = new Option<Webhook.VerbEnum?>(verbValue);
+                            }
                             break;
                         case "url":
                             url = new Option<string>(utf8JsonReader.GetString());

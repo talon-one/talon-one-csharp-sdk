@@ -304,7 +304,12 @@ namespace TalonOneSdk.Model
                         case "status":
                             string statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<AchievementProgress.StatusEnum?>(AchievementProgress.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                AchievementProgress.StatusEnum? statusValue = AchievementProgress.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<AchievementProgress.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "progress":
                             progress = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());

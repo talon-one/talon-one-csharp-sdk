@@ -753,7 +753,12 @@ namespace TalonOneSdk.Model
                         case "entity":
                             string entityRawValue = utf8JsonReader.GetString();
                             if (entityRawValue != null)
-                                entity = new Option<NewAttribute.EntityEnum?>(NewAttribute.EntityEnumFromStringOrDefault(entityRawValue));
+                            {
+                                NewAttribute.EntityEnum? entityValue = NewAttribute.EntityEnumFromStringOrDefault(entityRawValue);
+                                if (entityValue == null)
+                                    throw new JsonException();
+                                entity = new Option<NewAttribute.EntityEnum?>(entityValue);
+                            }
                             break;
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
@@ -764,7 +769,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<NewAttribute.TypeEnum?>(NewAttribute.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                NewAttribute.TypeEnum? typeValue = NewAttribute.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<NewAttribute.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());

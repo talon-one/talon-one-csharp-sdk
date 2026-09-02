@@ -241,7 +241,12 @@ namespace TalonOneSdk.Model
                         case "op":
                             string opRawValue = utf8JsonReader.GetString();
                             if (opRawValue != null)
-                                op = new Option<ScimPatchOperation.OpEnum?>(ScimPatchOperation.OpEnumFromStringOrDefault(opRawValue));
+                            {
+                                ScimPatchOperation.OpEnum? opValue = ScimPatchOperation.OpEnumFromStringOrDefault(opRawValue);
+                                if (opValue == null)
+                                    throw new JsonException();
+                                op = new Option<ScimPatchOperation.OpEnum?>(opValue);
+                            }
                             break;
                         case "path":
                             path = new Option<string>(utf8JsonReader.GetString());

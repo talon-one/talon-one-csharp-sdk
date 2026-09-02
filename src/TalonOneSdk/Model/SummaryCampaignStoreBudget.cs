@@ -516,7 +516,12 @@ namespace TalonOneSdk.Model
                         case "action":
                             string actionRawValue = utf8JsonReader.GetString();
                             if (actionRawValue != null)
-                                action = new Option<SummaryCampaignStoreBudget.ActionEnum?>(SummaryCampaignStoreBudget.ActionEnumFromStringOrDefault(actionRawValue));
+                            {
+                                SummaryCampaignStoreBudget.ActionEnum? actionValue = SummaryCampaignStoreBudget.ActionEnumFromStringOrDefault(actionRawValue);
+                                if (actionValue == null)
+                                    throw new JsonException();
+                                action = new Option<SummaryCampaignStoreBudget.ActionEnum?>(actionValue);
+                            }
                             break;
                         case "storeCount":
                             storeCount = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
@@ -527,7 +532,12 @@ namespace TalonOneSdk.Model
                         case "period":
                             string periodRawValue = utf8JsonReader.GetString();
                             if (periodRawValue != null)
-                                period = new Option<SummaryCampaignStoreBudget.PeriodEnum?>(SummaryCampaignStoreBudget.PeriodEnumFromStringOrDefault(periodRawValue));
+                            {
+                                SummaryCampaignStoreBudget.PeriodEnum? periodValue = SummaryCampaignStoreBudget.PeriodEnumFromStringOrDefault(periodRawValue);
+                                if (periodValue == null)
+                                    throw new JsonException();
+                                period = new Option<SummaryCampaignStoreBudget.PeriodEnum?>(periodValue);
+                            }
                             break;
                         default:
                             break;

@@ -312,7 +312,12 @@ namespace TalonOneSdk.Model
                         case "status":
                             string statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<MultipleAudiencesItem.StatusEnum?>(MultipleAudiencesItem.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                MultipleAudiencesItem.StatusEnum? statusValue = MultipleAudiencesItem.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<MultipleAudiencesItem.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "subscribedApplicationsIds":
                             subscribedApplicationsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));

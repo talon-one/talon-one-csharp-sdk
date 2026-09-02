@@ -739,7 +739,12 @@ namespace TalonOneSdk.Model
                         case "state":
                             string stateRawValue = utf8JsonReader.GetString();
                             if (stateRawValue != null)
-                                state = new Option<BaseCampaign.StateEnum?>(BaseCampaign.StateEnumFromStringOrDefault(stateRawValue));
+                            {
+                                BaseCampaign.StateEnum? stateValue = BaseCampaign.StateEnumFromStringOrDefault(stateRawValue);
+                                if (stateValue == null)
+                                    throw new JsonException();
+                                state = new Option<BaseCampaign.StateEnum?>(stateValue);
+                            }
                             break;
                         case "activeRulesetId":
                             activeRulesetId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
@@ -759,7 +764,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<BaseCampaign.TypeEnum?>(BaseCampaign.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                BaseCampaign.TypeEnum? typeValue = BaseCampaign.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<BaseCampaign.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "linkedStoreIds":
                             linkedStoreIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));

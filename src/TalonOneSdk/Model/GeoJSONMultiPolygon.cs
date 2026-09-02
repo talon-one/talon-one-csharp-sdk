@@ -189,7 +189,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<GeoJSONMultiPolygon.TypeEnum?>(GeoJSONMultiPolygon.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                GeoJSONMultiPolygon.TypeEnum? typeValue = GeoJSONMultiPolygon.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<GeoJSONMultiPolygon.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "coordinates":
                             coordinates = new Option<List<List<List<List<decimal>>>>>(JsonSerializer.Deserialize<List<List<List<List<decimal>>>>>(ref utf8JsonReader, jsonSerializerOptions));

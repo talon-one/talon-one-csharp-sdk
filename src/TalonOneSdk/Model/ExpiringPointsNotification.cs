@@ -205,7 +205,12 @@ namespace TalonOneSdk.Model
                         case "NotificationType":
                             string notificationTypeRawValue = utf8JsonReader.GetString();
                             if (notificationTypeRawValue != null)
-                                notificationType = new Option<ExpiringPointsNotification.NotificationTypeEnum?>(ExpiringPointsNotification.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue));
+                            {
+                                ExpiringPointsNotification.NotificationTypeEnum? notificationTypeValue = ExpiringPointsNotification.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue);
+                                if (notificationTypeValue == null)
+                                    throw new JsonException();
+                                notificationType = new Option<ExpiringPointsNotification.NotificationTypeEnum?>(notificationTypeValue);
+                            }
                             break;
                         default:
                             break;

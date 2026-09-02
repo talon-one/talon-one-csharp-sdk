@@ -313,7 +313,12 @@ namespace TalonOneSdk.Model
                         case "revisionFrontendState":
                             string revisionFrontendStateRawValue = utf8JsonReader.GetString();
                             if (revisionFrontendStateRawValue != null)
-                                revisionFrontendState = new Option<CampaignVersions.RevisionFrontendStateEnum?>(CampaignVersions.RevisionFrontendStateEnumFromStringOrDefault(revisionFrontendStateRawValue));
+                            {
+                                CampaignVersions.RevisionFrontendStateEnum? revisionFrontendStateValue = CampaignVersions.RevisionFrontendStateEnumFromStringOrDefault(revisionFrontendStateRawValue);
+                                if (revisionFrontendStateValue == null)
+                                    throw new JsonException();
+                                revisionFrontendState = new Option<CampaignVersions.RevisionFrontendStateEnum?>(revisionFrontendStateValue);
+                            }
                             break;
                         case "activeRevisionId":
                             activeRevisionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());

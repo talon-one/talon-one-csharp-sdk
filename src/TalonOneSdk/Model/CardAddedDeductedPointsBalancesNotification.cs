@@ -403,7 +403,12 @@ namespace TalonOneSdk.Model
                         case "NotificationType":
                             string notificationTypeRawValue = utf8JsonReader.GetString();
                             if (notificationTypeRawValue != null)
-                                notificationType = new Option<CardAddedDeductedPointsBalancesNotification.NotificationTypeEnum?>(CardAddedDeductedPointsBalancesNotification.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue));
+                            {
+                                CardAddedDeductedPointsBalancesNotification.NotificationTypeEnum? notificationTypeValue = CardAddedDeductedPointsBalancesNotification.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue);
+                                if (notificationTypeValue == null)
+                                    throw new JsonException();
+                                notificationType = new Option<CardAddedDeductedPointsBalancesNotification.NotificationTypeEnum?>(notificationTypeValue);
+                            }
                             break;
                         case "ProfileIntegrationIDs":
                             profileIntegrationIDs = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -417,7 +422,12 @@ namespace TalonOneSdk.Model
                         case "TypeOfChange":
                             string typeOfChangeRawValue = utf8JsonReader.GetString();
                             if (typeOfChangeRawValue != null)
-                                typeOfChange = new Option<CardAddedDeductedPointsBalancesNotification.TypeOfChangeEnum?>(CardAddedDeductedPointsBalancesNotification.TypeOfChangeEnumFromStringOrDefault(typeOfChangeRawValue));
+                            {
+                                CardAddedDeductedPointsBalancesNotification.TypeOfChangeEnum? typeOfChangeValue = CardAddedDeductedPointsBalancesNotification.TypeOfChangeEnumFromStringOrDefault(typeOfChangeRawValue);
+                                if (typeOfChangeValue == null)
+                                    throw new JsonException();
+                                typeOfChange = new Option<CardAddedDeductedPointsBalancesNotification.TypeOfChangeEnum?>(typeOfChangeValue);
+                            }
                             break;
                         case "UserID":
                             userID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());

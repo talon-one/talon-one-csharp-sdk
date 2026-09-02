@@ -75,19 +75,29 @@ namespace TalonOneSdk.Model
             Referral = 5,
 
             /// <summary>
+            /// Enum Event for value: event
+            /// </summary>
+            Event = 6,
+
+            /// <summary>
+            /// Enum LoyaltyCard for value: loyaltyCard
+            /// </summary>
+            LoyaltyCard = 7,
+
+            /// <summary>
             /// Enum AllItems for value: allItems
             /// </summary>
-            AllItems = 6,
+            AllItems = 8,
 
             /// <summary>
             /// Enum Selector for value: selector
             /// </summary>
-            Selector = 7,
+            Selector = 9,
 
             /// <summary>
             /// Enum GlobalFilter for value: globalFilter
             /// </summary>
-            GlobalFilter = 8
+            GlobalFilter = 10
         }
 
         /// <summary>
@@ -112,6 +122,12 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("referral"))
                 return TypeEnum.Referral;
+
+            if (value.Equals("event"))
+                return TypeEnum.Event;
+
+            if (value.Equals("loyaltyCard"))
+                return TypeEnum.LoyaltyCard;
 
             if (value.Equals("allItems"))
                 return TypeEnum.AllItems;
@@ -147,6 +163,12 @@ namespace TalonOneSdk.Model
             if (value.Equals("referral"))
                 return TypeEnum.Referral;
 
+            if (value.Equals("event"))
+                return TypeEnum.Event;
+
+            if (value.Equals("loyaltyCard"))
+                return TypeEnum.LoyaltyCard;
+
             if (value.Equals("allItems"))
                 return TypeEnum.AllItems;
 
@@ -181,6 +203,12 @@ namespace TalonOneSdk.Model
 
             if (value == TypeEnum.Referral)
                 return "referral";
+
+            if (value == TypeEnum.Event)
+                return "event";
+
+            if (value == TypeEnum.LoyaltyCard)
+                return "loyaltyCard";
 
             if (value == TypeEnum.AllItems)
                 return "allItems";
@@ -295,7 +323,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<UpdateAttributeValueBlock1Target.TypeEnum?>(UpdateAttributeValueBlock1Target.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                UpdateAttributeValueBlock1Target.TypeEnum? typeValue = UpdateAttributeValueBlock1Target.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<UpdateAttributeValueBlock1Target.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());

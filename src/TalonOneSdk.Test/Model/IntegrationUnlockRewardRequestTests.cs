@@ -72,6 +72,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CardIdentifier'
+        /// </summary>
+        [Fact]
+        public void CardIdentifierTest()
+        {
+            // TODO unit test for the property 'CardIdentifier'
+        }
+
+        /// <summary>
         /// Test the property 'LoyaltyProgramId'
         /// </summary>
         [Fact]

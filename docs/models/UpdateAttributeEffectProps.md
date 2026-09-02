@@ -6,7 +6,7 @@ This effect indicates that a rule containing an [Update attribute value](https:/
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Path** | **string** | The entity type and the attribute name. | 
-**Value** | **Object** |  | 
+**Value** | **Object** | The new value of the attribute. | 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

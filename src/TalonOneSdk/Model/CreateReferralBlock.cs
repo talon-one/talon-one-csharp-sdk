@@ -31,26 +31,26 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateReferralBlock" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="campaignId">campaignId</param>
         /// <param name="friendId">An optional integration ID of the friend&#39;s profile.</param>
         /// <param name="storeInSession">When &#x60;true&#x60;, the referral code is stored in the session.</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="usageLimit">usageLimit</param>
-        /// <param name="startDate">startDate</param>
-        /// <param name="expiryDate">expiryDate</param>
-        /// <param name="attributes">attributes</param>
+        /// <param name="startDate">Timestamp at which point the referral code becomes valid.</param>
+        /// <param name="expiryDate">Expiration date of the referral code. Referral code never expires if this is omitted.</param>
+        /// <param name="attributes">Custom attributes associated with this referral code.</param>
         /// <param name="validCharacters">Characters used to generate the random parts of a code.</param>
         /// <param name="pattern">The pattern used to generate codes, such as coupon codes, referral codes, and loyalty cards. The character &#x60;#&#x60; is a placeholder and is replaced by a random character from the &#x60;validCharacters&#x60; set. </param>
         [JsonConstructor]
-        public CreateReferralBlock(string id, string type, CreateReferralBlock1CampaignId campaignId, string friendId, bool storeInSession, Option<List<string>> tags = default, Option<CreateReferralBlock1UsageLimit> usageLimit = default, Option<Object> startDate = default, Option<Object> expiryDate = default, Option<Object> attributes = default, Option<string> validCharacters = default, Option<string> pattern = default)
+        public CreateReferralBlock(string type, CreateReferralBlock1CampaignId campaignId, string friendId, bool storeInSession, Option<string> id = default, Option<List<string>> tags = default, Option<CreateReferralBlock1UsageLimit> usageLimit = default, Option<Object> startDate = default, Option<Object> expiryDate = default, Option<Object> attributes = default, Option<string> validCharacters = default, Option<string> pattern = default)
         {
-            Id = id;
             Type = type;
             CampaignId = campaignId;
             FriendId = friendId;
             StoreInSession = storeInSession;
+            IdOption = id;
             TagsOption = tags;
             UsageLimitOption = usageLimit;
             StartDateOption = startDate;
@@ -62,14 +62,6 @@ namespace TalonOneSdk.Model
         }
 
         partial void OnCreated();
-
-        /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
 
         /// <summary>
         /// Identifies the block variant and determines which additional properties are present in it.
@@ -101,18 +93,33 @@ namespace TalonOneSdk.Model
         public bool StoreInSession { get; set; }
 
         /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
+
+        /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> TagsOption { get; private set; }
+        public Option<List<string>> TagsOption { get; }
 
         /// <summary>
         /// Semantic labels attached to this block.
         /// </summary>
         /// <value>Semantic labels attached to this block.</value>
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
         /// Used to track the state of UsageLimit
@@ -135,8 +142,10 @@ namespace TalonOneSdk.Model
         public Option<Object> StartDateOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets StartDate
+        /// Timestamp at which point the referral code becomes valid.
         /// </summary>
+        /// <value>Timestamp at which point the referral code becomes valid.</value>
+        /* <example>2024-12-24T14:15:22Z</example> */
         [JsonPropertyName("startDate")]
         public Object StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<Object>(value); } }
 
@@ -148,8 +157,10 @@ namespace TalonOneSdk.Model
         public Option<Object> ExpiryDateOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ExpiryDate
+        /// Expiration date of the referral code. Referral code never expires if this is omitted.
         /// </summary>
+        /// <value>Expiration date of the referral code. Referral code never expires if this is omitted.</value>
+        /* <example>2024-12-24T14:15:22Z</example> */
         [JsonPropertyName("expiryDate")]
         public Object ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<Object>(value); } }
 
@@ -161,8 +172,9 @@ namespace TalonOneSdk.Model
         public Option<Object> AttributesOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Attributes
+        /// Custom attributes associated with this referral code.
         /// </summary>
+        /// <value>Custom attributes associated with this referral code.</value>
         [JsonPropertyName("attributes")]
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
@@ -204,11 +216,11 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateReferralBlock {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
             sb.Append("  FriendId: ").Append(FriendId).Append("\n");
             sb.Append("  StoreInSession: ").Append(StoreInSession).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  UsageLimit: ").Append(UsageLimit).Append("\n");
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
@@ -263,11 +275,11 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<string> type = default;
             Option<CreateReferralBlock1CampaignId> campaignId = default;
             Option<string> friendId = default;
             Option<bool?> storeInSession = default;
+            Option<string> id = default;
             Option<List<string>> tags = default;
             Option<CreateReferralBlock1UsageLimit> usageLimit = default;
             Option<Object> startDate = default;
@@ -291,9 +303,6 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -305,6 +314,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "storeInSession":
                             storeInSession = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -333,9 +345,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CreateReferralBlock.", nameof(id));
-
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class CreateReferralBlock.", nameof(type));
 
@@ -347,9 +356,6 @@ namespace TalonOneSdk.Model
 
             if (!storeInSession.IsSet)
                 throw new ArgumentException("Property is required for class CreateReferralBlock.", nameof(storeInSession));
-
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CreateReferralBlock.");
 
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class CreateReferralBlock.");
@@ -363,7 +369,7 @@ namespace TalonOneSdk.Model
             if (storeInSession.IsSet && storeInSession.Value == null)
                 throw new ArgumentNullException(nameof(storeInSession), "Property is not nullable for class CreateReferralBlock.");
 
-            return new CreateReferralBlock(id.Value, type.Value, campaignId.Value, friendId.Value, storeInSession.Value.Value, tags, usageLimit, startDate, expiryDate, attributes, validCharacters, pattern);
+            return new CreateReferralBlock(type.Value, campaignId.Value, friendId.Value, storeInSession.Value.Value, id, tags, usageLimit, startDate, expiryDate, attributes, validCharacters, pattern);
         }
 
         /// <summary>
@@ -390,9 +396,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateReferralBlock createReferralBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createReferralBlock.Id == null)
-                throw new ArgumentNullException(nameof(createReferralBlock.Id), "Property is required for class CreateReferralBlock.");
-
             if (createReferralBlock.Type == null)
                 throw new ArgumentNullException(nameof(createReferralBlock.Type), "Property is required for class CreateReferralBlock.");
 
@@ -402,8 +405,6 @@ namespace TalonOneSdk.Model
             if (createReferralBlock.FriendId == null)
                 throw new ArgumentNullException(nameof(createReferralBlock.FriendId), "Property is required for class CreateReferralBlock.");
 
-            writer.WriteString("id", createReferralBlock.Id);
-
             writer.WriteString("type", createReferralBlock.Type);
 
             writer.WritePropertyName("campaignId");
@@ -411,6 +412,9 @@ namespace TalonOneSdk.Model
             writer.WriteString("friendId", createReferralBlock.FriendId);
 
             writer.WriteBoolean("storeInSession", createReferralBlock.StoreInSession);
+
+            if (createReferralBlock.IdOption.IsSet)
+                writer.WriteString("id", createReferralBlock.Id);
 
             if (createReferralBlock.TagsOption.IsSet)
             {

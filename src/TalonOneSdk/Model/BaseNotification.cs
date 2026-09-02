@@ -425,7 +425,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<BaseNotification.TypeEnum?>(BaseNotification.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                BaseNotification.TypeEnum? typeValue = BaseNotification.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<BaseNotification.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "enabled":
                             enabled = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());

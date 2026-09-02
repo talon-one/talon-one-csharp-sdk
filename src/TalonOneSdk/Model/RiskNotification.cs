@@ -456,17 +456,32 @@ namespace TalonOneSdk.Model
                         case "entity":
                             string entityRawValue = utf8JsonReader.GetString();
                             if (entityRawValue != null)
-                                entity = new Option<RiskNotification.EntityEnum?>(RiskNotification.EntityEnumFromStringOrDefault(entityRawValue));
+                            {
+                                RiskNotification.EntityEnum? entityValue = RiskNotification.EntityEnumFromStringOrDefault(entityRawValue);
+                                if (entityValue == null)
+                                    throw new JsonException();
+                                entity = new Option<RiskNotification.EntityEnum?>(entityValue);
+                            }
                             break;
                         case "activity":
                             string activityRawValue = utf8JsonReader.GetString();
                             if (activityRawValue != null)
-                                activity = new Option<RiskNotification.ActivityEnum?>(RiskNotification.ActivityEnumFromStringOrDefault(activityRawValue));
+                            {
+                                RiskNotification.ActivityEnum? activityValue = RiskNotification.ActivityEnumFromStringOrDefault(activityRawValue);
+                                if (activityValue == null)
+                                    throw new JsonException();
+                                activity = new Option<RiskNotification.ActivityEnum?>(activityValue);
+                            }
                             break;
                         case "timeFrame":
                             string timeFrameRawValue = utf8JsonReader.GetString();
                             if (timeFrameRawValue != null)
-                                timeFrame = new Option<RiskNotification.TimeFrameEnum?>(RiskNotification.TimeFrameEnumFromStringOrDefault(timeFrameRawValue));
+                            {
+                                RiskNotification.TimeFrameEnum? timeFrameValue = RiskNotification.TimeFrameEnumFromStringOrDefault(timeFrameRawValue);
+                                if (timeFrameValue == null)
+                                    throw new JsonException();
+                                timeFrame = new Option<RiskNotification.TimeFrameEnum?>(timeFrameValue);
+                            }
                             break;
                         case "active":
                             active = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());

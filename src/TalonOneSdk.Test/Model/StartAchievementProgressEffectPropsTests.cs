@@ -72,15 +72,6 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'ProgressTrackerId'
-        /// </summary>
-        [Fact]
-        public void ProgressTrackerIdTest()
-        {
-            // TODO unit test for the property 'ProgressTrackerId'
-        }
-
-        /// <summary>
         /// Test the property 'Target'
         /// </summary>
         [Fact]
@@ -96,6 +87,15 @@ namespace TalonOneSdk.Test.Model
         public void StartDateTest()
         {
             // TODO unit test for the property 'StartDate'
+        }
+
+        /// <summary>
+        /// Test the property 'ProgressTrackerId'
+        /// </summary>
+        [Fact]
+        public void ProgressTrackerIdTest()
+        {
+            // TODO unit test for the property 'ProgressTrackerId'
         }
 
         /// <summary>

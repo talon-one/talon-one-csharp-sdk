@@ -211,7 +211,12 @@ namespace TalonOneSdk.Model
                         case "targetType":
                             string targetTypeRawValue = utf8JsonReader.GetString();
                             if (targetTypeRawValue != null)
-                                targetType = new Option<BestPriorTarget.TargetTypeEnum?>(BestPriorTarget.TargetTypeEnumFromStringOrDefault(targetTypeRawValue));
+                            {
+                                BestPriorTarget.TargetTypeEnum? targetTypeValue = BestPriorTarget.TargetTypeEnumFromStringOrDefault(targetTypeRawValue);
+                                if (targetTypeValue == null)
+                                    throw new JsonException();
+                                targetType = new Option<BestPriorTarget.TargetTypeEnum?>(targetTypeValue);
+                            }
                             break;
                         case "audienceID":
                             audienceID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());

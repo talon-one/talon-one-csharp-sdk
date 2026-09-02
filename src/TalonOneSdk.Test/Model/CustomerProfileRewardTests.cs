@@ -81,6 +81,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'RewardIntegrationId'
+        /// </summary>
+        [Fact]
+        public void RewardIntegrationIdTest()
+        {
+            // TODO unit test for the property 'RewardIntegrationId'
+        }
+
+        /// <summary>
         /// Test the property 'RewardName'
         /// </summary>
         [Fact]
@@ -105,6 +114,24 @@ namespace TalonOneSdk.Test.Model
         public void UnlockedAtTest()
         {
             // TODO unit test for the property 'UnlockedAt'
+        }
+
+        /// <summary>
+        /// Test the property 'Description'
+        /// </summary>
+        [Fact]
+        public void DescriptionTest()
+        {
+            // TODO unit test for the property 'Description'
+        }
+
+        /// <summary>
+        /// Test the property 'Rule'
+        /// </summary>
+        [Fact]
+        public void RuleTest()
+        {
+            // TODO unit test for the property 'Rule'
         }
 
         /// <summary>

@@ -63,6 +63,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Blocks'
+        /// </summary>
+        [Fact]
+        public void BlocksTest()
+        {
+            // TODO unit test for the property 'Blocks'
+        }
+
+        /// <summary>
         /// Test the property 'Id'
         /// </summary>
         [Fact]

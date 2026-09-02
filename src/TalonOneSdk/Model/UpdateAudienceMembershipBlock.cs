@@ -31,20 +31,20 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAudienceMembershipBlock" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="operator">The action to perform.</param>
         /// <param name="profile">The customer profile to add or remove from the audience. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program.</param>
         /// <param name="audience">audience</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         [JsonConstructor]
-        public UpdateAudienceMembershipBlock(string id, string type, OperatorEnum @operator, ProfileEnum profile, UpdateAudienceMembershipBlock1Audience audience, Option<List<string>> tags = default)
+        public UpdateAudienceMembershipBlock(string type, OperatorEnum @operator, ProfileEnum profile, UpdateAudienceMembershipBlock1Audience audience, Option<string> id = default, Option<List<string>> tags = default)
         {
-            Id = id;
             Type = type;
             Operator = @operator;
             Profile = profile;
             Audience = audience;
+            IdOption = id;
             TagsOption = tags;
             OnCreated();
         }
@@ -202,14 +202,6 @@ namespace TalonOneSdk.Model
         public ProfileEnum Profile { get; set; }
 
         /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        /// <summary>
         /// Identifies the block variant and determines which additional properties are present in it.
         /// </summary>
         /// <value>Identifies the block variant and determines which additional properties are present in it.</value>
@@ -223,18 +215,33 @@ namespace TalonOneSdk.Model
         public UpdateAudienceMembershipBlock1Audience Audience { get; set; }
 
         /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
+
+        /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> TagsOption { get; private set; }
+        public Option<List<string>> TagsOption { get; }
 
         /// <summary>
         /// Semantic labels attached to this block.
         /// </summary>
         /// <value>Semantic labels attached to this block.</value>
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -244,11 +251,11 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateAudienceMembershipBlock {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Operator: ").Append(Operator).Append("\n");
             sb.Append("  Profile: ").Append(Profile).Append("\n");
             sb.Append("  Audience: ").Append(Audience).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -297,11 +304,11 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<string> type = default;
             Option<UpdateAudienceMembershipBlock.OperatorEnum?> varOperator = default;
             Option<UpdateAudienceMembershipBlock.ProfileEnum?> profile = default;
             Option<UpdateAudienceMembershipBlock1Audience> audience = default;
+            Option<string> id = default;
             Option<List<string>> tags = default;
 
             while (utf8JsonReader.Read())
@@ -319,24 +326,34 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<UpdateAudienceMembershipBlock.OperatorEnum?>(UpdateAudienceMembershipBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                UpdateAudienceMembershipBlock.OperatorEnum? varOperatorValue = UpdateAudienceMembershipBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<UpdateAudienceMembershipBlock.OperatorEnum?>(varOperatorValue);
+                            }
                             break;
                         case "profile":
                             string profileRawValue = utf8JsonReader.GetString();
                             if (profileRawValue != null)
-                                profile = new Option<UpdateAudienceMembershipBlock.ProfileEnum?>(UpdateAudienceMembershipBlock.ProfileEnumFromStringOrDefault(profileRawValue));
+                            {
+                                UpdateAudienceMembershipBlock.ProfileEnum? profileValue = UpdateAudienceMembershipBlock.ProfileEnumFromStringOrDefault(profileRawValue);
+                                if (profileValue == null)
+                                    throw new JsonException();
+                                profile = new Option<UpdateAudienceMembershipBlock.ProfileEnum?>(profileValue);
+                            }
                             break;
                         case "audience":
                             audience = new Option<UpdateAudienceMembershipBlock1Audience>(JsonSerializer.Deserialize<UpdateAudienceMembershipBlock1Audience>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -346,9 +363,6 @@ namespace TalonOneSdk.Model
                     }
                 }
             }
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAudienceMembershipBlock.", nameof(id));
 
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class UpdateAudienceMembershipBlock.", nameof(type));
@@ -362,9 +376,6 @@ namespace TalonOneSdk.Model
             if (!audience.IsSet)
                 throw new ArgumentException("Property is required for class UpdateAudienceMembershipBlock.", nameof(audience));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class UpdateAudienceMembershipBlock.");
-
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class UpdateAudienceMembershipBlock.");
 
@@ -377,7 +388,7 @@ namespace TalonOneSdk.Model
             if (audience.IsSet && audience.Value == null)
                 throw new ArgumentNullException(nameof(audience), "Property is not nullable for class UpdateAudienceMembershipBlock.");
 
-            return new UpdateAudienceMembershipBlock(id.Value, type.Value, varOperator.Value.Value, profile.Value.Value, audience.Value, tags);
+            return new UpdateAudienceMembershipBlock(type.Value, varOperator.Value.Value, profile.Value.Value, audience.Value, id, tags);
         }
 
         /// <summary>
@@ -404,16 +415,11 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateAudienceMembershipBlock updateAudienceMembershipBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateAudienceMembershipBlock.Id == null)
-                throw new ArgumentNullException(nameof(updateAudienceMembershipBlock.Id), "Property is required for class UpdateAudienceMembershipBlock.");
-
             if (updateAudienceMembershipBlock.Type == null)
                 throw new ArgumentNullException(nameof(updateAudienceMembershipBlock.Type), "Property is required for class UpdateAudienceMembershipBlock.");
 
             if (updateAudienceMembershipBlock.Audience == null)
                 throw new ArgumentNullException(nameof(updateAudienceMembershipBlock.Audience), "Property is required for class UpdateAudienceMembershipBlock.");
-
-            writer.WriteString("id", updateAudienceMembershipBlock.Id);
 
             writer.WriteString("type", updateAudienceMembershipBlock.Type);
 
@@ -423,6 +429,9 @@ namespace TalonOneSdk.Model
             writer.WriteString("profile", profileRawValue);
             writer.WritePropertyName("audience");
             JsonSerializer.Serialize(writer, updateAudienceMembershipBlock.Audience, jsonSerializerOptions);
+            if (updateAudienceMembershipBlock.IdOption.IsSet)
+                writer.WriteString("id", updateAudienceMembershipBlock.Id);
+
             if (updateAudienceMembershipBlock.TagsOption.IsSet)
             {
                 writer.WritePropertyName("tags");

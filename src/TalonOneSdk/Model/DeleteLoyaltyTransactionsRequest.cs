@@ -211,7 +211,12 @@ namespace TalonOneSdk.Model
                         case "scope":
                             string scopeRawValue = utf8JsonReader.GetString();
                             if (scopeRawValue != null)
-                                scope = new Option<DeleteLoyaltyTransactionsRequest.ScopeEnum?>(DeleteLoyaltyTransactionsRequest.ScopeEnumFromStringOrDefault(scopeRawValue));
+                            {
+                                DeleteLoyaltyTransactionsRequest.ScopeEnum? scopeValue = DeleteLoyaltyTransactionsRequest.ScopeEnumFromStringOrDefault(scopeRawValue);
+                                if (scopeValue == null)
+                                    throw new JsonException();
+                                scope = new Option<DeleteLoyaltyTransactionsRequest.ScopeEnum?>(scopeValue);
+                            }
                             break;
                         case "subledgerIds":
                             subledgerIds = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));

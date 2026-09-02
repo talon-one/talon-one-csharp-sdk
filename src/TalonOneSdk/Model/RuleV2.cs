@@ -32,13 +32,15 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="RuleV2" /> class.
         /// </summary>
         /// <param name="title">A short description of the rule.</param>
+        /// <param name="blocks">The condition and effect blocks that make up this rule.</param>
         /// <param name="id">Unique identifier of the rule.</param>
         /// <param name="parentId">ID of the parent rule, if any.</param>
         /// <param name="description">A longer description of the rule.</param>
         [JsonConstructor]
-        public RuleV2(string title, Option<string> id = default, Option<string> parentId = default, Option<string> description = default)
+        public RuleV2(string title, List<Block> blocks, Option<string> id = default, Option<string> parentId = default, Option<string> description = default)
         {
             Title = title;
+            Blocks = blocks;
             IdOption = id;
             ParentIdOption = parentId;
             DescriptionOption = description;
@@ -54,6 +56,13 @@ namespace TalonOneSdk.Model
         /* <example>10% off for loyalty members</example> */
         [JsonPropertyName("title")]
         public string Title { get; set; }
+
+        /// <summary>
+        /// The condition and effect blocks that make up this rule.
+        /// </summary>
+        /// <value>The condition and effect blocks that make up this rule.</value>
+        [JsonPropertyName("blocks")]
+        public List<Block> Blocks { get; set; }
 
         /// <summary>
         /// Used to track the state of Id
@@ -107,6 +116,7 @@ namespace TalonOneSdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class RuleV2 {\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
+            sb.Append("  Blocks: ").Append(Blocks).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  ParentId: ").Append(ParentId).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
@@ -158,6 +168,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string> title = default;
+            Option<List<Block>> blocks = default;
             Option<string> id = default;
             Option<string> parentId = default;
             Option<string> description = default;
@@ -180,6 +191,9 @@ namespace TalonOneSdk.Model
                         case "title":
                             title = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "blocks":
+                            blocks = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "id":
                             id = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -198,10 +212,16 @@ namespace TalonOneSdk.Model
             if (!title.IsSet)
                 throw new ArgumentException("Property is required for class RuleV2.", nameof(title));
 
+            if (!blocks.IsSet)
+                throw new ArgumentException("Property is required for class RuleV2.", nameof(blocks));
+
             if (title.IsSet && title.Value == null)
                 throw new ArgumentNullException(nameof(title), "Property is not nullable for class RuleV2.");
 
-            return new RuleV2(title.Value, id, parentId, description);
+            if (blocks.IsSet && blocks.Value == null)
+                throw new ArgumentNullException(nameof(blocks), "Property is not nullable for class RuleV2.");
+
+            return new RuleV2(title.Value, blocks.Value, id, parentId, description);
         }
 
         /// <summary>
@@ -231,8 +251,13 @@ namespace TalonOneSdk.Model
             if (ruleV2.Title == null)
                 throw new ArgumentNullException(nameof(ruleV2.Title), "Property is required for class RuleV2.");
 
+            if (ruleV2.Blocks == null)
+                throw new ArgumentNullException(nameof(ruleV2.Blocks), "Property is required for class RuleV2.");
+
             writer.WriteString("title", ruleV2.Title);
 
+            writer.WritePropertyName("blocks");
+            JsonSerializer.Serialize(writer, ruleV2.Blocks, jsonSerializerOptions);
             if (ruleV2.IdOption.IsSet)
                 writer.WriteString("id", ruleV2.Id);
 

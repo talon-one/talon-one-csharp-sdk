@@ -24,41 +24,108 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// WebhookAuthenticationBase
+    /// Definition of all the properties that are needed to create or update a webhook authentication. The &#x60;type&#x60; field selects the concrete authentication variant.
     /// </summary>
     public partial class WebhookAuthenticationBase : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookAuthenticationBase" /> class.
         /// </summary>
-        /// <param name="webhookAuthenticationBaseOneOf"></param>
-        public WebhookAuthenticationBase(WebhookAuthenticationBaseOneOf webhookAuthenticationBaseOneOf)
+        /// <param name="webhookAuthenticationBaseBasic"></param>
+        public WebhookAuthenticationBase(WebhookAuthenticationBaseBasic webhookAuthenticationBaseBasic)
         {
-            WebhookAuthenticationBaseOneOf = webhookAuthenticationBaseOneOf;
+            WebhookAuthenticationBaseBasic = webhookAuthenticationBaseBasic;
             OnCreated();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookAuthenticationBase" /> class.
         /// </summary>
-        /// <param name="webhookAuthenticationBaseOneOf1"></param>
-        public WebhookAuthenticationBase(WebhookAuthenticationBaseOneOf1 webhookAuthenticationBaseOneOf1)
+        /// <param name="webhookAuthenticationBaseCustom"></param>
+        public WebhookAuthenticationBase(WebhookAuthenticationBaseCustom webhookAuthenticationBaseCustom)
         {
-            WebhookAuthenticationBaseOneOf1 = webhookAuthenticationBaseOneOf1;
+            WebhookAuthenticationBaseCustom = webhookAuthenticationBaseCustom;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets WebhookAuthenticationBaseOneOf
+        /// A webhook authentication discriminator of type &#x60;basic&#x60;.
         /// </summary>
-        public WebhookAuthenticationBaseOneOf WebhookAuthenticationBaseOneOf { get; set; }
+        /// <value>A webhook authentication discriminator of type &#x60;basic&#x60;.</value>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum Basic for value: basic
+            /// </summary>
+            Basic = 1,
+
+            /// <summary>
+            /// Enum Custom for value: custom
+            /// </summary>
+            Custom = 2
+        }
 
         /// <summary>
-        /// Gets or Sets WebhookAuthenticationBaseOneOf1
+        /// Returns a <see cref="TypeEnum"/>
         /// </summary>
-        public WebhookAuthenticationBaseOneOf1 WebhookAuthenticationBaseOneOf1 { get; set; }
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("basic"))
+                return TypeEnum.Basic;
+
+            if (value.Equals("custom"))
+                return TypeEnum.Custom;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("basic"))
+                return TypeEnum.Basic;
+
+            if (value.Equals("custom"))
+                return TypeEnum.Custom;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.Basic)
+                return "basic";
+
+            if (value == TypeEnum.Custom)
+                return "custom";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// Gets or Sets WebhookAuthenticationBaseBasic
+        /// </summary>
+        public WebhookAuthenticationBaseBasic WebhookAuthenticationBaseBasic { get; set; }
+
+        /// <summary>
+        /// Gets or Sets WebhookAuthenticationBaseCustom
+        /// </summary>
+        public WebhookAuthenticationBaseCustom WebhookAuthenticationBaseCustom { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -78,6 +145,16 @@ namespace TalonOneSdk.Model
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            return this.BaseValidate(validationContext);
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        protected IEnumerable<ValidationResult> BaseValidate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -115,25 +192,38 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            WebhookAuthenticationBaseOneOf webhookAuthenticationBaseOneOf = default;
-            WebhookAuthenticationBaseOneOf1 webhookAuthenticationBaseOneOf1 = default;
+            Option<WebhookAuthenticationBase.TypeEnum?> type = default;
 
-            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
-            while (utf8JsonReaderOneOf.Read())
+            WebhookAuthenticationBaseBasic basicWebhookAuthenticationBaseBasic = null;
+            WebhookAuthenticationBaseCustom customWebhookAuthenticationBaseCustom = null;
+
+            Utf8JsonReader utf8JsonReaderDiscriminator = utf8JsonReader;
+            while (utf8JsonReaderDiscriminator.Read())
             {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
+                if (utf8JsonReaderDiscriminator.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth - 1)
                 {
-                    Utf8JsonReader utf8JsonReaderWebhookAuthenticationBaseOneOf = utf8JsonReader;
-                    ClientUtils.TryDeserialize<WebhookAuthenticationBaseOneOf>(ref utf8JsonReaderWebhookAuthenticationBaseOneOf, jsonSerializerOptions, out webhookAuthenticationBaseOneOf);
-
-                    Utf8JsonReader utf8JsonReaderWebhookAuthenticationBaseOneOf1 = utf8JsonReader;
-                    ClientUtils.TryDeserialize<WebhookAuthenticationBaseOneOf1>(ref utf8JsonReaderWebhookAuthenticationBaseOneOf1, jsonSerializerOptions, out webhookAuthenticationBaseOneOf1);
+                    string localVarJsonPropertyName = utf8JsonReaderDiscriminator.GetString();
+                    utf8JsonReaderDiscriminator.Read();
+                    if (localVarJsonPropertyName.Equals("type"))
+                    {
+                        string discriminator = utf8JsonReaderDiscriminator.GetString();
+                        if (discriminator.Equals("basic"))
+                        {
+                            Utf8JsonReader utf8JsonReaderWebhookAuthenticationBaseBasic = utf8JsonReader;
+                            basicWebhookAuthenticationBaseBasic = JsonSerializer.Deserialize<WebhookAuthenticationBaseBasic>(ref utf8JsonReaderWebhookAuthenticationBaseBasic, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("custom"))
+                        {
+                            Utf8JsonReader utf8JsonReaderWebhookAuthenticationBaseCustom = utf8JsonReader;
+                            customWebhookAuthenticationBaseCustom = JsonSerializer.Deserialize<WebhookAuthenticationBaseCustom>(ref utf8JsonReaderWebhookAuthenticationBaseCustom, jsonSerializerOptions);
+                        }
+                    }
                 }
             }
 
@@ -152,17 +242,33 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "type":
+                            string typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                            {
+                                WebhookAuthenticationBase.TypeEnum? typeValue = WebhookAuthenticationBase.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<WebhookAuthenticationBase.TypeEnum?>(typeValue);
+                            }
+                            break;
                         default:
                             break;
                     }
                 }
             }
 
-            if (webhookAuthenticationBaseOneOf != null)
-                return new WebhookAuthenticationBase(webhookAuthenticationBaseOneOf);
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class WebhookAuthenticationBase.", nameof(type));
 
-            if (webhookAuthenticationBaseOneOf1 != null)
-                return new WebhookAuthenticationBase(webhookAuthenticationBaseOneOf1);
+            if (type.IsSet && type.Value == null)
+                throw new ArgumentNullException(nameof(type), "Property is not nullable for class WebhookAuthenticationBase.");
+
+            if (basicWebhookAuthenticationBaseBasic != null)
+                return new WebhookAuthenticationBase(basicWebhookAuthenticationBaseBasic);
+
+            if (customWebhookAuthenticationBaseCustom != null)
+                return new WebhookAuthenticationBase(customWebhookAuthenticationBaseCustom);
 
             throw new JsonException();
         }
@@ -177,6 +283,18 @@ namespace TalonOneSdk.Model
         public override void Write(Utf8JsonWriter writer, WebhookAuthenticationBase webhookAuthenticationBase, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
+
+            if (webhookAuthenticationBase.WebhookAuthenticationBaseBasic != null)
+            {
+                WebhookAuthenticationBaseBasicJsonConverter webhookAuthenticationBaseBasicJsonConverter = (WebhookAuthenticationBaseBasicJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(webhookAuthenticationBase.WebhookAuthenticationBaseBasic.GetType()));
+                webhookAuthenticationBaseBasicJsonConverter.WriteProperties(writer, webhookAuthenticationBase.WebhookAuthenticationBaseBasic, jsonSerializerOptions);
+            }
+
+            if (webhookAuthenticationBase.WebhookAuthenticationBaseCustom != null)
+            {
+                WebhookAuthenticationBaseCustomJsonConverter webhookAuthenticationBaseCustomJsonConverter = (WebhookAuthenticationBaseCustomJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(webhookAuthenticationBase.WebhookAuthenticationBaseCustom.GetType()));
+                webhookAuthenticationBaseCustomJsonConverter.WriteProperties(writer, webhookAuthenticationBase.WebhookAuthenticationBaseCustom, jsonSerializerOptions);
+            }
 
             WriteProperties(writer, webhookAuthenticationBase, jsonSerializerOptions);
             writer.WriteEndObject();

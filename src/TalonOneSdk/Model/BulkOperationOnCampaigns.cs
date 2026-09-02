@@ -241,7 +241,12 @@ namespace TalonOneSdk.Model
                         case "operation":
                             string operationRawValue = utf8JsonReader.GetString();
                             if (operationRawValue != null)
-                                operation = new Option<BulkOperationOnCampaigns.OperationEnum?>(BulkOperationOnCampaigns.OperationEnumFromStringOrDefault(operationRawValue));
+                            {
+                                BulkOperationOnCampaigns.OperationEnum? operationValue = BulkOperationOnCampaigns.OperationEnumFromStringOrDefault(operationRawValue);
+                                if (operationValue == null)
+                                    throw new JsonException();
+                                operation = new Option<BulkOperationOnCampaigns.OperationEnum?>(operationValue);
+                            }
                             break;
                         case "campaignIds":
                             campaignIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));

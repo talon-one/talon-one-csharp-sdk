@@ -40,13 +40,15 @@ namespace TalonOneSdk.Model
         /// <param name="couponValue">The code of the coupon that was being evaluated at the time of the rule failure.</param>
         /// <param name="referralID">The ID of the referral that was being evaluated at the time of the rule failure.</param>
         /// <param name="referralValue">The code of the referral that was being evaluated at the time of the rule failure.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated at the time of the rule failure.</param>
+        /// <param name="rewardIntegrationId">The integration ID of the reward that was being evaluated at the time of the rule failure.</param>
         /// <param name="conditionIndex">The index of the condition that failed.</param>
         /// <param name="effectIndex">The index of the effect that failed.</param>
         /// <param name="details">More details about the failure.</param>
         /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
         /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-</param>
         [JsonConstructor]
-        public RuleFailureReason(long campaignID, string campaignName, long rulesetID, long ruleIndex, string ruleName, Option<long?> couponID = default, Option<string> couponValue = default, Option<long?> referralID = default, Option<string> referralValue = default, Option<long?> conditionIndex = default, Option<long?> effectIndex = default, Option<string> details = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default)
+        public RuleFailureReason(long campaignID, string campaignName, long rulesetID, long ruleIndex, string ruleName, Option<long?> couponID = default, Option<string> couponValue = default, Option<long?> referralID = default, Option<string> referralValue = default, Option<long?> rewardId = default, Option<string> rewardIntegrationId = default, Option<long?> conditionIndex = default, Option<long?> effectIndex = default, Option<string> details = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default)
         {
             CampaignID = campaignID;
             CampaignName = campaignName;
@@ -57,6 +59,8 @@ namespace TalonOneSdk.Model
             CouponValueOption = couponValue;
             ReferralIDOption = referralID;
             ReferralValueOption = referralValue;
+            RewardIdOption = rewardId;
+            RewardIntegrationIdOption = rewardIntegrationId;
             ConditionIndexOption = conditionIndex;
             EffectIndexOption = effectIndex;
             DetailsOption = details;
@@ -160,6 +164,36 @@ namespace TalonOneSdk.Model
         public string ReferralValue { get { return this.ReferralValueOption.Value; } set { this.ReferralValueOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of RewardId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> RewardIdOption { get; private set; }
+
+        /// <summary>
+        /// The ID of the reward that was being evaluated at the time of the rule failure.
+        /// </summary>
+        /// <value>The ID of the reward that was being evaluated at the time of the rule failure.</value>
+        /* <example>7</example> */
+        [JsonPropertyName("rewardId")]
+        public long? RewardId { get { return this.RewardIdOption.Value; } set { this.RewardIdOption = new Option<long?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of RewardIntegrationId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> RewardIntegrationIdOption { get; private set; }
+
+        /// <summary>
+        /// The integration ID of the reward that was being evaluated at the time of the rule failure.
+        /// </summary>
+        /// <value>The integration ID of the reward that was being evaluated at the time of the rule failure.</value>
+        /* <example>5c0b5e6d-3f8a-4c2b-9f1e-2a7d6b4c8e90</example> */
+        [JsonPropertyName("rewardIntegrationId")]
+        public string RewardIntegrationId { get { return this.RewardIntegrationIdOption.Value; } set { this.RewardIntegrationIdOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Used to track the state of ConditionIndex
         /// </summary>
         [JsonIgnore]
@@ -248,6 +282,8 @@ namespace TalonOneSdk.Model
             sb.Append("  CouponValue: ").Append(CouponValue).Append("\n");
             sb.Append("  ReferralID: ").Append(ReferralID).Append("\n");
             sb.Append("  ReferralValue: ").Append(ReferralValue).Append("\n");
+            sb.Append("  RewardId: ").Append(RewardId).Append("\n");
+            sb.Append("  RewardIntegrationId: ").Append(RewardIntegrationId).Append("\n");
             sb.Append("  ConditionIndex: ").Append(ConditionIndex).Append("\n");
             sb.Append("  EffectIndex: ").Append(EffectIndex).Append("\n");
             sb.Append("  Details: ").Append(Details).Append("\n");
@@ -309,6 +345,8 @@ namespace TalonOneSdk.Model
             Option<string> couponValue = default;
             Option<long?> referralID = default;
             Option<string> referralValue = default;
+            Option<long?> rewardId = default;
+            Option<string> rewardIntegrationId = default;
             Option<long?> conditionIndex = default;
             Option<long?> effectIndex = default;
             Option<string> details = default;
@@ -356,6 +394,12 @@ namespace TalonOneSdk.Model
                             break;
                         case "referralValue":
                             referralValue = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "rewardId":
+                            rewardId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "rewardIntegrationId":
+                            rewardIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "conditionIndex":
                             conditionIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
@@ -408,7 +452,7 @@ namespace TalonOneSdk.Model
             if (ruleName.IsSet && ruleName.Value == null)
                 throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class RuleFailureReason.");
 
-            return new RuleFailureReason(campaignID.Value.Value, campaignName.Value, rulesetID.Value.Value, ruleIndex.Value.Value, ruleName.Value, couponID, couponValue, referralID, referralValue, conditionIndex, effectIndex, details, evaluationGroupID, evaluationGroupMode);
+            return new RuleFailureReason(campaignID.Value.Value, campaignName.Value, rulesetID.Value.Value, ruleIndex.Value.Value, ruleName.Value, couponID, couponValue, referralID, referralValue, rewardId, rewardIntegrationId, conditionIndex, effectIndex, details, evaluationGroupID, evaluationGroupMode);
         }
 
         /// <summary>
@@ -462,6 +506,12 @@ namespace TalonOneSdk.Model
 
             if (ruleFailureReason.ReferralValueOption.IsSet)
                 writer.WriteString("referralValue", ruleFailureReason.ReferralValue);
+
+            if (ruleFailureReason.RewardIdOption.IsSet)
+                writer.WriteNumber("rewardId", ruleFailureReason.RewardIdOption.Value.Value);
+
+            if (ruleFailureReason.RewardIntegrationIdOption.IsSet)
+                writer.WriteString("rewardIntegrationId", ruleFailureReason.RewardIntegrationId);
 
             if (ruleFailureReason.ConditionIndexOption.IsSet)
                 writer.WriteNumber("conditionIndex", ruleFailureReason.ConditionIndexOption.Value.Value);

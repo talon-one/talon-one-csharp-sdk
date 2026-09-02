@@ -1596,7 +1596,12 @@ namespace TalonOneSdk.Model
                         case "frontendState":
                             string frontendStateRawValue = utf8JsonReader.GetString();
                             if (frontendStateRawValue != null)
-                                frontendState = new Option<Campaign.FrontendStateEnum?>(Campaign.FrontendStateEnumFromStringOrDefault(frontendStateRawValue));
+                            {
+                                Campaign.FrontendStateEnum? frontendStateValue = Campaign.FrontendStateEnumFromStringOrDefault(frontendStateRawValue);
+                                if (frontendStateValue == null)
+                                    throw new JsonException();
+                                frontendState = new Option<Campaign.FrontendStateEnum?>(frontendStateValue);
+                            }
                             break;
                         case "storesImported":
                             storesImported = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
@@ -1616,7 +1621,12 @@ namespace TalonOneSdk.Model
                         case "state":
                             string stateRawValue = utf8JsonReader.GetString();
                             if (stateRawValue != null)
-                                state = new Option<Campaign.StateEnum?>(Campaign.StateEnumFromStringOrDefault(stateRawValue));
+                            {
+                                Campaign.StateEnum? stateValue = Campaign.StateEnumFromStringOrDefault(stateRawValue);
+                                if (stateValue == null)
+                                    throw new JsonException();
+                                state = new Option<Campaign.StateEnum?>(stateValue);
+                            }
                             break;
                         case "activeRulesetId":
                             activeRulesetId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
@@ -1633,7 +1643,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<Campaign.TypeEnum?>(Campaign.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                Campaign.TypeEnum? typeValue = Campaign.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<Campaign.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "linkedStoreIds":
                             linkedStoreIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -1713,7 +1728,12 @@ namespace TalonOneSdk.Model
                         case "revisionFrontendState":
                             string revisionFrontendStateRawValue = utf8JsonReader.GetString();
                             if (revisionFrontendStateRawValue != null)
-                                revisionFrontendState = new Option<Campaign.RevisionFrontendStateEnum?>(Campaign.RevisionFrontendStateEnumFromStringOrDefault(revisionFrontendStateRawValue));
+                            {
+                                Campaign.RevisionFrontendStateEnum? revisionFrontendStateValue = Campaign.RevisionFrontendStateEnumFromStringOrDefault(revisionFrontendStateRawValue);
+                                if (revisionFrontendStateValue == null)
+                                    throw new JsonException();
+                                revisionFrontendState = new Option<Campaign.RevisionFrontendStateEnum?>(revisionFrontendStateValue);
+                            }
                             break;
                         case "activeRevisionId":
                             activeRevisionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());

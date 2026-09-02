@@ -462,12 +462,22 @@ namespace TalonOneSdk.Model
                         case "category":
                             string categoryRawValue = utf8JsonReader.GetString();
                             if (categoryRawValue != null)
-                                category = new Option<Blueprint.CategoryEnum?>(Blueprint.CategoryEnumFromStringOrDefault(categoryRawValue));
+                            {
+                                Blueprint.CategoryEnum? categoryValue = Blueprint.CategoryEnumFromStringOrDefault(categoryRawValue);
+                                if (categoryValue == null)
+                                    throw new JsonException();
+                                category = new Option<Blueprint.CategoryEnum?>(categoryValue);
+                            }
                             break;
                         case "source":
                             string sourceRawValue = utf8JsonReader.GetString();
                             if (sourceRawValue != null)
-                                source = new Option<Blueprint.SourceEnum?>(Blueprint.SourceEnumFromStringOrDefault(sourceRawValue));
+                            {
+                                Blueprint.SourceEnum? sourceValue = Blueprint.SourceEnumFromStringOrDefault(sourceRawValue);
+                                if (sourceValue == null)
+                                    throw new JsonException();
+                                source = new Option<Blueprint.SourceEnum?>(sourceValue);
+                            }
                             break;
                         case "rules":
                             rules = new Option<List<CatalogRule>>(JsonSerializer.Deserialize<List<CatalogRule>>(ref utf8JsonReader, jsonSerializerOptions));

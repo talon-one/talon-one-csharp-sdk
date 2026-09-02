@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="UpdateAttributeEffectProps" /> class.
         /// </summary>
         /// <param name="path">The entity type and the attribute name.</param>
-        /// <param name="value">value</param>
+        /// <param name="value">The new value of the attribute.</param>
         [JsonConstructor]
         public UpdateAttributeEffectProps(string path, Object value = default)
         {
@@ -51,8 +51,9 @@ namespace TalonOneSdk.Model
         public string Path { get; set; }
 
         /// <summary>
-        /// Gets or Sets Value
+        /// The new value of the attribute.
         /// </summary>
+        /// <value>The new value of the attribute.</value>
         [JsonPropertyName("value")]
         public Object Value { get; set; }
 

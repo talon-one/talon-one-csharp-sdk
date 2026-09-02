@@ -31,21 +31,21 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAttributeValueBlock" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="operator">The update operation applied to the attribute.</param>
         /// <param name="attribute">attribute</param>
         /// <param name="target">target</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="value">value</param>
+        /// <param name="value">The value of the attribute. Omitted when operator is set to &#x60;toggle&#x60;.</param>
         [JsonConstructor]
-        public UpdateAttributeValueBlock(string id, string type, OperatorEnum @operator, UpdateAttributeValueBlock1Attribute attribute, UpdateAttributeValueBlock1Target target, Option<List<string>> tags = default, Option<Object> value = default)
+        public UpdateAttributeValueBlock(string type, OperatorEnum @operator, UpdateAttributeValueBlock1Attribute attribute, UpdateAttributeValueBlock1Target target, Option<string> id = default, Option<List<string>> tags = default, Option<Object> value = default)
         {
-            Id = id;
             Type = type;
             Operator = @operator;
             Attribute = attribute;
             Target = target;
+            IdOption = id;
             TagsOption = tags;
             ValueOption = value;
             OnCreated();
@@ -213,14 +213,6 @@ namespace TalonOneSdk.Model
         public OperatorEnum Operator { get; set; }
 
         /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        /// <summary>
         /// Identifies the block variant and determines which additional properties are present in it.
         /// </summary>
         /// <value>Identifies the block variant and determines which additional properties are present in it.</value>
@@ -238,6 +230,21 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonPropertyName("target")]
         public UpdateAttributeValueBlock1Target Target { get; set; }
+
+        /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
 
         /// <summary>
         /// Used to track the state of Tags
@@ -261,8 +268,10 @@ namespace TalonOneSdk.Model
         public Option<Object> ValueOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Value
+        /// The value of the attribute. Omitted when operator is set to &#x60;toggle&#x60;.
         /// </summary>
+        /// <value>The value of the attribute. Omitted when operator is set to &#x60;toggle&#x60;.</value>
+        /* <example>10</example> */
         [JsonPropertyName("value")]
         public Object Value { get { return this.ValueOption.Value; } set { this.ValueOption = new Option<Object>(value); } }
 
@@ -274,11 +283,11 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateAttributeValueBlock {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Operator: ").Append(Operator).Append("\n");
             sb.Append("  Attribute: ").Append(Attribute).Append("\n");
             sb.Append("  Target: ").Append(Target).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
@@ -328,11 +337,11 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<string> type = default;
             Option<UpdateAttributeValueBlock.OperatorEnum?> varOperator = default;
             Option<UpdateAttributeValueBlock1Attribute> attribute = default;
             Option<UpdateAttributeValueBlock1Target> target = default;
+            Option<string> id = default;
             Option<List<string>> tags = default;
             Option<Object> value = default;
 
@@ -351,22 +360,27 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<UpdateAttributeValueBlock.OperatorEnum?>(UpdateAttributeValueBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                UpdateAttributeValueBlock.OperatorEnum? varOperatorValue = UpdateAttributeValueBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<UpdateAttributeValueBlock.OperatorEnum?>(varOperatorValue);
+                            }
                             break;
                         case "attribute":
                             attribute = new Option<UpdateAttributeValueBlock1Attribute>(JsonSerializer.Deserialize<UpdateAttributeValueBlock1Attribute>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "target":
                             target = new Option<UpdateAttributeValueBlock1Target>(JsonSerializer.Deserialize<UpdateAttributeValueBlock1Target>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -380,9 +394,6 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAttributeValueBlock.", nameof(id));
-
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class UpdateAttributeValueBlock.", nameof(type));
 
@@ -394,9 +405,6 @@ namespace TalonOneSdk.Model
 
             if (!target.IsSet)
                 throw new ArgumentException("Property is required for class UpdateAttributeValueBlock.", nameof(target));
-
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class UpdateAttributeValueBlock.");
 
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class UpdateAttributeValueBlock.");
@@ -410,7 +418,7 @@ namespace TalonOneSdk.Model
             if (target.IsSet && target.Value == null)
                 throw new ArgumentNullException(nameof(target), "Property is not nullable for class UpdateAttributeValueBlock.");
 
-            return new UpdateAttributeValueBlock(id.Value, type.Value, varOperator.Value.Value, attribute.Value, target.Value, tags, value);
+            return new UpdateAttributeValueBlock(type.Value, varOperator.Value.Value, attribute.Value, target.Value, id, tags, value);
         }
 
         /// <summary>
@@ -437,9 +445,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateAttributeValueBlock updateAttributeValueBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateAttributeValueBlock.Id == null)
-                throw new ArgumentNullException(nameof(updateAttributeValueBlock.Id), "Property is required for class UpdateAttributeValueBlock.");
-
             if (updateAttributeValueBlock.Type == null)
                 throw new ArgumentNullException(nameof(updateAttributeValueBlock.Type), "Property is required for class UpdateAttributeValueBlock.");
 
@@ -449,8 +454,6 @@ namespace TalonOneSdk.Model
             if (updateAttributeValueBlock.Target == null)
                 throw new ArgumentNullException(nameof(updateAttributeValueBlock.Target), "Property is required for class UpdateAttributeValueBlock.");
 
-            writer.WriteString("id", updateAttributeValueBlock.Id);
-
             writer.WriteString("type", updateAttributeValueBlock.Type);
 
             var varOperatorRawValue = UpdateAttributeValueBlock.OperatorEnumToJsonValue(updateAttributeValueBlock.Operator);
@@ -459,6 +462,9 @@ namespace TalonOneSdk.Model
             JsonSerializer.Serialize(writer, updateAttributeValueBlock.Attribute, jsonSerializerOptions);
             writer.WritePropertyName("target");
             JsonSerializer.Serialize(writer, updateAttributeValueBlock.Target, jsonSerializerOptions);
+            if (updateAttributeValueBlock.IdOption.IsSet)
+                writer.WriteString("id", updateAttributeValueBlock.Id);
+
             if (updateAttributeValueBlock.TagsOption.IsSet)
             {
                 writer.WritePropertyName("tags");

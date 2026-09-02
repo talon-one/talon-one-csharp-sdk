@@ -875,7 +875,12 @@ namespace TalonOneSdk.Model
                         case "state":
                             string stateRawValue = utf8JsonReader.GetString();
                             if (stateRawValue != null)
-                                state = new Option<CampaignTemplate.StateEnum?>(CampaignTemplate.StateEnumFromStringOrDefault(stateRawValue));
+                            {
+                                CampaignTemplate.StateEnum? stateValue = CampaignTemplate.StateEnumFromStringOrDefault(stateRawValue);
+                                if (stateValue == null)
+                                    throw new JsonException();
+                                state = new Option<CampaignTemplate.StateEnum?>(stateValue);
+                            }
                             break;
                         case "reevaluateOnReturn":
                             reevaluateOnReturn = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
@@ -946,7 +951,12 @@ namespace TalonOneSdk.Model
                         case "campaignType":
                             string campaignTypeRawValue = utf8JsonReader.GetString();
                             if (campaignTypeRawValue != null)
-                                campaignType = new Option<CampaignTemplate.CampaignTypeEnum?>(CampaignTemplate.CampaignTypeEnumFromStringOrDefault(campaignTypeRawValue));
+                            {
+                                CampaignTemplate.CampaignTypeEnum? campaignTypeValue = CampaignTemplate.CampaignTypeEnumFromStringOrDefault(campaignTypeRawValue);
+                                if (campaignTypeValue == null)
+                                    throw new JsonException();
+                                campaignType = new Option<CampaignTemplate.CampaignTypeEnum?>(campaignTypeValue);
+                            }
                             break;
                         case "campaignsCount":
                             campaignsCount = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());

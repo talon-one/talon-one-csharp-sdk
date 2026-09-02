@@ -307,6 +307,20 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test CreateRulesetV2
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task CreateRulesetV2AsyncTest()
+        {
+            long applicationId = default;
+            long campaignId = default;
+            RulesetV2 rulesetV2 = default;
+            var response = await _instance.CreateRulesetV2Async(applicationId, campaignId, rulesetV2);
+            var model = response.Created();
+            Assert.IsType<TalonOneSdk.Model.RulesetV2>(model);
+        }
+
+        /// <summary>
         /// Test CreateSession
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -1825,6 +1839,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<DateTime> createdBefore = default;
             Client.Option<DateTime> createdAfter = default;
             Client.Option<byte[]> cursor = default;
+            Client.Option<long> pageSize = default;
             Client.Option<string> period = default;
             Client.Option<bool> isSuccessful = default;
             Client.Option<decimal> applicationId = default;
@@ -1832,7 +1847,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<long> loyaltyProgramId = default;
             Client.Option<long> responseCode = default;
             Client.Option<string> webhookIDs = default;
-            var response = await _instance.GetMessageLogsAsync(entityType, messageID, changeType, notificationIDs, createdBefore, createdAfter, cursor, period, isSuccessful, applicationId, campaignId, loyaltyProgramId, responseCode, webhookIDs);
+            var response = await _instance.GetMessageLogsAsync(entityType, messageID, changeType, notificationIDs, createdBefore, createdAfter, cursor, pageSize, period, isSuccessful, applicationId, campaignId, loyaltyProgramId, responseCode, webhookIDs);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.MessageLogEntries>(model);
         }

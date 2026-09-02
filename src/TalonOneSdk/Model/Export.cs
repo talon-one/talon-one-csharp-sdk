@@ -337,7 +337,12 @@ namespace TalonOneSdk.Model
                         case "entity":
                             string entityRawValue = utf8JsonReader.GetString();
                             if (entityRawValue != null)
-                                entity = new Option<Export.EntityEnum?>(Export.EntityEnumFromStringOrDefault(entityRawValue));
+                            {
+                                Export.EntityEnum? entityValue = Export.EntityEnumFromStringOrDefault(entityRawValue);
+                                if (entityValue == null)
+                                    throw new JsonException();
+                                entity = new Option<Export.EntityEnum?>(entityValue);
+                            }
                             break;
                         case "filter":
                             filter = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));

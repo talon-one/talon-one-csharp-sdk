@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="ListCheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="operator">The list membership operator applied to the attribute.</param>
-        /// <param name="values">values</param>
+        /// <param name="values">The set of values to match against.</param>
         [JsonConstructor]
         public ListCheckAttributeBlock(Option<OperatorEnum?> @operator = default, Object values = default)
         {
@@ -139,8 +139,9 @@ namespace TalonOneSdk.Model
         public OperatorEnum? Operator { get { return this.OperatorOption.Value; } set { this.OperatorOption = new Option<OperatorEnum?>(value); } }
 
         /// <summary>
-        /// Gets or Sets Values
+        /// The set of values to match against.
         /// </summary>
+        /// <value>The set of values to match against.</value>
         [JsonPropertyName("values")]
         public Object Values { get; set; }
 
@@ -222,7 +223,12 @@ namespace TalonOneSdk.Model
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<ListCheckAttributeBlock.OperatorEnum?>(ListCheckAttributeBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                ListCheckAttributeBlock.OperatorEnum? varOperatorValue = ListCheckAttributeBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<ListCheckAttributeBlock.OperatorEnum?>(varOperatorValue);
+                            }
                             break;
                         case "values":
                             values = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));

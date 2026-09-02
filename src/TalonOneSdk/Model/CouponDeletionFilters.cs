@@ -488,7 +488,12 @@ namespace TalonOneSdk.Model
                         case "valid":
                             string validRawValue = utf8JsonReader.GetString();
                             if (validRawValue != null)
-                                valid = new Option<CouponDeletionFilters.ValidEnum?>(CouponDeletionFilters.ValidEnumFromStringOrDefault(validRawValue));
+                            {
+                                CouponDeletionFilters.ValidEnum? validValue = CouponDeletionFilters.ValidEnumFromStringOrDefault(validRawValue);
+                                if (validValue == null)
+                                    throw new JsonException();
+                                valid = new Option<CouponDeletionFilters.ValidEnum?>(validValue);
+                            }
                             break;
                         case "usable":
                             usable = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());

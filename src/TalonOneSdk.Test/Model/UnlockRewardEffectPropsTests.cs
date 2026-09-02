@@ -97,5 +97,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'UnlockedAt'
         }
+
+        /// <summary>
+        /// Test the property 'CardIdentifier'
+        /// </summary>
+        [Fact]
+        public void CardIdentifierTest()
+        {
+            // TODO unit test for the property 'CardIdentifier'
+        }
     }
 }

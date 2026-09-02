@@ -193,7 +193,12 @@ namespace TalonOneSdk.Model
                         case "criticality":
                             string criticalityRawValue = utf8JsonReader.GetString();
                             if (criticalityRawValue != null)
-                                criticality = new Option<RiskCriticalityUpdate.CriticalityEnum?>(RiskCriticalityUpdate.CriticalityEnumFromStringOrDefault(criticalityRawValue));
+                            {
+                                RiskCriticalityUpdate.CriticalityEnum? criticalityValue = RiskCriticalityUpdate.CriticalityEnumFromStringOrDefault(criticalityRawValue);
+                                if (criticalityValue == null)
+                                    throw new JsonException();
+                                criticality = new Option<RiskCriticalityUpdate.CriticalityEnum?>(criticalityValue);
+                            }
                             break;
                         default:
                             break;

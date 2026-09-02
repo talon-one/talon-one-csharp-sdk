@@ -517,12 +517,22 @@ namespace TalonOneSdk.Model
                         case "platform":
                             string platformRawValue = utf8JsonReader.GetString();
                             if (platformRawValue != null)
-                                platform = new Option<ApplicationAPIKey.PlatformEnum?>(ApplicationAPIKey.PlatformEnumFromStringOrDefault(platformRawValue));
+                            {
+                                ApplicationAPIKey.PlatformEnum? platformValue = ApplicationAPIKey.PlatformEnumFromStringOrDefault(platformRawValue);
+                                if (platformValue == null)
+                                    throw new JsonException();
+                                platform = new Option<ApplicationAPIKey.PlatformEnum?>(platformValue);
+                            }
                             break;
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<ApplicationAPIKey.TypeEnum?>(ApplicationAPIKey.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                ApplicationAPIKey.TypeEnum? typeValue = ApplicationAPIKey.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<ApplicationAPIKey.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "timeOffset":
                             timeOffset = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());

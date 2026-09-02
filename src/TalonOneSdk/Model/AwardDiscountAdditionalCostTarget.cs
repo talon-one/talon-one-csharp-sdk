@@ -197,7 +197,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<AwardDiscountAdditionalCostTarget.TypeEnum?>(AwardDiscountAdditionalCostTarget.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                AwardDiscountAdditionalCostTarget.TypeEnum? typeValue = AwardDiscountAdditionalCostTarget.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<AwardDiscountAdditionalCostTarget.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "additionalCost":
                             additionalCost = new Option<AdditionalCostReference>(JsonSerializer.Deserialize<AdditionalCostReference>(ref utf8JsonReader, jsonSerializerOptions));

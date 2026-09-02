@@ -248,7 +248,12 @@ namespace TalonOneSdk.Model
                         case "referencingType":
                             string referencingTypeRawValue = utf8JsonReader.GetString();
                             if (referencingTypeRawValue != null)
-                                referencingType = new Option<PriceTypeReferenceDetail.ReferencingTypeEnum?>(PriceTypeReferenceDetail.ReferencingTypeEnumFromStringOrDefault(referencingTypeRawValue));
+                            {
+                                PriceTypeReferenceDetail.ReferencingTypeEnum? referencingTypeValue = PriceTypeReferenceDetail.ReferencingTypeEnumFromStringOrDefault(referencingTypeRawValue);
+                                if (referencingTypeValue == null)
+                                    throw new JsonException();
+                                referencingType = new Option<PriceTypeReferenceDetail.ReferencingTypeEnum?>(referencingTypeValue);
+                            }
                             break;
                         case "referencingId":
                             referencingId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());

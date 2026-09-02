@@ -479,7 +479,12 @@ namespace TalonOneSdk.Model
                         case "entityType":
                             string entityTypeRawValue = utf8JsonReader.GetString();
                             if (entityTypeRawValue != null)
-                                entityType = new Option<MessageLogEntry.EntityTypeEnum?>(MessageLogEntry.EntityTypeEnumFromStringOrDefault(entityTypeRawValue));
+                            {
+                                MessageLogEntry.EntityTypeEnum? entityTypeValue = MessageLogEntry.EntityTypeEnumFromStringOrDefault(entityTypeRawValue);
+                                if (entityTypeValue == null)
+                                    throw new JsonException();
+                                entityType = new Option<MessageLogEntry.EntityTypeEnum?>(entityTypeValue);
+                            }
                             break;
                         case "changeType":
                             changeType = new Option<string>(utf8JsonReader.GetString());

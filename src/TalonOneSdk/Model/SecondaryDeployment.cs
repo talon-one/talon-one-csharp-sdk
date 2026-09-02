@@ -370,7 +370,12 @@ namespace TalonOneSdk.Model
                         case "status":
                             string statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<SecondaryDeployment.StatusEnum?>(SecondaryDeployment.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                SecondaryDeployment.StatusEnum? statusValue = SecondaryDeployment.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<SecondaryDeployment.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "createdAt":
                             createdAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));

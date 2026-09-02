@@ -206,7 +206,7 @@ namespace TalonOneSdk.Api
         /// Delete audience
         /// </summary>
         /// <remarks>
-        /// Delete an audience.  &gt; [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  &gt; [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
+        /// Delete an audience.  &gt; [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  &gt; [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience).  The audience isn&#39;t deleted if any experiment variant uses it. The response identifies each blocking experiment by its Campaign Manager path. 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId">The ID of the audience.</param>
@@ -218,7 +218,7 @@ namespace TalonOneSdk.Api
         /// Delete audience
         /// </summary>
         /// <remarks>
-        /// Delete an audience.  &gt; [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  &gt; [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
+        /// Delete an audience.  &gt; [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  &gt; [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience).  The audience isn&#39;t deleted if any experiment variant uses it. The response identifies each blocking experiment by its Campaign Manager path. 
         /// </remarks>
         /// <param name="audienceId">The ID of the audience.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -409,9 +409,10 @@ namespace TalonOneSdk.Api
         /// <param name="loyalty">Set to &#x60;true&#x60; to include loyalty information in the response. (optional)</param>
         /// <param name="giveaways">Set to &#x60;true&#x60; to include giveaways information in the response. (optional)</param>
         /// <param name="achievements">Set to &#x60;true&#x60; to include achievement information in the response. (optional)</param>
+        /// <param name="unlockedRewards">Set to &#x60;true&#x60; to include &#x60;unlocked&#x60; rewards that have not been &#x60;used&#x60; in the response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCustomerInventoryApiResponse"/>&gt;</returns>
-        Task<IGetCustomerInventoryApiResponse> GetCustomerInventoryAsync(string integrationId, Option<bool> profile = default, Option<bool> referrals = default, Option<bool> coupons = default, Option<bool> loyalty = default, Option<bool> giveaways = default, Option<bool> achievements = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetCustomerInventoryApiResponse> GetCustomerInventoryAsync(string integrationId, Option<bool> profile = default, Option<bool> referrals = default, Option<bool> coupons = default, Option<bool> loyalty = default, Option<bool> giveaways = default, Option<bool> achievements = default, Option<bool> unlockedRewards = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List customer data
@@ -426,9 +427,10 @@ namespace TalonOneSdk.Api
         /// <param name="loyalty">Set to &#x60;true&#x60; to include loyalty information in the response. (optional)</param>
         /// <param name="giveaways">Set to &#x60;true&#x60; to include giveaways information in the response. (optional)</param>
         /// <param name="achievements">Set to &#x60;true&#x60; to include achievement information in the response. (optional)</param>
+        /// <param name="unlockedRewards">Set to &#x60;true&#x60; to include &#x60;unlocked&#x60; rewards that have not been &#x60;used&#x60; in the response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCustomerInventoryApiResponse"/>&gt;</returns>
-        Task<IGetCustomerInventoryApiResponse> GetCustomerInventoryOrDefaultAsync(string integrationId, Option<bool> profile = default, Option<bool> referrals = default, Option<bool> coupons = default, Option<bool> loyalty = default, Option<bool> giveaways = default, Option<bool> achievements = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetCustomerInventoryApiResponse> GetCustomerInventoryOrDefaultAsync(string integrationId, Option<bool> profile = default, Option<bool> referrals = default, Option<bool> coupons = default, Option<bool> loyalty = default, Option<bool> giveaways = default, Option<bool> achievements = default, Option<bool> unlockedRewards = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get customer session
@@ -631,11 +633,11 @@ namespace TalonOneSdk.Api
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
         /// <param name="status">Filter points based on their status. (optional, default to active)</param>
         /// <param name="subledgerId">Filter the results by a list of subledger IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?subledgerId&#x3D;id1&amp;subledgerId&#x3D;id2&#x60;.  The response contains only data associated with the specified subledgers.  (optional)</param>
-        /// <param name="customerSessionIDs">Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  (optional)</param>
-        /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
+        /// <param name="customerSessionIDs">Filter the results by a list of customer session IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  (optional)</param>
+        /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="sort">The field by which results should be sorted. You can enter one of the following values:  - &#x60;startDate&#x60;: Sorts the results by the start date of the points. - &#x60;expiryDate&#x60;: Sorts the results by the expiry date of the points.  By default, results are sorted in ascending order.  To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You can only sort by one field at a time.  (optional)</param>
+        /// <param name="sort">The field by which results should be sorted. You can enter one of the following values:  - &#x60;startDate&#x60;: Sorts the results by the start date of the points. - &#x60;expiryDate&#x60;: Sorts the results by the expiry date of the points.  By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You can only sort by one field at a time.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfilePointsApiResponse"/>&gt;</returns>
         Task<IGetLoyaltyProgramProfilePointsApiResponse> GetLoyaltyProgramProfilePointsAsync(long loyaltyProgramId, string integrationId, Option<string> status = default, Option<List<string>> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default);
@@ -650,11 +652,11 @@ namespace TalonOneSdk.Api
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
         /// <param name="status">Filter points based on their status. (optional, default to active)</param>
         /// <param name="subledgerId">Filter the results by a list of subledger IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?subledgerId&#x3D;id1&amp;subledgerId&#x3D;id2&#x60;.  The response contains only data associated with the specified subledgers.  (optional)</param>
-        /// <param name="customerSessionIDs">Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  (optional)</param>
-        /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
+        /// <param name="customerSessionIDs">Filter the results by a list of customer session IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  (optional)</param>
+        /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="sort">The field by which results should be sorted. You can enter one of the following values:  - &#x60;startDate&#x60;: Sorts the results by the start date of the points. - &#x60;expiryDate&#x60;: Sorts the results by the expiry date of the points.  By default, results are sorted in ascending order.  To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You can only sort by one field at a time.  (optional)</param>
+        /// <param name="sort">The field by which results should be sorted. You can enter one of the following values:  - &#x60;startDate&#x60;: Sorts the results by the start date of the points. - &#x60;expiryDate&#x60;: Sorts the results by the expiry date of the points.  By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You can only sort by one field at a time.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfilePointsApiResponse"/>&gt;</returns>
         Task<IGetLoyaltyProgramProfilePointsApiResponse> GetLoyaltyProgramProfilePointsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<string> status = default, Option<List<string>> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default);
@@ -670,7 +672,7 @@ namespace TalonOneSdk.Api
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
         /// <param name="customerSessionIDs">Filter the results by a list of customer session IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  (optional)</param>
         /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
-        /// <param name="subledgerId">The ID of the subledger by which we filter the data. (optional)</param>
+        /// <param name="subledgerId">Filter the results by a list of subledger IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?subledgerId&#x3D;id1&amp;subledgerId&#x3D;id2&#x60;.  The response contains only data associated with the specified subledgers.  (optional)</param>
         /// <param name="loyaltyTransactionType">Filter results by loyalty transaction type: - &#x60;manual&#x60;: Loyalty transaction that was done manually. - &#x60;session&#x60;: Loyalty transaction that resulted from a customer session. - &#x60;import&#x60;: Loyalty transaction that was imported from a CSV file.  (optional)</param>
         /// <param name="startDate">Date and time from which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
@@ -679,7 +681,7 @@ namespace TalonOneSdk.Api
         /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfileTransactionsApiResponse"/>&gt;</returns>
-        Task<IGetLoyaltyProgramProfileTransactionsApiResponse> GetLoyaltyProgramProfileTransactionsAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetLoyaltyProgramProfileTransactionsApiResponse> GetLoyaltyProgramProfileTransactionsAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<List<string>> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List customer&#39;s loyalty transactions
@@ -691,7 +693,7 @@ namespace TalonOneSdk.Api
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
         /// <param name="customerSessionIDs">Filter the results by a list of customer session IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  (optional)</param>
         /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
-        /// <param name="subledgerId">The ID of the subledger by which we filter the data. (optional)</param>
+        /// <param name="subledgerId">Filter the results by a list of subledger IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?subledgerId&#x3D;id1&amp;subledgerId&#x3D;id2&#x60;.  The response contains only data associated with the specified subledgers.  (optional)</param>
         /// <param name="loyaltyTransactionType">Filter results by loyalty transaction type: - &#x60;manual&#x60;: Loyalty transaction that was done manually. - &#x60;session&#x60;: Loyalty transaction that resulted from a customer session. - &#x60;import&#x60;: Loyalty transaction that was imported from a CSV file.  (optional)</param>
         /// <param name="startDate">Date and time from which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
@@ -700,7 +702,7 @@ namespace TalonOneSdk.Api
         /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfileTransactionsApiResponse"/>&gt;</returns>
-        Task<IGetLoyaltyProgramProfileTransactionsApiResponse> GetLoyaltyProgramProfileTransactionsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetLoyaltyProgramProfileTransactionsApiResponse> GetLoyaltyProgramProfileTransactionsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<List<string>> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List customers that have this coupon reserved
@@ -709,7 +711,7 @@ namespace TalonOneSdk.Api
         /// Return all customers that have this coupon marked as reserved. This includes hard and soft reservations. 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="couponValue">The code of the coupon.  **Important:** The coupon code requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp)  if it contains special characters. For example, you must encode &#x60;SUMMER25%OFF&#x60; as &#x60;SUMMER25%25OFF&#x60;. </param>
+        /// <param name="couponValue">The code of the coupon.  **Important:** The coupon code requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;SUMMER25%OFF&#x60; as &#x60;SUMMER25%25OFF&#x60;. </param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetReservedCustomersApiResponse"/>&gt;</returns>
         Task<IGetReservedCustomersApiResponse> GetReservedCustomersAsync(string couponValue, System.Threading.CancellationToken cancellationToken = default);
@@ -720,7 +722,7 @@ namespace TalonOneSdk.Api
         /// <remarks>
         /// Return all customers that have this coupon marked as reserved. This includes hard and soft reservations. 
         /// </remarks>
-        /// <param name="couponValue">The code of the coupon.  **Important:** The coupon code requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp)  if it contains special characters. For example, you must encode &#x60;SUMMER25%OFF&#x60; as &#x60;SUMMER25%25OFF&#x60;. </param>
+        /// <param name="couponValue">The code of the coupon.  **Important:** The coupon code requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;SUMMER25%OFF&#x60; as &#x60;SUMMER25%25OFF&#x60;. </param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetReservedCustomersApiResponse"/>&gt;</returns>
         Task<IGetReservedCustomersApiResponse> GetReservedCustomersOrDefaultAsync(string couponValue, System.Threading.CancellationToken cancellationToken = default);
@@ -763,6 +765,45 @@ namespace TalonOneSdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationGetAllCampaignsApiResponse"/>&gt;</returns>
         Task<IIntegrationGetAllCampaignsApiResponse> IntegrationGetAllCampaignsOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<List<string>> campaignIds = default, Option<DateTime> startAfter = default, Option<DateTime> startBefore = default, Option<DateTime> endAfter = default, Option<DateTime> endBefore = default, Option<long> storeId = default, Option<long> audienceId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List rewards in the catalog
+        /// </summary>
+        /// <remarks>
+        /// Retrieve the rewards catalog for the Application. Returns a paginated list of rewards. 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="pointsFrom">Return only rewards whose points required is greater than or equal to this value. (optional)</param>
+        /// <param name="pointsTo">Return only rewards whose points required is less than or equal to this value. (optional)</param>
+        /// <param name="includeFree">Whether to include rewards that have no &#x60;pointsRequired&#x60;. These rewards are treated as free and available to all customers.  (optional, default to true)</param>
+        /// <param name="loyaltyProgramId">Return only rewards available in this loyalty program.  (optional)</param>
+        /// <param name="subledgerId">Return only rewards available in this subledger. Must be combined with &#x60;loyaltyProgramId&#x60;. To specify the main ledger, provide an empty string (\&quot;\&quot;).  (optional)</param>
+        /// <param name="profileIntegrationId">The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  (optional)</param>
+        /// <param name="loyaltyCardId">The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationRewardsCatalogApiResponse"/>&gt;</returns>
+        Task<IIntegrationRewardsCatalogApiResponse> IntegrationRewardsCatalogAsync(Option<long> pageSize = default, Option<long> skip = default, Option<decimal> pointsFrom = default, Option<decimal> pointsTo = default, Option<bool> includeFree = default, Option<long> loyaltyProgramId = default, Option<string> subledgerId = default, Option<string> profileIntegrationId = default, Option<string> loyaltyCardId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List rewards in the catalog
+        /// </summary>
+        /// <remarks>
+        /// Retrieve the rewards catalog for the Application. Returns a paginated list of rewards. 
+        /// </remarks>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="pointsFrom">Return only rewards whose points required is greater than or equal to this value. (optional)</param>
+        /// <param name="pointsTo">Return only rewards whose points required is less than or equal to this value. (optional)</param>
+        /// <param name="includeFree">Whether to include rewards that have no &#x60;pointsRequired&#x60;. These rewards are treated as free and available to all customers.  (optional, default to true)</param>
+        /// <param name="loyaltyProgramId">Return only rewards available in this loyalty program.  (optional)</param>
+        /// <param name="subledgerId">Return only rewards available in this subledger. Must be combined with &#x60;loyaltyProgramId&#x60;. To specify the main ledger, provide an empty string (\&quot;\&quot;).  (optional)</param>
+        /// <param name="profileIntegrationId">The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  (optional)</param>
+        /// <param name="loyaltyCardId">The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationRewardsCatalogApiResponse"/>&gt;</returns>
+        Task<IIntegrationRewardsCatalogApiResponse> IntegrationRewardsCatalogOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<decimal> pointsFrom = default, Option<decimal> pointsTo = default, Option<bool> includeFree = default, Option<long> loyaltyProgramId = default, Option<string> subledgerId = default, Option<string> profileIntegrationId = default, Option<string> loyaltyCardId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Join customer profile to loyalty program
@@ -820,53 +861,57 @@ namespace TalonOneSdk.Api
         /// Reopen customer session
         /// </summary>
         /// <remarks>
-        /// Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint.  A reopen session is treated like a standard open session.  When reopening a session:  - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed   are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.  &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt; &lt;/details&gt;  To see an example of a rollback, see the [Cancelling a session with campaign budgets](https://docs.talon.one/docs/dev/tutorials/rolling-back-effects) tutorial.  &gt; [!note] If your order workflow requires you to create a new session &gt; instead of reopening a session, use the &gt; [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) &gt; endpoint to cancel a closed session and create a new one.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint.  A reopen session is treated like a standard open session.  When reopening a session:  - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed   are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.  &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt; &lt;/details&gt;  To see an example of a rollback, see the [Cancelling a session with campaign budgets](https://docs.talon.one/docs/dev/tutorials/rolling-back-effects) tutorial.  &gt; [!note] If your order workflow requires you to create a new session &gt; instead of reopening a session, use the &gt; [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) &gt; endpoint to cancel a closed session and create a new one.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IReopenCustomerSessionApiResponse"/>&gt;</returns>
-        Task<IReopenCustomerSessionApiResponse> ReopenCustomerSessionAsync(string customerSessionId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IReopenCustomerSessionApiResponse> ReopenCustomerSessionAsync(string customerSessionId, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Reopen customer session
         /// </summary>
         /// <remarks>
-        /// Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint.  A reopen session is treated like a standard open session.  When reopening a session:  - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed   are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.  &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt; &lt;/details&gt;  To see an example of a rollback, see the [Cancelling a session with campaign budgets](https://docs.talon.one/docs/dev/tutorials/rolling-back-effects) tutorial.  &gt; [!note] If your order workflow requires you to create a new session &gt; instead of reopening a session, use the &gt; [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) &gt; endpoint to cancel a closed session and create a new one.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint.  A reopen session is treated like a standard open session.  When reopening a session:  - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed   are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.  &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt; &lt;/details&gt;  To see an example of a rollback, see the [Cancelling a session with campaign budgets](https://docs.talon.one/docs/dev/tutorials/rolling-back-effects) tutorial.  &gt; [!note] If your order workflow requires you to create a new session &gt; instead of reopening a session, use the &gt; [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) &gt; endpoint to cancel a closed session and create a new one.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </remarks>
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IReopenCustomerSessionApiResponse"/>&gt;</returns>
-        Task<IReopenCustomerSessionApiResponse> ReopenCustomerSessionOrDefaultAsync(string customerSessionId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IReopenCustomerSessionApiResponse> ReopenCustomerSessionOrDefaultAsync(string customerSessionId, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Return cart items
         /// </summary>
         /// <remarks>
-        /// Create a new return request for the specified cart items.  This endpoint automatically changes the session state from &#x60;closed&#x60; to &#x60;partially_returned&#x60;.  &gt; [!note] This will roll back any effects associated with these cart items. &gt; For more information, see [our documentation on session &gt; states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) &gt; and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session).  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Create a new return request for the specified cart items.  This endpoint automatically changes the session state from &#x60;closed&#x60; to &#x60;partially_returned&#x60;.  &gt; [!note] This will roll back any effects associated with these cart items. &gt; For more information, see [our documentation on session &gt; states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) &gt; and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session).  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
         /// <param name="returnIntegrationRequest">body</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  (optional)</param>
         /// <param name="runRuleEngine">When set to &#x60;true&#x60;, reevaluates the updated session after items are returned. Only reevaluates campaigns where &#x60;reevaluateOnReturn&#x60; is set to &#x60;true&#x60; and which produced an effect when the session was closed.  (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IReturnCartItemsApiResponse"/>&gt;</returns>
-        Task<IReturnCartItemsApiResponse> ReturnCartItemsAsync(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry = default, Option<bool> runRuleEngine = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IReturnCartItemsApiResponse> ReturnCartItemsAsync(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry = default, Option<bool> runRuleEngine = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Return cart items
         /// </summary>
         /// <remarks>
-        /// Create a new return request for the specified cart items.  This endpoint automatically changes the session state from &#x60;closed&#x60; to &#x60;partially_returned&#x60;.  &gt; [!note] This will roll back any effects associated with these cart items. &gt; For more information, see [our documentation on session &gt; states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) &gt; and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session).  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Create a new return request for the specified cart items.  This endpoint automatically changes the session state from &#x60;closed&#x60; to &#x60;partially_returned&#x60;.  &gt; [!note] This will roll back any effects associated with these cart items. &gt; For more information, see [our documentation on session &gt; states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) &gt; and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session).  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </remarks>
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
         /// <param name="returnIntegrationRequest">body</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  (optional)</param>
         /// <param name="runRuleEngine">When set to &#x60;true&#x60;, reevaluates the updated session after items are returned. Only reevaluates campaigns where &#x60;reevaluateOnReturn&#x60; is set to &#x60;true&#x60; and which produced an effect when the session was closed.  (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IReturnCartItemsApiResponse"/>&gt;</returns>
-        Task<IReturnCartItemsApiResponse> ReturnCartItemsOrDefaultAsync(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry = default, Option<bool> runRuleEngine = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IReturnCartItemsApiResponse> ReturnCartItemsOrDefaultAsync(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry = default, Option<bool> runRuleEngine = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Sync cart item catalog
@@ -897,30 +942,32 @@ namespace TalonOneSdk.Api
         /// Track event
         /// </summary>
         /// <remarks>
-        /// Trigger a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events).  To use this endpoint:  1. [Create](https://docs.talon.one/docs/dev/concepts/entities/events#create-an-event) an event in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - &#x60;profileId&#x60; is required even though the schema does not specify it. &gt; - If the customer profile ID is new, a new profile is automatically created but the &#x60;customer_profile_created&#x60; [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Manage parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#manage-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archive-a-campaign) are not considered in rule evaluation.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Trigger a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events).  To use this endpoint:  1. [Create](https://docs.talon.one/docs/dev/concepts/entities/events#create-an-event) an event in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - &#x60;profileId&#x60; is required even though the schema does not specify it. &gt; - If the customer profile ID is new, a new profile is automatically created but the &#x60;customer_profile_created&#x60; [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Manage parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#manage-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archive-a-campaign) are not considered in rule evaluation.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="integrationEventV2Request">body</param>
         /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  (optional)</param>
         /// <param name="forceCompleteEvaluation">Forces evaluation for all matching campaigns regardless of the [campaign evaluation mode](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation#setting-campaign-evaluation-mode). Requires &#x60;dry&#x3D;true&#x60;.  (optional, default to false)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ITrackEventV2ApiResponse"/>&gt;</returns>
-        Task<ITrackEventV2ApiResponse> TrackEventV2Async(IntegrationEventV2Request integrationEventV2Request, Option<string> silent = default, Option<bool> dry = default, Option<bool> forceCompleteEvaluation = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ITrackEventV2ApiResponse> TrackEventV2Async(IntegrationEventV2Request integrationEventV2Request, Option<string> silent = default, Option<bool> dry = default, Option<bool> forceCompleteEvaluation = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Track event
         /// </summary>
         /// <remarks>
-        /// Trigger a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events).  To use this endpoint:  1. [Create](https://docs.talon.one/docs/dev/concepts/entities/events#create-an-event) an event in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - &#x60;profileId&#x60; is required even though the schema does not specify it. &gt; - If the customer profile ID is new, a new profile is automatically created but the &#x60;customer_profile_created&#x60; [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Manage parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#manage-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archive-a-campaign) are not considered in rule evaluation.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Trigger a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events).  To use this endpoint:  1. [Create](https://docs.talon.one/docs/dev/concepts/entities/events#create-an-event) an event in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - &#x60;profileId&#x60; is required even though the schema does not specify it. &gt; - If the customer profile ID is new, a new profile is automatically created but the &#x60;customer_profile_created&#x60; [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Manage parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#manage-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archive-a-campaign) are not considered in rule evaluation.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </remarks>
         /// <param name="integrationEventV2Request">body</param>
         /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  (optional)</param>
         /// <param name="forceCompleteEvaluation">Forces evaluation for all matching campaigns regardless of the [campaign evaluation mode](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation#setting-campaign-evaluation-mode). Requires &#x60;dry&#x3D;true&#x60;.  (optional, default to false)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ITrackEventV2ApiResponse"/>&gt;</returns>
-        Task<ITrackEventV2ApiResponse> TrackEventV2OrDefaultAsync(IntegrationEventV2Request integrationEventV2Request, Option<string> silent = default, Option<bool> dry = default, Option<bool> forceCompleteEvaluation = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ITrackEventV2ApiResponse> TrackEventV2OrDefaultAsync(IntegrationEventV2Request integrationEventV2Request, Option<string> silent = default, Option<bool> dry = default, Option<bool> forceCompleteEvaluation = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Track advanced event
@@ -977,6 +1024,33 @@ namespace TalonOneSdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUnlinkLoyaltyCardFromProfileApiResponse"/>&gt;</returns>
         Task<IUnlinkLoyaltyCardFromProfileApiResponse> UnlinkLoyaltyCardFromProfileOrDefaultAsync(long loyaltyProgramId, string loyaltyCardId, LoyaltyCardRegistration loyaltyCardRegistration, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Unlock a reward
+        /// </summary>
+        /// <remarks>
+        /// Unlock a reward for a customer. If the reward has &#x60;pointsRequired&#x60; configured, the corresponding loyalty points are deducted from the customer&#39;s balance.  To unlock a reward with the points of a loyalty card, provide the card in &#x60;cardIdentifier&#x60;. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rewardId">The ID of the reward. You can get the ID with the [List rewards](#tag/Rewards/operation/listRewards) endpoint.</param>
+        /// <param name="integrationUnlockRewardRequest"></param>
+        /// <param name="dry">When set to &#x60;true&#x60;, the rule evaluation is performed but no changes are persisted. Use this to preview the outcome of an unlocking. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IUnlockRewardApiResponse"/>&gt;</returns>
+        Task<IUnlockRewardApiResponse> UnlockRewardAsync(long rewardId, IntegrationUnlockRewardRequest integrationUnlockRewardRequest, Option<bool> dry = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Unlock a reward
+        /// </summary>
+        /// <remarks>
+        /// Unlock a reward for a customer. If the reward has &#x60;pointsRequired&#x60; configured, the corresponding loyalty points are deducted from the customer&#39;s balance.  To unlock a reward with the points of a loyalty card, provide the card in &#x60;cardIdentifier&#x60;. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
+        /// </remarks>
+        /// <param name="rewardId">The ID of the reward. You can get the ID with the [List rewards](#tag/Rewards/operation/listRewards) endpoint.</param>
+        /// <param name="integrationUnlockRewardRequest"></param>
+        /// <param name="dry">When set to &#x60;true&#x60;, the rule evaluation is performed but no changes are persisted. Use this to preview the outcome of an unlocking. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IUnlockRewardApiResponse"/>&gt;</returns>
+        Task<IUnlockRewardApiResponse> UnlockRewardOrDefaultAsync(long rewardId, IntegrationUnlockRewardRequest integrationUnlockRewardRequest, Option<bool> dry = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update profile attributes for all customers in audience
@@ -1055,84 +1129,90 @@ namespace TalonOneSdk.Api
         /// Update customer profile
         /// </summary>
         /// <remarks>
-        /// Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of.  &gt; [!note] **Note** &gt; - Updating a customer profile returns a response with the requested integration state. &gt; - The [Has joined an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) and &gt;   [Has left an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) conditions &gt;   only trigger through this endpoint. &gt; - You can use the &#x60;responseContent&#x60; property to save yourself extra API calls. For example, you can get &gt;   the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. &gt;   See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when &#x60;runRuleEngine&#x60; is &#x60;true&#x60;.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of.  &gt; [!note] **Note** &gt; - Updating a customer profile returns a response with the requested integration state. &gt; - The [Has joined an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) and &gt;   [Has left an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) conditions &gt;   only trigger through this endpoint. &gt; - You can use the &#x60;responseContent&#x60; property to save yourself extra API calls. For example, you can get &gt;   the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. &gt;   See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when &#x60;runRuleEngine&#x60; is &#x60;true&#x60;.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. **Note**: It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="customerProfileIntegrationRequestV2">body</param>
         /// <param name="runRuleEngine">Indicates whether to run the Rule Engine.  If &#x60;true&#x60;, the response includes: - The effects generated by the triggered campaigns are returned in the &#x60;effects&#x60; property. - The created coupons and referral objects.  If &#x60;false&#x60;: - The rules are not executed and the &#x60;effects&#x60; property is always empty. - The response time improves. - You cannot use &#x60;responseContent&#x60; in the body.  (optional, default to false)</param>
         /// <param name="dry">(Only works when &#x60;runRuleEngine&#x3D;true&#x60;) Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;, you can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCustomerProfileV2ApiResponse"/>&gt;</returns>
-        Task<IUpdateCustomerProfileV2ApiResponse> UpdateCustomerProfileV2Async(string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, Option<bool> runRuleEngine = default, Option<bool> dry = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateCustomerProfileV2ApiResponse> UpdateCustomerProfileV2Async(string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, Option<bool> runRuleEngine = default, Option<bool> dry = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update customer profile
         /// </summary>
         /// <remarks>
-        /// Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of.  &gt; [!note] **Note** &gt; - Updating a customer profile returns a response with the requested integration state. &gt; - The [Has joined an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) and &gt;   [Has left an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) conditions &gt;   only trigger through this endpoint. &gt; - You can use the &#x60;responseContent&#x60; property to save yourself extra API calls. For example, you can get &gt;   the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. &gt;   See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when &#x60;runRuleEngine&#x60; is &#x60;true&#x60;.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of.  &gt; [!note] **Note** &gt; - Updating a customer profile returns a response with the requested integration state. &gt; - The [Has joined an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) and &gt;   [Has left an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) conditions &gt;   only trigger through this endpoint. &gt; - You can use the &#x60;responseContent&#x60; property to save yourself extra API calls. For example, you can get &gt;   the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. &gt;   See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when &#x60;runRuleEngine&#x60; is &#x60;true&#x60;.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </remarks>
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. **Note**: It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="customerProfileIntegrationRequestV2">body</param>
         /// <param name="runRuleEngine">Indicates whether to run the Rule Engine.  If &#x60;true&#x60;, the response includes: - The effects generated by the triggered campaigns are returned in the &#x60;effects&#x60; property. - The created coupons and referral objects.  If &#x60;false&#x60;: - The rules are not executed and the &#x60;effects&#x60; property is always empty. - The response time improves. - You cannot use &#x60;responseContent&#x60; in the body.  (optional, default to false)</param>
         /// <param name="dry">(Only works when &#x60;runRuleEngine&#x3D;true&#x60;) Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;, you can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCustomerProfileV2ApiResponse"/>&gt;</returns>
-        Task<IUpdateCustomerProfileV2ApiResponse> UpdateCustomerProfileV2OrDefaultAsync(string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, Option<bool> runRuleEngine = default, Option<bool> dry = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateCustomerProfileV2ApiResponse> UpdateCustomerProfileV2OrDefaultAsync(string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, Option<bool> runRuleEngine = default, Option<bool> dry = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update multiple customer profiles
         /// </summary>
         /// <remarks>
-        /// Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.  The &#x60;integrationId&#x60; must be any identifier that remains stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).  &gt; [!note] This endpoint does not trigger the Rule Engine. &gt; To trigger the Rule Engine for customer profile updates, &gt; use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.  The &#x60;integrationId&#x60; must be any identifier that remains stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).  &gt; [!note] This endpoint does not trigger the Rule Engine. &gt; To trigger the Rule Engine for customer profile updates, &gt; use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="multipleCustomerProfileIntegrationRequest">body</param>
         /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCustomerProfilesV2ApiResponse"/>&gt;</returns>
-        Task<IUpdateCustomerProfilesV2ApiResponse> UpdateCustomerProfilesV2Async(MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateCustomerProfilesV2ApiResponse> UpdateCustomerProfilesV2Async(MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update multiple customer profiles
         /// </summary>
         /// <remarks>
-        /// Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.  The &#x60;integrationId&#x60; must be any identifier that remains stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).  &gt; [!note] This endpoint does not trigger the Rule Engine. &gt; To trigger the Rule Engine for customer profile updates, &gt; use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.  The &#x60;integrationId&#x60; must be any identifier that remains stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).  &gt; [!note] This endpoint does not trigger the Rule Engine. &gt; To trigger the Rule Engine for customer profile updates, &gt; use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </remarks>
         /// <param name="multipleCustomerProfileIntegrationRequest">body</param>
         /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCustomerProfilesV2ApiResponse"/>&gt;</returns>
-        Task<IUpdateCustomerProfilesV2ApiResponse> UpdateCustomerProfilesV2OrDefaultAsync(MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateCustomerProfilesV2ApiResponse> UpdateCustomerProfilesV2OrDefaultAsync(MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update customer session
         /// </summary>
         /// <remarks>
-        /// Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.  For example, use this endpoint to share the contents of a customer&#39;s cart with Talon.One.  &gt; [!note] **Note** &gt; - The currency for the session and the cart items in it is the currency set for the Application linked to this session. &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the &#x60;state&#x60; parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the &#x60;profileId&#x60; parameter in the request body to a customer profile&#39;s &#x60;integrationId&#x60;.  - While you can create an anonymous session with &#x60;profileId&#x3D;\&quot;\&quot;&#x60;, we recommend you use a guest ID instead.  - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  &gt; [!note] **Note** &gt; - If the specified profile does not exist, an empty profile is **created automatically**. &gt;   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2). &gt; - Updating a customer session returns a response with the new integration state. Use the &#x60;responseContent&#x60; property to save yourself extra API calls. &gt;   For example, you can get the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).  For more information, see:  - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one). 
+        /// Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.  For example, use this endpoint to share the contents of a customer&#39;s cart with Talon.One.  &gt; [!note] **Note** &gt; - The currency for the session and the cart items in it is the currency set for the Application linked to this session. &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the &#x60;state&#x60; parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the &#x60;profileId&#x60; parameter in the request body to a customer profile&#39;s &#x60;integrationId&#x60;.  - While you can create an anonymous session with &#x60;profileId&#x3D;\&quot;\&quot;&#x60;, we recommend you use a guest ID instead.  - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  &gt; [!note] **Note** &gt; - If the specified profile does not exist, an empty profile is **created automatically**. &gt;   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2). &gt; - Updating a customer session returns a response with the new integration state. Use the &#x60;responseContent&#x60; property to save yourself extra API calls. &gt;   For example, you can get the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).  For more information, see:  - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one).  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. **Notes**: - There is no length limit for this ID. - It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="integrationRequest">body</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;: - The endpoint considers **only** the payload that you pass when **closing** the session.   When you do not use the &#x60;dry&#x60; parameter, the endpoint behaves as a typical PUT endpoint. Each update builds upon the previous ones. - You can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  [See the docs](https://docs.talon.one/docs/dev/integration-api/dry-requests).  (optional)</param>
         /// <param name="now">A timestamp value of a future date that acts as a current date when included in the query.  Use this parameter, for example, to test campaigns that would be evaluated for this customer session in the future (say, [scheduled campaigns](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-schedule)).  &gt; [!note] **Note** &gt; - It must be an RFC3339 timestamp string. &gt; - It can **only** be a date in the future. &gt; - It can **only** be used if the &#x60;dry&#x60; parameter in the query is set to &#x60;true&#x60;.  (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCustomerSessionV2ApiResponse"/>&gt;</returns>
-        Task<IUpdateCustomerSessionV2ApiResponse> UpdateCustomerSessionV2Async(string customerSessionId, IntegrationRequest integrationRequest, Option<bool> dry = default, Option<DateTime> now = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateCustomerSessionV2ApiResponse> UpdateCustomerSessionV2Async(string customerSessionId, IntegrationRequest integrationRequest, Option<bool> dry = default, Option<DateTime> now = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update customer session
         /// </summary>
         /// <remarks>
-        /// Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.  For example, use this endpoint to share the contents of a customer&#39;s cart with Talon.One.  &gt; [!note] **Note** &gt; - The currency for the session and the cart items in it is the currency set for the Application linked to this session. &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the &#x60;state&#x60; parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the &#x60;profileId&#x60; parameter in the request body to a customer profile&#39;s &#x60;integrationId&#x60;.  - While you can create an anonymous session with &#x60;profileId&#x3D;\&quot;\&quot;&#x60;, we recommend you use a guest ID instead.  - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  &gt; [!note] **Note** &gt; - If the specified profile does not exist, an empty profile is **created automatically**. &gt;   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2). &gt; - Updating a customer session returns a response with the new integration state. Use the &#x60;responseContent&#x60; property to save yourself extra API calls. &gt;   For example, you can get the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).  For more information, see:  - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one). 
+        /// Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.  For example, use this endpoint to share the contents of a customer&#39;s cart with Talon.One.  &gt; [!note] **Note** &gt; - The currency for the session and the cart items in it is the currency set for the Application linked to this session. &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the &#x60;state&#x60; parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the &#x60;profileId&#x60; parameter in the request body to a customer profile&#39;s &#x60;integrationId&#x60;.  - While you can create an anonymous session with &#x60;profileId&#x3D;\&quot;\&quot;&#x60;, we recommend you use a guest ID instead.  - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  &gt; [!note] **Note** &gt; - If the specified profile does not exist, an empty profile is **created automatically**. &gt;   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2). &gt; - Updating a customer session returns a response with the new integration state. Use the &#x60;responseContent&#x60; property to save yourself extra API calls. &gt;   For example, you can get the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).  For more information, see:  - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one).  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </remarks>
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. **Notes**: - There is no length limit for this ID. - It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="integrationRequest">body</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;: - The endpoint considers **only** the payload that you pass when **closing** the session.   When you do not use the &#x60;dry&#x60; parameter, the endpoint behaves as a typical PUT endpoint. Each update builds upon the previous ones. - You can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  [See the docs](https://docs.talon.one/docs/dev/integration-api/dry-requests).  (optional)</param>
         /// <param name="now">A timestamp value of a future date that acts as a current date when included in the query.  Use this parameter, for example, to test campaigns that would be evaluated for this customer session in the future (say, [scheduled campaigns](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-schedule)).  &gt; [!note] **Note** &gt; - It must be an RFC3339 timestamp string. &gt; - It can **only** be a date in the future. &gt; - It can **only** be used if the &#x60;dry&#x60; parameter in the query is set to &#x60;true&#x60;.  (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCustomerSessionV2ApiResponse"/>&gt;</returns>
-        Task<IUpdateCustomerSessionV2ApiResponse> UpdateCustomerSessionV2OrDefaultAsync(string customerSessionId, IntegrationRequest integrationRequest, Option<bool> dry = default, Option<DateTime> now = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateCustomerSessionV2ApiResponse> UpdateCustomerSessionV2OrDefaultAsync(string customerSessionId, IntegrationRequest integrationRequest, Option<bool> dry = default, Option<DateTime> now = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -1318,7 +1398,7 @@ namespace TalonOneSdk.Api
     /// <summary>
     /// The <see cref="IDeleteAudienceV2ApiResponse"/>
     /// </summary>
-    public interface IDeleteAudienceV2ApiResponse : TalonOneSdk.Client.IApiResponse, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
+    public interface IDeleteAudienceV2ApiResponse : TalonOneSdk.Client.IApiResponse, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>, IConflict<TalonOneSdk.Model.ErrorResponseWithStatus>
     {
         /// <summary>
         /// Returns true if the response is 204 NoContent
@@ -1343,6 +1423,12 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <returns></returns>
         bool IsNotFound { get; }
+
+        /// <summary>
+        /// Returns true if the response is 409 Conflict
+        /// </summary>
+        /// <returns></returns>
+        bool IsConflict { get; }
     }
 
     /// <summary>
@@ -1820,6 +1906,36 @@ namespace TalonOneSdk.Api
     }
 
     /// <summary>
+    /// The <see cref="IIntegrationRewardsCatalogApiResponse"/>
+    /// </summary>
+    public interface IIntegrationRewardsCatalogApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.IntegrationRewardsCatalog200Response>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+    }
+
+    /// <summary>
     /// The <see cref="IJoinLoyaltyProgramApiResponse"/>
     /// </summary>
     public interface IJoinLoyaltyProgramApiResponse : TalonOneSdk.Client.IApiResponse, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
@@ -2051,6 +2167,54 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <returns></returns>
         bool IsNotFound { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IUnlockRewardApiResponse"/>
+    /// </summary>
+    public interface IUnlockRewardApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.IntegrationStateV2>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, IForbidden<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>, IConflict<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnprocessableContent<TalonOneSdk.Model.RewardUnlockRejection>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 403 Forbidden
+        /// </summary>
+        /// <returns></returns>
+        bool IsForbidden { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+
+        /// <summary>
+        /// Returns true if the response is 409 Conflict
+        /// </summary>
+        /// <returns></returns>
+        bool IsConflict { get; }
+
+        /// <summary>
+        /// Returns true if the response is 422 UnprocessableContent
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnprocessableContent { get; }
     }
 
     /// <summary>
@@ -2729,6 +2893,26 @@ namespace TalonOneSdk.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnIntegrationRewardsCatalog;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorIntegrationRewardsCatalog;
+
+        internal void ExecuteOnIntegrationRewardsCatalog(IntegrationApi.IntegrationRewardsCatalogApiResponse apiResponse)
+        {
+            OnIntegrationRewardsCatalog?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorIntegrationRewardsCatalog(Exception exception)
+        {
+            OnErrorIntegrationRewardsCatalog?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
         public event EventHandler<ApiResponseEventArgs> OnJoinLoyaltyProgram;
 
         /// <summary>
@@ -2884,6 +3068,26 @@ namespace TalonOneSdk.Api
         internal void ExecuteOnErrorUnlinkLoyaltyCardFromProfile(Exception exception)
         {
             OnErrorUnlinkLoyaltyCardFromProfile?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnUnlockReward;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorUnlockReward;
+
+        internal void ExecuteOnUnlockReward(IntegrationApi.UnlockRewardApiResponse apiResponse)
+        {
+            OnUnlockReward?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorUnlockReward(Exception exception)
+        {
+            OnErrorUnlockReward?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -3279,11 +3483,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ActivateLoyaltyPointsResponse Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ActivateLoyaltyPointsResponse result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ActivateLoyaltyPointsResponse DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ActivateLoyaltyPointsResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ActivateLoyaltyPointsResponse result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -3317,11 +3533,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -3355,11 +3583,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -3393,11 +3633,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -3654,11 +3906,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public List<BestPriorPrice> Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                List<BestPriorPrice> result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private List<BestPriorPrice> DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<List<BestPriorPrice>>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref List<BestPriorPrice> result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -3915,11 +4179,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Audience Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Audience result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Audience DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Audience>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.Audience result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -3953,11 +4229,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -3991,11 +4279,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -4029,11 +4329,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Conflict()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnConflict(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultConflict();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultConflict()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsConflict
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnConflict(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 409 Conflict and the deserialized response is not null
@@ -4301,11 +4613,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Coupon Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Coupon result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Coupon DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Coupon>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.Coupon result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -4339,11 +4663,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -4377,11 +4713,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -4415,11 +4763,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -4676,11 +5036,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Referral Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Referral result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Referral DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Referral>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.Referral result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -4714,11 +5086,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -4752,11 +5136,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -5030,11 +5426,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.CreateReferralsForMultipleAdvocates201Response Created()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.CreateReferralsForMultipleAdvocates201Response result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.CreateReferralsForMultipleAdvocates201Response DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.CreateReferralsForMultipleAdvocates201Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.CreateReferralsForMultipleAdvocates201Response result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
@@ -5074,11 +5482,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -5112,11 +5532,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -5354,11 +5786,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -5392,11 +5836,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -5478,7 +5934,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorDeleteAudienceV2(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long audienceId);
 
         /// <summary>
-        /// Delete audience Delete an audience.  &gt; [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  &gt; [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
+        /// Delete audience Delete an audience.  &gt; [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  &gt; [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience).  The audience isn&#39;t deleted if any experiment variant uses it. The response identifies each blocking experiment by its Campaign Manager path. 
         /// </summary>
         /// <param name="audienceId">The ID of the audience.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -5496,7 +5952,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Delete audience Delete an audience.  &gt; [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  &gt; [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience). 
+        /// Delete audience Delete an audience.  &gt; [!warning] This endpoint also removes any associations recorded between a customer profile and this audience.  &gt; [!note] Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience).  The audience isn&#39;t deleted if any experiment variant uses it. The response identifies each blocking experiment by its Campaign Manager path. 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId">The ID of the audience.</param>
@@ -5634,11 +6090,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -5672,11 +6140,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -5710,11 +6190,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -5731,6 +6223,56 @@ namespace TalonOneSdk.Api
                 } catch (Exception e)
                 {
                     OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 409 Conflict
+            /// </summary>
+            /// <returns></returns>
+            public bool IsConflict => 409 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 409 Conflict
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus Conflict()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnConflict(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultConflict();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultConflict()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsConflict
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnConflict(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
+
+            /// <summary>
+            /// Returns true if the response is 409 Conflict and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryConflict(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Conflict();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)409);
                 }
 
                 return result != null;
@@ -5988,11 +6530,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -6026,11 +6580,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -6064,11 +6630,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -6319,11 +6897,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -6357,11 +6947,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -6642,11 +7244,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -6680,11 +7294,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -6718,11 +7344,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -6986,11 +7624,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.LoyaltyCard Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.LoyaltyCard result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.LoyaltyCard DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.LoyaltyCard>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.LoyaltyCard result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -7024,11 +7674,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -7062,11 +7724,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -7371,11 +8045,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetCustomerAchievementHistory200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetCustomerAchievementHistory200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetCustomerAchievementHistory200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetCustomerAchievementHistory200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetCustomerAchievementHistory200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -7409,11 +8095,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -7447,11 +8145,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -7485,11 +8195,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -7808,11 +8530,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetCustomerAchievements200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetCustomerAchievements200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetCustomerAchievements200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetCustomerAchievements200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetCustomerAchievements200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -7846,11 +8580,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -7884,11 +8630,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -7922,11 +8680,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -7959,7 +8729,7 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetCustomerInventory(ref string integrationId, ref Option<bool> profile, ref Option<bool> referrals, ref Option<bool> coupons, ref Option<bool> loyalty, ref Option<bool> giveaways, ref Option<bool> achievements);
+        partial void FormatGetCustomerInventory(ref string integrationId, ref Option<bool> profile, ref Option<bool> referrals, ref Option<bool> coupons, ref Option<bool> loyalty, ref Option<bool> giveaways, ref Option<bool> achievements, ref Option<bool> unlockedRewards);
 
         /// <summary>
         /// Validates the request parameters
@@ -7983,10 +8753,11 @@ namespace TalonOneSdk.Api
         /// <param name="loyalty"></param>
         /// <param name="giveaways"></param>
         /// <param name="achievements"></param>
-        private void AfterGetCustomerInventoryDefaultImplementation(IGetCustomerInventoryApiResponse apiResponseLocalVar, string integrationId, Option<bool> profile, Option<bool> referrals, Option<bool> coupons, Option<bool> loyalty, Option<bool> giveaways, Option<bool> achievements)
+        /// <param name="unlockedRewards"></param>
+        private void AfterGetCustomerInventoryDefaultImplementation(IGetCustomerInventoryApiResponse apiResponseLocalVar, string integrationId, Option<bool> profile, Option<bool> referrals, Option<bool> coupons, Option<bool> loyalty, Option<bool> giveaways, Option<bool> achievements, Option<bool> unlockedRewards)
         {
             bool suppressDefaultLog = false;
-            AfterGetCustomerInventory(ref suppressDefaultLog, apiResponseLocalVar, integrationId, profile, referrals, coupons, loyalty, giveaways, achievements);
+            AfterGetCustomerInventory(ref suppressDefaultLog, apiResponseLocalVar, integrationId, profile, referrals, coupons, loyalty, giveaways, achievements, unlockedRewards);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -8003,7 +8774,8 @@ namespace TalonOneSdk.Api
         /// <param name="loyalty"></param>
         /// <param name="giveaways"></param>
         /// <param name="achievements"></param>
-        partial void AfterGetCustomerInventory(ref bool suppressDefaultLog, IGetCustomerInventoryApiResponse apiResponseLocalVar, string integrationId, Option<bool> profile, Option<bool> referrals, Option<bool> coupons, Option<bool> loyalty, Option<bool> giveaways, Option<bool> achievements);
+        /// <param name="unlockedRewards"></param>
+        partial void AfterGetCustomerInventory(ref bool suppressDefaultLog, IGetCustomerInventoryApiResponse apiResponseLocalVar, string integrationId, Option<bool> profile, Option<bool> referrals, Option<bool> coupons, Option<bool> loyalty, Option<bool> giveaways, Option<bool> achievements, Option<bool> unlockedRewards);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -8018,10 +8790,11 @@ namespace TalonOneSdk.Api
         /// <param name="loyalty"></param>
         /// <param name="giveaways"></param>
         /// <param name="achievements"></param>
-        private void OnErrorGetCustomerInventoryDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string integrationId, Option<bool> profile, Option<bool> referrals, Option<bool> coupons, Option<bool> loyalty, Option<bool> giveaways, Option<bool> achievements)
+        /// <param name="unlockedRewards"></param>
+        private void OnErrorGetCustomerInventoryDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string integrationId, Option<bool> profile, Option<bool> referrals, Option<bool> coupons, Option<bool> loyalty, Option<bool> giveaways, Option<bool> achievements, Option<bool> unlockedRewards)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetCustomerInventory(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, integrationId, profile, referrals, coupons, loyalty, giveaways, achievements);
+            OnErrorGetCustomerInventory(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, integrationId, profile, referrals, coupons, loyalty, giveaways, achievements, unlockedRewards);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -8040,7 +8813,8 @@ namespace TalonOneSdk.Api
         /// <param name="loyalty"></param>
         /// <param name="giveaways"></param>
         /// <param name="achievements"></param>
-        partial void OnErrorGetCustomerInventory(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string integrationId, Option<bool> profile, Option<bool> referrals, Option<bool> coupons, Option<bool> loyalty, Option<bool> giveaways, Option<bool> achievements);
+        /// <param name="unlockedRewards"></param>
+        partial void OnErrorGetCustomerInventory(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string integrationId, Option<bool> profile, Option<bool> referrals, Option<bool> coupons, Option<bool> loyalty, Option<bool> giveaways, Option<bool> achievements, Option<bool> unlockedRewards);
 
         /// <summary>
         /// List customer data Return the customer inventory regarding entities referencing this customer profile&#39;s &#x60;integrationId&#x60;.  Typical entities returned are: customer profile information, referral codes, loyalty points, loyalty cards and reserved coupons. Reserved coupons also include redeemed coupons. 
@@ -8052,13 +8826,14 @@ namespace TalonOneSdk.Api
         /// <param name="loyalty">Set to &#x60;true&#x60; to include loyalty information in the response. (optional)</param>
         /// <param name="giveaways">Set to &#x60;true&#x60; to include giveaways information in the response. (optional)</param>
         /// <param name="achievements">Set to &#x60;true&#x60; to include achievement information in the response. (optional)</param>
+        /// <param name="unlockedRewards">Set to &#x60;true&#x60; to include &#x60;unlocked&#x60; rewards that have not been &#x60;used&#x60; in the response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCustomerInventoryApiResponse"/>&gt;</returns>
-        public async Task<IGetCustomerInventoryApiResponse> GetCustomerInventoryOrDefaultAsync(string integrationId, Option<bool> profile = default, Option<bool> referrals = default, Option<bool> coupons = default, Option<bool> loyalty = default, Option<bool> giveaways = default, Option<bool> achievements = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetCustomerInventoryApiResponse> GetCustomerInventoryOrDefaultAsync(string integrationId, Option<bool> profile = default, Option<bool> referrals = default, Option<bool> coupons = default, Option<bool> loyalty = default, Option<bool> giveaways = default, Option<bool> achievements = default, Option<bool> unlockedRewards = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetCustomerInventoryAsync(integrationId, profile, referrals, coupons, loyalty, giveaways, achievements, cancellationToken).ConfigureAwait(false);
+                return await GetCustomerInventoryAsync(integrationId, profile, referrals, coupons, loyalty, giveaways, achievements, unlockedRewards, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -8077,9 +8852,10 @@ namespace TalonOneSdk.Api
         /// <param name="loyalty">Set to &#x60;true&#x60; to include loyalty information in the response. (optional)</param>
         /// <param name="giveaways">Set to &#x60;true&#x60; to include giveaways information in the response. (optional)</param>
         /// <param name="achievements">Set to &#x60;true&#x60; to include achievement information in the response. (optional)</param>
+        /// <param name="unlockedRewards">Set to &#x60;true&#x60; to include &#x60;unlocked&#x60; rewards that have not been &#x60;used&#x60; in the response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCustomerInventoryApiResponse"/>&gt;</returns>
-        public async Task<IGetCustomerInventoryApiResponse> GetCustomerInventoryAsync(string integrationId, Option<bool> profile = default, Option<bool> referrals = default, Option<bool> coupons = default, Option<bool> loyalty = default, Option<bool> giveaways = default, Option<bool> achievements = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetCustomerInventoryApiResponse> GetCustomerInventoryAsync(string integrationId, Option<bool> profile = default, Option<bool> referrals = default, Option<bool> coupons = default, Option<bool> loyalty = default, Option<bool> giveaways = default, Option<bool> achievements = default, Option<bool> unlockedRewards = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -8087,7 +8863,7 @@ namespace TalonOneSdk.Api
             {
                 ValidateGetCustomerInventory(integrationId);
 
-                FormatGetCustomerInventory(ref integrationId, ref profile, ref referrals, ref coupons, ref loyalty, ref giveaways, ref achievements);
+                FormatGetCustomerInventory(ref integrationId, ref profile, ref referrals, ref coupons, ref loyalty, ref giveaways, ref achievements, ref unlockedRewards);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -8118,6 +8894,9 @@ namespace TalonOneSdk.Api
 
                     if (achievements.IsSet)
                         parseQueryStringLocalVar["achievements"] = ClientUtils.ParameterToString(achievements.Value);
+
+                    if (unlockedRewards.IsSet)
+                        parseQueryStringLocalVar["unlockedRewards"] = ClientUtils.ParameterToString(unlockedRewards.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -8153,7 +8932,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterGetCustomerInventoryDefaultImplementation(apiResponseLocalVar, integrationId, profile, referrals, coupons, loyalty, giveaways, achievements);
+                        AfterGetCustomerInventoryDefaultImplementation(apiResponseLocalVar, integrationId, profile, referrals, coupons, loyalty, giveaways, achievements, unlockedRewards);
 
                         Events.ExecuteOnGetCustomerInventory(apiResponseLocalVar);
 
@@ -8167,7 +8946,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorGetCustomerInventoryDefaultImplementation(e, "/v1/customer_profiles/{integrationId}/inventory", uriBuilderLocalVar.Path, integrationId, profile, referrals, coupons, loyalty, giveaways, achievements);
+                OnErrorGetCustomerInventoryDefaultImplementation(e, "/v1/customer_profiles/{integrationId}/inventory", uriBuilderLocalVar.Path, integrationId, profile, referrals, coupons, loyalty, giveaways, achievements, unlockedRewards);
                 Events.ExecuteOnErrorGetCustomerInventory(e);
                 throw;
             }
@@ -8229,11 +9008,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.CustomerInventory Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.CustomerInventory result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.CustomerInventory DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.CustomerInventory>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.CustomerInventory result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -8267,11 +9058,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -8305,11 +9108,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -8554,11 +9369,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.IntegrationCustomerSessionResponse Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.IntegrationCustomerSessionResponse result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.IntegrationCustomerSessionResponse DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.IntegrationCustomerSessionResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.IntegrationCustomerSessionResponse result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -8592,11 +9419,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -8630,11 +9469,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -8879,11 +9730,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.EventV3 Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.EventV3 result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.EventV3 DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.EventV3>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.EventV3 result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -8917,11 +9780,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -9217,11 +10092,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.LoyaltyBalancesWithTiers Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.LoyaltyBalancesWithTiers result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.LoyaltyBalancesWithTiers DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.LoyaltyBalancesWithTiers>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.LoyaltyBalancesWithTiers result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -9255,11 +10142,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -9293,11 +10192,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -9331,11 +10242,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -9613,11 +10536,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.LoyaltyCardBalances Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.LoyaltyCardBalances result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.LoyaltyCardBalances DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.LoyaltyCardBalances>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.LoyaltyCardBalances result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -9651,11 +10586,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -9689,11 +10636,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -9727,11 +10686,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -10070,11 +11041,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetLoyaltyCardPoints200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetLoyaltyCardPoints200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetLoyaltyCardPoints200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetLoyaltyCardPoints200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetLoyaltyCardPoints200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -10108,11 +11091,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -10146,11 +11141,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -10184,11 +11191,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -10541,11 +11560,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetLoyaltyCardTransactions200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetLoyaltyCardTransactions200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetLoyaltyCardTransactions200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetLoyaltyCardTransactions200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetLoyaltyCardTransactions200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -10579,11 +11610,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -10617,11 +11660,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -10655,11 +11710,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -10810,11 +11877,11 @@ namespace TalonOneSdk.Api
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
         /// <param name="status">Filter points based on their status. (optional, default to active)</param>
         /// <param name="subledgerId">Filter the results by a list of subledger IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?subledgerId&#x3D;id1&amp;subledgerId&#x3D;id2&#x60;.  The response contains only data associated with the specified subledgers.  (optional)</param>
-        /// <param name="customerSessionIDs">Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  (optional)</param>
-        /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
+        /// <param name="customerSessionIDs">Filter the results by a list of customer session IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  (optional)</param>
+        /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="sort">The field by which results should be sorted. You can enter one of the following values:  - &#x60;startDate&#x60;: Sorts the results by the start date of the points. - &#x60;expiryDate&#x60;: Sorts the results by the expiry date of the points.  By default, results are sorted in ascending order.  To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You can only sort by one field at a time.  (optional)</param>
+        /// <param name="sort">The field by which results should be sorted. You can enter one of the following values:  - &#x60;startDate&#x60;: Sorts the results by the start date of the points. - &#x60;expiryDate&#x60;: Sorts the results by the expiry date of the points.  By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You can only sort by one field at a time.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfilePointsApiResponse"/>&gt;</returns>
         public async Task<IGetLoyaltyProgramProfilePointsApiResponse> GetLoyaltyProgramProfilePointsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<string> status = default, Option<List<string>> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default)
@@ -10837,11 +11904,11 @@ namespace TalonOneSdk.Api
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
         /// <param name="status">Filter points based on their status. (optional, default to active)</param>
         /// <param name="subledgerId">Filter the results by a list of subledger IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?subledgerId&#x3D;id1&amp;subledgerId&#x3D;id2&#x60;.  The response contains only data associated with the specified subledgers.  (optional)</param>
-        /// <param name="customerSessionIDs">Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  (optional)</param>
-        /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
+        /// <param name="customerSessionIDs">Filter the results by a list of customer session IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  (optional)</param>
+        /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
-        /// <param name="sort">The field by which results should be sorted. You can enter one of the following values:  - &#x60;startDate&#x60;: Sorts the results by the start date of the points. - &#x60;expiryDate&#x60;: Sorts the results by the expiry date of the points.  By default, results are sorted in ascending order.  To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You can only sort by one field at a time.  (optional)</param>
+        /// <param name="sort">The field by which results should be sorted. You can enter one of the following values:  - &#x60;startDate&#x60;: Sorts the results by the start date of the points. - &#x60;expiryDate&#x60;: Sorts the results by the expiry date of the points.  By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You can only sort by one field at a time.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfilePointsApiResponse"/>&gt;</returns>
         public async Task<IGetLoyaltyProgramProfilePointsApiResponse> GetLoyaltyProgramProfilePointsAsync(long loyaltyProgramId, string integrationId, Option<string> status = default, Option<List<string>> subledgerId = default, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default)
@@ -10998,11 +12065,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetLoyaltyProgramProfilePoints200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetLoyaltyProgramProfilePoints200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetLoyaltyProgramProfilePoints200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetLoyaltyProgramProfilePoints200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetLoyaltyProgramProfilePoints200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -11036,11 +12115,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -11074,11 +12165,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -11112,11 +12215,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -11149,7 +12264,7 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetLoyaltyProgramProfileTransactions(ref long loyaltyProgramId, ref string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, ref Option<string> subledgerId, ref Option<string> loyaltyTransactionType, ref Option<DateTime> startDate, ref Option<DateTime> endDate, ref Option<long> pageSize, ref Option<long> skip, ref Option<bool> awaitsActivation);
+        partial void FormatGetLoyaltyProgramProfileTransactions(ref long loyaltyProgramId, ref string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<List<string>> subledgerId, ref Option<string> loyaltyTransactionType, ref Option<DateTime> startDate, ref Option<DateTime> endDate, ref Option<long> pageSize, ref Option<long> skip, ref Option<bool> awaitsActivation);
 
         /// <summary>
         /// Validates the request parameters
@@ -11160,7 +12275,7 @@ namespace TalonOneSdk.Api
         /// <param name="subledgerId"></param>
         /// <param name="loyaltyTransactionType"></param>
         /// <returns></returns>
-        private void ValidateGetLoyaltyProgramProfileTransactions(string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType)
+        private void ValidateGetLoyaltyProgramProfileTransactions(string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<List<string>> subledgerId, Option<string> loyaltyTransactionType)
         {
             if (integrationId == null)
                 throw new ArgumentNullException(nameof(integrationId));
@@ -11193,7 +12308,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="awaitsActivation"></param>
-        private void AfterGetLoyaltyProgramProfileTransactionsDefaultImplementation(IGetLoyaltyProgramProfileTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation)
+        private void AfterGetLoyaltyProgramProfileTransactionsDefaultImplementation(IGetLoyaltyProgramProfileTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<List<string>> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation)
         {
             bool suppressDefaultLog = false;
             AfterGetLoyaltyProgramProfileTransactions(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
@@ -11217,7 +12332,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="awaitsActivation"></param>
-        partial void AfterGetLoyaltyProgramProfileTransactions(ref bool suppressDefaultLog, IGetLoyaltyProgramProfileTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation);
+        partial void AfterGetLoyaltyProgramProfileTransactions(ref bool suppressDefaultLog, IGetLoyaltyProgramProfileTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<List<string>> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -11236,7 +12351,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="awaitsActivation"></param>
-        private void OnErrorGetLoyaltyProgramProfileTransactionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation)
+        private void OnErrorGetLoyaltyProgramProfileTransactionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<List<string>> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorGetLoyaltyProgramProfileTransactions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
@@ -11262,7 +12377,7 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="awaitsActivation"></param>
-        partial void OnErrorGetLoyaltyProgramProfileTransactions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation);
+        partial void OnErrorGetLoyaltyProgramProfileTransactions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<List<string>> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation);
 
         /// <summary>
         /// List customer&#39;s loyalty transactions Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date. If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] To retrieve all loyalty program transaction logs in a given &gt; loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) &gt; endpoint. 
@@ -11271,7 +12386,7 @@ namespace TalonOneSdk.Api
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
         /// <param name="customerSessionIDs">Filter the results by a list of customer session IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  (optional)</param>
         /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
-        /// <param name="subledgerId">The ID of the subledger by which we filter the data. (optional)</param>
+        /// <param name="subledgerId">Filter the results by a list of subledger IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?subledgerId&#x3D;id1&amp;subledgerId&#x3D;id2&#x60;.  The response contains only data associated with the specified subledgers.  (optional)</param>
         /// <param name="loyaltyTransactionType">Filter results by loyalty transaction type: - &#x60;manual&#x60;: Loyalty transaction that was done manually. - &#x60;session&#x60;: Loyalty transaction that resulted from a customer session. - &#x60;import&#x60;: Loyalty transaction that was imported from a CSV file.  (optional)</param>
         /// <param name="startDate">Date and time from which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
@@ -11280,7 +12395,7 @@ namespace TalonOneSdk.Api
         /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfileTransactionsApiResponse"/>&gt;</returns>
-        public async Task<IGetLoyaltyProgramProfileTransactionsApiResponse> GetLoyaltyProgramProfileTransactionsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetLoyaltyProgramProfileTransactionsApiResponse> GetLoyaltyProgramProfileTransactionsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<List<string>> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -11300,7 +12415,7 @@ namespace TalonOneSdk.Api
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
         /// <param name="customerSessionIDs">Filter the results by a list of customer session IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  (optional)</param>
         /// <param name="transactionUUIDs">Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  (optional)</param>
-        /// <param name="subledgerId">The ID of the subledger by which we filter the data. (optional)</param>
+        /// <param name="subledgerId">Filter the results by a list of subledger IDs.  To include multiple IDs, repeat the parameter for each one, for example, &#x60;?subledgerId&#x3D;id1&amp;subledgerId&#x3D;id2&#x60;.  The response contains only data associated with the specified subledgers.  (optional)</param>
         /// <param name="loyaltyTransactionType">Filter results by loyalty transaction type: - &#x60;manual&#x60;: Loyalty transaction that was done manually. - &#x60;session&#x60;: Loyalty transaction that resulted from a customer session. - &#x60;import&#x60;: Loyalty transaction that was imported from a CSV file.  (optional)</param>
         /// <param name="startDate">Date and time from which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
@@ -11309,7 +12424,7 @@ namespace TalonOneSdk.Api
         /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfileTransactionsApiResponse"/>&gt;</returns>
-        public async Task<IGetLoyaltyProgramProfileTransactionsApiResponse> GetLoyaltyProgramProfileTransactionsAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetLoyaltyProgramProfileTransactionsApiResponse> GetLoyaltyProgramProfileTransactionsAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<List<string>> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -11317,7 +12432,7 @@ namespace TalonOneSdk.Api
             {
                 ValidateGetLoyaltyProgramProfileTransactions(integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType);
 
-                FormatGetLoyaltyProgramProfileTransactions(ref loyaltyProgramId, ref integrationId, customerSessionIDs, transactionUUIDs, ref subledgerId, ref loyaltyTransactionType, ref startDate, ref endDate, ref pageSize, ref skip, ref awaitsActivation);
+                FormatGetLoyaltyProgramProfileTransactions(ref loyaltyProgramId, ref integrationId, customerSessionIDs, transactionUUIDs, subledgerId, ref loyaltyTransactionType, ref startDate, ref endDate, ref pageSize, ref skip, ref awaitsActivation);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -11469,11 +12584,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -11507,11 +12634,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -11545,11 +12684,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -11583,11 +12734,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -11682,7 +12845,7 @@ namespace TalonOneSdk.Api
         /// <summary>
         /// List customers that have this coupon reserved Return all customers that have this coupon marked as reserved. This includes hard and soft reservations. 
         /// </summary>
-        /// <param name="couponValue">The code of the coupon.  **Important:** The coupon code requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp)  if it contains special characters. For example, you must encode &#x60;SUMMER25%OFF&#x60; as &#x60;SUMMER25%25OFF&#x60;. </param>
+        /// <param name="couponValue">The code of the coupon.  **Important:** The coupon code requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;SUMMER25%OFF&#x60; as &#x60;SUMMER25%25OFF&#x60;. </param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetReservedCustomersApiResponse"/>&gt;</returns>
         public async Task<IGetReservedCustomersApiResponse> GetReservedCustomersOrDefaultAsync(string couponValue, System.Threading.CancellationToken cancellationToken = default)
@@ -11701,7 +12864,7 @@ namespace TalonOneSdk.Api
         /// List customers that have this coupon reserved Return all customers that have this coupon marked as reserved. This includes hard and soft reservations. 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="couponValue">The code of the coupon.  **Important:** The coupon code requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp)  if it contains special characters. For example, you must encode &#x60;SUMMER25%OFF&#x60; as &#x60;SUMMER25%25OFF&#x60;. </param>
+        /// <param name="couponValue">The code of the coupon.  **Important:** The coupon code requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;SUMMER25%OFF&#x60; as &#x60;SUMMER25%25OFF&#x60;. </param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetReservedCustomersApiResponse"/>&gt;</returns>
         public async Task<IGetReservedCustomersApiResponse> GetReservedCustomersAsync(string couponValue, System.Threading.CancellationToken cancellationToken = default)
@@ -11832,11 +12995,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.GetReservedCustomers200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetReservedCustomers200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetReservedCustomers200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetReservedCustomers200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetReservedCustomers200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -11870,11 +13045,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -11908,11 +13095,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -11946,11 +13145,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -12273,11 +13484,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.IntegrationGetAllCampaigns200Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.IntegrationGetAllCampaigns200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.IntegrationGetAllCampaigns200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.IntegrationGetAllCampaigns200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.IntegrationGetAllCampaigns200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -12311,11 +13534,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -12349,11 +13584,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -12387,11 +13634,520 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryNotFound(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = NotFound();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatIntegrationRewardsCatalog(ref Option<long> pageSize, ref Option<long> skip, ref Option<decimal> pointsFrom, ref Option<decimal> pointsTo, ref Option<bool> includeFree, ref Option<long> loyaltyProgramId, ref Option<string> subledgerId, ref Option<string> profileIntegrationId, ref Option<string> loyaltyCardId);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="subledgerId"></param>
+        /// <param name="profileIntegrationId"></param>
+        /// <param name="loyaltyCardId"></param>
+        /// <returns></returns>
+        private void ValidateIntegrationRewardsCatalog(Option<string> subledgerId, Option<string> profileIntegrationId, Option<string> loyaltyCardId)
+        {
+            if (subledgerId.IsSet && subledgerId.Value == null)
+                throw new ArgumentNullException(nameof(subledgerId));
+
+            if (profileIntegrationId.IsSet && profileIntegrationId.Value == null)
+                throw new ArgumentNullException(nameof(profileIntegrationId));
+
+            if (loyaltyCardId.IsSet && loyaltyCardId.Value == null)
+                throw new ArgumentNullException(nameof(loyaltyCardId));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="pointsFrom"></param>
+        /// <param name="pointsTo"></param>
+        /// <param name="includeFree"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="subledgerId"></param>
+        /// <param name="profileIntegrationId"></param>
+        /// <param name="loyaltyCardId"></param>
+        private void AfterIntegrationRewardsCatalogDefaultImplementation(IIntegrationRewardsCatalogApiResponse apiResponseLocalVar, Option<long> pageSize, Option<long> skip, Option<decimal> pointsFrom, Option<decimal> pointsTo, Option<bool> includeFree, Option<long> loyaltyProgramId, Option<string> subledgerId, Option<string> profileIntegrationId, Option<string> loyaltyCardId)
+        {
+            bool suppressDefaultLog = false;
+            AfterIntegrationRewardsCatalog(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, pointsFrom, pointsTo, includeFree, loyaltyProgramId, subledgerId, profileIntegrationId, loyaltyCardId);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="pointsFrom"></param>
+        /// <param name="pointsTo"></param>
+        /// <param name="includeFree"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="subledgerId"></param>
+        /// <param name="profileIntegrationId"></param>
+        /// <param name="loyaltyCardId"></param>
+        partial void AfterIntegrationRewardsCatalog(ref bool suppressDefaultLog, IIntegrationRewardsCatalogApiResponse apiResponseLocalVar, Option<long> pageSize, Option<long> skip, Option<decimal> pointsFrom, Option<decimal> pointsTo, Option<bool> includeFree, Option<long> loyaltyProgramId, Option<string> subledgerId, Option<string> profileIntegrationId, Option<string> loyaltyCardId);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="pointsFrom"></param>
+        /// <param name="pointsTo"></param>
+        /// <param name="includeFree"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="subledgerId"></param>
+        /// <param name="profileIntegrationId"></param>
+        /// <param name="loyaltyCardId"></param>
+        private void OnErrorIntegrationRewardsCatalogDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<long> skip, Option<decimal> pointsFrom, Option<decimal> pointsTo, Option<bool> includeFree, Option<long> loyaltyProgramId, Option<string> subledgerId, Option<string> profileIntegrationId, Option<string> loyaltyCardId)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorIntegrationRewardsCatalog(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, pageSize, skip, pointsFrom, pointsTo, includeFree, loyaltyProgramId, subledgerId, profileIntegrationId, loyaltyCardId);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="pointsFrom"></param>
+        /// <param name="pointsTo"></param>
+        /// <param name="includeFree"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="subledgerId"></param>
+        /// <param name="profileIntegrationId"></param>
+        /// <param name="loyaltyCardId"></param>
+        partial void OnErrorIntegrationRewardsCatalog(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<long> skip, Option<decimal> pointsFrom, Option<decimal> pointsTo, Option<bool> includeFree, Option<long> loyaltyProgramId, Option<string> subledgerId, Option<string> profileIntegrationId, Option<string> loyaltyCardId);
+
+        /// <summary>
+        /// List rewards in the catalog Retrieve the rewards catalog for the Application. Returns a paginated list of rewards. 
+        /// </summary>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="pointsFrom">Return only rewards whose points required is greater than or equal to this value. (optional)</param>
+        /// <param name="pointsTo">Return only rewards whose points required is less than or equal to this value. (optional)</param>
+        /// <param name="includeFree">Whether to include rewards that have no &#x60;pointsRequired&#x60;. These rewards are treated as free and available to all customers.  (optional, default to true)</param>
+        /// <param name="loyaltyProgramId">Return only rewards available in this loyalty program.  (optional)</param>
+        /// <param name="subledgerId">Return only rewards available in this subledger. Must be combined with &#x60;loyaltyProgramId&#x60;. To specify the main ledger, provide an empty string (\&quot;\&quot;).  (optional)</param>
+        /// <param name="profileIntegrationId">The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  (optional)</param>
+        /// <param name="loyaltyCardId">The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationRewardsCatalogApiResponse"/>&gt;</returns>
+        public async Task<IIntegrationRewardsCatalogApiResponse> IntegrationRewardsCatalogOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<decimal> pointsFrom = default, Option<decimal> pointsTo = default, Option<bool> includeFree = default, Option<long> loyaltyProgramId = default, Option<string> subledgerId = default, Option<string> profileIntegrationId = default, Option<string> loyaltyCardId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await IntegrationRewardsCatalogAsync(pageSize, skip, pointsFrom, pointsTo, includeFree, loyaltyProgramId, subledgerId, profileIntegrationId, loyaltyCardId, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// List rewards in the catalog Retrieve the rewards catalog for the Application. Returns a paginated list of rewards. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="pointsFrom">Return only rewards whose points required is greater than or equal to this value. (optional)</param>
+        /// <param name="pointsTo">Return only rewards whose points required is less than or equal to this value. (optional)</param>
+        /// <param name="includeFree">Whether to include rewards that have no &#x60;pointsRequired&#x60;. These rewards are treated as free and available to all customers.  (optional, default to true)</param>
+        /// <param name="loyaltyProgramId">Return only rewards available in this loyalty program.  (optional)</param>
+        /// <param name="subledgerId">Return only rewards available in this subledger. Must be combined with &#x60;loyaltyProgramId&#x60;. To specify the main ledger, provide an empty string (\&quot;\&quot;).  (optional)</param>
+        /// <param name="profileIntegrationId">The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  (optional)</param>
+        /// <param name="loyaltyCardId">The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationRewardsCatalogApiResponse"/>&gt;</returns>
+        public async Task<IIntegrationRewardsCatalogApiResponse> IntegrationRewardsCatalogAsync(Option<long> pageSize = default, Option<long> skip = default, Option<decimal> pointsFrom = default, Option<decimal> pointsTo = default, Option<bool> includeFree = default, Option<long> loyaltyProgramId = default, Option<string> subledgerId = default, Option<string> profileIntegrationId = default, Option<string> loyaltyCardId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateIntegrationRewardsCatalog(subledgerId, profileIntegrationId, loyaltyCardId);
+
+                FormatIntegrationRewardsCatalog(ref pageSize, ref skip, ref pointsFrom, ref pointsTo, ref includeFree, ref loyaltyProgramId, ref subledgerId, ref profileIntegrationId, ref loyaltyCardId);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/rewards/catalog"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/rewards/catalog");
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (pageSize.IsSet)
+                        parseQueryStringLocalVar["pageSize"] = ClientUtils.ParameterToString(pageSize.Value);
+
+                    if (skip.IsSet)
+                        parseQueryStringLocalVar["skip"] = ClientUtils.ParameterToString(skip.Value);
+
+                    if (pointsFrom.IsSet)
+                        parseQueryStringLocalVar["pointsFrom"] = ClientUtils.ParameterToString(pointsFrom.Value);
+
+                    if (pointsTo.IsSet)
+                        parseQueryStringLocalVar["pointsTo"] = ClientUtils.ParameterToString(pointsTo.Value);
+
+                    if (includeFree.IsSet)
+                        parseQueryStringLocalVar["includeFree"] = ClientUtils.ParameterToString(includeFree.Value);
+
+                    if (loyaltyProgramId.IsSet)
+                        parseQueryStringLocalVar["loyaltyProgramId"] = ClientUtils.ParameterToString(loyaltyProgramId.Value);
+
+                    if (subledgerId.IsSet)
+                        parseQueryStringLocalVar["subledgerId"] = ClientUtils.ParameterToString(subledgerId.Value);
+
+                    if (profileIntegrationId.IsSet)
+                        parseQueryStringLocalVar["profileIntegrationId"] = ClientUtils.ParameterToString(profileIntegrationId.Value);
+
+                    if (loyaltyCardId.IsSet)
+                        parseQueryStringLocalVar["loyaltyCardId"] = ClientUtils.ParameterToString(loyaltyCardId.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("GET");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        IntegrationRewardsCatalogApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new IntegrationRewardsCatalogApiResponse(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/rewards/catalog", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterIntegrationRewardsCatalogDefaultImplementation(apiResponseLocalVar, pageSize, skip, pointsFrom, pointsTo, includeFree, loyaltyProgramId, subledgerId, profileIntegrationId, loyaltyCardId);
+
+                        Events.ExecuteOnIntegrationRewardsCatalog(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorIntegrationRewardsCatalogDefaultImplementation(e, "/v1/rewards/catalog", uriBuilderLocalVar.Path, pageSize, skip, pointsFrom, pointsTo, includeFree, loyaltyProgramId, subledgerId, profileIntegrationId, loyaltyCardId);
+                Events.ExecuteOnErrorIntegrationRewardsCatalog(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="IntegrationRewardsCatalogApiResponse"/>
+        /// </summary>
+        public partial class IntegrationRewardsCatalogApiResponse : TalonOneSdk.Client.ApiResponse, IIntegrationRewardsCatalogApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<IntegrationApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="IntegrationRewardsCatalogApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public IntegrationRewardsCatalogApiResponse(ILogger<IntegrationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="IntegrationRewardsCatalogApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public IntegrationRewardsCatalogApiResponse(ILogger<IntegrationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.IntegrationRewardsCatalog200Response Ok()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.IntegrationRewardsCatalog200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.IntegrationRewardsCatalog200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.IntegrationRewardsCatalog200Response>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.IntegrationRewardsCatalog200Response result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out TalonOneSdk.Model.IntegrationRewardsCatalog200Response result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryUnauthorized(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsNotFound
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -12649,11 +14405,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -12687,11 +14455,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -12725,11 +14505,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -13004,11 +14796,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.LoyaltyCard Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.LoyaltyCard result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.LoyaltyCard DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.LoyaltyCard>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.LoyaltyCard result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -13042,11 +14846,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -13080,11 +14896,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -13118,11 +14946,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -13155,17 +14995,21 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatReopenCustomerSession(ref string customerSessionId);
+        partial void FormatReopenCustomerSession(ref string customerSessionId, ref Option<string> idempotencyKey);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="customerSessionId"></param>
+        /// <param name="idempotencyKey"></param>
         /// <returns></returns>
-        private void ValidateReopenCustomerSession(string customerSessionId)
+        private void ValidateReopenCustomerSession(string customerSessionId, Option<string> idempotencyKey)
         {
             if (customerSessionId == null)
                 throw new ArgumentNullException(nameof(customerSessionId));
+
+            if (idempotencyKey.IsSet && idempotencyKey.Value == null)
+                throw new ArgumentNullException(nameof(idempotencyKey));
         }
 
         /// <summary>
@@ -13173,10 +15017,11 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="customerSessionId"></param>
-        private void AfterReopenCustomerSessionDefaultImplementation(IReopenCustomerSessionApiResponse apiResponseLocalVar, string customerSessionId)
+        /// <param name="idempotencyKey"></param>
+        private void AfterReopenCustomerSessionDefaultImplementation(IReopenCustomerSessionApiResponse apiResponseLocalVar, string customerSessionId, Option<string> idempotencyKey)
         {
             bool suppressDefaultLog = false;
-            AfterReopenCustomerSession(ref suppressDefaultLog, apiResponseLocalVar, customerSessionId);
+            AfterReopenCustomerSession(ref suppressDefaultLog, apiResponseLocalVar, customerSessionId, idempotencyKey);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -13187,7 +15032,8 @@ namespace TalonOneSdk.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="customerSessionId"></param>
-        partial void AfterReopenCustomerSession(ref bool suppressDefaultLog, IReopenCustomerSessionApiResponse apiResponseLocalVar, string customerSessionId);
+        /// <param name="idempotencyKey"></param>
+        partial void AfterReopenCustomerSession(ref bool suppressDefaultLog, IReopenCustomerSessionApiResponse apiResponseLocalVar, string customerSessionId, Option<string> idempotencyKey);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -13196,10 +15042,11 @@ namespace TalonOneSdk.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="customerSessionId"></param>
-        private void OnErrorReopenCustomerSessionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string customerSessionId)
+        /// <param name="idempotencyKey"></param>
+        private void OnErrorReopenCustomerSessionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string customerSessionId, Option<string> idempotencyKey)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorReopenCustomerSession(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, customerSessionId);
+            OnErrorReopenCustomerSession(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, customerSessionId, idempotencyKey);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -13212,19 +15059,21 @@ namespace TalonOneSdk.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="customerSessionId"></param>
-        partial void OnErrorReopenCustomerSession(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string customerSessionId);
+        /// <param name="idempotencyKey"></param>
+        partial void OnErrorReopenCustomerSession(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string customerSessionId, Option<string> idempotencyKey);
 
         /// <summary>
-        /// Reopen customer session Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint.  A reopen session is treated like a standard open session.  When reopening a session:  - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed   are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.  &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt; &lt;/details&gt;  To see an example of a rollback, see the [Cancelling a session with campaign budgets](https://docs.talon.one/docs/dev/tutorials/rolling-back-effects) tutorial.  &gt; [!note] If your order workflow requires you to create a new session &gt; instead of reopening a session, use the &gt; [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) &gt; endpoint to cancel a closed session and create a new one.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Reopen customer session Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint.  A reopen session is treated like a standard open session.  When reopening a session:  - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed   are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.  &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt; &lt;/details&gt;  To see an example of a rollback, see the [Cancelling a session with campaign budgets](https://docs.talon.one/docs/dev/tutorials/rolling-back-effects) tutorial.  &gt; [!note] If your order workflow requires you to create a new session &gt; instead of reopening a session, use the &gt; [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) &gt; endpoint to cancel a closed session and create a new one.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </summary>
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IReopenCustomerSessionApiResponse"/>&gt;</returns>
-        public async Task<IReopenCustomerSessionApiResponse> ReopenCustomerSessionOrDefaultAsync(string customerSessionId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IReopenCustomerSessionApiResponse> ReopenCustomerSessionOrDefaultAsync(string customerSessionId, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ReopenCustomerSessionAsync(customerSessionId, cancellationToken).ConfigureAwait(false);
+                return await ReopenCustomerSessionAsync(customerSessionId, idempotencyKey, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -13233,21 +15082,22 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Reopen customer session Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint.  A reopen session is treated like a standard open session.  When reopening a session:  - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed   are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.  &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt; &lt;/details&gt;  To see an example of a rollback, see the [Cancelling a session with campaign budgets](https://docs.talon.one/docs/dev/tutorials/rolling-back-effects) tutorial.  &gt; [!note] If your order workflow requires you to create a new session &gt; instead of reopening a session, use the &gt; [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) &gt; endpoint to cancel a closed session and create a new one.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Reopen customer session Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint.  A reopen session is treated like a standard open session.  When reopening a session:  - The &#x60;talon_session_reopened&#x60; event is triggered. You can see it in the **Events** view in the Campaign Manager. - The session state is updated to &#x60;open&#x60;. - Any modified budgets and triggered effects are rolled back when the session closes. - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)  in your loyalty programs, points are rolled back in the following ways:   - Pending points are rolled back automatically.   - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed   are rolled back.   - If **Negative balance** is enabled, the rollback can create a negative points balance.  &lt;details&gt;   &lt;summary&gt;&lt;strong&gt;Effects and budgets unimpacted by a session reopening&lt;/strong&gt;&lt;/summary&gt;   &lt;div&gt;     &lt;p&gt;The following effects and budgets remain in the state they were in when the session closed:&lt;/p&gt;     &lt;ul&gt;       &lt;li&gt;Add free item effect&lt;/li&gt;       &lt;li&gt;Award giveaway&lt;/li&gt;       &lt;li&gt;Coupon and referral creation&lt;/li&gt;       &lt;li&gt;Coupon reservation&lt;/li&gt;       &lt;li&gt;Custom effect&lt;/li&gt;       &lt;li&gt;Update attribute value&lt;/li&gt;       &lt;li&gt;Update cart item attribute value&lt;/li&gt;     &lt;/ul&gt;   &lt;/div&gt; &lt;/details&gt;  To see an example of a rollback, see the [Cancelling a session with campaign budgets](https://docs.talon.one/docs/dev/tutorials/rolling-back-effects) tutorial.  &gt; [!note] If your order workflow requires you to create a new session &gt; instead of reopening a session, use the &gt; [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) &gt; endpoint to cancel a closed session and create a new one.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IReopenCustomerSessionApiResponse"/>&gt;</returns>
-        public async Task<IReopenCustomerSessionApiResponse> ReopenCustomerSessionAsync(string customerSessionId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IReopenCustomerSessionApiResponse> ReopenCustomerSessionAsync(string customerSessionId, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateReopenCustomerSession(customerSessionId);
+                ValidateReopenCustomerSession(customerSessionId, idempotencyKey);
 
-                FormatReopenCustomerSession(ref customerSessionId);
+                FormatReopenCustomerSession(ref customerSessionId, ref idempotencyKey);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -13258,6 +15108,19 @@ namespace TalonOneSdk.Api
                         ? "/v2/customer_sessions/{customerSessionId}/reopen"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v2/customer_sessions/{customerSessionId}/reopen");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcustomerSessionId%7D", Uri.EscapeDataString(customerSessionId.ToString()));
+
+                    if (idempotencyKey.IsSet)
+                    {
+                      // Set client side default value of Header Param "Idempotency-Key".                    
+                      if (ClientUtils.IsContentHeader("Idempotency-Key"))
+                      {
+                          httpRequestMessageLocalVar.Content?.Headers.Add("Idempotency-Key", ClientUtils.ParameterToString(idempotencyKey.Value));
+                      }
+                      else
+                      {
+                          httpRequestMessageLocalVar.Headers.Add("Idempotency-Key", ClientUtils.ParameterToString(idempotencyKey.Value));
+                      }
+                    }
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
@@ -13291,7 +15154,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterReopenCustomerSessionDefaultImplementation(apiResponseLocalVar, customerSessionId);
+                        AfterReopenCustomerSessionDefaultImplementation(apiResponseLocalVar, customerSessionId, idempotencyKey);
 
                         Events.ExecuteOnReopenCustomerSession(apiResponseLocalVar);
 
@@ -13305,7 +15168,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorReopenCustomerSessionDefaultImplementation(e, "/v2/customer_sessions/{customerSessionId}/reopen", uriBuilderLocalVar.Path, customerSessionId);
+                OnErrorReopenCustomerSessionDefaultImplementation(e, "/v2/customer_sessions/{customerSessionId}/reopen", uriBuilderLocalVar.Path, customerSessionId, idempotencyKey);
                 Events.ExecuteOnErrorReopenCustomerSession(e);
                 throw;
             }
@@ -13367,11 +15230,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ReopenSessionResponse Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ReopenSessionResponse result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ReopenSessionResponse DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ReopenSessionResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ReopenSessionResponse result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -13405,11 +15280,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -13443,11 +15330,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -13480,21 +15379,25 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatReturnCartItems(ref string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, ref Option<bool> dry, ref Option<bool> runRuleEngine);
+        partial void FormatReturnCartItems(ref string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, ref Option<bool> dry, ref Option<bool> runRuleEngine, ref Option<string> idempotencyKey);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="customerSessionId"></param>
         /// <param name="returnIntegrationRequest"></param>
+        /// <param name="idempotencyKey"></param>
         /// <returns></returns>
-        private void ValidateReturnCartItems(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest)
+        private void ValidateReturnCartItems(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<string> idempotencyKey)
         {
             if (customerSessionId == null)
                 throw new ArgumentNullException(nameof(customerSessionId));
 
             if (returnIntegrationRequest == null)
                 throw new ArgumentNullException(nameof(returnIntegrationRequest));
+
+            if (idempotencyKey.IsSet && idempotencyKey.Value == null)
+                throw new ArgumentNullException(nameof(idempotencyKey));
         }
 
         /// <summary>
@@ -13505,10 +15408,11 @@ namespace TalonOneSdk.Api
         /// <param name="returnIntegrationRequest"></param>
         /// <param name="dry"></param>
         /// <param name="runRuleEngine"></param>
-        private void AfterReturnCartItemsDefaultImplementation(IReturnCartItemsApiResponse apiResponseLocalVar, string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry, Option<bool> runRuleEngine)
+        /// <param name="idempotencyKey"></param>
+        private void AfterReturnCartItemsDefaultImplementation(IReturnCartItemsApiResponse apiResponseLocalVar, string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry, Option<bool> runRuleEngine, Option<string> idempotencyKey)
         {
             bool suppressDefaultLog = false;
-            AfterReturnCartItems(ref suppressDefaultLog, apiResponseLocalVar, customerSessionId, returnIntegrationRequest, dry, runRuleEngine);
+            AfterReturnCartItems(ref suppressDefaultLog, apiResponseLocalVar, customerSessionId, returnIntegrationRequest, dry, runRuleEngine, idempotencyKey);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -13522,7 +15426,8 @@ namespace TalonOneSdk.Api
         /// <param name="returnIntegrationRequest"></param>
         /// <param name="dry"></param>
         /// <param name="runRuleEngine"></param>
-        partial void AfterReturnCartItems(ref bool suppressDefaultLog, IReturnCartItemsApiResponse apiResponseLocalVar, string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry, Option<bool> runRuleEngine);
+        /// <param name="idempotencyKey"></param>
+        partial void AfterReturnCartItems(ref bool suppressDefaultLog, IReturnCartItemsApiResponse apiResponseLocalVar, string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry, Option<bool> runRuleEngine, Option<string> idempotencyKey);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -13534,10 +15439,11 @@ namespace TalonOneSdk.Api
         /// <param name="returnIntegrationRequest"></param>
         /// <param name="dry"></param>
         /// <param name="runRuleEngine"></param>
-        private void OnErrorReturnCartItemsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry, Option<bool> runRuleEngine)
+        /// <param name="idempotencyKey"></param>
+        private void OnErrorReturnCartItemsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry, Option<bool> runRuleEngine, Option<string> idempotencyKey)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorReturnCartItems(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, customerSessionId, returnIntegrationRequest, dry, runRuleEngine);
+            OnErrorReturnCartItems(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, customerSessionId, returnIntegrationRequest, dry, runRuleEngine, idempotencyKey);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -13553,22 +15459,24 @@ namespace TalonOneSdk.Api
         /// <param name="returnIntegrationRequest"></param>
         /// <param name="dry"></param>
         /// <param name="runRuleEngine"></param>
-        partial void OnErrorReturnCartItems(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry, Option<bool> runRuleEngine);
+        /// <param name="idempotencyKey"></param>
+        partial void OnErrorReturnCartItems(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry, Option<bool> runRuleEngine, Option<string> idempotencyKey);
 
         /// <summary>
-        /// Return cart items Create a new return request for the specified cart items.  This endpoint automatically changes the session state from &#x60;closed&#x60; to &#x60;partially_returned&#x60;.  &gt; [!note] This will roll back any effects associated with these cart items. &gt; For more information, see [our documentation on session &gt; states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) &gt; and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session).  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Return cart items Create a new return request for the specified cart items.  This endpoint automatically changes the session state from &#x60;closed&#x60; to &#x60;partially_returned&#x60;.  &gt; [!note] This will roll back any effects associated with these cart items. &gt; For more information, see [our documentation on session &gt; states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) &gt; and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session).  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </summary>
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
         /// <param name="returnIntegrationRequest">body</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  (optional)</param>
         /// <param name="runRuleEngine">When set to &#x60;true&#x60;, reevaluates the updated session after items are returned. Only reevaluates campaigns where &#x60;reevaluateOnReturn&#x60; is set to &#x60;true&#x60; and which produced an effect when the session was closed.  (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IReturnCartItemsApiResponse"/>&gt;</returns>
-        public async Task<IReturnCartItemsApiResponse> ReturnCartItemsOrDefaultAsync(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry = default, Option<bool> runRuleEngine = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IReturnCartItemsApiResponse> ReturnCartItemsOrDefaultAsync(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry = default, Option<bool> runRuleEngine = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ReturnCartItemsAsync(customerSessionId, returnIntegrationRequest, dry, runRuleEngine, cancellationToken).ConfigureAwait(false);
+                return await ReturnCartItemsAsync(customerSessionId, returnIntegrationRequest, dry, runRuleEngine, idempotencyKey, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -13577,24 +15485,25 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Return cart items Create a new return request for the specified cart items.  This endpoint automatically changes the session state from &#x60;closed&#x60; to &#x60;partially_returned&#x60;.  &gt; [!note] This will roll back any effects associated with these cart items. &gt; For more information, see [our documentation on session &gt; states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) &gt; and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session).  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Return cart items Create a new return request for the specified cart items.  This endpoint automatically changes the session state from &#x60;closed&#x60; to &#x60;partially_returned&#x60;.  &gt; [!note] This will roll back any effects associated with these cart items. &gt; For more information, see [our documentation on session &gt; states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) &gt; and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session).  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. </param>
         /// <param name="returnIntegrationRequest">body</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  (optional)</param>
         /// <param name="runRuleEngine">When set to &#x60;true&#x60;, reevaluates the updated session after items are returned. Only reevaluates campaigns where &#x60;reevaluateOnReturn&#x60; is set to &#x60;true&#x60; and which produced an effect when the session was closed.  (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IReturnCartItemsApiResponse"/>&gt;</returns>
-        public async Task<IReturnCartItemsApiResponse> ReturnCartItemsAsync(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry = default, Option<bool> runRuleEngine = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IReturnCartItemsApiResponse> ReturnCartItemsAsync(string customerSessionId, ReturnIntegrationRequest returnIntegrationRequest, Option<bool> dry = default, Option<bool> runRuleEngine = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateReturnCartItems(customerSessionId, returnIntegrationRequest);
+                ValidateReturnCartItems(customerSessionId, returnIntegrationRequest, idempotencyKey);
 
-                FormatReturnCartItems(ref customerSessionId, returnIntegrationRequest, ref dry, ref runRuleEngine);
+                FormatReturnCartItems(ref customerSessionId, returnIntegrationRequest, ref dry, ref runRuleEngine, ref idempotencyKey);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -13619,6 +15528,19 @@ namespace TalonOneSdk.Api
                     httpRequestMessageLocalVar.Content = (returnIntegrationRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(returnIntegrationRequest, _jsonSerializerOptions));
+
+                    if (idempotencyKey.IsSet)
+                    {
+                      // Set client side default value of Header Param "Idempotency-Key".                    
+                      if (ClientUtils.IsContentHeader("Idempotency-Key"))
+                      {
+                          httpRequestMessageLocalVar.Content?.Headers.Add("Idempotency-Key", ClientUtils.ParameterToString(idempotencyKey.Value));
+                      }
+                      else
+                      {
+                          httpRequestMessageLocalVar.Headers.Add("Idempotency-Key", ClientUtils.ParameterToString(idempotencyKey.Value));
+                      }
+                    }
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
@@ -13661,7 +15583,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterReturnCartItemsDefaultImplementation(apiResponseLocalVar, customerSessionId, returnIntegrationRequest, dry, runRuleEngine);
+                        AfterReturnCartItemsDefaultImplementation(apiResponseLocalVar, customerSessionId, returnIntegrationRequest, dry, runRuleEngine, idempotencyKey);
 
                         Events.ExecuteOnReturnCartItems(apiResponseLocalVar);
 
@@ -13675,7 +15597,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorReturnCartItemsDefaultImplementation(e, "/v2/customer_sessions/{customerSessionId}/returns", uriBuilderLocalVar.Path, customerSessionId, returnIntegrationRequest, dry, runRuleEngine);
+                OnErrorReturnCartItemsDefaultImplementation(e, "/v2/customer_sessions/{customerSessionId}/returns", uriBuilderLocalVar.Path, customerSessionId, returnIntegrationRequest, dry, runRuleEngine, idempotencyKey);
                 Events.ExecuteOnErrorReturnCartItems(e);
                 throw;
             }
@@ -13737,11 +15659,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.IntegrationStateV2 Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.IntegrationStateV2 result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.IntegrationStateV2 DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.IntegrationStateV2>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.IntegrationStateV2 result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -13775,11 +15709,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -13813,11 +15759,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -14081,11 +16039,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Catalog Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Catalog result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Catalog DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Catalog>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Catalog result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -14119,11 +16089,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -14157,11 +16139,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -14195,11 +16189,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -14232,21 +16238,25 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatTrackEventV2(IntegrationEventV2Request integrationEventV2Request, ref Option<string> silent, ref Option<bool> dry, ref Option<bool> forceCompleteEvaluation);
+        partial void FormatTrackEventV2(IntegrationEventV2Request integrationEventV2Request, ref Option<string> silent, ref Option<bool> dry, ref Option<bool> forceCompleteEvaluation, ref Option<string> idempotencyKey);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="integrationEventV2Request"></param>
         /// <param name="silent"></param>
+        /// <param name="idempotencyKey"></param>
         /// <returns></returns>
-        private void ValidateTrackEventV2(IntegrationEventV2Request integrationEventV2Request, Option<string> silent)
+        private void ValidateTrackEventV2(IntegrationEventV2Request integrationEventV2Request, Option<string> silent, Option<string> idempotencyKey)
         {
             if (integrationEventV2Request == null)
                 throw new ArgumentNullException(nameof(integrationEventV2Request));
 
             if (silent.IsSet && silent.Value == null)
                 throw new ArgumentNullException(nameof(silent));
+
+            if (idempotencyKey.IsSet && idempotencyKey.Value == null)
+                throw new ArgumentNullException(nameof(idempotencyKey));
         }
 
         /// <summary>
@@ -14257,10 +16267,11 @@ namespace TalonOneSdk.Api
         /// <param name="silent"></param>
         /// <param name="dry"></param>
         /// <param name="forceCompleteEvaluation"></param>
-        private void AfterTrackEventV2DefaultImplementation(ITrackEventV2ApiResponse apiResponseLocalVar, IntegrationEventV2Request integrationEventV2Request, Option<string> silent, Option<bool> dry, Option<bool> forceCompleteEvaluation)
+        /// <param name="idempotencyKey"></param>
+        private void AfterTrackEventV2DefaultImplementation(ITrackEventV2ApiResponse apiResponseLocalVar, IntegrationEventV2Request integrationEventV2Request, Option<string> silent, Option<bool> dry, Option<bool> forceCompleteEvaluation, Option<string> idempotencyKey)
         {
             bool suppressDefaultLog = false;
-            AfterTrackEventV2(ref suppressDefaultLog, apiResponseLocalVar, integrationEventV2Request, silent, dry, forceCompleteEvaluation);
+            AfterTrackEventV2(ref suppressDefaultLog, apiResponseLocalVar, integrationEventV2Request, silent, dry, forceCompleteEvaluation, idempotencyKey);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -14274,7 +16285,8 @@ namespace TalonOneSdk.Api
         /// <param name="silent"></param>
         /// <param name="dry"></param>
         /// <param name="forceCompleteEvaluation"></param>
-        partial void AfterTrackEventV2(ref bool suppressDefaultLog, ITrackEventV2ApiResponse apiResponseLocalVar, IntegrationEventV2Request integrationEventV2Request, Option<string> silent, Option<bool> dry, Option<bool> forceCompleteEvaluation);
+        /// <param name="idempotencyKey"></param>
+        partial void AfterTrackEventV2(ref bool suppressDefaultLog, ITrackEventV2ApiResponse apiResponseLocalVar, IntegrationEventV2Request integrationEventV2Request, Option<string> silent, Option<bool> dry, Option<bool> forceCompleteEvaluation, Option<string> idempotencyKey);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -14286,10 +16298,11 @@ namespace TalonOneSdk.Api
         /// <param name="silent"></param>
         /// <param name="dry"></param>
         /// <param name="forceCompleteEvaluation"></param>
-        private void OnErrorTrackEventV2DefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, IntegrationEventV2Request integrationEventV2Request, Option<string> silent, Option<bool> dry, Option<bool> forceCompleteEvaluation)
+        /// <param name="idempotencyKey"></param>
+        private void OnErrorTrackEventV2DefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, IntegrationEventV2Request integrationEventV2Request, Option<string> silent, Option<bool> dry, Option<bool> forceCompleteEvaluation, Option<string> idempotencyKey)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorTrackEventV2(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, integrationEventV2Request, silent, dry, forceCompleteEvaluation);
+            OnErrorTrackEventV2(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, integrationEventV2Request, silent, dry, forceCompleteEvaluation, idempotencyKey);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -14305,22 +16318,24 @@ namespace TalonOneSdk.Api
         /// <param name="silent"></param>
         /// <param name="dry"></param>
         /// <param name="forceCompleteEvaluation"></param>
-        partial void OnErrorTrackEventV2(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, IntegrationEventV2Request integrationEventV2Request, Option<string> silent, Option<bool> dry, Option<bool> forceCompleteEvaluation);
+        /// <param name="idempotencyKey"></param>
+        partial void OnErrorTrackEventV2(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, IntegrationEventV2Request integrationEventV2Request, Option<string> silent, Option<bool> dry, Option<bool> forceCompleteEvaluation, Option<string> idempotencyKey);
 
         /// <summary>
-        /// Track event Trigger a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events).  To use this endpoint:  1. [Create](https://docs.talon.one/docs/dev/concepts/entities/events#create-an-event) an event in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - &#x60;profileId&#x60; is required even though the schema does not specify it. &gt; - If the customer profile ID is new, a new profile is automatically created but the &#x60;customer_profile_created&#x60; [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Manage parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#manage-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archive-a-campaign) are not considered in rule evaluation.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Track event Trigger a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events).  To use this endpoint:  1. [Create](https://docs.talon.one/docs/dev/concepts/entities/events#create-an-event) an event in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - &#x60;profileId&#x60; is required even though the schema does not specify it. &gt; - If the customer profile ID is new, a new profile is automatically created but the &#x60;customer_profile_created&#x60; [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Manage parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#manage-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archive-a-campaign) are not considered in rule evaluation.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </summary>
         /// <param name="integrationEventV2Request">body</param>
         /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  (optional)</param>
         /// <param name="forceCompleteEvaluation">Forces evaluation for all matching campaigns regardless of the [campaign evaluation mode](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation#setting-campaign-evaluation-mode). Requires &#x60;dry&#x3D;true&#x60;.  (optional, default to false)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ITrackEventV2ApiResponse"/>&gt;</returns>
-        public async Task<ITrackEventV2ApiResponse> TrackEventV2OrDefaultAsync(IntegrationEventV2Request integrationEventV2Request, Option<string> silent = default, Option<bool> dry = default, Option<bool> forceCompleteEvaluation = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ITrackEventV2ApiResponse> TrackEventV2OrDefaultAsync(IntegrationEventV2Request integrationEventV2Request, Option<string> silent = default, Option<bool> dry = default, Option<bool> forceCompleteEvaluation = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await TrackEventV2Async(integrationEventV2Request, silent, dry, forceCompleteEvaluation, cancellationToken).ConfigureAwait(false);
+                return await TrackEventV2Async(integrationEventV2Request, silent, dry, forceCompleteEvaluation, idempotencyKey, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -14329,24 +16344,25 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Track event Trigger a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events).  To use this endpoint:  1. [Create](https://docs.talon.one/docs/dev/concepts/entities/events#create-an-event) an event in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - &#x60;profileId&#x60; is required even though the schema does not specify it. &gt; - If the customer profile ID is new, a new profile is automatically created but the &#x60;customer_profile_created&#x60; [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Manage parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#manage-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archive-a-campaign) are not considered in rule evaluation.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Track event Trigger a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events).  To use this endpoint:  1. [Create](https://docs.talon.one/docs/dev/concepts/entities/events#create-an-event) an event in the Campaign Manager. 1. In a rule, add the **Check for event types** [condition](https://docs.talon.one/docs/dev/concepts/entities/events#use-an-event-in-a-rule) and select the event you created. 1. Trigger the event with this endpoint.  You can [list](https://docs.talon.one/docs/product/applications/display-events#list-events) the received events in the **Events** view of the Campaign Manager.  For example, you can use this endpoint to trigger an event when a customer shares a link to a product. See our [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).  &gt; [!note] **Note** &gt; - &#x60;profileId&#x60; is required even though the schema does not specify it. &gt; - If the customer profile ID is new, a new profile is automatically created but the &#x60;customer_profile_created&#x60; [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered. &gt; - We recommend sending requests sequentially. See [Manage parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#manage-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archive-a-campaign) are not considered in rule evaluation.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="integrationEventV2Request">body</param>
         /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  (optional)</param>
         /// <param name="forceCompleteEvaluation">Forces evaluation for all matching campaigns regardless of the [campaign evaluation mode](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation#setting-campaign-evaluation-mode). Requires &#x60;dry&#x3D;true&#x60;.  (optional, default to false)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ITrackEventV2ApiResponse"/>&gt;</returns>
-        public async Task<ITrackEventV2ApiResponse> TrackEventV2Async(IntegrationEventV2Request integrationEventV2Request, Option<string> silent = default, Option<bool> dry = default, Option<bool> forceCompleteEvaluation = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ITrackEventV2ApiResponse> TrackEventV2Async(IntegrationEventV2Request integrationEventV2Request, Option<string> silent = default, Option<bool> dry = default, Option<bool> forceCompleteEvaluation = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateTrackEventV2(integrationEventV2Request, silent);
+                ValidateTrackEventV2(integrationEventV2Request, silent, idempotencyKey);
 
-                FormatTrackEventV2(integrationEventV2Request, ref silent, ref dry, ref forceCompleteEvaluation);
+                FormatTrackEventV2(integrationEventV2Request, ref silent, ref dry, ref forceCompleteEvaluation, ref idempotencyKey);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -14373,6 +16389,19 @@ namespace TalonOneSdk.Api
                     httpRequestMessageLocalVar.Content = (integrationEventV2Request as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(integrationEventV2Request, _jsonSerializerOptions));
+
+                    if (idempotencyKey.IsSet)
+                    {
+                      // Set client side default value of Header Param "Idempotency-Key".                    
+                      if (ClientUtils.IsContentHeader("Idempotency-Key"))
+                      {
+                          httpRequestMessageLocalVar.Content?.Headers.Add("Idempotency-Key", ClientUtils.ParameterToString(idempotencyKey.Value));
+                      }
+                      else
+                      {
+                          httpRequestMessageLocalVar.Headers.Add("Idempotency-Key", ClientUtils.ParameterToString(idempotencyKey.Value));
+                      }
+                    }
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
@@ -14415,7 +16444,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterTrackEventV2DefaultImplementation(apiResponseLocalVar, integrationEventV2Request, silent, dry, forceCompleteEvaluation);
+                        AfterTrackEventV2DefaultImplementation(apiResponseLocalVar, integrationEventV2Request, silent, dry, forceCompleteEvaluation, idempotencyKey);
 
                         Events.ExecuteOnTrackEventV2(apiResponseLocalVar);
 
@@ -14429,7 +16458,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorTrackEventV2DefaultImplementation(e, "/v2/events", uriBuilderLocalVar.Path, integrationEventV2Request, silent, dry, forceCompleteEvaluation);
+                OnErrorTrackEventV2DefaultImplementation(e, "/v2/events", uriBuilderLocalVar.Path, integrationEventV2Request, silent, dry, forceCompleteEvaluation, idempotencyKey);
                 Events.ExecuteOnErrorTrackEventV2(e);
                 throw;
             }
@@ -14491,11 +16520,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.IntegrationEventV2Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.IntegrationEventV2Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.IntegrationEventV2Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.IntegrationEventV2Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.IntegrationEventV2Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -14529,11 +16570,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string NoContent()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnNoContent(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNoContent();
+                return result;
+            }
+
+            private string DefaultNoContent()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNoContent
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNoContent(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 204 NoContent and the deserialized response is not null
@@ -14567,11 +16620,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -14605,11 +16670,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -14643,11 +16720,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.UpdateCustomerProfileV2409Response Conflict()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.UpdateCustomerProfileV2409Response result = default;
+                OnConflict(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultConflict();
+                return result;
+            }
+
+            private TalonOneSdk.Model.UpdateCustomerProfileV2409Response DefaultConflict()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsConflict
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.UpdateCustomerProfileV2409Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnConflict(ref bool suppressDefault, ref TalonOneSdk.Model.UpdateCustomerProfileV2409Response result);
 
             /// <summary>
             /// Returns true if the response is 409 Conflict and the deserialized response is not null
@@ -14939,11 +17028,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.IntegrationEventV3Response Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.IntegrationEventV3Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.IntegrationEventV3Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.IntegrationEventV3Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.IntegrationEventV3Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -14977,11 +17078,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -15015,11 +17128,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -15053,11 +17178,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.UpdateCustomerProfileV2409Response Conflict()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.UpdateCustomerProfileV2409Response result = default;
+                OnConflict(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultConflict();
+                return result;
+            }
+
+            private TalonOneSdk.Model.UpdateCustomerProfileV2409Response DefaultConflict()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsConflict
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.UpdateCustomerProfileV2409Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnConflict(ref bool suppressDefault, ref TalonOneSdk.Model.UpdateCustomerProfileV2409Response result);
 
             /// <summary>
             /// Returns true if the response is 409 Conflict and the deserialized response is not null
@@ -15332,11 +17469,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.LoyaltyCard Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.LoyaltyCard result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.LoyaltyCard DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.LoyaltyCard>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.LoyaltyCard result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -15370,11 +17519,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -15408,11 +17569,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -15446,11 +17619,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -15467,6 +17652,599 @@ namespace TalonOneSdk.Api
                 } catch (Exception e)
                 {
                     OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatUnlockReward(ref long rewardId, IntegrationUnlockRewardRequest integrationUnlockRewardRequest, ref Option<bool> dry);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="integrationUnlockRewardRequest"></param>
+        /// <returns></returns>
+        private void ValidateUnlockReward(IntegrationUnlockRewardRequest integrationUnlockRewardRequest)
+        {
+            if (integrationUnlockRewardRequest == null)
+                throw new ArgumentNullException(nameof(integrationUnlockRewardRequest));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="rewardId"></param>
+        /// <param name="integrationUnlockRewardRequest"></param>
+        /// <param name="dry"></param>
+        private void AfterUnlockRewardDefaultImplementation(IUnlockRewardApiResponse apiResponseLocalVar, long rewardId, IntegrationUnlockRewardRequest integrationUnlockRewardRequest, Option<bool> dry)
+        {
+            bool suppressDefaultLog = false;
+            AfterUnlockReward(ref suppressDefaultLog, apiResponseLocalVar, rewardId, integrationUnlockRewardRequest, dry);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="rewardId"></param>
+        /// <param name="integrationUnlockRewardRequest"></param>
+        /// <param name="dry"></param>
+        partial void AfterUnlockReward(ref bool suppressDefaultLog, IUnlockRewardApiResponse apiResponseLocalVar, long rewardId, IntegrationUnlockRewardRequest integrationUnlockRewardRequest, Option<bool> dry);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="rewardId"></param>
+        /// <param name="integrationUnlockRewardRequest"></param>
+        /// <param name="dry"></param>
+        private void OnErrorUnlockRewardDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long rewardId, IntegrationUnlockRewardRequest integrationUnlockRewardRequest, Option<bool> dry)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorUnlockReward(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, rewardId, integrationUnlockRewardRequest, dry);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="rewardId"></param>
+        /// <param name="integrationUnlockRewardRequest"></param>
+        /// <param name="dry"></param>
+        partial void OnErrorUnlockReward(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long rewardId, IntegrationUnlockRewardRequest integrationUnlockRewardRequest, Option<bool> dry);
+
+        /// <summary>
+        /// Unlock a reward Unlock a reward for a customer. If the reward has &#x60;pointsRequired&#x60; configured, the corresponding loyalty points are deducted from the customer&#39;s balance.  To unlock a reward with the points of a loyalty card, provide the card in &#x60;cardIdentifier&#x60;. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
+        /// </summary>
+        /// <param name="rewardId">The ID of the reward. You can get the ID with the [List rewards](#tag/Rewards/operation/listRewards) endpoint.</param>
+        /// <param name="integrationUnlockRewardRequest"></param>
+        /// <param name="dry">When set to &#x60;true&#x60;, the rule evaluation is performed but no changes are persisted. Use this to preview the outcome of an unlocking. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IUnlockRewardApiResponse"/>&gt;</returns>
+        public async Task<IUnlockRewardApiResponse> UnlockRewardOrDefaultAsync(long rewardId, IntegrationUnlockRewardRequest integrationUnlockRewardRequest, Option<bool> dry = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await UnlockRewardAsync(rewardId, integrationUnlockRewardRequest, dry, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Unlock a reward Unlock a reward for a customer. If the reward has &#x60;pointsRequired&#x60; configured, the corresponding loyalty points are deducted from the customer&#39;s balance.  To unlock a reward with the points of a loyalty card, provide the card in &#x60;cardIdentifier&#x60;. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rewardId">The ID of the reward. You can get the ID with the [List rewards](#tag/Rewards/operation/listRewards) endpoint.</param>
+        /// <param name="integrationUnlockRewardRequest"></param>
+        /// <param name="dry">When set to &#x60;true&#x60;, the rule evaluation is performed but no changes are persisted. Use this to preview the outcome of an unlocking. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IUnlockRewardApiResponse"/>&gt;</returns>
+        public async Task<IUnlockRewardApiResponse> UnlockRewardAsync(long rewardId, IntegrationUnlockRewardRequest integrationUnlockRewardRequest, Option<bool> dry = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateUnlockReward(integrationUnlockRewardRequest);
+
+                FormatUnlockReward(ref rewardId, integrationUnlockRewardRequest, ref dry);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/rewards/{rewardId}/unlock"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/rewards/{rewardId}/unlock");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BrewardId%7D", Uri.EscapeDataString(rewardId.ToString()));
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (dry.IsSet)
+                        parseQueryStringLocalVar["dry"] = ClientUtils.ParameterToString(dry.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    httpRequestMessageLocalVar.Content = (integrationUnlockRewardRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(integrationUnlockRewardRequest, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("POST");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        UnlockRewardApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new UnlockRewardApiResponse(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/rewards/{rewardId}/unlock", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterUnlockRewardDefaultImplementation(apiResponseLocalVar, rewardId, integrationUnlockRewardRequest, dry);
+
+                        Events.ExecuteOnUnlockReward(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorUnlockRewardDefaultImplementation(e, "/v1/rewards/{rewardId}/unlock", uriBuilderLocalVar.Path, rewardId, integrationUnlockRewardRequest, dry);
+                Events.ExecuteOnErrorUnlockReward(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="UnlockRewardApiResponse"/>
+        /// </summary>
+        public partial class UnlockRewardApiResponse : TalonOneSdk.Client.ApiResponse, IUnlockRewardApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<IntegrationApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="UnlockRewardApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public UnlockRewardApiResponse(ILogger<IntegrationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="UnlockRewardApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public UnlockRewardApiResponse(ILogger<IntegrationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.IntegrationStateV2 Ok()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.IntegrationStateV2 result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.IntegrationStateV2 DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.IntegrationStateV2>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.IntegrationStateV2 result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out TalonOneSdk.Model.IntegrationStateV2 result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryUnauthorized(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 403 Forbidden
+            /// </summary>
+            /// <returns></returns>
+            public bool IsForbidden => 403 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 403 Forbidden
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus Forbidden()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnForbidden(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultForbidden();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultForbidden()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsForbidden
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnForbidden(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
+
+            /// <summary>
+            /// Returns true if the response is 403 Forbidden and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryForbidden(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Forbidden();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)403);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsNotFound
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryNotFound(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = NotFound();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 409 Conflict
+            /// </summary>
+            /// <returns></returns>
+            public bool IsConflict => 409 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 409 Conflict
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus Conflict()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnConflict(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultConflict();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultConflict()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsConflict
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnConflict(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
+
+            /// <summary>
+            /// Returns true if the response is 409 Conflict and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryConflict(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Conflict();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)409);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnprocessableContent => 422 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 422 UnprocessableContent
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.RewardUnlockRejection UnprocessableContent()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.RewardUnlockRejection result = default;
+                OnUnprocessableContent(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnprocessableContent();
+                return result;
+            }
+
+            private TalonOneSdk.Model.RewardUnlockRejection DefaultUnprocessableContent()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsUnprocessableContent
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.RewardUnlockRejection>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnUnprocessableContent(ref bool suppressDefault, ref TalonOneSdk.Model.RewardUnlockRejection result);
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryUnprocessableContent(out TalonOneSdk.Model.RewardUnlockRejection result)
+            {
+                result = null;
+
+                try
+                {
+                    result = UnprocessableContent();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)422);
                 }
 
                 return result != null;
@@ -15720,11 +18498,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -15758,11 +18548,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -16026,11 +18828,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.Audience Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Audience result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Audience DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Audience>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Audience result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -16064,11 +18878,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -16102,11 +18928,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -16369,11 +19207,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -16407,11 +19257,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -16445,11 +19307,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNotFound
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 404 NotFound and the deserialized response is not null
@@ -16482,21 +19356,25 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateCustomerProfileV2(ref string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, ref Option<bool> runRuleEngine, ref Option<bool> dry);
+        partial void FormatUpdateCustomerProfileV2(ref string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, ref Option<bool> runRuleEngine, ref Option<bool> dry, ref Option<string> idempotencyKey);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="integrationId"></param>
         /// <param name="customerProfileIntegrationRequestV2"></param>
+        /// <param name="idempotencyKey"></param>
         /// <returns></returns>
-        private void ValidateUpdateCustomerProfileV2(string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2)
+        private void ValidateUpdateCustomerProfileV2(string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, Option<string> idempotencyKey)
         {
             if (integrationId == null)
                 throw new ArgumentNullException(nameof(integrationId));
 
             if (customerProfileIntegrationRequestV2 == null)
                 throw new ArgumentNullException(nameof(customerProfileIntegrationRequestV2));
+
+            if (idempotencyKey.IsSet && idempotencyKey.Value == null)
+                throw new ArgumentNullException(nameof(idempotencyKey));
         }
 
         /// <summary>
@@ -16507,10 +19385,11 @@ namespace TalonOneSdk.Api
         /// <param name="customerProfileIntegrationRequestV2"></param>
         /// <param name="runRuleEngine"></param>
         /// <param name="dry"></param>
-        private void AfterUpdateCustomerProfileV2DefaultImplementation(IUpdateCustomerProfileV2ApiResponse apiResponseLocalVar, string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, Option<bool> runRuleEngine, Option<bool> dry)
+        /// <param name="idempotencyKey"></param>
+        private void AfterUpdateCustomerProfileV2DefaultImplementation(IUpdateCustomerProfileV2ApiResponse apiResponseLocalVar, string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, Option<bool> runRuleEngine, Option<bool> dry, Option<string> idempotencyKey)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateCustomerProfileV2(ref suppressDefaultLog, apiResponseLocalVar, integrationId, customerProfileIntegrationRequestV2, runRuleEngine, dry);
+            AfterUpdateCustomerProfileV2(ref suppressDefaultLog, apiResponseLocalVar, integrationId, customerProfileIntegrationRequestV2, runRuleEngine, dry, idempotencyKey);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -16524,7 +19403,8 @@ namespace TalonOneSdk.Api
         /// <param name="customerProfileIntegrationRequestV2"></param>
         /// <param name="runRuleEngine"></param>
         /// <param name="dry"></param>
-        partial void AfterUpdateCustomerProfileV2(ref bool suppressDefaultLog, IUpdateCustomerProfileV2ApiResponse apiResponseLocalVar, string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, Option<bool> runRuleEngine, Option<bool> dry);
+        /// <param name="idempotencyKey"></param>
+        partial void AfterUpdateCustomerProfileV2(ref bool suppressDefaultLog, IUpdateCustomerProfileV2ApiResponse apiResponseLocalVar, string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, Option<bool> runRuleEngine, Option<bool> dry, Option<string> idempotencyKey);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -16536,10 +19416,11 @@ namespace TalonOneSdk.Api
         /// <param name="customerProfileIntegrationRequestV2"></param>
         /// <param name="runRuleEngine"></param>
         /// <param name="dry"></param>
-        private void OnErrorUpdateCustomerProfileV2DefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, Option<bool> runRuleEngine, Option<bool> dry)
+        /// <param name="idempotencyKey"></param>
+        private void OnErrorUpdateCustomerProfileV2DefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, Option<bool> runRuleEngine, Option<bool> dry, Option<string> idempotencyKey)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateCustomerProfileV2(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, integrationId, customerProfileIntegrationRequestV2, runRuleEngine, dry);
+            OnErrorUpdateCustomerProfileV2(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, integrationId, customerProfileIntegrationRequestV2, runRuleEngine, dry, idempotencyKey);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -16555,22 +19436,24 @@ namespace TalonOneSdk.Api
         /// <param name="customerProfileIntegrationRequestV2"></param>
         /// <param name="runRuleEngine"></param>
         /// <param name="dry"></param>
-        partial void OnErrorUpdateCustomerProfileV2(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, Option<bool> runRuleEngine, Option<bool> dry);
+        /// <param name="idempotencyKey"></param>
+        partial void OnErrorUpdateCustomerProfileV2(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, Option<bool> runRuleEngine, Option<bool> dry, Option<string> idempotencyKey);
 
         /// <summary>
-        /// Update customer profile Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of.  &gt; [!note] **Note** &gt; - Updating a customer profile returns a response with the requested integration state. &gt; - The [Has joined an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) and &gt;   [Has left an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) conditions &gt;   only trigger through this endpoint. &gt; - You can use the &#x60;responseContent&#x60; property to save yourself extra API calls. For example, you can get &gt;   the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. &gt;   See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when &#x60;runRuleEngine&#x60; is &#x60;true&#x60;.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Update customer profile Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of.  &gt; [!note] **Note** &gt; - Updating a customer profile returns a response with the requested integration state. &gt; - The [Has joined an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) and &gt;   [Has left an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) conditions &gt;   only trigger through this endpoint. &gt; - You can use the &#x60;responseContent&#x60; property to save yourself extra API calls. For example, you can get &gt;   the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. &gt;   See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when &#x60;runRuleEngine&#x60; is &#x60;true&#x60;.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </summary>
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. **Note**: It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="customerProfileIntegrationRequestV2">body</param>
         /// <param name="runRuleEngine">Indicates whether to run the Rule Engine.  If &#x60;true&#x60;, the response includes: - The effects generated by the triggered campaigns are returned in the &#x60;effects&#x60; property. - The created coupons and referral objects.  If &#x60;false&#x60;: - The rules are not executed and the &#x60;effects&#x60; property is always empty. - The response time improves. - You cannot use &#x60;responseContent&#x60; in the body.  (optional, default to false)</param>
         /// <param name="dry">(Only works when &#x60;runRuleEngine&#x3D;true&#x60;) Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;, you can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCustomerProfileV2ApiResponse"/>&gt;</returns>
-        public async Task<IUpdateCustomerProfileV2ApiResponse> UpdateCustomerProfileV2OrDefaultAsync(string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, Option<bool> runRuleEngine = default, Option<bool> dry = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateCustomerProfileV2ApiResponse> UpdateCustomerProfileV2OrDefaultAsync(string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, Option<bool> runRuleEngine = default, Option<bool> dry = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateCustomerProfileV2Async(integrationId, customerProfileIntegrationRequestV2, runRuleEngine, dry, cancellationToken).ConfigureAwait(false);
+                return await UpdateCustomerProfileV2Async(integrationId, customerProfileIntegrationRequestV2, runRuleEngine, dry, idempotencyKey, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -16579,24 +19462,25 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Update customer profile Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of.  &gt; [!note] **Note** &gt; - Updating a customer profile returns a response with the requested integration state. &gt; - The [Has joined an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) and &gt;   [Has left an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) conditions &gt;   only trigger through this endpoint. &gt; - You can use the &#x60;responseContent&#x60; property to save yourself extra API calls. For example, you can get &gt;   the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. &gt;   See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when &#x60;runRuleEngine&#x60; is &#x60;true&#x60;.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Update customer profile Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.  You can use this endpoint to: - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first. - Modify the audience the customer profile is a member of.  &gt; [!note] **Note** &gt; - Updating a customer profile returns a response with the requested integration state. &gt; - The [Has joined an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) and &gt;   [Has left an audience](https://docs.talon.one/docs/product/rules/conditions/available-conditions#audience-conditions) conditions &gt;   only trigger through this endpoint. &gt; - You can use the &#x60;responseContent&#x60; property to save yourself extra API calls. For example, you can get &gt;   the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. &gt;   See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests). &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when &#x60;runRuleEngine&#x60; is &#x60;true&#x60;.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. **Note**: It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="customerProfileIntegrationRequestV2">body</param>
         /// <param name="runRuleEngine">Indicates whether to run the Rule Engine.  If &#x60;true&#x60;, the response includes: - The effects generated by the triggered campaigns are returned in the &#x60;effects&#x60; property. - The created coupons and referral objects.  If &#x60;false&#x60;: - The rules are not executed and the &#x60;effects&#x60; property is always empty. - The response time improves. - You cannot use &#x60;responseContent&#x60; in the body.  (optional, default to false)</param>
         /// <param name="dry">(Only works when &#x60;runRuleEngine&#x3D;true&#x60;) Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;, you can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCustomerProfileV2ApiResponse"/>&gt;</returns>
-        public async Task<IUpdateCustomerProfileV2ApiResponse> UpdateCustomerProfileV2Async(string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, Option<bool> runRuleEngine = default, Option<bool> dry = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateCustomerProfileV2ApiResponse> UpdateCustomerProfileV2Async(string integrationId, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, Option<bool> runRuleEngine = default, Option<bool> dry = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateCustomerProfileV2(integrationId, customerProfileIntegrationRequestV2);
+                ValidateUpdateCustomerProfileV2(integrationId, customerProfileIntegrationRequestV2, idempotencyKey);
 
-                FormatUpdateCustomerProfileV2(ref integrationId, customerProfileIntegrationRequestV2, ref runRuleEngine, ref dry);
+                FormatUpdateCustomerProfileV2(ref integrationId, customerProfileIntegrationRequestV2, ref runRuleEngine, ref dry, ref idempotencyKey);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -16621,6 +19505,19 @@ namespace TalonOneSdk.Api
                     httpRequestMessageLocalVar.Content = (customerProfileIntegrationRequestV2 as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(customerProfileIntegrationRequestV2, _jsonSerializerOptions));
+
+                    if (idempotencyKey.IsSet)
+                    {
+                      // Set client side default value of Header Param "Idempotency-Key".                    
+                      if (ClientUtils.IsContentHeader("Idempotency-Key"))
+                      {
+                          httpRequestMessageLocalVar.Content?.Headers.Add("Idempotency-Key", ClientUtils.ParameterToString(idempotencyKey.Value));
+                      }
+                      else
+                      {
+                          httpRequestMessageLocalVar.Headers.Add("Idempotency-Key", ClientUtils.ParameterToString(idempotencyKey.Value));
+                      }
+                    }
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
@@ -16663,7 +19560,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterUpdateCustomerProfileV2DefaultImplementation(apiResponseLocalVar, integrationId, customerProfileIntegrationRequestV2, runRuleEngine, dry);
+                        AfterUpdateCustomerProfileV2DefaultImplementation(apiResponseLocalVar, integrationId, customerProfileIntegrationRequestV2, runRuleEngine, dry, idempotencyKey);
 
                         Events.ExecuteOnUpdateCustomerProfileV2(apiResponseLocalVar);
 
@@ -16677,7 +19574,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateCustomerProfileV2DefaultImplementation(e, "/v2/customer_profiles/{integrationId}", uriBuilderLocalVar.Path, integrationId, customerProfileIntegrationRequestV2, runRuleEngine, dry);
+                OnErrorUpdateCustomerProfileV2DefaultImplementation(e, "/v2/customer_profiles/{integrationId}", uriBuilderLocalVar.Path, integrationId, customerProfileIntegrationRequestV2, runRuleEngine, dry, idempotencyKey);
                 Events.ExecuteOnErrorUpdateCustomerProfileV2(e);
                 throw;
             }
@@ -16739,11 +19636,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.CustomerProfileIntegrationResponseV2 Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.CustomerProfileIntegrationResponseV2 result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.CustomerProfileIntegrationResponseV2 DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.CustomerProfileIntegrationResponseV2>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.CustomerProfileIntegrationResponseV2 result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -16777,11 +19686,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -16815,11 +19736,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -16853,11 +19786,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.UpdateCustomerProfileV2409Response Conflict()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.UpdateCustomerProfileV2409Response result = default;
+                OnConflict(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultConflict();
+                return result;
+            }
+
+            private TalonOneSdk.Model.UpdateCustomerProfileV2409Response DefaultConflict()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsConflict
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.UpdateCustomerProfileV2409Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnConflict(ref bool suppressDefault, ref TalonOneSdk.Model.UpdateCustomerProfileV2409Response result);
 
             /// <summary>
             /// Returns true if the response is 409 Conflict and the deserialized response is not null
@@ -16890,21 +19835,25 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateCustomerProfilesV2(MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, ref Option<string> silent);
+        partial void FormatUpdateCustomerProfilesV2(MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, ref Option<string> silent, ref Option<string> idempotencyKey);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="multipleCustomerProfileIntegrationRequest"></param>
         /// <param name="silent"></param>
+        /// <param name="idempotencyKey"></param>
         /// <returns></returns>
-        private void ValidateUpdateCustomerProfilesV2(MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent)
+        private void ValidateUpdateCustomerProfilesV2(MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent, Option<string> idempotencyKey)
         {
             if (multipleCustomerProfileIntegrationRequest == null)
                 throw new ArgumentNullException(nameof(multipleCustomerProfileIntegrationRequest));
 
             if (silent.IsSet && silent.Value == null)
                 throw new ArgumentNullException(nameof(silent));
+
+            if (idempotencyKey.IsSet && idempotencyKey.Value == null)
+                throw new ArgumentNullException(nameof(idempotencyKey));
         }
 
         /// <summary>
@@ -16913,10 +19862,11 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="multipleCustomerProfileIntegrationRequest"></param>
         /// <param name="silent"></param>
-        private void AfterUpdateCustomerProfilesV2DefaultImplementation(IUpdateCustomerProfilesV2ApiResponse apiResponseLocalVar, MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent)
+        /// <param name="idempotencyKey"></param>
+        private void AfterUpdateCustomerProfilesV2DefaultImplementation(IUpdateCustomerProfilesV2ApiResponse apiResponseLocalVar, MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent, Option<string> idempotencyKey)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateCustomerProfilesV2(ref suppressDefaultLog, apiResponseLocalVar, multipleCustomerProfileIntegrationRequest, silent);
+            AfterUpdateCustomerProfilesV2(ref suppressDefaultLog, apiResponseLocalVar, multipleCustomerProfileIntegrationRequest, silent, idempotencyKey);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -16928,7 +19878,8 @@ namespace TalonOneSdk.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="multipleCustomerProfileIntegrationRequest"></param>
         /// <param name="silent"></param>
-        partial void AfterUpdateCustomerProfilesV2(ref bool suppressDefaultLog, IUpdateCustomerProfilesV2ApiResponse apiResponseLocalVar, MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent);
+        /// <param name="idempotencyKey"></param>
+        partial void AfterUpdateCustomerProfilesV2(ref bool suppressDefaultLog, IUpdateCustomerProfilesV2ApiResponse apiResponseLocalVar, MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent, Option<string> idempotencyKey);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -16938,10 +19889,11 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="multipleCustomerProfileIntegrationRequest"></param>
         /// <param name="silent"></param>
-        private void OnErrorUpdateCustomerProfilesV2DefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent)
+        /// <param name="idempotencyKey"></param>
+        private void OnErrorUpdateCustomerProfilesV2DefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent, Option<string> idempotencyKey)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateCustomerProfilesV2(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, multipleCustomerProfileIntegrationRequest, silent);
+            OnErrorUpdateCustomerProfilesV2(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, multipleCustomerProfileIntegrationRequest, silent, idempotencyKey);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -16955,20 +19907,22 @@ namespace TalonOneSdk.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="multipleCustomerProfileIntegrationRequest"></param>
         /// <param name="silent"></param>
-        partial void OnErrorUpdateCustomerProfilesV2(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent);
+        /// <param name="idempotencyKey"></param>
+        partial void OnErrorUpdateCustomerProfilesV2(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent, Option<string> idempotencyKey);
 
         /// <summary>
-        /// Update multiple customer profiles Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.  The &#x60;integrationId&#x60; must be any identifier that remains stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).  &gt; [!note] This endpoint does not trigger the Rule Engine. &gt; To trigger the Rule Engine for customer profile updates, &gt; use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Update multiple customer profiles Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.  The &#x60;integrationId&#x60; must be any identifier that remains stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).  &gt; [!note] This endpoint does not trigger the Rule Engine. &gt; To trigger the Rule Engine for customer profile updates, &gt; use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </summary>
         /// <param name="multipleCustomerProfileIntegrationRequest">body</param>
         /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCustomerProfilesV2ApiResponse"/>&gt;</returns>
-        public async Task<IUpdateCustomerProfilesV2ApiResponse> UpdateCustomerProfilesV2OrDefaultAsync(MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateCustomerProfilesV2ApiResponse> UpdateCustomerProfilesV2OrDefaultAsync(MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateCustomerProfilesV2Async(multipleCustomerProfileIntegrationRequest, silent, cancellationToken).ConfigureAwait(false);
+                return await UpdateCustomerProfilesV2Async(multipleCustomerProfileIntegrationRequest, silent, idempotencyKey, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -16977,22 +19931,23 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Update multiple customer profiles Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.  The &#x60;integrationId&#x60; must be any identifier that remains stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).  &gt; [!note] This endpoint does not trigger the Rule Engine. &gt; To trigger the Rule Engine for customer profile updates, &gt; use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency). 
+        /// Update multiple customer profiles Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.  The &#x60;integrationId&#x60; must be any identifier that remains stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).  &gt; [!note] This endpoint does not trigger the Rule Engine. &gt; To trigger the Rule Engine for customer profile updates, &gt; use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="multipleCustomerProfileIntegrationRequest">body</param>
         /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCustomerProfilesV2ApiResponse"/>&gt;</returns>
-        public async Task<IUpdateCustomerProfilesV2ApiResponse> UpdateCustomerProfilesV2Async(MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateCustomerProfilesV2ApiResponse> UpdateCustomerProfilesV2Async(MultipleCustomerProfileIntegrationRequest multipleCustomerProfileIntegrationRequest, Option<string> silent = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateCustomerProfilesV2(multipleCustomerProfileIntegrationRequest, silent);
+                ValidateUpdateCustomerProfilesV2(multipleCustomerProfileIntegrationRequest, silent, idempotencyKey);
 
-                FormatUpdateCustomerProfilesV2(multipleCustomerProfileIntegrationRequest, ref silent);
+                FormatUpdateCustomerProfilesV2(multipleCustomerProfileIntegrationRequest, ref silent, ref idempotencyKey);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -17013,6 +19968,19 @@ namespace TalonOneSdk.Api
                     httpRequestMessageLocalVar.Content = (multipleCustomerProfileIntegrationRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(multipleCustomerProfileIntegrationRequest, _jsonSerializerOptions));
+
+                    if (idempotencyKey.IsSet)
+                    {
+                      // Set client side default value of Header Param "Idempotency-Key".                    
+                      if (ClientUtils.IsContentHeader("Idempotency-Key"))
+                      {
+                          httpRequestMessageLocalVar.Content?.Headers.Add("Idempotency-Key", ClientUtils.ParameterToString(idempotencyKey.Value));
+                      }
+                      else
+                      {
+                          httpRequestMessageLocalVar.Headers.Add("Idempotency-Key", ClientUtils.ParameterToString(idempotencyKey.Value));
+                      }
+                    }
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
@@ -17055,7 +20023,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterUpdateCustomerProfilesV2DefaultImplementation(apiResponseLocalVar, multipleCustomerProfileIntegrationRequest, silent);
+                        AfterUpdateCustomerProfilesV2DefaultImplementation(apiResponseLocalVar, multipleCustomerProfileIntegrationRequest, silent, idempotencyKey);
 
                         Events.ExecuteOnUpdateCustomerProfilesV2(apiResponseLocalVar);
 
@@ -17069,7 +20037,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateCustomerProfilesV2DefaultImplementation(e, "/v2/customer_profiles", uriBuilderLocalVar.Path, multipleCustomerProfileIntegrationRequest, silent);
+                OnErrorUpdateCustomerProfilesV2DefaultImplementation(e, "/v2/customer_profiles", uriBuilderLocalVar.Path, multipleCustomerProfileIntegrationRequest, silent, idempotencyKey);
                 Events.ExecuteOnErrorUpdateCustomerProfilesV2(e);
                 throw;
             }
@@ -17131,11 +20099,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.MultipleCustomerProfileIntegrationResponseV2 Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.MultipleCustomerProfileIntegrationResponseV2 result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.MultipleCustomerProfileIntegrationResponseV2 DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.MultipleCustomerProfileIntegrationResponseV2>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.MultipleCustomerProfileIntegrationResponseV2 result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -17169,11 +20149,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public string NoContent()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                string result = default;
+                OnNoContent(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNoContent();
+                return result;
+            }
+
+            private string DefaultNoContent()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsNoContent
                     ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnNoContent(ref bool suppressDefault, ref string result);
 
             /// <summary>
             /// Returns true if the response is 204 NoContent and the deserialized response is not null
@@ -17207,11 +20199,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -17245,11 +20249,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -17282,21 +20298,25 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateCustomerSessionV2(ref string customerSessionId, IntegrationRequest integrationRequest, ref Option<bool> dry, ref Option<DateTime> now);
+        partial void FormatUpdateCustomerSessionV2(ref string customerSessionId, IntegrationRequest integrationRequest, ref Option<bool> dry, ref Option<DateTime> now, ref Option<string> idempotencyKey);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="customerSessionId"></param>
         /// <param name="integrationRequest"></param>
+        /// <param name="idempotencyKey"></param>
         /// <returns></returns>
-        private void ValidateUpdateCustomerSessionV2(string customerSessionId, IntegrationRequest integrationRequest)
+        private void ValidateUpdateCustomerSessionV2(string customerSessionId, IntegrationRequest integrationRequest, Option<string> idempotencyKey)
         {
             if (customerSessionId == null)
                 throw new ArgumentNullException(nameof(customerSessionId));
 
             if (integrationRequest == null)
                 throw new ArgumentNullException(nameof(integrationRequest));
+
+            if (idempotencyKey.IsSet && idempotencyKey.Value == null)
+                throw new ArgumentNullException(nameof(idempotencyKey));
         }
 
         /// <summary>
@@ -17307,10 +20327,11 @@ namespace TalonOneSdk.Api
         /// <param name="integrationRequest"></param>
         /// <param name="dry"></param>
         /// <param name="now"></param>
-        private void AfterUpdateCustomerSessionV2DefaultImplementation(IUpdateCustomerSessionV2ApiResponse apiResponseLocalVar, string customerSessionId, IntegrationRequest integrationRequest, Option<bool> dry, Option<DateTime> now)
+        /// <param name="idempotencyKey"></param>
+        private void AfterUpdateCustomerSessionV2DefaultImplementation(IUpdateCustomerSessionV2ApiResponse apiResponseLocalVar, string customerSessionId, IntegrationRequest integrationRequest, Option<bool> dry, Option<DateTime> now, Option<string> idempotencyKey)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateCustomerSessionV2(ref suppressDefaultLog, apiResponseLocalVar, customerSessionId, integrationRequest, dry, now);
+            AfterUpdateCustomerSessionV2(ref suppressDefaultLog, apiResponseLocalVar, customerSessionId, integrationRequest, dry, now, idempotencyKey);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -17324,7 +20345,8 @@ namespace TalonOneSdk.Api
         /// <param name="integrationRequest"></param>
         /// <param name="dry"></param>
         /// <param name="now"></param>
-        partial void AfterUpdateCustomerSessionV2(ref bool suppressDefaultLog, IUpdateCustomerSessionV2ApiResponse apiResponseLocalVar, string customerSessionId, IntegrationRequest integrationRequest, Option<bool> dry, Option<DateTime> now);
+        /// <param name="idempotencyKey"></param>
+        partial void AfterUpdateCustomerSessionV2(ref bool suppressDefaultLog, IUpdateCustomerSessionV2ApiResponse apiResponseLocalVar, string customerSessionId, IntegrationRequest integrationRequest, Option<bool> dry, Option<DateTime> now, Option<string> idempotencyKey);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -17336,10 +20358,11 @@ namespace TalonOneSdk.Api
         /// <param name="integrationRequest"></param>
         /// <param name="dry"></param>
         /// <param name="now"></param>
-        private void OnErrorUpdateCustomerSessionV2DefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string customerSessionId, IntegrationRequest integrationRequest, Option<bool> dry, Option<DateTime> now)
+        /// <param name="idempotencyKey"></param>
+        private void OnErrorUpdateCustomerSessionV2DefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string customerSessionId, IntegrationRequest integrationRequest, Option<bool> dry, Option<DateTime> now, Option<string> idempotencyKey)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateCustomerSessionV2(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, customerSessionId, integrationRequest, dry, now);
+            OnErrorUpdateCustomerSessionV2(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, customerSessionId, integrationRequest, dry, now, idempotencyKey);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -17355,22 +20378,24 @@ namespace TalonOneSdk.Api
         /// <param name="integrationRequest"></param>
         /// <param name="dry"></param>
         /// <param name="now"></param>
-        partial void OnErrorUpdateCustomerSessionV2(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string customerSessionId, IntegrationRequest integrationRequest, Option<bool> dry, Option<DateTime> now);
+        /// <param name="idempotencyKey"></param>
+        partial void OnErrorUpdateCustomerSessionV2(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string customerSessionId, IntegrationRequest integrationRequest, Option<bool> dry, Option<DateTime> now, Option<string> idempotencyKey);
 
         /// <summary>
-        /// Update customer session Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.  For example, use this endpoint to share the contents of a customer&#39;s cart with Talon.One.  &gt; [!note] **Note** &gt; - The currency for the session and the cart items in it is the currency set for the Application linked to this session. &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the &#x60;state&#x60; parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the &#x60;profileId&#x60; parameter in the request body to a customer profile&#39;s &#x60;integrationId&#x60;.  - While you can create an anonymous session with &#x60;profileId&#x3D;\&quot;\&quot;&#x60;, we recommend you use a guest ID instead.  - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  &gt; [!note] **Note** &gt; - If the specified profile does not exist, an empty profile is **created automatically**. &gt;   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2). &gt; - Updating a customer session returns a response with the new integration state. Use the &#x60;responseContent&#x60; property to save yourself extra API calls. &gt;   For example, you can get the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).  For more information, see:  - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one). 
+        /// Update customer session Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.  For example, use this endpoint to share the contents of a customer&#39;s cart with Talon.One.  &gt; [!note] **Note** &gt; - The currency for the session and the cart items in it is the currency set for the Application linked to this session. &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the &#x60;state&#x60; parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the &#x60;profileId&#x60; parameter in the request body to a customer profile&#39;s &#x60;integrationId&#x60;.  - While you can create an anonymous session with &#x60;profileId&#x3D;\&quot;\&quot;&#x60;, we recommend you use a guest ID instead.  - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  &gt; [!note] **Note** &gt; - If the specified profile does not exist, an empty profile is **created automatically**. &gt;   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2). &gt; - Updating a customer session returns a response with the new integration state. Use the &#x60;responseContent&#x60; property to save yourself extra API calls. &gt;   For example, you can get the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).  For more information, see:  - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one).  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </summary>
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. **Notes**: - There is no length limit for this ID. - It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="integrationRequest">body</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;: - The endpoint considers **only** the payload that you pass when **closing** the session.   When you do not use the &#x60;dry&#x60; parameter, the endpoint behaves as a typical PUT endpoint. Each update builds upon the previous ones. - You can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  [See the docs](https://docs.talon.one/docs/dev/integration-api/dry-requests).  (optional)</param>
         /// <param name="now">A timestamp value of a future date that acts as a current date when included in the query.  Use this parameter, for example, to test campaigns that would be evaluated for this customer session in the future (say, [scheduled campaigns](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-schedule)).  &gt; [!note] **Note** &gt; - It must be an RFC3339 timestamp string. &gt; - It can **only** be a date in the future. &gt; - It can **only** be used if the &#x60;dry&#x60; parameter in the query is set to &#x60;true&#x60;.  (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCustomerSessionV2ApiResponse"/>&gt;</returns>
-        public async Task<IUpdateCustomerSessionV2ApiResponse> UpdateCustomerSessionV2OrDefaultAsync(string customerSessionId, IntegrationRequest integrationRequest, Option<bool> dry = default, Option<DateTime> now = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateCustomerSessionV2ApiResponse> UpdateCustomerSessionV2OrDefaultAsync(string customerSessionId, IntegrationRequest integrationRequest, Option<bool> dry = default, Option<DateTime> now = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateCustomerSessionV2Async(customerSessionId, integrationRequest, dry, now, cancellationToken).ConfigureAwait(false);
+                return await UpdateCustomerSessionV2Async(customerSessionId, integrationRequest, dry, now, idempotencyKey, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -17379,24 +20404,25 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Update customer session Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.  For example, use this endpoint to share the contents of a customer&#39;s cart with Talon.One.  &gt; [!note] **Note** &gt; - The currency for the session and the cart items in it is the currency set for the Application linked to this session. &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the &#x60;state&#x60; parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the &#x60;profileId&#x60; parameter in the request body to a customer profile&#39;s &#x60;integrationId&#x60;.  - While you can create an anonymous session with &#x60;profileId&#x3D;\&quot;\&quot;&#x60;, we recommend you use a guest ID instead.  - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  &gt; [!note] **Note** &gt; - If the specified profile does not exist, an empty profile is **created automatically**. &gt;   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2). &gt; - Updating a customer session returns a response with the new integration state. Use the &#x60;responseContent&#x60; property to save yourself extra API calls. &gt;   For example, you can get the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).  For more information, see:  - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one). 
+        /// Update customer session Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.  For example, use this endpoint to share the contents of a customer&#39;s cart with Talon.One.  &gt; [!note] **Note** &gt; - The currency for the session and the cart items in it is the currency set for the Application linked to this session. &gt; - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.  ### Session management  To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions) and their states and refer to the &#x60;state&#x60; parameter documentation the request body schema docs below.  ### Sessions and customer profiles  - To link a session to a customer profile, set the &#x60;profileId&#x60; parameter in the request body to a customer profile&#39;s &#x60;integrationId&#x60;.  - While you can create an anonymous session with &#x60;profileId&#x3D;\&quot;\&quot;&#x60;, we recommend you use a guest ID instead.  - A profile can be linked to simultaneous sessions in different Applications. Either:   - Use unique session integration IDs or,   - Use the same session integration ID across all of the Applications.  &gt; [!note] **Note** &gt; - If the specified profile does not exist, an empty profile is **created automatically**. &gt;   You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2). &gt; - Updating a customer session returns a response with the new integration state. Use the &#x60;responseContent&#x60; property to save yourself extra API calls. &gt;   For example, you can get the customer profile details directly without extra requests. &gt; - We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).  For more information, see:  - The introductory video in [Getting started](https://docs.talon.one/docs/dev/getting-started/overview). - The [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one).  &gt; [!note] To make request processing idempotent for this endpoint, include the &#x60;Idempotency-Key&#x60; header with an idempotency key in requests. Learn more about [idempotency](https://docs.talon.one/integration-api#description/idempotency).
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="customerSessionId">The &#x60;integration ID&#x60; of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager&#39;s **Sessions** menu, or via the [List Application session](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint. **Notes**: - There is no length limit for this ID. - It must be URL-encoded. For example, replace spaces with &#x60;%20&#x60;. [Learn more](https://www.w3schools.com/tags/ref_urlencode.asp). </param>
         /// <param name="integrationRequest">body</param>
         /// <param name="dry">Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;: - The endpoint considers **only** the payload that you pass when **closing** the session.   When you do not use the &#x60;dry&#x60; parameter, the endpoint behaves as a typical PUT endpoint. Each update builds upon the previous ones. - You can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  [See the docs](https://docs.talon.one/docs/dev/integration-api/dry-requests).  (optional)</param>
         /// <param name="now">A timestamp value of a future date that acts as a current date when included in the query.  Use this parameter, for example, to test campaigns that would be evaluated for this customer session in the future (say, [scheduled campaigns](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-schedule)).  &gt; [!note] **Note** &gt; - It must be an RFC3339 timestamp string. &gt; - It can **only** be a date in the future. &gt; - It can **only** be used if the &#x60;dry&#x60; parameter in the query is set to &#x60;true&#x60;.  (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier that enables idempotent processing. Include it to ensure that the request is processed only once, even if you send it several times. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCustomerSessionV2ApiResponse"/>&gt;</returns>
-        public async Task<IUpdateCustomerSessionV2ApiResponse> UpdateCustomerSessionV2Async(string customerSessionId, IntegrationRequest integrationRequest, Option<bool> dry = default, Option<DateTime> now = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateCustomerSessionV2ApiResponse> UpdateCustomerSessionV2Async(string customerSessionId, IntegrationRequest integrationRequest, Option<bool> dry = default, Option<DateTime> now = default, Option<string> idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateCustomerSessionV2(customerSessionId, integrationRequest);
+                ValidateUpdateCustomerSessionV2(customerSessionId, integrationRequest, idempotencyKey);
 
-                FormatUpdateCustomerSessionV2(ref customerSessionId, integrationRequest, ref dry, ref now);
+                FormatUpdateCustomerSessionV2(ref customerSessionId, integrationRequest, ref dry, ref now, ref idempotencyKey);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -17421,6 +20447,19 @@ namespace TalonOneSdk.Api
                     httpRequestMessageLocalVar.Content = (integrationRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(integrationRequest, _jsonSerializerOptions));
+
+                    if (idempotencyKey.IsSet)
+                    {
+                      // Set client side default value of Header Param "Idempotency-Key".                    
+                      if (ClientUtils.IsContentHeader("Idempotency-Key"))
+                      {
+                          httpRequestMessageLocalVar.Content?.Headers.Add("Idempotency-Key", ClientUtils.ParameterToString(idempotencyKey.Value));
+                      }
+                      else
+                      {
+                          httpRequestMessageLocalVar.Headers.Add("Idempotency-Key", ClientUtils.ParameterToString(idempotencyKey.Value));
+                      }
+                    }
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
@@ -17463,7 +20502,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterUpdateCustomerSessionV2DefaultImplementation(apiResponseLocalVar, customerSessionId, integrationRequest, dry, now);
+                        AfterUpdateCustomerSessionV2DefaultImplementation(apiResponseLocalVar, customerSessionId, integrationRequest, dry, now, idempotencyKey);
 
                         Events.ExecuteOnUpdateCustomerSessionV2(apiResponseLocalVar);
 
@@ -17477,7 +20516,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateCustomerSessionV2DefaultImplementation(e, "/v2/customer_sessions/{customerSessionId}", uriBuilderLocalVar.Path, customerSessionId, integrationRequest, dry, now);
+                OnErrorUpdateCustomerSessionV2DefaultImplementation(e, "/v2/customer_sessions/{customerSessionId}", uriBuilderLocalVar.Path, customerSessionId, integrationRequest, dry, now, idempotencyKey);
                 Events.ExecuteOnErrorUpdateCustomerSessionV2(e);
                 throw;
             }
@@ -17539,11 +20578,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.IntegrationStateV2 Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.IntegrationStateV2 result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.IntegrationStateV2 DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.IntegrationStateV2>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.IntegrationStateV2 result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -17577,11 +20628,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponse BadRequest()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponse result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponse DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsBadRequest
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponse result);
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest and the deserialized response is not null
@@ -17615,11 +20678,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsUnauthorized
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
 
             /// <summary>
             /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
@@ -17653,11 +20728,23 @@ namespace TalonOneSdk.Api
             /// <returns></returns>
             public TalonOneSdk.Model.UpdateCustomerSessionV2409Response Conflict()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                TalonOneSdk.Model.UpdateCustomerSessionV2409Response result = default;
+                OnConflict(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultConflict();
+                return result;
+            }
+
+            private TalonOneSdk.Model.UpdateCustomerSessionV2409Response DefaultConflict()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsConflict
                     ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.UpdateCustomerSessionV2409Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
+
+            partial void OnConflict(ref bool suppressDefault, ref TalonOneSdk.Model.UpdateCustomerSessionV2409Response result);
 
             /// <summary>
             /// Returns true if the response is 409 Conflict and the deserialized response is not null

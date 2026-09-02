@@ -31,21 +31,21 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckAudienceBlock" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="operator">An indicator of how the block compares its elements.</param>
         /// <param name="profile">The customer profile to check against the audience. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program.</param>
         /// <param name="audience">audience</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public CheckAudienceBlock(string id, string type, OperatorEnum @operator, ProfileEnum profile, CheckAudienceBlock1Audience audience, Option<List<string>> tags = default, Option<List<PromotionBlock>> onFailure = default)
+        public CheckAudienceBlock(string type, OperatorEnum @operator, ProfileEnum profile, CheckAudienceBlock1Audience audience, Option<string> id = default, Option<List<string>> tags = default, Option<List<Block>> onFailure = default)
         {
-            Id = id;
             Type = type;
             Operator = @operator;
             Profile = profile;
             Audience = audience;
+            IdOption = id;
             TagsOption = tags;
             OnFailureOption = onFailure;
             OnCreated();
@@ -232,14 +232,6 @@ namespace TalonOneSdk.Model
         public ProfileEnum Profile { get; set; }
 
         /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        /// <summary>
         /// Identifies the block variant and determines which additional properties are present in it.
         /// </summary>
         /// <value>Identifies the block variant and determines which additional properties are present in it.</value>
@@ -253,32 +245,47 @@ namespace TalonOneSdk.Model
         public CheckAudienceBlock1Audience Audience { get; set; }
 
         /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
+
+        /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> TagsOption { get; private set; }
+        public Option<List<string>> TagsOption { get; }
 
         /// <summary>
         /// Semantic labels attached to this block.
         /// </summary>
         /// <value>Semantic labels attached to this block.</value>
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
         /// Used to track the state of OnFailure
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<PromotionBlock>> OnFailureOption { get; private set; }
+        public Option<List<Block>> OnFailureOption { get; private set; }
 
         /// <summary>
         /// Promotion blocks evaluated when this block fails or returns false.
         /// </summary>
         /// <value>Promotion blocks evaluated when this block fails or returns false.</value>
         [JsonPropertyName("onFailure")]
-        public List<PromotionBlock> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<PromotionBlock>>(value); } }
+        public List<Block> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Block>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -288,11 +295,11 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CheckAudienceBlock {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Operator: ").Append(Operator).Append("\n");
             sb.Append("  Profile: ").Append(Profile).Append("\n");
             sb.Append("  Audience: ").Append(Audience).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
             sb.Append("}\n");
@@ -342,13 +349,13 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<string> type = default;
             Option<CheckAudienceBlock.OperatorEnum?> varOperator = default;
             Option<CheckAudienceBlock.ProfileEnum?> profile = default;
             Option<CheckAudienceBlock1Audience> audience = default;
+            Option<string> id = default;
             Option<List<string>> tags = default;
-            Option<List<PromotionBlock>> onFailure = default;
+            Option<List<Block>> onFailure = default;
 
             while (utf8JsonReader.Read())
             {
@@ -365,39 +372,46 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<CheckAudienceBlock.OperatorEnum?>(CheckAudienceBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                CheckAudienceBlock.OperatorEnum? varOperatorValue = CheckAudienceBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<CheckAudienceBlock.OperatorEnum?>(varOperatorValue);
+                            }
                             break;
                         case "profile":
                             string profileRawValue = utf8JsonReader.GetString();
                             if (profileRawValue != null)
-                                profile = new Option<CheckAudienceBlock.ProfileEnum?>(CheckAudienceBlock.ProfileEnumFromStringOrDefault(profileRawValue));
+                            {
+                                CheckAudienceBlock.ProfileEnum? profileValue = CheckAudienceBlock.ProfileEnumFromStringOrDefault(profileRawValue);
+                                if (profileValue == null)
+                                    throw new JsonException();
+                                profile = new Option<CheckAudienceBlock.ProfileEnum?>(profileValue);
+                            }
                             break;
                         case "audience":
                             audience = new Option<CheckAudienceBlock1Audience>(JsonSerializer.Deserialize<CheckAudienceBlock1Audience>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "onFailure":
-                            onFailure = new Option<List<PromotionBlock>>(JsonSerializer.Deserialize<List<PromotionBlock>>(ref utf8JsonReader, jsonSerializerOptions));
+                            onFailure = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CheckAudienceBlock.", nameof(id));
 
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class CheckAudienceBlock.", nameof(type));
@@ -411,9 +425,6 @@ namespace TalonOneSdk.Model
             if (!audience.IsSet)
                 throw new ArgumentException("Property is required for class CheckAudienceBlock.", nameof(audience));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CheckAudienceBlock.");
-
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class CheckAudienceBlock.");
 
@@ -426,7 +437,7 @@ namespace TalonOneSdk.Model
             if (audience.IsSet && audience.Value == null)
                 throw new ArgumentNullException(nameof(audience), "Property is not nullable for class CheckAudienceBlock.");
 
-            return new CheckAudienceBlock(id.Value, type.Value, varOperator.Value.Value, profile.Value.Value, audience.Value, tags, onFailure);
+            return new CheckAudienceBlock(type.Value, varOperator.Value.Value, profile.Value.Value, audience.Value, id, tags, onFailure);
         }
 
         /// <summary>
@@ -453,16 +464,11 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckAudienceBlock checkAudienceBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (checkAudienceBlock.Id == null)
-                throw new ArgumentNullException(nameof(checkAudienceBlock.Id), "Property is required for class CheckAudienceBlock.");
-
             if (checkAudienceBlock.Type == null)
                 throw new ArgumentNullException(nameof(checkAudienceBlock.Type), "Property is required for class CheckAudienceBlock.");
 
             if (checkAudienceBlock.Audience == null)
                 throw new ArgumentNullException(nameof(checkAudienceBlock.Audience), "Property is required for class CheckAudienceBlock.");
-
-            writer.WriteString("id", checkAudienceBlock.Id);
 
             writer.WriteString("type", checkAudienceBlock.Type);
 
@@ -472,6 +478,9 @@ namespace TalonOneSdk.Model
             writer.WriteString("profile", profileRawValue);
             writer.WritePropertyName("audience");
             JsonSerializer.Serialize(writer, checkAudienceBlock.Audience, jsonSerializerOptions);
+            if (checkAudienceBlock.IdOption.IsSet)
+                writer.WriteString("id", checkAudienceBlock.Id);
+
             if (checkAudienceBlock.TagsOption.IsSet)
             {
                 writer.WritePropertyName("tags");

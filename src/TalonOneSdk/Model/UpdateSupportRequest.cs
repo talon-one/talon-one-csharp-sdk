@@ -225,7 +225,12 @@ namespace TalonOneSdk.Model
                         case "requestStatus":
                             string requestStatusRawValue = utf8JsonReader.GetString();
                             if (requestStatusRawValue != null)
-                                requestStatus = new Option<UpdateSupportRequest.RequestStatusEnum?>(UpdateSupportRequest.RequestStatusEnumFromStringOrDefault(requestStatusRawValue));
+                            {
+                                UpdateSupportRequest.RequestStatusEnum? requestStatusValue = UpdateSupportRequest.RequestStatusEnumFromStringOrDefault(requestStatusRawValue);
+                                if (requestStatusValue == null)
+                                    throw new JsonException();
+                                requestStatus = new Option<UpdateSupportRequest.RequestStatusEnum?>(requestStatusValue);
+                            }
                             break;
                         case "processingNote":
                             processingNote = new Option<string>(utf8JsonReader.GetString());

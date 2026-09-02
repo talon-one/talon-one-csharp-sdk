@@ -31,18 +31,18 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckEventBlock" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="eventType">The event type to check against.</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="matchers">matchers</param>
         /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public CheckEventBlock(string id, string type, string eventType, Option<List<string>> tags = default, Option<List<PromotionBlock>> matchers = default, Option<List<PromotionBlock>> onFailure = default)
+        public CheckEventBlock(string type, string eventType, Option<string> id = default, Option<List<string>> tags = default, Option<List<Block>> matchers = default, Option<List<Block>> onFailure = default)
         {
-            Id = id;
             Type = type;
             EventType = eventType;
+            IdOption = id;
             TagsOption = tags;
             MatchersOption = matchers;
             OnFailureOption = onFailure;
@@ -50,14 +50,6 @@ namespace TalonOneSdk.Model
         }
 
         partial void OnCreated();
-
-        /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
 
         /// <summary>
         /// Identifies the block variant and determines which additional properties are present in it.
@@ -75,45 +67,60 @@ namespace TalonOneSdk.Model
         public string EventType { get; set; }
 
         /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
+
+        /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> TagsOption { get; private set; }
+        public Option<List<string>> TagsOption { get; }
 
         /// <summary>
         /// Semantic labels attached to this block.
         /// </summary>
         /// <value>Semantic labels attached to this block.</value>
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
         /// Used to track the state of Matchers
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<PromotionBlock>> MatchersOption { get; private set; }
+        public Option<List<Block>> MatchersOption { get; private set; }
 
         /// <summary>
         /// Gets or Sets Matchers
         /// </summary>
         [JsonPropertyName("matchers")]
-        public List<PromotionBlock> Matchers { get { return this.MatchersOption.Value; } set { this.MatchersOption = new Option<List<PromotionBlock>>(value); } }
+        public List<Block> Matchers { get { return this.MatchersOption.Value; } set { this.MatchersOption = new Option<List<Block>>(value); } }
 
         /// <summary>
         /// Used to track the state of OnFailure
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<PromotionBlock>> OnFailureOption { get; private set; }
+        public Option<List<Block>> OnFailureOption { get; private set; }
 
         /// <summary>
         /// Promotion blocks evaluated when this block fails or returns false.
         /// </summary>
         /// <value>Promotion blocks evaluated when this block fails or returns false.</value>
         [JsonPropertyName("onFailure")]
-        public List<PromotionBlock> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<PromotionBlock>>(value); } }
+        public List<Block> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Block>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -123,9 +130,9 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CheckEventBlock {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  EventType: ").Append(EventType).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  Matchers: ").Append(Matchers).Append("\n");
             sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
@@ -176,12 +183,12 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<string> type = default;
             Option<string> eventType = default;
+            Option<string> id = default;
             Option<List<string>> tags = default;
-            Option<List<PromotionBlock>> matchers = default;
-            Option<List<PromotionBlock>> onFailure = default;
+            Option<List<Block>> matchers = default;
+            Option<List<Block>> onFailure = default;
 
             while (utf8JsonReader.Read())
             {
@@ -198,23 +205,23 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "eventType":
                             eventType = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "matchers":
-                            matchers = new Option<List<PromotionBlock>>(JsonSerializer.Deserialize<List<PromotionBlock>>(ref utf8JsonReader, jsonSerializerOptions));
+                            matchers = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "onFailure":
-                            onFailure = new Option<List<PromotionBlock>>(JsonSerializer.Deserialize<List<PromotionBlock>>(ref utf8JsonReader, jsonSerializerOptions));
+                            onFailure = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -222,17 +229,11 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CheckEventBlock.", nameof(id));
-
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class CheckEventBlock.", nameof(type));
 
             if (!eventType.IsSet)
                 throw new ArgumentException("Property is required for class CheckEventBlock.", nameof(eventType));
-
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CheckEventBlock.");
 
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class CheckEventBlock.");
@@ -240,7 +241,7 @@ namespace TalonOneSdk.Model
             if (eventType.IsSet && eventType.Value == null)
                 throw new ArgumentNullException(nameof(eventType), "Property is not nullable for class CheckEventBlock.");
 
-            return new CheckEventBlock(id.Value, type.Value, eventType.Value, tags, matchers, onFailure);
+            return new CheckEventBlock(type.Value, eventType.Value, id, tags, matchers, onFailure);
         }
 
         /// <summary>
@@ -267,20 +268,18 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckEventBlock checkEventBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (checkEventBlock.Id == null)
-                throw new ArgumentNullException(nameof(checkEventBlock.Id), "Property is required for class CheckEventBlock.");
-
             if (checkEventBlock.Type == null)
                 throw new ArgumentNullException(nameof(checkEventBlock.Type), "Property is required for class CheckEventBlock.");
 
             if (checkEventBlock.EventType == null)
                 throw new ArgumentNullException(nameof(checkEventBlock.EventType), "Property is required for class CheckEventBlock.");
 
-            writer.WriteString("id", checkEventBlock.Id);
-
             writer.WriteString("type", checkEventBlock.Type);
 
             writer.WriteString("eventType", checkEventBlock.EventType);
+
+            if (checkEventBlock.IdOption.IsSet)
+                writer.WriteString("id", checkEventBlock.Id);
 
             if (checkEventBlock.TagsOption.IsSet)
             {

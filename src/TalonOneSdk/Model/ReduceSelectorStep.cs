@@ -299,12 +299,22 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<ReduceSelectorStep.TypeEnum?>(ReduceSelectorStep.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                ReduceSelectorStep.TypeEnum? typeValue = ReduceSelectorStep.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<ReduceSelectorStep.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<ReduceSelectorStep.OperatorEnum?>(ReduceSelectorStep.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                ReduceSelectorStep.OperatorEnum? varOperatorValue = ReduceSelectorStep.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<ReduceSelectorStep.OperatorEnum?>(varOperatorValue);
+                            }
                             break;
                         default:
                             break;

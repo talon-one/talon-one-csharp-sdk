@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// This effect indicates that the customer&#39;s progress in an achievement was started during the current session. The progress value is set to 0. It is triggered when a rule using the [Start achievement progress](https://docs.talon.one/docs/product/rules/effects/use-effects#start-achievement-progress) effect is successfully validated.  This effect only marks the start of progress tracking. It can fire together with &#x60;increaseAchievementProgress&#x60; when progress starts and increases at the same time. In that case, both effects share the same &#x60;progressTrackerId&#x60;, &#x60;startDate&#x60;, and &#x60;endDate&#x60;.  For [on-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/achievements-overview#recurring-on-completion-achievements), each iteration also gets its own &#x60;startDate&#x60; and &#x60;endDate&#x60;. 
+    /// This effect indicates that the customer&#39;s progress in an achievement was started during the current session. The progress value is set to 0. It is triggered when a rule using the [Start achievement progress](https://docs.talon.one/docs/product/rules/effects/use-effects#start-achievement-progress) effect is successfully validated.  This effect only marks the start of progress tracking. It can fire together with &#x60;increaseAchievementProgress&#x60; when progress starts and increases at the same time. In that case, both effects share the same &#x60;progressTrackerId&#x60;, &#x60;startDate&#x60;, and &#x60;endDate&#x60;.  For [on-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/overview#recurring-on-completion-achievements), each iteration also gets its own &#x60;startDate&#x60; and &#x60;endDate&#x60;. 
     /// </summary>
     public partial class StartAchievementProgressEffectProps : IValidatableObject
     {
@@ -33,18 +33,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="achievementId">The ID of the achievement.</param>
         /// <param name="achievementName">The name of the achievement.</param>
-        /// <param name="progressTrackerId">The ID of the customer&#39;s progress tracker for this achievement.  For [on-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/achievements-overview#recurring-on-completion-achievements), this effect generates a unique ID for each iteration.</param>
         /// <param name="target">The target value to complete the achievement.</param>
         /// <param name="startDate">Timestamp at which the customer&#39;s progress started.</param>
-        /// <param name="endDate">Timestamp at which this progress period ends.  Only returned for achievements that have a fixed end date. [On-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/achievements-overview#recurring-on-completion-achievements) have no end date.</param>
+        /// <param name="progressTrackerId">The ID of the customer&#39;s progress tracker for this achievement.  For [on-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/overview#recurring-on-completion-achievements), this effect generates a unique ID for each iteration.</param>
+        /// <param name="endDate">Timestamp at which this progress period ends.  Only returned for achievements that have a fixed end date. [On-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/overview#recurring-on-completion-achievements) have no end date.</param>
         [JsonConstructor]
-        public StartAchievementProgressEffectProps(long achievementId, string achievementName, long progressTrackerId, decimal target, DateTime startDate, Option<DateTime?> endDate = default)
+        public StartAchievementProgressEffectProps(long achievementId, string achievementName, decimal target, DateTime startDate, Option<long?> progressTrackerId = default, Option<DateTime?> endDate = default)
         {
             AchievementId = achievementId;
             AchievementName = achievementName;
-            ProgressTrackerId = progressTrackerId;
             Target = target;
             StartDate = startDate;
+            ProgressTrackerIdOption = progressTrackerId;
             EndDateOption = endDate;
             OnCreated();
         }
@@ -68,14 +68,6 @@ namespace TalonOneSdk.Model
         public string AchievementName { get; set; }
 
         /// <summary>
-        /// The ID of the customer&#39;s progress tracker for this achievement.  For [on-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/achievements-overview#recurring-on-completion-achievements), this effect generates a unique ID for each iteration.
-        /// </summary>
-        /// <value>The ID of the customer&#39;s progress tracker for this achievement.  For [on-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/achievements-overview#recurring-on-completion-achievements), this effect generates a unique ID for each iteration.</value>
-        /* <example>42</example> */
-        [JsonPropertyName("progressTrackerId")]
-        public long ProgressTrackerId { get; set; }
-
-        /// <summary>
         /// The target value to complete the achievement.
         /// </summary>
         /// <value>The target value to complete the achievement.</value>
@@ -92,6 +84,21 @@ namespace TalonOneSdk.Model
         public DateTime StartDate { get; set; }
 
         /// <summary>
+        /// Used to track the state of ProgressTrackerId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> ProgressTrackerIdOption { get; private set; }
+
+        /// <summary>
+        /// The ID of the customer&#39;s progress tracker for this achievement.  For [on-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/overview#recurring-on-completion-achievements), this effect generates a unique ID for each iteration.
+        /// </summary>
+        /// <value>The ID of the customer&#39;s progress tracker for this achievement.  For [on-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/overview#recurring-on-completion-achievements), this effect generates a unique ID for each iteration.</value>
+        /* <example>42</example> */
+        [JsonPropertyName("progressTrackerId")]
+        public long? ProgressTrackerId { get { return this.ProgressTrackerIdOption.Value; } set { this.ProgressTrackerIdOption = new Option<long?>(value); } }
+
+        /// <summary>
         /// Used to track the state of EndDate
         /// </summary>
         [JsonIgnore]
@@ -99,9 +106,9 @@ namespace TalonOneSdk.Model
         public Option<DateTime?> EndDateOption { get; private set; }
 
         /// <summary>
-        /// Timestamp at which this progress period ends.  Only returned for achievements that have a fixed end date. [On-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/achievements-overview#recurring-on-completion-achievements) have no end date.
+        /// Timestamp at which this progress period ends.  Only returned for achievements that have a fixed end date. [On-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/overview#recurring-on-completion-achievements) have no end date.
         /// </summary>
-        /// <value>Timestamp at which this progress period ends.  Only returned for achievements that have a fixed end date. [On-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/achievements-overview#recurring-on-completion-achievements) have no end date.</value>
+        /// <value>Timestamp at which this progress period ends.  Only returned for achievements that have a fixed end date. [On-completion achievements](https://docs.talon.one/docs/product/campaigns/achievements/overview#recurring-on-completion-achievements) have no end date.</value>
         /* <example>2026-04-30T11:24:59Z</example> */
         [JsonPropertyName("endDate")]
         public DateTime? EndDate { get { return this.EndDateOption.Value; } set { this.EndDateOption = new Option<DateTime?>(value); } }
@@ -116,9 +123,9 @@ namespace TalonOneSdk.Model
             sb.Append("class StartAchievementProgressEffectProps {\n");
             sb.Append("  AchievementId: ").Append(AchievementId).Append("\n");
             sb.Append("  AchievementName: ").Append(AchievementName).Append("\n");
-            sb.Append("  ProgressTrackerId: ").Append(ProgressTrackerId).Append("\n");
             sb.Append("  Target: ").Append(Target).Append("\n");
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
+            sb.Append("  ProgressTrackerId: ").Append(ProgressTrackerId).Append("\n");
             sb.Append("  EndDate: ").Append(EndDate).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -179,9 +186,9 @@ namespace TalonOneSdk.Model
 
             Option<long?> achievementId = default;
             Option<string> achievementName = default;
-            Option<long?> progressTrackerId = default;
             Option<decimal?> target = default;
             Option<DateTime?> startDate = default;
+            Option<long?> progressTrackerId = default;
             Option<DateTime?> endDate = default;
 
             while (utf8JsonReader.Read())
@@ -205,14 +212,14 @@ namespace TalonOneSdk.Model
                         case "achievementName":
                             achievementName = new Option<string>(utf8JsonReader.GetString());
                             break;
-                        case "progressTrackerId":
-                            progressTrackerId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
                         case "target":
                             target = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "startDate":
                             startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "progressTrackerId":
+                            progressTrackerId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "endDate":
                             endDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
@@ -229,9 +236,6 @@ namespace TalonOneSdk.Model
             if (!achievementName.IsSet)
                 throw new ArgumentException("Property is required for class StartAchievementProgressEffectProps.", nameof(achievementName));
 
-            if (!progressTrackerId.IsSet)
-                throw new ArgumentException("Property is required for class StartAchievementProgressEffectProps.", nameof(progressTrackerId));
-
             if (!target.IsSet)
                 throw new ArgumentException("Property is required for class StartAchievementProgressEffectProps.", nameof(target));
 
@@ -244,16 +248,13 @@ namespace TalonOneSdk.Model
             if (achievementName.IsSet && achievementName.Value == null)
                 throw new ArgumentNullException(nameof(achievementName), "Property is not nullable for class StartAchievementProgressEffectProps.");
 
-            if (progressTrackerId.IsSet && progressTrackerId.Value == null)
-                throw new ArgumentNullException(nameof(progressTrackerId), "Property is not nullable for class StartAchievementProgressEffectProps.");
-
             if (target.IsSet && target.Value == null)
                 throw new ArgumentNullException(nameof(target), "Property is not nullable for class StartAchievementProgressEffectProps.");
 
             if (startDate.IsSet && startDate.Value == null)
                 throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class StartAchievementProgressEffectProps.");
 
-            return new StartAchievementProgressEffectProps(achievementId.Value.Value, achievementName.Value, progressTrackerId.Value.Value, target.Value.Value, startDate.Value.Value, endDate);
+            return new StartAchievementProgressEffectProps(achievementId.Value.Value, achievementName.Value, target.Value.Value, startDate.Value.Value, progressTrackerId, endDate);
         }
 
         /// <summary>
@@ -287,11 +288,12 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("achievementName", startAchievementProgressEffectProps.AchievementName);
 
-            writer.WriteNumber("progressTrackerId", startAchievementProgressEffectProps.ProgressTrackerId);
-
             writer.WriteNumber("target", startAchievementProgressEffectProps.Target);
 
             writer.WriteString("startDate", startAchievementProgressEffectProps.StartDate.ToString(StartDateFormat));
+
+            if (startAchievementProgressEffectProps.ProgressTrackerIdOption.IsSet)
+                writer.WriteNumber("progressTrackerId", startAchievementProgressEffectProps.ProgressTrackerIdOption.Value.Value);
 
             if (startAchievementProgressEffectProps.EndDateOption.IsSet)
                 writer.WriteString("endDate", startAchievementProgressEffectProps.EndDateOption.Value.Value.ToString(EndDateFormat));

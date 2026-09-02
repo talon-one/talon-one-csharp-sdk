@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="StrikethroughSetDiscountPerItemEffectProps" /> class.
         /// </summary>
         /// <param name="name">The effect name.</param>
-        /// <param name="value">value</param>
+        /// <param name="value">The discount value.</param>
         /// <param name="excludedFromPriceHistory">When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history.</param>
         [JsonConstructor]
         public StrikethroughSetDiscountPerItemEffectProps(string name, Object value = default, Option<bool?> excludedFromPriceHistory = default)
@@ -54,8 +54,10 @@ namespace TalonOneSdk.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Value
+        /// The discount value.
         /// </summary>
+        /// <value>The discount value.</value>
+        /* <example>1</example> */
         [JsonPropertyName("value")]
         public Object Value { get; set; }
 

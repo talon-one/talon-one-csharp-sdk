@@ -305,7 +305,12 @@ namespace TalonOneSdk.Model
                         case "status":
                             string statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<UpdateReward.StatusEnum?>(UpdateReward.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                UpdateReward.StatusEnum? statusValue = UpdateReward.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<UpdateReward.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());

@@ -207,7 +207,12 @@ namespace TalonOneSdk.Model
                         case "NotificationType":
                             string notificationTypeRawValue = utf8JsonReader.GetString();
                             if (notificationTypeRawValue != null)
-                                notificationType = new Option<CampaignDeletedNotification.NotificationTypeEnum?>(CampaignDeletedNotification.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue));
+                            {
+                                CampaignDeletedNotification.NotificationTypeEnum? notificationTypeValue = CampaignDeletedNotification.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue);
+                                if (notificationTypeValue == null)
+                                    throw new JsonException();
+                                notificationType = new Option<CampaignDeletedNotification.NotificationTypeEnum?>(notificationTypeValue);
+                            }
                             break;
                         case "TotalResultSize":
                             totalResultSize = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());

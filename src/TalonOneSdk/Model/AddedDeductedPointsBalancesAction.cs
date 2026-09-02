@@ -280,7 +280,12 @@ namespace TalonOneSdk.Model
                         case "Operation":
                             string operationRawValue = utf8JsonReader.GetString();
                             if (operationRawValue != null)
-                                operation = new Option<AddedDeductedPointsBalancesAction.OperationEnum?>(AddedDeductedPointsBalancesAction.OperationEnumFromStringOrDefault(operationRawValue));
+                            {
+                                AddedDeductedPointsBalancesAction.OperationEnum? operationValue = AddedDeductedPointsBalancesAction.OperationEnumFromStringOrDefault(operationRawValue);
+                                if (operationValue == null)
+                                    throw new JsonException();
+                                operation = new Option<AddedDeductedPointsBalancesAction.OperationEnum?>(operationValue);
+                            }
                             break;
                         case "TransactionUUID":
                             transactionUUID = new Option<Guid?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (Guid?)null : utf8JsonReader.GetGuid());

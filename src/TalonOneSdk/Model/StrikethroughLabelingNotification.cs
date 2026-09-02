@@ -359,7 +359,12 @@ namespace TalonOneSdk.Model
                         case "NotificationType":
                             string notificationTypeRawValue = utf8JsonReader.GetString();
                             if (notificationTypeRawValue != null)
-                                notificationType = new Option<StrikethroughLabelingNotification.NotificationTypeEnum?>(StrikethroughLabelingNotification.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue));
+                            {
+                                StrikethroughLabelingNotification.NotificationTypeEnum? notificationTypeValue = StrikethroughLabelingNotification.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue);
+                                if (notificationTypeValue == null)
+                                    throw new JsonException();
+                                notificationType = new Option<StrikethroughLabelingNotification.NotificationTypeEnum?>(notificationTypeValue);
+                            }
                             break;
                         case "sentAt":
                             sentAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
@@ -367,7 +372,12 @@ namespace TalonOneSdk.Model
                         case "version":
                             string varVersionRawValue = utf8JsonReader.GetString();
                             if (varVersionRawValue != null)
-                                varVersion = new Option<StrikethroughLabelingNotification.VarVersionEnum?>(StrikethroughLabelingNotification.VarVersionEnumFromStringOrDefault(varVersionRawValue));
+                            {
+                                StrikethroughLabelingNotification.VarVersionEnum? varVersionValue = StrikethroughLabelingNotification.VarVersionEnumFromStringOrDefault(varVersionRawValue);
+                                if (varVersionValue == null)
+                                    throw new JsonException();
+                                varVersion = new Option<StrikethroughLabelingNotification.VarVersionEnum?>(varVersionValue);
+                            }
                             break;
                         case "validFrom":
                             validFrom = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));

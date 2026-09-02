@@ -388,12 +388,22 @@ namespace TalonOneSdk.Model
                         case "dimension":
                             string dimensionRawValue = utf8JsonReader.GetString();
                             if (dimensionRawValue != null)
-                                dimension = new Option<ExperimentSegmentInsight.DimensionEnum?>(ExperimentSegmentInsight.DimensionEnumFromStringOrDefault(dimensionRawValue));
+                            {
+                                ExperimentSegmentInsight.DimensionEnum? dimensionValue = ExperimentSegmentInsight.DimensionEnumFromStringOrDefault(dimensionRawValue);
+                                if (dimensionValue == null)
+                                    throw new JsonException();
+                                dimension = new Option<ExperimentSegmentInsight.DimensionEnum?>(dimensionValue);
+                            }
                             break;
                         case "bucket":
                             string bucketRawValue = utf8JsonReader.GetString();
                             if (bucketRawValue != null)
-                                bucket = new Option<ExperimentSegmentInsight.BucketEnum?>(ExperimentSegmentInsight.BucketEnumFromStringOrDefault(bucketRawValue));
+                            {
+                                ExperimentSegmentInsight.BucketEnum? bucketValue = ExperimentSegmentInsight.BucketEnumFromStringOrDefault(bucketRawValue);
+                                if (bucketValue == null)
+                                    throw new JsonException();
+                                bucket = new Option<ExperimentSegmentInsight.BucketEnum?>(bucketValue);
+                            }
                             break;
                         case "confidence":
                             confidence = new Option<double?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (double?)null : utf8JsonReader.GetDouble());

@@ -496,7 +496,12 @@ namespace TalonOneSdk.Model
                         case "state":
                             string stateRawValue = utf8JsonReader.GetString();
                             if (stateRawValue != null)
-                                state = new Option<CustomerSession.StateEnum?>(CustomerSession.StateEnumFromStringOrDefault(stateRawValue));
+                            {
+                                CustomerSession.StateEnum? stateValue = CustomerSession.StateEnumFromStringOrDefault(stateRawValue);
+                                if (stateValue == null)
+                                    throw new JsonException();
+                                state = new Option<CustomerSession.StateEnum?>(stateValue);
+                            }
                             break;
                         case "cartItems":
                             cartItems = new Option<List<CartItem>>(JsonSerializer.Deserialize<List<CartItem>>(ref utf8JsonReader, jsonSerializerOptions));

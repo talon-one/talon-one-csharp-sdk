@@ -259,7 +259,12 @@ namespace TalonOneSdk.Model
                         case "status":
                             string statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<GenerateLoyaltyCard.StatusEnum?>(GenerateLoyaltyCard.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                GenerateLoyaltyCard.StatusEnum? statusValue = GenerateLoyaltyCard.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<GenerateLoyaltyCard.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "customerProfileIds":
                             customerProfileIds = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));

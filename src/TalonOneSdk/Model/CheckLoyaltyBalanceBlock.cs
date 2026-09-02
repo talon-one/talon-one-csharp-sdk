@@ -31,25 +31,25 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckLoyaltyBalanceBlock" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="operator">An indicator of how the block compares the balance to the value.</param>
         /// <param name="program">program</param>
         /// <param name="subledger">The name of the subledger to check the balance of. Can be empty if this block checks the loyalty program&#39;s main ledger balance instead of a subledger.</param>
         /// <param name="balance">The type of balance to check:  - &#x60;current&#x60; is the sum of currently active points  - &#x60;pending&#x60; is the sum of pending points.  - &#x60;negative&#x60; is the sum of negative points.  - &#x60;tentativeCurrent&#x60; is the tentative points balance within the current open customer session.</param>
         /// <param name="value">The numeric value to compare the balance against.</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public CheckLoyaltyBalanceBlock(string id, string type, OperatorEnum @operator, CheckLoyaltyBalanceBlock1Program program, string subledger, BalanceEnum balance, decimal value, Option<List<string>> tags = default, Option<List<PromotionBlock>> onFailure = default)
+        public CheckLoyaltyBalanceBlock(string type, OperatorEnum @operator, CheckLoyaltyBalanceBlock1Program program, string subledger, BalanceEnum balance, decimal value, Option<string> id = default, Option<List<string>> tags = default, Option<List<Block>> onFailure = default)
         {
-            Id = id;
             Type = type;
             Operator = @operator;
             Program = program;
             Subledger = subledger;
             Balance = balance;
             Value = value;
+            IdOption = id;
             TagsOption = tags;
             OnFailureOption = onFailure;
             OnCreated();
@@ -292,14 +292,6 @@ namespace TalonOneSdk.Model
         public BalanceEnum Balance { get; set; }
 
         /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        /// <summary>
         /// Identifies the block variant and determines which additional properties are present in it.
         /// </summary>
         /// <value>Identifies the block variant and determines which additional properties are present in it.</value>
@@ -328,32 +320,47 @@ namespace TalonOneSdk.Model
         public decimal Value { get; set; }
 
         /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
+
+        /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> TagsOption { get; private set; }
+        public Option<List<string>> TagsOption { get; }
 
         /// <summary>
         /// Semantic labels attached to this block.
         /// </summary>
         /// <value>Semantic labels attached to this block.</value>
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
         /// Used to track the state of OnFailure
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<PromotionBlock>> OnFailureOption { get; private set; }
+        public Option<List<Block>> OnFailureOption { get; private set; }
 
         /// <summary>
         /// Promotion blocks evaluated when this block fails or returns false.
         /// </summary>
         /// <value>Promotion blocks evaluated when this block fails or returns false.</value>
         [JsonPropertyName("onFailure")]
-        public List<PromotionBlock> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<PromotionBlock>>(value); } }
+        public List<Block> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Block>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -363,13 +370,13 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CheckLoyaltyBalanceBlock {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Operator: ").Append(Operator).Append("\n");
             sb.Append("  Program: ").Append(Program).Append("\n");
             sb.Append("  Subledger: ").Append(Subledger).Append("\n");
             sb.Append("  Balance: ").Append(Balance).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
             sb.Append("}\n");
@@ -419,15 +426,15 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<string> type = default;
             Option<CheckLoyaltyBalanceBlock.OperatorEnum?> varOperator = default;
             Option<CheckLoyaltyBalanceBlock1Program> program = default;
             Option<string> subledger = default;
             Option<CheckLoyaltyBalanceBlock.BalanceEnum?> balance = default;
             Option<decimal?> value = default;
+            Option<string> id = default;
             Option<List<string>> tags = default;
-            Option<List<PromotionBlock>> onFailure = default;
+            Option<List<Block>> onFailure = default;
 
             while (utf8JsonReader.Read())
             {
@@ -444,16 +451,18 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<CheckLoyaltyBalanceBlock.OperatorEnum?>(CheckLoyaltyBalanceBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                CheckLoyaltyBalanceBlock.OperatorEnum? varOperatorValue = CheckLoyaltyBalanceBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<CheckLoyaltyBalanceBlock.OperatorEnum?>(varOperatorValue);
+                            }
                             break;
                         case "program":
                             program = new Option<CheckLoyaltyBalanceBlock1Program>(JsonSerializer.Deserialize<CheckLoyaltyBalanceBlock1Program>(ref utf8JsonReader, jsonSerializerOptions));
@@ -464,25 +473,30 @@ namespace TalonOneSdk.Model
                         case "balance":
                             string balanceRawValue = utf8JsonReader.GetString();
                             if (balanceRawValue != null)
-                                balance = new Option<CheckLoyaltyBalanceBlock.BalanceEnum?>(CheckLoyaltyBalanceBlock.BalanceEnumFromStringOrDefault(balanceRawValue));
+                            {
+                                CheckLoyaltyBalanceBlock.BalanceEnum? balanceValue = CheckLoyaltyBalanceBlock.BalanceEnumFromStringOrDefault(balanceRawValue);
+                                if (balanceValue == null)
+                                    throw new JsonException();
+                                balance = new Option<CheckLoyaltyBalanceBlock.BalanceEnum?>(balanceValue);
+                            }
                             break;
                         case "value":
                             value = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "onFailure":
-                            onFailure = new Option<List<PromotionBlock>>(JsonSerializer.Deserialize<List<PromotionBlock>>(ref utf8JsonReader, jsonSerializerOptions));
+                            onFailure = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CheckLoyaltyBalanceBlock.", nameof(id));
 
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class CheckLoyaltyBalanceBlock.", nameof(type));
@@ -502,9 +516,6 @@ namespace TalonOneSdk.Model
             if (!value.IsSet)
                 throw new ArgumentException("Property is required for class CheckLoyaltyBalanceBlock.", nameof(value));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CheckLoyaltyBalanceBlock.");
-
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class CheckLoyaltyBalanceBlock.");
 
@@ -523,7 +534,7 @@ namespace TalonOneSdk.Model
             if (value.IsSet && value.Value == null)
                 throw new ArgumentNullException(nameof(value), "Property is not nullable for class CheckLoyaltyBalanceBlock.");
 
-            return new CheckLoyaltyBalanceBlock(id.Value, type.Value, varOperator.Value.Value, program.Value, subledger.Value, balance.Value.Value, value.Value.Value, tags, onFailure);
+            return new CheckLoyaltyBalanceBlock(type.Value, varOperator.Value.Value, program.Value, subledger.Value, balance.Value.Value, value.Value.Value, id, tags, onFailure);
         }
 
         /// <summary>
@@ -550,9 +561,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckLoyaltyBalanceBlock checkLoyaltyBalanceBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (checkLoyaltyBalanceBlock.Id == null)
-                throw new ArgumentNullException(nameof(checkLoyaltyBalanceBlock.Id), "Property is required for class CheckLoyaltyBalanceBlock.");
-
             if (checkLoyaltyBalanceBlock.Type == null)
                 throw new ArgumentNullException(nameof(checkLoyaltyBalanceBlock.Type), "Property is required for class CheckLoyaltyBalanceBlock.");
 
@@ -561,8 +569,6 @@ namespace TalonOneSdk.Model
 
             if (checkLoyaltyBalanceBlock.Subledger == null)
                 throw new ArgumentNullException(nameof(checkLoyaltyBalanceBlock.Subledger), "Property is required for class CheckLoyaltyBalanceBlock.");
-
-            writer.WriteString("id", checkLoyaltyBalanceBlock.Id);
 
             writer.WriteString("type", checkLoyaltyBalanceBlock.Type);
 
@@ -575,6 +581,9 @@ namespace TalonOneSdk.Model
             var balanceRawValue = CheckLoyaltyBalanceBlock.BalanceEnumToJsonValue(checkLoyaltyBalanceBlock.Balance);
             writer.WriteString("balance", balanceRawValue);
             writer.WriteNumber("value", checkLoyaltyBalanceBlock.Value);
+
+            if (checkLoyaltyBalanceBlock.IdOption.IsSet)
+                writer.WriteString("id", checkLoyaltyBalanceBlock.Id);
 
             if (checkLoyaltyBalanceBlock.TagsOption.IsSet)
             {

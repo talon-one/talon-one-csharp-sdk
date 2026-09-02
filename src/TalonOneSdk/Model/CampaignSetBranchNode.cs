@@ -504,7 +504,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<CampaignSetBranchNode.TypeEnum?>(CampaignSetBranchNode.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                CampaignSetBranchNode.TypeEnum? typeValue = CampaignSetBranchNode.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<CampaignSetBranchNode.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
@@ -512,7 +517,12 @@ namespace TalonOneSdk.Model
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<CampaignSetBranchNode.OperatorEnum?>(CampaignSetBranchNode.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                CampaignSetBranchNode.OperatorEnum? varOperatorValue = CampaignSetBranchNode.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<CampaignSetBranchNode.OperatorEnum?>(varOperatorValue);
+                            }
                             break;
                         case "elements":
                             elements = new Option<List<CampaignSetNode>>(JsonSerializer.Deserialize<List<CampaignSetNode>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -526,12 +536,22 @@ namespace TalonOneSdk.Model
                         case "evaluationMode":
                             string evaluationModeRawValue = utf8JsonReader.GetString();
                             if (evaluationModeRawValue != null)
-                                evaluationMode = new Option<CampaignSetBranchNode.EvaluationModeEnum?>(CampaignSetBranchNode.EvaluationModeEnumFromStringOrDefault(evaluationModeRawValue));
+                            {
+                                CampaignSetBranchNode.EvaluationModeEnum? evaluationModeValue = CampaignSetBranchNode.EvaluationModeEnumFromStringOrDefault(evaluationModeRawValue);
+                                if (evaluationModeValue == null)
+                                    throw new JsonException();
+                                evaluationMode = new Option<CampaignSetBranchNode.EvaluationModeEnum?>(evaluationModeValue);
+                            }
                             break;
                         case "evaluationScope":
                             string evaluationScopeRawValue = utf8JsonReader.GetString();
                             if (evaluationScopeRawValue != null)
-                                evaluationScope = new Option<CampaignSetBranchNode.EvaluationScopeEnum?>(CampaignSetBranchNode.EvaluationScopeEnumFromStringOrDefault(evaluationScopeRawValue));
+                            {
+                                CampaignSetBranchNode.EvaluationScopeEnum? evaluationScopeValue = CampaignSetBranchNode.EvaluationScopeEnumFromStringOrDefault(evaluationScopeRawValue);
+                                if (evaluationScopeValue == null)
+                                    throw new JsonException();
+                                evaluationScope = new Option<CampaignSetBranchNode.EvaluationScopeEnum?>(evaluationScopeValue);
+                            }
                             break;
                         case "description":
                             description = new Option<string>(utf8JsonReader.GetString());

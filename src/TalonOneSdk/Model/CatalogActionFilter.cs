@@ -33,7 +33,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="attr">The name of the attribute to filter on.</param>
         /// <param name="op">The filtering operator.</param>
-        /// <param name="value">value</param>
+        /// <param name="value">The value to filter for.</param>
         [JsonConstructor]
         public CatalogActionFilter(string attr, OpEnum op, Object value = default)
         {
@@ -183,8 +183,9 @@ namespace TalonOneSdk.Model
         public string Attr { get; set; }
 
         /// <summary>
-        /// Gets or Sets Value
+        /// The value to filter for.
         /// </summary>
+        /// <value>The value to filter for.</value>
         [JsonPropertyName("value")]
         public Object Value { get; set; }
 
@@ -271,7 +272,12 @@ namespace TalonOneSdk.Model
                         case "op":
                             string opRawValue = utf8JsonReader.GetString();
                             if (opRawValue != null)
-                                op = new Option<CatalogActionFilter.OpEnum?>(CatalogActionFilter.OpEnumFromStringOrDefault(opRawValue));
+                            {
+                                CatalogActionFilter.OpEnum? opValue = CatalogActionFilter.OpEnumFromStringOrDefault(opRawValue);
+                                if (opValue == null)
+                                    throw new JsonException();
+                                op = new Option<CatalogActionFilter.OpEnum?>(opValue);
+                            }
                             break;
                         case "value":
                             value = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));

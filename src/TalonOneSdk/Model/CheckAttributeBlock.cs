@@ -32,17 +32,19 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="scalarCheckAttributeBlock"></param>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">A block discriminator of type &#x60;checkAttribute&#x60;.</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="attribute">attribute</param>
-        public CheckAttributeBlock(ScalarCheckAttributeBlock scalarCheckAttributeBlock, string id, TypeEnum type, Option<List<string>> tags = default, Object attribute = default)
+        /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
+        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
+        public CheckAttributeBlock(ScalarCheckAttributeBlock scalarCheckAttributeBlock, TypeEnum type, Option<string> id = default, Option<List<string>> tags = default, Object attribute = default, Option<List<Block>> onFailure = default)
         {
             ScalarCheckAttributeBlock = scalarCheckAttributeBlock;
-            Id = id;
             Type = type;
+            IdOption = id;
             TagsOption = tags;
             Attribute = attribute;
+            OnFailureOption = onFailure;
             OnCreated();
         }
 
@@ -50,17 +52,19 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="betweenCheckAttributeBlock"></param>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">A block discriminator of type &#x60;checkAttribute&#x60;.</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="attribute">attribute</param>
-        public CheckAttributeBlock(BetweenCheckAttributeBlock betweenCheckAttributeBlock, string id, TypeEnum type, Option<List<string>> tags = default, Object attribute = default)
+        /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
+        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
+        public CheckAttributeBlock(BetweenCheckAttributeBlock betweenCheckAttributeBlock, TypeEnum type, Option<string> id = default, Option<List<string>> tags = default, Object attribute = default, Option<List<Block>> onFailure = default)
         {
             BetweenCheckAttributeBlock = betweenCheckAttributeBlock;
-            Id = id;
             Type = type;
+            IdOption = id;
             TagsOption = tags;
             Attribute = attribute;
+            OnFailureOption = onFailure;
             OnCreated();
         }
 
@@ -68,17 +72,19 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="listCheckAttributeBlock"></param>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">A block discriminator of type &#x60;checkAttribute&#x60;.</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="attribute">attribute</param>
-        public CheckAttributeBlock(ListCheckAttributeBlock listCheckAttributeBlock, string id, TypeEnum type, Option<List<string>> tags = default, Object attribute = default)
+        /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
+        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
+        public CheckAttributeBlock(ListCheckAttributeBlock listCheckAttributeBlock, TypeEnum type, Option<string> id = default, Option<List<string>> tags = default, Object attribute = default, Option<List<Block>> onFailure = default)
         {
             ListCheckAttributeBlock = listCheckAttributeBlock;
-            Id = id;
             Type = type;
+            IdOption = id;
             TagsOption = tags;
             Attribute = attribute;
+            OnFailureOption = onFailure;
             OnCreated();
         }
 
@@ -86,17 +92,19 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="listWithCountCheckAttributeBlock"></param>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">A block discriminator of type &#x60;checkAttribute&#x60;.</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="attribute">attribute</param>
-        public CheckAttributeBlock(ListWithCountCheckAttributeBlock listWithCountCheckAttributeBlock, string id, TypeEnum type, Option<List<string>> tags = default, Object attribute = default)
+        /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
+        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
+        public CheckAttributeBlock(ListWithCountCheckAttributeBlock listWithCountCheckAttributeBlock, TypeEnum type, Option<string> id = default, Option<List<string>> tags = default, Object attribute = default, Option<List<Block>> onFailure = default)
         {
             ListWithCountCheckAttributeBlock = listWithCountCheckAttributeBlock;
-            Id = id;
             Type = type;
+            IdOption = id;
             TagsOption = tags;
             Attribute = attribute;
+            OnFailureOption = onFailure;
             OnCreated();
         }
 
@@ -104,17 +112,19 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="unaryCheckAttributeBlock"></param>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">A block discriminator of type &#x60;checkAttribute&#x60;.</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="attribute">attribute</param>
-        public CheckAttributeBlock(UnaryCheckAttributeBlock unaryCheckAttributeBlock, string id, TypeEnum type, Option<List<string>> tags = default, Object attribute = default)
+        /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
+        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
+        public CheckAttributeBlock(UnaryCheckAttributeBlock unaryCheckAttributeBlock, TypeEnum type, Option<string> id = default, Option<List<string>> tags = default, Object attribute = default, Option<List<Block>> onFailure = default)
         {
             UnaryCheckAttributeBlock = unaryCheckAttributeBlock;
-            Id = id;
             Type = type;
+            IdOption = id;
             TagsOption = tags;
             Attribute = attribute;
+            OnFailureOption = onFailure;
             OnCreated();
         }
 
@@ -122,17 +132,19 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="withinCheckAttributeBlock"></param>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">A block discriminator of type &#x60;checkAttribute&#x60;.</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="attribute">attribute</param>
-        public CheckAttributeBlock(WithinCheckAttributeBlock withinCheckAttributeBlock, string id, TypeEnum type, Option<List<string>> tags = default, Object attribute = default)
+        /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
+        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
+        public CheckAttributeBlock(WithinCheckAttributeBlock withinCheckAttributeBlock, TypeEnum type, Option<string> id = default, Option<List<string>> tags = default, Object attribute = default, Option<List<Block>> onFailure = default)
         {
             WithinCheckAttributeBlock = withinCheckAttributeBlock;
-            Id = id;
             Type = type;
+            IdOption = id;
             TagsOption = tags;
             Attribute = attribute;
+            OnFailureOption = onFailure;
             OnCreated();
         }
 
@@ -140,17 +152,19 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="locationCheckAttributeBlock"></param>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">A block discriminator of type &#x60;checkAttribute&#x60;.</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="attribute">attribute</param>
-        public CheckAttributeBlock(LocationCheckAttributeBlock locationCheckAttributeBlock, string id, TypeEnum type, Option<List<string>> tags = default, Object attribute = default)
+        /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
+        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
+        public CheckAttributeBlock(LocationCheckAttributeBlock locationCheckAttributeBlock, TypeEnum type, Option<string> id = default, Option<List<string>> tags = default, Object attribute = default, Option<List<Block>> onFailure = default)
         {
             LocationCheckAttributeBlock = locationCheckAttributeBlock;
-            Id = id;
             Type = type;
+            IdOption = id;
             TagsOption = tags;
             Attribute = attribute;
+            OnFailureOption = onFailure;
             OnCreated();
         }
 
@@ -754,32 +768,55 @@ namespace TalonOneSdk.Model
         public LocationCheckAttributeBlock LocationCheckAttributeBlock { get; set; }
 
         /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
         /// Unique identifier for this block.
         /// </summary>
         /// <value>Unique identifier for this block.</value>
         /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return this.IdOption.Value; } }
 
         /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> TagsOption { get; private set; }
+        public Option<List<string>> TagsOption { get; }
 
         /// <summary>
         /// Semantic labels attached to this block.
         /// </summary>
         /// <value>Semantic labels attached to this block.</value>
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
-        /// Gets or Sets Attribute
+        /// The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).
         /// </summary>
+        /// <value>The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</value>
+        /* <example>$Session.Total</example> */
         [JsonPropertyName("attribute")]
         public Object Attribute { get; set; }
+
+        /// <summary>
+        /// Used to track the state of OnFailure
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<Block>> OnFailureOption { get; private set; }
+
+        /// <summary>
+        /// Promotion blocks evaluated when this block fails or returns false.
+        /// </summary>
+        /// <value>Promotion blocks evaluated when this block fails or returns false.</value>
+        [JsonPropertyName("onFailure")]
+        public List<Block> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Block>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -789,10 +826,11 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CheckAttributeBlock {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  Attribute: ").Append(Attribute).Append("\n");
+            sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -850,11 +888,12 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<CheckAttributeBlock.TypeEnum?> type = default;
             Option<CheckAttributeBlock.OperatorEnum?> varOperator = default;
+            Option<string> id = default;
             Option<List<string>> tags = default;
             Option<Object> attribute = default;
+            Option<List<Block>> onFailure = default;
 
             ScalarCheckAttributeBlock afterScalarCheckAttributeBlock = null;
             ScalarCheckAttributeBlock beforeScalarCheckAttributeBlock = null;
@@ -1090,18 +1129,28 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<CheckAttributeBlock.TypeEnum?>(CheckAttributeBlock.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                CheckAttributeBlock.TypeEnum? typeValue = CheckAttributeBlock.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<CheckAttributeBlock.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<CheckAttributeBlock.OperatorEnum?>(CheckAttributeBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                CheckAttributeBlock.OperatorEnum? varOperatorValue = CheckAttributeBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<CheckAttributeBlock.OperatorEnum?>(varOperatorValue);
+                            }
+                            break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -1109,14 +1158,14 @@ namespace TalonOneSdk.Model
                         case "attribute":
                             attribute = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "onFailure":
+                            onFailure = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CheckAttributeBlock.", nameof(id));
 
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class CheckAttributeBlock.", nameof(type));
@@ -1127,9 +1176,6 @@ namespace TalonOneSdk.Model
             if (!attribute.IsSet)
                 throw new ArgumentException("Property is required for class CheckAttributeBlock.", nameof(attribute));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CheckAttributeBlock.");
-
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class CheckAttributeBlock.");
 
@@ -1137,103 +1183,103 @@ namespace TalonOneSdk.Model
                 throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class CheckAttributeBlock.");
 
             if (afterScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(afterScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(afterScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (beforeScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(beforeScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(beforeScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (betweenBetweenCheckAttributeBlock != null)
-                return new CheckAttributeBlock(betweenBetweenCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(betweenBetweenCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (containsScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(containsScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(containsScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (containsAllOfListCheckAttributeBlock != null)
-                return new CheckAttributeBlock(containsAllOfListCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(containsAllOfListCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (containsAtLeastListWithCountCheckAttributeBlock != null)
-                return new CheckAttributeBlock(containsAtLeastListWithCountCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(containsAtLeastListWithCountCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (containsExactlyListWithCountCheckAttributeBlock != null)
-                return new CheckAttributeBlock(containsExactlyListWithCountCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(containsExactlyListWithCountCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (containsNoneOfListCheckAttributeBlock != null)
-                return new CheckAttributeBlock(containsNoneOfListCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(containsNoneOfListCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (containsOneOfListCheckAttributeBlock != null)
-                return new CheckAttributeBlock(containsOneOfListCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(containsOneOfListCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (emptyUnaryCheckAttributeBlock != null)
-                return new CheckAttributeBlock(emptyUnaryCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(emptyUnaryCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (endsWithScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(endsWithScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(endsWithScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (equalsScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(equalsScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(equalsScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (existsUnaryCheckAttributeBlock != null)
-                return new CheckAttributeBlock(existsUnaryCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(existsUnaryCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (greaterThanScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(greaterThanScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(greaterThanScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (greaterThanOrEqualScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(greaterThanOrEqualScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(greaterThanOrEqualScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (inLocationCheckAttributeBlock != null)
-                return new CheckAttributeBlock(inLocationCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(inLocationCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (inCollectionScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(inCollectionScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(inCollectionScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (isFalseUnaryCheckAttributeBlock != null)
-                return new CheckAttributeBlock(isFalseUnaryCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(isFalseUnaryCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (isTrueUnaryCheckAttributeBlock != null)
-                return new CheckAttributeBlock(isTrueUnaryCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(isTrueUnaryCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (lessThanScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(lessThanScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(lessThanScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (lessThanOrEqualScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(lessThanOrEqualScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(lessThanOrEqualScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (matchesRegexpScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(matchesRegexpScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(matchesRegexpScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (notContainsScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(notContainsScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(notContainsScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (notEmptyUnaryCheckAttributeBlock != null)
-                return new CheckAttributeBlock(notEmptyUnaryCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(notEmptyUnaryCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (notEqualsScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(notEqualsScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(notEqualsScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (notExistsUnaryCheckAttributeBlock != null)
-                return new CheckAttributeBlock(notExistsUnaryCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(notExistsUnaryCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (notInLocationCheckAttributeBlock != null)
-                return new CheckAttributeBlock(notInLocationCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(notInLocationCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (notInCollectionScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(notInCollectionScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(notInCollectionScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (notOneOfScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(notOneOfScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(notOneOfScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (notWithinWithinCheckAttributeBlock != null)
-                return new CheckAttributeBlock(notWithinWithinCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(notWithinWithinCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (oneOfScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(oneOfScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(oneOfScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (startsWithScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(startsWithScalarCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(startsWithScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             if (withinWithinCheckAttributeBlock != null)
-                return new CheckAttributeBlock(withinWithinCheckAttributeBlock, id.Value, type.Value.Value, tags, attribute.Value);
+                return new CheckAttributeBlock(withinWithinCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
 
             throw new JsonException();
         }
@@ -1304,13 +1350,11 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckAttributeBlock checkAttributeBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (checkAttributeBlock.Id == null)
-                throw new ArgumentNullException(nameof(checkAttributeBlock.Id), "Property is required for class CheckAttributeBlock.");
-
-            writer.WriteString("id", checkAttributeBlock.Id);
-
             var typeRawValue = CheckAttributeBlock.TypeEnumToJsonValue(checkAttributeBlock.Type);
             writer.WriteString("type", typeRawValue);
+            if (checkAttributeBlock.IdOption.IsSet)
+                writer.WriteString("id", checkAttributeBlock.Id);
+
             if (checkAttributeBlock.TagsOption.IsSet)
             {
                 writer.WritePropertyName("tags");
@@ -1323,6 +1367,11 @@ namespace TalonOneSdk.Model
             }
             else
                 writer.WriteNull("attribute");
+            if (checkAttributeBlock.OnFailureOption.IsSet)
+            {
+                writer.WritePropertyName("onFailure");
+                JsonSerializer.Serialize(writer, checkAttributeBlock.OnFailure, jsonSerializerOptions);
+            }
         }
     }
 }

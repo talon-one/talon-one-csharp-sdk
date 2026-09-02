@@ -31,20 +31,20 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckBudgetBlock" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="operator">The comparison operator applied to the limit. &#x60;available&#x60; checks if there is budget available for a given limitable action; &#x60;enoughFor&#x60; checks if the available budget meets or exceeds a specific value limit.</param>
         /// <param name="action">The limitable action to check.</param>
+        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="value">The value to check against when using the &#x60;enoughFor&#x60; operator.</param>
         /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public CheckBudgetBlock(string id, string type, OperatorEnum @operator, ActionEnum action, Option<List<string>> tags = default, Option<decimal?> value = default, Option<List<PromotionBlock>> onFailure = default)
+        public CheckBudgetBlock(string type, OperatorEnum @operator, ActionEnum action, Option<string> id = default, Option<List<string>> tags = default, Option<decimal?> value = default, Option<List<Block>> onFailure = default)
         {
-            Id = id;
             Type = type;
             Operator = @operator;
             Action = action;
+            IdOption = id;
             TagsOption = tags;
             ValueOption = value;
             OnFailureOption = onFailure;
@@ -372,14 +372,6 @@ namespace TalonOneSdk.Model
         public ActionEnum Action { get; set; }
 
         /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        /// <summary>
         /// Identifies the block variant and determines which additional properties are present in it.
         /// </summary>
         /// <value>Identifies the block variant and determines which additional properties are present in it.</value>
@@ -387,18 +379,33 @@ namespace TalonOneSdk.Model
         public string Type { get; set; }
 
         /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
+
+        /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> TagsOption { get; private set; }
+        public Option<List<string>> TagsOption { get; }
 
         /// <summary>
         /// Semantic labels attached to this block.
         /// </summary>
         /// <value>Semantic labels attached to this block.</value>
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new Option<List<string>>(value); } }
+        public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
         /// Used to track the state of Value
@@ -420,14 +427,14 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<PromotionBlock>> OnFailureOption { get; private set; }
+        public Option<List<Block>> OnFailureOption { get; private set; }
 
         /// <summary>
         /// Promotion blocks evaluated when this block fails or returns false.
         /// </summary>
         /// <value>Promotion blocks evaluated when this block fails or returns false.</value>
         [JsonPropertyName("onFailure")]
-        public List<PromotionBlock> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<PromotionBlock>>(value); } }
+        public List<Block> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Block>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -437,10 +444,10 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CheckBudgetBlock {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Operator: ").Append(Operator).Append("\n");
             sb.Append("  Action: ").Append(Action).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
@@ -491,13 +498,13 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<string> type = default;
             Option<CheckBudgetBlock.OperatorEnum?> varOperator = default;
             Option<CheckBudgetBlock.ActionEnum?> action = default;
+            Option<string> id = default;
             Option<List<string>> tags = default;
             Option<decimal?> value = default;
-            Option<List<PromotionBlock>> onFailure = default;
+            Option<List<Block>> onFailure = default;
 
             while (utf8JsonReader.Read())
             {
@@ -514,21 +521,31 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<CheckBudgetBlock.OperatorEnum?>(CheckBudgetBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                CheckBudgetBlock.OperatorEnum? varOperatorValue = CheckBudgetBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<CheckBudgetBlock.OperatorEnum?>(varOperatorValue);
+                            }
                             break;
                         case "action":
                             string actionRawValue = utf8JsonReader.GetString();
                             if (actionRawValue != null)
-                                action = new Option<CheckBudgetBlock.ActionEnum?>(CheckBudgetBlock.ActionEnumFromStringOrDefault(actionRawValue));
+                            {
+                                CheckBudgetBlock.ActionEnum? actionValue = CheckBudgetBlock.ActionEnumFromStringOrDefault(actionRawValue);
+                                if (actionValue == null)
+                                    throw new JsonException();
+                                action = new Option<CheckBudgetBlock.ActionEnum?>(actionValue);
+                            }
+                            break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -537,16 +554,13 @@ namespace TalonOneSdk.Model
                             value = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
                         case "onFailure":
-                            onFailure = new Option<List<PromotionBlock>>(JsonSerializer.Deserialize<List<PromotionBlock>>(ref utf8JsonReader, jsonSerializerOptions));
+                            onFailure = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CheckBudgetBlock.", nameof(id));
 
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class CheckBudgetBlock.", nameof(type));
@@ -557,9 +571,6 @@ namespace TalonOneSdk.Model
             if (!action.IsSet)
                 throw new ArgumentException("Property is required for class CheckBudgetBlock.", nameof(action));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CheckBudgetBlock.");
-
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class CheckBudgetBlock.");
 
@@ -569,7 +580,7 @@ namespace TalonOneSdk.Model
             if (action.IsSet && action.Value == null)
                 throw new ArgumentNullException(nameof(action), "Property is not nullable for class CheckBudgetBlock.");
 
-            return new CheckBudgetBlock(id.Value, type.Value, varOperator.Value.Value, action.Value.Value, tags, value, onFailure);
+            return new CheckBudgetBlock(type.Value, varOperator.Value.Value, action.Value.Value, id, tags, value, onFailure);
         }
 
         /// <summary>
@@ -596,13 +607,8 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckBudgetBlock checkBudgetBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (checkBudgetBlock.Id == null)
-                throw new ArgumentNullException(nameof(checkBudgetBlock.Id), "Property is required for class CheckBudgetBlock.");
-
             if (checkBudgetBlock.Type == null)
                 throw new ArgumentNullException(nameof(checkBudgetBlock.Type), "Property is required for class CheckBudgetBlock.");
-
-            writer.WriteString("id", checkBudgetBlock.Id);
 
             writer.WriteString("type", checkBudgetBlock.Type);
 
@@ -610,6 +616,9 @@ namespace TalonOneSdk.Model
             writer.WriteString("operator", varOperatorRawValue);
             var actionRawValue = CheckBudgetBlock.ActionEnumToJsonValue(checkBudgetBlock.Action);
             writer.WriteString("action", actionRawValue);
+            if (checkBudgetBlock.IdOption.IsSet)
+                writer.WriteString("id", checkBudgetBlock.Id);
+
             if (checkBudgetBlock.TagsOption.IsSet)
             {
                 writer.WritePropertyName("tags");

@@ -33,7 +33,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="attributeid">The ID of the attribute of the item.</param>
         /// <param name="name">The name of the attribute.</param>
-        /// <param name="value">value</param>
+        /// <param name="value">The value of the attribute.</param>
         [JsonConstructor]
         public ItemAttribute(long attributeid, string name, Object value = default)
         {
@@ -61,8 +61,9 @@ namespace TalonOneSdk.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Value
+        /// The value of the attribute.
         /// </summary>
+        /// <value>The value of the attribute.</value>
         [JsonPropertyName("value")]
         public Object Value { get; set; }
 

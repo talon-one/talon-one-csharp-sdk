@@ -31,15 +31,15 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="PassthroughBlock" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for this block.</param>
         /// <param name="type">The type discriminator for this block.</param>
         /// <param name="expression">The raw Talang expression as an array. For a function call, the first element is the function name and subsequent elements are its arguments. For any other expression (for example a bare attribute path or a literal value), this is a single-element array containing that value.</param>
+        /// <param name="id">Unique identifier for this block.</param>
         [JsonConstructor]
-        public PassthroughBlock(string id, TypeEnum type, List<Object> expression)
+        public PassthroughBlock(TypeEnum type, List<Object> expression, Option<string> id = default)
         {
-            Id = id;
             Type = type;
             Expression = expression;
+            IdOption = id;
             OnCreated();
         }
 
@@ -106,19 +106,26 @@ namespace TalonOneSdk.Model
         public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        /// <summary>
         /// The raw Talang expression as an array. For a function call, the first element is the function name and subsequent elements are its arguments. For any other expression (for example a bare attribute path or a literal value), this is a single-element array containing that value.
         /// </summary>
         /// <value>The raw Talang expression as an array. For a function call, the first element is the function name and subsequent elements are its arguments. For any other expression (for example a bare attribute path or a literal value), this is a single-element array containing that value.</value>
         [JsonPropertyName("expression")]
         public List<Object> Expression { get; set; }
+
+        /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -128,9 +135,9 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class PassthroughBlock {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Expression: ").Append(Expression).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -178,9 +185,9 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<PassthroughBlock.TypeEnum?> type = default;
             Option<List<Object>> expression = default;
+            Option<string> id = default;
 
             while (utf8JsonReader.Read())
             {
@@ -197,16 +204,21 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<PassthroughBlock.TypeEnum?>(PassthroughBlock.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                PassthroughBlock.TypeEnum? typeValue = PassthroughBlock.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<PassthroughBlock.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "expression":
                             expression = new Option<List<Object>>(JsonSerializer.Deserialize<List<Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
                             break;
                         default:
                             break;
@@ -214,17 +226,11 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class PassthroughBlock.", nameof(id));
-
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class PassthroughBlock.", nameof(type));
 
             if (!expression.IsSet)
                 throw new ArgumentException("Property is required for class PassthroughBlock.", nameof(expression));
-
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class PassthroughBlock.");
 
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class PassthroughBlock.");
@@ -232,7 +238,7 @@ namespace TalonOneSdk.Model
             if (expression.IsSet && expression.Value == null)
                 throw new ArgumentNullException(nameof(expression), "Property is not nullable for class PassthroughBlock.");
 
-            return new PassthroughBlock(id.Value, type.Value.Value, expression.Value);
+            return new PassthroughBlock(type.Value.Value, expression.Value, id);
         }
 
         /// <summary>
@@ -259,18 +265,15 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PassthroughBlock passthroughBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (passthroughBlock.Id == null)
-                throw new ArgumentNullException(nameof(passthroughBlock.Id), "Property is required for class PassthroughBlock.");
-
             if (passthroughBlock.Expression == null)
                 throw new ArgumentNullException(nameof(passthroughBlock.Expression), "Property is required for class PassthroughBlock.");
-
-            writer.WriteString("id", passthroughBlock.Id);
 
             var typeRawValue = PassthroughBlock.TypeEnumToJsonValue(passthroughBlock.Type);
             writer.WriteString("type", typeRawValue);
             writer.WritePropertyName("expression");
             JsonSerializer.Serialize(writer, passthroughBlock.Expression, jsonSerializerOptions);
+            if (passthroughBlock.IdOption.IsSet)
+                writer.WriteString("id", passthroughBlock.Id);
         }
     }
 }

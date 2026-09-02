@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **ApplicationId** | **long** | The internal ID of the application the reward belongs to. | 
 **ProfileIntegrationId** | **string** | The integration ID of the customer profile that unlocked the reward. | 
 **UnlockedAt** | **DateTime** | The time the reward was unlocked. | 
+**CardIdentifier** | **string** | The identifier of the loyalty card that unlocked the reward. Only returned when the reward was unlocked with a loyalty card, in which case the reward belongs to the card and is available to all customer profiles linked to it.  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

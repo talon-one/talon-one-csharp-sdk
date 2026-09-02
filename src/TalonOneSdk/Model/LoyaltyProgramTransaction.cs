@@ -577,7 +577,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<LoyaltyProgramTransaction.TypeEnum?>(LoyaltyProgramTransaction.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                LoyaltyProgramTransaction.TypeEnum? typeValue = LoyaltyProgramTransaction.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<LoyaltyProgramTransaction.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "amount":
                             amount = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());

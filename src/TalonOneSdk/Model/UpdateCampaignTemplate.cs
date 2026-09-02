@@ -725,7 +725,12 @@ namespace TalonOneSdk.Model
                         case "state":
                             string stateRawValue = utf8JsonReader.GetString();
                             if (stateRawValue != null)
-                                state = new Option<UpdateCampaignTemplate.StateEnum?>(UpdateCampaignTemplate.StateEnumFromStringOrDefault(stateRawValue));
+                            {
+                                UpdateCampaignTemplate.StateEnum? stateValue = UpdateCampaignTemplate.StateEnumFromStringOrDefault(stateRawValue);
+                                if (stateValue == null)
+                                    throw new JsonException();
+                                state = new Option<UpdateCampaignTemplate.StateEnum?>(stateValue);
+                            }
                             break;
                         case "applicationsIds":
                             applicationsIds = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -793,7 +798,12 @@ namespace TalonOneSdk.Model
                         case "campaignType":
                             string campaignTypeRawValue = utf8JsonReader.GetString();
                             if (campaignTypeRawValue != null)
-                                campaignType = new Option<UpdateCampaignTemplate.CampaignTypeEnum?>(UpdateCampaignTemplate.CampaignTypeEnumFromStringOrDefault(campaignTypeRawValue));
+                            {
+                                UpdateCampaignTemplate.CampaignTypeEnum? campaignTypeValue = UpdateCampaignTemplate.CampaignTypeEnumFromStringOrDefault(campaignTypeRawValue);
+                                if (campaignTypeValue == null)
+                                    throw new JsonException();
+                                campaignType = new Option<UpdateCampaignTemplate.CampaignTypeEnum?>(campaignTypeValue);
+                            }
                             break;
                         default:
                             break;

@@ -225,7 +225,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<AwardDiscountBundleTarget.TypeEnum?>(AwardDiscountBundleTarget.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                AwardDiscountBundleTarget.TypeEnum? typeValue = AwardDiscountBundleTarget.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<AwardDiscountBundleTarget.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());

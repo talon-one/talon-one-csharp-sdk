@@ -229,7 +229,12 @@ namespace TalonOneSdk.Model
                         case "token_type":
                             string tokenTypeRawValue = utf8JsonReader.GetString();
                             if (tokenTypeRawValue != null)
-                                tokenType = new Option<MCPOAuthToken.TokenTypeEnum?>(MCPOAuthToken.TokenTypeEnumFromStringOrDefault(tokenTypeRawValue));
+                            {
+                                MCPOAuthToken.TokenTypeEnum? tokenTypeValue = MCPOAuthToken.TokenTypeEnumFromStringOrDefault(tokenTypeRawValue);
+                                if (tokenTypeValue == null)
+                                    throw new JsonException();
+                                tokenType = new Option<MCPOAuthToken.TokenTypeEnum?>(tokenTypeValue);
+                            }
                             break;
                         case "expires_in":
                             expiresIn = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());

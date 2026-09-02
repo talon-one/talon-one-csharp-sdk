@@ -364,12 +364,22 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<SelectSelectorStep.TypeEnum?>(SelectSelectorStep.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                SelectSelectorStep.TypeEnum? typeValue = SelectSelectorStep.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<SelectSelectorStep.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
                             if (varOperatorRawValue != null)
-                                varOperator = new Option<SelectSelectorStep.OperatorEnum?>(SelectSelectorStep.OperatorEnumFromStringOrDefault(varOperatorRawValue));
+                            {
+                                SelectSelectorStep.OperatorEnum? varOperatorValue = SelectSelectorStep.OperatorEnumFromStringOrDefault(varOperatorRawValue);
+                                if (varOperatorValue == null)
+                                    throw new JsonException();
+                                varOperator = new Option<SelectSelectorStep.OperatorEnum?>(varOperatorValue);
+                            }
                             break;
                         case "from":
                             from = new Option<SelectSelectorStepFrom>(JsonSerializer.Deserialize<SelectSelectorStepFrom>(ref utf8JsonReader, jsonSerializerOptions));

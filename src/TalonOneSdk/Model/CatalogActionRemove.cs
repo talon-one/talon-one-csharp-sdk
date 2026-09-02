@@ -188,7 +188,12 @@ namespace TalonOneSdk.Model
                         case "type":
                             string typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<CatalogActionRemove.TypeEnum?>(CatalogActionRemove.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                CatalogActionRemove.TypeEnum? typeValue = CatalogActionRemove.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<CatalogActionRemove.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "payload":
                             payload = new Option<RemoveItemCatalogAction>(JsonSerializer.Deserialize<RemoveItemCatalogAction>(ref utf8JsonReader, jsonSerializerOptions));

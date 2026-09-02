@@ -660,7 +660,12 @@ namespace TalonOneSdk.Model
                         case "kind":
                             string kindRawValue = utf8JsonReader.GetString();
                             if (kindRawValue != null)
-                                kind = new Option<TalangAttribute.KindEnum?>(TalangAttribute.KindEnumFromStringOrDefault(kindRawValue));
+                            {
+                                TalangAttribute.KindEnum? kindValue = TalangAttribute.KindEnumFromStringOrDefault(kindRawValue);
+                                if (kindValue == null)
+                                    throw new JsonException();
+                                kind = new Option<TalangAttribute.KindEnum?>(kindValue);
+                            }
                             break;
                         case "campaignsCount":
                             campaignsCount = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
@@ -668,7 +673,12 @@ namespace TalonOneSdk.Model
                         case "entity":
                             string entityRawValue = utf8JsonReader.GetString();
                             if (entityRawValue != null)
-                                entity = new Option<TalangAttribute.EntityEnum?>(TalangAttribute.EntityEnumFromStringOrDefault(entityRawValue));
+                            {
+                                TalangAttribute.EntityEnum? entityValue = TalangAttribute.EntityEnumFromStringOrDefault(entityRawValue);
+                                if (entityValue == null)
+                                    throw new JsonException();
+                                entity = new Option<TalangAttribute.EntityEnum?>(entityValue);
+                            }
                             break;
                         case "title":
                             title = new Option<string>(utf8JsonReader.GetString());
