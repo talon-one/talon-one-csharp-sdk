@@ -34,7 +34,7 @@ namespace TalonOneSdk.Model
         /// <param name="totalResultSize">totalResultSize</param>
         /// <param name="data">data</param>
         [JsonConstructor]
-        public GetReservedCustomers200Response(long totalResultSize, List<CustomerProfile> data)
+        public GetReservedCustomers200Response(long totalResultSize, List<CustomerReservation> data)
         {
             TotalResultSize = totalResultSize;
             Data = data;
@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
-        public List<CustomerProfile> Data { get; set; }
+        public List<CustomerReservation> Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -114,7 +114,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<long?> totalResultSize = default;
-            Option<List<CustomerProfile>> data = default;
+            Option<List<CustomerReservation>> data = default;
 
             while (utf8JsonReader.Read())
             {
@@ -135,7 +135,7 @@ namespace TalonOneSdk.Model
                             totalResultSize = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "data":
-                            data = new Option<List<CustomerProfile>>(JsonSerializer.Deserialize<List<CustomerProfile>>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<List<CustomerReservation>>(JsonSerializer.Deserialize<List<CustomerReservation>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

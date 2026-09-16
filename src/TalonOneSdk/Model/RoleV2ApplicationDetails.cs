@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// RoleV2ApplicationDetails
+    /// Details of the permission sets configured for an Application.
     /// </summary>
     public partial class RoleV2ApplicationDetails : IValidatableObject
     {
@@ -58,6 +58,7 @@ namespace TalonOneSdk.Model
         /// Name of the Application-related permission set for the given Application.
         /// </summary>
         /// <value>Name of the Application-related permission set for the given Application.</value>
+        /* <example>Application permission set</example> */
         [JsonPropertyName("application")]
         public string Application { get { return this.ApplicationOption.Value; } set { this.ApplicationOption = new Option<string>(value); } }
 
@@ -72,6 +73,7 @@ namespace TalonOneSdk.Model
         /// Name of the campaign-related permission set for the given Application.
         /// </summary>
         /// <value>Name of the campaign-related permission set for the given Application.</value>
+        /* <example>Campaign manager permission set</example> */
         [JsonPropertyName("campaign")]
         public string Campaign { get { return this.CampaignOption.Value; } set { this.CampaignOption = new Option<string>(value); } }
 
@@ -86,6 +88,7 @@ namespace TalonOneSdk.Model
         /// Name of the draft campaign-related permission set for the given Application.
         /// </summary>
         /// <value>Name of the draft campaign-related permission set for the given Application.</value>
+        /* <example>Campaign read-only permission set</example> */
         [JsonPropertyName("draftCampaign")]
         public string DraftCampaign { get { return this.DraftCampaignOption.Value; } set { this.DraftCampaignOption = new Option<string>(value); } }
 

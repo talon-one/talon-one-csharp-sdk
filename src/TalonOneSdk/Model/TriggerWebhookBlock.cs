@@ -32,13 +32,13 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="TriggerWebhookBlock" /> class.
         /// </summary>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
-        /// <param name="webhook">webhook</param>
+        /// <param name="webhook">The webhook to trigger.</param>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="params">The webhook&#39;s parameters, in configured order. Each property name is the parameter&#39;s title, lowercased with spaces replaced by underscores (for example, &#x60;Order ID&#x60; becomes &#x60;order_id&#x60;); falls back to &#x60;param_0&#x60;, &#x60;param_1&#x60;, and so on if a title is blank or collides with another.</param>
         /// <param name="onError">Named error handlers evaluated when a specific error occurs.</param>
         [JsonConstructor]
-        public TriggerWebhookBlock(string type, TriggerWebhookBlock1Webhook webhook, Option<string> id = default, Option<List<string>> tags = default, Option<Dictionary<string, Object>> @params = default, Option<Dictionary<string, List<Block>>> onError = default)
+        public TriggerWebhookBlock(string type, WebhookBlockReference webhook, Option<string> id = default, Option<List<string>> tags = default, Option<Dictionary<string, Object>> @params = default, Option<Dictionary<string, List<Block>>> onError = default)
         {
             Type = type;
             Webhook = webhook;
@@ -59,10 +59,11 @@ namespace TalonOneSdk.Model
         public string Type { get; set; }
 
         /// <summary>
-        /// Gets or Sets Webhook
+        /// The webhook to trigger.
         /// </summary>
+        /// <value>The webhook to trigger.</value>
         [JsonPropertyName("webhook")]
-        public TriggerWebhookBlock1Webhook Webhook { get; set; }
+        public WebhookBlockReference Webhook { get; set; }
 
         /// <summary>
         /// Used to track the state of Id
@@ -184,7 +185,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string> type = default;
-            Option<TriggerWebhookBlock1Webhook> webhook = default;
+            Option<WebhookBlockReference> webhook = default;
             Option<string> id = default;
             Option<List<string>> tags = default;
             Option<Dictionary<string, Object>> varParams = default;
@@ -209,7 +210,7 @@ namespace TalonOneSdk.Model
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "webhook":
-                            webhook = new Option<TriggerWebhookBlock1Webhook>(JsonSerializer.Deserialize<TriggerWebhookBlock1Webhook>(ref utf8JsonReader, jsonSerializerOptions));
+                            webhook = new Option<WebhookBlockReference>(JsonSerializer.Deserialize<WebhookBlockReference>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "id":
                             id = new Option<string>(utf8JsonReader.GetString());

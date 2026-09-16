@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// RoleV2Permissions
+    /// The permissions that this role gives.
     /// </summary>
     public partial class RoleV2Permissions : IValidatableObject
     {

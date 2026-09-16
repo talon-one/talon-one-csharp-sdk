@@ -38,8 +38,9 @@ namespace TalonOneSdk.Model
         /// <param name="attributes">Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute).</param>
         /// <param name="responseContent">Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints. </param>
         /// <param name="loyaltyCards">Identifiers of the loyalty cards used during this event.</param>
+        /// <param name="rewardIntegrationIds">The integration IDs of the unlocked rewards that can be used in this event. </param>
         [JsonConstructor]
-        public IntegrationEventV2Request(string type, Option<string> profileId = default, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<Object> attributes = default, Option<List<IntegrationEventV2Request.ResponseContentEnum>> responseContent = default, Option<List<string>> loyaltyCards = default)
+        public IntegrationEventV2Request(string type, Option<string> profileId = default, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<Object> attributes = default, Option<List<IntegrationEventV2Request.ResponseContentEnum>> responseContent = default, Option<List<string>> loyaltyCards = default, Option<List<string>> rewardIntegrationIds = default)
         {
             Type = type;
             ProfileIdOption = profileId;
@@ -48,6 +49,7 @@ namespace TalonOneSdk.Model
             AttributesOption = attributes;
             ResponseContentOption = responseContent;
             LoyaltyCardsOption = loyaltyCards;
+            RewardIntegrationIdsOption = rewardIntegrationIds;
             OnCreated();
         }
 
@@ -316,6 +318,21 @@ namespace TalonOneSdk.Model
         public List<string> LoyaltyCards { get { return this.LoyaltyCardsOption.Value; } set { this.LoyaltyCardsOption = new Option<List<string>>(value); } }
 
         /// <summary>
+        /// Used to track the state of RewardIntegrationIds
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>> RewardIntegrationIdsOption { get; private set; }
+
+        /// <summary>
+        /// The integration IDs of the unlocked rewards that can be used in this event. 
+        /// </summary>
+        /// <value>The integration IDs of the unlocked rewards that can be used in this event. </value>
+        /* <example>[5c0b5e6d-3f8a-4c2b-9f1e-2a7d6b4c8e90]</example> */
+        [JsonPropertyName("rewardIntegrationIds")]
+        public List<string> RewardIntegrationIds { get { return this.RewardIntegrationIdsOption.Value; } set { this.RewardIntegrationIdsOption = new Option<List<string>>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -330,6 +347,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  ResponseContent: ").Append(ResponseContent).Append("\n");
             sb.Append("  LoyaltyCards: ").Append(LoyaltyCards).Append("\n");
+            sb.Append("  RewardIntegrationIds: ").Append(RewardIntegrationIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -402,6 +420,7 @@ namespace TalonOneSdk.Model
             Option<Object> attributes = default;
             Option<List<IntegrationEventV2Request.ResponseContentEnum>> responseContent = default;
             Option<List<string>> loyaltyCards = default;
+            Option<List<string>> rewardIntegrationIds = default;
 
             while (utf8JsonReader.Read())
             {
@@ -460,6 +479,9 @@ namespace TalonOneSdk.Model
                         case "loyaltyCards":
                             loyaltyCards = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "rewardIntegrationIds":
+                            rewardIntegrationIds = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
@@ -472,7 +494,7 @@ namespace TalonOneSdk.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class IntegrationEventV2Request.");
 
-            return new IntegrationEventV2Request(type.Value, profileId, storeIntegrationId, evaluableCampaignIds, attributes, responseContent, loyaltyCards);
+            return new IntegrationEventV2Request(type.Value, profileId, storeIntegrationId, evaluableCampaignIds, attributes, responseContent, loyaltyCards, rewardIntegrationIds);
         }
 
         /// <summary>
@@ -534,6 +556,11 @@ namespace TalonOneSdk.Model
             {
                 writer.WritePropertyName("loyaltyCards");
                 JsonSerializer.Serialize(writer, integrationEventV2Request.LoyaltyCards, jsonSerializerOptions);
+            }
+            if (integrationEventV2Request.RewardIntegrationIdsOption.IsSet)
+            {
+                writer.WritePropertyName("rewardIntegrationIds");
+                JsonSerializer.Serialize(writer, integrationEventV2Request.RewardIntegrationIds, jsonSerializerOptions);
             }
         }
     }

@@ -34,7 +34,7 @@ namespace TalonOneSdk.Model
         /// <param name="loyaltyProgramId">The ID of the associated loyalty program.</param>
         /// <param name="passTemplateId">The ID of the digital pass template used to generate the pass. </param>
         /// <param name="profileId">The integration ID of the customer profile the pass is issued for.</param>
-        /// <param name="platform">The wallet platform the pass is generated for.</param>
+        /// <param name="platform">The wallet platform the pass is generated for. Possible values:  - &#x60;apple&#x60;: The digital pass is generated for Apple Wallet. - &#x60;google&#x60;: The digital pass is generated for Google Wallet. </param>
         /// <param name="loyaltyCardId">The identifier of the loyalty card the pass is issued for.  **Note**: Only applicable for card-based loyalty programs. </param>
         /// <param name="attributes">A map of placeholder values that you provide to fill in the pass template. These values are not validated against the template. </param>
         [JsonConstructor]
@@ -52,9 +52,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The wallet platform the pass is generated for.
+        /// The wallet platform the pass is generated for. Possible values:  - &#x60;apple&#x60;: The digital pass is generated for Apple Wallet. - &#x60;google&#x60;: The digital pass is generated for Google Wallet. 
         /// </summary>
-        /// <value>The wallet platform the pass is generated for.</value>
+        /// <value>The wallet platform the pass is generated for. Possible values:  - &#x60;apple&#x60;: The digital pass is generated for Apple Wallet. - &#x60;google&#x60;: The digital pass is generated for Google Wallet. </value>
         public enum PlatformEnum
         {
             /// <summary>
@@ -119,9 +119,9 @@ namespace TalonOneSdk.Model
         }
 
         /// <summary>
-        /// The wallet platform the pass is generated for.
+        /// The wallet platform the pass is generated for. Possible values:  - &#x60;apple&#x60;: The digital pass is generated for Apple Wallet. - &#x60;google&#x60;: The digital pass is generated for Google Wallet. 
         /// </summary>
-        /// <value>The wallet platform the pass is generated for.</value>
+        /// <value>The wallet platform the pass is generated for. Possible values:  - &#x60;apple&#x60;: The digital pass is generated for Apple Wallet. - &#x60;google&#x60;: The digital pass is generated for Google Wallet. </value>
         /* <example>google</example> */
         [JsonPropertyName("platform")]
         public PlatformEnum Platform { get; set; }

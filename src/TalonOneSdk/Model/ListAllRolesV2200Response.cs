@@ -31,8 +31,8 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ListAllRolesV2200Response" /> class.
         /// </summary>
-        /// <param name="totalResultSize">totalResultSize</param>
-        /// <param name="data">data</param>
+        /// <param name="totalResultSize">The total number of roles returned.</param>
+        /// <param name="data">The list of roles.</param>
         [JsonConstructor]
         public ListAllRolesV2200Response(long totalResultSize, List<RoleV2> data)
         {
@@ -44,15 +44,17 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets TotalResultSize
+        /// The total number of roles returned.
         /// </summary>
+        /// <value>The total number of roles returned.</value>
         /* <example>1</example> */
         [JsonPropertyName("totalResultSize")]
         public long TotalResultSize { get; set; }
 
         /// <summary>
-        /// Gets or Sets Data
+        /// The list of roles.
         /// </summary>
+        /// <value>The list of roles.</value>
         [JsonPropertyName("data")]
         public List<RoleV2> Data { get; set; }
 

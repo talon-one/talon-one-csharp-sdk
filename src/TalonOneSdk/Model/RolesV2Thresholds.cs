@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// RolesV2Thresholds
+    /// Support user limits for actions that require admin approval within the given loyalty program.
     /// </summary>
     public partial class RolesV2Thresholds : IValidatableObject
     {

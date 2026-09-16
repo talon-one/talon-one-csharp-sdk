@@ -33,7 +33,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="passId">The ID of the generated digital pass.</param>
         /// <param name="passTemplateId">The ID of the digital pass template used to generate the pass.</param>
-        /// <param name="status">The status of the digital pass.</param>
+        /// <param name="status">The status of the digital pass.  &#x60;created&#x60; indicates that the pass was generated and is ready to be added to a wallet. </param>
         /// <param name="passUrl">The URL you can use to let the customer add the digital pass to their wallet.</param>
         [JsonConstructor]
         public DigitalPass(string passId, string passTemplateId, StatusEnum status, string passUrl)
@@ -48,9 +48,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The status of the digital pass.
+        /// The status of the digital pass.  &#x60;created&#x60; indicates that the pass was generated and is ready to be added to a wallet. 
         /// </summary>
-        /// <value>The status of the digital pass.</value>
+        /// <value>The status of the digital pass.  &#x60;created&#x60; indicates that the pass was generated and is ready to be added to a wallet. </value>
         public enum StatusEnum
         {
             /// <summary>
@@ -101,9 +101,9 @@ namespace TalonOneSdk.Model
         }
 
         /// <summary>
-        /// The status of the digital pass.
+        /// The status of the digital pass.  &#x60;created&#x60; indicates that the pass was generated and is ready to be added to a wallet. 
         /// </summary>
-        /// <value>The status of the digital pass.</value>
+        /// <value>The status of the digital pass.  &#x60;created&#x60; indicates that the pass was generated and is ready to be added to a wallet. </value>
         /* <example>created</example> */
         [JsonPropertyName("status")]
         public StatusEnum Status { get; set; }

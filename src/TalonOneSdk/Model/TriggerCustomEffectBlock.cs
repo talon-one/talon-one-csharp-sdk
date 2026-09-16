@@ -32,14 +32,14 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="TriggerCustomEffectBlock" /> class.
         /// </summary>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
-        /// <param name="customEffect">customEffect</param>
+        /// <param name="customEffect">The custom effect to trigger.</param>
         /// <param name="target">target</param>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="params">The custom effect&#39;s parameters, in configured order. Each property name is the parameter&#39;s title, lowercased with spaces replaced by underscores (for example, &#x60;Order ID&#x60; becomes &#x60;order_id&#x60;); falls back to &#x60;param_0&#x60;, &#x60;param_1&#x60;, and so on if a title is blank or collides with another.</param>
         /// <param name="onError">Named error handlers evaluated when a specific error occurs.</param>
         [JsonConstructor]
-        public TriggerCustomEffectBlock(string type, TriggerCustomEffectBlock1CustomEffect customEffect, TriggerCustomEffectBlock1Target target, Option<string> id = default, Option<List<string>> tags = default, Option<Dictionary<string, Object>> @params = default, Option<Dictionary<string, List<Block>>> onError = default)
+        public TriggerCustomEffectBlock(string type, CustomEffectBlockReference customEffect, TriggerCustomEffectBlock1Target target, Option<string> id = default, Option<List<string>> tags = default, Option<Dictionary<string, Object>> @params = default, Option<Dictionary<string, List<Block>>> onError = default)
         {
             Type = type;
             CustomEffect = customEffect;
@@ -61,10 +61,11 @@ namespace TalonOneSdk.Model
         public string Type { get; set; }
 
         /// <summary>
-        /// Gets or Sets CustomEffect
+        /// The custom effect to trigger.
         /// </summary>
+        /// <value>The custom effect to trigger.</value>
         [JsonPropertyName("customEffect")]
-        public TriggerCustomEffectBlock1CustomEffect CustomEffect { get; set; }
+        public CustomEffectBlockReference CustomEffect { get; set; }
 
         /// <summary>
         /// Gets or Sets Target
@@ -193,7 +194,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string> type = default;
-            Option<TriggerCustomEffectBlock1CustomEffect> customEffect = default;
+            Option<CustomEffectBlockReference> customEffect = default;
             Option<TriggerCustomEffectBlock1Target> target = default;
             Option<string> id = default;
             Option<List<string>> tags = default;
@@ -219,7 +220,7 @@ namespace TalonOneSdk.Model
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "customEffect":
-                            customEffect = new Option<TriggerCustomEffectBlock1CustomEffect>(JsonSerializer.Deserialize<TriggerCustomEffectBlock1CustomEffect>(ref utf8JsonReader, jsonSerializerOptions));
+                            customEffect = new Option<CustomEffectBlockReference>(JsonSerializer.Deserialize<CustomEffectBlockReference>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "target":
                             target = new Option<TriggerCustomEffectBlock1Target>(JsonSerializer.Deserialize<TriggerCustomEffectBlock1Target>(ref utf8JsonReader, jsonSerializerOptions));

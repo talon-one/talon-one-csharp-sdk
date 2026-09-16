@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** | Identifies the block variant and determines which additional properties are present in it. | 
-**CustomEffect** | [**TriggerCustomEffectBlock1CustomEffect**](TriggerCustomEffectBlock1CustomEffect.md) |  | 
+**CustomEffect** | [**CustomEffectBlockReference**](CustomEffectBlockReference.md) | The custom effect to trigger. | 
 **Target** | [**TriggerCustomEffectBlock1Target**](TriggerCustomEffectBlock1Target.md) |  | 
 **Id** | **string** | Unique identifier for this block. | [optional] [readonly] 
 **Tags** | **List&lt;string&gt;** | Semantic labels attached to this block. | [optional] [readonly] 

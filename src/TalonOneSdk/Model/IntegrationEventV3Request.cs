@@ -40,9 +40,10 @@ namespace TalonOneSdk.Model
         /// <param name="connectedSessionId">The ID of the session to reference. The session must be in &#x60;closed&#x60; state. Otherwise, the API call will fail.</param>
         /// <param name="referralCode">The referral code submitted with the event. The endpoint does not validate the code, and submitting a code does not redeem it. Use the \&quot;Referral code is valid\&quot; condition in the Rule Builder to validate and redeem the code, or \&quot;Referral code is valid (without redemption)\&quot; to validate without redeeming. </param>
         /// <param name="loyaltyCards">Identifiers of the loyalty cards used during this event.</param>
+        /// <param name="rewardIntegrationIds">The integration IDs of the unlocked rewards that can be used in this event. </param>
         /// <param name="responseContent">Optional list of requested information to be present on the response related to the tracking custom event. </param>
         [JsonConstructor]
-        public IntegrationEventV3Request(string profileId, string type, string integrationId, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<Object> attributes = default, Option<string> connectedSessionId = default, Option<string> referralCode = default, Option<List<string>> loyaltyCards = default, Option<List<IntegrationEventV3Request.ResponseContentEnum>> responseContent = default)
+        public IntegrationEventV3Request(string profileId, string type, string integrationId, Option<string> storeIntegrationId = default, Option<List<long>> evaluableCampaignIds = default, Option<Object> attributes = default, Option<string> connectedSessionId = default, Option<string> referralCode = default, Option<List<string>> loyaltyCards = default, Option<List<string>> rewardIntegrationIds = default, Option<List<IntegrationEventV3Request.ResponseContentEnum>> responseContent = default)
         {
             ProfileId = profileId;
             Type = type;
@@ -53,6 +54,7 @@ namespace TalonOneSdk.Model
             ConnectedSessionIdOption = connectedSessionId;
             ReferralCodeOption = referralCode;
             LoyaltyCardsOption = loyaltyCards;
+            RewardIntegrationIdsOption = rewardIntegrationIds;
             ResponseContentOption = responseContent;
             OnCreated();
         }
@@ -97,7 +99,12 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum TriggeredCampaigns for value: triggeredCampaigns
             /// </summary>
-            TriggeredCampaigns = 7
+            TriggeredCampaigns = 7,
+
+            /// <summary>
+            /// Enum UnlockedRewards for value: unlockedRewards
+            /// </summary>
+            UnlockedRewards = 8
         }
 
         /// <summary>
@@ -128,6 +135,9 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("triggeredCampaigns"))
                 return ResponseContentEnum.TriggeredCampaigns;
+
+            if (value.Equals("unlockedRewards"))
+                return ResponseContentEnum.UnlockedRewards;
 
             throw new NotImplementedException($"Could not convert value to type ResponseContentEnum: '{value}'");
         }
@@ -160,6 +170,9 @@ namespace TalonOneSdk.Model
             if (value.Equals("triggeredCampaigns"))
                 return ResponseContentEnum.TriggeredCampaigns;
 
+            if (value.Equals("unlockedRewards"))
+                return ResponseContentEnum.UnlockedRewards;
+
             return null;
         }
 
@@ -191,6 +204,9 @@ namespace TalonOneSdk.Model
 
             if (value == ResponseContentEnum.TriggeredCampaigns)
                 return "triggeredCampaigns";
+
+            if (value == ResponseContentEnum.UnlockedRewards)
+                return "unlockedRewards";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
@@ -310,6 +326,21 @@ namespace TalonOneSdk.Model
         public List<string> LoyaltyCards { get { return this.LoyaltyCardsOption.Value; } set { this.LoyaltyCardsOption = new Option<List<string>>(value); } }
 
         /// <summary>
+        /// Used to track the state of RewardIntegrationIds
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>> RewardIntegrationIdsOption { get; private set; }
+
+        /// <summary>
+        /// The integration IDs of the unlocked rewards that can be used in this event. 
+        /// </summary>
+        /// <value>The integration IDs of the unlocked rewards that can be used in this event. </value>
+        /* <example>[5c0b5e6d-3f8a-4c2b-9f1e-2a7d6b4c8e90]</example> */
+        [JsonPropertyName("rewardIntegrationIds")]
+        public List<string> RewardIntegrationIds { get { return this.RewardIntegrationIdsOption.Value; } set { this.RewardIntegrationIdsOption = new Option<List<string>>(value); } }
+
+        /// <summary>
         /// Used to track the state of ResponseContent
         /// </summary>
         [JsonIgnore]
@@ -341,6 +372,7 @@ namespace TalonOneSdk.Model
             sb.Append("  ConnectedSessionId: ").Append(ConnectedSessionId).Append("\n");
             sb.Append("  ReferralCode: ").Append(ReferralCode).Append("\n");
             sb.Append("  LoyaltyCards: ").Append(LoyaltyCards).Append("\n");
+            sb.Append("  RewardIntegrationIds: ").Append(RewardIntegrationIds).Append("\n");
             sb.Append("  ResponseContent: ").Append(ResponseContent).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -434,6 +466,7 @@ namespace TalonOneSdk.Model
             Option<string> connectedSessionId = default;
             Option<string> referralCode = default;
             Option<List<string>> loyaltyCards = default;
+            Option<List<string>> rewardIntegrationIds = default;
             Option<List<IntegrationEventV3Request.ResponseContentEnum>> responseContent = default;
 
             while (utf8JsonReader.Read())
@@ -477,6 +510,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "loyaltyCards":
                             loyaltyCards = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "rewardIntegrationIds":
+                            rewardIntegrationIds = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "responseContent":
                             if (utf8JsonReader.TokenType == JsonTokenType.Null)
@@ -526,7 +562,7 @@ namespace TalonOneSdk.Model
             if (integrationId.IsSet && integrationId.Value == null)
                 throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class IntegrationEventV3Request.");
 
-            return new IntegrationEventV3Request(profileId.Value, type.Value, integrationId.Value, storeIntegrationId, evaluableCampaignIds, attributes, connectedSessionId, referralCode, loyaltyCards, responseContent);
+            return new IntegrationEventV3Request(profileId.Value, type.Value, integrationId.Value, storeIntegrationId, evaluableCampaignIds, attributes, connectedSessionId, referralCode, loyaltyCards, rewardIntegrationIds, responseContent);
         }
 
         /// <summary>
@@ -591,6 +627,11 @@ namespace TalonOneSdk.Model
             {
                 writer.WritePropertyName("loyaltyCards");
                 JsonSerializer.Serialize(writer, integrationEventV3Request.LoyaltyCards, jsonSerializerOptions);
+            }
+            if (integrationEventV3Request.RewardIntegrationIdsOption.IsSet)
+            {
+                writer.WritePropertyName("rewardIntegrationIds");
+                JsonSerializer.Serialize(writer, integrationEventV3Request.RewardIntegrationIds, jsonSerializerOptions);
             }
             if (integrationEventV3Request.ResponseContentOption.IsSet)
             {

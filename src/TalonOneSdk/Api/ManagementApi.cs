@@ -286,6 +286,31 @@ namespace TalonOneSdk.Api
         Task<ICreateBatchLoyaltyCardsApiResponse> CreateBatchLoyaltyCardsOrDefaultAsync(long loyaltyProgramId, LoyaltyCardBatch loyaltyCardBatch, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Create campaign
+        /// </summary>
+        /// <remarks>
+        /// Create a campaign. A campaign is part of an Application and contains a set of rules. 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="newCampaign">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="ICreateCampaignApiResponse"/>&gt;</returns>
+        Task<ICreateCampaignApiResponse> CreateCampaignAsync(long applicationId, NewCampaign newCampaign, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create campaign
+        /// </summary>
+        /// <remarks>
+        /// Create a campaign. A campaign is part of an Application and contains a set of rules. 
+        /// </remarks>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="newCampaign">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="ICreateCampaignApiResponse"/>&gt;</returns>
+        Task<ICreateCampaignApiResponse> CreateCampaignOrDefaultAsync(long applicationId, NewCampaign newCampaign, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Create campaign from campaign template
         /// </summary>
         /// <remarks>
@@ -1522,9 +1547,10 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId">The identifier for the loyalty program.</param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. &gt; - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file, which shows the customer&#39;s tier at the time of export.  (optional)</param>
         /// <param name="balances">Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  (optional)</param>
+        /// <param name="subledgerIds">Filter results by an array of subledger IDs. If no value is provided, the export includes all subledgers and main ledger data for the specified loyalty program.  To specify the main ledger, provide an empty string (\&quot;\&quot;).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyBalancesApiResponse"/>&gt;</returns>
-        Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, Option<List<string>> subledgerIds = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Export customer loyalty balances
@@ -1535,9 +1561,10 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId">The identifier for the loyalty program.</param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. &gt; - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file, which shows the customer&#39;s tier at the time of export.  (optional)</param>
         /// <param name="balances">Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  (optional)</param>
+        /// <param name="subledgerIds">Filter results by an array of subledger IDs. If no value is provided, the export includes all subledgers and main ledger data for the specified loyalty program.  To specify the main ledger, provide an empty string (\&quot;\&quot;).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyBalancesApiResponse"/>&gt;</returns>
-        Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesOrDefaultAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesOrDefaultAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, Option<List<string>> subledgerIds = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Export all card transaction logs
@@ -4149,7 +4176,7 @@ namespace TalonOneSdk.Api
         /// Import join dates for a loyalty program
         /// </summary>
         /// <remarks>
-        /// Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;newjoindate&#x60;: The new join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+        /// Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;joindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -4162,7 +4189,7 @@ namespace TalonOneSdk.Api
         /// Import join dates for a loyalty program
         /// </summary>
         /// <remarks>
-        /// Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;newjoindate&#x60;: The new join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+        /// Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;joindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
@@ -4344,13 +4371,14 @@ namespace TalonOneSdk.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
+        /// <param name="campaignId">Filter results by one or more campaign IDs.  To include multiple IDs, repeat the parameter for each one, for example,&#x60;?campaignId&#x3D;123&amp;campaignId&#x3D;456&#x60;. The response contains only achievements associated with the specified campaigns.  (optional)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
         /// <param name="title">Filter by the display name of the achievement. (optional)</param>
         /// <param name="applicationId">Filter by the ID of an Application connected to the achievement. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListAchievementsV2ApiResponse"/>&gt;</returns>
-        Task<IListAchievementsV2ApiResponse> ListAchievementsV2Async(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> title = default, Option<long> applicationId = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListAchievementsV2ApiResponse> ListAchievementsV2Async(Option<long> pageSize = default, Option<List<long>> campaignId = default, Option<long> skip = default, Option<string> sort = default, Option<string> title = default, Option<long> applicationId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List achievements
@@ -4359,19 +4387,20 @@ namespace TalonOneSdk.Api
         /// List all achievements. 
         /// </remarks>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
+        /// <param name="campaignId">Filter results by one or more campaign IDs.  To include multiple IDs, repeat the parameter for each one, for example,&#x60;?campaignId&#x3D;123&amp;campaignId&#x3D;456&#x60;. The response contains only achievements associated with the specified campaigns.  (optional)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
         /// <param name="title">Filter by the display name of the achievement. (optional)</param>
         /// <param name="applicationId">Filter by the ID of an Application connected to the achievement. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListAchievementsV2ApiResponse"/>&gt;</returns>
-        Task<IListAchievementsV2ApiResponse> ListAchievementsV2OrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> title = default, Option<long> applicationId = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListAchievementsV2ApiResponse> ListAchievementsV2OrDefaultAsync(Option<long> pageSize = default, Option<List<long>> campaignId = default, Option<long> skip = default, Option<string> sort = default, Option<string> title = default, Option<long> applicationId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List roles
         /// </summary>
         /// <remarks>
-        /// List all roles.
+        /// List the roles defined in the deployment.  The roles returned depend on the role of the user calling this endpoint: - If the user has an admin role, all roles defined in the deployment are returned. - If the user does not have an admin role, only the roles currently assigned to this user are returned.  If your identity provider provisions roles through SCIM, any admin roles it defines are not included in this list.  To view the details of a specific role, use the [Get role](https://docs.talon.one/management-api#tag/Roles/operation/getRoleV2) endpoint. 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -4382,7 +4411,7 @@ namespace TalonOneSdk.Api
         /// List roles
         /// </summary>
         /// <remarks>
-        /// List all roles.
+        /// List the roles defined in the deployment.  The roles returned depend on the role of the user calling this endpoint: - If the user has an admin role, all roles defined in the deployment are returned. - If the user does not have an admin role, only the roles currently assigned to this user are returned.  If your identity provider provisions roles through SCIM, any admin roles it defines are not included in this list.  To view the details of a specific role, use the [Get role](https://docs.talon.one/management-api#tag/Roles/operation/getRoleV2) endpoint. 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListAllRolesV2ApiResponse"/>&gt;</returns>
@@ -5811,6 +5840,18 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <returns></returns>
         bool IsNotFound { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="ICreateCampaignApiResponse"/>
+    /// </summary>
+    public interface ICreateCampaignApiResponse : TalonOneSdk.Client.IApiResponse, ICreated<TalonOneSdk.Model.Campaign>
+    {
+        /// <summary>
+        /// Returns true if the response is 201 Created
+        /// </summary>
+        /// <returns></returns>
+        bool IsCreated { get; }
     }
 
     /// <summary>
@@ -9082,6 +9123,26 @@ namespace TalonOneSdk.Api
         internal void ExecuteOnErrorCreateBatchLoyaltyCards(Exception exception)
         {
             OnErrorCreateBatchLoyaltyCards?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnCreateCampaign;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorCreateCampaign;
+
+        internal void ExecuteOnCreateCampaign(ManagementApi.CreateCampaignApiResponse apiResponse)
+        {
+            OnCreateCampaign?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorCreateCampaign(Exception exception)
+        {
+            OnErrorCreateCampaign?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -16287,6 +16348,286 @@ namespace TalonOneSdk.Api
                 } catch (Exception e)
                 {
                     OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatCreateCampaign(ref long applicationId, NewCampaign newCampaign);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="newCampaign"></param>
+        /// <returns></returns>
+        private void ValidateCreateCampaign(NewCampaign newCampaign)
+        {
+            if (newCampaign == null)
+                throw new ArgumentNullException(nameof(newCampaign));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="newCampaign"></param>
+        private void AfterCreateCampaignDefaultImplementation(ICreateCampaignApiResponse apiResponseLocalVar, long applicationId, NewCampaign newCampaign)
+        {
+            bool suppressDefaultLog = false;
+            AfterCreateCampaign(ref suppressDefaultLog, apiResponseLocalVar, applicationId, newCampaign);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="newCampaign"></param>
+        partial void AfterCreateCampaign(ref bool suppressDefaultLog, ICreateCampaignApiResponse apiResponseLocalVar, long applicationId, NewCampaign newCampaign);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="newCampaign"></param>
+        private void OnErrorCreateCampaignDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, NewCampaign newCampaign)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorCreateCampaign(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, newCampaign);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="newCampaign"></param>
+        partial void OnErrorCreateCampaign(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, NewCampaign newCampaign);
+
+        /// <summary>
+        /// Create campaign Create a campaign. A campaign is part of an Application and contains a set of rules. 
+        /// </summary>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="newCampaign">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="ICreateCampaignApiResponse"/>&gt;</returns>
+        public async Task<ICreateCampaignApiResponse> CreateCampaignOrDefaultAsync(long applicationId, NewCampaign newCampaign, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await CreateCampaignAsync(applicationId, newCampaign, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Create campaign Create a campaign. A campaign is part of an Application and contains a set of rules. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="newCampaign">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="ICreateCampaignApiResponse"/>&gt;</returns>
+        public async Task<ICreateCampaignApiResponse> CreateCampaignAsync(long applicationId, NewCampaign newCampaign, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateCreateCampaign(newCampaign);
+
+                FormatCreateCampaign(ref applicationId, newCampaign);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/applications/{applicationId}/campaigns"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/applications/{applicationId}/campaigns");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
+
+                    httpRequestMessageLocalVar.Content = (newCampaign as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(newCampaign, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("POST");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        CreateCampaignApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new CreateCampaignApiResponse(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/applications/{applicationId}/campaigns", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterCreateCampaignDefaultImplementation(apiResponseLocalVar, applicationId, newCampaign);
+
+                        Events.ExecuteOnCreateCampaign(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorCreateCampaignDefaultImplementation(e, "/v1/applications/{applicationId}/campaigns", uriBuilderLocalVar.Path, applicationId, newCampaign);
+                Events.ExecuteOnErrorCreateCampaign(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="CreateCampaignApiResponse"/>
+        /// </summary>
+        public partial class CreateCampaignApiResponse : TalonOneSdk.Client.ApiResponse, ICreateCampaignApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ManagementApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="CreateCampaignApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public CreateCampaignApiResponse(ILogger<ManagementApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="CreateCampaignApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public CreateCampaignApiResponse(ILogger<ManagementApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public bool IsCreated => 201 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.Campaign Created()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Campaign result = default;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Campaign DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsCreated
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Campaign>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.Campaign result);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryCreated(out TalonOneSdk.Model.Campaign result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Created();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)201);
                 }
 
                 return result != null;
@@ -30284,21 +30625,25 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatExportLoyaltyBalances(ref string loyaltyProgramId, ref Option<DateTime> endDate, ref Option<string> balances);
+        partial void FormatExportLoyaltyBalances(ref string loyaltyProgramId, ref Option<DateTime> endDate, ref Option<string> balances, Option<List<string>> subledgerIds);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="loyaltyProgramId"></param>
         /// <param name="balances"></param>
+        /// <param name="subledgerIds"></param>
         /// <returns></returns>
-        private void ValidateExportLoyaltyBalances(string loyaltyProgramId, Option<string> balances)
+        private void ValidateExportLoyaltyBalances(string loyaltyProgramId, Option<string> balances, Option<List<string>> subledgerIds)
         {
             if (loyaltyProgramId == null)
                 throw new ArgumentNullException(nameof(loyaltyProgramId));
 
             if (balances.IsSet && balances.Value == null)
                 throw new ArgumentNullException(nameof(balances));
+
+            if (subledgerIds.IsSet && subledgerIds.Value == null)
+                throw new ArgumentNullException(nameof(subledgerIds));
         }
 
         /// <summary>
@@ -30308,10 +30653,11 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId"></param>
         /// <param name="endDate"></param>
         /// <param name="balances"></param>
-        private void AfterExportLoyaltyBalancesDefaultImplementation(IExportLoyaltyBalancesApiResponse apiResponseLocalVar, string loyaltyProgramId, Option<DateTime> endDate, Option<string> balances)
+        /// <param name="subledgerIds"></param>
+        private void AfterExportLoyaltyBalancesDefaultImplementation(IExportLoyaltyBalancesApiResponse apiResponseLocalVar, string loyaltyProgramId, Option<DateTime> endDate, Option<string> balances, Option<List<string>> subledgerIds)
         {
             bool suppressDefaultLog = false;
-            AfterExportLoyaltyBalances(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, endDate, balances);
+            AfterExportLoyaltyBalances(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, endDate, balances, subledgerIds);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -30324,7 +30670,8 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId"></param>
         /// <param name="endDate"></param>
         /// <param name="balances"></param>
-        partial void AfterExportLoyaltyBalances(ref bool suppressDefaultLog, IExportLoyaltyBalancesApiResponse apiResponseLocalVar, string loyaltyProgramId, Option<DateTime> endDate, Option<string> balances);
+        /// <param name="subledgerIds"></param>
+        partial void AfterExportLoyaltyBalances(ref bool suppressDefaultLog, IExportLoyaltyBalancesApiResponse apiResponseLocalVar, string loyaltyProgramId, Option<DateTime> endDate, Option<string> balances, Option<List<string>> subledgerIds);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -30335,10 +30682,11 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId"></param>
         /// <param name="endDate"></param>
         /// <param name="balances"></param>
-        private void OnErrorExportLoyaltyBalancesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string loyaltyProgramId, Option<DateTime> endDate, Option<string> balances)
+        /// <param name="subledgerIds"></param>
+        private void OnErrorExportLoyaltyBalancesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string loyaltyProgramId, Option<DateTime> endDate, Option<string> balances, Option<List<string>> subledgerIds)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorExportLoyaltyBalances(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, endDate, balances);
+            OnErrorExportLoyaltyBalances(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, endDate, balances, subledgerIds);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -30353,7 +30701,8 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId"></param>
         /// <param name="endDate"></param>
         /// <param name="balances"></param>
-        partial void OnErrorExportLoyaltyBalances(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string loyaltyProgramId, Option<DateTime> endDate, Option<string> balances);
+        /// <param name="subledgerIds"></param>
+        partial void OnErrorExportLoyaltyBalances(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string loyaltyProgramId, Option<DateTime> endDate, Option<string> balances, Option<List<string>> subledgerIds);
 
         /// <summary>
         /// Export customer loyalty balances Download a CSV file containing the balance of each customer in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;loyaltySubledger&#x60;: The name of the subledger, when applicable. - &#x60;profileIntegrationID&#x60;: The integration ID of the customer profile. - &#x60;currentBalance&#x60;: The current point balance. - &#x60;pendingBalance&#x60;: The number of pending points. - &#x60;expiredBalance&#x60;: The number of expired points. - &#x60;spentBalance&#x60;: The number of spent points. - &#x60;currentTier&#x60;: The tier that the customer is in at the time of the export. 
@@ -30361,13 +30710,14 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId">The identifier for the loyalty program.</param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. &gt; - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file, which shows the customer&#39;s tier at the time of export.  (optional)</param>
         /// <param name="balances">Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  (optional)</param>
+        /// <param name="subledgerIds">Filter results by an array of subledger IDs. If no value is provided, the export includes all subledgers and main ledger data for the specified loyalty program.  To specify the main ledger, provide an empty string (\&quot;\&quot;).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyBalancesApiResponse"/>&gt;</returns>
-        public async Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesOrDefaultAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesOrDefaultAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, Option<List<string>> subledgerIds = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ExportLoyaltyBalancesAsync(loyaltyProgramId, endDate, balances, cancellationToken).ConfigureAwait(false);
+                return await ExportLoyaltyBalancesAsync(loyaltyProgramId, endDate, balances, subledgerIds, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -30382,17 +30732,18 @@ namespace TalonOneSdk.Api
         /// <param name="loyaltyProgramId">The identifier for the loyalty program.</param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. &gt; - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file, which shows the customer&#39;s tier at the time of export.  (optional)</param>
         /// <param name="balances">Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  (optional)</param>
+        /// <param name="subledgerIds">Filter results by an array of subledger IDs. If no value is provided, the export includes all subledgers and main ledger data for the specified loyalty program.  To specify the main ledger, provide an empty string (\&quot;\&quot;).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyBalancesApiResponse"/>&gt;</returns>
-        public async Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, Option<List<string>> subledgerIds = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateExportLoyaltyBalances(loyaltyProgramId, balances);
+                ValidateExportLoyaltyBalances(loyaltyProgramId, balances, subledgerIds);
 
-                FormatExportLoyaltyBalances(ref loyaltyProgramId, ref endDate, ref balances);
+                FormatExportLoyaltyBalances(ref loyaltyProgramId, ref endDate, ref balances, subledgerIds);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -30411,6 +30762,9 @@ namespace TalonOneSdk.Api
 
                     if (balances.IsSet)
                         parseQueryStringLocalVar["balances"] = ClientUtils.ParameterToString(balances.Value);
+
+                    if (subledgerIds.IsSet)
+                        parseQueryStringLocalVar["subledgerIds"] = ClientUtils.ParameterToString(subledgerIds.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -30446,7 +30800,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterExportLoyaltyBalancesDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, endDate, balances);
+                        AfterExportLoyaltyBalancesDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, endDate, balances, subledgerIds);
 
                         Events.ExecuteOnExportLoyaltyBalances(apiResponseLocalVar);
 
@@ -30460,7 +30814,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorExportLoyaltyBalancesDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/export_customer_balances", uriBuilderLocalVar.Path, loyaltyProgramId, endDate, balances);
+                OnErrorExportLoyaltyBalancesDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/export_customer_balances", uriBuilderLocalVar.Path, loyaltyProgramId, endDate, balances, subledgerIds);
                 Events.ExecuteOnErrorExportLoyaltyBalances(e);
                 throw;
             }
@@ -59034,7 +59388,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorImportLoyaltyJoinDates(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
-        /// Import join dates for a loyalty program Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;newjoindate&#x60;: The new join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+        /// Import join dates for a loyalty program Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;joindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
         /// </summary>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
@@ -59053,7 +59407,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Import join dates for a loyalty program Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;newjoindate&#x60;: The new join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+        /// Import join dates for a loyalty program Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;joindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -61265,16 +61619,20 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatListAchievementsV2(ref Option<long> pageSize, ref Option<long> skip, ref Option<string> sort, ref Option<string> title, ref Option<long> applicationId);
+        partial void FormatListAchievementsV2(ref Option<long> pageSize, Option<List<long>> campaignId, ref Option<long> skip, ref Option<string> sort, ref Option<string> title, ref Option<long> applicationId);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
+        /// <param name="campaignId"></param>
         /// <param name="sort"></param>
         /// <param name="title"></param>
         /// <returns></returns>
-        private void ValidateListAchievementsV2(Option<string> sort, Option<string> title)
+        private void ValidateListAchievementsV2(Option<List<long>> campaignId, Option<string> sort, Option<string> title)
         {
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId));
+
             if (sort.IsSet && sort.Value == null)
                 throw new ArgumentNullException(nameof(sort));
 
@@ -61287,14 +61645,15 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="pageSize"></param>
+        /// <param name="campaignId"></param>
         /// <param name="skip"></param>
         /// <param name="sort"></param>
         /// <param name="title"></param>
         /// <param name="applicationId"></param>
-        private void AfterListAchievementsV2DefaultImplementation(IListAchievementsV2ApiResponse apiResponseLocalVar, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> title, Option<long> applicationId)
+        private void AfterListAchievementsV2DefaultImplementation(IListAchievementsV2ApiResponse apiResponseLocalVar, Option<long> pageSize, Option<List<long>> campaignId, Option<long> skip, Option<string> sort, Option<string> title, Option<long> applicationId)
         {
             bool suppressDefaultLog = false;
-            AfterListAchievementsV2(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, sort, title, applicationId);
+            AfterListAchievementsV2(ref suppressDefaultLog, apiResponseLocalVar, pageSize, campaignId, skip, sort, title, applicationId);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -61305,11 +61664,12 @@ namespace TalonOneSdk.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="pageSize"></param>
+        /// <param name="campaignId"></param>
         /// <param name="skip"></param>
         /// <param name="sort"></param>
         /// <param name="title"></param>
         /// <param name="applicationId"></param>
-        partial void AfterListAchievementsV2(ref bool suppressDefaultLog, IListAchievementsV2ApiResponse apiResponseLocalVar, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> title, Option<long> applicationId);
+        partial void AfterListAchievementsV2(ref bool suppressDefaultLog, IListAchievementsV2ApiResponse apiResponseLocalVar, Option<long> pageSize, Option<List<long>> campaignId, Option<long> skip, Option<string> sort, Option<string> title, Option<long> applicationId);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -61318,14 +61678,15 @@ namespace TalonOneSdk.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="pageSize"></param>
+        /// <param name="campaignId"></param>
         /// <param name="skip"></param>
         /// <param name="sort"></param>
         /// <param name="title"></param>
         /// <param name="applicationId"></param>
-        private void OnErrorListAchievementsV2DefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> title, Option<long> applicationId)
+        private void OnErrorListAchievementsV2DefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<List<long>> campaignId, Option<long> skip, Option<string> sort, Option<string> title, Option<long> applicationId)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListAchievementsV2(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, pageSize, skip, sort, title, applicationId);
+            OnErrorListAchievementsV2(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, pageSize, campaignId, skip, sort, title, applicationId);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -61338,27 +61699,29 @@ namespace TalonOneSdk.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="pageSize"></param>
+        /// <param name="campaignId"></param>
         /// <param name="skip"></param>
         /// <param name="sort"></param>
         /// <param name="title"></param>
         /// <param name="applicationId"></param>
-        partial void OnErrorListAchievementsV2(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<string> title, Option<long> applicationId);
+        partial void OnErrorListAchievementsV2(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<List<long>> campaignId, Option<long> skip, Option<string> sort, Option<string> title, Option<long> applicationId);
 
         /// <summary>
         /// List achievements List all achievements. 
         /// </summary>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
+        /// <param name="campaignId">Filter results by one or more campaign IDs.  To include multiple IDs, repeat the parameter for each one, for example,&#x60;?campaignId&#x3D;123&amp;campaignId&#x3D;456&#x60;. The response contains only achievements associated with the specified campaigns.  (optional)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
         /// <param name="title">Filter by the display name of the achievement. (optional)</param>
         /// <param name="applicationId">Filter by the ID of an Application connected to the achievement. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListAchievementsV2ApiResponse"/>&gt;</returns>
-        public async Task<IListAchievementsV2ApiResponse> ListAchievementsV2OrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> title = default, Option<long> applicationId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListAchievementsV2ApiResponse> ListAchievementsV2OrDefaultAsync(Option<long> pageSize = default, Option<List<long>> campaignId = default, Option<long> skip = default, Option<string> sort = default, Option<string> title = default, Option<long> applicationId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListAchievementsV2Async(pageSize, skip, sort, title, applicationId, cancellationToken).ConfigureAwait(false);
+                return await ListAchievementsV2Async(pageSize, campaignId, skip, sort, title, applicationId, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -61371,21 +61734,22 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
+        /// <param name="campaignId">Filter results by one or more campaign IDs.  To include multiple IDs, repeat the parameter for each one, for example,&#x60;?campaignId&#x3D;123&amp;campaignId&#x3D;456&#x60;. The response contains only achievements associated with the specified campaigns.  (optional)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
         /// <param name="title">Filter by the display name of the achievement. (optional)</param>
         /// <param name="applicationId">Filter by the ID of an Application connected to the achievement. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListAchievementsV2ApiResponse"/>&gt;</returns>
-        public async Task<IListAchievementsV2ApiResponse> ListAchievementsV2Async(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> title = default, Option<long> applicationId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListAchievementsV2ApiResponse> ListAchievementsV2Async(Option<long> pageSize = default, Option<List<long>> campaignId = default, Option<long> skip = default, Option<string> sort = default, Option<string> title = default, Option<long> applicationId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateListAchievementsV2(sort, title);
+                ValidateListAchievementsV2(campaignId, sort, title);
 
-                FormatListAchievementsV2(ref pageSize, ref skip, ref sort, ref title, ref applicationId);
+                FormatListAchievementsV2(ref pageSize, campaignId, ref skip, ref sort, ref title, ref applicationId);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -61400,6 +61764,9 @@ namespace TalonOneSdk.Api
 
                     if (pageSize.IsSet)
                         parseQueryStringLocalVar["pageSize"] = ClientUtils.ParameterToString(pageSize.Value);
+
+                    if (campaignId.IsSet)
+                        parseQueryStringLocalVar["campaignId"] = ClientUtils.ParameterToString(campaignId.Value);
 
                     if (skip.IsSet)
                         parseQueryStringLocalVar["skip"] = ClientUtils.ParameterToString(skip.Value);
@@ -61447,7 +61814,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterListAchievementsV2DefaultImplementation(apiResponseLocalVar, pageSize, skip, sort, title, applicationId);
+                        AfterListAchievementsV2DefaultImplementation(apiResponseLocalVar, pageSize, campaignId, skip, sort, title, applicationId);
 
                         Events.ExecuteOnListAchievementsV2(apiResponseLocalVar);
 
@@ -61461,7 +61828,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorListAchievementsV2DefaultImplementation(e, "/v2/achievements", uriBuilderLocalVar.Path, pageSize, skip, sort, title, applicationId);
+                OnErrorListAchievementsV2DefaultImplementation(e, "/v2/achievements", uriBuilderLocalVar.Path, pageSize, campaignId, skip, sort, title, applicationId);
                 Events.ExecuteOnErrorListAchievementsV2(e);
                 throw;
             }
@@ -61715,7 +62082,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorListAllRolesV2(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
-        /// List roles List all roles.
+        /// List roles List the roles defined in the deployment.  The roles returned depend on the role of the user calling this endpoint: - If the user has an admin role, all roles defined in the deployment are returned. - If the user does not have an admin role, only the roles currently assigned to this user are returned.  If your identity provider provisions roles through SCIM, any admin roles it defines are not included in this list.  To view the details of a specific role, use the [Get role](https://docs.talon.one/management-api#tag/Roles/operation/getRoleV2) endpoint. 
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListAllRolesV2ApiResponse"/>&gt;</returns>
@@ -61732,7 +62099,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// List roles List all roles.
+        /// List roles List the roles defined in the deployment.  The roles returned depend on the role of the user calling this endpoint: - If the user has an admin role, all roles defined in the deployment are returned. - If the user does not have an admin role, only the roles currently assigned to this user are returned.  If your identity provider provisions roles through SCIM, any admin roles it defines are not included in this list.  To view the details of a specific role, use the [Get role](https://docs.talon.one/management-api#tag/Roles/operation/getRoleV2) endpoint. 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>

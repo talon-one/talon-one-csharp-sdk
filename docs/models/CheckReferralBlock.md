@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | Identifies the block variant and determines which additional properties are present in it. | 
+**Type** | **string** | A block discriminator of type &#x60;checkReferral&#x60;. | 
 **Redeem** | **bool** | When &#x60;true&#x60;, the referral code is redeemed. | 
 **Id** | **string** | Unique identifier for this block. | [optional] [readonly] 
 **Tags** | **List&lt;string&gt;** | Semantic labels attached to this block. | [optional] [readonly] 

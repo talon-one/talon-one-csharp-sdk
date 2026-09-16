@@ -24,282 +24,694 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// Effect
+    /// A generic effect that is fired by a triggered campaign. The &#x60;effectType&#x60; field selects the concrete effect variant and the shape of &#x60;props&#x60;.
     /// </summary>
     public partial class Effect : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
-        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
-        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
-        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
-        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
-        /// <param name="effectType">The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).</param>
-        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
-        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
-        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
-        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
-        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
-        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
-        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
-        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
-        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
-        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
-        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
-        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
-        /// <param name="props">props</param>
-        [JsonConstructor]
-        public Effect(long campaignId, long rulesetId, long ruleIndex, string ruleName, string effectType, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default, Object props = default)
+        /// <param name="effectAcceptCoupon"></param>
+        public Effect(EffectAcceptCoupon effectAcceptCoupon)
         {
-            CampaignId = campaignId;
-            RulesetId = rulesetId;
-            RuleIndex = ruleIndex;
-            RuleName = ruleName;
-            EffectType = effectType;
-            ExperimentIdOption = experimentId;
-            TriggeredByCouponOption = triggeredByCoupon;
-            TriggeredForCatalogItemOption = triggeredForCatalogItem;
-            ConditionIndexOption = conditionIndex;
-            EvaluationGroupIDOption = evaluationGroupID;
-            EvaluationGroupModeOption = evaluationGroupMode;
-            CampaignRevisionIdOption = campaignRevisionId;
-            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
-            SelectedPriceTypeOption = selectedPriceType;
-            SelectedPriceOption = selectedPrice;
-            AdjustmentReferenceIdOption = adjustmentReferenceId;
-            RewardIdOption = rewardId;
-            Props = props;
+            EffectAcceptCoupon = effectAcceptCoupon;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectAcceptReferral"></param>
+        public Effect(EffectAcceptReferral effectAcceptReferral)
+        {
+            EffectAcceptReferral = effectAcceptReferral;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectAddFreeItem"></param>
+        public Effect(EffectAddFreeItem effectAddFreeItem)
+        {
+            EffectAddFreeItem = effectAddFreeItem;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectAddLoyaltyPoints"></param>
+        public Effect(EffectAddLoyaltyPoints effectAddLoyaltyPoints)
+        {
+            EffectAddLoyaltyPoints = effectAddLoyaltyPoints;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectAddNegativeLoyaltyPoints"></param>
+        public Effect(EffectAddNegativeLoyaltyPoints effectAddNegativeLoyaltyPoints)
+        {
+            EffectAddNegativeLoyaltyPoints = effectAddNegativeLoyaltyPoints;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectAddToAudience"></param>
+        public Effect(EffectAddToAudience effectAddToAudience)
+        {
+            EffectAddToAudience = effectAddToAudience;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectAwardGiveaway"></param>
+        public Effect(EffectAwardGiveaway effectAwardGiveaway)
+        {
+            EffectAwardGiveaway = effectAwardGiveaway;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectCallApi"></param>
+        public Effect(EffectCallApi effectCallApi)
+        {
+            EffectCallApi = effectCallApi;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectChangeLoyaltyTierLevel"></param>
+        public Effect(EffectChangeLoyaltyTierLevel effectChangeLoyaltyTierLevel)
+        {
+            EffectChangeLoyaltyTierLevel = effectChangeLoyaltyTierLevel;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectCouponCreated"></param>
+        public Effect(EffectCouponCreated effectCouponCreated)
+        {
+            EffectCouponCreated = effectCouponCreated;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectCustomEffect"></param>
+        public Effect(EffectCustomEffect effectCustomEffect)
+        {
+            EffectCustomEffect = effectCustomEffect;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectDeductLoyaltyPoints"></param>
+        public Effect(EffectDeductLoyaltyPoints effectDeductLoyaltyPoints)
+        {
+            EffectDeductLoyaltyPoints = effectDeductLoyaltyPoints;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectError"></param>
+        public Effect(EffectError effectError)
+        {
+            EffectError = effectError;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectExtendLoyaltyPointsExpiryDate"></param>
+        public Effect(EffectExtendLoyaltyPointsExpiryDate effectExtendLoyaltyPointsExpiryDate)
+        {
+            EffectExtendLoyaltyPointsExpiryDate = effectExtendLoyaltyPointsExpiryDate;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectIncreaseAchievementProgress"></param>
+        public Effect(EffectIncreaseAchievementProgress effectIncreaseAchievementProgress)
+        {
+            EffectIncreaseAchievementProgress = effectIncreaseAchievementProgress;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectJoinLoyaltyProgram"></param>
+        public Effect(EffectJoinLoyaltyProgram effectJoinLoyaltyProgram)
+        {
+            EffectJoinLoyaltyProgram = effectJoinLoyaltyProgram;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectOffsetNegativeLoyaltyPoints"></param>
+        public Effect(EffectOffsetNegativeLoyaltyPoints effectOffsetNegativeLoyaltyPoints)
+        {
+            EffectOffsetNegativeLoyaltyPoints = effectOffsetNegativeLoyaltyPoints;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectRedeemReferral"></param>
+        public Effect(EffectRedeemReferral effectRedeemReferral)
+        {
+            EffectRedeemReferral = effectRedeemReferral;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectReferralCreated"></param>
+        public Effect(EffectReferralCreated effectReferralCreated)
+        {
+            EffectReferralCreated = effectReferralCreated;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectRejectCoupon"></param>
+        public Effect(EffectRejectCoupon effectRejectCoupon)
+        {
+            EffectRejectCoupon = effectRejectCoupon;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectRejectReferral"></param>
+        public Effect(EffectRejectReferral effectRejectReferral)
+        {
+            EffectRejectReferral = effectRejectReferral;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectRemoveFromAudience"></param>
+        public Effect(EffectRemoveFromAudience effectRemoveFromAudience)
+        {
+            EffectRemoveFromAudience = effectRemoveFromAudience;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectReserveCoupon"></param>
+        public Effect(EffectReserveCoupon effectReserveCoupon)
+        {
+            EffectReserveCoupon = effectReserveCoupon;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectRollbackAddedLoyaltyPoints"></param>
+        public Effect(EffectRollbackAddedLoyaltyPoints effectRollbackAddedLoyaltyPoints)
+        {
+            EffectRollbackAddedLoyaltyPoints = effectRollbackAddedLoyaltyPoints;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectRollbackCoupon"></param>
+        public Effect(EffectRollbackCoupon effectRollbackCoupon)
+        {
+            EffectRollbackCoupon = effectRollbackCoupon;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectRollbackDeductedLoyaltyPoints"></param>
+        public Effect(EffectRollbackDeductedLoyaltyPoints effectRollbackDeductedLoyaltyPoints)
+        {
+            EffectRollbackDeductedLoyaltyPoints = effectRollbackDeductedLoyaltyPoints;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectRollbackDiscount"></param>
+        public Effect(EffectRollbackDiscount effectRollbackDiscount)
+        {
+            EffectRollbackDiscount = effectRollbackDiscount;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectRollbackIncreasedAchievementProgress"></param>
+        public Effect(EffectRollbackIncreasedAchievementProgress effectRollbackIncreasedAchievementProgress)
+        {
+            EffectRollbackIncreasedAchievementProgress = effectRollbackIncreasedAchievementProgress;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectRollbackReferral"></param>
+        public Effect(EffectRollbackReferral effectRollbackReferral)
+        {
+            EffectRollbackReferral = effectRollbackReferral;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectRollbackUseReward"></param>
+        public Effect(EffectRollbackUseReward effectRollbackUseReward)
+        {
+            EffectRollbackUseReward = effectRollbackUseReward;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectSet"></param>
+        public Effect(EffectSet effectSet)
+        {
+            EffectSet = effectSet;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectSetDiscount"></param>
+        public Effect(EffectSetDiscount effectSetDiscount)
+        {
+            EffectSetDiscount = effectSetDiscount;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectSetDiscountPerAdditionalCost"></param>
+        public Effect(EffectSetDiscountPerAdditionalCost effectSetDiscountPerAdditionalCost)
+        {
+            EffectSetDiscountPerAdditionalCost = effectSetDiscountPerAdditionalCost;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectSetDiscountPerAdditionalCostPerItem"></param>
+        public Effect(EffectSetDiscountPerAdditionalCostPerItem effectSetDiscountPerAdditionalCostPerItem)
+        {
+            EffectSetDiscountPerAdditionalCostPerItem = effectSetDiscountPerAdditionalCostPerItem;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectSetDiscountPerItem"></param>
+        public Effect(EffectSetDiscountPerItem effectSetDiscountPerItem)
+        {
+            EffectSetDiscountPerItem = effectSetDiscountPerItem;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectSetLoyaltyPointsExpiryDate"></param>
+        public Effect(EffectSetLoyaltyPointsExpiryDate effectSetLoyaltyPointsExpiryDate)
+        {
+            EffectSetLoyaltyPointsExpiryDate = effectSetLoyaltyPointsExpiryDate;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectShowBundleMetadata"></param>
+        public Effect(EffectShowBundleMetadata effectShowBundleMetadata)
+        {
+            EffectShowBundleMetadata = effectShowBundleMetadata;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectShowNotification"></param>
+        public Effect(EffectShowNotification effectShowNotification)
+        {
+            EffectShowNotification = effectShowNotification;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectStartAchievementProgress"></param>
+        public Effect(EffectStartAchievementProgress effectStartAchievementProgress)
+        {
+            EffectStartAchievementProgress = effectStartAchievementProgress;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectUnlockReward"></param>
+        public Effect(EffectUnlockReward effectUnlockReward)
+        {
+            EffectUnlockReward = effectUnlockReward;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectUseReward"></param>
+        public Effect(EffectUseReward effectUseReward)
+        {
+            EffectUseReward = effectUseReward;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
+        /// <param name="effectWillAwardGiveaway"></param>
+        public Effect(EffectWillAwardGiveaway effectWillAwardGiveaway)
+        {
+            EffectWillAwardGiveaway = effectWillAwardGiveaway;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// The ID of the campaign that triggered this effect.
+        /// An effect discriminator of type &#x60;willAwardGiveaway&#x60;.
         /// </summary>
-        /// <value>The ID of the campaign that triggered this effect.</value>
-        /* <example>244</example> */
-        [JsonPropertyName("campaignId")]
-        public long CampaignId { get; set; }
+        /// <value>An effect discriminator of type &#x60;willAwardGiveaway&#x60;.</value>
+        public enum EffectTypeEnum
+        {
+            /// <summary>
+            /// Enum WillAwardGiveaway for value: willAwardGiveaway
+            /// </summary>
+            WillAwardGiveaway = 1
+        }
 
         /// <summary>
-        /// The ID of the ruleset that was active in the campaign when this effect was triggered.
+        /// Returns a <see cref="EffectTypeEnum"/>
         /// </summary>
-        /// <value>The ID of the ruleset that was active in the campaign when this effect was triggered.</value>
-        /* <example>73</example> */
-        [JsonPropertyName("rulesetId")]
-        public long RulesetId { get; set; }
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static EffectTypeEnum EffectTypeEnumFromString(string value)
+        {
+            if (value.Equals("willAwardGiveaway"))
+                return EffectTypeEnum.WillAwardGiveaway;
+
+            throw new NotImplementedException($"Could not convert value to type EffectTypeEnum: '{value}'");
+        }
 
         /// <summary>
-        /// The position of the rule that triggered this effect within the ruleset.
+        /// Returns a <see cref="EffectTypeEnum"/>
         /// </summary>
-        /// <value>The position of the rule that triggered this effect within the ruleset.</value>
-        /* <example>2</example> */
-        [JsonPropertyName("ruleIndex")]
-        public long RuleIndex { get; set; }
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static EffectTypeEnum? EffectTypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("willAwardGiveaway"))
+                return EffectTypeEnum.WillAwardGiveaway;
+
+            return null;
+        }
 
         /// <summary>
-        /// The name of the rule that triggered this effect.
+        /// Converts the <see cref="EffectTypeEnum"/> to the json value
         /// </summary>
-        /// <value>The name of the rule that triggered this effect.</value>
-        /* <example>Give 20% discount</example> */
-        [JsonPropertyName("ruleName")]
-        public string RuleName { get; set; }
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string EffectTypeEnumToJsonValue(EffectTypeEnum value)
+        {
+            if (value == EffectTypeEnum.WillAwardGiveaway)
+                return "willAwardGiveaway";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
 
         /// <summary>
-        /// The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
+        /// Gets or Sets EffectAcceptCoupon
         /// </summary>
-        /// <value>The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).</value>
-        /* <example>rejectCoupon</example> */
-        [JsonPropertyName("effectType")]
-        public string EffectType { get; set; }
+        public EffectAcceptCoupon EffectAcceptCoupon { get; set; }
 
         /// <summary>
-        /// Used to track the state of ExperimentId
+        /// Gets or Sets EffectAcceptReferral
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> ExperimentIdOption { get; private set; }
+        public EffectAcceptReferral EffectAcceptReferral { get; set; }
 
         /// <summary>
-        /// The ID of the experiment that campaign belongs to.
+        /// Gets or Sets EffectAddFreeItem
         /// </summary>
-        /// <value>The ID of the experiment that campaign belongs to.</value>
-        /* <example>12</example> */
-        [JsonPropertyName("experimentId")]
-        public long? ExperimentId { get { return this.ExperimentIdOption.Value; } set { this.ExperimentIdOption = new Option<long?>(value); } }
+        public EffectAddFreeItem EffectAddFreeItem { get; set; }
 
         /// <summary>
-        /// Used to track the state of TriggeredByCoupon
+        /// Gets or Sets EffectAddLoyaltyPoints
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> TriggeredByCouponOption { get; private set; }
+        public EffectAddLoyaltyPoints EffectAddLoyaltyPoints { get; set; }
 
         /// <summary>
-        /// The ID of the coupon that was being evaluated when this effect was triggered.
+        /// Gets or Sets EffectAddNegativeLoyaltyPoints
         /// </summary>
-        /// <value>The ID of the coupon that was being evaluated when this effect was triggered.</value>
-        /* <example>4928</example> */
-        [JsonPropertyName("triggeredByCoupon")]
-        public long? TriggeredByCoupon { get { return this.TriggeredByCouponOption.Value; } set { this.TriggeredByCouponOption = new Option<long?>(value); } }
+        public EffectAddNegativeLoyaltyPoints EffectAddNegativeLoyaltyPoints { get; set; }
 
         /// <summary>
-        /// Used to track the state of TriggeredForCatalogItem
+        /// Gets or Sets EffectAddToAudience
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> TriggeredForCatalogItemOption { get; private set; }
+        public EffectAddToAudience EffectAddToAudience { get; set; }
 
         /// <summary>
-        /// The ID of the catalog item that was being evaluated when this effect was triggered.
+        /// Gets or Sets EffectAwardGiveaway
         /// </summary>
-        /// <value>The ID of the catalog item that was being evaluated when this effect was triggered.</value>
-        /* <example>786</example> */
-        [JsonPropertyName("triggeredForCatalogItem")]
-        public long? TriggeredForCatalogItem { get { return this.TriggeredForCatalogItemOption.Value; } set { this.TriggeredForCatalogItemOption = new Option<long?>(value); } }
+        public EffectAwardGiveaway EffectAwardGiveaway { get; set; }
 
         /// <summary>
-        /// Used to track the state of ConditionIndex
+        /// Gets or Sets EffectCallApi
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> ConditionIndexOption { get; private set; }
+        public EffectCallApi EffectCallApi { get; set; }
 
         /// <summary>
-        /// The index of the condition that was triggered.
+        /// Gets or Sets EffectChangeLoyaltyTierLevel
         /// </summary>
-        /// <value>The index of the condition that was triggered.</value>
-        /* <example>786</example> */
-        [JsonPropertyName("conditionIndex")]
-        public long? ConditionIndex { get { return this.ConditionIndexOption.Value; } set { this.ConditionIndexOption = new Option<long?>(value); } }
+        public EffectChangeLoyaltyTierLevel EffectChangeLoyaltyTierLevel { get; set; }
 
         /// <summary>
-        /// Used to track the state of EvaluationGroupID
+        /// Gets or Sets EffectCouponCreated
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> EvaluationGroupIDOption { get; private set; }
+        public EffectCouponCreated EffectCouponCreated { get; set; }
 
         /// <summary>
-        /// The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
+        /// Gets or Sets EffectCustomEffect
         /// </summary>
-        /// <value>The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</value>
-        /* <example>3</example> */
-        [JsonPropertyName("evaluationGroupID")]
-        public long? EvaluationGroupID { get { return this.EvaluationGroupIDOption.Value; } set { this.EvaluationGroupIDOption = new Option<long?>(value); } }
+        public EffectCustomEffect EffectCustomEffect { get; set; }
 
         /// <summary>
-        /// Used to track the state of EvaluationGroupMode
+        /// Gets or Sets EffectDeductLoyaltyPoints
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> EvaluationGroupModeOption { get; private set; }
+        public EffectDeductLoyaltyPoints EffectDeductLoyaltyPoints { get; set; }
 
         /// <summary>
-        /// The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
+        /// Gets or Sets EffectError
         /// </summary>
-        /// <value>The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</value>
-        /* <example>stackable</example> */
-        [JsonPropertyName("evaluationGroupMode")]
-        public string EvaluationGroupMode { get { return this.EvaluationGroupModeOption.Value; } set { this.EvaluationGroupModeOption = new Option<string>(value); } }
+        public EffectError EffectError { get; set; }
 
         /// <summary>
-        /// Used to track the state of CampaignRevisionId
+        /// Gets or Sets EffectExtendLoyaltyPointsExpiryDate
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> CampaignRevisionIdOption { get; private set; }
+        public EffectExtendLoyaltyPointsExpiryDate EffectExtendLoyaltyPointsExpiryDate { get; set; }
 
         /// <summary>
-        /// The revision ID of the campaign that was used when triggering the effect.
+        /// Gets or Sets EffectIncreaseAchievementProgress
         /// </summary>
-        /// <value>The revision ID of the campaign that was used when triggering the effect.</value>
-        /* <example>1</example> */
-        [JsonPropertyName("campaignRevisionId")]
-        public long? CampaignRevisionId { get { return this.CampaignRevisionIdOption.Value; } set { this.CampaignRevisionIdOption = new Option<long?>(value); } }
+        public EffectIncreaseAchievementProgress EffectIncreaseAchievementProgress { get; set; }
 
         /// <summary>
-        /// Used to track the state of CampaignRevisionVersionId
+        /// Gets or Sets EffectJoinLoyaltyProgram
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> CampaignRevisionVersionIdOption { get; private set; }
+        public EffectJoinLoyaltyProgram EffectJoinLoyaltyProgram { get; set; }
 
         /// <summary>
-        /// The revision version ID of the campaign that was used when triggering the effect.
+        /// Gets or Sets EffectOffsetNegativeLoyaltyPoints
         /// </summary>
-        /// <value>The revision version ID of the campaign that was used when triggering the effect.</value>
-        /* <example>5</example> */
-        [JsonPropertyName("campaignRevisionVersionId")]
-        public long? CampaignRevisionVersionId { get { return this.CampaignRevisionVersionIdOption.Value; } set { this.CampaignRevisionVersionIdOption = new Option<long?>(value); } }
+        public EffectOffsetNegativeLoyaltyPoints EffectOffsetNegativeLoyaltyPoints { get; set; }
 
         /// <summary>
-        /// Used to track the state of SelectedPriceType
+        /// Gets or Sets EffectRedeemReferral
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> SelectedPriceTypeOption { get; private set; }
+        public EffectRedeemReferral EffectRedeemReferral { get; set; }
 
         /// <summary>
-        /// The selected price type for the SKU targeted by this effect.
+        /// Gets or Sets EffectReferralCreated
         /// </summary>
-        /// <value>The selected price type for the SKU targeted by this effect.</value>
-        /* <example>member</example> */
-        [JsonPropertyName("selectedPriceType")]
-        public string SelectedPriceType { get { return this.SelectedPriceTypeOption.Value; } set { this.SelectedPriceTypeOption = new Option<string>(value); } }
+        public EffectReferralCreated EffectReferralCreated { get; set; }
 
         /// <summary>
-        /// Used to track the state of SelectedPrice
+        /// Gets or Sets EffectRejectCoupon
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<decimal?> SelectedPriceOption { get; private set; }
+        public EffectRejectCoupon EffectRejectCoupon { get; set; }
 
         /// <summary>
-        /// The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.
+        /// Gets or Sets EffectRejectReferral
         /// </summary>
-        /// <value>The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</value>
-        /* <example>100</example> */
-        [JsonPropertyName("selectedPrice")]
-        public decimal? SelectedPrice { get { return this.SelectedPriceOption.Value; } set { this.SelectedPriceOption = new Option<decimal?>(value); } }
+        public EffectRejectReferral EffectRejectReferral { get; set; }
 
         /// <summary>
-        /// Used to track the state of AdjustmentReferenceId
+        /// Gets or Sets EffectRemoveFromAudience
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Guid?> AdjustmentReferenceIdOption { get; private set; }
+        public EffectRemoveFromAudience EffectRemoveFromAudience { get; set; }
 
         /// <summary>
-        /// The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.
+        /// Gets or Sets EffectReserveCoupon
         /// </summary>
-        /// <value>The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</value>
-        /* <example>68851723-e6fa-488f-ace9-112581e6c19b</example> */
-        [JsonPropertyName("adjustmentReferenceId")]
-        public Guid? AdjustmentReferenceId { get { return this.AdjustmentReferenceIdOption.Value; } set { this.AdjustmentReferenceIdOption = new Option<Guid?>(value); } }
+        public EffectReserveCoupon EffectReserveCoupon { get; set; }
 
         /// <summary>
-        /// Used to track the state of RewardId
+        /// Gets or Sets EffectRollbackAddedLoyaltyPoints
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> RewardIdOption { get; private set; }
+        public EffectRollbackAddedLoyaltyPoints EffectRollbackAddedLoyaltyPoints { get; set; }
 
         /// <summary>
-        /// The ID of the reward that was being evaluated when this effect was triggered.
+        /// Gets or Sets EffectRollbackCoupon
         /// </summary>
-        /// <value>The ID of the reward that was being evaluated when this effect was triggered.</value>
-        /* <example>7</example> */
-        [JsonPropertyName("rewardId")]
-        public long? RewardId { get { return this.RewardIdOption.Value; } set { this.RewardIdOption = new Option<long?>(value); } }
+        public EffectRollbackCoupon EffectRollbackCoupon { get; set; }
 
         /// <summary>
-        /// Gets or Sets Props
+        /// Gets or Sets EffectRollbackDeductedLoyaltyPoints
         /// </summary>
-        [JsonPropertyName("props")]
-        public Object Props { get; set; }
+        public EffectRollbackDeductedLoyaltyPoints EffectRollbackDeductedLoyaltyPoints { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EffectRollbackDiscount
+        /// </summary>
+        public EffectRollbackDiscount EffectRollbackDiscount { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EffectRollbackIncreasedAchievementProgress
+        /// </summary>
+        public EffectRollbackIncreasedAchievementProgress EffectRollbackIncreasedAchievementProgress { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EffectRollbackReferral
+        /// </summary>
+        public EffectRollbackReferral EffectRollbackReferral { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EffectRollbackUseReward
+        /// </summary>
+        public EffectRollbackUseReward EffectRollbackUseReward { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EffectSet
+        /// </summary>
+        public EffectSet EffectSet { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EffectSetDiscount
+        /// </summary>
+        public EffectSetDiscount EffectSetDiscount { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EffectSetDiscountPerAdditionalCost
+        /// </summary>
+        public EffectSetDiscountPerAdditionalCost EffectSetDiscountPerAdditionalCost { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EffectSetDiscountPerAdditionalCostPerItem
+        /// </summary>
+        public EffectSetDiscountPerAdditionalCostPerItem EffectSetDiscountPerAdditionalCostPerItem { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EffectSetDiscountPerItem
+        /// </summary>
+        public EffectSetDiscountPerItem EffectSetDiscountPerItem { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EffectSetLoyaltyPointsExpiryDate
+        /// </summary>
+        public EffectSetLoyaltyPointsExpiryDate EffectSetLoyaltyPointsExpiryDate { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EffectShowBundleMetadata
+        /// </summary>
+        public EffectShowBundleMetadata EffectShowBundleMetadata { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EffectShowNotification
+        /// </summary>
+        public EffectShowNotification EffectShowNotification { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EffectStartAchievementProgress
+        /// </summary>
+        public EffectStartAchievementProgress EffectStartAchievementProgress { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EffectUnlockReward
+        /// </summary>
+        public EffectUnlockReward EffectUnlockReward { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EffectUseReward
+        /// </summary>
+        public EffectUseReward EffectUseReward { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EffectWillAwardGiveaway
+        /// </summary>
+        public EffectWillAwardGiveaway EffectWillAwardGiveaway { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -309,24 +721,6 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Effect {\n");
-            sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
-            sb.Append("  RulesetId: ").Append(RulesetId).Append("\n");
-            sb.Append("  RuleIndex: ").Append(RuleIndex).Append("\n");
-            sb.Append("  RuleName: ").Append(RuleName).Append("\n");
-            sb.Append("  EffectType: ").Append(EffectType).Append("\n");
-            sb.Append("  ExperimentId: ").Append(ExperimentId).Append("\n");
-            sb.Append("  TriggeredByCoupon: ").Append(TriggeredByCoupon).Append("\n");
-            sb.Append("  TriggeredForCatalogItem: ").Append(TriggeredForCatalogItem).Append("\n");
-            sb.Append("  ConditionIndex: ").Append(ConditionIndex).Append("\n");
-            sb.Append("  EvaluationGroupID: ").Append(EvaluationGroupID).Append("\n");
-            sb.Append("  EvaluationGroupMode: ").Append(EvaluationGroupMode).Append("\n");
-            sb.Append("  CampaignRevisionId: ").Append(CampaignRevisionId).Append("\n");
-            sb.Append("  CampaignRevisionVersionId: ").Append(CampaignRevisionVersionId).Append("\n");
-            sb.Append("  SelectedPriceType: ").Append(SelectedPriceType).Append("\n");
-            sb.Append("  SelectedPrice: ").Append(SelectedPrice).Append("\n");
-            sb.Append("  AdjustmentReferenceId: ").Append(AdjustmentReferenceId).Append("\n");
-            sb.Append("  RewardId: ").Append(RewardId).Append("\n");
-            sb.Append("  Props: ").Append(Props).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -337,6 +731,16 @@ namespace TalonOneSdk.Model
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            return this.BaseValidate(validationContext);
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        protected IEnumerable<ValidationResult> BaseValidate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -374,24 +778,280 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<long?> campaignId = default;
-            Option<long?> rulesetId = default;
-            Option<long?> ruleIndex = default;
-            Option<string> ruleName = default;
-            Option<string> effectType = default;
-            Option<long?> experimentId = default;
-            Option<long?> triggeredByCoupon = default;
-            Option<long?> triggeredForCatalogItem = default;
-            Option<long?> conditionIndex = default;
-            Option<long?> evaluationGroupID = default;
-            Option<string> evaluationGroupMode = default;
-            Option<long?> campaignRevisionId = default;
-            Option<long?> campaignRevisionVersionId = default;
-            Option<string> selectedPriceType = default;
-            Option<decimal?> selectedPrice = default;
-            Option<Guid?> adjustmentReferenceId = default;
-            Option<long?> rewardId = default;
-            Option<Object> props = default;
+            Option<Effect.EffectTypeEnum?> effectType = default;
+
+            EffectAcceptCoupon acceptCouponEffectAcceptCoupon = null;
+            EffectAcceptReferral acceptReferralEffectAcceptReferral = null;
+            EffectAddFreeItem addFreeItemEffectAddFreeItem = null;
+            EffectAddLoyaltyPoints addLoyaltyPointsEffectAddLoyaltyPoints = null;
+            EffectAddNegativeLoyaltyPoints addNegativeLoyaltyPointsEffectAddNegativeLoyaltyPoints = null;
+            EffectAddToAudience addToAudienceEffectAddToAudience = null;
+            EffectAwardGiveaway awardGiveawayEffectAwardGiveaway = null;
+            EffectCallApi callApiEffectCallApi = null;
+            EffectChangeLoyaltyTierLevel changeLoyaltyTierLevelEffectChangeLoyaltyTierLevel = null;
+            EffectCouponCreated couponCreatedEffectCouponCreated = null;
+            EffectCustomEffect customEffectEffectCustomEffect = null;
+            EffectDeductLoyaltyPoints deductLoyaltyPointsEffectDeductLoyaltyPoints = null;
+            EffectError errorEffectError = null;
+            EffectExtendLoyaltyPointsExpiryDate extendLoyaltyPointsExpiryDateEffectExtendLoyaltyPointsExpiryDate = null;
+            EffectIncreaseAchievementProgress increaseAchievementProgressEffectIncreaseAchievementProgress = null;
+            EffectJoinLoyaltyProgram joinLoyaltyProgramEffectJoinLoyaltyProgram = null;
+            EffectOffsetNegativeLoyaltyPoints offsetNegativeLoyaltyPointsEffectOffsetNegativeLoyaltyPoints = null;
+            EffectRedeemReferral redeemReferralEffectRedeemReferral = null;
+            EffectReferralCreated referralCreatedEffectReferralCreated = null;
+            EffectRejectCoupon rejectCouponEffectRejectCoupon = null;
+            EffectRejectReferral rejectReferralEffectRejectReferral = null;
+            EffectRemoveFromAudience removeFromAudienceEffectRemoveFromAudience = null;
+            EffectReserveCoupon reserveCouponEffectReserveCoupon = null;
+            EffectRollbackAddedLoyaltyPoints rollbackAddedLoyaltyPointsEffectRollbackAddedLoyaltyPoints = null;
+            EffectRollbackCoupon rollbackCouponEffectRollbackCoupon = null;
+            EffectRollbackDeductedLoyaltyPoints rollbackDeductedLoyaltyPointsEffectRollbackDeductedLoyaltyPoints = null;
+            EffectRollbackDiscount rollbackDiscountEffectRollbackDiscount = null;
+            EffectRollbackIncreasedAchievementProgress rollbackIncreasedAchievementProgressEffectRollbackIncreasedAchievementProgress = null;
+            EffectRollbackReferral rollbackReferralEffectRollbackReferral = null;
+            EffectRollbackUseReward rollbackUseRewardEffectRollbackUseReward = null;
+            EffectSet setEffectSet = null;
+            EffectSetDiscount setDiscountEffectSetDiscount = null;
+            EffectSetDiscountPerAdditionalCost setDiscountPerAdditionalCostEffectSetDiscountPerAdditionalCost = null;
+            EffectSetDiscountPerAdditionalCostPerItem setDiscountPerAdditionalCostPerItemEffectSetDiscountPerAdditionalCostPerItem = null;
+            EffectSetDiscountPerItem setDiscountPerItemEffectSetDiscountPerItem = null;
+            EffectSetLoyaltyPointsExpiryDate setLoyaltyPointsExpiryDateEffectSetLoyaltyPointsExpiryDate = null;
+            EffectShowBundleMetadata showBundleMetadataEffectShowBundleMetadata = null;
+            EffectShowNotification showNotificationEffectShowNotification = null;
+            EffectStartAchievementProgress startAchievementProgressEffectStartAchievementProgress = null;
+            EffectUnlockReward unlockRewardEffectUnlockReward = null;
+            EffectUseReward useRewardEffectUseReward = null;
+            EffectWillAwardGiveaway willAwardGiveawayEffectWillAwardGiveaway = null;
+
+            Utf8JsonReader utf8JsonReaderDiscriminator = utf8JsonReader;
+            while (utf8JsonReaderDiscriminator.Read())
+            {
+                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
+                    break;
+
+                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
+                    break;
+
+                if (utf8JsonReaderDiscriminator.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth - 1)
+                {
+                    string localVarJsonPropertyName = utf8JsonReaderDiscriminator.GetString();
+                    utf8JsonReaderDiscriminator.Read();
+                    if (localVarJsonPropertyName.Equals("effectType"))
+                    {
+                        string discriminator = utf8JsonReaderDiscriminator.GetString();
+                        if (discriminator.Equals("acceptCoupon"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectAcceptCoupon = utf8JsonReader;
+                            acceptCouponEffectAcceptCoupon = JsonSerializer.Deserialize<EffectAcceptCoupon>(ref utf8JsonReaderEffectAcceptCoupon, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("acceptReferral"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectAcceptReferral = utf8JsonReader;
+                            acceptReferralEffectAcceptReferral = JsonSerializer.Deserialize<EffectAcceptReferral>(ref utf8JsonReaderEffectAcceptReferral, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("addFreeItem"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectAddFreeItem = utf8JsonReader;
+                            addFreeItemEffectAddFreeItem = JsonSerializer.Deserialize<EffectAddFreeItem>(ref utf8JsonReaderEffectAddFreeItem, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("addLoyaltyPoints"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectAddLoyaltyPoints = utf8JsonReader;
+                            addLoyaltyPointsEffectAddLoyaltyPoints = JsonSerializer.Deserialize<EffectAddLoyaltyPoints>(ref utf8JsonReaderEffectAddLoyaltyPoints, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("addNegativeLoyaltyPoints"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectAddNegativeLoyaltyPoints = utf8JsonReader;
+                            addNegativeLoyaltyPointsEffectAddNegativeLoyaltyPoints = JsonSerializer.Deserialize<EffectAddNegativeLoyaltyPoints>(ref utf8JsonReaderEffectAddNegativeLoyaltyPoints, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("addToAudience"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectAddToAudience = utf8JsonReader;
+                            addToAudienceEffectAddToAudience = JsonSerializer.Deserialize<EffectAddToAudience>(ref utf8JsonReaderEffectAddToAudience, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("awardGiveaway"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectAwardGiveaway = utf8JsonReader;
+                            awardGiveawayEffectAwardGiveaway = JsonSerializer.Deserialize<EffectAwardGiveaway>(ref utf8JsonReaderEffectAwardGiveaway, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("callApi"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectCallApi = utf8JsonReader;
+                            callApiEffectCallApi = JsonSerializer.Deserialize<EffectCallApi>(ref utf8JsonReaderEffectCallApi, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("changeLoyaltyTierLevel"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectChangeLoyaltyTierLevel = utf8JsonReader;
+                            changeLoyaltyTierLevelEffectChangeLoyaltyTierLevel = JsonSerializer.Deserialize<EffectChangeLoyaltyTierLevel>(ref utf8JsonReaderEffectChangeLoyaltyTierLevel, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("couponCreated"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectCouponCreated = utf8JsonReader;
+                            couponCreatedEffectCouponCreated = JsonSerializer.Deserialize<EffectCouponCreated>(ref utf8JsonReaderEffectCouponCreated, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("customEffect"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectCustomEffect = utf8JsonReader;
+                            customEffectEffectCustomEffect = JsonSerializer.Deserialize<EffectCustomEffect>(ref utf8JsonReaderEffectCustomEffect, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("deductLoyaltyPoints"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectDeductLoyaltyPoints = utf8JsonReader;
+                            deductLoyaltyPointsEffectDeductLoyaltyPoints = JsonSerializer.Deserialize<EffectDeductLoyaltyPoints>(ref utf8JsonReaderEffectDeductLoyaltyPoints, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("error"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectError = utf8JsonReader;
+                            errorEffectError = JsonSerializer.Deserialize<EffectError>(ref utf8JsonReaderEffectError, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("extendLoyaltyPointsExpiryDate"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectExtendLoyaltyPointsExpiryDate = utf8JsonReader;
+                            extendLoyaltyPointsExpiryDateEffectExtendLoyaltyPointsExpiryDate = JsonSerializer.Deserialize<EffectExtendLoyaltyPointsExpiryDate>(ref utf8JsonReaderEffectExtendLoyaltyPointsExpiryDate, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("increaseAchievementProgress"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectIncreaseAchievementProgress = utf8JsonReader;
+                            increaseAchievementProgressEffectIncreaseAchievementProgress = JsonSerializer.Deserialize<EffectIncreaseAchievementProgress>(ref utf8JsonReaderEffectIncreaseAchievementProgress, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("joinLoyaltyProgram"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectJoinLoyaltyProgram = utf8JsonReader;
+                            joinLoyaltyProgramEffectJoinLoyaltyProgram = JsonSerializer.Deserialize<EffectJoinLoyaltyProgram>(ref utf8JsonReaderEffectJoinLoyaltyProgram, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("offsetNegativeLoyaltyPoints"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectOffsetNegativeLoyaltyPoints = utf8JsonReader;
+                            offsetNegativeLoyaltyPointsEffectOffsetNegativeLoyaltyPoints = JsonSerializer.Deserialize<EffectOffsetNegativeLoyaltyPoints>(ref utf8JsonReaderEffectOffsetNegativeLoyaltyPoints, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("redeemReferral"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectRedeemReferral = utf8JsonReader;
+                            redeemReferralEffectRedeemReferral = JsonSerializer.Deserialize<EffectRedeemReferral>(ref utf8JsonReaderEffectRedeemReferral, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("referralCreated"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectReferralCreated = utf8JsonReader;
+                            referralCreatedEffectReferralCreated = JsonSerializer.Deserialize<EffectReferralCreated>(ref utf8JsonReaderEffectReferralCreated, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("rejectCoupon"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectRejectCoupon = utf8JsonReader;
+                            rejectCouponEffectRejectCoupon = JsonSerializer.Deserialize<EffectRejectCoupon>(ref utf8JsonReaderEffectRejectCoupon, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("rejectReferral"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectRejectReferral = utf8JsonReader;
+                            rejectReferralEffectRejectReferral = JsonSerializer.Deserialize<EffectRejectReferral>(ref utf8JsonReaderEffectRejectReferral, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("removeFromAudience"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectRemoveFromAudience = utf8JsonReader;
+                            removeFromAudienceEffectRemoveFromAudience = JsonSerializer.Deserialize<EffectRemoveFromAudience>(ref utf8JsonReaderEffectRemoveFromAudience, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("reserveCoupon"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectReserveCoupon = utf8JsonReader;
+                            reserveCouponEffectReserveCoupon = JsonSerializer.Deserialize<EffectReserveCoupon>(ref utf8JsonReaderEffectReserveCoupon, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("rollbackAddedLoyaltyPoints"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectRollbackAddedLoyaltyPoints = utf8JsonReader;
+                            rollbackAddedLoyaltyPointsEffectRollbackAddedLoyaltyPoints = JsonSerializer.Deserialize<EffectRollbackAddedLoyaltyPoints>(ref utf8JsonReaderEffectRollbackAddedLoyaltyPoints, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("rollbackCoupon"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectRollbackCoupon = utf8JsonReader;
+                            rollbackCouponEffectRollbackCoupon = JsonSerializer.Deserialize<EffectRollbackCoupon>(ref utf8JsonReaderEffectRollbackCoupon, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("rollbackDeductedLoyaltyPoints"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectRollbackDeductedLoyaltyPoints = utf8JsonReader;
+                            rollbackDeductedLoyaltyPointsEffectRollbackDeductedLoyaltyPoints = JsonSerializer.Deserialize<EffectRollbackDeductedLoyaltyPoints>(ref utf8JsonReaderEffectRollbackDeductedLoyaltyPoints, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("rollbackDiscount"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectRollbackDiscount = utf8JsonReader;
+                            rollbackDiscountEffectRollbackDiscount = JsonSerializer.Deserialize<EffectRollbackDiscount>(ref utf8JsonReaderEffectRollbackDiscount, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("rollbackIncreasedAchievementProgress"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectRollbackIncreasedAchievementProgress = utf8JsonReader;
+                            rollbackIncreasedAchievementProgressEffectRollbackIncreasedAchievementProgress = JsonSerializer.Deserialize<EffectRollbackIncreasedAchievementProgress>(ref utf8JsonReaderEffectRollbackIncreasedAchievementProgress, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("rollbackReferral"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectRollbackReferral = utf8JsonReader;
+                            rollbackReferralEffectRollbackReferral = JsonSerializer.Deserialize<EffectRollbackReferral>(ref utf8JsonReaderEffectRollbackReferral, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("rollbackUseReward"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectRollbackUseReward = utf8JsonReader;
+                            rollbackUseRewardEffectRollbackUseReward = JsonSerializer.Deserialize<EffectRollbackUseReward>(ref utf8JsonReaderEffectRollbackUseReward, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("set"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectSet = utf8JsonReader;
+                            setEffectSet = JsonSerializer.Deserialize<EffectSet>(ref utf8JsonReaderEffectSet, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("setDiscount"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectSetDiscount = utf8JsonReader;
+                            setDiscountEffectSetDiscount = JsonSerializer.Deserialize<EffectSetDiscount>(ref utf8JsonReaderEffectSetDiscount, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("setDiscountPerAdditionalCost"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectSetDiscountPerAdditionalCost = utf8JsonReader;
+                            setDiscountPerAdditionalCostEffectSetDiscountPerAdditionalCost = JsonSerializer.Deserialize<EffectSetDiscountPerAdditionalCost>(ref utf8JsonReaderEffectSetDiscountPerAdditionalCost, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("setDiscountPerAdditionalCostPerItem"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectSetDiscountPerAdditionalCostPerItem = utf8JsonReader;
+                            setDiscountPerAdditionalCostPerItemEffectSetDiscountPerAdditionalCostPerItem = JsonSerializer.Deserialize<EffectSetDiscountPerAdditionalCostPerItem>(ref utf8JsonReaderEffectSetDiscountPerAdditionalCostPerItem, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("setDiscountPerItem"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectSetDiscountPerItem = utf8JsonReader;
+                            setDiscountPerItemEffectSetDiscountPerItem = JsonSerializer.Deserialize<EffectSetDiscountPerItem>(ref utf8JsonReaderEffectSetDiscountPerItem, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("setLoyaltyPointsExpiryDate"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectSetLoyaltyPointsExpiryDate = utf8JsonReader;
+                            setLoyaltyPointsExpiryDateEffectSetLoyaltyPointsExpiryDate = JsonSerializer.Deserialize<EffectSetLoyaltyPointsExpiryDate>(ref utf8JsonReaderEffectSetLoyaltyPointsExpiryDate, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("showBundleMetadata"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectShowBundleMetadata = utf8JsonReader;
+                            showBundleMetadataEffectShowBundleMetadata = JsonSerializer.Deserialize<EffectShowBundleMetadata>(ref utf8JsonReaderEffectShowBundleMetadata, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("showNotification"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectShowNotification = utf8JsonReader;
+                            showNotificationEffectShowNotification = JsonSerializer.Deserialize<EffectShowNotification>(ref utf8JsonReaderEffectShowNotification, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("startAchievementProgress"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectStartAchievementProgress = utf8JsonReader;
+                            startAchievementProgressEffectStartAchievementProgress = JsonSerializer.Deserialize<EffectStartAchievementProgress>(ref utf8JsonReaderEffectStartAchievementProgress, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("unlockReward"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectUnlockReward = utf8JsonReader;
+                            unlockRewardEffectUnlockReward = JsonSerializer.Deserialize<EffectUnlockReward>(ref utf8JsonReaderEffectUnlockReward, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("useReward"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectUseReward = utf8JsonReader;
+                            useRewardEffectUseReward = JsonSerializer.Deserialize<EffectUseReward>(ref utf8JsonReaderEffectUseReward, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("willAwardGiveaway"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectWillAwardGiveaway = utf8JsonReader;
+                            willAwardGiveawayEffectWillAwardGiveaway = JsonSerializer.Deserialize<EffectWillAwardGiveaway>(ref utf8JsonReaderEffectWillAwardGiveaway, jsonSerializerOptions);
+                        }
+                    }
+                }
+            }
 
             while (utf8JsonReader.Read())
             {
@@ -408,59 +1068,15 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "campaignId":
-                            campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "rulesetId":
-                            rulesetId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "ruleIndex":
-                            ruleIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "ruleName":
-                            ruleName = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "effectType":
-                            effectType = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "experimentId":
-                            experimentId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "triggeredByCoupon":
-                            triggeredByCoupon = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "triggeredForCatalogItem":
-                            triggeredForCatalogItem = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "conditionIndex":
-                            conditionIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "evaluationGroupID":
-                            evaluationGroupID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "evaluationGroupMode":
-                            evaluationGroupMode = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "campaignRevisionId":
-                            campaignRevisionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "campaignRevisionVersionId":
-                            campaignRevisionVersionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "selectedPriceType":
-                            selectedPriceType = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "selectedPrice":
-                            selectedPrice = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
-                            break;
-                        case "adjustmentReferenceId":
-                            adjustmentReferenceId = new Option<Guid?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (Guid?)null : utf8JsonReader.GetGuid());
-                            break;
-                        case "rewardId":
-                            rewardId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "props":
-                            props = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            string effectTypeRawValue = utf8JsonReader.GetString();
+                            if (effectTypeRawValue != null)
+                            {
+                                Effect.EffectTypeEnum? effectTypeValue = Effect.EffectTypeEnumFromStringOrDefault(effectTypeRawValue);
+                                if (effectTypeValue == null)
+                                    throw new JsonException();
+                                effectType = new Option<Effect.EffectTypeEnum?>(effectTypeValue);
+                            }
                             break;
                         default:
                             break;
@@ -468,40 +1084,139 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class Effect.", nameof(campaignId));
-
-            if (!rulesetId.IsSet)
-                throw new ArgumentException("Property is required for class Effect.", nameof(rulesetId));
-
-            if (!ruleIndex.IsSet)
-                throw new ArgumentException("Property is required for class Effect.", nameof(ruleIndex));
-
-            if (!ruleName.IsSet)
-                throw new ArgumentException("Property is required for class Effect.", nameof(ruleName));
-
             if (!effectType.IsSet)
                 throw new ArgumentException("Property is required for class Effect.", nameof(effectType));
-
-            if (!props.IsSet)
-                throw new ArgumentException("Property is required for class Effect.", nameof(props));
-
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class Effect.");
-
-            if (rulesetId.IsSet && rulesetId.Value == null)
-                throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class Effect.");
-
-            if (ruleIndex.IsSet && ruleIndex.Value == null)
-                throw new ArgumentNullException(nameof(ruleIndex), "Property is not nullable for class Effect.");
-
-            if (ruleName.IsSet && ruleName.Value == null)
-                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class Effect.");
 
             if (effectType.IsSet && effectType.Value == null)
                 throw new ArgumentNullException(nameof(effectType), "Property is not nullable for class Effect.");
 
-            return new Effect(campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, effectType.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId, props.Value);
+            if (acceptCouponEffectAcceptCoupon != null)
+                return new Effect(acceptCouponEffectAcceptCoupon);
+
+            if (acceptReferralEffectAcceptReferral != null)
+                return new Effect(acceptReferralEffectAcceptReferral);
+
+            if (addFreeItemEffectAddFreeItem != null)
+                return new Effect(addFreeItemEffectAddFreeItem);
+
+            if (addLoyaltyPointsEffectAddLoyaltyPoints != null)
+                return new Effect(addLoyaltyPointsEffectAddLoyaltyPoints);
+
+            if (addNegativeLoyaltyPointsEffectAddNegativeLoyaltyPoints != null)
+                return new Effect(addNegativeLoyaltyPointsEffectAddNegativeLoyaltyPoints);
+
+            if (addToAudienceEffectAddToAudience != null)
+                return new Effect(addToAudienceEffectAddToAudience);
+
+            if (awardGiveawayEffectAwardGiveaway != null)
+                return new Effect(awardGiveawayEffectAwardGiveaway);
+
+            if (callApiEffectCallApi != null)
+                return new Effect(callApiEffectCallApi);
+
+            if (changeLoyaltyTierLevelEffectChangeLoyaltyTierLevel != null)
+                return new Effect(changeLoyaltyTierLevelEffectChangeLoyaltyTierLevel);
+
+            if (couponCreatedEffectCouponCreated != null)
+                return new Effect(couponCreatedEffectCouponCreated);
+
+            if (customEffectEffectCustomEffect != null)
+                return new Effect(customEffectEffectCustomEffect);
+
+            if (deductLoyaltyPointsEffectDeductLoyaltyPoints != null)
+                return new Effect(deductLoyaltyPointsEffectDeductLoyaltyPoints);
+
+            if (errorEffectError != null)
+                return new Effect(errorEffectError);
+
+            if (extendLoyaltyPointsExpiryDateEffectExtendLoyaltyPointsExpiryDate != null)
+                return new Effect(extendLoyaltyPointsExpiryDateEffectExtendLoyaltyPointsExpiryDate);
+
+            if (increaseAchievementProgressEffectIncreaseAchievementProgress != null)
+                return new Effect(increaseAchievementProgressEffectIncreaseAchievementProgress);
+
+            if (joinLoyaltyProgramEffectJoinLoyaltyProgram != null)
+                return new Effect(joinLoyaltyProgramEffectJoinLoyaltyProgram);
+
+            if (offsetNegativeLoyaltyPointsEffectOffsetNegativeLoyaltyPoints != null)
+                return new Effect(offsetNegativeLoyaltyPointsEffectOffsetNegativeLoyaltyPoints);
+
+            if (redeemReferralEffectRedeemReferral != null)
+                return new Effect(redeemReferralEffectRedeemReferral);
+
+            if (referralCreatedEffectReferralCreated != null)
+                return new Effect(referralCreatedEffectReferralCreated);
+
+            if (rejectCouponEffectRejectCoupon != null)
+                return new Effect(rejectCouponEffectRejectCoupon);
+
+            if (rejectReferralEffectRejectReferral != null)
+                return new Effect(rejectReferralEffectRejectReferral);
+
+            if (removeFromAudienceEffectRemoveFromAudience != null)
+                return new Effect(removeFromAudienceEffectRemoveFromAudience);
+
+            if (reserveCouponEffectReserveCoupon != null)
+                return new Effect(reserveCouponEffectReserveCoupon);
+
+            if (rollbackAddedLoyaltyPointsEffectRollbackAddedLoyaltyPoints != null)
+                return new Effect(rollbackAddedLoyaltyPointsEffectRollbackAddedLoyaltyPoints);
+
+            if (rollbackCouponEffectRollbackCoupon != null)
+                return new Effect(rollbackCouponEffectRollbackCoupon);
+
+            if (rollbackDeductedLoyaltyPointsEffectRollbackDeductedLoyaltyPoints != null)
+                return new Effect(rollbackDeductedLoyaltyPointsEffectRollbackDeductedLoyaltyPoints);
+
+            if (rollbackDiscountEffectRollbackDiscount != null)
+                return new Effect(rollbackDiscountEffectRollbackDiscount);
+
+            if (rollbackIncreasedAchievementProgressEffectRollbackIncreasedAchievementProgress != null)
+                return new Effect(rollbackIncreasedAchievementProgressEffectRollbackIncreasedAchievementProgress);
+
+            if (rollbackReferralEffectRollbackReferral != null)
+                return new Effect(rollbackReferralEffectRollbackReferral);
+
+            if (rollbackUseRewardEffectRollbackUseReward != null)
+                return new Effect(rollbackUseRewardEffectRollbackUseReward);
+
+            if (setEffectSet != null)
+                return new Effect(setEffectSet);
+
+            if (setDiscountEffectSetDiscount != null)
+                return new Effect(setDiscountEffectSetDiscount);
+
+            if (setDiscountPerAdditionalCostEffectSetDiscountPerAdditionalCost != null)
+                return new Effect(setDiscountPerAdditionalCostEffectSetDiscountPerAdditionalCost);
+
+            if (setDiscountPerAdditionalCostPerItemEffectSetDiscountPerAdditionalCostPerItem != null)
+                return new Effect(setDiscountPerAdditionalCostPerItemEffectSetDiscountPerAdditionalCostPerItem);
+
+            if (setDiscountPerItemEffectSetDiscountPerItem != null)
+                return new Effect(setDiscountPerItemEffectSetDiscountPerItem);
+
+            if (setLoyaltyPointsExpiryDateEffectSetLoyaltyPointsExpiryDate != null)
+                return new Effect(setLoyaltyPointsExpiryDateEffectSetLoyaltyPointsExpiryDate);
+
+            if (showBundleMetadataEffectShowBundleMetadata != null)
+                return new Effect(showBundleMetadataEffectShowBundleMetadata);
+
+            if (showNotificationEffectShowNotification != null)
+                return new Effect(showNotificationEffectShowNotification);
+
+            if (startAchievementProgressEffectStartAchievementProgress != null)
+                return new Effect(startAchievementProgressEffectStartAchievementProgress);
+
+            if (unlockRewardEffectUnlockReward != null)
+                return new Effect(unlockRewardEffectUnlockReward);
+
+            if (useRewardEffectUseReward != null)
+                return new Effect(useRewardEffectUseReward);
+
+            if (willAwardGiveawayEffectWillAwardGiveaway != null)
+                return new Effect(willAwardGiveawayEffectWillAwardGiveaway);
+
+            throw new JsonException();
         }
 
         /// <summary>
@@ -514,6 +1229,258 @@ namespace TalonOneSdk.Model
         public override void Write(Utf8JsonWriter writer, Effect effect, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
+
+            if (effect.EffectAcceptCoupon != null)
+            {
+                EffectAcceptCouponJsonConverter effectAcceptCouponJsonConverter = (EffectAcceptCouponJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectAcceptCoupon.GetType()));
+                effectAcceptCouponJsonConverter.WriteProperties(writer, effect.EffectAcceptCoupon, jsonSerializerOptions);
+            }
+
+            if (effect.EffectAcceptReferral != null)
+            {
+                EffectAcceptReferralJsonConverter effectAcceptReferralJsonConverter = (EffectAcceptReferralJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectAcceptReferral.GetType()));
+                effectAcceptReferralJsonConverter.WriteProperties(writer, effect.EffectAcceptReferral, jsonSerializerOptions);
+            }
+
+            if (effect.EffectAddFreeItem != null)
+            {
+                EffectAddFreeItemJsonConverter effectAddFreeItemJsonConverter = (EffectAddFreeItemJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectAddFreeItem.GetType()));
+                effectAddFreeItemJsonConverter.WriteProperties(writer, effect.EffectAddFreeItem, jsonSerializerOptions);
+            }
+
+            if (effect.EffectAddLoyaltyPoints != null)
+            {
+                EffectAddLoyaltyPointsJsonConverter effectAddLoyaltyPointsJsonConverter = (EffectAddLoyaltyPointsJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectAddLoyaltyPoints.GetType()));
+                effectAddLoyaltyPointsJsonConverter.WriteProperties(writer, effect.EffectAddLoyaltyPoints, jsonSerializerOptions);
+            }
+
+            if (effect.EffectAddNegativeLoyaltyPoints != null)
+            {
+                EffectAddNegativeLoyaltyPointsJsonConverter effectAddNegativeLoyaltyPointsJsonConverter = (EffectAddNegativeLoyaltyPointsJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectAddNegativeLoyaltyPoints.GetType()));
+                effectAddNegativeLoyaltyPointsJsonConverter.WriteProperties(writer, effect.EffectAddNegativeLoyaltyPoints, jsonSerializerOptions);
+            }
+
+            if (effect.EffectAddToAudience != null)
+            {
+                EffectAddToAudienceJsonConverter effectAddToAudienceJsonConverter = (EffectAddToAudienceJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectAddToAudience.GetType()));
+                effectAddToAudienceJsonConverter.WriteProperties(writer, effect.EffectAddToAudience, jsonSerializerOptions);
+            }
+
+            if (effect.EffectAwardGiveaway != null)
+            {
+                EffectAwardGiveawayJsonConverter effectAwardGiveawayJsonConverter = (EffectAwardGiveawayJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectAwardGiveaway.GetType()));
+                effectAwardGiveawayJsonConverter.WriteProperties(writer, effect.EffectAwardGiveaway, jsonSerializerOptions);
+            }
+
+            if (effect.EffectCallApi != null)
+            {
+                EffectCallApiJsonConverter effectCallApiJsonConverter = (EffectCallApiJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectCallApi.GetType()));
+                effectCallApiJsonConverter.WriteProperties(writer, effect.EffectCallApi, jsonSerializerOptions);
+            }
+
+            if (effect.EffectChangeLoyaltyTierLevel != null)
+            {
+                EffectChangeLoyaltyTierLevelJsonConverter effectChangeLoyaltyTierLevelJsonConverter = (EffectChangeLoyaltyTierLevelJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectChangeLoyaltyTierLevel.GetType()));
+                effectChangeLoyaltyTierLevelJsonConverter.WriteProperties(writer, effect.EffectChangeLoyaltyTierLevel, jsonSerializerOptions);
+            }
+
+            if (effect.EffectCouponCreated != null)
+            {
+                EffectCouponCreatedJsonConverter effectCouponCreatedJsonConverter = (EffectCouponCreatedJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectCouponCreated.GetType()));
+                effectCouponCreatedJsonConverter.WriteProperties(writer, effect.EffectCouponCreated, jsonSerializerOptions);
+            }
+
+            if (effect.EffectCustomEffect != null)
+            {
+                EffectCustomEffectJsonConverter effectCustomEffectJsonConverter = (EffectCustomEffectJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectCustomEffect.GetType()));
+                effectCustomEffectJsonConverter.WriteProperties(writer, effect.EffectCustomEffect, jsonSerializerOptions);
+            }
+
+            if (effect.EffectDeductLoyaltyPoints != null)
+            {
+                EffectDeductLoyaltyPointsJsonConverter effectDeductLoyaltyPointsJsonConverter = (EffectDeductLoyaltyPointsJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectDeductLoyaltyPoints.GetType()));
+                effectDeductLoyaltyPointsJsonConverter.WriteProperties(writer, effect.EffectDeductLoyaltyPoints, jsonSerializerOptions);
+            }
+
+            if (effect.EffectError != null)
+            {
+                EffectErrorJsonConverter effectErrorJsonConverter = (EffectErrorJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectError.GetType()));
+                effectErrorJsonConverter.WriteProperties(writer, effect.EffectError, jsonSerializerOptions);
+            }
+
+            if (effect.EffectExtendLoyaltyPointsExpiryDate != null)
+            {
+                EffectExtendLoyaltyPointsExpiryDateJsonConverter effectExtendLoyaltyPointsExpiryDateJsonConverter = (EffectExtendLoyaltyPointsExpiryDateJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectExtendLoyaltyPointsExpiryDate.GetType()));
+                effectExtendLoyaltyPointsExpiryDateJsonConverter.WriteProperties(writer, effect.EffectExtendLoyaltyPointsExpiryDate, jsonSerializerOptions);
+            }
+
+            if (effect.EffectIncreaseAchievementProgress != null)
+            {
+                EffectIncreaseAchievementProgressJsonConverter effectIncreaseAchievementProgressJsonConverter = (EffectIncreaseAchievementProgressJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectIncreaseAchievementProgress.GetType()));
+                effectIncreaseAchievementProgressJsonConverter.WriteProperties(writer, effect.EffectIncreaseAchievementProgress, jsonSerializerOptions);
+            }
+
+            if (effect.EffectJoinLoyaltyProgram != null)
+            {
+                EffectJoinLoyaltyProgramJsonConverter effectJoinLoyaltyProgramJsonConverter = (EffectJoinLoyaltyProgramJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectJoinLoyaltyProgram.GetType()));
+                effectJoinLoyaltyProgramJsonConverter.WriteProperties(writer, effect.EffectJoinLoyaltyProgram, jsonSerializerOptions);
+            }
+
+            if (effect.EffectOffsetNegativeLoyaltyPoints != null)
+            {
+                EffectOffsetNegativeLoyaltyPointsJsonConverter effectOffsetNegativeLoyaltyPointsJsonConverter = (EffectOffsetNegativeLoyaltyPointsJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectOffsetNegativeLoyaltyPoints.GetType()));
+                effectOffsetNegativeLoyaltyPointsJsonConverter.WriteProperties(writer, effect.EffectOffsetNegativeLoyaltyPoints, jsonSerializerOptions);
+            }
+
+            if (effect.EffectRedeemReferral != null)
+            {
+                EffectRedeemReferralJsonConverter effectRedeemReferralJsonConverter = (EffectRedeemReferralJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectRedeemReferral.GetType()));
+                effectRedeemReferralJsonConverter.WriteProperties(writer, effect.EffectRedeemReferral, jsonSerializerOptions);
+            }
+
+            if (effect.EffectReferralCreated != null)
+            {
+                EffectReferralCreatedJsonConverter effectReferralCreatedJsonConverter = (EffectReferralCreatedJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectReferralCreated.GetType()));
+                effectReferralCreatedJsonConverter.WriteProperties(writer, effect.EffectReferralCreated, jsonSerializerOptions);
+            }
+
+            if (effect.EffectRejectCoupon != null)
+            {
+                EffectRejectCouponJsonConverter effectRejectCouponJsonConverter = (EffectRejectCouponJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectRejectCoupon.GetType()));
+                effectRejectCouponJsonConverter.WriteProperties(writer, effect.EffectRejectCoupon, jsonSerializerOptions);
+            }
+
+            if (effect.EffectRejectReferral != null)
+            {
+                EffectRejectReferralJsonConverter effectRejectReferralJsonConverter = (EffectRejectReferralJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectRejectReferral.GetType()));
+                effectRejectReferralJsonConverter.WriteProperties(writer, effect.EffectRejectReferral, jsonSerializerOptions);
+            }
+
+            if (effect.EffectRemoveFromAudience != null)
+            {
+                EffectRemoveFromAudienceJsonConverter effectRemoveFromAudienceJsonConverter = (EffectRemoveFromAudienceJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectRemoveFromAudience.GetType()));
+                effectRemoveFromAudienceJsonConverter.WriteProperties(writer, effect.EffectRemoveFromAudience, jsonSerializerOptions);
+            }
+
+            if (effect.EffectReserveCoupon != null)
+            {
+                EffectReserveCouponJsonConverter effectReserveCouponJsonConverter = (EffectReserveCouponJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectReserveCoupon.GetType()));
+                effectReserveCouponJsonConverter.WriteProperties(writer, effect.EffectReserveCoupon, jsonSerializerOptions);
+            }
+
+            if (effect.EffectRollbackAddedLoyaltyPoints != null)
+            {
+                EffectRollbackAddedLoyaltyPointsJsonConverter effectRollbackAddedLoyaltyPointsJsonConverter = (EffectRollbackAddedLoyaltyPointsJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectRollbackAddedLoyaltyPoints.GetType()));
+                effectRollbackAddedLoyaltyPointsJsonConverter.WriteProperties(writer, effect.EffectRollbackAddedLoyaltyPoints, jsonSerializerOptions);
+            }
+
+            if (effect.EffectRollbackCoupon != null)
+            {
+                EffectRollbackCouponJsonConverter effectRollbackCouponJsonConverter = (EffectRollbackCouponJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectRollbackCoupon.GetType()));
+                effectRollbackCouponJsonConverter.WriteProperties(writer, effect.EffectRollbackCoupon, jsonSerializerOptions);
+            }
+
+            if (effect.EffectRollbackDeductedLoyaltyPoints != null)
+            {
+                EffectRollbackDeductedLoyaltyPointsJsonConverter effectRollbackDeductedLoyaltyPointsJsonConverter = (EffectRollbackDeductedLoyaltyPointsJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectRollbackDeductedLoyaltyPoints.GetType()));
+                effectRollbackDeductedLoyaltyPointsJsonConverter.WriteProperties(writer, effect.EffectRollbackDeductedLoyaltyPoints, jsonSerializerOptions);
+            }
+
+            if (effect.EffectRollbackDiscount != null)
+            {
+                EffectRollbackDiscountJsonConverter effectRollbackDiscountJsonConverter = (EffectRollbackDiscountJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectRollbackDiscount.GetType()));
+                effectRollbackDiscountJsonConverter.WriteProperties(writer, effect.EffectRollbackDiscount, jsonSerializerOptions);
+            }
+
+            if (effect.EffectRollbackIncreasedAchievementProgress != null)
+            {
+                EffectRollbackIncreasedAchievementProgressJsonConverter effectRollbackIncreasedAchievementProgressJsonConverter = (EffectRollbackIncreasedAchievementProgressJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectRollbackIncreasedAchievementProgress.GetType()));
+                effectRollbackIncreasedAchievementProgressJsonConverter.WriteProperties(writer, effect.EffectRollbackIncreasedAchievementProgress, jsonSerializerOptions);
+            }
+
+            if (effect.EffectRollbackReferral != null)
+            {
+                EffectRollbackReferralJsonConverter effectRollbackReferralJsonConverter = (EffectRollbackReferralJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectRollbackReferral.GetType()));
+                effectRollbackReferralJsonConverter.WriteProperties(writer, effect.EffectRollbackReferral, jsonSerializerOptions);
+            }
+
+            if (effect.EffectRollbackUseReward != null)
+            {
+                EffectRollbackUseRewardJsonConverter effectRollbackUseRewardJsonConverter = (EffectRollbackUseRewardJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectRollbackUseReward.GetType()));
+                effectRollbackUseRewardJsonConverter.WriteProperties(writer, effect.EffectRollbackUseReward, jsonSerializerOptions);
+            }
+
+            if (effect.EffectSet != null)
+            {
+                EffectSetJsonConverter effectSetJsonConverter = (EffectSetJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectSet.GetType()));
+                effectSetJsonConverter.WriteProperties(writer, effect.EffectSet, jsonSerializerOptions);
+            }
+
+            if (effect.EffectSetDiscount != null)
+            {
+                EffectSetDiscountJsonConverter effectSetDiscountJsonConverter = (EffectSetDiscountJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectSetDiscount.GetType()));
+                effectSetDiscountJsonConverter.WriteProperties(writer, effect.EffectSetDiscount, jsonSerializerOptions);
+            }
+
+            if (effect.EffectSetDiscountPerAdditionalCost != null)
+            {
+                EffectSetDiscountPerAdditionalCostJsonConverter effectSetDiscountPerAdditionalCostJsonConverter = (EffectSetDiscountPerAdditionalCostJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectSetDiscountPerAdditionalCost.GetType()));
+                effectSetDiscountPerAdditionalCostJsonConverter.WriteProperties(writer, effect.EffectSetDiscountPerAdditionalCost, jsonSerializerOptions);
+            }
+
+            if (effect.EffectSetDiscountPerAdditionalCostPerItem != null)
+            {
+                EffectSetDiscountPerAdditionalCostPerItemJsonConverter effectSetDiscountPerAdditionalCostPerItemJsonConverter = (EffectSetDiscountPerAdditionalCostPerItemJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectSetDiscountPerAdditionalCostPerItem.GetType()));
+                effectSetDiscountPerAdditionalCostPerItemJsonConverter.WriteProperties(writer, effect.EffectSetDiscountPerAdditionalCostPerItem, jsonSerializerOptions);
+            }
+
+            if (effect.EffectSetDiscountPerItem != null)
+            {
+                EffectSetDiscountPerItemJsonConverter effectSetDiscountPerItemJsonConverter = (EffectSetDiscountPerItemJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectSetDiscountPerItem.GetType()));
+                effectSetDiscountPerItemJsonConverter.WriteProperties(writer, effect.EffectSetDiscountPerItem, jsonSerializerOptions);
+            }
+
+            if (effect.EffectSetLoyaltyPointsExpiryDate != null)
+            {
+                EffectSetLoyaltyPointsExpiryDateJsonConverter effectSetLoyaltyPointsExpiryDateJsonConverter = (EffectSetLoyaltyPointsExpiryDateJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectSetLoyaltyPointsExpiryDate.GetType()));
+                effectSetLoyaltyPointsExpiryDateJsonConverter.WriteProperties(writer, effect.EffectSetLoyaltyPointsExpiryDate, jsonSerializerOptions);
+            }
+
+            if (effect.EffectShowBundleMetadata != null)
+            {
+                EffectShowBundleMetadataJsonConverter effectShowBundleMetadataJsonConverter = (EffectShowBundleMetadataJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectShowBundleMetadata.GetType()));
+                effectShowBundleMetadataJsonConverter.WriteProperties(writer, effect.EffectShowBundleMetadata, jsonSerializerOptions);
+            }
+
+            if (effect.EffectShowNotification != null)
+            {
+                EffectShowNotificationJsonConverter effectShowNotificationJsonConverter = (EffectShowNotificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectShowNotification.GetType()));
+                effectShowNotificationJsonConverter.WriteProperties(writer, effect.EffectShowNotification, jsonSerializerOptions);
+            }
+
+            if (effect.EffectStartAchievementProgress != null)
+            {
+                EffectStartAchievementProgressJsonConverter effectStartAchievementProgressJsonConverter = (EffectStartAchievementProgressJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectStartAchievementProgress.GetType()));
+                effectStartAchievementProgressJsonConverter.WriteProperties(writer, effect.EffectStartAchievementProgress, jsonSerializerOptions);
+            }
+
+            if (effect.EffectUnlockReward != null)
+            {
+                EffectUnlockRewardJsonConverter effectUnlockRewardJsonConverter = (EffectUnlockRewardJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectUnlockReward.GetType()));
+                effectUnlockRewardJsonConverter.WriteProperties(writer, effect.EffectUnlockReward, jsonSerializerOptions);
+            }
+
+            if (effect.EffectUseReward != null)
+            {
+                EffectUseRewardJsonConverter effectUseRewardJsonConverter = (EffectUseRewardJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectUseReward.GetType()));
+                effectUseRewardJsonConverter.WriteProperties(writer, effect.EffectUseReward, jsonSerializerOptions);
+            }
+
+            if (effect.EffectWillAwardGiveaway != null)
+            {
+                EffectWillAwardGiveawayJsonConverter effectWillAwardGiveawayJsonConverter = (EffectWillAwardGiveawayJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectWillAwardGiveaway.GetType()));
+                effectWillAwardGiveawayJsonConverter.WriteProperties(writer, effect.EffectWillAwardGiveaway, jsonSerializerOptions);
+            }
 
             WriteProperties(writer, effect, jsonSerializerOptions);
             writer.WriteEndObject();
@@ -528,65 +1495,7 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Effect effect, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (effect.RuleName == null)
-                throw new ArgumentNullException(nameof(effect.RuleName), "Property is required for class Effect.");
 
-            if (effect.EffectType == null)
-                throw new ArgumentNullException(nameof(effect.EffectType), "Property is required for class Effect.");
-
-            writer.WriteNumber("campaignId", effect.CampaignId);
-
-            writer.WriteNumber("rulesetId", effect.RulesetId);
-
-            writer.WriteNumber("ruleIndex", effect.RuleIndex);
-
-            writer.WriteString("ruleName", effect.RuleName);
-
-            writer.WriteString("effectType", effect.EffectType);
-
-            if (effect.ExperimentIdOption.IsSet)
-                writer.WriteNumber("experimentId", effect.ExperimentIdOption.Value.Value);
-
-            if (effect.TriggeredByCouponOption.IsSet)
-                writer.WriteNumber("triggeredByCoupon", effect.TriggeredByCouponOption.Value.Value);
-
-            if (effect.TriggeredForCatalogItemOption.IsSet)
-                writer.WriteNumber("triggeredForCatalogItem", effect.TriggeredForCatalogItemOption.Value.Value);
-
-            if (effect.ConditionIndexOption.IsSet)
-                writer.WriteNumber("conditionIndex", effect.ConditionIndexOption.Value.Value);
-
-            if (effect.EvaluationGroupIDOption.IsSet)
-                writer.WriteNumber("evaluationGroupID", effect.EvaluationGroupIDOption.Value.Value);
-
-            if (effect.EvaluationGroupModeOption.IsSet)
-                writer.WriteString("evaluationGroupMode", effect.EvaluationGroupMode);
-
-            if (effect.CampaignRevisionIdOption.IsSet)
-                writer.WriteNumber("campaignRevisionId", effect.CampaignRevisionIdOption.Value.Value);
-
-            if (effect.CampaignRevisionVersionIdOption.IsSet)
-                writer.WriteNumber("campaignRevisionVersionId", effect.CampaignRevisionVersionIdOption.Value.Value);
-
-            if (effect.SelectedPriceTypeOption.IsSet)
-                writer.WriteString("selectedPriceType", effect.SelectedPriceType);
-
-            if (effect.SelectedPriceOption.IsSet)
-                writer.WriteNumber("selectedPrice", effect.SelectedPriceOption.Value.Value);
-
-            if (effect.AdjustmentReferenceIdOption.IsSet)
-                writer.WriteString("adjustmentReferenceId", effect.AdjustmentReferenceIdOption.Value.Value);
-
-            if (effect.RewardIdOption.IsSet)
-                writer.WriteNumber("rewardId", effect.RewardIdOption.Value.Value);
-
-            if (effect.Props != null)
-            {
-                writer.WritePropertyName("props");
-                JsonSerializer.Serialize(writer, effect.Props, jsonSerializerOptions);
-            }
-            else
-                writer.WriteNull("props");
         }
     }
 }

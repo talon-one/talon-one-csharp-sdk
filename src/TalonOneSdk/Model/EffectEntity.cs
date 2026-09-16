@@ -35,7 +35,7 @@ namespace TalonOneSdk.Model
         /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
         /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
         /// <param name="ruleName">The name of the rule that triggered this effect.</param>
-        /// <param name="effectType">The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).</param>
+        /// <param name="effectType">See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).</param>
         /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
         /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
         /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
@@ -106,9 +106,9 @@ namespace TalonOneSdk.Model
         public string RuleName { get; set; }
 
         /// <summary>
-        /// The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
+        /// See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
         /// </summary>
-        /// <value>The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).</value>
+        /// <value>See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).</value>
         /* <example>rejectCoupon</example> */
         [JsonPropertyName("effectType")]
         public string EffectType { get; set; }

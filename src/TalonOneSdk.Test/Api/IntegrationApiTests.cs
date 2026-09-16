@@ -97,7 +97,7 @@ namespace TalonOneSdk.Test.Api
             CouponReservations couponReservations = default;
             var response = await _instance.CreateCouponReservationAsync(couponValue, couponReservations);
             var model = response.Created();
-            Assert.IsType<TalonOneSdk.Model.Coupon>(model);
+            Assert.IsType<TalonOneSdk.Model.CouponWithReservations>(model);
         }
 
         /// <summary>
@@ -244,6 +244,22 @@ namespace TalonOneSdk.Test.Api
             var response = await _instance.GetCustomerInventoryAsync(integrationId, profile, referrals, coupons, loyalty, giveaways, achievements, unlockedRewards);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.CustomerInventory>(model);
+        }
+
+        /// <summary>
+        /// Test GetCustomerRewards
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task GetCustomerRewardsAsyncTest()
+        {
+            string integrationId = default;
+            Client.Option<List<string>> status = default;
+            Client.Option<long> pageSize = default;
+            Client.Option<long> skip = default;
+            Client.Option<bool> withTotalResultSize = default;
+            var response = await _instance.GetCustomerRewardsAsync(integrationId, status, pageSize, skip, withTotalResultSize);
+            var model = response.Ok();
+            Assert.IsType<TalonOneSdk.Model.GetCustomerRewards200Response>(model);
         }
 
         /// <summary>
@@ -561,7 +577,7 @@ namespace TalonOneSdk.Test.Api
             Client.Option<bool> dry = default;
             var response = await _instance.UnlockRewardAsync(rewardId, integrationUnlockRewardRequest, dry);
             var model = response.Ok();
-            Assert.IsType<TalonOneSdk.Model.IntegrationStateV2>(model);
+            Assert.IsType<TalonOneSdk.Model.IntegrationUnlockRewardResponse>(model);
         }
 
         /// <summary>

@@ -34,12 +34,12 @@ namespace TalonOneSdk.Model
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="operator">An indicator of how the block compares its elements.</param>
         /// <param name="profile">The customer profile to check against the audience. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program.</param>
-        /// <param name="audience">audience</param>
+        /// <param name="audience">The audience to check the profile against.</param>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public CheckAudienceBlock(string type, OperatorEnum @operator, ProfileEnum profile, CheckAudienceBlock1Audience audience, Option<string> id = default, Option<List<string>> tags = default, Option<List<Block>> onFailure = default)
+        public CheckAudienceBlock(string type, OperatorEnum @operator, ProfileEnum profile, AudienceBlockReference audience, Option<string> id = default, Option<List<string>> tags = default, Option<List<Block>> onFailure = default)
         {
             Type = type;
             Operator = @operator;
@@ -239,10 +239,11 @@ namespace TalonOneSdk.Model
         public string Type { get; set; }
 
         /// <summary>
-        /// Gets or Sets Audience
+        /// The audience to check the profile against.
         /// </summary>
+        /// <value>The audience to check the profile against.</value>
         [JsonPropertyName("audience")]
-        public CheckAudienceBlock1Audience Audience { get; set; }
+        public AudienceBlockReference Audience { get; set; }
 
         /// <summary>
         /// Used to track the state of Id
@@ -352,7 +353,7 @@ namespace TalonOneSdk.Model
             Option<string> type = default;
             Option<CheckAudienceBlock.OperatorEnum?> varOperator = default;
             Option<CheckAudienceBlock.ProfileEnum?> profile = default;
-            Option<CheckAudienceBlock1Audience> audience = default;
+            Option<AudienceBlockReference> audience = default;
             Option<string> id = default;
             Option<List<string>> tags = default;
             Option<List<Block>> onFailure = default;
@@ -396,7 +397,7 @@ namespace TalonOneSdk.Model
                             }
                             break;
                         case "audience":
-                            audience = new Option<CheckAudienceBlock1Audience>(JsonSerializer.Deserialize<CheckAudienceBlock1Audience>(ref utf8JsonReader, jsonSerializerOptions));
+                            audience = new Option<AudienceBlockReference>(JsonSerializer.Deserialize<AudienceBlockReference>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "id":
                             id = new Option<string>(utf8JsonReader.GetString());

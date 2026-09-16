@@ -31,13 +31,13 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckReferralBlock" /> class.
         /// </summary>
-        /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
+        /// <param name="type">A block discriminator of type &#x60;checkReferral&#x60;.</param>
         /// <param name="redeem">When &#x60;true&#x60;, the referral code is redeemed.</param>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public CheckReferralBlock(string type, bool redeem, Option<string> id = default, Option<List<string>> tags = default, Option<List<Block>> onFailure = default)
+        public CheckReferralBlock(TypeEnum type, bool redeem, Option<string> id = default, Option<List<string>> tags = default, Option<List<Block>> onFailure = default)
         {
             Type = type;
             Redeem = redeem;
@@ -50,11 +50,65 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// Identifies the block variant and determines which additional properties are present in it.
+        /// A block discriminator of type &#x60;checkReferral&#x60;.
         /// </summary>
-        /// <value>Identifies the block variant and determines which additional properties are present in it.</value>
+        /// <value>A block discriminator of type &#x60;checkReferral&#x60;.</value>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum CheckReferral for value: checkReferral
+            /// </summary>
+            CheckReferral = 1
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("checkReferral"))
+                return TypeEnum.CheckReferral;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("checkReferral"))
+                return TypeEnum.CheckReferral;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.CheckReferral)
+                return "checkReferral";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// A block discriminator of type &#x60;checkReferral&#x60;.
+        /// </summary>
+        /// <value>A block discriminator of type &#x60;checkReferral&#x60;.</value>
+        /* <example>checkReferral</example> */
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public TypeEnum Type { get; set; }
 
         /// <summary>
         /// When &#x60;true&#x60;, the referral code is redeemed.
@@ -167,7 +221,7 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> type = default;
+            Option<CheckReferralBlock.TypeEnum?> type = default;
             Option<bool?> redeem = default;
             Option<string> id = default;
             Option<List<string>> tags = default;
@@ -189,7 +243,14 @@ namespace TalonOneSdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "type":
-                            type = new Option<string>(utf8JsonReader.GetString());
+                            string typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                            {
+                                CheckReferralBlock.TypeEnum? typeValue = CheckReferralBlock.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<CheckReferralBlock.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "redeem":
                             redeem = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
@@ -221,7 +282,7 @@ namespace TalonOneSdk.Model
             if (redeem.IsSet && redeem.Value == null)
                 throw new ArgumentNullException(nameof(redeem), "Property is not nullable for class CheckReferralBlock.");
 
-            return new CheckReferralBlock(type.Value, redeem.Value.Value, id, tags, onFailure);
+            return new CheckReferralBlock(type.Value.Value, redeem.Value.Value, id, tags, onFailure);
         }
 
         /// <summary>
@@ -248,11 +309,8 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckReferralBlock checkReferralBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (checkReferralBlock.Type == null)
-                throw new ArgumentNullException(nameof(checkReferralBlock.Type), "Property is required for class CheckReferralBlock.");
-
-            writer.WriteString("type", checkReferralBlock.Type);
-
+            var typeRawValue = CheckReferralBlock.TypeEnumToJsonValue(checkReferralBlock.Type);
+            writer.WriteString("type", typeRawValue);
             writer.WriteBoolean("redeem", checkReferralBlock.Redeem);
 
             if (checkReferralBlock.IdOption.IsSet)

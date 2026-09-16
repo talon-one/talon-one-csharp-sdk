@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="RoleV2PermissionSet" /> class.
         /// </summary>
         /// <param name="name">Name of the permission set.</param>
-        /// <param name="logicalOperations">List of logical operations in the permission set. Each logical operation must be shown under the &#x60;x-permission&#x60; tag on an endpoint level. </param>
+        /// <param name="logicalOperations">List of logical operations in the permission set. </param>
         [JsonConstructor]
         public RoleV2PermissionSet(string name, List<string> logicalOperations)
         {
@@ -52,9 +52,9 @@ namespace TalonOneSdk.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// List of logical operations in the permission set. Each logical operation must be shown under the &#x60;x-permission&#x60; tag on an endpoint level. 
+        /// List of logical operations in the permission set. 
         /// </summary>
-        /// <value>List of logical operations in the permission set. Each logical operation must be shown under the &#x60;x-permission&#x60; tag on an endpoint level. </value>
+        /// <value>List of logical operations in the permission set. </value>
         /* <example>[createCampaignOperations, getCampaignOperations, deleteCampaignOperations]</example> */
         [JsonPropertyName("logicalOperations")]
         public List<string> LogicalOperations { get; set; }
