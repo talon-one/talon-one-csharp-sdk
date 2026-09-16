@@ -19,6 +19,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**GetCustomerAchievementHistory**](IntegrationApi.md#getcustomerachievementhistory) | **GET** /v1/customer_profiles/{integrationId}/achievements/{achievementId} | List customer&#39;s achievement history |
 | [**GetCustomerAchievements**](IntegrationApi.md#getcustomerachievements) | **GET** /v1/customer_profiles/{integrationId}/achievements | List customer&#39;s available achievements |
 | [**GetCustomerInventory**](IntegrationApi.md#getcustomerinventory) | **GET** /v1/customer_profiles/{integrationId}/inventory | List customer data |
+| [**GetCustomerRewards**](IntegrationApi.md#getcustomerrewards) | **GET** /v1/customer_profiles/{integrationId}/rewards | List customer&#39;s rewards |
 | [**GetCustomerSession**](IntegrationApi.md#getcustomersession) | **GET** /v2/customer_sessions/{customerSessionId} | Get customer session |
 | [**GetEventV3**](IntegrationApi.md#geteventv3) | **GET** /v3/events/{integrationId} | Get advanced event |
 | [**GetLoyaltyBalances**](IntegrationApi.md#getloyaltybalances) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/balances | Get customer&#39;s loyalty balances |
@@ -163,7 +164,7 @@ Create an audience. The audience can be created directly from scratch or can com
 
 <a id="createcouponreservation"></a>
 # **CreateCouponReservation**
-> Coupon CreateCouponReservation (string couponValue, CouponReservations couponReservations)
+> CouponWithReservations CreateCouponReservation (string couponValue, CouponReservations couponReservations)
 
 Create coupon reservation
 
@@ -179,7 +180,7 @@ Create a coupon reservation for the specified customer profiles on the specified
 
 ### Return type
 
-[**Coupon**](Coupon.md)
+[**CouponWithReservations**](CouponWithReservations.md)
 
 ### Authorization
 
@@ -650,6 +651,49 @@ Return the customer inventory regarding entities referencing this customer profi
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+<a id="getcustomerrewards"></a>
+# **GetCustomerRewards**
+> GetCustomerRewards200Response GetCustomerRewards (string integrationId, List<string> status = null, long pageSize = null, long skip = null, bool withTotalResultSize = null)
+
+List customer's rewards
+
+List the rewards held by a given customer profile. This includes shared rewards unlocked with a loyalty card linked to the customer. 
+
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **integrationId** | **string** | The integration identifier for this customer profile. Must be:  - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  |  |
+| **status** | [**List&lt;string&gt;**](string.md) | Filter results by one or more customer reward statuses.  **Note:** If no status is specified, rewards of all statuses are returned.  | [optional]  |
+| **pageSize** | **long** | The number of items in the response. | [optional] [default to 1000] |
+| **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
+| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.   - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query.  - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | [optional]  |
+
+### Return type
+
+[**GetCustomerRewards200Response**](GetCustomerRewards200Response.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 <a id="getcustomersession"></a>
 # **GetCustomerSession**
 > IntegrationCustomerSessionResponse GetCustomerSession (string customerSessionId)
@@ -1109,8 +1153,8 @@ Retrieve the rewards catalog for the Application. Returns a paginated list of re
 | **includeFree** | **bool** | Whether to include rewards that have no &#x60;pointsRequired&#x60;. These rewards are treated as free and available to all customers.  | [optional] [default to true] |
 | **loyaltyProgramId** | **long** | Return only rewards available in this loyalty program.  | [optional]  |
 | **subledgerId** | **string** | Return only rewards available in this subledger. Must be combined with &#x60;loyaltyProgramId&#x60;. To specify the main ledger, provide an empty string (\&quot;\&quot;).  | [optional]  |
-| **profileIntegrationId** | **string** | The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  | [optional]  |
-| **loyaltyCardId** | **string** | The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  | [optional]  |
+| **profileIntegrationId** | **string** | The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  For a reward with &#x60;pointsRequired&#x60; configured for a card-based loyalty program, eligibility can be evaluated based on both &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60;, if both are provided. The required points are then checked against the card&#39;s balance.  | [optional]  |
+| **loyaltyCardId** | **string** | The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  For a reward with &#x60;pointsRequired&#x60; configured for a card-based loyalty program, eligibility can be evaluated based on both &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60;, if both are provided. The card must also be linked to that customer profile. - If &#x60;loyaltyCardId&#x60; is not provided, the reward returns the &#x60;CARD_REQUIRED&#x60; failure code, because there is no card balance to compare &#x60;pointsRequired&#x60; against. - If &#x60;profileIntegrationId&#x60; is not provided, the reward returns the &#x60;PROFILE_REQUIRED&#x60; failure code, because its eligibility cannot be evaluated without a customer profile.  | [optional]  |
 
 ### Return type
 
@@ -1467,7 +1511,7 @@ Unlink a customer profile from a [registered](https://docs.talon.one/docs/produc
 
 <a id="unlockreward"></a>
 # **UnlockReward**
-> IntegrationStateV2 UnlockReward (long rewardId, IntegrationUnlockRewardRequest integrationUnlockRewardRequest, bool dry = null)
+> IntegrationUnlockRewardResponse UnlockReward (long rewardId, IntegrationUnlockRewardRequest integrationUnlockRewardRequest, bool dry = null)
 
 Unlock a reward
 
@@ -1484,7 +1528,7 @@ Unlock a reward for a customer. If the reward has `pointsRequired` configured, t
 
 ### Return type
 
-[**IntegrationStateV2**](IntegrationStateV2.md)
+[**IntegrationUnlockRewardResponse**](IntegrationUnlockRewardResponse.md)
 
 ### Authorization
 

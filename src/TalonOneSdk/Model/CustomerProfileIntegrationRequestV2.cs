@@ -35,13 +35,15 @@ namespace TalonOneSdk.Model
         /// <param name="evaluableCampaignIds">When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them. </param>
         /// <param name="responseContent">Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints. </param>
         /// <param name="audiencesChanges">Audiences memberships changes for this profile.</param>
+        /// <param name="rewardIntegrationIds">The integration IDs of the unlocked rewards that can be used in this request. </param>
         [JsonConstructor]
-        public CustomerProfileIntegrationRequestV2(Option<Dictionary<string, Object>> attributes = default, Option<List<long>> evaluableCampaignIds = default, Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>> responseContent = default, Option<ProfileAudiencesChanges> audiencesChanges = default)
+        public CustomerProfileIntegrationRequestV2(Option<Dictionary<string, Object>> attributes = default, Option<List<long>> evaluableCampaignIds = default, Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>> responseContent = default, Option<ProfileAudiencesChanges> audiencesChanges = default, Option<List<string>> rewardIntegrationIds = default)
         {
             AttributesOption = attributes;
             EvaluableCampaignIdsOption = evaluableCampaignIds;
             ResponseContentOption = responseContent;
             AudiencesChangesOption = audiencesChanges;
+            RewardIntegrationIdsOption = rewardIntegrationIds;
             OnCreated();
         }
 
@@ -271,6 +273,21 @@ namespace TalonOneSdk.Model
         public ProfileAudiencesChanges AudiencesChanges { get { return this.AudiencesChangesOption.Value; } set { this.AudiencesChangesOption = new Option<ProfileAudiencesChanges>(value); } }
 
         /// <summary>
+        /// Used to track the state of RewardIntegrationIds
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>> RewardIntegrationIdsOption { get; private set; }
+
+        /// <summary>
+        /// The integration IDs of the unlocked rewards that can be used in this request. 
+        /// </summary>
+        /// <value>The integration IDs of the unlocked rewards that can be used in this request. </value>
+        /* <example>[5c0b5e6d-3f8a-4c2b-9f1e-2a7d6b4c8e90]</example> */
+        [JsonPropertyName("rewardIntegrationIds")]
+        public List<string> RewardIntegrationIds { get { return this.RewardIntegrationIdsOption.Value; } set { this.RewardIntegrationIdsOption = new Option<List<string>>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -282,6 +299,7 @@ namespace TalonOneSdk.Model
             sb.Append("  EvaluableCampaignIds: ").Append(EvaluableCampaignIds).Append("\n");
             sb.Append("  ResponseContent: ").Append(ResponseContent).Append("\n");
             sb.Append("  AudiencesChanges: ").Append(AudiencesChanges).Append("\n");
+            sb.Append("  RewardIntegrationIds: ").Append(RewardIntegrationIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -333,6 +351,7 @@ namespace TalonOneSdk.Model
             Option<List<long>> evaluableCampaignIds = default;
             Option<List<CustomerProfileIntegrationRequestV2.ResponseContentEnum>> responseContent = default;
             Option<ProfileAudiencesChanges> audiencesChanges = default;
+            Option<List<string>> rewardIntegrationIds = default;
 
             while (utf8JsonReader.Read())
             {
@@ -382,13 +401,16 @@ namespace TalonOneSdk.Model
                         case "audiencesChanges":
                             audiencesChanges = new Option<ProfileAudiencesChanges>(JsonSerializer.Deserialize<ProfileAudiencesChanges>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "rewardIntegrationIds":
+                            rewardIntegrationIds = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
                 }
             }
 
-            return new CustomerProfileIntegrationRequestV2(attributes, evaluableCampaignIds, responseContent, audiencesChanges);
+            return new CustomerProfileIntegrationRequestV2(attributes, evaluableCampaignIds, responseContent, audiencesChanges, rewardIntegrationIds);
         }
 
         /// <summary>
@@ -439,6 +461,11 @@ namespace TalonOneSdk.Model
             {
                 writer.WritePropertyName("audiencesChanges");
                 JsonSerializer.Serialize(writer, customerProfileIntegrationRequestV2.AudiencesChanges, jsonSerializerOptions);
+            }
+            if (customerProfileIntegrationRequestV2.RewardIntegrationIdsOption.IsSet)
+            {
+                writer.WritePropertyName("rewardIntegrationIds");
+                JsonSerializer.Serialize(writer, customerProfileIntegrationRequestV2.RewardIntegrationIds, jsonSerializerOptions);
             }
         }
     }

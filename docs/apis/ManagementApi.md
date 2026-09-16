@@ -14,6 +14,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**CreateAdditionalCost**](ManagementApi.md#createadditionalcost) | **POST** /v1/additional_costs | Create additional cost |
 | [**CreateAttribute**](ManagementApi.md#createattribute) | **POST** /v1/attributes | Create custom attribute |
 | [**CreateBatchLoyaltyCards**](ManagementApi.md#createbatchloyaltycards) | **POST** /v1/loyalty_programs/{loyaltyProgramId}/cards/batch | Create loyalty cards |
+| [**CreateCampaign**](ManagementApi.md#createcampaign) | **POST** /v1/applications/{applicationId}/campaigns | Create campaign |
 | [**CreateCampaignFromTemplate**](ManagementApi.md#createcampaignfromtemplate) | **POST** /v1/applications/{applicationId}/create_campaign_from_template | Create campaign from campaign template |
 | [**CreateCampaignStoreBudget**](ManagementApi.md#createcampaignstorebudget) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets | Create campaign store budget |
 | [**CreateCollection**](ManagementApi.md#createcollection) | **POST** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | Create campaign-level collection |
@@ -584,6 +585,43 @@ Create a batch of loyalty cards in a specified [card-based loyalty program](http
 | **400** | Bad request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+<a id="createcampaign"></a>
+# **CreateCampaign**
+> Campaign CreateCampaign (long applicationId, NewCampaign newCampaign)
+
+Create campaign
+
+Create a campaign. A campaign is part of an Application and contains a set of rules. 
+
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **applicationId** | **long** | The ID of the Application. It is displayed in your Talon.One deployment URL. |  |
+| **newCampaign** | [**NewCampaign**](NewCampaign.md) | body |  |
+
+### Return type
+
+[**Campaign**](Campaign.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Created |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -2346,7 +2384,7 @@ To export customer loyalty balances to CSV, use the [Export customer loyalty bal
 
 <a id="exportloyaltybalances"></a>
 # **ExportLoyaltyBalances**
-> string ExportLoyaltyBalances (string loyaltyProgramId, DateTime endDate = null, string balances = null)
+> string ExportLoyaltyBalances (string loyaltyProgramId, DateTime endDate = null, string balances = null, List<string> subledgerIds = null)
 
 Export customer loyalty balances
 
@@ -2360,6 +2398,7 @@ Download a CSV file containing the balance of each customer in the loyalty progr
 | **loyaltyProgramId** | **string** | The identifier for the loyalty program. |  |
 | **endDate** | **DateTime** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. &gt; - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file, which shows the customer&#39;s tier at the time of export.  | [optional]  |
 | **balances** | **string** | Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  | [optional]  |
+| **subledgerIds** | [**List&lt;string&gt;**](string.md) | Filter results by an array of subledger IDs. If no value is provided, the export includes all subledgers and main ledger data for the specified loyalty program.  To specify the main ledger, provide an empty string (\&quot;\&quot;).  | [optional]  |
 
 ### Return type
 
@@ -5849,7 +5888,7 @@ Upload a CSV file containing existing customers to be assigned to existing tiers
 
 Import join dates for a loyalty program
 
-Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  > [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - `customerprofileid`: The integration ID of the customer profile whose join   date you want to update. - `newjoindate`: The new join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a `400` error. - If a join date already exists for a profile, the uploaded date replaces it.  > [!note] We recommend limiting your file size to 500 MB.  ## Example  ```csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z ``` 
+Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  > [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - `customerprofileid`: The integration ID of the customer profile whose join   date you want to update. - `joindate`: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a `400` error. - If a join date already exists for a profile, the uploaded date replaces it.  > [!note] We recommend limiting your file size to 500 MB.  ## Example  ```csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z ``` 
 
 
 ### Parameters
@@ -6117,7 +6156,7 @@ List all the achievements for a specific campaign.
 
 <a id="listachievementsv2"></a>
 # **ListAchievementsV2**
-> ListAchievementsV2200Response ListAchievementsV2 (long pageSize = null, long skip = null, string sort = null, string title = null, long applicationId = null)
+> ListAchievementsV2200Response ListAchievementsV2 (long pageSize = null, List<long> campaignId = null, long skip = null, string sort = null, string title = null, long applicationId = null)
 
 List achievements
 
@@ -6129,6 +6168,7 @@ List all achievements.
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 50] |
+| **campaignId** | [**List&lt;long&gt;**](long.md) | Filter results by one or more campaign IDs.  To include multiple IDs, repeat the parameter for each one, for example,&#x60;?campaignId&#x3D;123&amp;campaignId&#x3D;456&#x60;. The response contains only achievements associated with the specified campaigns.  | [optional]  |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
 | **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [optional]  |
 | **title** | **string** | Filter by the display name of the achievement. | [optional]  |
@@ -6163,7 +6203,7 @@ List all achievements.
 
 List roles
 
-List all roles.
+List the roles defined in the deployment.  The roles returned depend on the role of the user calling this endpoint: - If the user has an admin role, all roles defined in the deployment are returned. - If the user does not have an admin role, only the roles currently assigned to this user are returned.  If your identity provider provisions roles through SCIM, any admin roles it defines are not included in this list.  To view the details of a specific role, use the [Get role](https://docs.talon.one/management-api#tag/Roles/operation/getRoleV2) endpoint. 
 
 
 ### Parameters

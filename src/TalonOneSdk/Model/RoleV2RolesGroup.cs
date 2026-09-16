@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// RoleV2RolesGroup
+    /// A map of target entities to their permission sets.
     /// </summary>
     public partial class RoleV2RolesGroup : IValidatableObject
     {
@@ -32,9 +32,9 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="RoleV2RolesGroup" /> class.
         /// </summary>
         /// <param name="applications">A map of the link between the Application, campaign, or draft campaign-related permission set and the Application ID the permissions apply to.</param>
-        /// <param name="loyaltyPrograms">A map of the link between the loyalty program-related permission set and the Application ID the permissions apply to.</param>
-        /// <param name="campaignAccessGroups">A map of the link between the campaign access group-related permission set and the Application ID the permissions apply to.</param>
-        /// <param name="account">Name of the account-level permission set</param>
+        /// <param name="loyaltyPrograms">A map of the link between the loyalty program-related permission set and the loyalty program ID the permissions apply to.</param>
+        /// <param name="campaignAccessGroups">A map of the link between the campaign access group-related permission set and the campaign access group ID the permissions apply to.</param>
+        /// <param name="account">Name of the account-level permission set.</param>
         [JsonConstructor]
         public RoleV2RolesGroup(Option<Dictionary<string, RoleV2ApplicationDetails>> applications = default, Option<Dictionary<string, string>> loyaltyPrograms = default, Option<Dictionary<string, string>> campaignAccessGroups = default, Option<string> account = default)
         {
@@ -70,9 +70,9 @@ namespace TalonOneSdk.Model
         public Option<Dictionary<string, string>> LoyaltyProgramsOption { get; private set; }
 
         /// <summary>
-        /// A map of the link between the loyalty program-related permission set and the Application ID the permissions apply to.
+        /// A map of the link between the loyalty program-related permission set and the loyalty program ID the permissions apply to.
         /// </summary>
-        /// <value>A map of the link between the loyalty program-related permission set and the Application ID the permissions apply to.</value>
+        /// <value>A map of the link between the loyalty program-related permission set and the loyalty program ID the permissions apply to.</value>
         /* <example>{10&#x3D;Loyalty program manager permission set}</example> */
         [JsonPropertyName("loyaltyPrograms")]
         public Dictionary<string, string> LoyaltyPrograms { get { return this.LoyaltyProgramsOption.Value; } set { this.LoyaltyProgramsOption = new Option<Dictionary<string, string>>(value); } }
@@ -85,9 +85,9 @@ namespace TalonOneSdk.Model
         public Option<Dictionary<string, string>> CampaignAccessGroupsOption { get; private set; }
 
         /// <summary>
-        /// A map of the link between the campaign access group-related permission set and the Application ID the permissions apply to.
+        /// A map of the link between the campaign access group-related permission set and the campaign access group ID the permissions apply to.
         /// </summary>
-        /// <value>A map of the link between the campaign access group-related permission set and the Application ID the permissions apply to.</value>
+        /// <value>A map of the link between the campaign access group-related permission set and the campaign access group ID the permissions apply to.</value>
         /* <example>{5&#x3D;Campaign access group manager permission set}</example> */
         [JsonPropertyName("campaignAccessGroups")]
         public Dictionary<string, string> CampaignAccessGroups { get { return this.CampaignAccessGroupsOption.Value; } set { this.CampaignAccessGroupsOption = new Option<Dictionary<string, string>>(value); } }
@@ -100,9 +100,10 @@ namespace TalonOneSdk.Model
         public Option<string> AccountOption { get; private set; }
 
         /// <summary>
-        /// Name of the account-level permission set
+        /// Name of the account-level permission set.
         /// </summary>
-        /// <value>Name of the account-level permission set</value>
+        /// <value>Name of the account-level permission set.</value>
+        /* <example>Account administration permission set</example> */
         [JsonPropertyName("account")]
         public string Account { get { return this.AccountOption.Value; } set { this.AccountOption = new Option<string>(value); } }
 

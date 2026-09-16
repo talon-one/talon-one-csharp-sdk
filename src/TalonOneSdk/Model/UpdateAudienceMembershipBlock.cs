@@ -34,11 +34,11 @@ namespace TalonOneSdk.Model
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="operator">The action to perform.</param>
         /// <param name="profile">The customer profile to add or remove from the audience. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program.</param>
-        /// <param name="audience">audience</param>
+        /// <param name="audience">The audience to add the customer to or remove them from.</param>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         [JsonConstructor]
-        public UpdateAudienceMembershipBlock(string type, OperatorEnum @operator, ProfileEnum profile, UpdateAudienceMembershipBlock1Audience audience, Option<string> id = default, Option<List<string>> tags = default)
+        public UpdateAudienceMembershipBlock(string type, OperatorEnum @operator, ProfileEnum profile, AudienceBlockReference audience, Option<string> id = default, Option<List<string>> tags = default)
         {
             Type = type;
             Operator = @operator;
@@ -209,10 +209,11 @@ namespace TalonOneSdk.Model
         public string Type { get; set; }
 
         /// <summary>
-        /// Gets or Sets Audience
+        /// The audience to add the customer to or remove them from.
         /// </summary>
+        /// <value>The audience to add the customer to or remove them from.</value>
         [JsonPropertyName("audience")]
-        public UpdateAudienceMembershipBlock1Audience Audience { get; set; }
+        public AudienceBlockReference Audience { get; set; }
 
         /// <summary>
         /// Used to track the state of Id
@@ -307,7 +308,7 @@ namespace TalonOneSdk.Model
             Option<string> type = default;
             Option<UpdateAudienceMembershipBlock.OperatorEnum?> varOperator = default;
             Option<UpdateAudienceMembershipBlock.ProfileEnum?> profile = default;
-            Option<UpdateAudienceMembershipBlock1Audience> audience = default;
+            Option<AudienceBlockReference> audience = default;
             Option<string> id = default;
             Option<List<string>> tags = default;
 
@@ -350,7 +351,7 @@ namespace TalonOneSdk.Model
                             }
                             break;
                         case "audience":
-                            audience = new Option<UpdateAudienceMembershipBlock1Audience>(JsonSerializer.Deserialize<UpdateAudienceMembershipBlock1Audience>(ref utf8JsonReader, jsonSerializerOptions));
+                            audience = new Option<AudienceBlockReference>(JsonSerializer.Deserialize<AudienceBlockReference>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "id":
                             id = new Option<string>(utf8JsonReader.GetString());

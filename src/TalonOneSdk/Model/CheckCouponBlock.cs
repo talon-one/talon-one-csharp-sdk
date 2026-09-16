@@ -31,13 +31,13 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckCouponBlock" /> class.
         /// </summary>
-        /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
+        /// <param name="type">A block discriminator of type &#x60;checkCoupon&#x60;.</param>
         /// <param name="redeem">When &#x60;true&#x60;, the coupon code is redeemed.</param>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public CheckCouponBlock(string type, bool redeem, Option<string> id = default, Option<List<string>> tags = default, Option<List<Block>> onFailure = default)
+        public CheckCouponBlock(TypeEnum type, bool redeem, Option<string> id = default, Option<List<string>> tags = default, Option<List<Block>> onFailure = default)
         {
             Type = type;
             Redeem = redeem;
@@ -50,11 +50,65 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// Identifies the block variant and determines which additional properties are present in it.
+        /// A block discriminator of type &#x60;checkCoupon&#x60;.
         /// </summary>
-        /// <value>Identifies the block variant and determines which additional properties are present in it.</value>
+        /// <value>A block discriminator of type &#x60;checkCoupon&#x60;.</value>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum CheckCoupon for value: checkCoupon
+            /// </summary>
+            CheckCoupon = 1
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("checkCoupon"))
+                return TypeEnum.CheckCoupon;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("checkCoupon"))
+                return TypeEnum.CheckCoupon;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.CheckCoupon)
+                return "checkCoupon";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// A block discriminator of type &#x60;checkCoupon&#x60;.
+        /// </summary>
+        /// <value>A block discriminator of type &#x60;checkCoupon&#x60;.</value>
+        /* <example>checkCoupon</example> */
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public TypeEnum Type { get; set; }
 
         /// <summary>
         /// When &#x60;true&#x60;, the coupon code is redeemed.
@@ -167,7 +221,7 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> type = default;
+            Option<CheckCouponBlock.TypeEnum?> type = default;
             Option<bool?> redeem = default;
             Option<string> id = default;
             Option<List<string>> tags = default;
@@ -189,7 +243,14 @@ namespace TalonOneSdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "type":
-                            type = new Option<string>(utf8JsonReader.GetString());
+                            string typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                            {
+                                CheckCouponBlock.TypeEnum? typeValue = CheckCouponBlock.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<CheckCouponBlock.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "redeem":
                             redeem = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
@@ -221,7 +282,7 @@ namespace TalonOneSdk.Model
             if (redeem.IsSet && redeem.Value == null)
                 throw new ArgumentNullException(nameof(redeem), "Property is not nullable for class CheckCouponBlock.");
 
-            return new CheckCouponBlock(type.Value, redeem.Value.Value, id, tags, onFailure);
+            return new CheckCouponBlock(type.Value.Value, redeem.Value.Value, id, tags, onFailure);
         }
 
         /// <summary>
@@ -248,11 +309,8 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckCouponBlock checkCouponBlock, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (checkCouponBlock.Type == null)
-                throw new ArgumentNullException(nameof(checkCouponBlock.Type), "Property is required for class CheckCouponBlock.");
-
-            writer.WriteString("type", checkCouponBlock.Type);
-
+            var typeRawValue = CheckCouponBlock.TypeEnumToJsonValue(checkCouponBlock.Type);
+            writer.WriteString("type", typeRawValue);
             writer.WriteBoolean("redeem", checkCouponBlock.Redeem);
 
             if (checkCouponBlock.IdOption.IsSet)

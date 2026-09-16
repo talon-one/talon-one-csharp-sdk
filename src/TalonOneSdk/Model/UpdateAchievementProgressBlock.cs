@@ -34,11 +34,11 @@ namespace TalonOneSdk.Model
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="operator">operator</param>
         /// <param name="value">The value to update the progress by. Supports template placeholders (e.g. \&quot;{{$Session.Total / 2}}\&quot;) for dynamic quantities.</param>
-        /// <param name="achievement">achievement</param>
+        /// <param name="achievement">The achievement to update.</param>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         [JsonConstructor]
-        public UpdateAchievementProgressBlock(string type, OperatorEnum @operator, string value, UpdateAchievementProgressBlock1Achievement achievement, Option<string> id = default, Option<List<string>> tags = default)
+        public UpdateAchievementProgressBlock(string type, OperatorEnum @operator, string value, AchievementBlockReference achievement, Option<string> id = default, Option<List<string>> tags = default)
         {
             Type = type;
             Operator = @operator;
@@ -126,10 +126,11 @@ namespace TalonOneSdk.Model
         public string Value { get; set; }
 
         /// <summary>
-        /// Gets or Sets Achievement
+        /// The achievement to update.
         /// </summary>
+        /// <value>The achievement to update.</value>
         [JsonPropertyName("achievement")]
-        public UpdateAchievementProgressBlock1Achievement Achievement { get; set; }
+        public AchievementBlockReference Achievement { get; set; }
 
         /// <summary>
         /// Used to track the state of Id
@@ -224,7 +225,7 @@ namespace TalonOneSdk.Model
             Option<string> type = default;
             Option<UpdateAchievementProgressBlock.OperatorEnum?> varOperator = default;
             Option<string> value = default;
-            Option<UpdateAchievementProgressBlock1Achievement> achievement = default;
+            Option<AchievementBlockReference> achievement = default;
             Option<string> id = default;
             Option<List<string>> tags = default;
 
@@ -260,7 +261,7 @@ namespace TalonOneSdk.Model
                             value = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "achievement":
-                            achievement = new Option<UpdateAchievementProgressBlock1Achievement>(JsonSerializer.Deserialize<UpdateAchievementProgressBlock1Achievement>(ref utf8JsonReader, jsonSerializerOptions));
+                            achievement = new Option<AchievementBlockReference>(JsonSerializer.Deserialize<AchievementBlockReference>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "id":
                             id = new Option<string>(utf8JsonReader.GetString());

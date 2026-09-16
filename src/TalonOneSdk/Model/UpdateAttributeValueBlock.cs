@@ -33,13 +33,13 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="operator">The update operation applied to the attribute.</param>
-        /// <param name="attribute">attribute</param>
+        /// <param name="attribute">The attribute being updated.</param>
         /// <param name="target">target</param>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="value">The value of the attribute. Omitted when operator is set to &#x60;toggle&#x60;.</param>
         [JsonConstructor]
-        public UpdateAttributeValueBlock(string type, OperatorEnum @operator, UpdateAttributeValueBlock1Attribute attribute, UpdateAttributeValueBlock1Target target, Option<string> id = default, Option<List<string>> tags = default, Option<Object> value = default)
+        public UpdateAttributeValueBlock(string type, OperatorEnum @operator, AttributeBlockReference attribute, UpdateAttributeValueBlock1Target target, Option<string> id = default, Option<List<string>> tags = default, Option<Object> value = default)
         {
             Type = type;
             Operator = @operator;
@@ -220,10 +220,11 @@ namespace TalonOneSdk.Model
         public string Type { get; set; }
 
         /// <summary>
-        /// Gets or Sets Attribute
+        /// The attribute being updated.
         /// </summary>
+        /// <value>The attribute being updated.</value>
         [JsonPropertyName("attribute")]
-        public UpdateAttributeValueBlock1Attribute Attribute { get; set; }
+        public AttributeBlockReference Attribute { get; set; }
 
         /// <summary>
         /// Gets or Sets Target
@@ -339,7 +340,7 @@ namespace TalonOneSdk.Model
 
             Option<string> type = default;
             Option<UpdateAttributeValueBlock.OperatorEnum?> varOperator = default;
-            Option<UpdateAttributeValueBlock1Attribute> attribute = default;
+            Option<AttributeBlockReference> attribute = default;
             Option<UpdateAttributeValueBlock1Target> target = default;
             Option<string> id = default;
             Option<List<string>> tags = default;
@@ -374,7 +375,7 @@ namespace TalonOneSdk.Model
                             }
                             break;
                         case "attribute":
-                            attribute = new Option<UpdateAttributeValueBlock1Attribute>(JsonSerializer.Deserialize<UpdateAttributeValueBlock1Attribute>(ref utf8JsonReader, jsonSerializerOptions));
+                            attribute = new Option<AttributeBlockReference>(JsonSerializer.Deserialize<AttributeBlockReference>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "target":
                             target = new Option<UpdateAttributeValueBlock1Target>(JsonSerializer.Deserialize<UpdateAttributeValueBlock1Target>(ref utf8JsonReader, jsonSerializerOptions));

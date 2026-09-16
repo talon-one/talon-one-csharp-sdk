@@ -39,7 +39,7 @@ namespace TalonOneSdk.Model
         /// <param name="onFailure">Blocks evaluated when this block fails or returns false.</param>
         /// <param name="onError">Named error handlers evaluated when a specific error occurs.</param>
         [JsonConstructor]
-        public AwardGiveawayBlock(string type, GiveawayPoolReference giveawayPool, ProfileEnum profile, Option<string> id = default, Option<List<string>> tags = default, Option<List<Block>> onFailure = default, Option<Dictionary<string, List<Block>>> onError = default)
+        public AwardGiveawayBlock(string type, GiveawayPoolBlockReference giveawayPool, ProfileEnum profile, Option<string> id = default, Option<List<string>> tags = default, Option<List<Block>> onFailure = default, Option<Dictionary<string, List<Block>>> onError = default)
         {
             Type = type;
             GiveawayPool = giveawayPool;
@@ -140,7 +140,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <value>The giveaway pool from which an item is awarded.</value>
         [JsonPropertyName("giveawayPool")]
-        public GiveawayPoolReference GiveawayPool { get; set; }
+        public GiveawayPoolBlockReference GiveawayPool { get; set; }
 
         /// <summary>
         /// Used to track the state of Id
@@ -262,7 +262,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string> type = default;
-            Option<GiveawayPoolReference> giveawayPool = default;
+            Option<GiveawayPoolBlockReference> giveawayPool = default;
             Option<AwardGiveawayBlock.ProfileEnum?> profile = default;
             Option<string> id = default;
             Option<List<string>> tags = default;
@@ -288,7 +288,7 @@ namespace TalonOneSdk.Model
                             type = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "giveawayPool":
-                            giveawayPool = new Option<GiveawayPoolReference>(JsonSerializer.Deserialize<GiveawayPoolReference>(ref utf8JsonReader, jsonSerializerOptions));
+                            giveawayPool = new Option<GiveawayPoolBlockReference>(JsonSerializer.Deserialize<GiveawayPoolBlockReference>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "profile":
                             string profileRawValue = utf8JsonReader.GetString();

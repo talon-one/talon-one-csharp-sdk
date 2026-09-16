@@ -433,6 +433,37 @@ namespace TalonOneSdk.Api
         Task<IGetCustomerInventoryApiResponse> GetCustomerInventoryOrDefaultAsync(string integrationId, Option<bool> profile = default, Option<bool> referrals = default, Option<bool> coupons = default, Option<bool> loyalty = default, Option<bool> giveaways = default, Option<bool> achievements = default, Option<bool> unlockedRewards = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// List customer&#39;s rewards
+        /// </summary>
+        /// <remarks>
+        /// List the rewards held by a given customer profile. This includes shared rewards unlocked with a loyalty card linked to the customer. 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="integrationId">The integration identifier for this customer profile. Must be:  - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID. </param>
+        /// <param name="status">Filter results by one or more customer reward statuses.  **Note:** If no status is specified, rewards of all statuses are returned.  (optional)</param>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.   - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query.  - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCustomerRewardsApiResponse"/>&gt;</returns>
+        Task<IGetCustomerRewardsApiResponse> GetCustomerRewardsAsync(string integrationId, Option<List<string>> status = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List customer&#39;s rewards
+        /// </summary>
+        /// <remarks>
+        /// List the rewards held by a given customer profile. This includes shared rewards unlocked with a loyalty card linked to the customer. 
+        /// </remarks>
+        /// <param name="integrationId">The integration identifier for this customer profile. Must be:  - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID. </param>
+        /// <param name="status">Filter results by one or more customer reward statuses.  **Note:** If no status is specified, rewards of all statuses are returned.  (optional)</param>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.   - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query.  - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCustomerRewardsApiResponse"/>&gt;</returns>
+        Task<IGetCustomerRewardsApiResponse> GetCustomerRewardsOrDefaultAsync(string integrationId, Option<List<string>> status = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Get customer session
         /// </summary>
         /// <remarks>
@@ -780,8 +811,8 @@ namespace TalonOneSdk.Api
         /// <param name="includeFree">Whether to include rewards that have no &#x60;pointsRequired&#x60;. These rewards are treated as free and available to all customers.  (optional, default to true)</param>
         /// <param name="loyaltyProgramId">Return only rewards available in this loyalty program.  (optional)</param>
         /// <param name="subledgerId">Return only rewards available in this subledger. Must be combined with &#x60;loyaltyProgramId&#x60;. To specify the main ledger, provide an empty string (\&quot;\&quot;).  (optional)</param>
-        /// <param name="profileIntegrationId">The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  (optional)</param>
-        /// <param name="loyaltyCardId">The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  (optional)</param>
+        /// <param name="profileIntegrationId">The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  For a reward with &#x60;pointsRequired&#x60; configured for a card-based loyalty program, eligibility can be evaluated based on both &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60;, if both are provided. The required points are then checked against the card&#39;s balance.  (optional)</param>
+        /// <param name="loyaltyCardId">The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  For a reward with &#x60;pointsRequired&#x60; configured for a card-based loyalty program, eligibility can be evaluated based on both &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60;, if both are provided. The card must also be linked to that customer profile. - If &#x60;loyaltyCardId&#x60; is not provided, the reward returns the &#x60;CARD_REQUIRED&#x60; failure code, because there is no card balance to compare &#x60;pointsRequired&#x60; against. - If &#x60;profileIntegrationId&#x60; is not provided, the reward returns the &#x60;PROFILE_REQUIRED&#x60; failure code, because its eligibility cannot be evaluated without a customer profile.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationRewardsCatalogApiResponse"/>&gt;</returns>
         Task<IIntegrationRewardsCatalogApiResponse> IntegrationRewardsCatalogAsync(Option<long> pageSize = default, Option<long> skip = default, Option<decimal> pointsFrom = default, Option<decimal> pointsTo = default, Option<bool> includeFree = default, Option<long> loyaltyProgramId = default, Option<string> subledgerId = default, Option<string> profileIntegrationId = default, Option<string> loyaltyCardId = default, System.Threading.CancellationToken cancellationToken = default);
@@ -799,8 +830,8 @@ namespace TalonOneSdk.Api
         /// <param name="includeFree">Whether to include rewards that have no &#x60;pointsRequired&#x60;. These rewards are treated as free and available to all customers.  (optional, default to true)</param>
         /// <param name="loyaltyProgramId">Return only rewards available in this loyalty program.  (optional)</param>
         /// <param name="subledgerId">Return only rewards available in this subledger. Must be combined with &#x60;loyaltyProgramId&#x60;. To specify the main ledger, provide an empty string (\&quot;\&quot;).  (optional)</param>
-        /// <param name="profileIntegrationId">The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  (optional)</param>
-        /// <param name="loyaltyCardId">The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  (optional)</param>
+        /// <param name="profileIntegrationId">The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  For a reward with &#x60;pointsRequired&#x60; configured for a card-based loyalty program, eligibility can be evaluated based on both &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60;, if both are provided. The required points are then checked against the card&#39;s balance.  (optional)</param>
+        /// <param name="loyaltyCardId">The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  For a reward with &#x60;pointsRequired&#x60; configured for a card-based loyalty program, eligibility can be evaluated based on both &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60;, if both are provided. The card must also be linked to that customer profile. - If &#x60;loyaltyCardId&#x60; is not provided, the reward returns the &#x60;CARD_REQUIRED&#x60; failure code, because there is no card balance to compare &#x60;pointsRequired&#x60; against. - If &#x60;profileIntegrationId&#x60; is not provided, the reward returns the &#x60;PROFILE_REQUIRED&#x60; failure code, because its eligibility cannot be evaluated without a customer profile.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationRewardsCatalogApiResponse"/>&gt;</returns>
         Task<IIntegrationRewardsCatalogApiResponse> IntegrationRewardsCatalogOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<decimal> pointsFrom = default, Option<decimal> pointsTo = default, Option<bool> includeFree = default, Option<long> loyaltyProgramId = default, Option<string> subledgerId = default, Option<string> profileIntegrationId = default, Option<string> loyaltyCardId = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1290,7 +1321,7 @@ namespace TalonOneSdk.Api
     /// <summary>
     /// The <see cref="ICreateCouponReservationApiResponse"/>
     /// </summary>
-    public interface ICreateCouponReservationApiResponse : TalonOneSdk.Client.IApiResponse, ICreated<TalonOneSdk.Model.Coupon>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
+    public interface ICreateCouponReservationApiResponse : TalonOneSdk.Client.IApiResponse, ICreated<TalonOneSdk.Model.CouponWithReservations>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
     {
         /// <summary>
         /// Returns true if the response is 201 Created
@@ -1609,6 +1640,36 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <returns></returns>
         bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IGetCustomerRewardsApiResponse"/>
+    /// </summary>
+    public interface IGetCustomerRewardsApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.GetCustomerRewards200Response>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
 
         /// <summary>
         /// Returns true if the response is 401 Unauthorized
@@ -2172,7 +2233,7 @@ namespace TalonOneSdk.Api
     /// <summary>
     /// The <see cref="IUnlockRewardApiResponse"/>
     /// </summary>
-    public interface IUnlockRewardApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.IntegrationStateV2>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, IForbidden<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>, IConflict<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnprocessableContent<TalonOneSdk.Model.RewardUnlockRejection>
+    public interface IUnlockRewardApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.IntegrationUnlockRewardResponse>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, IForbidden<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>, IConflict<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnprocessableContent<TalonOneSdk.Model.RewardUnlockRejection>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -2688,6 +2749,26 @@ namespace TalonOneSdk.Api
         internal void ExecuteOnErrorGetCustomerInventory(Exception exception)
         {
             OnErrorGetCustomerInventory?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnGetCustomerRewards;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorGetCustomerRewards;
+
+        internal void ExecuteOnGetCustomerRewards(IntegrationApi.GetCustomerRewardsApiResponse apiResponse)
+        {
+            OnGetCustomerRewards?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorGetCustomerRewards(Exception exception)
+        {
+            OnErrorGetCustomerRewards?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -4611,32 +4692,32 @@ namespace TalonOneSdk.Api
             /// Deserializes the response if the response is 201 Created
             /// </summary>
             /// <returns></returns>
-            public TalonOneSdk.Model.Coupon Created()
+            public TalonOneSdk.Model.CouponWithReservations Created()
             {
                 bool suppressDefault = false;
-                TalonOneSdk.Model.Coupon result = default;
+                TalonOneSdk.Model.CouponWithReservations result = default;
                 OnCreated(ref suppressDefault, ref result);
                 if (!suppressDefault)
                     result = DefaultCreated();
                 return result;
             }
 
-            private TalonOneSdk.Model.Coupon DefaultCreated()
+            private TalonOneSdk.Model.CouponWithReservations DefaultCreated()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsCreated
-                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Coupon>(RawContent, _jsonSerializerOptions)
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.CouponWithReservations>(RawContent, _jsonSerializerOptions)
                     : default;
             }
 
-            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.Coupon result);
+            partial void OnCreated(ref bool suppressDefault, ref TalonOneSdk.Model.CouponWithReservations result);
 
             /// <summary>
             /// Returns true if the response is 201 Created and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryCreated(out TalonOneSdk.Model.Coupon result)
+            public bool TryCreated(out TalonOneSdk.Model.CouponWithReservations result)
             {
                 result = null;
 
@@ -9041,6 +9122,461 @@ namespace TalonOneSdk.Api
                 } catch (Exception e)
                 {
                     OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryUnauthorized(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsNotFound
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryNotFound(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = NotFound();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatGetCustomerRewards(ref string integrationId, Option<List<string>> status, ref Option<long> pageSize, ref Option<long> skip, ref Option<bool> withTotalResultSize);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="integrationId"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        private void ValidateGetCustomerRewards(string integrationId, Option<List<string>> status)
+        {
+            if (integrationId == null)
+                throw new ArgumentNullException(nameof(integrationId));
+
+            if (status.IsSet && status.Value == null)
+                throw new ArgumentNullException(nameof(status));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="integrationId"></param>
+        /// <param name="status"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="withTotalResultSize"></param>
+        private void AfterGetCustomerRewardsDefaultImplementation(IGetCustomerRewardsApiResponse apiResponseLocalVar, string integrationId, Option<List<string>> status, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetCustomerRewards(ref suppressDefaultLog, apiResponseLocalVar, integrationId, status, pageSize, skip, withTotalResultSize);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="integrationId"></param>
+        /// <param name="status"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="withTotalResultSize"></param>
+        partial void AfterGetCustomerRewards(ref bool suppressDefaultLog, IGetCustomerRewardsApiResponse apiResponseLocalVar, string integrationId, Option<List<string>> status, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="integrationId"></param>
+        /// <param name="status"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="withTotalResultSize"></param>
+        private void OnErrorGetCustomerRewardsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string integrationId, Option<List<string>> status, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetCustomerRewards(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, integrationId, status, pageSize, skip, withTotalResultSize);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="integrationId"></param>
+        /// <param name="status"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="withTotalResultSize"></param>
+        partial void OnErrorGetCustomerRewards(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string integrationId, Option<List<string>> status, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize);
+
+        /// <summary>
+        /// List customer&#39;s rewards List the rewards held by a given customer profile. This includes shared rewards unlocked with a loyalty card linked to the customer. 
+        /// </summary>
+        /// <param name="integrationId">The integration identifier for this customer profile. Must be:  - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID. </param>
+        /// <param name="status">Filter results by one or more customer reward statuses.  **Note:** If no status is specified, rewards of all statuses are returned.  (optional)</param>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.   - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query.  - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCustomerRewardsApiResponse"/>&gt;</returns>
+        public async Task<IGetCustomerRewardsApiResponse> GetCustomerRewardsOrDefaultAsync(string integrationId, Option<List<string>> status = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetCustomerRewardsAsync(integrationId, status, pageSize, skip, withTotalResultSize, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// List customer&#39;s rewards List the rewards held by a given customer profile. This includes shared rewards unlocked with a loyalty card linked to the customer. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="integrationId">The integration identifier for this customer profile. Must be:  - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID. </param>
+        /// <param name="status">Filter results by one or more customer reward statuses.  **Note:** If no status is specified, rewards of all statuses are returned.  (optional)</param>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.   - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query.  - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCustomerRewardsApiResponse"/>&gt;</returns>
+        public async Task<IGetCustomerRewardsApiResponse> GetCustomerRewardsAsync(string integrationId, Option<List<string>> status = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateGetCustomerRewards(integrationId, status);
+
+                FormatGetCustomerRewards(ref integrationId, status, ref pageSize, ref skip, ref withTotalResultSize);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/customer_profiles/{integrationId}/rewards"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/customer_profiles/{integrationId}/rewards");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BintegrationId%7D", Uri.EscapeDataString(integrationId.ToString()));
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (status.IsSet)
+                        parseQueryStringLocalVar["status"] = ClientUtils.ParameterToString(status.Value);
+
+                    if (pageSize.IsSet)
+                        parseQueryStringLocalVar["pageSize"] = ClientUtils.ParameterToString(pageSize.Value);
+
+                    if (skip.IsSet)
+                        parseQueryStringLocalVar["skip"] = ClientUtils.ParameterToString(skip.Value);
+
+                    if (withTotalResultSize.IsSet)
+                        parseQueryStringLocalVar["withTotalResultSize"] = ClientUtils.ParameterToString(withTotalResultSize.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("GET");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        GetCustomerRewardsApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GetCustomerRewardsApiResponse(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/customer_profiles/{integrationId}/rewards", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetCustomerRewardsDefaultImplementation(apiResponseLocalVar, integrationId, status, pageSize, skip, withTotalResultSize);
+
+                        Events.ExecuteOnGetCustomerRewards(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetCustomerRewardsDefaultImplementation(e, "/v1/customer_profiles/{integrationId}/rewards", uriBuilderLocalVar.Path, integrationId, status, pageSize, skip, withTotalResultSize);
+                Events.ExecuteOnErrorGetCustomerRewards(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetCustomerRewardsApiResponse"/>
+        /// </summary>
+        public partial class GetCustomerRewardsApiResponse : TalonOneSdk.Client.ApiResponse, IGetCustomerRewardsApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<IntegrationApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetCustomerRewardsApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetCustomerRewardsApiResponse(ILogger<IntegrationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetCustomerRewardsApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetCustomerRewardsApiResponse(ILogger<IntegrationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.GetCustomerRewards200Response Ok()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.GetCustomerRewards200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.GetCustomerRewards200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetCustomerRewards200Response>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetCustomerRewards200Response result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out TalonOneSdk.Model.GetCustomerRewards200Response result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
                 }
 
                 return result != null;
@@ -13792,8 +14328,8 @@ namespace TalonOneSdk.Api
         /// <param name="includeFree">Whether to include rewards that have no &#x60;pointsRequired&#x60;. These rewards are treated as free and available to all customers.  (optional, default to true)</param>
         /// <param name="loyaltyProgramId">Return only rewards available in this loyalty program.  (optional)</param>
         /// <param name="subledgerId">Return only rewards available in this subledger. Must be combined with &#x60;loyaltyProgramId&#x60;. To specify the main ledger, provide an empty string (\&quot;\&quot;).  (optional)</param>
-        /// <param name="profileIntegrationId">The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  (optional)</param>
-        /// <param name="loyaltyCardId">The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  (optional)</param>
+        /// <param name="profileIntegrationId">The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  For a reward with &#x60;pointsRequired&#x60; configured for a card-based loyalty program, eligibility can be evaluated based on both &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60;, if both are provided. The required points are then checked against the card&#39;s balance.  (optional)</param>
+        /// <param name="loyaltyCardId">The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  For a reward with &#x60;pointsRequired&#x60; configured for a card-based loyalty program, eligibility can be evaluated based on both &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60;, if both are provided. The card must also be linked to that customer profile. - If &#x60;loyaltyCardId&#x60; is not provided, the reward returns the &#x60;CARD_REQUIRED&#x60; failure code, because there is no card balance to compare &#x60;pointsRequired&#x60; against. - If &#x60;profileIntegrationId&#x60; is not provided, the reward returns the &#x60;PROFILE_REQUIRED&#x60; failure code, because its eligibility cannot be evaluated without a customer profile.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationRewardsCatalogApiResponse"/>&gt;</returns>
         public async Task<IIntegrationRewardsCatalogApiResponse> IntegrationRewardsCatalogOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<decimal> pointsFrom = default, Option<decimal> pointsTo = default, Option<bool> includeFree = default, Option<long> loyaltyProgramId = default, Option<string> subledgerId = default, Option<string> profileIntegrationId = default, Option<string> loyaltyCardId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -13819,8 +14355,8 @@ namespace TalonOneSdk.Api
         /// <param name="includeFree">Whether to include rewards that have no &#x60;pointsRequired&#x60;. These rewards are treated as free and available to all customers.  (optional, default to true)</param>
         /// <param name="loyaltyProgramId">Return only rewards available in this loyalty program.  (optional)</param>
         /// <param name="subledgerId">Return only rewards available in this subledger. Must be combined with &#x60;loyaltyProgramId&#x60;. To specify the main ledger, provide an empty string (\&quot;\&quot;).  (optional)</param>
-        /// <param name="profileIntegrationId">The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  (optional)</param>
-        /// <param name="loyaltyCardId">The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  (optional)</param>
+        /// <param name="profileIntegrationId">The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  For a reward with &#x60;pointsRequired&#x60; configured for a card-based loyalty program, eligibility can be evaluated based on both &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60;, if both are provided. The required points are then checked against the card&#39;s balance.  (optional)</param>
+        /// <param name="loyaltyCardId">The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  For a reward with &#x60;pointsRequired&#x60; configured for a card-based loyalty program, eligibility can be evaluated based on both &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60;, if both are provided. The card must also be linked to that customer profile. - If &#x60;loyaltyCardId&#x60; is not provided, the reward returns the &#x60;CARD_REQUIRED&#x60; failure code, because there is no card balance to compare &#x60;pointsRequired&#x60; against. - If &#x60;profileIntegrationId&#x60; is not provided, the reward returns the &#x60;PROFILE_REQUIRED&#x60; failure code, because its eligibility cannot be evaluated without a customer profile.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationRewardsCatalogApiResponse"/>&gt;</returns>
         public async Task<IIntegrationRewardsCatalogApiResponse> IntegrationRewardsCatalogAsync(Option<long> pageSize = default, Option<long> skip = default, Option<decimal> pointsFrom = default, Option<decimal> pointsTo = default, Option<bool> includeFree = default, Option<long> loyaltyProgramId = default, Option<string> subledgerId = default, Option<string> profileIntegrationId = default, Option<string> loyaltyCardId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -17910,32 +18446,32 @@ namespace TalonOneSdk.Api
             /// Deserializes the response if the response is 200 Ok
             /// </summary>
             /// <returns></returns>
-            public TalonOneSdk.Model.IntegrationStateV2 Ok()
+            public TalonOneSdk.Model.IntegrationUnlockRewardResponse Ok()
             {
                 bool suppressDefault = false;
-                TalonOneSdk.Model.IntegrationStateV2 result = default;
+                TalonOneSdk.Model.IntegrationUnlockRewardResponse result = default;
                 OnOk(ref suppressDefault, ref result);
                 if (!suppressDefault)
                     result = DefaultOk();
                 return result;
             }
 
-            private TalonOneSdk.Model.IntegrationStateV2 DefaultOk()
+            private TalonOneSdk.Model.IntegrationUnlockRewardResponse DefaultOk()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.IntegrationStateV2>(RawContent, _jsonSerializerOptions)
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.IntegrationUnlockRewardResponse>(RawContent, _jsonSerializerOptions)
                     : default;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.IntegrationStateV2 result);
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.IntegrationUnlockRewardResponse result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk(out TalonOneSdk.Model.IntegrationStateV2 result)
+            public bool TryOk(out TalonOneSdk.Model.IntegrationUnlockRewardResponse result)
             {
                 result = null;
 

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **RulesetId** | **long** | The ID of the ruleset that was active in the campaign when this effect was triggered. | 
 **RuleIndex** | **long** | The position of the rule that triggered this effect within the ruleset. | 
 **RuleName** | **string** | The name of the rule that triggered this effect. | 
-**EffectType** | **string** | The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects). | 
+**EffectType** | **string** | See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects). | 
 **ExperimentId** | **long** | The ID of the experiment that campaign belongs to. | [optional] 
 **TriggeredByCoupon** | **long** | The ID of the coupon that was being evaluated when this effect was triggered. | [optional] 
 **TriggeredForCatalogItem** | **long** | The ID of the catalog item that was being evaluated when this effect was triggered. | [optional] 

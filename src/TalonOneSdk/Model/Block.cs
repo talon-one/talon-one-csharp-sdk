@@ -251,6 +251,16 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Block" /> class.
         /// </summary>
+        /// <param name="updateLoyaltyPointsExpiryBlock"></param>
+        public Block(UpdateLoyaltyPointsExpiryBlock updateLoyaltyPointsExpiryBlock)
+        {
+            UpdateLoyaltyPointsExpiryBlock = updateLoyaltyPointsExpiryBlock;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Block" /> class.
+        /// </summary>
         /// <param name="checkLoyaltyCardBlock"></param>
         public Block(CheckLoyaltyCardBlock checkLoyaltyCardBlock)
         {
@@ -265,6 +275,16 @@ namespace TalonOneSdk.Model
         public Block(CheckTierBlock checkTierBlock)
         {
             CheckTierBlock = checkTierBlock;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Block" /> class.
+        /// </summary>
+        /// <param name="awardLoyaltyPointsBlock"></param>
+        public Block(AwardLoyaltyPointsBlock awardLoyaltyPointsBlock)
+        {
+            AwardLoyaltyPointsBlock = awardLoyaltyPointsBlock;
             OnCreated();
         }
 
@@ -391,6 +411,11 @@ namespace TalonOneSdk.Model
         public ReserveCouponBlock ReserveCouponBlock { get; set; }
 
         /// <summary>
+        /// Gets or Sets UpdateLoyaltyPointsExpiryBlock
+        /// </summary>
+        public UpdateLoyaltyPointsExpiryBlock UpdateLoyaltyPointsExpiryBlock { get; set; }
+
+        /// <summary>
         /// Gets or Sets CheckLoyaltyCardBlock
         /// </summary>
         public CheckLoyaltyCardBlock CheckLoyaltyCardBlock { get; set; }
@@ -399,6 +424,11 @@ namespace TalonOneSdk.Model
         /// Gets or Sets CheckTierBlock
         /// </summary>
         public CheckTierBlock CheckTierBlock { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AwardLoyaltyPointsBlock
+        /// </summary>
+        public AwardLoyaltyPointsBlock AwardLoyaltyPointsBlock { get; set; }
 
         /// <summary>
         /// Gets or Sets RedeemLoyaltyPointsBlock
@@ -475,6 +505,7 @@ namespace TalonOneSdk.Model
             AwardDiscountBlock awardDiscountAwardDiscountBlock = null;
             AwardGiveawayBlock awardGiveawayAwardGiveawayBlock = null;
             AwardItemBlock awardItemAwardItemBlock = null;
+            AwardLoyaltyPointsBlock awardLoyaltyPointsAwardLoyaltyPointsBlock = null;
             CheckAchievementBlock checkAchievementCheckAchievementBlock = null;
             CheckAttributeBlock checkAttributeCheckAttributeBlock = null;
             CheckAudienceBlock checkAudienceCheckAudienceBlock = null;
@@ -497,6 +528,7 @@ namespace TalonOneSdk.Model
             UpdateAchievementProgressBlock updateAchievementProgressUpdateAchievementProgressBlock = null;
             UpdateAttributeValueBlock updateAttributeValueUpdateAttributeValueBlock = null;
             UpdateAudienceMembershipBlock updateAudienceMembershipUpdateAudienceMembershipBlock = null;
+            UpdateLoyaltyPointsExpiryBlock updateLoyaltyPointsExpiryUpdateLoyaltyPointsExpiryBlock = null;
 
             Utf8JsonReader utf8JsonReaderDiscriminator = utf8JsonReader;
             while (utf8JsonReaderDiscriminator.Read())
@@ -528,6 +560,11 @@ namespace TalonOneSdk.Model
                         {
                             Utf8JsonReader utf8JsonReaderAwardItemBlock = utf8JsonReader;
                             awardItemAwardItemBlock = JsonSerializer.Deserialize<AwardItemBlock>(ref utf8JsonReaderAwardItemBlock, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("awardLoyaltyPoints"))
+                        {
+                            Utf8JsonReader utf8JsonReaderAwardLoyaltyPointsBlock = utf8JsonReader;
+                            awardLoyaltyPointsAwardLoyaltyPointsBlock = JsonSerializer.Deserialize<AwardLoyaltyPointsBlock>(ref utf8JsonReaderAwardLoyaltyPointsBlock, jsonSerializerOptions);
                         }
                         if (discriminator.Equals("checkAchievement"))
                         {
@@ -639,6 +676,11 @@ namespace TalonOneSdk.Model
                             Utf8JsonReader utf8JsonReaderUpdateAudienceMembershipBlock = utf8JsonReader;
                             updateAudienceMembershipUpdateAudienceMembershipBlock = JsonSerializer.Deserialize<UpdateAudienceMembershipBlock>(ref utf8JsonReaderUpdateAudienceMembershipBlock, jsonSerializerOptions);
                         }
+                        if (discriminator.Equals("updateLoyaltyPointsExpiry"))
+                        {
+                            Utf8JsonReader utf8JsonReaderUpdateLoyaltyPointsExpiryBlock = utf8JsonReader;
+                            updateLoyaltyPointsExpiryUpdateLoyaltyPointsExpiryBlock = JsonSerializer.Deserialize<UpdateLoyaltyPointsExpiryBlock>(ref utf8JsonReaderUpdateLoyaltyPointsExpiryBlock, jsonSerializerOptions);
+                        }
                     }
                 }
             }
@@ -681,6 +723,9 @@ namespace TalonOneSdk.Model
 
             if (awardItemAwardItemBlock != null)
                 return new Block(awardItemAwardItemBlock);
+
+            if (awardLoyaltyPointsAwardLoyaltyPointsBlock != null)
+                return new Block(awardLoyaltyPointsAwardLoyaltyPointsBlock);
 
             if (checkAchievementCheckAchievementBlock != null)
                 return new Block(checkAchievementCheckAchievementBlock);
@@ -747,6 +792,9 @@ namespace TalonOneSdk.Model
 
             if (updateAudienceMembershipUpdateAudienceMembershipBlock != null)
                 return new Block(updateAudienceMembershipUpdateAudienceMembershipBlock);
+
+            if (updateLoyaltyPointsExpiryUpdateLoyaltyPointsExpiryBlock != null)
+                return new Block(updateLoyaltyPointsExpiryUpdateLoyaltyPointsExpiryBlock);
 
             throw new JsonException();
         }
@@ -894,6 +942,12 @@ namespace TalonOneSdk.Model
                 reserveCouponBlockJsonConverter.WriteProperties(writer, block.ReserveCouponBlock, jsonSerializerOptions);
             }
 
+            if (block.UpdateLoyaltyPointsExpiryBlock != null)
+            {
+                UpdateLoyaltyPointsExpiryBlockJsonConverter updateLoyaltyPointsExpiryBlockJsonConverter = (UpdateLoyaltyPointsExpiryBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(block.UpdateLoyaltyPointsExpiryBlock.GetType()));
+                updateLoyaltyPointsExpiryBlockJsonConverter.WriteProperties(writer, block.UpdateLoyaltyPointsExpiryBlock, jsonSerializerOptions);
+            }
+
             if (block.CheckLoyaltyCardBlock != null)
             {
                 CheckLoyaltyCardBlockJsonConverter checkLoyaltyCardBlockJsonConverter = (CheckLoyaltyCardBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(block.CheckLoyaltyCardBlock.GetType()));
@@ -904,6 +958,12 @@ namespace TalonOneSdk.Model
             {
                 CheckTierBlockJsonConverter checkTierBlockJsonConverter = (CheckTierBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(block.CheckTierBlock.GetType()));
                 checkTierBlockJsonConverter.WriteProperties(writer, block.CheckTierBlock, jsonSerializerOptions);
+            }
+
+            if (block.AwardLoyaltyPointsBlock != null)
+            {
+                AwardLoyaltyPointsBlockJsonConverter awardLoyaltyPointsBlockJsonConverter = (AwardLoyaltyPointsBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(block.AwardLoyaltyPointsBlock.GetType()));
+                awardLoyaltyPointsBlockJsonConverter.WriteProperties(writer, block.AwardLoyaltyPointsBlock, jsonSerializerOptions);
             }
 
             if (block.RedeemLoyaltyPointsBlock != null)

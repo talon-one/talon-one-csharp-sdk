@@ -35,11 +35,11 @@ namespace TalonOneSdk.Model
         /// <param name="totalResultSize">The total size of the result set.</param>
         /// <param name="data">The array of changes.</param>
         [JsonConstructor]
-        public CampaignEvaluationTreeChangedMessage(NotificationTypeEnum notificationType, long totalResultSize, Option<List<CampaignEvaluationTreeChangedNotification>> data = default)
+        public CampaignEvaluationTreeChangedMessage(NotificationTypeEnum notificationType, long totalResultSize, List<CampaignEvaluationTreeChangedNotification> data)
         {
             NotificationType = notificationType;
             TotalResultSize = totalResultSize;
-            DataOption = data;
+            Data = data;
             OnCreated();
         }
 
@@ -52,9 +52,9 @@ namespace TalonOneSdk.Model
         public enum NotificationTypeEnum
         {
             /// <summary>
-            /// Enum CampaignNotification for value: CampaignNotification
+            /// Enum CampaignEvaluationTreeChanged for value: CampaignEvaluationTreeChanged
             /// </summary>
-            CampaignNotification = 1
+            CampaignEvaluationTreeChanged = 1
         }
 
         /// <summary>
@@ -65,8 +65,8 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public static NotificationTypeEnum NotificationTypeEnumFromString(string value)
         {
-            if (value.Equals("CampaignNotification"))
-                return NotificationTypeEnum.CampaignNotification;
+            if (value.Equals("CampaignEvaluationTreeChanged"))
+                return NotificationTypeEnum.CampaignEvaluationTreeChanged;
 
             throw new NotImplementedException($"Could not convert value to type NotificationTypeEnum: '{value}'");
         }
@@ -78,8 +78,8 @@ namespace TalonOneSdk.Model
         /// <returns></returns>
         public static NotificationTypeEnum? NotificationTypeEnumFromStringOrDefault(string value)
         {
-            if (value.Equals("CampaignNotification"))
-                return NotificationTypeEnum.CampaignNotification;
+            if (value.Equals("CampaignEvaluationTreeChanged"))
+                return NotificationTypeEnum.CampaignEvaluationTreeChanged;
 
             return null;
         }
@@ -92,8 +92,8 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public static string NotificationTypeEnumToJsonValue(NotificationTypeEnum value)
         {
-            if (value == NotificationTypeEnum.CampaignNotification)
-                return "CampaignNotification";
+            if (value == NotificationTypeEnum.CampaignEvaluationTreeChanged)
+                return "CampaignEvaluationTreeChanged";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
@@ -102,7 +102,7 @@ namespace TalonOneSdk.Model
         /// The type of the notification
         /// </summary>
         /// <value>The type of the notification</value>
-        /* <example>CampaignNotification</example> */
+        /* <example>CampaignEvaluationTreeChanged</example> */
         [JsonPropertyName("NotificationType")]
         public NotificationTypeEnum NotificationType { get; set; }
 
@@ -114,18 +114,11 @@ namespace TalonOneSdk.Model
         public long TotalResultSize { get; set; }
 
         /// <summary>
-        /// Used to track the state of Data
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<CampaignEvaluationTreeChangedNotification>> DataOption { get; private set; }
-
-        /// <summary>
         /// The array of changes.
         /// </summary>
         /// <value>The array of changes.</value>
         [JsonPropertyName("Data")]
-        public List<CampaignEvaluationTreeChangedNotification> Data { get { return this.DataOption.Value; } set { this.DataOption = new Option<List<CampaignEvaluationTreeChangedNotification>>(value); } }
+        public List<CampaignEvaluationTreeChangedNotification> Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -232,13 +225,19 @@ namespace TalonOneSdk.Model
             if (!totalResultSize.IsSet)
                 throw new ArgumentException("Property is required for class CampaignEvaluationTreeChangedMessage.", nameof(totalResultSize));
 
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class CampaignEvaluationTreeChangedMessage.", nameof(data));
+
             if (notificationType.IsSet && notificationType.Value == null)
                 throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class CampaignEvaluationTreeChangedMessage.");
 
             if (totalResultSize.IsSet && totalResultSize.Value == null)
                 throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class CampaignEvaluationTreeChangedMessage.");
 
-            return new CampaignEvaluationTreeChangedMessage(notificationType.Value.Value, totalResultSize.Value.Value, data);
+            if (data.IsSet && data.Value == null)
+                throw new ArgumentNullException(nameof(data), "Property is not nullable for class CampaignEvaluationTreeChangedMessage.");
+
+            return new CampaignEvaluationTreeChangedMessage(notificationType.Value.Value, totalResultSize.Value.Value, data.Value);
         }
 
         /// <summary>
@@ -265,15 +264,15 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignEvaluationTreeChangedMessage campaignEvaluationTreeChangedMessage, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (campaignEvaluationTreeChangedMessage.Data == null)
+                throw new ArgumentNullException(nameof(campaignEvaluationTreeChangedMessage.Data), "Property is required for class CampaignEvaluationTreeChangedMessage.");
+
             var notificationTypeRawValue = CampaignEvaluationTreeChangedMessage.NotificationTypeEnumToJsonValue(campaignEvaluationTreeChangedMessage.NotificationType);
             writer.WriteString("NotificationType", notificationTypeRawValue);
             writer.WriteNumber("TotalResultSize", campaignEvaluationTreeChangedMessage.TotalResultSize);
 
-            if (campaignEvaluationTreeChangedMessage.DataOption.IsSet)
-            {
-                writer.WritePropertyName("Data");
-                JsonSerializer.Serialize(writer, campaignEvaluationTreeChangedMessage.Data, jsonSerializerOptions);
-            }
+            writer.WritePropertyName("Data");
+            JsonSerializer.Serialize(writer, campaignEvaluationTreeChangedMessage.Data, jsonSerializerOptions);
         }
     }
 }

@@ -34,12 +34,12 @@ namespace TalonOneSdk.Model
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="operator">An indicator of how the block compares its elements.</param>
         /// <param name="subledger">The name of the subledger to check the balance of. Can be empty if this block checks the loyalty program&#39;s main ledger balance instead of a subledger.</param>
-        /// <param name="tier">tier</param>
+        /// <param name="tier">The tier to check for.</param>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public CheckTierBlock(string type, OperatorEnum @operator, string subledger, CheckTierBlock1Tier tier, Option<string> id = default, Option<List<string>> tags = default, Option<List<Block>> onFailure = default)
+        public CheckTierBlock(string type, OperatorEnum @operator, string subledger, TierBlockReference tier, Option<string> id = default, Option<List<string>> tags = default, Option<List<Block>> onFailure = default)
         {
             Type = type;
             Operator = @operator;
@@ -143,10 +143,11 @@ namespace TalonOneSdk.Model
         public string Subledger { get; set; }
 
         /// <summary>
-        /// Gets or Sets Tier
+        /// The tier to check for.
         /// </summary>
+        /// <value>The tier to check for.</value>
         [JsonPropertyName("tier")]
-        public CheckTierBlock1Tier Tier { get; set; }
+        public TierBlockReference Tier { get; set; }
 
         /// <summary>
         /// Used to track the state of Id
@@ -256,7 +257,7 @@ namespace TalonOneSdk.Model
             Option<string> type = default;
             Option<CheckTierBlock.OperatorEnum?> varOperator = default;
             Option<string> subledger = default;
-            Option<CheckTierBlock1Tier> tier = default;
+            Option<TierBlockReference> tier = default;
             Option<string> id = default;
             Option<List<string>> tags = default;
             Option<List<Block>> onFailure = default;
@@ -293,7 +294,7 @@ namespace TalonOneSdk.Model
                             subledger = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "tier":
-                            tier = new Option<CheckTierBlock1Tier>(JsonSerializer.Deserialize<CheckTierBlock1Tier>(ref utf8JsonReader, jsonSerializerOptions));
+                            tier = new Option<TierBlockReference>(JsonSerializer.Deserialize<TierBlockReference>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "id":
                             id = new Option<string>(utf8JsonReader.GetString());

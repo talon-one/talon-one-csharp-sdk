@@ -174,6 +174,19 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test CreateCampaign
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task CreateCampaignAsyncTest()
+        {
+            long applicationId = default;
+            NewCampaign newCampaign = default;
+            var response = await _instance.CreateCampaignAsync(applicationId, newCampaign);
+            var model = response.Created();
+            Assert.IsType<TalonOneSdk.Model.Campaign>(model);
+        }
+
+        /// <summary>
         /// Test CreateCampaignFromTemplate
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -777,7 +790,8 @@ namespace TalonOneSdk.Test.Api
             string loyaltyProgramId = default;
             Client.Option<DateTime> endDate = default;
             Client.Option<string> balances = default;
-            var response = await _instance.ExportLoyaltyBalancesAsync(loyaltyProgramId, endDate, balances);
+            Client.Option<List<string>> subledgerIds = default;
+            var response = await _instance.ExportLoyaltyBalancesAsync(loyaltyProgramId, endDate, balances, subledgerIds);
             var model = response.Ok();
             Assert.IsType<string>(model);
         }
@@ -2228,11 +2242,12 @@ namespace TalonOneSdk.Test.Api
         public async Task ListAchievementsV2AsyncTest()
         {
             Client.Option<long> pageSize = default;
+            Client.Option<List<long>> campaignId = default;
             Client.Option<long> skip = default;
             Client.Option<string> sort = default;
             Client.Option<string> title = default;
             Client.Option<long> applicationId = default;
-            var response = await _instance.ListAchievementsV2Async(pageSize, skip, sort, title, applicationId);
+            var response = await _instance.ListAchievementsV2Async(pageSize, campaignId, skip, sort, title, applicationId);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.ListAchievementsV2200Response>(model);
         }
