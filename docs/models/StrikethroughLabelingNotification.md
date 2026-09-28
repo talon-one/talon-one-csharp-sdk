@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Trigger** | [**StrikethroughTrigger**](StrikethroughTrigger.md) |  | 
 **ChangedItems** | [**List&lt;StrikethroughChangedItem&gt;**](StrikethroughChangedItem.md) |  | 
 **NotificationType** | **string** | The type of notification. | 
-**SentAt** | **DateTime** | Timestamp at which the notification was sent. | 
+**SentAt** | **DateTime** | Timestamp when the notification was sent by Talon.One. There may be a delay before the notification is delivered to the user. | 
 **VarVersion** | **string** | The version of the strikethrough pricing notification. Set for **scheduled** strikethrough pricing updates only.  | [optional] 
 **ValidFrom** | **DateTime** | Timestamp at which the strikethrough pricing update becomes valid. Set for **scheduled** strikethrough pricing updates (version: v2) only.  | [optional] 
 

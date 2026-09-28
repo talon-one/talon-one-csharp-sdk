@@ -31,45 +31,13 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EffectCallApi" /> class.
         /// </summary>
-        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
-        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
-        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
-        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
         /// <param name="effectType">An effect discriminator of type &#x60;callApi&#x60;.</param>
         /// <param name="props">The properties of the &#x60;callApi&#x60; effect.</param>
-        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
-        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
-        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
-        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
-        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
-        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
-        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
-        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
-        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
-        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
-        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
-        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
         [JsonConstructor]
-        public EffectCallApi(long campaignId, long rulesetId, long ruleIndex, string ruleName, EffectTypeEnum effectType, TriggerWebhookEffectProps props, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
+        public EffectCallApi(EffectTypeEnum effectType, TriggerWebhookEffectProps props)
         {
-            CampaignId = campaignId;
-            RulesetId = rulesetId;
-            RuleIndex = ruleIndex;
-            RuleName = ruleName;
             EffectType = effectType;
             Props = props;
-            ExperimentIdOption = experimentId;
-            TriggeredByCouponOption = triggeredByCoupon;
-            TriggeredForCatalogItemOption = triggeredForCatalogItem;
-            ConditionIndexOption = conditionIndex;
-            EvaluationGroupIDOption = evaluationGroupID;
-            EvaluationGroupModeOption = evaluationGroupMode;
-            CampaignRevisionIdOption = campaignRevisionId;
-            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
-            SelectedPriceTypeOption = selectedPriceType;
-            SelectedPriceOption = selectedPrice;
-            AdjustmentReferenceIdOption = adjustmentReferenceId;
-            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -136,223 +104,11 @@ namespace TalonOneSdk.Model
         public EffectTypeEnum EffectType { get; set; }
 
         /// <summary>
-        /// The ID of the campaign that triggered this effect.
-        /// </summary>
-        /// <value>The ID of the campaign that triggered this effect.</value>
-        /* <example>244</example> */
-        [JsonPropertyName("campaignId")]
-        public long CampaignId { get; set; }
-
-        /// <summary>
-        /// The ID of the ruleset that was active in the campaign when this effect was triggered.
-        /// </summary>
-        /// <value>The ID of the ruleset that was active in the campaign when this effect was triggered.</value>
-        /* <example>73</example> */
-        [JsonPropertyName("rulesetId")]
-        public long RulesetId { get; set; }
-
-        /// <summary>
-        /// The position of the rule that triggered this effect within the ruleset.
-        /// </summary>
-        /// <value>The position of the rule that triggered this effect within the ruleset.</value>
-        /* <example>2</example> */
-        [JsonPropertyName("ruleIndex")]
-        public long RuleIndex { get; set; }
-
-        /// <summary>
-        /// The name of the rule that triggered this effect.
-        /// </summary>
-        /// <value>The name of the rule that triggered this effect.</value>
-        /* <example>Give 20% discount</example> */
-        [JsonPropertyName("ruleName")]
-        public string RuleName { get; set; }
-
-        /// <summary>
         /// The properties of the &#x60;callApi&#x60; effect.
         /// </summary>
         /// <value>The properties of the &#x60;callApi&#x60; effect.</value>
         [JsonPropertyName("props")]
         public TriggerWebhookEffectProps Props { get; set; }
-
-        /// <summary>
-        /// Used to track the state of ExperimentId
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> ExperimentIdOption { get; private set; }
-
-        /// <summary>
-        /// The ID of the experiment that campaign belongs to.
-        /// </summary>
-        /// <value>The ID of the experiment that campaign belongs to.</value>
-        /* <example>12</example> */
-        [JsonPropertyName("experimentId")]
-        public long? ExperimentId { get { return this.ExperimentIdOption.Value; } set { this.ExperimentIdOption = new Option<long?>(value); } }
-
-        /// <summary>
-        /// Used to track the state of TriggeredByCoupon
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> TriggeredByCouponOption { get; private set; }
-
-        /// <summary>
-        /// The ID of the coupon that was being evaluated when this effect was triggered.
-        /// </summary>
-        /// <value>The ID of the coupon that was being evaluated when this effect was triggered.</value>
-        /* <example>4928</example> */
-        [JsonPropertyName("triggeredByCoupon")]
-        public long? TriggeredByCoupon { get { return this.TriggeredByCouponOption.Value; } set { this.TriggeredByCouponOption = new Option<long?>(value); } }
-
-        /// <summary>
-        /// Used to track the state of TriggeredForCatalogItem
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> TriggeredForCatalogItemOption { get; private set; }
-
-        /// <summary>
-        /// The ID of the catalog item that was being evaluated when this effect was triggered.
-        /// </summary>
-        /// <value>The ID of the catalog item that was being evaluated when this effect was triggered.</value>
-        /* <example>786</example> */
-        [JsonPropertyName("triggeredForCatalogItem")]
-        public long? TriggeredForCatalogItem { get { return this.TriggeredForCatalogItemOption.Value; } set { this.TriggeredForCatalogItemOption = new Option<long?>(value); } }
-
-        /// <summary>
-        /// Used to track the state of ConditionIndex
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> ConditionIndexOption { get; private set; }
-
-        /// <summary>
-        /// The index of the condition that was triggered.
-        /// </summary>
-        /// <value>The index of the condition that was triggered.</value>
-        /* <example>786</example> */
-        [JsonPropertyName("conditionIndex")]
-        public long? ConditionIndex { get { return this.ConditionIndexOption.Value; } set { this.ConditionIndexOption = new Option<long?>(value); } }
-
-        /// <summary>
-        /// Used to track the state of EvaluationGroupID
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> EvaluationGroupIDOption { get; private set; }
-
-        /// <summary>
-        /// The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
-        /// </summary>
-        /// <value>The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</value>
-        /* <example>3</example> */
-        [JsonPropertyName("evaluationGroupID")]
-        public long? EvaluationGroupID { get { return this.EvaluationGroupIDOption.Value; } set { this.EvaluationGroupIDOption = new Option<long?>(value); } }
-
-        /// <summary>
-        /// Used to track the state of EvaluationGroupMode
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> EvaluationGroupModeOption { get; private set; }
-
-        /// <summary>
-        /// The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
-        /// </summary>
-        /// <value>The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</value>
-        /* <example>stackable</example> */
-        [JsonPropertyName("evaluationGroupMode")]
-        public string EvaluationGroupMode { get { return this.EvaluationGroupModeOption.Value; } set { this.EvaluationGroupModeOption = new Option<string>(value); } }
-
-        /// <summary>
-        /// Used to track the state of CampaignRevisionId
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> CampaignRevisionIdOption { get; private set; }
-
-        /// <summary>
-        /// The revision ID of the campaign that was used when triggering the effect.
-        /// </summary>
-        /// <value>The revision ID of the campaign that was used when triggering the effect.</value>
-        /* <example>1</example> */
-        [JsonPropertyName("campaignRevisionId")]
-        public long? CampaignRevisionId { get { return this.CampaignRevisionIdOption.Value; } set { this.CampaignRevisionIdOption = new Option<long?>(value); } }
-
-        /// <summary>
-        /// Used to track the state of CampaignRevisionVersionId
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> CampaignRevisionVersionIdOption { get; private set; }
-
-        /// <summary>
-        /// The revision version ID of the campaign that was used when triggering the effect.
-        /// </summary>
-        /// <value>The revision version ID of the campaign that was used when triggering the effect.</value>
-        /* <example>5</example> */
-        [JsonPropertyName("campaignRevisionVersionId")]
-        public long? CampaignRevisionVersionId { get { return this.CampaignRevisionVersionIdOption.Value; } set { this.CampaignRevisionVersionIdOption = new Option<long?>(value); } }
-
-        /// <summary>
-        /// Used to track the state of SelectedPriceType
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> SelectedPriceTypeOption { get; private set; }
-
-        /// <summary>
-        /// The selected price type for the SKU targeted by this effect.
-        /// </summary>
-        /// <value>The selected price type for the SKU targeted by this effect.</value>
-        /* <example>member</example> */
-        [JsonPropertyName("selectedPriceType")]
-        public string SelectedPriceType { get { return this.SelectedPriceTypeOption.Value; } set { this.SelectedPriceTypeOption = new Option<string>(value); } }
-
-        /// <summary>
-        /// Used to track the state of SelectedPrice
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<decimal?> SelectedPriceOption { get; private set; }
-
-        /// <summary>
-        /// The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.
-        /// </summary>
-        /// <value>The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</value>
-        /* <example>100</example> */
-        [JsonPropertyName("selectedPrice")]
-        public decimal? SelectedPrice { get { return this.SelectedPriceOption.Value; } set { this.SelectedPriceOption = new Option<decimal?>(value); } }
-
-        /// <summary>
-        /// Used to track the state of AdjustmentReferenceId
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Guid?> AdjustmentReferenceIdOption { get; private set; }
-
-        /// <summary>
-        /// The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.
-        /// </summary>
-        /// <value>The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</value>
-        /* <example>68851723-e6fa-488f-ace9-112581e6c19b</example> */
-        [JsonPropertyName("adjustmentReferenceId")]
-        public Guid? AdjustmentReferenceId { get { return this.AdjustmentReferenceIdOption.Value; } set { this.AdjustmentReferenceIdOption = new Option<Guid?>(value); } }
-
-        /// <summary>
-        /// Used to track the state of RewardId
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> RewardIdOption { get; private set; }
-
-        /// <summary>
-        /// The ID of the reward that was being evaluated when this effect was triggered.
-        /// </summary>
-        /// <value>The ID of the reward that was being evaluated when this effect was triggered.</value>
-        /* <example>7</example> */
-        [JsonPropertyName("rewardId")]
-        public long? RewardId { get { return this.RewardIdOption.Value; } set { this.RewardIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -362,24 +118,8 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class EffectCallApi {\n");
-            sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
-            sb.Append("  RulesetId: ").Append(RulesetId).Append("\n");
-            sb.Append("  RuleIndex: ").Append(RuleIndex).Append("\n");
-            sb.Append("  RuleName: ").Append(RuleName).Append("\n");
             sb.Append("  EffectType: ").Append(EffectType).Append("\n");
             sb.Append("  Props: ").Append(Props).Append("\n");
-            sb.Append("  ExperimentId: ").Append(ExperimentId).Append("\n");
-            sb.Append("  TriggeredByCoupon: ").Append(TriggeredByCoupon).Append("\n");
-            sb.Append("  TriggeredForCatalogItem: ").Append(TriggeredForCatalogItem).Append("\n");
-            sb.Append("  ConditionIndex: ").Append(ConditionIndex).Append("\n");
-            sb.Append("  EvaluationGroupID: ").Append(EvaluationGroupID).Append("\n");
-            sb.Append("  EvaluationGroupMode: ").Append(EvaluationGroupMode).Append("\n");
-            sb.Append("  CampaignRevisionId: ").Append(CampaignRevisionId).Append("\n");
-            sb.Append("  CampaignRevisionVersionId: ").Append(CampaignRevisionVersionId).Append("\n");
-            sb.Append("  SelectedPriceType: ").Append(SelectedPriceType).Append("\n");
-            sb.Append("  SelectedPrice: ").Append(SelectedPrice).Append("\n");
-            sb.Append("  AdjustmentReferenceId: ").Append(AdjustmentReferenceId).Append("\n");
-            sb.Append("  RewardId: ").Append(RewardId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -427,24 +167,8 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<long?> campaignId = default;
-            Option<long?> rulesetId = default;
-            Option<long?> ruleIndex = default;
-            Option<string> ruleName = default;
             Option<EffectCallApi.EffectTypeEnum?> effectType = default;
             Option<TriggerWebhookEffectProps> props = default;
-            Option<long?> experimentId = default;
-            Option<long?> triggeredByCoupon = default;
-            Option<long?> triggeredForCatalogItem = default;
-            Option<long?> conditionIndex = default;
-            Option<long?> evaluationGroupID = default;
-            Option<string> evaluationGroupMode = default;
-            Option<long?> campaignRevisionId = default;
-            Option<long?> campaignRevisionVersionId = default;
-            Option<string> selectedPriceType = default;
-            Option<decimal?> selectedPrice = default;
-            Option<Guid?> adjustmentReferenceId = default;
-            Option<long?> rewardId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -461,18 +185,6 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "campaignId":
-                            campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "rulesetId":
-                            rulesetId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "ruleIndex":
-                            ruleIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "ruleName":
-                            ruleName = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "effectType":
                             string effectTypeRawValue = utf8JsonReader.GetString();
                             if (effectTypeRawValue != null)
@@ -486,59 +198,11 @@ namespace TalonOneSdk.Model
                         case "props":
                             props = new Option<TriggerWebhookEffectProps>(JsonSerializer.Deserialize<TriggerWebhookEffectProps>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "experimentId":
-                            experimentId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "triggeredByCoupon":
-                            triggeredByCoupon = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "triggeredForCatalogItem":
-                            triggeredForCatalogItem = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "conditionIndex":
-                            conditionIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "evaluationGroupID":
-                            evaluationGroupID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "evaluationGroupMode":
-                            evaluationGroupMode = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "campaignRevisionId":
-                            campaignRevisionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "campaignRevisionVersionId":
-                            campaignRevisionVersionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "selectedPriceType":
-                            selectedPriceType = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "selectedPrice":
-                            selectedPrice = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
-                            break;
-                        case "adjustmentReferenceId":
-                            adjustmentReferenceId = new Option<Guid?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (Guid?)null : utf8JsonReader.GetGuid());
-                            break;
-                        case "rewardId":
-                            rewardId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class EffectCallApi.", nameof(campaignId));
-
-            if (!rulesetId.IsSet)
-                throw new ArgumentException("Property is required for class EffectCallApi.", nameof(rulesetId));
-
-            if (!ruleIndex.IsSet)
-                throw new ArgumentException("Property is required for class EffectCallApi.", nameof(ruleIndex));
-
-            if (!ruleName.IsSet)
-                throw new ArgumentException("Property is required for class EffectCallApi.", nameof(ruleName));
 
             if (!effectType.IsSet)
                 throw new ArgumentException("Property is required for class EffectCallApi.", nameof(effectType));
@@ -546,25 +210,13 @@ namespace TalonOneSdk.Model
             if (!props.IsSet)
                 throw new ArgumentException("Property is required for class EffectCallApi.", nameof(props));
 
-            if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class EffectCallApi.");
-
-            if (rulesetId.IsSet && rulesetId.Value == null)
-                throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class EffectCallApi.");
-
-            if (ruleIndex.IsSet && ruleIndex.Value == null)
-                throw new ArgumentNullException(nameof(ruleIndex), "Property is not nullable for class EffectCallApi.");
-
-            if (ruleName.IsSet && ruleName.Value == null)
-                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class EffectCallApi.");
-
             if (effectType.IsSet && effectType.Value == null)
                 throw new ArgumentNullException(nameof(effectType), "Property is not nullable for class EffectCallApi.");
 
             if (props.IsSet && props.Value == null)
                 throw new ArgumentNullException(nameof(props), "Property is not nullable for class EffectCallApi.");
 
-            return new EffectCallApi(campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, effectType.Value.Value, props.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
+            return new EffectCallApi(effectType.Value.Value, props.Value);
         }
 
         /// <summary>
@@ -591,59 +243,13 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, EffectCallApi effectCallApi, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (effectCallApi.RuleName == null)
-                throw new ArgumentNullException(nameof(effectCallApi.RuleName), "Property is required for class EffectCallApi.");
-
             if (effectCallApi.Props == null)
                 throw new ArgumentNullException(nameof(effectCallApi.Props), "Property is required for class EffectCallApi.");
-
-            writer.WriteNumber("campaignId", effectCallApi.CampaignId);
-
-            writer.WriteNumber("rulesetId", effectCallApi.RulesetId);
-
-            writer.WriteNumber("ruleIndex", effectCallApi.RuleIndex);
-
-            writer.WriteString("ruleName", effectCallApi.RuleName);
 
             var effectTypeRawValue = EffectCallApi.EffectTypeEnumToJsonValue(effectCallApi.EffectType);
             writer.WriteString("effectType", effectTypeRawValue);
             writer.WritePropertyName("props");
             JsonSerializer.Serialize(writer, effectCallApi.Props, jsonSerializerOptions);
-            if (effectCallApi.ExperimentIdOption.IsSet)
-                writer.WriteNumber("experimentId", effectCallApi.ExperimentIdOption.Value.Value);
-
-            if (effectCallApi.TriggeredByCouponOption.IsSet)
-                writer.WriteNumber("triggeredByCoupon", effectCallApi.TriggeredByCouponOption.Value.Value);
-
-            if (effectCallApi.TriggeredForCatalogItemOption.IsSet)
-                writer.WriteNumber("triggeredForCatalogItem", effectCallApi.TriggeredForCatalogItemOption.Value.Value);
-
-            if (effectCallApi.ConditionIndexOption.IsSet)
-                writer.WriteNumber("conditionIndex", effectCallApi.ConditionIndexOption.Value.Value);
-
-            if (effectCallApi.EvaluationGroupIDOption.IsSet)
-                writer.WriteNumber("evaluationGroupID", effectCallApi.EvaluationGroupIDOption.Value.Value);
-
-            if (effectCallApi.EvaluationGroupModeOption.IsSet)
-                writer.WriteString("evaluationGroupMode", effectCallApi.EvaluationGroupMode);
-
-            if (effectCallApi.CampaignRevisionIdOption.IsSet)
-                writer.WriteNumber("campaignRevisionId", effectCallApi.CampaignRevisionIdOption.Value.Value);
-
-            if (effectCallApi.CampaignRevisionVersionIdOption.IsSet)
-                writer.WriteNumber("campaignRevisionVersionId", effectCallApi.CampaignRevisionVersionIdOption.Value.Value);
-
-            if (effectCallApi.SelectedPriceTypeOption.IsSet)
-                writer.WriteString("selectedPriceType", effectCallApi.SelectedPriceType);
-
-            if (effectCallApi.SelectedPriceOption.IsSet)
-                writer.WriteNumber("selectedPrice", effectCallApi.SelectedPriceOption.Value.Value);
-
-            if (effectCallApi.AdjustmentReferenceIdOption.IsSet)
-                writer.WriteString("adjustmentReferenceId", effectCallApi.AdjustmentReferenceIdOption.Value.Value);
-
-            if (effectCallApi.RewardIdOption.IsSet)
-                writer.WriteNumber("rewardId", effectCallApi.RewardIdOption.Value.Value);
         }
     }
 }

@@ -462,6 +462,7 @@ docs/models/GetLoyaltyCardPoints200Response.md
 docs/models/GetLoyaltyCardTransactionLogs200Response.md
 docs/models/GetLoyaltyCardTransactions200Response.md
 docs/models/GetLoyaltyCards200Response.md
+docs/models/GetLoyaltyProgramProfileLedgerTransactions200Response.md
 docs/models/GetLoyaltyProgramProfilePoints200Response.md
 docs/models/GetLoyaltyProgramProfileTransactions200Response.md
 docs/models/GetLoyaltyProgramTransactions200Response.md
@@ -537,6 +538,7 @@ docs/models/LedgerEntry.md
 docs/models/LedgerInfo.md
 docs/models/LedgerPointsEntryIntegrationAPI.md
 docs/models/LedgerTransactionLogEntryIntegrationAPI.md
+docs/models/LedgerTransactionLogEntryManagementAPI.md
 docs/models/LibraryAttribute.md
 docs/models/LimitConfig.md
 docs/models/LimitCounter.md
@@ -693,6 +695,14 @@ docs/models/OktaEventPayload.md
 docs/models/OktaEventPayloadData.md
 docs/models/OktaEventTarget.md
 docs/models/OneTimeCode.md
+docs/models/OutboundLog.md
+docs/models/OutboundLogBase.md
+docs/models/OutboundLogRequest.md
+docs/models/OutboundLogResponse.md
+docs/models/OutboundLogs.md
+docs/models/OutboundMessage.md
+docs/models/OutboundMessageResponse.md
+docs/models/OutboundMessages.md
 docs/models/OutgoingIntegrationBrazePolicy.md
 docs/models/OutgoingIntegrationCleverTapPolicy.md
 docs/models/OutgoingIntegrationConfiguration.md
@@ -1399,6 +1409,7 @@ src/TalonOneSdk.Test/Model/GetLoyaltyCardPoints200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetLoyaltyCardTransactionLogs200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetLoyaltyCardTransactions200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetLoyaltyCards200ResponseTests.cs
+src/TalonOneSdk.Test/Model/GetLoyaltyProgramProfileLedgerTransactions200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetLoyaltyProgramProfilePoints200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetLoyaltyProgramProfileTransactions200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetLoyaltyProgramTransactions200ResponseTests.cs
@@ -1474,6 +1485,7 @@ src/TalonOneSdk.Test/Model/LedgerEntryTests.cs
 src/TalonOneSdk.Test/Model/LedgerInfoTests.cs
 src/TalonOneSdk.Test/Model/LedgerPointsEntryIntegrationAPITests.cs
 src/TalonOneSdk.Test/Model/LedgerTransactionLogEntryIntegrationAPITests.cs
+src/TalonOneSdk.Test/Model/LedgerTransactionLogEntryManagementAPITests.cs
 src/TalonOneSdk.Test/Model/LibraryAttributeTests.cs
 src/TalonOneSdk.Test/Model/LimitConfigTests.cs
 src/TalonOneSdk.Test/Model/LimitCounterTests.cs
@@ -1630,6 +1642,14 @@ src/TalonOneSdk.Test/Model/OktaEventPayloadTests.cs
 src/TalonOneSdk.Test/Model/OktaEventTargetTests.cs
 src/TalonOneSdk.Test/Model/OktaEventTests.cs
 src/TalonOneSdk.Test/Model/OneTimeCodeTests.cs
+src/TalonOneSdk.Test/Model/OutboundLogBaseTests.cs
+src/TalonOneSdk.Test/Model/OutboundLogRequestTests.cs
+src/TalonOneSdk.Test/Model/OutboundLogResponseTests.cs
+src/TalonOneSdk.Test/Model/OutboundLogTests.cs
+src/TalonOneSdk.Test/Model/OutboundLogsTests.cs
+src/TalonOneSdk.Test/Model/OutboundMessageResponseTests.cs
+src/TalonOneSdk.Test/Model/OutboundMessageTests.cs
+src/TalonOneSdk.Test/Model/OutboundMessagesTests.cs
 src/TalonOneSdk.Test/Model/OutgoingIntegrationBrazePolicyTests.cs
 src/TalonOneSdk.Test/Model/OutgoingIntegrationCleverTapPolicyTests.cs
 src/TalonOneSdk.Test/Model/OutgoingIntegrationConfigurationPolicyTests.cs
@@ -2357,6 +2377,7 @@ src/TalonOneSdk/Model/GetLoyaltyCardPoints200Response.cs
 src/TalonOneSdk/Model/GetLoyaltyCardTransactionLogs200Response.cs
 src/TalonOneSdk/Model/GetLoyaltyCardTransactions200Response.cs
 src/TalonOneSdk/Model/GetLoyaltyCards200Response.cs
+src/TalonOneSdk/Model/GetLoyaltyProgramProfileLedgerTransactions200Response.cs
 src/TalonOneSdk/Model/GetLoyaltyProgramProfilePoints200Response.cs
 src/TalonOneSdk/Model/GetLoyaltyProgramProfileTransactions200Response.cs
 src/TalonOneSdk/Model/GetLoyaltyProgramTransactions200Response.cs
@@ -2432,6 +2453,7 @@ src/TalonOneSdk/Model/LedgerEntry.cs
 src/TalonOneSdk/Model/LedgerInfo.cs
 src/TalonOneSdk/Model/LedgerPointsEntryIntegrationAPI.cs
 src/TalonOneSdk/Model/LedgerTransactionLogEntryIntegrationAPI.cs
+src/TalonOneSdk/Model/LedgerTransactionLogEntryManagementAPI.cs
 src/TalonOneSdk/Model/LibraryAttribute.cs
 src/TalonOneSdk/Model/LimitConfig.cs
 src/TalonOneSdk/Model/LimitCounter.cs
@@ -2588,6 +2610,14 @@ src/TalonOneSdk/Model/OktaEventPayload.cs
 src/TalonOneSdk/Model/OktaEventPayloadData.cs
 src/TalonOneSdk/Model/OktaEventTarget.cs
 src/TalonOneSdk/Model/OneTimeCode.cs
+src/TalonOneSdk/Model/OutboundLog.cs
+src/TalonOneSdk/Model/OutboundLogBase.cs
+src/TalonOneSdk/Model/OutboundLogRequest.cs
+src/TalonOneSdk/Model/OutboundLogResponse.cs
+src/TalonOneSdk/Model/OutboundLogs.cs
+src/TalonOneSdk/Model/OutboundMessage.cs
+src/TalonOneSdk/Model/OutboundMessageResponse.cs
+src/TalonOneSdk/Model/OutboundMessages.cs
 src/TalonOneSdk/Model/OutgoingIntegrationBrazePolicy.cs
 src/TalonOneSdk/Model/OutgoingIntegrationCleverTapPolicy.cs
 src/TalonOneSdk/Model/OutgoingIntegrationConfiguration.cs

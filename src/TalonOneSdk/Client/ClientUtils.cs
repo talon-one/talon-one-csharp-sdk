@@ -464,8 +464,6 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.DigitalPass.StatusEnumToJsonValue(digitalPassStatusEnum);
             if (obj is TalonOneSdk.Model.DiscardRisksRequest.ReasonEnum discardRisksRequestReasonEnum)
                 return TalonOneSdk.Model.DiscardRisksRequest.ReasonEnumToJsonValue(discardRisksRequestReasonEnum);
-            if (obj is TalonOneSdk.Model.Effect.EffectTypeEnum effectEffectTypeEnum)
-                return TalonOneSdk.Model.Effect.EffectTypeEnumToJsonValue(effectEffectTypeEnum);
             if (obj is TalonOneSdk.Model.EffectAcceptCoupon.EffectTypeEnum effectAcceptCouponEffectTypeEnum)
                 return TalonOneSdk.Model.EffectAcceptCoupon.EffectTypeEnumToJsonValue(effectAcceptCouponEffectTypeEnum);
             if (obj is TalonOneSdk.Model.EffectAcceptReferral.EffectTypeEnum effectAcceptReferralEffectTypeEnum)
@@ -552,8 +550,12 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.EffectWillAwardGiveaway.EffectTypeEnumToJsonValue(effectWillAwardGiveawayEffectTypeEnum);
             if (obj is TalonOneSdk.Model.Experiment.GoalTypeEnum experimentGoalTypeEnum)
                 return TalonOneSdk.Model.Experiment.GoalTypeEnumToJsonValue(experimentGoalTypeEnum);
+            if (obj is TalonOneSdk.Model.Experiment.AssignmentTypeEnum experimentAssignmentTypeEnum)
+                return TalonOneSdk.Model.Experiment.AssignmentTypeEnumToJsonValue(experimentAssignmentTypeEnum);
             if (obj is TalonOneSdk.Model.Experiment.StateEnum experimentStateEnum)
                 return TalonOneSdk.Model.Experiment.StateEnumToJsonValue(experimentStateEnum);
+            if (obj is TalonOneSdk.Model.ExperimentCopyExperiment.AssignmentTypeEnum experimentCopyExperimentAssignmentTypeEnum)
+                return TalonOneSdk.Model.ExperimentCopyExperiment.AssignmentTypeEnumToJsonValue(experimentCopyExperimentAssignmentTypeEnum);
             if (obj is TalonOneSdk.Model.ExperimentCopyExperiment.GoalTypeEnum experimentCopyExperimentGoalTypeEnum)
                 return TalonOneSdk.Model.ExperimentCopyExperiment.GoalTypeEnumToJsonValue(experimentCopyExperimentGoalTypeEnum);
             if (obj is TalonOneSdk.Model.ExperimentSegmentInsight.DimensionEnum experimentSegmentInsightDimensionEnum)
@@ -626,6 +628,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.LabelTargetNone.TypeEnumToJsonValue(labelTargetNoneTypeEnum);
             if (obj is TalonOneSdk.Model.LedgerTransactionLogEntryIntegrationAPI.TypeEnum ledgerTransactionLogEntryIntegrationAPITypeEnum)
                 return TalonOneSdk.Model.LedgerTransactionLogEntryIntegrationAPI.TypeEnumToJsonValue(ledgerTransactionLogEntryIntegrationAPITypeEnum);
+            if (obj is TalonOneSdk.Model.LedgerTransactionLogEntryManagementAPI.TypeEnum ledgerTransactionLogEntryManagementAPITypeEnum)
+                return TalonOneSdk.Model.LedgerTransactionLogEntryManagementAPI.TypeEnumToJsonValue(ledgerTransactionLogEntryManagementAPITypeEnum);
             if (obj is TalonOneSdk.Model.LibraryAttribute.EntityEnum libraryAttributeEntityEnum)
                 return TalonOneSdk.Model.LibraryAttribute.EntityEnumToJsonValue(libraryAttributeEntityEnum);
             if (obj is TalonOneSdk.Model.LibraryAttribute.TypeEnum libraryAttributeTypeEnum)
@@ -710,6 +714,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.NewCustomerSessionV2.StateEnumToJsonValue(newCustomerSessionV2StateEnum);
             if (obj is TalonOneSdk.Model.NewDigitalPass.PlatformEnum newDigitalPassPlatformEnum)
                 return TalonOneSdk.Model.NewDigitalPass.PlatformEnumToJsonValue(newDigitalPassPlatformEnum);
+            if (obj is TalonOneSdk.Model.NewExperiment.AssignmentTypeEnum newExperimentAssignmentTypeEnum)
+                return TalonOneSdk.Model.NewExperiment.AssignmentTypeEnumToJsonValue(newExperimentAssignmentTypeEnum);
             if (obj is TalonOneSdk.Model.NewExperiment.GoalTypeEnum newExperimentGoalTypeEnum)
                 return TalonOneSdk.Model.NewExperiment.GoalTypeEnumToJsonValue(newExperimentGoalTypeEnum);
             if (obj is TalonOneSdk.Model.NewLoyaltyProgram.ProgramJoinPolicyEnum newLoyaltyProgramProgramJoinPolicyEnum)

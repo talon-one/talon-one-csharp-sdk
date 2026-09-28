@@ -37,7 +37,7 @@ namespace TalonOneSdk.Model
         /// <param name="trigger">trigger</param>
         /// <param name="changedItems">changedItems</param>
         /// <param name="notificationType">The type of notification.</param>
-        /// <param name="sentAt">Timestamp at which the notification was sent.</param>
+        /// <param name="sentAt">Timestamp when the notification was sent by Talon.One. There may be a delay before the notification is delivered to the user.</param>
         /// <param name="varVersion">The version of the strikethrough pricing notification. Set for **scheduled** strikethrough pricing updates only. </param>
         /// <param name="validFrom">Timestamp at which the strikethrough pricing update becomes valid. Set for **scheduled** strikethrough pricing updates (version: v2) only. </param>
         [JsonConstructor]
@@ -221,9 +221,9 @@ namespace TalonOneSdk.Model
         public List<StrikethroughChangedItem> ChangedItems { get; set; }
 
         /// <summary>
-        /// Timestamp at which the notification was sent.
+        /// Timestamp when the notification was sent by Talon.One. There may be a delay before the notification is delivered to the user.
         /// </summary>
-        /// <value>Timestamp at which the notification was sent.</value>
+        /// <value>Timestamp when the notification was sent by Talon.One. There may be a delay before the notification is delivered to the user.</value>
         [JsonPropertyName("sentAt")]
         public DateTime SentAt { get; set; }
 

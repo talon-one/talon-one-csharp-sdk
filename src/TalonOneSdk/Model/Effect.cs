@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// A generic effect that is fired by a triggered campaign. The &#x60;effectType&#x60; field selects the concrete effect variant and the shape of &#x60;props&#x60;.
+    /// Effect
     /// </summary>
     public partial class Effect : IValidatableObject
     {
@@ -32,9 +32,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectAcceptCoupon"></param>
-        public Effect(EffectAcceptCoupon effectAcceptCoupon)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectAcceptCoupon effectAcceptCoupon, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectAcceptCoupon = effectAcceptCoupon;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -42,9 +74,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectAcceptReferral"></param>
-        public Effect(EffectAcceptReferral effectAcceptReferral)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectAcceptReferral effectAcceptReferral, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectAcceptReferral = effectAcceptReferral;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -52,9 +116,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectAddFreeItem"></param>
-        public Effect(EffectAddFreeItem effectAddFreeItem)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectAddFreeItem effectAddFreeItem, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectAddFreeItem = effectAddFreeItem;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -62,9 +158,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectAddLoyaltyPoints"></param>
-        public Effect(EffectAddLoyaltyPoints effectAddLoyaltyPoints)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectAddLoyaltyPoints effectAddLoyaltyPoints, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectAddLoyaltyPoints = effectAddLoyaltyPoints;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -72,9 +200,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectAddNegativeLoyaltyPoints"></param>
-        public Effect(EffectAddNegativeLoyaltyPoints effectAddNegativeLoyaltyPoints)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectAddNegativeLoyaltyPoints effectAddNegativeLoyaltyPoints, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectAddNegativeLoyaltyPoints = effectAddNegativeLoyaltyPoints;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -82,9 +242,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectAddToAudience"></param>
-        public Effect(EffectAddToAudience effectAddToAudience)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectAddToAudience effectAddToAudience, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectAddToAudience = effectAddToAudience;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -92,9 +284,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectAwardGiveaway"></param>
-        public Effect(EffectAwardGiveaway effectAwardGiveaway)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectAwardGiveaway effectAwardGiveaway, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectAwardGiveaway = effectAwardGiveaway;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -102,9 +326,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectCallApi"></param>
-        public Effect(EffectCallApi effectCallApi)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectCallApi effectCallApi, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectCallApi = effectCallApi;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -112,9 +368,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectChangeLoyaltyTierLevel"></param>
-        public Effect(EffectChangeLoyaltyTierLevel effectChangeLoyaltyTierLevel)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectChangeLoyaltyTierLevel effectChangeLoyaltyTierLevel, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectChangeLoyaltyTierLevel = effectChangeLoyaltyTierLevel;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -122,9 +410,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectCouponCreated"></param>
-        public Effect(EffectCouponCreated effectCouponCreated)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectCouponCreated effectCouponCreated, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectCouponCreated = effectCouponCreated;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -132,9 +452,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectCustomEffect"></param>
-        public Effect(EffectCustomEffect effectCustomEffect)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectCustomEffect effectCustomEffect, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectCustomEffect = effectCustomEffect;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -142,9 +494,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectDeductLoyaltyPoints"></param>
-        public Effect(EffectDeductLoyaltyPoints effectDeductLoyaltyPoints)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectDeductLoyaltyPoints effectDeductLoyaltyPoints, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectDeductLoyaltyPoints = effectDeductLoyaltyPoints;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -152,9 +536,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectError"></param>
-        public Effect(EffectError effectError)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectError effectError, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectError = effectError;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -162,9 +578,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectExtendLoyaltyPointsExpiryDate"></param>
-        public Effect(EffectExtendLoyaltyPointsExpiryDate effectExtendLoyaltyPointsExpiryDate)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectExtendLoyaltyPointsExpiryDate effectExtendLoyaltyPointsExpiryDate, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectExtendLoyaltyPointsExpiryDate = effectExtendLoyaltyPointsExpiryDate;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -172,9 +620,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectIncreaseAchievementProgress"></param>
-        public Effect(EffectIncreaseAchievementProgress effectIncreaseAchievementProgress)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectIncreaseAchievementProgress effectIncreaseAchievementProgress, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectIncreaseAchievementProgress = effectIncreaseAchievementProgress;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -182,9 +662,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectJoinLoyaltyProgram"></param>
-        public Effect(EffectJoinLoyaltyProgram effectJoinLoyaltyProgram)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectJoinLoyaltyProgram effectJoinLoyaltyProgram, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectJoinLoyaltyProgram = effectJoinLoyaltyProgram;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -192,9 +704,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectOffsetNegativeLoyaltyPoints"></param>
-        public Effect(EffectOffsetNegativeLoyaltyPoints effectOffsetNegativeLoyaltyPoints)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectOffsetNegativeLoyaltyPoints effectOffsetNegativeLoyaltyPoints, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectOffsetNegativeLoyaltyPoints = effectOffsetNegativeLoyaltyPoints;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -202,9 +746,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRedeemReferral"></param>
-        public Effect(EffectRedeemReferral effectRedeemReferral)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectRedeemReferral effectRedeemReferral, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectRedeemReferral = effectRedeemReferral;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -212,9 +788,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectReferralCreated"></param>
-        public Effect(EffectReferralCreated effectReferralCreated)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectReferralCreated effectReferralCreated, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectReferralCreated = effectReferralCreated;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -222,9 +830,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRejectCoupon"></param>
-        public Effect(EffectRejectCoupon effectRejectCoupon)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectRejectCoupon effectRejectCoupon, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectRejectCoupon = effectRejectCoupon;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -232,9 +872,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRejectReferral"></param>
-        public Effect(EffectRejectReferral effectRejectReferral)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectRejectReferral effectRejectReferral, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectRejectReferral = effectRejectReferral;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -242,9 +914,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRemoveFromAudience"></param>
-        public Effect(EffectRemoveFromAudience effectRemoveFromAudience)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectRemoveFromAudience effectRemoveFromAudience, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectRemoveFromAudience = effectRemoveFromAudience;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -252,9 +956,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectReserveCoupon"></param>
-        public Effect(EffectReserveCoupon effectReserveCoupon)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectReserveCoupon effectReserveCoupon, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectReserveCoupon = effectReserveCoupon;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -262,9 +998,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRollbackAddedLoyaltyPoints"></param>
-        public Effect(EffectRollbackAddedLoyaltyPoints effectRollbackAddedLoyaltyPoints)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectRollbackAddedLoyaltyPoints effectRollbackAddedLoyaltyPoints, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectRollbackAddedLoyaltyPoints = effectRollbackAddedLoyaltyPoints;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -272,9 +1040,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRollbackCoupon"></param>
-        public Effect(EffectRollbackCoupon effectRollbackCoupon)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectRollbackCoupon effectRollbackCoupon, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectRollbackCoupon = effectRollbackCoupon;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -282,9 +1082,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRollbackDeductedLoyaltyPoints"></param>
-        public Effect(EffectRollbackDeductedLoyaltyPoints effectRollbackDeductedLoyaltyPoints)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectRollbackDeductedLoyaltyPoints effectRollbackDeductedLoyaltyPoints, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectRollbackDeductedLoyaltyPoints = effectRollbackDeductedLoyaltyPoints;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -292,9 +1124,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRollbackDiscount"></param>
-        public Effect(EffectRollbackDiscount effectRollbackDiscount)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectRollbackDiscount effectRollbackDiscount, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectRollbackDiscount = effectRollbackDiscount;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -302,9 +1166,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRollbackIncreasedAchievementProgress"></param>
-        public Effect(EffectRollbackIncreasedAchievementProgress effectRollbackIncreasedAchievementProgress)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectRollbackIncreasedAchievementProgress effectRollbackIncreasedAchievementProgress, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectRollbackIncreasedAchievementProgress = effectRollbackIncreasedAchievementProgress;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -312,9 +1208,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRollbackReferral"></param>
-        public Effect(EffectRollbackReferral effectRollbackReferral)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectRollbackReferral effectRollbackReferral, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectRollbackReferral = effectRollbackReferral;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -322,9 +1250,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRollbackUseReward"></param>
-        public Effect(EffectRollbackUseReward effectRollbackUseReward)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectRollbackUseReward effectRollbackUseReward, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectRollbackUseReward = effectRollbackUseReward;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -332,9 +1292,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectSet"></param>
-        public Effect(EffectSet effectSet)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectSet effectSet, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectSet = effectSet;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -342,9 +1334,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectSetDiscount"></param>
-        public Effect(EffectSetDiscount effectSetDiscount)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectSetDiscount effectSetDiscount, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectSetDiscount = effectSetDiscount;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -352,9 +1376,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectSetDiscountPerAdditionalCost"></param>
-        public Effect(EffectSetDiscountPerAdditionalCost effectSetDiscountPerAdditionalCost)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectSetDiscountPerAdditionalCost effectSetDiscountPerAdditionalCost, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectSetDiscountPerAdditionalCost = effectSetDiscountPerAdditionalCost;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -362,9 +1418,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectSetDiscountPerAdditionalCostPerItem"></param>
-        public Effect(EffectSetDiscountPerAdditionalCostPerItem effectSetDiscountPerAdditionalCostPerItem)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectSetDiscountPerAdditionalCostPerItem effectSetDiscountPerAdditionalCostPerItem, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectSetDiscountPerAdditionalCostPerItem = effectSetDiscountPerAdditionalCostPerItem;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -372,9 +1460,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectSetDiscountPerItem"></param>
-        public Effect(EffectSetDiscountPerItem effectSetDiscountPerItem)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectSetDiscountPerItem effectSetDiscountPerItem, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectSetDiscountPerItem = effectSetDiscountPerItem;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -382,9 +1502,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectSetLoyaltyPointsExpiryDate"></param>
-        public Effect(EffectSetLoyaltyPointsExpiryDate effectSetLoyaltyPointsExpiryDate)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectSetLoyaltyPointsExpiryDate effectSetLoyaltyPointsExpiryDate, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectSetLoyaltyPointsExpiryDate = effectSetLoyaltyPointsExpiryDate;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -392,9 +1544,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectShowBundleMetadata"></param>
-        public Effect(EffectShowBundleMetadata effectShowBundleMetadata)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectShowBundleMetadata effectShowBundleMetadata, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectShowBundleMetadata = effectShowBundleMetadata;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -402,9 +1586,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectShowNotification"></param>
-        public Effect(EffectShowNotification effectShowNotification)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectShowNotification effectShowNotification, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectShowNotification = effectShowNotification;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -412,9 +1628,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectStartAchievementProgress"></param>
-        public Effect(EffectStartAchievementProgress effectStartAchievementProgress)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectStartAchievementProgress effectStartAchievementProgress, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectStartAchievementProgress = effectStartAchievementProgress;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -422,9 +1670,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectUnlockReward"></param>
-        public Effect(EffectUnlockReward effectUnlockReward)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectUnlockReward effectUnlockReward, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectUnlockReward = effectUnlockReward;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -432,9 +1712,41 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectUseReward"></param>
-        public Effect(EffectUseReward effectUseReward)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectUseReward effectUseReward, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectUseReward = effectUseReward;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
@@ -442,66 +1754,45 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectWillAwardGiveaway"></param>
-        public Effect(EffectWillAwardGiveaway effectWillAwardGiveaway)
+        /// <param name="campaignId">The ID of the campaign that triggered this effect.</param>
+        /// <param name="rulesetId">The ID of the ruleset that was active in the campaign when this effect was triggered.</param>
+        /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
+        /// <param name="ruleName">The name of the rule that triggered this effect.</param>
+        /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
+        /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
+        /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
+        /// <param name="conditionIndex">The index of the condition that was triggered.</param>
+        /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
+        /// <param name="campaignRevisionId">The revision ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="campaignRevisionVersionId">The revision version ID of the campaign that was used when triggering the effect.</param>
+        /// <param name="selectedPriceType">The selected price type for the SKU targeted by this effect.</param>
+        /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
+        /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
+        /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        public Effect(EffectWillAwardGiveaway effectWillAwardGiveaway, long campaignId, long rulesetId, long ruleIndex, string ruleName, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
         {
             EffectWillAwardGiveaway = effectWillAwardGiveaway;
+            CampaignId = campaignId;
+            RulesetId = rulesetId;
+            RuleIndex = ruleIndex;
+            RuleName = ruleName;
+            ExperimentIdOption = experimentId;
+            TriggeredByCouponOption = triggeredByCoupon;
+            TriggeredForCatalogItemOption = triggeredForCatalogItem;
+            ConditionIndexOption = conditionIndex;
+            EvaluationGroupIDOption = evaluationGroupID;
+            EvaluationGroupModeOption = evaluationGroupMode;
+            CampaignRevisionIdOption = campaignRevisionId;
+            CampaignRevisionVersionIdOption = campaignRevisionVersionId;
+            SelectedPriceTypeOption = selectedPriceType;
+            SelectedPriceOption = selectedPrice;
+            AdjustmentReferenceIdOption = adjustmentReferenceId;
+            RewardIdOption = rewardId;
             OnCreated();
         }
 
         partial void OnCreated();
-
-        /// <summary>
-        /// An effect discriminator of type &#x60;willAwardGiveaway&#x60;.
-        /// </summary>
-        /// <value>An effect discriminator of type &#x60;willAwardGiveaway&#x60;.</value>
-        public enum EffectTypeEnum
-        {
-            /// <summary>
-            /// Enum WillAwardGiveaway for value: willAwardGiveaway
-            /// </summary>
-            WillAwardGiveaway = 1
-        }
-
-        /// <summary>
-        /// Returns a <see cref="EffectTypeEnum"/>
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static EffectTypeEnum EffectTypeEnumFromString(string value)
-        {
-            if (value.Equals("willAwardGiveaway"))
-                return EffectTypeEnum.WillAwardGiveaway;
-
-            throw new NotImplementedException($"Could not convert value to type EffectTypeEnum: '{value}'");
-        }
-
-        /// <summary>
-        /// Returns a <see cref="EffectTypeEnum"/>
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static EffectTypeEnum? EffectTypeEnumFromStringOrDefault(string value)
-        {
-            if (value.Equals("willAwardGiveaway"))
-                return EffectTypeEnum.WillAwardGiveaway;
-
-            return null;
-        }
-
-        /// <summary>
-        /// Converts the <see cref="EffectTypeEnum"/> to the json value
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string EffectTypeEnumToJsonValue(EffectTypeEnum value)
-        {
-            if (value == EffectTypeEnum.WillAwardGiveaway)
-                return "willAwardGiveaway";
-
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
 
         /// <summary>
         /// Gets or Sets EffectAcceptCoupon
@@ -714,6 +2005,218 @@ namespace TalonOneSdk.Model
         public EffectWillAwardGiveaway EffectWillAwardGiveaway { get; set; }
 
         /// <summary>
+        /// The ID of the campaign that triggered this effect.
+        /// </summary>
+        /// <value>The ID of the campaign that triggered this effect.</value>
+        /* <example>244</example> */
+        [JsonPropertyName("campaignId")]
+        public long CampaignId { get; set; }
+
+        /// <summary>
+        /// The ID of the ruleset that was active in the campaign when this effect was triggered.
+        /// </summary>
+        /// <value>The ID of the ruleset that was active in the campaign when this effect was triggered.</value>
+        /* <example>73</example> */
+        [JsonPropertyName("rulesetId")]
+        public long RulesetId { get; set; }
+
+        /// <summary>
+        /// The position of the rule that triggered this effect within the ruleset.
+        /// </summary>
+        /// <value>The position of the rule that triggered this effect within the ruleset.</value>
+        /* <example>2</example> */
+        [JsonPropertyName("ruleIndex")]
+        public long RuleIndex { get; set; }
+
+        /// <summary>
+        /// The name of the rule that triggered this effect.
+        /// </summary>
+        /// <value>The name of the rule that triggered this effect.</value>
+        /* <example>Give 20% discount</example> */
+        [JsonPropertyName("ruleName")]
+        public string RuleName { get; set; }
+
+        /// <summary>
+        /// Used to track the state of ExperimentId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> ExperimentIdOption { get; private set; }
+
+        /// <summary>
+        /// The ID of the experiment that campaign belongs to.
+        /// </summary>
+        /// <value>The ID of the experiment that campaign belongs to.</value>
+        /* <example>12</example> */
+        [JsonPropertyName("experimentId")]
+        public long? ExperimentId { get { return this.ExperimentIdOption.Value; } set { this.ExperimentIdOption = new Option<long?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of TriggeredByCoupon
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> TriggeredByCouponOption { get; private set; }
+
+        /// <summary>
+        /// The ID of the coupon that was being evaluated when this effect was triggered.
+        /// </summary>
+        /// <value>The ID of the coupon that was being evaluated when this effect was triggered.</value>
+        /* <example>4928</example> */
+        [JsonPropertyName("triggeredByCoupon")]
+        public long? TriggeredByCoupon { get { return this.TriggeredByCouponOption.Value; } set { this.TriggeredByCouponOption = new Option<long?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of TriggeredForCatalogItem
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> TriggeredForCatalogItemOption { get; private set; }
+
+        /// <summary>
+        /// The ID of the catalog item that was being evaluated when this effect was triggered.
+        /// </summary>
+        /// <value>The ID of the catalog item that was being evaluated when this effect was triggered.</value>
+        /* <example>786</example> */
+        [JsonPropertyName("triggeredForCatalogItem")]
+        public long? TriggeredForCatalogItem { get { return this.TriggeredForCatalogItemOption.Value; } set { this.TriggeredForCatalogItemOption = new Option<long?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of ConditionIndex
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> ConditionIndexOption { get; private set; }
+
+        /// <summary>
+        /// The index of the condition that was triggered.
+        /// </summary>
+        /// <value>The index of the condition that was triggered.</value>
+        /* <example>786</example> */
+        [JsonPropertyName("conditionIndex")]
+        public long? ConditionIndex { get { return this.ConditionIndexOption.Value; } set { this.ConditionIndexOption = new Option<long?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of EvaluationGroupID
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> EvaluationGroupIDOption { get; private set; }
+
+        /// <summary>
+        /// The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
+        /// </summary>
+        /// <value>The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</value>
+        /* <example>3</example> */
+        [JsonPropertyName("evaluationGroupID")]
+        public long? EvaluationGroupID { get { return this.EvaluationGroupIDOption.Value; } set { this.EvaluationGroupIDOption = new Option<long?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of EvaluationGroupMode
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> EvaluationGroupModeOption { get; private set; }
+
+        /// <summary>
+        /// The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
+        /// </summary>
+        /// <value>The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</value>
+        /* <example>stackable</example> */
+        [JsonPropertyName("evaluationGroupMode")]
+        public string EvaluationGroupMode { get { return this.EvaluationGroupModeOption.Value; } set { this.EvaluationGroupModeOption = new Option<string>(value); } }
+
+        /// <summary>
+        /// Used to track the state of CampaignRevisionId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> CampaignRevisionIdOption { get; private set; }
+
+        /// <summary>
+        /// The revision ID of the campaign that was used when triggering the effect.
+        /// </summary>
+        /// <value>The revision ID of the campaign that was used when triggering the effect.</value>
+        /* <example>1</example> */
+        [JsonPropertyName("campaignRevisionId")]
+        public long? CampaignRevisionId { get { return this.CampaignRevisionIdOption.Value; } set { this.CampaignRevisionIdOption = new Option<long?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of CampaignRevisionVersionId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> CampaignRevisionVersionIdOption { get; private set; }
+
+        /// <summary>
+        /// The revision version ID of the campaign that was used when triggering the effect.
+        /// </summary>
+        /// <value>The revision version ID of the campaign that was used when triggering the effect.</value>
+        /* <example>5</example> */
+        [JsonPropertyName("campaignRevisionVersionId")]
+        public long? CampaignRevisionVersionId { get { return this.CampaignRevisionVersionIdOption.Value; } set { this.CampaignRevisionVersionIdOption = new Option<long?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of SelectedPriceType
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> SelectedPriceTypeOption { get; private set; }
+
+        /// <summary>
+        /// The selected price type for the SKU targeted by this effect.
+        /// </summary>
+        /// <value>The selected price type for the SKU targeted by this effect.</value>
+        /* <example>member</example> */
+        [JsonPropertyName("selectedPriceType")]
+        public string SelectedPriceType { get { return this.SelectedPriceTypeOption.Value; } set { this.SelectedPriceTypeOption = new Option<string>(value); } }
+
+        /// <summary>
+        /// Used to track the state of SelectedPrice
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> SelectedPriceOption { get; private set; }
+
+        /// <summary>
+        /// The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.
+        /// </summary>
+        /// <value>The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</value>
+        /* <example>100</example> */
+        [JsonPropertyName("selectedPrice")]
+        public decimal? SelectedPrice { get { return this.SelectedPriceOption.Value; } set { this.SelectedPriceOption = new Option<decimal?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of AdjustmentReferenceId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Guid?> AdjustmentReferenceIdOption { get; private set; }
+
+        /// <summary>
+        /// The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.
+        /// </summary>
+        /// <value>The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</value>
+        /* <example>68851723-e6fa-488f-ace9-112581e6c19b</example> */
+        [JsonPropertyName("adjustmentReferenceId")]
+        public Guid? AdjustmentReferenceId { get { return this.AdjustmentReferenceIdOption.Value; } set { this.AdjustmentReferenceIdOption = new Option<Guid?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of RewardId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> RewardIdOption { get; private set; }
+
+        /// <summary>
+        /// The ID of the reward that was being evaluated when this effect was triggered.
+        /// </summary>
+        /// <value>The ID of the reward that was being evaluated when this effect was triggered.</value>
+        /* <example>7</example> */
+        [JsonPropertyName("rewardId")]
+        public long? RewardId { get { return this.RewardIdOption.Value; } set { this.RewardIdOption = new Option<long?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -721,6 +2224,22 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Effect {\n");
+            sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
+            sb.Append("  RulesetId: ").Append(RulesetId).Append("\n");
+            sb.Append("  RuleIndex: ").Append(RuleIndex).Append("\n");
+            sb.Append("  RuleName: ").Append(RuleName).Append("\n");
+            sb.Append("  ExperimentId: ").Append(ExperimentId).Append("\n");
+            sb.Append("  TriggeredByCoupon: ").Append(TriggeredByCoupon).Append("\n");
+            sb.Append("  TriggeredForCatalogItem: ").Append(TriggeredForCatalogItem).Append("\n");
+            sb.Append("  ConditionIndex: ").Append(ConditionIndex).Append("\n");
+            sb.Append("  EvaluationGroupID: ").Append(EvaluationGroupID).Append("\n");
+            sb.Append("  EvaluationGroupMode: ").Append(EvaluationGroupMode).Append("\n");
+            sb.Append("  CampaignRevisionId: ").Append(CampaignRevisionId).Append("\n");
+            sb.Append("  CampaignRevisionVersionId: ").Append(CampaignRevisionVersionId).Append("\n");
+            sb.Append("  SelectedPriceType: ").Append(SelectedPriceType).Append("\n");
+            sb.Append("  SelectedPrice: ").Append(SelectedPrice).Append("\n");
+            sb.Append("  AdjustmentReferenceId: ").Append(AdjustmentReferenceId).Append("\n");
+            sb.Append("  RewardId: ").Append(RewardId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -778,7 +2297,23 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<Effect.EffectTypeEnum?> effectType = default;
+            Option<long?> campaignId = default;
+            Option<long?> rulesetId = default;
+            Option<long?> ruleIndex = default;
+            Option<string> ruleName = default;
+            Option<string> effectType = default;
+            Option<long?> experimentId = default;
+            Option<long?> triggeredByCoupon = default;
+            Option<long?> triggeredForCatalogItem = default;
+            Option<long?> conditionIndex = default;
+            Option<long?> evaluationGroupID = default;
+            Option<string> evaluationGroupMode = default;
+            Option<long?> campaignRevisionId = default;
+            Option<long?> campaignRevisionVersionId = default;
+            Option<string> selectedPriceType = default;
+            Option<decimal?> selectedPrice = default;
+            Option<Guid?> adjustmentReferenceId = default;
+            Option<long?> rewardId = default;
 
             EffectAcceptCoupon acceptCouponEffectAcceptCoupon = null;
             EffectAcceptReferral acceptReferralEffectAcceptReferral = null;
@@ -1068,15 +2603,56 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "campaignId":
+                            campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "rulesetId":
+                            rulesetId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "ruleIndex":
+                            ruleIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "ruleName":
+                            ruleName = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         case "effectType":
-                            string effectTypeRawValue = utf8JsonReader.GetString();
-                            if (effectTypeRawValue != null)
-                            {
-                                Effect.EffectTypeEnum? effectTypeValue = Effect.EffectTypeEnumFromStringOrDefault(effectTypeRawValue);
-                                if (effectTypeValue == null)
-                                    throw new JsonException();
-                                effectType = new Option<Effect.EffectTypeEnum?>(effectTypeValue);
-                            }
+                            effectType = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "experimentId":
+                            experimentId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "triggeredByCoupon":
+                            triggeredByCoupon = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "triggeredForCatalogItem":
+                            triggeredForCatalogItem = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "conditionIndex":
+                            conditionIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "evaluationGroupID":
+                            evaluationGroupID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "evaluationGroupMode":
+                            evaluationGroupMode = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "campaignRevisionId":
+                            campaignRevisionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "campaignRevisionVersionId":
+                            campaignRevisionVersionId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "selectedPriceType":
+                            selectedPriceType = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "selectedPrice":
+                            selectedPrice = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "adjustmentReferenceId":
+                            adjustmentReferenceId = new Option<Guid?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (Guid?)null : utf8JsonReader.GetGuid());
+                            break;
+                        case "rewardId":
+                            rewardId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;
@@ -1084,137 +2660,161 @@ namespace TalonOneSdk.Model
                 }
             }
 
+            if (!campaignId.IsSet)
+                throw new ArgumentException("Property is required for class Effect.", nameof(campaignId));
+
+            if (!rulesetId.IsSet)
+                throw new ArgumentException("Property is required for class Effect.", nameof(rulesetId));
+
+            if (!ruleIndex.IsSet)
+                throw new ArgumentException("Property is required for class Effect.", nameof(ruleIndex));
+
+            if (!ruleName.IsSet)
+                throw new ArgumentException("Property is required for class Effect.", nameof(ruleName));
+
             if (!effectType.IsSet)
                 throw new ArgumentException("Property is required for class Effect.", nameof(effectType));
+
+            if (campaignId.IsSet && campaignId.Value == null)
+                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class Effect.");
+
+            if (rulesetId.IsSet && rulesetId.Value == null)
+                throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class Effect.");
+
+            if (ruleIndex.IsSet && ruleIndex.Value == null)
+                throw new ArgumentNullException(nameof(ruleIndex), "Property is not nullable for class Effect.");
+
+            if (ruleName.IsSet && ruleName.Value == null)
+                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class Effect.");
 
             if (effectType.IsSet && effectType.Value == null)
                 throw new ArgumentNullException(nameof(effectType), "Property is not nullable for class Effect.");
 
             if (acceptCouponEffectAcceptCoupon != null)
-                return new Effect(acceptCouponEffectAcceptCoupon);
+                return new Effect(acceptCouponEffectAcceptCoupon, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (acceptReferralEffectAcceptReferral != null)
-                return new Effect(acceptReferralEffectAcceptReferral);
+                return new Effect(acceptReferralEffectAcceptReferral, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (addFreeItemEffectAddFreeItem != null)
-                return new Effect(addFreeItemEffectAddFreeItem);
+                return new Effect(addFreeItemEffectAddFreeItem, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (addLoyaltyPointsEffectAddLoyaltyPoints != null)
-                return new Effect(addLoyaltyPointsEffectAddLoyaltyPoints);
+                return new Effect(addLoyaltyPointsEffectAddLoyaltyPoints, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (addNegativeLoyaltyPointsEffectAddNegativeLoyaltyPoints != null)
-                return new Effect(addNegativeLoyaltyPointsEffectAddNegativeLoyaltyPoints);
+                return new Effect(addNegativeLoyaltyPointsEffectAddNegativeLoyaltyPoints, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (addToAudienceEffectAddToAudience != null)
-                return new Effect(addToAudienceEffectAddToAudience);
+                return new Effect(addToAudienceEffectAddToAudience, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (awardGiveawayEffectAwardGiveaway != null)
-                return new Effect(awardGiveawayEffectAwardGiveaway);
+                return new Effect(awardGiveawayEffectAwardGiveaway, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (callApiEffectCallApi != null)
-                return new Effect(callApiEffectCallApi);
+                return new Effect(callApiEffectCallApi, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (changeLoyaltyTierLevelEffectChangeLoyaltyTierLevel != null)
-                return new Effect(changeLoyaltyTierLevelEffectChangeLoyaltyTierLevel);
+                return new Effect(changeLoyaltyTierLevelEffectChangeLoyaltyTierLevel, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (couponCreatedEffectCouponCreated != null)
-                return new Effect(couponCreatedEffectCouponCreated);
+                return new Effect(couponCreatedEffectCouponCreated, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (customEffectEffectCustomEffect != null)
-                return new Effect(customEffectEffectCustomEffect);
+                return new Effect(customEffectEffectCustomEffect, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (deductLoyaltyPointsEffectDeductLoyaltyPoints != null)
-                return new Effect(deductLoyaltyPointsEffectDeductLoyaltyPoints);
+                return new Effect(deductLoyaltyPointsEffectDeductLoyaltyPoints, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (errorEffectError != null)
-                return new Effect(errorEffectError);
+                return new Effect(errorEffectError, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (extendLoyaltyPointsExpiryDateEffectExtendLoyaltyPointsExpiryDate != null)
-                return new Effect(extendLoyaltyPointsExpiryDateEffectExtendLoyaltyPointsExpiryDate);
+                return new Effect(extendLoyaltyPointsExpiryDateEffectExtendLoyaltyPointsExpiryDate, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (increaseAchievementProgressEffectIncreaseAchievementProgress != null)
-                return new Effect(increaseAchievementProgressEffectIncreaseAchievementProgress);
+                return new Effect(increaseAchievementProgressEffectIncreaseAchievementProgress, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (joinLoyaltyProgramEffectJoinLoyaltyProgram != null)
-                return new Effect(joinLoyaltyProgramEffectJoinLoyaltyProgram);
+                return new Effect(joinLoyaltyProgramEffectJoinLoyaltyProgram, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (offsetNegativeLoyaltyPointsEffectOffsetNegativeLoyaltyPoints != null)
-                return new Effect(offsetNegativeLoyaltyPointsEffectOffsetNegativeLoyaltyPoints);
+                return new Effect(offsetNegativeLoyaltyPointsEffectOffsetNegativeLoyaltyPoints, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (redeemReferralEffectRedeemReferral != null)
-                return new Effect(redeemReferralEffectRedeemReferral);
+                return new Effect(redeemReferralEffectRedeemReferral, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (referralCreatedEffectReferralCreated != null)
-                return new Effect(referralCreatedEffectReferralCreated);
+                return new Effect(referralCreatedEffectReferralCreated, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (rejectCouponEffectRejectCoupon != null)
-                return new Effect(rejectCouponEffectRejectCoupon);
+                return new Effect(rejectCouponEffectRejectCoupon, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (rejectReferralEffectRejectReferral != null)
-                return new Effect(rejectReferralEffectRejectReferral);
+                return new Effect(rejectReferralEffectRejectReferral, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (removeFromAudienceEffectRemoveFromAudience != null)
-                return new Effect(removeFromAudienceEffectRemoveFromAudience);
+                return new Effect(removeFromAudienceEffectRemoveFromAudience, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (reserveCouponEffectReserveCoupon != null)
-                return new Effect(reserveCouponEffectReserveCoupon);
+                return new Effect(reserveCouponEffectReserveCoupon, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (rollbackAddedLoyaltyPointsEffectRollbackAddedLoyaltyPoints != null)
-                return new Effect(rollbackAddedLoyaltyPointsEffectRollbackAddedLoyaltyPoints);
+                return new Effect(rollbackAddedLoyaltyPointsEffectRollbackAddedLoyaltyPoints, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (rollbackCouponEffectRollbackCoupon != null)
-                return new Effect(rollbackCouponEffectRollbackCoupon);
+                return new Effect(rollbackCouponEffectRollbackCoupon, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (rollbackDeductedLoyaltyPointsEffectRollbackDeductedLoyaltyPoints != null)
-                return new Effect(rollbackDeductedLoyaltyPointsEffectRollbackDeductedLoyaltyPoints);
+                return new Effect(rollbackDeductedLoyaltyPointsEffectRollbackDeductedLoyaltyPoints, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (rollbackDiscountEffectRollbackDiscount != null)
-                return new Effect(rollbackDiscountEffectRollbackDiscount);
+                return new Effect(rollbackDiscountEffectRollbackDiscount, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (rollbackIncreasedAchievementProgressEffectRollbackIncreasedAchievementProgress != null)
-                return new Effect(rollbackIncreasedAchievementProgressEffectRollbackIncreasedAchievementProgress);
+                return new Effect(rollbackIncreasedAchievementProgressEffectRollbackIncreasedAchievementProgress, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (rollbackReferralEffectRollbackReferral != null)
-                return new Effect(rollbackReferralEffectRollbackReferral);
+                return new Effect(rollbackReferralEffectRollbackReferral, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (rollbackUseRewardEffectRollbackUseReward != null)
-                return new Effect(rollbackUseRewardEffectRollbackUseReward);
+                return new Effect(rollbackUseRewardEffectRollbackUseReward, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (setEffectSet != null)
-                return new Effect(setEffectSet);
+                return new Effect(setEffectSet, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (setDiscountEffectSetDiscount != null)
-                return new Effect(setDiscountEffectSetDiscount);
+                return new Effect(setDiscountEffectSetDiscount, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (setDiscountPerAdditionalCostEffectSetDiscountPerAdditionalCost != null)
-                return new Effect(setDiscountPerAdditionalCostEffectSetDiscountPerAdditionalCost);
+                return new Effect(setDiscountPerAdditionalCostEffectSetDiscountPerAdditionalCost, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (setDiscountPerAdditionalCostPerItemEffectSetDiscountPerAdditionalCostPerItem != null)
-                return new Effect(setDiscountPerAdditionalCostPerItemEffectSetDiscountPerAdditionalCostPerItem);
+                return new Effect(setDiscountPerAdditionalCostPerItemEffectSetDiscountPerAdditionalCostPerItem, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (setDiscountPerItemEffectSetDiscountPerItem != null)
-                return new Effect(setDiscountPerItemEffectSetDiscountPerItem);
+                return new Effect(setDiscountPerItemEffectSetDiscountPerItem, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (setLoyaltyPointsExpiryDateEffectSetLoyaltyPointsExpiryDate != null)
-                return new Effect(setLoyaltyPointsExpiryDateEffectSetLoyaltyPointsExpiryDate);
+                return new Effect(setLoyaltyPointsExpiryDateEffectSetLoyaltyPointsExpiryDate, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (showBundleMetadataEffectShowBundleMetadata != null)
-                return new Effect(showBundleMetadataEffectShowBundleMetadata);
+                return new Effect(showBundleMetadataEffectShowBundleMetadata, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (showNotificationEffectShowNotification != null)
-                return new Effect(showNotificationEffectShowNotification);
+                return new Effect(showNotificationEffectShowNotification, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (startAchievementProgressEffectStartAchievementProgress != null)
-                return new Effect(startAchievementProgressEffectStartAchievementProgress);
+                return new Effect(startAchievementProgressEffectStartAchievementProgress, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (unlockRewardEffectUnlockReward != null)
-                return new Effect(unlockRewardEffectUnlockReward);
+                return new Effect(unlockRewardEffectUnlockReward, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (useRewardEffectUseReward != null)
-                return new Effect(useRewardEffectUseReward);
+                return new Effect(useRewardEffectUseReward, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             if (willAwardGiveawayEffectWillAwardGiveaway != null)
-                return new Effect(willAwardGiveawayEffectWillAwardGiveaway);
+                return new Effect(willAwardGiveawayEffectWillAwardGiveaway, campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
 
             throw new JsonException();
         }
@@ -1495,7 +3095,52 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Effect effect, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (effect.RuleName == null)
+                throw new ArgumentNullException(nameof(effect.RuleName), "Property is required for class Effect.");
 
+            writer.WriteNumber("campaignId", effect.CampaignId);
+
+            writer.WriteNumber("rulesetId", effect.RulesetId);
+
+            writer.WriteNumber("ruleIndex", effect.RuleIndex);
+
+            writer.WriteString("ruleName", effect.RuleName);
+
+            if (effect.ExperimentIdOption.IsSet)
+                writer.WriteNumber("experimentId", effect.ExperimentIdOption.Value.Value);
+
+            if (effect.TriggeredByCouponOption.IsSet)
+                writer.WriteNumber("triggeredByCoupon", effect.TriggeredByCouponOption.Value.Value);
+
+            if (effect.TriggeredForCatalogItemOption.IsSet)
+                writer.WriteNumber("triggeredForCatalogItem", effect.TriggeredForCatalogItemOption.Value.Value);
+
+            if (effect.ConditionIndexOption.IsSet)
+                writer.WriteNumber("conditionIndex", effect.ConditionIndexOption.Value.Value);
+
+            if (effect.EvaluationGroupIDOption.IsSet)
+                writer.WriteNumber("evaluationGroupID", effect.EvaluationGroupIDOption.Value.Value);
+
+            if (effect.EvaluationGroupModeOption.IsSet)
+                writer.WriteString("evaluationGroupMode", effect.EvaluationGroupMode);
+
+            if (effect.CampaignRevisionIdOption.IsSet)
+                writer.WriteNumber("campaignRevisionId", effect.CampaignRevisionIdOption.Value.Value);
+
+            if (effect.CampaignRevisionVersionIdOption.IsSet)
+                writer.WriteNumber("campaignRevisionVersionId", effect.CampaignRevisionVersionIdOption.Value.Value);
+
+            if (effect.SelectedPriceTypeOption.IsSet)
+                writer.WriteString("selectedPriceType", effect.SelectedPriceType);
+
+            if (effect.SelectedPriceOption.IsSet)
+                writer.WriteNumber("selectedPrice", effect.SelectedPriceOption.Value.Value);
+
+            if (effect.AdjustmentReferenceIdOption.IsSet)
+                writer.WriteString("adjustmentReferenceId", effect.AdjustmentReferenceIdOption.Value.Value);
+
+            if (effect.RewardIdOption.IsSet)
+                writer.WriteNumber("rewardId", effect.RewardIdOption.Value.Value);
         }
     }
 }

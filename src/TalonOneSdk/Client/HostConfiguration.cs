@@ -486,6 +486,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new GetLoyaltyCardTransactionLogs200ResponseJsonConverter());
             _jsonOptions.Converters.Add(new GetLoyaltyCardTransactions200ResponseJsonConverter());
             _jsonOptions.Converters.Add(new GetLoyaltyCards200ResponseJsonConverter());
+            _jsonOptions.Converters.Add(new GetLoyaltyProgramProfileLedgerTransactions200ResponseJsonConverter());
             _jsonOptions.Converters.Add(new GetLoyaltyProgramProfilePoints200ResponseJsonConverter());
             _jsonOptions.Converters.Add(new GetLoyaltyProgramProfileTransactions200ResponseJsonConverter());
             _jsonOptions.Converters.Add(new GetLoyaltyProgramTransactions200ResponseJsonConverter());
@@ -562,6 +563,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new LedgerInfoJsonConverter());
             _jsonOptions.Converters.Add(new LedgerPointsEntryIntegrationAPIJsonConverter());
             _jsonOptions.Converters.Add(new LedgerTransactionLogEntryIntegrationAPIJsonConverter());
+            _jsonOptions.Converters.Add(new LedgerTransactionLogEntryManagementAPIJsonConverter());
             _jsonOptions.Converters.Add(new LibraryAttributeJsonConverter());
             _jsonOptions.Converters.Add(new LimitConfigJsonConverter());
             _jsonOptions.Converters.Add(new LimitCounterJsonConverter());
@@ -718,6 +720,14 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new OktaEventPayloadDataJsonConverter());
             _jsonOptions.Converters.Add(new OktaEventTargetJsonConverter());
             _jsonOptions.Converters.Add(new OneTimeCodeJsonConverter());
+            _jsonOptions.Converters.Add(new OutboundLogJsonConverter());
+            _jsonOptions.Converters.Add(new OutboundLogBaseJsonConverter());
+            _jsonOptions.Converters.Add(new OutboundLogRequestJsonConverter());
+            _jsonOptions.Converters.Add(new OutboundLogResponseJsonConverter());
+            _jsonOptions.Converters.Add(new OutboundLogsJsonConverter());
+            _jsonOptions.Converters.Add(new OutboundMessageJsonConverter());
+            _jsonOptions.Converters.Add(new OutboundMessageResponseJsonConverter());
+            _jsonOptions.Converters.Add(new OutboundMessagesJsonConverter());
             _jsonOptions.Converters.Add(new OutgoingIntegrationBrazePolicyJsonConverter());
             _jsonOptions.Converters.Add(new OutgoingIntegrationCleverTapPolicyJsonConverter());
             _jsonOptions.Converters.Add(new OutgoingIntegrationConfigurationJsonConverter());

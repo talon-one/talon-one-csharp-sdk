@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// Represents the target type when no entity is selected.
+    /// Target type when no specific audience is selected. Targets all customers who are not members of an audience.
     /// </summary>
     public partial class LabelTargetNone : IValidatableObject
     {

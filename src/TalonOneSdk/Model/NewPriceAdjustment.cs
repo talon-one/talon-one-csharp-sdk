@@ -37,7 +37,7 @@ namespace TalonOneSdk.Model
         /// <param name="calculatedAt">The time at which this price was calculated. If provided, this is used to determine the most recent price adjustment to choose if price adjustments overlap. Defaults to internal creation time if not provided.</param>
         /// <param name="effectiveFrom">The date and time from which the price adjustment is effective.</param>
         /// <param name="effectiveUntil">The date and time until which the price adjustment is effective.</param>
-        /// <param name="contextId">Identifier of the context of this price adjustment (e.g. summer sale).</param>
+        /// <param name="contextId">Identifier of the context of this price adjustment (the sales event, e.g. \&quot;Summer Sale\&quot;).</param>
         [JsonConstructor]
         public NewPriceAdjustment(string priceType, string referenceId, Option<decimal?> price = default, Option<DateTime?> calculatedAt = default, Option<DateTime?> effectiveFrom = default, Option<DateTime?> effectiveUntil = default, Option<string> contextId = default)
         {
@@ -137,9 +137,9 @@ namespace TalonOneSdk.Model
         public Option<string> ContextIdOption { get; private set; }
 
         /// <summary>
-        /// Identifier of the context of this price adjustment (e.g. summer sale).
+        /// Identifier of the context of this price adjustment (the sales event, e.g. \&quot;Summer Sale\&quot;).
         /// </summary>
-        /// <value>Identifier of the context of this price adjustment (e.g. summer sale).</value>
+        /// <value>Identifier of the context of this price adjustment (the sales event, e.g. \&quot;Summer Sale\&quot;).</value>
         /* <example>Summer2025</example> */
         [JsonPropertyName("contextId")]
         public string ContextId { get { return this.ContextIdOption.Value; } set { this.ContextIdOption = new Option<string>(value); } }

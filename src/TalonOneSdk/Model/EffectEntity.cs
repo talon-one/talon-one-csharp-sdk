@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// Definition of all properties that are present on all effects, independent of their type.
+    /// EffectEntity
     /// </summary>
     public partial class EffectEntity : IValidatableObject
     {

@@ -1790,10 +1790,11 @@ namespace TalonOneSdk.Test.Api
             Client.Option<DateTime> endDate = default;
             Client.Option<long> pageSize = default;
             Client.Option<long> skip = default;
+            Client.Option<bool> includeReferences = default;
             Client.Option<bool> awaitsActivation = default;
-            var response = await _instance.GetLoyaltyProgramProfileLedgerTransactionsAsync(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
+            var response = await _instance.GetLoyaltyProgramProfileLedgerTransactionsAsync(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, includeReferences, awaitsActivation);
             var model = response.Ok();
-            Assert.IsType<TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response>(model);
+            Assert.IsType<TalonOneSdk.Model.GetLoyaltyProgramProfileLedgerTransactions200Response>(model);
         }
 
         /// <summary>

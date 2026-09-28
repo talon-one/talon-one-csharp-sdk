@@ -1597,7 +1597,7 @@ namespace TalonOneSdk.Api
         /// Export card&#39;s ledger log
         /// </summary>
         /// <remarks>
-        /// Download a CSV file containing a loyalty card ledger log of the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files). 
+        /// Download a CSV file containing a loyalty card ledger log of the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;cardidentifier&#x60;: The identifier of the loyalty card. - &#x60;applicationid&#x60;: The ID of the Application. - &#x60;sessionid&#x60;: The ID of the session. - &#x60;customersessionid&#x60;: The integration ID of the customer session. - &#x60;rulesetid&#x60;: The ID of the rule set. - &#x60;rulename&#x60;: The name of the rule. - &#x60;programid&#x60;: The ID of the loyalty program. - &#x60;type&#x60;: The transaction type, such as &#x60;addition&#x60; or &#x60;subtraction&#x60;. - &#x60;name&#x60;: The reason for the transaction. - &#x60;subledgerid&#x60;: The ID of the subledger, when applicable. - &#x60;startdate&#x60;: The start date of the points. - &#x60;expirydate&#x60;: The expiration date of the points. - &#x60;id&#x60;: The ID of the transaction. - &#x60;created&#x60;: The timestamp of the transaction creation. - &#x60;amount&#x60;: The number of points in that transaction. - &#x60;archived&#x60;: Whether the session related to the transaction is archived. - &#x60;campaignid&#x60;: The ID of the campaign. - &#x60;transactionUUID&#x60;: Unique identifier of the transaction in the UUID format. - &#x60;validityDuration&#x60;: The duration for which the points remain active, relative to the activation date. - &#x60;remainingAmount&#x60;: The current unused amount of points, when applicable to &#x60;addition&#x60; transactions. 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -1613,7 +1613,7 @@ namespace TalonOneSdk.Api
         /// Export card&#39;s ledger log
         /// </summary>
         /// <remarks>
-        /// Download a CSV file containing a loyalty card ledger log of the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files). 
+        /// Download a CSV file containing a loyalty card ledger log of the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;cardidentifier&#x60;: The identifier of the loyalty card. - &#x60;applicationid&#x60;: The ID of the Application. - &#x60;sessionid&#x60;: The ID of the session. - &#x60;customersessionid&#x60;: The integration ID of the customer session. - &#x60;rulesetid&#x60;: The ID of the rule set. - &#x60;rulename&#x60;: The name of the rule. - &#x60;programid&#x60;: The ID of the loyalty program. - &#x60;type&#x60;: The transaction type, such as &#x60;addition&#x60; or &#x60;subtraction&#x60;. - &#x60;name&#x60;: The reason for the transaction. - &#x60;subledgerid&#x60;: The ID of the subledger, when applicable. - &#x60;startdate&#x60;: The start date of the points. - &#x60;expirydate&#x60;: The expiration date of the points. - &#x60;id&#x60;: The ID of the transaction. - &#x60;created&#x60;: The timestamp of the transaction creation. - &#x60;amount&#x60;: The number of points in that transaction. - &#x60;archived&#x60;: Whether the session related to the transaction is archived. - &#x60;campaignid&#x60;: The ID of the campaign. - &#x60;transactionUUID&#x60;: Unique identifier of the transaction in the UUID format. - &#x60;validityDuration&#x60;: The duration for which the points remain active, relative to the activation date. - &#x60;remainingAmount&#x60;: The current unused amount of points, when applicable to &#x60;addition&#x60; transactions. 
         /// </remarks>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="loyaltyCardId">Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;. </param>
@@ -1682,7 +1682,7 @@ namespace TalonOneSdk.Api
         /// Export customer&#39;s transaction logs
         /// </summary>
         /// <remarks>
-        /// Download a CSV file containing a customer&#39;s transaction logs in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;customerprofileid&#x60;: The ID of the profile. - &#x60;customersessionid&#x60;: The ID of the customer session. - &#x60;rulesetid&#x60;: The ID of the rule set. - &#x60;rulename&#x60;: The name of the rule. - &#x60;programid&#x60;: The ID of the loyalty program. - &#x60;type&#x60;: The transaction type, such as &#x60;addition&#x60; or &#x60;subtraction&#x60;. - &#x60;name&#x60;: The reason for the transaction. - &#x60;subledgerid&#x60;: The ID of the subledger, when applicable. - &#x60;startdate&#x60;: The start date of the program. - &#x60;expirydate&#x60;: The expiration date of the program. - &#x60;id&#x60;: The ID of the transaction. - &#x60;created&#x60;: The timestamp of the creation of the loyalty program. - &#x60;amount&#x60;: The number of points in that transaction. - &#x60;archived&#x60;: Whether the session related to the transaction is archived. - &#x60;campaignid&#x60;: The ID of the campaign. - &#x60;flags&#x60;: The flags of the transaction, when applicable. The &#x60;createsNegativeBalance&#x60; flag indicates whether the transaction results in a negative balance. - &#x60;transactionUUID&#x60;: Unique identifier of the transaction in the UUID format. 
+        /// Download a CSV file containing a customer&#39;s transaction logs in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;customerprofileid&#x60;: The ID of the profile. - &#x60;customersessionid&#x60;: The ID of the customer session. - &#x60;rulesetid&#x60;: The ID of the rule set. - &#x60;rulename&#x60;: The name of the rule. - &#x60;programid&#x60;: The ID of the loyalty program. - &#x60;type&#x60;: The transaction type, such as &#x60;addition&#x60; or &#x60;subtraction&#x60;. - &#x60;name&#x60;: The reason for the transaction. - &#x60;subledgerid&#x60;: The ID of the subledger, when applicable. - &#x60;startdate&#x60;: The start date of the program. - &#x60;expirydate&#x60;: The expiration date of the program. - &#x60;id&#x60;: The ID of the transaction. - &#x60;created&#x60;: The timestamp of the creation of the loyalty program. - &#x60;amount&#x60;: The number of points in that transaction. - &#x60;archived&#x60;: Whether the session related to the transaction is archived. - &#x60;campaignid&#x60;: The ID of the campaign. - &#x60;flags&#x60;: The flags of the transaction, when applicable. The &#x60;createsNegativeBalance&#x60; flag indicates whether the transaction results in a negative balance. - &#x60;transactionUUID&#x60;: Unique identifier of the transaction in the UUID format. - &#x60;validityDuration&#x60;: The duration for which the points remain active, relative to the activation date. - &#x60;remainingAmount&#x60;: The current unused amount of points, when applicable to &#x60;addition&#x60; transactions. 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="rangeStart">Only return results from after this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. </param>
@@ -1698,7 +1698,7 @@ namespace TalonOneSdk.Api
         /// Export customer&#39;s transaction logs
         /// </summary>
         /// <remarks>
-        /// Download a CSV file containing a customer&#39;s transaction logs in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;customerprofileid&#x60;: The ID of the profile. - &#x60;customersessionid&#x60;: The ID of the customer session. - &#x60;rulesetid&#x60;: The ID of the rule set. - &#x60;rulename&#x60;: The name of the rule. - &#x60;programid&#x60;: The ID of the loyalty program. - &#x60;type&#x60;: The transaction type, such as &#x60;addition&#x60; or &#x60;subtraction&#x60;. - &#x60;name&#x60;: The reason for the transaction. - &#x60;subledgerid&#x60;: The ID of the subledger, when applicable. - &#x60;startdate&#x60;: The start date of the program. - &#x60;expirydate&#x60;: The expiration date of the program. - &#x60;id&#x60;: The ID of the transaction. - &#x60;created&#x60;: The timestamp of the creation of the loyalty program. - &#x60;amount&#x60;: The number of points in that transaction. - &#x60;archived&#x60;: Whether the session related to the transaction is archived. - &#x60;campaignid&#x60;: The ID of the campaign. - &#x60;flags&#x60;: The flags of the transaction, when applicable. The &#x60;createsNegativeBalance&#x60; flag indicates whether the transaction results in a negative balance. - &#x60;transactionUUID&#x60;: Unique identifier of the transaction in the UUID format. 
+        /// Download a CSV file containing a customer&#39;s transaction logs in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;customerprofileid&#x60;: The ID of the profile. - &#x60;customersessionid&#x60;: The ID of the customer session. - &#x60;rulesetid&#x60;: The ID of the rule set. - &#x60;rulename&#x60;: The name of the rule. - &#x60;programid&#x60;: The ID of the loyalty program. - &#x60;type&#x60;: The transaction type, such as &#x60;addition&#x60; or &#x60;subtraction&#x60;. - &#x60;name&#x60;: The reason for the transaction. - &#x60;subledgerid&#x60;: The ID of the subledger, when applicable. - &#x60;startdate&#x60;: The start date of the program. - &#x60;expirydate&#x60;: The expiration date of the program. - &#x60;id&#x60;: The ID of the transaction. - &#x60;created&#x60;: The timestamp of the creation of the loyalty program. - &#x60;amount&#x60;: The number of points in that transaction. - &#x60;archived&#x60;: Whether the session related to the transaction is archived. - &#x60;campaignid&#x60;: The ID of the campaign. - &#x60;flags&#x60;: The flags of the transaction, when applicable. The &#x60;createsNegativeBalance&#x60; flag indicates whether the transaction results in a negative balance. - &#x60;transactionUUID&#x60;: Unique identifier of the transaction in the UUID format. - &#x60;validityDuration&#x60;: The duration for which the points remain active, relative to the activation date. - &#x60;remainingAmount&#x60;: The current unused amount of points, when applicable to &#x60;addition&#x60; transactions. 
         /// </remarks>
         /// <param name="rangeStart">Only return results from after this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. </param>
         /// <param name="rangeEnd">Only return results from before this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. </param>
@@ -3468,7 +3468,7 @@ namespace TalonOneSdk.Api
         /// List customer&#39;s loyalty transactions (Management API)
         /// </summary>
         /// <remarks>
-        /// Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint: &gt;   [List customer&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). &gt; - To retrieve all loyalty program transaction logs in a given loyalty program, use the &gt;   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
+        /// Retrieve paginated results of loyalty transaction logs for the given integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger), and include the UUIDs of transactions referenced by deductions. If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint: &gt;   [List customer&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). &gt; - To retrieve all loyalty program transaction logs in a given loyalty program, use the &gt;   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -3481,16 +3481,17 @@ namespace TalonOneSdk.Api
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="includeReferences">Whether to include the UUIDs of transactions referenced by deductions.  **Note:** Enabling this can decrease query performance, especially when no date filter is applied to a large transaction history.  (optional, default to false)</param>
         /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfileLedgerTransactionsApiResponse"/>&gt;</returns>
-        Task<IGetLoyaltyProgramProfileLedgerTransactionsApiResponse> GetLoyaltyProgramProfileLedgerTransactionsAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetLoyaltyProgramProfileLedgerTransactionsApiResponse> GetLoyaltyProgramProfileLedgerTransactionsAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> includeReferences = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List customer&#39;s loyalty transactions (Management API)
         /// </summary>
         /// <remarks>
-        /// Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint: &gt;   [List customer&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). &gt; - To retrieve all loyalty program transaction logs in a given loyalty program, use the &gt;   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
+        /// Retrieve paginated results of loyalty transaction logs for the given integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger), and include the UUIDs of transactions referenced by deductions. If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint: &gt;   [List customer&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). &gt; - To retrieve all loyalty program transaction logs in a given loyalty program, use the &gt;   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
         /// </remarks>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
@@ -3502,10 +3503,11 @@ namespace TalonOneSdk.Api
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="includeReferences">Whether to include the UUIDs of transactions referenced by deductions.  **Note:** Enabling this can decrease query performance, especially when no date filter is applied to a large transaction history.  (optional, default to false)</param>
         /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfileLedgerTransactionsApiResponse"/>&gt;</returns>
-        Task<IGetLoyaltyProgramProfileLedgerTransactionsApiResponse> GetLoyaltyProgramProfileLedgerTransactionsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetLoyaltyProgramProfileLedgerTransactionsApiResponse> GetLoyaltyProgramProfileLedgerTransactionsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> includeReferences = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List loyalty program transactions
@@ -4176,7 +4178,7 @@ namespace TalonOneSdk.Api
         /// Import join dates for a loyalty program
         /// </summary>
         /// <remarks>
-        /// Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;joindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+        /// Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;newjoindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.    **Note:** This column name will be updated in a future release.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -4189,7 +4191,7 @@ namespace TalonOneSdk.Api
         /// Import join dates for a loyalty program
         /// </summary>
         /// <remarks>
-        /// Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;joindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+        /// Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;newjoindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.    **Note:** This column name will be updated in a future release.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
@@ -5750,12 +5752,6 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <returns></returns>
         bool IsUnauthorized { get; }
-
-        /// <summary>
-        /// Returns true if the response is 409 Conflict
-        /// </summary>
-        /// <returns></returns>
-        bool IsConflict { get; }
     }
 
     /// <summary>
@@ -5780,12 +5776,6 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <returns></returns>
         bool IsUnauthorized { get; }
-
-        /// <summary>
-        /// Returns true if the response is 409 Conflict
-        /// </summary>
-        /// <returns></returns>
-        bool IsConflict { get; }
     }
 
     /// <summary>
@@ -7627,7 +7617,7 @@ namespace TalonOneSdk.Api
     /// <summary>
     /// The <see cref="IGetLoyaltyProgramProfileLedgerTransactionsApiResponse"/>
     /// </summary>
-    public interface IGetLoyaltyProgramProfileLedgerTransactionsApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
+    public interface IGetLoyaltyProgramProfileLedgerTransactionsApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.GetLoyaltyProgramProfileLedgerTransactions200Response>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -14992,12 +14982,6 @@ namespace TalonOneSdk.Api
                 return result != null;
             }
 
-            /// <summary>
-            /// Returns true if the response is 409 Conflict
-            /// </summary>
-            /// <returns></returns>
-            public bool IsConflict => 409 == (int)StatusCode;
-
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {
                 bool suppressDefaultLog = false;
@@ -15370,12 +15354,6 @@ namespace TalonOneSdk.Api
 
                 return result != null;
             }
-
-            /// <summary>
-            /// Returns true if the response is 409 Conflict
-            /// </summary>
-            /// <returns></returns>
-            public bool IsConflict => 409 == (int)StatusCode;
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {
@@ -31488,7 +31466,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorExportLoyaltyCardLedger(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string loyaltyCardId, DateTime rangeStart, DateTime rangeEnd, Option<string> dateFormat);
 
         /// <summary>
-        /// Export card&#39;s ledger log Download a CSV file containing a loyalty card ledger log of the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files). 
+        /// Export card&#39;s ledger log Download a CSV file containing a loyalty card ledger log of the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;cardidentifier&#x60;: The identifier of the loyalty card. - &#x60;applicationid&#x60;: The ID of the Application. - &#x60;sessionid&#x60;: The ID of the session. - &#x60;customersessionid&#x60;: The integration ID of the customer session. - &#x60;rulesetid&#x60;: The ID of the rule set. - &#x60;rulename&#x60;: The name of the rule. - &#x60;programid&#x60;: The ID of the loyalty program. - &#x60;type&#x60;: The transaction type, such as &#x60;addition&#x60; or &#x60;subtraction&#x60;. - &#x60;name&#x60;: The reason for the transaction. - &#x60;subledgerid&#x60;: The ID of the subledger, when applicable. - &#x60;startdate&#x60;: The start date of the points. - &#x60;expirydate&#x60;: The expiration date of the points. - &#x60;id&#x60;: The ID of the transaction. - &#x60;created&#x60;: The timestamp of the transaction creation. - &#x60;amount&#x60;: The number of points in that transaction. - &#x60;archived&#x60;: Whether the session related to the transaction is archived. - &#x60;campaignid&#x60;: The ID of the campaign. - &#x60;transactionUUID&#x60;: Unique identifier of the transaction in the UUID format. - &#x60;validityDuration&#x60;: The duration for which the points remain active, relative to the activation date. - &#x60;remainingAmount&#x60;: The current unused amount of points, when applicable to &#x60;addition&#x60; transactions. 
         /// </summary>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="loyaltyCardId">Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;. </param>
@@ -31510,7 +31488,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Export card&#39;s ledger log Download a CSV file containing a loyalty card ledger log of the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files). 
+        /// Export card&#39;s ledger log Download a CSV file containing a loyalty card ledger log of the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;cardidentifier&#x60;: The identifier of the loyalty card. - &#x60;applicationid&#x60;: The ID of the Application. - &#x60;sessionid&#x60;: The ID of the session. - &#x60;customersessionid&#x60;: The integration ID of the customer session. - &#x60;rulesetid&#x60;: The ID of the rule set. - &#x60;rulename&#x60;: The name of the rule. - &#x60;programid&#x60;: The ID of the loyalty program. - &#x60;type&#x60;: The transaction type, such as &#x60;addition&#x60; or &#x60;subtraction&#x60;. - &#x60;name&#x60;: The reason for the transaction. - &#x60;subledgerid&#x60;: The ID of the subledger, when applicable. - &#x60;startdate&#x60;: The start date of the points. - &#x60;expirydate&#x60;: The expiration date of the points. - &#x60;id&#x60;: The ID of the transaction. - &#x60;created&#x60;: The timestamp of the transaction creation. - &#x60;amount&#x60;: The number of points in that transaction. - &#x60;archived&#x60;: Whether the session related to the transaction is archived. - &#x60;campaignid&#x60;: The ID of the campaign. - &#x60;transactionUUID&#x60;: Unique identifier of the transaction in the UUID format. - &#x60;validityDuration&#x60;: The duration for which the points remain active, relative to the activation date. - &#x60;remainingAmount&#x60;: The current unused amount of points, when applicable to &#x60;addition&#x60; transactions. 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -32658,7 +32636,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorExportLoyaltyLedger(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, DateTime rangeStart, DateTime rangeEnd, string loyaltyProgramId, string integrationId, Option<string> dateFormat);
 
         /// <summary>
-        /// Export customer&#39;s transaction logs Download a CSV file containing a customer&#39;s transaction logs in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;customerprofileid&#x60;: The ID of the profile. - &#x60;customersessionid&#x60;: The ID of the customer session. - &#x60;rulesetid&#x60;: The ID of the rule set. - &#x60;rulename&#x60;: The name of the rule. - &#x60;programid&#x60;: The ID of the loyalty program. - &#x60;type&#x60;: The transaction type, such as &#x60;addition&#x60; or &#x60;subtraction&#x60;. - &#x60;name&#x60;: The reason for the transaction. - &#x60;subledgerid&#x60;: The ID of the subledger, when applicable. - &#x60;startdate&#x60;: The start date of the program. - &#x60;expirydate&#x60;: The expiration date of the program. - &#x60;id&#x60;: The ID of the transaction. - &#x60;created&#x60;: The timestamp of the creation of the loyalty program. - &#x60;amount&#x60;: The number of points in that transaction. - &#x60;archived&#x60;: Whether the session related to the transaction is archived. - &#x60;campaignid&#x60;: The ID of the campaign. - &#x60;flags&#x60;: The flags of the transaction, when applicable. The &#x60;createsNegativeBalance&#x60; flag indicates whether the transaction results in a negative balance. - &#x60;transactionUUID&#x60;: Unique identifier of the transaction in the UUID format. 
+        /// Export customer&#39;s transaction logs Download a CSV file containing a customer&#39;s transaction logs in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;customerprofileid&#x60;: The ID of the profile. - &#x60;customersessionid&#x60;: The ID of the customer session. - &#x60;rulesetid&#x60;: The ID of the rule set. - &#x60;rulename&#x60;: The name of the rule. - &#x60;programid&#x60;: The ID of the loyalty program. - &#x60;type&#x60;: The transaction type, such as &#x60;addition&#x60; or &#x60;subtraction&#x60;. - &#x60;name&#x60;: The reason for the transaction. - &#x60;subledgerid&#x60;: The ID of the subledger, when applicable. - &#x60;startdate&#x60;: The start date of the program. - &#x60;expirydate&#x60;: The expiration date of the program. - &#x60;id&#x60;: The ID of the transaction. - &#x60;created&#x60;: The timestamp of the creation of the loyalty program. - &#x60;amount&#x60;: The number of points in that transaction. - &#x60;archived&#x60;: Whether the session related to the transaction is archived. - &#x60;campaignid&#x60;: The ID of the campaign. - &#x60;flags&#x60;: The flags of the transaction, when applicable. The &#x60;createsNegativeBalance&#x60; flag indicates whether the transaction results in a negative balance. - &#x60;transactionUUID&#x60;: Unique identifier of the transaction in the UUID format. - &#x60;validityDuration&#x60;: The duration for which the points remain active, relative to the activation date. - &#x60;remainingAmount&#x60;: The current unused amount of points, when applicable to &#x60;addition&#x60; transactions. 
         /// </summary>
         /// <param name="rangeStart">Only return results from after this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. </param>
         /// <param name="rangeEnd">Only return results from before this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. </param>
@@ -32680,7 +32658,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Export customer&#39;s transaction logs Download a CSV file containing a customer&#39;s transaction logs in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;customerprofileid&#x60;: The ID of the profile. - &#x60;customersessionid&#x60;: The ID of the customer session. - &#x60;rulesetid&#x60;: The ID of the rule set. - &#x60;rulename&#x60;: The name of the rule. - &#x60;programid&#x60;: The ID of the loyalty program. - &#x60;type&#x60;: The transaction type, such as &#x60;addition&#x60; or &#x60;subtraction&#x60;. - &#x60;name&#x60;: The reason for the transaction. - &#x60;subledgerid&#x60;: The ID of the subledger, when applicable. - &#x60;startdate&#x60;: The start date of the program. - &#x60;expirydate&#x60;: The expiration date of the program. - &#x60;id&#x60;: The ID of the transaction. - &#x60;created&#x60;: The timestamp of the creation of the loyalty program. - &#x60;amount&#x60;: The number of points in that transaction. - &#x60;archived&#x60;: Whether the session related to the transaction is archived. - &#x60;campaignid&#x60;: The ID of the campaign. - &#x60;flags&#x60;: The flags of the transaction, when applicable. The &#x60;createsNegativeBalance&#x60; flag indicates whether the transaction results in a negative balance. - &#x60;transactionUUID&#x60;: Unique identifier of the transaction in the UUID format. 
+        /// Export customer&#39;s transaction logs Download a CSV file containing a customer&#39;s transaction logs in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;customerprofileid&#x60;: The ID of the profile. - &#x60;customersessionid&#x60;: The ID of the customer session. - &#x60;rulesetid&#x60;: The ID of the rule set. - &#x60;rulename&#x60;: The name of the rule. - &#x60;programid&#x60;: The ID of the loyalty program. - &#x60;type&#x60;: The transaction type, such as &#x60;addition&#x60; or &#x60;subtraction&#x60;. - &#x60;name&#x60;: The reason for the transaction. - &#x60;subledgerid&#x60;: The ID of the subledger, when applicable. - &#x60;startdate&#x60;: The start date of the program. - &#x60;expirydate&#x60;: The expiration date of the program. - &#x60;id&#x60;: The ID of the transaction. - &#x60;created&#x60;: The timestamp of the creation of the loyalty program. - &#x60;amount&#x60;: The number of points in that transaction. - &#x60;archived&#x60;: Whether the session related to the transaction is archived. - &#x60;campaignid&#x60;: The ID of the campaign. - &#x60;flags&#x60;: The flags of the transaction, when applicable. The &#x60;createsNegativeBalance&#x60; flag indicates whether the transaction results in a negative balance. - &#x60;transactionUUID&#x60;: Unique identifier of the transaction in the UUID format. - &#x60;validityDuration&#x60;: The duration for which the points remain active, relative to the activation date. - &#x60;remainingAmount&#x60;: The current unused amount of points, when applicable to &#x60;addition&#x60; transactions. 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="rangeStart">Only return results from after this timestamp.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. </param>
@@ -50950,7 +50928,7 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetLoyaltyProgramProfileLedgerTransactions(ref long loyaltyProgramId, ref string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, ref Option<string> subledgerId, ref Option<string> loyaltyTransactionType, ref Option<DateTime> startDate, ref Option<DateTime> endDate, ref Option<long> pageSize, ref Option<long> skip, ref Option<bool> awaitsActivation);
+        partial void FormatGetLoyaltyProgramProfileLedgerTransactions(ref long loyaltyProgramId, ref string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, ref Option<string> subledgerId, ref Option<string> loyaltyTransactionType, ref Option<DateTime> startDate, ref Option<DateTime> endDate, ref Option<long> pageSize, ref Option<long> skip, ref Option<bool> includeReferences, ref Option<bool> awaitsActivation);
 
         /// <summary>
         /// Validates the request parameters
@@ -50993,11 +50971,12 @@ namespace TalonOneSdk.Api
         /// <param name="endDate"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
+        /// <param name="includeReferences"></param>
         /// <param name="awaitsActivation"></param>
-        private void AfterGetLoyaltyProgramProfileLedgerTransactionsDefaultImplementation(IGetLoyaltyProgramProfileLedgerTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation)
+        private void AfterGetLoyaltyProgramProfileLedgerTransactionsDefaultImplementation(IGetLoyaltyProgramProfileLedgerTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> includeReferences, Option<bool> awaitsActivation)
         {
             bool suppressDefaultLog = false;
-            AfterGetLoyaltyProgramProfileLedgerTransactions(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
+            AfterGetLoyaltyProgramProfileLedgerTransactions(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, includeReferences, awaitsActivation);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -51017,8 +50996,9 @@ namespace TalonOneSdk.Api
         /// <param name="endDate"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
+        /// <param name="includeReferences"></param>
         /// <param name="awaitsActivation"></param>
-        partial void AfterGetLoyaltyProgramProfileLedgerTransactions(ref bool suppressDefaultLog, IGetLoyaltyProgramProfileLedgerTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation);
+        partial void AfterGetLoyaltyProgramProfileLedgerTransactions(ref bool suppressDefaultLog, IGetLoyaltyProgramProfileLedgerTransactionsApiResponse apiResponseLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> includeReferences, Option<bool> awaitsActivation);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -51036,11 +51016,12 @@ namespace TalonOneSdk.Api
         /// <param name="endDate"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
+        /// <param name="includeReferences"></param>
         /// <param name="awaitsActivation"></param>
-        private void OnErrorGetLoyaltyProgramProfileLedgerTransactionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation)
+        private void OnErrorGetLoyaltyProgramProfileLedgerTransactionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> includeReferences, Option<bool> awaitsActivation)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetLoyaltyProgramProfileLedgerTransactions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
+            OnErrorGetLoyaltyProgramProfileLedgerTransactions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, includeReferences, awaitsActivation);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -51062,11 +51043,12 @@ namespace TalonOneSdk.Api
         /// <param name="endDate"></param>
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
+        /// <param name="includeReferences"></param>
         /// <param name="awaitsActivation"></param>
-        partial void OnErrorGetLoyaltyProgramProfileLedgerTransactions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> awaitsActivation);
+        partial void OnErrorGetLoyaltyProgramProfileLedgerTransactions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs, Option<List<string>> transactionUUIDs, Option<string> subledgerId, Option<string> loyaltyTransactionType, Option<DateTime> startDate, Option<DateTime> endDate, Option<long> pageSize, Option<long> skip, Option<bool> includeReferences, Option<bool> awaitsActivation);
 
         /// <summary>
-        /// List customer&#39;s loyalty transactions (Management API) Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint: &gt;   [List customer&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). &gt; - To retrieve all loyalty program transaction logs in a given loyalty program, use the &gt;   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
+        /// List customer&#39;s loyalty transactions (Management API) Retrieve paginated results of loyalty transaction logs for the given integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger), and include the UUIDs of transactions referenced by deductions. If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint: &gt;   [List customer&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). &gt; - To retrieve all loyalty program transaction logs in a given loyalty program, use the &gt;   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
         /// </summary>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="integrationId">The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier. </param>
@@ -51078,14 +51060,15 @@ namespace TalonOneSdk.Api
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="includeReferences">Whether to include the UUIDs of transactions referenced by deductions.  **Note:** Enabling this can decrease query performance, especially when no date filter is applied to a large transaction history.  (optional, default to false)</param>
         /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfileLedgerTransactionsApiResponse"/>&gt;</returns>
-        public async Task<IGetLoyaltyProgramProfileLedgerTransactionsApiResponse> GetLoyaltyProgramProfileLedgerTransactionsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetLoyaltyProgramProfileLedgerTransactionsApiResponse> GetLoyaltyProgramProfileLedgerTransactionsOrDefaultAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> includeReferences = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetLoyaltyProgramProfileLedgerTransactionsAsync(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation, cancellationToken).ConfigureAwait(false);
+                return await GetLoyaltyProgramProfileLedgerTransactionsAsync(loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, includeReferences, awaitsActivation, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -51094,7 +51077,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// List customer&#39;s loyalty transactions (Management API) Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint: &gt;   [List customer&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). &gt; - To retrieve all loyalty program transaction logs in a given loyalty program, use the &gt;   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
+        /// List customer&#39;s loyalty transactions (Management API) Retrieve paginated results of loyalty transaction logs for the given integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger), and include the UUIDs of transactions referenced by deductions. If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  &gt; [!note] **Note** &gt; - For most use cases, especially real-time integrations, use the Integration API endpoint: &gt;   [List customer&#39;s loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). &gt; - To retrieve all loyalty program transaction logs in a given loyalty program, use the &gt;   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -51107,10 +51090,11 @@ namespace TalonOneSdk.Api
         /// <param name="endDate">Date and time by which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  (optional)</param>
         /// <param name="pageSize">The number of items in the response. (optional, default to 50)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="includeReferences">Whether to include the UUIDs of transactions referenced by deductions.  **Note:** Enabling this can decrease query performance, especially when no date filter is applied to a large transaction history.  (optional, default to false)</param>
         /// <param name="awaitsActivation">If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLoyaltyProgramProfileLedgerTransactionsApiResponse"/>&gt;</returns>
-        public async Task<IGetLoyaltyProgramProfileLedgerTransactionsApiResponse> GetLoyaltyProgramProfileLedgerTransactionsAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetLoyaltyProgramProfileLedgerTransactionsApiResponse> GetLoyaltyProgramProfileLedgerTransactionsAsync(long loyaltyProgramId, string integrationId, Option<List<string>> customerSessionIDs = default, Option<List<string>> transactionUUIDs = default, Option<string> subledgerId = default, Option<string> loyaltyTransactionType = default, Option<DateTime> startDate = default, Option<DateTime> endDate = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> includeReferences = default, Option<bool> awaitsActivation = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -51118,7 +51102,7 @@ namespace TalonOneSdk.Api
             {
                 ValidateGetLoyaltyProgramProfileLedgerTransactions(integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType);
 
-                FormatGetLoyaltyProgramProfileLedgerTransactions(ref loyaltyProgramId, ref integrationId, customerSessionIDs, transactionUUIDs, ref subledgerId, ref loyaltyTransactionType, ref startDate, ref endDate, ref pageSize, ref skip, ref awaitsActivation);
+                FormatGetLoyaltyProgramProfileLedgerTransactions(ref loyaltyProgramId, ref integrationId, customerSessionIDs, transactionUUIDs, ref subledgerId, ref loyaltyTransactionType, ref startDate, ref endDate, ref pageSize, ref skip, ref includeReferences, ref awaitsActivation);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -51157,6 +51141,9 @@ namespace TalonOneSdk.Api
                     if (skip.IsSet)
                         parseQueryStringLocalVar["skip"] = ClientUtils.ParameterToString(skip.Value);
 
+                    if (includeReferences.IsSet)
+                        parseQueryStringLocalVar["includeReferences"] = ClientUtils.ParameterToString(includeReferences.Value);
+
                     if (awaitsActivation.IsSet)
                         parseQueryStringLocalVar["awaitsActivation"] = ClientUtils.ParameterToString(awaitsActivation.Value);
 
@@ -51194,7 +51181,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterGetLoyaltyProgramProfileLedgerTransactionsDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
+                        AfterGetLoyaltyProgramProfileLedgerTransactionsDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, includeReferences, awaitsActivation);
 
                         Events.ExecuteOnGetLoyaltyProgramProfileLedgerTransactions(apiResponseLocalVar);
 
@@ -51208,7 +51195,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorGetLoyaltyProgramProfileLedgerTransactionsDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_transactions", uriBuilderLocalVar.Path, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, awaitsActivation);
+                OnErrorGetLoyaltyProgramProfileLedgerTransactionsDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_transactions", uriBuilderLocalVar.Path, loyaltyProgramId, integrationId, customerSessionIDs, transactionUUIDs, subledgerId, loyaltyTransactionType, startDate, endDate, pageSize, skip, includeReferences, awaitsActivation);
                 Events.ExecuteOnErrorGetLoyaltyProgramProfileLedgerTransactions(e);
                 throw;
             }
@@ -51268,32 +51255,32 @@ namespace TalonOneSdk.Api
             /// Deserializes the response if the response is 200 Ok
             /// </summary>
             /// <returns></returns>
-            public TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response Ok()
+            public TalonOneSdk.Model.GetLoyaltyProgramProfileLedgerTransactions200Response Ok()
             {
                 bool suppressDefault = false;
-                TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response result = default;
+                TalonOneSdk.Model.GetLoyaltyProgramProfileLedgerTransactions200Response result = default;
                 OnOk(ref suppressDefault, ref result);
                 if (!suppressDefault)
                     result = DefaultOk();
                 return result;
             }
 
-            private TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response DefaultOk()
+            private TalonOneSdk.Model.GetLoyaltyProgramProfileLedgerTransactions200Response DefaultOk()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response>(RawContent, _jsonSerializerOptions)
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.GetLoyaltyProgramProfileLedgerTransactions200Response>(RawContent, _jsonSerializerOptions)
                     : default;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response result);
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.GetLoyaltyProgramProfileLedgerTransactions200Response result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk(out TalonOneSdk.Model.GetLoyaltyProgramProfileTransactions200Response result)
+            public bool TryOk(out TalonOneSdk.Model.GetLoyaltyProgramProfileLedgerTransactions200Response result)
             {
                 result = null;
 
@@ -59388,7 +59375,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorImportLoyaltyJoinDates(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
-        /// Import join dates for a loyalty program Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;joindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+        /// Import join dates for a loyalty program Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;newjoindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.    **Note:** This column name will be updated in a future release.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
         /// </summary>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
@@ -59407,7 +59394,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Import join dates for a loyalty program Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;joindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+        /// Import join dates for a loyalty program Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;newjoindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.    **Note:** This column name will be updated in a future release.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
