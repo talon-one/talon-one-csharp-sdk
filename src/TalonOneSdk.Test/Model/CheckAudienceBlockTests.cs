@@ -72,15 +72,6 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Profile'
-        /// </summary>
-        [Fact]
-        public void ProfileTest()
-        {
-            // TODO unit test for the property 'Profile'
-        }
-
-        /// <summary>
         /// Test the property 'Audience'
         /// </summary>
         [Fact]
@@ -105,6 +96,15 @@ namespace TalonOneSdk.Test.Model
         public void TagsTest()
         {
             // TODO unit test for the property 'Tags'
+        }
+
+        /// <summary>
+        /// Test the property 'Profile'
+        /// </summary>
+        [Fact]
+        public void ProfileTest()
+        {
+            // TODO unit test for the property 'Profile'
         }
 
         /// <summary>

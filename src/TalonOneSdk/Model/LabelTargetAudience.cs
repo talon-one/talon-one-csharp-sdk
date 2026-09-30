@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// Represents the targeted audience. 
+    /// Target type when a specific audience is selected. 
     /// </summary>
     public partial class LabelTargetAudience : IValidatableObject
     {

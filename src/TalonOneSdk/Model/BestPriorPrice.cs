@@ -34,7 +34,7 @@ namespace TalonOneSdk.Model
         /// <param name="id">The ID of the historical price.</param>
         /// <param name="sku">sku</param>
         /// <param name="observedAt">The date and time when the price was observed.</param>
-        /// <param name="contextIds">The identifiers of the relevant context at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. </param>
+        /// <param name="contextIds">The identifiers of the relevant context (the sales events, e.g. \&quot;Spring Sale\&quot;, \&quot;Summer Sale\&quot;) at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. </param>
         /// <param name="price">Price of the item.</param>
         /// <param name="metadata">metadata</param>
         /// <param name="target">target</param>
@@ -78,9 +78,9 @@ namespace TalonOneSdk.Model
         public DateTime ObservedAt { get; set; }
 
         /// <summary>
-        /// The identifiers of the relevant context at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. 
+        /// The identifiers of the relevant context (the sales events, e.g. \&quot;Spring Sale\&quot;, \&quot;Summer Sale\&quot;) at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. 
         /// </summary>
-        /// <value>The identifiers of the relevant context at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. </value>
+        /// <value>The identifiers of the relevant context (the sales events, e.g. \&quot;Spring Sale\&quot;, \&quot;Summer Sale\&quot;) at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. </value>
         /* <example>[SpringSale, SummerSale2025]</example> */
         [JsonPropertyName("contextIds")]
         public List<string> ContextIds { get; set; }

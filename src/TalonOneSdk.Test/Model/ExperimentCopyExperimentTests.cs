@@ -54,21 +54,30 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'IsVariantAssignmentExternal'
-        /// </summary>
-        [Fact]
-        public void IsVariantAssignmentExternalTest()
-        {
-            // TODO unit test for the property 'IsVariantAssignmentExternal'
-        }
-
-        /// <summary>
         /// Test the property 'Campaign'
         /// </summary>
         [Fact]
         public void CampaignTest()
         {
             // TODO unit test for the property 'Campaign'
+        }
+
+        /// <summary>
+        /// Test the property 'AssignmentType'
+        /// </summary>
+        [Fact]
+        public void AssignmentTypeTest()
+        {
+            // TODO unit test for the property 'AssignmentType'
+        }
+
+        /// <summary>
+        /// Test the property 'IsVariantAssignmentExternal'
+        /// </summary>
+        [Fact]
+        public void IsVariantAssignmentExternalTest()
+        {
+            // TODO unit test for the property 'IsVariantAssignmentExternal'
         }
 
         /// <summary>

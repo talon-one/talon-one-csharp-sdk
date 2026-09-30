@@ -38,7 +38,7 @@ namespace TalonOneSdk.Model
         /// <param name="functions">The functions defined for this application.</param>
         /// <param name="templates">The templates defined for this application.</param>
         /// <param name="variables">A stringified version of the environment&#39;s Talang variables scope.</param>
-        /// <param name="giveawaysPools">The giveaways pools that the application is subscribed to.</param>
+        /// <param name="giveawaysPools">The giveaway pools that the Application is subscribed to.</param>
         /// <param name="loyaltyPrograms">The loyalty programs that the application is subscribed to.</param>
         /// <param name="achievements">The achievements, linked to the campaigns, belonging to the application.</param>
         /// <param name="attributes">The attributes that the application is subscribed to.</param>
@@ -131,9 +131,9 @@ namespace TalonOneSdk.Model
         public Option<List<GiveawaysPool>> GiveawaysPoolsOption { get; private set; }
 
         /// <summary>
-        /// The giveaways pools that the application is subscribed to.
+        /// The giveaway pools that the Application is subscribed to.
         /// </summary>
-        /// <value>The giveaways pools that the application is subscribed to.</value>
+        /// <value>The giveaway pools that the Application is subscribed to.</value>
         [JsonPropertyName("giveawaysPools")]
         public List<GiveawaysPool> GiveawaysPools { get { return this.GiveawaysPoolsOption.Value; } set { this.GiveawaysPoolsOption = new Option<List<GiveawaysPool>>(value); } }
 

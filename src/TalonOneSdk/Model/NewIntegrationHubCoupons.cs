@@ -358,6 +358,18 @@ namespace TalonOneSdk.Model
                 yield return new ValidationResult("Invalid value for UsageLimit, must be a value greater than or equal to 0.", new [] { "UsageLimit" });
             }
 
+            // NumberOfCoupons (long) maximum
+            if (this.NumberOfCoupons > (long)20000)
+            {
+                yield return new ValidationResult("Invalid value for NumberOfCoupons, must be a value less than or equal to 20000.", new [] { "NumberOfCoupons" });
+            }
+
+            // NumberOfCoupons (long) minimum
+            if (this.NumberOfCoupons < (long)1)
+            {
+                yield return new ValidationResult("Invalid value for NumberOfCoupons, must be a value greater than or equal to 1.", new [] { "NumberOfCoupons" });
+            }
+
             // DiscountLimit (decimal) maximum
             if (this.DiscountLimitOption.IsSet && this.DiscountLimitOption.Value > (decimal)1000000000000000)
             {

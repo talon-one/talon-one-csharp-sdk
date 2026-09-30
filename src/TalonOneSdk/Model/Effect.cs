@@ -101,6 +101,16 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
+        /// <param name="effectBoostLoyaltyTier"></param>
+        public Effect(EffectBoostLoyaltyTier effectBoostLoyaltyTier)
+        {
+            EffectBoostLoyaltyTier = effectBoostLoyaltyTier;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
         /// <param name="effectCallApi"></param>
         public Effect(EffectCallApi effectCallApi)
         {
@@ -539,6 +549,11 @@ namespace TalonOneSdk.Model
         public EffectAwardGiveaway EffectAwardGiveaway { get; set; }
 
         /// <summary>
+        /// Gets or Sets EffectBoostLoyaltyTier
+        /// </summary>
+        public EffectBoostLoyaltyTier EffectBoostLoyaltyTier { get; set; }
+
+        /// <summary>
         /// Gets or Sets EffectCallApi
         /// </summary>
         public EffectCallApi EffectCallApi { get; set; }
@@ -787,6 +802,7 @@ namespace TalonOneSdk.Model
             EffectAddNegativeLoyaltyPoints addNegativeLoyaltyPointsEffectAddNegativeLoyaltyPoints = null;
             EffectAddToAudience addToAudienceEffectAddToAudience = null;
             EffectAwardGiveaway awardGiveawayEffectAwardGiveaway = null;
+            EffectBoostLoyaltyTier boostLoyaltyTierEffectBoostLoyaltyTier = null;
             EffectCallApi callApiEffectCallApi = null;
             EffectChangeLoyaltyTierLevel changeLoyaltyTierLevelEffectChangeLoyaltyTierLevel = null;
             EffectCouponCreated couponCreatedEffectCouponCreated = null;
@@ -873,6 +889,11 @@ namespace TalonOneSdk.Model
                         {
                             Utf8JsonReader utf8JsonReaderEffectAwardGiveaway = utf8JsonReader;
                             awardGiveawayEffectAwardGiveaway = JsonSerializer.Deserialize<EffectAwardGiveaway>(ref utf8JsonReaderEffectAwardGiveaway, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("boostLoyaltyTier"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectBoostLoyaltyTier = utf8JsonReader;
+                            boostLoyaltyTierEffectBoostLoyaltyTier = JsonSerializer.Deserialize<EffectBoostLoyaltyTier>(ref utf8JsonReaderEffectBoostLoyaltyTier, jsonSerializerOptions);
                         }
                         if (discriminator.Equals("callApi"))
                         {
@@ -1111,6 +1132,9 @@ namespace TalonOneSdk.Model
             if (awardGiveawayEffectAwardGiveaway != null)
                 return new Effect(awardGiveawayEffectAwardGiveaway);
 
+            if (boostLoyaltyTierEffectBoostLoyaltyTier != null)
+                return new Effect(boostLoyaltyTierEffectBoostLoyaltyTier);
+
             if (callApiEffectCallApi != null)
                 return new Effect(callApiEffectCallApi);
 
@@ -1270,6 +1294,12 @@ namespace TalonOneSdk.Model
             {
                 EffectAwardGiveawayJsonConverter effectAwardGiveawayJsonConverter = (EffectAwardGiveawayJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectAwardGiveaway.GetType()));
                 effectAwardGiveawayJsonConverter.WriteProperties(writer, effect.EffectAwardGiveaway, jsonSerializerOptions);
+            }
+
+            if (effect.EffectBoostLoyaltyTier != null)
+            {
+                EffectBoostLoyaltyTierJsonConverter effectBoostLoyaltyTierJsonConverter = (EffectBoostLoyaltyTierJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectBoostLoyaltyTier.GetType()));
+                effectBoostLoyaltyTierJsonConverter.WriteProperties(writer, effect.EffectBoostLoyaltyTier, jsonSerializerOptions);
             }
 
             if (effect.EffectCallApi != null)

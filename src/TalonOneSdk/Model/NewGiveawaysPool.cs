@@ -31,10 +31,10 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NewGiveawaysPool" /> class.
         /// </summary>
-        /// <param name="name">The name of this giveaways pool.</param>
+        /// <param name="name">The name of this giveaway pool.</param>
         /// <param name="sandbox">Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.</param>
-        /// <param name="description">The description of this giveaways pool.</param>
-        /// <param name="subscribedApplicationsIds">A list of the IDs of the applications that this giveaways pool is enabled for.</param>
+        /// <param name="description">The description of this giveaway pool.</param>
+        /// <param name="subscribedApplicationsIds">A list of the IDs of the Applications that this giveaway pool is enabled for.</param>
         [JsonConstructor]
         public NewGiveawaysPool(string name, bool sandbox, Option<string> description = default, Option<List<long>> subscribedApplicationsIds = default)
         {
@@ -48,9 +48,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The name of this giveaways pool.
+        /// The name of this giveaway pool.
         /// </summary>
-        /// <value>The name of this giveaways pool.</value>
+        /// <value>The name of this giveaway pool.</value>
         /* <example>My giveaway pool</example> */
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -71,9 +71,9 @@ namespace TalonOneSdk.Model
         public Option<string> DescriptionOption { get; private set; }
 
         /// <summary>
-        /// The description of this giveaways pool.
+        /// The description of this giveaway pool.
         /// </summary>
-        /// <value>The description of this giveaways pool.</value>
+        /// <value>The description of this giveaway pool.</value>
         /* <example>Generic pool</example> */
         [JsonPropertyName("description")]
         public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
@@ -86,9 +86,9 @@ namespace TalonOneSdk.Model
         public Option<List<long>> SubscribedApplicationsIdsOption { get; private set; }
 
         /// <summary>
-        /// A list of the IDs of the applications that this giveaways pool is enabled for.
+        /// A list of the IDs of the Applications that this giveaway pool is enabled for.
         /// </summary>
-        /// <value>A list of the IDs of the applications that this giveaways pool is enabled for.</value>
+        /// <value>A list of the IDs of the Applications that this giveaway pool is enabled for.</value>
         /* <example>[2, 4]</example> */
         [JsonPropertyName("subscribedApplicationsIds")]
         public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption.Value; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }

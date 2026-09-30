@@ -34,14 +34,16 @@ namespace TalonOneSdk.Model
         /// <param name="id">id</param>
         /// <param name="name">The name of this variant.</param>
         /// <param name="ruleset">ruleset</param>
-        /// <param name="weight">The percentage split of this variant. The sum of all variant percentages must be 100.</param>
+        /// <param name="weight">The percentage split of this variant. For &#x60;random&#x60; assignment, the split must be between 1 and 99 and the sum across all variants must equal 100. Ignored for &#x60;audience&#x60; and &#x60;external&#x60; assignment. </param>
+        /// <param name="audienceId">The ID of the audience this variant targets. Only used when the experiment &#x60;assignmentType&#x60; is &#x60;audience&#x60;. </param>
         [JsonConstructor]
-        public UpdateExperimentVariant(long id, string name, NewRuleset ruleset, long weight)
+        public UpdateExperimentVariant(long id, string name, NewRuleset ruleset, long weight, Option<long?> audienceId = default)
         {
             Id = id;
             Name = name;
             Ruleset = ruleset;
             Weight = weight;
+            AudienceIdOption = audienceId;
             OnCreated();
         }
 
@@ -69,12 +71,27 @@ namespace TalonOneSdk.Model
         public NewRuleset Ruleset { get; set; }
 
         /// <summary>
-        /// The percentage split of this variant. The sum of all variant percentages must be 100.
+        /// The percentage split of this variant. For &#x60;random&#x60; assignment, the split must be between 1 and 99 and the sum across all variants must equal 100. Ignored for &#x60;audience&#x60; and &#x60;external&#x60; assignment. 
         /// </summary>
-        /// <value>The percentage split of this variant. The sum of all variant percentages must be 100.</value>
+        /// <value>The percentage split of this variant. For &#x60;random&#x60; assignment, the split must be between 1 and 99 and the sum across all variants must equal 100. Ignored for &#x60;audience&#x60; and &#x60;external&#x60; assignment. </value>
         /* <example>13</example> */
         [JsonPropertyName("weight")]
         public long Weight { get; set; }
+
+        /// <summary>
+        /// Used to track the state of AudienceId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> AudienceIdOption { get; private set; }
+
+        /// <summary>
+        /// The ID of the audience this variant targets. Only used when the experiment &#x60;assignmentType&#x60; is &#x60;audience&#x60;. 
+        /// </summary>
+        /// <value>The ID of the audience this variant targets. Only used when the experiment &#x60;assignmentType&#x60; is &#x60;audience&#x60;. </value>
+        /* <example>55</example> */
+        [JsonPropertyName("audienceId")]
+        public long? AudienceId { get { return this.AudienceIdOption.Value; } set { this.AudienceIdOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -88,6 +105,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Ruleset: ").Append(Ruleset).Append("\n");
             sb.Append("  Weight: ").Append(Weight).Append("\n");
+            sb.Append("  AudienceId: ").Append(AudienceId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -118,9 +136,9 @@ namespace TalonOneSdk.Model
             }
 
             // Weight (long) minimum
-            if (this.Weight < (long)1)
+            if (this.Weight < (long)0)
             {
-                yield return new ValidationResult("Invalid value for Weight, must be a value greater than or equal to 1.", new [] { "Weight" });
+                yield return new ValidationResult("Invalid value for Weight, must be a value greater than or equal to 0.", new [] { "Weight" });
             }
 
             yield break;
@@ -163,6 +181,7 @@ namespace TalonOneSdk.Model
             Option<string> name = default;
             Option<NewRuleset> ruleset = default;
             Option<long?> weight = default;
+            Option<long?> audienceId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -190,6 +209,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "weight":
                             weight = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "audienceId":
+                            audienceId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;
@@ -221,7 +243,7 @@ namespace TalonOneSdk.Model
             if (weight.IsSet && weight.Value == null)
                 throw new ArgumentNullException(nameof(weight), "Property is not nullable for class UpdateExperimentVariant.");
 
-            return new UpdateExperimentVariant(id.Value.Value, name.Value, ruleset.Value, weight.Value.Value);
+            return new UpdateExperimentVariant(id.Value.Value, name.Value, ruleset.Value, weight.Value.Value, audienceId);
         }
 
         /// <summary>
@@ -261,6 +283,9 @@ namespace TalonOneSdk.Model
             writer.WritePropertyName("ruleset");
             JsonSerializer.Serialize(writer, updateExperimentVariant.Ruleset, jsonSerializerOptions);
             writer.WriteNumber("weight", updateExperimentVariant.Weight);
+
+            if (updateExperimentVariant.AudienceIdOption.IsSet)
+                writer.WriteNumber("audienceId", updateExperimentVariant.AudienceIdOption.Value.Value);
         }
     }
 }

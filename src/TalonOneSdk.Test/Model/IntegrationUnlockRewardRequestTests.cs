@@ -72,12 +72,12 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'CardIdentifier'
+        /// Test the property 'LoyaltyCardId'
         /// </summary>
         [Fact]
-        public void CardIdentifierTest()
+        public void LoyaltyCardIdTest()
         {
-            // TODO unit test for the property 'CardIdentifier'
+            // TODO unit test for the property 'LoyaltyCardId'
         }
 
         /// <summary>

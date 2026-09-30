@@ -89,23 +89,23 @@ namespace _example
             // Parsing the returned effects list, please consult https://developers.talon.one/Integration-API/handling-effects-v2 for the full list of effects and their corresponding properties
             foreach (Effect effect in result.Effects)
             {
-                switch (effect.EffectType)
+                switch (effect)
                 {
-                    case "setDiscount":
-                        // Initiating right props instance according to the effect type
-                        SetDiscountEffectProps setDiscountEffectProps = (SetDiscountEffectProps)Newtonsoft.Json.JsonConvert.DeserializeObject(effect.Props.ToString(), typeof(SetDiscountEffectProps));
+                    case Effect setDiscountEffect when setDiscountEffect.EffectSetDiscount?.EffectType == EffectSetDiscount.EffectTypeEnum.SetDiscount:
+                        // Each effect variant exposes its already typed properties through the corresponding union member.
+                        SetDiscountEffectProps setDiscountEffectProps = setDiscountEffect.EffectSetDiscount.Props;
 
                         // Access the specific effect's properties
                         Console.WriteLine("Set a discount '{0}' of {1:00.000}", setDiscountEffectProps.Name, setDiscountEffectProps.Value);
                         break;
-                    // case "acceptCoupon":
-                    // AcceptCouponEffectProps acceptCouponEffectProps = (AcceptCouponEffectProps) Newtonsoft.Json.JsonConvert.DeserializeObject(effect.Props.ToString(), typeof(AcceptCouponEffectProps));
+                    // case Effect acceptCouponEffect when acceptCouponEffect.EffectAcceptCoupon?.EffectType == EffectAcceptCoupon.EffectTypeEnum.AcceptCoupon:
+                    //     AcceptCouponEffectProps acceptCouponEffectProps = acceptCouponEffect.EffectAcceptCoupon.Props;
 
-                    // Work with AcceptCouponEffectProps' properties
-                    // ...
-                    // break;
+                    //     // Work with AcceptCouponEffectProps' properties
+                    //     // ...
+                    //     break;
                     default:
-                        Console.WriteLine("Encounter unknown effect type: {0}", effect.EffectType);
+                        Console.WriteLine("Encountered an effect other than setDiscount: {0}", effect);
                         break;
                 }
             }

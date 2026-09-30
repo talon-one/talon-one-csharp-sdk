@@ -214,5 +214,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'RewardId'
         }
+
+        /// <summary>
+        /// Test the property 'RewardIntegrationId'
+        /// </summary>
+        [Fact]
+        public void RewardIntegrationIdTest()
+        {
+            // TODO unit test for the property 'RewardIntegrationId'
+        }
     }
 }

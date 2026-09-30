@@ -480,6 +480,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.EffectAddToAudience.EffectTypeEnumToJsonValue(effectAddToAudienceEffectTypeEnum);
             if (obj is TalonOneSdk.Model.EffectAwardGiveaway.EffectTypeEnum effectAwardGiveawayEffectTypeEnum)
                 return TalonOneSdk.Model.EffectAwardGiveaway.EffectTypeEnumToJsonValue(effectAwardGiveawayEffectTypeEnum);
+            if (obj is TalonOneSdk.Model.EffectBoostLoyaltyTier.EffectTypeEnum effectBoostLoyaltyTierEffectTypeEnum)
+                return TalonOneSdk.Model.EffectBoostLoyaltyTier.EffectTypeEnumToJsonValue(effectBoostLoyaltyTierEffectTypeEnum);
             if (obj is TalonOneSdk.Model.EffectCallApi.EffectTypeEnum effectCallApiEffectTypeEnum)
                 return TalonOneSdk.Model.EffectCallApi.EffectTypeEnumToJsonValue(effectCallApiEffectTypeEnum);
             if (obj is TalonOneSdk.Model.EffectChangeLoyaltyTierLevel.EffectTypeEnum effectChangeLoyaltyTierLevelEffectTypeEnum)
@@ -552,8 +554,12 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.EffectWillAwardGiveaway.EffectTypeEnumToJsonValue(effectWillAwardGiveawayEffectTypeEnum);
             if (obj is TalonOneSdk.Model.Experiment.GoalTypeEnum experimentGoalTypeEnum)
                 return TalonOneSdk.Model.Experiment.GoalTypeEnumToJsonValue(experimentGoalTypeEnum);
+            if (obj is TalonOneSdk.Model.Experiment.AssignmentTypeEnum experimentAssignmentTypeEnum)
+                return TalonOneSdk.Model.Experiment.AssignmentTypeEnumToJsonValue(experimentAssignmentTypeEnum);
             if (obj is TalonOneSdk.Model.Experiment.StateEnum experimentStateEnum)
                 return TalonOneSdk.Model.Experiment.StateEnumToJsonValue(experimentStateEnum);
+            if (obj is TalonOneSdk.Model.ExperimentCopyExperiment.AssignmentTypeEnum experimentCopyExperimentAssignmentTypeEnum)
+                return TalonOneSdk.Model.ExperimentCopyExperiment.AssignmentTypeEnumToJsonValue(experimentCopyExperimentAssignmentTypeEnum);
             if (obj is TalonOneSdk.Model.ExperimentCopyExperiment.GoalTypeEnum experimentCopyExperimentGoalTypeEnum)
                 return TalonOneSdk.Model.ExperimentCopyExperiment.GoalTypeEnumToJsonValue(experimentCopyExperimentGoalTypeEnum);
             if (obj is TalonOneSdk.Model.ExperimentSegmentInsight.DimensionEnum experimentSegmentInsightDimensionEnum)
@@ -626,6 +632,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.LabelTargetNone.TypeEnumToJsonValue(labelTargetNoneTypeEnum);
             if (obj is TalonOneSdk.Model.LedgerTransactionLogEntryIntegrationAPI.TypeEnum ledgerTransactionLogEntryIntegrationAPITypeEnum)
                 return TalonOneSdk.Model.LedgerTransactionLogEntryIntegrationAPI.TypeEnumToJsonValue(ledgerTransactionLogEntryIntegrationAPITypeEnum);
+            if (obj is TalonOneSdk.Model.LedgerTransactionLogEntryManagementAPI.TypeEnum ledgerTransactionLogEntryManagementAPITypeEnum)
+                return TalonOneSdk.Model.LedgerTransactionLogEntryManagementAPI.TypeEnumToJsonValue(ledgerTransactionLogEntryManagementAPITypeEnum);
             if (obj is TalonOneSdk.Model.LibraryAttribute.EntityEnum libraryAttributeEntityEnum)
                 return TalonOneSdk.Model.LibraryAttribute.EntityEnumToJsonValue(libraryAttributeEntityEnum);
             if (obj is TalonOneSdk.Model.LibraryAttribute.TypeEnum libraryAttributeTypeEnum)
@@ -710,6 +718,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.NewCustomerSessionV2.StateEnumToJsonValue(newCustomerSessionV2StateEnum);
             if (obj is TalonOneSdk.Model.NewDigitalPass.PlatformEnum newDigitalPassPlatformEnum)
                 return TalonOneSdk.Model.NewDigitalPass.PlatformEnumToJsonValue(newDigitalPassPlatformEnum);
+            if (obj is TalonOneSdk.Model.NewExperiment.AssignmentTypeEnum newExperimentAssignmentTypeEnum)
+                return TalonOneSdk.Model.NewExperiment.AssignmentTypeEnumToJsonValue(newExperimentAssignmentTypeEnum);
             if (obj is TalonOneSdk.Model.NewExperiment.GoalTypeEnum newExperimentGoalTypeEnum)
                 return TalonOneSdk.Model.NewExperiment.GoalTypeEnumToJsonValue(newExperimentGoalTypeEnum);
             if (obj is TalonOneSdk.Model.NewLoyaltyProgram.ProgramJoinPolicyEnum newLoyaltyProgramProgramJoinPolicyEnum)
@@ -844,10 +854,18 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.TemplateLimitConfig.PeriodEnumToJsonValue(templateLimitConfigPeriodEnum);
             if (obj is TalonOneSdk.Model.Tier.DowngradePolicyEnum tierDowngradePolicyEnum)
                 return TalonOneSdk.Model.Tier.DowngradePolicyEnumToJsonValue(tierDowngradePolicyEnum);
+            if (obj is TalonOneSdk.Model.Tier.SourceEnum tierSourceEnum)
+                return TalonOneSdk.Model.Tier.SourceEnumToJsonValue(tierSourceEnum);
+            if (obj is TalonOneSdk.Model.TierDowngradeData.SourceEnum tierDowngradeDataSourceEnum)
+                return TalonOneSdk.Model.TierDowngradeData.SourceEnumToJsonValue(tierDowngradeDataSourceEnum);
             if (obj is TalonOneSdk.Model.TierDowngradeNotification.NotificationTypeEnum tierDowngradeNotificationNotificationTypeEnum)
                 return TalonOneSdk.Model.TierDowngradeNotification.NotificationTypeEnumToJsonValue(tierDowngradeNotificationNotificationTypeEnum);
+            if (obj is TalonOneSdk.Model.TierUpgradeData.SourceEnum tierUpgradeDataSourceEnum)
+                return TalonOneSdk.Model.TierUpgradeData.SourceEnumToJsonValue(tierUpgradeDataSourceEnum);
             if (obj is TalonOneSdk.Model.TierUpgradeNotification.NotificationTypeEnum tierUpgradeNotificationNotificationTypeEnum)
                 return TalonOneSdk.Model.TierUpgradeNotification.NotificationTypeEnumToJsonValue(tierUpgradeNotificationNotificationTypeEnum);
+            if (obj is TalonOneSdk.Model.TierWillDowngradeData.SourceEnum tierWillDowngradeDataSourceEnum)
+                return TalonOneSdk.Model.TierWillDowngradeData.SourceEnumToJsonValue(tierWillDowngradeDataSourceEnum);
             if (obj is TalonOneSdk.Model.TierWillDowngradeNotification.NotificationTypeEnum tierWillDowngradeNotificationNotificationTypeEnum)
                 return TalonOneSdk.Model.TierWillDowngradeNotification.NotificationTypeEnumToJsonValue(tierWillDowngradeNotificationNotificationTypeEnum);
             if (obj is TalonOneSdk.Model.TierWillDowngradeNotificationTrigger.PeriodEnum tierWillDowngradeNotificationTriggerPeriodEnum)

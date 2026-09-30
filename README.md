@@ -369,6 +369,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**GetEventTypes**](docs/apis/ManagementApi.md#geteventtypes) | **GET** /v1/event_types | List event types
 *ManagementApi* | [**GetExperiment**](docs/apis/ManagementApi.md#getexperiment) | **GET** /v1/applications/{applicationId}/experiments/{experimentId} | Get experiment in Application
 *ManagementApi* | [**GetExports**](docs/apis/ManagementApi.md#getexports) | **GET** /v1/exports | Get exports
+*ManagementApi* | [**GetGiveawaysPool**](docs/apis/ManagementApi.md#getgiveawayspool) | **GET** /v1/giveaways/pools/{poolId} | Get giveaway pool
 *ManagementApi* | [**GetLoyaltyCard**](docs/apis/ManagementApi.md#getloyaltycard) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Get loyalty card
 *ManagementApi* | [**GetLoyaltyCardTransactionLogs**](docs/apis/ManagementApi.md#getloyaltycardtransactionlogs) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/logs | List card's transactions (Management API)
 *ManagementApi* | [**GetLoyaltyCards**](docs/apis/ManagementApi.md#getloyaltycards) | **GET** /v1/loyalty_programs/{loyaltyProgramId}/cards | List loyalty cards
@@ -581,6 +582,7 @@ Class | Method | HTTP request | Description
 - [Model.Binding](docs/models/Binding.md)
 - [Model.Block](docs/models/Block.md)
 - [Model.Blueprint](docs/models/Blueprint.md)
+- [Model.BoostLoyaltyTierEffectProps](docs/models/BoostLoyaltyTierEffectProps.md)
 - [Model.BulkApplicationNotification](docs/models/BulkApplicationNotification.md)
 - [Model.BulkOperationOnCampaigns](docs/models/BulkOperationOnCampaigns.md)
 - [Model.Bundle](docs/models/Bundle.md)
@@ -751,6 +753,7 @@ Class | Method | HTTP request | Description
 - [Model.EffectAddNegativeLoyaltyPoints](docs/models/EffectAddNegativeLoyaltyPoints.md)
 - [Model.EffectAddToAudience](docs/models/EffectAddToAudience.md)
 - [Model.EffectAwardGiveaway](docs/models/EffectAwardGiveaway.md)
+- [Model.EffectBoostLoyaltyTier](docs/models/EffectBoostLoyaltyTier.md)
 - [Model.EffectCallApi](docs/models/EffectCallApi.md)
 - [Model.EffectChangeLoyaltyTierLevel](docs/models/EffectChangeLoyaltyTierLevel.md)
 - [Model.EffectCouponCreated](docs/models/EffectCouponCreated.md)
@@ -902,6 +905,7 @@ Class | Method | HTTP request | Description
 - [Model.GetLoyaltyCardTransactionLogs200Response](docs/models/GetLoyaltyCardTransactionLogs200Response.md)
 - [Model.GetLoyaltyCardTransactions200Response](docs/models/GetLoyaltyCardTransactions200Response.md)
 - [Model.GetLoyaltyCards200Response](docs/models/GetLoyaltyCards200Response.md)
+- [Model.GetLoyaltyProgramProfileLedgerTransactions200Response](docs/models/GetLoyaltyProgramProfileLedgerTransactions200Response.md)
 - [Model.GetLoyaltyProgramProfilePoints200Response](docs/models/GetLoyaltyProgramProfilePoints200Response.md)
 - [Model.GetLoyaltyProgramProfileTransactions200Response](docs/models/GetLoyaltyProgramProfileTransactions200Response.md)
 - [Model.GetLoyaltyProgramTransactions200Response](docs/models/GetLoyaltyProgramTransactions200Response.md)
@@ -977,6 +981,7 @@ Class | Method | HTTP request | Description
 - [Model.LedgerInfo](docs/models/LedgerInfo.md)
 - [Model.LedgerPointsEntryIntegrationAPI](docs/models/LedgerPointsEntryIntegrationAPI.md)
 - [Model.LedgerTransactionLogEntryIntegrationAPI](docs/models/LedgerTransactionLogEntryIntegrationAPI.md)
+- [Model.LedgerTransactionLogEntryManagementAPI](docs/models/LedgerTransactionLogEntryManagementAPI.md)
 - [Model.LibraryAttribute](docs/models/LibraryAttribute.md)
 - [Model.LimitConfig](docs/models/LimitConfig.md)
 - [Model.LimitCounter](docs/models/LimitCounter.md)
@@ -1133,6 +1138,14 @@ Class | Method | HTTP request | Description
 - [Model.OktaEventPayloadData](docs/models/OktaEventPayloadData.md)
 - [Model.OktaEventTarget](docs/models/OktaEventTarget.md)
 - [Model.OneTimeCode](docs/models/OneTimeCode.md)
+- [Model.OutboundLog](docs/models/OutboundLog.md)
+- [Model.OutboundLogBase](docs/models/OutboundLogBase.md)
+- [Model.OutboundLogRequest](docs/models/OutboundLogRequest.md)
+- [Model.OutboundLogResponse](docs/models/OutboundLogResponse.md)
+- [Model.OutboundLogs](docs/models/OutboundLogs.md)
+- [Model.OutboundMessage](docs/models/OutboundMessage.md)
+- [Model.OutboundMessageResponse](docs/models/OutboundMessageResponse.md)
+- [Model.OutboundMessages](docs/models/OutboundMessages.md)
 - [Model.OutgoingIntegrationBrazePolicy](docs/models/OutgoingIntegrationBrazePolicy.md)
 - [Model.OutgoingIntegrationCleverTapPolicy](docs/models/OutgoingIntegrationCleverTapPolicy.md)
 - [Model.OutgoingIntegrationConfiguration](docs/models/OutgoingIntegrationConfiguration.md)
@@ -1223,6 +1236,7 @@ Class | Method | HTTP request | Description
 - [Model.RollbackDiscountEffectProps](docs/models/RollbackDiscountEffectProps.md)
 - [Model.RollbackIncreasedAchievementProgressEffectProps](docs/models/RollbackIncreasedAchievementProgressEffectProps.md)
 - [Model.RollbackReferralEffectProps](docs/models/RollbackReferralEffectProps.md)
+- [Model.RollbackTierBoostEffectProps](docs/models/RollbackTierBoostEffectProps.md)
 - [Model.RollbackUseRewardEffectProps](docs/models/RollbackUseRewardEffectProps.md)
 - [Model.Rule](docs/models/Rule.md)
 - [Model.RuleEligibility](docs/models/RuleEligibility.md)

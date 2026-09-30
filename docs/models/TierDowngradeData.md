@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **SubledgerID** | **string** | The ID of the subledger, when applicable. If this field is empty, the main ledger is used. | [default to ""]
 **CurrentTier** | **string** | The name of the customer&#39;s current tier. | [optional] 
 **TierExpirationDate** | **DateTime** | The exact date and time the tier expires. | [optional] 
+**Source** | **string** | The source of the tier change, whether from a points change or boost.  | [optional] [default to SourceEnum.Points]
+**Reason** | **string** | The reason for the tier change.  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 
