@@ -25,6 +25,11 @@ namespace TalonOneSdk.Client
         public List<TTokenBase> Tokens { get; } = new List<TTokenBase>();
 
         /// <summary>
+        /// Whether the token provider should enforce client-side rate limiting.
+        /// </summary>
+        public bool IsRateLimitingEnabled { get; } = true;
+
+        /// <summary>
         /// Instantiates a TokenContainer
         /// </summary>
         public TokenContainer()
@@ -32,12 +37,23 @@ namespace TalonOneSdk.Client
         }
 
         /// <summary>
-        /// Instantiates a TokenContainer
+        /// Instantiates a TokenContainer with client-side rate limiting enabled.
         /// </summary>
         /// <param name="tokens"></param>
         public TokenContainer(global::System.Collections.Generic.IEnumerable<TTokenBase> tokens)
+            : this(tokens, true)
+        {
+        }
+
+        /// <summary>
+        /// Instantiates a TokenContainer.
+        /// </summary>
+        /// <param name="tokens"></param>
+        /// <param name="enableRateLimiting">Whether the token provider should enforce client-side rate limiting.</param>
+        public TokenContainer(global::System.Collections.Generic.IEnumerable<TTokenBase> tokens, bool enableRateLimiting)
         {
             Tokens = tokens.ToList();
+            IsRateLimitingEnabled = enableRateLimiting;
         }
     }
 }
