@@ -66,6 +66,9 @@ namespace YourProject
               BearerToken token = new("<your token>");
               options.AddTokens(token);
 
+              // Client-side rate limiting is enabled by default. To disable it, use:
+              // options.AddTokens(token, enableRateLimiting: false);
+
               // optionally choose the method the tokens will be provided with, default is RateLimitProvider
               options.UseProvider<RateLimitProvider<BearerToken>, BearerToken>();
 
@@ -97,6 +100,8 @@ namespace YourProject
   Configure Polly in the IHttpClientBuilder
 - How are tokens used?
   Tokens are provided by a TokenProvider class. The default is RateLimitProvider which will perform client side rate limiting.
+  Pass `enableRateLimiting: false` to `AddTokens` if your application manages concurrency and retries itself.
+  Disabling client-side rate limiting does not change server-side rate limits; handle `429 Too Many Requests` responses appropriately.
   Other providers can be used with the UseProvider method.
 - Does an HttpRequest throw an error when the server response is not Ok?
   It depends how you made the request. If the return type is ApiResponse<T> no error will be thrown, though the Content property will be null.
