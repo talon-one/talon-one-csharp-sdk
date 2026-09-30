@@ -38,8 +38,9 @@ namespace TalonOneSdk.Model
         /// <param name="experimentId">experimentId</param>
         /// <param name="ruleset">ruleset</param>
         /// <param name="weight">weight</param>
+        /// <param name="audienceId">The ID of the audience this variant targets. Only used when the experiment &#x60;assignmentType&#x60; is &#x60;audience&#x60;. </param>
         [JsonConstructor]
-        public ExperimentVariant(long id, DateTime created, string name, bool isPrimary, Option<long?> experimentId = default, Option<Ruleset> ruleset = default, Option<long?> weight = default)
+        public ExperimentVariant(long id, DateTime created, string name, bool isPrimary, Option<long?> experimentId = default, Option<Ruleset> ruleset = default, Option<long?> weight = default, Option<long?> audienceId = default)
         {
             Id = id;
             Created = created;
@@ -48,6 +49,7 @@ namespace TalonOneSdk.Model
             ExperimentIdOption = experimentId;
             RulesetOption = ruleset;
             WeightOption = weight;
+            AudienceIdOption = audienceId;
             OnCreated();
         }
 
@@ -125,6 +127,21 @@ namespace TalonOneSdk.Model
         public long? Weight { get { return this.WeightOption.Value; } set { this.WeightOption = new Option<long?>(value); } }
 
         /// <summary>
+        /// Used to track the state of AudienceId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> AudienceIdOption { get; private set; }
+
+        /// <summary>
+        /// The ID of the audience this variant targets. Only used when the experiment &#x60;assignmentType&#x60; is &#x60;audience&#x60;. 
+        /// </summary>
+        /// <value>The ID of the audience this variant targets. Only used when the experiment &#x60;assignmentType&#x60; is &#x60;audience&#x60;. </value>
+        /* <example>55</example> */
+        [JsonPropertyName("audienceId")]
+        public long? AudienceId { get { return this.AudienceIdOption.Value; } set { this.AudienceIdOption = new Option<long?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -139,6 +156,7 @@ namespace TalonOneSdk.Model
             sb.Append("  ExperimentId: ").Append(ExperimentId).Append("\n");
             sb.Append("  Ruleset: ").Append(Ruleset).Append("\n");
             sb.Append("  Weight: ").Append(Weight).Append("\n");
+            sb.Append("  AudienceId: ").Append(AudienceId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -198,6 +216,7 @@ namespace TalonOneSdk.Model
             Option<long?> experimentId = default;
             Option<Ruleset> ruleset = default;
             Option<long?> weight = default;
+            Option<long?> audienceId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -235,6 +254,9 @@ namespace TalonOneSdk.Model
                         case "weight":
                             weight = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
+                        case "audienceId":
+                            audienceId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
                         default:
                             break;
                     }
@@ -265,7 +287,7 @@ namespace TalonOneSdk.Model
             if (isPrimary.IsSet && isPrimary.Value == null)
                 throw new ArgumentNullException(nameof(isPrimary), "Property is not nullable for class ExperimentVariant.");
 
-            return new ExperimentVariant(id.Value.Value, created.Value.Value, name.Value, isPrimary.Value.Value, experimentId, ruleset, weight);
+            return new ExperimentVariant(id.Value.Value, created.Value.Value, name.Value, isPrimary.Value.Value, experimentId, ruleset, weight, audienceId);
         }
 
         /// <summary>
@@ -313,6 +335,9 @@ namespace TalonOneSdk.Model
             }
             if (experimentVariant.WeightOption.IsSet)
                 writer.WriteNumber("weight", experimentVariant.WeightOption.Value.Value);
+
+            if (experimentVariant.AudienceIdOption.IsSet)
+                writer.WriteNumber("audienceId", experimentVariant.AudienceIdOption.Value.Value);
         }
     }
 }

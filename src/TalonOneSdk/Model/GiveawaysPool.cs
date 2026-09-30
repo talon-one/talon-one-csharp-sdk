@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// Giveaways pools is an entity for managing multiple similar giveaways.
+    /// A giveaway pool is an entity for managing multiple similar giveaways.
     /// </summary>
     public partial class GiveawaysPool : IValidatableObject
     {
@@ -34,13 +34,13 @@ namespace TalonOneSdk.Model
         /// <param name="id">The internal ID of this entity.</param>
         /// <param name="created">The time this entity was created.</param>
         /// <param name="accountId">The ID of the account that owns this entity.</param>
-        /// <param name="name">The name of this giveaways pool.</param>
+        /// <param name="name">The name of this giveaway pool.</param>
         /// <param name="sandbox">Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.</param>
-        /// <param name="createdBy">ID of the user who created this giveaways pool.</param>
-        /// <param name="description">The description of this giveaways pool.</param>
-        /// <param name="subscribedApplicationsIds">A list of the IDs of the applications that this giveaways pool is enabled for.</param>
-        /// <param name="modified">Timestamp of the most recent update to the giveaways pool.</param>
-        /// <param name="modifiedBy">ID of the user who last updated this giveaways pool if available.</param>
+        /// <param name="createdBy">ID of the user who created this giveaway pool.</param>
+        /// <param name="description">The description of this giveaway pool.</param>
+        /// <param name="subscribedApplicationsIds">A list of the IDs of the Applications that this giveaway pool is enabled for.</param>
+        /// <param name="modified">Timestamp of the most recent update to the giveaway pool.</param>
+        /// <param name="modifiedBy">ID of the user who last updated this giveaway pool if available.</param>
         [JsonConstructor]
         public GiveawaysPool(long id, DateTime created, long accountId, string name, bool sandbox, long createdBy, Option<string> description = default, Option<List<long>> subscribedApplicationsIds = default, Option<DateTime?> modified = default, Option<long?> modifiedBy = default)
         {
@@ -84,9 +84,9 @@ namespace TalonOneSdk.Model
         public long AccountId { get; set; }
 
         /// <summary>
-        /// The name of this giveaways pool.
+        /// The name of this giveaway pool.
         /// </summary>
-        /// <value>The name of this giveaways pool.</value>
+        /// <value>The name of this giveaway pool.</value>
         /* <example>My giveaway pool</example> */
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -100,9 +100,9 @@ namespace TalonOneSdk.Model
         public bool Sandbox { get; set; }
 
         /// <summary>
-        /// ID of the user who created this giveaways pool.
+        /// ID of the user who created this giveaway pool.
         /// </summary>
-        /// <value>ID of the user who created this giveaways pool.</value>
+        /// <value>ID of the user who created this giveaway pool.</value>
         [JsonPropertyName("createdBy")]
         public long CreatedBy { get; set; }
 
@@ -114,9 +114,9 @@ namespace TalonOneSdk.Model
         public Option<string> DescriptionOption { get; private set; }
 
         /// <summary>
-        /// The description of this giveaways pool.
+        /// The description of this giveaway pool.
         /// </summary>
-        /// <value>The description of this giveaways pool.</value>
+        /// <value>The description of this giveaway pool.</value>
         /* <example>Generic pool</example> */
         [JsonPropertyName("description")]
         public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
@@ -129,9 +129,9 @@ namespace TalonOneSdk.Model
         public Option<List<long>> SubscribedApplicationsIdsOption { get; private set; }
 
         /// <summary>
-        /// A list of the IDs of the applications that this giveaways pool is enabled for.
+        /// A list of the IDs of the Applications that this giveaway pool is enabled for.
         /// </summary>
-        /// <value>A list of the IDs of the applications that this giveaways pool is enabled for.</value>
+        /// <value>A list of the IDs of the Applications that this giveaway pool is enabled for.</value>
         /* <example>[2, 4]</example> */
         [JsonPropertyName("subscribedApplicationsIds")]
         public List<long> SubscribedApplicationsIds { get { return this.SubscribedApplicationsIdsOption.Value; } set { this.SubscribedApplicationsIdsOption = new Option<List<long>>(value); } }
@@ -144,9 +144,9 @@ namespace TalonOneSdk.Model
         public Option<DateTime?> ModifiedOption { get; private set; }
 
         /// <summary>
-        /// Timestamp of the most recent update to the giveaways pool.
+        /// Timestamp of the most recent update to the giveaway pool.
         /// </summary>
-        /// <value>Timestamp of the most recent update to the giveaways pool.</value>
+        /// <value>Timestamp of the most recent update to the giveaway pool.</value>
         [JsonPropertyName("modified")]
         public DateTime? Modified { get { return this.ModifiedOption.Value; } set { this.ModifiedOption = new Option<DateTime?>(value); } }
 
@@ -158,9 +158,9 @@ namespace TalonOneSdk.Model
         public Option<long?> ModifiedByOption { get; private set; }
 
         /// <summary>
-        /// ID of the user who last updated this giveaways pool if available.
+        /// ID of the user who last updated this giveaway pool if available.
         /// </summary>
-        /// <value>ID of the user who last updated this giveaways pool if available.</value>
+        /// <value>ID of the user who last updated this giveaway pool if available.</value>
         [JsonPropertyName("modifiedBy")]
         public long? ModifiedBy { get { return this.ModifiedByOption.Value; } set { this.ModifiedByOption = new Option<long?>(value); } }
 

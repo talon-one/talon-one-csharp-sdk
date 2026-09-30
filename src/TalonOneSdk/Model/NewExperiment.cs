@@ -31,21 +31,119 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NewExperiment" /> class.
         /// </summary>
-        /// <param name="isVariantAssignmentExternal">The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. </param>
         /// <param name="campaign">campaign</param>
+        /// <param name="assignmentType">Controls how customers are assigned to experiment variants. Either &#x60;assignmentType&#x60; or &#x60;isVariantAssignmentExternal&#x60; must be provided; &#x60;assignmentType&#x60; takes priority when both are present. - &#x60;random&#x60;: Talon.One assigns customers randomly based on variant weights. - &#x60;external&#x60;: Variant assignment is handled externally. - &#x60;audience&#x60;: Each variant targets a specific audience; customers are   assigned based on audience membership. </param>
+        /// <param name="isVariantAssignmentExternal">Deprecated. Use &#x60;assignmentType&#x60; instead. Either &#x60;assignmentType&#x60; or &#x60;isVariantAssignmentExternal&#x60; must be provided. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. </param>
         /// <param name="goalType">The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to &#x60;other&#x60;, multiple metrics are used.  (default to GoalTypeEnum.Other)</param>
         /// <param name="goalDescription">A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal. </param>
         [JsonConstructor]
-        public NewExperiment(bool isVariantAssignmentExternal, NewCampaign campaign, GoalTypeEnum goalType = GoalTypeEnum.Other, Option<string> goalDescription = default)
+        public NewExperiment(NewCampaign campaign, Option<AssignmentTypeEnum?> assignmentType = default, Option<bool?> isVariantAssignmentExternal = default, GoalTypeEnum goalType = GoalTypeEnum.Other, Option<string> goalDescription = default)
         {
-            IsVariantAssignmentExternal = isVariantAssignmentExternal;
             Campaign = campaign;
+            AssignmentTypeOption = assignmentType;
+            IsVariantAssignmentExternalOption = isVariantAssignmentExternal;
             GoalType = goalType;
             GoalDescriptionOption = goalDescription;
             OnCreated();
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// Controls how customers are assigned to experiment variants. Either &#x60;assignmentType&#x60; or &#x60;isVariantAssignmentExternal&#x60; must be provided; &#x60;assignmentType&#x60; takes priority when both are present. - &#x60;random&#x60;: Talon.One assigns customers randomly based on variant weights. - &#x60;external&#x60;: Variant assignment is handled externally. - &#x60;audience&#x60;: Each variant targets a specific audience; customers are   assigned based on audience membership. 
+        /// </summary>
+        /// <value>Controls how customers are assigned to experiment variants. Either &#x60;assignmentType&#x60; or &#x60;isVariantAssignmentExternal&#x60; must be provided; &#x60;assignmentType&#x60; takes priority when both are present. - &#x60;random&#x60;: Talon.One assigns customers randomly based on variant weights. - &#x60;external&#x60;: Variant assignment is handled externally. - &#x60;audience&#x60;: Each variant targets a specific audience; customers are   assigned based on audience membership. </value>
+        public enum AssignmentTypeEnum
+        {
+            /// <summary>
+            /// Enum Random for value: random
+            /// </summary>
+            Random = 1,
+
+            /// <summary>
+            /// Enum External for value: external
+            /// </summary>
+            External = 2,
+
+            /// <summary>
+            /// Enum Audience for value: audience
+            /// </summary>
+            Audience = 3
+        }
+
+        /// <summary>
+        /// Returns a <see cref="AssignmentTypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static AssignmentTypeEnum AssignmentTypeEnumFromString(string value)
+        {
+            if (value.Equals("random"))
+                return AssignmentTypeEnum.Random;
+
+            if (value.Equals("external"))
+                return AssignmentTypeEnum.External;
+
+            if (value.Equals("audience"))
+                return AssignmentTypeEnum.Audience;
+
+            throw new NotImplementedException($"Could not convert value to type AssignmentTypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="AssignmentTypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static AssignmentTypeEnum? AssignmentTypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("random"))
+                return AssignmentTypeEnum.Random;
+
+            if (value.Equals("external"))
+                return AssignmentTypeEnum.External;
+
+            if (value.Equals("audience"))
+                return AssignmentTypeEnum.Audience;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="AssignmentTypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string AssignmentTypeEnumToJsonValue(AssignmentTypeEnum? value)
+        {
+            if (value == AssignmentTypeEnum.Random)
+                return "random";
+
+            if (value == AssignmentTypeEnum.External)
+                return "external";
+
+            if (value == AssignmentTypeEnum.Audience)
+                return "audience";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// Used to track the state of AssignmentType
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<AssignmentTypeEnum?> AssignmentTypeOption { get; private set; }
+
+        /// <summary>
+        /// Controls how customers are assigned to experiment variants. Either &#x60;assignmentType&#x60; or &#x60;isVariantAssignmentExternal&#x60; must be provided; &#x60;assignmentType&#x60; takes priority when both are present. - &#x60;random&#x60;: Talon.One assigns customers randomly based on variant weights. - &#x60;external&#x60;: Variant assignment is handled externally. - &#x60;audience&#x60;: Each variant targets a specific audience; customers are   assigned based on audience membership. 
+        /// </summary>
+        /// <value>Controls how customers are assigned to experiment variants. Either &#x60;assignmentType&#x60; or &#x60;isVariantAssignmentExternal&#x60; must be provided; &#x60;assignmentType&#x60; takes priority when both are present. - &#x60;random&#x60;: Talon.One assigns customers randomly based on variant weights. - &#x60;external&#x60;: Variant assignment is handled externally. - &#x60;audience&#x60;: Each variant targets a specific audience; customers are   assigned based on audience membership. </value>
+        /* <example>random</example> */
+        [JsonPropertyName("assignmentType")]
+        public AssignmentTypeEnum? AssignmentType { get { return this.AssignmentTypeOption.Value; } set { this.AssignmentTypeOption = new Option<AssignmentTypeEnum?>(value); } }
 
         /// <summary>
         /// The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to &#x60;other&#x60;, multiple metrics are used. 
@@ -150,17 +248,25 @@ namespace TalonOneSdk.Model
         public GoalTypeEnum GoalType { get; set; }
 
         /// <summary>
-        /// The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. 
-        /// </summary>
-        /// <value>The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. </value>
-        [JsonPropertyName("isVariantAssignmentExternal")]
-        public bool IsVariantAssignmentExternal { get; set; }
-
-        /// <summary>
         /// Gets or Sets Campaign
         /// </summary>
         [JsonPropertyName("campaign")]
         public NewCampaign Campaign { get; set; }
+
+        /// <summary>
+        /// Used to track the state of IsVariantAssignmentExternal
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> IsVariantAssignmentExternalOption { get; private set; }
+
+        /// <summary>
+        /// Deprecated. Use &#x60;assignmentType&#x60; instead. Either &#x60;assignmentType&#x60; or &#x60;isVariantAssignmentExternal&#x60; must be provided. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. 
+        /// </summary>
+        /// <value>Deprecated. Use &#x60;assignmentType&#x60; instead. Either &#x60;assignmentType&#x60; or &#x60;isVariantAssignmentExternal&#x60; must be provided. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally. </value>
+        [JsonPropertyName("isVariantAssignmentExternal")]
+        [Obsolete]
+        public bool? IsVariantAssignmentExternal { get { return this.IsVariantAssignmentExternalOption.Value; } set { this.IsVariantAssignmentExternalOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of GoalDescription
@@ -185,8 +291,9 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class NewExperiment {\n");
-            sb.Append("  IsVariantAssignmentExternal: ").Append(IsVariantAssignmentExternal).Append("\n");
             sb.Append("  Campaign: ").Append(Campaign).Append("\n");
+            sb.Append("  AssignmentType: ").Append(AssignmentType).Append("\n");
+            sb.Append("  IsVariantAssignmentExternal: ").Append(IsVariantAssignmentExternal).Append("\n");
             sb.Append("  GoalType: ").Append(GoalType).Append("\n");
             sb.Append("  GoalDescription: ").Append(GoalDescription).Append("\n");
             sb.Append("}\n");
@@ -236,8 +343,9 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<bool?> isVariantAssignmentExternal = default;
             Option<NewCampaign> campaign = default;
+            Option<NewExperiment.AssignmentTypeEnum?> assignmentType = default;
+            Option<bool?> isVariantAssignmentExternal = default;
             Option<NewExperiment.GoalTypeEnum?> goalType = default;
             Option<string> goalDescription = default;
 
@@ -256,11 +364,21 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "isVariantAssignmentExternal":
-                            isVariantAssignmentExternal = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
-                            break;
                         case "campaign":
                             campaign = new Option<NewCampaign>(JsonSerializer.Deserialize<NewCampaign>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "assignmentType":
+                            string assignmentTypeRawValue = utf8JsonReader.GetString();
+                            if (assignmentTypeRawValue != null)
+                            {
+                                NewExperiment.AssignmentTypeEnum? assignmentTypeValue = NewExperiment.AssignmentTypeEnumFromStringOrDefault(assignmentTypeRawValue);
+                                if (assignmentTypeValue == null)
+                                    throw new JsonException();
+                                assignmentType = new Option<NewExperiment.AssignmentTypeEnum?>(assignmentTypeValue);
+                            }
+                            break;
+                        case "isVariantAssignmentExternal":
+                            isVariantAssignmentExternal = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "goalType":
                             string goalTypeRawValue = utf8JsonReader.GetString();
@@ -281,17 +399,11 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (!isVariantAssignmentExternal.IsSet)
-                throw new ArgumentException("Property is required for class NewExperiment.", nameof(isVariantAssignmentExternal));
-
             if (!campaign.IsSet)
                 throw new ArgumentException("Property is required for class NewExperiment.", nameof(campaign));
 
             if (!goalType.IsSet)
                 throw new ArgumentException("Property is required for class NewExperiment.", nameof(goalType));
-
-            if (isVariantAssignmentExternal.IsSet && isVariantAssignmentExternal.Value == null)
-                throw new ArgumentNullException(nameof(isVariantAssignmentExternal), "Property is not nullable for class NewExperiment.");
 
             if (campaign.IsSet && campaign.Value == null)
                 throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class NewExperiment.");
@@ -299,7 +411,7 @@ namespace TalonOneSdk.Model
             if (goalType.IsSet && goalType.Value == null)
                 throw new ArgumentNullException(nameof(goalType), "Property is not nullable for class NewExperiment.");
 
-            return new NewExperiment(isVariantAssignmentExternal.Value.Value, campaign.Value, goalType.Value.Value, goalDescription);
+            return new NewExperiment(campaign.Value, assignmentType, isVariantAssignmentExternal, goalType.Value.Value, goalDescription);
         }
 
         /// <summary>
@@ -329,10 +441,16 @@ namespace TalonOneSdk.Model
             if (newExperiment.Campaign == null)
                 throw new ArgumentNullException(nameof(newExperiment.Campaign), "Property is required for class NewExperiment.");
 
-            writer.WriteBoolean("isVariantAssignmentExternal", newExperiment.IsVariantAssignmentExternal);
-
             writer.WritePropertyName("campaign");
             JsonSerializer.Serialize(writer, newExperiment.Campaign, jsonSerializerOptions);
+            if (newExperiment.AssignmentTypeOption.IsSet)
+            {
+                var assignmentTypeRawValue = NewExperiment.AssignmentTypeEnumToJsonValue(newExperiment.AssignmentTypeOption.Value);
+                writer.WriteString("assignmentType", assignmentTypeRawValue);
+            }
+            if (newExperiment.IsVariantAssignmentExternalOption.IsSet)
+                writer.WriteBoolean("isVariantAssignmentExternal", newExperiment.IsVariantAssignmentExternalOption.Value.Value);
+
             var goalTypeRawValue = NewExperiment.GoalTypeEnumToJsonValue(newExperiment.GoalType);
             writer.WriteString("goalType", goalTypeRawValue);
             if (newExperiment.GoalDescriptionOption.IsSet)

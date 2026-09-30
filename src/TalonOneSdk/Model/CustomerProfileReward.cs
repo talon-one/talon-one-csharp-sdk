@@ -44,9 +44,9 @@ namespace TalonOneSdk.Model
         /// <param name="usedAt">The date and time when the reward was used.</param>
         /// <param name="usedByProfileIntegrationId">The integration ID of the customer profile that used the reward.   For rewards unlocked with a loyalty card, this can be any customer profile  linked to that loyalty card.   Only returned when the reward has been used. </param>
         /// <param name="loyaltyProgramId">The ID of the loyalty program that the loyalty card belongs to. Only returned for rewards unlocked with a loyalty card.</param>
-        /// <param name="loyaltyCardIdentifier">The identifier of the loyalty card that the reward was unlocked with. Only returned for rewards unlocked with a loyalty card.</param>
+        /// <param name="loyaltyCardId">The identifier of the loyalty card that the reward was unlocked with. Only returned for rewards unlocked with a loyalty card.</param>
         [JsonConstructor]
-        public CustomerProfileReward(long id, string integrationId, long rewardId, string rewardIntegrationId, string rewardName, StatusEnum status, DateTime unlockedAt, Option<string> description = default, Option<RuleMetadata> rule = default, Option<string> unlockedByProfileIntegrationId = default, Option<DateTime?> usedAt = default, Option<string> usedByProfileIntegrationId = default, Option<long?> loyaltyProgramId = default, Option<string> loyaltyCardIdentifier = default)
+        public CustomerProfileReward(long id, string integrationId, long rewardId, string rewardIntegrationId, string rewardName, StatusEnum status, DateTime unlockedAt, Option<string> description = default, Option<RuleMetadata> rule = default, Option<string> unlockedByProfileIntegrationId = default, Option<DateTime?> usedAt = default, Option<string> usedByProfileIntegrationId = default, Option<long?> loyaltyProgramId = default, Option<string> loyaltyCardId = default)
         {
             Id = id;
             IntegrationId = integrationId;
@@ -61,7 +61,7 @@ namespace TalonOneSdk.Model
             UsedAtOption = usedAt;
             UsedByProfileIntegrationIdOption = usedByProfileIntegrationId;
             LoyaltyProgramIdOption = loyaltyProgramId;
-            LoyaltyCardIdentifierOption = loyaltyCardIdentifier;
+            LoyaltyCardIdOption = loyaltyCardId;
             OnCreated();
         }
 
@@ -280,19 +280,19 @@ namespace TalonOneSdk.Model
         public long? LoyaltyProgramId { get { return this.LoyaltyProgramIdOption.Value; } set { this.LoyaltyProgramIdOption = new Option<long?>(value); } }
 
         /// <summary>
-        /// Used to track the state of LoyaltyCardIdentifier
+        /// Used to track the state of LoyaltyCardId
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> LoyaltyCardIdentifierOption { get; private set; }
+        public Option<string> LoyaltyCardIdOption { get; private set; }
 
         /// <summary>
         /// The identifier of the loyalty card that the reward was unlocked with. Only returned for rewards unlocked with a loyalty card.
         /// </summary>
         /// <value>The identifier of the loyalty card that the reward was unlocked with. Only returned for rewards unlocked with a loyalty card.</value>
         /* <example>summer-loyalty-card-0543</example> */
-        [JsonPropertyName("loyaltyCardIdentifier")]
-        public string LoyaltyCardIdentifier { get { return this.LoyaltyCardIdentifierOption.Value; } set { this.LoyaltyCardIdentifierOption = new Option<string>(value); } }
+        [JsonPropertyName("loyaltyCardId")]
+        public string LoyaltyCardId { get { return this.LoyaltyCardIdOption.Value; } set { this.LoyaltyCardIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -315,7 +315,7 @@ namespace TalonOneSdk.Model
             sb.Append("  UsedAt: ").Append(UsedAt).Append("\n");
             sb.Append("  UsedByProfileIntegrationId: ").Append(UsedByProfileIntegrationId).Append("\n");
             sb.Append("  LoyaltyProgramId: ").Append(LoyaltyProgramId).Append("\n");
-            sb.Append("  LoyaltyCardIdentifier: ").Append(LoyaltyCardIdentifier).Append("\n");
+            sb.Append("  LoyaltyCardId: ").Append(LoyaltyCardId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -327,25 +327,25 @@ namespace TalonOneSdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // LoyaltyCardIdentifier (string) maxLength
-            if (this.LoyaltyCardIdentifier != null && this.LoyaltyCardIdentifier.Length > 108)
+            // LoyaltyCardId (string) maxLength
+            if (this.LoyaltyCardId != null && this.LoyaltyCardId.Length > 108)
             {
-                yield return new ValidationResult("Invalid value for LoyaltyCardIdentifier, length must be less than 108.", new [] { "LoyaltyCardIdentifier" });
+                yield return new ValidationResult("Invalid value for LoyaltyCardId, length must be less than 108.", new [] { "LoyaltyCardId" });
             }
 
-            // LoyaltyCardIdentifier (string) minLength
-            if (this.LoyaltyCardIdentifier != null && this.LoyaltyCardIdentifier.Length < 4)
+            // LoyaltyCardId (string) minLength
+            if (this.LoyaltyCardId != null && this.LoyaltyCardId.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for LoyaltyCardIdentifier, length must be greater than 4.", new [] { "LoyaltyCardIdentifier" });
+                yield return new ValidationResult("Invalid value for LoyaltyCardId, length must be greater than 4.", new [] { "LoyaltyCardId" });
             }
 
-            if (this.LoyaltyCardIdentifierOption.Value != null) {
-                // LoyaltyCardIdentifier (string) pattern
-                Regex regexLoyaltyCardIdentifier = new Regex(@"^[A-Za-z0-9._%+@-]+$", RegexOptions.CultureInvariant);
+            if (this.LoyaltyCardIdOption.Value != null) {
+                // LoyaltyCardId (string) pattern
+                Regex regexLoyaltyCardId = new Regex(@"^[A-Za-z0-9._%+@-]+$", RegexOptions.CultureInvariant);
 
-                if (this.LoyaltyCardIdentifierOption.Value != null &&!regexLoyaltyCardIdentifier.Match(this.LoyaltyCardIdentifierOption.Value).Success)
+                if (this.LoyaltyCardIdOption.Value != null &&!regexLoyaltyCardId.Match(this.LoyaltyCardIdOption.Value).Success)
                 {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyCardIdentifier, must match a pattern of " + regexLoyaltyCardIdentifier, new [] { "LoyaltyCardIdentifier" });
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyCardId, must match a pattern of " + regexLoyaltyCardId, new [] { "LoyaltyCardId" });
                 }
             }
 
@@ -408,7 +408,7 @@ namespace TalonOneSdk.Model
             Option<DateTime?> usedAt = default;
             Option<string> usedByProfileIntegrationId = default;
             Option<long?> loyaltyProgramId = default;
-            Option<string> loyaltyCardIdentifier = default;
+            Option<string> loyaltyCardId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -471,8 +471,8 @@ namespace TalonOneSdk.Model
                         case "loyaltyProgramId":
                             loyaltyProgramId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
-                        case "loyaltyCardIdentifier":
-                            loyaltyCardIdentifier = new Option<string>(utf8JsonReader.GetString());
+                        case "loyaltyCardId":
+                            loyaltyCardId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         default:
                             break;
@@ -522,7 +522,7 @@ namespace TalonOneSdk.Model
             if (unlockedAt.IsSet && unlockedAt.Value == null)
                 throw new ArgumentNullException(nameof(unlockedAt), "Property is not nullable for class CustomerProfileReward.");
 
-            return new CustomerProfileReward(id.Value.Value, integrationId.Value, rewardId.Value.Value, rewardIntegrationId.Value, rewardName.Value, status.Value.Value, unlockedAt.Value.Value, description, rule, unlockedByProfileIntegrationId, usedAt, usedByProfileIntegrationId, loyaltyProgramId, loyaltyCardIdentifier);
+            return new CustomerProfileReward(id.Value.Value, integrationId.Value, rewardId.Value.Value, rewardIntegrationId.Value, rewardName.Value, status.Value.Value, unlockedAt.Value.Value, description, rule, unlockedByProfileIntegrationId, usedAt, usedByProfileIntegrationId, loyaltyProgramId, loyaltyCardId);
         }
 
         /// <summary>
@@ -592,8 +592,8 @@ namespace TalonOneSdk.Model
             if (customerProfileReward.LoyaltyProgramIdOption.IsSet)
                 writer.WriteNumber("loyaltyProgramId", customerProfileReward.LoyaltyProgramIdOption.Value.Value);
 
-            if (customerProfileReward.LoyaltyCardIdentifierOption.IsSet)
-                writer.WriteString("loyaltyCardIdentifier", customerProfileReward.LoyaltyCardIdentifier);
+            if (customerProfileReward.LoyaltyCardIdOption.IsSet)
+                writer.WriteString("loyaltyCardId", customerProfileReward.LoyaltyCardId);
         }
     }
 }

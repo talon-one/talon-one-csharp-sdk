@@ -141,6 +141,7 @@ docs/models/BetweenCheckAttributeBlock.md
 docs/models/Binding.md
 docs/models/Block.md
 docs/models/Blueprint.md
+docs/models/BoostLoyaltyTierEffectProps.md
 docs/models/BulkApplicationNotification.md
 docs/models/BulkOperationOnCampaigns.md
 docs/models/Bundle.md
@@ -311,6 +312,7 @@ docs/models/EffectAddLoyaltyPoints.md
 docs/models/EffectAddNegativeLoyaltyPoints.md
 docs/models/EffectAddToAudience.md
 docs/models/EffectAwardGiveaway.md
+docs/models/EffectBoostLoyaltyTier.md
 docs/models/EffectCallApi.md
 docs/models/EffectChangeLoyaltyTierLevel.md
 docs/models/EffectCouponCreated.md
@@ -462,6 +464,7 @@ docs/models/GetLoyaltyCardPoints200Response.md
 docs/models/GetLoyaltyCardTransactionLogs200Response.md
 docs/models/GetLoyaltyCardTransactions200Response.md
 docs/models/GetLoyaltyCards200Response.md
+docs/models/GetLoyaltyProgramProfileLedgerTransactions200Response.md
 docs/models/GetLoyaltyProgramProfilePoints200Response.md
 docs/models/GetLoyaltyProgramProfileTransactions200Response.md
 docs/models/GetLoyaltyProgramTransactions200Response.md
@@ -537,6 +540,7 @@ docs/models/LedgerEntry.md
 docs/models/LedgerInfo.md
 docs/models/LedgerPointsEntryIntegrationAPI.md
 docs/models/LedgerTransactionLogEntryIntegrationAPI.md
+docs/models/LedgerTransactionLogEntryManagementAPI.md
 docs/models/LibraryAttribute.md
 docs/models/LimitConfig.md
 docs/models/LimitCounter.md
@@ -693,6 +697,14 @@ docs/models/OktaEventPayload.md
 docs/models/OktaEventPayloadData.md
 docs/models/OktaEventTarget.md
 docs/models/OneTimeCode.md
+docs/models/OutboundLog.md
+docs/models/OutboundLogBase.md
+docs/models/OutboundLogRequest.md
+docs/models/OutboundLogResponse.md
+docs/models/OutboundLogs.md
+docs/models/OutboundMessage.md
+docs/models/OutboundMessageResponse.md
+docs/models/OutboundMessages.md
 docs/models/OutgoingIntegrationBrazePolicy.md
 docs/models/OutgoingIntegrationCleverTapPolicy.md
 docs/models/OutgoingIntegrationConfiguration.md
@@ -783,6 +795,7 @@ docs/models/RollbackDeductedLoyaltyPointsEffectProps.md
 docs/models/RollbackDiscountEffectProps.md
 docs/models/RollbackIncreasedAchievementProgressEffectProps.md
 docs/models/RollbackReferralEffectProps.md
+docs/models/RollbackTierBoostEffectProps.md
 docs/models/RollbackUseRewardEffectProps.md
 docs/models/Rule.md
 docs/models/RuleEligibility.md
@@ -1078,6 +1091,7 @@ src/TalonOneSdk.Test/Model/BetweenCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/BindingTests.cs
 src/TalonOneSdk.Test/Model/BlockTests.cs
 src/TalonOneSdk.Test/Model/BlueprintTests.cs
+src/TalonOneSdk.Test/Model/BoostLoyaltyTierEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/BulkApplicationNotificationTests.cs
 src/TalonOneSdk.Test/Model/BulkOperationOnCampaignsTests.cs
 src/TalonOneSdk.Test/Model/BundleTests.cs
@@ -1247,6 +1261,7 @@ src/TalonOneSdk.Test/Model/EffectAddLoyaltyPointsTests.cs
 src/TalonOneSdk.Test/Model/EffectAddNegativeLoyaltyPointsTests.cs
 src/TalonOneSdk.Test/Model/EffectAddToAudienceTests.cs
 src/TalonOneSdk.Test/Model/EffectAwardGiveawayTests.cs
+src/TalonOneSdk.Test/Model/EffectBoostLoyaltyTierTests.cs
 src/TalonOneSdk.Test/Model/EffectCallApiTests.cs
 src/TalonOneSdk.Test/Model/EffectChangeLoyaltyTierLevelTests.cs
 src/TalonOneSdk.Test/Model/EffectCouponCreatedTests.cs
@@ -1399,6 +1414,7 @@ src/TalonOneSdk.Test/Model/GetLoyaltyCardPoints200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetLoyaltyCardTransactionLogs200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetLoyaltyCardTransactions200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetLoyaltyCards200ResponseTests.cs
+src/TalonOneSdk.Test/Model/GetLoyaltyProgramProfileLedgerTransactions200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetLoyaltyProgramProfilePoints200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetLoyaltyProgramProfileTransactions200ResponseTests.cs
 src/TalonOneSdk.Test/Model/GetLoyaltyProgramTransactions200ResponseTests.cs
@@ -1474,6 +1490,7 @@ src/TalonOneSdk.Test/Model/LedgerEntryTests.cs
 src/TalonOneSdk.Test/Model/LedgerInfoTests.cs
 src/TalonOneSdk.Test/Model/LedgerPointsEntryIntegrationAPITests.cs
 src/TalonOneSdk.Test/Model/LedgerTransactionLogEntryIntegrationAPITests.cs
+src/TalonOneSdk.Test/Model/LedgerTransactionLogEntryManagementAPITests.cs
 src/TalonOneSdk.Test/Model/LibraryAttributeTests.cs
 src/TalonOneSdk.Test/Model/LimitConfigTests.cs
 src/TalonOneSdk.Test/Model/LimitCounterTests.cs
@@ -1630,6 +1647,14 @@ src/TalonOneSdk.Test/Model/OktaEventPayloadTests.cs
 src/TalonOneSdk.Test/Model/OktaEventTargetTests.cs
 src/TalonOneSdk.Test/Model/OktaEventTests.cs
 src/TalonOneSdk.Test/Model/OneTimeCodeTests.cs
+src/TalonOneSdk.Test/Model/OutboundLogBaseTests.cs
+src/TalonOneSdk.Test/Model/OutboundLogRequestTests.cs
+src/TalonOneSdk.Test/Model/OutboundLogResponseTests.cs
+src/TalonOneSdk.Test/Model/OutboundLogTests.cs
+src/TalonOneSdk.Test/Model/OutboundLogsTests.cs
+src/TalonOneSdk.Test/Model/OutboundMessageResponseTests.cs
+src/TalonOneSdk.Test/Model/OutboundMessageTests.cs
+src/TalonOneSdk.Test/Model/OutboundMessagesTests.cs
 src/TalonOneSdk.Test/Model/OutgoingIntegrationBrazePolicyTests.cs
 src/TalonOneSdk.Test/Model/OutgoingIntegrationCleverTapPolicyTests.cs
 src/TalonOneSdk.Test/Model/OutgoingIntegrationConfigurationPolicyTests.cs
@@ -1720,6 +1745,7 @@ src/TalonOneSdk.Test/Model/RollbackDeductedLoyaltyPointsEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RollbackDiscountEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RollbackIncreasedAchievementProgressEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RollbackReferralEffectPropsTests.cs
+src/TalonOneSdk.Test/Model/RollbackTierBoostEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RollbackUseRewardEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RuleEligibilityFailureDetailsTests.cs
 src/TalonOneSdk.Test/Model/RuleEligibilityTests.cs
@@ -2036,6 +2062,7 @@ src/TalonOneSdk/Model/BetweenCheckAttributeBlock.cs
 src/TalonOneSdk/Model/Binding.cs
 src/TalonOneSdk/Model/Block.cs
 src/TalonOneSdk/Model/Blueprint.cs
+src/TalonOneSdk/Model/BoostLoyaltyTierEffectProps.cs
 src/TalonOneSdk/Model/BulkApplicationNotification.cs
 src/TalonOneSdk/Model/BulkOperationOnCampaigns.cs
 src/TalonOneSdk/Model/Bundle.cs
@@ -2206,6 +2233,7 @@ src/TalonOneSdk/Model/EffectAddLoyaltyPoints.cs
 src/TalonOneSdk/Model/EffectAddNegativeLoyaltyPoints.cs
 src/TalonOneSdk/Model/EffectAddToAudience.cs
 src/TalonOneSdk/Model/EffectAwardGiveaway.cs
+src/TalonOneSdk/Model/EffectBoostLoyaltyTier.cs
 src/TalonOneSdk/Model/EffectCallApi.cs
 src/TalonOneSdk/Model/EffectChangeLoyaltyTierLevel.cs
 src/TalonOneSdk/Model/EffectCouponCreated.cs
@@ -2357,6 +2385,7 @@ src/TalonOneSdk/Model/GetLoyaltyCardPoints200Response.cs
 src/TalonOneSdk/Model/GetLoyaltyCardTransactionLogs200Response.cs
 src/TalonOneSdk/Model/GetLoyaltyCardTransactions200Response.cs
 src/TalonOneSdk/Model/GetLoyaltyCards200Response.cs
+src/TalonOneSdk/Model/GetLoyaltyProgramProfileLedgerTransactions200Response.cs
 src/TalonOneSdk/Model/GetLoyaltyProgramProfilePoints200Response.cs
 src/TalonOneSdk/Model/GetLoyaltyProgramProfileTransactions200Response.cs
 src/TalonOneSdk/Model/GetLoyaltyProgramTransactions200Response.cs
@@ -2432,6 +2461,7 @@ src/TalonOneSdk/Model/LedgerEntry.cs
 src/TalonOneSdk/Model/LedgerInfo.cs
 src/TalonOneSdk/Model/LedgerPointsEntryIntegrationAPI.cs
 src/TalonOneSdk/Model/LedgerTransactionLogEntryIntegrationAPI.cs
+src/TalonOneSdk/Model/LedgerTransactionLogEntryManagementAPI.cs
 src/TalonOneSdk/Model/LibraryAttribute.cs
 src/TalonOneSdk/Model/LimitConfig.cs
 src/TalonOneSdk/Model/LimitCounter.cs
@@ -2588,6 +2618,14 @@ src/TalonOneSdk/Model/OktaEventPayload.cs
 src/TalonOneSdk/Model/OktaEventPayloadData.cs
 src/TalonOneSdk/Model/OktaEventTarget.cs
 src/TalonOneSdk/Model/OneTimeCode.cs
+src/TalonOneSdk/Model/OutboundLog.cs
+src/TalonOneSdk/Model/OutboundLogBase.cs
+src/TalonOneSdk/Model/OutboundLogRequest.cs
+src/TalonOneSdk/Model/OutboundLogResponse.cs
+src/TalonOneSdk/Model/OutboundLogs.cs
+src/TalonOneSdk/Model/OutboundMessage.cs
+src/TalonOneSdk/Model/OutboundMessageResponse.cs
+src/TalonOneSdk/Model/OutboundMessages.cs
 src/TalonOneSdk/Model/OutgoingIntegrationBrazePolicy.cs
 src/TalonOneSdk/Model/OutgoingIntegrationCleverTapPolicy.cs
 src/TalonOneSdk/Model/OutgoingIntegrationConfiguration.cs
@@ -2678,6 +2716,7 @@ src/TalonOneSdk/Model/RollbackDeductedLoyaltyPointsEffectProps.cs
 src/TalonOneSdk/Model/RollbackDiscountEffectProps.cs
 src/TalonOneSdk/Model/RollbackIncreasedAchievementProgressEffectProps.cs
 src/TalonOneSdk/Model/RollbackReferralEffectProps.cs
+src/TalonOneSdk/Model/RollbackTierBoostEffectProps.cs
 src/TalonOneSdk/Model/RollbackUseRewardEffectProps.cs
 src/TalonOneSdk/Model/Rule.cs
 src/TalonOneSdk/Model/RuleEligibility.cs

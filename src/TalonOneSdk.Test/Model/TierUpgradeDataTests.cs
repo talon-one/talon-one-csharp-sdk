@@ -142,5 +142,23 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'NextTier'
         }
+
+        /// <summary>
+        /// Test the property 'Source'
+        /// </summary>
+        [Fact]
+        public void SourceTest()
+        {
+            // TODO unit test for the property 'Source'
+        }
+
+        /// <summary>
+        /// Test the property 'Reason'
+        /// </summary>
+        [Fact]
+        public void ReasonTest()
+        {
+            // TODO unit test for the property 'Reason'
+        }
     }
 }

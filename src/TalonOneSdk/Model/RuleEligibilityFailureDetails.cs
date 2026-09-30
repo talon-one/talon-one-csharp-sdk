@@ -39,8 +39,10 @@ namespace TalonOneSdk.Model
         /// <param name="referralValue">The referral code that was being evaluated when the rule failed. </param>
         /// <param name="conditionIndex">The index of the condition that caused the rule to fail.</param>
         /// <param name="effectIndex">The index of the effect that caused the rule to fail.</param>
+        /// <param name="ruleIndex">The index of the rule that failed within the ruleset.</param>
+        /// <param name="rulesetId">The ID of the ruleset containing the rule that failed.</param>
         [JsonConstructor]
-        public RuleEligibilityFailureDetails(FailureCodeEnum failureCode, string details, Option<long?> couponID = default, Option<string> couponValue = default, Option<long?> referralID = default, Option<string> referralValue = default, Option<long?> conditionIndex = default, Option<long?> effectIndex = default)
+        public RuleEligibilityFailureDetails(FailureCodeEnum failureCode, string details, Option<long?> couponID = default, Option<string> couponValue = default, Option<long?> referralID = default, Option<string> referralValue = default, Option<long?> conditionIndex = default, Option<long?> effectIndex = default, Option<long?> ruleIndex = default, Option<long?> rulesetId = default)
         {
             FailureCode = failureCode;
             Details = details;
@@ -50,6 +52,8 @@ namespace TalonOneSdk.Model
             ReferralValueOption = referralValue;
             ConditionIndexOption = conditionIndex;
             EffectIndexOption = effectIndex;
+            RuleIndexOption = ruleIndex;
+            RulesetIdOption = rulesetId;
             OnCreated();
         }
 
@@ -222,6 +226,36 @@ namespace TalonOneSdk.Model
         public long? EffectIndex { get { return this.EffectIndexOption.Value; } set { this.EffectIndexOption = new Option<long?>(value); } }
 
         /// <summary>
+        /// Used to track the state of RuleIndex
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> RuleIndexOption { get; private set; }
+
+        /// <summary>
+        /// The index of the rule that failed within the ruleset.
+        /// </summary>
+        /// <value>The index of the rule that failed within the ruleset.</value>
+        /* <example>0</example> */
+        [JsonPropertyName("ruleIndex")]
+        public long? RuleIndex { get { return this.RuleIndexOption.Value; } set { this.RuleIndexOption = new Option<long?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of RulesetId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> RulesetIdOption { get; private set; }
+
+        /// <summary>
+        /// The ID of the ruleset containing the rule that failed.
+        /// </summary>
+        /// <value>The ID of the ruleset containing the rule that failed.</value>
+        /* <example>123</example> */
+        [JsonPropertyName("rulesetId")]
+        public long? RulesetId { get { return this.RulesetIdOption.Value; } set { this.RulesetIdOption = new Option<long?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -237,6 +271,8 @@ namespace TalonOneSdk.Model
             sb.Append("  ReferralValue: ").Append(ReferralValue).Append("\n");
             sb.Append("  ConditionIndex: ").Append(ConditionIndex).Append("\n");
             sb.Append("  EffectIndex: ").Append(EffectIndex).Append("\n");
+            sb.Append("  RuleIndex: ").Append(RuleIndex).Append("\n");
+            sb.Append("  RulesetId: ").Append(RulesetId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -292,6 +328,8 @@ namespace TalonOneSdk.Model
             Option<string> referralValue = default;
             Option<long?> conditionIndex = default;
             Option<long?> effectIndex = default;
+            Option<long?> ruleIndex = default;
+            Option<long?> rulesetId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -339,6 +377,12 @@ namespace TalonOneSdk.Model
                         case "effectIndex":
                             effectIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
+                        case "ruleIndex":
+                            ruleIndex = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "rulesetId":
+                            rulesetId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
                         default:
                             break;
                     }
@@ -357,7 +401,7 @@ namespace TalonOneSdk.Model
             if (details.IsSet && details.Value == null)
                 throw new ArgumentNullException(nameof(details), "Property is not nullable for class RuleEligibilityFailureDetails.");
 
-            return new RuleEligibilityFailureDetails(failureCode.Value.Value, details.Value, couponID, couponValue, referralID, referralValue, conditionIndex, effectIndex);
+            return new RuleEligibilityFailureDetails(failureCode.Value.Value, details.Value, couponID, couponValue, referralID, referralValue, conditionIndex, effectIndex, ruleIndex, rulesetId);
         }
 
         /// <summary>
@@ -408,6 +452,12 @@ namespace TalonOneSdk.Model
 
             if (ruleEligibilityFailureDetails.EffectIndexOption.IsSet)
                 writer.WriteNumber("effectIndex", ruleEligibilityFailureDetails.EffectIndexOption.Value.Value);
+
+            if (ruleEligibilityFailureDetails.RuleIndexOption.IsSet)
+                writer.WriteNumber("ruleIndex", ruleEligibilityFailureDetails.RuleIndexOption.Value.Value);
+
+            if (ruleEligibilityFailureDetails.RulesetIdOption.IsSet)
+                writer.WriteNumber("rulesetId", ruleEligibilityFailureDetails.RulesetIdOption.Value.Value);
         }
     }
 }

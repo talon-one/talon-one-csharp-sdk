@@ -39,8 +39,10 @@ namespace TalonOneSdk.Model
         /// <param name="subledgerID">The ID of the subledger, when applicable. If this field is empty, the main ledger is used. (default to &quot;&quot;)</param>
         /// <param name="currentTier">The name of the customer&#39;s current tier.</param>
         /// <param name="tierExpirationDate">The exact date and time the tier expires.</param>
+        /// <param name="source">The source of the tier change, whether from a points change or boost.  (default to SourceEnum.Points)</param>
+        /// <param name="reason">The reason for the tier change. </param>
         [JsonConstructor]
-        public TierDowngradeData(string customerProfileID, long loyaltyProgramID, decimal currentPoints, string oldTier, DateTime timestampOfTierChange, string subledgerID = @"", Option<string> currentTier = default, Option<DateTime?> tierExpirationDate = default)
+        public TierDowngradeData(string customerProfileID, long loyaltyProgramID, decimal currentPoints, string oldTier, DateTime timestampOfTierChange, string subledgerID = @"", Option<string> currentTier = default, Option<DateTime?> tierExpirationDate = default, Option<SourceEnum?> source = default, Option<string> reason = default)
         {
             CustomerProfileID = customerProfileID;
             LoyaltyProgramID = loyaltyProgramID;
@@ -50,10 +52,93 @@ namespace TalonOneSdk.Model
             SubledgerID = subledgerID;
             CurrentTierOption = currentTier;
             TierExpirationDateOption = tierExpirationDate;
+            SourceOption = source;
+            ReasonOption = reason;
             OnCreated();
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// The source of the tier change, whether from a points change or boost. 
+        /// </summary>
+        /// <value>The source of the tier change, whether from a points change or boost. </value>
+        public enum SourceEnum
+        {
+            /// <summary>
+            /// Enum Boost for value: boost
+            /// </summary>
+            Boost = 1,
+
+            /// <summary>
+            /// Enum Points for value: points
+            /// </summary>
+            Points = 2
+        }
+
+        /// <summary>
+        /// Returns a <see cref="SourceEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static SourceEnum SourceEnumFromString(string value)
+        {
+            if (value.Equals("boost"))
+                return SourceEnum.Boost;
+
+            if (value.Equals("points"))
+                return SourceEnum.Points;
+
+            throw new NotImplementedException($"Could not convert value to type SourceEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="SourceEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static SourceEnum? SourceEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("boost"))
+                return SourceEnum.Boost;
+
+            if (value.Equals("points"))
+                return SourceEnum.Points;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="SourceEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string SourceEnumToJsonValue(SourceEnum? value)
+        {
+            if (value == SourceEnum.Boost)
+                return "boost";
+
+            if (value == SourceEnum.Points)
+                return "points";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// Used to track the state of Source
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<SourceEnum?> SourceOption { get; private set; }
+
+        /// <summary>
+        /// The source of the tier change, whether from a points change or boost. 
+        /// </summary>
+        /// <value>The source of the tier change, whether from a points change or boost. </value>
+        [JsonPropertyName("Source")]
+        public SourceEnum? Source { get { return this.SourceOption.Value; } set { this.SourceOption = new Option<SourceEnum?>(value); } }
 
         /// <summary>
         /// The integration ID of the customer profile whose tier was downgraded.
@@ -134,6 +219,20 @@ namespace TalonOneSdk.Model
         public DateTime? TierExpirationDate { get { return this.TierExpirationDateOption.Value; } set { this.TierExpirationDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
+        /// Used to track the state of Reason
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ReasonOption { get; private set; }
+
+        /// <summary>
+        /// The reason for the tier change. 
+        /// </summary>
+        /// <value>The reason for the tier change. </value>
+        [JsonPropertyName("Reason")]
+        public string Reason { get { return this.ReasonOption.Value; } set { this.ReasonOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -149,6 +248,8 @@ namespace TalonOneSdk.Model
             sb.Append("  SubledgerID: ").Append(SubledgerID).Append("\n");
             sb.Append("  CurrentTier: ").Append(CurrentTier).Append("\n");
             sb.Append("  TierExpirationDate: ").Append(TierExpirationDate).Append("\n");
+            sb.Append("  Source: ").Append(Source).Append("\n");
+            sb.Append("  Reason: ").Append(Reason).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -220,6 +321,8 @@ namespace TalonOneSdk.Model
             Option<string> subledgerID = default;
             Option<string> currentTier = default;
             Option<DateTime?> tierExpirationDate = default;
+            Option<TierDowngradeData.SourceEnum?> source = default;
+            Option<string> reason = default;
 
             while (utf8JsonReader.Read())
             {
@@ -259,6 +362,19 @@ namespace TalonOneSdk.Model
                             break;
                         case "TierExpirationDate":
                             tierExpirationDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "Source":
+                            string sourceRawValue = utf8JsonReader.GetString();
+                            if (sourceRawValue != null)
+                            {
+                                TierDowngradeData.SourceEnum? sourceValue = TierDowngradeData.SourceEnumFromStringOrDefault(sourceRawValue);
+                                if (sourceValue == null)
+                                    throw new JsonException();
+                                source = new Option<TierDowngradeData.SourceEnum?>(sourceValue);
+                            }
+                            break;
+                        case "Reason":
+                            reason = new Option<string>(utf8JsonReader.GetString());
                             break;
                         default:
                             break;
@@ -302,7 +418,7 @@ namespace TalonOneSdk.Model
             if (subledgerID.IsSet && subledgerID.Value == null)
                 throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class TierDowngradeData.");
 
-            return new TierDowngradeData(customerProfileID.Value, loyaltyProgramID.Value.Value, currentPoints.Value.Value, oldTier.Value, timestampOfTierChange.Value.Value, subledgerID.Value, currentTier, tierExpirationDate);
+            return new TierDowngradeData(customerProfileID.Value, loyaltyProgramID.Value.Value, currentPoints.Value.Value, oldTier.Value, timestampOfTierChange.Value.Value, subledgerID.Value, currentTier, tierExpirationDate, source, reason);
         }
 
         /// <summary>
@@ -355,6 +471,14 @@ namespace TalonOneSdk.Model
 
             if (tierDowngradeData.TierExpirationDateOption.IsSet)
                 writer.WriteString("TierExpirationDate", tierDowngradeData.TierExpirationDateOption.Value.Value.ToString(TierExpirationDateFormat));
+
+            if (tierDowngradeData.SourceOption.IsSet)
+            {
+                var sourceRawValue = TierDowngradeData.SourceEnumToJsonValue(tierDowngradeData.SourceOption.Value);
+                writer.WriteString("Source", sourceRawValue);
+            }
+            if (tierDowngradeData.ReasonOption.IsSet)
+                writer.WriteString("Reason", tierDowngradeData.Reason);
         }
     }
 }

@@ -33,16 +33,16 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="integrationId">The integration ID to assign to the created customer reward unlock.</param>
         /// <param name="profileIntegrationId">The integration ID of the customer profile unlocking the reward.</param>
-        /// <param name="cardIdentifier">The identifier of the loyalty card unlocking the reward. When provided, the required points are deducted from the card&#39;s balance and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. The customer profile given in &#x60;profileIntegrationId&#x60; must be linked to the card, and the card must be active.</param>
+        /// <param name="loyaltyCardId">The identifier of the loyalty card unlocking the reward. When provided, the required points are deducted from the card&#39;s balance and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. The customer profile given in &#x60;profileIntegrationId&#x60; must be linked to the card, and the card must be active.</param>
         /// <param name="loyaltyProgramId">The ID of the loyalty program from which points will be deducted. Required when the reward has &#x60;pointsRequired&#x60; configured.</param>
         /// <param name="subledgerId">The ID of the subledger from which points will be deducted. Required when the reward has &#x60;pointsRequired&#x60; configured.  To specify the main ledger, provide an empty string (\&quot;\&quot;). </param>
         /// <param name="responseContent">Determines which data is included in the response. Add any of the following optional values to the array to get that data in the response: &#x60;customerProfile&#x60;, &#x60;ruleFailureReasons&#x60;, &#x60;loyalty&#x60;. &#x60;effects&#x60; is always returned regardless of whether it is included here.</param>
         [JsonConstructor]
-        public IntegrationUnlockRewardRequest(string integrationId, string profileIntegrationId, Option<string> cardIdentifier = default, Option<long?> loyaltyProgramId = default, Option<string> subledgerId = default, Option<List<IntegrationUnlockRewardRequest.ResponseContentEnum>> responseContent = default)
+        public IntegrationUnlockRewardRequest(string integrationId, string profileIntegrationId, Option<string> loyaltyCardId = default, Option<long?> loyaltyProgramId = default, Option<string> subledgerId = default, Option<List<IntegrationUnlockRewardRequest.ResponseContentEnum>> responseContent = default)
         {
             IntegrationId = integrationId;
             ProfileIntegrationId = profileIntegrationId;
-            CardIdentifierOption = cardIdentifier;
+            LoyaltyCardIdOption = loyaltyCardId;
             LoyaltyProgramIdOption = loyaltyProgramId;
             SubledgerIdOption = subledgerId;
             ResponseContentOption = responseContent;
@@ -162,19 +162,19 @@ namespace TalonOneSdk.Model
         public string ProfileIntegrationId { get; set; }
 
         /// <summary>
-        /// Used to track the state of CardIdentifier
+        /// Used to track the state of LoyaltyCardId
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> CardIdentifierOption { get; private set; }
+        public Option<string> LoyaltyCardIdOption { get; private set; }
 
         /// <summary>
         /// The identifier of the loyalty card unlocking the reward. When provided, the required points are deducted from the card&#39;s balance and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. The customer profile given in &#x60;profileIntegrationId&#x60; must be linked to the card, and the card must be active.
         /// </summary>
         /// <value>The identifier of the loyalty card unlocking the reward. When provided, the required points are deducted from the card&#39;s balance and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. The customer profile given in &#x60;profileIntegrationId&#x60; must be linked to the card, and the card must be active.</value>
         /* <example>summer-loyalty-card-0543</example> */
-        [JsonPropertyName("cardIdentifier")]
-        public string CardIdentifier { get { return this.CardIdentifierOption.Value; } set { this.CardIdentifierOption = new Option<string>(value); } }
+        [JsonPropertyName("loyaltyCardId")]
+        public string LoyaltyCardId { get { return this.LoyaltyCardIdOption.Value; } set { this.LoyaltyCardIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of LoyaltyProgramId
@@ -231,7 +231,7 @@ namespace TalonOneSdk.Model
             sb.Append("class IntegrationUnlockRewardRequest {\n");
             sb.Append("  IntegrationId: ").Append(IntegrationId).Append("\n");
             sb.Append("  ProfileIntegrationId: ").Append(ProfileIntegrationId).Append("\n");
-            sb.Append("  CardIdentifier: ").Append(CardIdentifier).Append("\n");
+            sb.Append("  LoyaltyCardId: ").Append(LoyaltyCardId).Append("\n");
             sb.Append("  LoyaltyProgramId: ").Append(LoyaltyProgramId).Append("\n");
             sb.Append("  SubledgerId: ").Append(SubledgerId).Append("\n");
             sb.Append("  ResponseContent: ").Append(ResponseContent).Append("\n");
@@ -246,25 +246,25 @@ namespace TalonOneSdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // CardIdentifier (string) maxLength
-            if (this.CardIdentifier != null && this.CardIdentifier.Length > 108)
+            // LoyaltyCardId (string) maxLength
+            if (this.LoyaltyCardId != null && this.LoyaltyCardId.Length > 108)
             {
-                yield return new ValidationResult("Invalid value for CardIdentifier, length must be less than 108.", new [] { "CardIdentifier" });
+                yield return new ValidationResult("Invalid value for LoyaltyCardId, length must be less than 108.", new [] { "LoyaltyCardId" });
             }
 
-            // CardIdentifier (string) minLength
-            if (this.CardIdentifier != null && this.CardIdentifier.Length < 4)
+            // LoyaltyCardId (string) minLength
+            if (this.LoyaltyCardId != null && this.LoyaltyCardId.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for CardIdentifier, length must be greater than 4.", new [] { "CardIdentifier" });
+                yield return new ValidationResult("Invalid value for LoyaltyCardId, length must be greater than 4.", new [] { "LoyaltyCardId" });
             }
 
-            if (this.CardIdentifierOption.Value != null) {
-                // CardIdentifier (string) pattern
-                Regex regexCardIdentifier = new Regex(@"^[A-Za-z0-9._%+@-]+$", RegexOptions.CultureInvariant);
+            if (this.LoyaltyCardIdOption.Value != null) {
+                // LoyaltyCardId (string) pattern
+                Regex regexLoyaltyCardId = new Regex(@"^[A-Za-z0-9._%+@-]+$", RegexOptions.CultureInvariant);
 
-                if (this.CardIdentifierOption.Value != null &&!regexCardIdentifier.Match(this.CardIdentifierOption.Value).Success)
+                if (this.LoyaltyCardIdOption.Value != null &&!regexLoyaltyCardId.Match(this.LoyaltyCardIdOption.Value).Success)
                 {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CardIdentifier, must match a pattern of " + regexCardIdentifier, new [] { "CardIdentifier" });
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyCardId, must match a pattern of " + regexLoyaltyCardId, new [] { "LoyaltyCardId" });
                 }
             }
 
@@ -306,7 +306,7 @@ namespace TalonOneSdk.Model
 
             Option<string> integrationId = default;
             Option<string> profileIntegrationId = default;
-            Option<string> cardIdentifier = default;
+            Option<string> loyaltyCardId = default;
             Option<long?> loyaltyProgramId = default;
             Option<string> subledgerId = default;
             Option<List<IntegrationUnlockRewardRequest.ResponseContentEnum>> responseContent = default;
@@ -332,8 +332,8 @@ namespace TalonOneSdk.Model
                         case "profileIntegrationId":
                             profileIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
-                        case "cardIdentifier":
-                            cardIdentifier = new Option<string>(utf8JsonReader.GetString());
+                        case "loyaltyCardId":
+                            loyaltyCardId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "loyaltyProgramId":
                             loyaltyProgramId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
@@ -383,7 +383,7 @@ namespace TalonOneSdk.Model
             if (profileIntegrationId.IsSet && profileIntegrationId.Value == null)
                 throw new ArgumentNullException(nameof(profileIntegrationId), "Property is not nullable for class IntegrationUnlockRewardRequest.");
 
-            return new IntegrationUnlockRewardRequest(integrationId.Value, profileIntegrationId.Value, cardIdentifier, loyaltyProgramId, subledgerId, responseContent);
+            return new IntegrationUnlockRewardRequest(integrationId.Value, profileIntegrationId.Value, loyaltyCardId, loyaltyProgramId, subledgerId, responseContent);
         }
 
         /// <summary>
@@ -420,8 +420,8 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("profileIntegrationId", integrationUnlockRewardRequest.ProfileIntegrationId);
 
-            if (integrationUnlockRewardRequest.CardIdentifierOption.IsSet)
-                writer.WriteString("cardIdentifier", integrationUnlockRewardRequest.CardIdentifier);
+            if (integrationUnlockRewardRequest.LoyaltyCardIdOption.IsSet)
+                writer.WriteString("loyaltyCardId", integrationUnlockRewardRequest.LoyaltyCardId);
 
             if (integrationUnlockRewardRequest.LoyaltyProgramIdOption.IsSet)
                 writer.WriteNumber("loyaltyProgramId", integrationUnlockRewardRequest.LoyaltyProgramIdOption.Value.Value);

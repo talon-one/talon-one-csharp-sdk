@@ -189,28 +189,28 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Bundle>> BundlesOption { get; }
+        public Option<List<Bundle>> BundlesOption { get; private set; }
 
         /// <summary>
         /// Variable bindings of type bundle.
         /// </summary>
         /// <value>Variable bindings of type bundle.</value>
         [JsonPropertyName("bundles")]
-        public List<Bundle> Bundles { get { return this.BundlesOption.Value; } }
+        public List<Bundle> Bundles { get { return this.BundlesOption.Value; } set { this.BundlesOption = new Option<List<Bundle>>(value); } }
 
         /// <summary>
         /// Used to track the state of Parameters
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<TemplateParameter>> ParametersOption { get; }
+        public Option<List<TemplateParameter>> ParametersOption { get; private set; }
 
         /// <summary>
         /// Variable bindings of type template parameter.
         /// </summary>
         /// <value>Variable bindings of type template parameter.</value>
         [JsonPropertyName("parameters")]
-        public List<TemplateParameter> Parameters { get { return this.ParametersOption.Value; } }
+        public List<TemplateParameter> Parameters { get { return this.ParametersOption.Value; } set { this.ParametersOption = new Option<List<TemplateParameter>>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object

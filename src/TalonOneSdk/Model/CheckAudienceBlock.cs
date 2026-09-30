@@ -33,20 +33,20 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="operator">An indicator of how the block compares its elements.</param>
-        /// <param name="profile">The customer profile to check against the audience. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program.</param>
         /// <param name="audience">The audience to check the profile against.</param>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
+        /// <param name="profile">The customer profile to check against the audience. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program. Only applies to the &#x60;member&#x60; and &#x60;not(member)&#x60; operators; ignored for &#x60;justJoined&#x60; and &#x60;justLeft&#x60;.</param>
         /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public CheckAudienceBlock(string type, OperatorEnum @operator, ProfileEnum profile, AudienceBlockReference audience, Option<string> id = default, Option<List<string>> tags = default, Option<List<Block>> onFailure = default)
+        public CheckAudienceBlock(string type, OperatorEnum @operator, AudienceBlockReference audience, Option<string> id = default, Option<List<string>> tags = default, Option<ProfileEnum?> profile = default, Option<List<Block>> onFailure = default)
         {
             Type = type;
             Operator = @operator;
-            Profile = profile;
             Audience = audience;
             IdOption = id;
             TagsOption = tags;
+            ProfileOption = profile;
             OnFailureOption = onFailure;
             OnCreated();
         }
@@ -157,9 +157,9 @@ namespace TalonOneSdk.Model
         public OperatorEnum Operator { get; set; }
 
         /// <summary>
-        /// The customer profile to check against the audience. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program.
+        /// The customer profile to check against the audience. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program. Only applies to the &#x60;member&#x60; and &#x60;not(member)&#x60; operators; ignored for &#x60;justJoined&#x60; and &#x60;justLeft&#x60;.
         /// </summary>
-        /// <value>The customer profile to check against the audience. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program.</value>
+        /// <value>The customer profile to check against the audience. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program. Only applies to the &#x60;member&#x60; and &#x60;not(member)&#x60; operators; ignored for &#x60;justJoined&#x60; and &#x60;justLeft&#x60;.</value>
         public enum ProfileEnum
         {
             /// <summary>
@@ -212,7 +212,7 @@ namespace TalonOneSdk.Model
         /// <param name="value"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public static string ProfileEnumToJsonValue(ProfileEnum value)
+        public static string ProfileEnumToJsonValue(ProfileEnum? value)
         {
             if (value == ProfileEnum.Current)
                 return "Current";
@@ -224,12 +224,19 @@ namespace TalonOneSdk.Model
         }
 
         /// <summary>
-        /// The customer profile to check against the audience. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program.
+        /// Used to track the state of Profile
         /// </summary>
-        /// <value>The customer profile to check against the audience. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program.</value>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<ProfileEnum?> ProfileOption { get; private set; }
+
+        /// <summary>
+        /// The customer profile to check against the audience. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program. Only applies to the &#x60;member&#x60; and &#x60;not(member)&#x60; operators; ignored for &#x60;justJoined&#x60; and &#x60;justLeft&#x60;.
+        /// </summary>
+        /// <value>The customer profile to check against the audience. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program. Only applies to the &#x60;member&#x60; and &#x60;not(member)&#x60; operators; ignored for &#x60;justJoined&#x60; and &#x60;justLeft&#x60;.</value>
         /* <example>Current</example> */
         [JsonPropertyName("profile")]
-        public ProfileEnum Profile { get; set; }
+        public ProfileEnum? Profile { get { return this.ProfileOption.Value; } set { this.ProfileOption = new Option<ProfileEnum?>(value); } }
 
         /// <summary>
         /// Identifies the block variant and determines which additional properties are present in it.
@@ -298,10 +305,10 @@ namespace TalonOneSdk.Model
             sb.Append("class CheckAudienceBlock {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Operator: ").Append(Operator).Append("\n");
-            sb.Append("  Profile: ").Append(Profile).Append("\n");
             sb.Append("  Audience: ").Append(Audience).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
+            sb.Append("  Profile: ").Append(Profile).Append("\n");
             sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -352,10 +359,10 @@ namespace TalonOneSdk.Model
 
             Option<string> type = default;
             Option<CheckAudienceBlock.OperatorEnum?> varOperator = default;
-            Option<CheckAudienceBlock.ProfileEnum?> profile = default;
             Option<AudienceBlockReference> audience = default;
             Option<string> id = default;
             Option<List<string>> tags = default;
+            Option<CheckAudienceBlock.ProfileEnum?> profile = default;
             Option<List<Block>> onFailure = default;
 
             while (utf8JsonReader.Read())
@@ -386,6 +393,15 @@ namespace TalonOneSdk.Model
                                 varOperator = new Option<CheckAudienceBlock.OperatorEnum?>(varOperatorValue);
                             }
                             break;
+                        case "audience":
+                            audience = new Option<AudienceBlockReference>(JsonSerializer.Deserialize<AudienceBlockReference>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "tags":
+                            tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "profile":
                             string profileRawValue = utf8JsonReader.GetString();
                             if (profileRawValue != null)
@@ -395,15 +411,6 @@ namespace TalonOneSdk.Model
                                     throw new JsonException();
                                 profile = new Option<CheckAudienceBlock.ProfileEnum?>(profileValue);
                             }
-                            break;
-                        case "audience":
-                            audience = new Option<AudienceBlockReference>(JsonSerializer.Deserialize<AudienceBlockReference>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "tags":
-                            tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "onFailure":
                             onFailure = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -420,9 +427,6 @@ namespace TalonOneSdk.Model
             if (!varOperator.IsSet)
                 throw new ArgumentException("Property is required for class CheckAudienceBlock.", nameof(varOperator));
 
-            if (!profile.IsSet)
-                throw new ArgumentException("Property is required for class CheckAudienceBlock.", nameof(profile));
-
             if (!audience.IsSet)
                 throw new ArgumentException("Property is required for class CheckAudienceBlock.", nameof(audience));
 
@@ -432,13 +436,10 @@ namespace TalonOneSdk.Model
             if (varOperator.IsSet && varOperator.Value == null)
                 throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class CheckAudienceBlock.");
 
-            if (profile.IsSet && profile.Value == null)
-                throw new ArgumentNullException(nameof(profile), "Property is not nullable for class CheckAudienceBlock.");
-
             if (audience.IsSet && audience.Value == null)
                 throw new ArgumentNullException(nameof(audience), "Property is not nullable for class CheckAudienceBlock.");
 
-            return new CheckAudienceBlock(type.Value, varOperator.Value.Value, profile.Value.Value, audience.Value, id, tags, onFailure);
+            return new CheckAudienceBlock(type.Value, varOperator.Value.Value, audience.Value, id, tags, profile, onFailure);
         }
 
         /// <summary>
@@ -475,8 +476,6 @@ namespace TalonOneSdk.Model
 
             var varOperatorRawValue = CheckAudienceBlock.OperatorEnumToJsonValue(checkAudienceBlock.Operator);
             writer.WriteString("operator", varOperatorRawValue);
-            var profileRawValue = CheckAudienceBlock.ProfileEnumToJsonValue(checkAudienceBlock.Profile);
-            writer.WriteString("profile", profileRawValue);
             writer.WritePropertyName("audience");
             JsonSerializer.Serialize(writer, checkAudienceBlock.Audience, jsonSerializerOptions);
             if (checkAudienceBlock.IdOption.IsSet)
@@ -486,6 +485,11 @@ namespace TalonOneSdk.Model
             {
                 writer.WritePropertyName("tags");
                 JsonSerializer.Serialize(writer, checkAudienceBlock.Tags, jsonSerializerOptions);
+            }
+            if (checkAudienceBlock.ProfileOption.IsSet)
+            {
+                var profileRawValue = CheckAudienceBlock.ProfileEnumToJsonValue(checkAudienceBlock.ProfileOption.Value);
+                writer.WriteString("profile", profileRawValue);
             }
             if (checkAudienceBlock.OnFailureOption.IsSet)
             {

@@ -41,8 +41,10 @@ namespace TalonOneSdk.Model
         /// <param name="oldTier">The name of the customer&#39;s previous tier.</param>
         /// <param name="pointsRequiredToTheNextTier">The number of points needed for a customer to reach the next tier.</param>
         /// <param name="nextTier">The name of the customer&#39;s next tier.</param>
+        /// <param name="source">The source of the tier change, whether from a points change or boost.  (default to SourceEnum.Points)</param>
+        /// <param name="reason">The reason for the tier change. </param>
         [JsonConstructor]
-        public TierUpgradeData(string customerProfileID, long loyaltyProgramID, string currentTier, decimal currentPoints, DateTime tierExpirationDate, DateTime timestampOfTierChange, string subledgerID = @"", Option<string> oldTier = default, Option<decimal?> pointsRequiredToTheNextTier = default, Option<string> nextTier = default)
+        public TierUpgradeData(string customerProfileID, long loyaltyProgramID, string currentTier, decimal currentPoints, DateTime tierExpirationDate, DateTime timestampOfTierChange, string subledgerID = @"", Option<string> oldTier = default, Option<decimal?> pointsRequiredToTheNextTier = default, Option<string> nextTier = default, Option<SourceEnum?> source = default, Option<string> reason = default)
         {
             CustomerProfileID = customerProfileID;
             LoyaltyProgramID = loyaltyProgramID;
@@ -54,10 +56,93 @@ namespace TalonOneSdk.Model
             OldTierOption = oldTier;
             PointsRequiredToTheNextTierOption = pointsRequiredToTheNextTier;
             NextTierOption = nextTier;
+            SourceOption = source;
+            ReasonOption = reason;
             OnCreated();
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// The source of the tier change, whether from a points change or boost. 
+        /// </summary>
+        /// <value>The source of the tier change, whether from a points change or boost. </value>
+        public enum SourceEnum
+        {
+            /// <summary>
+            /// Enum Boost for value: boost
+            /// </summary>
+            Boost = 1,
+
+            /// <summary>
+            /// Enum Points for value: points
+            /// </summary>
+            Points = 2
+        }
+
+        /// <summary>
+        /// Returns a <see cref="SourceEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static SourceEnum SourceEnumFromString(string value)
+        {
+            if (value.Equals("boost"))
+                return SourceEnum.Boost;
+
+            if (value.Equals("points"))
+                return SourceEnum.Points;
+
+            throw new NotImplementedException($"Could not convert value to type SourceEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="SourceEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static SourceEnum? SourceEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("boost"))
+                return SourceEnum.Boost;
+
+            if (value.Equals("points"))
+                return SourceEnum.Points;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="SourceEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string SourceEnumToJsonValue(SourceEnum? value)
+        {
+            if (value == SourceEnum.Boost)
+                return "boost";
+
+            if (value == SourceEnum.Points)
+                return "points";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// Used to track the state of Source
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<SourceEnum?> SourceOption { get; private set; }
+
+        /// <summary>
+        /// The source of the tier change, whether from a points change or boost. 
+        /// </summary>
+        /// <value>The source of the tier change, whether from a points change or boost. </value>
+        [JsonPropertyName("Source")]
+        public SourceEnum? Source { get { return this.SourceOption.Value; } set { this.SourceOption = new Option<SourceEnum?>(value); } }
 
         /// <summary>
         /// The integration ID of the customer profile whose tier was upgraded.
@@ -161,6 +246,20 @@ namespace TalonOneSdk.Model
         public string NextTier { get { return this.NextTierOption.Value; } set { this.NextTierOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of Reason
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ReasonOption { get; private set; }
+
+        /// <summary>
+        /// The reason for the tier change. 
+        /// </summary>
+        /// <value>The reason for the tier change. </value>
+        [JsonPropertyName("Reason")]
+        public string Reason { get { return this.ReasonOption.Value; } set { this.ReasonOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -178,6 +277,8 @@ namespace TalonOneSdk.Model
             sb.Append("  OldTier: ").Append(OldTier).Append("\n");
             sb.Append("  PointsRequiredToTheNextTier: ").Append(PointsRequiredToTheNextTier).Append("\n");
             sb.Append("  NextTier: ").Append(NextTier).Append("\n");
+            sb.Append("  Source: ").Append(Source).Append("\n");
+            sb.Append("  Reason: ").Append(Reason).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -251,6 +352,8 @@ namespace TalonOneSdk.Model
             Option<string> oldTier = default;
             Option<decimal?> pointsRequiredToTheNextTier = default;
             Option<string> nextTier = default;
+            Option<TierUpgradeData.SourceEnum?> source = default;
+            Option<string> reason = default;
 
             while (utf8JsonReader.Read())
             {
@@ -296,6 +399,19 @@ namespace TalonOneSdk.Model
                             break;
                         case "NextTier":
                             nextTier = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "Source":
+                            string sourceRawValue = utf8JsonReader.GetString();
+                            if (sourceRawValue != null)
+                            {
+                                TierUpgradeData.SourceEnum? sourceValue = TierUpgradeData.SourceEnumFromStringOrDefault(sourceRawValue);
+                                if (sourceValue == null)
+                                    throw new JsonException();
+                                source = new Option<TierUpgradeData.SourceEnum?>(sourceValue);
+                            }
+                            break;
+                        case "Reason":
+                            reason = new Option<string>(utf8JsonReader.GetString());
                             break;
                         default:
                             break;
@@ -345,7 +461,7 @@ namespace TalonOneSdk.Model
             if (subledgerID.IsSet && subledgerID.Value == null)
                 throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class TierUpgradeData.");
 
-            return new TierUpgradeData(customerProfileID.Value, loyaltyProgramID.Value.Value, currentTier.Value, currentPoints.Value.Value, tierExpirationDate.Value.Value, timestampOfTierChange.Value.Value, subledgerID.Value, oldTier, pointsRequiredToTheNextTier, nextTier);
+            return new TierUpgradeData(customerProfileID.Value, loyaltyProgramID.Value.Value, currentTier.Value, currentPoints.Value.Value, tierExpirationDate.Value.Value, timestampOfTierChange.Value.Value, subledgerID.Value, oldTier, pointsRequiredToTheNextTier, nextTier, source, reason);
         }
 
         /// <summary>
@@ -403,6 +519,14 @@ namespace TalonOneSdk.Model
 
             if (tierUpgradeData.NextTierOption.IsSet)
                 writer.WriteString("NextTier", tierUpgradeData.NextTier);
+
+            if (tierUpgradeData.SourceOption.IsSet)
+            {
+                var sourceRawValue = TierUpgradeData.SourceEnumToJsonValue(tierUpgradeData.SourceOption.Value);
+                writer.WriteString("Source", sourceRawValue);
+            }
+            if (tierUpgradeData.ReasonOption.IsSet)
+                writer.WriteString("Reason", tierUpgradeData.Reason);
         }
     }
 }

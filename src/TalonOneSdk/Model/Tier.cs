@@ -36,14 +36,18 @@ namespace TalonOneSdk.Model
         /// <param name="startDate">Date and time when the customer moved to this tier. This value uses the loyalty program&#39;s time zone setting.</param>
         /// <param name="expiryDate">Date when tier level expires in the RFC3339 format (in the Loyalty Program&#39;s timezone).</param>
         /// <param name="downgradePolicy">The policy that defines how customer tiers are downgraded in the loyalty program after tier reevaluation.  - &#x60;one_down&#x60;: If the customer doesn&#39;t have enough points to stay in the current tier, they are downgraded by one tier.  - &#x60;balance_based&#x60;: The customer&#39;s tier is reevaluated based on the amount of active points they have at the moment. </param>
+        /// <param name="source">Indicates whether the customer&#39;s current tier was determined based on their points balance or a temporary boost.  - &#x60;points&#x60;: The tier reflects the customer&#39;s current point balance. - &#x60;boost&#x60;: A temporary tier boost is in effect where the customer is in a higher tier than their points-based tier. The boost expires after a set duration and the customer returns to their points-based tier.  (default to SourceEnum.Points)</param>
+        /// <param name="reason">The reason for the tier assignment. </param>
         [JsonConstructor]
-        public Tier(long id, string name, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<DowngradePolicyEnum?> downgradePolicy = default)
+        public Tier(long id, string name, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<DowngradePolicyEnum?> downgradePolicy = default, Option<SourceEnum?> source = default, Option<string> reason = default)
         {
             Id = id;
             Name = name;
             StartDateOption = startDate;
             ExpiryDateOption = expiryDate;
             DowngradePolicyOption = downgradePolicy;
+            SourceOption = source;
+            ReasonOption = reason;
             OnCreated();
         }
 
@@ -127,8 +131,91 @@ namespace TalonOneSdk.Model
         /// The policy that defines how customer tiers are downgraded in the loyalty program after tier reevaluation.  - &#x60;one_down&#x60;: If the customer doesn&#39;t have enough points to stay in the current tier, they are downgraded by one tier.  - &#x60;balance_based&#x60;: The customer&#39;s tier is reevaluated based on the amount of active points they have at the moment. 
         /// </summary>
         /// <value>The policy that defines how customer tiers are downgraded in the loyalty program after tier reevaluation.  - &#x60;one_down&#x60;: If the customer doesn&#39;t have enough points to stay in the current tier, they are downgraded by one tier.  - &#x60;balance_based&#x60;: The customer&#39;s tier is reevaluated based on the amount of active points they have at the moment. </value>
+        /* <example>one_down</example> */
         [JsonPropertyName("downgradePolicy")]
         public DowngradePolicyEnum? DowngradePolicy { get { return this.DowngradePolicyOption.Value; } set { this.DowngradePolicyOption = new Option<DowngradePolicyEnum?>(value); } }
+
+        /// <summary>
+        /// Indicates whether the customer&#39;s current tier was determined based on their points balance or a temporary boost.  - &#x60;points&#x60;: The tier reflects the customer&#39;s current point balance. - &#x60;boost&#x60;: A temporary tier boost is in effect where the customer is in a higher tier than their points-based tier. The boost expires after a set duration and the customer returns to their points-based tier. 
+        /// </summary>
+        /// <value>Indicates whether the customer&#39;s current tier was determined based on their points balance or a temporary boost.  - &#x60;points&#x60;: The tier reflects the customer&#39;s current point balance. - &#x60;boost&#x60;: A temporary tier boost is in effect where the customer is in a higher tier than their points-based tier. The boost expires after a set duration and the customer returns to their points-based tier. </value>
+        public enum SourceEnum
+        {
+            /// <summary>
+            /// Enum Boost for value: boost
+            /// </summary>
+            Boost = 1,
+
+            /// <summary>
+            /// Enum Points for value: points
+            /// </summary>
+            Points = 2
+        }
+
+        /// <summary>
+        /// Returns a <see cref="SourceEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static SourceEnum SourceEnumFromString(string value)
+        {
+            if (value.Equals("boost"))
+                return SourceEnum.Boost;
+
+            if (value.Equals("points"))
+                return SourceEnum.Points;
+
+            throw new NotImplementedException($"Could not convert value to type SourceEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="SourceEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static SourceEnum? SourceEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("boost"))
+                return SourceEnum.Boost;
+
+            if (value.Equals("points"))
+                return SourceEnum.Points;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="SourceEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string SourceEnumToJsonValue(SourceEnum? value)
+        {
+            if (value == SourceEnum.Boost)
+                return "boost";
+
+            if (value == SourceEnum.Points)
+                return "points";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// Used to track the state of Source
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<SourceEnum?> SourceOption { get; private set; }
+
+        /// <summary>
+        /// Indicates whether the customer&#39;s current tier was determined based on their points balance or a temporary boost.  - &#x60;points&#x60;: The tier reflects the customer&#39;s current point balance. - &#x60;boost&#x60;: A temporary tier boost is in effect where the customer is in a higher tier than their points-based tier. The boost expires after a set duration and the customer returns to their points-based tier. 
+        /// </summary>
+        /// <value>Indicates whether the customer&#39;s current tier was determined based on their points balance or a temporary boost.  - &#x60;points&#x60;: The tier reflects the customer&#39;s current point balance. - &#x60;boost&#x60;: A temporary tier boost is in effect where the customer is in a higher tier than their points-based tier. The boost expires after a set duration and the customer returns to their points-based tier. </value>
+        /* <example>points</example> */
+        [JsonPropertyName("source")]
+        public SourceEnum? Source { get { return this.SourceOption.Value; } set { this.SourceOption = new Option<SourceEnum?>(value); } }
 
         /// <summary>
         /// The internal ID of the tier.
@@ -157,7 +244,7 @@ namespace TalonOneSdk.Model
         /// Date and time when the customer moved to this tier. This value uses the loyalty program&#39;s time zone setting.
         /// </summary>
         /// <value>Date and time when the customer moved to this tier. This value uses the loyalty program&#39;s time zone setting.</value>
-        /* <example>2021-05-03T12:32:00Z07:00</example> */
+        /* <example>2025-05-03T12:32:00Z07:00</example> */
         [JsonPropertyName("startDate")]
         public DateTime? StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
@@ -172,9 +259,24 @@ namespace TalonOneSdk.Model
         /// Date when tier level expires in the RFC3339 format (in the Loyalty Program&#39;s timezone).
         /// </summary>
         /// <value>Date when tier level expires in the RFC3339 format (in the Loyalty Program&#39;s timezone).</value>
-        /* <example>2022-08-02T15:04:05Z07:00</example> */
+        /* <example>2026-08-02T15:04:05+07:00</example> */
         [JsonPropertyName("expiryDate")]
         public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Reason
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ReasonOption { get; private set; }
+
+        /// <summary>
+        /// The reason for the tier assignment. 
+        /// </summary>
+        /// <value>The reason for the tier assignment. </value>
+        /* <example>Subscription to newsletter</example> */
+        [JsonPropertyName("reason")]
+        public string Reason { get { return this.ReasonOption.Value; } set { this.ReasonOption = new Option<string>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -189,6 +291,8 @@ namespace TalonOneSdk.Model
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
             sb.Append("  DowngradePolicy: ").Append(DowngradePolicy).Append("\n");
+            sb.Append("  Source: ").Append(Source).Append("\n");
+            sb.Append("  Reason: ").Append(Reason).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -251,6 +355,8 @@ namespace TalonOneSdk.Model
             Option<DateTime?> startDate = default;
             Option<DateTime?> expiryDate = default;
             Option<Tier.DowngradePolicyEnum?> downgradePolicy = default;
+            Option<Tier.SourceEnum?> source = default;
+            Option<string> reason = default;
 
             while (utf8JsonReader.Read())
             {
@@ -289,6 +395,19 @@ namespace TalonOneSdk.Model
                                 downgradePolicy = new Option<Tier.DowngradePolicyEnum?>(downgradePolicyValue);
                             }
                             break;
+                        case "source":
+                            string sourceRawValue = utf8JsonReader.GetString();
+                            if (sourceRawValue != null)
+                            {
+                                Tier.SourceEnum? sourceValue = Tier.SourceEnumFromStringOrDefault(sourceRawValue);
+                                if (sourceValue == null)
+                                    throw new JsonException();
+                                source = new Option<Tier.SourceEnum?>(sourceValue);
+                            }
+                            break;
+                        case "reason":
+                            reason = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
@@ -307,7 +426,7 @@ namespace TalonOneSdk.Model
             if (name.IsSet && name.Value == null)
                 throw new ArgumentNullException(nameof(name), "Property is not nullable for class Tier.");
 
-            return new Tier(id.Value.Value, name.Value, startDate, expiryDate, downgradePolicy);
+            return new Tier(id.Value.Value, name.Value, startDate, expiryDate, downgradePolicy, source, reason);
         }
 
         /// <summary>
@@ -352,6 +471,13 @@ namespace TalonOneSdk.Model
                 var downgradePolicyRawValue = Tier.DowngradePolicyEnumToJsonValue(tier.DowngradePolicyOption.Value);
                 writer.WriteString("downgradePolicy", downgradePolicyRawValue);
             }
+            if (tier.SourceOption.IsSet)
+            {
+                var sourceRawValue = Tier.SourceEnumToJsonValue(tier.SourceOption.Value);
+                writer.WriteString("source", sourceRawValue);
+            }
+            if (tier.ReasonOption.IsSet)
+                writer.WriteString("reason", tier.Reason);
         }
     }
 }

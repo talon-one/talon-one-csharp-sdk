@@ -49,8 +49,9 @@ namespace TalonOneSdk.Model
         /// <param name="selectedPrice">The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.</param>
         /// <param name="adjustmentReferenceId">The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment.</param>
         /// <param name="rewardId">The ID of the reward that was being evaluated when this effect was triggered.</param>
+        /// <param name="rewardIntegrationId">The integration ID of the specific customer reward whose usage produced this effect.</param>
         [JsonConstructor]
-        public EffectShowBundleMetadata(long campaignId, long rulesetId, long ruleIndex, string ruleName, EffectTypeEnum effectType, ShowBundleMetadataEffectProps props, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default)
+        public EffectShowBundleMetadata(long campaignId, long rulesetId, long ruleIndex, string ruleName, EffectTypeEnum effectType, ShowBundleMetadataEffectProps props, Option<long?> experimentId = default, Option<long?> triggeredByCoupon = default, Option<long?> triggeredForCatalogItem = default, Option<long?> conditionIndex = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default, Option<long?> campaignRevisionId = default, Option<long?> campaignRevisionVersionId = default, Option<string> selectedPriceType = default, Option<decimal?> selectedPrice = default, Option<Guid?> adjustmentReferenceId = default, Option<long?> rewardId = default, Option<string> rewardIntegrationId = default)
         {
             CampaignId = campaignId;
             RulesetId = rulesetId;
@@ -70,6 +71,7 @@ namespace TalonOneSdk.Model
             SelectedPriceOption = selectedPrice;
             AdjustmentReferenceIdOption = adjustmentReferenceId;
             RewardIdOption = rewardId;
+            RewardIntegrationIdOption = rewardIntegrationId;
             OnCreated();
         }
 
@@ -356,6 +358,21 @@ namespace TalonOneSdk.Model
         public long? RewardId { get { return this.RewardIdOption.Value; } set { this.RewardIdOption = new Option<long?>(value); } }
 
         /// <summary>
+        /// Used to track the state of RewardIntegrationId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> RewardIntegrationIdOption { get; private set; }
+
+        /// <summary>
+        /// The integration ID of the specific customer reward whose usage produced this effect.
+        /// </summary>
+        /// <value>The integration ID of the specific customer reward whose usage produced this effect.</value>
+        /* <example>reward-unlock-123</example> */
+        [JsonPropertyName("rewardIntegrationId")]
+        public string RewardIntegrationId { get { return this.RewardIntegrationIdOption.Value; } set { this.RewardIntegrationIdOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -381,6 +398,7 @@ namespace TalonOneSdk.Model
             sb.Append("  SelectedPrice: ").Append(SelectedPrice).Append("\n");
             sb.Append("  AdjustmentReferenceId: ").Append(AdjustmentReferenceId).Append("\n");
             sb.Append("  RewardId: ").Append(RewardId).Append("\n");
+            sb.Append("  RewardIntegrationId: ").Append(RewardIntegrationId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -446,6 +464,7 @@ namespace TalonOneSdk.Model
             Option<decimal?> selectedPrice = default;
             Option<Guid?> adjustmentReferenceId = default;
             Option<long?> rewardId = default;
+            Option<string> rewardIntegrationId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -523,6 +542,9 @@ namespace TalonOneSdk.Model
                         case "rewardId":
                             rewardId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
+                        case "rewardIntegrationId":
+                            rewardIntegrationId = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
@@ -565,7 +587,7 @@ namespace TalonOneSdk.Model
             if (props.IsSet && props.Value == null)
                 throw new ArgumentNullException(nameof(props), "Property is not nullable for class EffectShowBundleMetadata.");
 
-            return new EffectShowBundleMetadata(campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, effectType.Value.Value, props.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId);
+            return new EffectShowBundleMetadata(campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, effectType.Value.Value, props.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId, rewardIntegrationId);
         }
 
         /// <summary>
@@ -645,6 +667,9 @@ namespace TalonOneSdk.Model
 
             if (effectShowBundleMetadata.RewardIdOption.IsSet)
                 writer.WriteNumber("rewardId", effectShowBundleMetadata.RewardIdOption.Value.Value);
+
+            if (effectShowBundleMetadata.RewardIntegrationIdOption.IsSet)
+                writer.WriteString("rewardIntegrationId", effectShowBundleMetadata.RewardIntegrationId);
         }
     }
 }

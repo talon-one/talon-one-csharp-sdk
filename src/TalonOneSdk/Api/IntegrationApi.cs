@@ -1060,7 +1060,7 @@ namespace TalonOneSdk.Api
         /// Unlock a reward
         /// </summary>
         /// <remarks>
-        /// Unlock a reward for a customer. If the reward has &#x60;pointsRequired&#x60; configured, the corresponding loyalty points are deducted from the customer&#39;s balance.  To unlock a reward with the points of a loyalty card, provide the card in &#x60;cardIdentifier&#x60;. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
+        /// Unlock a reward for a customer. If the reward has &#x60;pointsRequired&#x60; configured, the corresponding loyalty points are deducted from the customer&#39;s balance.  To unlock a reward with the points of a loyalty card, provide the card in &#x60;loyaltyCardId&#x60;. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="rewardId">The ID of the reward. You can get the ID with the [List rewards](#tag/Rewards/operation/listRewards) endpoint.</param>
@@ -1074,7 +1074,7 @@ namespace TalonOneSdk.Api
         /// Unlock a reward
         /// </summary>
         /// <remarks>
-        /// Unlock a reward for a customer. If the reward has &#x60;pointsRequired&#x60; configured, the corresponding loyalty points are deducted from the customer&#39;s balance.  To unlock a reward with the points of a loyalty card, provide the card in &#x60;cardIdentifier&#x60;. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
+        /// Unlock a reward for a customer. If the reward has &#x60;pointsRequired&#x60; configured, the corresponding loyalty points are deducted from the customer&#39;s balance.  To unlock a reward with the points of a loyalty card, provide the card in &#x60;loyaltyCardId&#x60;. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
         /// </remarks>
         /// <param name="rewardId">The ID of the reward. You can get the ID with the [List rewards](#tag/Rewards/operation/listRewards) endpoint.</param>
         /// <param name="integrationUnlockRewardRequest"></param>
@@ -18272,7 +18272,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorUnlockReward(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long rewardId, IntegrationUnlockRewardRequest integrationUnlockRewardRequest, Option<bool> dry);
 
         /// <summary>
-        /// Unlock a reward Unlock a reward for a customer. If the reward has &#x60;pointsRequired&#x60; configured, the corresponding loyalty points are deducted from the customer&#39;s balance.  To unlock a reward with the points of a loyalty card, provide the card in &#x60;cardIdentifier&#x60;. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
+        /// Unlock a reward Unlock a reward for a customer. If the reward has &#x60;pointsRequired&#x60; configured, the corresponding loyalty points are deducted from the customer&#39;s balance.  To unlock a reward with the points of a loyalty card, provide the card in &#x60;loyaltyCardId&#x60;. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
         /// </summary>
         /// <param name="rewardId">The ID of the reward. You can get the ID with the [List rewards](#tag/Rewards/operation/listRewards) endpoint.</param>
         /// <param name="integrationUnlockRewardRequest"></param>
@@ -18292,7 +18292,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Unlock a reward Unlock a reward for a customer. If the reward has &#x60;pointsRequired&#x60; configured, the corresponding loyalty points are deducted from the customer&#39;s balance.  To unlock a reward with the points of a loyalty card, provide the card in &#x60;cardIdentifier&#x60;. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
+        /// Unlock a reward Unlock a reward for a customer. If the reward has &#x60;pointsRequired&#x60; configured, the corresponding loyalty points are deducted from the customer&#39;s balance.  To unlock a reward with the points of a loyalty card, provide the card in &#x60;loyaltyCardId&#x60;. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="rewardId">The ID of the reward. You can get the ID with the [List rewards](#tag/Rewards/operation/listRewards) endpoint.</param>

@@ -356,6 +356,18 @@ namespace TalonOneSdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // NumberOfCoupons (long) maximum
+            if (this.NumberOfCoupons > (long)20000)
+            {
+                yield return new ValidationResult("Invalid value for NumberOfCoupons, must be a value less than or equal to 20000.", new [] { "NumberOfCoupons" });
+            }
+
+            // NumberOfCoupons (long) minimum
+            if (this.NumberOfCoupons < (long)1)
+            {
+                yield return new ValidationResult("Invalid value for NumberOfCoupons, must be a value greater than or equal to 1.", new [] { "NumberOfCoupons" });
+            }
+
             // UsageLimit (long) maximum
             if (this.UsageLimitOption.IsSet && this.UsageLimitOption.Value > (long)999999)
             {

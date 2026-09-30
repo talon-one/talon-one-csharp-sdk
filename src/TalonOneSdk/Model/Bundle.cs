@@ -31,20 +31,20 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Bundle" /> class.
         /// </summary>
-        /// <param name="id">An identifier derived from the bundle content.</param>
         /// <param name="name">The name of the bundle.</param>
         /// <param name="type">A binding of type &#x60;bundle&#x60;.</param>
         /// <param name="sources">The selector sources of bundle items. Each source is expressed as a &#x60;{{$selectorName}}&#x60; reference.</param>
         /// <param name="counts">The number of items to retrieve from each corresponding source in &#x60;sources&#x60;.</param>
+        /// <param name="id">An identifier derived from the bundle content.</param>
         /// <param name="matchers">Attribute names that the bundled items must share.</param>
         [JsonConstructor]
-        public Bundle(string id, string name, TypeEnum type, List<string> sources, List<long> counts, Option<List<string>> matchers = default)
+        public Bundle(string name, TypeEnum type, List<string> sources, List<long> counts, Option<string> id = default, Option<List<string>> matchers = default)
         {
-            Id = id;
             Name = name;
             Type = type;
             Sources = sources;
             Counts = counts;
+            IdOption = id;
             MatchersOption = matchers;
             OnCreated();
         }
@@ -113,14 +113,6 @@ namespace TalonOneSdk.Model
         public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// An identifier derived from the bundle content.
-        /// </summary>
-        /// <value>An identifier derived from the bundle content.</value>
-        /* <example>1b671a64-40d5-491e-99b0-da01ff1f3341</example> */
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        /// <summary>
         /// The name of the bundle.
         /// </summary>
         /// <value>The name of the bundle.</value>
@@ -145,6 +137,21 @@ namespace TalonOneSdk.Model
         public List<long> Counts { get; set; }
 
         /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// An identifier derived from the bundle content.
+        /// </summary>
+        /// <value>An identifier derived from the bundle content.</value>
+        /* <example>1b671a64-40d5-491e-99b0-da01ff1f3341</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
+
+        /// <summary>
         /// Used to track the state of Matchers
         /// </summary>
         [JsonIgnore]
@@ -167,11 +174,11 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Bundle {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Sources: ").Append(Sources).Append("\n");
             sb.Append("  Counts: ").Append(Counts).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Matchers: ").Append(Matchers).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -220,11 +227,11 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> id = default;
             Option<string> name = default;
             Option<Bundle.TypeEnum?> type = default;
             Option<List<string>> sources = default;
             Option<List<long>> counts = default;
+            Option<string> id = default;
             Option<List<string>> matchers = default;
 
             while (utf8JsonReader.Read())
@@ -242,9 +249,6 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -264,6 +268,9 @@ namespace TalonOneSdk.Model
                         case "counts":
                             counts = new Option<List<long>>(JsonSerializer.Deserialize<List<long>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         case "matchers":
                             matchers = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -272,9 +279,6 @@ namespace TalonOneSdk.Model
                     }
                 }
             }
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Bundle.", nameof(id));
 
             if (!name.IsSet)
                 throw new ArgumentException("Property is required for class Bundle.", nameof(name));
@@ -288,9 +292,6 @@ namespace TalonOneSdk.Model
             if (!counts.IsSet)
                 throw new ArgumentException("Property is required for class Bundle.", nameof(counts));
 
-            if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Bundle.");
-
             if (name.IsSet && name.Value == null)
                 throw new ArgumentNullException(nameof(name), "Property is not nullable for class Bundle.");
 
@@ -303,7 +304,7 @@ namespace TalonOneSdk.Model
             if (counts.IsSet && counts.Value == null)
                 throw new ArgumentNullException(nameof(counts), "Property is not nullable for class Bundle.");
 
-            return new Bundle(id.Value, name.Value, type.Value.Value, sources.Value, counts.Value, matchers);
+            return new Bundle(name.Value, type.Value.Value, sources.Value, counts.Value, id, matchers);
         }
 
         /// <summary>
@@ -330,9 +331,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Bundle bundle, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (bundle.Id == null)
-                throw new ArgumentNullException(nameof(bundle.Id), "Property is required for class Bundle.");
-
             if (bundle.Name == null)
                 throw new ArgumentNullException(nameof(bundle.Name), "Property is required for class Bundle.");
 
@@ -342,8 +340,6 @@ namespace TalonOneSdk.Model
             if (bundle.Counts == null)
                 throw new ArgumentNullException(nameof(bundle.Counts), "Property is required for class Bundle.");
 
-            writer.WriteString("id", bundle.Id);
-
             writer.WriteString("name", bundle.Name);
 
             var typeRawValue = Bundle.TypeEnumToJsonValue(bundle.Type);
@@ -352,6 +348,9 @@ namespace TalonOneSdk.Model
             JsonSerializer.Serialize(writer, bundle.Sources, jsonSerializerOptions);
             writer.WritePropertyName("counts");
             JsonSerializer.Serialize(writer, bundle.Counts, jsonSerializerOptions);
+            if (bundle.IdOption.IsSet)
+                writer.WriteString("id", bundle.Id);
+
             if (bundle.MatchersOption.IsSet)
             {
                 writer.WritePropertyName("matchers");

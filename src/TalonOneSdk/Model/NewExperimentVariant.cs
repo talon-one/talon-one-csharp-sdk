@@ -32,16 +32,18 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="NewExperimentVariant" /> class.
         /// </summary>
         /// <param name="name">The name of this variant.</param>
-        /// <param name="weight">The percentage split of this variant. The sum of all variant percentages must be 100.</param>
+        /// <param name="weight">The percentage split of this variant. For &#x60;random&#x60; assignment, the split must be between 1 and 99 and the sum across all variants must equal 100. Ignored for &#x60;audience&#x60; and &#x60;external&#x60; assignment. </param>
         /// <param name="ruleset">ruleset</param>
         /// <param name="isPrimary">isPrimary</param>
+        /// <param name="audienceId">The ID of the audience this variant targets. Only used when the experiment &#x60;assignmentType&#x60; is &#x60;audience&#x60;. </param>
         [JsonConstructor]
-        public NewExperimentVariant(string name, long weight, NewRuleset ruleset, bool isPrimary)
+        public NewExperimentVariant(string name, long weight, NewRuleset ruleset, bool isPrimary, Option<long?> audienceId = default)
         {
             Name = name;
             Weight = weight;
             Ruleset = ruleset;
             IsPrimary = isPrimary;
+            AudienceIdOption = audienceId;
             OnCreated();
         }
 
@@ -56,9 +58,9 @@ namespace TalonOneSdk.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// The percentage split of this variant. The sum of all variant percentages must be 100.
+        /// The percentage split of this variant. For &#x60;random&#x60; assignment, the split must be between 1 and 99 and the sum across all variants must equal 100. Ignored for &#x60;audience&#x60; and &#x60;external&#x60; assignment. 
         /// </summary>
-        /// <value>The percentage split of this variant. The sum of all variant percentages must be 100.</value>
+        /// <value>The percentage split of this variant. For &#x60;random&#x60; assignment, the split must be between 1 and 99 and the sum across all variants must equal 100. Ignored for &#x60;audience&#x60; and &#x60;external&#x60; assignment. </value>
         /* <example>13</example> */
         [JsonPropertyName("weight")]
         public long Weight { get; set; }
@@ -77,6 +79,21 @@ namespace TalonOneSdk.Model
         public bool IsPrimary { get; set; }
 
         /// <summary>
+        /// Used to track the state of AudienceId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> AudienceIdOption { get; private set; }
+
+        /// <summary>
+        /// The ID of the audience this variant targets. Only used when the experiment &#x60;assignmentType&#x60; is &#x60;audience&#x60;. 
+        /// </summary>
+        /// <value>The ID of the audience this variant targets. Only used when the experiment &#x60;assignmentType&#x60; is &#x60;audience&#x60;. </value>
+        /* <example>55</example> */
+        [JsonPropertyName("audienceId")]
+        public long? AudienceId { get { return this.AudienceIdOption.Value; } set { this.AudienceIdOption = new Option<long?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -88,6 +105,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Weight: ").Append(Weight).Append("\n");
             sb.Append("  Ruleset: ").Append(Ruleset).Append("\n");
             sb.Append("  IsPrimary: ").Append(IsPrimary).Append("\n");
+            sb.Append("  AudienceId: ").Append(AudienceId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -118,9 +136,9 @@ namespace TalonOneSdk.Model
             }
 
             // Weight (long) minimum
-            if (this.Weight < (long)1)
+            if (this.Weight < (long)0)
             {
-                yield return new ValidationResult("Invalid value for Weight, must be a value greater than or equal to 1.", new [] { "Weight" });
+                yield return new ValidationResult("Invalid value for Weight, must be a value greater than or equal to 0.", new [] { "Weight" });
             }
 
             yield break;
@@ -163,6 +181,7 @@ namespace TalonOneSdk.Model
             Option<long?> weight = default;
             Option<NewRuleset> ruleset = default;
             Option<bool?> isPrimary = default;
+            Option<long?> audienceId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -190,6 +209,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "isPrimary":
                             isPrimary = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "audienceId":
+                            audienceId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         default:
                             break;
@@ -221,7 +243,7 @@ namespace TalonOneSdk.Model
             if (isPrimary.IsSet && isPrimary.Value == null)
                 throw new ArgumentNullException(nameof(isPrimary), "Property is not nullable for class NewExperimentVariant.");
 
-            return new NewExperimentVariant(name.Value, weight.Value.Value, ruleset.Value, isPrimary.Value.Value);
+            return new NewExperimentVariant(name.Value, weight.Value.Value, ruleset.Value, isPrimary.Value.Value, audienceId);
         }
 
         /// <summary>
@@ -261,6 +283,9 @@ namespace TalonOneSdk.Model
             writer.WritePropertyName("ruleset");
             JsonSerializer.Serialize(writer, newExperimentVariant.Ruleset, jsonSerializerOptions);
             writer.WriteBoolean("isPrimary", newExperimentVariant.IsPrimary);
+
+            if (newExperimentVariant.AudienceIdOption.IsSet)
+                writer.WriteNumber("audienceId", newExperimentVariant.AudienceIdOption.Value.Value);
         }
     }
 }

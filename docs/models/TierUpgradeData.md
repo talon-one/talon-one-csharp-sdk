@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **OldTier** | **string** | The name of the customer&#39;s previous tier. | [optional] 
 **PointsRequiredToTheNextTier** | **decimal** | The number of points needed for a customer to reach the next tier. | [optional] 
 **NextTier** | **string** | The name of the customer&#39;s next tier. | [optional] 
+**Source** | **string** | The source of the tier change, whether from a points change or boost.  | [optional] [default to SourceEnum.Points]
+**Reason** | **string** | The reason for the tier change.  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 
