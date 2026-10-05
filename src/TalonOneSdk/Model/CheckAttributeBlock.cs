@@ -889,7 +889,6 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<CheckAttributeBlock.TypeEnum?> type = default;
-            Option<CheckAttributeBlock.OperatorEnum?> varOperator = default;
             Option<string> id = default;
             Option<List<string>> tags = default;
             Option<Object> attribute = default;
@@ -1139,16 +1138,6 @@ namespace TalonOneSdk.Model
                                 type = new Option<CheckAttributeBlock.TypeEnum?>(typeValue);
                             }
                             break;
-                        case "operator":
-                            string varOperatorRawValue = utf8JsonReader.GetString();
-                            if (varOperatorRawValue != null)
-                            {
-                                CheckAttributeBlock.OperatorEnum? varOperatorValue = CheckAttributeBlock.OperatorEnumFromStringOrDefault(varOperatorRawValue);
-                                if (varOperatorValue == null)
-                                    throw new JsonException();
-                                varOperator = new Option<CheckAttributeBlock.OperatorEnum?>(varOperatorValue);
-                            }
-                            break;
                         case "id":
                             id = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -1170,17 +1159,11 @@ namespace TalonOneSdk.Model
             if (!type.IsSet)
                 throw new ArgumentException("Property is required for class CheckAttributeBlock.", nameof(type));
 
-            if (!varOperator.IsSet)
-                throw new ArgumentException("Property is required for class CheckAttributeBlock.", nameof(varOperator));
-
             if (!attribute.IsSet)
                 throw new ArgumentException("Property is required for class CheckAttributeBlock.", nameof(attribute));
 
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class CheckAttributeBlock.");
-
-            if (varOperator.IsSet && varOperator.Value == null)
-                throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class CheckAttributeBlock.");
 
             if (afterScalarCheckAttributeBlock != null)
                 return new CheckAttributeBlock(afterScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);

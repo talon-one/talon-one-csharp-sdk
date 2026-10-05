@@ -192,8 +192,6 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<AwardDiscountBundleItem.TypeEnum?> type = default;
-
             AwardDiscountBundleItemByAttribute byAttributeAwardDiscountBundleItemByAttribute = null;
             AwardDiscountBundleItemByIndex byIndexAwardDiscountBundleItemByIndex = null;
 
@@ -242,27 +240,11 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "type":
-                            string typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                            {
-                                AwardDiscountBundleItem.TypeEnum? typeValue = AwardDiscountBundleItem.TypeEnumFromStringOrDefault(typeRawValue);
-                                if (typeValue == null)
-                                    throw new JsonException();
-                                type = new Option<AwardDiscountBundleItem.TypeEnum?>(typeValue);
-                            }
-                            break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountBundleItem.", nameof(type));
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AwardDiscountBundleItem.");
 
             if (byAttributeAwardDiscountBundleItemByAttribute != null)
                 return new AwardDiscountBundleItem(byAttributeAwardDiscountBundleItemByAttribute);

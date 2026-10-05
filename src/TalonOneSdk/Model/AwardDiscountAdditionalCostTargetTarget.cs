@@ -250,8 +250,6 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<AwardDiscountAdditionalCostTargetTarget.TypeEnum?> type = default;
-
             AwardDiscountAllItemsTarget allItemsAwardDiscountAllItemsTarget = null;
             AwardDiscountCartTarget cartAwardDiscountCartTarget = null;
             AwardDiscountGlobalFilterTarget globalFilterAwardDiscountGlobalFilterTarget = null;
@@ -312,27 +310,11 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "type":
-                            string typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                            {
-                                AwardDiscountAdditionalCostTargetTarget.TypeEnum? typeValue = AwardDiscountAdditionalCostTargetTarget.TypeEnumFromStringOrDefault(typeRawValue);
-                                if (typeValue == null)
-                                    throw new JsonException();
-                                type = new Option<AwardDiscountAdditionalCostTargetTarget.TypeEnum?>(typeValue);
-                            }
-                            break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountAdditionalCostTargetTarget.", nameof(type));
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AwardDiscountAdditionalCostTargetTarget.");
 
             if (allItemsAwardDiscountAllItemsTarget != null)
                 return new AwardDiscountAdditionalCostTargetTarget(allItemsAwardDiscountAllItemsTarget);

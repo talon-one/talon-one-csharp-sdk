@@ -500,8 +500,6 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> type = default;
-
             AwardDiscountBlock awardDiscountAwardDiscountBlock = null;
             AwardGiveawayBlock awardGiveawayAwardGiveawayBlock = null;
             AwardItemBlock awardItemAwardItemBlock = null;
@@ -700,20 +698,11 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "type":
-                            type = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class Block.", nameof(type));
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class Block.");
 
             if (awardDiscountAwardDiscountBlock != null)
                 return new Block(awardDiscountAwardDiscountBlock);

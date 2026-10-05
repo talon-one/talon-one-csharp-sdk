@@ -337,8 +337,6 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<SelectorStep.TypeEnum?> type = default;
-
             FilterSelectorStep filterFilterSelectorStep = null;
             FilterAndMapValuesSelectorStep filterAndMapValuesFilterAndMapValuesSelectorStep = null;
             MapSelectorStep mapMapSelectorStep = null;
@@ -417,27 +415,11 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "type":
-                            string typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                            {
-                                SelectorStep.TypeEnum? typeValue = SelectorStep.TypeEnumFromStringOrDefault(typeRawValue);
-                                if (typeValue == null)
-                                    throw new JsonException();
-                                type = new Option<SelectorStep.TypeEnum?>(typeValue);
-                            }
-                            break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class SelectorStep.", nameof(type));
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class SelectorStep.");
 
             if (filterFilterSelectorStep != null)
                 return new SelectorStep(filterFilterSelectorStep);

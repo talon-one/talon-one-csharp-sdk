@@ -1098,7 +1098,19 @@ namespace TalonOneSdk.Client
         /// <returns></returns>
         public HostConfiguration AddTokens<TTokenBase>(TTokenBase token) where TTokenBase : TokenBase
         {
-            return AddTokens(new TTokenBase[]{ token });
+            return AddTokens(new TTokenBase[]{ token }, true);
+        }
+
+        /// <summary>
+        /// Adds tokens to your IServiceCollection and configures client-side rate limiting.
+        /// </summary>
+        /// <typeparam name="TTokenBase"></typeparam>
+        /// <param name="token"></param>
+        /// <param name="enableRateLimiting">Whether the token provider should enforce client-side rate limiting.</param>
+        /// <returns></returns>
+        public HostConfiguration AddTokens<TTokenBase>(TTokenBase token, bool enableRateLimiting) where TTokenBase : TokenBase
+        {
+            return AddTokens(new TTokenBase[]{ token }, enableRateLimiting);
         }
 
         /// <summary>
@@ -1109,7 +1121,19 @@ namespace TalonOneSdk.Client
         /// <returns></returns>
         public HostConfiguration AddTokens<TTokenBase>(IEnumerable<TTokenBase> tokens) where TTokenBase : TokenBase
         {
-            TokenContainer<TTokenBase> container = new TokenContainer<TTokenBase>(tokens);
+            return AddTokens(tokens, true);
+        }
+
+        /// <summary>
+        /// Adds tokens to your IServiceCollection and configures client-side rate limiting.
+        /// </summary>
+        /// <typeparam name="TTokenBase"></typeparam>
+        /// <param name="tokens"></param>
+        /// <param name="enableRateLimiting">Whether the token provider should enforce client-side rate limiting.</param>
+        /// <returns></returns>
+        public HostConfiguration AddTokens<TTokenBase>(IEnumerable<TTokenBase> tokens, bool enableRateLimiting) where TTokenBase : TokenBase
+        {
+            TokenContainer<TTokenBase> container = new TokenContainer<TTokenBase>(tokens, enableRateLimiting);
             _services.AddSingleton(services => container);
 
             return this;
@@ -1126,7 +1150,19 @@ namespace TalonOneSdk.Client
         /// <returns></returns>
         public HostConfiguration AddTokens<TApiKeyProvider>(ApiKeyToken token) where TApiKeyProvider : TokenProvider<ApiKeyToken>
         {
-            TokenContainer<ApiKeyToken> container = new TokenContainer<ApiKeyToken>(new ApiKeyToken[]{ token });
+            return AddTokens<TApiKeyProvider>(token, true);
+        }
+
+        /// <summary>
+        /// Adds a token to your IServiceCollection for a specific per-API key provider and configures client-side rate limiting.
+        /// </summary>
+        /// <typeparam name="TApiKeyProvider">The per-API provider type, e.g. <c>IntegrationApiKeyProvider</c>.</typeparam>
+        /// <param name="token">The <see cref="ApiKeyToken"/> to use exclusively for this API.</param>
+        /// <param name="enableRateLimiting">Whether the token provider should enforce client-side rate limiting.</param>
+        /// <returns></returns>
+        public HostConfiguration AddTokens<TApiKeyProvider>(ApiKeyToken token, bool enableRateLimiting) where TApiKeyProvider : TokenProvider<ApiKeyToken>
+        {
+            TokenContainer<ApiKeyToken> container = new TokenContainer<ApiKeyToken>(new ApiKeyToken[]{ token }, enableRateLimiting);
             _services.AddSingleton(typeof(TApiKeyProvider),
                 serviceProvider => global::System.Activator.CreateInstance(typeof(TApiKeyProvider), container));
 
