@@ -1,17 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using TalonOneSdk.Api;
 using TalonOneSdk.Client;
 using TalonOneSdk.Model;
 using Microsoft.Extensions.DependencyInjection;
 
+/*
+
+Rate-limit comparison: http://127.0.0.1:19090/, 1s per rate, dry-run session updates.
+Calls are evenly scheduled without waiting for earlier responses. Each stage drains before the next.
+Finished RPS counts completed attempts and includes draining queued calls; latency includes client-side token waits.
+Each call has a 30s deadline. Stages have a 6s cooldown. Ctrl+C stops the run.
+
+enableRateLimiting: true
+Target | Calls | OK | 429 | Other HTTP | Timeouts | Errors | Finished RPS | Avg ms | Max ms | Queued/in-flight at stage end
+    10 |    10 |  10 |   0 |          0 |        0 |      0 |         10,0 |      9 |     78 | 0
+    15 |    15 |  15 |   0 |          0 |        0 |      0 |         15,0 |      2 |      7 | 0
+    20 |    20 |  20 |   0 |          0 |        0 |      0 |         20,0 |      2 |      4 | 0
+    25 |    25 |  25 |   0 |          0 |        0 |      0 |         25,0 |      3 |     10 | 0
+    30 |    30 |  30 |   0 |          0 |        0 |      0 |         26,2 |     83 |    178 | 4
+    35 |    35 |  35 |   0 |          0 |        0 |      0 |         25,7 |    196 |    390 | 10
+    40 |    40 |  40 |   0 |          0 |        0 |      0 |         25,7 |    290 |    584 | 14
+    45 |    45 |  45 |   0 |          0 |        0 |      0 |         25,6 |    389 |    779 | 20
+    50 |    50 |  50 |   0 |          0 |        0 |      0 |         25,5 |    491 |    982 | 25
+
+enableRateLimiting: false
+Target | Calls | OK | 429 | Other HTTP | Timeouts | Errors | Finished RPS | Avg ms | Max ms | Queued/in-flight at stage end
+    10 |    10 |  10 |   0 |          0 |        0 |      0 |         10,0 |      3 |      7 | 0
+    15 |    15 |  15 |   0 |          0 |        0 |      0 |         15,0 |      3 |      6 | 0
+    20 |    20 |  20 |   0 |          0 |        0 |      0 |         20,0 |      2 |      3 | 0
+    25 |    25 |  25 |   0 |          0 |        0 |      0 |         25,0 |      2 |      5 | 0
+    30 |    30 |  30 |   0 |          0 |        0 |      0 |         30,0 |      2 |      3 | 0
+    35 |    35 |  35 |   0 |          0 |        0 |      0 |         35,0 |      2 |      3 | 0
+    40 |    40 |  40 |   0 |          0 |        0 |      0 |         40,0 |      2 |      7 | 0
+    45 |    45 |  45 |   0 |          0 |        0 |      0 |         45,0 |      2 |      4 | 0
+    50 |    50 |  50 |   0 |          0 |        0 |      0 |         50,0 |      2 |      7 | 0
+
+
+*/
 namespace _example
 {
     class Program
     {
         static async System.Threading.Tasks.Task Main(string[] args)
         {
+            // The rate-limit comparison is the default. Keep the previous examples
+            // available with --examples (these include Management API writes).
+            if (!args.Contains("--examples"))
+            {
+                await RunRateLimitComparisonAsync(args);
+                return;
+            }
+
             // Configure services with separate tokens for Integration API and Management API.
             // Both APIs use the Authorization header but each gets its own typed provider,
             // so their tokens are resolved independently by the DI container.
@@ -286,6 +330,165 @@ namespace _example
 
             Console.WriteLine($"Coupon Created timestamp parsed successfully: {createdCoupon.Created:O}");
             Console.WriteLine("DateTime deserialization from API response succeeded");
+        }
+
+        private static async Task RunRateLimitComparisonAsync(string[] args)
+        {
+            // Usage: dotnet run --project .github/.example/.example.csproj -- [seconds-per-rate]
+            // TALON_BASE_URL defaults to the local proxy used by the original example.
+            int secondsPerRate = 10;
+            if (args.Length > 1 || (args.Length == 1 &&
+                (!int.TryParse(args[0], out secondsPerRate) || secondsPerRate < 1 || secondsPerRate > 60)))
+            {
+                throw new ArgumentException("Pass a stage duration from 1 to 60 seconds, or --examples.");
+            }
+
+            string apiKey = Environment.GetEnvironmentVariable("TALON_API_KEY");
+            if (string.IsNullOrWhiteSpace(apiKey))
+                throw new InvalidOperationException("Set TALON_API_KEY before running the comparison.");
+
+            var baseUri = new Uri(Environment.GetEnvironmentVariable("TALON_BASE_URL") ?? "http://localhost:9000");
+            using var cancellation = new CancellationTokenSource();
+            ConsoleCancelEventHandler cancelHandler = (sender, e) =>
+            {
+                e.Cancel = true;
+                cancellation.Cancel();
+            };
+            Console.CancelKeyPress += cancelHandler;
+
+            Console.WriteLine($"Rate-limit comparison: {baseUri}, {secondsPerRate}s per rate, dry-run session updates.");
+            Console.WriteLine("Calls are evenly scheduled without waiting for earlier responses. Each stage drains before the next.");
+            Console.WriteLine("Finished RPS counts completed attempts and includes draining queued calls; latency includes client-side token waits.");
+            Console.WriteLine("Each call has a 30s deadline. Stages have a 6s cooldown. Ctrl+C stops the run.");
+
+            try
+            {
+                foreach (bool enableRateLimiting in new[] { true, false })
+                {
+                    var services = new ServiceCollection();
+                    new HostConfiguration(services)
+                        .AddApiHttpClients(client => client.BaseAddress = baseUri)
+                        .AddTokens<IntegrationApiKeyProvider>(new ApiKeyToken(
+                            apiKey, ClientUtils.ApiKeyHeader.Authorization, "ApiKey-v1 "),
+                            enableRateLimiting: enableRateLimiting);
+
+                    using var serviceProvider = services.BuildServiceProvider();
+                    var api = serviceProvider.GetRequiredService<IApiFactory>().Create<IIntegrationApi>();
+                    int? firstFailureRate = null;
+                    int? first429Rate = null;
+
+                    Console.WriteLine($"\nenableRateLimiting: {enableRateLimiting.ToString().ToLowerInvariant()}");
+                    Console.WriteLine("Target | Calls | OK | 429 | Other HTTP | Timeouts | Errors | Finished RPS | Avg ms | Max ms | Queued/in-flight at stage end");
+                    for (int rate = 10; rate <= 50; rate += 5)
+                    {
+                        cancellation.Token.ThrowIfCancellationRequested();
+                        var results = await RunRateAsync(api, rate, secondsPerRate, cancellation.Token);
+                        if (results.Any(r => r.StatusCode != 200))
+                            firstFailureRate ??= rate;
+                        if (results.Any(r => r.StatusCode == 429))
+                            first429Rate ??= rate;
+                        await Task.Delay(TimeSpan.FromSeconds(6), cancellation.Token);
+                    }
+
+                    Console.WriteLine($"First failure: {(firstFailureRate.HasValue ? firstFailureRate + " RPS" : "none")}; " +
+                        $"first HTTP 429: {(first429Rate.HasValue ? first429Rate + " RPS" : "none")}");
+                }
+            }
+            catch (OperationCanceledException) when (cancellation.IsCancellationRequested)
+            {
+                Console.WriteLine("Comparison stopped.");
+            }
+            finally
+            {
+                Console.CancelKeyPress -= cancelHandler;
+            }
+        }
+
+        private static async Task<RequestResult[]> RunRateAsync(
+            IIntegrationApi api, int rate, int seconds, CancellationToken cancellation)
+        {
+            int count = rate * seconds;
+            var requests = new List<Task<RequestResult>>(count);
+            var stopwatch = Stopwatch.StartNew();
+            for (int i = 0; i < count; i++)
+            {
+                // Absolute deadlines prevent response latency from slowing the load generator.
+                var delay = TimeSpan.FromSeconds((double)i / rate) - stopwatch.Elapsed;
+                if (delay > TimeSpan.Zero)
+                    await Task.Delay(delay, cancellation);
+                cancellation.ThrowIfCancellationRequested();
+                requests.Add(SendSessionUpdateAsync(api, cancellation));
+            }
+
+            var remaining = TimeSpan.FromSeconds(seconds) - stopwatch.Elapsed;
+            if (remaining > TimeSpan.Zero)
+                await Task.Delay(remaining, cancellation);
+            int pending = requests.Count(task => !task.IsCompleted);
+            double schedulingSeconds = stopwatch.Elapsed.TotalSeconds;
+            var results = await Task.WhenAll(requests);
+            stopwatch.Stop();
+            cancellation.ThrowIfCancellationRequested();
+
+            int ok = results.Count(r => r.StatusCode == 200);
+            int tooManyRequests = results.Count(r => r.StatusCode == 429);
+            int otherHttp = results.Count(r => r.StatusCode.HasValue && r.StatusCode != 200 && r.StatusCode != 429);
+            int timeouts = results.Count(r => r.TimedOut);
+            int errors = results.Count(r => !r.StatusCode.HasValue && !r.TimedOut);
+            Console.WriteLine($"{rate,6} | {count,5} | {ok,3} | {tooManyRequests,3} | {otherHttp,10} | " +
+                $"{timeouts,8} | {errors,6} | {count / stopwatch.Elapsed.TotalSeconds,12:F1} | " +
+                $"{results.Average(r => r.Milliseconds),6:F0} | {results.Max(r => r.Milliseconds),6:F0} | {pending}");
+            if (schedulingSeconds > seconds + 0.5)
+                Console.WriteLine($"  Scheduling overran: {schedulingSeconds:F1}s for a {seconds}s stage; target rate was not sustained.");
+            foreach (var group in results.Where(r => r.StatusCode != 200).GroupBy(r => r.Detail))
+                Console.WriteLine($"  {group.Count()} x {group.Key}");
+            return results;
+        }
+
+        private static async Task<RequestResult> SendSessionUpdateAsync(IIntegrationApi api, CancellationToken cancellation)
+        {
+            using var deadline = CancellationTokenSource.CreateLinkedTokenSource(cancellation);
+            deadline.CancelAfter(TimeSpan.FromSeconds(30));
+            var stopwatch = Stopwatch.StartNew();
+            try
+            {
+                // Unique IDs avoid concurrent updates to the same session. Dry runs
+                // evaluate the request without persisting thousands of test sessions.
+                var body = new IntegrationRequest(new NewCustomerSessionV2
+                {
+                    CartItems = new List<CartItem>
+                    {
+                        new CartItem(name: "Rate-limit test", sku: "rate-limit-test", quantity: 1, price: 5.5m)
+                    }
+                });
+                var response = await api.UpdateCustomerSessionV2Async(
+                    "rate-limit-" + Guid.NewGuid().ToString("N"), body, dry: true, cancellationToken: deadline.Token);
+                return new RequestResult
+                {
+                    StatusCode = (int)response.StatusCode,
+                    Milliseconds = stopwatch.Elapsed.TotalMilliseconds,
+                    Detail = $"HTTP {(int)response.StatusCode} ({response.ReasonPhrase})"
+                };
+            }
+            catch (OperationCanceledException) when (!cancellation.IsCancellationRequested)
+            {
+                return new RequestResult { TimedOut = true, Milliseconds = stopwatch.Elapsed.TotalMilliseconds, Detail = "Request timed out" };
+            }
+            catch (Exception exception) when (!(exception is OperationCanceledException))
+            {
+                return new RequestResult
+                {
+                    Milliseconds = stopwatch.Elapsed.TotalMilliseconds,
+                    Detail = exception.GetType().Name + ": " + exception.Message
+                };
+            }
+        }
+
+        private sealed class RequestResult
+        {
+            public int? StatusCode { get; set; }
+            public bool TimedOut { get; set; }
+            public double Milliseconds { get; set; }
+            public string Detail { get; set; }
         }
     }
 }
