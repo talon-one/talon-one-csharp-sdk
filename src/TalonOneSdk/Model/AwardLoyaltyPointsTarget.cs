@@ -279,8 +279,6 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<AwardLoyaltyPointsTarget.TypeEnum?> type = default;
-
             AwardLoyaltyPointsAllItemsTarget allItemsAwardLoyaltyPointsAllItemsTarget = null;
             AwardLoyaltyPointsBundleTarget bundleAwardLoyaltyPointsBundleTarget = null;
             AwardLoyaltyPointsCartTarget cartAwardLoyaltyPointsCartTarget = null;
@@ -347,27 +345,11 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "type":
-                            string typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                            {
-                                AwardLoyaltyPointsTarget.TypeEnum? typeValue = AwardLoyaltyPointsTarget.TypeEnumFromStringOrDefault(typeRawValue);
-                                if (typeValue == null)
-                                    throw new JsonException();
-                                type = new Option<AwardLoyaltyPointsTarget.TypeEnum?>(typeValue);
-                            }
-                            break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AwardLoyaltyPointsTarget.", nameof(type));
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AwardLoyaltyPointsTarget.");
 
             if (allItemsAwardLoyaltyPointsAllItemsTarget != null)
                 return new AwardLoyaltyPointsTarget(allItemsAwardLoyaltyPointsAllItemsTarget);

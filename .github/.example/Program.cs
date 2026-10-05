@@ -17,13 +17,16 @@ namespace _example
             // so their tokens are resolved independently by the DI container.
             var services = new ServiceCollection();
 
+            // Client-side rate limiting is enabled by default. Pass
+            // enableRateLimiting: false after a token to disable it for that API provider.
             var hostConfiguration = new HostConfiguration(services)
                 .AddApiHttpClients(client => client.BaseAddress = new System.Uri("http://localhost:9000"))
                 .AddTokens<IntegrationApiKeyProvider>(new ApiKeyToken(
                     System.Environment.GetEnvironmentVariable("TALON_API_KEY"),
                     ClientUtils.ApiKeyHeader.Authorization,
                     "ApiKey-v1 "
-                ))
+                ),
+                enableRateLimiting: false)
                 .AddTokens<ManagementApiKeyProvider>(new ApiKeyToken(
                     System.Environment.GetEnvironmentVariable("TALON_MGMT_KEY"),
                     ClientUtils.ApiKeyHeader.Authorization,

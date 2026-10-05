@@ -250,8 +250,6 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<GeoJSONGeometry.TypeEnum?> type = default;
-
             GeoJSONGeometryCollection geometryCollectionGeoJSONGeometryCollection = null;
             GeoJSONMultiPolygon multiPolygonGeoJSONMultiPolygon = null;
             GeoJSONPoint pointGeoJSONPoint = null;
@@ -312,27 +310,11 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "type":
-                            string typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                            {
-                                GeoJSONGeometry.TypeEnum? typeValue = GeoJSONGeometry.TypeEnumFromStringOrDefault(typeRawValue);
-                                if (typeValue == null)
-                                    throw new JsonException();
-                                type = new Option<GeoJSONGeometry.TypeEnum?>(typeValue);
-                            }
-                            break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class GeoJSONGeometry.", nameof(type));
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class GeoJSONGeometry.");
 
             if (geometryCollectionGeoJSONGeometryCollection != null)
                 return new GeoJSONGeometry(geometryCollectionGeoJSONGeometryCollection);

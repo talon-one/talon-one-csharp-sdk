@@ -208,6 +208,23 @@ namespace Example
 }
 ```
 
+## Client-side rate limiting
+
+Client-side token rate limiting is enabled by default. If your application manages concurrency and retries itself, disable the SDK rate limiter when registering a token:
+
+```csharp
+hostConfiguration.AddTokens<IntegrationApiKeyProvider>(
+    new ApiKeyToken(
+        "<your-api-key>",
+        ClientUtils.ApiKeyHeader.Authorization,
+        "ApiKey-v1 "
+    ),
+    enableRateLimiting: false
+);
+```
+
+Disabling the SDK rate limiter does not change Talon.One's server-side rate limits. Your application must handle `429 Too Many Requests` responses appropriately.
+
 ## Documentation for API endpoints
 
 All URLs are relative to `https://yourbaseurl.talon.one`.

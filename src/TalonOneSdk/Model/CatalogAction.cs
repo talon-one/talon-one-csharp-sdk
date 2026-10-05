@@ -308,8 +308,6 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<CatalogAction.TypeEnum?> type = default;
-
             CatalogActionAdd aDDCatalogActionAdd = null;
             CatalogActionAddPriceAdjustment aDDPRICEADJUSTMENTCatalogActionAddPriceAdjustment = null;
             CatalogActionPatch pATCHCatalogActionPatch = null;
@@ -382,27 +380,11 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "type":
-                            string typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                            {
-                                CatalogAction.TypeEnum? typeValue = CatalogAction.TypeEnumFromStringOrDefault(typeRawValue);
-                                if (typeValue == null)
-                                    throw new JsonException();
-                                type = new Option<CatalogAction.TypeEnum?>(typeValue);
-                            }
-                            break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CatalogAction.", nameof(type));
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CatalogAction.");
 
             if (aDDCatalogActionAdd != null)
                 return new CatalogAction(aDDCatalogActionAdd);

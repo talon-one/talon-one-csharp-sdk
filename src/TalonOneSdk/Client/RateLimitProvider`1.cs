@@ -26,13 +26,21 @@ namespace TalonOneSdk.Client
         protected internal Dictionary<string, global::System.Threading.Channels.Channel<TTokenBase>> AvailableTokens { get; } = new Dictionary<string, global::System.Threading.Channels.Channel<TTokenBase>>();
 
         /// <summary>
+        /// Whether this provider enforces client-side rate limiting.
+        /// </summary>
+        public bool IsRateLimitingEnabled { get; }
+
+        /// <summary>
         /// Instantiates a ThrottledTokenProvider. Your tokens will be rate limited based on the token's timeout.
         /// </summary>
         /// <param name="container"></param>
         public RateLimitProvider(TokenContainer<TTokenBase> container) : base()
         {
-            foreach(TTokenBase token in container.Tokens)
-                token.StartTimer(token.Timeout ?? TimeSpan.FromMilliseconds(40));
+            IsRateLimitingEnabled = container.IsRateLimitingEnabled;
+
+            if (IsRateLimitingEnabled)
+                foreach(TTokenBase token in container.Tokens)
+                    token.StartTimer(token.Timeout ?? TimeSpan.FromMilliseconds(40));
 
             if (container is TokenContainer<ApiKeyToken> apiKeyTokenContainer)
             {
@@ -65,11 +73,17 @@ namespace TalonOneSdk.Client
                     {
                         if (ClientUtils.ApiKeyHeaderToString(apiKeyToken.Header) == availableToken.Key)
                         {
-                            token.TokenBecameAvailable += ((sender) => availableToken.Value.Writer.TryWrite((TTokenBase)sender));
+                            if (IsRateLimitingEnabled)
+                                token.TokenBecameAvailable += ((sender) => availableToken.Value.Writer.TryWrite((TTokenBase)sender));
+                            else
+                                availableToken.Value.Writer.TryWrite(token);
                         }
                     } else
                     {
-                        token.TokenBecameAvailable += ((sender) => availableToken.Value.Writer.TryWrite((TTokenBase)sender));
+                        if (IsRateLimitingEnabled)
+                            token.TokenBecameAvailable += ((sender) => availableToken.Value.Writer.TryWrite((TTokenBase)sender));
+                        else
+                            availableToken.Value.Writer.TryWrite(token);
                     }
                 }
         }
@@ -80,7 +94,12 @@ namespace TalonOneSdk.Client
             if (!AvailableTokens.TryGetValue(header, out global::System.Threading.Channels.Channel<TTokenBase> tokens))
                 throw new KeyNotFoundException($"Could not locate a token for header '{header}'.");
 
-            return await tokens.Reader.ReadAsync(cancellation).ConfigureAwait(false);
+            TTokenBase token = await tokens.Reader.ReadAsync(cancellation).ConfigureAwait(false);
+
+            if (!IsRateLimitingEnabled)
+                tokens.Writer.TryWrite(token);
+
+            return token;
         }
     }
 }

@@ -793,8 +793,6 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<Effect.EffectTypeEnum?> effectType = default;
-
             EffectAcceptCoupon acceptCouponEffectAcceptCoupon = null;
             EffectAcceptReferral acceptReferralEffectAcceptReferral = null;
             EffectAddFreeItem addFreeItemEffectAddFreeItem = null;
@@ -1089,27 +1087,11 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "effectType":
-                            string effectTypeRawValue = utf8JsonReader.GetString();
-                            if (effectTypeRawValue != null)
-                            {
-                                Effect.EffectTypeEnum? effectTypeValue = Effect.EffectTypeEnumFromStringOrDefault(effectTypeRawValue);
-                                if (effectTypeValue == null)
-                                    throw new JsonException();
-                                effectType = new Option<Effect.EffectTypeEnum?>(effectTypeValue);
-                            }
-                            break;
                         default:
                             break;
                     }
                 }
             }
-
-            if (!effectType.IsSet)
-                throw new ArgumentException("Property is required for class Effect.", nameof(effectType));
-
-            if (effectType.IsSet && effectType.Value == null)
-                throw new ArgumentNullException(nameof(effectType), "Property is not nullable for class Effect.");
 
             if (acceptCouponEffectAcceptCoupon != null)
                 return new Effect(acceptCouponEffectAcceptCoupon);
