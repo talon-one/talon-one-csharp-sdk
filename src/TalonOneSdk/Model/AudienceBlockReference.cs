@@ -36,10 +36,10 @@ namespace TalonOneSdk.Model
         /// <param name="integration">The Talon.One-supported [3rd-party platform](https://docs.talon.one/docs/dev/technology-partners/overview) that this audience was created in.  For example, &#x60;mParticle&#x60;, &#x60;Segment&#x60;, &#x60;Shopify&#x60;, &#x60;Braze&#x60;, or &#x60;Iterable&#x60;.  **Note:** If you do not integrate with any of these platforms, do not use this property. </param>
         /// <param name="integrationId">The ID of this audience in the third-party integration.  **Note:** To create an audience that doesn&#39;t come from a 3rd party platform, do not use this property. </param>
         [JsonConstructor]
-        public AudienceBlockReference(long id, string name, Option<string> integration = default, Option<string> integrationId = default)
+        public AudienceBlockReference(long id, Option<string> name = default, Option<string> integration = default, Option<string> integrationId = default)
         {
             Id = id;
-            Name = name;
+            NameOption = name;
             IntegrationOption = integration;
             IntegrationIdOption = integrationId;
             OnCreated();
@@ -56,12 +56,19 @@ namespace TalonOneSdk.Model
         public long Id { get; set; }
 
         /// <summary>
+        /// Used to track the state of Name
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> NameOption { get; }
+
+        /// <summary>
         /// The display name of the audience.
         /// </summary>
         /// <value>The display name of the audience.</value>
         /* <example>Travel audience</example> */
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return this.NameOption.Value; } }
 
         /// <summary>
         /// Used to track the state of Integration
@@ -193,16 +200,10 @@ namespace TalonOneSdk.Model
             if (!id.IsSet)
                 throw new ArgumentException("Property is required for class AudienceBlockReference.", nameof(id));
 
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AudienceBlockReference.", nameof(name));
-
             if (id.IsSet && id.Value == null)
                 throw new ArgumentNullException(nameof(id), "Property is not nullable for class AudienceBlockReference.");
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AudienceBlockReference.");
-
-            return new AudienceBlockReference(id.Value.Value, name.Value, integration, integrationId);
+            return new AudienceBlockReference(id.Value.Value, name, integration, integrationId);
         }
 
         /// <summary>
@@ -229,12 +230,10 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AudienceBlockReference audienceBlockReference, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (audienceBlockReference.Name == null)
-                throw new ArgumentNullException(nameof(audienceBlockReference.Name), "Property is required for class AudienceBlockReference.");
-
             writer.WriteNumber("id", audienceBlockReference.Id);
 
-            writer.WriteString("name", audienceBlockReference.Name);
+            if (audienceBlockReference.NameOption.IsSet)
+                writer.WriteString("name", audienceBlockReference.Name);
 
             if (audienceBlockReference.IntegrationOption.IsSet)
                 writer.WriteString("integration", audienceBlockReference.Integration);

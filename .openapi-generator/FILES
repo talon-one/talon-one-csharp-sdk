@@ -965,6 +965,7 @@ src/TalonOneSdk.Test/Api/ApiTestsBase.cs
 src/TalonOneSdk.Test/Api/DependencyInjectionTests.cs
 src/TalonOneSdk.Test/Api/IntegrationApiTests.cs
 src/TalonOneSdk.Test/Api/ManagementApiTests.cs
+src/TalonOneSdk.Test/Client/RateLimitProviderTests.cs
 src/TalonOneSdk.Test/Model/APIErrorTests.cs
 src/TalonOneSdk.Test/Model/AcceptCouponEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/AcceptReferralEffectPropsTests.cs

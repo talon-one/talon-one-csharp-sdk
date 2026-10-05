@@ -31914,6 +31914,7 @@ components:
           name:
             description: The display name of the audience.
             example: Travel audience
+            readOnly: true
             type: string
           integration:
             description: |
@@ -31933,7 +31934,6 @@ components:
             type: string
         required:
         - id
-        - name
     CheckAudienceBlock:
       allOf:
       - $ref: "#/components/schemas/BaseBlock"
